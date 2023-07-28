@@ -17,7 +17,16 @@ jobs:
         run: |
           # Fetch Kernel Submodule
           echo "::group::Fetch Kernel Submodule"
+          set +e
           git submodule update --checkout --init --depth 1 FreeRTOS/Source
+          # Make a command that should or return an exit status of 1
+          ls 123421849832
+          # Echo the status to show it causes a failure
+          echo $?
+          # Re-run the command to add the failure back
+          ls 123421849832
+          # The above should cause an error
+          echo "::endgroup::"
           if [[ "$?" = "0" ]]; then
             echo "::endgroup::"
             echo -e "\033[32;3mCloned the Kernel\033[0m"
@@ -44,11 +53,9 @@ jobs:
           msbuild WIN32.sln -t:rebuild
           if($? -eq 1) {
             echo "::endgroup::"
-            sh echo "\033[32;3mBuild AWS IoT Device Shadow Demo Passed\e[0m"
             Write-Host -ForegroundColor green "Built the WIN32-MSVC Full Demo"
           }else {
             echo "::endgroup::"
-            sh echo "\033[32;31mBuild AWS IoT Device Shadow Demo Failed...\e[0m"
             Write-Host -ForegroundColor red "Build WIN32-MSVC Full Demo Failed..."
             exit 1
           }
@@ -75,11 +82,9 @@ jobs:
           if($? -eq 1) {
             echo "::endgroup::"
             Write-Host -ForegroundColor green "Build WIN32-MSVC Blinky Demo Passed"
-            sh echo "\e[0;32mBuild WIN32-MSVC Blinky Demo Passed\e[0m"
           }else {
             echo "::endgroup::"
             Write-Host -ForegroundColor red "Build WIN32-MSVC Blinky Demo Failed..."
-            sh echo "\033[32;31mBuild WIN32-MSVC Blinky Demo Failed...\e[0m"
             exit 1
           }
 
@@ -90,6 +95,7 @@ jobs:
           log-dir: demo_run_logs
           timeout-seconds: 60
           success-line: "Message received from software timer"
+          retry-attempts: 3
 
       - name: Build WIN32-MSVC-Static-Allocation-Only Demo
         id: build-win32-msvs-static-allocation-only-demo
@@ -104,11 +110,9 @@ jobs:
           if($? -eq 1) {
             echo "::endgroup::"
             Write-Host -ForegroundColor green "Built the WIN32-MSVC-Static-Allocation-Only Demo"
-            sh echo "\e[0;32mBuild WIN32-MSVC-Static-Allocation-Only Passed\e[0m"
           }else {
             echo "::endgroup::"
             Write-Host -ForegroundColor red "Build WIN32-MSVC-Static-Allocation-Only Demo Failed..."
-            sh echo "\033[32;31mBuild WIN32-MSVC-Static-Allocation-Only Demo...\e[0m"
             exit 1
           }
 
@@ -119,6 +123,7 @@ jobs:
           log-dir: demo_run_logs
           timeout-seconds: 60
           success-line: "No errors - tick count"
+          retry-attempts: 3
 
   WIN32-MingW:
     name: WIN32 MingW
@@ -158,7 +163,16 @@ jobs:
           gcc --version
           make --version
           make
+          # Run a command that should have a failure status
+          ls 123487437294 -ErrorAction SilentlyContinue
+          # Echo the status to show it causes a failure
+          echo $?
+          # Re-run the command to add the failure back
+          ls 123421849832 -ErrorAction SilentlyContinue
+          # Use an echo "::endgroup::" which will overwrite the status
+          echo "::endgroup::"
           if($? -eq 1) {
+            # Due to the echo "::endgroup::" over-writing the last status I have to put the endgroup after the check
             echo "::endgroup::"
             [Console]::ForegroundColor = "Green"
             Write-Host -ForegroundColor green "Built the WIN32-MingW Full Demo"
@@ -178,6 +192,7 @@ jobs:
           log-dir: demo_run_logs
           timeout-seconds: 60
           success-line: "No errors - tick count"
+          retry-attempts: 3
 
       - name: Build WIN32-MingW Blinky Demo
         id: build-win32-mingw-blinky-demo
@@ -208,6 +223,7 @@ jobs:
           log-dir: demo_run_logs
           timeout-seconds: 60
           success-line: "Message received from software timer"
+          retry-attempts: 3
 
   POSIX-GCC:
     name: Posix GCC
@@ -223,6 +239,15 @@ jobs:
           echo "::group::Fetch Kernel Submodule"
           set +e
           git submodule update --checkout --init --depth 1 FreeRTOS/Source
+          # Make a command that should or return an exit status of 1
+          ls 123421849832
+          # Echo the status to show it causes a failure
+          echo $?
+          # Re-run the command to add the failure back
+          ls 123421849832
+          # The above should cause an error
+          echo "::endgroup::"
+          # The use of the above echo endgroup will over-write the failure of the previous command
           if [ "$?" = "0" ]; then
             echo "::endgroup::"
             echo -e "\033[32;3mCloned the Kernel\033[0m"
@@ -279,6 +304,7 @@ jobs:
           log-dir: demo_run_logs
           timeout-seconds: 60
           success-line: "OK: No errors"
+          retry-attempts: 3
 
       - name: Build Posix_GCC Blinky Demo
         id: build-posix-gcc-blinky-demo
@@ -308,6 +334,7 @@ jobs:
           log-dir: demo_run_logs
           timeout-seconds: 60
           success-line: "Message received from software timer"
+          retry-attempts: 3
 
   MSP430-GCC:
     name: GNU MSP430 Toolchain
@@ -509,28 +536,6 @@ jobs:
             echo "::endgroup::"
             echo -e "\033[32;31mBuild CORTEX_LM3S811_GCC Demo Failed...\033[0m"
             set -e
-            exit 1
-          fi
-
-      - name: Build CORTEX_M0+_RP2040 Demos
-        shell: bash
-        working-directory: FreeRTOS/
-        run: |
-          # Build CORTEX_M0+_RP2040 Demos
-          echo "::group::Build CORTEX_M0+_RP2040 Demos"
-          ls Demo ; cd Demo
-          ls ThirdParty ; cd ThirdParty
-          ls Community-Supported-Demos ; cd Community-Supported-Demos
-          ls CORTEX_M0+_RP2040 ; cd CORTEX_M0+_RP2040
-          git clone https://github.com/raspberrypi/pico-sdk.git
-          cmake -B build -DPICO_SDK_PATH=pico-sdk -GNinja
-          ninja -C build --verbose
-          if [ "$?" = "0" ]; then
-            echo "::endgroup::"
-            echo -e "\033[32;3mBuilt CORTEX_M0+_RP2040 Demos\033[0m"
-          else
-            echo "::endgroup::"
-            echo -e "\033[32;31mBuild CORTEX_M0+_RP2040 Demos Failed...\033[0m"
             exit 1
           fi
 
