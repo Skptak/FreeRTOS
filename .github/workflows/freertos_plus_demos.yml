@@ -940,11 +940,9 @@ jobs:
           msbuild shadow_main_demo.sln -t:rebuild -property:Configuration=Debug -m
           if($? -eq 1) {
             echo "::endgroup::"
-            sh echo "\e[0;32mBuild AWS IoT Device Shadow Demo Passed\e[0m"
             Write-Host -ForegroundColor green "Build AWS IoT Device Shadow Demo Passed"
           }else {
             echo "::endgroup::"
-            sh echo "\e[0;32mBuild AWS IoT Device Shadow Demo Failed...\e[0m"
             Write-Host -ForegroundColor red "Build AWS IoT Device Shadow Demo Failed..."
             exit 1
           }
