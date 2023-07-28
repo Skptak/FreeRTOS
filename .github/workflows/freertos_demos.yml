@@ -150,6 +150,28 @@ jobs:
             exit 1
           fi
 
+      - name: Show Echo endgroup Issue
+        id: show-echo-endgroup-issue
+        run : |
+          # Show Echo endgroup Issue
+          echo "::group::Show Echo endgroup Issue"
+          ls -ErrorAction SilentlyContinue; if ($? -eq 1) { echo True} else { echo False }
+          # Run a command that should have a failure status. Print out the status
+          ls 12345 -ErrorAction SilentlyContinue; if ($? -eq 1) { echo True} else { echo False }
+          # Use an echo "::endgroup::" which will overwrite the status
+          echo "::endgroup::"
+          if($? -eq 1) {
+            # Due to the echo "::endgroup::" over-writing the last status I have to put the endgroup after the check
+            echo "::endgroup::"
+            # Also note that this doesn't print the colour. I've tried a lot of things to do this
+            # Can you get colour output in a GitHub runner log using powershell?
+            Write-Host -ForegroundColor green "Last command ran correctly"
+          }else {
+            echo "::endgroup::"
+            Write-Host -ForegroundColor red "Last command failed"
+            exit 1
+          }
+
 
       - name: Build WIN32-MingW Full Demo
         id: build-win32-mingw-full-demo
