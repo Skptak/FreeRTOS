@@ -579,14 +579,16 @@ jobs:
           echo '#define democonfigMQTT_BROKER_ENDPOINT "127.0.0.1"' >> demo_config.h
           echo '#define democonfigMQTT_BROKER_PORT ( 8883 )' >> demo_config.h
           sed -i -z "s/define[[:space:]]*democonfigDISABLE_SNI[[:space:]]*([[:space:]]*[a-zA-Z0-9]\+[[:space:]]*)/define democonfigDISABLE_SNI ( pdTRUE )/g" demo_config.h
-          if($? -eq 1) {
+          if [[ "$?" = "0" ]]; then
             echo "::endgroup::"
-            Write-Host -ForegroundColor green "Configure MQTT Mutual Authentication with mbedtls Demo Passed"
-          }else {
+            echo -e "\033[32;3mConfigure MQTT Mutual Authentication with mbedtls Demo Passed"
+            set -e
+          else
             echo "::endgroup::"
-            Write-Host -ForegroundColor red "Configure MQTT Mutual Authentication with mbedtls Demo Failed..."
+            echo -e "\033[32;31mConfigure MQTT Mutual Authentication with mbedtls Demo Failed...\033[0m"
+            set -e
             exit 1
-          }
+          fi
 
       - name: Build MQTT Mutual Authentication with mbedtls Demo
         id: build-mqtt-mutual-auth-demo
@@ -625,14 +627,16 @@ jobs:
           echo '    #define democonfigMQTT_BROKER_ENDPOINT "127.0.0.1"' >> demo_config.h
           echo '    #define democonfigMQTT_BROKER_PORT ( 1883 )' >> demo_config.h
           echo '#endif /* DEMO_CONFIG_H_TEST_BUILD */' >> demo_config.h
-          if($? -eq 1) {
+          if [[ "$?" = "0" ]]; then
             echo "::endgroup::"
-            Write-Host -ForegroundColor green "Configure MQTT Keep Alive Demo Passed"
-          }else {
+            echo -e "\033[32;3mConfigure MQTT Mutual Authentication with mbedtls Demo Passed"
+            set -e
+           else
             echo "::endgroup::"
-            Write-Host -ForegroundColor red "Configure MQTT Keep Alive Demo Failed..."
+            echo -e "\033[32;31mConfigure MQTT Mutual Authentication with mbedtls Demo Failed...\033[0m"
+            set -e
             exit 1
-          }
+           fi
 
       - name: Build MQTT Keep Alive Demo
         id: build-mqtt-keep-alive-demo
@@ -918,6 +922,7 @@ jobs:
         run: |
           # Build AWS IoT Device Defender Demo
           echo "::group::Build AWS IoT Device Defender Demo"
+          SetConsoleMode(0x0200)
           msbuild defender_demo.sln -t:rebuild -property:Configuration=Debug -m
           if($? -eq 1) {
             echo "::endgroup::"
@@ -933,6 +938,7 @@ jobs:
         run: |
           # Build AWS IoT Device Shadow Demo
           echo "::group::Build AWS IoT Device Shadow Demo"
+          SetConsoleMode(ENABLE_VIRTUAL_TERMINAL_PROCESSING)
           msbuild shadow_main_demo.sln -t:rebuild -property:Configuration=Debug -m
           if($? -eq 1) {
             echo "::endgroup::"
