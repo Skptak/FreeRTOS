@@ -922,7 +922,6 @@ jobs:
         run: |
           # Build AWS IoT Device Defender Demo
           echo "::group::Build AWS IoT Device Defender Demo"
-          SetConsoleMode(0x0200)
           msbuild defender_demo.sln -t:rebuild -property:Configuration=Debug -m
           if($? -eq 1) {
             echo "::endgroup::"
@@ -938,13 +937,14 @@ jobs:
         run: |
           # Build AWS IoT Device Shadow Demo
           echo "::group::Build AWS IoT Device Shadow Demo"
-          SetConsoleMode(ENABLE_VIRTUAL_TERMINAL_PROCESSING)
           msbuild shadow_main_demo.sln -t:rebuild -property:Configuration=Debug -m
           if($? -eq 1) {
             echo "::endgroup::"
+            sh echo -e "\e[0;32mBuild AWS IoT Device Shadow Demo Passed\e[0m"
             Write-Host -ForegroundColor green "Build AWS IoT Device Shadow Demo Passed"
           }else {
             echo "::endgroup::"
+            echo -e "\e[0;32mBuild AWS IoT Device Shadow Demo Failed...\e[0m"
             Write-Host -ForegroundColor red "Build AWS IoT Device Shadow Demo Failed..."
             exit 1
           }
