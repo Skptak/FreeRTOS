@@ -340,7 +340,6 @@ jobs:
             exit 1
           }
 
-
       - name: Build corePKCS11 Demo
         id: build-corePKCS11-demo
         working-directory: FreeRTOS-Plus/Demo/corePKCS11_Windows_Simulator
@@ -536,13 +535,14 @@ jobs:
         id: build-mqtt-basic-tls-demo
         working-directory: FreeRTOS-Plus/Demo/coreMQTT_Windows_Simulator/MQTT_Basic_TLS
         shell: bash
+        continue-on-error: true
         run: |
           # Build MQTT Basic TLS Demo
           echo "::group::Build MQTT Basic TLS Demo"
           set +e
-          ls C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\Tools\Launch-VsDevShell.ps1
+          ls "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\Tools\Launch-VsDevShell.ps1"
           pwd
-          ls /
+          echo $PATH
           msbuild mqtt_basic_tls_demo.sln -t:rebuild -property:Configuration=Debug_with_Libslirp -property:Platform=Win32 -m
           if($? -eq 1) {
             echo "::endgroup::"
@@ -1260,7 +1260,6 @@ jobs:
         id: build-freertos-wolfssl-demo
         working-directory: FreeRTOS-Plus/Demo/FreeRTOS_Plus_WolfSSL_Windows_Simulator
         continue-on-error: true
-        shell: bash
         run: |
           # Build FreeRTOS+WolfSSL Demo
           echo "::group::Build FreeRTOS+WolfSSL Demo"

@@ -43,10 +43,14 @@ jobs:
           msbuild WIN32.sln -t:rebuild
           if($? -eq 1) {
             echo "::endgroup::"
+            [Console]::ForegroundColor = "Green"
             Write-Host -ForegroundColor green "Built the WIN32-MSVC Full Demo"
+            [Console]::ResetColor()
           }else {
             echo "::endgroup::"
+            [Console]::ForegroundColor = "Red"
             Write-Host -ForegroundColor red "Build WIN32-MSVC Full Demo Failed..."
+            [Console]::ResetColor()
             exit 1
           }
 
@@ -151,10 +155,14 @@ jobs:
           make
           if($? -eq 1) {
             echo "::endgroup::"
+            [Console]::ForegroundColor = "Green"
             Write-Host -ForegroundColor green "Built the WIN32-MingW Full Demo"
+            [Console]::ResetColor()
           }else {
             echo "::endgroup::"
+            [Console]::ForegroundColor = "Red"
             Write-Host -ForegroundColor red "Build WIN32-MingW Full Demo Failed..."
+            [Console]::ResetColor()
             exit 1
           }
 
@@ -233,8 +241,6 @@ jobs:
           else
             echo "::endgroup::"
             echo -e "\e[0;32mInstall GCC Failed\e[0m"
-          # If there is an error, set this flag high again so the exit 1 fails the run
-            set -e
             exit 1
           fi
 
