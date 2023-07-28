@@ -44,14 +44,12 @@ jobs:
           msbuild WIN32.sln -t:rebuild
           if($? -eq 1) {
             echo "::endgroup::"
-            [Console]::ForegroundColor = "Green"
+            sh echo "\033[32;3mBuild AWS IoT Device Shadow Demo Passed\e[0m"
             Write-Host -ForegroundColor green "Built the WIN32-MSVC Full Demo"
-            [Console]::ResetColor()
           }else {
             echo "::endgroup::"
-            [Console]::ForegroundColor = "Red"
+            sh echo "\033[32;31mBuild AWS IoT Device Shadow Demo Failed...\e[0m"
             Write-Host -ForegroundColor red "Build WIN32-MSVC Full Demo Failed..."
-            [Console]::ResetColor()
             exit 1
           }
 
@@ -76,10 +74,12 @@ jobs:
           msbuild WIN32.sln -t:rebuild
           if($? -eq 1) {
             echo "::endgroup::"
-            Write-Host -ForegroundColor green "Built the WIN32-MSVC Blinky Demo"
+            Write-Host -ForegroundColor green "Build WIN32-MSVC Blinky Demo Passed"
+            sh echo "\e[0;32mBuild WIN32-MSVC Blinky Demo Passed\e[0m"
           }else {
             echo "::endgroup::"
             Write-Host -ForegroundColor red "Build WIN32-MSVC Blinky Demo Failed..."
+            sh echo "\033[32;31mBuild WIN32-MSVC Blinky Demo Failed...\e[0m"
             exit 1
           }
 
@@ -104,9 +104,11 @@ jobs:
           if($? -eq 1) {
             echo "::endgroup::"
             Write-Host -ForegroundColor green "Built the WIN32-MSVC-Static-Allocation-Only Demo"
+            sh echo "\e[0;32mBuild WIN32-MSVC-Static-Allocation-Only Passed\e[0m"
           }else {
             echo "::endgroup::"
             Write-Host -ForegroundColor red "Build WIN32-MSVC-Static-Allocation-Only Demo Failed..."
+            sh echo "\033[32;31mBuild WIN32-MSVC-Static-Allocation-Only Demo...\e[0m"
             exit 1
           }
 
@@ -512,10 +514,14 @@ jobs:
 
       - name: Build CORTEX_M0+_RP2040 Demos
         shell: bash
-        working-directory: FreeRTOS/Demo/ThirdParty/Community-Supported-Demos/CORTEX_M0+_RP2040
+        working-directory: FreeRTOS/
         run: |
           # Build CORTEX_M0+_RP2040 Demos
           echo "::group::Build CORTEX_M0+_RP2040 Demos"
+          ls Demo ; cd Demo
+          ls ThirdParty ; cd ThirdParty
+          ls Community-Supported-Demos ; cd Community-Supported-Demos
+          ls CORTEX_M0+_RP2040 ; cd CORTEX_M0+_RP2040
           git clone https://github.com/raspberrypi/pico-sdk.git
           cmake -B build -DPICO_SDK_PATH=pico-sdk -GNinja
           ninja -C build --verbose
