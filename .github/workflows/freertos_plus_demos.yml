@@ -79,7 +79,7 @@ jobs:
           # Build Cellular MQTT Demo for BG96
           echo "::group::Build Cellular MQTT Demo for BG96"
           msbuild mqtt_mutual_auth_demo_with_bg96.sln -t:rebuild -property:Configuration=Debug
-                    if($? -eq 1) {
+          if($? -eq 1) {
             echo "::endgroup::"
             Write-Host -ForegroundColor green "Build Cellular MQTT Demo for BG96 Passed"
           }else {
@@ -189,7 +189,7 @@ jobs:
       - name: Build HTTP Plain Text Demo
         id: build-http-plain-text-demo
         working-directory: FreeRTOS-Plus/Demo/coreHTTP_Windows_Simulator/HTTP_Plaintext
-        run: | 
+        run: |
           # Build HTTP Plain Text Demo
           echo "::group::Build HTTP Plain Text Demo"
           msbuild http_plain_text_demo.sln -t:rebuild -property:Configuration=Debug -m
@@ -208,6 +208,9 @@ jobs:
         run: |
           # Build HTTP Mutual Auth Demo
           echo "::group::Build HTTP Mutual Auth Demo"
+          [Console]::ForegroundColor = "Red"
+          Echo Well that would be useful
+          [Console]::ResetColor()
           msbuild http_mutual_auth_demo.sln -t:rebuild -property:Configuration=Debug -m
           if($? -eq 1) {
             echo "::endgroup::"
@@ -304,10 +307,12 @@ jobs:
         uses: microsoft/setup-msbuild@v1.1
 
       - name: Install Glib
+        working-directory: FreeRTOS-Plus\ThirdParty\glib
         run: |
           # Install Glib
           echo "::group::Swap to Developer Powershell"
           Push-Location
+          Write-Output "Called Push Location"
           Get-Location
           & "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\Tools\Launch-VsDevShell.ps1"
           Get-Location
@@ -319,13 +324,17 @@ jobs:
           meson compile -C build
           if(Test-Path -Path build\glib\glib-2.0.lib) {
             echo "::endgroup::"
+            [Console]::ForegroundColor = "Green"
             Write-Host -ForegroundColor green "Glib built"
+            [Console]::ResetColor()
             echo ^[[32mGlib built^[[0m
             Write-Output ^[[32mGlib built^[[0m
             exit 0
           }else {
             echo "::endgroup::"
+            [Console]::ForegroundColor = "Red"
             Write-Host -ForegroundColor red "Glib build failed"
+            [Console]::ResetColor()
             echo ^[[31mGlib build failed^[[0m
             Write-Output ^[[31mGlib build failed^[[0m
             exit 1
@@ -368,8 +377,8 @@ jobs:
       - name: Fetch Submodules
         shell: bash
         run: |
-          # <Fetch Submodules>
-          echo "::group::<Fetch Submodules>"
+          # Fetch Submodules
+          echo "::group::Fetch Submodules"
           git submodule update --checkout --init --depth 1 \
             FreeRTOS/Source \
             FreeRTOS-Plus/Source/AWS/device-defender \
@@ -411,6 +420,7 @@ jobs:
         uses: microsoft/setup-msbuild@v1.1
 
       - name: Install Glib
+        working-directory: FreeRTOS-Plus\ThirdParty\glib
         run: |
           # Install Glib
           echo "::group::Swap to Developer Powershell"
@@ -1091,7 +1101,7 @@ jobs:
           fi
 
       - name: Install prerequisite packages
-        run: | 
+        run: |
           # Install prerequisite packages
           echo "::group::Install prerequisite packages"
           sudo apt-get install -y git make gcc-arm-none-eabi
@@ -1130,8 +1140,8 @@ jobs:
       - name: Fetch Submodules
         shell: bash
         run: |
-          # <Fetch Submodules>
-          echo "::group::<Fetch Submodules>"
+          # Fetch Submodules
+          echo "::group::Fetch Submodules"
           git submodule update --checkout --init --depth 1 \
             FreeRTOS/Source \
             FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP \
@@ -1152,6 +1162,7 @@ jobs:
         uses: microsoft/setup-msbuild@v1.1
 
       - name: Install Glib
+        working-directory: FreeRTOS-Plus\ThirdParty\glib
         run: |
           # Install Glib
           echo "::group::Swap to Developer Powershell"
@@ -1342,6 +1353,15 @@ jobs:
           git -C FreeRTOS-Plus/Source/Application-Protocols/coreHTTP submodule update --checkout --init --depth 1 source/dependency/3rdparty/llhttp
           git -C FreeRTOS-Plus/Source/corePKCS11 submodule update --checkout --init --depth 1 source/dependency/3rdparty/pkcs11
           echo "::endgroup::Fetch Submodules"
+          if [[ "$?" = "0" ]]
+          then
+            echo "::endgroup::"
+            echo -e "\033[32;3mFetch Submodules Passed\033[0m"
+          else
+            echo "::endgroup::"
+            echo -e "\033[32;31mFetch Submodules Failed...\033[0m"
+            exit 1
+          fi
 
       - name: Add msbuild to PATH
         uses: microsoft/setup-msbuild@v1.1
