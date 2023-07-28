@@ -512,22 +512,19 @@ jobs:
 
       - name: Build CORTEX_M0+_RP2040 Demos
         shell: bash
-        working-directory: Demo/ThirdParty/Community-Supported-Demos/CORTEX_M0+_RP2040
+        working-directory: FreeRTOS/Demo/ThirdParty/Community-Supported-Demos/CORTEX_M0+_RP2040
         run: |
           # Build CORTEX_M0+_RP2040 Demos
           echo "::group::Build CORTEX_M0+_RP2040 Demos"
-          set +e
           git clone https://github.com/raspberrypi/pico-sdk.git
           cmake -B build -DPICO_SDK_PATH=pico-sdk -GNinja
           ninja -C build --verbose
           if [ "$?" = "0" ]; then
             echo "::endgroup::"
             echo -e "\033[32;3mBuilt CORTEX_M0+_RP2040 Demos\033[0m"
-            set -e
           else
             echo "::endgroup::"
             echo -e "\033[32;31mBuild CORTEX_M0+_RP2040 Demos Failed...\033[0m"
-            set -e
             exit 1
           fi
 
