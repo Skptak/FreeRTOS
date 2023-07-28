@@ -13,7 +13,7 @@ jobs:
     runs-on: windows-2019
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Fetch Submodules
         shell: bash
@@ -123,7 +123,7 @@ jobs:
     runs-on: windows-2019
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Fetch Submodules
         shell: bash
@@ -274,7 +274,7 @@ jobs:
     runs-on: windows-2019
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Fetch Submodules
         shell: bash
@@ -371,7 +371,7 @@ jobs:
     runs-on: windows-2019
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Fetch Submodules
         shell: bash
@@ -534,8 +534,6 @@ jobs:
       - name: Build MQTT Basic TLS Demo
         id: build-mqtt-basic-tls-demo
         working-directory: FreeRTOS-Plus/Demo/coreMQTT_Windows_Simulator/MQTT_Basic_TLS
-        shell: bash
-        continue-on-error: true
         run: |
           # Build MQTT Basic TLS Demo
           echo "::group::Build MQTT Basic TLS Demo"
@@ -843,7 +841,7 @@ jobs:
     runs-on: windows-2019
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Fetch Submodules
         shell: bash
@@ -1010,7 +1008,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Fetch Submodules
         shell: bash
@@ -1081,7 +1079,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Fetch Submodules
         shell: bash
@@ -1135,7 +1133,7 @@ jobs:
     continue-on-error: true
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Fetch Submodules
         shell: bash
@@ -1318,7 +1316,7 @@ jobs:
     continue-on-error: true
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Fetch Submodules
         shell: bash

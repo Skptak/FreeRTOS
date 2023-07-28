@@ -10,7 +10,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Fetch Kernel Submodule
         shell: bash
@@ -18,13 +18,14 @@ jobs:
           # Fetch Kernel Submodule
           echo "::group::Fetch Kernel Submodule"
           git submodule update --checkout --init --depth 1 FreeRTOS/Source
-          if [[ "$?" = "0" ]]
-          then
+          if [[ "$?" = "0" ]]; then
             echo "::endgroup::"
             echo -e "\033[32;3mCloned the Kernel\033[0m"
+            set -e
           else
             echo "::endgroup::"
             echo -e "\033[32;31mKernel Clone Failed...\033[0m"
+            set -e
             exit 1
           fi
 
@@ -122,21 +123,23 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Fetch Kernel Submodule
         shell: bash
         run: |
           # Fetch Kernel Submodule
           echo "::group::Fetch Kernel Submodule"
+          set +e
           git submodule update --checkout --init --depth 1 FreeRTOS/Source
-          if [[ "$?" = "0" ]]
-          then
+          if [[ "$?" = "0" ]]; then
             echo "::endgroup::"
             echo -e "\033[32;3mCloned the Kernel\033[0m"
+            set -e
           else
             echo "::endgroup::"
             echo -e "\033[32;31mKernel Clone Failed...\033[0m"
+            set -e
             exit 1
           fi
 
@@ -209,7 +212,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Fetch Kernel Submodule
         shell: bash
@@ -221,9 +224,11 @@ jobs:
           if [ "$?" = "0" ]; then
             echo "::endgroup::"
             echo -e "\033[32;3mCloned the Kernel\033[0m"
+            set -e
           else
             echo "::endgroup::"
             echo -e "\033[32;31mKernel Clone Failed...\033[0m"
+            set -e
             exit 1
           fi
 
@@ -257,9 +262,11 @@ jobs:
           if [ "$?" = "0" ]; then
             echo "::endgroup::"
             echo -e "\033[32;3mBuild Posix_GCC Full Demo Passed\033[0m"
+            set -e
           else
             echo "::endgroup::"
             echo -e "\033[32;31mBuild Posix_GCC Full Demo Failed...\033[0m"
+            set -e
             exit 1
           fi
 
@@ -284,9 +291,11 @@ jobs:
           if [ "$?" = "0" ]; then
             echo "::endgroup::"
             echo -e "\033[32;3mBuilt the Posix_GCC Blinky Demo\033[0m"
+            set -e
           else
             echo "::endgroup::"
             echo -e "\033[32;31mBuild Posix_GCC Blinky Demo Failed...\033[0m"
+            set -e
             exit 1
           fi
 
@@ -303,7 +312,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Fetch Kernel Submodule
         shell: bash
@@ -315,9 +324,11 @@ jobs:
           if [ "$?" = "0" ]; then
             echo "::endgroup::"
             echo -e "\033[32;3mCloned the Kernel\033[0m"
+            set -e
           else
             echo "::endgroup::"
             echo -e "\033[32;31mKernel Clone Failed...\033[0m"
+            set -e
             exit 1
           fi
 
@@ -332,9 +343,11 @@ jobs:
           if [ "$?" = "0" ]; then
             echo "::endgroup::"
             echo -e "\033[32;3mInstalled the MSP430 Toolchain\033[0m"
+            set -e
           else
             echo "::endgroup::"
             echo -e "\033[32;31mInstalling the MSP430 ToolchainFailed...\033[0m"
+            set -e
             exit 1
           fi
 
@@ -349,9 +362,11 @@ jobs:
           if [ "$?" = "0" ]; then
             echo "::endgroup::"
             echo -e "\033[32;3mBuilt the msp430_GCC Demo\033[0m"
+            set -e
           else
             echo "::endgroup::"
             echo -e "\033[32;31mBuilding the msp430_GCC Demo Failed...\033[0m"
+            set -e
             exit 1
           fi
 
@@ -360,7 +375,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Fetch Kernel Submodule
         shell: bash
@@ -372,9 +387,11 @@ jobs:
           if [ "$?" = "0" ]; then
             echo "::endgroup::"
             echo -e "\033[32;3mCloned the Kernel\033[0m"
+            set -e
           else
             echo "::endgroup::"
             echo -e "\033[32;31mKernel Clone Failed...\033[0m"
+            set -e
             exit 1
           fi
 
@@ -389,9 +406,11 @@ jobs:
           if [ "$?" = "0" ]; then
             echo "::endgroup::"
             echo -e "\033[32;3mInstalled the GNU ARM Toolchain\033[0m"
+            set -e
           else
             echo "::endgroup::"
             echo -e "\033[32;31mInstalling GNU ARM Toolchain Failed...\033[0m"
+            set -e
             exit 1
           fi
 
@@ -406,9 +425,11 @@ jobs:
           if [ "$?" = "0" ]; then
             echo "::endgroup::"
             echo -e "\033[32;3mBuild CORTEX_MPU_M3_MPS2_QEMU_GCC Demo\033[0m"
+            set -e
           else
             echo "::endgroup::"
             echo -e "\033[32;31mBuild CORTEX_MPU_M3_MPS2_QEMU_GCC Demo Failed...\033[0m"
+            set -e
             exit 1
           fi
 
@@ -423,9 +444,11 @@ jobs:
           if [ "$?" = "0" ]; then
             echo "::endgroup::"
             echo -e "\033[32;3mBuilt the CORTEX_LM3S102_GCC Demo Kernel\033[0m"
+            set -e
           else
             echo "::endgroup::"
             echo -e "\033[32;31mBuild CORTEX_LM3S102_GCC Demo Failed...\033[0m"
+            set -e
             exit 1
           fi
 
@@ -441,9 +464,11 @@ jobs:
           if [ "$?" = "0" ]; then
             echo "::endgroup::"
             echo -e "\033[32;3mBuilt the CORTEX_M3_MPS2_QEMU_GCC Demo\033[0m"
+            set -e
           else
             echo "::endgroup::"
             echo -e "\033[32;31mBuild CORTEX_M3_MPS2_QEMU_GCC Demo Failed...\033[0m"
+            set -e
             exit 1
           fi
 
@@ -459,9 +484,11 @@ jobs:
           if [ "$?" = "0" ]; then
             echo "::endgroup::"
             echo -e "\033[32;3mBuilt the CORTEX_M3_MPS2_QEMU_GCC Full Demo\033[0m"
+            set -e
           else
             echo "::endgroup::"
             echo -e "\033[32;31mBuild CORTEX_M3_MPS2_QEMU_GCC Full Demo Failed...\033[0m"
+            set -e
             exit 1
           fi
 
@@ -471,13 +498,15 @@ jobs:
         run: |
           # Build CORTEX_LM3S811_GCC Demo
           echo "::group::Build CORTEX_LM3S811_GCC Demo"
-          make -j 345678
+          make -j
           if [ "$?" = "0" ]; then
             echo "::endgroup::"
             echo -e "\033[32;3mBuilt the CORTEX_LM3S811_GCC Demo\033[0m"
+            set -e
           else
             echo "::endgroup::"
             echo -e "\033[32;31mBuild CORTEX_LM3S811_GCC Demo Failed...\033[0m"
+            set -e
             exit 1
           fi
 
@@ -494,9 +523,11 @@ jobs:
           if [ "$?" = "0" ]; then
             echo "::endgroup::"
             echo -e "\033[32;3mBuilt CORTEX_M0+_RP2040 Demos\033[0m"
+            set -e
           else
             echo "::endgroup::"
             echo -e "\033[32;31mBuild CORTEX_M0+_RP2040 Demos Failed...\033[0m"
+            set -e
             exit 1
           fi
 
@@ -511,8 +542,10 @@ jobs:
           if [ "$?" = "0" ]; then
             echo "::endgroup::"
             echo -e "\033[32;3mBuilt the CORTEX_MPS2_QEMU_IAR_GCC Demo\033[0m"
+            set -e
           else
             echo "::endgroup::"
             echo -e "\033[32;31mBuild CORTEX_MPS2_QEMU_IAR_GCC Demo Failed...\033[0m"
+            set -e
             exit 1
           fi
