@@ -191,6 +191,7 @@ jobs:
           retention-days: 2
 
   proof_ci:
+    if: ${{ github.event.pull_request }}
     runs-on: cbmc_ubuntu-latest_16-core
     steps:
       - uses: actions/checkout@v2
