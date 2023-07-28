@@ -79,24 +79,29 @@ jobs:
           # Build Cellular MQTT Demo for BG96
           echo "::group::Build Cellular MQTT Demo for BG96"
           msbuild mqtt_mutual_auth_demo_with_bg96.sln -t:rebuild -property:Configuration=Debug
+                    if($? -eq 1) {
+            echo "::endgroup::"
+            Write-Host -ForegroundColor green "Build Cellular MQTT Demo for BG96 Passed"
+          }else {
+            echo "::endgroup::"
+            Write-Host -ForegroundColor red "Build Cellular MQTT Demo for BG96 Failed..."
+            exit 1
+          }
 
       - name: Build Cellular MQTT Demo for HL7802
         working-directory: FreeRTOS-Plus/Demo/FreeRTOS_Cellular_Interface_Windows_Simulator/MQTT_Mutual_Auth_Demo_with_HL7802
-        continue-on-error: true
-        shell: bash
         run: |
           # Build Cellular MQTT Demo for HL7802
           echo "::group::Build Cellular MQTT Demo for HL7802"
           msbuild mqtt_mutual_auth_demo_with_hl7802.sln -t:rebuild -property:Configuration=Debug
-          if [[ "$?" = "0" ]]
-          then
+          if($? -eq 1) {
             echo "::endgroup::"
-            echo -e "\033[32;3mBuild Cellular MQTT Demo for HL7802\033[0m"
-          else
+            Write-Host -ForegroundColor green "Build Cellular MQTT Demo for HL7802 Passed"
+          }else {
             echo "::endgroup::"
-            echo -e "\033[32;31mBuild Cellular MQTT Demo for HL7802 Failed...\033[0m"
+            Write-Host -ForegroundColor red "Build Cellular MQTT Demo for HL7802 Failed..."
             exit 1
-          fi
+          }
 
       - name: Build Cellular MQTT Demo for SARA-R4
         working-directory: FreeRTOS-Plus/Demo/FreeRTOS_Cellular_Interface_Windows_Simulator/MQTT_Mutual_Auth_Demo_with_SARA_R4
@@ -104,6 +109,14 @@ jobs:
           # Build Cellular MQTT Demo for SARA-R4
           echo "::group::Build Cellular MQTT Demo for SARA-R4"
           msbuild mqtt_mutual_auth_demo_with_sara_r4.sln -t:rebuild -property:Configuration=Debug
+                    if($? -eq 1) {
+            echo "::endgroup::"
+            Write-Host -ForegroundColor green "Build Cellular MQTT Demo for SARA-R4 Passed"
+          }else {
+            echo "::endgroup::"
+            Write-Host -ForegroundColor red "Build Cellular MQTT Demo for SARA-R4 Failed..."
+            exit 1
+          }
 
   winsim_coreHTTP:
     name: coreHTTP WinSim Demos
@@ -115,8 +128,8 @@ jobs:
       - name: Fetch Submodules
         shell: bash
         run: |
-          # <NAME>
-          echo "::group::<NAME>"
+          # Fetch Submodules
+          echo "::group::Fetch Submodules"
           git submodule update --checkout --init --depth 1 \
             FreeRTOS/Source \
             FreeRTOS-Plus/Source/AWS/sigv4 \
@@ -131,10 +144,10 @@ jobs:
           git -C FreeRTOS-Plus/Source/Application-Protocols/coreHTTP submodule update --checkout --init --depth 1 source/dependency/3rdparty/llhttp
           if [[ "$?" = "0" ]]; then
             echo "::endgroup::"
-            echo -e "\033[32;3m<PASS_MESSAGE>\033[0m"
+            echo -e "\033[32;3mFetch Submodules Passed\033[0m"
           else
             echo "::endgroup::"
-            echo -e "\033[32;31m<FAIL_MESSAGE>...\033[0m"
+            echo -e "\033[32;31mFetch Submodules Failed......\033[0m"
             exit 1
           fi
       - name: Add msbuild to PATH
@@ -144,8 +157,8 @@ jobs:
         shell: bash
         working-directory: FreeRTOS-Plus/Demo/coreHTTP_Windows_Simulator
         run: |
-          # <NAME>
-          echo "::group::<NAME>"
+          # Configure coreHTTP Demos
+          echo "::group::Configure coreHTTP Demos"
           echo '#ifndef DEMO_CONFIG_H_TEST_BUILD' | tee -a */demo_config.h
           echo '    #define DEMO_CONFIG_H_TEST_BUILD' | tee -a */demo_config.h
           echo '    #define democonfigSERVER_HOSTNAME ""' | tee -a */demo_config.h
@@ -166,10 +179,10 @@ jobs:
           echo '#endif /* DEMO_CONFIG_H_TEST_BUILD */' | tee -a */demo_config.h
           if [[ "$?" = "0" ]]; then
             echo "::endgroup::"
-            echo -e "\033[32;3m<PASS_MESSAGE>\033[0m"
+            echo -e "\033[32;3mConfigure coreHTTP Demos Passed\033[0m"
           else
             echo "::endgroup::"
-            echo -e "\033[32;31m<FAIL_MESSAGE>...\033[0m"
+            echo -e "\033[32;31mConfigure coreHTTP Demos Failed......\033[0m"
             exit 1
           fi
 
@@ -177,15 +190,15 @@ jobs:
         id: build-http-plain-text-demo
         working-directory: FreeRTOS-Plus/Demo/coreHTTP_Windows_Simulator/HTTP_Plaintext
         run: | 
-          # <NAME>
-          echo "::group::<NAME>"
+          # Build HTTP Plain Text Demo
+          echo "::group::Build HTTP Plain Text Demo"
           msbuild http_plain_text_demo.sln -t:rebuild -property:Configuration=Debug -m
           if($? -eq 1) {
             echo "::endgroup::"
-            Write-Host -ForegroundColor green "<PASS_MESSAGE>"
+            Write-Host -ForegroundColor green "Build HTTP Plain Text Demo Passed"
           }else {
             echo "::endgroup::"
-            Write-Host -ForegroundColor red "<FAIL_MESSAGE>"
+            Write-Host -ForegroundColor red "Build HTTP Plain Text Demo Failed..."
             exit 1
           }
 
@@ -193,15 +206,15 @@ jobs:
         id: build-http-mutual-auth-demo
         working-directory: FreeRTOS-Plus/Demo/coreHTTP_Windows_Simulator/HTTP_Mutual_Auth
         run: |
-          # <NAME>
-          echo "::group::<NAME>"
+          # Build HTTP Mutual Auth Demo
+          echo "::group::Build HTTP Mutual Auth Demo"
           msbuild http_mutual_auth_demo.sln -t:rebuild -property:Configuration=Debug -m
           if($? -eq 1) {
             echo "::endgroup::"
-            Write-Host -ForegroundColor green "<PASS_MESSAGE>"
+            Write-Host -ForegroundColor green "Build HTTP Mutual Auth Demo Passed"
           }else {
             echo "::endgroup::"
-            Write-Host -ForegroundColor red "<FAIL_MESSAGE>"
+            Write-Host -ForegroundColor red "Build HTTP Mutual Auth Demo Failed..."
             exit 1
           }
 
@@ -209,15 +222,15 @@ jobs:
         id: build-http-s3-upload-demo
         working-directory: FreeRTOS-Plus/Demo/coreHTTP_Windows_Simulator/HTTP_S3_Upload
         run: |
-          # <NAME>
-          echo "::group::<NAME>"
+          # Build HTTP S3 Upload Demo
+          echo "::group::Build HTTP S3 Upload Demo"
           msbuild http_s3_upload_demo.sln -t:rebuild -property:Configuration=Debug -m
           if($? -eq 1) {
             echo "::endgroup::"
-            Write-Host -ForegroundColor green "<PASS_MESSAGE>"
+            Write-Host -ForegroundColor green "Build HTTP S3 Upload Demo Passed"
           }else {
             echo "::endgroup::"
-            Write-Host -ForegroundColor red "<FAIL_MESSAGE>"
+            Write-Host -ForegroundColor red "Build HTTP S3 Upload Demo Failed..."
             exit 1
           }
 
@@ -225,15 +238,15 @@ jobs:
         id: build-http-s3-download-multithreaded-demo
         working-directory: FreeRTOS-Plus/Demo/coreHTTP_Windows_Simulator/HTTP_S3_Download_Multithreaded
         run: |
-          # <NAME>
-          echo "::group::<NAME>"
+          # Build HTTP S3 Download Multithreaded Demo
+          echo "::group::Build HTTP S3 Download Multithreaded Demo"
           msbuild http_s3_download_multithreaded_demo.sln -t:rebuild -property:Configuration=Debug -m
           if($? -eq 1) {
             echo "::endgroup::"
-            Write-Host -ForegroundColor green "<PASS_MESSAGE>"
+            Write-Host -ForegroundColor green "Build HTTP S3 Download Multithreaded Demo Passed"
           }else {
             echo "::endgroup::"
-            Write-Host -ForegroundColor red "<FAIL_MESSAGE>"
+            Write-Host -ForegroundColor red "Build HTTP S3 Download Multithreaded Demo Failed..."
             exit 1
           }
 
@@ -241,15 +254,15 @@ jobs:
         id: build-http-s3-download-demo
         working-directory: FreeRTOS-Plus/Demo/coreHTTP_Windows_Simulator/HTTP_S3_Download
         run: |
-          # <NAME>
-          echo "::group::<NAME>"
+          # Build HTTP S3 Download Demo
+          echo "::group::Build HTTP S3 Download Demo"
           msbuild http_s3_download_demo.sln -t:rebuild -property:Configuration=Debug -m
           if($? -eq 1) {
             echo "::endgroup::"
-            Write-Host -ForegroundColor green "<PASS_MESSAGE>"
+            Write-Host -ForegroundColor green "Build HTTP S3 Download Demo Passed"
           }else {
             echo "::endgroup::"
-            Write-Host -ForegroundColor red "<FAIL_MESSAGE>"
+            Write-Host -ForegroundColor red "Build HTTP S3 Download Demo Failed..."
             exit 1
           }
 
@@ -263,8 +276,8 @@ jobs:
       - name: Fetch Submodules
         shell: bash
         run: |
-          # <NAME>
-          echo "::group::<NAME>"
+          # Fetch Submodules
+          echo "::group::Fetch Submodules"
           git submodule update --checkout --init --depth 1 \
             FreeRTOS/Source \
             FreeRTOS-Plus/Source/AWS/fleet-provisioning \
@@ -280,10 +293,10 @@ jobs:
           git -C FreeRTOS-Plus/Source/corePKCS11 submodule update --checkout --init --depth 1 source/dependency/3rdparty/pkcs11
           if [[ "$?" = "0" ]]; then
             echo "::endgroup::"
-            echo -e "\033[32;3m<PASS_MESSAGE>\033[0m"
+            echo -e "\033[32;3mFetch Submodules Passed\033[0m"
           else
             echo "::endgroup::"
-            echo -e "\033[32;31m<FAIL_MESSAGE>...\033[0m"
+            echo -e "\033[32;31mFetch Submodules Failed......\033[0m"
             exit 1
           fi
 
@@ -291,8 +304,6 @@ jobs:
         uses: microsoft/setup-msbuild@v1.1
 
       - name: Install Glib
-        continue-on-error: true
-        shell: cmd
         run: |
           # Install Glib
           echo "::group::Swap to Developer Powershell"
@@ -325,20 +336,20 @@ jobs:
         id: build-corePKCS11-demo
         working-directory: FreeRTOS-Plus/Demo/corePKCS11_Windows_Simulator
         run: |
-          # <NAME>
-          echo "::group::<NAME>"
+          # Build corePKCS11 Demo
+          echo "::group::Build corePKCS11 Demo"
           msbuild CorePKCS11_Demos.sln -t:rebuild -property:Configuration=Debug_with_Libslirp -property:Platform=Win32 -m
           if($? -eq 1) {
             echo "::endgroup::"
-            Write-Host -ForegroundColor green "<PASS_MESSAGE>"
+            Write-Host -ForegroundColor green "Build corePKCS11 Demo Passed"
           }else {
             echo "::endgroup::"
-            Write-Host -ForegroundColor red "<FAIL_MESSAGE>"
+            Write-Host -ForegroundColor red "Build corePKCS11 Demo Failed..."
             exit 1
           }
 
       - name: Run and monitor corePKCS11 Demo
-        uses: FreeRTOS/CI-CD-GitHub-Actions/executable-monitor@main
+        uses: Skptak/CI-CD-GitHub-Actions/executable-monitor@doublePrintFix
         with:
           exe-path: FreeRTOS-Plus/Demo/corePKCS11_Windows_Simulator/Debug_with_Libslirp/CorePKCS11_Demos.exe
           log-dir: demo_run_logs
@@ -389,10 +400,10 @@ jobs:
           git -C FreeRTOS-Plus/Source/corePKCS11 submodule update --checkout --init --depth 1 source/dependency/3rdparty/pkcs11
           if [[ "$?" = "0" ]]; then
             echo "::endgroup::"
-            echo -e "\033[32;3m<PASS_MESSAGE>\033[0m"
+            echo -e "\033[32;3mFetch Submodules Passed\033[0m"
           else
             echo "::endgroup::"
-            echo -e "\033[32;31m<FAIL_MESSAGE>...\033[0m"
+            echo -e "\033[32;31mFetch Submodules Failed......\033[0m"
             exit 1
           fi
 
@@ -400,8 +411,6 @@ jobs:
         uses: microsoft/setup-msbuild@v1.1
 
       - name: Install Glib
-        continue-on-error: true
-        shell: cmd
         run: |
           # Install Glib
           echo "::group::Swap to Developer Powershell"
@@ -452,17 +461,17 @@ jobs:
         shell: bash
         working-directory: FreeRTOS-Plus/Demo/coreMQTT_Windows_Simulator/MQTT_Plain_Text
         run: |
-          # <NAME>
-          echo "::group::<NAME>"
+          # Configure MQTT Plain Text Demo
+          echo "::group::Configure MQTT Plain Text Demo"
           echo '#define democonfigCLIENT_IDENTIFIER "mqtt_demo_test"' >> demo_config.h
           echo '#define democonfigMQTT_BROKER_ENDPOINT "127.0.0.1"' >> demo_config.h
           echo '#define democonfigMQTT_BROKER_PORT ( 1883 )' >> demo_config.h
           if [[ "$?" = "0" ]]; then
             echo "::endgroup::"
-            echo -e "\033[32;3m<PASS_MESSAGE>\033[0m"
+            echo -e "\033[32;3mConfigure MQTT Plain Text Demo Passed\033[0m"
           else
             echo "::endgroup::"
-            echo -e "\033[32;31m<FAIL_MESSAGE>...\033[0m"
+            echo -e "\033[32;31mConfigure MQTT Plain Text Demo Failed......\033[0m"
             exit 1
           fi
 
@@ -470,20 +479,20 @@ jobs:
         id: build-mqtt-plain-text-demo
         working-directory: FreeRTOS-Plus/Demo/coreMQTT_Windows_Simulator/MQTT_Plain_Text
         run: |
-          # <NAME>
-          echo "::group::<NAME>"
+          # Build MQTT Plain Text Demo
+          echo "::group::Build MQTT Plain Text Demo"
           msbuild mqtt_plain_text_demo.sln -t:rebuild -property:Configuration=Debug_with_Libslirp -property:Platform=Win32 -m
           if($? -eq 1) {
             echo "::endgroup::"
-            Write-Host -ForegroundColor green "<PASS_MESSAGE>"
+            Write-Host -ForegroundColor green "Build MQTT Plain Text Demo Passed"
           }else {
             echo "::endgroup::"
-            Write-Host -ForegroundColor red "<FAIL_MESSAGE>"
+            Write-Host -ForegroundColor red "Build MQTT Plain Text Demo Failed..."
             exit 1
           }
 
       - name: Run and monitor MQTT Plain Text Demo
-        uses: FreeRTOS/CI-CD-GitHub-Actions/executable-monitor@main
+        uses: Skptak/CI-CD-GitHub-Actions/executable-monitor@doublePrintFix
         with:
           exe-path: FreeRTOS-Plus/Demo/coreMQTT_Windows_Simulator/MQTT_Plain_Text/Debug_with_Libslirp/MQTT_Plain_Text.exe
           log-dir: demo_run_logs
@@ -495,8 +504,8 @@ jobs:
         shell: bash
         working-directory: FreeRTOS-Plus/Demo/coreMQTT_Windows_Simulator/MQTT_Basic_TLS
         run: |
-          # <NAME>
-          echo "::group::<NAME>"
+          # Configure MQTT Basic TLS Demo
+          echo "::group::Configure MQTT Basic TLS Demo"
           echo '#define democonfigROOT_CA_PEM \' >> demo_config.h
           sed 's/.*/"&\\n"\\/' ${{ steps.generate-credentials.outputs.root-ca-cert-path }} >> root_ca_cert.txt
           sed '$ s/.$//' root_ca_cert.txt >> demo_config.h
@@ -506,21 +515,20 @@ jobs:
           sed -i -z "s/define[[:space:]]*democonfigDISABLE_SNI[[:space:]]*([[:space:]]*[a-zA-Z0-9]\+[[:space:]]*)/define democonfigDISABLE_SNI ( pdTRUE )/g" demo_config.h
           if [[ "$?" = "0" ]]; then
             echo "::endgroup::"
-            echo -e "\033[32;3m<PASS_MESSAGE>\033[0m"
+            echo -e "\033[32;3mConfigure MQTT Basic TLS Demo Passed\033[0m"
           else
             echo "::endgroup::"
-            echo -e "\033[32;31m<FAIL_MESSAGE>...\033[0m"
+            echo -e "\033[32;31mConfigure MQTT Basic TLS Demo Failed......\033[0m"
             exit 1
           fi
 
       - name: Build MQTT Basic TLS Demo
         id: build-mqtt-basic-tls-demo
         working-directory: FreeRTOS-Plus/Demo/coreMQTT_Windows_Simulator/MQTT_Basic_TLS
-        continue-on-error: true
         shell: bash
         run: |
-          # <NAME>
-          echo "::group::<NAME>"
+          # Build MQTT Basic TLS Demo
+          echo "::group::Build MQTT Basic TLS Demo"
           set +e
           ls C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\Tools\Launch-VsDevShell.ps1
           pwd
@@ -528,18 +536,15 @@ jobs:
           msbuild mqtt_basic_tls_demo.sln -t:rebuild -property:Configuration=Debug_with_Libslirp -property:Platform=Win32 -m
           if($? -eq 1) {
             echo "::endgroup::"
-            Write-Host -ForegroundColor green "<PASS_MESSAGE>"
+            Write-Host -ForegroundColor green "Build MQTT Basic TLS Demo Passed"
           }else {
             echo "::endgroup::"
-            Write-Host -ForegroundColor red "<FAIL_MESSAGE>"
+            Write-Host -ForegroundColor red "Build MQTT Basic TLS Demo Failed..."
             exit 1
           }
-          
-          
 
       - name: Run and monitor MQTT Basic TLS Demo
-        if: success() || failure() && steps.build-mqtt-basic-tls-demo.outcome == 'success'
-        uses: FreeRTOS/CI-CD-GitHub-Actions/executable-monitor@main
+        uses: Skptak/CI-CD-GitHub-Actions/executable-monitor@doublePrintFix
         with:
           exe-path: FreeRTOS-Plus/Demo/coreMQTT_Windows_Simulator/MQTT_Basic_TLS/Debug_with_Libslirp/MQTT_Basic_TLS.exe
           log-dir: demo_run_logs
@@ -551,8 +556,8 @@ jobs:
         shell: bash
         working-directory: FreeRTOS-Plus/Demo/coreMQTT_Windows_Simulator/MQTT_Mutual_Auth
         run: |
-          # <NAME>
-          echo "::group::<NAME>"
+          # Configure MQTT Mutual Authentication with mbedtls Demo
+          echo "::group::Configure MQTT Mutual Authentication with mbedtls Demo"
           echo '#define democonfigROOT_CA_PEM \' >> demo_config.h
           sed 's/.*/"&\\n"\\/' ${{ steps.generate-credentials.outputs.root-ca-cert-path }} >> root_ca_cert.txt
           sed '$ s/.$//' root_ca_cert.txt >> demo_config.h
@@ -568,21 +573,31 @@ jobs:
           sed -i -z "s/define[[:space:]]*democonfigDISABLE_SNI[[:space:]]*([[:space:]]*[a-zA-Z0-9]\+[[:space:]]*)/define democonfigDISABLE_SNI ( pdTRUE )/g" demo_config.h
           if($? -eq 1) {
             echo "::endgroup::"
-            Write-Host -ForegroundColor green "<PASS_MESSAGE>"
+            Write-Host -ForegroundColor green "Configure MQTT Mutual Authentication with mbedtls Demo Passed"
           }else {
             echo "::endgroup::"
-            Write-Host -ForegroundColor red "<FAIL_MESSAGE>"
+            Write-Host -ForegroundColor red "Configure MQTT Mutual Authentication with mbedtls Demo Failed..."
             exit 1
           }
 
       - name: Build MQTT Mutual Authentication with mbedtls Demo
         id: build-mqtt-mutual-auth-demo
         working-directory: FreeRTOS-Plus/Demo/coreMQTT_Windows_Simulator/MQTT_Mutual_Auth
-        run: msbuild mqtt_mutual_auth_demo.sln -t:rebuild -property:Configuration=Debug_with_Libslirp -property:Platform=Win32 -m
+        run: |
+          # Build MQTT Mutual Authentication with mbedtls Demo
+          echo "::group::Build MQTT Mutual Authentication with mbedtls Demo"
+          msbuild mqtt_mutual_auth_demo.sln -t:rebuild -property:Configuration=Debug_with_Libslirp -property:Platform=Win32 -m
+          if($? -eq 1) {
+            echo "::endgroup::"
+            Write-Host -ForegroundColor green "Build MQTT Mutual Authentication with mbedtls Demo Passed"
+          }else {
+            echo "::endgroup::"
+            Write-Host -ForegroundColor red "Build MQTT Mutual Authentication with mbedtls Demo Failed..."
+            exit 1
+          }
 
       - name: Run and monitor MQTT Mutual Authentication with mbedtls Demo
-        if: success() || failure() && steps.build-mqtt-mutual-auth-demo.outcome == 'success'
-        uses: FreeRTOS/CI-CD-GitHub-Actions/executable-monitor@main
+        uses: Skptak/CI-CD-GitHub-Actions/executable-monitor@doublePrintFix
         with:
           exe-path: FreeRTOS-Plus/Demo/coreMQTT_Windows_Simulator/MQTT_Mutual_Auth/Debug_with_Libslirp/MQTT_Mutual_Auth.exe
           log-dir: demo_run_logs
@@ -594,8 +609,8 @@ jobs:
         shell: bash
         working-directory: FreeRTOS-Plus/Demo/coreMQTT_Windows_Simulator/MQTT_Keep_Alive
         run: |
-          # <NAME>
-          echo "::group::<NAME>"
+          # Configure MQTT Keep Alive Demo
+          echo "::group::Configure MQTT Keep Alive Demo"
           echo '#ifndef DEMO_CONFIG_H_TEST_BUILD' >> demo_config.h
           echo '    #define DEMO_CONFIG_H_TEST_BUILD' >> demo_config.h
           echo '    #define democonfigCLIENT_IDENTIFIER "mqtt_demo_test"' >> demo_config.h
@@ -604,10 +619,10 @@ jobs:
           echo '#endif /* DEMO_CONFIG_H_TEST_BUILD */' >> demo_config.h
           if($? -eq 1) {
             echo "::endgroup::"
-            Write-Host -ForegroundColor green "<PASS_MESSAGE>"
+            Write-Host -ForegroundColor green "Configure MQTT Keep Alive Demo Passed"
           }else {
             echo "::endgroup::"
-            Write-Host -ForegroundColor red "<FAIL_MESSAGE>"
+            Write-Host -ForegroundColor red "Configure MQTT Keep Alive Demo Failed..."
             exit 1
           }
 
@@ -615,20 +630,20 @@ jobs:
         id: build-mqtt-keep-alive-demo
         working-directory: FreeRTOS-Plus/Demo/coreMQTT_Windows_Simulator/MQTT_Keep_Alive
         run: |
-          # <NAME>
-          echo "::group::<NAME>"
+          # Build MQTT Keep Alive Demo
+          echo "::group::Build MQTT Keep Alive Demo"
           msbuild mqtt_keep_alive_demo.sln -t:rebuild -property:Configuration=Debug_with_Libslirp -property:Platform=Win32 -m
           if($? -eq 1) {
             echo "::endgroup::"
-            Write-Host -ForegroundColor green "<PASS_MESSAGE>"
+            Write-Host -ForegroundColor green "Build MQTT Keep Alive Demo Passed"
           }else {
             echo "::endgroup::"
-            Write-Host -ForegroundColor red "<FAIL_MESSAGE>"
+            Write-Host -ForegroundColor red "Build MQTT Keep Alive Demo Failed..."
             exit 1
           }
 
       - name: Run and monitor MQTT Keep Alive Demo
-        uses: FreeRTOS/CI-CD-GitHub-Actions/executable-monitor@main
+        uses: Skptak/CI-CD-GitHub-Actions/executable-monitor@doublePrintFix
         with:
           exe-path: FreeRTOS-Plus/Demo/coreMQTT_Windows_Simulator/MQTT_Keep_Alive/Debug_with_Libslirp/MQTT_Keep_Alive.exe
           log-dir: demo_run_logs
@@ -640,17 +655,17 @@ jobs:
         shell: bash
         working-directory: FreeRTOS-Plus/Demo/coreMQTT_Windows_Simulator/MQTT_Serializer
         run: |
-          # <NAME>
-          echo "::group::<NAME>"
+          # Configure MQTT Serializer Demo
+          echo "::group::Configure MQTT Serializer Demo"
           echo '#define democonfigCLIENT_IDENTIFIER "mqtt_demo_test"' >> demo_config.h
           echo '#define democonfigMQTT_BROKER_ENDPOINT "127.0.0.1"' >> demo_config.h
           echo '#define democonfigMQTT_BROKER_PORT ( 1883 )' >> demo_config.h
           if [[ "$?" = "0" ]]; then
             echo "::endgroup::"
-            echo -e "\033[32;3m<PASS_MESSAGE>\033[0m"
+            echo -e "\033[32;3mConfigure MQTT Serializer Demo Passed\033[0m"
           else
             echo "::endgroup::"
-            echo -e "\033[32;31m<FAIL_MESSAGE>...\033[0m"
+            echo -e "\033[32;31mConfigure MQTT Serializer Demo Failed......\033[0m"
             exit 1
           fi
 
@@ -660,7 +675,7 @@ jobs:
         run: msbuild mqtt_serializer_demo.sln -t:rebuild -property:Configuration=Debug_with_Libslirp -property:Platform=Win32 -m
 
       - name: Run and monitor MQTT Serializer Demo
-        uses: FreeRTOS/CI-CD-GitHub-Actions/executable-monitor@main
+        uses: Skptak/CI-CD-GitHub-Actions/executable-monitor@doublePrintFix
         with:
           exe-path: FreeRTOS-Plus/Demo/coreMQTT_Windows_Simulator/MQTT_Serializer/Debug_with_Libslirp/MQTT_Serializer.exe
           log-dir: demo_run_logs
@@ -672,8 +687,8 @@ jobs:
         shell: bash
         working-directory: FreeRTOS-Plus/Demo/coreMQTT_Windows_Simulator/MQTT_Mutual_Auth_wolfSSL
         run: |
-          # <NAME>
-          echo "::group::<NAME>"
+          # Configure MQTT Mutual Authentication with WolfSSL Demo
+          echo "::group::Configure MQTT Mutual Authentication with WolfSSL Demo"
           echo '#define democonfigCREDENTIALS_IN_BUFFER 0' >>  demo_config.h
           echo '#define democonfigROOT_CA_PEM \' >> demo_config.h
           sed 's/.*/"&\\n"\\/' ${{ steps.generate-credentials.outputs.root-ca-cert-path }} >> root_ca_cert.txt
@@ -689,10 +704,10 @@ jobs:
           echo '#define democonfigMQTT_BROKER_PORT ( 8883 )' >> demo_config.h
           if [[ "$?" = "0" ]]; then
             echo "::endgroup::"
-            echo -e "\033[32;3m<PASS_MESSAGE>\033[0m"
+            echo -e "\033[32;3mConfigure MQTT Mutual Authentication with WolfSSL Demo Passed\033[0m"
           else
             echo "::endgroup::"
-            echo -e "\033[32;31m<FAIL_MESSAGE>...\033[0m"
+            echo -e "\033[32;31mConfigure MQTT Mutual Authentication with WolfSSL Demo Failed......\033[0m"
             exit 1
           fi
 
@@ -700,12 +715,20 @@ jobs:
         id: build-mqtt-mutual-auth-with-wolfssl-demo
         working-directory: FreeRTOS-Plus/Demo/coreMQTT_Windows_Simulator/MQTT_Mutual_Auth_wolfSSL
         run: |
-          # <NAME>
-          echo "::group::<NAME>"
+          # Build MQTT Mutual Authentication with WolfSSL Demo
+          echo "::group::Build MQTT Mutual Authentication with WolfSSL Demo"
           msbuild mqtt_mutual_auth_demo_wolfSSL.sln -t:rebuild -property:Configuration=Debug_with_Libslirp -property:Platform=Win32 -m
+          if($? -eq 1) {
+            echo "::endgroup::"
+            Write-Host -ForegroundColor green "Build MQTT Mutual Authentication with WolfSSL Demo Passed"
+          }else {
+            echo "::endgroup::"
+            Write-Host -ForegroundColor red "Build MQTT Mutual Authentication with WolfSSL Demo Failed..."
+            exit 1
+          }
 
       - name: Run and monitor MQTT Mutual Authentication with WolfSSL Demo
-        uses: FreeRTOS/CI-CD-GitHub-Actions/executable-monitor@main
+        uses: Skptak/CI-CD-GitHub-Actions/executable-monitor@doublePrintFix
         with:
           exe-path: FreeRTOS-Plus/Demo/coreMQTT_Windows_Simulator/MQTT_Mutual_Auth_wolfSSL/Debug/RTOSDemo.exe
           log-dir: demo_run_logs
@@ -717,8 +740,8 @@ jobs:
         shell: bash
         working-directory: FreeRTOS-Plus/Demo/coreMQTT_Windows_Simulator/MQTT_Multitask
         run: |
-          # <NAME>
-          echo "::group::<NAME>"
+          # Configure MQTT Multi-Task Demo
+          echo "::group::Configure MQTT Multi-Task Demo"
           echo '#ifndef DEMO_CONFIG_H_TEST_BUILD' | tee -a demo_config.h
           echo '    #define DEMO_CONFIG_H_TEST_BUILD' | tee -a demo_config.h
           echo '    #define democonfigCLIENT_CERTIFICATE_PEM ""' | tee -a demo_config.h
@@ -730,10 +753,10 @@ jobs:
           echo '#endif /* DEMO_CONFIG_H_TEST_BUILD */' | tee -a demo_config.h
           if [[ "$?" = "0" ]]; then
             echo "::endgroup::"
-            echo -e "\033[32;3m<PASS_MESSAGE>\033[0m"
+            echo -e "\033[32;3mConfigure MQTT Multi-Task Demo Passed\033[0m"
           else
             echo "::endgroup::"
-            echo -e "\033[32;31m<FAIL_MESSAGE>...\033[0m"
+            echo -e "\033[32;31mConfigure MQTT Multi-Task Demo Failed......\033[0m"
             exit 1
           fi
 
@@ -746,8 +769,8 @@ jobs:
         shell: bash
         working-directory: FreeRTOS-Plus/Demo/corePKCS11_MQTT_Mutual_Auth_Windows_Simulator
         run: |
-          # <NAME>
-          echo "::group::<NAME>"
+          # Configure corePKCS11_MQTT_Mutual_Auth_Windows_Simulator
+          echo "::group::Configure corePKCS11_MQTT_Mutual_Auth_Windows_Simulator"
           echo '#ifndef DEMO_CONFIG_H_TEST_BUILD' | tee -a demo_config.h
           echo '    #define DEMO_CONFIG_H_TEST_BUILD' | tee -a demo_config.h
           echo '    #define democonfigCLIENT_CERTIFICATE_PEM ""' | tee -a demo_config.h
@@ -762,26 +785,26 @@ jobs:
           echo '#endif /* DEMO_CONFIG_H_TEST_BUILD */' | tee -a demo_config.h
           if [[ "$?" = "0" ]]; then
             echo "::endgroup::"
-            echo -e "\033[32;3m<PASS_MESSAGE>\033[0m"
+            echo -e "\033[32;3mConfigure corePKCS11_MQTT_Mutual_Auth_Windows_Simulator Passed\033[0m"
           else
             echo "::endgroup::"
-            echo -e "\033[32;31m<FAIL_MESSAGE>...\033[0m"
+            echo -e "\033[32;31mConfigure corePKCS11_MQTT_Mutual_Auth_Windows_Simulator Failed......\033[0m"
             exit 1
           fi
 
       - name: Build corePKCS11 + coreMQTT Mutual Auth Demo
         working-directory: FreeRTOS-Plus/Demo/corePKCS11_MQTT_Mutual_Auth_Windows_Simulator
         run: |
-          # <NAME>
-          echo "::group::<NAME>"
+          # Build corePKCS11 + coreMQTT Mutual Auth Demo
+          echo "::group::Build corePKCS11 + coreMQTT Mutual Auth Demo"
           msbuild corePKCS11_MQTT_Mutual_Auth.sln -t:rebuild -property:Configuration=Debug -property:Platform=Win32 -m
 
       - name: Configure coreSNTP_Windows_Simulator
         shell: bash
         working-directory: FreeRTOS-Plus/Demo/coreSNTP_Windows_Simulator
         run: |
-          # <NAME>
-          echo "::group::<NAME>"
+          # Configure coreSNTP_Windows_Simulator
+          echo "::group::Configure coreSNTP_Windows_Simulator"
           echo '#ifndef DEMO_CONFIG_H_TEST_BUILD' | tee -a demo_config.h
           echo '    #define DEMO_CONFIG_H_TEST_BUILD' | tee -a demo_config.h
           echo '    #define democonfigLIST_OF_TIME_SERVERS ""' | tee -a demo_config.h
@@ -791,24 +814,23 @@ jobs:
           echo '#endif /* DEMO_CONFIG_H_TEST_BUILD */' | tee -a demo_config.h
           if [[ "$?" = "0" ]]; then
             echo "::endgroup::"
-            echo -e "\033[32;3m<PASS_MESSAGE>\033[0m"
+            echo -e "\033[32;3mConfigure coreSNTP_Windows_Simulator Passed\033[0m"
           else
             echo "::endgroup::"
-            echo -e "\033[32;31m<FAIL_MESSAGE>...\033[0m"
+            echo -e "\033[32;31mConfigure coreSNTP_Windows_Simulator Failed......\033[0m"
             exit 1
           fi
 
       - name: Build coreSNTP Demo
         working-directory: FreeRTOS-Plus/Demo/coreSNTP_Windows_Simulator
         run: |
-          # <NAME>
-          echo "::group::<NAME>"
+          # Build coreSNTP Demo
+          echo "::group::Build coreSNTP Demo"
           msbuild core_sntp_demo.sln -t:rebuild -property:Configuration=Debug -property:Platform=Win32 -m
 
   winsim_aws_iot:
     name: AWS IoT Windows Simulator Demos
     runs-on: windows-2019
-    continue-on-error: true
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
@@ -816,8 +838,8 @@ jobs:
       - name: Fetch Submodules
         shell: bash
         run: |
-          # <NAME>
-          echo "::group::<NAME>"
+          # Fetch Submodules
+          echo "::group::Fetch Submodules"
           git submodule update --checkout --init --depth 1 \
             FreeRTOS/Source \
             FreeRTOS-Plus/Source/AWS/device-defender \
@@ -846,10 +868,10 @@ jobs:
           git -C FreeRTOS-Plus/Source/corePKCS11 submodule update --checkout --init --depth 1 source/dependency/3rdparty/pkcs11
           if [[ "$?" = "0" ]]; then
             echo "::endgroup::"
-            echo -e "\033[32;3m<PASS_MESSAGE>\033[0m"
+            echo -e "\033[32;3mFetch Submodules Passed\033[0m"
           else
             echo "::endgroup::"
-            echo -e "\033[32;31m<FAIL_MESSAGE>...\033[0m"
+            echo -e "\033[32;31mFetch Submodules Failed......\033[0m"
             exit 1
           fi
 
@@ -860,8 +882,8 @@ jobs:
         shell: bash
         working-directory: FreeRTOS-Plus/Demo/AWS
         run: |
-          # <NAME>
-          echo "::group::<NAME>"
+          # Adjust Configuration files
+          echo "::group::Adjust Configuration files"
           echo '#ifndef DEMO_CONFIG_H_TEST_BUILD' | tee -a */*/demo_config.h
           echo '    #define DEMO_CONFIG_H_TEST_BUILD' | tee -a */*/demo_config.h
           echo '    #define democonfigCLIENT_CERTIFICATE_PEM ""' | tee -a */*/demo_config.h
@@ -876,56 +898,102 @@ jobs:
           echo '#endif /* DEMO_CONFIG_H_TEST_BUILD */' | tee -a */*/demo_config.h
           if [[ "$?" = "0" ]]; then
             echo "::endgroup::"
-            echo -e "\033[32;3m<PASS_MESSAGE>\033[0m"
+            echo -e "\033[32;3mAdjust Configuration files Passed\033[0m"
           else
             echo "::endgroup::"
-            echo -e "\033[32;31m<FAIL_MESSAGE>...\033[0m"
+            echo -e "\033[32;31mAdjust Configuration files Failed......\033[0m"
             exit 1
           fi
 
       - name: Build AWS IoT Device Defender Demo
         working-directory: FreeRTOS-Plus/Demo/AWS/Device_Defender_Windows_Simulator/Device_Defender_Demo
-        shell: bash
-        continue-on-error: true
         run: |
-          # <NAME>
-          echo "::group::<NAME>"
+          # Build AWS IoT Device Defender Demo
+          echo "::group::Build AWS IoT Device Defender Demo"
           msbuild defender_demo.sln -t:rebuild -property:Configuration=Debug -m
+          if($? -eq 1) {
+            echo "::endgroup::"
+            Write-Host -ForegroundColor green "Build AWS IoT Device Defender Demo Passed"
+          }else {
+            echo "::endgroup::"
+            Write-Host -ForegroundColor red "Build AWS IoT Device Defender Demo Failed..."
+            exit 1
+          }
 
       - name: Build AWS IoT Device Shadow Demo
         working-directory: FreeRTOS-Plus/Demo/AWS/Device_Shadow_Windows_Simulator/Device_Shadow_Demo
         run: |
-          # <NAME>
-          echo "::group::<NAME>"
+          # Build AWS IoT Device Shadow Demo
+          echo "::group::Build AWS IoT Device Shadow Demo"
           msbuild shadow_main_demo.sln -t:rebuild -property:Configuration=Debug -m
+          if($? -eq 1) {
+            echo "::endgroup::"
+            Write-Host -ForegroundColor green "Build AWS IoT Device Shadow Demo Passed"
+          }else {
+            echo "::endgroup::"
+            Write-Host -ForegroundColor red "Build AWS IoT Device Shadow Demo Failed..."
+            exit 1
+          }
 
       - name: Build AWS IoT Fleet Provisioning Demo
         working-directory: FreeRTOS-Plus/Demo/AWS/Fleet_Provisioning_Windows_Simulator/Fleet_Provisioning_With_CSR_Demo
         run: |
-          # <NAME>
-          echo "::group::<NAME>"
+          # Build AWS IoT Fleet Provisioning Demo
+          echo "::group::Build AWS IoT Fleet Provisioning Demo"
           msbuild fleet_provisioning_demo.sln -t:rebuild -property:Configuration=Debug -m
+          if($? -eq 1) {
+            echo "::endgroup::"
+            Write-Host -ForegroundColor green "Build AWS IoT Fleet Provisioning Demo Passed"
+          }else {
+            echo "::endgroup::"
+            Write-Host -ForegroundColor red "Build AWS IoT Fleet Provisioning Demo Failed..."
+            exit 1
+          }
 
       - name: Build AWS IoT Jobs Demo
         working-directory: FreeRTOS-Plus/Demo/AWS/Jobs_Windows_Simulator/Jobs_Demo
         run: |
-          # <NAME>
-          echo "::group::<NAME>"
+          # Build AWS IoT Jobs Demo
+          echo "::group::Build AWS IoT Jobs Demo"
           msbuild jobs_demo.sln -t:rebuild -property:Configuration=Debug -m
+          if($? -eq 1) {
+            echo "::endgroup::"
+            Write-Host -ForegroundColor green "Build AWS IoT Jobs Demo Passed"
+          }else {
+            echo "::endgroup::"
+            Write-Host -ForegroundColor red "Build AWS IoT Jobs Demo Failed..."
+            exit 1
+          }
 
       - name: Build AWS IoT OTA over MQTT
         working-directory: FreeRTOS-Plus/Demo/AWS/Ota_Windows_Simulator/Ota_Over_Mqtt_Demo
         run: |
-          # <NAME>
-          echo "::group::<NAME>"
+          # Build AWS IoT OTA over MQTT
+          echo "::group::Build AWS IoT OTA over MQTT"
           msbuild ota_over_mqtt_demo.sln -t:rebuild -property:Configuration=Debug -m
+          if($? -eq 1) {
+            echo "::endgroup::"
+            Write-Host -ForegroundColor green "Build AWS IoT OTA over MQTT Passed"
+          }else {
+            echo "::endgroup::"
+            Write-Host -ForegroundColor red "Build AWS IoT OTA over MQTT Failed..."
+            exit 1
+          }
 
       - name: Build AWS IoT OTA over HTTP
         working-directory: FreeRTOS-Plus/Demo/AWS/Ota_Windows_Simulator/Ota_Over_Http_Demo
         run: |
-          # <NAME>
-          echo "::group::<NAME>"
+          # Build AWS IoT OTA over HTTP
+          echo "::group::Build AWS IoT OTA over HTTP"
           msbuild ota_over_http_demo.sln -t:rebuild -property:Configuration=Debug -m
+          if($? -eq 1) {
+            echo "::endgroup::"
+            Write-Host -ForegroundColor green "Build AWS IoT OTA over HTTP Passed"
+          }else {
+            echo "::endgroup::"
+            Write-Host -ForegroundColor red "Build AWS IoT OTA over HTTP Failed..."
+            exit 1
+          }
 
   plus_tcp_posix:
     name: FreeRTOS+TCP Posix Simulator Demo
@@ -937,31 +1005,31 @@ jobs:
       - name: Fetch Submodules
         shell: bash
         run: |
-          # <NAME>
-          echo "::group::<NAME>"
+          # Fetch Submodules
+          echo "::group::Fetch Submodules"
           git submodule update --checkout --init --depth 1 \
           FreeRTOS/Source \
           FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP
           if [ "$?" = "0" ]; then
             echo "::endgroup::"
-            echo -e "\e[0;32m<PASS_MESSAGE>\e[0m"
+            echo -e "\e[0;32mFetch Submodules Passed\e[0m"
           else
             echo "::endgroup::"
-            echo -e "\e[0;32m<FAIL_MESSAGE>\e[0m"
+            echo -e "\e[0;32mFetch Submodules Failed...\e[0m"
             exit 1
           fi
 
       - name: Install prerequisite packages
         run: |
-          # <NAME>
-          echo "::group::<NAME>"
+          # Install prerequisite packages
+          echo "::group::Install prerequisite packages"
           sudo apt-get install -y git build-essential libglib2.0-dev libslirp-dev
           if [ "$?" = "0" ]; then
             echo "::endgroup::"
-            echo -e "\e[0;32m<PASS_MESSAGE>\e[0m"
+            echo -e "\e[0;32mInstall prerequisite packages Passed\e[0m"
           else
             echo "::endgroup::"
-            echo -e "\e[0;32m<FAIL_MESSAGE>\e[0m"
+            echo -e "\e[0;32mInstall prerequisite packages Failed...\e[0m"
             exit 1
           fi
 
@@ -975,22 +1043,22 @@ jobs:
         id: build-echo-posix-demo
         working-directory: FreeRTOS-Plus/Demo/FreeRTOS_Plus_TCP_Echo_Posix
         run: |
-          # <NAME>
-          echo "::group::<NAME>"
+          # Build FreeRTOS+TCP Echo Posix Demo
+          echo "::group::Build FreeRTOS+TCP Echo Posix Demo"
           sed -i -z "s/define[[:space:]]*echoECHO_PORT[[:space:]]*([[:space:]]*[0-9]\+[[:space:]]*)/define echoECHO_PORT ( 5000 )/g" TCPEchoClient_SingleTasks.c
           sed -i -z "s/int[[:space:]]*main[[:space:]]*([[:space:]]*void[[:space:]]*)\n{/int main( void ){setvbuf( stdout, NULL, _IONBF, 0 );/g" main.c
           make -j TRACE_ON_ENTER=0
           if [ "$?" = "0" ]; then
             echo "::endgroup::"
-            echo -e "\e[0;32m<PASS_MESSAGE>\e[0m"
+            echo -e "\e[0;32mBuild FreeRTOS+TCP Echo Posix Demo Passed\e[0m"
           else
             echo "::endgroup::"
-            echo -e "\e[0;32m<FAIL_MESSAGE>\e[0m"
+            echo -e "\e[0;32mBuild FreeRTOS+TCP Echo Posix Demo Failed...\e[0m"
             exit 1
           fi
 
       - name: Run and monitor FreeRTOS+TCP Echo Posix Demo
-        uses: FreeRTOS/CI-CD-GitHub-Actions/executable-monitor@main
+        uses: Skptak/CI-CD-GitHub-Actions/executable-monitor@doublePrintFix
         with:
           exe-path: FreeRTOS-Plus/Demo/FreeRTOS_Plus_TCP_Echo_Posix/build/posix_tcp_demo
           log-dir: demo_run_logs
@@ -1008,46 +1076,46 @@ jobs:
       - name: Fetch Submodules
         shell: bash
         run: |
-          # <NAME>
-          echo "::group::<NAME>"
+          # Fetch Submodules
+          echo "::group::Fetch Submodules"
           git submodule update --checkout --init --depth 1 \
             FreeRTOS/Source \
             FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP
           if [ "$?" = "0" ]; then
             echo "::endgroup::"
-            echo -e "\e[0;32m<PASS_MESSAGE>\e[0m"
+            echo -e "\e[0;32mFetch Submodules Passed\e[0m"
           else
             echo "::endgroup::"
-            echo -e "\e[0;32m<FAIL_MESSAGE>\e[0m"
+            echo -e "\e[0;32mFetch Submodules Failed...\e[0m"
             exit 1
           fi
 
       - name: Install prerequisite packages
         run: | 
-          # <NAME>
-          echo "::group::<NAME>"
+          # Install prerequisite packages
+          echo "::group::Install prerequisite packages"
           sudo apt-get install -y git make gcc-arm-none-eabi
           if [ "$?" = "0" ]; then
             echo "::endgroup::"
-            echo -e "\e[0;32m<PASS_MESSAGE>\e[0m"
+            echo -e "\e[0;32mInstall prerequisite packages Passed\e[0m"
           else
             echo "::endgroup::"
-            echo -e "\e[0;32m<FAIL_MESSAGE>\e[0m"
+            echo -e "\e[0;32mInstall prerequisite packages Failed...\e[0m"
             exit 1
           fi
 
       - name: Build FreeRTOS+TCP Minimal Demo
         working-directory: FreeRTOS-Plus/Demo/FreeRTOS_Plus_TCP_Echo_Qemu_mps2
         run: |
-          # <NAME>
-          echo "::group::<NAME>"
+          # Build FreeRTOS+TCP Minimal Demo
+          echo "::group::Build FreeRTOS+TCP Minimal Demo"
           make -j
           if [ "$?" = "0" ]; then
             echo "::endgroup::"
-            echo -e "\e[0;32m<PASS_MESSAGE>\e[0m"
+            echo -e "\e[0;32mBuild FreeRTOS+TCP Minimal Demo Passed\e[0m"
           else
             echo "::endgroup::"
-            echo -e "\e[0;32m<FAIL_MESSAGE>\e[0m"
+            echo -e "\e[0;32mBuild FreeRTOS+TCP Minimal Demo Failed...\e[0m"
             exit 1
           fi
 
@@ -1073,10 +1141,10 @@ jobs:
             FreeRTOS-Plus/ThirdParty/libslirp
             if [ "$?" = "0" ]; then
               echo "::endgroup::"
-              echo -e "\e[0;32m<PASS_MESSAGE>\e[0m"
+              echo -e "\e[0;32mFetch Submodules Passed\e[0m"
             else
               echo "::endgroup::"
-              echo -e "\e[0;32m<FAIL_MESSAGE>\e[0m"
+              echo -e "\e[0;32mFetch Submodules Failed...\e[0m"
               exit 1
             fi
 
@@ -1084,8 +1152,6 @@ jobs:
         uses: microsoft/setup-msbuild@v1.1
 
       - name: Install Glib
-        continue-on-error: true
-        shell: cmd
         run: |
           # Install Glib
           echo "::group::Swap to Developer Powershell"
@@ -1123,8 +1189,8 @@ jobs:
         id: build-plus-tcp-minimal-demo
         working-directory: FreeRTOS-Plus/Demo/FreeRTOS_Plus_TCP_Minimal_Windows_Simulator
         run: |
-          # <NAME>
-          echo "::group::<NAME>"
+          # Build FreeRTOS+TCP Minimal Demo
+          echo "::group::Build FreeRTOS+TCP Minimal Demo"
           $content = Get-Content -Path 'DemoTasks\TCPEchoClient_SingleTasks.c' -Raw
           $newContent = $content -replace '#define\s+echoECHO_PORT.*', '#define echoECHO_PORT	( 5000 )'
           $newContent | Set-Content -Path 'DemoTasks\TCPEchoClient_SingleTasks.c'
@@ -1137,15 +1203,15 @@ jobs:
           msbuild FreeRTOS_Plus_TCP_Minimal.sln -t:rebuild -property:Configuration=Debug_with_Libslirp -property:Platform=Win32 -m
           if($? -eq 1) {
             echo "::endgroup::"
-            Write-Host -ForegroundColor green "<PASS_MESSAGE>"
+            Write-Host -ForegroundColor green "Build FreeRTOS+TCP Minimal Demo Passed"
           }else {
             echo "::endgroup::"
-            Write-Host -ForegroundColor red "<FAIL_MESSAGE>"
+            Write-Host -ForegroundColor red "Build FreeRTOS+TCP Minimal Demo Failed..."
             exit 1
           }
 
       - name: Run and monitor FreeRTOS+TCP Minimal Demo
-        uses: FreeRTOS/CI-CD-GitHub-Actions/executable-monitor@main
+        uses: Skptak/CI-CD-GitHub-Actions/executable-monitor@doublePrintFix
         with:
           exe-path: FreeRTOS-Plus/Demo/FreeRTOS_Plus_TCP_Minimal_Windows_Simulator/Debug_with_Libslirp/FreeRTOS_Plus_TCP_Minimal.exe
           log-dir: demo_run_logs
@@ -1161,8 +1227,8 @@ jobs:
         shell: bash
         working-directory: FreeRTOS-Plus/Demo/FreeRTOS_Plus_WolfSSL_Windows_Simulator
         run: |
-          # <NAME>
-          echo "::group::<NAME>"
+          # Configure FreeRTOS+WolfSSL Demo
+          echo "::group::Configure FreeRTOS+WolfSSL Demo"
           cp ${{ steps.generate-credentials.outputs.root-ca-cert-path }} .
           cp ${{ steps.generate-credentials.outputs.server-cert-path }} .
           cp ${{ steps.generate-credentials.outputs.server-priv-key-path }} .
@@ -1172,10 +1238,10 @@ jobs:
           sed -i -z "s/ca-cert.pem/root_ca_cert.crt/g" SecureTCPClientTask.c
           if [[ "$?" = "0" ]]; then
             echo "::endgroup::"
-            echo -e "\033[32;3m<PASS_MESSAGE>\033[0m"
+            echo -e "\033[32;3mConfigure FreeRTOS+WolfSSL Demo Passed\033[0m"
           else
             echo "::endgroup::"
-            echo -e "\033[32;31m<FAIL_MESSAGE>...\033[0m"
+            echo -e "\033[32;31mConfigure FreeRTOS+WolfSSL Demo Failed......\033[0m"
             exit 1
           fi
 
@@ -1185,20 +1251,20 @@ jobs:
         continue-on-error: true
         shell: bash
         run: |
-          # <NAME>
-          echo "::group::<NAME>"
+          # Build FreeRTOS+WolfSSL Demo
+          echo "::group::Build FreeRTOS+WolfSSL Demo"
           msbuild FreeRTOS_Plus_WolfSSL.sln -t:rebuild -property:Configuration=Debug_with_Libslirp -property:Platform=Win32 -m
           if($? -eq 1) {
             echo "::endgroup::"
-            Write-Host -ForegroundColor green "<PASS_MESSAGE>"
+            Write-Host -ForegroundColor green "Build FreeRTOS+WolfSSL Demo Passed"
           }else {
             echo "::endgroup::"
-            Write-Host -ForegroundColor red "<FAIL_MESSAGE>"
+            Write-Host -ForegroundColor red "Build FreeRTOS+WolfSSL Demo Failed..."
             exit 1
           }
 
       - name: Run and monitor FreeRTOS+WolfSSL Demo
-        uses: FreeRTOS/CI-CD-GitHub-Actions/executable-monitor@main
+        uses: Skptak/CI-CD-GitHub-Actions/executable-monitor@doublePrintFix
         with:
           exe-path: FreeRTOS-Plus/Demo/FreeRTOS_Plus_WolfSSL_Windows_Simulator/Debug_with_Libslirp/FreeRTOS_Plus_WolfSSL_Windows_Simulator.exe
           log-dir: demo_run_logs
@@ -1209,30 +1275,30 @@ jobs:
       - name: Build FreeRTOS+TCP UDP CLI Demo
         working-directory: FreeRTOS-Plus/Demo/FreeRTOS_Plus_TCP_UDP_Mode_CLI_Windows_Simulator
         run: |
-          # <NAME>
-          echo "::group::<NAME>"
+          # Build FreeRTOS+TCP UDP CLI Demo
+          echo "::group::Build FreeRTOS+TCP UDP CLI Demo"
           msbuild FreeRTOS_Plus_UDP_with_CLI.sln -t:rebuild -property:Configuration=Debug -m
           if($? -eq 1) {
             echo "::endgroup::"
-            Write-Host -ForegroundColor green "<PASS_MESSAGE>"
+            Write-Host -ForegroundColor green "Build FreeRTOS+TCP UDP CLI Demo Passed"
           }else {
             echo "::endgroup::"
-            Write-Host -ForegroundColor red "<FAIL_MESSAGE>"
+            Write-Host -ForegroundColor red "Build FreeRTOS+TCP UDP CLI Demo Failed..."
             exit 1
           }
 
       - name: Build FreeRTOS+WolfSSL FIPS Demo
         working-directory: FreeRTOS-Plus/Demo/FreeRTOS_Plus_WolfSSL_FIPS_Ready_Windows_Simulator
         run: |
-          # <NAME>
-          echo "::group::<NAME>"
+          # Build FreeRTOS+WolfSSL FIPS Demo
+          echo "::group::Build FreeRTOS+WolfSSL FIPS Demo"
           msbuild FreeRTOS_Plus_WolfSSL.sln -t:rebuild -property:Configuration=Debug -m
           if($? -eq 1) {
             echo "::endgroup::"
-            Write-Host -ForegroundColor green "<PASS_MESSAGE>"
+            Write-Host -ForegroundColor green "Build FreeRTOS+WolfSSL FIPS Demo Passed"
           }else {
             echo "::endgroup::"
-            Write-Host -ForegroundColor red "<FAIL_MESSAGE>"
+            Write-Host -ForegroundColor red "Build FreeRTOS+WolfSSL FIPS Demo Failed..."
             exit 1
           }
 
@@ -1283,15 +1349,15 @@ jobs:
       - name: Build FreeRTOS+CLI+Trace Demo
         working-directory: FreeRTOS-Plus/Demo/FreeRTOS_Plus_CLI_with_Trace_Windows_Simulator
         run: |
-          # <NAME>
-          echo "::group::<NAME>"
+          # Build FreeRTOS+CLI+Trace Demo
+          echo "::group::Build FreeRTOS+CLI+Trace Demo"
           msbuild FreeRTOS_Plus_CLI_with_Trace.sln -t:rebuild -property:Configuration=Debug -m
           if($? -eq 1) {
             echo "::endgroup::"
-            Write-Host -ForegroundColor green "<PASS_MESSAGE>"
+            Write-Host -ForegroundColor green "Build FreeRTOS+CLI+Trace Demo Passed"
           }else {
             echo "::endgroup::"
-            Write-Host -ForegroundColor red "<FAIL_MESSAGE>"
+            Write-Host -ForegroundColor red "Build FreeRTOS+CLI+Trace Demo Failed..."
             exit 1
           }
 
@@ -1303,9 +1369,9 @@ jobs:
           msbuild FreeRTOS_Plus_Reliance_Edge_with_CLI.sln -t:rebuild -property:Configuration=Debug -m
           if($? -eq 1) {
             echo "::endgroup::"
-            Write-Host -ForegroundColor green "<PASS_MESSAGE>"
+            Write-Host -ForegroundColor green "Build FreeRTOS+RelianceEdge+CLI Demo Passed"
           }else {
             echo "::endgroup::"
-            Write-Host -ForegroundColor red "<FAIL_MESSAGE>"
+            Write-Host -ForegroundColor red "Build FreeRTOS+RelianceEdge+CLI Demo Failed..."
             exit 1
           }
