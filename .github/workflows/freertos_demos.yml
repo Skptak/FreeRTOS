@@ -409,37 +409,41 @@ jobs:
             exit 1
           fi
 
-      - name: Install GNU ARM Toolchain
+      - env:
+          stepName: "Install GNU ARM Toolchain"
+        name: Install GNU ARM Toolchain
         shell: bash
         run: |
-          # Install GNU ARM Toolchain
-          echo "::group::Install GNU ARM Toolchain"
+          # ${{ env.stepName }}
+          echo "::group::$${{ env.stepName }}"
           set +e
           sudo apt-get -y update
           sudo apt-get -y install gcc-arm-none-eabi build-essential cmake git ninja-build python3-minimal
           exitStatus=$?
           echo "::endgroup::"
           if [ "$exitStatus" = "0" ]; then
-            echo -e "${{ env.bashPass }}Install GNU ARM Toolchain${{ env.bashEnd }}"
+            echo -e "${{ env.bashPass }}${{ env.stepName }} Passed${{ env.bashEnd }}"
           else
-            echo -e "${{ env.bashFail }}Install GNU ARM Toolchain Failed...${{ env.bashEnd }}"
+            echo -e "${{ env.bashFail }}${{ env.stepName }} Failed...${{ env.bashEnd }}"
             exit 1
           fi
 
-      - name: Build CORTEX_MPU_M3_MPS2_QEMU_GCC Demo
+      - env:
+          stepName: Build CORTEX_MPU_M3_MPS2_QEMU_GCC Demo
+        name: ${{ env.stepName }}
         shell: bash
         working-directory: FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC
         run: |
-          # Build CORTEX_MPU_M3_MPS2_QEMU_GCC Demo
-          echo "::group::Build CORTEX_MPU_M3_MPS2_QEMU_GCC Demo"
+          # ${{ env.stepName}}
+          echo "::group::${{ env.stepName }}"
           set +e
           make -j
           exitStatus=$?
           echo "::endgroup::"
           if [ "$exitStatus" = "0" ]; then
-            echo -e "${{ env.bashPass }}Build CORTEX_MPU_M3_MPS2_QEMU_GCC Demo${{ env.bashEnd }}"
+            echo -e "${{ env.bashPass }} ${{env.StepName}} Passed${{ env.bashEnd }}"
           else
-            echo -e "${{ env.bashFail }}Build CORTEX_MPU_M3_MPS2_QEMU_GCC Demo Failed...${{ env.bashEnd }}"
+            echo -e "${{ env.bashFail }} ${{env.StepName}} Failed...${{ env.bashEnd }}"
             exit 1
           fi
 
@@ -454,7 +458,7 @@ jobs:
           exitStatus=$?
           echo "::endgroup::"
           if [ "$exitStatus" = "0" ]; then
-            echo -e "${{ env.bashPass }}Built the CORTEX_LM3S102_GCC Demo Kernel${{ env.bashEnd }}"
+            echo -e "${{ env.bashPass }}Build CORTEX_LM3S102_GCC Demo Kernel Passed${{ env.bashEnd }}"
           else
             echo -e "${{ env.bashFail }}Build CORTEX_LM3S102_GCC Demo Failed...${{ env.bashEnd }}"
             exit 1
@@ -472,7 +476,7 @@ jobs:
           exitStatus=$?
           echo "::endgroup::"
           if [ "$exitStatus" = "0" ]; then
-            echo -e "${{ env.bashPass }}Built the CORTEX_M3_MPS2_QEMU_GCC Demo${{ env.bashEnd }}"
+            echo -e "${{ env.bashPass }}Build CORTEX_M3_MPS2_QEMU_GCC Demo Passed${{ env.bashEnd }}"
           else
             echo -e "${{ env.bashFail }}Build CORTEX_M3_MPS2_QEMU_GCC Demo Failed...${{ env.bashEnd }}"
             exit 1
