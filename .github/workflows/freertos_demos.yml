@@ -55,7 +55,7 @@ jobs:
         shell: bash
         run: |
           # ${{ env.stepName }}
-          echo "::group:: ${{ env.stepName }}
+          echo "::group:: ${{ env.stepName }}"
           set +e
           git submodule update --checkout --init --depth 1 FreeRTOS/Source
           exitStatus=$?
@@ -80,7 +80,7 @@ jobs:
         working-directory: FreeRTOS/Demo/WIN32-MSVC
         run: |
           # ${{ env.stepName }}
-          echo "::group:: ${{ env.stepName }}
+          echo "::group:: ${{ env.stepName }}"
           $content = Get-Content -Path 'main.c' -Raw
           $newContent = $content -replace 'int\s+main(.*?)void(.*?)\r?\n\s*{', 'int main( void ){setvbuf( stdout, NULL, _IONBF, 0 );'
           msbuild WIN32.sln -t:rebuild
@@ -111,7 +111,7 @@ jobs:
         working-directory: FreeRTOS/Demo/WIN32-MSVC
         run: |
           # ${{ env.stepName }}
-          echo "::group:: ${{ env.stepName }}
+          echo "::group:: ${{ env.stepName }}"
           $content = Get-Content -Path 'main.c' -Raw
           $newContent = $content -replace '#define\s+mainCREATE_SIMPLE_BLINKY_DEMO_ONLY\s+0', '#define mainCREATE_SIMPLE_BLINKY_DEMO_ONLY    1'
           $newContent | Set-Content -Path 'main.c'
@@ -143,7 +143,7 @@ jobs:
         working-directory: FreeRTOS/Demo/WIN32-MSVC-Static-Allocation-Only
         run: |
           # ${{ env.stepName }}
-          echo "::group:: ${{ env.stepName }}
+          echo "::group:: ${{ env.stepName }}"
           $content = Get-Content -Path 'main.c' -Raw
           $newContent = $content -replace 'int\s+main(.*?)void(.*?)\r?\n\s*{', 'int main( void ){setvbuf( stdout, NULL, _IONBF, 0 );'
           $newContent | Set-Content -Path 'main.c'
@@ -182,7 +182,7 @@ jobs:
         shell: bash
         run: |
           # ${{ env.stepName }}
-          echo "::group:: ${{ env.stepName }}
+          echo "::group:: ${{ env.stepName }}"
           set +e
           git submodule update --checkout --init --depth 1 FreeRTOS/Source
           exitStatus=$?
@@ -201,7 +201,7 @@ jobs:
         working-directory: FreeRTOS/Demo/WIN32-MingW
         run: |
           # ${{ env.stepName }}
-          echo "::group:: ${{ env.stepName }}
+          echo "::group:: ${{ env.stepName }}"
           $content = Get-Content -Path 'main.c' -Raw
           $newContent = $content -replace 'int\s+main(.*?)void(.*?)\r?\n\s*{', 'int main( void ){setvbuf( stdout, NULL, _IONBF, 0 );'
           $newContent | Set-Content -Path 'main.c'
@@ -234,7 +234,7 @@ jobs:
         working-directory: FreeRTOS/Demo/WIN32-MingW
         run: |
           # ${{ env.stepName }}
-          echo "::group:: ${{ env.stepName }}
+          echo "::group:: ${{ env.stepName }}"
           $content = Get-Content -Path 'main.c' -Raw
           $newContent = $content -replace '#define\s+mainCREATE_SIMPLE_BLINKY_DEMO_ONLY\s+0', '#define mainCREATE_SIMPLE_BLINKY_DEMO_ONLY    1'
           $newContent = $newContent -replace 'int\s+main(.*?)void(.*?)\r?\n\s*{', 'int main( void ){setvbuf( stdout, NULL, _IONBF, 0 );'
@@ -286,7 +286,7 @@ jobs:
         shell: bash
         run: |
           # ${{ env.stepName }}
-          echo "::group:: ${{ env.stepName }}
+          echo "::group:: ${{ env.stepName }}"
           set +e
           git submodule update --checkout --init --depth 1 FreeRTOS/Source
           exitStatus=$?
@@ -304,7 +304,7 @@ jobs:
         shell: bash
         run: |
           # ${{ env.stepName }}
-          echo "::group:: ${{ env.stepName }}
+          echo "::group:: ${{ env.stepName }}"
           set +e
           sudo apt-get -y update
           sudo apt-get -y install build-essential
@@ -325,7 +325,7 @@ jobs:
         working-directory: FreeRTOS/Demo/Posix_GCC
         run: |
           # ${{ env.stepName }}
-          echo "::group:: ${{ env.stepName }}
+          echo "::group:: ${{ env.stepName }}"
           set +e
           sed -i -z "s/int[[:space:]]*main[[:space:]]*([[:space:]]*void[[:space:]]*)\n{/int main( void ){setvbuf( stdout, NULL, _IONBF, 0 );/g" main.c
           make -j
@@ -356,7 +356,7 @@ jobs:
         working-directory: FreeRTOS/Demo/Posix_GCC
         run: |
           # ${{ env.stepName }}
-          echo "::group:: ${{ env.stepName }}
+          echo "::group:: ${{ env.stepName }}"
           rm -rf build
           set +e
           make -j USER_DEMO=BLINKY_DEMO
@@ -394,7 +394,7 @@ jobs:
         shell: bash
         run: |
           # ${{ env.stepName }}
-          echo "::group:: ${{ env.stepName }}
+          echo "::group:: ${{ env.stepName }}"
           set +e
           git submodule update --checkout --init --depth 1 FreeRTOS/Source
           exitStatus=$?
@@ -412,7 +412,7 @@ jobs:
         shell: bash
         run: |
           # ${{ env.stepName }}
-          echo "::group:: ${{ env.stepName }}
+          echo "::group:: ${{ env.stepName }}"
           set +e
           sudo apt-get -y update
           sudo apt-get -y install gcc-msp430 build-essential
@@ -432,7 +432,7 @@ jobs:
         working-directory: FreeRTOS/Demo/msp430_GCC
         run: |
           # ${{ env.stepName }}
-          echo "::group:: ${{ env.stepName }}
+          echo "::group:: ${{ env.stepName }}"
           set +e
           make -j
           exitStatus=$?
@@ -459,7 +459,7 @@ jobs:
         shell: bash
         run: |
           # ${{ env.stepName }}
-          echo "::group:: ${{ env.stepName }}
+          echo "::group:: ${{ env.stepName }}"
           set +e
           git submodule update --checkout --init --depth 1 FreeRTOS/Source FreeRTOS/Demo/ThirdParty/Community-Supported-Demos
           exitStatus=$?
@@ -477,7 +477,7 @@ jobs:
         shell: bash
         run: |
           # ${{ env.stepName }}
-          echo "::group:: ${{ env.stepName }}
+          echo "::group:: ${{ env.stepName }}"
           set +e
           sudo apt-get -y update
           sudo apt-get -y install gcc-arm-none-eabi build-essential cmake git ninja-build python3-minimal
@@ -497,7 +497,7 @@ jobs:
         working-directory: FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC
         run: |
           # ${{ env.stepName }}
-          echo "::group:: ${{ env.stepName }}
+          echo "::group:: ${{ env.stepName }}"
           set +e
           make -j
           exitStatus=$?
@@ -516,7 +516,7 @@ jobs:
         working-directory: FreeRTOS/Demo/CORTEX_LM3S102_GCC
         run: |
           # ${{ env.stepName }}
-          echo "::group:: ${{ env.stepName }}
+          echo "::group:: ${{ env.stepName }}"
           set +e
           make -j
           exitStatus=$?
@@ -535,7 +535,7 @@ jobs:
         working-directory: FreeRTOS/Demo/CORTEX_M3_MPS2_QEMU_GCC
         run: |
           # ${{ env.stepName }}
-          echo "::group:: ${{ env.stepName }}
+          echo "::group:: ${{ env.stepName }}"
           set +e
           make clean
           make -j
@@ -554,8 +554,8 @@ jobs:
         shell: bash
         working-directory: FreeRTOS/Demo/CORTEX_M3_MPS2_QEMU_GCC
         run: |
-         # ${{ env.stepName }}
-          echo "::group:: ${{ env.stepName }}
+          # ${{ env.stepName }}
+          echo "::group:: ${{ env.stepName }}"
           set +e
           make clean
           make FULL_DEMO=1 -j
@@ -574,7 +574,7 @@ jobs:
         working-directory: FreeRTOS/Demo/CORTEX_LM3S811_GCC
         run: |
           # ${{ env.stepName }}
-          echo "::group:: ${{ env.stepName }}
+          echo "::group:: ${{ env.stepName }}"
           set +e
           make -j
           exitStatus=$?
@@ -593,7 +593,7 @@ jobs:
         working-directory: FreeRTOS/Demo/Community-Supported-Demos/CORTEX_M0+_RP2040
         run: |
           # ${{ env.stepName }}
-          echo "::group:: ${{ env.stepName }}
+          echo "::group:: ${{ env.stepName }}"
           set +e
           git clone https://github.com/raspberrypi/pico-sdk.git
           cmake -B build -DPICO_SDK_PATH=pico-sdk -GNinja
@@ -614,7 +614,7 @@ jobs:
         working-directory: FreeRTOS/Demo/CORTEX_MPS2_QEMU_IAR_GCC
         run: |
           # ${{ env.stepName }}
-          echo "::group:: ${{ env.stepName }}
+          echo "::group:: ${{ env.stepName }}"
           set +e
           make -C build/gcc -j
           exitStatus=$?
