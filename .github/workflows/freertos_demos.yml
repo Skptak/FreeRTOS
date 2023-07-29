@@ -14,7 +14,7 @@ env:
   pwshWarn:   '`e[33;1mWARNING -'
   pwshFail:   '`e[31;1mFAILED -'
   pwshEnd:    '`e[0m'
-
+  colon: ':'
 
 jobs:
   WIN32-MSVC:
@@ -448,9 +448,9 @@ jobs:
             { demo: CORTEX_M3_MPS2_QEMU_GCC,  buildCMD: make clean && make -j },
             { demo: CORTEX_M3_MPS2_QEMU_GCC,  buildCMD: make clean && make -j FULL_DEMO=1 },
             { demo: CORTEX_LM3S811_GCC,       buildCMD: make clean && make -j },
-            { demo: CORTEX_MPS2_QEMU_IAR_GCC, buildCMD: git clone "https://github.com/raspberrypi/pico-sdk.git";
+            { demo: CORTEX_MPS2_QEMU_IAR_GCC, buildCMD: "git clone https://github.com/raspberrypi/pico-sdk.git;
                                                         cmake -B build -DPICO_SDK_PATH=pico-sdk -GNinja;
-                                                        ninja -C build --verbose; },
+                                                        ninja -C build --verbose;"},
             { demo: CORTEX_M0+_RP2040,        buildCMD: make clean && make -j, path: ThirdParty/Community-Supported-Demos } 
           ]
           include:
