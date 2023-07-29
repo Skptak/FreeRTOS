@@ -258,12 +258,14 @@ jobs:
               { 
                 demo: Posix_GCC,
                 demoVariant: BLINKY,
-                buildCMD: make clean && make -j USER_DEMO=BLINKY_DEMO
+                buildCMD: make clean && make -j USER_DEMO=BLINKY_DEMO,
+                successLine: "Message received from software timer"
               },
               { 
                 demo: Posix_GCC,
                 demoVariant: FULL,
-                buildCMD: make clean && make -j
+                buildCMD: make clean && make -j,
+                successLine: "OK: No errors"
               },
           ]
     steps:
@@ -327,7 +329,7 @@ jobs:
         with:
           exe-path: FreeRTOS/Demo/${{ matrix.configuration.demo }}/build/posix_demo
           timeout-seconds: 60
-          success-line: "OK: No errors"
+          success-line: ${{ matrix.configuration.successLine}}
 
   MSP430-GCC:
     name: GNU MSP430 Toolchain
