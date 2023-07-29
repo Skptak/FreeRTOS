@@ -4,27 +4,59 @@ on:
   pull_request:
   workflow_dispatch:
 
+env:
+  # The bash escape character is \033
+  bashPass:   \033[32;1m
+  bashWarn:   \033[33;1m
+  bashFail:   \033[31;1m
+  bashEnd:    \033[0m
+
+  # The powershell escape character is `e
+  pwshPass:   '`e[32;1m'
+  pwshWarn:   '`e[33;1m'
+  pwshFail:   '`e[31;1m'
+  pwshEnd:    '`e[0m'
+
+
 jobs:
   WIN32-MSVC:
     name: WIN32 MSVC
     runs-on: windows-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+
+      - name: Test Windows Bash Colours
+        id: test-windows-bash-colours
+        shell: bash
+        run: |
+          # Test Windows Bash Colours
+          echo -e "${{ env.bashPass }} Test Windows Bash Pass Colour     ${{ env.bashEnd }}"
+          echo -e "${{ env.bashWarn }} Test Windows Bash Warning Colour  ${{ env.bashEnd }}"
+          echo -e "${{ env.bashFail }} Test Windows Bash Fail Colour     ${{ env.bashEnd }}"
+          
+      - name: Test Windows Pwsh Colours
+        id: test-windows-pwsh-colours
+        run: |
+          # Test Windows Powershell Colours
+          echo "${{ env.pwshPass }}Test Windows Bash Pass Colour     ${{ env.pwshEnd }}"
+          echo "${{ env.pwshWarn }}Test Windows Bash Warning Colour  ${{ env.pwshEnd }}"
+          echo "${{ env.pwshFail }}Test Windows Bash Fail Colour     ${{ env.pwshEnd }}"
 
       - name: Fetch Kernel Submodule
         shell: bash
         run: |
           # Fetch Kernel Submodule
           echo "::group::Fetch Kernel Submodule"
+          set +e
           git submodule update --checkout --init --depth 1 FreeRTOS/Source
-          if [[ "$?" = "0" ]]
-          then
-            echo "::endgroup::"
-            echo -e "\033[32;3mCloned the Kernel\033[0m"
+          exitStatus=$?
+          set -e
+          echo "::endgroup::"
+          if [[ "$exitStatus" = "0" ]]; then
+            echo -e "${{ env.bashPass }}Fetch Kernel Submodule Passed${{ env.bashEnd }}"
           else
-            echo "::endgroup::"
-            echo -e "\033[32;31mKernel Clone Failed...\033[0m"
+            echo -e "${{ env.bashFail }}Fetch Kernel Submodule Failed...${{ env.bashEnd }}"
             exit 1
           fi
 
@@ -39,14 +71,13 @@ jobs:
           echo "::group::Build WIN32-MSVC Full Demo"
           $content = Get-Content -Path 'main.c' -Raw
           $newContent = $content -replace 'int\s+main(.*?)void(.*?)\r?\n\s*{', 'int main( void ){setvbuf( stdout, NULL, _IONBF, 0 );'
-          $newContent | Set-Content -Path 'main.c'
           msbuild WIN32.sln -t:rebuild
-          if($? -eq 1) {
-            echo "::endgroup::"
-            Write-Host -ForegroundColor green "Built the WIN32-MSVC Full Demo"
+          $exitStatus = $?
+          echo "::endgroup::"
+          if($exitStatus -eq 1) {
+            echo "${{ env.pwshPass }}Build WIN32-MSVC Full Demo Passed${{ env.pwshEnd }}"
           }else {
-            echo "::endgroup::"
-            Write-Host -ForegroundColor red "Build WIN32-MSVC Full Demo Failed..."
+            echo "${{ env.pwshFail }}Build WIN32-MSVC Full Demo Failed...${{ env.pwshEnd }}"
             exit 1
           }
 
@@ -69,12 +100,11 @@ jobs:
           $newContent | Set-Content -Path 'main.c'
           # Perform MSBuild of WIN32-MSVC Blinky Demo
           msbuild WIN32.sln -t:rebuild
-          if($? -eq 1) {
-            echo "::endgroup::"
-            Write-Host -ForegroundColor green "Built the WIN32-MSVC Blinky Demo"
+          $exitStatus = $?
+          if($exitStatus -eq 1) {
+            echo "${{ env.pwshPass }}Build WIN32-MSVC Blinky Demo ${{ env.pwshEnd }}"
           }else {
-            echo "::endgroup::"
-            Write-Host -ForegroundColor red "Build WIN32-MSVC Blinky Demo Failed..."
+            echo "${{ env.pwshFail }}Build WIN32-MSVC Blinky Demo Failed...${{ env.pwshEnd }}"
             exit 1
           }
 
@@ -96,12 +126,12 @@ jobs:
           $newContent = $content -replace 'int\s+main(.*?)void(.*?)\r?\n\s*{', 'int main( void ){setvbuf( stdout, NULL, _IONBF, 0 );'
           $newContent | Set-Content -Path 'main.c'
           msbuild WIN32.sln -t:rebuild
-          if($? -eq 1) {
-            echo "::endgroup::"
-            Write-Host -ForegroundColor green "Built the WIN32-MSVC-Static-Allocation-Only Demo"
+          exitStatus=$?
+          echo "::endgroup::"
+          if($exitStatus -eq 1) {
+            echo "${{ env.pwshPass }}Built the WIN32-MSVC-Static-Allocation-Only Demo${{ env.pwshEnd }}"
           }else {
-            echo "::endgroup::"
-            Write-Host -ForegroundColor red "Build WIN32-MSVC-Static-Allocation-Only Demo Failed..."
+            echo "${{ env.pwshFail }}Build WIN32-MSVC-Static-Allocation-Only Demo Failed...${{ env.pwshEnd }}"
             exit 1
           }
 
@@ -118,24 +148,23 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Fetch Kernel Submodule
         shell: bash
         run: |
           # Fetch Kernel Submodule
           echo "::group::Fetch Kernel Submodule"
+          set +e
           git submodule update --checkout --init --depth 1 FreeRTOS/Source
-          if [[ "$?" = "0" ]]
-          then
-            echo "::endgroup::"
-            echo -e "\033[32;3mCloned the Kernel\033[0m"
+          exitStatus=$?
+          echo "::endgroup::"
+          if [[ "$exitStatus" = "0" ]]; then
+            echo -e "${{ env.bashPass }}Fetch Kernel Submodule Passed${{ env.bashEnd }}"
           else
-            echo "::endgroup::"
-            echo -e "\033[32;31mKernel Clone Failed...\033[0m"
+            echo -e "${{ env.bashFail }}Fetch Kernel Submodule Failed...${{ env.bashEnd }}"
             exit 1
           fi
-
 
       - name: Build WIN32-MingW Full Demo
         id: build-win32-mingw-full-demo
@@ -149,12 +178,12 @@ jobs:
           gcc --version
           make --version
           make
-          if($? -eq 1) {
-            echo "::endgroup::"
-            Write-Host -ForegroundColor green "Built the WIN32-MingW Full Demo"
+          $exitStatus = $?
+          echo "::endgroup::"
+          if($exitStatus -eq 1) {
+            echo "${{ env.pwshPass }}Built the WIN32-MingW Full Demo ${{env.pwshEnd}}"
           }else {
-            echo "::endgroup::"
-            Write-Host -ForegroundColor red "Build WIN32-MingW Full Demo Failed..."
+            echo "${{ env.pwshFail }}Build WIN32-MingW Full Demo Failed...${{env.pwshEnd}}"
             exit 1
           }
 
@@ -179,12 +208,12 @@ jobs:
           gcc --version
           make --version
           make
-          if($? -eq 1) {
-            echo "::endgroup::"
-            Write-Host -ForegroundColor green "Built the WIN32-MingW Blinky Demo"
+          $exitStatus = $?
+          echo "::endgroup::"
+          if($exitStatus -eq 1) {
+            echo "${{ env.pwshPass }}Built the WIN32-MingW Blinky Demo${{ env.pwshEnd }}"
           }else {
-            echo "::endgroup::"
-            Write-Host -ForegroundColor red "Build WIN32-MingW Blinky Demo Failed..."
+            echo "${{ env.pwshFail }}Build WIN32-MingW Blinky Demo Failed...${{ env.pwshEnd }}"
             exit 1
           }
 
@@ -201,7 +230,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+
+      - name: Test Posix Bash Colours
+        id: test-posix-bash-colours
+        run: |
+          # Test Posix Bash Colours
+          echo -e "${{ env.bashPass }}Test Posix Bash Pass Colour     ${{ env.bashEnd }}"
+          echo -e "${{ env.bashWarn }}Test Posix Bash Warning Colour  ${{ env.bashEnd }}"
+          echo -e "${{ env.bashFail }}Test Posix Bash Fail Colour     ${{ env.bashEnd }}"
 
       - name: Fetch Kernel Submodule
         shell: bash
@@ -210,12 +247,11 @@ jobs:
           echo "::group::Fetch Kernel Submodule"
           set +e
           git submodule update --checkout --init --depth 1 FreeRTOS/Source
-          if [ "$?" = "0" ]; then
-            echo "::endgroup::"
-            echo -e "\033[32;3mCloned the Kernel\033[0m"
+          exitStatus=$?
+          if [ "$exitStatus" = "0" ]; then
+            echo -e "${{ env.bashPass }}Fetch Kernel Submodule Passed${{ env.bashEnd }}"
           else
-            echo "::endgroup::"
-            echo -e "\033[32;31mKernel Clone Failed...\033[0m"
+            echo -e "${{ env.bashFail }}Fetch Kernel Submodule Failed...${{ env.bashEnd }}"
             exit 1
           fi
 
@@ -227,14 +263,11 @@ jobs:
           set +e
           sudo apt-get -y update
           sudo apt-get -y install build-essential
-          if [ "$?" = "0" ]; then
-            echo "::endgroup::"
-            echo -e "\e[0;32mInstall GCC Passed\e[0m"
+          exitStatus=$?
+          if [ "$exitStatus" = "0" ]; then
+            echo -e "${{ env.bashPass }}Install GCC Passed${{ env.bashEnd }}"
           else
-            echo "::endgroup::"
-            echo -e "\e[0;32mInstall GCC Failed\e[0m"
-          # If there is an error, set this flag high again so the exit 1 fails the run
-            set -e
+            echo -e "${{ env.bashPass }}Install GCC Failed...${{ env.bashEnd }}"
             exit 1
           fi
 
@@ -248,12 +281,11 @@ jobs:
           set +e
           sed -i -z "s/int[[:space:]]*main[[:space:]]*([[:space:]]*void[[:space:]]*)\n{/int main( void ){setvbuf( stdout, NULL, _IONBF, 0 );/g" main.c
           make -j
-          if [ "$?" = "0" ]; then
-            echo "::endgroup::"
-            echo -e "\033[32;3mBuild Posix_GCC Full Demo Passed\033[0m"
+          exitStatus=$?
+          if [ "$exitStatus" = "0" ]; then
+            echo -e "${{ env.bashPass }}Build Posix_GCC Full Demo Passed${{ env.bashEnd }}"
           else
-            echo "::endgroup::"
-            echo -e "\033[32;31mBuild Posix_GCC Full Demo Failed...\033[0m"
+            echo -e "${{ env.bashFail }}Build Posix_GCC Full Demo Failed...${{ env.bashEnd }}"
             exit 1
           fi
 
@@ -275,12 +307,12 @@ jobs:
           rm -rf build
           set +e
           make -j USER_DEMO=BLINKY_DEMO
-          if [ "$?" = "0" ]; then
-            echo "::endgroup::"
-            echo -e "\033[32;3mBuilt the Posix_GCC Blinky Demo\033[0m"
+          exitStatus=$?
+          echo "::endgroup::"
+          if [ "$exitStatus" = "0" ]; then
+            echo -e "${{ env.bashPass }}Built the Posix_GCC Blinky Demo${{ env.bashEnd }}"
           else
-            echo "::endgroup::"
-            echo -e "\033[32;31mBuild Posix_GCC Blinky Demo Failed...\033[0m"
+            echo -e "${{ env.bashFail }}Build Posix_GCC Blinky Demo Failed...${{ env.bashEnd }}"
             exit 1
           fi
 
@@ -297,7 +329,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Fetch Kernel Submodule
         shell: bash
@@ -306,12 +338,12 @@ jobs:
           echo "::group::Fetch Kernel Submodule"
           set +e
           git submodule update --checkout --init --depth 1 FreeRTOS/Source
-          if [ "$?" = "0" ]; then
-            echo "::endgroup::"
-            echo -e "\033[32;3mCloned the Kernel\033[0m"
+          exitStatus=$?
+          echo "::endgroup::"
+          if [ "$exitStatus" = "0" ]; then
+            echo -e "${{ env.bashPass }}Fetch Kernel Submodule Passed${{ env.bashEnd }}"
           else
-            echo "::endgroup::"
-            echo -e "\033[32;31mKernel Clone Failed...\033[0m"
+            echo -e "${{ env.bashFail }}Fetch Kernel Submodule Failed...${{ env.bashEnd }}"
             exit 1
           fi
 
@@ -323,12 +355,12 @@ jobs:
           set +e
           sudo apt-get -y update
           sudo apt-get -y install gcc-msp430 build-essential
-          if [ "$?" = "0" ]; then
-            echo "::endgroup::"
-            echo -e "\033[32;3mInstalled the MSP430 Toolchain\033[0m"
+          exitStatus=$?
+          echo "::endgroup::"
+          if [ "$exitStatus" = "0" ]; then
+            echo -e "${{ env.bashPass }}Installed the MSP430 Toolchain${{ env.bashEnd }}"
           else
-            echo "::endgroup::"
-            echo -e "\033[32;31mInstalling the MSP430 ToolchainFailed...\033[0m"
+            echo -e "${{ env.bashFail }}Installing the MSP430 ToolchainFailed...${{ env.bashEnd }}"
             exit 1
           fi
 
@@ -340,12 +372,12 @@ jobs:
           echo "::group::Build msp430_GCC Demo"
           set +e
           make -j
-          if [ "$?" = "0" ]; then
-            echo "::endgroup::"
-            echo -e "\033[32;3mBuilt the msp430_GCC Demo\033[0m"
+          exitStatus=$?
+          echo "::endgroup::"
+          if [ "$exitStatus" = "0" ]; then
+            echo -e "${{ env.bashPass }}Built the msp430_GCC Demo${{ env.bashEnd }}"
           else
-            echo "::endgroup::"
-            echo -e "\033[32;31mBuilding the msp430_GCC Demo Failed...\033[0m"
+            echo -e "${{ env.bashFail }}Building the msp430_GCC Demo Failed...${{ env.bashEnd }}"
             exit 1
           fi
 
@@ -354,7 +386,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Fetch Kernel Submodule
         shell: bash
@@ -362,13 +394,13 @@ jobs:
           # Fetch Kernel Submodule
           echo "::group::Fetch Kernel Submodule"
           set +e
-          git submodule update --checkout --init --depth 1 FreeRTOS/Source
-          if [ "$?" = "0" ]; then
-            echo "::endgroup::"
-            echo -e "\033[32;3mCloned the Kernel\033[0m"
+          git submodule update --checkout --init --depth 1 FreeRTOS/Source FreeRTOS/Demo/ThirdParty/Community-Supported-Demos
+          exitStatus=$?
+          echo "::endgroup::"
+          if [ "$exitStatus" = "0" ]; then
+            echo -e "${{ env.bashPass }}Fetch Kernel Submodule Passed${{ env.bashEnd }}"
           else
-            echo "::endgroup::"
-            echo -e "\033[32;31mKernel Clone Failed...\033[0m"
+            echo -e "${{ env.bashFail }}Fetch Kernel Submodule Failed...${{ env.bashEnd }}"
             exit 1
           fi
 
@@ -380,12 +412,11 @@ jobs:
           set +e
           sudo apt-get -y update
           sudo apt-get -y install gcc-arm-none-eabi build-essential cmake git ninja-build python3-minimal
-          if [ "$?" = "0" ]; then
-            echo "::endgroup::"
-            echo -e "\033[32;3mInstalled the GNU ARM Toolchain\033[0m"
+          exitStatus=$?
+          if [ "$exitStatus" = "0" ]; then
+            echo -e "${{ env.bashPass }}Install GNU ARM Toolchain${{ env.bashEnd }}"
           else
-            echo "::endgroup::"
-            echo -e "\033[32;31mInstalling GNU ARM Toolchain Failed...\033[0m"
+            echo -e "${{ env.bashFail }}Install GNU ARM Toolchain Failed...${{ env.bashEnd }}"
             exit 1
           fi
 
@@ -397,12 +428,12 @@ jobs:
           echo "::group::Build CORTEX_MPU_M3_MPS2_QEMU_GCC Demo"
           set +e
           make -j
-          if [ "$?" = "0" ]; then
-            echo "::endgroup::"
-            echo -e "\033[32;3mBuild CORTEX_MPU_M3_MPS2_QEMU_GCC Demo\033[0m"
+          exitStatus=$?
+          echo "::endgroup::"
+          if [ "$exitStatus" = "0" ]; then
+            echo -e "${{ env.bashPass }}Build CORTEX_MPU_M3_MPS2_QEMU_GCC Demo${{ env.bashEnd }}"
           else
-            echo "::endgroup::"
-            echo -e "\033[32;31mBuild CORTEX_MPU_M3_MPS2_QEMU_GCC Demo Failed...\033[0m"
+            echo -e "${{ env.bashFail }}Build CORTEX_MPU_M3_MPS2_QEMU_GCC Demo Failed...${{ env.bashEnd }}"
             exit 1
           fi
 
@@ -414,12 +445,12 @@ jobs:
           echo "::group::Build CORTEX_LM3S102_GCC Demo"
           set +e
           make -j
-          if [ "$?" = "0" ]; then
-            echo "::endgroup::"
-            echo -e "\033[32;3mBuilt the CORTEX_LM3S102_GCC Demo Kernel\033[0m"
+          exitStatus=$?
+          echo "::endgroup::"
+          if [ "$exitStatus" = "0" ]; then
+            echo -e "${{ env.bashPass }}Built the CORTEX_LM3S102_GCC Demo Kernel${{ env.bashEnd }}"
           else
-            echo "::endgroup::"
-            echo -e "\033[32;31mBuild CORTEX_LM3S102_GCC Demo Failed...\033[0m"
+            echo -e "${{ env.bashFail }}Build CORTEX_LM3S102_GCC Demo Failed...${{ env.bashEnd }}"
             exit 1
           fi
 
@@ -432,12 +463,12 @@ jobs:
           set +e
           make clean
           make -j
-          if [ "$?" = "0" ]; then
-            echo "::endgroup::"
-            echo -e "\033[32;3mBuilt the CORTEX_M3_MPS2_QEMU_GCC Demo\033[0m"
+          exitStatus=$?
+          echo "::endgroup::"
+          if [ "$exitStatus" = "0" ]; then
+            echo -e "${{ env.bashPass }}Built the CORTEX_M3_MPS2_QEMU_GCC Demo${{ env.bashEnd }}"
           else
-            echo "::endgroup::"
-            echo -e "\033[32;31mBuild CORTEX_M3_MPS2_QEMU_GCC Demo Failed...\033[0m"
+            echo -e "${{ env.bashFail }}Build CORTEX_M3_MPS2_QEMU_GCC Demo Failed...${{ env.bashEnd }}"
             exit 1
           fi
 
@@ -450,12 +481,10 @@ jobs:
           set +e
           make clean
           make FULL_DEMO=1 -j
-          if [ "$?" = "0" ]; then
-            echo "::endgroup::"
-            echo -e "\033[32;3mBuilt the CORTEX_M3_MPS2_QEMU_GCC Full Demo\033[0m"
+          if [ "$exitStatus" = "0" ]; then
+            echo -e "${{ env.bashPass }}Built the CORTEX_M3_MPS2_QEMU_GCC Full Demo${{ env.bashEnd }}"
           else
-            echo "::endgroup::"
-            echo -e "\033[32;31mBuild CORTEX_M3_MPS2_QEMU_GCC Full Demo Failed...\033[0m"
+            echo -e "${{ env.bashFail }}Build CORTEX_M3_MPS2_QEMU_GCC Full Demo Failed...${{ env.bashEnd }}"
             exit 1
           fi
 
@@ -465,19 +494,20 @@ jobs:
         run: |
           # Build CORTEX_LM3S811_GCC Demo
           echo "::group::Build CORTEX_LM3S811_GCC Demo"
-          make -j 345678
-          if [ "$?" = "0" ]; then
-            echo "::endgroup::"
-            echo -e "\033[32;3mBuilt the CORTEX_LM3S811_GCC Demo\033[0m"
+          set +e
+          make -j
+          exitStatus=$?
+          echo "::endgroup::"
+          if [ "$exitStatus" = "0" ]; then
+            echo -e "${{ env.bashPass }}Built the CORTEX_LM3S811_GCC Demo${{ env.bashEnd }}"
           else
-            echo "::endgroup::"
-            echo -e "\033[32;31mBuild CORTEX_LM3S811_GCC Demo Failed...\033[0m"
+            echo -e "${{ env.bashFail }}Build CORTEX_LM3S811_GCC Demo Failed...${{ env.bashEnd }}"
             exit 1
           fi
 
       - name: Build CORTEX_M0+_RP2040 Demos
         shell: bash
-        working-directory: FreeRTOS/Demo/ThirdParty/Community-Supported/CORTEX_M0+_RP2040
+        working-directory: FreeRTOS/Demo/Community-Supported-Demos/CORTEX_M0+_RP2040
         run: |
           # Build CORTEX_M0+_RP2040 Demos
           echo "::group::Build CORTEX_M0+_RP2040 Demos"
@@ -485,12 +515,12 @@ jobs:
           git clone https://github.com/raspberrypi/pico-sdk.git
           cmake -B build -DPICO_SDK_PATH=pico-sdk -GNinja
           ninja -C build --verbose
-          if [ "$?" = "0" ]; then
-            echo "::endgroup::"
-            echo -e "\033[32;3mBuilt CORTEX_M0+_RP2040 Demos\033[0m"
+          exitStatus=$?
+          echo "::endgroup::"
+          if [ "$exitStatus" = "0" ]; then
+            echo -e "${{ env.bashPass }}Built CORTEX_M0+_RP2040 Demos${{ env.bashEnd }}"
           else
-            echo "::endgroup::"
-            echo -e "\033[32;31mBuild CORTEX_M0+_RP2040 Demos Failed...\033[0m"
+            echo -e "${{ env.bashFail }}Build CORTEX_M0+_RP2040 Demos Failed...${{ env.bashEnd }}"
             exit 1
           fi
 
@@ -502,11 +532,11 @@ jobs:
           echo "::group::Build CORTEX_MPS2_QEMU_IAR_GCC Demo"
           set +e
           make -C build/gcc -j
-          if [ "$?" = "0" ]; then
-            echo "::endgroup::"
-            echo -e "\033[32;3mBuilt the CORTEX_MPS2_QEMU_IAR_GCC Demo\033[0m"
+          exitStatus=$?
+          echo "::endgroup::"
+          if [ "$exitStatus" = "0" ]; then
+            echo -e "${{ env.bashPass }}Built the CORTEX_MPS2_QEMU_IAR_GCC Demo${{ env.bashEnd }}"
           else
-            echo "::endgroup::"
-            echo -e "\033[32;31mBuild CORTEX_MPS2_QEMU_IAR_GCC Demo Failed...\033[0m"
+            echo -e "${{ env.bashFail }}Build CORTEX_MPS2_QEMU_IAR_GCC Demo Failed...${{ env.bashEnd }}"
             exit 1
           fi
