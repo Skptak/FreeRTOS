@@ -443,21 +443,38 @@ jobs:
       matrix:
           configuration: 
             [ 
-            { demo: CORTEX_MPU_M3_MPS2_QEMU_GCC, makeArgs: -j},
-            { demo: CORTEX_LM3S102_GCC,       buildCMD: make clean && make -j},
-            { demo: CORTEX_M3_MPS2_QEMU_GCC,  buildCMD: make clean && make -j },
-            { demo: CORTEX_M3_MPS2_QEMU_GCC,  buildCMD: make clean && make -j FULL_DEMO=1 },
-            { demo: CORTEX_LM3S811_GCC,       buildCMD: make clean && make -j },
-            { demo: CORTEX_MPS2_QEMU_IAR_GCC, buildCMD: "git clone https://github.com/raspberrypi/pico-sdk.git;
-                                                        cmake -B build -DPICO_SDK_PATH=pico-sdk -GNinja;
-                                                        ninja -C build --verbose;"},
-            { demo: CORTEX_M0+_RP2040,        buildCMD: make clean && make -j, path: ThirdParty/Community-Supported-Demos } 
+              { 
+                demo: CORTEX_MPU_M3_MPS2_QEMU_GCC,
+                buildCMD: make clean && make -j
+              },
+              { 
+                demo: CORTEX_LM3S102_GCC,
+                buildCMD: make clean && make -j
+              },
+              { 
+                demo: CORTEX_M3_MPS2_QEMU_GCC,
+                buildCMD: make clean && make -j
+              },
+              { 
+                demo: CORTEX_M3_MPS2_QEMU_GCC,
+                buildCMD: make clean && make -j FULL_DEMO=1
+              },
+              { 
+                demo: CORTEX_LM3S811_GCC,
+                buildCMD: make clean && make -j 
+              },
+              { 
+                demo: CORTEX_MPS2_QEMU_IAR_GCC,
+                buildCMD: make -C build/gcc clean && make -C build/gcc -j
+              }, 
+              { 
+                demo: CORTEX_M0+_RP2040,
+                path: ThirdParty/Community-Supported-Demos,
+                buildCMD: "git clone https://github.com/raspberrypi/pico-sdk.git;
+                          cmake -B build -DPICO_SDK_PATH=pico-sdk -GNinja;
+                          ninja -C build --verbose;",
+              },
           ]
-          include:
-            # For the CORTEX_M3_MPS2_QEMU_GCC add in the blinky and non-blinky demo
-            - demo: ThirdParty/Community-Supported-Demos/CORTEX_M0+_RP2040
-              matrix: 
-                makeOptions: [FULL, BLINKY]
     steps:
       - env:
           stepName: Checkout Repository
