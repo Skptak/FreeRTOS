@@ -5,16 +5,14 @@ on:
   workflow_dispatch:
 
 env:
-  # ${{ env.stepName }}
-  bashPass:   \033[32;1m PASSED  -
-  bashWarn:   \033[33;1m WARNING -
-  bashFail:   \033[31;1m FAILED  -
+  bashPass:   \033[32;1mPASSED  -
+  bashWarn:   \033[33;1mWARNING -
+  bashFail:   \033[31;1mFAILED  -
   bashEnd:    \033[0m
 
-  # ${{ env.stepName }}
-  pwshPass:   '`e[32;1m PASSED  -'
-  pwshWarn:   '`e[33;1m WARNING -'
-  pwshFail:   '`e[31;1m FAILED  -'
+  pwshPass:   '`e[32;1mPASSED  -'
+  pwshWarn:   '`e[33;1mWARNING -'
+  pwshFail:   '`e[31;1mFAILED  -'
   pwshEnd:    '`e[0m'
 
 
@@ -83,6 +81,7 @@ jobs:
           echo "::group:: ${{ env.stepName }}"
           $content = Get-Content -Path 'main.c' -Raw
           $newContent = $content -replace 'int\s+main(.*?)void(.*?)\r?\n\s*{', 'int main( void ){setvbuf( stdout, NULL, _IONBF, 0 );'
+          $newContent | Set-Content -Path 'main.c'
           msbuild WIN32.sln -t:rebuild
           $exitStatus = $?
           echo "::endgroup::"
