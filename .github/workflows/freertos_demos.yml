@@ -6,15 +6,15 @@ on:
 
 env:
   # ${{ env.stepName }}
-  bashPass:   \033[32;1m PASSED  - 
-  bashWarn:   \033[33;1m WARNING - 
-  bashFail:   \033[31;1m FAILED  - 
+  bashPass:   \033[32;1m PASSED  -
+  bashWarn:   \033[33;1m WARNING -
+  bashFail:   \033[31;1m FAILED  -
   bashEnd:    \033[0m
 
   # ${{ env.stepName }}
-  pwshPass:   '`e[32;1m PASSED  - '
-  pwshWarn:   '`e[33;1m WARNING - '
-  pwshFail:   '`e[31;1m FAILED  - '
+  pwshPass:   '`e[32;1m PASSED  -'
+  pwshWarn:   '`e[33;1m WARNING -'
+  pwshFail:   '`e[31;1m FAILED  -'
   pwshEnd:    '`e[0m'
 
 
@@ -99,7 +99,6 @@ jobs:
         uses: Skptak/CI-CD-GitHub-Actions/executable-monitor@doublePrintFix
         with:
           exe-path: FreeRTOS/Demo/WIN32-MSVC/Debug/RTOSDemo.exe
-          log-dir: demo_run_logs
           timeout-seconds: 60
           success-line: "No errors - tick count"
           retry-attempts: 3
@@ -131,7 +130,6 @@ jobs:
         uses: Skptak/CI-CD-GitHub-Actions/executable-monitor@doublePrintFix
         with:
           exe-path: FreeRTOS/Demo/WIN32-MSVC/Debug/RTOSDemo.exe
-          log-dir: demo_run_logs
           timeout-seconds: 60
           success-line: "Message received from software timer"
           retry-attempts: 3
@@ -163,7 +161,6 @@ jobs:
         uses: Skptak/CI-CD-GitHub-Actions/executable-monitor@doublePrintFix
         with:
           exe-path: FreeRTOS/Demo/WIN32-MSVC-Static-Allocation-Only/Debug/RTOSDemo.exe
-          log-dir: demo_run_logs
           timeout-seconds: 60
           success-line: "No errors - tick count"
 
@@ -223,7 +220,6 @@ jobs:
         uses: Skptak/CI-CD-GitHub-Actions/executable-monitor@doublePrintFix
         with:
           exe-path: FreeRTOS/Demo/WIN32-MingW/build/RTOSDemo.exe
-          log-dir: demo_run_logs
           timeout-seconds: 60
           success-line: "No errors - tick count"
 
@@ -257,7 +253,6 @@ jobs:
         uses: Skptak/CI-CD-GitHub-Actions/executable-monitor@doublePrintFix
         with:
           exe-path: FreeRTOS/Demo/WIN32-MingW/build/RTOSDemo.exe
-          log-dir: demo_run_logs
           timeout-seconds: 60
           success-line: "Message received from software timer"
 
@@ -344,7 +339,6 @@ jobs:
         uses: Skptak/CI-CD-GitHub-Actions/executable-monitor@doublePrintFix
         with:
           exe-path: FreeRTOS/Demo/Posix_GCC/build/posix_demo
-          log-dir: demo_run_logs
           timeout-seconds: 60
           success-line: "OK: No errors"
 
@@ -375,7 +369,6 @@ jobs:
         uses: Skptak/CI-CD-GitHub-Actions/executable-monitor@doublePrintFix
         with:
           exe-path: FreeRTOS/Demo/Posix_GCC/build/posix_demo
-          log-dir: demo_run_logs
           timeout-seconds: 60
           success-line: "Message received from software timer"
 
@@ -559,6 +552,7 @@ jobs:
           set +e
           make clean
           make FULL_DEMO=1 -j
+          exitStatus=$?
           echo "::endgroup::"
           if [ "$exitStatus" = "0" ]; then
             echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
@@ -590,7 +584,7 @@ jobs:
           stepName: Build CORTEX_M0+_RP2040 Demos
         name: ${{ env.stepName }}
         shell: bash
-        working-directory: FreeRTOS/Demo/Community-Supported-Demos/CORTEX_M0+_RP2040
+        working-directory: FreeRTOS/Demo/ThirdParty/Community-Supported-Demos/CORTEX_M0+_RP2040
         run: |
           # ${{ env.stepName }}
           echo "::group:: ${{ env.stepName }}"
