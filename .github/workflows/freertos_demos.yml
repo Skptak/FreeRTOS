@@ -48,7 +48,7 @@ jobs:
           echo "${{ env.pwshFail }} ${{ env.stepName }} ${{ env.pwshEnd }}"
 
       - env:
-          stepName: MSVC Windows
+          stepName: MSVC Windows Setup
         name: ${{ env.stepName }}
         shell: bash
         run: |
@@ -110,6 +110,9 @@ jobs:
           # ${{ env.stepName }}
           echo "::group::${{ env.stepName }}"
           # ${{ env.stepName }}
+          $content = Get-Content -Path 'main.c' -Raw
+          $newContent = $content -replace '#define\s+mainCREATE_SIMPLE_BLINKY_DEMO_ONLY\s+0', '#define mainCREATE_SIMPLE_BLINKY_DEMO_ONLY 1'
+          $newContent | Set-Content -Path 'main.c'
           msbuild WIN32.sln -t:rebuild
           $exitStatus = $?
           if($exitStatus -eq 1) {
@@ -222,8 +225,10 @@ jobs:
         run: |
           # ${{ env.stepName }}
           echo "::group::${{ env.stepName }}"
+          $content = Get-Content -Path 'main.c' -Raw
           $newContent = $content -replace '#define\s+mainCREATE_SIMPLE_BLINKY_DEMO_ONLY\s+0', '#define mainCREATE_SIMPLE_BLINKY_DEMO_ONLY 1'
-          make
+          $newContent | Set-Content -Path 'main.c'
+          make clean && make -j
           $exitStatus = $?
           echo "::endgroup::"
           if($exitStatus -eq 1) {
@@ -253,7 +258,7 @@ jobs:
               { 
                 demo: Posix_GCC,
                 demoVariant: BLINKY,
-                buildCMD: make clean && make -j
+                buildCMD: make clean && make -j USER_DEMO=BLINKY_DEMO
               },
               { 
                 demo: Posix_GCC,
