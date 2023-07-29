@@ -5,16 +5,16 @@ on:
   workflow_dispatch:
 
 env:
-  # The bash escape character is \033
-  bashPass:   \033[32;1m
-  bashWarn:   \033[33;1m
-  bashFail:   \033[31;1m
+  # ${{ env.stepName }}
+  bashPass:   \033[32;1m PASSED  - 
+  bashWarn:   \033[33;1m WARNING - 
+  bashFail:   \033[31;1m FAILED  - 
   bashEnd:    \033[0m
 
-  # The powershell escape character is `e
-  pwshPass:   '`e[32;1m'
-  pwshWarn:   '`e[33;1m'
-  pwshFail:   '`e[31;1m'
+  # ${{ env.stepName }}
+  pwshPass:   '`e[32;1m PASSED  - '
+  pwshWarn:   '`e[33;1m WARNING - '
+  pwshFail:   '`e[31;1m FAILED  - '
   pwshEnd:    '`e[0m'
 
 
@@ -23,66 +23,80 @@ jobs:
     name: WIN32 MSVC
     runs-on: windows-latest
     steps:
-      - name: Checkout Repository
+      - env:
+          stepName: Checkout Repository
+        name: ${{ env.stepName }}
         uses: actions/checkout@v3
 
-      - name: Test Windows Bash Colours
+      - env:
+          stepName: Test Windows Bash Colours
+        name: ${{ env.stepName }}
         id: test-windows-bash-colours
         shell: bash
         run: |
-          # Test Windows Bash Colours
+          # ${{ env.stepName }}
           echo -e "${{ env.bashPass }} Test Windows Bash Pass Colour     ${{ env.bashEnd }}"
           echo -e "${{ env.bashWarn }} Test Windows Bash Warning Colour  ${{ env.bashEnd }}"
           echo -e "${{ env.bashFail }} Test Windows Bash Fail Colour     ${{ env.bashEnd }}"
           
-      - name: Test Windows Pwsh Colours
+      - env:
+          stepName: Test Windows Pwsh Colours
+        name: ${{ env.stepName }}
         id: test-windows-pwsh-colours
         run: |
-          # Test Windows Powershell Colours
-          echo "${{ env.pwshPass }}Test Windows Bash Pass Colour     ${{ env.pwshEnd }}"
-          echo "${{ env.pwshWarn }}Test Windows Bash Warning Colour  ${{ env.pwshEnd }}"
-          echo "${{ env.pwshFail }}Test Windows Bash Fail Colour     ${{ env.pwshEnd }}"
+          # ${{ env.stepName }}
+          echo "${{ env.pwshPass }} ${{ env.stepName }} ${{ env.pwshEnd }}"
+          echo "${{ env.pwshWarn }} ${{ env.stepName }} ${{ env.pwshEnd }}"
+          echo "${{ env.pwshFail }} ${{ env.stepName }} ${{ env.pwshEnd }}"
 
-      - name: Fetch Kernel Submodule
+      - env:
+          stepName: Fetch Kernel Submodule
+        name: ${{ env.stepName }}
         shell: bash
         run: |
-          # Fetch Kernel Submodule
-          echo "::group::Fetch Kernel Submodule"
+          # ${{ env.stepName }}
+          echo "::group:: ${{ env.stepName }}
           set +e
           git submodule update --checkout --init --depth 1 FreeRTOS/Source
           exitStatus=$?
           set -e
           echo "::endgroup::"
           if [[ "$exitStatus" = "0" ]]; then
-            echo -e "${{ env.bashPass }}Fetch Kernel Submodule Passed${{ env.bashEnd }}"
+            echo -e "${{ env.bashPass }} ${{env.stepName}} ${{ env.bashEnd }}"
           else
-            echo -e "${{ env.bashFail }}Fetch Kernel Submodule Failed...${{ env.bashEnd }}"
+            echo -e "${{ env.bashFail }} ${{env.stepName}} ${{ env.bashEnd }}"
             exit 1
           fi
 
-      - name: Add msbuild to PATH
+      - env:
+          stepName: Add msbuild to PATH
+        name: ${{ env.stepName }}
         uses: microsoft/setup-msbuild@v1.1
 
-      - name: Build WIN32-MSVC Full Demo
+      - env:
+          stepName: Build WIN32-MSVC Full Demo
+        name: ${{ env.stepName }}
         id: build-win32-msvs-full-demo
         working-directory: FreeRTOS/Demo/WIN32-MSVC
         run: |
-          # Build WIN32-MSVC Full Demo
-          echo "::group::Build WIN32-MSVC Full Demo"
+          # ${{ env.stepName }}
+          echo "::group:: ${{ env.stepName }}
           $content = Get-Content -Path 'main.c' -Raw
           $newContent = $content -replace 'int\s+main(.*?)void(.*?)\r?\n\s*{', 'int main( void ){setvbuf( stdout, NULL, _IONBF, 0 );'
           msbuild WIN32.sln -t:rebuild
           $exitStatus = $?
           echo "::endgroup::"
           if($exitStatus -eq 1) {
-            echo "${{ env.pwshPass }}Build WIN32-MSVC Full Demo Passed${{ env.pwshEnd }}"
+            echo "${{ env.pwshPass }} ${{env.stepName}} ${{ env.pwshEnd }}"
           }else {
-            echo "${{ env.pwshFail }}Build WIN32-MSVC Full Demo Failed...${{ env.pwshEnd }}"
+            echo "${{ env.pwshFail }} ${{env.stepName}} ${{ env.pwshEnd }}"
             exit 1
           }
 
-      - name: Run and monitor WIN32-MSVC Full Demo
-        uses: FreeRTOS/CI-CD-GitHub-Actions/executable-monitor@main
+      - env:
+          stepName: Run and monitor WIN32-MSVC Full Demo
+        name: ${{ env.stepName }}
+        uses: Skptak/CI-CD-GitHub-Actions/executable-monitor@doublePrintFix
         with:
           exe-path: FreeRTOS/Demo/WIN32-MSVC/Debug/RTOSDemo.exe
           log-dir: demo_run_logs
@@ -90,27 +104,31 @@ jobs:
           success-line: "No errors - tick count"
           retry-attempts: 3
 
-      - name: Build WIN32-MSVC Blinky Demo
+      - env:
+          stepName: Build WIN32-MSVC Blinky Demo
+        name: ${{ env.stepName }}
         id: build-win32-msvs-blinky-demo
         working-directory: FreeRTOS/Demo/WIN32-MSVC
         run: |
-          # Build WIN32-MSVC Blinky Demo
-          echo "::group::MSBuild of WIN32-MSVC Blinky Demo"
+          # ${{ env.stepName }}
+          echo "::group:: ${{ env.stepName }}
           $content = Get-Content -Path 'main.c' -Raw
           $newContent = $content -replace '#define\s+mainCREATE_SIMPLE_BLINKY_DEMO_ONLY\s+0', '#define mainCREATE_SIMPLE_BLINKY_DEMO_ONLY    1'
           $newContent | Set-Content -Path 'main.c'
-          # Perform MSBuild of WIN32-MSVC Blinky Demo
+          # ${{ env.stepName }}
           msbuild WIN32.sln -t:rebuild
           $exitStatus = $?
           if($exitStatus -eq 1) {
-            echo "${{ env.pwshPass }}Build WIN32-MSVC Blinky Demo ${{ env.pwshEnd }}"
+            echo "${{ env.pwshPass }} ${{ env.stepName }} ${{ env.pwshEnd }}"
           }else {
-            echo "${{ env.pwshFail }}Build WIN32-MSVC Blinky Demo Failed...${{ env.pwshEnd }}"
+            echo "${{ env.pwshFail }} ${{ env.stepName }} ${{ env.pwshEnd }}"
             exit 1
           }
 
-      - name: Run and monitor WIN32-MSVC Blinky Demo
-        uses: FreeRTOS/CI-CD-GitHub-Actions/executable-monitor@main
+      - env:
+          stepName: Run and monitor WIN32-MSVC Blinky Demo
+        name: ${{ env.stepName }}
+        uses: Skptak/CI-CD-GitHub-Actions/executable-monitor@doublePrintFix
         with:
           exe-path: FreeRTOS/Demo/WIN32-MSVC/Debug/RTOSDemo.exe
           log-dir: demo_run_logs
@@ -118,12 +136,14 @@ jobs:
           success-line: "Message received from software timer"
           retry-attempts: 3
 
-      - name: Build WIN32-MSVC-Static-Allocation-Only Demo
+      - env:
+          stepName: Build WIN32-MSVC-Static-Allocation-Only Demo
+        name: ${{ env.stepName }}
         id: build-win32-msvs-static-allocation-only-demo
         working-directory: FreeRTOS/Demo/WIN32-MSVC-Static-Allocation-Only
         run: |
-          # Build WIN32-MSVC-Static-Allocation-Only Demo
-          echo "::group::Build WIN32-MSVC-Static-Allocation-Only Demo"
+          # ${{ env.stepName }}
+          echo "::group:: ${{ env.stepName }}
           $content = Get-Content -Path 'main.c' -Raw
           $newContent = $content -replace 'int\s+main(.*?)void(.*?)\r?\n\s*{', 'int main( void ){setvbuf( stdout, NULL, _IONBF, 0 );'
           $newContent | Set-Content -Path 'main.c'
@@ -131,14 +151,16 @@ jobs:
           exitStatus=$?
           echo "::endgroup::"
           if($exitStatus -eq 1) {
-            echo "${{ env.pwshPass }}Built the WIN32-MSVC-Static-Allocation-Only Demo${{ env.pwshEnd }}"
+            echo "${{ env.pwshPass }} ${{ env.stepName }} ${{ env.pwshEnd }}"
           }else {
-            echo "${{ env.pwshFail }}Build WIN32-MSVC-Static-Allocation-Only Demo Failed...${{ env.pwshEnd }}"
+            echo "${{ env.pwshFail }} ${{ env.stepName }} ${{ env.pwshEnd }}"
             exit 1
           }
 
-      - name: Run and monitor WIN32-MSVC-Static-Allocation-Only Demo
-        uses: FreeRTOS/CI-CD-GitHub-Actions/executable-monitor@main
+      - env:
+          stepName: Run and monitor WIN32-MSVC-Static-Allocation-Only Demo
+        name: ${{ env.stepName }}
+        uses: Skptak/CI-CD-GitHub-Actions/executable-monitor@doublePrintFix
         with:
           exe-path: FreeRTOS/Demo/WIN32-MSVC-Static-Allocation-Only/Debug/RTOSDemo.exe
           log-dir: demo_run_logs
@@ -149,31 +171,37 @@ jobs:
     name: WIN32 MingW
     runs-on: windows-latest
     steps:
-      - name: Checkout Repository
+      - env:
+          stepName: Checkout Repository
+        name: ${{ env.stepName }}
         uses: actions/checkout@v3
 
-      - name: Fetch Kernel Submodule
+      - env:
+          stepName: Fetch Kernel Submodule
+        name: ${{ env.stepName }}
         shell: bash
         run: |
-          # Fetch Kernel Submodule
-          echo "::group::Fetch Kernel Submodule"
+          # ${{ env.stepName }}
+          echo "::group:: ${{ env.stepName }}
           set +e
           git submodule update --checkout --init --depth 1 FreeRTOS/Source
           exitStatus=$?
           echo "::endgroup::"
           if [[ "$exitStatus" = "0" ]]; then
-            echo -e "${{ env.bashPass }}Fetch Kernel Submodule Passed${{ env.bashEnd }}"
+            echo -e "${{ env.bashPass }} ${{env.stepName}} ${{ env.bashEnd }}"
           else
-            echo -e "${{ env.bashFail }}Fetch Kernel Submodule Failed...${{ env.bashEnd }}"
+            echo -e "${{ env.bashFail }} ${{env.stepName}} ${{ env.bashEnd }}"
             exit 1
           fi
 
-      - name: Build WIN32-MingW Full Demo
+      - env:
+          stepName: Build WIN32-MingW Full Demo
+        name: ${{ env.stepName }}
         id: build-win32-mingw-full-demo
         working-directory: FreeRTOS/Demo/WIN32-MingW
         run: |
-          # Build WIN32-MingW Full Demo
-          echo "::group::Build WIN32-MingW Full Demo"
+          # ${{ env.stepName }}
+          echo "::group:: ${{ env.stepName }}
           $content = Get-Content -Path 'main.c' -Raw
           $newContent = $content -replace 'int\s+main(.*?)void(.*?)\r?\n\s*{', 'int main( void ){setvbuf( stdout, NULL, _IONBF, 0 );'
           $newContent | Set-Content -Path 'main.c'
@@ -183,26 +211,30 @@ jobs:
           $exitStatus = $?
           echo "::endgroup::"
           if($exitStatus -eq 1) {
-            echo "${{ env.pwshPass }}Built the WIN32-MingW Full Demo ${{env.pwshEnd}}"
+            echo "${{ env.pwshPass }} ${{ env.stepName }} ${{env.pwshEnd}}"
           }else {
-            echo "${{ env.pwshFail }}Build WIN32-MingW Full Demo Failed...${{env.pwshEnd}}"
+            echo "${{ env.pwshFail }} ${{ env.stepName }} ${{env.pwshEnd}}"
             exit 1
           }
 
-      - name: Run and monitor WIN32-MingW Full Demo
-        uses: FreeRTOS/CI-CD-GitHub-Actions/executable-monitor@main
+      - env:
+          stepName: Run and monitor WIN32-MingW Full Demo
+        name: ${{ env.stepName }}
+        uses: Skptak/CI-CD-GitHub-Actions/executable-monitor@doublePrintFix
         with:
           exe-path: FreeRTOS/Demo/WIN32-MingW/build/RTOSDemo.exe
           log-dir: demo_run_logs
           timeout-seconds: 60
           success-line: "No errors - tick count"
 
-      - name: Build WIN32-MingW Blinky Demo
+      - env:
+          stepName: Build WIN32-MingW Blinky Demo
+        name: ${{ env.stepName }}
         id: build-win32-mingw-blinky-demo
         working-directory: FreeRTOS/Demo/WIN32-MingW
         run: |
-          # Build WIN32-MingW Blinky Demo
-          echo "::group::Build WIN32-MingW Blinky Demo"
+          # ${{ env.stepName }}
+          echo "::group:: ${{ env.stepName }}
           $content = Get-Content -Path 'main.c' -Raw
           $newContent = $content -replace '#define\s+mainCREATE_SIMPLE_BLINKY_DEMO_ONLY\s+0', '#define mainCREATE_SIMPLE_BLINKY_DEMO_ONLY    1'
           $newContent = $newContent -replace 'int\s+main(.*?)void(.*?)\r?\n\s*{', 'int main( void ){setvbuf( stdout, NULL, _IONBF, 0 );'
@@ -213,14 +245,16 @@ jobs:
           $exitStatus = $?
           echo "::endgroup::"
           if($exitStatus -eq 1) {
-            echo "${{ env.pwshPass }}Built the WIN32-MingW Blinky Demo${{ env.pwshEnd }}"
+            echo "${{ env.pwshPass }} ${{ env.stepName }} ${{ env.pwshEnd }}"
           }else {
-            echo "${{ env.pwshFail }}Build WIN32-MingW Blinky Demo Failed...${{ env.pwshEnd }}"
+            echo "${{ env.pwshFail }} ${{ env.stepName }} ${{ env.pwshEnd }}"
             exit 1
           }
 
-      - name: Run and monitor WIN32-MingW Blinky Demo
-        uses: FreeRTOS/CI-CD-GitHub-Actions/executable-monitor@main
+      - env:
+          stepName: Run and monitor WIN32-MingW Blinky Demo
+        name: ${{ env.stepName }}
+        uses: Skptak/CI-CD-GitHub-Actions/executable-monitor@doublePrintFix
         with:
           exe-path: FreeRTOS/Demo/WIN32-MingW/build/RTOSDemo.exe
           log-dir: demo_run_logs
@@ -231,98 +265,114 @@ jobs:
     name: Posix GCC
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
+      - env:
+          stepName: Checkout Repository
+        name: ${{ env.stepName }}
         uses: actions/checkout@v3
 
-      - name: Test Posix Bash Colours
+      - env:
+          stepName: Test Posix Bash Colours
+        name: ${{ env.stepName }}
         id: test-posix-bash-colours
         run: |
-          # Test Posix Bash Colours
-          echo -e "${{ env.bashPass }}Test Posix Bash Pass Colour     ${{ env.bashEnd }}"
-          echo -e "${{ env.bashWarn }}Test Posix Bash Warning Colour  ${{ env.bashEnd }}"
-          echo -e "${{ env.bashFail }}Test Posix Bash Fail Colour     ${{ env.bashEnd }}"
+          # ${{ env.stepName }}
+          echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
+          echo -e "${{ env.bashWarn }} ${{ env.stepName }} ${{ env.bashEnd }}"
+          echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
 
-      - name: Fetch Kernel Submodule
+      - env:
+          stepName: Fetch Kernel Submodule
+        name: ${{ env.stepName }}
         shell: bash
         run: |
-          # Fetch Kernel Submodule
-          echo "::group::Fetch Kernel Submodule"
+          # ${{ env.stepName }}
+          echo "::group:: ${{ env.stepName }}
           set +e
           git submodule update --checkout --init --depth 1 FreeRTOS/Source
           exitStatus=$?
           echo "::endgroup::"
           if [ "$exitStatus" = "0" ]; then
-            echo -e "${{ env.bashPass }}Fetch Kernel Submodule Passed${{ env.bashEnd }}"
+            echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
           else
-            echo -e "${{ env.bashFail }}Fetch Kernel Submodule Failed...${{ env.bashEnd }}"
+            echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
             exit 1
           fi
 
-      - name: Install GCC
+      - env:
+          stepName: Install GCC
+        name: ${{ env.stepName }}
         shell: bash
         run: |
-          # Install GCC
-          echo "::group::Install GCC"
+          # ${{ env.stepName }}
+          echo "::group:: ${{ env.stepName }}
           set +e
           sudo apt-get -y update
           sudo apt-get -y install build-essential
           exitStatus=$?
           echo "::endgroup::"
           if [ "$exitStatus" = "0" ]; then
-            echo -e "${{ env.bashPass }}Install GCC Passed${{ env.bashEnd }}"
+            echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
           else
-            echo -e "${{ env.bashPass }}Install GCC Failed...${{ env.bashEnd }}"
+            echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
             exit 1
           fi
 
-      - name: Build Posix_GCC Full Demo
+      - env:
+          stepName: Build Posix_GCC Full Demo
+        name: ${{ env.stepName }}
         id: build-posix-gcc-full-demo
         shell: bash
         working-directory: FreeRTOS/Demo/Posix_GCC
         run: |
-          # Build Posix_GCC Full Demo
-          echo "::group::Build Posix_GCC Full Demo"
+          # ${{ env.stepName }}
+          echo "::group:: ${{ env.stepName }}
           set +e
           sed -i -z "s/int[[:space:]]*main[[:space:]]*([[:space:]]*void[[:space:]]*)\n{/int main( void ){setvbuf( stdout, NULL, _IONBF, 0 );/g" main.c
           make -j
           exitStatus=$?
           echo "::endgroup::"
           if [ "$exitStatus" = "0" ]; then
-            echo -e "${{ env.bashPass }}Build Posix_GCC Full Demo Passed${{ env.bashEnd }}"
+            echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
           else
-            echo -e "${{ env.bashFail }}Build Posix_GCC Full Demo Failed...${{ env.bashEnd }}"
+            echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
             exit 1
           fi
 
-      - name: Run and monitor Posix_GCC Full Demo
-        uses: FreeRTOS/CI-CD-GitHub-Actions/executable-monitor@main
+      - env:
+          stepName: Run and monitor Posix_GCC Full Demo
+        name: ${{ env.stepName }}
+        uses: Skptak/CI-CD-GitHub-Actions/executable-monitor@doublePrintFix
         with:
           exe-path: FreeRTOS/Demo/Posix_GCC/build/posix_demo
           log-dir: demo_run_logs
           timeout-seconds: 60
           success-line: "OK: No errors"
 
-      - name: Build Posix_GCC Blinky Demo
+      - env:
+          stepName: Build Posix_GCC Blinky Demo
+        name: ${{ env.stepName }}
         id: build-posix-gcc-blinky-demo
         shell: bash
         working-directory: FreeRTOS/Demo/Posix_GCC
         run: |
-          # Build Posix_GCC Blinky Demo
-          echo "::group::Build Posix_GCC Blinky Demo"
+          # ${{ env.stepName }}
+          echo "::group:: ${{ env.stepName }}
           rm -rf build
           set +e
           make -j USER_DEMO=BLINKY_DEMO
           exitStatus=$?
           echo "::endgroup::"
           if [ "$exitStatus" = "0" ]; then
-            echo -e "${{ env.bashPass }}Built the Posix_GCC Blinky Demo${{ env.bashEnd }}"
+            echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
           else
-            echo -e "${{ env.bashFail }}Build Posix_GCC Blinky Demo Failed...${{ env.bashEnd }}"
+            echo -e "${{ env.bashFail }} ${{env.stepName}} ${{ env.bashEnd }}"
             exit 1
           fi
 
-      - name: Run and monitor Posix_GCC Blinky Demo
-        uses: FreeRTOS/CI-CD-GitHub-Actions/executable-monitor@main
+      - env:
+          stepName: Run and monitor Posix_GCC Blinky Demo
+        name: ${{ env.stepName }}
+        uses: Skptak/CI-CD-GitHub-Actions/executable-monitor@doublePrintFix
         with:
           exe-path: FreeRTOS/Demo/Posix_GCC/build/posix_demo
           log-dir: demo_run_logs
@@ -333,56 +383,64 @@ jobs:
     name: GNU MSP430 Toolchain
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
+      - env:
+          stepName: Checkout Repository
+        name: ${{ env.stepName }}
         uses: actions/checkout@v3
 
-      - name: Fetch Kernel Submodule
+      - env:
+          stepName: Fetch Kernel Submodule
+        name: ${{ env.stepName }}
         shell: bash
         run: |
-          # Fetch Kernel Submodule
-          echo "::group::Fetch Kernel Submodule"
+          # ${{ env.stepName }}
+          echo "::group:: ${{ env.stepName }}
           set +e
           git submodule update --checkout --init --depth 1 FreeRTOS/Source
           exitStatus=$?
           echo "::endgroup::"
           if [ "$exitStatus" = "0" ]; then
-            echo -e "${{ env.bashPass }}Fetch Kernel Submodule Passed${{ env.bashEnd }}"
+            echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
           else
-            echo -e "${{ env.bashFail }}Fetch Kernel Submodule Failed...${{ env.bashEnd }}"
+            echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
             exit 1
           fi
 
-      - name: Install MSP430 Toolchain
+      - env:
+          stepName: Install MSP430 Toolchain
+        name: ${{ env.stepName }}
         shell: bash
         run: |
-          # Install MSP430 Toolchain
-          echo "::group::Install MSP430 Toolchain"
+          # ${{ env.stepName }}
+          echo "::group:: ${{ env.stepName }}
           set +e
           sudo apt-get -y update
           sudo apt-get -y install gcc-msp430 build-essential
           exitStatus=$?
           echo "::endgroup::"
           if [ "$exitStatus" = "0" ]; then
-            echo -e "${{ env.bashPass }}Installed the MSP430 Toolchain${{ env.bashEnd }}"
+            echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
           else
-            echo -e "${{ env.bashFail }}Installing the MSP430 Toolchain Failed...${{ env.bashEnd }}"
+            echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
             exit 1
           fi
 
-      - name: Build msp430_GCC Demo
+      - env:
+          stepName: Build msp430_GCC Demo
+        name: ${{ env.stepName }}
         shell: bash
         working-directory: FreeRTOS/Demo/msp430_GCC
         run: |
-          # Build msp430_GCC Demo
-          echo "::group::Build msp430_GCC Demo"
+          # ${{ env.stepName }}
+          echo "::group:: ${{ env.stepName }}
           set +e
           make -j
           exitStatus=$?
           echo "::endgroup::"
           if [ "$exitStatus" = "0" ]; then
-            echo -e "${{ env.bashPass }}Built the msp430_GCC Demo${{ env.bashEnd }}"
+            echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
           else
-            echo -e "${{ env.bashFail }}Building the msp430_GCC Demo Failed...${{ env.bashEnd }}"
+            echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
             exit 1
           fi
 
@@ -390,41 +448,45 @@ jobs:
     name: GNU ARM Toolchain
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
+      - env:
+          stepName: Checkout Repository
+        name: ${{ env.stepName }}
         uses: actions/checkout@v3
 
-      - name: Fetch Kernel Submodule
+      - env:
+          stepName: Fetch Kernel Submodule
+        name: ${{ env.stepName }}
         shell: bash
         run: |
-          # Fetch Kernel Submodule
-          echo "::group::Fetch Kernel Submodule"
+          # ${{ env.stepName }}
+          echo "::group:: ${{ env.stepName }}
           set +e
           git submodule update --checkout --init --depth 1 FreeRTOS/Source FreeRTOS/Demo/ThirdParty/Community-Supported-Demos
           exitStatus=$?
           echo "::endgroup::"
           if [ "$exitStatus" = "0" ]; then
-            echo -e "${{ env.bashPass }}Fetch Kernel Submodule Passed${{ env.bashEnd }}"
+            echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
           else
-            echo -e "${{ env.bashFail }}Fetch Kernel Submodule Failed...${{ env.bashEnd }}"
+            echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
             exit 1
           fi
 
       - env:
-          stepName: "Install GNU ARM Toolchain"
+          stepName: Install GNU ARM Toolchain
         name: Install GNU ARM Toolchain
         shell: bash
         run: |
           # ${{ env.stepName }}
-          echo "::group::$${{ env.stepName }}"
+          echo "::group:: ${{ env.stepName }}
           set +e
           sudo apt-get -y update
           sudo apt-get -y install gcc-arm-none-eabi build-essential cmake git ninja-build python3-minimal
           exitStatus=$?
           echo "::endgroup::"
           if [ "$exitStatus" = "0" ]; then
-            echo -e "${{ env.bashPass }}${{ env.stepName }} Passed${{ env.bashEnd }}"
+            echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
           else
-            echo -e "${{ env.bashFail }}${{ env.stepName }} Failed...${{ env.bashEnd }}"
+            echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
             exit 1
           fi
 
@@ -434,94 +496,104 @@ jobs:
         shell: bash
         working-directory: FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC
         run: |
-          # ${{ env.stepName}}
-          echo "::group::${{ env.stepName }}"
+          # ${{ env.stepName }}
+          echo "::group:: ${{ env.stepName }}
           set +e
           make -j
           exitStatus=$?
           echo "::endgroup::"
           if [ "$exitStatus" = "0" ]; then
-            echo -e "${{ env.bashPass }} ${{env.StepName}} Passed${{ env.bashEnd }}"
+            echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
           else
-            echo -e "${{ env.bashFail }} ${{env.StepName}} Failed...${{ env.bashEnd }}"
+            echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
             exit 1
           fi
 
-      - name: Build CORTEX_LM3S102_GCC Demo
+      - env:
+          stepName: Build CORTEX_LM3S102_GCC Demo
+        name: ${{ env.stepName }} 
         shell: bash
         working-directory: FreeRTOS/Demo/CORTEX_LM3S102_GCC
         run: |
-          # Build CORTEX_LM3S102_GCC Demo
-          echo "::group::Build CORTEX_LM3S102_GCC Demo"
+          # ${{ env.stepName }}
+          echo "::group:: ${{ env.stepName }}
           set +e
           make -j
           exitStatus=$?
           echo "::endgroup::"
           if [ "$exitStatus" = "0" ]; then
-            echo -e "${{ env.bashPass }}Build CORTEX_LM3S102_GCC Demo Kernel Passed${{ env.bashEnd }}"
+            echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
           else
-            echo -e "${{ env.bashFail }}Build CORTEX_LM3S102_GCC Demo Failed...${{ env.bashEnd }}"
+            echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
             exit 1
           fi
 
-      - name: Build CORTEX_M3_MPS2_QEMU_GCC Demo
+      - env:
+          stepName: Build CORTEX_M3_MPS2_QEMU_GCC Demo
+        name: ${{ env.stepName }}
         shell: bash
         working-directory: FreeRTOS/Demo/CORTEX_M3_MPS2_QEMU_GCC
         run: |
-          # Build CORTEX_M3_MPS2_QEMU_GCC Demo
-          echo "::group::Build CORTEX_M3_MPS2_QEMU_GCC Demo"
+          # ${{ env.stepName }}
+          echo "::group:: ${{ env.stepName }}
           set +e
           make clean
           make -j
           exitStatus=$?
           echo "::endgroup::"
           if [ "$exitStatus" = "0" ]; then
-            echo -e "${{ env.bashPass }}Build CORTEX_M3_MPS2_QEMU_GCC Demo Passed${{ env.bashEnd }}"
+            echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
           else
-            echo -e "${{ env.bashFail }}Build CORTEX_M3_MPS2_QEMU_GCC Demo Failed...${{ env.bashEnd }}"
+            echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
             exit 1
           fi
 
-      - name: Build CORTEX_M3_MPS2_QEMU_GCC Full Demo
+      - env:
+          stepName: Build CORTEX_M3_MPS2_QEMU_GCC Full Demo
+        name: ${{ env.stepName }}
         shell: bash
         working-directory: FreeRTOS/Demo/CORTEX_M3_MPS2_QEMU_GCC
         run: |
-         # Build CORTEX_M3_MPS2_QEMU_GCC Full Demo
-          echo "::group::Build CORTEX_M3_MPS2_QEMU_GCC Full Demo"
+         # ${{ env.stepName }}
+          echo "::group:: ${{ env.stepName }}
           set +e
           make clean
           make FULL_DEMO=1 -j
           echo "::endgroup::"
           if [ "$exitStatus" = "0" ]; then
-            echo -e "${{ env.bashPass }}Built the CORTEX_M3_MPS2_QEMU_GCC Full Demo${{ env.bashEnd }}"
+            echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
           else
-            echo -e "${{ env.bashFail }}Build CORTEX_M3_MPS2_QEMU_GCC Full Demo Failed...${{ env.bashEnd }}"
+            echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
             exit 1
           fi
 
-      - name: Build CORTEX_LM3S811_GCC Demo
+      - env:
+          stepName: Build CORTEX_LM3S811_GCC Demo
+        name: ${{ env.stepName }}
         shell: bash
         working-directory: FreeRTOS/Demo/CORTEX_LM3S811_GCC
         run: |
-          # Build CORTEX_LM3S811_GCC Demo
-          echo "::group::Build CORTEX_LM3S811_GCC Demo"
+          # ${{ env.stepName }}
+          echo "::group:: ${{ env.stepName }}
           set +e
           make -j
           exitStatus=$?
           echo "::endgroup::"
           if [ "$exitStatus" = "0" ]; then
-            echo -e "${{ env.bashPass }}Built the CORTEX_LM3S811_GCC Demo${{ env.bashEnd }}"
+            echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
           else
-            echo -e "${{ env.bashFail }}Build CORTEX_LM3S811_GCC Demo Failed...${{ env.bashEnd }}"
+            echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
             exit 1
           fi
 
-      - name: Build CORTEX_M0+_RP2040 Demos
+      - env:
+          stepName: Build CORTEX_M0+_RP2040 Demos
+        name: ${{ env.stepName }}
         shell: bash
         working-directory: FreeRTOS/Demo/Community-Supported-Demos/CORTEX_M0+_RP2040
         run: |
-          # Build CORTEX_M0+_RP2040 Demos
-          echo "::group::Build CORTEX_M0+_RP2040 Demos"
+          # ${{ env.stepName }}
+          echo "::group:: ${{ env.stepName }}
           set +e
           git clone https://github.com/raspberrypi/pico-sdk.git
           cmake -B build -DPICO_SDK_PATH=pico-sdk -GNinja
@@ -529,25 +601,27 @@ jobs:
           exitStatus=$?
           echo "::endgroup::"
           if [ "$exitStatus" = "0" ]; then
-            echo -e "${{ env.bashPass }}Built CORTEX_M0+_RP2040 Demos${{ env.bashEnd }}"
+            echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
           else
-            echo -e "${{ env.bashFail }}Build CORTEX_M0+_RP2040 Demos Failed...${{ env.bashEnd }}"
+            echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
             exit 1
           fi
 
-      - name: Build CORTEX_MPS2_QEMU_IAR_GCC Demo
+      - env:
+          stepName: Build CORTEX_MPS2_QEMU_IAR_GCC Demo
+        name: ${{ env.stepName }}
         shell: bash
         working-directory: FreeRTOS/Demo/CORTEX_MPS2_QEMU_IAR_GCC
         run: |
-          # Build CORTEX_MPS2_QEMU_IAR_GCC Demo
-          echo "::group::Build CORTEX_MPS2_QEMU_IAR_GCC Demo"
+          # ${{ env.stepName }}
+          echo "::group:: ${{ env.stepName }}
           set +e
           make -C build/gcc -j
           exitStatus=$?
           echo "::endgroup::"
           if [ "$exitStatus" = "0" ]; then
-            echo -e "${{ env.bashPass }}Built the CORTEX_MPS2_QEMU_IAR_GCC Demo${{ env.bashEnd }}"
+            echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
           else
-            echo -e "${{ env.bashFail }}Build CORTEX_MPS2_QEMU_IAR_GCC Demo Failed...${{ env.bashEnd }}"
+            echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
             exit 1
           fi
