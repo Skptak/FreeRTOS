@@ -48,7 +48,7 @@ jobs:
           echo "${{ env.pwshFail }} ${{ env.stepName }} ${{ env.pwshEnd }}"
 
       - env:
-          stepName: Fetch Kernel Submodule
+          stepName: MSVC Windows
         name: ${{ env.stepName }}
         shell: bash
         run: |
@@ -56,6 +56,8 @@ jobs:
           echo "::group::${{ env.stepName }}"
           set +e
           git submodule update --checkout --init --depth 1 FreeRTOS/Source
+          # Update main.c files to remove buffering of stdout.
+          find . -name "main.c" | xargs sed -i -z "s/int[[:space:]]*main[[:space:]]*([[:space:]]*void[[:space:]]*)\n{/int main( void ){setvbuf( stdout, NULL, _IONBF, 0 );/g"
           exitStatus=$?
           set -e
           echo "::endgroup::"
@@ -79,9 +81,6 @@ jobs:
         run: |
           # ${{ env.stepName }}
           echo "::group::${{ env.stepName }}"
-          $content = Get-Content -Path 'main.c' -Raw
-          $newContent = $content -replace 'int\s+main(.*?)void(.*?)\r?\n\s*{', 'int main( void ){setvbuf( stdout, NULL, _IONBF, 0 );'
-          $newContent | Set-Content -Path 'main.c'
           msbuild WIN32.sln -t:rebuild
           $exitStatus = $?
           echo "::endgroup::"
@@ -110,9 +109,6 @@ jobs:
         run: |
           # ${{ env.stepName }}
           echo "::group::${{ env.stepName }}"
-          $content = Get-Content -Path 'main.c' -Raw
-          $newContent = $content -replace '#define\s+mainCREATE_SIMPLE_BLINKY_DEMO_ONLY\s+0', '#define mainCREATE_SIMPLE_BLINKY_DEMO_ONLY    1'
-          $newContent | Set-Content -Path 'main.c'
           # ${{ env.stepName }}
           msbuild WIN32.sln -t:rebuild
           $exitStatus = $?
@@ -141,9 +137,6 @@ jobs:
         run: |
           # ${{ env.stepName }}
           echo "::group::${{ env.stepName }}"
-          $content = Get-Content -Path 'main.c' -Raw
-          $newContent = $content -replace 'int\s+main(.*?)void(.*?)\r?\n\s*{', 'int main( void ){setvbuf( stdout, NULL, _IONBF, 0 );'
-          $newContent | Set-Content -Path 'main.c'
           msbuild WIN32.sln -t:rebuild
           $exitStatus = $?
           echo "::endgroup::"
@@ -181,6 +174,8 @@ jobs:
           echo "::group::${{ env.stepName }}"
           set +e
           git submodule update --checkout --init --depth 1 FreeRTOS/Source
+          # Update main.c files to remove buffering of stdout.
+          find . -name "main.c" | xargs sed -i -z "s/int[[:space:]]*main[[:space:]]*([[:space:]]*void[[:space:]]*)\n{/int main( void ){setvbuf( stdout, NULL, _IONBF, 0 );/g"
           exitStatus=$?
           echo "::endgroup::"
           if [[ "$exitStatus" = "0" ]]; then
@@ -198,9 +193,6 @@ jobs:
         run: |
           # ${{ env.stepName }}
           echo "::group::${{ env.stepName }}"
-          $content = Get-Content -Path 'main.c' -Raw
-          $newContent = $content -replace 'int\s+main(.*?)void(.*?)\r?\n\s*{', 'int main( void ){setvbuf( stdout, NULL, _IONBF, 0 );'
-          $newContent | Set-Content -Path 'main.c'
           gcc --version
           make --version
           make
@@ -230,12 +222,7 @@ jobs:
         run: |
           # ${{ env.stepName }}
           echo "::group::${{ env.stepName }}"
-          $content = Get-Content -Path 'main.c' -Raw
-          $newContent = $content -replace '#define\s+mainCREATE_SIMPLE_BLINKY_DEMO_ONLY\s+0', '#define mainCREATE_SIMPLE_BLINKY_DEMO_ONLY    1'
-          $newContent = $newContent -replace 'int\s+main(.*?)void(.*?)\r?\n\s*{', 'int main( void ){setvbuf( stdout, NULL, _IONBF, 0 );'
-          $newContent | Set-Content -Path 'main.c'
-          gcc --version
-          make --version
+          $newContent = $content -replace '#define\s+mainCREATE_SIMPLE_BLINKY_DEMO_ONLY\s+0', '#define mainCREATE_SIMPLE_BLINKY_DEMO_ONLY 1'
           make
           $exitStatus = $?
           echo "::endgroup::"
@@ -336,36 +323,6 @@ jobs:
           exe-path: FreeRTOS/Demo/${{ matrix.configuration.demo }}/build/posix_demo
           timeout-seconds: 60
           success-line: "OK: No errors"
-
-#      - env:
-#          stepName: Build Posix_GCC Blinky Demo
-#        name: ${{ env.stepName }}
-#        id: build-posix-gcc-blinky-demo
-#        shell: bash
-#        working-directory: FreeRTOS/Demo/Posix_GCC
-#        run: |
-#          # ${{ env.stepName }}
-#          echo "::group::${{ env.stepName }}"
-#          rm -rf build
-#          set +e
-#          make -j USER_DEMO=BLINKY_DEMO
-#          exitStatus=$?
-#          echo "::endgroup::"
-#          if [ "$exitStatus" = "0" ]; then
-#            echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
-#          else
-#            echo -e "${{ env.bashFail }} ${{env.stepName}} ${{ env.bashEnd }}"
-#            exit 1
-#          fi
-#
-#      - env:
-#          stepName: Run and monitor Posix_GCC Blinky Demo
-#        name: ${{ env.stepName }}
-#        uses: Skptak/CI-CD-GitHub-Actions/executable-monitor@doublePrintFix
-#        with:
-#          exe-path: FreeRTOS/Demo/Posix_GCC/build/posix_demo
-#          timeout-seconds: 60
-#          success-line: "Message received from software timer"
 
   MSP430-GCC:
     name: GNU MSP430 Toolchain
