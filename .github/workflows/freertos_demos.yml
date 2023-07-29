@@ -258,6 +258,22 @@ jobs:
   POSIX-GCC:
     name: Posix GCC
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+          configuration: 
+            [ 
+              { 
+                demo: Posix_GCC,
+                demoVariant: BLINKY,
+                buildCMD: make clean && make -j
+              },
+              { 
+                demo: Posix_GCC,
+                demoVariant: FULL,
+                buildCMD: make clean && make -j
+              },
+          ]
     steps:
       - env:
           stepName: Checkout Repository
@@ -265,64 +281,21 @@ jobs:
         uses: actions/checkout@v3
 
       - env:
-          stepName: Test Posix Bash Colours
+          stepName: Posix GCC Setup
         name: ${{ env.stepName }}
-        id: test-posix-bash-colours
+        shell: bash
         run: |
           # ${{ env.stepName }}
+          echo "::group::${{ env.stepName }}"
+          # Sanity check to make sure that these don't cause errors when used elsewhere
           echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
           echo -e "${{ env.bashWarn }} ${{ env.stepName }} ${{ env.bashEnd }}"
           echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
-
-      - env:
-          stepName: Fetch Kernel Submodule
-        name: ${{ env.stepName }}
-        shell: bash
-        run: |
-          # ${{ env.stepName }}
-          echo "::group::${{ env.stepName }}"
-          set +e
           git submodule update --checkout --init --depth 1 FreeRTOS/Source
-          exitStatus=$?
-          echo "::endgroup::"
-          if [ "$exitStatus" = "0" ]; then
-            echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
-          else
-            echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
-            exit 1
-          fi
-
-      - env:
-          stepName: Install GCC
-        name: ${{ env.stepName }}
-        shell: bash
-        run: |
-          # ${{ env.stepName }}
-          echo "::group::${{ env.stepName }}"
-          set +e
           sudo apt-get -y update
           sudo apt-get -y install build-essential
-          exitStatus=$?
-          echo "::endgroup::"
-          if [ "$exitStatus" = "0" ]; then
-            echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
-          else
-            echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
-            exit 1
-          fi
-
-      - env:
-          stepName: Build Posix_GCC Full Demo
-        name: ${{ env.stepName }}
-        id: build-posix-gcc-full-demo
-        shell: bash
-        working-directory: FreeRTOS/Demo/Posix_GCC
-        run: |
-          # ${{ env.stepName }}
-          echo "::group::${{ env.stepName }}"
-          set +e
-          sed -i -z "s/int[[:space:]]*main[[:space:]]*([[:space:]]*void[[:space:]]*)\n{/int main( void ){setvbuf( stdout, NULL, _IONBF, 0 );/g" main.c
-          make -j
+          # Update main.c files to remove buffering of stdout.
+          find . -name "main.c" | xargs sed -i -z "s/int[[:space:]]*main[[:space:]]*([[:space:]]*void[[:space:]]*)\n{/int main( void ){setvbuf( stdout, NULL, _IONBF, 0 );/g"
           exitStatus=$?
           echo "::endgroup::"
           if [ "$exitStatus" = "0" ]; then
@@ -333,43 +306,66 @@ jobs:
           fi
 
       - env:
-          stepName: Run and monitor Posix_GCC Full Demo
+          stepName: Build ${{ matrix.configuration.demo}} ${{ matrix.configuration.demoVariant}} Demo
+        name: ${{ env.stepName }}
+        shell: bash
+        working-directory: FreeRTOS/Demo
+        run: |
+          # ${{ env.stepName }}
+          echo "::group::${{ env.stepName }}"
+          set +e
+          if [[ -d "${{ matrix.configuration.path }}" ]]; then
+            cd ${{ matrix.configuration.path }}
+          fi
+          cd ${{ matrix.configuration.demo }}
+          ${{ matrix.configuration.buildCMD }}
+          exitStatus=$?
+          echo "::endgroup::"
+          if [ "$exitStatus" = "0" ]; then
+            echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
+          else
+            echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
+            exit 1
+          fi
+
+      - env:
+          stepName: Run and monitor ${{ matrix.configuration.demo}} ${{ matrix.configuration.demoVariant }} Demo
         name: ${{ env.stepName }}
         uses: Skptak/CI-CD-GitHub-Actions/executable-monitor@doublePrintFix
         with:
-          exe-path: FreeRTOS/Demo/Posix_GCC/build/posix_demo
+          exe-path: FreeRTOS/Demo/${{ matrix.configuration.demo }}/build/posix_demo
           timeout-seconds: 60
           success-line: "OK: No errors"
 
-      - env:
-          stepName: Build Posix_GCC Blinky Demo
-        name: ${{ env.stepName }}
-        id: build-posix-gcc-blinky-demo
-        shell: bash
-        working-directory: FreeRTOS/Demo/Posix_GCC
-        run: |
-          # ${{ env.stepName }}
-          echo "::group::${{ env.stepName }}"
-          rm -rf build
-          set +e
-          make -j USER_DEMO=BLINKY_DEMO
-          exitStatus=$?
-          echo "::endgroup::"
-          if [ "$exitStatus" = "0" ]; then
-            echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
-          else
-            echo -e "${{ env.bashFail }} ${{env.stepName}} ${{ env.bashEnd }}"
-            exit 1
-          fi
-
-      - env:
-          stepName: Run and monitor Posix_GCC Blinky Demo
-        name: ${{ env.stepName }}
-        uses: Skptak/CI-CD-GitHub-Actions/executable-monitor@doublePrintFix
-        with:
-          exe-path: FreeRTOS/Demo/Posix_GCC/build/posix_demo
-          timeout-seconds: 60
-          success-line: "Message received from software timer"
+#      - env:
+#          stepName: Build Posix_GCC Blinky Demo
+#        name: ${{ env.stepName }}
+#        id: build-posix-gcc-blinky-demo
+#        shell: bash
+#        working-directory: FreeRTOS/Demo/Posix_GCC
+#        run: |
+#          # ${{ env.stepName }}
+#          echo "::group::${{ env.stepName }}"
+#          rm -rf build
+#          set +e
+#          make -j USER_DEMO=BLINKY_DEMO
+#          exitStatus=$?
+#          echo "::endgroup::"
+#          if [ "$exitStatus" = "0" ]; then
+#            echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
+#          else
+#            echo -e "${{ env.bashFail }} ${{env.stepName}} ${{ env.bashEnd }}"
+#            exit 1
+#          fi
+#
+#      - env:
+#          stepName: Run and monitor Posix_GCC Blinky Demo
+#        name: ${{ env.stepName }}
+#        uses: Skptak/CI-CD-GitHub-Actions/executable-monitor@doublePrintFix
+#        with:
+#          exe-path: FreeRTOS/Demo/Posix_GCC/build/posix_demo
+#          timeout-seconds: 60
+#          success-line: "Message received from software timer"
 
   MSP430-GCC:
     name: GNU MSP430 Toolchain
@@ -440,6 +436,7 @@ jobs:
     name: GNU ARM Toolchain
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
           configuration: 
             [ 
@@ -540,122 +537,3 @@ jobs:
             echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
             exit 1
           fi
-
-#      - env:
-#          stepName: Build CORTEX_LM3S102_GCC Demo
-#        name: ${{ env.stepName }} 
-#        shell: bash
-#        working-directory: FreeRTOS/Demo/CORTEX_LM3S102_GCC
-#        run: |
-#          # ${{ env.stepName }}
-#          echo "::group::${{ env.stepName }}"
-#          set +e
-#          make clean
-#          make -j
-#          exitStatus=$?
-#          echo "::endgroup::"
-#          if [ "$exitStatus" = "0" ]; then
-#            echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
-#          else
-#            echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
-#            exit 1
-#          fi
-
-#      - env:
-#          stepName: Build CORTEX_M3_MPS2_QEMU_GCC Demo
-#        name: ${{ env.stepName }}
-#        shell: bash
-#        working-directory: FreeRTOS/Demo/CORTEX_M3_MPS2_QEMU_GCC
-#        run: |
-#          # ${{ env.stepName }}
-#          echo "::group::${{ env.stepName }}"
-#          set +e
-#          make clean
-#          make -j
-#          exitStatus=$?
-#          echo "::endgroup::"
-#          if [ "$exitStatus" = "0" ]; then
-#            echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
-#          else
-#            echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
-#            exit 1
-#          fi
-
-#      - env:
-#          stepName: Build CORTEX_M3_MPS2_QEMU_GCC Full Demo
-#        name: ${{ env.stepName }}
-#        shell: bash
-#        working-directory: FreeRTOS/Demo/CORTEX_M3_MPS2_QEMU_GCC
-#        run: |
-#          # ${{ env.stepName }}
-#          echo "::group::${{ env.stepName }}"
-#          set +e
-#          make clean
-#          make FULL_DEMO=1 -j
-#          exitStatus=$?
-#          echo "::endgroup::"
-#          if [ "$exitStatus" = "0" ]; then
-#            echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
-#          else
-#            echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
-#            exit 1
-#          fi
-
-#      - env:
-#          stepName: Build CORTEX_LM3S811_GCC Demo
-#        name: ${{ env.stepName }}
-#        shell: bash
-#        working-directory: FreeRTOS/Demo/CORTEX_LM3S811_GCC
-#        run: |
-#          # ${{ env.stepName }}
-#          echo "::group::${{ env.stepName }}"
-#          set +e
-#          make -j
-#          exitStatus=$?
-#          echo "::endgroup::"
-#          if [ "$exitStatus" = "0" ]; then
-#            echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
-#          else
-#            echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
-#            exit 1
-#          fi
-
-#      - env:
-#          stepName: Build CORTEX_M0+_RP2040 Demos
-#        name: ${{ env.stepName }}
-#        shell: bash
-#        working-directory: FreeRTOS/Demo/ThirdParty/Community-Supported-Demos/CORTEX_M0+_RP2040
-#        run: |
-#          # ${{ env.stepName }}
-#          echo "::group::${{ env.stepName }}"
-#          set +e
-#          git clone https://github.com/raspberrypi/pico-sdk.git
-#          cmake -B build -DPICO_SDK_PATH=pico-sdk -GNinja
-#          ninja -C build --verbose
-#          exitStatus=$?
-#          echo "::endgroup::"
-#          if [ "$exitStatus" = "0" ]; then
-#            echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
-#          else
-#            echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
-#            exit 1
-#          fi
-
-#      - env:
-#          stepName: Build CORTEX_MPS2_QEMU_IAR_GCC Demo
-#        name: ${{ env.stepName }}
-#        shell: bash
-#        working-directory: FreeRTOS/Demo/CORTEX_MPS2_QEMU_IAR_GCC
-#        run: |
-#          # ${{ env.stepName }}
-#          echo "::group::${{ env.stepName }}"
-#          set +e
-#          make -C build/gcc -j
-#          exitStatus=$?
-#          echo "::endgroup::"
-#          if [ "$exitStatus" = "0" ]; then
-#            echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
-#          else
-#            echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
-#            exit 1
-#          fi
