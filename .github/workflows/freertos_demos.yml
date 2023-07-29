@@ -505,7 +505,7 @@ jobs:
           stepName: Build ${{ matrix.configuration.demo}} Demo
         name: ${{ env.stepName}}
         shell: bash
-        working-directory: FreeRTOS/Demo/${{ matrix.configuration.demo }}
+        working-directory: FreeRTOS/Demo
         run: |
           # ${{ env.stepName }}
           echo "::group::${{ env.stepName }}"
@@ -513,6 +513,7 @@ jobs:
           if [[ -d "${{ matrix.configuration.path }}" ]]; then
             cd ${{ matrix.configuration.path }}
           fi
+          cd ${{ matrix.configuration.demo }}
           ${{ matrix.configuration.buildCMD }}
           exitStatus=$?
           echo "::endgroup::"
