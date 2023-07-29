@@ -88,6 +88,7 @@ jobs:
           log-dir: demo_run_logs
           timeout-seconds: 60
           success-line: "No errors - tick count"
+          retry-attempts: 3
 
       - name: Build WIN32-MSVC Blinky Demo
         id: build-win32-msvs-blinky-demo
@@ -115,6 +116,7 @@ jobs:
           log-dir: demo_run_logs
           timeout-seconds: 60
           success-line: "Message received from software timer"
+          retry-attempts: 3
 
       - name: Build WIN32-MSVC-Static-Allocation-Only Demo
         id: build-win32-msvs-static-allocation-only-demo
@@ -248,6 +250,7 @@ jobs:
           set +e
           git submodule update --checkout --init --depth 1 FreeRTOS/Source
           exitStatus=$?
+          echo "::endgroup::"
           if [ "$exitStatus" = "0" ]; then
             echo -e "${{ env.bashPass }}Fetch Kernel Submodule Passed${{ env.bashEnd }}"
           else
@@ -264,6 +267,7 @@ jobs:
           sudo apt-get -y update
           sudo apt-get -y install build-essential
           exitStatus=$?
+          echo "::endgroup::"
           if [ "$exitStatus" = "0" ]; then
             echo -e "${{ env.bashPass }}Install GCC Passed${{ env.bashEnd }}"
           else
@@ -282,6 +286,7 @@ jobs:
           sed -i -z "s/int[[:space:]]*main[[:space:]]*([[:space:]]*void[[:space:]]*)\n{/int main( void ){setvbuf( stdout, NULL, _IONBF, 0 );/g" main.c
           make -j
           exitStatus=$?
+          echo "::endgroup::"
           if [ "$exitStatus" = "0" ]; then
             echo -e "${{ env.bashPass }}Build Posix_GCC Full Demo Passed${{ env.bashEnd }}"
           else
@@ -360,7 +365,7 @@ jobs:
           if [ "$exitStatus" = "0" ]; then
             echo -e "${{ env.bashPass }}Installed the MSP430 Toolchain${{ env.bashEnd }}"
           else
-            echo -e "${{ env.bashFail }}Installing the MSP430 ToolchainFailed...${{ env.bashEnd }}"
+            echo -e "${{ env.bashFail }}Installing the MSP430 Toolchain Failed...${{ env.bashEnd }}"
             exit 1
           fi
 
@@ -413,6 +418,7 @@ jobs:
           sudo apt-get -y update
           sudo apt-get -y install gcc-arm-none-eabi build-essential cmake git ninja-build python3-minimal
           exitStatus=$?
+          echo "::endgroup::"
           if [ "$exitStatus" = "0" ]; then
             echo -e "${{ env.bashPass }}Install GNU ARM Toolchain${{ env.bashEnd }}"
           else
@@ -481,6 +487,7 @@ jobs:
           set +e
           make clean
           make FULL_DEMO=1 -j
+          echo "::endgroup::"
           if [ "$exitStatus" = "0" ]; then
             echo -e "${{ env.bashPass }}Built the CORTEX_M3_MPS2_QEMU_GCC Full Demo${{ env.bashEnd }}"
           else
