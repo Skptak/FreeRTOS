@@ -35,7 +35,7 @@ jobs:
           echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
           echo -e "${{ env.bashWarn }} ${{ env.stepName }} ${{ env.bashEnd }}"
           echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
-          
+
       - env:
           stepName: Test Windows Pwsh Colours
         name: ${{ env.stepName }}
@@ -158,29 +158,29 @@ jobs:
           timeout-seconds: 60
           success-line: "No errors - tick count"
 
+#          {
+#                demo: WIN32-MingW,
+#                demoVariant: BLINKY,
+#                buildCMD: $content = Get-Content -Path 'main.c' -Raw;
+#                          $newContent = $content -replace '#define\s+mainCREATE_SIMPLE_BLINKY_DEMO_ONLY\s+0', '#define mainCREATE_SIMPLE_BLINKY_DEMO_ONLY 1';
+#                          $newContent | Set-Content -Path 'main.c';
+#                          make clean && make -j;,
+#                successLine: "Message received from software timer",
+#              },
   WIN32-MingW:
     name: WIN32 MingW
     runs-on: windows-latest
     strategy:
       fail-fast: false
       matrix:
-          configuration: 
-            [ 
+          configuration:
+            [
               {
                 demo: WIN32-MingW,
                 demoVariant: FULL,
                 buildCMD: make clean && make -j,
-                successLine: "No errors - tick count",
-              },
-              { 
-                demo: WIN32-MingW,
-                demoVariant: BLINKY,
-                buildCMD: $content = Get-Content -Path 'main.c' -Raw;
-                          $newContent = $content -replace '#define\s+mainCREATE_SIMPLE_BLINKY_DEMO_ONLY\s+0', '#define mainCREATE_SIMPLE_BLINKY_DEMO_ONLY 1';
-                          $newContent | Set-Content -Path 'main.c';
-                          make clean && make -j;,
-                successLine: "Message received from software timer",
-              },
+                successLine: "No errors - tick count"
+              }
           ]
     steps:
       - env:
@@ -211,7 +211,6 @@ jobs:
       - env:
           stepName: Build Build ${{ matrix.configuration.demo}} ${{ matrix.configuration.demoVariant}} Demo
         name: ${{ env.stepName }}
-        id: build-${{ matrix.configuration.demo }}
         working-directory: FreeRTOS/Demo/${{ matrix.configuration.demo }}
         run: |
           # ${{ env.stepName }}
@@ -247,15 +246,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-          configuration: 
-            [ 
-              { 
+          configuration:
+            [
+              {
                 demo: Posix_GCC,
                 demoVariant: BLINKY,
                 buildCMD: make clean && make -j USER_DEMO=BLINKY_DEMO,
                 successLine: "Message received from software timer"
               },
-              { 
+              {
                 demo: Posix_GCC,
                 demoVariant: FULL,
                 buildCMD: make clean && make -j,
@@ -396,33 +395,33 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-          configuration: 
-            [ 
-              { 
+          configuration:
+            [
+              {
                 demo: CORTEX_MPU_M3_MPS2_QEMU_GCC,
                 buildCMD: make clean && make -j
               },
-              { 
+              {
                 demo: CORTEX_LM3S102_GCC,
                 buildCMD: make clean && make -j
               },
-              { 
+              {
                 demo: CORTEX_M3_MPS2_QEMU_GCC,
                 buildCMD: make clean && make -j
               },
-              { 
+              {
                 demo: CORTEX_M3_MPS2_QEMU_GCC,
                 buildCMD: make clean && make -j FULL_DEMO=1
               },
-              { 
+              {
                 demo: CORTEX_LM3S811_GCC,
-                buildCMD: make clean && make -j 
+                buildCMD: make clean && make -j
               },
-              { 
+              {
                 demo: CORTEX_MPS2_QEMU_IAR_GCC,
                 buildCMD: make -C build/gcc clean && make -C build/gcc -j
-              }, 
-              { 
+              },
+              {
                 demo: CORTEX_M0+_RP2040,
                 path: ThirdParty/Community-Supported-Demos,
                 buildCMD: "git clone https://github.com/raspberrypi/pico-sdk.git;
@@ -435,7 +434,7 @@ jobs:
           stepName: Checkout Repository
         name: ${{ env.stepName }}
         uses: actions/checkout@v3
-      
+
       - env:
           stepName: Fetch Kernel Submodule
         name: ${{ env.stepName }}

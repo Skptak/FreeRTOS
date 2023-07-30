@@ -138,7 +138,8 @@ jobs:
           # Run the spell check script.
           #find-unknown-comment-words --directory FreeRTOS/ --lexicon FreeRTOS/lexicon.txt
           set +e
-          files=$(grep '--include=*.'{c,h,dox} -lrnw . -ie "copyright (c) \d\d\d\d amazon.com")
+          # Mac equivalent is: grep '--include=*.'{c,h,dox} -lrnw . -ie "copyright (c) \d\d\d\d amazon.com"
+          files=$(grep --include={*.[ch],*.dox} -lrniE "copyright (.*) [0-9]{4} amazon.com"
           for file in $files; do
             echo "File = $file"
             find-unknown-comment-words --lexicon FreeRTOS/lexicon.txt $file &
@@ -197,6 +198,7 @@ jobs:
           retention-days: 2
 
   proof_ci:
+    if: ${{ github.event.pull_request }}
     runs-on: cbmc_ubuntu-latest_16-core
     steps:
       - uses: actions/checkout@v2
