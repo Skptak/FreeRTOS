@@ -170,13 +170,13 @@ jobs:
               {
                 demo: WIN32-MingW,
                 demoVariant: FULL,
-                buildCMD: make clean && make -j,
+                buildCMD: make clean; make -j,
                 successLine: "No errors - tick count"
               },
               {
                 demo: WIN32-MingW,
                 demoVariant: BLINKY,
-                buildCMD: make clean && make -j USER_DEMO=BLINKY_DEMO,
+                buildCMD: make clean; make -j USER_DEMO=BLINKY_DEMO,
                 successLine: "Message received from software timer",
               },
           ]

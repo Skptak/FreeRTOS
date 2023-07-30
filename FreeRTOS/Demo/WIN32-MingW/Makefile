@@ -11,14 +11,6 @@ else
   CFLAGS += -DprojCOVERAGE_TEST=0
 endif
 
-ifeq ($(USER_DEMO),BLINKY_DEMO)
-  CPPFLAGS	+=	-DUSER_DEMO=0
-endif
-
-ifeq ($(USER_DEMO),FULL_DEMO)
-  CPPFLAGS	+=	-DUSER_DEMO=1
-endif
-
 # Linker - Note this expects you are using MinGW version of GCC
 LD :=  ${CC}
 LDFLAGS := -Xlinker -Map=$(BUILD_DIR)/rtosdemo.map
