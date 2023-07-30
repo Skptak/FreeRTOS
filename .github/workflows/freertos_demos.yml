@@ -14,7 +14,6 @@ env:
   pwshWarn:   '`e[33;1mWARNING -'
   pwshFail:   '`e[31;1mFAILED -'
   pwshEnd:    '`e[0m'
-  colon: ':'
 
 jobs:
   WIN32-MSVC:
@@ -162,6 +161,27 @@ jobs:
   WIN32-MingW:
     name: WIN32 MingW
     runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+          configuration: 
+            [ 
+              { 
+                demo: WIN32-MingW,
+                demoVariant: FULL,
+                buildCMD: make clean && make -j,
+                successLine: "No errors - tick count"
+              },
+              { 
+                demo: WIN32-MingW,
+                demoVariant: BLINKY,
+                buildCMD: $content = Get-Content -Path 'main.c' -Raw;
+                          $newContent = $content -replace '#define\s+mainCREATE_SIMPLE_BLINKY_DEMO_ONLY\s+0', '#define mainCREATE_SIMPLE_BLINKY_DEMO_ONLY 1';
+                          $newContent | Set-Content -Path 'main.c';
+                          make clean && make -j;,
+                successLine: "Message received from software timer"
+              },
+          ]
     steps:
       - env:
           stepName: Checkout Repository
@@ -189,63 +209,37 @@ jobs:
           fi
 
       - env:
-          stepName: Build WIN32-MingW Full Demo
+          stepName: Build Build ${{ matrix.configuration.demo}} ${{ matrix.configuration.demoVariant}} Demo
         name: ${{ env.stepName }}
-        id: build-win32-mingw-full-demo
-        working-directory: FreeRTOS/Demo/WIN32-MingW
+        id: build-${{ matrix.configuration.demo }}
+        working-directory: FreeRTOS/Demo/${{ matrix.configuration.demo }}
         run: |
           # ${{ env.stepName }}
           echo "::group::${{ env.stepName }}"
-          gcc --version
-          make --version
-          make
-          $exitStatus = $?
+          set +e
+          if [[ -d "${{ matrix.configuration.path }}" ]]; then
+            cd ${{ matrix.configuration.path }}
+          fi
+          cd ${{ matrix.configuration.demo }}
+          ${{ matrix.configuration.buildCMD }}
+          exitStatus=$?
           echo "::endgroup::"
-          if($exitStatus -eq 1) {
-            echo "${{ env.pwshPass }} ${{ env.stepName }} ${{env.pwshEnd}}"
-          }else {
-            echo "${{ env.pwshFail }} ${{ env.stepName }} ${{env.pwshEnd}}"
+          if [ "$exitStatus" = "0" ]; then
+            echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
+          else
+            echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
             exit 1
-          }
+          fi
 
       - env:
-          stepName: Run and monitor WIN32-MingW Full Demo
+          stepName: Run and monitor ${{ matrix.configuration.demo}} ${{ matrix.configuration.demoVariant }} Demo
         name: ${{ env.stepName }}
         uses: Skptak/CI-CD-GitHub-Actions/executable-monitor@doublePrintFix
         with:
-          exe-path: FreeRTOS/Demo/WIN32-MingW/build/RTOSDemo.exe
+          exe-path: FreeRTOS/Demo/${{ matrix.configuration.demo }}/build/RTOSDemo.exe
           timeout-seconds: 60
-          success-line: "No errors - tick count"
-
-      - env:
-          stepName: Build WIN32-MingW Blinky Demo
-        name: ${{ env.stepName }}
-        id: build-win32-mingw-blinky-demo
-        working-directory: FreeRTOS/Demo/WIN32-MingW
-        run: |
-          # ${{ env.stepName }}
-          echo "::group::${{ env.stepName }}"
-          $content = Get-Content -Path 'main.c' -Raw
-          $newContent = $content -replace '#define\s+mainCREATE_SIMPLE_BLINKY_DEMO_ONLY\s+0', '#define mainCREATE_SIMPLE_BLINKY_DEMO_ONLY 1'
-          $newContent | Set-Content -Path 'main.c'
-          make clean && make -j
-          $exitStatus = $?
-          echo "::endgroup::"
-          if($exitStatus -eq 1) {
-            echo "${{ env.pwshPass }} ${{ env.stepName }} ${{ env.pwshEnd }}"
-          }else {
-            echo "${{ env.pwshFail }} ${{ env.stepName }} ${{ env.pwshEnd }}"
-            exit 1
-          }
-
-      - env:
-          stepName: Run and monitor WIN32-MingW Blinky Demo
-        name: ${{ env.stepName }}
-        uses: Skptak/CI-CD-GitHub-Actions/executable-monitor@doublePrintFix
-        with:
-          exe-path: FreeRTOS/Demo/WIN32-MingW/build/RTOSDemo.exe
-          timeout-seconds: 60
-          success-line: "Message received from software timer"
+          retry-attemots: 3
+          success-line: ${{ matrix.configuration.successLine}}
 
   POSIX-GCC:
     name: Posix GCC
