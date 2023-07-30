@@ -166,11 +166,11 @@ jobs:
       matrix:
           configuration: 
             [ 
-              { 
+              {
                 demo: WIN32-MingW,
                 demoVariant: FULL,
                 buildCMD: make clean && make -j,
-                successLine: "No errors - tick count"
+                successLine: "No errors - tick count",
               },
               { 
                 demo: WIN32-MingW,
@@ -179,7 +179,7 @@ jobs:
                           $newContent = $content -replace '#define\s+mainCREATE_SIMPLE_BLINKY_DEMO_ONLY\s+0', '#define mainCREATE_SIMPLE_BLINKY_DEMO_ONLY 1';
                           $newContent | Set-Content -Path 'main.c';
                           make clean && make -j;,
-                successLine: "Message received from software timer"
+                successLine: "Message received from software timer",
               },
           ]
     steps:
