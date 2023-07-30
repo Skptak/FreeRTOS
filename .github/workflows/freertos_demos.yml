@@ -158,15 +158,7 @@ jobs:
           timeout-seconds: 60
           success-line: "No errors - tick count"
 
-#          {
-#                demo: WIN32-MingW,
-#                demoVariant: BLINKY,
-#                buildCMD: $content = Get-Content -Path 'main.c' -Raw;
-#                          $newContent = $content -replace '#define\s+mainCREATE_SIMPLE_BLINKY_DEMO_ONLY\s+0', '#define mainCREATE_SIMPLE_BLINKY_DEMO_ONLY 1';
-#                          $newContent | Set-Content -Path 'main.c';
-#                          make clean && make -j;,
-#                successLine: "Message received from software timer",
-#              },
+
   WIN32-MingW:
     name: WIN32 MingW
     runs-on: windows-latest
@@ -180,7 +172,16 @@ jobs:
                 demoVariant: FULL,
                 buildCMD: make clean && make -j,
                 successLine: "No errors - tick count"
-              }
+              },
+              {
+                demo: WIN32-MingW,
+                demoVariant: BLINKY,
+                buildCMD: $content = Get-Content -Path 'main.c' -Raw;
+                          $newContent = $content -replace '#define\s+mainCREATE_SIMPLE_BLINKY_DEMO_ONLY\s+0', '#define mainCREATE_SIMPLE_BLINKY_DEMO_ONLY 1';
+                          $newContent | Set-Content -Path 'main.c';
+                          make clean && make -j;,
+                successLine: "Message received from software timer",
+                },
           ]
     steps:
       - env:
@@ -212,6 +213,7 @@ jobs:
           stepName: Build Build ${{ matrix.configuration.demo}} ${{ matrix.configuration.demoVariant}} Demo
         name: ${{ env.stepName }}
         working-directory: FreeRTOS/Demo/${{ matrix.configuration.demo }}
+        shell: bash
         run: |
           # ${{ env.stepName }}
           echo "::group::${{ env.stepName }}"
