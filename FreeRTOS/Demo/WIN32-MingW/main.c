@@ -67,8 +67,13 @@
  * If mainCREATE_SIMPLE_BLINKY_DEMO_ONLY is not 1 then the comprehensive test and
  * demo application will be built.  The comprehensive test and demo application is
  * implemented and described in main_full.c. */
-#define mainCREATE_SIMPLE_BLINKY_DEMO_ONLY    0
 
+/* Demo type is passed as an argument */
+#ifdef USER_DEMO
+    #define     mainCREATE_SIMPLE_BLINKY_DEMO_ONLY    USER_DEMO
+#else /* Default Setting */
+    #define    mainCREATE_SIMPLE_BLINKY_DEMO_ONLY     0
+#endif
 /* This demo uses heap_5.c, and these constants define the sizes of the regions
  * that make up the total heap.  heap_5 is only used for test and example purposes
  * as this demo could easily create one large heap region instead of multiple

@@ -176,12 +176,9 @@ jobs:
               {
                 demo: WIN32-MingW,
                 demoVariant: BLINKY,
-                buildCMD: $content = Get-Content -Path 'main.c' -Raw;
-                          $newContent = $content -replace '#define\s+mainCREATE_SIMPLE_BLINKY_DEMO_ONLY\s+0', '#define mainCREATE_SIMPLE_BLINKY_DEMO_ONLY 1';
-                          $newContent | Set-Content -Path 'main.c';
-                          make clean && make -j;,
+                buildCMD: make clean && make -j USER_DEMO=BLINKY_DEMO,
                 successLine: "Message received from software timer",
-                },
+              },
           ]
     steps:
       - env:
