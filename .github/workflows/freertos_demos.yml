@@ -209,25 +209,20 @@ jobs:
       - env:
           stepName: Build Build ${{ matrix.configuration.demo}} ${{ matrix.configuration.demoVariant}} Demo
         name: ${{ env.stepName }}
-        working-directory: FreeRTOS/Demo/${{ matrix.configuration.demo }}
-        shell: bash
+        working-directory: FreeRTOS/Demo
         run: |
           # ${{ env.stepName }}
           echo "::group::${{ env.stepName }}"
-          set +e
-          if [[ -d "${{ matrix.configuration.path }}" ]]; then
-            cd ${{ matrix.configuration.path }}
-          fi
           cd ${{ matrix.configuration.demo }}
           ${{ matrix.configuration.buildCMD }}
-          exitStatus=$?
+          $exitStatus = $?
           echo "::endgroup::"
-          if [ "$exitStatus" = "0" ]; then
-            echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
-          else
-            echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
+          if($exitStatus -eq 1) {
+            echo "${{ env.pwshPass }} ${{ env.stepName }} ${{ env.pwshEnd }}"
+          }else {
+            echo "${{ env.pwshFail }} ${{ env.stepName }} ${{ env.pwshEnd }}"
             exit 1
-          fi
+          }
 
       - env:
           stepName: Run and monitor ${{ matrix.configuration.demo}} ${{ matrix.configuration.demoVariant }} Demo
