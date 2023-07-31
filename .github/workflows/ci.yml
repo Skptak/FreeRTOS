@@ -33,7 +33,7 @@ jobs:
         uses: Skptak/CI-CD-Github-Actions/formatting@doublePrintFix
         with:
           path: ./
-          exclude-dirs: Demo,VeriFast,ports,portable
+          exclude-dirs: Demo,VeriFast,ports,portable,
           
       - name: Check formatting of Common Demo Directory
         uses: Skptak/CI-CD-Github-Actions/formatting@doublePrintFix
@@ -59,6 +59,7 @@ jobs:
           mkdir -p freertos/FreeRTOS-Plus/Source/Application-Protocols/coreMQTT-Agent/source/dependency/coreMQTT/docs/doxygen/output
           wget -O freertos/FreeRTOS-Plus/Source/Application-Protocols/coreMQTT-Agent/source/dependency/coreMQTT/docs/doxygen/output/mqtt.tag \
           "https://freertos.org/Documentation/api-ref/coreMQTT/docs/doxygen/output/mqtt.tag"
+
       - name: Generate doxygen ZIP
         uses: FreeRTOS/CI-CD-GitHub-Actions/doxygen@main
         with:
