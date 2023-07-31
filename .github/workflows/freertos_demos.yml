@@ -27,7 +27,7 @@ jobs:
               {
                 demo: WIN32-MSVC,
                 demoVariant: FULL,
-                buildCMD: msbuild WIN32.sln -t:rebuild,
+                buildCMD: "msbuild WIN32.sln -t:rebuild",
                 successLine: "No errors - tick count"
               },
               {
@@ -35,14 +35,14 @@ jobs:
                 demoVariant: BLINKY,
                 buildCMD:
                   "$content = Get-Content -Path 'main.c' -Raw;
-                  $newContent = $content -replace '#define\s+mainCREATE_SIMPLE_BLINKY_DEMO_ONLY\s+0', '#define mainCREATE_SIMPLE_BLINKY_DEMO_ONLY 1';
+                  $newContent = $content -replace '#define\\s+mainCREATE_SIMPLE_BLINKY_DEMO_ONLY\\s+0', '#define mainCREATE_SIMPLE_BLINKY_DEMO_ONLY 1';
                   $newContent | Set-Content -Path 'main.c';
                   msbuild WIN32.sln -t:rebuild",
                 successLine: "Message received from software timer",
               },
               {
                 demo: WIN32-MSVC-Static-Allocation-Only,
-                buildCMD: msbuild WIN32.sln -t:rebuild,
+                buildCMD: "msbuild WIN32.sln -t:rebuild",
                 successLine: "No errors - tick count"
               },
           ]
