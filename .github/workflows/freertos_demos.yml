@@ -101,7 +101,7 @@ jobs:
         uses: microsoft/setup-msbuild@v1.1
 
       - env:
-          stepName: Build Build ${{ matrix.configuration.demo}} ${{ matrix.configuration.demoVariant}} Demo
+          stepName: Build ${{ matrix.configuration.demo}} ${{ matrix.configuration.demoVariant}} Demo
         name: ${{ env.stepName }}
         working-directory: FreeRTOS/Demo
         run: |
