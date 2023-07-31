@@ -367,27 +367,27 @@ jobs:
             [
               {
                 demo: CORTEX_MPU_M3_MPS2_QEMU_GCC,
-                buildCMD: make clean && make -j
+                buildCMD: make clean ; make -j
               },
               {
                 demo: CORTEX_LM3S102_GCC,
-                buildCMD: make clean && make -j
+                buildCMD: make clean ; make -j
               },
               {
                 demo: CORTEX_M3_MPS2_QEMU_GCC,
-                buildCMD: make clean && make -j
+                buildCMD: make clean ; make -j
               },
               {
                 demo: CORTEX_M3_MPS2_QEMU_GCC,
-                buildCMD: make clean && make -j FULL_DEMO=1
+                buildCMD: make clean ; make -j FULL_DEMO=1
               },
               {
                 demo: CORTEX_LM3S811_GCC,
-                buildCMD: make clean && make -j
+                buildCMD: make clean ; make -j
               },
               {
                 demo: CORTEX_MPS2_QEMU_IAR_GCC,
-                buildCMD: make -C build/gcc clean && make -C build/gcc -j
+                buildCMD: make -C build/gcc clean ; make -C build/gcc -j
               },
               {
                 demo: CORTEX_M0+_RP2040,
