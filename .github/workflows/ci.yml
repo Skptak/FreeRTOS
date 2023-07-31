@@ -29,11 +29,16 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
-      - name: Check formatting
+      - name: Check formatting on repo
         uses: FreeRTOS/CI-CD-Github-Actions/formatting@main
         with:
           path: ./
-          exclude-dirs: FreeRTOS/Test/CMock/CMock
+          exclude-dirs: FreeRTOS/Test/CMock/CMock, FreeRTOS/Demo
+          
+      - name: Check formatting of Common Demo Directory
+        uses: FreeRTOS/CI-CD-Github-Actions/formatting@main
+        with:
+          path: ./FreeRTOS/Demo/Common
 
   doxygen:
     runs-on: ubuntu-latest
