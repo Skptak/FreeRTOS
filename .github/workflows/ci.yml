@@ -7,13 +7,13 @@ on:
 
 jobs:
   git-secrets:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           submodules: recursive
       - name: Checkout awslabs/git-secrets
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: awslabs/git-secrets
           ref: master
@@ -26,9 +26,9 @@ jobs:
           git-secrets --scan
 
   formatting:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Install Uncrustify
         run: sudo apt-get install uncrustify=0.69.0+dfsg1-1build1
       - name: Run Uncrustify
@@ -77,10 +77,10 @@ jobs:
           fi
 
   doxygen:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: Clone repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           submodules: recursive
           path: freertos
@@ -113,16 +113,16 @@ jobs:
           retention-days: 2
 
   spell-check:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout Parent Repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           ref: main
           repository: FreeRTOS/CI-CD-Github-Actions
           path: commonCI
       - name: Clone This Repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
             path: ./FreeRTOS
       - name: Install spell
@@ -152,9 +152,9 @@ jobs:
           fi
 
   verify-manifest:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           submodules: true
           fetch-depth: 0
@@ -170,20 +170,20 @@ jobs:
           fail-on-incorrect-version: true
 
   memory-statistics:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     env:
       ARM_GCC_TOOLCHAIN_URL: "https://developer.arm.com/-/media/Files/downloads/gnu-rm/9-2020q2/gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2?revision=05382cca-1721-44e1-ae19-1e7c3dc96118&la=en&hash=D7C9D18FCA2DD9F894FD9F3C3DC9228498FA281A"
     steps:
       - name: Install ARM GCC
         run: wget -qO- "${{ env.ARM_GCC_TOOLCHAIN_URL }}" | sudo tar --strip-components=1 -xj -C /usr/local
       - name: Clone FreeRTOS Repository with submodules
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           submodules: recursive
       - name: Clone mbedTLS submodule from corePKCS11
         run: git submodule update --init --recursive --checkout -- FreeRTOS-Plus/Source/corePKCS11
       - name: Clone CI-CD-Github-Actions repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: FreeRTOS/CI-CD-Github-Actions
           path: tools
@@ -201,7 +201,7 @@ jobs:
     if: ${{ github.event.pull_request }}
     runs-on: cbmc_ubuntu-latest_16-core
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - run: |
           git submodule update --init --checkout --recursive --depth 1
           sudo apt-get update

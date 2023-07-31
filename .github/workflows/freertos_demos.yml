@@ -123,7 +123,7 @@ jobs:
         name: ${{ env.stepName }}
         uses: Skptak/CI-CD-GitHub-Actions/executable-monitor@doublePrintFix
         with:
-          exe-path: FreeRTOS/Demo/${{ matrix.configuration.demo }}/build/RTOSDemo.exe
+          exe-path: FreeRTOS/Demo/${{ matrix.configuration.demo }}/Debug/RTOSDemo.exe
           timeout-seconds: 60
           retry-attempts: 3
           success-line: ${{ matrix.configuration.successLine}}
