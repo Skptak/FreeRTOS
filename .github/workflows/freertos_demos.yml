@@ -19,6 +19,34 @@ jobs:
   WIN32-MSVC:
     name: WIN32 MSVC
     runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+          configuration:
+            [
+              {
+                demo: WIN32-MSVC,
+                demoVariant: FULL,
+                buildCMD: msbuild WIN32.sln -t:rebuild,
+                successLine: "No errors - tick count"
+              },
+              {
+                demo: WIN32-MSVC,
+                demoVariant: BLINKY,
+                buildCMD:
+                  "$content = Get-Content -Path 'main.c' -Raw;
+                  $newContent = $content -replace '#define\s+mainCREATE_SIMPLE_BLINKY_DEMO_ONLY\s+0', '#define mainCREATE_SIMPLE_BLINKY_DEMO_ONLY 1';
+                  $newContent | Set-Content -Path 'main.c';
+                  msbuild WIN32.sln -t:rebuild",
+                successLine: "Message received from software timer",
+              },
+              {
+                demo: WIN32-MSVC-Static-Allocation-Only,
+                buildCMD: msbuild WIN32.sln -t:rebuild,
+                successLine: "No errors - tick count"
+              },
+          ]
+
     steps:
       - env:
           stepName: Checkout Repository
@@ -73,90 +101,32 @@ jobs:
         uses: microsoft/setup-msbuild@v1.1
 
       - env:
-          stepName: Build WIN32-MSVC Full Demo
+          stepName: Build Build ${{ matrix.configuration.demo}} ${{ matrix.configuration.demoVariant}} Demo
         name: ${{ env.stepName }}
-        id: build-win32-msvs-full-demo
-        working-directory: FreeRTOS/Demo/WIN32-MSVC
+        working-directory: FreeRTOS/Demo
         run: |
           # ${{ env.stepName }}
           echo "::group::${{ env.stepName }}"
-          msbuild WIN32.sln -t:rebuild
+          cd ${{ matrix.configuration.demo }}
+          ${{ matrix.configuration.buildCMD }}
           $exitStatus = $?
           echo "::endgroup::"
-          if($exitStatus -eq 1) {
-            echo "${{ env.pwshPass }} ${{env.stepName}} ${{ env.pwshEnd }}"
-          }else {
-            echo "${{ env.pwshFail }} ${{env.stepName}} ${{ env.pwshEnd }}"
-            exit 1
-          }
-
-      - env:
-          stepName: Run and monitor WIN32-MSVC Full Demo
-        name: ${{ env.stepName }}
-        uses: Skptak/CI-CD-GitHub-Actions/executable-monitor@doublePrintFix
-        with:
-          exe-path: FreeRTOS/Demo/WIN32-MSVC/Debug/RTOSDemo.exe
-          timeout-seconds: 60
-          success-line: "No errors - tick count"
-          retry-attempts: 3
-
-      - env:
-          stepName: Build WIN32-MSVC Blinky Demo
-        name: ${{ env.stepName }}
-        id: build-win32-msvs-blinky-demo
-        working-directory: FreeRTOS/Demo/WIN32-MSVC
-        run: |
-          # ${{ env.stepName }}
-          echo "::group::${{ env.stepName }}"
-          # ${{ env.stepName }}
-          $content = Get-Content -Path 'main.c' -Raw
-          $newContent = $content -replace '#define\s+mainCREATE_SIMPLE_BLINKY_DEMO_ONLY\s+0', '#define mainCREATE_SIMPLE_BLINKY_DEMO_ONLY 1'
-          $newContent | Set-Content -Path 'main.c'
-          msbuild WIN32.sln -t:rebuild
-          $exitStatus = $?
-          if($exitStatus -eq 1) {
+          if( $exitStatus -eq 1 ) {
             echo "${{ env.pwshPass }} ${{ env.stepName }} ${{ env.pwshEnd }}"
-          }else {
+          } else {
             echo "${{ env.pwshFail }} ${{ env.stepName }} ${{ env.pwshEnd }}"
             exit 1
           }
 
       - env:
-          stepName: Run and monitor WIN32-MSVC Blinky Demo
+          stepName: Run and monitor ${{ matrix.configuration.demo}} ${{ matrix.configuration.demoVariant }} Demo
         name: ${{ env.stepName }}
         uses: Skptak/CI-CD-GitHub-Actions/executable-monitor@doublePrintFix
         with:
-          exe-path: FreeRTOS/Demo/WIN32-MSVC/Debug/RTOSDemo.exe
+          exe-path: FreeRTOS/Demo/${{ matrix.configuration.demo }}/build/RTOSDemo.exe
           timeout-seconds: 60
-          success-line: "Message received from software timer"
           retry-attempts: 3
-
-      - env:
-          stepName: Build WIN32-MSVC-Static-Allocation-Only Demo
-        name: ${{ env.stepName }}
-        id: build-win32-msvs-static-allocation-only-demo
-        working-directory: FreeRTOS/Demo/WIN32-MSVC-Static-Allocation-Only
-        run: |
-          # ${{ env.stepName }}
-          echo "::group::${{ env.stepName }}"
-          msbuild WIN32.sln -t:rebuild
-          $exitStatus = $?
-          echo "::endgroup::"
-          if($exitStatus -eq 1) {
-            echo "${{ env.pwshPass }} ${{ env.stepName }} ${{ env.pwshEnd }}"
-          }else {
-            echo "${{ env.pwshFail }} ${{ env.stepName }} ${{ env.pwshEnd }}"
-            exit 1
-          }
-
-      - env:
-          stepName: Run and monitor WIN32-MSVC-Static-Allocation-Only Demo
-        name: ${{ env.stepName }}
-        uses: Skptak/CI-CD-GitHub-Actions/executable-monitor@doublePrintFix
-        with:
-          exe-path: FreeRTOS/Demo/WIN32-MSVC-Static-Allocation-Only/Debug/RTOSDemo.exe
-          timeout-seconds: 60
-          success-line: "No errors - tick count"
+          success-line: ${{ matrix.configuration.successLine}}
 
 
   WIN32-MingW:
@@ -235,7 +205,7 @@ jobs:
         with:
           exe-path: FreeRTOS/Demo/${{ matrix.configuration.demo }}/build/RTOSDemo.exe
           timeout-seconds: 60
-          retry-attemots: 3
+          retry-attempts: 3
           success-line: ${{ matrix.configuration.successLine}}
 
   POSIX-GCC:
