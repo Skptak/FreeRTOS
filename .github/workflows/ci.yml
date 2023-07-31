@@ -33,7 +33,7 @@ jobs:
         uses: Skptak/CI-CD-Github-Actions/formatting@doublePrintFix
         with:
           path: ./
-          exclude-dirs: Demo,Verifast
+          exclude-dirs: Demo,VeriFast,ports,portable
           
       - name: Check formatting of Common Demo Directory
         uses: Skptak/CI-CD-Github-Actions/formatting@doublePrintFix
