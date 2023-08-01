@@ -29,16 +29,16 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
-      - name: Check formatting on repo
-        uses: Skptak/CI-CD-Github-Actions/formatting@doublePrintFix
-        with:
-          path: ./
-          exclude-dirs: Demo,VeriFast,ports,portable,
-
       - name: Check formatting of Common Demo Directory
         uses: Skptak/CI-CD-Github-Actions/formatting@doublePrintFix
         with:
           path: ./FreeRTOS/Demo/Common
+          exclude-dirs: ethernet,drivers
+
+      - name: Check formatting of Test Directory
+        uses: Skptak/CI-CD-Github-Actions/formatting@doublePrintFix
+        with:
+          path: ./FreeRTOS/Test
 
   doxygen:
     runs-on: ubuntu-20.04
