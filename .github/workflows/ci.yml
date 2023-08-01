@@ -39,6 +39,7 @@ jobs:
         uses: Skptak/CI-CD-Github-Actions/formatting@doublePrintFix
         with:
           path: ./FreeRTOS/Test
+          exclude-files: "*.patch"
 
   doxygen:
     runs-on: ubuntu-20.04
