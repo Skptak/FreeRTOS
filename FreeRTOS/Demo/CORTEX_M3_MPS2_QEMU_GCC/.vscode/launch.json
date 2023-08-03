@@ -8,7 +8,7 @@
             "name": "Debug",
             "type": "gdb",
             "request": "attach",
-            "executable" : "${workspaceRoot}/build/RTOSDemo.axf",
+            "executable": "${workspaceRoot}/build/RTOSDemo.axf",
             "target": ":1234",
             "remote": true,
             "cwd": "${workspaceRoot}",
@@ -17,4 +17,3 @@
         }
     ]
 }
-

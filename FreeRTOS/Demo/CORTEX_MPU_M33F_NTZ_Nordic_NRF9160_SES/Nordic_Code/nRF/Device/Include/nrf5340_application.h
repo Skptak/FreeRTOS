@@ -1451,7 +1451,8 @@ typedef struct
                                    updating of cache   content on cache misses,
                                    but   will continue   to lookup
                                    instruction/data   fetches in content   already
-                                   present in the   cache. Ignored in   RAM mode.   */
+                                   present in the   cache. Ignored in   RAM mode.
+                                 */
 } NRF_CACHE_Type;               /*!< Size = 1316 (0x524)               */
 
 /* ===========================================================================================================================

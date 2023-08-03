@@ -139,8 +139,9 @@ __PACKED_STRUCT T_UINT32_READ
     #define __COMPILER_BARRIER() __ASM volatile( "" ::: "memory" )
 #endif
 
-/* #########################  Startup and Lowlevel Init ########################
- */
+    /* #########################  Startup and Lowlevel Init
+     * ########################
+     */
 
 #ifndef __PROGRAM_START
 

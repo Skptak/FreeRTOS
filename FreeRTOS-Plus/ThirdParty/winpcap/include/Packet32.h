@@ -195,8 +195,8 @@ struct dump_bpf_hdr
     struct timeval ts; ///< Time stamp of the packet
     UINT caplen;       ///< Length of captured portion. The captured portion can
                        ///< smaller than the the original packet, because it is
-                 ///< possible (with a proper filter) to instruct the driver to
-                 ///< capture only a portion of the packets.
+    ///< possible (with a proper filter) to instruct the driver to
+    ///< capture only a portion of the packets.
     UINT len; ///< Length of the original packet (off wire).
 };
 

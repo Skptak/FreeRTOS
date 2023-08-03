@@ -11,12 +11,12 @@
             "problemMatcher": {
                 "owner": "cpp",
                 "fileLocation": ["relative", "/"],
-                "pattern": [ 
+                "pattern": [
                     {
-                      "regexp": ".",
-                      "file": 1,
-                      "location": 2,
-                      "message": 3
+                        "regexp": ".",
+                        "file": 1,
+                        "location": 2,
+                        "message": 3
                     }
                 ]
             },
@@ -31,51 +31,49 @@
         },
         {
             "label": "killallqemu",
-            "type":"shell",
-            "isBackground":true,
-            "command": "killall qemu-system-arm", 
+            "type": "shell",
+            "isBackground": true,
+            "command": "killall qemu-system-arm",
             "presentation": {
                 "echo": false,
                 "reveal": "never",
-                "focus": false, 
+                "focus": false,
                 "showReuseMessage": false,
-                "clear": true,
-            },
+                "clear": true
+            }
         },
         {
             "label": "qemu",
-            "type":"shell",
-            "isBackground":true,
+            "type": "shell",
+            "isBackground": true,
             "dependsOn": "build",
-            "runOptions": 
-                {
-                    "instanceLimit": 1
-                },
+            "runOptions": {
+                "instanceLimit": 1
+            },
             "command": "qemu-system-arm -s -S -machine mps2-an385 -monitor null -semihosting --semihosting-config enable=on,target=native -kernel ./build/RTOSDemo.axf -serial stdio -nographic -d cpu_reset",
             "presentation": {
                 "echo": true,
                 "reveal": "always",
-                "focus": true, 
+                "focus": true,
                 "panel": "dedicated",
                 "showReuseMessage": true,
-                "clear": true,
+                "clear": true
             },
-            "problemMatcher":
-            {
+            "problemMatcher": {
                 "owner": "external",
                 "pattern": [
                     {
-                      "regexp": ".",
-                      "file": 1,
-                      "location": 2,
-                      "message": 3
+                        "regexp": ".",
+                        "file": 1,
+                        "location": 2,
+                        "message": 3
                     }
                 ],
                 "background": {
                     "activeOnStart": true,
                     "beginsPattern": ".",
                     "endsPattern": "."
-                }  
+                }
             }
         }
     ]

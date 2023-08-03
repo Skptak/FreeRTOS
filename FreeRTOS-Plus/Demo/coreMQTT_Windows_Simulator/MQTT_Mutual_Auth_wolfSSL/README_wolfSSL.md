@@ -1,60 +1,92 @@
-#  MQTT Mutual Auth wolfSSL Demo
+# MQTT Mutual Auth wolfSSL Demo
 
 # Overview
-This demo shows an MQTT subscriber / publisher establishing a TLS connection with an MQTT broker to send and receive topics in encrypted form. wolfSSL acts as a TLS library under the FreeRTOS MQTT library.
-A single FreeRTOS task acts as both an MQTT subscriber and an MQTT publisher, sending and receiving topics through the MQTT broker endpoint you specified. The task holds a client certificate and authenticate each other with the MQTT broker.
+
+This demo shows an MQTT subscriber / publisher establishing a TLS connection
+with an MQTT broker to send and receive topics in encrypted form. wolfSSL acts
+as a TLS library under the FreeRTOS MQTT library. A single FreeRTOS task acts as
+both an MQTT subscriber and an MQTT publisher, sending and receiving topics
+through the MQTT broker endpoint you specified. The task holds a client
+certificate and authenticate each other with the MQTT broker.
 
 # How to build and run the Demo application
 
-By double-clicking the solution file named "**mqtt_mutual_auth_demo_wolfSSL.sln**" included in this folder, Visual Studio starts and shows you a project in its solution explorer. It is named "RTOSDemo" and provides a console application program which runs on windows. 
+By double-clicking the solution file named
+"**mqtt_mutual_auth_demo_wolfSSL.sln**" included in this folder, Visual Studio
+starts and shows you a project in its solution explorer. It is named "RTOSDemo"
+and provides a console application program which runs on windows.
 
-All required settings for wolfSSL have been set in the user_settings.h header file included in the RTOSDemo folder in the solution explorer pane. For this demo to work, you need to set the following information:
+All required settings for wolfSSL have been set in the user_settings.h header
+file included in the RTOSDemo folder in the solution explorer pane. For this
+demo to work, you need to set the following information:
 
 1. set broker endpoint
 2. set root CA certificate
 3. set client certificate
 4. set private key
 5. choose interface to use
- 
-If even one of the above 1 to 4 is not set, an error will occur at build time. You should open **demo_config.h** to set them.
+
+If even one of the above 1 to 4 is not set, an error will occur at build time.
+You should open **demo_config.h** to set them.
 
 <br>
 
 # Set Broker endpoint
 
-A broker endpoint is a url that represents where MQTT subscribers and publishers access. In case your device is going to access AWS IoT device data endpoints, the endpoint would be the following format: ***account-specific-prefix*.iot.*aws-region*. amazonaws.com**.
+A broker endpoint is a url that represents where MQTT subscribers and publishers
+access. In case your device is going to access AWS IoT device data endpoints,
+the endpoint would be the following format:
+**_account-specific-prefix_.iot._aws-region_. amazonaws.com**.
 
-To set broker endpoint, find the statement '**#define democonfigMQTT_BROKER_ENDPOINT    "...insert here...**' in demo_config.h and activate it by copy & paste to the outside of the commented part. Replace "...insert here..." with your broker endpoint url.
+To set broker endpoint, find the statement '**#define
+democonfigMQTT_BROKER_ENDPOINT "...insert here...**' in demo_config.h and
+activate it by copy & paste to the outside of the commented part. Replace
+"...insert here..." with your broker endpoint url.
+
 ```
 #define democonfigMQTT_BROKER_ENDPOINT   "a****.iot.us-***.amazonaws.com"
 ```
-You may find "democonfigMQTT_BROKER_PORT" just below of the democonfigMQTT_BROKER_ENDPOINT macro. If your MQTT broker port is "8883", no need to specifiy that value here, since the value is defined in MutualAuthMQTTExample.c by default.
+
+You may find "democonfigMQTT_BROKER_PORT" just below of the
+democonfigMQTT_BROKER_ENDPOINT macro. If your MQTT broker port is "8883", no
+need to specifiy that value here, since the value is defined in
+MutualAuthMQTTExample.c by default.
 
 <br>
 
 # Set Credentials
 
-Since this demo handles mutual authentication, you need to provide rootCA certificate, client certificate and client private key. Those credentials should be set by way of following macros in demo_config.h:
+Since this demo handles mutual authentication, you need to provide rootCA
+certificate, client certificate and client private key. Those credentials should
+be set by way of following macros in demo_config.h:
+
 1. **democonfigROOT_CA_PEM**
 2. **democonfigCLIENT_CERTIFICATE_PEM**
 3. **democonfigCLIENT_PRIVATE_KEY_PEM**
 
-For setting those credentials, you have a option to specify the source of them, using file or using buffer. If you want provide credentials using buffer,
-activate **democonfigCREDENTIALS_IN_BUFFER** macro. Otherwise, let the macro commented out.
+For setting those credentials, you have a option to specify the source of them,
+using file or using buffer. If you want provide credentials using buffer,
+activate **democonfigCREDENTIALS_IN_BUFFER** macro. Otherwise, let the macro
+commented out.
+
 ```
 #define democonfigCREDENTIALS_IN_BUFFER
 ```
+
 <br>
 
 ## Setting credentials using file
 
 <br>
 
-By default, above **democonfigCREDENTIALS_IN_BUFFER** macro definition is commented out, therefore each credential should be provided by PEM encoded file. In this case, each macro definition looks like:
+By default, above **democonfigCREDENTIALS_IN_BUFFER** macro definition is
+commented out, therefore each credential should be provided by PEM encoded file.
+In this case, each macro definition looks like:
 
 ```
 #define democonfigROOT_CA_PEM  "rootCA-PEM-encoded-file-path"
 ```
+
 Activate two other macro definitions and set a file path for each.
 
 <br>
@@ -64,6 +96,7 @@ Activate two other macro definitions and set a file path for each.
 <br>
 
 First of all, activate **democonfigCREDENTIALS_IN_BUFFER** macro.
+
 ```
 #define democonfigCREDENTIALS_IN_BUFFER
 ```
@@ -75,8 +108,10 @@ Second, activate following three macros:
 #define democonfigCLIENT_CERTIFICATE_PEM    "...insert here..."
 #define democonfigCLIENT_PRIVATE_KEY_PEM    "...insert here..."
 ```
-The "...insert here..." portion of each macro should be replaced with corrensponding credential file content data. 
-For exsample, democonfigROOT_CA_PEM macro would be:
+
+The "...insert here..." portion of each macro should be replaced with
+corrensponding credential file content data. For exsample, democonfigROOT_CA_PEM
+macro would be:
 
 ```
 #define democonfigROOT_CA_PEM    \
@@ -89,9 +124,14 @@ For exsample, democonfigROOT_CA_PEM macro would be:
 If you completes above settings, re-build demo to continue with the final setup.
 
 # Choose an interface to use
-At this point, assume that you have completed all the necessary settings other than this interface settings and the demo is runnable. Remember you should choose an interface to use to configure the demo. However you may not know how to choose it. The demo will give you  good guidance. Run the demo.
+
+At this point, assume that you have completed all the necessary settings other
+than this interface settings and the demo is runnable. Remember you should
+choose an interface to use to configure the demo. However you may not know how
+to choose it. The demo will give you good guidance. Run the demo.
 
 A console that pops up appears with output similar to the following:
+
 ```
 The following network interfaces are available:
 
@@ -109,11 +149,14 @@ interfaces are supported.
 
 HALTING
 ```
+
 <br>
 
-This output provides guidance and a list of interfaces available on the system. Open the **FreeRTOSConfig.h** file in the same folder where this readme file located, and set the selected interface number to   ***configNETWORK_INTERFACE_TO_USE*** .
-Then rebuild and run the demo. This time you can see that the interface is set up and working. 
-<br><br>
+This output provides guidance and a list of interfaces available on the system.
+Open the **FreeRTOSConfig.h** file in the same folder where this readme file
+located, and set the selected interface number to
+**_configNETWORK_INTERFACE_TO_USE_** . Then rebuild and run the demo. This time
+you can see that the interface is set up and working. <br><br>
 
 ```
 The following network interfaces are available:
@@ -140,7 +183,10 @@ vAssertCalled( ***\FreeRTOS\FreeRTOS-Plus\Demo\coreMQTT_Windows_Simulator\MQTT_M
 <br>
 
 # Demo output
-Below is the output digest when a Aws MQTT IoT endpoint and appropriate credentials are set. You can find "**Hello World!**" message was published and received as a topic repeatedly. 
+
+Below is the output digest when a Aws MQTT IoT endpoint and appropriate
+credentials are set. You can find "**Hello World!**" message was published and
+received as a topic repeatedly.
 
 ```
 ...
@@ -179,5 +225,3 @@ Incoming Publish Message : Hello World!
 ...
 
 ```
-
-

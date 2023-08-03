@@ -3,12 +3,12 @@
 The list predicates and proofs are inspired by and based on the work from
 Ferreira et al. (STTT'14).
 
-The main shape predicate is a doubly-linked list segment (DLS), as defined
-by Ferreira et al. in Fig 15. A DLS is defined by two `xLIST_ITEM` struct
-pointers `n` and `m` (possibly pointing to the same item) which are the start
-and end of the segment. We track the item pointers and values within the DLS in
-the lists `cells` and `vals`, respectively. Therefore `n` and `m` are the first
-and last items of `cells`.
+The main shape predicate is a doubly-linked list segment (DLS), as defined by
+Ferreira et al. in Fig 15. A DLS is defined by two `xLIST_ITEM` struct pointers
+`n` and `m` (possibly pointing to the same item) which are the start and end of
+the segment. We track the item pointers and values within the DLS in the lists
+`cells` and `vals`, respectively. Therefore `n` and `m` are the first and last
+items of `cells`.
 
 ```
           +--+     +--+
@@ -64,6 +64,6 @@ diagram the start and end of the DLS are `end` and the item-before-end
 
 ## References
 
-- Automated Verification of the FreeRTOS Scheduler in HIP/SLEEK\
-  João F. Ferreira, Cristian Gherghina, Guanhua He, Shengchao Qin, Wei-Ngan Chin\
-  https://joaoff.com/publication/2014/sttt/
+-   Automated Verification of the FreeRTOS Scheduler in HIP/SLEEK\
+    João F. Ferreira, Cristian Gherghina, Guanhua He, Shengchao Qin, Wei-Ngan Chin\
+    https://joaoff.com/publication/2014/sttt/

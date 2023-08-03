@@ -47,11 +47,11 @@
     #include <wolfssl/wolfcrypt/sp.h>
 
     #ifdef __IAR_SYSTEMS_ICC__
-        #define __asm__      asm
+        #define __asm__ asm
         #define __volatile__ volatile
     #endif /* __IAR_SYSTEMS_ICC__ */
     #ifdef __KEIL__
-        #define __asm__      __asm
+        #define __asm__ __asm
         #define __volatile__ volatile
     #endif
 

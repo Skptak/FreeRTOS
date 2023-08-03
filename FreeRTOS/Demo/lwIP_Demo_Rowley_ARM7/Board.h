@@ -19,8 +19,8 @@
 #include "AT91SAM7X256.h"
 #include "ioat91sam7x256.h"
 
-#define true            -1
-#define false           0
+#define true -1
+#define false 0
 
 /*-------------------------------*/
 /* SAM7Board Memories Definition */

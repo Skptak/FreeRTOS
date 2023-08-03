@@ -35,7 +35,7 @@ __attribute__((section(".init"))) void __metal_synchronize_harts() {
     msip_base += METAL_RISCV_CLIC0_MSIP_BASE;
 #else
 #pragma message(No handle for CLINT or CLIC found,                             \
-                    harts may be unsynchronized after init !)
+                harts may be unsynchronized after init !)
 #endif
 
     /* Disable machine interrupts as a precaution */

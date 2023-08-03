@@ -2141,9 +2141,9 @@ typedef struct
                                           000 = Low Level Sensitive           0 001 = High
                                           Level           Sensitive           0 100 =
                                           Interrupt           events are disabled           1 101 =
-                                          Rising Edge           Triggered           1 110 = Falling
-                                          Edge Triggered           1 111 =           Either edge
-                                          triggered
+                                          Rising Edge           Triggered           1 110
+                                          = Falling           Edge Triggered           1
+                                          111 =           Either edge           triggered
                                              ---------------------------------------------------
                                         */
             __IO uint32_t EDGE_EN : 1; /*!< 1= Edge detection enabled */

@@ -2,10 +2,10 @@
 
 ## Requirements
 
-  - python3
-  - pycparser
-  - graphviz/dot
-  - [inconsolata](https://fonts.google.com/specimen/Inconsolata)
+-   python3
+-   pycparser
+-   graphviz/dot
+-   [inconsolata](https://fonts.google.com/specimen/Inconsolata)
 
 ## Instructions
 

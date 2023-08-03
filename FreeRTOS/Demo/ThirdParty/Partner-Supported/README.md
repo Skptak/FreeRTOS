@@ -1,1 +1,2 @@
-This directory contains tests projects for FreeRTOS third party Partner Supported ports.
+This directory contains tests projects for FreeRTOS third party Partner
+Supported ports.

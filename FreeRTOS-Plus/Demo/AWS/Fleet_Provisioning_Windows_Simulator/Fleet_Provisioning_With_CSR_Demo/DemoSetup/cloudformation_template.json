@@ -83,17 +83,12 @@
                     "Statement": [
                         {
                             "Effect": "Allow",
-                            "Action": [
-                                "iot:Connect"
-                            ],
+                            "Action": ["iot:Connect"],
                             "Resource": "*"
                         },
                         {
                             "Effect": "Allow",
-                            "Action": [
-                                "iot:Publish",
-                                "iot:Receive"
-                            ],
+                            "Action": ["iot:Publish", "iot:Receive"],
                             "Resource": [
                                 {
                                     "Fn::Join": [

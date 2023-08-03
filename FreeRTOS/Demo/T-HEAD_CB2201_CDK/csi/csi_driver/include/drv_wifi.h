@@ -22,9 +22,9 @@ extern "C" {
 #endif
 
 #ifndef bool
-    #define bool  int8_t
+    #define bool int8_t
     #define false 0 ///< XOS definition of 'false'
-    #define true  1 ///< XOS definition of 'true'
+    #define true 1  ///< XOS definition of 'true'
 #endif
 
 typedef enum

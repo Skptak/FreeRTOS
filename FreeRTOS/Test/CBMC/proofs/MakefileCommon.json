@@ -1,6 +1,6 @@
 {
-    "FREERTOS": [ " ../../.." ],
-    "PROOFS": [ "." ],
+    "FREERTOS": [" ../../.."],
+    "PROOFS": ["."],
 
     "DEF ": [
         "_DEBUG",
@@ -10,7 +10,7 @@
         "WINVER=0x400",
         "_CRT_SECURE_NO_WARNINGS",
         "__PRETTY_FUNCTION__=__FUNCTION__",
-         "CBMC",
+        "CBMC",
         "'configASSERT(X)='",
         "'configPRECONDITION(X)=__CPROVER_assume(X)'",
         "'_static='",
@@ -40,8 +40,5 @@
 
     "FORWARD_SLASH": ["/"],
 
-    "TYPE_HEADERS": [
-        "$(FREERTOS)/Source/queue.c"
-    ]
+    "TYPE_HEADERS": ["$(FREERTOS)/Source/queue.c"]
 }
-

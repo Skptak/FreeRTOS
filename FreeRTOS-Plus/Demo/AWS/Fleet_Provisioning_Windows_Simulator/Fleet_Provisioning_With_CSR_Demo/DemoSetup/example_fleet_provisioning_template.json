@@ -1,54 +1,54 @@
 {
-  "Parameters": {
-    "SerialNumber": {
-      "Type": "String"
-    },
-    "AWS::IoT::Certificate::Id": {
-      "Type": "String"
-    }
-  },
-  "Resources": {
-    "certificate": {
-      "Properties": {
-        "CertificateId": {
-          "Ref": "AWS::IoT::Certificate::Id"
+    "Parameters": {
+        "SerialNumber": {
+            "Type": "String"
         },
-        "Status": "Active"
-      },
-      "Type": "AWS::IoT::Certificate"
+        "AWS::IoT::Certificate::Id": {
+            "Type": "String"
+        }
     },
-    "policy": {
-      "Properties": {
-        "PolicyName": "FleetProvisioningDemoThingPolicy"
-      },
-      "Type": "AWS::IoT::Policy"
-    },
-    "thing": {
-      "OverrideSettings": {
-        "AttributePayload": "MERGE",
-        "ThingGroups": "DO_NOTHING",
-        "ThingTypeName": "REPLACE"
-      },
-      "Properties": {
-        "AttributePayload": {},
-        "ThingGroups": [],
-        "ThingName": {
-          "Fn::Join": [
-            "",
-            [
-              "fp_demo_",
-              {
-                "Ref": "SerialNumber"
-              }
-            ]
-          ]
+    "Resources": {
+        "certificate": {
+            "Properties": {
+                "CertificateId": {
+                    "Ref": "AWS::IoT::Certificate::Id"
+                },
+                "Status": "Active"
+            },
+            "Type": "AWS::IoT::Certificate"
         },
-        "ThingTypeName": "fp_demo_things"
-      },
-      "Type": "AWS::IoT::Thing"
+        "policy": {
+            "Properties": {
+                "PolicyName": "FleetProvisioningDemoThingPolicy"
+            },
+            "Type": "AWS::IoT::Policy"
+        },
+        "thing": {
+            "OverrideSettings": {
+                "AttributePayload": "MERGE",
+                "ThingGroups": "DO_NOTHING",
+                "ThingTypeName": "REPLACE"
+            },
+            "Properties": {
+                "AttributePayload": {},
+                "ThingGroups": [],
+                "ThingName": {
+                    "Fn::Join": [
+                        "",
+                        [
+                            "fp_demo_",
+                            {
+                                "Ref": "SerialNumber"
+                            }
+                        ]
+                    ]
+                },
+                "ThingTypeName": "fp_demo_things"
+            },
+            "Type": "AWS::IoT::Thing"
+        }
+    },
+    "DeviceConfiguration": {
+        "Foo": "Bar"
     }
-  },
-  "DeviceConfiguration": {
-      "Foo": "Bar"
-  }
 }

@@ -378,7 +378,8 @@ static TaskParameters_t xRegTest2Parameters = {
     "RegTest2",              /* pcName			*/
     mainREG_TEST_STACK_SIZE_WORDS, /* usStackDepth		*/
     ( void * ) NULL,  /* pvParameters	- this task uses the parameter to pass
-                         in  a  queue handle, but the queue is not created yet. */
+                         in  a  queue handle, but the queue is not created yet.
+                       */
     tskIDLE_PRIORITY, /* uxPriority		*/
     xRegTest2Stack,   /* puxStackBuffer - the array to use as the task stack, as
                          declared above. */

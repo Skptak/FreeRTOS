@@ -148,14 +148,14 @@ u32 timer_lo_clk_ticks; /* Clk ticks when Timer is disabled in CG */
      *-------------------------------------------------------------------- */
 
     #ifdef PPC_PIT_INTERRUPT
-        #define disable_timer()                                    \
-            {                                                      \
-                u32 val;                                           \
-                val = mfspr( XREG_SPR_TCR );                       \
-                mtspr( XREG_SPR_TCR,                               \
-                       val & ( ~XREG_TCR_PIT_INTERRUPT_ENABLE ) ); \
-                timer_lo_clk_ticks = mfspr( XREG_SPR_PIT );        \
-                mtspr( XREG_SPR_PIT, 0 );                          \
+        #define disable_timer()                                   \
+            {                                                     \
+                u32 val;                                          \
+                val = mfspr( XREG_SPR_TCR );                      \
+                mtspr( XREG_SPR_TCR,                              \
+                       val &( ~XREG_TCR_PIT_INTERRUPT_ENABLE ) ); \
+                timer_lo_clk_ticks = mfspr( XREG_SPR_PIT );       \
+                mtspr( XREG_SPR_PIT, 0 );                         \
             }
     #else
         #define disable_timer()                                               \

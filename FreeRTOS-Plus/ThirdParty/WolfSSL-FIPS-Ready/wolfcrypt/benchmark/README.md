@@ -4,8 +4,10 @@ Tool for performing cryptographic algorithm benchmarking.
 
 ## Measurements
 
-* Symmetric algorithms like AES and ChaCha20 are measured in Killobytes (KB) or Megabytes (MB) per second.
-* Asymmetric algorithms like RSA and ECC are measured using Operations Per Second (Ops) per second.
+-   Symmetric algorithms like AES and ChaCha20 are measured in Killobytes (KB)
+    or Megabytes (MB) per second.
+-   Asymmetric algorithms like RSA and ECC are measured using Operations Per
+    Second (Ops) per second.
 
 ## Usage
 
@@ -93,11 +95,18 @@ ECDSA    256 verify      17200 ops took 1.004 sec, avg 0.058 ms, 17124.208 ops/s
 Benchmark complete
 ```
 
-
 ## Windows Visual Studio
 
-For building wolfCrypt Benchmark project in Visual Studio open the `benchmark.sln`. For newer Visual Studio version it may prompt for a one-way upgrade. Then you may have to right-click on the solution and choose `Retarget solution` to update the project files for your Visual Studio version.
+For building wolfCrypt Benchmark project in Visual Studio open the
+`benchmark.sln`. For newer Visual Studio version it may prompt for a one-way
+upgrade. Then you may have to right-click on the solution and choose
+`Retarget solution` to update the project files for your Visual Studio version.
 
-If you see an error about `rc.exe` then you'll need to update the "Target Platform Version". You can do this by right-clicking on the benchmark project -> General -> "Target Platform Version" and changing to 8.1 (needs to match the wolfssl library project).
+If you see an error about `rc.exe` then you'll need to update the "Target
+Platform Version". You can do this by right-clicking on the benchmark project ->
+General -> "Target Platform Version" and changing to 8.1 (needs to match the
+wolfssl library project).
 
-This solution includes the wolfSSL library project at `<wolfssl-root>wolfssl.vcxproj` and will compile the library, then the benchmark project.
+This solution includes the wolfSSL library project at
+`<wolfssl-root>wolfssl.vcxproj` and will compile the library, then the benchmark
+project.

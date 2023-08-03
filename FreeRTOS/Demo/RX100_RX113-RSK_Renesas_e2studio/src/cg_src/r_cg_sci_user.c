@@ -99,7 +99,7 @@ static volatile uint8_t sci1_txdone;
  ***********************************************************************************************************************/
 #if FAST_INTERRUPT_VECTOR == VECT_SCI1_TXI1
     #pragma interrupt r_sci1_transmit_interrupt( vect = VECT( SCI1, TXI1 ), \
-                                                     fint )
+                                                 fint )
 #else
     #pragma interrupt r_sci1_transmit_interrupt( vect = VECT( SCI1, TXI1 ) )
 #endif
@@ -125,7 +125,7 @@ static void r_sci1_transmit_interrupt( void )
  ***********************************************************************************************************************/
 #if FAST_INTERRUPT_VECTOR == VECT_SCI1_TEI1
     #pragma interrupt r_sci1_transmitend_interrupt( vect = VECT( SCI1, TEI1 ), \
-                                                        fint )
+                                                    fint )
 #else
     #pragma interrupt r_sci1_transmitend_interrupt( vect = VECT( SCI1, TEI1 ) )
 #endif
@@ -147,7 +147,7 @@ static void r_sci1_transmitend_interrupt( void )
  ***********************************************************************************************************************/
 #if FAST_INTERRUPT_VECTOR == VECT_SCI1_RXI1
     #pragma interrupt r_sci1_receive_interrupt( vect = VECT( SCI1, RXI1 ), \
-                                                    fint )
+                                                fint )
 #else
     #pragma interrupt r_sci1_receive_interrupt( vect = VECT( SCI1, RXI1 ) )
 #endif
@@ -172,9 +172,9 @@ static void r_sci1_receive_interrupt( void )
  * Return Value : None
  ***********************************************************************************************************************/
 #if FAST_INTERRUPT_VECTOR == VECT_SCI1_ERI1
-    #pragma interrupt r_sci1_receiveerror_interrupt( vect = VECT( SCI1,       \
-                                                                      ERI1 ), \
-                                                         fint )
+    #pragma interrupt r_sci1_receiveerror_interrupt( vect = VECT( SCI1,   \
+                                                                  ERI1 ), \
+                                                     fint )
 #else
     #pragma interrupt r_sci1_receiveerror_interrupt( vect = VECT( SCI1, ERI1 ) )
 #endif

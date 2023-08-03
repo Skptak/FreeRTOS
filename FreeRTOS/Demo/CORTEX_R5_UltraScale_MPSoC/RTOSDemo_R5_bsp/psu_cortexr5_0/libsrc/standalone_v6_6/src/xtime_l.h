@@ -80,7 +80,7 @@ extern "C" {
 
     #if defined( XSLEEP_TIMER_IS_DEFAULT_TIMER )
         #pragma message( \
-                "For the sleep routines, TTC3 is used if present else the assembly instructions are called" )
+            "For the sleep routines, TTC3 is used if present else the assembly instructions are called" )
     #endif
 
     /**************************** Type Definitions

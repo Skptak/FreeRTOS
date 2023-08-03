@@ -115,7 +115,7 @@
                 #error "The build option HAVE_HKDF is required for TLS 1.3"
             #else
                 #pragma message( \
-                        "error: The build option HAVE_HKDF is required for TLS 1.3" )
+                    "error: The build option HAVE_HKDF is required for TLS 1.3" )
             #endif
         #endif
 
@@ -125,7 +125,7 @@
                     "The build option HAVE_TLS_EXTENSIONS is required for TLS 1.3"
             #else
                 #pragma message( \
-                        "error: The build option HAVE_TLS_EXTENSIONS is required for TLS 1.3" )
+                    "error: The build option HAVE_TLS_EXTENSIONS is required for TLS 1.3" )
             #endif
         #endif
 

@@ -104,7 +104,7 @@ static int TLSX_PopulateSupportedGroups( WOLFSSL * ssl, TLSX ** extensions );
                         "The build option HAVE_TLS_EXTENSIONS is required for TLS 1.3"
                 #else
                     #pragma message( \
-                            "Error: The build option HAVE_TLS_EXTENSIONS is required for TLS 1.3" )
+                        "Error: The build option HAVE_TLS_EXTENSIONS is required for TLS 1.3" )
                 #endif
             #endif
         #endif
@@ -115,7 +115,7 @@ static int TLSX_PopulateSupportedGroups( WOLFSSL * ssl, TLSX ** extensions );
                 #warning The SHOW_SECRETS and WOLFSSL_SSLKEYLOGFILE options should only be used for debugging and never in a production environment
             #else
                 #pragma message( \
-                        "Warning: The SHOW_SECRETS and WOLFSSL_SSLKEYLOGFILE options should only be used for debugging and never in a production environment" )
+                    "Warning: The SHOW_SECRETS and WOLFSSL_SSLKEYLOGFILE options should only be used for debugging and never in a production environment" )
             #endif
         #endif
 

@@ -74,8 +74,8 @@ typedef struct
                                   instance can be configured to act as a slave
                                   (waiting for a trigger      to be synchronized) or
                                   a      master (generating a synchronization signal)
-                                  or      both.      This parameter can be a combination
-                                  of
+                                  or      both.      This parameter can be a
+                                  combination      of
                                   @ref      HRTIM_Synchronization_Options.*/
     uint32_t SyncInputSource;  /*!< Specifies the external synchronization input
                                   source (significant only when  the HRTIM
@@ -418,14 +418,14 @@ typedef struct
     uint32_t StartOnSync;      /*!< Relevant for all HRTIM timers, including the
                                   master.      Specifies whether or not timer is
                                   reset by      a rising edge on the synchronization
-                                  input      (when      enabled).      This parameter can
-                                  be any      value of @ref
+                                  input      (when      enabled).      This parameter
+                                  can      be any      value of @ref
                                   HRTIM_Start_On_Sync_Input_Event  */
     uint32_t ResetOnSync;      /*!< Relevant for all HRTIM timers, including the
                                   master.      Specifies whether or not timer is
                                   reset by      a rising edge on the synchronization
-                                  input      (when      enabled).      This parameter can
-                                  be any      value of @ref
+                                  input      (when      enabled).      This parameter
+                                  can      be any      value of @ref
                                   HRTIM_Reset_On_Sync_Input_Event  */
     uint32_t DACSynchro;       /*!< Relevant for all HRTIM timers, including the
                                   master.       Indicates whether or not the a DAC

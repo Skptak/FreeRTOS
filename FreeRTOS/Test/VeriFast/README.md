@@ -4,11 +4,11 @@ This directory contains unbounded proofs of the FreeRTOS kernel queue and list
 data structures. Unbounded proofs mean that these results hold independent of
 the length of the queue or list.
 
-Informally, the queue proofs demonstrate that the queue implementation is
-memory safe (does not access invalid memory), thread safe (properly
-synchronizes accesses) and functionally correct (behaves like a queue) under
-any arbitrary number of tasks or ISRs. The list proofs demonstrate that the
-list implementation is memory safe and functionally correct.
+Informally, the queue proofs demonstrate that the queue implementation is memory
+safe (does not access invalid memory), thread safe (properly synchronizes
+accesses) and functionally correct (behaves like a queue) under any arbitrary
+number of tasks or ISRs. The list proofs demonstrate that the list
+implementation is memory safe and functionally correct.
 
 These properties are proven with the
 [VeriFast](https://github.com/verifast/verifast) verifier. See the proof
@@ -24,8 +24,8 @@ annotations (denoted by special comments `/*@ ... @*/`). A set of common
 predicates, functions and lemmas used by all proofs is maintained in the
 `include/proof` directory.
 
-  - `queue`: proofs for the FreeRTOS queue data structure
-  - `list`: proofs for the FreeRTOS list data structure
+-   `queue`: proofs for the FreeRTOS queue data structure
+-   `list`: proofs for the FreeRTOS list data structure
 
 The following figure gives the callgraph of the queue proofs. Green=Proven
 functions, Blue=Functions modeled by lock invariants (underlying implementation
@@ -37,12 +37,13 @@ assumed to provide these atomicity guarantees), Grey=Assumed stubs.
 
 Proof checking needs VeriFast and proof regression further needs make and perl.
 
-We recommend installing VeriFast from the nightly builds on the [VeriFast
-GitHub page](https://github.com/verifast/verifast). After unpacking the build
-tarball, the `verifast` and `vfide` binaries will be in the directory
+We recommend installing VeriFast from the nightly builds on the
+[VeriFast GitHub page](https://github.com/verifast/verifast). After unpacking
+the build tarball, the `verifast` and `vfide` binaries will be in the directory
 `verifast-COMMIT/bin/` where `COMMIT` is the Git commit of the VeriFast build.
 
-Note that for CI we use [VeriFast 19.12](https://github.com/verifast/verifast/releases).
+Note that for CI we use
+[VeriFast 19.12](https://github.com/verifast/verifast/releases).
 
 ## Proof checking a single proof in the VeriFast IDE
 
@@ -53,13 +54,13 @@ $ /path/to/vfide -I include queue/xQueueGenericSend.c
 ```
 
 Then click `Verify` and `Verify Program` (or press F5). Note that the following
-proofs require arithmetic overflow checking to be turned off (click `Verify`
-and uncheck `Check arithmetic overflow`).
+proofs require arithmetic overflow checking to be turned off (click `Verify` and
+uncheck `Check arithmetic overflow`).
 
-  - `queue/create.c`
-  - `queue/prvCopyDataToQueue.c`
-  - `queue/xQueueGenericSendFromISR.c`
-  - `queue/xQueueReceiveFromISR.c`
+-   `queue/create.c`
+-   `queue/prvCopyDataToQueue.c`
+-   `queue/xQueueGenericSendFromISR.c`
+-   `queue/xQueueReceiveFromISR.c`
 
 A successful proof results in the top banner turning green with a statement
 similar to: `0 errors found (335 statements verified)`.
@@ -117,14 +118,14 @@ forward symbolic execution over a symbolic heap.
 Learning how to use VeriFast will help you read and understand the proofs. The
 VeriFast [tutorial][2] is a good guide. You will need to understand:
 
-  - Sec 4. Functions and Contracts
-  - Sec 5. Patterns
-  - Sec 6. Predicates
-  - Sec 7. Recursive Predicates
-  - Sec 8. Loops
-  - Sec 9. Inductive Datatypes
-  - Sec 10. Inductive Datatypes
-  - Sec 11. Lemmas
+-   Sec 4. Functions and Contracts
+-   Sec 5. Patterns
+-   Sec 6. Predicates
+-   Sec 7. Recursive Predicates
+-   Sec 8. Loops
+-   Sec 9. Inductive Datatypes
+-   Sec 10. Inductive Datatypes
+-   Sec 11. Lemmas
 
 [1]: https://people.cs.kuleuven.be/~bart.jacobs/verifast/verifast.pdf
 [2]: https://people.cs.kuleuven.be/~bart.jacobs/verifast/tutorial.pdf
@@ -133,5 +134,5 @@ VeriFast [tutorial][2] is a good guide. You will need to understand:
 
 We acknowledge and thank the following contributors:
 
-  - Bart Jacobs, KU Leuven, https://people.cs.kuleuven.be/~bart.jacobs/
-  - Aalok Thakkar, University of Pennsylvania, https://aalok-thakkar.github.io/
+-   Bart Jacobs, KU Leuven, https://people.cs.kuleuven.be/~bart.jacobs/
+-   Aalok Thakkar, University of Pennsylvania, https://aalok-thakkar.github.io/

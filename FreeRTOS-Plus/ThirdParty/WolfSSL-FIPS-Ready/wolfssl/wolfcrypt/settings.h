@@ -2170,7 +2170,7 @@ void * z_realloc( void * ptr, size_t size );
                 "For timing resistance / side-channel attack prevention consider using harden options"
         #else
             #pragma message( \
-                    "Warning: For timing resistance / side-channel attack prevention consider using harden options" )
+                "Warning: For timing resistance / side-channel attack prevention consider using harden options" )
         #endif
     #endif
 #endif

@@ -31409,7 +31409,7 @@ const WOLFSSL_ObjectInfo wolfssl_object_info[] = {
       "jurisdictionStateOrProvinceName" },
     #endif
     #ifdef OPENSSL_EXTRA /* OPENSSL_EXTRA_X509_SMALL only needs the above */
-    /* oidHashType */
+                         /* oidHashType */
         #ifdef WOLFSSL_MD2
     { NID_md2, MD2h, oidHashType, "MD2", "md2" },
         #endif
@@ -44670,8 +44670,8 @@ int wolfSSL_OBJ_cmp( const WOLFSSL_ASN1_OBJECT * a,
 
     return WOLFSSL_FATAL_ERROR;
 }
-        #endif /* OPENSSL_EXTRA, HAVE_LIGHTY, WOLFSSL_MYSQL_COMPATIBLE, \
-                  HAVE_STUNNEL, WOLFSSL_NGINX, HAVE_POCO_LIB, WOLFSSL_HAPROXY                          \
+        #endif /* OPENSSL_EXTRA, HAVE_LIGHTY, WOLFSSL_MYSQL_COMPATIBLE,       \
+                  HAVE_STUNNEL, WOLFSSL_NGINX, HAVE_POCO_LIB, WOLFSSL_HAPROXY \
                 */
         #if defined( OPENSSL_EXTRA ) || defined( OPENSSL_EXTRA_X509_SMALL ) || \
             defined( HAVE_LIGHTY ) || defined( WOLFSSL_MYSQL_COMPATIBLE ) ||   \

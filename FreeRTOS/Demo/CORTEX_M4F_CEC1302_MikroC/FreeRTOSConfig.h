@@ -188,10 +188,10 @@ result in a run-time crash, not a linker error! */
 #pragma funcall main_full prvCheckTask prvRegTestTaskEntry1 prvRegTestTaskEntry2
 #pragma funcall vStartDynamicPriorityTasks xSuspendedTestQueue         \
     vContinuousIncrementTask vLimitedIncrementTask vCounterControlTask \
-    vQueueSendWhenSuspendedTask vQueueReceiveWhenSuspendedTask
+        vQueueSendWhenSuspendedTask vQueueReceiveWhenSuspendedTask
 #pragma funcall vStartBlockingQueueTasks vBlockingQueueConsumer          \
     vBlockingQueueProducer vBlockingQueueConsumer vBlockingQueueProducer \
-    vBlockingQueueProducer vBlockingQueueConsumer
+        vBlockingQueueProducer vBlockingQueueConsumer
 #pragma funcall vStartMathTasks vCompetingMathTask1 vCompetingMathTask2 \
     vCompetingMathTask3 vCompetingMathTask4
 #pragma funcall vStartEventGroupTasks prvTestSlaveTask prvTestMasterTask \
@@ -201,21 +201,22 @@ result in a run-time crash, not a linker error! */
     vSecondaryBlockTimeTestTask
 #pragma funcall vStartDynamicPriorityTasks vContinuousIncrementTask       \
     vLimitedIncrementTask vCounterControlTask vQueueSendWhenSuspendedTask \
-    vQueueReceiveWhenSuspendedTask
+        vQueueReceiveWhenSuspendedTask
 #pragma funcall vStartGenericQueueTasks prvSendFrontAndBackTest \
     prvLowPriorityMutexTask prvMediumPriorityMutexTask prvHighPriorityMutexTask
 #pragma funcall vStartTimerDemoTask prvTimerTestTask
 #pragma funcall prvTimerTestTask prvOneShotTimerCallback
 #pragma funcall prvTest1_CreateTimersWithoutSchedulerRunning \
     prvAutoReloadTimerCallback prvISRAutoReloadTimerCallback \
-    prvISROneShotTimerCallback
-#pragma funcall vStartInterruptQueueTasks prvHigherPriorityNormallyEmptyTask  \
-    prvHigherPriorityNormallyEmptyTask prvLowerPriorityNormallyEmptyTask      \
-    prv1stHigherPriorityNormallyFullTask prv2ndHigherPriorityNormallyFullTask \
-    prvLowerPriorityNormallyFullTask
+        prvISROneShotTimerCallback
+#pragma funcall vStartInterruptQueueTasks prvHigherPriorityNormallyEmptyTask \
+    prvHigherPriorityNormallyEmptyTask prvLowerPriorityNormallyEmptyTask     \
+        prv1stHigherPriorityNormallyFullTask                                 \
+            prv2ndHigherPriorityNormallyFullTask                             \
+                prvLowerPriorityNormallyFullTask
 #pragma funcall vStartBlockingQueueTasks vBlockingQueueConsumer          \
     vBlockingQueueProducer vBlockingQueueConsumer vBlockingQueueProducer \
-    vBlockingQueueProducer vBlockingQueueConsumer
+        vBlockingQueueProducer vBlockingQueueConsumer
 #pragma funcall vStartCountingSemaphoreTasks prvCountingSemaphoreTask
 #pragma funcall vStartRecursiveMutexTasks prvRecursiveMutexControllingTask \
     prvRecursiveMutexBlockingTask prvRecursiveMutexPollingTask

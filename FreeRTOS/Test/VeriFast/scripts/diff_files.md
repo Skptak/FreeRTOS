@@ -2,16 +2,15 @@
 
 ## Requirements
 
-  - python3
-  - ctags 5.8
-  - diff 3.4+
-  - [diff2html](https://diff2html.xyz/)
+-   python3
+-   ctags 5.8
+-   diff 3.4+
+-   [diff2html](https://diff2html.xyz/)
 
 ## Instructions
 
 The following will extract per-function files from the original FreeRTOS source
 implementation and the proof directory.
-
 
 ```
 cd scripts
@@ -19,7 +18,7 @@ cd scripts
 # will extract to ./FreeRTOS-Kernel/generated and ./queue/generated and ./list/generated
 ```
 
-Then use `diff` for a side-by-side comparison.  Note that the `--color=always`
+Then use `diff` for a side-by-side comparison. Note that the `--color=always`
 flag needs v3.4+:
 
 ```
@@ -37,6 +36,6 @@ diff -u FreeRTOS-Kernel/generated list/generated | diff2html -i stdin
 The expectation is that the proofs make minimal changes to the original source
 implementation in the form of:
 
-  - VeriFast annotations `/*@...@*/` and `//*...`
-  - Additional comments explaining the proof `/*...*/`
-  - Flagged changes within `#if[n]def VERIFAST`
+-   VeriFast annotations `/*@...@*/` and `//*...`
+-   Additional comments explaining the proof `/*...*/`
+-   Flagged changes within `#if[n]def VERIFAST`
