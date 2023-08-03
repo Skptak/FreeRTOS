@@ -2619,10 +2619,12 @@ typedef struct
         ( ( uint32_t ) 0x00000001 ) /*!<Transmit Mailbox Request */
     #define CAN_TI0R_RTR \
         ( ( uint32_t ) 0x00000002 ) /*!<Remote Transmission Request */
-    #define CAN_TI0R_IDE  ( ( uint32_t ) 0x00000004 ) /*!<Identifier Extension \
-                                                       */
-    #define CAN_TI0R_EXID ( ( uint32_t ) 0x001FFFF8 ) /*!<Extended Identifier \
-                                                       */
+    #define CAN_TI0R_IDE                                     \
+        ( ( uint32_t ) 0x00000004 ) /*!<Identifier Extension \
+                                     */
+    #define CAN_TI0R_EXID                                   \
+        ( ( uint32_t ) 0x001FFFF8 ) /*!<Extended Identifier \
+                                     */
     #define CAN_TI0R_STID                                               \
         ( ( uint32_t ) 0xFFE00000 ) /*!<Standard Identifier or Extended \
                                        Identifier */
@@ -2656,10 +2658,12 @@ typedef struct
         ( ( uint32_t ) 0x00000001 ) /*!<Transmit Mailbox Request */
     #define CAN_TI1R_RTR \
         ( ( uint32_t ) 0x00000002 ) /*!<Remote Transmission Request */
-    #define CAN_TI1R_IDE  ( ( uint32_t ) 0x00000004 ) /*!<Identifier Extension \
-                                                       */
-    #define CAN_TI1R_EXID ( ( uint32_t ) 0x001FFFF8 ) /*!<Extended Identifier \
-                                                       */
+    #define CAN_TI1R_IDE                                     \
+        ( ( uint32_t ) 0x00000004 ) /*!<Identifier Extension \
+                                     */
+    #define CAN_TI1R_EXID                                   \
+        ( ( uint32_t ) 0x001FFFF8 ) /*!<Extended Identifier \
+                                     */
     #define CAN_TI1R_STID                                               \
         ( ( uint32_t ) 0xFFE00000 ) /*!<Standard Identifier or Extended \
                                        Identifier */
@@ -2693,10 +2697,12 @@ typedef struct
         ( ( uint32_t ) 0x00000001 ) /*!<Transmit Mailbox Request */
     #define CAN_TI2R_RTR \
         ( ( uint32_t ) 0x00000002 ) /*!<Remote Transmission Request */
-    #define CAN_TI2R_IDE  ( ( uint32_t ) 0x00000004 ) /*!<Identifier Extension \
-                                                       */
-    #define CAN_TI2R_EXID ( ( uint32_t ) 0x001FFFF8 ) /*!<Extended identifier \
-                                                       */
+    #define CAN_TI2R_IDE                                     \
+        ( ( uint32_t ) 0x00000004 ) /*!<Identifier Extension \
+                                     */
+    #define CAN_TI2R_EXID                                   \
+        ( ( uint32_t ) 0x001FFFF8 ) /*!<Extended identifier \
+                                     */
     #define CAN_TI2R_STID                                               \
         ( ( uint32_t ) 0xFFE00000 ) /*!<Standard Identifier or Extended \
                                        Identifier */
@@ -2728,10 +2734,12 @@ typedef struct
      * *******************/
     #define CAN_RI0R_RTR \
         ( ( uint32_t ) 0x00000002 ) /*!<Remote Transmission Request */
-    #define CAN_RI0R_IDE  ( ( uint32_t ) 0x00000004 ) /*!<Identifier Extension \
-                                                       */
-    #define CAN_RI0R_EXID ( ( uint32_t ) 0x001FFFF8 ) /*!<Extended Identifier \
-                                                       */
+    #define CAN_RI0R_IDE                                     \
+        ( ( uint32_t ) 0x00000004 ) /*!<Identifier Extension \
+                                     */
+    #define CAN_RI0R_EXID                                   \
+        ( ( uint32_t ) 0x001FFFF8 ) /*!<Extended Identifier \
+                                     */
     #define CAN_RI0R_STID                                               \
         ( ( uint32_t ) 0xFFE00000 ) /*!<Standard Identifier or Extended \
                                        Identifier */
@@ -2764,10 +2772,12 @@ typedef struct
      * *******************/
     #define CAN_RI1R_RTR \
         ( ( uint32_t ) 0x00000002 ) /*!<Remote Transmission Request */
-    #define CAN_RI1R_IDE  ( ( uint32_t ) 0x00000004 ) /*!<Identifier Extension \
-                                                       */
-    #define CAN_RI1R_EXID ( ( uint32_t ) 0x001FFFF8 ) /*!<Extended identifier \
-                                                       */
+    #define CAN_RI1R_IDE                                     \
+        ( ( uint32_t ) 0x00000004 ) /*!<Identifier Extension \
+                                     */
+    #define CAN_RI1R_EXID                                   \
+        ( ( uint32_t ) 0x001FFFF8 ) /*!<Extended identifier \
+                                     */
     #define CAN_RI1R_STID                                               \
         ( ( uint32_t ) 0xFFE00000 ) /*!<Standard Identifier or Extended \
                                        Identifier */
@@ -3983,8 +3993,9 @@ typedef struct
         ( ( uint32_t ) 0x00000040 ) /*!< CEC Rx Missing Acknowledge */
     #define CEC_ISR_ARBLST \
         ( ( uint32_t ) 0x00000080 ) /*!< CEC Arbitration Lost */
-    #define CEC_ISR_TXBR ( ( uint32_t ) 0x00000100 ) /*!< CEC Tx Byte Request \
-                                                      */
+    #define CEC_ISR_TXBR                                     \
+        ( ( uint32_t ) 0x00000100 ) /*!< CEC Tx Byte Request \
+                                     */
     #define CEC_ISR_TXEND \
         ( ( uint32_t ) 0x00000200 ) /*!< CEC End of Transmission */
     #define CEC_ISR_TXUDR \
@@ -5796,9 +5807,10 @@ typedef struct
 
     /*******************  Bit definition for FMC_SR register
      * *******************/
-    #define FMC_SR_IRS      ( ( uint32_t ) 0x01 ) /*!<Interrupt Rising Edge status \
-                                                   */
-    #define FMC_SR_ILS      ( ( uint32_t ) 0x02 ) /*!<Interrupt Level status */
+    #define FMC_SR_IRS                                                        \
+        ( ( uint32_t ) 0x01 )                /*!<Interrupt Rising Edge status \
+                                              */
+    #define FMC_SR_ILS ( ( uint32_t ) 0x02 ) /*!<Interrupt Level status */
     #define FMC_SR_IFS \
         ( ( uint32_t ) 0x04 ) /*!<Interrupt Falling Edge status */
     #define FMC_SR_IREN                                                      \
@@ -6519,10 +6531,12 @@ typedef struct
     /*******************  Bit definition for I2C_CR1 register
      * *******************/
     #define I2C_CR1_PE                ( ( uint32_t ) 0x00000001 ) /*!< Peripheral enable */
-    #define I2C_CR1_TXIE              ( ( uint32_t ) 0x00000002 ) /*!< TX interrupt enable \
-                                                                   */
-    #define I2C_CR1_RXIE              ( ( uint32_t ) 0x00000004 ) /*!< RX interrupt enable \
-                                                                   */
+    #define I2C_CR1_TXIE                                     \
+        ( ( uint32_t ) 0x00000002 ) /*!< TX interrupt enable \
+                                     */
+    #define I2C_CR1_RXIE                                     \
+        ( ( uint32_t ) 0x00000004 ) /*!< RX interrupt enable \
+                                     */
     #define I2C_CR1_ADDRIE \
         ( ( uint32_t ) 0x00000008 ) /*!< Address match interrupt enable */
     #define I2C_CR1_NACKIE \
@@ -6533,8 +6547,9 @@ typedef struct
         ( ( uint32_t ) 0x00000040 ) /*!< Transfer complete interrupt enable */
     #define I2C_CR1_ERRIE \
         ( ( uint32_t ) 0x00000080 ) /*!< Errors interrupt enable */
-    #define I2C_CR1_DFN ( ( uint32_t ) 0x00000F00 ) /*!< Digital noise filter \
-                                                     */
+    #define I2C_CR1_DFN                                       \
+        ( ( uint32_t ) 0x00000F00 ) /*!< Digital noise filter \
+                                     */
     #define I2C_CR1_ANFOFF \
         ( ( uint32_t ) 0x00001000 ) /*!< Analog noise filter OFF */
     #define I2C_CR1_SWRST ( ( uint32_t ) 0x00002000 ) /*!< Software reset */
@@ -6547,8 +6562,9 @@ typedef struct
         ( ( uint32_t ) 0x00020000 ) /*!< Clock stretching disable */
     #define I2C_CR1_WUPEN \
         ( ( uint32_t ) 0x00040000 ) /*!< Wakeup from STOP enable */
-    #define I2C_CR1_GCEN ( ( uint32_t ) 0x00080000 ) /*!< General call enable \
-                                                      */
+    #define I2C_CR1_GCEN                                     \
+        ( ( uint32_t ) 0x00080000 ) /*!< General call enable \
+                                     */
     #define I2C_CR1_SMBHEN \
         ( ( uint32_t ) 0x00100000 ) /*!< SMBus host address enable */
     #define I2C_CR1_SMBDEN                                                   \
@@ -6772,8 +6788,9 @@ typedef struct
 
     #define LTDC_GCR_LTDCEN \
         ( ( uint32_t ) 0x00000001 ) /*!< LCD-TFT controller enable bit */
-    #define LTDC_GCR_DBW  ( ( uint32_t ) 0x00000070 ) /*!< Dither Blue Width */
-    #define LTDC_GCR_DGW  ( ( uint32_t ) 0x00000700 ) /*!< Dither Green Width \
+    #define LTDC_GCR_DBW ( ( uint32_t ) 0x00000070 ) /*!< Dither Blue Width */
+    #define LTDC_GCR_DGW                                                      \
+        ( ( uint32_t ) 0x00000700 )                   /*!< Dither Green Width \
                                                        */
     #define LTDC_GCR_DRW  ( ( uint32_t ) 0x00007000 ) /*!< Dither Red Width */
     #define LTDC_GCR_DTEN ( ( uint32_t ) 0x00010000 ) /*!< Dither Enable */
@@ -6956,12 +6973,14 @@ typedef struct
     /******************************************************************************/
     /********************  Bit definition for PWR_CR1 register
      * ********************/
-    #define PWR_CR1_LPDS ( ( uint32_t ) 0x00000001 ) /*!< Low-Power Deepsleep \
-                                                      */
+    #define PWR_CR1_LPDS                                     \
+        ( ( uint32_t ) 0x00000001 ) /*!< Low-Power Deepsleep \
+                                     */
     #define PWR_CR1_PDDS \
         ( ( uint32_t ) 0x00000002 ) /*!< Power Down Deepsleep */
-    #define PWR_CR1_CSBF ( ( uint32_t ) 0x00000008 ) /*!< Clear Standby Flag \
-                                                      */
+    #define PWR_CR1_CSBF                                    \
+        ( ( uint32_t ) 0x00000008 ) /*!< Clear Standby Flag \
+                                     */
     #define PWR_CR1_PVDE \
         ( ( uint32_t ) 0x00000010 ) /*!< Power Voltage Detector Enable */
 
@@ -9151,8 +9170,9 @@ typedef struct
     #define SPI_CR2_SSOE ( ( uint32_t ) 0x00000004 ) /*!< SS Output Enable */
     #define SPI_CR2_NSSP \
         ( ( uint32_t ) 0x00000008 ) /*!< NSS pulse management Enable */
-    #define SPI_CR2_FRF ( ( uint32_t ) 0x00000010 ) /*!< Frame Format Enable \
-                                                     */
+    #define SPI_CR2_FRF                                      \
+        ( ( uint32_t ) 0x00000010 ) /*!< Frame Format Enable \
+                                     */
     #define SPI_CR2_ERRIE \
         ( ( uint32_t ) 0x00000020 ) /*!< Error Interrupt Enable */
     #define SPI_CR2_RXNEIE                                                    \
@@ -10132,8 +10152,9 @@ typedef struct
     /******************  Bit definition for LPTIM_ISR register
      * *******************/
     #define LPTIM_ISR_CMPM ( ( uint32_t ) 0x00000001 ) /*!< Compare match */
-    #define LPTIM_ISR_ARRM ( ( uint32_t ) 0x00000002 ) /*!< Autoreload match \
-                                                        */
+    #define LPTIM_ISR_ARRM                                \
+        ( ( uint32_t ) 0x00000002 ) /*!< Autoreload match \
+                                     */
     #define LPTIM_ISR_EXTTRIG \
         ( ( uint32_t ) 0x00000004 ) /*!< External trigger edge event */
     #define LPTIM_ISR_CMPOK \
@@ -10278,8 +10299,9 @@ typedef struct
      * *******************/
     #define USART_CR1_UE ( ( uint32_t ) 0x00000001 ) /*!< USART Enable */
     #define USART_CR1_RE ( ( uint32_t ) 0x00000004 ) /*!< Receiver Enable */
-    #define USART_CR1_TE ( ( uint32_t ) 0x00000008 ) /*!< Transmitter Enable \
-                                                      */
+    #define USART_CR1_TE                                    \
+        ( ( uint32_t ) 0x00000008 ) /*!< Transmitter Enable \
+                                     */
     #define USART_CR1_IDLEIE \
         ( ( uint32_t ) 0x00000010 ) /*!< IDLE Interrupt Enable */
     #define USART_CR1_RXNEIE \
@@ -10346,9 +10368,10 @@ typedef struct
         ( ( uint32_t ) 0x00003000 ) /*!< STOP[1:0] bits (STOP bits) */
     #define USART_CR2_STOP_0 ( ( uint32_t ) 0x00001000 ) /*!< Bit 0 */
     #define USART_CR2_STOP_1 ( ( uint32_t ) 0x00002000 ) /*!< Bit 1 */
-    #define USART_CR2_LINEN  ( ( uint32_t ) 0x00004000 ) /*!< LIN mode enable \
-                                                          */
-    #define USART_CR2_SWAP   ( ( uint32_t ) 0x00008000 ) /*!< SWAP TX/RX pins */
+    #define USART_CR2_LINEN                                                 \
+        ( ( uint32_t ) 0x00004000 )                    /*!< LIN mode enable \
+                                                        */
+    #define USART_CR2_SWAP ( ( uint32_t ) 0x00008000 ) /*!< SWAP TX/RX pins */
     #define USART_CR2_RXINV \
         ( ( uint32_t ) 0x00010000 ) /*!< RX pin active level inversion */
     #define USART_CR2_TXINV \
@@ -10373,7 +10396,8 @@ typedef struct
      * *******************/
     #define USART_CR3_EIE \
         ( ( uint32_t ) 0x00000001 ) /*!< Error Interrupt Enable */
-    #define USART_CR3_IREN ( ( uint32_t ) 0x00000002 ) /*!< IrDA mode Enable \
+    #define USART_CR3_IREN                                                   \
+        ( ( uint32_t ) 0x00000002 )                    /*!< IrDA mode Enable \
                                                         */
     #define USART_CR3_IRLP ( ( uint32_t ) 0x00000004 ) /*!< IrDA Low-Power */
     #define USART_CR3_HDSEL \
@@ -10392,12 +10416,14 @@ typedef struct
         ( ( uint32_t ) 0x00000400 ) /*!< CTS Interrupt Enable */
     #define USART_CR3_ONEBIT \
         ( ( uint32_t ) 0x00000800 ) /*!< One sample bit method enable */
-    #define USART_CR3_OVRDIS ( ( uint32_t ) 0x00001000 ) /*!< Overrun Disable \
-                                                          */
+    #define USART_CR3_OVRDIS                             \
+        ( ( uint32_t ) 0x00001000 ) /*!< Overrun Disable \
+                                     */
     #define USART_CR3_DDRE \
         ( ( uint32_t ) 0x00002000 ) /*!< DMA Disable on Reception Error */
-    #define USART_CR3_DEM ( ( uint32_t ) 0x00004000 ) /*!< Driver Enable Mode \
-                                                       */
+    #define USART_CR3_DEM                                   \
+        ( ( uint32_t ) 0x00004000 ) /*!< Driver Enable Mode \
+                                     */
     #define USART_CR3_DEP \
         ( ( uint32_t ) 0x00008000 ) /*!< Driver Enable Polarity Selection */
     #define USART_CR3_SCARCNT                                         \
@@ -10442,9 +10468,10 @@ typedef struct
 
     /*******************  Bit definition for USART_ISR register
      * ******************/
-    #define USART_ISR_PE  ( ( uint32_t ) 0x00000001 ) /*!< Parity Error */
-    #define USART_ISR_FE  ( ( uint32_t ) 0x00000002 ) /*!< Framing Error */
-    #define USART_ISR_NE  ( ( uint32_t ) 0x00000004 ) /*!< Noise detected Flag \
+    #define USART_ISR_PE ( ( uint32_t ) 0x00000001 ) /*!< Parity Error */
+    #define USART_ISR_FE ( ( uint32_t ) 0x00000002 ) /*!< Framing Error */
+    #define USART_ISR_NE                                                       \
+        ( ( uint32_t ) 0x00000004 )                   /*!< Noise detected Flag \
                                                        */
     #define USART_ISR_ORE ( ( uint32_t ) 0x00000008 ) /*!< OverRun Error */
     #define USART_ISR_IDLE \
@@ -10458,12 +10485,14 @@ typedef struct
     #define USART_ISR_LBD \
         ( ( uint32_t ) 0x00000100 ) /*!< LIN Break Detection Flag */
     #define USART_ISR_CTSIF \
-        ( ( uint32_t ) 0x00000200 ) /*!< CTS interrupt flag */
-    #define USART_ISR_CTS  ( ( uint32_t ) 0x00000400 ) /*!< CTS flag */
-    #define USART_ISR_RTOF ( ( uint32_t ) 0x00000800 ) /*!< Receiver Time Out \
-                                                        */
-    #define USART_ISR_EOBF ( ( uint32_t ) 0x00001000 ) /*!< End Of Block Flag \
-                                                        */
+        ( ( uint32_t ) 0x00000200 )                   /*!< CTS interrupt flag */
+    #define USART_ISR_CTS ( ( uint32_t ) 0x00000400 ) /*!< CTS flag */
+    #define USART_ISR_RTOF                                 \
+        ( ( uint32_t ) 0x00000800 ) /*!< Receiver Time Out \
+                                     */
+    #define USART_ISR_EOBF                                 \
+        ( ( uint32_t ) 0x00001000 ) /*!< End Of Block Flag \
+                                     */
     #define USART_ISR_ABRE \
         ( ( uint32_t ) 0x00004000 ) /*!< Auto-Baud Rate Error */
     #define USART_ISR_ABRF \
@@ -11818,8 +11847,9 @@ typedef struct
         ( ( uint32_t ) 0x00000400 ) /*!< Early suspend */
     #define USB_OTG_GINTSTS_USBSUSP \
         ( ( uint32_t ) 0x00000800 ) /*!< USB suspend */
-    #define USB_OTG_GINTSTS_USBRST ( ( uint32_t ) 0x00001000 ) /*!< USB reset \
-                                                                */
+    #define USB_OTG_GINTSTS_USBRST                 \
+        ( ( uint32_t ) 0x00001000 ) /*!< USB reset \
+                                     */
     #define USB_OTG_GINTSTS_ENUMDNE \
         ( ( uint32_t ) 0x00002000 ) /*!< Enumeration done */
     #define USB_OTG_GINTSTS_ISOODRP                                     \

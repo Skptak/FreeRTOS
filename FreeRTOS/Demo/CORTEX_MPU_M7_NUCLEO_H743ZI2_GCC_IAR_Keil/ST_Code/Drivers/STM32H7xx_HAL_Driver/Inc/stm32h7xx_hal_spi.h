@@ -696,8 +696,9 @@ typedef void ( *pSPI_CallbackTypeDef )(
     #define SPI_FLAG_TXP \
         SPI_SR_TXP /* SPI status flag : Tx-Packet space available flag */
     #define SPI_FLAG_DXP SPI_SR_DXP /* SPI status flag : Duplex Packet flag */
-    #define SPI_FLAG_EOT SPI_SR_EOT /* SPI status flag : End of transfer flag \
-                                     */
+    #define SPI_FLAG_EOT                                     \
+        SPI_SR_EOT /* SPI status flag : End of transfer flag \
+                    */
     #define SPI_FLAG_TXTF \
         SPI_SR_TXTF /* SPI status flag : Transmission Transfer Filled flag */
     #define SPI_FLAG_UDR    SPI_SR_UDR  /* SPI Error flag  : Underrun flag */

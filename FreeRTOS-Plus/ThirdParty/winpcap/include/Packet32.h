@@ -194,7 +194,7 @@ struct dump_bpf_hdr
 {
     struct timeval ts; ///< Time stamp of the packet
     UINT caplen;       ///< Length of captured portion. The captured portion can
-                 ///< smaller than the the original packet, because it is
+                       ///< smaller than the the original packet, because it is
                  ///< possible (with a proper filter) to instruct the driver to
                  ///< capture only a portion of the packets.
     UINT len; ///< Length of the original packet (off wire).
@@ -272,8 +272,8 @@ typedef struct _ADAPTER
                                                ///< containing the name of the
                                                ///< network adapter currently
                                                ///< opened.
-    int NumWrites; ///< \internal Number of times a packets written on this
-                   ///< adapter will be repeated on the wire.
+    int NumWrites;    ///< \internal Number of times a packets written on this
+                      ///< adapter will be repeated on the wire.
     HANDLE ReadEvent; ///< A notification event associated with the read calls
                       ///< on the adapter. It can be passed to standard Win32
                       ///< functions (like WaitForSingleObject or
@@ -337,8 +337,8 @@ typedef struct _PACKET
     DWORD ulBytesReceived; ///< Number of valid bytes present in the buffer,
                            ///< i.e. amount of data received by the last call to
                            ///< PacketReceivePacket()
-    BOOLEAN bIoComplete; ///< \deprecated Still present for compatibility with
-                         ///< old applications.
+    BOOLEAN bIoComplete;   ///< \deprecated Still present for compatibility with
+                           ///< old applications.
 } PACKET, *LPPACKET;
 
 /*!
@@ -351,9 +351,9 @@ typedef struct _PACKET
 */
 struct _PACKET_OID_DATA
 {
-    ULONG Oid; ///< OID code. See the Microsoft DDK documentation or the file
-               ///< ntddndis.h for a complete list of valid codes.
-    ULONG Length;    ///< Length of the data field
+    ULONG Oid;    ///< OID code. See the Microsoft DDK documentation or the file
+                  ///< ntddndis.h for a complete list of valid codes.
+    ULONG Length; ///< Length of the data field
     UCHAR Data[ 1 ]; ///< variable-lenght field that contains the information
                      ///< passed to or received from the adapter.
 };

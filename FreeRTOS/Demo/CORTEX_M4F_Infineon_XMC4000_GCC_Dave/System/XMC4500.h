@@ -7687,9 +7687,10 @@ typedef struct
 #define FLASH_FSR_SLM_Pos 28 /*!< FLASH FSR: SLM Position                 */
 #define FLASH_FSR_SLM_Msk \
     ( 0x01UL << FLASH_FSR_SLM_Pos ) /*!< FLASH FSR: SLM Mask */
-#define FLASH_FSR_X_Pos   30 /*!< FLASH FSR: X Position                   */
-#define FLASH_FSR_X_Msk   ( 0x01UL << FLASH_FSR_X_Pos ) /*!< FLASH FSR: X Mask \
-                                                         */
+#define FLASH_FSR_X_Pos 30 /*!< FLASH FSR: X Position                   */
+#define FLASH_FSR_X_Msk                                  \
+    ( 0x01UL << FLASH_FSR_X_Pos ) /*!< FLASH FSR: X Mask \
+                                   */
 #define FLASH_FSR_VER_Pos 31 /*!< FLASH FSR: VER Position                 */
 #define FLASH_FSR_VER_Msk \
     ( 0x01UL << FLASH_FSR_VER_Pos ) /*!< FLASH FSR: VER Mask */
@@ -7934,14 +7935,17 @@ typedef struct
 /* -----------------------------------  WDT_CTR
  * ---------------------------------- */
 #define WDT_CTR_ENB_Pos 0 /*!< WDT CTR: ENB Position                   */
-#define WDT_CTR_ENB_Msk ( 0x01UL << WDT_CTR_ENB_Pos ) /*!< WDT CTR: ENB Mask \
-                                                       */
+#define WDT_CTR_ENB_Msk                                  \
+    ( 0x01UL << WDT_CTR_ENB_Pos ) /*!< WDT CTR: ENB Mask \
+                                   */
 #define WDT_CTR_PRE_Pos 1 /*!< WDT CTR: PRE Position                   */
-#define WDT_CTR_PRE_Msk ( 0x01UL << WDT_CTR_PRE_Pos ) /*!< WDT CTR: PRE Mask \
-                                                       */
+#define WDT_CTR_PRE_Msk                                  \
+    ( 0x01UL << WDT_CTR_PRE_Pos ) /*!< WDT CTR: PRE Mask \
+                                   */
 #define WDT_CTR_DSP_Pos 4 /*!< WDT CTR: DSP Position                   */
-#define WDT_CTR_DSP_Msk ( 0x01UL << WDT_CTR_DSP_Pos ) /*!< WDT CTR: DSP Mask \
-                                                       */
+#define WDT_CTR_DSP_Msk                                  \
+    ( 0x01UL << WDT_CTR_DSP_Pos ) /*!< WDT CTR: DSP Mask \
+                                   */
 #define WDT_CTR_SPW_Pos 8 /*!< WDT CTR: SPW Position                   */
 #define WDT_CTR_SPW_Msk \
     ( 0x000000ffUL << WDT_CTR_SPW_Pos ) /*!< WDT CTR: SPW Mask */
@@ -8002,12 +8006,14 @@ typedef struct
 
 /* -----------------------------------  RTC_CTR
  * ---------------------------------- */
-#define RTC_CTR_ENB_Pos  0 /*!< RTC CTR: ENB Position                   */
-#define RTC_CTR_ENB_Msk  ( 0x01UL << RTC_CTR_ENB_Pos ) /*!< RTC CTR: ENB Mask \
-                                                        */
-#define RTC_CTR_TAE_Pos  2 /*!< RTC CTR: TAE Position                   */
-#define RTC_CTR_TAE_Msk  ( 0x01UL << RTC_CTR_TAE_Pos ) /*!< RTC CTR: TAE Mask \
-                                                        */
+#define RTC_CTR_ENB_Pos 0 /*!< RTC CTR: ENB Position                   */
+#define RTC_CTR_ENB_Msk                                  \
+    ( 0x01UL << RTC_CTR_ENB_Pos ) /*!< RTC CTR: ENB Mask \
+                                   */
+#define RTC_CTR_TAE_Pos 2 /*!< RTC CTR: TAE Position                   */
+#define RTC_CTR_TAE_Msk                                  \
+    ( 0x01UL << RTC_CTR_TAE_Pos ) /*!< RTC CTR: TAE Mask \
+                                   */
 #define RTC_CTR_ESEC_Pos 8 /*!< RTC CTR: ESEC Position                  */
 #define RTC_CTR_ESEC_Msk \
     ( 0x01UL << RTC_CTR_ESEC_Pos ) /*!< RTC CTR: ESEC Mask */
@@ -8152,18 +8158,22 @@ typedef struct
 
 /* ----------------------------------  RTC_TIM0
  * ---------------------------------- */
-#define RTC_TIM0_SE_Pos   0 /*!< RTC TIM0: SE Position                   */
-#define RTC_TIM0_SE_Msk   ( 0x3fUL << RTC_TIM0_SE_Pos ) /*!< RTC TIM0: SE Mask \
-                                                         */
-#define RTC_TIM0_MI_Pos   8 /*!< RTC TIM0: MI Position                   */
-#define RTC_TIM0_MI_Msk   ( 0x3fUL << RTC_TIM0_MI_Pos ) /*!< RTC TIM0: MI Mask \
-                                                         */
-#define RTC_TIM0_HO_Pos   16 /*!< RTC TIM0: HO Position                   */
-#define RTC_TIM0_HO_Msk   ( 0x1fUL << RTC_TIM0_HO_Pos ) /*!< RTC TIM0: HO Mask \
-                                                         */
-#define RTC_TIM0_DA_Pos   24 /*!< RTC TIM0: DA Position                   */
-#define RTC_TIM0_DA_Msk   ( 0x1fUL << RTC_TIM0_DA_Pos ) /*!< RTC TIM0: DA Mask \
-                                                         */
+#define RTC_TIM0_SE_Pos 0 /*!< RTC TIM0: SE Position                   */
+#define RTC_TIM0_SE_Msk                                  \
+    ( 0x3fUL << RTC_TIM0_SE_Pos ) /*!< RTC TIM0: SE Mask \
+                                   */
+#define RTC_TIM0_MI_Pos 8 /*!< RTC TIM0: MI Position                   */
+#define RTC_TIM0_MI_Msk                                  \
+    ( 0x3fUL << RTC_TIM0_MI_Pos ) /*!< RTC TIM0: MI Mask \
+                                   */
+#define RTC_TIM0_HO_Pos 16 /*!< RTC TIM0: HO Position                   */
+#define RTC_TIM0_HO_Msk                                  \
+    ( 0x1fUL << RTC_TIM0_HO_Pos ) /*!< RTC TIM0: HO Mask \
+                                   */
+#define RTC_TIM0_DA_Pos 24 /*!< RTC TIM0: DA Position                   */
+#define RTC_TIM0_DA_Msk                                  \
+    ( 0x1fUL << RTC_TIM0_DA_Pos ) /*!< RTC TIM0: DA Mask \
+                                   */
 
 /* ----------------------------------  RTC_TIM1
  * ---------------------------------- */
@@ -8171,8 +8181,9 @@ typedef struct
 #define RTC_TIM1_DAWE_Msk \
     ( 0x07UL << RTC_TIM1_DAWE_Pos ) /*!< RTC TIM1: DAWE Mask */
 #define RTC_TIM1_MO_Pos 8 /*!< RTC TIM1: MO Position                   */
-#define RTC_TIM1_MO_Msk ( 0x0fUL << RTC_TIM1_MO_Pos ) /*!< RTC TIM1: MO Mask \
-                                                       */
+#define RTC_TIM1_MO_Msk                                  \
+    ( 0x0fUL << RTC_TIM1_MO_Pos ) /*!< RTC TIM1: MO Mask \
+                                   */
 #define RTC_TIM1_YE_Pos 16 /*!< RTC TIM1: YE Position                   */
 #define RTC_TIM1_YE_Msk \
     ( 0x0000ffffUL << RTC_TIM1_YE_Pos ) /*!< RTC TIM1: YE Mask */
@@ -23626,9 +23637,10 @@ Mask */
 
 /* -----------------------------------  DSD_OCS
  * ---------------------------------- */
-#define DSD_OCS_SUS_Pos   24 /*!< DSD OCS: SUS Position                   */
-#define DSD_OCS_SUS_Msk   ( 0x0fUL << DSD_OCS_SUS_Pos ) /*!< DSD OCS: SUS Mask \
-                                                         */
+#define DSD_OCS_SUS_Pos 24 /*!< DSD OCS: SUS Position                   */
+#define DSD_OCS_SUS_Msk                                  \
+    ( 0x0fUL << DSD_OCS_SUS_Pos ) /*!< DSD OCS: SUS Mask \
+                                   */
 #define DSD_OCS_SUS_P_Pos 28 /*!< DSD OCS: SUS_P Position                 */
 #define DSD_OCS_SUS_P_Msk \
     ( 0x01UL << DSD_OCS_SUS_P_Pos ) /*!< DSD OCS: SUS_P Mask */
@@ -26409,36 +26421,46 @@ Mask */
 
 /* ----------------------------------  PORT0_IN
  * ---------------------------------- */
-#define PORT0_IN_P0_Pos  0 /*!< PORT0 IN: P0 Position                   */
-#define PORT0_IN_P0_Msk  ( 0x01UL << PORT0_IN_P0_Pos ) /*!< PORT0 IN: P0 Mask \
-                                                        */
-#define PORT0_IN_P1_Pos  1 /*!< PORT0 IN: P1 Position                   */
-#define PORT0_IN_P1_Msk  ( 0x01UL << PORT0_IN_P1_Pos ) /*!< PORT0 IN: P1 Mask \
-                                                        */
-#define PORT0_IN_P2_Pos  2 /*!< PORT0 IN: P2 Position                   */
-#define PORT0_IN_P2_Msk  ( 0x01UL << PORT0_IN_P2_Pos ) /*!< PORT0 IN: P2 Mask \
-                                                        */
-#define PORT0_IN_P3_Pos  3 /*!< PORT0 IN: P3 Position                   */
-#define PORT0_IN_P3_Msk  ( 0x01UL << PORT0_IN_P3_Pos ) /*!< PORT0 IN: P3 Mask \
-                                                        */
-#define PORT0_IN_P4_Pos  4 /*!< PORT0 IN: P4 Position                   */
-#define PORT0_IN_P4_Msk  ( 0x01UL << PORT0_IN_P4_Pos ) /*!< PORT0 IN: P4 Mask \
-                                                        */
-#define PORT0_IN_P5_Pos  5 /*!< PORT0 IN: P5 Position                   */
-#define PORT0_IN_P5_Msk  ( 0x01UL << PORT0_IN_P5_Pos ) /*!< PORT0 IN: P5 Mask \
-                                                        */
-#define PORT0_IN_P6_Pos  6 /*!< PORT0 IN: P6 Position                   */
-#define PORT0_IN_P6_Msk  ( 0x01UL << PORT0_IN_P6_Pos ) /*!< PORT0 IN: P6 Mask \
-                                                        */
-#define PORT0_IN_P7_Pos  7 /*!< PORT0 IN: P7 Position                   */
-#define PORT0_IN_P7_Msk  ( 0x01UL << PORT0_IN_P7_Pos ) /*!< PORT0 IN: P7 Mask \
-                                                        */
-#define PORT0_IN_P8_Pos  8 /*!< PORT0 IN: P8 Position                   */
-#define PORT0_IN_P8_Msk  ( 0x01UL << PORT0_IN_P8_Pos ) /*!< PORT0 IN: P8 Mask \
-                                                        */
-#define PORT0_IN_P9_Pos  9 /*!< PORT0 IN: P9 Position                   */
-#define PORT0_IN_P9_Msk  ( 0x01UL << PORT0_IN_P9_Pos ) /*!< PORT0 IN: P9 Mask \
-                                                        */
+#define PORT0_IN_P0_Pos 0 /*!< PORT0 IN: P0 Position                   */
+#define PORT0_IN_P0_Msk                                  \
+    ( 0x01UL << PORT0_IN_P0_Pos ) /*!< PORT0 IN: P0 Mask \
+                                   */
+#define PORT0_IN_P1_Pos 1 /*!< PORT0 IN: P1 Position                   */
+#define PORT0_IN_P1_Msk                                  \
+    ( 0x01UL << PORT0_IN_P1_Pos ) /*!< PORT0 IN: P1 Mask \
+                                   */
+#define PORT0_IN_P2_Pos 2 /*!< PORT0 IN: P2 Position                   */
+#define PORT0_IN_P2_Msk                                  \
+    ( 0x01UL << PORT0_IN_P2_Pos ) /*!< PORT0 IN: P2 Mask \
+                                   */
+#define PORT0_IN_P3_Pos 3 /*!< PORT0 IN: P3 Position                   */
+#define PORT0_IN_P3_Msk                                  \
+    ( 0x01UL << PORT0_IN_P3_Pos ) /*!< PORT0 IN: P3 Mask \
+                                   */
+#define PORT0_IN_P4_Pos 4 /*!< PORT0 IN: P4 Position                   */
+#define PORT0_IN_P4_Msk                                  \
+    ( 0x01UL << PORT0_IN_P4_Pos ) /*!< PORT0 IN: P4 Mask \
+                                   */
+#define PORT0_IN_P5_Pos 5 /*!< PORT0 IN: P5 Position                   */
+#define PORT0_IN_P5_Msk                                  \
+    ( 0x01UL << PORT0_IN_P5_Pos ) /*!< PORT0 IN: P5 Mask \
+                                   */
+#define PORT0_IN_P6_Pos 6 /*!< PORT0 IN: P6 Position                   */
+#define PORT0_IN_P6_Msk                                  \
+    ( 0x01UL << PORT0_IN_P6_Pos ) /*!< PORT0 IN: P6 Mask \
+                                   */
+#define PORT0_IN_P7_Pos 7 /*!< PORT0 IN: P7 Position                   */
+#define PORT0_IN_P7_Msk                                  \
+    ( 0x01UL << PORT0_IN_P7_Pos ) /*!< PORT0 IN: P7 Mask \
+                                   */
+#define PORT0_IN_P8_Pos 8 /*!< PORT0 IN: P8 Position                   */
+#define PORT0_IN_P8_Msk                                  \
+    ( 0x01UL << PORT0_IN_P8_Pos ) /*!< PORT0 IN: P8 Mask \
+                                   */
+#define PORT0_IN_P9_Pos 9 /*!< PORT0 IN: P9 Position                   */
+#define PORT0_IN_P9_Msk                                  \
+    ( 0x01UL << PORT0_IN_P9_Pos ) /*!< PORT0 IN: P9 Mask \
+                                   */
 #define PORT0_IN_P10_Pos 10 /*!< PORT0 IN: P10 Position                  */
 #define PORT0_IN_P10_Msk \
     ( 0x01UL << PORT0_IN_P10_Pos ) /*!< PORT0 IN: P10 Mask */
@@ -26889,36 +26911,46 @@ Mask */
 
 /* ----------------------------------  PORT1_IN
  * ---------------------------------- */
-#define PORT1_IN_P0_Pos  0 /*!< PORT1 IN: P0 Position                   */
-#define PORT1_IN_P0_Msk  ( 0x01UL << PORT1_IN_P0_Pos ) /*!< PORT1 IN: P0 Mask \
-                                                        */
-#define PORT1_IN_P1_Pos  1 /*!< PORT1 IN: P1 Position                   */
-#define PORT1_IN_P1_Msk  ( 0x01UL << PORT1_IN_P1_Pos ) /*!< PORT1 IN: P1 Mask \
-                                                        */
-#define PORT1_IN_P2_Pos  2 /*!< PORT1 IN: P2 Position                   */
-#define PORT1_IN_P2_Msk  ( 0x01UL << PORT1_IN_P2_Pos ) /*!< PORT1 IN: P2 Mask \
-                                                        */
-#define PORT1_IN_P3_Pos  3 /*!< PORT1 IN: P3 Position                   */
-#define PORT1_IN_P3_Msk  ( 0x01UL << PORT1_IN_P3_Pos ) /*!< PORT1 IN: P3 Mask \
-                                                        */
-#define PORT1_IN_P4_Pos  4 /*!< PORT1 IN: P4 Position                   */
-#define PORT1_IN_P4_Msk  ( 0x01UL << PORT1_IN_P4_Pos ) /*!< PORT1 IN: P4 Mask \
-                                                        */
-#define PORT1_IN_P5_Pos  5 /*!< PORT1 IN: P5 Position                   */
-#define PORT1_IN_P5_Msk  ( 0x01UL << PORT1_IN_P5_Pos ) /*!< PORT1 IN: P5 Mask \
-                                                        */
-#define PORT1_IN_P6_Pos  6 /*!< PORT1 IN: P6 Position                   */
-#define PORT1_IN_P6_Msk  ( 0x01UL << PORT1_IN_P6_Pos ) /*!< PORT1 IN: P6 Mask \
-                                                        */
-#define PORT1_IN_P7_Pos  7 /*!< PORT1 IN: P7 Position                   */
-#define PORT1_IN_P7_Msk  ( 0x01UL << PORT1_IN_P7_Pos ) /*!< PORT1 IN: P7 Mask \
-                                                        */
-#define PORT1_IN_P8_Pos  8 /*!< PORT1 IN: P8 Position                   */
-#define PORT1_IN_P8_Msk  ( 0x01UL << PORT1_IN_P8_Pos ) /*!< PORT1 IN: P8 Mask \
-                                                        */
-#define PORT1_IN_P9_Pos  9 /*!< PORT1 IN: P9 Position                   */
-#define PORT1_IN_P9_Msk  ( 0x01UL << PORT1_IN_P9_Pos ) /*!< PORT1 IN: P9 Mask \
-                                                        */
+#define PORT1_IN_P0_Pos 0 /*!< PORT1 IN: P0 Position                   */
+#define PORT1_IN_P0_Msk                                  \
+    ( 0x01UL << PORT1_IN_P0_Pos ) /*!< PORT1 IN: P0 Mask \
+                                   */
+#define PORT1_IN_P1_Pos 1 /*!< PORT1 IN: P1 Position                   */
+#define PORT1_IN_P1_Msk                                  \
+    ( 0x01UL << PORT1_IN_P1_Pos ) /*!< PORT1 IN: P1 Mask \
+                                   */
+#define PORT1_IN_P2_Pos 2 /*!< PORT1 IN: P2 Position                   */
+#define PORT1_IN_P2_Msk                                  \
+    ( 0x01UL << PORT1_IN_P2_Pos ) /*!< PORT1 IN: P2 Mask \
+                                   */
+#define PORT1_IN_P3_Pos 3 /*!< PORT1 IN: P3 Position                   */
+#define PORT1_IN_P3_Msk                                  \
+    ( 0x01UL << PORT1_IN_P3_Pos ) /*!< PORT1 IN: P3 Mask \
+                                   */
+#define PORT1_IN_P4_Pos 4 /*!< PORT1 IN: P4 Position                   */
+#define PORT1_IN_P4_Msk                                  \
+    ( 0x01UL << PORT1_IN_P4_Pos ) /*!< PORT1 IN: P4 Mask \
+                                   */
+#define PORT1_IN_P5_Pos 5 /*!< PORT1 IN: P5 Position                   */
+#define PORT1_IN_P5_Msk                                  \
+    ( 0x01UL << PORT1_IN_P5_Pos ) /*!< PORT1 IN: P5 Mask \
+                                   */
+#define PORT1_IN_P6_Pos 6 /*!< PORT1 IN: P6 Position                   */
+#define PORT1_IN_P6_Msk                                  \
+    ( 0x01UL << PORT1_IN_P6_Pos ) /*!< PORT1 IN: P6 Mask \
+                                   */
+#define PORT1_IN_P7_Pos 7 /*!< PORT1 IN: P7 Position                   */
+#define PORT1_IN_P7_Msk                                  \
+    ( 0x01UL << PORT1_IN_P7_Pos ) /*!< PORT1 IN: P7 Mask \
+                                   */
+#define PORT1_IN_P8_Pos 8 /*!< PORT1 IN: P8 Position                   */
+#define PORT1_IN_P8_Msk                                  \
+    ( 0x01UL << PORT1_IN_P8_Pos ) /*!< PORT1 IN: P8 Mask \
+                                   */
+#define PORT1_IN_P9_Pos 9 /*!< PORT1 IN: P9 Position                   */
+#define PORT1_IN_P9_Msk                                  \
+    ( 0x01UL << PORT1_IN_P9_Pos ) /*!< PORT1 IN: P9 Mask \
+                                   */
 #define PORT1_IN_P10_Pos 10 /*!< PORT1 IN: P10 Position                  */
 #define PORT1_IN_P10_Msk \
     ( 0x01UL << PORT1_IN_P10_Pos ) /*!< PORT1 IN: P10 Mask */
@@ -27369,36 +27401,46 @@ Mask */
 
 /* ----------------------------------  PORT2_IN
  * ---------------------------------- */
-#define PORT2_IN_P0_Pos  0 /*!< PORT2 IN: P0 Position                   */
-#define PORT2_IN_P0_Msk  ( 0x01UL << PORT2_IN_P0_Pos ) /*!< PORT2 IN: P0 Mask \
-                                                        */
-#define PORT2_IN_P1_Pos  1 /*!< PORT2 IN: P1 Position                   */
-#define PORT2_IN_P1_Msk  ( 0x01UL << PORT2_IN_P1_Pos ) /*!< PORT2 IN: P1 Mask \
-                                                        */
-#define PORT2_IN_P2_Pos  2 /*!< PORT2 IN: P2 Position                   */
-#define PORT2_IN_P2_Msk  ( 0x01UL << PORT2_IN_P2_Pos ) /*!< PORT2 IN: P2 Mask \
-                                                        */
-#define PORT2_IN_P3_Pos  3 /*!< PORT2 IN: P3 Position                   */
-#define PORT2_IN_P3_Msk  ( 0x01UL << PORT2_IN_P3_Pos ) /*!< PORT2 IN: P3 Mask \
-                                                        */
-#define PORT2_IN_P4_Pos  4 /*!< PORT2 IN: P4 Position                   */
-#define PORT2_IN_P4_Msk  ( 0x01UL << PORT2_IN_P4_Pos ) /*!< PORT2 IN: P4 Mask \
-                                                        */
-#define PORT2_IN_P5_Pos  5 /*!< PORT2 IN: P5 Position                   */
-#define PORT2_IN_P5_Msk  ( 0x01UL << PORT2_IN_P5_Pos ) /*!< PORT2 IN: P5 Mask \
-                                                        */
-#define PORT2_IN_P6_Pos  6 /*!< PORT2 IN: P6 Position                   */
-#define PORT2_IN_P6_Msk  ( 0x01UL << PORT2_IN_P6_Pos ) /*!< PORT2 IN: P6 Mask \
-                                                        */
-#define PORT2_IN_P7_Pos  7 /*!< PORT2 IN: P7 Position                   */
-#define PORT2_IN_P7_Msk  ( 0x01UL << PORT2_IN_P7_Pos ) /*!< PORT2 IN: P7 Mask \
-                                                        */
-#define PORT2_IN_P8_Pos  8 /*!< PORT2 IN: P8 Position                   */
-#define PORT2_IN_P8_Msk  ( 0x01UL << PORT2_IN_P8_Pos ) /*!< PORT2 IN: P8 Mask \
-                                                        */
-#define PORT2_IN_P9_Pos  9 /*!< PORT2 IN: P9 Position                   */
-#define PORT2_IN_P9_Msk  ( 0x01UL << PORT2_IN_P9_Pos ) /*!< PORT2 IN: P9 Mask \
-                                                        */
+#define PORT2_IN_P0_Pos 0 /*!< PORT2 IN: P0 Position                   */
+#define PORT2_IN_P0_Msk                                  \
+    ( 0x01UL << PORT2_IN_P0_Pos ) /*!< PORT2 IN: P0 Mask \
+                                   */
+#define PORT2_IN_P1_Pos 1 /*!< PORT2 IN: P1 Position                   */
+#define PORT2_IN_P1_Msk                                  \
+    ( 0x01UL << PORT2_IN_P1_Pos ) /*!< PORT2 IN: P1 Mask \
+                                   */
+#define PORT2_IN_P2_Pos 2 /*!< PORT2 IN: P2 Position                   */
+#define PORT2_IN_P2_Msk                                  \
+    ( 0x01UL << PORT2_IN_P2_Pos ) /*!< PORT2 IN: P2 Mask \
+                                   */
+#define PORT2_IN_P3_Pos 3 /*!< PORT2 IN: P3 Position                   */
+#define PORT2_IN_P3_Msk                                  \
+    ( 0x01UL << PORT2_IN_P3_Pos ) /*!< PORT2 IN: P3 Mask \
+                                   */
+#define PORT2_IN_P4_Pos 4 /*!< PORT2 IN: P4 Position                   */
+#define PORT2_IN_P4_Msk                                  \
+    ( 0x01UL << PORT2_IN_P4_Pos ) /*!< PORT2 IN: P4 Mask \
+                                   */
+#define PORT2_IN_P5_Pos 5 /*!< PORT2 IN: P5 Position                   */
+#define PORT2_IN_P5_Msk                                  \
+    ( 0x01UL << PORT2_IN_P5_Pos ) /*!< PORT2 IN: P5 Mask \
+                                   */
+#define PORT2_IN_P6_Pos 6 /*!< PORT2 IN: P6 Position                   */
+#define PORT2_IN_P6_Msk                                  \
+    ( 0x01UL << PORT2_IN_P6_Pos ) /*!< PORT2 IN: P6 Mask \
+                                   */
+#define PORT2_IN_P7_Pos 7 /*!< PORT2 IN: P7 Position                   */
+#define PORT2_IN_P7_Msk                                  \
+    ( 0x01UL << PORT2_IN_P7_Pos ) /*!< PORT2 IN: P7 Mask \
+                                   */
+#define PORT2_IN_P8_Pos 8 /*!< PORT2 IN: P8 Position                   */
+#define PORT2_IN_P8_Msk                                  \
+    ( 0x01UL << PORT2_IN_P8_Pos ) /*!< PORT2 IN: P8 Mask \
+                                   */
+#define PORT2_IN_P9_Pos 9 /*!< PORT2 IN: P9 Position                   */
+#define PORT2_IN_P9_Msk                                  \
+    ( 0x01UL << PORT2_IN_P9_Pos ) /*!< PORT2 IN: P9 Mask \
+                                   */
 #define PORT2_IN_P10_Pos 10 /*!< PORT2 IN: P10 Position                  */
 #define PORT2_IN_P10_Msk \
     ( 0x01UL << PORT2_IN_P10_Pos ) /*!< PORT2 IN: P10 Mask */
@@ -27849,36 +27891,46 @@ Mask */
 
 /* ----------------------------------  PORT3_IN
  * ---------------------------------- */
-#define PORT3_IN_P0_Pos  0 /*!< PORT3 IN: P0 Position                   */
-#define PORT3_IN_P0_Msk  ( 0x01UL << PORT3_IN_P0_Pos ) /*!< PORT3 IN: P0 Mask \
-                                                        */
-#define PORT3_IN_P1_Pos  1 /*!< PORT3 IN: P1 Position                   */
-#define PORT3_IN_P1_Msk  ( 0x01UL << PORT3_IN_P1_Pos ) /*!< PORT3 IN: P1 Mask \
-                                                        */
-#define PORT3_IN_P2_Pos  2 /*!< PORT3 IN: P2 Position                   */
-#define PORT3_IN_P2_Msk  ( 0x01UL << PORT3_IN_P2_Pos ) /*!< PORT3 IN: P2 Mask \
-                                                        */
-#define PORT3_IN_P3_Pos  3 /*!< PORT3 IN: P3 Position                   */
-#define PORT3_IN_P3_Msk  ( 0x01UL << PORT3_IN_P3_Pos ) /*!< PORT3 IN: P3 Mask \
-                                                        */
-#define PORT3_IN_P4_Pos  4 /*!< PORT3 IN: P4 Position                   */
-#define PORT3_IN_P4_Msk  ( 0x01UL << PORT3_IN_P4_Pos ) /*!< PORT3 IN: P4 Mask \
-                                                        */
-#define PORT3_IN_P5_Pos  5 /*!< PORT3 IN: P5 Position                   */
-#define PORT3_IN_P5_Msk  ( 0x01UL << PORT3_IN_P5_Pos ) /*!< PORT3 IN: P5 Mask \
-                                                        */
-#define PORT3_IN_P6_Pos  6 /*!< PORT3 IN: P6 Position                   */
-#define PORT3_IN_P6_Msk  ( 0x01UL << PORT3_IN_P6_Pos ) /*!< PORT3 IN: P6 Mask \
-                                                        */
-#define PORT3_IN_P7_Pos  7 /*!< PORT3 IN: P7 Position                   */
-#define PORT3_IN_P7_Msk  ( 0x01UL << PORT3_IN_P7_Pos ) /*!< PORT3 IN: P7 Mask \
-                                                        */
-#define PORT3_IN_P8_Pos  8 /*!< PORT3 IN: P8 Position                   */
-#define PORT3_IN_P8_Msk  ( 0x01UL << PORT3_IN_P8_Pos ) /*!< PORT3 IN: P8 Mask \
-                                                        */
-#define PORT3_IN_P9_Pos  9 /*!< PORT3 IN: P9 Position                   */
-#define PORT3_IN_P9_Msk  ( 0x01UL << PORT3_IN_P9_Pos ) /*!< PORT3 IN: P9 Mask \
-                                                        */
+#define PORT3_IN_P0_Pos 0 /*!< PORT3 IN: P0 Position                   */
+#define PORT3_IN_P0_Msk                                  \
+    ( 0x01UL << PORT3_IN_P0_Pos ) /*!< PORT3 IN: P0 Mask \
+                                   */
+#define PORT3_IN_P1_Pos 1 /*!< PORT3 IN: P1 Position                   */
+#define PORT3_IN_P1_Msk                                  \
+    ( 0x01UL << PORT3_IN_P1_Pos ) /*!< PORT3 IN: P1 Mask \
+                                   */
+#define PORT3_IN_P2_Pos 2 /*!< PORT3 IN: P2 Position                   */
+#define PORT3_IN_P2_Msk                                  \
+    ( 0x01UL << PORT3_IN_P2_Pos ) /*!< PORT3 IN: P2 Mask \
+                                   */
+#define PORT3_IN_P3_Pos 3 /*!< PORT3 IN: P3 Position                   */
+#define PORT3_IN_P3_Msk                                  \
+    ( 0x01UL << PORT3_IN_P3_Pos ) /*!< PORT3 IN: P3 Mask \
+                                   */
+#define PORT3_IN_P4_Pos 4 /*!< PORT3 IN: P4 Position                   */
+#define PORT3_IN_P4_Msk                                  \
+    ( 0x01UL << PORT3_IN_P4_Pos ) /*!< PORT3 IN: P4 Mask \
+                                   */
+#define PORT3_IN_P5_Pos 5 /*!< PORT3 IN: P5 Position                   */
+#define PORT3_IN_P5_Msk                                  \
+    ( 0x01UL << PORT3_IN_P5_Pos ) /*!< PORT3 IN: P5 Mask \
+                                   */
+#define PORT3_IN_P6_Pos 6 /*!< PORT3 IN: P6 Position                   */
+#define PORT3_IN_P6_Msk                                  \
+    ( 0x01UL << PORT3_IN_P6_Pos ) /*!< PORT3 IN: P6 Mask \
+                                   */
+#define PORT3_IN_P7_Pos 7 /*!< PORT3 IN: P7 Position                   */
+#define PORT3_IN_P7_Msk                                  \
+    ( 0x01UL << PORT3_IN_P7_Pos ) /*!< PORT3 IN: P7 Mask \
+                                   */
+#define PORT3_IN_P8_Pos 8 /*!< PORT3 IN: P8 Position                   */
+#define PORT3_IN_P8_Msk                                  \
+    ( 0x01UL << PORT3_IN_P8_Pos ) /*!< PORT3 IN: P8 Mask \
+                                   */
+#define PORT3_IN_P9_Pos 9 /*!< PORT3 IN: P9 Position                   */
+#define PORT3_IN_P9_Msk                                  \
+    ( 0x01UL << PORT3_IN_P9_Pos ) /*!< PORT3 IN: P9 Mask \
+                                   */
 #define PORT3_IN_P10_Pos 10 /*!< PORT3 IN: P10 Position                  */
 #define PORT3_IN_P10_Msk \
     ( 0x01UL << PORT3_IN_P10_Pos ) /*!< PORT3 IN: P10 Mask */
@@ -28299,36 +28351,46 @@ Mask */
 
 /* ----------------------------------  PORT4_IN
  * ---------------------------------- */
-#define PORT4_IN_P0_Pos  0 /*!< PORT4 IN: P0 Position                   */
-#define PORT4_IN_P0_Msk  ( 0x01UL << PORT4_IN_P0_Pos ) /*!< PORT4 IN: P0 Mask \
-                                                        */
-#define PORT4_IN_P1_Pos  1 /*!< PORT4 IN: P1 Position                   */
-#define PORT4_IN_P1_Msk  ( 0x01UL << PORT4_IN_P1_Pos ) /*!< PORT4 IN: P1 Mask \
-                                                        */
-#define PORT4_IN_P2_Pos  2 /*!< PORT4 IN: P2 Position                   */
-#define PORT4_IN_P2_Msk  ( 0x01UL << PORT4_IN_P2_Pos ) /*!< PORT4 IN: P2 Mask \
-                                                        */
-#define PORT4_IN_P3_Pos  3 /*!< PORT4 IN: P3 Position                   */
-#define PORT4_IN_P3_Msk  ( 0x01UL << PORT4_IN_P3_Pos ) /*!< PORT4 IN: P3 Mask \
-                                                        */
-#define PORT4_IN_P4_Pos  4 /*!< PORT4 IN: P4 Position                   */
-#define PORT4_IN_P4_Msk  ( 0x01UL << PORT4_IN_P4_Pos ) /*!< PORT4 IN: P4 Mask \
-                                                        */
-#define PORT4_IN_P5_Pos  5 /*!< PORT4 IN: P5 Position                   */
-#define PORT4_IN_P5_Msk  ( 0x01UL << PORT4_IN_P5_Pos ) /*!< PORT4 IN: P5 Mask \
-                                                        */
-#define PORT4_IN_P6_Pos  6 /*!< PORT4 IN: P6 Position                   */
-#define PORT4_IN_P6_Msk  ( 0x01UL << PORT4_IN_P6_Pos ) /*!< PORT4 IN: P6 Mask \
-                                                        */
-#define PORT4_IN_P7_Pos  7 /*!< PORT4 IN: P7 Position                   */
-#define PORT4_IN_P7_Msk  ( 0x01UL << PORT4_IN_P7_Pos ) /*!< PORT4 IN: P7 Mask \
-                                                        */
-#define PORT4_IN_P8_Pos  8 /*!< PORT4 IN: P8 Position                   */
-#define PORT4_IN_P8_Msk  ( 0x01UL << PORT4_IN_P8_Pos ) /*!< PORT4 IN: P8 Mask \
-                                                        */
-#define PORT4_IN_P9_Pos  9 /*!< PORT4 IN: P9 Position                   */
-#define PORT4_IN_P9_Msk  ( 0x01UL << PORT4_IN_P9_Pos ) /*!< PORT4 IN: P9 Mask \
-                                                        */
+#define PORT4_IN_P0_Pos 0 /*!< PORT4 IN: P0 Position                   */
+#define PORT4_IN_P0_Msk                                  \
+    ( 0x01UL << PORT4_IN_P0_Pos ) /*!< PORT4 IN: P0 Mask \
+                                   */
+#define PORT4_IN_P1_Pos 1 /*!< PORT4 IN: P1 Position                   */
+#define PORT4_IN_P1_Msk                                  \
+    ( 0x01UL << PORT4_IN_P1_Pos ) /*!< PORT4 IN: P1 Mask \
+                                   */
+#define PORT4_IN_P2_Pos 2 /*!< PORT4 IN: P2 Position                   */
+#define PORT4_IN_P2_Msk                                  \
+    ( 0x01UL << PORT4_IN_P2_Pos ) /*!< PORT4 IN: P2 Mask \
+                                   */
+#define PORT4_IN_P3_Pos 3 /*!< PORT4 IN: P3 Position                   */
+#define PORT4_IN_P3_Msk                                  \
+    ( 0x01UL << PORT4_IN_P3_Pos ) /*!< PORT4 IN: P3 Mask \
+                                   */
+#define PORT4_IN_P4_Pos 4 /*!< PORT4 IN: P4 Position                   */
+#define PORT4_IN_P4_Msk                                  \
+    ( 0x01UL << PORT4_IN_P4_Pos ) /*!< PORT4 IN: P4 Mask \
+                                   */
+#define PORT4_IN_P5_Pos 5 /*!< PORT4 IN: P5 Position                   */
+#define PORT4_IN_P5_Msk                                  \
+    ( 0x01UL << PORT4_IN_P5_Pos ) /*!< PORT4 IN: P5 Mask \
+                                   */
+#define PORT4_IN_P6_Pos 6 /*!< PORT4 IN: P6 Position                   */
+#define PORT4_IN_P6_Msk                                  \
+    ( 0x01UL << PORT4_IN_P6_Pos ) /*!< PORT4 IN: P6 Mask \
+                                   */
+#define PORT4_IN_P7_Pos 7 /*!< PORT4 IN: P7 Position                   */
+#define PORT4_IN_P7_Msk                                  \
+    ( 0x01UL << PORT4_IN_P7_Pos ) /*!< PORT4 IN: P7 Mask \
+                                   */
+#define PORT4_IN_P8_Pos 8 /*!< PORT4 IN: P8 Position                   */
+#define PORT4_IN_P8_Msk                                  \
+    ( 0x01UL << PORT4_IN_P8_Pos ) /*!< PORT4 IN: P8 Mask \
+                                   */
+#define PORT4_IN_P9_Pos 9 /*!< PORT4 IN: P9 Position                   */
+#define PORT4_IN_P9_Msk                                  \
+    ( 0x01UL << PORT4_IN_P9_Pos ) /*!< PORT4 IN: P9 Mask \
+                                   */
 #define PORT4_IN_P10_Pos 10 /*!< PORT4 IN: P10 Position                  */
 #define PORT4_IN_P10_Msk \
     ( 0x01UL << PORT4_IN_P10_Pos ) /*!< PORT4 IN: P10 Mask */
@@ -28737,36 +28799,46 @@ Mask */
 
 /* ----------------------------------  PORT5_IN
  * ---------------------------------- */
-#define PORT5_IN_P0_Pos  0 /*!< PORT5 IN: P0 Position                   */
-#define PORT5_IN_P0_Msk  ( 0x01UL << PORT5_IN_P0_Pos ) /*!< PORT5 IN: P0 Mask \
-                                                        */
-#define PORT5_IN_P1_Pos  1 /*!< PORT5 IN: P1 Position                   */
-#define PORT5_IN_P1_Msk  ( 0x01UL << PORT5_IN_P1_Pos ) /*!< PORT5 IN: P1 Mask \
-                                                        */
-#define PORT5_IN_P2_Pos  2 /*!< PORT5 IN: P2 Position                   */
-#define PORT5_IN_P2_Msk  ( 0x01UL << PORT5_IN_P2_Pos ) /*!< PORT5 IN: P2 Mask \
-                                                        */
-#define PORT5_IN_P3_Pos  3 /*!< PORT5 IN: P3 Position                   */
-#define PORT5_IN_P3_Msk  ( 0x01UL << PORT5_IN_P3_Pos ) /*!< PORT5 IN: P3 Mask \
-                                                        */
-#define PORT5_IN_P4_Pos  4 /*!< PORT5 IN: P4 Position                   */
-#define PORT5_IN_P4_Msk  ( 0x01UL << PORT5_IN_P4_Pos ) /*!< PORT5 IN: P4 Mask \
-                                                        */
-#define PORT5_IN_P5_Pos  5 /*!< PORT5 IN: P5 Position                   */
-#define PORT5_IN_P5_Msk  ( 0x01UL << PORT5_IN_P5_Pos ) /*!< PORT5 IN: P5 Mask \
-                                                        */
-#define PORT5_IN_P6_Pos  6 /*!< PORT5 IN: P6 Position                   */
-#define PORT5_IN_P6_Msk  ( 0x01UL << PORT5_IN_P6_Pos ) /*!< PORT5 IN: P6 Mask \
-                                                        */
-#define PORT5_IN_P7_Pos  7 /*!< PORT5 IN: P7 Position                   */
-#define PORT5_IN_P7_Msk  ( 0x01UL << PORT5_IN_P7_Pos ) /*!< PORT5 IN: P7 Mask \
-                                                        */
-#define PORT5_IN_P8_Pos  8 /*!< PORT5 IN: P8 Position                   */
-#define PORT5_IN_P8_Msk  ( 0x01UL << PORT5_IN_P8_Pos ) /*!< PORT5 IN: P8 Mask \
-                                                        */
-#define PORT5_IN_P9_Pos  9 /*!< PORT5 IN: P9 Position                   */
-#define PORT5_IN_P9_Msk  ( 0x01UL << PORT5_IN_P9_Pos ) /*!< PORT5 IN: P9 Mask \
-                                                        */
+#define PORT5_IN_P0_Pos 0 /*!< PORT5 IN: P0 Position                   */
+#define PORT5_IN_P0_Msk                                  \
+    ( 0x01UL << PORT5_IN_P0_Pos ) /*!< PORT5 IN: P0 Mask \
+                                   */
+#define PORT5_IN_P1_Pos 1 /*!< PORT5 IN: P1 Position                   */
+#define PORT5_IN_P1_Msk                                  \
+    ( 0x01UL << PORT5_IN_P1_Pos ) /*!< PORT5 IN: P1 Mask \
+                                   */
+#define PORT5_IN_P2_Pos 2 /*!< PORT5 IN: P2 Position                   */
+#define PORT5_IN_P2_Msk                                  \
+    ( 0x01UL << PORT5_IN_P2_Pos ) /*!< PORT5 IN: P2 Mask \
+                                   */
+#define PORT5_IN_P3_Pos 3 /*!< PORT5 IN: P3 Position                   */
+#define PORT5_IN_P3_Msk                                  \
+    ( 0x01UL << PORT5_IN_P3_Pos ) /*!< PORT5 IN: P3 Mask \
+                                   */
+#define PORT5_IN_P4_Pos 4 /*!< PORT5 IN: P4 Position                   */
+#define PORT5_IN_P4_Msk                                  \
+    ( 0x01UL << PORT5_IN_P4_Pos ) /*!< PORT5 IN: P4 Mask \
+                                   */
+#define PORT5_IN_P5_Pos 5 /*!< PORT5 IN: P5 Position                   */
+#define PORT5_IN_P5_Msk                                  \
+    ( 0x01UL << PORT5_IN_P5_Pos ) /*!< PORT5 IN: P5 Mask \
+                                   */
+#define PORT5_IN_P6_Pos 6 /*!< PORT5 IN: P6 Position                   */
+#define PORT5_IN_P6_Msk                                  \
+    ( 0x01UL << PORT5_IN_P6_Pos ) /*!< PORT5 IN: P6 Mask \
+                                   */
+#define PORT5_IN_P7_Pos 7 /*!< PORT5 IN: P7 Position                   */
+#define PORT5_IN_P7_Msk                                  \
+    ( 0x01UL << PORT5_IN_P7_Pos ) /*!< PORT5 IN: P7 Mask \
+                                   */
+#define PORT5_IN_P8_Pos 8 /*!< PORT5 IN: P8 Position                   */
+#define PORT5_IN_P8_Msk                                  \
+    ( 0x01UL << PORT5_IN_P8_Pos ) /*!< PORT5 IN: P8 Mask \
+                                   */
+#define PORT5_IN_P9_Pos 9 /*!< PORT5 IN: P9 Position                   */
+#define PORT5_IN_P9_Msk                                  \
+    ( 0x01UL << PORT5_IN_P9_Pos ) /*!< PORT5 IN: P9 Mask \
+                                   */
 #define PORT5_IN_P10_Pos 10 /*!< PORT5 IN: P10 Position                  */
 #define PORT5_IN_P10_Msk \
     ( 0x01UL << PORT5_IN_P10_Pos ) /*!< PORT5 IN: P10 Mask */
@@ -29187,36 +29259,46 @@ Mask */
 
 /* ----------------------------------  PORT6_IN
  * ---------------------------------- */
-#define PORT6_IN_P0_Pos  0 /*!< PORT6 IN: P0 Position                   */
-#define PORT6_IN_P0_Msk  ( 0x01UL << PORT6_IN_P0_Pos ) /*!< PORT6 IN: P0 Mask \
-                                                        */
-#define PORT6_IN_P1_Pos  1 /*!< PORT6 IN: P1 Position                   */
-#define PORT6_IN_P1_Msk  ( 0x01UL << PORT6_IN_P1_Pos ) /*!< PORT6 IN: P1 Mask \
-                                                        */
-#define PORT6_IN_P2_Pos  2 /*!< PORT6 IN: P2 Position                   */
-#define PORT6_IN_P2_Msk  ( 0x01UL << PORT6_IN_P2_Pos ) /*!< PORT6 IN: P2 Mask \
-                                                        */
-#define PORT6_IN_P3_Pos  3 /*!< PORT6 IN: P3 Position                   */
-#define PORT6_IN_P3_Msk  ( 0x01UL << PORT6_IN_P3_Pos ) /*!< PORT6 IN: P3 Mask \
-                                                        */
-#define PORT6_IN_P4_Pos  4 /*!< PORT6 IN: P4 Position                   */
-#define PORT6_IN_P4_Msk  ( 0x01UL << PORT6_IN_P4_Pos ) /*!< PORT6 IN: P4 Mask \
-                                                        */
-#define PORT6_IN_P5_Pos  5 /*!< PORT6 IN: P5 Position                   */
-#define PORT6_IN_P5_Msk  ( 0x01UL << PORT6_IN_P5_Pos ) /*!< PORT6 IN: P5 Mask \
-                                                        */
-#define PORT6_IN_P6_Pos  6 /*!< PORT6 IN: P6 Position                   */
-#define PORT6_IN_P6_Msk  ( 0x01UL << PORT6_IN_P6_Pos ) /*!< PORT6 IN: P6 Mask \
-                                                        */
-#define PORT6_IN_P7_Pos  7 /*!< PORT6 IN: P7 Position                   */
-#define PORT6_IN_P7_Msk  ( 0x01UL << PORT6_IN_P7_Pos ) /*!< PORT6 IN: P7 Mask \
-                                                        */
-#define PORT6_IN_P8_Pos  8 /*!< PORT6 IN: P8 Position                   */
-#define PORT6_IN_P8_Msk  ( 0x01UL << PORT6_IN_P8_Pos ) /*!< PORT6 IN: P8 Mask \
-                                                        */
-#define PORT6_IN_P9_Pos  9 /*!< PORT6 IN: P9 Position                   */
-#define PORT6_IN_P9_Msk  ( 0x01UL << PORT6_IN_P9_Pos ) /*!< PORT6 IN: P9 Mask \
-                                                        */
+#define PORT6_IN_P0_Pos 0 /*!< PORT6 IN: P0 Position                   */
+#define PORT6_IN_P0_Msk                                  \
+    ( 0x01UL << PORT6_IN_P0_Pos ) /*!< PORT6 IN: P0 Mask \
+                                   */
+#define PORT6_IN_P1_Pos 1 /*!< PORT6 IN: P1 Position                   */
+#define PORT6_IN_P1_Msk                                  \
+    ( 0x01UL << PORT6_IN_P1_Pos ) /*!< PORT6 IN: P1 Mask \
+                                   */
+#define PORT6_IN_P2_Pos 2 /*!< PORT6 IN: P2 Position                   */
+#define PORT6_IN_P2_Msk                                  \
+    ( 0x01UL << PORT6_IN_P2_Pos ) /*!< PORT6 IN: P2 Mask \
+                                   */
+#define PORT6_IN_P3_Pos 3 /*!< PORT6 IN: P3 Position                   */
+#define PORT6_IN_P3_Msk                                  \
+    ( 0x01UL << PORT6_IN_P3_Pos ) /*!< PORT6 IN: P3 Mask \
+                                   */
+#define PORT6_IN_P4_Pos 4 /*!< PORT6 IN: P4 Position                   */
+#define PORT6_IN_P4_Msk                                  \
+    ( 0x01UL << PORT6_IN_P4_Pos ) /*!< PORT6 IN: P4 Mask \
+                                   */
+#define PORT6_IN_P5_Pos 5 /*!< PORT6 IN: P5 Position                   */
+#define PORT6_IN_P5_Msk                                  \
+    ( 0x01UL << PORT6_IN_P5_Pos ) /*!< PORT6 IN: P5 Mask \
+                                   */
+#define PORT6_IN_P6_Pos 6 /*!< PORT6 IN: P6 Position                   */
+#define PORT6_IN_P6_Msk                                  \
+    ( 0x01UL << PORT6_IN_P6_Pos ) /*!< PORT6 IN: P6 Mask \
+                                   */
+#define PORT6_IN_P7_Pos 7 /*!< PORT6 IN: P7 Position                   */
+#define PORT6_IN_P7_Msk                                  \
+    ( 0x01UL << PORT6_IN_P7_Pos ) /*!< PORT6 IN: P7 Mask \
+                                   */
+#define PORT6_IN_P8_Pos 8 /*!< PORT6 IN: P8 Position                   */
+#define PORT6_IN_P8_Msk                                  \
+    ( 0x01UL << PORT6_IN_P8_Pos ) /*!< PORT6 IN: P8 Mask \
+                                   */
+#define PORT6_IN_P9_Pos 9 /*!< PORT6 IN: P9 Position                   */
+#define PORT6_IN_P9_Msk                                  \
+    ( 0x01UL << PORT6_IN_P9_Pos ) /*!< PORT6 IN: P9 Mask \
+                                   */
 #define PORT6_IN_P10_Pos 10 /*!< PORT6 IN: P10 Position                  */
 #define PORT6_IN_P10_Msk \
     ( 0x01UL << PORT6_IN_P10_Pos ) /*!< PORT6 IN: P10 Mask */

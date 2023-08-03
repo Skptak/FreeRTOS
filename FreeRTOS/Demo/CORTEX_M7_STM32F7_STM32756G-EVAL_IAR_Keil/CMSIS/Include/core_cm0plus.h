@@ -810,8 +810,9 @@ typedef struct
         #define SCB_BASE \
             ( SCS_BASE + 0x0D00UL ) /*!< System Control Block Base Address */
 
-        #define SCB ( ( SCB_Type * ) SCB_BASE ) /*!< SCB configuration struct \
-                                                 */
+        #define SCB                                                   \
+            ( ( SCB_Type * ) SCB_BASE ) /*!< SCB configuration struct \
+                                         */
         #define SysTick                                                    \
             ( ( SysTick_Type * ) SysTick_BASE ) /*!< SysTick configuration \
                                                    struct       */

@@ -2300,11 +2300,13 @@ typedef struct
                                      successfully retained. */
     __OM uint32_t HOST_IOT_KDR1;  /*!< (@ 0x00001A54) This register holds bits
                                      63:32 of K_DR. The value  of this register
-                                     is  saved in the CRYPTOCELL  AO power domain.
+                                     is  saved in the CRYPTOCELL  AO power
+                                     domain.
                                    */
     __OM uint32_t HOST_IOT_KDR2;  /*!< (@ 0x00001A58) This register holds bits
                                      95:64 of K_DR. The value  of this register
-                                     is  saved in the CRYPTOCELL  AO power domain.
+                                     is  saved in the CRYPTOCELL  AO power
+                                     domain.
                                    */
     __OM uint32_t HOST_IOT_KDR3;  /*!< (@ 0x00001A5C) This register holds bits
                                      127:96 of K_DR. The  value of this register

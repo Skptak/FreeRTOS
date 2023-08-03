@@ -270,8 +270,9 @@ typedef void ( *pHASH_CallbackTypeDef )(
         #define HASH_FLAG_DINIS                                               \
             HASH_SR_DINIS /*!< 16 locations are free in the DIN : a new block \
                              can be entered in the IP */
-        #define HASH_FLAG_DCIS HASH_SR_DCIS /*!< Digest calculation complete \
-                                             */
+        #define HASH_FLAG_DCIS                            \
+            HASH_SR_DCIS /*!< Digest calculation complete \
+                          */
         #define HASH_FLAG_DMAS                                                \
             HASH_SR_DMAS /*!< DMA interface is enabled (DMAE=1) or a transfer \
                             is ongoing              */

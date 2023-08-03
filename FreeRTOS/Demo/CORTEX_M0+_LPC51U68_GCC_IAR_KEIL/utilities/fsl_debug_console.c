@@ -112,7 +112,7 @@ static volatile uint8_t s_debugConsoleReadWaitSemaphore;
     #define DEBUG_CONSOLE_CREATE_MUTEX_SEMAPHORE( mutex ) \
         ( ( mutex ) = xSemaphoreCreateMutex() )
 
-/* clang-format off */
+    /* clang-format off */
 #define DEBUG_CONSOLE_GIVE_MUTEX_SEMAPHORE(mutex) \
 {                                                 \
         if (IS_RUNNING_IN_ISR() == 0U)            \

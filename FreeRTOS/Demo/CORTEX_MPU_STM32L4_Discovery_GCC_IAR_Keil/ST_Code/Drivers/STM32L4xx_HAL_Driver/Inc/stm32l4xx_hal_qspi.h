@@ -184,8 +184,8 @@ typedef struct
                           QSPI_DataMode */
     uint32_t NbData;   /* Specifies the number of data to transfer. (This is the
                           number of bytes)   This parameter can be any value
-                          between   0 and 0xFFFFFFFF (0 means undefined length   until
-                          end of   memory)*/
+                          between   0 and 0xFFFFFFFF (0 means undefined length
+                          until   end of   memory)*/
     uint32_t DdrMode;  /* Specifies the double data rate mode for address,
                           alternate byte and data phase  This parameter can be a
                           value of @ref QSPI_DdrMode */

@@ -3144,8 +3144,9 @@ typedef struct
 
 /* -------------------------------  TIMER0_CONTROL
  * ------------------------------- */
-#define TIMER0_CONTROL_ENABLE_Pos ( 0UL ) /*!< TIMER0 CONTROL: ENABLE (Bit 0) \
-                                           */
+#define TIMER0_CONTROL_ENABLE_Pos               \
+    ( 0UL ) /*!< TIMER0 CONTROL: ENABLE (Bit 0) \
+             */
 #define TIMER0_CONTROL_ENABLE_Msk \
     ( 0x1UL ) /*!< TIMER0 CONTROL: ENABLE (Bitfield-Mask: 0x01) */
 #define TIMER0_CONTROL_COUNT_UP_Pos \
@@ -3163,8 +3164,9 @@ typedef struct
 #define TIMER0_CONTROL_START_Pos ( 5UL ) /*!< TIMER0 CONTROL: START (Bit 5) */
 #define TIMER0_CONTROL_START_Msk \
     ( 0x20UL ) /*!< TIMER0 CONTROL: START (Bitfield-Mask: 0x01) */
-#define TIMER0_CONTROL_RELOAD_Pos ( 6UL ) /*!< TIMER0 CONTROL: RELOAD (Bit 6) \
-                                           */
+#define TIMER0_CONTROL_RELOAD_Pos               \
+    ( 6UL ) /*!< TIMER0 CONTROL: RELOAD (Bit 6) \
+             */
 #define TIMER0_CONTROL_RELOAD_Msk \
     ( 0x40UL ) /*!< TIMER0 CONTROL: RELOAD (Bitfield-Mask: 0x01) */
 #define TIMER0_CONTROL_HALT_Pos ( 7UL ) /*!< TIMER0 CONTROL: HALT (Bit 7) */
@@ -3196,8 +3198,9 @@ typedef struct
 
 /* -------------------------------  TIMER1_CONTROL
  * ------------------------------- */
-#define TIMER1_CONTROL_ENABLE_Pos ( 0UL ) /*!< TIMER1 CONTROL: ENABLE (Bit 0) \
-                                           */
+#define TIMER1_CONTROL_ENABLE_Pos               \
+    ( 0UL ) /*!< TIMER1 CONTROL: ENABLE (Bit 0) \
+             */
 #define TIMER1_CONTROL_ENABLE_Msk \
     ( 0x1UL ) /*!< TIMER1 CONTROL: ENABLE (Bitfield-Mask: 0x01) */
 #define TIMER1_CONTROL_COUNT_UP_Pos \
@@ -3215,8 +3218,9 @@ typedef struct
 #define TIMER1_CONTROL_START_Pos ( 5UL ) /*!< TIMER1 CONTROL: START (Bit 5) */
 #define TIMER1_CONTROL_START_Msk \
     ( 0x20UL ) /*!< TIMER1 CONTROL: START (Bitfield-Mask: 0x01) */
-#define TIMER1_CONTROL_RELOAD_Pos ( 6UL ) /*!< TIMER1 CONTROL: RELOAD (Bit 6) \
-                                           */
+#define TIMER1_CONTROL_RELOAD_Pos               \
+    ( 6UL ) /*!< TIMER1 CONTROL: RELOAD (Bit 6) \
+             */
 #define TIMER1_CONTROL_RELOAD_Msk \
     ( 0x40UL ) /*!< TIMER1 CONTROL: RELOAD (Bitfield-Mask: 0x01) */
 #define TIMER1_CONTROL_HALT_Pos ( 7UL ) /*!< TIMER1 CONTROL: HALT (Bit 7) */
@@ -3248,8 +3252,9 @@ typedef struct
 
 /* -------------------------------  TIMER2_CONTROL
  * ------------------------------- */
-#define TIMER2_CONTROL_ENABLE_Pos ( 0UL ) /*!< TIMER2 CONTROL: ENABLE (Bit 0) \
-                                           */
+#define TIMER2_CONTROL_ENABLE_Pos               \
+    ( 0UL ) /*!< TIMER2 CONTROL: ENABLE (Bit 0) \
+             */
 #define TIMER2_CONTROL_ENABLE_Msk \
     ( 0x1UL ) /*!< TIMER2 CONTROL: ENABLE (Bitfield-Mask: 0x01) */
 #define TIMER2_CONTROL_COUNT_UP_Pos \
@@ -3267,8 +3272,9 @@ typedef struct
 #define TIMER2_CONTROL_START_Pos ( 5UL ) /*!< TIMER2 CONTROL: START (Bit 5) */
 #define TIMER2_CONTROL_START_Msk \
     ( 0x20UL ) /*!< TIMER2 CONTROL: START (Bitfield-Mask: 0x01) */
-#define TIMER2_CONTROL_RELOAD_Pos ( 6UL ) /*!< TIMER2 CONTROL: RELOAD (Bit 6) \
-                                           */
+#define TIMER2_CONTROL_RELOAD_Pos               \
+    ( 6UL ) /*!< TIMER2 CONTROL: RELOAD (Bit 6) \
+             */
 #define TIMER2_CONTROL_RELOAD_Msk \
     ( 0x40UL ) /*!< TIMER2 CONTROL: RELOAD (Bitfield-Mask: 0x01) */
 #define TIMER2_CONTROL_HALT_Pos ( 7UL ) /*!< TIMER2 CONTROL: HALT (Bit 7) */
@@ -3300,8 +3306,9 @@ typedef struct
 
 /* -------------------------------  TIMER3_CONTROL
  * ------------------------------- */
-#define TIMER3_CONTROL_ENABLE_Pos ( 0UL ) /*!< TIMER3 CONTROL: ENABLE (Bit 0) \
-                                           */
+#define TIMER3_CONTROL_ENABLE_Pos               \
+    ( 0UL ) /*!< TIMER3 CONTROL: ENABLE (Bit 0) \
+             */
 #define TIMER3_CONTROL_ENABLE_Msk \
     ( 0x1UL ) /*!< TIMER3 CONTROL: ENABLE (Bitfield-Mask: 0x01) */
 #define TIMER3_CONTROL_COUNT_UP_Pos \
@@ -3319,8 +3326,9 @@ typedef struct
 #define TIMER3_CONTROL_START_Pos ( 5UL ) /*!< TIMER3 CONTROL: START (Bit 5) */
 #define TIMER3_CONTROL_START_Msk \
     ( 0x20UL ) /*!< TIMER3 CONTROL: START (Bitfield-Mask: 0x01) */
-#define TIMER3_CONTROL_RELOAD_Pos ( 6UL ) /*!< TIMER3 CONTROL: RELOAD (Bit 6) \
-                                           */
+#define TIMER3_CONTROL_RELOAD_Pos               \
+    ( 6UL ) /*!< TIMER3 CONTROL: RELOAD (Bit 6) \
+             */
 #define TIMER3_CONTROL_RELOAD_Msk \
     ( 0x40UL ) /*!< TIMER3 CONTROL: RELOAD (Bitfield-Mask: 0x01) */
 #define TIMER3_CONTROL_HALT_Pos ( 7UL ) /*!< TIMER3 CONTROL: HALT (Bit 7) */
@@ -3352,8 +3360,9 @@ typedef struct
 
 /* -------------------------------  TIMER4_CONTROL
  * ------------------------------- */
-#define TIMER4_CONTROL_ENABLE_Pos ( 0UL ) /*!< TIMER4 CONTROL: ENABLE (Bit 0) \
-                                           */
+#define TIMER4_CONTROL_ENABLE_Pos               \
+    ( 0UL ) /*!< TIMER4 CONTROL: ENABLE (Bit 0) \
+             */
 #define TIMER4_CONTROL_ENABLE_Msk \
     ( 0x1UL ) /*!< TIMER4 CONTROL: ENABLE (Bitfield-Mask: 0x01) */
 #define TIMER4_CONTROL_COUNT_UP_Pos \
@@ -3371,8 +3380,9 @@ typedef struct
 #define TIMER4_CONTROL_START_Pos ( 5UL ) /*!< TIMER4 CONTROL: START (Bit 5) */
 #define TIMER4_CONTROL_START_Msk \
     ( 0x20UL ) /*!< TIMER4 CONTROL: START (Bitfield-Mask: 0x01) */
-#define TIMER4_CONTROL_RELOAD_Pos ( 6UL ) /*!< TIMER4 CONTROL: RELOAD (Bit 6) \
-                                           */
+#define TIMER4_CONTROL_RELOAD_Pos               \
+    ( 6UL ) /*!< TIMER4 CONTROL: RELOAD (Bit 6) \
+             */
 #define TIMER4_CONTROL_RELOAD_Msk \
     ( 0x40UL ) /*!< TIMER4 CONTROL: RELOAD (Bitfield-Mask: 0x01) */
 #define TIMER4_CONTROL_HALT_Pos ( 7UL ) /*!< TIMER4 CONTROL: HALT (Bit 7) */
@@ -3404,8 +3414,9 @@ typedef struct
 
 /* -------------------------------  TIMER5_CONTROL
  * ------------------------------- */
-#define TIMER5_CONTROL_ENABLE_Pos ( 0UL ) /*!< TIMER5 CONTROL: ENABLE (Bit 0) \
-                                           */
+#define TIMER5_CONTROL_ENABLE_Pos               \
+    ( 0UL ) /*!< TIMER5 CONTROL: ENABLE (Bit 0) \
+             */
 #define TIMER5_CONTROL_ENABLE_Msk \
     ( 0x1UL ) /*!< TIMER5 CONTROL: ENABLE (Bitfield-Mask: 0x01) */
 #define TIMER5_CONTROL_COUNT_UP_Pos \
@@ -3423,8 +3434,9 @@ typedef struct
 #define TIMER5_CONTROL_START_Pos ( 5UL ) /*!< TIMER5 CONTROL: START (Bit 5) */
 #define TIMER5_CONTROL_START_Msk \
     ( 0x20UL ) /*!< TIMER5 CONTROL: START (Bitfield-Mask: 0x01) */
-#define TIMER5_CONTROL_RELOAD_Pos ( 6UL ) /*!< TIMER5 CONTROL: RELOAD (Bit 6) \
-                                           */
+#define TIMER5_CONTROL_RELOAD_Pos               \
+    ( 6UL ) /*!< TIMER5 CONTROL: RELOAD (Bit 6) \
+             */
 #define TIMER5_CONTROL_RELOAD_Msk \
     ( 0x40UL ) /*!< TIMER5 CONTROL: RELOAD (Bitfield-Mask: 0x01) */
 #define TIMER5_CONTROL_HALT_Pos ( 7UL ) /*!< TIMER5 CONTROL: HALT (Bit 7) */

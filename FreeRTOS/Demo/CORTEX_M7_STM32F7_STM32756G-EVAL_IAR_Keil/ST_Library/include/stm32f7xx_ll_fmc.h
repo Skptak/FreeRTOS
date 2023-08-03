@@ -774,8 +774,8 @@ typedef struct
 
     uint32_t AutoRefreshNumber;      /*!< Defines the number of consecutive auto
                                         refresh command issued      in auto refresh
-                                        mode.      This parameter can be a value between
-                                        Min_Data = 1 and Max_Data = 16   */
+                                        mode.      This parameter can be a value
+                                        between      Min_Data = 1 and Max_Data = 16   */
     uint32_t ModeRegisterDefinition; /*!< Defines the SDRAM Mode register
                                         content */
 } FMC_SDRAM_CommandTypeDef;

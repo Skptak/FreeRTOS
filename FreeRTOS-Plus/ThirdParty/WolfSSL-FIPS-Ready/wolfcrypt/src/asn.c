@@ -2809,9 +2809,9 @@ int wc_RsaPrivateKeyDecode( const byte * input,
         GetInt( &key->p, input, inOutIdx, inSz ) < 0 ||
         GetInt( &key->q, input, inOutIdx, inSz ) < 0 )
             #else
-         SkipInt( input, inOutIdx, inSz ) < 0 ||
-         SkipInt( input, inOutIdx, inSz ) < 0 ||
-         SkipInt( input, inOutIdx, inSz ) < 0 )
+        SkipInt( input, inOutIdx, inSz ) < 0 ||
+        SkipInt( input, inOutIdx, inSz ) < 0 ||
+        SkipInt( input, inOutIdx, inSz ) < 0 )
 
             #endif
         return ASN_RSA_KEY_E;

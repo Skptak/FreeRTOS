@@ -2139,10 +2139,11 @@ typedef struct
                                              [7654]
                                           --------------------------------------------           0
                                           000 = Low Level Sensitive           0 001 = High
-                                          Level           Sensitive           0 100 = Interrupt
-                                          events are disabled           1 101 = Rising Edge
-                                          Triggered           1 110 = Falling Edge Triggered           1 111 =
-                                          Either edge triggered
+                                          Level           Sensitive           0 100 =
+                                          Interrupt           events are disabled           1 101 =
+                                          Rising Edge           Triggered           1 110 = Falling
+                                          Edge Triggered           1 111 =           Either edge
+                                          triggered
                                              ---------------------------------------------------
                                         */
             __IO uint32_t EDGE_EN : 1; /*!< 1= Edge detection enabled */
@@ -4262,8 +4263,9 @@ typedef struct
 #define VBAT_PFR_STS_WDT_Pos ( 5UL ) /*!< VBAT PFR_STS: WDT (Bit 5) */
 #define VBAT_PFR_STS_WDT_Msk \
     ( 0x20UL ) /*!< VBAT PFR_STS: WDT (Bitfield-Mask: 0x01) */
-#define VBAT_PFR_STS_VBAT_RST_Pos ( 7UL ) /*!< VBAT PFR_STS: VBAT_RST (Bit 7) \
-                                           */
+#define VBAT_PFR_STS_VBAT_RST_Pos               \
+    ( 7UL ) /*!< VBAT PFR_STS: VBAT_RST (Bit 7) \
+             */
 #define VBAT_PFR_STS_VBAT_RST_Msk \
     ( 0x80UL ) /*!< VBAT PFR_STS: VBAT_RST (Bitfield-Mask: 0x01) */
 
@@ -4272,8 +4274,9 @@ typedef struct
 #define VBAT_CLOCK_EN_XOSEL_Pos ( 0UL ) /*!< VBAT CLOCK_EN: XOSEL (Bit 0) */
 #define VBAT_CLOCK_EN_XOSEL_Msk \
     ( 0x1UL ) /*!< VBAT CLOCK_EN: XOSEL (Bitfield-Mask: 0x01) */
-#define VBAT_CLOCK_EN__32K_EN_Pos ( 1UL ) /*!< VBAT CLOCK_EN: _32K_EN (Bit 1) \
-                                           */
+#define VBAT_CLOCK_EN__32K_EN_Pos               \
+    ( 1UL ) /*!< VBAT CLOCK_EN: _32K_EN (Bit 1) \
+             */
 #define VBAT_CLOCK_EN__32K_EN_Msk \
     ( 0x2UL ) /*!< VBAT CLOCK_EN: _32K_EN (Bitfield-Mask: 0x01) */
 
@@ -4347,8 +4350,9 @@ typedef struct
 
 /* -------------------------------  LPC_CONFIG_SIRQ
  * ------------------------------ */
-#define LPC_CONFIG_SIRQ_FRAME_Pos ( 0UL ) /*!< LPC_CONFIG SIRQ: FRAME (Bit 0) \
-                                           */
+#define LPC_CONFIG_SIRQ_FRAME_Pos               \
+    ( 0UL ) /*!< LPC_CONFIG SIRQ: FRAME (Bit 0) \
+             */
 #define LPC_CONFIG_SIRQ_FRAME_Msk \
     ( 0x3fUL ) /*!< LPC_CONFIG SIRQ: FRAME (Bitfield-Mask: 0x3f) */
 #define LPC_CONFIG_SIRQ_DEVICE_Pos \
@@ -4832,15 +4836,17 @@ typedef struct
 #define MBX_SMI_SOURCE_EC_WR_Pos ( 0UL ) /*!< MBX SMI_SOURCE: EC_WR (Bit 0) */
 #define MBX_SMI_SOURCE_EC_WR_Msk \
     ( 0x1UL ) /*!< MBX SMI_SOURCE: EC_WR (Bitfield-Mask: 0x01) */
-#define MBX_SMI_SOURCE_EC_SMI_Pos ( 1UL ) /*!< MBX SMI_SOURCE: EC_SMI (Bit 1) \
-                                           */
+#define MBX_SMI_SOURCE_EC_SMI_Pos               \
+    ( 1UL ) /*!< MBX SMI_SOURCE: EC_SMI (Bit 1) \
+             */
 #define MBX_SMI_SOURCE_EC_SMI_Msk \
     ( 0xfeUL ) /*!< MBX SMI_SOURCE: EC_SMI (Bitfield-Mask: 0x7f) */
 
 /* --------------------------------  MBX_SMI_MASK
  * -------------------------------- */
-#define MBX_SMI_MASK_EC_WR_EN_Pos ( 0UL ) /*!< MBX SMI_MASK: EC_WR_EN (Bit 0) \
-                                           */
+#define MBX_SMI_MASK_EC_WR_EN_Pos               \
+    ( 0UL ) /*!< MBX SMI_MASK: EC_WR_EN (Bit 0) \
+             */
 #define MBX_SMI_MASK_EC_WR_EN_Msk \
     ( 0x1UL ) /*!< MBX SMI_MASK: EC_WR_EN (Bitfield-Mask: 0x01) */
 #define MBX_SMI_MASK_EC_SMI_EN_Pos \
@@ -4865,8 +4871,9 @@ typedef struct
 #define PM1_STS2_RTC_STS_Pos ( 2UL ) /*!< PM1 STS2: RTC_STS (Bit 2) */
 #define PM1_STS2_RTC_STS_Msk \
     ( 0x4UL ) /*!< PM1 STS2: RTC_STS (Bitfield-Mask: 0x01) */
-#define PM1_STS2_PWRBTNOR_STS_Pos ( 3UL ) /*!< PM1 STS2: PWRBTNOR_STS (Bit 3) \
-                                           */
+#define PM1_STS2_PWRBTNOR_STS_Pos               \
+    ( 3UL ) /*!< PM1 STS2: PWRBTNOR_STS (Bit 3) \
+             */
 #define PM1_STS2_PWRBTNOR_STS_Msk \
     ( 0x8UL ) /*!< PM1 STS2: PWRBTNOR_STS (Bitfield-Mask: 0x01) */
 #define PM1_STS2_WAK_STS_Pos ( 7UL ) /*!< PM1 STS2: WAK_STS (Bit 7) */
@@ -4887,8 +4894,9 @@ typedef struct
 
 /* ----------------------------------  PM1_CTRL2
  * --------------------------------- */
-#define PM1_CTRL2_PWRBTNOR_EN_Pos ( 1UL ) /*!< PM1 CTRL2: PWRBTNOR_EN (Bit 1) \
-                                           */
+#define PM1_CTRL2_PWRBTNOR_EN_Pos               \
+    ( 1UL ) /*!< PM1 CTRL2: PWRBTNOR_EN (Bit 1) \
+             */
 #define PM1_CTRL2_PWRBTNOR_EN_Msk \
     ( 0x2UL ) /*!< PM1 CTRL2: PWRBTNOR_EN (Bitfield-Mask: 0x01) */
 #define PM1_CTRL2_SLP_TYP_Pos ( 2UL ) /*!< PM1 CTRL2: SLP_TYP (Bit 2) */
@@ -5053,8 +5061,9 @@ typedef struct
     ( 0UL ) /*!< UART LINE_STS: DATA_READY (Bit 0) */
 #define UART_LINE_STS_DATA_READY_Msk \
     ( 0x1UL ) /*!< UART LINE_STS: DATA_READY (Bitfield-Mask: 0x01) */
-#define UART_LINE_STS_OVERRUN_Pos ( 1UL ) /*!< UART LINE_STS: OVERRUN (Bit 1) \
-                                           */
+#define UART_LINE_STS_OVERRUN_Pos               \
+    ( 1UL ) /*!< UART LINE_STS: OVERRUN (Bit 1) \
+             */
 #define UART_LINE_STS_OVERRUN_Msk \
     ( 0x2UL ) /*!< UART LINE_STS: OVERRUN (Bitfield-Mask: 0x01) */
 #define UART_LINE_STS_PE_Pos ( 2UL ) /*!< UART LINE_STS: PE (Bit 2) */
@@ -5509,8 +5518,9 @@ typedef struct
     ( 11UL ) /*!< GPIO PIN_CONTROL: POLARITY (Bit 11) */
 #define GPIO_PIN_CONTROL_POLARITY_Msk \
     ( 0x800UL ) /*!< GPIO PIN_CONTROL: POLARITY (Bitfield-Mask: 0x01) */
-#define GPIO_PIN_CONTROL_MUX_Pos ( 12UL ) /*!< GPIO PIN_CONTROL: MUX (Bit 12) \
-                                           */
+#define GPIO_PIN_CONTROL_MUX_Pos                 \
+    ( 12UL ) /*!< GPIO PIN_CONTROL: MUX (Bit 12) \
+              */
 #define GPIO_PIN_CONTROL_MUX_Msk \
     ( 0x3000UL ) /*!< GPIO PIN_CONTROL: MUX (Bitfield-Mask: 0x03) */
 #define GPIO_PIN_CONTROL_OUTPUT_Pos \
@@ -5813,8 +5823,9 @@ typedef struct
 #define SMB0_COMPLETION_SCEN_Pos ( 4UL ) /*!< SMB0 COMPLETION: SCEN (Bit 4) */
 #define SMB0_COMPLETION_SCEN_Msk \
     ( 0x10UL ) /*!< SMB0 COMPLETION: SCEN (Bitfield-Mask: 0x01) */
-#define SMB0_COMPLETION_BIDEN_Pos ( 5UL ) /*!< SMB0 COMPLETION: BIDEN (Bit 5) \
-                                           */
+#define SMB0_COMPLETION_BIDEN_Pos               \
+    ( 5UL ) /*!< SMB0 COMPLETION: BIDEN (Bit 5) \
+             */
 #define SMB0_COMPLETION_BIDEN_Msk \
     ( 0x20UL ) /*!< SMB0 COMPLETION: BIDEN (Bitfield-Mask: 0x01) */
 #define SMB0_COMPLETION_TIMERR_Pos \
@@ -5827,16 +5838,19 @@ typedef struct
 #define SMB0_COMPLETION_MCTO_Pos ( 9UL ) /*!< SMB0 COMPLETION: MCTO (Bit 9) */
 #define SMB0_COMPLETION_MCTO_Msk \
     ( 0x200UL ) /*!< SMB0 COMPLETION: MCTO (Bitfield-Mask: 0x01) */
-#define SMB0_COMPLETION_SCTO_Pos ( 10UL ) /*!< SMB0 COMPLETION: SCTO (Bit 10) \
-                                           */
+#define SMB0_COMPLETION_SCTO_Pos                 \
+    ( 10UL ) /*!< SMB0 COMPLETION: SCTO (Bit 10) \
+              */
 #define SMB0_COMPLETION_SCTO_Msk \
     ( 0x400UL ) /*!< SMB0 COMPLETION: SCTO (Bitfield-Mask: 0x01) */
-#define SMB0_COMPLETION_CHDL_Pos ( 11UL ) /*!< SMB0 COMPLETION: CHDL (Bit 11) \
-                                           */
+#define SMB0_COMPLETION_CHDL_Pos                 \
+    ( 11UL ) /*!< SMB0 COMPLETION: CHDL (Bit 11) \
+              */
 #define SMB0_COMPLETION_CHDL_Msk \
     ( 0x800UL ) /*!< SMB0 COMPLETION: CHDL (Bitfield-Mask: 0x01) */
-#define SMB0_COMPLETION_CHDH_Pos ( 12UL ) /*!< SMB0 COMPLETION: CHDH (Bit 12) \
-                                           */
+#define SMB0_COMPLETION_CHDH_Pos                 \
+    ( 12UL ) /*!< SMB0 COMPLETION: CHDH (Bit 12) \
+              */
 #define SMB0_COMPLETION_CHDH_Msk \
     ( 0x1000UL ) /*!< SMB0 COMPLETION: CHDH (Bitfield-Mask: 0x01) */
 #define SMB0_COMPLETION_BER_Pos ( 13UL ) /*!< SMB0 COMPLETION: BER (Bit 13) */
@@ -5871,8 +5885,9 @@ typedef struct
 #define SMB0_COMPLETION_MTR_Pos ( 25UL ) /*!< SMB0 COMPLETION: MTR (Bit 25) */
 #define SMB0_COMPLETION_MTR_Msk \
     ( 0x2000000UL ) /*!< SMB0 COMPLETION: MTR (Bitfield-Mask: 0x01) */
-#define SMB0_COMPLETION_IDLE_Pos ( 29UL ) /*!< SMB0 COMPLETION: IDLE (Bit 29) \
-                                           */
+#define SMB0_COMPLETION_IDLE_Pos                 \
+    ( 29UL ) /*!< SMB0 COMPLETION: IDLE (Bit 29) \
+              */
 #define SMB0_COMPLETION_IDLE_Msk \
     ( 0x20000000UL ) /*!< SMB0 COMPLETION: IDLE (Bitfield-Mask: 0x01) */
 #define SMB0_COMPLETION_MDONE_Pos \
@@ -6204,8 +6219,9 @@ typedef struct
 #define SMB1_COMPLETION_SCEN_Pos ( 4UL ) /*!< SMB1 COMPLETION: SCEN (Bit 4) */
 #define SMB1_COMPLETION_SCEN_Msk \
     ( 0x10UL ) /*!< SMB1 COMPLETION: SCEN (Bitfield-Mask: 0x01) */
-#define SMB1_COMPLETION_BIDEN_Pos ( 5UL ) /*!< SMB1 COMPLETION: BIDEN (Bit 5) \
-                                           */
+#define SMB1_COMPLETION_BIDEN_Pos               \
+    ( 5UL ) /*!< SMB1 COMPLETION: BIDEN (Bit 5) \
+             */
 #define SMB1_COMPLETION_BIDEN_Msk \
     ( 0x20UL ) /*!< SMB1 COMPLETION: BIDEN (Bitfield-Mask: 0x01) */
 #define SMB1_COMPLETION_TIMERR_Pos \
@@ -6218,16 +6234,19 @@ typedef struct
 #define SMB1_COMPLETION_MCTO_Pos ( 9UL ) /*!< SMB1 COMPLETION: MCTO (Bit 9) */
 #define SMB1_COMPLETION_MCTO_Msk \
     ( 0x200UL ) /*!< SMB1 COMPLETION: MCTO (Bitfield-Mask: 0x01) */
-#define SMB1_COMPLETION_SCTO_Pos ( 10UL ) /*!< SMB1 COMPLETION: SCTO (Bit 10) \
-                                           */
+#define SMB1_COMPLETION_SCTO_Pos                 \
+    ( 10UL ) /*!< SMB1 COMPLETION: SCTO (Bit 10) \
+              */
 #define SMB1_COMPLETION_SCTO_Msk \
     ( 0x400UL ) /*!< SMB1 COMPLETION: SCTO (Bitfield-Mask: 0x01) */
-#define SMB1_COMPLETION_CHDL_Pos ( 11UL ) /*!< SMB1 COMPLETION: CHDL (Bit 11) \
-                                           */
+#define SMB1_COMPLETION_CHDL_Pos                 \
+    ( 11UL ) /*!< SMB1 COMPLETION: CHDL (Bit 11) \
+              */
 #define SMB1_COMPLETION_CHDL_Msk \
     ( 0x800UL ) /*!< SMB1 COMPLETION: CHDL (Bitfield-Mask: 0x01) */
-#define SMB1_COMPLETION_CHDH_Pos ( 12UL ) /*!< SMB1 COMPLETION: CHDH (Bit 12) \
-                                           */
+#define SMB1_COMPLETION_CHDH_Pos                 \
+    ( 12UL ) /*!< SMB1 COMPLETION: CHDH (Bit 12) \
+              */
 #define SMB1_COMPLETION_CHDH_Msk \
     ( 0x1000UL ) /*!< SMB1 COMPLETION: CHDH (Bitfield-Mask: 0x01) */
 #define SMB1_COMPLETION_BER_Pos ( 13UL ) /*!< SMB1 COMPLETION: BER (Bit 13) */
@@ -6262,8 +6281,9 @@ typedef struct
 #define SMB1_COMPLETION_MTR_Pos ( 25UL ) /*!< SMB1 COMPLETION: MTR (Bit 25) */
 #define SMB1_COMPLETION_MTR_Msk \
     ( 0x2000000UL ) /*!< SMB1 COMPLETION: MTR (Bitfield-Mask: 0x01) */
-#define SMB1_COMPLETION_IDLE_Pos ( 29UL ) /*!< SMB1 COMPLETION: IDLE (Bit 29) \
-                                           */
+#define SMB1_COMPLETION_IDLE_Pos                 \
+    ( 29UL ) /*!< SMB1 COMPLETION: IDLE (Bit 29) \
+              */
 #define SMB1_COMPLETION_IDLE_Msk \
     ( 0x20000000UL ) /*!< SMB1 COMPLETION: IDLE (Bitfield-Mask: 0x01) */
 #define SMB1_COMPLETION_MDONE_Pos \
@@ -6595,8 +6615,9 @@ typedef struct
 #define SMB2_COMPLETION_SCEN_Pos ( 4UL ) /*!< SMB2 COMPLETION: SCEN (Bit 4) */
 #define SMB2_COMPLETION_SCEN_Msk \
     ( 0x10UL ) /*!< SMB2 COMPLETION: SCEN (Bitfield-Mask: 0x01) */
-#define SMB2_COMPLETION_BIDEN_Pos ( 5UL ) /*!< SMB2 COMPLETION: BIDEN (Bit 5) \
-                                           */
+#define SMB2_COMPLETION_BIDEN_Pos               \
+    ( 5UL ) /*!< SMB2 COMPLETION: BIDEN (Bit 5) \
+             */
 #define SMB2_COMPLETION_BIDEN_Msk \
     ( 0x20UL ) /*!< SMB2 COMPLETION: BIDEN (Bitfield-Mask: 0x01) */
 #define SMB2_COMPLETION_TIMERR_Pos \
@@ -6609,16 +6630,19 @@ typedef struct
 #define SMB2_COMPLETION_MCTO_Pos ( 9UL ) /*!< SMB2 COMPLETION: MCTO (Bit 9) */
 #define SMB2_COMPLETION_MCTO_Msk \
     ( 0x200UL ) /*!< SMB2 COMPLETION: MCTO (Bitfield-Mask: 0x01) */
-#define SMB2_COMPLETION_SCTO_Pos ( 10UL ) /*!< SMB2 COMPLETION: SCTO (Bit 10) \
-                                           */
+#define SMB2_COMPLETION_SCTO_Pos                 \
+    ( 10UL ) /*!< SMB2 COMPLETION: SCTO (Bit 10) \
+              */
 #define SMB2_COMPLETION_SCTO_Msk \
     ( 0x400UL ) /*!< SMB2 COMPLETION: SCTO (Bitfield-Mask: 0x01) */
-#define SMB2_COMPLETION_CHDL_Pos ( 11UL ) /*!< SMB2 COMPLETION: CHDL (Bit 11) \
-                                           */
+#define SMB2_COMPLETION_CHDL_Pos                 \
+    ( 11UL ) /*!< SMB2 COMPLETION: CHDL (Bit 11) \
+              */
 #define SMB2_COMPLETION_CHDL_Msk \
     ( 0x800UL ) /*!< SMB2 COMPLETION: CHDL (Bitfield-Mask: 0x01) */
-#define SMB2_COMPLETION_CHDH_Pos ( 12UL ) /*!< SMB2 COMPLETION: CHDH (Bit 12) \
-                                           */
+#define SMB2_COMPLETION_CHDH_Pos                 \
+    ( 12UL ) /*!< SMB2 COMPLETION: CHDH (Bit 12) \
+              */
 #define SMB2_COMPLETION_CHDH_Msk \
     ( 0x1000UL ) /*!< SMB2 COMPLETION: CHDH (Bitfield-Mask: 0x01) */
 #define SMB2_COMPLETION_BER_Pos ( 13UL ) /*!< SMB2 COMPLETION: BER (Bit 13) */
@@ -6653,8 +6677,9 @@ typedef struct
 #define SMB2_COMPLETION_MTR_Pos ( 25UL ) /*!< SMB2 COMPLETION: MTR (Bit 25) */
 #define SMB2_COMPLETION_MTR_Msk \
     ( 0x2000000UL ) /*!< SMB2 COMPLETION: MTR (Bitfield-Mask: 0x01) */
-#define SMB2_COMPLETION_IDLE_Pos ( 29UL ) /*!< SMB2 COMPLETION: IDLE (Bit 29) \
-                                           */
+#define SMB2_COMPLETION_IDLE_Pos                 \
+    ( 29UL ) /*!< SMB2 COMPLETION: IDLE (Bit 29) \
+              */
 #define SMB2_COMPLETION_IDLE_Msk \
     ( 0x20000000UL ) /*!< SMB2 COMPLETION: IDLE (Bitfield-Mask: 0x01) */
 #define SMB2_COMPLETION_MDONE_Pos \
@@ -6986,8 +7011,9 @@ typedef struct
 #define SMB3_COMPLETION_SCEN_Pos ( 4UL ) /*!< SMB3 COMPLETION: SCEN (Bit 4) */
 #define SMB3_COMPLETION_SCEN_Msk \
     ( 0x10UL ) /*!< SMB3 COMPLETION: SCEN (Bitfield-Mask: 0x01) */
-#define SMB3_COMPLETION_BIDEN_Pos ( 5UL ) /*!< SMB3 COMPLETION: BIDEN (Bit 5) \
-                                           */
+#define SMB3_COMPLETION_BIDEN_Pos               \
+    ( 5UL ) /*!< SMB3 COMPLETION: BIDEN (Bit 5) \
+             */
 #define SMB3_COMPLETION_BIDEN_Msk \
     ( 0x20UL ) /*!< SMB3 COMPLETION: BIDEN (Bitfield-Mask: 0x01) */
 #define SMB3_COMPLETION_TIMERR_Pos \
@@ -7000,16 +7026,19 @@ typedef struct
 #define SMB3_COMPLETION_MCTO_Pos ( 9UL ) /*!< SMB3 COMPLETION: MCTO (Bit 9) */
 #define SMB3_COMPLETION_MCTO_Msk \
     ( 0x200UL ) /*!< SMB3 COMPLETION: MCTO (Bitfield-Mask: 0x01) */
-#define SMB3_COMPLETION_SCTO_Pos ( 10UL ) /*!< SMB3 COMPLETION: SCTO (Bit 10) \
-                                           */
+#define SMB3_COMPLETION_SCTO_Pos                 \
+    ( 10UL ) /*!< SMB3 COMPLETION: SCTO (Bit 10) \
+              */
 #define SMB3_COMPLETION_SCTO_Msk \
     ( 0x400UL ) /*!< SMB3 COMPLETION: SCTO (Bitfield-Mask: 0x01) */
-#define SMB3_COMPLETION_CHDL_Pos ( 11UL ) /*!< SMB3 COMPLETION: CHDL (Bit 11) \
-                                           */
+#define SMB3_COMPLETION_CHDL_Pos                 \
+    ( 11UL ) /*!< SMB3 COMPLETION: CHDL (Bit 11) \
+              */
 #define SMB3_COMPLETION_CHDL_Msk \
     ( 0x800UL ) /*!< SMB3 COMPLETION: CHDL (Bitfield-Mask: 0x01) */
-#define SMB3_COMPLETION_CHDH_Pos ( 12UL ) /*!< SMB3 COMPLETION: CHDH (Bit 12) \
-                                           */
+#define SMB3_COMPLETION_CHDH_Pos                 \
+    ( 12UL ) /*!< SMB3 COMPLETION: CHDH (Bit 12) \
+              */
 #define SMB3_COMPLETION_CHDH_Msk \
     ( 0x1000UL ) /*!< SMB3 COMPLETION: CHDH (Bitfield-Mask: 0x01) */
 #define SMB3_COMPLETION_BER_Pos ( 13UL ) /*!< SMB3 COMPLETION: BER (Bit 13) */
@@ -7044,8 +7073,9 @@ typedef struct
 #define SMB3_COMPLETION_MTR_Pos ( 25UL ) /*!< SMB3 COMPLETION: MTR (Bit 25) */
 #define SMB3_COMPLETION_MTR_Msk \
     ( 0x2000000UL ) /*!< SMB3 COMPLETION: MTR (Bitfield-Mask: 0x01) */
-#define SMB3_COMPLETION_IDLE_Pos ( 29UL ) /*!< SMB3 COMPLETION: IDLE (Bit 29) \
-                                           */
+#define SMB3_COMPLETION_IDLE_Pos                 \
+    ( 29UL ) /*!< SMB3 COMPLETION: IDLE (Bit 29) \
+              */
 #define SMB3_COMPLETION_IDLE_Msk \
     ( 0x20000000UL ) /*!< SMB3 COMPLETION: IDLE (Bitfield-Mask: 0x01) */
 #define SMB3_COMPLETION_MDONE_Pos \
@@ -7374,8 +7404,9 @@ typedef struct
     ( 10UL ) /*!< TACH_0 CONTROL: MODE_SELECT (Bit 10) */
 #define TACH_0_CONTROL_MODE_SELECT_Msk \
     ( 0x400UL ) /*!< TACH_0 CONTROL: MODE_SELECT (Bitfield-Mask: 0x01) */
-#define TACH_0_CONTROL_EDGES_Pos ( 11UL ) /*!< TACH_0 CONTROL: EDGES (Bit 11) \
-                                           */
+#define TACH_0_CONTROL_EDGES_Pos                 \
+    ( 11UL ) /*!< TACH_0 CONTROL: EDGES (Bit 11) \
+              */
 #define TACH_0_CONTROL_EDGES_Msk \
     ( 0x1800UL ) /*!< TACH_0 CONTROL: EDGES (Bitfield-Mask: 0x03) */
 #define TACH_0_CONTROL_READY_INT_EN_Pos \
@@ -7432,8 +7463,9 @@ typedef struct
     ( 10UL ) /*!< TACH_1 CONTROL: MODE_SELECT (Bit 10) */
 #define TACH_1_CONTROL_MODE_SELECT_Msk \
     ( 0x400UL ) /*!< TACH_1 CONTROL: MODE_SELECT (Bitfield-Mask: 0x01) */
-#define TACH_1_CONTROL_EDGES_Pos ( 11UL ) /*!< TACH_1 CONTROL: EDGES (Bit 11) \
-                                           */
+#define TACH_1_CONTROL_EDGES_Pos                 \
+    ( 11UL ) /*!< TACH_1 CONTROL: EDGES (Bit 11) \
+              */
 #define TACH_1_CONTROL_EDGES_Msk \
     ( 0x1800UL ) /*!< TACH_1 CONTROL: EDGES (Bitfield-Mask: 0x03) */
 #define TACH_1_CONTROL_READY_INT_EN_Pos \
@@ -7795,8 +7827,9 @@ typedef struct
     ( 3UL ) /*!< LED_0 CONFIG: SYNCHRONIZE (Bit 3) */
 #define LED_0_CONFIG_SYNCHRONIZE_Msk \
     ( 0x8UL ) /*!< LED_0 CONFIG: SYNCHRONIZE (Bitfield-Mask: 0x01) */
-#define LED_0_CONFIG_PWM_SIZE_Pos ( 4UL ) /*!< LED_0 CONFIG: PWM_SIZE (Bit 4) \
-                                           */
+#define LED_0_CONFIG_PWM_SIZE_Pos               \
+    ( 4UL ) /*!< LED_0 CONFIG: PWM_SIZE (Bit 4) \
+             */
 #define LED_0_CONFIG_PWM_SIZE_Msk \
     ( 0x30UL ) /*!< LED_0 CONFIG: PWM_SIZE (Bitfield-Mask: 0x03) */
 #define LED_0_CONFIG_ENABLE_UPDATE_Pos \
@@ -7928,8 +7961,9 @@ typedef struct
     ( 3UL ) /*!< LED_1 CONFIG: SYNCHRONIZE (Bit 3) */
 #define LED_1_CONFIG_SYNCHRONIZE_Msk \
     ( 0x8UL ) /*!< LED_1 CONFIG: SYNCHRONIZE (Bitfield-Mask: 0x01) */
-#define LED_1_CONFIG_PWM_SIZE_Pos ( 4UL ) /*!< LED_1 CONFIG: PWM_SIZE (Bit 4) \
-                                           */
+#define LED_1_CONFIG_PWM_SIZE_Pos               \
+    ( 4UL ) /*!< LED_1 CONFIG: PWM_SIZE (Bit 4) \
+             */
 #define LED_1_CONFIG_PWM_SIZE_Msk \
     ( 0x30UL ) /*!< LED_1 CONFIG: PWM_SIZE (Bitfield-Mask: 0x03) */
 #define LED_1_CONFIG_ENABLE_UPDATE_Pos \
@@ -8061,8 +8095,9 @@ typedef struct
     ( 3UL ) /*!< LED_2 CONFIG: SYNCHRONIZE (Bit 3) */
 #define LED_2_CONFIG_SYNCHRONIZE_Msk \
     ( 0x8UL ) /*!< LED_2 CONFIG: SYNCHRONIZE (Bitfield-Mask: 0x01) */
-#define LED_2_CONFIG_PWM_SIZE_Pos ( 4UL ) /*!< LED_2 CONFIG: PWM_SIZE (Bit 4) \
-                                           */
+#define LED_2_CONFIG_PWM_SIZE_Pos               \
+    ( 4UL ) /*!< LED_2 CONFIG: PWM_SIZE (Bit 4) \
+             */
 #define LED_2_CONFIG_PWM_SIZE_Msk \
     ( 0x30UL ) /*!< LED_2 CONFIG: PWM_SIZE (Bitfield-Mask: 0x03) */
 #define LED_2_CONFIG_ENABLE_UPDATE_Pos \
@@ -8194,8 +8229,9 @@ typedef struct
     ( 3UL ) /*!< LED_3 CONFIG: SYNCHRONIZE (Bit 3) */
 #define LED_3_CONFIG_SYNCHRONIZE_Msk \
     ( 0x8UL ) /*!< LED_3 CONFIG: SYNCHRONIZE (Bitfield-Mask: 0x01) */
-#define LED_3_CONFIG_PWM_SIZE_Pos ( 4UL ) /*!< LED_3 CONFIG: PWM_SIZE (Bit 4) \
-                                           */
+#define LED_3_CONFIG_PWM_SIZE_Pos               \
+    ( 4UL ) /*!< LED_3 CONFIG: PWM_SIZE (Bit 4) \
+             */
 #define LED_3_CONFIG_PWM_SIZE_Msk \
     ( 0x30UL ) /*!< LED_3 CONFIG: PWM_SIZE (Bitfield-Mask: 0x03) */
 #define LED_3_CONFIG_ENABLE_UPDATE_Pos \
@@ -8580,15 +8616,17 @@ typedef struct
 #define TFDP_CONTROL_EN_Pos ( 0UL ) /*!< TFDP CONTROL: EN (Bit 0) */
 #define TFDP_CONTROL_EN_Msk \
     ( 0x1UL ) /*!< TFDP CONTROL: EN (Bitfield-Mask: 0x01) */
-#define TFDP_CONTROL_EDGE_SEL_Pos ( 1UL ) /*!< TFDP CONTROL: EDGE_SEL (Bit 1) \
-                                           */
+#define TFDP_CONTROL_EDGE_SEL_Pos               \
+    ( 1UL ) /*!< TFDP CONTROL: EDGE_SEL (Bit 1) \
+             */
 #define TFDP_CONTROL_EDGE_SEL_Msk \
     ( 0x2UL ) /*!< TFDP CONTROL: EDGE_SEL (Bitfield-Mask: 0x01) */
 #define TFDP_CONTROL_DIVSEL_Pos ( 2UL ) /*!< TFDP CONTROL: DIVSEL (Bit 2) */
 #define TFDP_CONTROL_DIVSEL_Msk \
     ( 0xcUL ) /*!< TFDP CONTROL: DIVSEL (Bitfield-Mask: 0x03) */
-#define TFDP_CONTROL_IP_DELAY_Pos ( 4UL ) /*!< TFDP CONTROL: IP_DELAY (Bit 4) \
-                                           */
+#define TFDP_CONTROL_IP_DELAY_Pos               \
+    ( 4UL ) /*!< TFDP CONTROL: IP_DELAY (Bit 4) \
+             */
 #define TFDP_CONTROL_IP_DELAY_Msk \
     ( 0x70UL ) /*!< TFDP CONTROL: IP_DELAY (Bitfield-Mask: 0x07) */
 

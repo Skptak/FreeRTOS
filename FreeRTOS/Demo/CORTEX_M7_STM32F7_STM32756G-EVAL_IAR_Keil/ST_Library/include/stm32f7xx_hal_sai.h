@@ -271,10 +271,12 @@ typedef struct __SAI_HandleTypeDef
      * @{
      */
     #define HAL_SAI_ERROR_NONE ( ( uint32_t ) 0x00000000 ) /*!< No error */
-    #define HAL_SAI_ERROR_OVR  ( ( uint32_t ) 0x00000001 ) /*!< Overrun Error \
-                                                            */
-    #define HAL_SAI_ERROR_UDR  ( ( uint32_t ) 0x00000002 ) /*!< Underrun error \
-                                                            */
+    #define HAL_SAI_ERROR_OVR                          \
+        ( ( uint32_t ) 0x00000001 ) /*!< Overrun Error \
+                                     */
+    #define HAL_SAI_ERROR_UDR                           \
+        ( ( uint32_t ) 0x00000002 ) /*!< Underrun error \
+                                     */
     #define HAL_SAI_ERROR_AFSDET                                           \
         ( ( uint32_t ) 0x00000004 ) /*!< Anticipated Frame synchronisation \
                                        detection */

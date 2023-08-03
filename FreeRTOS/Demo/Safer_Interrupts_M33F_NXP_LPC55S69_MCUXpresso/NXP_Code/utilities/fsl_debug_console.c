@@ -122,8 +122,8 @@ static volatile bool s_debugConsoleReadWaitSemaphore;
 #if( DEBUG_CONSOLE_SYNCHRONIZATION_MODE == \
      DEBUG_CONSOLE_SYNCHRONIZATION_FREERTOS )
 
-/* mutex semaphore */
-/* clang-format off */
+    /* mutex semaphore */
+    /* clang-format off */
 #if configSUPPORT_STATIC_ALLOCATION
 #define DEBUG_CONSOLE_CREATE_MUTEX_SEMAPHORE(mutex, stack) ((mutex) = xSemaphoreCreateMutexStatic(stack))
 #else

@@ -101,8 +101,8 @@ typedef struct
                                        value between 0 and 7 */
     uint32_t DelayBlockBypass;      /* It enables the delay block bypass, so the
                                        sampling is not affected      by the delay
-                                       block.      This parameter can be a value of @ref
-                                       OSPI_DelayBlockBypass */
+                                       block.      This parameter can be a value of
+                                       @ref      OSPI_DelayBlockBypass */
     uint32_t MaxTran; /* It enables the communication regulation feature. The
                          chip select is released every MaxTran+1 bytes when the
                          other OctoSPI request the access to the bus. This

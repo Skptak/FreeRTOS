@@ -25192,9 +25192,10 @@ typedef struct
     #define SAI_xCLRFR_CFREQ      SAI_xCLRFR_CFREQ_Msk /*!<Clear FIFO request */
     #define SAI_xCLRFR_CCNRDY_Pos ( 4U )
     #define SAI_xCLRFR_CCNRDY_Msk \
-        ( 0x1UL << SAI_xCLRFR_CCNRDY_Pos )               /*!< 0x00000010 */
-    #define SAI_xCLRFR_CCNRDY      SAI_xCLRFR_CCNRDY_Msk /*!<Clear Codec not ready \
-                                                          */
+        ( 0x1UL << SAI_xCLRFR_CCNRDY_Pos ) /*!< 0x00000010 */
+    #define SAI_xCLRFR_CCNRDY                           \
+        SAI_xCLRFR_CCNRDY_Msk /*!<Clear Codec not ready \
+                               */
     #define SAI_xCLRFR_CAFSDET_Pos ( 5U )
     #define SAI_xCLRFR_CAFSDET_Msk \
         ( 0x1UL << SAI_xCLRFR_CAFSDET_Pos ) /*!< 0x00000020 */
@@ -25774,9 +25775,10 @@ typedef struct
                                    response detected                  */
     #define SDMMC_STA_SDIOIT_Pos ( 22U )
     #define SDMMC_STA_SDIOIT_Msk \
-        ( 0x1UL << SDMMC_STA_SDIOIT_Pos )              /*!< 0x00400000 */
-    #define SDMMC_STA_SDIOIT      SDMMC_STA_SDIOIT_Msk /*!<SDIO interrupt received \
-                                                        */
+        ( 0x1UL << SDMMC_STA_SDIOIT_Pos ) /*!< 0x00400000 */
+    #define SDMMC_STA_SDIOIT                             \
+        SDMMC_STA_SDIOIT_Msk /*!<SDIO interrupt received \
+                              */
     #define SDMMC_STA_ACKFAIL_Pos ( 23U )
     #define SDMMC_STA_ACKFAIL_Msk \
         ( 0x1UL << SDMMC_STA_ACKFAIL_Pos ) /*!< 0x00800000 */
@@ -26743,9 +26745,10 @@ typedef struct
         SPI_I2SCFGR_FIXCH_Msk /*!<Fixed channel length in SLAVE */
     #define SPI_I2SCFGR_WSINV_Pos ( 13U )
     #define SPI_I2SCFGR_WSINV_Msk \
-        ( 0x1UL << SPI_I2SCFGR_WSINV_Pos )               /*!< 0x00002000 */
-    #define SPI_I2SCFGR_WSINV      SPI_I2SCFGR_WSINV_Msk /*!<Word select inversion \
-                                                          */
+        ( 0x1UL << SPI_I2SCFGR_WSINV_Pos ) /*!< 0x00002000 */
+    #define SPI_I2SCFGR_WSINV                           \
+        SPI_I2SCFGR_WSINV_Msk /*!<Word select inversion \
+                               */
     #define SPI_I2SCFGR_DATFMT_Pos ( 14U )
     #define SPI_I2SCFGR_DATFMT_Msk \
         ( 0x1UL << SPI_I2SCFGR_DATFMT_Pos )               /*!< 0x00004000 */
@@ -31148,9 +31151,10 @@ typedef struct
     #define SWPMI_CR_TXDMA      SWPMI_CR_TXDMA_Msk /*!<Transmission DMA enable */
     #define SWPMI_CR_RXMODE_Pos ( 2U )
     #define SWPMI_CR_RXMODE_Msk \
-        ( 0x1UL << SWPMI_CR_RXMODE_Pos )            /*!< 0x00000004 */
-    #define SWPMI_CR_RXMODE     SWPMI_CR_RXMODE_Msk /*!<Reception buffering mode \
-                                                     */
+        ( 0x1UL << SWPMI_CR_RXMODE_Pos ) /*!< 0x00000004 */
+    #define SWPMI_CR_RXMODE                              \
+        SWPMI_CR_RXMODE_Msk /*!<Reception buffering mode \
+                             */
     #define SWPMI_CR_TXMODE_Pos ( 3U )
     #define SWPMI_CR_TXMODE_Msk \
         ( 0x1UL << SWPMI_CR_TXMODE_Pos ) /*!< 0x00000008 */
@@ -32599,8 +32603,9 @@ typedef struct
     #define USB_OTG_GINTSTS_USBRST_Pos ( 12U )
     #define USB_OTG_GINTSTS_USBRST_Msk \
         ( 0x1UL << USB_OTG_GINTSTS_USBRST_Pos ) /*!< 0x00001000 */
-    #define USB_OTG_GINTSTS_USBRST      USB_OTG_GINTSTS_USBRST_Msk /*!< USB reset \
-                                                                    */
+    #define USB_OTG_GINTSTS_USBRST                \
+        USB_OTG_GINTSTS_USBRST_Msk /*!< USB reset \
+                                    */
     #define USB_OTG_GINTSTS_ENUMDNE_Pos ( 13U )
     #define USB_OTG_GINTSTS_ENUMDNE_Msk \
         ( 0x1UL << USB_OTG_GINTSTS_ENUMDNE_Pos ) /*!< 0x00002000 */

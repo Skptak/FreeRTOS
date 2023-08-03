@@ -217,8 +217,9 @@ typedef struct
         #define HASH_FLAG_DINIS                                               \
             HASH_SR_DINIS /*!< 16 locations are free in the DIN : A new block \
                              can be entered into the input buffer */
-        #define HASH_FLAG_DCIS HASH_SR_DCIS /*!< Digest calculation complete \
-                                             */
+        #define HASH_FLAG_DCIS                            \
+            HASH_SR_DCIS /*!< Digest calculation complete \
+                          */
         #define HASH_FLAG_DMAS                                                \
             HASH_SR_DMAS /*!< DMA interface is enabled (DMAE=1) or a transfer \
                             is ongoing                          */

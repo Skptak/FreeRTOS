@@ -1251,15 +1251,17 @@ typedef struct
         #define InterruptType                                                  \
             ( ( InterruptType_Type * ) SCS_BASE ) /*!< Interrupt Type Register \
                                                    */
-        #define SCB ( ( SCB_Type * ) SCB_BASE ) /*!< SCB configuration struct \
-                                                 */
+        #define SCB                                                   \
+            ( ( SCB_Type * ) SCB_BASE ) /*!< SCB configuration struct \
+                                         */
         #define SysTick                                                    \
             ( ( SysTick_Type * ) SysTick_BASE ) /*!< SysTick configuration \
                                                    struct      */
         #define NVIC \
             ( ( NVIC_Type * ) NVIC_BASE ) /*!< NVIC configuration struct */
-        #define ITM ( ( ITM_Type * ) ITM_BASE ) /*!< ITM configuration struct \
-                                                 */
+        #define ITM                                                   \
+            ( ( ITM_Type * ) ITM_BASE ) /*!< ITM configuration struct \
+                                         */
         #define CoreDebug                                           \
             ( ( CoreDebug_Type * ) CoreDebug_BASE ) /*!< Core Debug \
                                                        configuration struct */
@@ -1272,10 +1274,12 @@ typedef struct
         #endif
 
         #if( __FPU_PRESENT == 1 )
-            #define FPU_BASE ( SCS_BASE + 0x0F30UL ) /*!< Floating Point Unit \
-                                                      */
-            #define FPU      ( ( FPU_Type * ) FPU_BASE ) /*!< Floating Point Unit \
-                                                          */
+            #define FPU_BASE                                     \
+                ( SCS_BASE + 0x0F30UL ) /*!< Floating Point Unit \
+                                         */
+            #define FPU                                              \
+                ( ( FPU_Type * ) FPU_BASE ) /*!< Floating Point Unit \
+                                             */
         #endif
 
 /*@} */

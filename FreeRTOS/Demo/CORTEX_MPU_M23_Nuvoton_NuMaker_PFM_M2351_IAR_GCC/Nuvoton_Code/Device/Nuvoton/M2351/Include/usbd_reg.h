@@ -771,9 +771,10 @@ typedef struct
     ( 0x1ul << USBD_LPMATTR_LPMRWAKUP_Pos ) /*!< USBD_T::LPMATTR: LPMRWAKUP \
                                                Mask        */
 
-#define USBD_FN_FN_Pos   ( 0 ) /*!< USBD_T::FN: FN Position                */
-#define USBD_FN_FN_Msk   ( 0x7fful << USBD_FN_FN_Pos ) /*!< USBD_T::FN: FN Mask \
-                                                        */
+#define USBD_FN_FN_Pos ( 0 ) /*!< USBD_T::FN: FN Position                */
+#define USBD_FN_FN_Msk                                     \
+    ( 0x7fful << USBD_FN_FN_Pos ) /*!< USBD_T::FN: FN Mask \
+                                   */
 
 #define USBD_SE0_SE0_Pos ( 0 ) /*!< USBD_T::SE0: SE0 Position              */
 #define USBD_SE0_SE0_Msk \

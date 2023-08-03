@@ -799,9 +799,10 @@ typedef struct
     Constant Definitions for SC Controller
 @{ */
 
-#define SC_DAT_DAT_Pos  ( 0 ) /*!< SC_T::DAT: DAT Position                */
-#define SC_DAT_DAT_Msk  ( 0xfful << SC_DAT_DAT_Pos ) /*!< SC_T::DAT: DAT Mask \
-                                                      */
+#define SC_DAT_DAT_Pos ( 0 ) /*!< SC_T::DAT: DAT Position                */
+#define SC_DAT_DAT_Msk                                    \
+    ( 0xfful << SC_DAT_DAT_Pos ) /*!< SC_T::DAT: DAT Mask \
+                                  */
 
 #define SC_CTL_SCEN_Pos ( 0 ) /*!< SC_T::CTL: SCEN Position               */
 #define SC_CTL_SCEN_Msk \
@@ -827,9 +828,10 @@ typedef struct
 #define SC_CTL_RXTRGLV_Msk \
     ( 0x3ul << SC_CTL_RXTRGLV_Pos ) /*!< SC_T::CTL: RXTRGLV Mask */
 
-#define SC_CTL_BGT_Pos    ( 8 ) /*!< SC_T::CTL: BGT Position                */
-#define SC_CTL_BGT_Msk    ( 0x1ful << SC_CTL_BGT_Pos ) /*!< SC_T::CTL: BGT Mask \
-                                                        */
+#define SC_CTL_BGT_Pos ( 8 ) /*!< SC_T::CTL: BGT Position                */
+#define SC_CTL_BGT_Msk                                    \
+    ( 0x1ful << SC_CTL_BGT_Pos ) /*!< SC_T::CTL: BGT Mask \
+                                  */
 
 #define SC_CTL_TMRSEL_Pos ( 13 ) /*!< SC_T::CTL: TMRSEL Position */
 #define SC_CTL_TMRSEL_Msk \
@@ -938,9 +940,10 @@ typedef struct
 #define SC_ALTCTL_SYNC_Msk \
     ( 0x1ul << SC_ALTCTL_SYNC_Pos ) /*!< SC_T::ALTCTL: SYNC Mask */
 
-#define SC_EGT_EGT_Pos     ( 0 ) /*!< SC_T::EGT: EGT Position                */
-#define SC_EGT_EGT_Msk     ( 0xfful << SC_EGT_EGT_Pos ) /*!< SC_T::EGT: EGT Mask \
-                                                         */
+#define SC_EGT_EGT_Pos ( 0 ) /*!< SC_T::EGT: EGT Position                */
+#define SC_EGT_EGT_Msk                                    \
+    ( 0xfful << SC_EGT_EGT_Pos ) /*!< SC_T::EGT: EGT Mask \
+                                  */
 
 #define SC_RXTOUT_RFTM_Pos ( 0 ) /*!< SC_T::RXTOUT: RFTM Position */
 #define SC_RXTOUT_RFTM_Msk \

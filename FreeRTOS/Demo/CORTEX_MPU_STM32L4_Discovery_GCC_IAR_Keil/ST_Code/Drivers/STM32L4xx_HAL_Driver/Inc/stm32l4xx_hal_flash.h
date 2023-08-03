@@ -71,8 +71,8 @@ typedef struct
                             of @ref FLASH_OB_Type */
     uint32_t WRPArea;    /*!< Write protection area to be programmed (used for
                             OPTIONBYTE_WRP).    Only one WRP area could be
-                            programmed    at the same time.    This parameter can be
-                            value of @ref    FLASH_OB_WRP_Area */
+                            programmed    at the same time.    This parameter can
+                            be    value of @ref    FLASH_OB_WRP_Area */
     uint32_t WRPStartOffset; /*!< Write protection start offset (used for
                                 OPTIONBYTE_WRP). This parameter must be a value
                                 between 0 and (max number of pages in the bank -

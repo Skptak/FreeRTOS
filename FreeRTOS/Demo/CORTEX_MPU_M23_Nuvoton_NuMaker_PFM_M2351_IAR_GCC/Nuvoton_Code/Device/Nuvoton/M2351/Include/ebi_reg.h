@@ -114,9 +114,10 @@ typedef struct
     Constant Definitions for EBI Controller
 @{ */
 
-#define EBI_CTL_EN_Pos   ( 0 ) /*!< EBI_T::CTL0: EN Position                  */
-#define EBI_CTL_EN_Msk   ( 0x1ul << EBI_CTL_EN_Pos ) /*!< EBI_T::CTL0: EN Mask \
-                                                      */
+#define EBI_CTL_EN_Pos ( 0 ) /*!< EBI_T::CTL0: EN Position                  */
+#define EBI_CTL_EN_Msk                                    \
+    ( 0x1ul << EBI_CTL_EN_Pos ) /*!< EBI_T::CTL0: EN Mask \
+                                 */
 
 #define EBI_CTL_DW16_Pos ( 1 ) /*!< EBI_T::CTL0: DW16 Position */
 #define EBI_CTL_DW16_Msk \

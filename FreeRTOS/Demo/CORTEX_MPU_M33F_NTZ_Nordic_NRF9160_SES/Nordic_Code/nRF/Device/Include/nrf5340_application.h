@@ -1449,9 +1449,9 @@ typedef struct
     __IOM uint32_t ERASESTATUS; /*!< (@ 0x0000051C) Cache erase status. */
     __IOM uint32_t WRITELOCK;   /*!< (@ 0x00000520) Lock cache updates. Prevents
                                    updating of cache   content on cache misses,
-                                   but   will continue   to lookup instruction/data
-                                   fetches in content   already present in the
-                                   cache. Ignored in   RAM mode.   */
+                                   but   will continue   to lookup
+                                   instruction/data   fetches in content   already
+                                   present in the   cache. Ignored in   RAM mode.   */
 } NRF_CACHE_Type;               /*!< Size = 1316 (0x524)               */
 
 /* ===========================================================================================================================

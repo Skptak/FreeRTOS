@@ -759,8 +759,9 @@ typedef struct
         #define SCnSCB                                                         \
             ( ( SCnSCB_Type * ) SCS_BASE ) /*!< System control Register not in \
                                               SCB */
-        #define SCB ( ( SCB_Type * ) SCB_BASE ) /*!< SCB configuration struct \
-                                                 */
+        #define SCB                                                   \
+            ( ( SCB_Type * ) SCB_BASE ) /*!< SCB configuration struct \
+                                         */
         #define SysTick                                                    \
             ( ( SysTick_Type * ) SysTick_BASE ) /*!< SysTick configuration \
                                                    struct       */

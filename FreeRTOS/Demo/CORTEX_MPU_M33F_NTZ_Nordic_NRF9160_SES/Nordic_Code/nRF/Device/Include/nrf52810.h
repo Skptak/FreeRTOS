@@ -230,8 +230,9 @@ typedef struct
     __IOM uint32_t POWER;   /*!< (@ 0x00000000) Description cluster: RAMn power
                                control register.   The RAM size will vary
                                depending   on product   variant, and the RAMn
-                               register will only   be present if the corresponding
-                               RAM AHB   slave is present on the device.   */
+                               register will only   be present if the
+                               corresponding   RAM AHB   slave is present on the
+                               device.   */
     __OM uint32_t POWERSET; /*!< (@ 0x00000004) Description cluster: RAMn power
                                control set register       */
     __OM uint32_t POWERCLR; /*!< (@ 0x00000008) Description cluster: RAMn power

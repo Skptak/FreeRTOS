@@ -478,8 +478,9 @@ typedef struct __MDMA_HandleTypeDef
                                             Transfer complete Flag        */
     #endif                               /* OCTOSPI2 */
 
-    #define MDMA_REQUEST_SW ( ( uint32_t ) 0x40000000U ) /*!< MDMA SW request \
-                                                          */
+    #define MDMA_REQUEST_SW                               \
+        ( ( uint32_t ) 0x40000000U ) /*!< MDMA SW request \
+                                      */
 
     /**
      * @}

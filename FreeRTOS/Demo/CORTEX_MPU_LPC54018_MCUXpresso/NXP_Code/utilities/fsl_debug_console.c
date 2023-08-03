@@ -108,8 +108,8 @@ static volatile uint8_t s_debugConsoleReadWaitSemaphore;
 #if( DEBUG_CONSOLE_SYNCHRONIZATION_MODE == \
      DEBUG_CONSOLE_SYNCHRONIZATION_FREERTOS )
 
-/* mutex semaphore */
-/* clang-format off */
+    /* mutex semaphore */
+    /* clang-format off */
 #define DEBUG_CONSOLE_CREATE_MUTEX_SEMAPHORE(mutex) ((mutex) = xSemaphoreCreateMutex())
 #define DEBUG_CONSOLE_DESTROY_MUTEX_SEMAPHORE(mutex)   \
         do                                             \

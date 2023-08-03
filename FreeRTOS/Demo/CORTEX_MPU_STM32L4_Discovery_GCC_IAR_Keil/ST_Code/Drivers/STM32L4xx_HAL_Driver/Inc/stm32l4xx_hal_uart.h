@@ -885,8 +885,9 @@ typedef void ( *pUART_CallbackTypeDef )(
     #if defined( USART_CR1_FIFOEN )
         #define UART_FLAG_TXE \
             USART_ISR_TXE_TXFNF /*!< UART transmit data register empty */
-        #define UART_FLAG_TXFNF USART_ISR_TXE_TXFNF /*!< UART TXFIFO not full \
-                                                     */
+        #define UART_FLAG_TXFNF                           \
+            USART_ISR_TXE_TXFNF /*!< UART TXFIFO not full \
+                                 */
     #else
         #define UART_FLAG_TXE \
             USART_ISR_TXE /*!< UART transmit data register empty         */

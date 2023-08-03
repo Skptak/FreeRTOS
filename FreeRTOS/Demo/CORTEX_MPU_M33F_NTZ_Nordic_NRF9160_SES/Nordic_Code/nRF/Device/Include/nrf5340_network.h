@@ -924,8 +924,8 @@ typedef struct
                                          field received */
     __IOM uint32_t EVENTS_EDEND;      /*!< (@ 0x0000013C) Sampling of energy
                                          detection complete. A new      ED sample is
-                                         ready      for readout from the      RADIO.EDSAMPLE
-                                         register.      */
+                                         ready      for readout from the
+                                         RADIO.EDSAMPLE      register.      */
     __IOM uint32_t EVENTS_EDSTOPPED;  /*!< (@ 0x00000140) The sampling of energy
                                          detection has stopped               */
     __IOM uint32_t EVENTS_CCAIDLE; /*!< (@ 0x00000144) Wireless medium in idle -

@@ -2266,8 +2266,9 @@ typedef void ( *pFDCAN_TT_GlobalTimeCallbackTypeDef )(
                         Buffer */
     #define FDCAN_FLAG_TX_EVT_FIFO_ELT_LOST \
         FDCAN_IR_TEFL /*!< Tx Event FIFO element lost */
-    #define FDCAN_FLAG_TX_EVT_FIFO_FULL FDCAN_IR_TEFF /*!< Tx Event FIFO full \
-                                                       */
+    #define FDCAN_FLAG_TX_EVT_FIFO_FULL       \
+        FDCAN_IR_TEFF /*!< Tx Event FIFO full \
+                       */
     #define FDCAN_FLAG_TX_EVT_FIFO_WATERMARK \
         FDCAN_IR_TEFW /*!< Tx Event FIFO fill level reached watermark */
     #define FDCAN_FLAG_TX_EVT_FIFO_NEW_DATA \

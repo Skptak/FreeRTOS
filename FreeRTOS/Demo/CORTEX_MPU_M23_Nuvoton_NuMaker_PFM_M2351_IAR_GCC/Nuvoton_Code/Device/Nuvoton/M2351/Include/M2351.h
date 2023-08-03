@@ -563,9 +563,10 @@ extern void SystemInit( void );
     #define QEI0_NS \
         ( ( QEI_T * ) ( QEI0_BASE + NS_OFFSET ) ) /*!< QEI0 Pointer */
     #define QEI1_NS \
-        ( ( QEI_T * ) ( QEI1_BASE + NS_OFFSET ) )           /*!< QEI1 Pointer */
-    #define RTC_NS ( ( RTC_T * ) ( RTC_BASE + NS_OFFSET ) ) /*!< RTC Pointer \
-                                                             */
+        ( ( QEI_T * ) ( QEI1_BASE + NS_OFFSET ) ) /*!< QEI1 Pointer */
+    #define RTC_NS                                                \
+        ( ( RTC_T * ) ( RTC_BASE + NS_OFFSET ) ) /*!< RTC Pointer \
+                                                  */
     #define ACMP01_NS \
         ( ( ACMP_T * ) ( ACMP01_BASE + NS_OFFSET ) ) /*!< ACMP01 Pointer */
     #define DAC0_NS \
@@ -590,16 +591,19 @@ extern void SystemInit( void );
     #define SC0_NS ( ( SC_T * ) ( SC0_BASE + NS_OFFSET ) ) /*!< SC0 Pointer */
     #define SC1_NS ( ( SC_T * ) ( SC1_BASE + NS_OFFSET ) ) /*!< SC1 Pointer */
     #define SC2_NS ( ( SC_T * ) ( SC2_BASE + NS_OFFSET ) ) /*!< SC2 Pointer */
-    #define EBI_NS ( ( EBI_T * ) ( EBI_BASE + NS_OFFSET ) ) /*!< EBI Pointer \
-                                                             */
-    #define CRC_NS ( ( CRC_T * ) ( CRC_BASE + NS_OFFSET ) ) /*!< CRC Pointer \
-                                                             */
+    #define EBI_NS                                                \
+        ( ( EBI_T * ) ( EBI_BASE + NS_OFFSET ) ) /*!< EBI Pointer \
+                                                  */
+    #define CRC_NS                                                \
+        ( ( CRC_T * ) ( CRC_BASE + NS_OFFSET ) ) /*!< CRC Pointer \
+                                                  */
     #define USBD_NS \
         ( ( USBD_T * ) ( USBD_BASE + NS_OFFSET ) ) /*!< USB Device Pointer */
     #define USBH_NS \
-        ( ( USBH_T * ) ( USBH_BASE + NS_OFFSET ) )          /*!< USBH Pointer */
-    #define OTG_NS ( ( OTG_T * ) ( OTG_BASE + NS_OFFSET ) ) /*!< OTG Pointer \
-                                                             */
+        ( ( USBH_T * ) ( USBH_BASE + NS_OFFSET ) ) /*!< USBH Pointer */
+    #define OTG_NS                                                \
+        ( ( OTG_T * ) ( OTG_BASE + NS_OFFSET ) ) /*!< OTG Pointer \
+                                                  */
     #define PDMA1_NS \
         ( ( PDMA_T * ) ( PDMA1_BASE + NS_OFFSET ) ) /*!< PDMA1 Pointer */
     #define UI2C0_NS \
@@ -616,8 +620,9 @@ extern void SystemInit( void );
         ( ( UUART_T * ) ( USCI0_BASE + NS_OFFSET ) ) /*!< UUART0 Pointer */
     #define UUART1_NS \
         ( ( UUART_T * ) ( USCI1_BASE + NS_OFFSET ) ) /*!< UUART1 Pointer */
-    #define SCU_NS ( ( SCU_T * ) ( SCU_BASE + NS_OFFSET ) ) /*!< SCU Pointer \
-                                                             */
+    #define SCU_NS                                                \
+        ( ( SCU_T * ) ( SCU_BASE + NS_OFFSET ) ) /*!< SCU Pointer \
+                                                  */
     #define ECAP0_NS \
         ( ( ECAP_T * ) ( ECAP0_BASE + NS_OFFSET ) ) /*!< ECAP0 Pointer */
     #define ECAP1_NS \

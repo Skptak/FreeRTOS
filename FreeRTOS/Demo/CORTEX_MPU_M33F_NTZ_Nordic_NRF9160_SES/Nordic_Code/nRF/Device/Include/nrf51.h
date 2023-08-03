@@ -502,8 +502,9 @@ typedef struct
     __IOM uint32_t PSELRXD; /*!< (@ 0x00000514) Pin select for RXD. */
     __IM uint32_t RXD;      /*!< (@ 0x00000518) RXD register. On read action the
                                buffer pointer      is displaced. Once read the
-                               character      is      consumed. If read when no character
-                               available,      the      UART will stop working.      */
+                               character      is      consumed. If read when no
+                               character      available,      the      UART will stop
+                               working.      */
     __OM uint32_t TXD;      /*!< (@ 0x0000051C) TXD register.      */
     __IM uint32_t RESERVED10;
     __IOM uint32_t BAUDRATE; /*!< (@ 0x00000524) UART Baudrate. */

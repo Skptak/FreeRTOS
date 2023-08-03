@@ -13656,14 +13656,15 @@ typedef struct
         I2C_CR2_HEAD10R_Msk /*!< 10-bit address header only read direction \
                                (master mode) */
     #define I2C_CR2_START_Pos ( 13U )
-    #define I2C_CR2_START_Msk                                    \
-        ( 0x1UL << I2C_CR2_START_Pos )           /*!< 0x00002000 \
-                                                  */
-    #define I2C_CR2_START      I2C_CR2_START_Msk /*!< START generation */
-    #define I2C_CR2_STOP_Pos   ( 14U )
-    #define I2C_CR2_STOP_Msk   ( 0x1UL << I2C_CR2_STOP_Pos ) /*!< 0x00004000 */
-    #define I2C_CR2_STOP       I2C_CR2_STOP_Msk /*!< STOP generation (master mode) \
-                                                 */
+    #define I2C_CR2_START_Msk                                  \
+        ( 0x1UL << I2C_CR2_START_Pos )         /*!< 0x00002000 \
+                                                */
+    #define I2C_CR2_START    I2C_CR2_START_Msk /*!< START generation */
+    #define I2C_CR2_STOP_Pos ( 14U )
+    #define I2C_CR2_STOP_Msk ( 0x1UL << I2C_CR2_STOP_Pos ) /*!< 0x00004000 */
+    #define I2C_CR2_STOP                                    \
+        I2C_CR2_STOP_Msk /*!< STOP generation (master mode) \
+                          */
     #define I2C_CR2_NACK_Pos   ( 15U )
     #define I2C_CR2_NACK_Msk   ( 0x1UL << I2C_CR2_NACK_Pos ) /*!< 0x00008000 */
     #define I2C_CR2_NACK       I2C_CR2_NACK_Msk /*!< NACK generation (slave mode) */
@@ -18586,9 +18587,10 @@ typedef struct
     #define SAI_xCLRFR_CFREQ      SAI_xCLRFR_CFREQ_Msk /*!<Clear FIFO request */
     #define SAI_xCLRFR_CCNRDY_Pos ( 4U )
     #define SAI_xCLRFR_CCNRDY_Msk \
-        ( 0x1UL << SAI_xCLRFR_CCNRDY_Pos )               /*!< 0x00000010 */
-    #define SAI_xCLRFR_CCNRDY      SAI_xCLRFR_CCNRDY_Msk /*!<Clear Codec not ready \
-                                                          */
+        ( 0x1UL << SAI_xCLRFR_CCNRDY_Pos ) /*!< 0x00000010 */
+    #define SAI_xCLRFR_CCNRDY                           \
+        SAI_xCLRFR_CCNRDY_Msk /*!<Clear Codec not ready \
+                               */
     #define SAI_xCLRFR_CAFSDET_Pos ( 5U )
     #define SAI_xCLRFR_CAFSDET_Msk \
         ( 0x1UL << SAI_xCLRFR_CAFSDET_Pos ) /*!< 0x00000020 */
@@ -18911,14 +18913,16 @@ typedef struct
         SDMMC_STA_CMDACT_Msk /*!<Command transfer in progress */
     #define SDMMC_STA_TXACT_Pos ( 12U )
     #define SDMMC_STA_TXACT_Msk \
-        ( 0x1UL << SDMMC_STA_TXACT_Pos )            /*!< 0x00001000 */
-    #define SDMMC_STA_TXACT     SDMMC_STA_TXACT_Msk /*!<Data transmit in progress \
-                                                     */
+        ( 0x1UL << SDMMC_STA_TXACT_Pos ) /*!< 0x00001000 */
+    #define SDMMC_STA_TXACT                               \
+        SDMMC_STA_TXACT_Msk /*!<Data transmit in progress \
+                             */
     #define SDMMC_STA_RXACT_Pos ( 13U )
     #define SDMMC_STA_RXACT_Msk \
-        ( 0x1UL << SDMMC_STA_RXACT_Pos )               /*!< 0x00002000 */
-    #define SDMMC_STA_RXACT        SDMMC_STA_RXACT_Msk /*!<Data receive in progress \
-                                                        */
+        ( 0x1UL << SDMMC_STA_RXACT_Pos ) /*!< 0x00002000 */
+    #define SDMMC_STA_RXACT                              \
+        SDMMC_STA_RXACT_Msk /*!<Data receive in progress \
+                             */
     #define SDMMC_STA_TXFIFOHE_Pos ( 14U )
     #define SDMMC_STA_TXFIFOHE_Msk \
         ( 0x1UL << SDMMC_STA_TXFIFOHE_Pos ) /*!< 0x00004000 */
@@ -18959,9 +18963,10 @@ typedef struct
         SDMMC_STA_RXDAVL_Msk /*!<Data available in receive FIFO */
     #define SDMMC_STA_SDIOIT_Pos ( 22U )
     #define SDMMC_STA_SDIOIT_Msk \
-        ( 0x1UL << SDMMC_STA_SDIOIT_Pos )                /*!< 0x00400000 */
-    #define SDMMC_STA_SDIOIT        SDMMC_STA_SDIOIT_Msk /*!<SDIO interrupt received \
-                                                          */
+        ( 0x1UL << SDMMC_STA_SDIOIT_Pos ) /*!< 0x00400000 */
+    #define SDMMC_STA_SDIOIT                             \
+        SDMMC_STA_SDIOIT_Msk /*!<SDIO interrupt received \
+                              */
 
     /*******************  Bit definition for SDMMC_ICR register
      * *******************/
@@ -23837,9 +23842,10 @@ typedef struct
     #define SWPMI_CR_TXDMA      SWPMI_CR_TXDMA_Msk /*!<Transmission DMA enable */
     #define SWPMI_CR_RXMODE_Pos ( 2U )
     #define SWPMI_CR_RXMODE_Msk \
-        ( 0x1UL << SWPMI_CR_RXMODE_Pos )            /*!< 0x00000004 */
-    #define SWPMI_CR_RXMODE     SWPMI_CR_RXMODE_Msk /*!<Reception buffering mode \
-                                                     */
+        ( 0x1UL << SWPMI_CR_RXMODE_Pos ) /*!< 0x00000004 */
+    #define SWPMI_CR_RXMODE                              \
+        SWPMI_CR_RXMODE_Msk /*!<Reception buffering mode \
+                             */
     #define SWPMI_CR_TXMODE_Pos ( 3U )
     #define SWPMI_CR_TXMODE_Msk \
         ( 0x1UL << SWPMI_CR_TXMODE_Pos ) /*!< 0x00000008 */

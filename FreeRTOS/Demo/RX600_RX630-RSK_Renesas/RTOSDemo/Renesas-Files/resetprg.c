@@ -100,8 +100,8 @@ void PowerON_Reset_PC( void )
     //	HardwareSetup();				// Use Hardware Setup
     nop();
 
-    //	_CALL_INIT();					// Remove the comment when you use global
-    //class object
+    //	_CALL_INIT();					// Remove the comment when you use
+    //global class object
 
     set_psw( PSW_init ); // Set Ubit & Ibit for PSW
     //	Change_PSW_PM_to_UserMode();	// DO NOT CHANGE TO USER MODE IF USING
@@ -112,8 +112,8 @@ void PowerON_Reset_PC( void )
 
     //	_CLOSEALL();					// Use SIM I/O
 
-    //	_CALL_END();					// Remove the comment when you use global
-    //class object
+    //	_CALL_END();					// Remove the comment when you use
+    //global class object
 
     brk();
 }

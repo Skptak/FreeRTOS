@@ -1180,8 +1180,9 @@ typedef struct
         ( ( uint32_t ) 0x00000040 ) /*!< CEC Rx Missing Acknowledge */
     #define CEC_ISR_ARBLST \
         ( ( uint32_t ) 0x00000080 ) /*!< CEC Arbitration Lost */
-    #define CEC_ISR_TXBR ( ( uint32_t ) 0x00000100 ) /*!< CEC Tx Byte Request \
-                                                      */
+    #define CEC_ISR_TXBR                                     \
+        ( ( uint32_t ) 0x00000100 ) /*!< CEC Tx Byte Request \
+                                     */
     #define CEC_ISR_TXEND \
         ( ( uint32_t ) 0x00000200 ) /*!< CEC End of Transmission */
     #define CEC_ISR_TXUDR \
