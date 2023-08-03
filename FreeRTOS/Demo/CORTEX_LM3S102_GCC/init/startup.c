@@ -28,11 +28,11 @@
 // Forward declaration of the default fault handlers.
 //
 //*****************************************************************************
-void ResetISR(void);
-static void NmiSR(void);
-void FaultISR(void);
-extern void xPortPendSVHandler(void);
-extern void xPortSysTickHandler(void);
+void ResetISR( void );
+static void NmiSR( void );
+void FaultISR( void );
+extern void xPortPendSVHandler( void );
+extern void xPortSysTickHandler( void );
 extern void vUART_ISR( void );
 extern void vPortSVCHandler( void );
 
@@ -41,7 +41,7 @@ extern void vPortSVCHandler( void );
 // The entry point for the application.
 //
 //*****************************************************************************
-extern void entry(void);
+extern void entry( void );
 extern void Main( void );
 
 //*****************************************************************************
@@ -50,9 +50,9 @@ extern void Main( void );
 //
 //*****************************************************************************
 #ifndef STACK_SIZE
-#define STACK_SIZE                              51
+    #define STACK_SIZE 51
 #endif
-static unsigned long pulMainStack[STACK_SIZE];
+static unsigned long pulMainStack[ STACK_SIZE ];
 
 //*****************************************************************************
 //
@@ -61,31 +61,31 @@ static unsigned long pulMainStack[STACK_SIZE];
 // 0x0000.0000.
 //
 //*****************************************************************************
-__attribute__ ((section("vectors")))
-void (* const g_pfnVectors[])(void) =
-{
-    (void (*)(void))((unsigned long)pulMainStack + sizeof(pulMainStack)),
+__attribute__( ( section( "vectors" ) ) ) void ( *const g_pfnVectors[] )(
+    void ) = {
+    ( void ( * )( void ) )( ( unsigned long ) pulMainStack +
+                            sizeof( pulMainStack ) ),
     ResetISR,
     NmiSR,
-    FaultISR,								//FAULT
-    0,                                      // The MPU fault handler
-    0,                                      // The bus fault handler
-    0,                                      // The usage fault handler
-    0,                                      // Reserved
-    0,                                      // Reserved
-    0,                                      // Reserved
-    0,                                      // Reserved
-    vPortSVCHandler,						// SVCall handler
-    0,                                      // Debug monitor handler
-    0,                                      // Reserved
-    xPortPendSVHandler,                     // The PendSV handler
-    xPortSysTickHandler,                    // The SysTick handler
-    0,                      // GPIO Port A
-    0,                      // GPIO Port B
-    0,                      // GPIO Port C
-    0,                      // GPIO Port D
-    0,                      // GPIO Port E
-    vUART_ISR                      // UART0 Rx and Tx
+    FaultISR,            // FAULT
+    0,                   // The MPU fault handler
+    0,                   // The bus fault handler
+    0,                   // The usage fault handler
+    0,                   // Reserved
+    0,                   // Reserved
+    0,                   // Reserved
+    0,                   // Reserved
+    vPortSVCHandler,     // SVCall handler
+    0,                   // Debug monitor handler
+    0,                   // Reserved
+    xPortPendSVHandler,  // The PendSV handler
+    xPortSysTickHandler, // The SysTick handler
+    0,                   // GPIO Port A
+    0,                   // GPIO Port B
+    0,                   // GPIO Port C
+    0,                   // GPIO Port D
+    0,                   // GPIO Port E
+    vUART_ISR            // UART0 Rx and Tx
 };
 
 //*****************************************************************************
@@ -111,8 +111,7 @@ extern unsigned long _ebss;
 // application.
 //
 //*****************************************************************************
-void
-ResetISR(void)
+void ResetISR( void )
 {
     unsigned long *pulSrc, *pulDest;
 
@@ -120,7 +119,7 @@ ResetISR(void)
     // Copy the data segment initializers from flash to SRAM.
     //
     pulSrc = &_etext;
-    for(pulDest = &_data; pulDest < &_edata; )
+    for( pulDest = &_data; pulDest < &_edata; )
     {
         *pulDest++ = *pulSrc++;
     }
@@ -128,7 +127,7 @@ ResetISR(void)
     //
     // Zero fill the bss segment.
     //
-    for(pulDest = &_bss; pulDest < &_ebss; )
+    for( pulDest = &_bss; pulDest < &_ebss; )
     {
         *pulDest++ = 0;
     }
@@ -146,13 +145,12 @@ ResetISR(void)
 // by a debugger.
 //
 //*****************************************************************************
-static void
-NmiSR(void)
+static void NmiSR( void )
 {
     //
     // Enter an infinite loop.
     //
-    while(1)
+    while( 1 )
     {
     }
 }
@@ -164,13 +162,12 @@ NmiSR(void)
 // for examination by a debugger.
 //
 //*****************************************************************************
-void
-FaultISR(void)
+void FaultISR( void )
 {
     //
     // Enter an infinite loop.
     //
-    while(1)
+    while( 1 )
     {
     }
 }

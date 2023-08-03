@@ -1,7 +1,7 @@
 #ifndef FSL_H
 #define FSL_H
 
-#include "mb_interface.h"       /* Legacy reasons. We just have to include this guy who defines the FSL stuff */
+#include "mb_interface.h" /* Legacy reasons. We just have to include this guy who defines the FSL stuff */
 
 #ifdef __cplusplus
 extern "C" {
@@ -28,18 +28,30 @@ extern "C" {
 
 #define FSL_NONBLOCKING_EXCEPTION_CONTROL_ATOMIC neca
 
-#define getfslx(val, id, flags)      asm volatile (stringify(flags) "get\t%0,rfsl" stringify(id) : "=d" (val))
-#define putfslx(val, id, flags)      asm volatile (stringify(flags) "put\t%0,rfsl" stringify(id) :: "d" (val))
+#define getfslx( val, id, flags )                                   \
+    asm volatile( stringify( flags ) "get\t%0,rfsl" stringify( id ) \
+                  : "=d"( val ) )
+#define putfslx( val, id, flags ) \
+    asm volatile(                 \
+        stringify( flags ) "put\t%0,rfsl" stringify( id )::"d"( val ) )
 
-#define tgetfslx(val, id, flags)     asm volatile ("t" stringify(flags) "get\t%0,rfsl" stringify(id) : "=d" (val))
-#define tputfslx(id, flags)          asm volatile ("t" stringify(flags) "put\trfsl" stringify(id))
+#define tgetfslx( val, id, flags )                                      \
+    asm volatile( "t" stringify( flags ) "get\t%0,rfsl" stringify( id ) \
+                  : "=d"( val ) )
+#define tputfslx( id, flags ) \
+    asm volatile( "t" stringify( flags ) "put\trfsl" stringify( id ) )
 
-#define getdfslx(val, var, flags)    asm volatile (stringify(flags) "getd\t%0,%1" : "=d" (val) : "d" (var))
-#define putdfslx(val, var, flags)    asm volatile (stringify(flags) "putd\t%0,%1" :: "d" (val), "d" (var))
+#define getdfslx( val, var, flags ) \
+    asm volatile( stringify( flags ) "getd\t%0,%1" : "=d"( val ) : "d"( var ) )
+#define putdfslx( val, var, flags ) \
+    asm volatile( stringify( flags ) "putd\t%0,%1" ::"d"( val ), "d"( var ) )
 
-#define tgetdfslx(val, var, flags)   asm volatile ("t" stringify(flags) "getd\t%0,%1" : "=d" (val) : "d" (var))
-#define tputdfslx(var, flags)        asm volatile ("t" stringify(flags) "putd\t%0" :: "d" (var))
-
+#define tgetdfslx( val, var, flags )                   \
+    asm volatile( "t" stringify( flags ) "getd\t%0,%1" \
+                  : "=d"( val )                        \
+                  : "d"( var ) )
+#define tputdfslx( var, flags ) \
+    asm volatile( "t" stringify( flags ) "putd\t%0" ::"d"( var ) )
 
 #ifdef __cplusplus
 }

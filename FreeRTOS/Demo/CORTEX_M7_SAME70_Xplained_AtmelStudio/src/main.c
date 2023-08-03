@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -43,16 +44,16 @@
 
 /* Scheduler include files. */
 #include "FreeRTOS.h"
-#include "task.h"
 #include "semphr.h"
+#include "task.h"
 
 /* Library includes. */
-#include "board.h"
 #include "asf.h"
+#include "board.h"
 
 /* Set mainCREATE_SIMPLE_BLINKY_DEMO_ONLY to one to run the simple blinky demo,
 or 0 to run the more comprehensive test and demo application. */
-#define mainCREATE_SIMPLE_BLINKY_DEMO_ONLY	1
+#define mainCREATE_SIMPLE_BLINKY_DEMO_ONLY 1
 
 /*-----------------------------------------------------------*/
 
@@ -66,124 +67,106 @@ static void prvSetupHardware( void );
  * main_full() is used when mainCREATE_SIMPLE_BLINKY_DEMO_ONLY is set to 0.
  */
 #if mainCREATE_SIMPLE_BLINKY_DEMO_ONLY == 1
-	extern void main_blinky( void );
+extern void main_blinky( void );
 #else
-	extern void main_full( void );
+extern void main_full( void );
 #endif /* #if mainCREATE_SIMPLE_BLINKY_DEMO_ONLY == 1 */
 
 /* Prototypes for the standard FreeRTOS callback/hook functions implemented
 within this file. */
 void vApplicationMallocFailedHook( void );
 void vApplicationIdleHook( void );
-void vApplicationStackOverflowHook( TaskHandle_t pxTask, char *pcTaskName );
+void vApplicationStackOverflowHook( TaskHandle_t pxTask, char * pcTaskName );
 void vApplicationTickHook( void );
 
 /*-----------------------------------------------------------*/
 
 int main( void )
 {
-	/* Configure the hardware ready to run the demo. */
-	prvSetupHardware();
+    /* Configure the hardware ready to run the demo. */
+    prvSetupHardware();
 
-	/* The mainCREATE_SIMPLE_BLINKY_DEMO_ONLY setting is described at the top
-	of this file. */
-	#if( mainCREATE_SIMPLE_BLINKY_DEMO_ONLY == 1 )
-	{
-		main_blinky();
-	}
-	#else
-	{
-		main_full();
-	}
-	#endif
+/* The mainCREATE_SIMPLE_BLINKY_DEMO_ONLY setting is described at the top
+of this file. */
+#if( mainCREATE_SIMPLE_BLINKY_DEMO_ONLY == 1 )
+    {
+        main_blinky();
+    }
+#else
+    {
+        main_full();
+    }
+#endif
 
-	return 0;
+    return 0;
 }
 /*-----------------------------------------------------------*/
 
 static void prvSetupHardware( void )
 {
-	sysclk_init();
-	board_init();
+    sysclk_init();
+    board_init();
 }
 /*-----------------------------------------------------------*/
 
 void vApplicationMallocFailedHook( void )
 {
-	/* Called if a call to pvPortMalloc() fails because there is insufficient
-	free memory available in the FreeRTOS heap.  pvPortMalloc() is called
-	internally by FreeRTOS API functions that create tasks, queues, software
-	timers, and semaphores.  The size of the FreeRTOS heap is set by the
-	configTOTAL_HEAP_SIZE configuration constant in FreeRTOSConfig.h. */
+    /* Called if a call to pvPortMalloc() fails because there is insufficient
+    free memory available in the FreeRTOS heap.  pvPortMalloc() is called
+    internally by FreeRTOS API functions that create tasks, queues, software
+    timers, and semaphores.  The size of the FreeRTOS heap is set by the
+    configTOTAL_HEAP_SIZE configuration constant in FreeRTOSConfig.h. */
 
-	/* Force an assert. */
-	configASSERT( ( volatile void * ) NULL );
+    /* Force an assert. */
+    configASSERT( ( volatile void * ) NULL );
 }
 /*-----------------------------------------------------------*/
 
-void vApplicationStackOverflowHook( TaskHandle_t pxTask, char *pcTaskName )
+void vApplicationStackOverflowHook( TaskHandle_t pxTask, char * pcTaskName )
 {
-	( void ) pcTaskName;
-	( void ) pxTask;
+    ( void ) pcTaskName;
+    ( void ) pxTask;
 
-	/* Run time stack overflow checking is performed if
-	configCHECK_FOR_STACK_OVERFLOW is defined to 1 or 2.  This hook
-	function is called if a stack overflow is detected. */
+    /* Run time stack overflow checking is performed if
+    configCHECK_FOR_STACK_OVERFLOW is defined to 1 or 2.  This hook
+    function is called if a stack overflow is detected. */
 
-	/* Force an assert. */
-	configASSERT( ( volatile void * ) NULL );
+    /* Force an assert. */
+    configASSERT( ( volatile void * ) NULL );
 }
 /*-----------------------------------------------------------*/
 
 void vApplicationIdleHook( void )
 {
-volatile size_t xFreeHeapSpace;
+    volatile size_t xFreeHeapSpace;
 
-	/* This is just a trivial example of an idle hook.  It is called on each
-	cycle of the idle task.  It must *NOT* attempt to block.  In this case the
-	idle task just queries the amount of FreeRTOS heap that remains.  See the
-	memory management section on the http://www.FreeRTOS.org web site for memory
-	management options.  If there is a lot of heap memory free then the
-	configTOTAL_HEAP_SIZE value in FreeRTOSConfig.h can be reduced to free up
-	RAM. */
-	xFreeHeapSpace = xPortGetFreeHeapSize();
+    /* This is just a trivial example of an idle hook.  It is called on each
+    cycle of the idle task.  It must *NOT* attempt to block.  In this case the
+    idle task just queries the amount of FreeRTOS heap that remains.  See the
+    memory management section on the http://www.FreeRTOS.org web site for memory
+    management options.  If there is a lot of heap memory free then the
+    configTOTAL_HEAP_SIZE value in FreeRTOSConfig.h can be reduced to free up
+    RAM. */
+    xFreeHeapSpace = xPortGetFreeHeapSize();
 
-	/* Remove compiler warning about xFreeHeapSpace being set but never used. */
-	( void ) xFreeHeapSpace;
+    /* Remove compiler warning about xFreeHeapSpace being set but never used. */
+    ( void ) xFreeHeapSpace;
 }
 /*-----------------------------------------------------------*/
 
 void vApplicationTickHook( void )
 {
-	#if( mainCREATE_SIMPLE_BLINKY_DEMO_ONLY == 0 )
-	{
-	extern void vFullDemoTickHook( void );
-	
-		/* The full demo includes some tests that execute in an interrupt
-		context, and the tick hook is used for this purpose. */
-		vFullDemoTickHook();	
-	}
-	#endif
+#if( mainCREATE_SIMPLE_BLINKY_DEMO_ONLY == 0 )
+    {
+        extern void vFullDemoTickHook( void );
+
+        /* The full demo includes some tests that execute in an interrupt
+        context, and the tick hook is used for this purpose. */
+        vFullDemoTickHook();
+    }
+#endif
 }
 /*-----------------------------------------------------------*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 #if 0
 
@@ -279,38 +262,41 @@ void vApplicationTickHook( void )
  * Support and FAQ: visit <a href="http://www.atmel.com/design-support/">Atmel Support</a>
  */
 
-#include "FreeRTOS.h"
-#include "task.h"
+    #include "FreeRTOS.h"
+    #include "task.h"
 
-#include "asf.h"
-#include "stdio_serial.h"
-#include "conf_board.h"
-#include "conf_clock.h"
+    #include "asf.h"
+    #include "conf_board.h"
+    #include "conf_clock.h"
+    #include "stdio_serial.h"
 
 /** IRQ priority for PIO (The lower the value, the greater the priority) */
 // [main_def_pio_irq_prior]
-#define IRQ_PRIOR_PIO    0
+    #define IRQ_PRIOR_PIO 0
 // [main_def_pio_irq_prior]
 
 /** LED0 blink time, LED1 blink half this time, in ms */
-#define BLINK_PERIOD     1000
+    #define BLINK_PERIOD  1000
 
-#define STRING_EOL    "\r"
-#define STRING_HEADER "-- Getting Started Example --\r\n" \
-		"-- "BOARD_NAME" --\r\n" \
-		"-- Compiled: "__DATE__" "__TIME__" --"STRING_EOL
+    #define STRING_EOL    "\r"
+    #define STRING_HEADER                   \
+        "-- Getting Started Example --\r\n" \
+        "-- " BOARD_NAME " --\r\n"          \
+        "-- Compiled: "__DATE__             \
+        " "__TIME__                         \
+        " --" STRING_EOL
 
 /** LED0 blinking control. */
 // [main_var_led0_control]
 volatile bool g_b_led0_active = true;
 // [main_var_led0_control]
 
-#ifdef LED1_GPIO
+    #ifdef LED1_GPIO
 /** LED1 blinking control. */
 // [main_var_led1_control]
 volatile bool g_b_led1_active = true;
 // [main_var_led1_control]
-#endif
+    #endif
 
 /** Global g_ul_ms_ticks in milliseconds since start of application */
 // [main_var_ticks]
@@ -319,9 +305,9 @@ volatile uint32_t g_ul_ms_ticks = 0;
 
 /// @cond 0
 /**INDENT-OFF**/
-#ifdef __cplusplus
+    #ifdef __cplusplus
 extern "C" {
-#endif
+    #endif
 /**INDENT-ON**/
 /// @endcond
 
@@ -349,7 +335,7 @@ static void ProcessButtonEvt(uint8_t uc_button)
 		}
 	}
 // [main_button1_evnt_process]
-#ifdef LED1_GPIO 
+    #ifdef LED1_GPIO 
 	else {
 // [main_button2_evnt_process]
 		g_b_led1_active = !g_b_led1_active;
@@ -366,7 +352,7 @@ static void ProcessButtonEvt(uint8_t uc_button)
 		}
 // [main_button2_evnt_process]
 	}
-#endif
+    #endif
 }
 
 /**
@@ -396,7 +382,7 @@ static void Button1_Handler(uint32_t id, uint32_t mask)
 }
 // [main_button1_handler]
 
-#ifndef BOARD_NO_PUSHBUTTON_2
+    #ifndef BOARD_NO_PUSHBUTTON_2
 /**
  *  \brief Handler for Button 2 falling edge interrupt.
  *
@@ -410,7 +396,7 @@ static void Button2_Handler(uint32_t id, uint32_t mask)
 	}
 }
 // [main_button2_handler]
-#endif
+    #endif
 
 /**
  *  \brief Configure the Pushbuttons
@@ -432,7 +418,7 @@ static void configure_buttons(void)
 			(IRQn_Type) PIN_PUSHBUTTON_1_ID, IRQ_PRIOR_PIO);
 	pio_enable_interrupt(PIN_PUSHBUTTON_1_PIO, PIN_PUSHBUTTON_1_MASK);
 // [main_button1_configure]
-#ifndef BOARD_NO_PUSHBUTTON_2
+    #ifndef BOARD_NO_PUSHBUTTON_2
 // [main_button2_configure]
 	/* Configure Pushbutton 2 */
 	pmc_enable_periph_clk(PIN_PUSHBUTTON_2_ID);
@@ -445,14 +431,14 @@ static void configure_buttons(void)
 			(IRQn_Type) PIN_PUSHBUTTON_2_ID, IRQ_PRIOR_PIO);
 	pio_enable_interrupt(PIN_PUSHBUTTON_2_PIO, PIN_PUSHBUTTON_2_MASK);
 // [main_button2_configure]
-#endif
+    #endif
 }
 
 /**
  *  Interrupt handler for TC0 interrupt. Toggles the state of LED\#2.
  */
 // [main_tc0_handler]
-#ifndef BOARD_NO_LED_1
+    #ifndef BOARD_NO_LED_1
 void TC0_Handler(void)
 {
 	volatile uint32_t ul_dummy;
@@ -463,10 +449,10 @@ void TC0_Handler(void)
 	/* Avoid compiler warning */
 	UNUSED(ul_dummy);
 
-#ifdef LED1_GPIO
+        #ifdef LED1_GPIO
 	/** Toggle LED state. */
 	ioport_toggle_pin_level(LED1_GPIO);
-#endif
+        #endif
 
 	printf("2 ");
 }
@@ -484,12 +470,12 @@ static void configure_tc(void)
 
 	/* Configure PMC */
 	pmc_enable_periph_clk(ID_TC0);
-#if SAMG55
+        #if SAMG55
 	/* Enable PCK output */
 	pmc_disable_pck(PMC_PCK_3);
 	pmc_switch_pck_to_sclk(PMC_PCK_3, PMC_PCK_PRES_CLK_1);
 	pmc_enable_pck(PMC_PCK_3);
-#endif
+        #endif
 
 	/** Configure TC for a 4Hz frequency and trigger on RC compare. */
 	tc_find_mck_divisor(4, ul_sysclk, &ul_div, &ul_tcclks, ul_sysclk);
@@ -500,16 +486,16 @@ static void configure_tc(void)
 	NVIC_EnableIRQ((IRQn_Type) ID_TC0);
 	tc_enable_interrupt(TC0, 0, TC_IER_CPCS);
 
-#ifdef LED1_GPIO
+        #ifdef LED1_GPIO
 	/** Start the counter if LED1 is enabled. */
 	if (g_b_led1_active) {
 		tc_start(TC0, 0);
 	}
-#else
+        #else
 	tc_start(TC0, 0);
-#endif
+        #endif
 }
-#endif
+    #endif
 // [main_tc_configure]
 
 /**
@@ -520,13 +506,13 @@ static void configure_console(void)
 {
 	const usart_serial_options_t uart_serial_options = {
 		.baudrate = CONF_UART_BAUDRATE,
-#ifdef CONF_UART_CHAR_LENGTH
+    #ifdef CONF_UART_CHAR_LENGTH
 		.charlength = CONF_UART_CHAR_LENGTH,
-#endif
+    #endif
 		.paritytype = CONF_UART_PARITY,
-#ifdef CONF_UART_STOP_BITS
+    #ifdef CONF_UART_STOP_BITS
 		.stopbits = CONF_UART_STOP_BITS,
-#endif
+    #endif
 	};
 
 	/* Configure console UART. */
@@ -566,16 +552,16 @@ int main(void)
 	board_init();
 //! [main_step_sys_init]
 
-#ifndef BOARD_NO_PUSHBUTTON_2
-#if (SAMV71 || SAMV70 || SAMS70 || SAME70)
+    #ifndef BOARD_NO_PUSHBUTTON_2
+        #if( SAMV71 || SAMV70 || SAMS70 || SAME70 )
 	if (GPIO_PUSH_BUTTON_2 == PIO_PB12_IDX) {
 		matrix_set_system_io(matrix_get_system_io() | CCFG_SYSIO_SYSIO12);
 	}
 	ioport_set_pin_dir(GPIO_PUSH_BUTTON_2, IOPORT_DIR_INPUT);
 	ioport_set_pin_mode(GPIO_PUSH_BUTTON_2, GPIO_PUSH_BUTTON_2_FLAGS);
 	ioport_set_pin_sense_mode(GPIO_PUSH_BUTTON_2, GPIO_PUSH_BUTTON_2_SENSE);
-#endif
-#endif
+        #endif
+    #endif
 //! [main_step_console_init]
 	/* Initialize the console uart */
 	configure_console();
@@ -593,12 +579,12 @@ int main(void)
 	}
 //! [main_step_systick_init]
 
-#ifndef BOARD_NO_LED_1
+    #ifndef BOARD_NO_LED_1
 	puts("Configure TC.\r");
 //! [main_step_tc_init]
 	configure_tc();
 //! [main_step_tc_init]
-#endif
+    #endif
 
 	puts("Configure buttons with debouncing.\r");
 //! [main_step_btn_init]
@@ -608,10 +594,10 @@ int main(void)
 	printf("Press %s to Start/Stop the %s blinking.\r\n",
 			PUSHBUTTON_1_NAME, LED_0_NAME);
 
-#ifndef BOARD_NO_PUSHBUTTON_2
+    #ifndef BOARD_NO_PUSHBUTTON_2
 	printf("Press %s to Start/Stop the %s blinking.\r\n",
 			PUSHBUTTON_2_NAME, LED_1_NAME);
-#endif
+    #endif
 
 //! [main_step_loop]
 	while (1) {
@@ -632,9 +618,9 @@ int main(void)
 // [main]
 /// @cond 0
 /**INDENT-OFF**/
-#ifdef __cplusplus
+    #ifdef __cplusplus
 }
-#endif
+    #endif
 /**INDENT-ON**/
 /// @endcond
 

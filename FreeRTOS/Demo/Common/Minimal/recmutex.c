@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -62,8 +63,8 @@
 
 /* Scheduler include files. */
 #include "FreeRTOS.h"
-#include "task.h"
 #include "semphr.h"
+#include "task.h"
 
 /* Demo app include files. */
 #include "recmutex.h"
@@ -71,21 +72,21 @@
 /* Priorities assigned to the three tasks.  recmuCONTROLLING_TASK_PRIORITY can
  * be overridden by a definition in FreeRTOSConfig.h. */
 #ifndef recmuCONTROLLING_TASK_PRIORITY
-    #define recmuCONTROLLING_TASK_PRIORITY               ( tskIDLE_PRIORITY + 2 )
+    #define recmuCONTROLLING_TASK_PRIORITY ( tskIDLE_PRIORITY + 2 )
 #endif
-#define recmuBLOCKING_TASK_PRIORITY                      ( tskIDLE_PRIORITY + 1 )
-#define recmuPOLLING_TASK_PRIORITY                       ( tskIDLE_PRIORITY + 0 )
+#define recmuBLOCKING_TASK_PRIORITY ( tskIDLE_PRIORITY + 1 )
+#define recmuPOLLING_TASK_PRIORITY  ( tskIDLE_PRIORITY + 0 )
 
 /* The recursive call depth. */
-#define recmuMAX_COUNT                                   ( 10 )
+#define recmuMAX_COUNT              ( 10 )
 
 /* Misc. */
-#define recmuSHORT_DELAY                                 ( pdMS_TO_TICKS( 20 ) )
-#define recmuNO_DELAY                                    ( ( TickType_t ) 0 )
-#define recmu15ms_DELAY                                  ( pdMS_TO_TICKS( 15 ) )
+#define recmuSHORT_DELAY            ( pdMS_TO_TICKS( 20 ) )
+#define recmuNO_DELAY               ( ( TickType_t ) 0 )
+#define recmu15ms_DELAY             ( pdMS_TO_TICKS( 15 ) )
 
 #ifndef recmuRECURSIVE_MUTEX_TEST_TASK_STACK_SIZE
-    #define recmuRECURSIVE_MUTEX_TEST_TASK_STACK_SIZE    configMINIMAL_STACK_SIZE
+    #define recmuRECURSIVE_MUTEX_TEST_TASK_STACK_SIZE configMINIMAL_STACK_SIZE
 #endif
 
 /* The three tasks as described at the top of this file. */
@@ -97,8 +98,11 @@ static void prvRecursiveMutexPollingTask( void * pvParameters );
 static SemaphoreHandle_t xMutex;
 
 /* Variables used to detect and latch errors. */
-static volatile BaseType_t xErrorOccurred = pdFALSE, xControllingIsSuspended = pdFALSE, xBlockingIsSuspended = pdFALSE;
-static volatile UBaseType_t uxControllingCycles = 0, uxBlockingCycles = 0, uxPollingCycles = 0;
+static volatile BaseType_t xErrorOccurred = pdFALSE,
+                           xControllingIsSuspended = pdFALSE,
+                           xBlockingIsSuspended = pdFALSE;
+static volatile UBaseType_t uxControllingCycles = 0, uxBlockingCycles = 0,
+                            uxPollingCycles = 0;
 
 /* Handles of the two higher priority tasks, required so they can be resumed
  * (unsuspended). */
@@ -116,15 +120,30 @@ void vStartRecursiveMutexTasks( void )
     {
         /* vQueueAddToRegistry() adds the mutex to the registry, if one is
          * in use.  The registry is provided as a means for kernel aware
-         * debuggers to locate mutex and has no purpose if a kernel aware debugger
-         * is not being used.  The call to vQueueAddToRegistry() will be removed
-         * by the pre-processor if configQUEUE_REGISTRY_SIZE is not defined or is
-         * defined to be less than 1. */
+         * debuggers to locate mutex and has no purpose if a kernel aware
+         * debugger is not being used.  The call to vQueueAddToRegistry() will
+         * be removed by the pre-processor if configQUEUE_REGISTRY_SIZE is not
+         * defined or is defined to be less than 1. */
         vQueueAddToRegistry( ( QueueHandle_t ) xMutex, "Recursive_Mutex" );
 
-        xTaskCreate( prvRecursiveMutexControllingTask, "Rec1", recmuRECURSIVE_MUTEX_TEST_TASK_STACK_SIZE, NULL, recmuCONTROLLING_TASK_PRIORITY, &xControllingTaskHandle );
-        xTaskCreate( prvRecursiveMutexBlockingTask, "Rec2", recmuRECURSIVE_MUTEX_TEST_TASK_STACK_SIZE, NULL, recmuBLOCKING_TASK_PRIORITY, &xBlockingTaskHandle );
-        xTaskCreate( prvRecursiveMutexPollingTask, "Rec3", recmuRECURSIVE_MUTEX_TEST_TASK_STACK_SIZE, NULL, recmuPOLLING_TASK_PRIORITY, NULL );
+        xTaskCreate( prvRecursiveMutexControllingTask,
+                     "Rec1",
+                     recmuRECURSIVE_MUTEX_TEST_TASK_STACK_SIZE,
+                     NULL,
+                     recmuCONTROLLING_TASK_PRIORITY,
+                     &xControllingTaskHandle );
+        xTaskCreate( prvRecursiveMutexBlockingTask,
+                     "Rec2",
+                     recmuRECURSIVE_MUTEX_TEST_TASK_STACK_SIZE,
+                     NULL,
+                     recmuBLOCKING_TASK_PRIORITY,
+                     &xBlockingTaskHandle );
+        xTaskCreate( prvRecursiveMutexPollingTask,
+                     "Rec3",
+                     recmuRECURSIVE_MUTEX_TEST_TASK_STACK_SIZE,
+                     NULL,
+                     recmuPOLLING_TASK_PRIORITY,
+                     NULL );
     }
 }
 /*-----------------------------------------------------------*/
@@ -136,7 +155,7 @@ static void prvRecursiveMutexControllingTask( void * pvParameters )
     /* Just to remove compiler warning. */
     ( void ) pvParameters;
 
-    for( ; ; )
+    for( ;; )
     {
         /* Should not be able to 'give' the mutex, as we have not yet 'taken'
          * it.   The first time through, the mutex will not have been used yet,
@@ -152,22 +171,22 @@ static void prvRecursiveMutexControllingTask( void * pvParameters )
             /* We should now be able to take the mutex as many times as
              * we like.
              *
-             * The first time through the mutex will be immediately available, on
-             * subsequent times through the mutex will be held by the polling task
-             * at this point and this Take will cause the polling task to inherit
-             * the priority of this task.  In this case the block time must be
-             * long enough to ensure the polling task will execute again before the
-             * block time expires.  If the block time does expire then the error
-             * flag will be set here. */
+             * The first time through the mutex will be immediately available,
+             * on subsequent times through the mutex will be held by the polling
+             * task at this point and this Take will cause the polling task to
+             * inherit the priority of this task.  In this case the block time
+             * must be long enough to ensure the polling task will execute again
+             * before the block time expires.  If the block time does expire
+             * then the error flag will be set here. */
             if( xSemaphoreTakeRecursive( xMutex, recmu15ms_DELAY ) != pdPASS )
             {
                 xErrorOccurred = pdTRUE;
             }
 
             /* Ensure the other task attempting to access the mutex (and the
-            * other demo tasks) are able to execute to ensure they either block
-            * (where a block time is specified) or return an error (where no
-            * block time is specified) as the mutex is held by this task. */
+             * other demo tasks) are able to execute to ensure they either block
+             * (where a block time is specified) or return an error (where no
+             * block time is specified) as the mutex is held by this task. */
             vTaskDelay( recmuSHORT_DELAY );
         }
 
@@ -181,16 +200,16 @@ static void prvRecursiveMutexControllingTask( void * pvParameters )
             /* We should now be able to give the mutex as many times as we
              * took it.  When the mutex is available again the Blocking task
              * should be unblocked but not run because it has a lower priority
-             * than this task.  The polling task should also not run at this point
-             * as it too has a lower priority than this task. */
+             * than this task.  The polling task should also not run at this
+             * point as it too has a lower priority than this task. */
             if( xSemaphoreGiveRecursive( xMutex ) != pdPASS )
             {
                 xErrorOccurred = pdTRUE;
             }
 
-            #if ( configUSE_PREEMPTION == 0 )
-                taskYIELD();
-            #endif
+#if( configUSE_PREEMPTION == 0 )
+            taskYIELD();
+#endif
         }
 
         /* Having given it back the same number of times as it was taken, we
@@ -217,15 +236,16 @@ static void prvRecursiveMutexBlockingTask( void * pvParameters )
     /* Just to remove compiler warning. */
     ( void ) pvParameters;
 
-    for( ; ; )
+    for( ;; )
     {
         /* This task will run while the controlling task is blocked, and the
          * controlling task will block only once it has the mutex - therefore
          * this call should block until the controlling task has given up the
          * mutex, and not actually execute	past this call until the controlling
-         * task is suspended.  portMAX_DELAY - 1 is used instead of portMAX_DELAY
-         * to ensure the task's state is reported as Blocked and not Suspended in
-         * a later call to configASSERT() (within the polling task). */
+         * task is suspended.  portMAX_DELAY - 1 is used instead of
+         * portMAX_DELAY to ensure the task's state is reported as Blocked and
+         * not Suspended in a later call to configASSERT() (within the polling
+         * task). */
         if( xSemaphoreTakeRecursive( xMutex, ( portMAX_DELAY - 1 ) ) == pdPASS )
         {
             if( xControllingIsSuspended != pdTRUE )
@@ -273,22 +293,25 @@ static void prvRecursiveMutexPollingTask( void * pvParameters )
     /* Just to remove compiler warning. */
     ( void ) pvParameters;
 
-    for( ; ; )
+    for( ;; )
     {
         /* Keep attempting to obtain the mutex.  It should only be obtained when
          * the blocking task has suspended itself, which in turn should only
          * happen when the controlling task is also suspended. */
         if( xSemaphoreTakeRecursive( xMutex, recmuNO_DELAY ) == pdPASS )
         {
-            #if ( INCLUDE_eTaskGetState == 1 )
+#if( INCLUDE_eTaskGetState == 1 )
             {
-                configASSERT( eTaskGetState( xControllingTaskHandle ) == eSuspended );
-                configASSERT( eTaskGetState( xBlockingTaskHandle ) == eSuspended );
+                configASSERT( eTaskGetState( xControllingTaskHandle ) ==
+                              eSuspended );
+                configASSERT( eTaskGetState( xBlockingTaskHandle ) ==
+                              eSuspended );
             }
-            #endif /* INCLUDE_eTaskGetState */
+#endif /* INCLUDE_eTaskGetState */
 
             /* Is the blocking task suspended? */
-            if( ( xBlockingIsSuspended != pdTRUE ) || ( xControllingIsSuspended != pdTRUE ) )
+            if( ( xBlockingIsSuspended != pdTRUE ) ||
+                ( xControllingIsSuspended != pdTRUE ) )
             {
                 xErrorOccurred = pdTRUE;
             }
@@ -299,65 +322,72 @@ static void prvRecursiveMutexPollingTask( void * pvParameters )
                 uxPollingCycles++;
 
                 /* We can resume the other tasks here even though they have a
-                 * higher priority than the polling task.  When they execute they
-                 * will attempt to obtain the mutex but fail because the polling
-                 * task is still the mutex holder.  The polling task (this task)
-                 * will then inherit the higher priority.  The Blocking task will
-                 * block indefinitely when it attempts to obtain the mutex, the
-                 * Controlling task will only block for a fixed period and an
-                 * error will be latched if the polling task has not returned the
-                 * mutex by the time this fixed period has expired. */
+                 * higher priority than the polling task.  When they execute
+                 * they will attempt to obtain the mutex but fail because the
+                 * polling task is still the mutex holder.  The polling task
+                 * (this task) will then inherit the higher priority.  The
+                 * Blocking task will block indefinitely when it attempts to
+                 * obtain the mutex, the Controlling task will only block for a
+                 * fixed period and an error will be latched if the polling task
+                 * has not returned the mutex by the time this fixed period has
+                 * expired. */
                 vTaskResume( xBlockingTaskHandle );
-                #if ( configUSE_PREEMPTION == 0 )
-                    taskYIELD();
-                #endif
+#if( configUSE_PREEMPTION == 0 )
+                taskYIELD();
+#endif
 
                 vTaskResume( xControllingTaskHandle );
-                #if ( configUSE_PREEMPTION == 0 )
-                    taskYIELD();
-                #endif
+#if( configUSE_PREEMPTION == 0 )
+                taskYIELD();
+#endif
 
                 /* The other two tasks should now have executed and no longer
                  * be suspended. */
-                if( ( xBlockingIsSuspended == pdTRUE ) || ( xControllingIsSuspended == pdTRUE ) )
+                if( ( xBlockingIsSuspended == pdTRUE ) ||
+                    ( xControllingIsSuspended == pdTRUE ) )
                 {
                     xErrorOccurred = pdTRUE;
                 }
 
-                #if ( INCLUDE_uxTaskPriorityGet == 1 )
+#if( INCLUDE_uxTaskPriorityGet == 1 )
                 {
                     /* Check priority inherited. */
-                    configASSERT( uxTaskPriorityGet( NULL ) == recmuCONTROLLING_TASK_PRIORITY );
+                    configASSERT( uxTaskPriorityGet( NULL ) ==
+                                  recmuCONTROLLING_TASK_PRIORITY );
                 }
-                #endif /* INCLUDE_uxTaskPriorityGet */
+#endif /* INCLUDE_uxTaskPriorityGet */
 
-                #if ( INCLUDE_eTaskGetState == 1 )
+#if( INCLUDE_eTaskGetState == 1 )
                 {
-                    configASSERT( eTaskGetState( xControllingTaskHandle ) == eBlocked );
-                    configASSERT( eTaskGetState( xBlockingTaskHandle ) == eBlocked );
+                    configASSERT( eTaskGetState( xControllingTaskHandle ) ==
+                                  eBlocked );
+                    configASSERT( eTaskGetState( xBlockingTaskHandle ) ==
+                                  eBlocked );
                 }
-                #endif /* INCLUDE_eTaskGetState */
+#endif /* INCLUDE_eTaskGetState */
 
-                /* Release the mutex, disinheriting the higher priority again. */
+                /* Release the mutex, disinheriting the higher priority again.
+                 */
                 if( xSemaphoreGiveRecursive( xMutex ) != pdPASS )
                 {
                     xErrorOccurred = pdTRUE;
                 }
 
-                #if ( INCLUDE_uxTaskPriorityGet == 1 )
+#if( INCLUDE_uxTaskPriorityGet == 1 )
                 {
                     /* Check priority disinherited. */
-                    configASSERT( uxTaskPriorityGet( NULL ) == recmuPOLLING_TASK_PRIORITY );
+                    configASSERT( uxTaskPriorityGet( NULL ) ==
+                                  recmuPOLLING_TASK_PRIORITY );
                 }
-                #endif /* INCLUDE_uxTaskPriorityGet */
+#endif /* INCLUDE_uxTaskPriorityGet */
             }
         }
 
-        #if configUSE_PREEMPTION == 0
+#if configUSE_PREEMPTION == 0
         {
             taskYIELD();
         }
-        #endif
+#endif
     }
 }
 /*-----------------------------------------------------------*/
@@ -366,7 +396,8 @@ static void prvRecursiveMutexPollingTask( void * pvParameters )
 BaseType_t xAreRecursiveMutexTasksStillRunning( void )
 {
     BaseType_t xReturn;
-    static UBaseType_t uxLastControllingCycles = 0, uxLastBlockingCycles = 0, uxLastPollingCycles = 0;
+    static UBaseType_t uxLastControllingCycles = 0, uxLastBlockingCycles = 0,
+                       uxLastPollingCycles = 0;
 
     /* Is the controlling task still cycling? */
     if( uxLastControllingCycles == uxControllingCycles )

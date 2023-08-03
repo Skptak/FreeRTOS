@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
- *         SAM Software Package License 
+ *         SAM Software Package License
  * ----------------------------------------------------------------------------
  * Copyright (c) 2011, Atmel Corporation
  *
@@ -27,8 +27,6 @@
  * ----------------------------------------------------------------------------
  */
 
-
-
 #ifndef _PIT_
 #define _PIT_
 
@@ -37,28 +35,28 @@
  *----------------------------------------------------------------------------*/
 
 #ifdef __cplusplus
- extern "C" {
+extern "C" {
 #endif
 
-extern void PIT_Init(uint32_t period, uint32_t pit_frequency);
+extern void PIT_Init( uint32_t period, uint32_t pit_frequency );
 
-extern void PIT_SetPIV(uint32_t piv);
+extern void PIT_SetPIV( uint32_t piv );
 
-extern void PIT_Enable(void);
+extern void PIT_Enable( void );
 
-extern void PIT_Disable(void);
+extern void PIT_Disable( void );
 
-extern void PIT_EnableIT(void);
+extern void PIT_EnableIT( void );
 
-extern void PIT_DisableIT(void);
+extern void PIT_DisableIT( void );
 
-extern uint32_t PIT_GetMode(void);
+extern uint32_t PIT_GetMode( void );
 
-extern uint32_t PIT_GetStatus(void);
+extern uint32_t PIT_GetStatus( void );
 
-extern uint32_t PIT_GetPIIR(void);
+extern uint32_t PIT_GetPIIR( void );
 
-extern uint32_t PIT_GetPIVR(void);
+extern uint32_t PIT_GetPIVR( void );
 
 #ifdef __cplusplus
 }

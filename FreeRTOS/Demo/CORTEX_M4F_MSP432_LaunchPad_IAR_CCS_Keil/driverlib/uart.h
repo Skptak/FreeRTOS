@@ -1,6 +1,6 @@
 /*
  * -------------------------------------------
- *    MSP432 DriverLib - v3_10_00_09 
+ *    MSP432 DriverLib - v3_10_00_09
  * -------------------------------------------
  *
  * --COPYRIGHT--,BSD,BSD
@@ -51,66 +51,65 @@
 //
 //*****************************************************************************
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
-#include <stdint.h>
 #include <stdbool.h>
+#include <stdint.h>
 
-#include <msp.h>
 #include "eusci.h"
+#include <msp.h>
 
-#define DEFAULT_SYNC									0x00
-#define EUSCI_A_UART_AUTOMATICBAUDRATE_SYNC             0x55
+#define DEFAULT_SYNC                                   0x00
+#define EUSCI_A_UART_AUTOMATICBAUDRATE_SYNC            0x55
 
-#define EUSCI_A_UART_NO_PARITY                          0x00
-#define EUSCI_A_UART_ODD_PARITY                         0x01
-#define EUSCI_A_UART_EVEN_PARITY                        0x02
+#define EUSCI_A_UART_NO_PARITY                         0x00
+#define EUSCI_A_UART_ODD_PARITY                        0x01
+#define EUSCI_A_UART_EVEN_PARITY                       0x02
 
-#define EUSCI_A_UART_MSB_FIRST                          EUSCI_A_CTLW0_MSB
-#define EUSCI_A_UART_LSB_FIRST                          0x00
+#define EUSCI_A_UART_MSB_FIRST                         EUSCI_A_CTLW0_MSB
+#define EUSCI_A_UART_LSB_FIRST                         0x00
 
-#define EUSCI_A_UART_MODE                               EUSCI_A_CTLW0_MODE_0
-#define EUSCI_A_UART_IDLE_LINE_MULTI_PROCESSOR_MODE		EUSCI_A_CTLW0_MODE_1
-#define EUSCI_A_UART_ADDRESS_BIT_MULTI_PROCESSOR_MODE   EUSCI_A_CTLW0_MODE_2
-#define EUSCI_A_UART_AUTOMATIC_BAUDRATE_DETECTION_MODE  EUSCI_A_CTLW0_MODE_3
+#define EUSCI_A_UART_MODE                              EUSCI_A_CTLW0_MODE_0
+#define EUSCI_A_UART_IDLE_LINE_MULTI_PROCESSOR_MODE    EUSCI_A_CTLW0_MODE_1
+#define EUSCI_A_UART_ADDRESS_BIT_MULTI_PROCESSOR_MODE  EUSCI_A_CTLW0_MODE_2
+#define EUSCI_A_UART_AUTOMATIC_BAUDRATE_DETECTION_MODE EUSCI_A_CTLW0_MODE_3
 
-#define EUSCI_A_UART_CLOCKSOURCE_SMCLK                  EUSCI_A_CTLW0_SSEL__SMCLK
-#define EUSCI_A_UART_CLOCKSOURCE_ACLK                   EUSCI_A_CTLW0_SSEL__ACLK
+#define EUSCI_A_UART_CLOCKSOURCE_SMCLK                 EUSCI_A_CTLW0_SSEL__SMCLK
+#define EUSCI_A_UART_CLOCKSOURCE_ACLK                  EUSCI_A_CTLW0_SSEL__ACLK
 
-#define EUSCI_A_UART_ONE_STOP_BIT                       0x00
-#define EUSCI_A_UART_TWO_STOP_BITS                      EUSCI_A_CTLW0_SPB
+#define EUSCI_A_UART_ONE_STOP_BIT                      0x00
+#define EUSCI_A_UART_TWO_STOP_BITS                     EUSCI_A_CTLW0_SPB
 
-#define EUSCI_A_UART_OVERSAMPLING_BAUDRATE_GENERATION   0x01
-#define EUSCI_A_UART_LOW_FREQUENCY_BAUDRATE_GENERATION  0x00
+#define EUSCI_A_UART_OVERSAMPLING_BAUDRATE_GENERATION  0x01
+#define EUSCI_A_UART_LOW_FREQUENCY_BAUDRATE_GENERATION 0x00
 
-#define EUSCI_A_UART_RECEIVE_INTERRUPT                  EUSCI_A_IE_RXIE
-#define EUSCI_A_UART_TRANSMIT_INTERRUPT                 EUSCI_A_IE_TXIE
-#define EUSCI_A_UART_RECEIVE_ERRONEOUSCHAR_INTERRUPT    EUSCI_A_CTLW0_RXEIE
-#define EUSCI_A_UART_BREAKCHAR_INTERRUPT                EUSCI_A_CTLW0_BRKIE
-#define EUSCI_A_UART_STARTBIT_INTERRUPT                 EUSCI_A_IE_STTIE
-#define EUSCI_A_UART_TRANSMIT_COMPLETE_INTERRUPT        EUSCI_B_IE_STPIE
+#define EUSCI_A_UART_RECEIVE_INTERRUPT                 EUSCI_A_IE_RXIE
+#define EUSCI_A_UART_TRANSMIT_INTERRUPT                EUSCI_A_IE_TXIE
+#define EUSCI_A_UART_RECEIVE_ERRONEOUSCHAR_INTERRUPT   EUSCI_A_CTLW0_RXEIE
+#define EUSCI_A_UART_BREAKCHAR_INTERRUPT               EUSCI_A_CTLW0_BRKIE
+#define EUSCI_A_UART_STARTBIT_INTERRUPT                EUSCI_A_IE_STTIE
+#define EUSCI_A_UART_TRANSMIT_COMPLETE_INTERRUPT       EUSCI_B_IE_STPIE
 
-#define EUSCI_A_UART_RECEIVE_INTERRUPT_FLAG             EUSCI_A_IFG_RXIFG
-#define EUSCI_A_UART_TRANSMIT_INTERRUPT_FLAG            EUSCI_A_IFG_TXIFG
-#define EUSCI_A_UART_STARTBIT_INTERRUPT_FLAG            EUSCI_A_IFG_STTIFG
-#define EUSCI_A_UART_TRANSMIT_COMPLETE_INTERRUPT_FLAG   EUSCI_A_IFG_TXCPTIFG
+#define EUSCI_A_UART_RECEIVE_INTERRUPT_FLAG            EUSCI_A_IFG_RXIFG
+#define EUSCI_A_UART_TRANSMIT_INTERRUPT_FLAG           EUSCI_A_IFG_TXIFG
+#define EUSCI_A_UART_STARTBIT_INTERRUPT_FLAG           EUSCI_A_IFG_STTIFG
+#define EUSCI_A_UART_TRANSMIT_COMPLETE_INTERRUPT_FLAG  EUSCI_A_IFG_TXCPTIFG
 
-#define EUSCI_A_UART_LISTEN_ENABLE                      EUSCI_A_STATW_LISTEN
-#define EUSCI_A_UART_FRAMING_ERROR                      EUSCI_A_STATW_FE
-#define EUSCI_A_UART_OVERRUN_ERROR                      EUSCI_A_STATW_OE
-#define EUSCI_A_UART_PARITY_ERROR                       EUSCI_A_STATW_PE
-#define EUSCI_A_UART_BREAK_DETECT                       EUSCI_A_STATW_BRK
-#define EUSCI_A_UART_RECEIVE_ERROR                      EUSCI_A_STATW_RXERR
-#define EUSCI_A_UART_ADDRESS_RECEIVED                   EUSCI_A_STATW_ADDR_IDLE
-#define EUSCI_A_UART_IDLELINE                           EUSCI_A_STATW_ADDR_IDLE
-#define EUSCI_A_UART_BUSY                               EUSCI_A_STATW_BUSY
+#define EUSCI_A_UART_LISTEN_ENABLE                     EUSCI_A_STATW_LISTEN
+#define EUSCI_A_UART_FRAMING_ERROR                     EUSCI_A_STATW_FE
+#define EUSCI_A_UART_OVERRUN_ERROR                     EUSCI_A_STATW_OE
+#define EUSCI_A_UART_PARITY_ERROR                      EUSCI_A_STATW_PE
+#define EUSCI_A_UART_BREAK_DETECT                      EUSCI_A_STATW_BRK
+#define EUSCI_A_UART_RECEIVE_ERROR                     EUSCI_A_STATW_RXERR
+#define EUSCI_A_UART_ADDRESS_RECEIVED                  EUSCI_A_STATW_ADDR_IDLE
+#define EUSCI_A_UART_IDLELINE                          EUSCI_A_STATW_ADDR_IDLE
+#define EUSCI_A_UART_BUSY                              EUSCI_A_STATW_BUSY
 
-#define EUSCI_A_UART_DEGLITCH_TIME_2ns                  0x00
-#define EUSCI_A_UART_DEGLITCH_TIME_50ns                 0x0001
-#define EUSCI_A_UART_DEGLITCH_TIME_100ns                0x0002
-#define EUSCI_A_UART_DEGLITCH_TIME_200ns                (0x0001 + 0x0002)
+#define EUSCI_A_UART_DEGLITCH_TIME_2ns                 0x00
+#define EUSCI_A_UART_DEGLITCH_TIME_50ns                0x0001
+#define EUSCI_A_UART_DEGLITCH_TIME_100ns               0x0002
+#define EUSCI_A_UART_DEGLITCH_TIME_200ns               ( 0x0001 + 0x0002 )
 
 //*****************************************************************************
 //
@@ -198,7 +197,8 @@ typedef struct _eUSCI_eUSCI_UART_Config
 //! disabled and must be enabled with UART_enableModule()
 //!
 //! Refer to
-//! <a href="http://software-dl.ti.com/msp430/msp430_public_sw/mcu/msp430/MSP430BaudRateConverter/index.html">
+//! <a
+//! href="http://software-dl.ti.com/msp430/msp430_public_sw/mcu/msp430/MSP430BaudRateConverter/index.html">
 //! this calculator </a> for help on calculating values for the parameters.
 //!
 //! Modified bits are \b UCPEN, \b UCPAR, \b UCMSB, \b UC7BIT, \b UCSPB,
@@ -209,8 +209,8 @@ typedef struct _eUSCI_eUSCI_UART_Config
 //!         STATUS_FAIL of the initialization process
 //
 //*****************************************************************************
-extern bool UART_initModule(uint32_t moduleInstance,
-        const eUSCI_UART_Config *config);
+extern bool UART_initModule( uint32_t moduleInstance,
+                             const eUSCI_UART_Config * config );
 
 //*****************************************************************************
 //
@@ -234,8 +234,8 @@ extern bool UART_initModule(uint32_t moduleInstance,
 //! \return None.
 //
 //*****************************************************************************
-extern void UART_transmitData(uint32_t moduleInstance,
-        uint_fast8_t transmitData);
+extern void UART_transmitData( uint32_t moduleInstance,
+                               uint_fast8_t transmitData );
 
 //*****************************************************************************
 //
@@ -259,7 +259,7 @@ extern void UART_transmitData(uint32_t moduleInstance,
 //! uint8_t.
 //
 //*****************************************************************************
-extern uint8_t UART_receiveData(uint32_t moduleInstance);
+extern uint8_t UART_receiveData( uint32_t moduleInstance );
 
 //*****************************************************************************
 //
@@ -282,7 +282,7 @@ extern uint8_t UART_receiveData(uint32_t moduleInstance);
 //! \return None.
 //
 //*****************************************************************************
-extern void UART_enableModule(uint32_t moduleInstance);
+extern void UART_enableModule( uint32_t moduleInstance );
 
 //*****************************************************************************
 //
@@ -305,7 +305,7 @@ extern void UART_enableModule(uint32_t moduleInstance);
 //! \return None.
 //
 //*****************************************************************************
-extern void UART_disableModule(uint32_t moduleInstance);
+extern void UART_disableModule( uint32_t moduleInstance );
 
 //*****************************************************************************
 //
@@ -340,8 +340,8 @@ extern void UART_disableModule(uint32_t moduleInstance);
 //! \return the masked status flag
 //
 //*****************************************************************************
-extern uint_fast8_t UART_queryStatusFlags(uint32_t moduleInstance,
-        uint_fast8_t mask);
+extern uint_fast8_t UART_queryStatusFlags( uint32_t moduleInstance,
+                                           uint_fast8_t mask );
 
 //*****************************************************************************
 //
@@ -367,7 +367,7 @@ extern uint_fast8_t UART_queryStatusFlags(uint32_t moduleInstance,
 //! \return None.
 //
 //*****************************************************************************
-extern void UART_setDormant(uint32_t moduleInstance);
+extern void UART_setDormant( uint32_t moduleInstance );
 
 //*****************************************************************************
 //
@@ -390,7 +390,7 @@ extern void UART_setDormant(uint32_t moduleInstance);
 //! \return None.
 //
 //*****************************************************************************
-extern void UART_resetDormant(uint32_t moduleInstance);
+extern void UART_resetDormant( uint32_t moduleInstance );
 
 //*****************************************************************************
 //
@@ -413,8 +413,8 @@ extern void UART_resetDormant(uint32_t moduleInstance);
 //! \return None.
 //
 //*****************************************************************************
-extern void UART_transmitAddress(uint32_t moduleInstance,
-        uint_fast8_t transmitAddress);
+extern void UART_transmitAddress( uint32_t moduleInstance,
+                                  uint_fast8_t transmitAddress );
 
 //*****************************************************************************
 //
@@ -440,7 +440,7 @@ extern void UART_transmitAddress(uint32_t moduleInstance,
 //! \return None.
 //
 //*****************************************************************************
-extern void UART_transmitBreak(uint32_t moduleInstance);
+extern void UART_transmitBreak( uint32_t moduleInstance );
 
 //*****************************************************************************
 //
@@ -462,7 +462,7 @@ extern void UART_transmitBreak(uint32_t moduleInstance);
 //! \return None
 //
 //*****************************************************************************
-extern uint32_t UART_getReceiveBufferAddressForDMA(uint32_t moduleInstance);
+extern uint32_t UART_getReceiveBufferAddressForDMA( uint32_t moduleInstance );
 
 //*****************************************************************************
 //
@@ -484,7 +484,7 @@ extern uint32_t UART_getReceiveBufferAddressForDMA(uint32_t moduleInstance);
 //! \return None
 //
 //*****************************************************************************
-extern uint32_t UART_getTransmitBufferAddressForDMA(uint32_t moduleInstance);
+extern uint32_t UART_getTransmitBufferAddressForDMA( uint32_t moduleInstance );
 
 //*****************************************************************************
 //
@@ -513,8 +513,8 @@ extern uint32_t UART_getTransmitBufferAddressForDMA(uint32_t moduleInstance);
 //! \return None
 //
 //*****************************************************************************
-extern void UART_selectDeglitchTime(uint32_t moduleInstance,
-        uint32_t deglitchTime);
+extern void UART_selectDeglitchTime( uint32_t moduleInstance,
+                                     uint32_t deglitchTime );
 
 //*****************************************************************************
 //
@@ -549,7 +549,7 @@ extern void UART_selectDeglitchTime(uint32_t moduleInstance,
 //! \return None.
 //
 //*****************************************************************************
-extern void UART_enableInterrupt(uint32_t moduleInstance, uint_fast8_t mask);
+extern void UART_enableInterrupt( uint32_t moduleInstance, uint_fast8_t mask );
 
 //*****************************************************************************
 //
@@ -583,7 +583,7 @@ extern void UART_enableInterrupt(uint32_t moduleInstance, uint_fast8_t mask);
 //! \return None.
 //
 //*****************************************************************************
-extern void UART_disableInterrupt(uint32_t moduleInstance, uint_fast8_t mask);
+extern void UART_disableInterrupt( uint32_t moduleInstance, uint_fast8_t mask );
 
 //*****************************************************************************
 //
@@ -611,8 +611,8 @@ extern void UART_disableInterrupt(uint32_t moduleInstance, uint_fast8_t mask);
 //! - \b EUSCI_A_UART_TRANSMIT_INTERRUPT_FLAG - Transmit interrupt flag
 //
 //*****************************************************************************
-extern uint_fast8_t UART_getInterruptStatus(uint32_t moduleInstance,
-        uint8_t mask);
+extern uint_fast8_t UART_getInterruptStatus( uint32_t moduleInstance,
+                                             uint8_t mask );
 
 //*****************************************************************************
 //
@@ -637,7 +637,7 @@ extern uint_fast8_t UART_getInterruptStatus(uint32_t moduleInstance,
 //! - \b EUSCI_A_UART_TRANSMIT_INTERRUPT_FLAG - Transmit interrupt flag
 //
 //*****************************************************************************
-extern uint_fast8_t UART_getEnabledInterruptStatus(uint32_t moduleInstance);
+extern uint_fast8_t UART_getEnabledInterruptStatus( uint32_t moduleInstance );
 
 //*****************************************************************************
 //
@@ -666,7 +666,8 @@ extern uint_fast8_t UART_getEnabledInterruptStatus(uint32_t moduleInstance);
 //! \return None.
 //
 //*****************************************************************************
-extern void UART_clearInterruptFlag(uint32_t moduleInstance, uint_fast8_t mask);
+extern void UART_clearInterruptFlag( uint32_t moduleInstance,
+                                     uint_fast8_t mask );
 
 //*****************************************************************************
 //
@@ -694,8 +695,8 @@ extern void UART_clearInterruptFlag(uint32_t moduleInstance, uint_fast8_t mask);
 //! \return None.
 //
 //*****************************************************************************
-extern void UART_registerInterrupt(uint32_t moduleInstance,
-        void (*intHandler)(void));
+extern void UART_registerInterrupt( uint32_t moduleInstance,
+                                    void ( *intHandler )( void ) );
 
 //*****************************************************************************
 //
@@ -721,24 +722,26 @@ extern void UART_registerInterrupt(uint32_t moduleInstance,
 //! \return None.
 //
 //*****************************************************************************
-extern void UART_unregisterInterrupt(uint32_t moduleInstance);
+extern void UART_unregisterInterrupt( uint32_t moduleInstance );
 
 /* Backwards Compatibility Layer */
-#define EUSCI_A_UART_transmitData UART_transmitData
-#define EUSCI_A_UART_receiveData UART_receiveData
-#define EUSCI_A_UART_enableInterrupt UART_enableInterrupt
-#define EUSCI_A_UART_disableInterrupt UART_disableInterrupt
+#define EUSCI_A_UART_transmitData       UART_transmitData
+#define EUSCI_A_UART_receiveData        UART_receiveData
+#define EUSCI_A_UART_enableInterrupt    UART_enableInterrupt
+#define EUSCI_A_UART_disableInterrupt   UART_disableInterrupt
 #define EUSCI_A_UART_getInterruptStatus UART_getInterruptStatus
 #define EUSCI_A_UART_clearInterruptFlag UART_clearInterruptFlag
-#define EUSCI_A_UART_enable UART_enableModule
-#define EUSCI_A_UART_disable UART_disableModule
-#define EUSCI_A_UART_queryStatusFlags UART_queryStatusFlags
-#define EUSCI_A_UART_setDormant UART_setDormant
-#define EUSCI_A_UART_resetDormant UART_resetDormant
-#define EUSCI_A_UART_transmitAddress UART_transmitAddress
-#define EUSCI_A_UART_transmitBreak UART_transmitBreak
-#define EUSCI_A_UART_getReceiveBufferAddressForDMA UART_getReceiveBufferAddressForDMA
-#define EUSCI_A_UART_getTransmitBufferAddressForDMA UART_getTransmitBufferAddressForDMA
+#define EUSCI_A_UART_enable             UART_enableModule
+#define EUSCI_A_UART_disable            UART_disableModule
+#define EUSCI_A_UART_queryStatusFlags   UART_queryStatusFlags
+#define EUSCI_A_UART_setDormant         UART_setDormant
+#define EUSCI_A_UART_resetDormant       UART_resetDormant
+#define EUSCI_A_UART_transmitAddress    UART_transmitAddress
+#define EUSCI_A_UART_transmitBreak      UART_transmitBreak
+#define EUSCI_A_UART_getReceiveBufferAddressForDMA \
+    UART_getReceiveBufferAddressForDMA
+#define EUSCI_A_UART_getTransmitBufferAddressForDMA \
+    UART_getTransmitBufferAddressForDMA
 #define EUSCI_A_UART_selectDeglitchTime UART_selectDeglitchTime
 
 //*****************************************************************************

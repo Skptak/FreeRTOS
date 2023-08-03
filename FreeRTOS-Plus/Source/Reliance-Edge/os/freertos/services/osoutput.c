@@ -29,8 +29,7 @@
 
 #if REDCONF_OUTPUT == 1
 
-#include <redosdeviations.h>
-
+    #include <redosdeviations.h>
 
 /** @brief Write a string to a user-visible output location.
 
@@ -39,10 +38,9 @@
 
     @param pszString    A null-terminated string.
 */
-void RedOsOutputString(
-    const char *pszString)
+void RedOsOutputString( const char * pszString )
 {
-    if(pszString == NULL)
+    if( pszString == NULL )
     {
         REDERROR();
     }
@@ -50,15 +48,15 @@ void RedOsOutputString(
     {
         uint32_t ulIdx = 0U;
 
-        while(pszString[ulIdx] != '\0')
+        while( pszString[ ulIdx ] != '\0' )
         {
-            OUTPUT_CHARACTER(pszString[ulIdx]);
+            OUTPUT_CHARACTER( pszString[ ulIdx ] );
 
             /*  Serial output often requires a \r to print newlines correctly.
-            */
-            if(pszString[ulIdx] == '\n')
+             */
+            if( pszString[ ulIdx ] == '\n' )
             {
-                OUTPUT_CHARACTER('\r');
+                OUTPUT_CHARACTER( '\r' );
             }
 
             ulIdx++;
@@ -67,4 +65,3 @@ void RedOsOutputString(
 }
 
 #endif
-

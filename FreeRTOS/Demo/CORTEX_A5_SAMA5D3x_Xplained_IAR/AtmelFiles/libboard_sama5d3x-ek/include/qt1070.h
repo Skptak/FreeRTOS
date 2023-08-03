@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
- *         SAM Software Package License 
+ *         SAM Software Package License
  * ----------------------------------------------------------------------------
  * Copyright (c) 2011, Atmel Corporation
  *
@@ -27,13 +27,12 @@
  * ----------------------------------------------------------------------------
  */
 
-
 /**
-  * \file
-  *
-  * Implementation QT1070 driver.
-  *
-  */
+ * \file
+ *
+ * Implementation QT1070 driver.
+ *
+ */
 
 #ifndef QT1070_H
 #define QT1070_H
@@ -44,18 +43,18 @@
  *         Definitions
  *----------------------------------------------------------------------------*/
 /** Slave address */
-#define QT1070_SLAVE_ADDRESS    0x1B
+#define QT1070_SLAVE_ADDRESS        0x1B
 
 /** Internal Register Address Allocation */
 
 /** Chip ID register*/
-#define QT1070_CHIP_ID          0
+#define QT1070_CHIP_ID              0
 /** Firmware version register*/
 #define QT1070_REG_FIRMWARE_VERSION 1
 /** Detection status*/
 #define QT1070_REG_DETECTION_STATUS 2
 /** Key status*/
-#define QT1070_REG_KEY_STATUS       3 
+#define QT1070_REG_KEY_STATUS       3
 /** Key signal */
 #define QT1070_REG_KEY0_SIGNAL_MSB  4
 #define QT1070_REG_KEY0_SIGNAL_LSB  5
@@ -126,30 +125,32 @@
 
 /** Detection Status. */
 /** This bit is set during a calibration sequence.*/
-#define QT_CALIBRATE_BIT        7
+#define QT_CALIBRATE_BIT            7
 /** This bit is set if the time to acquire all key signals exceeds 8 ms*/
-#define QT_OVERFLOW_BIT         6
+#define QT_OVERFLOW_BIT             6
 /** This bit is set if Comms mode is enabled. */
-#define QT_COMMSENABLED_BIT     5
+#define QT_COMMSENABLED_BIT         5
 /** This bit is set if any keys are in detect. */
-#define QT_TOUCH_BIT            0
-
+#define QT_TOUCH_BIT                0
 
 /*----------------------------------------------------------------------------
  *         Exported functions
  *----------------------------------------------------------------------------*/
 
-extern uint8_t QT1070_GetChipId(Twid *pTwid);
-extern uint8_t QT1070_GetFirmwareVersion(Twid *pTwid);
-extern uint8_t QT1070_GetDetection_Status(Twid *pTwid);
-extern uint8_t QT1070_GetKey_Status(Twid *pTwid);
-extern uint16_t QT1070_GetKey_Signal(Twid *pTwid, uint8_t key);
-extern uint16_t QT1070_GetKey_Reference(Twid *pTwid, uint8_t key);
-extern void QT1070_SetThreshold(Twid *pTwid, uint8_t key, uint8_t threshold);
-extern void QT1070_SetAveAks(Twid *pTwid, uint8_t key, uint8_t Ave, uint8_t Aks);
-extern void QT1070_SetDetectionIntegrator(Twid *pTwid, uint8_t key, uint8_t di);
-extern void QT1070_StartCalibrate(Twid *pTwid);
-extern void QT1070_StartReset(Twid *pTwid);
+extern uint8_t QT1070_GetChipId( Twid * pTwid );
+extern uint8_t QT1070_GetFirmwareVersion( Twid * pTwid );
+extern uint8_t QT1070_GetDetection_Status( Twid * pTwid );
+extern uint8_t QT1070_GetKey_Status( Twid * pTwid );
+extern uint16_t QT1070_GetKey_Signal( Twid * pTwid, uint8_t key );
+extern uint16_t QT1070_GetKey_Reference( Twid * pTwid, uint8_t key );
+extern void QT1070_SetThreshold( Twid * pTwid, uint8_t key, uint8_t threshold );
+extern void QT1070_SetAveAks( Twid * pTwid,
+                              uint8_t key,
+                              uint8_t Ave,
+                              uint8_t Aks );
+extern void QT1070_SetDetectionIntegrator( Twid * pTwid,
+                                           uint8_t key,
+                                           uint8_t di );
+extern void QT1070_StartCalibrate( Twid * pTwid );
+extern void QT1070_StartReset( Twid * pTwid );
 #endif // QT1070_H
-
-

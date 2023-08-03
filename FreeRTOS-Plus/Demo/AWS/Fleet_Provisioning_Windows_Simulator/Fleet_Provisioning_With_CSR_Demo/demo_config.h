@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -31,7 +32,8 @@
 /******* DO NOT CHANGE the following order ********/
 /**************************************************/
 
-/* Include logging header files and define logging macros in the following order:
+/* Include logging header files and define logging macros in the following
+ * order:
  * 1. Include the header file "logging_levels.h".
  * 2. Define the LIBRARY_LOG_NAME and LIBRARY_LOG_LEVEL macros depending on
  * the logging configuration for DEMO.
@@ -42,24 +44,23 @@
 
 /* Logging configuration for the Demo. */
 #ifndef LIBRARY_LOG_NAME
-    #define LIBRARY_LOG_NAME    "FLEET_PROVISIONING_DEMO"
+    #define LIBRARY_LOG_NAME "FLEET_PROVISIONING_DEMO"
 #endif
 
 #ifndef LIBRARY_LOG_LEVEL
-    #define LIBRARY_LOG_LEVEL    LOG_INFO
+    #define LIBRARY_LOG_LEVEL LOG_INFO
 #endif
 
 /* Prototype for the function used to print to console on Windows simulator
  * of FreeRTOS.
  * The function prints to the console before the network is connected;
  * then a UDP port after the network has connected. */
-extern void vLoggingPrintf( const char * pcFormatString,
-                            ... );
+extern void vLoggingPrintf( const char * pcFormatString, ... );
 
 /* Map the SdkLog macro to the logging function to enable logging
  * on Windows simulator. */
 #ifndef SdkLog
-    #define SdkLog( message )    vLoggingPrintf message
+    #define SdkLog( message ) vLoggingPrintf message
 #endif
 
 #include "logging_stack.h"
@@ -74,20 +75,21 @@ extern void vLoggingPrintf( const char * pcFormatString,
  *!!! be read by software, such as a production serial number, instead of a
  *!!! hard coded constant.
  */
-#define democonfigFP_DEMO_ID    "FPDemoID"__TIME__
+#define democonfigFP_DEMO_ID "FPDemoID"__TIME__
 
 /**
- * @brief The MQTT client identifier used in this example.  Each client identifier
- * must be unique so edit as required to ensure no two clients connecting to the
- * same broker use the same client identifier.
+ * @brief The MQTT client identifier used in this example.  Each client
+ * identifier must be unique so edit as required to ensure no two clients
+ * connecting to the same broker use the same client identifier.
  *
- * @note Appending __TIME__ to the client id string will reduce the possibility of a
- * client id collision in the broker. Note that the appended time is the compilation
- * time. This client id can cause collision, if more than one instance of the same
- * binary is used at the same time to connect to the broker.
+ * @note Appending __TIME__ to the client id string will reduce the possibility
+ * of a client id collision in the broker. Note that the appended time is the
+ * compilation time. This client id can cause collision, if more than one
+ * instance of the same binary is used at the same time to connect to the
+ * broker.
  */
 #ifndef democonfigCLIENT_IDENTIFIER
-    #define democonfigCLIENT_IDENTIFIER    "client"democonfigFP_DEMO_ID
+    #define democonfigCLIENT_IDENTIFIER "client" democonfigFP_DEMO_ID
 #endif
 
 /**
@@ -109,7 +111,7 @@ extern void vLoggingPrintf( const char * pcFormatString,
  * @note Port 443 requires use of the ALPN TLS extension with the ALPN protocol
  * name. When using port 8883, ALPN is not required.
  */
-#define democonfigMQTT_BROKER_PORT    ( 8883 )
+#define democonfigMQTT_BROKER_PORT ( 8883 )
 
 /**
  * @brief Server's root CA certificate.
@@ -133,7 +135,8 @@ extern void vLoggingPrintf( const char * pcFormatString,
  * @brief Name of the provisioning template to use for the RegisterThing
  * portion of the Fleet Provisioning workflow.
  *
- * For information about provisioning templates, see the following AWS documentation:
+ * For information about provisioning templates, see the following AWS
+ * documentation:
  * https://docs.aws.amazon.com/iot/latest/developerguide/provision-template.html#fleet-provision-template
  *
  * The example template used for this demo is available in the
@@ -145,22 +148,25 @@ extern void vLoggingPrintf( const char * pcFormatString,
  * @note The provisioning template MUST be created in AWS IoT before running the
  * demo.
  *
- * @note If you followed the manual setup steps on https://freertos.org/iot-fleet-provisioning/demo.html,
- * the provisioning template name is "FleetProvisioningDemoTemplate".
- * However, if you used CloudFormation to set up the demo, the template name is "CF_FleetProvisioningDemoTemplate"
+ * @note If you followed the manual setup steps on
+ * https://freertos.org/iot-fleet-provisioning/demo.html, the provisioning
+ * template name is "FleetProvisioningDemoTemplate". However, if you used
+ * CloudFormation to set up the demo, the template name is
+ * "CF_FleetProvisioningDemoTemplate"
  *
  * #define democonfigPROVISIONING_TEMPLATE_NAME    "...insert here..."
  */
 
 /**
- * @brief Subject name to use when creating the certificate signing request (CSR)
- * for provisioning the demo client with using the Fleet Provisioning
+ * @brief Subject name to use when creating the certificate signing request
+ * (CSR) for provisioning the demo client with using the Fleet Provisioning
  * CreateCertificateFromCsr APIs.
  *
- * This is passed to MbedTLS; see https://tls.mbed.org/api/x509__csr_8h.html#a954eae166b125cea2115b7db8c896e90
+ * This is passed to MbedTLS; see
+ * https://tls.mbed.org/api/x509__csr_8h.html#a954eae166b125cea2115b7db8c896e90
  */
 #ifndef democonfigCSR_SUBJECT_NAME
-    #define democonfigCSR_SUBJECT_NAME    "CN="democonfigFP_DEMO_ID
+    #define democonfigCSR_SUBJECT_NAME "CN=" democonfigFP_DEMO_ID
 #endif
 
 /**
@@ -175,41 +181,41 @@ extern void vLoggingPrintf( const char * pcFormatString,
  * buffers used when generating new keys and certificates.
  *
  */
-#define democonfigDEMO_STACKSIZE            configMINIMAL_STACK_SIZE
+#define democonfigDEMO_STACKSIZE         configMINIMAL_STACK_SIZE
 
 /**
  * @brief Size of the network buffer for MQTT packets. Must be large enough to
  * hold the GetCertificateFromCsr response, which, among other things, includes
  * a PEM encoded certificate.
  */
-#define democonfigNETWORK_BUFFER_SIZE       ( 2048U )
+#define democonfigNETWORK_BUFFER_SIZE    ( 2048U )
 
 /**
  * @brief The name of the operating system that the application is running on.
  * The current value is given as an example. Please update for your specific
  * operating system.
  */
-#define democonfigOS_NAME                   "FreeRTOS"
+#define democonfigOS_NAME                "FreeRTOS"
 
 /**
  * @brief The version of the operating system that the application is running
  * on. The current value is given as an example. Please update for your specific
  * operating system version.
  */
-#define democonfigOS_VERSION                tskKERNEL_VERSION_NUMBER
+#define democonfigOS_VERSION             tskKERNEL_VERSION_NUMBER
 
 /**
  * @brief The name of the hardware platform the application is running on. The
  * current value is given as an example. Please update for your specific
  * hardware platform.
  */
-#define democonfigHARDWARE_PLATFORM_NAME    "WinSim"
+#define democonfigHARDWARE_PLATFORM_NAME "WinSim"
 
 /**
  * @brief The name of the MQTT library used and its version, following an "@"
  * symbol.
  */
 #include "core_mqtt.h" /* Include coreMQTT header for MQTT_LIBRARY_VERSION macro. */
-#define democonfigMQTT_LIB    "core-mqtt@"MQTT_LIBRARY_VERSION
+#define democonfigMQTT_LIB "core-mqtt@" MQTT_LIBRARY_VERSION
 
 #endif /* DEMO_CONFIG_H */

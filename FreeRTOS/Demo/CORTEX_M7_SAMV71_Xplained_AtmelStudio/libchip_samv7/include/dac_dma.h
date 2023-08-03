@@ -31,7 +31,8 @@
  *
  *  \section Purpose
  *
- *  Interface for configuration the Analog-to-Digital Converter (DACC) peripheral.
+ *  Interface for configuration the Analog-to-Digital Converter (DACC)
+ * peripheral.
  *
  *  \section Usage
  *
@@ -42,7 +43,7 @@
  *  -# Wait the end of the conversion by polling status with DACC_GetStatus()
  *  -# Finally, get the converted data using DACC_GetConvertedData()
  *
-*/
+ */
 #ifndef _DAC_DMA_
 #define _DAC_DMA_
 
@@ -51,21 +52,19 @@
  *----------------------------------------------------------------------------*/
 #include "chip.h"
 
-#include <stdint.h>
 #include <assert.h>
-
+#include <stdint.h>
 
 #ifdef __cplusplus
- extern "C" {
+extern "C" {
 #endif
-
 
 /*----------------------------------------------------------------------------
  *        Types
  *----------------------------------------------------------------------------*/
 
 /** DAC transfer complete callback. */
-typedef void (*DacCallback)( uint8_t, void* ) ;
+typedef void ( *DacCallback )( uint8_t, void * );
 
 /** \brief Dac Transfer Request prepared by the application upper layer.
  *
@@ -75,43 +74,41 @@ typedef void (*DacCallback)( uint8_t, void* ) ;
 typedef struct
 {
     /** Pointer to the Tx data. */
-    uint8_t *pTxBuff;
+    uint8_t * pTxBuff;
     /** Tx size in bytes. */
     uint16_t TxSize;
     /** Tx loop back. */
     uint16_t loopback;
     /** DACC channel*/
-    uint8_t dacChannel; 
+    uint8_t dacChannel;
     /** Callback function invoked at the end of transfer. */
     DacCallback callback;
     /** Callback arguments. */
-    void *pArgument;
-} DacCmd ;
-
+    void * pArgument;
+} DacCmd;
 
 /** Constant structure associated with DAC port. This structure prevents
     client applications to have access in the same time. */
-typedef struct 
+typedef struct
 {
     /** Pointer to DAC Hardware registers */
-    Dacc* pDacHw ;
+    Dacc * pDacHw;
     /** Current SpiCommand being processed */
-    DacCmd *pCurrentCommand ;
+    DacCmd * pCurrentCommand;
     /** Pointer to DMA driver */
-    sXdmad* pXdmad ;
+    sXdmad * pXdmad;
     /** DACC Id as defined in the product datasheet */
-    uint8_t dacId ;
+    uint8_t dacId;
     /** Mutual exclusion semaphore. */
-    volatile int8_t semaphore ;
+    volatile int8_t semaphore;
 } DacDma;
-
 
 /*------------------------------------------------------------------------------
  *         Definitions
  *------------------------------------------------------------------------------*/
-#define DAC_OK          0
-#define DAC_ERROR       1
-#define DAC_ERROR_LOCK  2
+#define DAC_OK         0
+#define DAC_ERROR      1
+#define DAC_ERROR_LOCK 2
 
 #define DACC_CHANNEL_0 0
 #define DACC_CHANNEL_1 1
@@ -119,30 +116,46 @@ typedef struct
 /*------------------------------------------------------------------------------
  *         Exported functions
  *------------------------------------------------------------------------------*/
-extern uint32_t Dac_ConfigureDma( DacDma *pDacd ,
-                           Dacc *pDacHw ,
-                           uint8_t DacId,
-                           sXdmad *pXdmad );
-extern uint32_t Dac_SendData( DacDma *pDacd, DacCmd *pCommand);
-
+extern uint32_t Dac_ConfigureDma( DacDma * pDacd,
+                                  Dacc * pDacHw,
+                                  uint8_t DacId,
+                                  sXdmad * pXdmad );
+extern uint32_t Dac_SendData( DacDma * pDacd, DacCmd * pCommand );
 
 /*------------------------------------------------------------------------------
  *         Macros function of register access
  *------------------------------------------------------------------------------*/
-#define DACC_SoftReset(pDACC)                 ((pDACC)->DACC_CR = DACC_CR_SWRST)
-#define DACC_CfgModeReg(pDACC, mode)          { (pDACC)->DACC_MR = (mode); }
-#define DACC_GetModeReg(pDACC)                ((pDACC)->DACC_MR)
-#define DACC_CfgTrigger(pDACC, mode)          { (pDACC)->DACC_TRIGR = (mode); }
+#define DACC_SoftReset( pDACC ) ( ( pDACC )->DACC_CR = DACC_CR_SWRST )
+#define DACC_CfgModeReg( pDACC, mode ) \
+    {                                  \
+        ( pDACC )->DACC_MR = ( mode ); \
+    }
+#define DACC_GetModeReg( pDACC ) ( ( pDACC )->DACC_MR )
+#define DACC_CfgTrigger( pDACC, mode )    \
+    {                                     \
+        ( pDACC )->DACC_TRIGR = ( mode ); \
+    }
 
-#define DACC_EnableChannel(pDACC, channel)    {(pDACC)->DACC_CHER = (1 << (channel));}
-#define DACC_DisableChannel(pDACC, channel)   {(pDACC)->DACC_CHDR = (1 << (channel));}
+#define DACC_EnableChannel( pDACC, channel )         \
+    {                                                \
+        ( pDACC )->DACC_CHER = ( 1 << ( channel ) ); \
+    }
+#define DACC_DisableChannel( pDACC, channel )        \
+    {                                                \
+        ( pDACC )->DACC_CHDR = ( 1 << ( channel ) ); \
+    }
 
-#define DACC_EnableIt(pDACC, mode)            {(pDACC)->DACC_IER = (mode);}
-#define DACC_DisableIt(pDACC, mode)           {(pDACC)->DACC_IDR = (mode);}
-#define DACC_GetStatus(pDACC)                 ((pDACC)->DACC_ISR)
-#define DACC_GetChannelStatus(pDACC)          ((pDACC)->DACC_CHSR)
-#define DACC_GetInterruptMaskStatus(pDACC)    ((pDACC)->DACC_IMR)
-
+#define DACC_EnableIt( pDACC, mode )    \
+    {                                   \
+        ( pDACC )->DACC_IER = ( mode ); \
+    }
+#define DACC_DisableIt( pDACC, mode )   \
+    {                                   \
+        ( pDACC )->DACC_IDR = ( mode ); \
+    }
+#define DACC_GetStatus( pDACC )              ( ( pDACC )->DACC_ISR )
+#define DACC_GetChannelStatus( pDACC )       ( ( pDACC )->DACC_CHSR )
+#define DACC_GetInterruptMaskStatus( pDACC ) ( ( pDACC )->DACC_IMR )
 
 #ifdef __cplusplus
 }

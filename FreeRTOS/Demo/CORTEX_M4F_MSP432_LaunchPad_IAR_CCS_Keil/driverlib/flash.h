@@ -1,6 +1,6 @@
 /*
  * -------------------------------------------
- *    MSP432 DriverLib - v3_10_00_09 
+ *    MSP432 DriverLib - v3_10_00_09
  * -------------------------------------------
  *
  * --COPYRIGHT--,BSD,BSD
@@ -51,8 +51,7 @@
 //
 //*****************************************************************************
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 #include <msp.h>
@@ -63,92 +62,92 @@ extern "C"
 // Control specific variables
 //
 //*****************************************************************************
-#define FLASH_BURST_PRG_BIT 0x03
+#define FLASH_BURST_PRG_BIT            0x03
 
 /* Interrupts */
-#define FLASH_PROGRAM_ERROR         FLCTL_IFG_PRG_ERR
-#define FLASH_BENCHMARK_INT         FLCTL_IFG_BMRK
-#define FLASH_ERASE_COMPLETE        FLCTL_IFG_ERASE
-#define FLASH_BRSTPRGM_COMPLETE     FLCTL_IFG_PRGB
-#define FLASH_WRDPRGM_COMPLETE      FLCTL_IFG_PRG
-#define FLASH_POSTVERIFY_FAILED     FLCTL_IFG_AVPST
-#define FLASH_PREVERIFY_FAILED      FLCTL_IFG_AVPRE
-#define FLASH_BRSTRDCMP_COMPLETE    FLCTL_IFG_RDBRST
+#define FLASH_PROGRAM_ERROR            FLCTL_IFG_PRG_ERR
+#define FLASH_BENCHMARK_INT            FLCTL_IFG_BMRK
+#define FLASH_ERASE_COMPLETE           FLCTL_IFG_ERASE
+#define FLASH_BRSTPRGM_COMPLETE        FLCTL_IFG_PRGB
+#define FLASH_WRDPRGM_COMPLETE         FLCTL_IFG_PRG
+#define FLASH_POSTVERIFY_FAILED        FLCTL_IFG_AVPST
+#define FLASH_PREVERIFY_FAILED         FLCTL_IFG_AVPRE
+#define FLASH_BRSTRDCMP_COMPLETE       FLCTL_IFG_RDBRST
 
-#define FLASH_NORMAL_READ_MODE            FLCTL_BANK0_RDCTL_RD_MODE_0
-#define FLASH_MARGIN0_READ_MODE           FLCTL_BANK0_RDCTL_RD_MODE_1
-#define FLASH_MARGIN1_READ_MODE           FLCTL_BANK0_RDCTL_RD_MODE_2
-#define FLASH_PROGRAM_VERIFY_READ_MODE    FLCTL_BANK0_RDCTL_RD_MODE_3
-#define FLASH_ERASE_VERIFY_READ_MODE      FLCTL_BANK0_RDCTL_RD_MODE_4
-#define FLASH_LEAKAGE_VERIFY_READ_MODE    FLCTL_BANK0_RDCTL_RD_MODE_5
-#define FLASH_MARGIN0B_READ_MODE          FLCTL_BANK0_RDCTL_RD_MODE_9
-#define FLASH_MARGIN1B_READ_MODE          FLCTL_BANK0_RDCTL_RD_MODE_10
+#define FLASH_NORMAL_READ_MODE         FLCTL_BANK0_RDCTL_RD_MODE_0
+#define FLASH_MARGIN0_READ_MODE        FLCTL_BANK0_RDCTL_RD_MODE_1
+#define FLASH_MARGIN1_READ_MODE        FLCTL_BANK0_RDCTL_RD_MODE_2
+#define FLASH_PROGRAM_VERIFY_READ_MODE FLCTL_BANK0_RDCTL_RD_MODE_3
+#define FLASH_ERASE_VERIFY_READ_MODE   FLCTL_BANK0_RDCTL_RD_MODE_4
+#define FLASH_LEAKAGE_VERIFY_READ_MODE FLCTL_BANK0_RDCTL_RD_MODE_5
+#define FLASH_MARGIN0B_READ_MODE       FLCTL_BANK0_RDCTL_RD_MODE_9
+#define FLASH_MARGIN1B_READ_MODE       FLCTL_BANK0_RDCTL_RD_MODE_10
 
-#define FLASH_PRGBRSTCTLSTAT_BURSTSTATUS_COMPLETE FLCTL_PRGBRST_CTLSTAT_BURST_STATUS_7
+#define FLASH_PRGBRSTCTLSTAT_BURSTSTATUS_COMPLETE \
+    FLCTL_PRGBRST_CTLSTAT_BURST_STATUS_7
 
-#define FLASH_BANK0                 0x00
-#define FLASH_BANK1                 0x01
-#define FLASH_DATA_READ             0x00
-#define FLASH_INSTRUCTION_FETCH     0x01
+#define FLASH_BANK0                   0x00
+#define FLASH_BANK1                   0x01
+#define FLASH_DATA_READ               0x00
+#define FLASH_INSTRUCTION_FETCH       0x01
 
-#define FLASH_MAIN_MEMORY_SPACE_BANK0     0x01
-#define FLASH_MAIN_MEMORY_SPACE_BANK1     0x02
-#define FLASH_INFO_MEMORY_SPACE_BANK0      0x03
-#define FLASH_INFO_MEMORY_SPACE_BANK1      0x04
+#define FLASH_MAIN_MEMORY_SPACE_BANK0 0x01
+#define FLASH_MAIN_MEMORY_SPACE_BANK1 0x02
+#define FLASH_INFO_MEMORY_SPACE_BANK0 0x03
+#define FLASH_INFO_MEMORY_SPACE_BANK1 0x04
 
-#define FLASH_MAIN_SPACE    FLCTL_RDBRST_CTLSTAT_MEM_TYPE_0
-#define FLASH_INFO_SPACE    FLCTL_RDBRST_CTLSTAT_MEM_TYPE_1
-#define FLASH_1_PATTERN FLCTL_RDBRST_CTLSTAT_DATA_CMP
-#define FLASH_0_PATTERN 0x00
+#define FLASH_MAIN_SPACE              FLCTL_RDBRST_CTLSTAT_MEM_TYPE_0
+#define FLASH_INFO_SPACE              FLCTL_RDBRST_CTLSTAT_MEM_TYPE_1
+#define FLASH_1_PATTERN               FLCTL_RDBRST_CTLSTAT_DATA_CMP
+#define FLASH_0_PATTERN               0x00
 
-#define FLASH_SECTOR0               FLCTL_BANK0_MAIN_WEPROT_PROT0
-#define FLASH_SECTOR1               FLCTL_BANK0_MAIN_WEPROT_PROT1
-#define FLASH_SECTOR2               FLCTL_BANK0_MAIN_WEPROT_PROT2
-#define FLASH_SECTOR3               FLCTL_BANK0_MAIN_WEPROT_PROT3
-#define FLASH_SECTOR4               FLCTL_BANK0_MAIN_WEPROT_PROT4
-#define FLASH_SECTOR5               FLCTL_BANK0_MAIN_WEPROT_PROT5
-#define FLASH_SECTOR6               FLCTL_BANK0_MAIN_WEPROT_PROT6
-#define FLASH_SECTOR7               FLCTL_BANK0_MAIN_WEPROT_PROT7
-#define FLASH_SECTOR8               FLCTL_BANK0_MAIN_WEPROT_PROT8
-#define FLASH_SECTOR9               FLCTL_BANK0_MAIN_WEPROT_PROT9
-#define FLASH_SECTOR10              FLCTL_BANK0_MAIN_WEPROT_PROT10
-#define FLASH_SECTOR11              FLCTL_BANK0_MAIN_WEPROT_PROT11
-#define FLASH_SECTOR12              FLCTL_BANK0_MAIN_WEPROT_PROT12
-#define FLASH_SECTOR13              FLCTL_BANK0_MAIN_WEPROT_PROT13
-#define FLASH_SECTOR14              FLCTL_BANK0_MAIN_WEPROT_PROT14
-#define FLASH_SECTOR15              FLCTL_BANK0_MAIN_WEPROT_PROT15
-#define FLASH_SECTOR16              FLCTL_BANK0_MAIN_WEPROT_PROT16
-#define FLASH_SECTOR17              FLCTL_BANK0_MAIN_WEPROT_PROT17
-#define FLASH_SECTOR18              FLCTL_BANK0_MAIN_WEPROT_PROT18
-#define FLASH_SECTOR19              FLCTL_BANK0_MAIN_WEPROT_PROT19
-#define FLASH_SECTOR20              FLCTL_BANK0_MAIN_WEPROT_PROT20
-#define FLASH_SECTOR21              FLCTL_BANK0_MAIN_WEPROT_PROT21
-#define FLASH_SECTOR22              FLCTL_BANK0_MAIN_WEPROT_PROT22
-#define FLASH_SECTOR23              FLCTL_BANK0_MAIN_WEPROT_PROT23
-#define FLASH_SECTOR24              FLCTL_BANK0_MAIN_WEPROT_PROT24
-#define FLASH_SECTOR25              FLCTL_BANK0_MAIN_WEPROT_PROT25
-#define FLASH_SECTOR26              FLCTL_BANK0_MAIN_WEPROT_PROT26
-#define FLASH_SECTOR27              FLCTL_BANK0_MAIN_WEPROT_PROT27
-#define FLASH_SECTOR28              FLCTL_BANK0_MAIN_WEPROT_PROT28
-#define FLASH_SECTOR29              FLCTL_BANK0_MAIN_WEPROT_PROT29
-#define FLASH_SECTOR30              FLCTL_BANK0_MAIN_WEPROT_PROT30
-#define FLASH_SECTOR31              FLCTL_BANK0_MAIN_WEPROT_PROT31
+#define FLASH_SECTOR0                 FLCTL_BANK0_MAIN_WEPROT_PROT0
+#define FLASH_SECTOR1                 FLCTL_BANK0_MAIN_WEPROT_PROT1
+#define FLASH_SECTOR2                 FLCTL_BANK0_MAIN_WEPROT_PROT2
+#define FLASH_SECTOR3                 FLCTL_BANK0_MAIN_WEPROT_PROT3
+#define FLASH_SECTOR4                 FLCTL_BANK0_MAIN_WEPROT_PROT4
+#define FLASH_SECTOR5                 FLCTL_BANK0_MAIN_WEPROT_PROT5
+#define FLASH_SECTOR6                 FLCTL_BANK0_MAIN_WEPROT_PROT6
+#define FLASH_SECTOR7                 FLCTL_BANK0_MAIN_WEPROT_PROT7
+#define FLASH_SECTOR8                 FLCTL_BANK0_MAIN_WEPROT_PROT8
+#define FLASH_SECTOR9                 FLCTL_BANK0_MAIN_WEPROT_PROT9
+#define FLASH_SECTOR10                FLCTL_BANK0_MAIN_WEPROT_PROT10
+#define FLASH_SECTOR11                FLCTL_BANK0_MAIN_WEPROT_PROT11
+#define FLASH_SECTOR12                FLCTL_BANK0_MAIN_WEPROT_PROT12
+#define FLASH_SECTOR13                FLCTL_BANK0_MAIN_WEPROT_PROT13
+#define FLASH_SECTOR14                FLCTL_BANK0_MAIN_WEPROT_PROT14
+#define FLASH_SECTOR15                FLCTL_BANK0_MAIN_WEPROT_PROT15
+#define FLASH_SECTOR16                FLCTL_BANK0_MAIN_WEPROT_PROT16
+#define FLASH_SECTOR17                FLCTL_BANK0_MAIN_WEPROT_PROT17
+#define FLASH_SECTOR18                FLCTL_BANK0_MAIN_WEPROT_PROT18
+#define FLASH_SECTOR19                FLCTL_BANK0_MAIN_WEPROT_PROT19
+#define FLASH_SECTOR20                FLCTL_BANK0_MAIN_WEPROT_PROT20
+#define FLASH_SECTOR21                FLCTL_BANK0_MAIN_WEPROT_PROT21
+#define FLASH_SECTOR22                FLCTL_BANK0_MAIN_WEPROT_PROT22
+#define FLASH_SECTOR23                FLCTL_BANK0_MAIN_WEPROT_PROT23
+#define FLASH_SECTOR24                FLCTL_BANK0_MAIN_WEPROT_PROT24
+#define FLASH_SECTOR25                FLCTL_BANK0_MAIN_WEPROT_PROT25
+#define FLASH_SECTOR26                FLCTL_BANK0_MAIN_WEPROT_PROT26
+#define FLASH_SECTOR27                FLCTL_BANK0_MAIN_WEPROT_PROT27
+#define FLASH_SECTOR28                FLCTL_BANK0_MAIN_WEPROT_PROT28
+#define FLASH_SECTOR29                FLCTL_BANK0_MAIN_WEPROT_PROT29
+#define FLASH_SECTOR30                FLCTL_BANK0_MAIN_WEPROT_PROT30
+#define FLASH_SECTOR31                FLCTL_BANK0_MAIN_WEPROT_PROT31
 
-#define FLASH_NOVER     0
-#define FLASH_BURSTPOST FLCTL_PRGBRST_CTLSTAT_AUTO_PST
-#define FLASH_BURSTPRE FLCTL_PRGBRST_CTLSTAT_AUTO_PRE
-#define FLASH_REGPRE FLCTL_PRG_CTLSTAT_VER_PRE
-#define FLASH_REGPOST FLCTL_PRG_CTLSTAT_VER_PST
-#define FLASH_FULLVER (FLCTL_PRGBRST_CTLSTAT_AUTO_PST |                        \
-                    FLCTL_PRGBRST_CTLSTAT_AUTO_PRE | FLCTL_PRG_CTLSTAT_VER_PRE \
-                    | FLCTL_PRG_CTLSTAT_VER_PST)
+#define FLASH_NOVER                   0
+#define FLASH_BURSTPOST               FLCTL_PRGBRST_CTLSTAT_AUTO_PST
+#define FLASH_BURSTPRE                FLCTL_PRGBRST_CTLSTAT_AUTO_PRE
+#define FLASH_REGPRE                  FLCTL_PRG_CTLSTAT_VER_PRE
+#define FLASH_REGPOST                 FLCTL_PRG_CTLSTAT_VER_PST
+#define FLASH_FULLVER                                                   \
+    ( FLCTL_PRGBRST_CTLSTAT_AUTO_PST | FLCTL_PRGBRST_CTLSTAT_AUTO_PRE | \
+      FLCTL_PRG_CTLSTAT_VER_PRE | FLCTL_PRG_CTLSTAT_VER_PST )
 
 #define FLASH_COLLATED_WRITE_MODE  0x01
 #define FLASH_IMMEDIATE_WRITE_MODE 0x02
 
 #define __INFO_FLASH_TECH_START__  0x00200000
 #define __INFO_FLASH_TECH_MIDDLE__ 0x00202000
-
 
 //*****************************************************************************
 //
@@ -158,7 +157,7 @@ extern "C"
 
 //*****************************************************************************
 //
-//! Calculates the flash bank and sector number given an address. Stores the 
+//! Calculates the flash bank and sector number given an address. Stores the
 //! results into the two pointers given as parameters. The user must provide
 //! a valid memory address (an address in SRAM for example will give an invalid
 //! result).
@@ -178,8 +177,9 @@ extern "C"
 //! \return None.
 //
 //*****************************************************************************
-extern void FlashCtl_getMemoryInfo(uint32_t addr, uint32_t *sectorNum, 
-                                uint32_t *bankNum);
+extern void FlashCtl_getMemoryInfo( uint32_t addr,
+                                    uint32_t * sectorNum,
+                                    uint32_t * bankNum );
 
 //*****************************************************************************
 //
@@ -198,8 +198,8 @@ extern void FlashCtl_getMemoryInfo(uint32_t addr, uint32_t *sectorNum,
 //! \return None.
 //
 //*****************************************************************************
-extern void FlashCtl_enableReadBuffering(uint_fast8_t memoryBank,
-        uint_fast8_t accessMethod);
+extern void FlashCtl_enableReadBuffering( uint_fast8_t memoryBank,
+                                          uint_fast8_t accessMethod );
 
 //*****************************************************************************
 //
@@ -218,8 +218,8 @@ extern void FlashCtl_enableReadBuffering(uint_fast8_t memoryBank,
 //! \return None.
 //
 //*****************************************************************************
-extern void FlashCtl_disableReadBuffering(uint_fast8_t memoryBank,
-        uint_fast8_t accessMethod);
+extern void FlashCtl_disableReadBuffering( uint_fast8_t memoryBank,
+                                           uint_fast8_t accessMethod );
 
 //*****************************************************************************
 //
@@ -274,14 +274,14 @@ extern void FlashCtl_disableReadBuffering(uint_fast8_t memoryBank,
 //!
 //! \note Not all devices will contain a dedicated INFO memory. Please check the
 //!  device datasheet to see if your device has INFO memory available for use.
-//!  For devices without INFO memory, any operation related to the INFO memory 
+//!  For devices without INFO memory, any operation related to the INFO memory
 //!  will be ignored by the hardware.
 //!
 //! \return true if sector protection disabled false otherwise.
 //
 //*****************************************************************************
-extern bool FlashCtl_unprotectSector(uint_fast8_t memorySpace,
-        uint32_t sectorMask);
+extern bool FlashCtl_unprotectSector( uint_fast8_t memorySpace,
+                                      uint32_t sectorMask );
 
 //*****************************************************************************
 //
@@ -336,14 +336,14 @@ extern bool FlashCtl_unprotectSector(uint_fast8_t memorySpace,
 //!
 //! \note Not all devices will contain a dedicated INFO memory. Please check the
 //!  device datasheet to see if your device has INFO memory available for use.
-//!  For devices without INFO memory, any operation related to the INFO memory 
+//!  For devices without INFO memory, any operation related to the INFO memory
 //!  will be ignored by the hardware.
 //!
 //! \return true if sector protection enabled false otherwise.
 //
 //*****************************************************************************
-extern bool FlashCtl_protectSector(uint_fast8_t memorySpace,
-        uint32_t sectorMask);
+extern bool FlashCtl_protectSector( uint_fast8_t memorySpace,
+                                    uint32_t sectorMask );
 
 //*****************************************************************************
 //
@@ -397,14 +397,14 @@ extern bool FlashCtl_protectSector(uint_fast8_t memorySpace,
 //!
 //! \note Not all devices will contain a dedicated INFO memory. Please check the
 //!  device datasheet to see if your device has INFO memory available for use.
-//!  For devices without INFO memory, any operation related to the INFO memory 
+//!  For devices without INFO memory, any operation related to the INFO memory
 //!  will be ignored by the hardware.
 //!
 //! \return true if sector protection enabled false otherwise.
 //
 //*****************************************************************************
-extern bool FlashCtl_isSectorProtected(uint_fast8_t memorySpace,
-        uint32_t sector);
+extern bool FlashCtl_isSectorProtected( uint_fast8_t memorySpace,
+                                        uint32_t sector );
 
 //*****************************************************************************
 //
@@ -443,8 +443,9 @@ extern bool FlashCtl_isSectorProtected(uint_fast8_t memorySpace,
 //! \return true if memory verification is successful, false otherwise.
 //
 //*****************************************************************************
-extern bool FlashCtl_verifyMemory(void* verifyAddr, uint32_t length,
-        uint_fast8_t pattern);
+extern bool FlashCtl_verifyMemory( void * verifyAddr,
+                                   uint32_t length,
+                                   uint_fast8_t pattern );
 
 //*****************************************************************************
 //
@@ -469,19 +470,19 @@ extern bool FlashCtl_verifyMemory(void* verifyAddr, uint32_t length,
 //! \return true if mass erase completes successfully, false otherwise
 //
 //*****************************************************************************
-extern bool FlashCtl_performMassErase(void);
+extern bool FlashCtl_performMassErase( void );
 
 //*****************************************************************************
 //
 //!  Initiates a mass erase and returns control back to the program. This is a
 //!  non-blocking function, however it is the user's responsibility to perform
 //!  the necessary verification requirements after the interrupt is set to
-//!  signify completion. 
+//!  signify completion.
 //!
 //! \return None
 //
 //*****************************************************************************
-extern void FlashCtl_initiateMassErase(void);
+extern void FlashCtl_initiateMassErase( void );
 
 //*****************************************************************************
 //
@@ -511,7 +512,7 @@ extern void FlashCtl_initiateMassErase(void);
 //! \return true if sector erase is successful, false otherwise.
 //
 //*****************************************************************************
-extern bool FlashCtl_eraseSector(uint32_t addr);
+extern bool FlashCtl_eraseSector( uint32_t addr );
 
 //*****************************************************************************
 //
@@ -546,7 +547,7 @@ extern bool FlashCtl_eraseSector(uint32_t addr);
 //! \return Whether or not the program succeeded
 //
 //*****************************************************************************
-extern bool FlashCtl_programMemory(void* src, void* dest, uint32_t length);
+extern bool FlashCtl_programMemory( void * src, void * dest, uint32_t length );
 
 //*****************************************************************************
 //
@@ -567,7 +568,7 @@ extern bool FlashCtl_programMemory(void* src, void* dest, uint32_t length);
 //! \return none
 //
 //*****************************************************************************
-extern void FlashCtl_setProgramVerification(uint32_t verificationSetting);
+extern void FlashCtl_setProgramVerification( uint32_t verificationSetting );
 
 //*****************************************************************************
 //
@@ -588,7 +589,7 @@ extern void FlashCtl_setProgramVerification(uint32_t verificationSetting);
 //! \return none
 //
 //*****************************************************************************
-extern void FlashCtl_clearProgramVerification(uint32_t verificationSetting);
+extern void FlashCtl_clearProgramVerification( uint32_t verificationSetting );
 
 //*****************************************************************************
 //
@@ -600,8 +601,8 @@ extern void FlashCtl_clearProgramVerification(uint32_t verificationSetting);
 //! \param mode The mode specifies the behavior of the flash controller when
 //!        programming words to flash. In \b FLASH_IMMEDIATE_WRITE_MODE, the
 //!        program operation happens immediately on the write to flash while
-//!        in \b FLASH_COLLATED_WRITE_MODE the write will be delayed until a full
-//!        128-bits have been collated. Possible values include:
+//!        in \b FLASH_COLLATED_WRITE_MODE the write will be delayed until a
+//!        full 128-bits have been collated. Possible values include:
 //!             - \b FLASH_IMMEDIATE_WRITE_MODE
 //!             - \b FLASH_COLLATED_WRITE_MODE
 //!
@@ -611,7 +612,7 @@ extern void FlashCtl_clearProgramVerification(uint32_t verificationSetting);
 //! \return none
 //
 //*****************************************************************************
-extern void FlashCtl_enableWordProgramming(uint32_t mode);
+extern void FlashCtl_enableWordProgramming( uint32_t mode );
 
 //*****************************************************************************
 //
@@ -623,11 +624,12 @@ extern void FlashCtl_enableWordProgramming(uint32_t mode);
 //! \return None.
 //
 //*****************************************************************************
-extern void FlashCtl_disableWordProgramming(void);
+extern void FlashCtl_disableWordProgramming( void );
 
 //*****************************************************************************
 //
-//! Returns if word programming mode is enabled (and if it is, the specific mode)
+//! Returns if word programming mode is enabled (and if it is, the specific
+//! mode)
 //!
 //! Refer to FlashCtl_enableWordProgramming and the user's guide for description
 //! on the difference between full word and immediate programming
@@ -638,7 +640,7 @@ extern void FlashCtl_disableWordProgramming(void);
 //!
 //
 //*****************************************************************************
-extern uint32_t FlashCtl_isWordProgrammingEnabled(void);
+extern uint32_t FlashCtl_isWordProgrammingEnabled( void );
 
 //*****************************************************************************
 //
@@ -663,7 +665,7 @@ extern uint32_t FlashCtl_isWordProgrammingEnabled(void);
 //! \return None.
 //
 //*****************************************************************************
-extern bool FlashCtl_setReadMode(uint32_t flashBank, uint32_t readMode);
+extern bool FlashCtl_setReadMode( uint32_t flashBank, uint32_t readMode );
 
 //*****************************************************************************
 //
@@ -685,7 +687,7 @@ extern bool FlashCtl_setReadMode(uint32_t flashBank, uint32_t readMode);
 //!
 //
 //*****************************************************************************
-extern uint32_t FlashCtl_getReadMode(uint32_t flashBank);
+extern uint32_t FlashCtl_getReadMode( uint32_t flashBank );
 
 //*****************************************************************************
 //
@@ -702,7 +704,7 @@ extern uint32_t FlashCtl_getReadMode(uint32_t flashBank);
 //!
 //
 //*****************************************************************************
-extern void FlashCtl_setWaitState(uint32_t bank, uint32_t waitState);
+extern void FlashCtl_setWaitState( uint32_t bank, uint32_t waitState );
 
 //*****************************************************************************
 //
@@ -715,7 +717,7 @@ extern void FlashCtl_setWaitState(uint32_t bank, uint32_t waitState);
 //! \return The wait state setting for the specified flash bank
 //
 //*****************************************************************************
-extern uint32_t FlashCtl_getWaitState(uint32_t bank);
+extern uint32_t FlashCtl_getWaitState( uint32_t bank );
 
 //*****************************************************************************
 //
@@ -743,7 +745,7 @@ extern uint32_t FlashCtl_getWaitState(uint32_t bank);
 //! \return None.
 //
 //*****************************************************************************
-extern void FlashCtl_enableInterrupt(uint32_t flags);
+extern void FlashCtl_enableInterrupt( uint32_t flags );
 
 //*****************************************************************************
 //
@@ -768,7 +770,7 @@ extern void FlashCtl_enableInterrupt(uint32_t flags);
 //! \return None.
 //
 //*****************************************************************************
-extern void FlashCtl_disableInterrupt(uint32_t flags);
+extern void FlashCtl_disableInterrupt( uint32_t flags );
 
 //*****************************************************************************
 //
@@ -792,7 +794,7 @@ extern void FlashCtl_disableInterrupt(uint32_t flags);
 //! which interrupt sources are available.
 //
 //*****************************************************************************
-extern uint32_t FlashCtl_getEnabledInterruptStatus(void);
+extern uint32_t FlashCtl_getEnabledInterruptStatus( void );
 
 //*****************************************************************************
 //
@@ -813,7 +815,7 @@ extern uint32_t FlashCtl_getEnabledInterruptStatus(void);
 //! which interrupt sources are available.
 //
 //*****************************************************************************
-extern uint32_t FlashCtl_getInterruptStatus(void);
+extern uint32_t FlashCtl_getInterruptStatus( void );
 
 //*****************************************************************************
 //
@@ -850,7 +852,7 @@ extern uint32_t FlashCtl_getInterruptStatus(void);
 //! \return None.
 //
 //*****************************************************************************
-extern void FlashCtl_clearInterruptFlag(uint32_t flags);
+extern void FlashCtl_clearInterruptFlag( uint32_t flags );
 
 //*****************************************************************************
 //
@@ -872,7 +874,7 @@ extern void FlashCtl_clearInterruptFlag(uint32_t flags);
 //! \return None.
 //
 //*****************************************************************************
-extern void FlashCtl_registerInterrupt(void (*intHandler)(void));
+extern void FlashCtl_registerInterrupt( void ( *intHandler )( void ) );
 
 //*****************************************************************************
 //
@@ -888,12 +890,11 @@ extern void FlashCtl_registerInterrupt(void (*intHandler)(void));
 //! \return None.
 //
 //*****************************************************************************
-extern void FlashCtl_unregisterInterrupt(void);
-
+extern void FlashCtl_unregisterInterrupt( void );
 
 //*****************************************************************************
 //
-//! Initiates a sector erase of MAIN or INFO flash memory. Note that this 
+//! Initiates a sector erase of MAIN or INFO flash memory. Note that this
 //! function simply initaites the sector erase, but does no verification
 //! which is required by the flash controller. The user must manually set
 //! and enable interrupts on the flash controller to fire on erase completion
@@ -909,20 +910,19 @@ extern void FlashCtl_unregisterInterrupt(void);
 //! \return None
 //
 //*****************************************************************************
-extern void FlashCtl_initiateSectorErase(uint32_t addr);
-
+extern void FlashCtl_initiateSectorErase( uint32_t addr );
 
 /* The following functions are advanced functions that are used by the flash
  * driver to remask a failed bit in the event of a post or pre verification
  * failure. They are meant to be advanced functions and should not be used
  * by the majority of users (unless you are writing your own flash driver).
  */
-extern uint8_t __FlashCtl_remaskData8Post(uint8_t data, uint32_t addr);
-extern uint8_t __FlashCtl_remaskData8Pre(uint8_t data, uint32_t addr);
-extern uint32_t __FlashCtl_remaskData32Post(uint32_t data, uint32_t addr);
-extern uint32_t __FlashCtl_remaskData32Pre(uint32_t data, uint32_t addr);
-extern void __FlashCtl_remaskBurstDataPost(uint32_t addr, uint32_t size);
-extern void __FlashCtl_remaskBurstDataPre(uint32_t addr, uint32_t size);
+extern uint8_t __FlashCtl_remaskData8Post( uint8_t data, uint32_t addr );
+extern uint8_t __FlashCtl_remaskData8Pre( uint8_t data, uint32_t addr );
+extern uint32_t __FlashCtl_remaskData32Post( uint32_t data, uint32_t addr );
+extern uint32_t __FlashCtl_remaskData32Pre( uint32_t data, uint32_t addr );
+extern void __FlashCtl_remaskBurstDataPost( uint32_t addr, uint32_t size );
+extern void __FlashCtl_remaskBurstDataPre( uint32_t addr, uint32_t size );
 
 //*****************************************************************************
 //

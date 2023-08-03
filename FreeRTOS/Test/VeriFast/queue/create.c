@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -31,7 +32,8 @@
 /* Simplifying assumption: we do not verify queue initialisation in a
  * concurrent environment. We assume the queue initialization (including reset)
  * happens-before all concurrent send/receives. */
-#ifdef VERIFAST /*< ***xQueueGenericReset happens-before concurrent behavior*** */
+#ifdef VERIFAST /*< ***xQueueGenericReset happens-before concurrent \
+                   behavior*** */
     #define taskENTER_CRITICAL()
     #define taskEXIT_CRITICAL()
 #endif
@@ -56,12 +58,12 @@ predicate queue_init2(QueueHandle_t q, int8_t *Storage, size_t N, size_t M;) =
     ;
 @*/
 
-BaseType_t xQueueGenericReset( QueueHandle_t xQueue,
-                               BaseType_t xNewQueue )
+BaseType_t xQueueGenericReset( QueueHandle_t xQueue, BaseType_t xNewQueue )
 /*@requires queue_init2(xQueue, ?Storage, ?N, ?M);@*/
 /*@ensures 0 == M
     ? freertos_mutex(xQueue, Storage, N, 0)
-    : queue(xQueue, Storage, N, M, 0, (N-1), 0, false, nil) &*& queuelists(xQueue);@*/
+    : queue(xQueue, Storage, N, M, 0, (N-1), 0, false, nil) &*&
+   queuelists(xQueue);@*/
 {
 #ifdef VERIFAST /*< const pointer declaration */
     Queue_t * pxQueue = xQueue;
@@ -73,24 +75,39 @@ BaseType_t xQueueGenericReset( QueueHandle_t xQueue,
 
     taskENTER_CRITICAL();
     {
-        pxQueue->u.xQueue.pcTail = pxQueue->pcHead + ( pxQueue->uxLength * pxQueue->uxItemSize ); /*lint !e9016 Pointer arithmetic allowed on char types, especially when it assists conveying intent. */
+        pxQueue->u.xQueue
+            .pcTail = pxQueue->pcHead +
+                      ( pxQueue->uxLength *
+                        pxQueue->uxItemSize ); /*lint !e9016 Pointer arithmetic
+                                                  allowed on char types,
+                                                  especially when it assists
+                                                  conveying intent. */
         pxQueue->uxMessagesWaiting = ( UBaseType_t ) 0U;
         pxQueue->pcWriteTo = pxQueue->pcHead;
         /*@mul_mono_l(0, N-1, M);@*/
-        pxQueue->u.xQueue.pcReadFrom = pxQueue->pcHead + ( ( pxQueue->uxLength - 1U ) * pxQueue->uxItemSize ); /*lint !e9016 Pointer arithmetic allowed on char types, especially when it assists conveying intent. */
+        pxQueue->u.xQueue
+            .pcReadFrom = pxQueue->pcHead +
+                          ( ( pxQueue->uxLength - 1U ) *
+                            pxQueue->uxItemSize ); /*lint !e9016 Pointer
+                                                      arithmetic allowed on char
+                                                      types, especially when it
+                                                      assists conveying intent.
+                                                    */
         pxQueue->cRxLock = queueUNLOCKED;
         pxQueue->cTxLock = queueUNLOCKED;
 
         if( xNewQueue == pdFALSE )
         {
             /* If there are tasks blocked waiting to read from the queue, then
-             * the tasks will remain blocked as after this function exits the queue
-             * will still be empty.  If there are tasks blocked waiting to write to
-             * the queue, then one should be unblocked as after this function exits
-             * it will be possible to write to it. */
-            if( listLIST_IS_EMPTY( &( pxQueue->xTasksWaitingToSend ) ) == pdFALSE )
+             * the tasks will remain blocked as after this function exits the
+             * queue will still be empty.  If there are tasks blocked waiting to
+             * write to the queue, then one should be unblocked as after this
+             * function exits it will be possible to write to it. */
+            if( listLIST_IS_EMPTY( &( pxQueue->xTasksWaitingToSend ) ) ==
+                pdFALSE )
             {
-                if( xTaskRemoveFromEventList( &( pxQueue->xTasksWaitingToSend ) ) != pdFALSE )
+                if( xTaskRemoveFromEventList(
+                        &( pxQueue->xTasksWaitingToSend ) ) != pdFALSE )
                 {
                     queueYIELD_IF_USING_PREEMPTION();
                 }
@@ -131,7 +148,8 @@ static void prvInitialiseNewQueue( const UBaseType_t uxQueueLength,
     malloc_block(pucQueueStorage, uxQueueLength * uxItemSize) &*&
     pucQueueStorage + uxQueueLength * uxItemSize <= (uint8_t *)UINTPTR_MAX &*&
     uchars(pucQueueStorage, uxQueueLength * uxItemSize,_);@*/
-/*@ensures queue(pxNewQueue, ((int8_t *)(void *)pucQueueStorage), uxQueueLength, uxItemSize, 0, (uxQueueLength-1), 0, false, nil) &*&
+/*@ensures queue(pxNewQueue, ((int8_t *)(void *)pucQueueStorage), uxQueueLength,
+   uxItemSize, 0, (uxQueueLength-1), 0, false, nil) &*&
     queuelists(pxNewQueue);@*/
 {
 #ifndef VERIFAST /*< void cast of unused var */
@@ -143,9 +161,9 @@ static void prvInitialiseNewQueue( const UBaseType_t uxQueueLength,
     if( uxItemSize == ( UBaseType_t ) 0 )
     {
         /* No RAM was allocated for the queue storage area, but PC head cannot
-         * be set to NULL because NULL is used as a key to say the queue is used as
-         * a mutex.  Therefore just set pcHead to point to the queue as a benign
-         * value that is known to be within the memory map. */
+         * be set to NULL because NULL is used as a key to say the queue is used
+         * as a mutex.  Therefore just set pcHead to point to the queue as a
+         * benign value that is known to be within the memory map. */
 #ifdef VERIFAST /*< stricter casting */
         pxNewQueue->pcHead = ( int8_t * ) ( void * ) pxNewQueue;
 #else
@@ -173,115 +191,127 @@ static void prvInitialiseNewQueue( const UBaseType_t uxQueueLength,
     ( void ) xQueueGenericReset( pxNewQueue, pdTRUE );
 #endif
 
-    #if ( configUSE_TRACE_FACILITY == 1 )
+#if( configUSE_TRACE_FACILITY == 1 )
     {
         pxNewQueue->ucQueueType = ucQueueType;
     }
-    #endif /* configUSE_TRACE_FACILITY */
+#endif /* configUSE_TRACE_FACILITY */
 
-    #if ( configUSE_QUEUE_SETS == 1 )
+#if( configUSE_QUEUE_SETS == 1 )
     {
         pxNewQueue->pxQueueSetContainer = NULL;
     }
-    #endif /* configUSE_QUEUE_SETS */
+#endif /* configUSE_QUEUE_SETS */
 
     traceQUEUE_CREATE( pxNewQueue );
 }
 
-#define SIZE_MAX    ( ( size_t ) -1 )
+#define SIZE_MAX ( ( size_t ) -1 )
 
-    QueueHandle_t xQueueGenericCreate( const UBaseType_t uxQueueLength,
-                                       const UBaseType_t uxItemSize,
-                                       const uint8_t ucQueueType )
-    /*@requires 0 < uxQueueLength &*&
-        0 < uxItemSize &*&
-        0 < uxQueueLength * uxItemSize &*&
-        uxQueueLength * uxItemSize <= UINT_MAX;@*/
-    /*@ensures result == NULL
-        ? true
-        : queue(result, _, uxQueueLength, uxItemSize, 0, (uxQueueLength-1), 0, false, nil) &*&
-            queuelists(result) &*&
-            result->irqMask |-> _ &*&
-            result->schedulerSuspend |-> _ &*&
-            result->locked |-> _;@*/
-    {
+QueueHandle_t xQueueGenericCreate( const UBaseType_t uxQueueLength,
+                                   const UBaseType_t uxItemSize,
+                                   const uint8_t ucQueueType )
+/*@requires 0 < uxQueueLength &*&
+    0 < uxItemSize &*&
+    0 < uxQueueLength * uxItemSize &*&
+    uxQueueLength * uxItemSize <= UINT_MAX;@*/
+/*@ensures result == NULL
+    ? true
+    : queue(result, _, uxQueueLength, uxItemSize, 0, (uxQueueLength-1), 0,
+   false, nil) &*& queuelists(result) &*& result->irqMask |-> _ &*&
+        result->schedulerSuspend |-> _ &*&
+        result->locked |-> _;@*/
+{
 #ifdef VERIFAST /*< ***model static initialization*** */
-        Queue_t * pxNewQueue = NULL;
+    Queue_t * pxNewQueue = NULL;
 #else
-        Queue_t * pxNewQueue;
+    Queue_t * pxNewQueue;
 #endif
-        size_t xQueueSizeInBytes;
-        uint8_t * pucQueueStorage;
+    size_t xQueueSizeInBytes;
+    uint8_t * pucQueueStorage;
 
-        if( ( uxQueueLength > ( UBaseType_t ) 0 ) &&
-            /* Check for multiplication overflow. */
-            ( ( SIZE_MAX / uxQueueLength ) >= uxItemSize ) &&
-            /* Check for addition overflow. */
-            ( ( SIZE_MAX - sizeof( Queue_t ) ) >= ( uxQueueLength * uxItemSize ) ) )
+    if( ( uxQueueLength > ( UBaseType_t ) 0 ) &&
+        /* Check for multiplication overflow. */
+        ( ( SIZE_MAX / uxQueueLength ) >= uxItemSize ) &&
+        /* Check for addition overflow. */
+        ( ( SIZE_MAX - sizeof( Queue_t ) ) >= ( uxQueueLength * uxItemSize ) ) )
+    {
+        /* Allocate enough space to hold the maximum number of items that
+         * can be in the queue at any time.  It is valid for uxItemSize to be
+         * zero in the case the queue is used as a semaphore. */
+        xQueueSizeInBytes = ( size_t ) ( uxQueueLength *
+                                         uxItemSize ); /*lint !e961 MISRA
+                                                          exception as the casts
+                                                          are only redundant for
+                                                          some ports. */
+
+#ifdef VERIFAST /*< ***model single malloc of struct and buffer*** */
+        pxNewQueue = ( Queue_t * ) pvPortMalloc( sizeof( Queue_t ) );
+#else
+        /* Allocate the queue and storage area.  Justification for MISRA
+         * deviation as follows:  pvPortMalloc() always ensures returned memory
+         * blocks are aligned per the requirements of the MCU stack.  In this
+         * case pvPortMalloc() must return a pointer that is guaranteed to meet
+         * the alignment requirements of the Queue_t structure - which in this
+         * case is an int8_t *.  Therefore, whenever the stack alignment
+         * requirements are greater than or equal to the pointer to char
+         * requirements the cast is safe.  In other cases alignment requirements
+         * are not strict (one or two bytes). */
+        pxNewQueue = ( Queue_t * ) pvPortMalloc(
+            sizeof( Queue_t ) + xQueueSizeInBytes ); /*lint !e9087 !e9079 see
+                                                        comment above. */
+#endif
+
+        if( pxNewQueue != NULL )
         {
-            /* Allocate enough space to hold the maximum number of items that
-             * can be in the queue at any time.  It is valid for uxItemSize to be
-             * zero in the case the queue is used as a semaphore. */
-            xQueueSizeInBytes = ( size_t ) ( uxQueueLength * uxItemSize ); /*lint !e961 MISRA exception as the casts are only redundant for some ports. */
-
 #ifdef VERIFAST /*< ***model single malloc of struct and buffer*** */
-            pxNewQueue = ( Queue_t * ) pvPortMalloc( sizeof( Queue_t ) );
+            pucQueueStorage = ( uint8_t * ) pvPortMalloc( xQueueSizeInBytes );
+
+            if( pucQueueStorage == NULL )
+            {
+                vPortFree( pxNewQueue );
+                return NULL;
+            }
+
+            /*@malloc_block_limits(pucQueueStorage);@*/
 #else
-            /* Allocate the queue and storage area.  Justification for MISRA
-             * deviation as follows:  pvPortMalloc() always ensures returned memory
-             * blocks are aligned per the requirements of the MCU stack.  In this case
-             * pvPortMalloc() must return a pointer that is guaranteed to meet the
-             * alignment requirements of the Queue_t structure - which in this case
-             * is an int8_t *.  Therefore, whenever the stack alignment requirements
-             * are greater than or equal to the pointer to char requirements the cast
-             * is safe.  In other cases alignment requirements are not strict (one or
-             * two bytes). */
-            pxNewQueue = ( Queue_t * ) pvPortMalloc( sizeof( Queue_t ) + xQueueSizeInBytes ); /*lint !e9087 !e9079 see comment above. */
+            /* Jump past the queue structure to find the location of the queue
+             * storage area. */
+            pucQueueStorage = ( uint8_t * ) pxNewQueue;
+            pucQueueStorage += sizeof(
+                Queue_t ); /*lint !e9016 Pointer arithmetic allowed on char
+                              types, especially when it assists conveying
+                              intent. */
 #endif
 
-            if( pxNewQueue != NULL )
+#if( configSUPPORT_STATIC_ALLOCATION == 1 )
             {
-#ifdef VERIFAST /*< ***model single malloc of struct and buffer*** */
-                pucQueueStorage = ( uint8_t * ) pvPortMalloc( xQueueSizeInBytes );
-
-                if( pucQueueStorage == NULL )
-                {
-                    vPortFree( pxNewQueue );
-                    return NULL;
-                }
-
-                /*@malloc_block_limits(pucQueueStorage);@*/
-#else
-                /* Jump past the queue structure to find the location of the queue
-                 * storage area. */
-                pucQueueStorage = ( uint8_t * ) pxNewQueue;
-                pucQueueStorage += sizeof( Queue_t ); /*lint !e9016 Pointer arithmetic allowed on char types, especially when it assists conveying intent. */
-#endif
-
-                #if ( configSUPPORT_STATIC_ALLOCATION == 1 )
-                {
-                    /* Queues can be created either statically or dynamically, so
-                     * note this task was created dynamically in case it is later
-                     * deleted. */
-                    pxNewQueue->ucStaticallyAllocated = pdFALSE;
-                }
-                #endif /* configSUPPORT_STATIC_ALLOCATION */
-
-                prvInitialiseNewQueue( uxQueueLength, uxItemSize, pucQueueStorage, ucQueueType, pxNewQueue );
+                /* Queues can be created either statically or dynamically, so
+                 * note this task was created dynamically in case it is later
+                 * deleted. */
+                pxNewQueue->ucStaticallyAllocated = pdFALSE;
             }
-            else
-            {
-                traceQUEUE_CREATE_FAILED( ucQueueType );
-                mtCOVERAGE_TEST_MARKER();
-            }
+#endif /* configSUPPORT_STATIC_ALLOCATION */
+
+            prvInitialiseNewQueue( uxQueueLength,
+                                   uxItemSize,
+                                   pucQueueStorage,
+                                   ucQueueType,
+                                   pxNewQueue );
         }
         else
         {
-            configASSERT( pxNewQueue );
+            traceQUEUE_CREATE_FAILED( ucQueueType );
             mtCOVERAGE_TEST_MARKER();
         }
-
-        return pxNewQueue;
     }
+    else
+    {
+        configASSERT( pxNewQueue );
+        mtCOVERAGE_TEST_MARKER();
+    }
+
+    return pxNewQueue;
+}
 
 /* *INDENT-ON* */

@@ -1,29 +1,32 @@
 /***********************************************************************************************************************
-* DISCLAIMER
-* This software is supplied by Renesas Electronics Corporation and is only intended for use with Renesas products. No
-* other uses are authorized. This software is owned by Renesas Electronics Corporation and is protected under all
-* applicable laws, including copyright laws.
-* THIS SOFTWARE IS PROVIDED "AS IS" AND RENESAS MAKES NO WARRANTIES REGARDING
-* THIS SOFTWARE, WHETHER EXPRESS, IMPLIED OR STATUTORY, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY,
-* FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. ALL SUCH WARRANTIES ARE EXPRESSLY DISCLAIMED. TO THE MAXIMUM
-* EXTENT PERMITTED NOT PROHIBITED BY LAW, NEITHER RENESAS ELECTRONICS CORPORATION NOR ANY OF ITS AFFILIATED COMPANIES
-* SHALL BE LIABLE FOR ANY DIRECT, INDIRECT, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES FOR ANY REASON RELATED TO THIS
-* SOFTWARE, EVEN IF RENESAS OR ITS AFFILIATES HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
-* Renesas reserves the right, without notice, to make changes to this software and to discontinue the availability of
-* this software. By using this software, you agree to the additional terms and conditions found by accessing the
-* following link:
-* http://www.renesas.com/disclaimer
-*
-* Copyright (C) 2019 Renesas Electronics Corporation. All rights reserved.
-***********************************************************************************************************************/
+ * DISCLAIMER
+ * This software is supplied by Renesas Electronics Corporation and is only
+ *intended for use with Renesas products. No other uses are authorized. This
+ *software is owned by Renesas Electronics Corporation and is protected under
+ *all applicable laws, including copyright laws. THIS SOFTWARE IS PROVIDED "AS
+ *IS" AND RENESAS MAKES NO WARRANTIES REGARDING THIS SOFTWARE, WHETHER EXPRESS,
+ *IMPLIED OR STATUTORY, INCLUDING BUT NOT LIMITED TO WARRANTIES OF
+ *MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. ALL
+ *SUCH WARRANTIES ARE EXPRESSLY DISCLAIMED. TO THE MAXIMUM EXTENT PERMITTED NOT
+ *PROHIBITED BY LAW, NEITHER RENESAS ELECTRONICS CORPORATION NOR ANY OF ITS
+ *AFFILIATED COMPANIES SHALL BE LIABLE FOR ANY DIRECT, INDIRECT, SPECIAL,
+ *INCIDENTAL OR CONSEQUENTIAL DAMAGES FOR ANY REASON RELATED TO THIS SOFTWARE,
+ *EVEN IF RENESAS OR ITS AFFILIATES HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH
+ *DAMAGES. Renesas reserves the right, without notice, to make changes to this
+ *software and to discontinue the availability of this software. By using this
+ *software, you agree to the additional terms and conditions found by accessing
+ *the following link: http://www.renesas.com/disclaimer
+ *
+ * Copyright (C) 2019 Renesas Electronics Corporation. All rights reserved.
+ ***********************************************************************************************************************/
 /***********************************************************************************************************************
-* File Name    : r_gpio_rx72n.h
-* Description  : Specifics for the r_gpio_rx driver for the RX72N.
-***********************************************************************************************************************/
+ * File Name    : r_gpio_rx72n.h
+ * Description  : Specifics for the r_gpio_rx driver for the RX72N.
+ ***********************************************************************************************************************/
 /***********************************************************************************************************************
-* History : DD.MM.YYYY Version Description
-*         : 30.12.2019 1.00    Initial Release.
-***********************************************************************************************************************/
+ * History : DD.MM.YYYY Version Description
+ *         : 30.12.2019 1.00    Initial Release.
+ ***********************************************************************************************************************/
 #ifndef GPIO_RX72N
 #define GPIO_RX72N
 
@@ -32,58 +35,73 @@ Includes   <System Includes> , "Project Includes"
 ***********************************************************************************************************************/
 /* Includes board and MCU related header files. */
 #include "platform.h"
-#if defined(BSP_MCU_RX72N)  /* Prevents the compiler from finding multiple definitions of constant in this file. */
+#if defined( BSP_MCU_RX72N ) /* Prevents the compiler from finding multiple \
+                                definitions of constant in this file. */
 
-/* Configuration for this package. */
-#include "r_gpio_rx_config.h"
+    /* Configuration for this package. */
+    #include "r_gpio_rx_config.h"
 
-/***********************************************************************************************************************
-Macro definitions
-***********************************************************************************************************************/
-/* General information about number of ports and pins on this device. */
-#define GPIO_INFO_NUM_PORTS                 (24)
+    /***********************************************************************************************************************
+    Macro definitions
+    ***********************************************************************************************************************/
+    /* General information about number of ports and pins on this device. */
+    #define GPIO_INFO_NUM_PORTS ( 24 )
 
-#if   (BSP_PACKAGE_PINS == 224)
-    #define GPIO_INFO_NUM_PINS              (183)
-#elif (BSP_PACKAGE_PINS == 176)
-    #define GPIO_INFO_NUM_PINS              (137)
-#elif (BSP_PACKAGE_PINS == 145 || BSP_PACKAGE_PINS == 144)
-    #define GPIO_INFO_NUM_PINS              (112)
-#elif (BSP_PACKAGE_PINS == 100)
-    #define GPIO_INFO_NUM_PINS              (79)
-#else
-    #error "r_gpio_rx does not have information about this RX72N package. Please update r_gpio_rx72N.h"
-#endif
+    #if( BSP_PACKAGE_PINS == 224 )
+        #define GPIO_INFO_NUM_PINS ( 183 )
+    #elif( BSP_PACKAGE_PINS == 176 )
+        #define GPIO_INFO_NUM_PINS ( 137 )
+    #elif( BSP_PACKAGE_PINS == 145 || BSP_PACKAGE_PINS == 144 )
+        #define GPIO_INFO_NUM_PINS ( 112 )
+    #elif( BSP_PACKAGE_PINS == 100 )
+        #define GPIO_INFO_NUM_PINS ( 79 )
+    #else
+        #error \
+            "r_gpio_rx does not have information about this RX72N package. Please update r_gpio_rx72N.h"
+    #endif
 
-/* For testing we will allocate virtual IO ports. */
-#if !defined(GPIO_TESTING)
-/* Base registers used for offsets on output data registers. */
-#define     GPIO_PRV_BASE_ADDR_OUTPUT           ((uint8_t volatile *)&PORT0.PODR.BYTE)
-/* Base registers used for offsets on input data registers. */
-#define     GPIO_PRV_BASE_ADDR_INPUT            ((uint8_t volatile *)&PORT0.PIDR.BYTE)
-/* Base registers used for offsets on direction registers. */
-#define     GPIO_PRV_BASE_ADDR_DIRECTION        ((uint8_t volatile *)&PORT0.PDR.BYTE)
-/* Base registers used for offsets on mode registers. */
-#define     GPIO_PRV_BASE_ADDR_MODE             ((uint8_t volatile *)&PORT0.PMR.BYTE)
-/* Base registers used for offsets on output type registers. */
-#define     GPIO_PRV_BASE_ADDR_OUT_TYPE         ((uint8_t volatile *)&PORT0.ODR0.BYTE)
-/* Base registers used for offsets on pull-up registers. */
-#define     GPIO_PRV_BASE_ADDR_PULL_UP          ((uint8_t volatile *)&PORT0.PCR.BYTE)
-/* Base registers used for offsets on drive capacity control registers. */
-#define     GPIO_PRV_BASE_ADDR_DSCR             ((uint8_t volatile *)&PORT0.DSCR.BYTE)
-/* Base registers used for offsets on drive capacity control registers 2. (high-speed interface high-drive) */
-#define     GPIO_PRV_BASE_ADDR_DSCR2            ((uint8_t volatile *)&PORT0.DSCR2.BYTE)
+    /* For testing we will allocate virtual IO ports. */
+    #if !defined( GPIO_TESTING )
+        /* Base registers used for offsets on output data registers. */
+        #define GPIO_PRV_BASE_ADDR_OUTPUT \
+            ( ( uint8_t volatile * ) &PORT0.PODR.BYTE )
+        /* Base registers used for offsets on input data registers. */
+        #define GPIO_PRV_BASE_ADDR_INPUT \
+            ( ( uint8_t volatile * ) &PORT0.PIDR.BYTE )
+        /* Base registers used for offsets on direction registers. */
+        #define GPIO_PRV_BASE_ADDR_DIRECTION \
+            ( ( uint8_t volatile * ) &PORT0.PDR.BYTE )
+        /* Base registers used for offsets on mode registers. */
+        #define GPIO_PRV_BASE_ADDR_MODE \
+            ( ( uint8_t volatile * ) &PORT0.PMR.BYTE )
+        /* Base registers used for offsets on output type registers. */
+        #define GPIO_PRV_BASE_ADDR_OUT_TYPE \
+            ( ( uint8_t volatile * ) &PORT0.ODR0.BYTE )
+        /* Base registers used for offsets on pull-up registers. */
+        #define GPIO_PRV_BASE_ADDR_PULL_UP \
+            ( ( uint8_t volatile * ) &PORT0.PCR.BYTE )
+        /* Base registers used for offsets on drive capacity control registers.
+         */
+        #define GPIO_PRV_BASE_ADDR_DSCR \
+            ( ( uint8_t volatile * ) &PORT0.DSCR.BYTE )
+        /* Base registers used for offsets on drive capacity control
+         * registers 2. (high-speed interface high-drive) */
+        #define GPIO_PRV_BASE_ADDR_DSCR2 \
+            ( ( uint8_t volatile * ) &PORT0.DSCR2.BYTE )
 
-#endif
+    #endif
 
-#define GPIO_DSCR_IS_SUPPORTED    /* High-drive output is supported for the RX72N */
-#define GPIO_DSCR2_IS_SUPPORTED   /* Large current output, high-drive output is supported for the RX72N */
+    #define GPIO_DSCR_IS_SUPPORTED     /* High-drive output is supported for the \
+                                          RX72N */
+    #define GPIO_DSCR2_IS_SUPPORTED    /* Large current output, high-drive output \
+                                          is supported for the RX72N */
 
-/***********************************************************************************************************************
-Typedef definitions
-***********************************************************************************************************************/
-#if (BSP_PACKAGE_PINS == 224)
-/* This enumerator has each available GPIO port on this MCU. This list will change depending on the MCU chosen. */
+    /***********************************************************************************************************************
+    Typedef definitions
+    ***********************************************************************************************************************/
+    #if( BSP_PACKAGE_PINS == 224 )
+/* This enumerator has each available GPIO port on this MCU. This list will
+ * change depending on the MCU chosen. */
 typedef enum
 {
     GPIO_PORT_0 = 0x0000,
@@ -112,33 +130,34 @@ typedef enum
     GPIO_PORT_Q = 0x1700,
 } gpio_port_t;
 
-/* This enumerator has a bit mask for each available GPIO pin for the given port on this MCU. */
+/* This enumerator has a bit mask for each available GPIO pin for the given port
+ * on this MCU. */
 typedef enum
 {
-    GPIO_PORT0_PIN_MASK = 0xAF,    /* Available pins: P00 to P03, P05, P07	*/
-    GPIO_PORT1_PIN_MASK = 0xFF,    /* Available pins: P10 to P17            */
-    GPIO_PORT2_PIN_MASK = 0xFF,    /* Available pins: P20 to P27            */
-    GPIO_PORT3_PIN_MASK = 0xFF,    /* Available pins: P30 to P37            */
-    GPIO_PORT4_PIN_MASK = 0xFF,    /* Available pins: P40 to P47            */
-    GPIO_PORT5_PIN_MASK = 0xFF,    /* Available pins: P50 to P57            */
-    GPIO_PORT6_PIN_MASK = 0xFF,    /* Available pins: P60 to P67            */
-    GPIO_PORT7_PIN_MASK = 0xFF,    /* Available pins: P70 to P77            */
-    GPIO_PORT8_PIN_MASK = 0xFF,    /* Available pins: P80 to P87            */
-    GPIO_PORT9_PIN_MASK = 0xFF,    /* Available pins: P90 to P97            */
-    GPIO_PORTA_PIN_MASK = 0xFF,    /* Available pins: PA0 to PA7            */
-    GPIO_PORTB_PIN_MASK = 0xFF,    /* Available pins: PB0 to PB7            */
-    GPIO_PORTC_PIN_MASK = 0xFF,    /* Available pins: PC0 to PC7            */
-    GPIO_PORTD_PIN_MASK = 0xFF,    /* Available pins: PD0 to PD7            */
-    GPIO_PORTE_PIN_MASK = 0xFF,    /* Available pins: PE0 to PE7            */
-    GPIO_PORTF_PIN_MASK = 0x3F,    /* Available pins: PF0 to PF5            */
-    GPIO_PORTG_PIN_MASK = 0xFF,    /* Available pins: PG0 to PG7            */
-    GPIO_PORTH_PIN_MASK = 0xFF,    /* Available pins: PH0 to PH7            */
-    GPIO_PORTJ_PIN_MASK = 0x2F,    /* Available pins: PJ0 to PJ3, PJ5       */
-    GPIO_PORTK_PIN_MASK = 0xFF,    /* Available pins: PK0 to PK7            */
-    GPIO_PORTL_PIN_MASK = 0xFF,    /* Available pins: PL0 to PL7            */
-    GPIO_PORTM_PIN_MASK = 0xFF,    /* Available pins: PM0 to PM7            */
-    GPIO_PORTN_PIN_MASK = 0x3F,    /* Available pins: PN0 to PN5            */
-    GPIO_PORTQ_PIN_MASK = 0xFF,    /* Available pins: PQ0 to PQ7            */
+    GPIO_PORT0_PIN_MASK = 0xAF, /* Available pins: P00 to P03, P05, P07	*/
+    GPIO_PORT1_PIN_MASK = 0xFF, /* Available pins: P10 to P17            */
+    GPIO_PORT2_PIN_MASK = 0xFF, /* Available pins: P20 to P27            */
+    GPIO_PORT3_PIN_MASK = 0xFF, /* Available pins: P30 to P37            */
+    GPIO_PORT4_PIN_MASK = 0xFF, /* Available pins: P40 to P47            */
+    GPIO_PORT5_PIN_MASK = 0xFF, /* Available pins: P50 to P57            */
+    GPIO_PORT6_PIN_MASK = 0xFF, /* Available pins: P60 to P67            */
+    GPIO_PORT7_PIN_MASK = 0xFF, /* Available pins: P70 to P77            */
+    GPIO_PORT8_PIN_MASK = 0xFF, /* Available pins: P80 to P87            */
+    GPIO_PORT9_PIN_MASK = 0xFF, /* Available pins: P90 to P97            */
+    GPIO_PORTA_PIN_MASK = 0xFF, /* Available pins: PA0 to PA7            */
+    GPIO_PORTB_PIN_MASK = 0xFF, /* Available pins: PB0 to PB7            */
+    GPIO_PORTC_PIN_MASK = 0xFF, /* Available pins: PC0 to PC7            */
+    GPIO_PORTD_PIN_MASK = 0xFF, /* Available pins: PD0 to PD7            */
+    GPIO_PORTE_PIN_MASK = 0xFF, /* Available pins: PE0 to PE7            */
+    GPIO_PORTF_PIN_MASK = 0x3F, /* Available pins: PF0 to PF5            */
+    GPIO_PORTG_PIN_MASK = 0xFF, /* Available pins: PG0 to PG7            */
+    GPIO_PORTH_PIN_MASK = 0xFF, /* Available pins: PH0 to PH7            */
+    GPIO_PORTJ_PIN_MASK = 0x2F, /* Available pins: PJ0 to PJ3, PJ5       */
+    GPIO_PORTK_PIN_MASK = 0xFF, /* Available pins: PK0 to PK7            */
+    GPIO_PORTL_PIN_MASK = 0xFF, /* Available pins: PL0 to PL7            */
+    GPIO_PORTM_PIN_MASK = 0xFF, /* Available pins: PM0 to PM7            */
+    GPIO_PORTN_PIN_MASK = 0x3F, /* Available pins: PN0 to PN5            */
+    GPIO_PORTQ_PIN_MASK = 0xFF, /* Available pins: PQ0 to PQ7            */
 } gpio_pin_bit_mask_t;
 
 typedef enum
@@ -328,8 +347,9 @@ typedef enum
     GPIO_PORT_Q_PIN_7 = 0x1707,
 } gpio_port_pin_t;
 
-#elif (BSP_PACKAGE_PINS == 176)
-/* This enumerator has each available GPIO port on this MCU. This list will change depending on the MCU chosen. */
+    #elif( BSP_PACKAGE_PINS == 176 )
+/* This enumerator has each available GPIO port on this MCU. This list will
+ * change depending on the MCU chosen. */
 typedef enum
 {
     GPIO_PORT_0 = 0x0000,
@@ -352,27 +372,28 @@ typedef enum
     GPIO_PORT_J = 0x1200,
 } gpio_port_t;
 
-/* This enumerator has a bit mask for each available GPIO pin for the given port on this MCU. */
+/* This enumerator has a bit mask for each available GPIO pin for the given port
+ * on this MCU. */
 typedef enum
 {
-    GPIO_PORT0_PIN_MASK = 0xAF,    /* Available pins: P00 to P03, P05, P07	*/
-    GPIO_PORT1_PIN_MASK = 0xFF,    /* Available pins: P10 to P17            */
-    GPIO_PORT2_PIN_MASK = 0xFF,    /* Available pins: P20 to P27            */
-    GPIO_PORT3_PIN_MASK = 0xFF,    /* Available pins: P30 to P37            */
-    GPIO_PORT4_PIN_MASK = 0xFF,    /* Available pins: P40 to P47            */
-    GPIO_PORT5_PIN_MASK = 0xFF,    /* Available pins: P50 to P57            */
-    GPIO_PORT6_PIN_MASK = 0xFF,    /* Available pins: P60 to P67            */
-    GPIO_PORT7_PIN_MASK = 0xFF,    /* Available pins: P70 to P77            */
-    GPIO_PORT8_PIN_MASK = 0xFF,    /* Available pins: P80 to P87            */
-    GPIO_PORT9_PIN_MASK = 0xFF,    /* Available pins: P90 to P97            */
-    GPIO_PORTA_PIN_MASK = 0xFF,    /* Available pins: PA0 to PA7            */
-    GPIO_PORTB_PIN_MASK = 0xFF,    /* Available pins: PB0 to PB7            */
-    GPIO_PORTC_PIN_MASK = 0xFF,    /* Available pins: PC0 to PC7            */
-    GPIO_PORTD_PIN_MASK = 0xFF,    /* Available pins: PD0 to PD7            */
-    GPIO_PORTE_PIN_MASK = 0xFF,    /* Available pins: PE0 to PE7            */
-    GPIO_PORTF_PIN_MASK = 0x3F,    /* Available pins: PF0 to PF5            */
-    GPIO_PORTG_PIN_MASK = 0xFF,    /* Available pins: PG0 to PG7            */
-    GPIO_PORTJ_PIN_MASK = 0x2F,    /* Available pins: PJ0 to PJ3, PJ5       */
+    GPIO_PORT0_PIN_MASK = 0xAF, /* Available pins: P00 to P03, P05, P07	*/
+    GPIO_PORT1_PIN_MASK = 0xFF, /* Available pins: P10 to P17            */
+    GPIO_PORT2_PIN_MASK = 0xFF, /* Available pins: P20 to P27            */
+    GPIO_PORT3_PIN_MASK = 0xFF, /* Available pins: P30 to P37            */
+    GPIO_PORT4_PIN_MASK = 0xFF, /* Available pins: P40 to P47            */
+    GPIO_PORT5_PIN_MASK = 0xFF, /* Available pins: P50 to P57            */
+    GPIO_PORT6_PIN_MASK = 0xFF, /* Available pins: P60 to P67            */
+    GPIO_PORT7_PIN_MASK = 0xFF, /* Available pins: P70 to P77            */
+    GPIO_PORT8_PIN_MASK = 0xFF, /* Available pins: P80 to P87            */
+    GPIO_PORT9_PIN_MASK = 0xFF, /* Available pins: P90 to P97            */
+    GPIO_PORTA_PIN_MASK = 0xFF, /* Available pins: PA0 to PA7            */
+    GPIO_PORTB_PIN_MASK = 0xFF, /* Available pins: PB0 to PB7            */
+    GPIO_PORTC_PIN_MASK = 0xFF, /* Available pins: PC0 to PC7            */
+    GPIO_PORTD_PIN_MASK = 0xFF, /* Available pins: PD0 to PD7            */
+    GPIO_PORTE_PIN_MASK = 0xFF, /* Available pins: PE0 to PE7            */
+    GPIO_PORTF_PIN_MASK = 0x3F, /* Available pins: PF0 to PF5            */
+    GPIO_PORTG_PIN_MASK = 0xFF, /* Available pins: PG0 to PG7            */
+    GPIO_PORTJ_PIN_MASK = 0x2F, /* Available pins: PJ0 to PJ3, PJ5       */
 } gpio_pin_bit_mask_t;
 
 typedef enum
@@ -516,8 +537,9 @@ typedef enum
     GPIO_PORT_J_PIN_5 = 0x1205,
 } gpio_port_pin_t;
 
-#elif (BSP_PACKAGE_PINS == 145 || BSP_PACKAGE_PINS == 144)
-/* This enumerator has each available GPIO port on this MCU. This list will change depending on the MCU chosen. */
+    #elif( BSP_PACKAGE_PINS == 145 || BSP_PACKAGE_PINS == 144 )
+/* This enumerator has each available GPIO port on this MCU. This list will
+ * change depending on the MCU chosen. */
 typedef enum
 {
     GPIO_PORT_0 = 0x0000,
@@ -539,26 +561,27 @@ typedef enum
     GPIO_PORT_J = 0x1200,
 } gpio_port_t;
 
-/* This enumerator has a bit mask for each available GPIO pin for the given port on this MCU. */
+/* This enumerator has a bit mask for each available GPIO pin for the given port
+ * on this MCU. */
 typedef enum
 {
-    GPIO_PORT0_PIN_MASK = 0xAF,    /* Available pins: P00 to P03, P05, P07	*/
-    GPIO_PORT1_PIN_MASK = 0xFC,    /* Available pins: P12 to P17            */
-    GPIO_PORT2_PIN_MASK = 0xFF,    /* Available pins: P20 to P27            */
-    GPIO_PORT3_PIN_MASK = 0xFF,    /* Available pins: P30 to P37            */
-    GPIO_PORT4_PIN_MASK = 0xFF,    /* Available pins: P40 to P47            */
-    GPIO_PORT5_PIN_MASK = 0x7F,    /* Available pins: P50 to P56            */
-    GPIO_PORT6_PIN_MASK = 0xFF,    /* Available pins: P60 to P67            */
-    GPIO_PORT7_PIN_MASK = 0xFF,    /* Available pins: P70 to P77            */
-    GPIO_PORT8_PIN_MASK = 0xCF,    /* Available pins: P80 to P83, P86, P87  */
-    GPIO_PORT9_PIN_MASK = 0x0F,    /* Available pins: P90 to P93            */
-    GPIO_PORTA_PIN_MASK = 0xFF,    /* Available pins: PA0 to PA7            */
-    GPIO_PORTB_PIN_MASK = 0xFF,    /* Available pins: PB0 to PB7            */
-    GPIO_PORTC_PIN_MASK = 0xFF,    /* Available pins: PC0 to PC7            */
-    GPIO_PORTD_PIN_MASK = 0xFF,    /* Available pins: PD0 to PD7            */
-    GPIO_PORTE_PIN_MASK = 0xFF,    /* Available pins: PE0 to PE7            */
-    GPIO_PORTF_PIN_MASK = 0x32,    /* Available pins: PF5                   */
-    GPIO_PORTJ_PIN_MASK = 0x40,    /* Available pins: PJ3, PJ5    		    */
+    GPIO_PORT0_PIN_MASK = 0xAF, /* Available pins: P00 to P03, P05, P07	*/
+    GPIO_PORT1_PIN_MASK = 0xFC, /* Available pins: P12 to P17            */
+    GPIO_PORT2_PIN_MASK = 0xFF, /* Available pins: P20 to P27            */
+    GPIO_PORT3_PIN_MASK = 0xFF, /* Available pins: P30 to P37            */
+    GPIO_PORT4_PIN_MASK = 0xFF, /* Available pins: P40 to P47            */
+    GPIO_PORT5_PIN_MASK = 0x7F, /* Available pins: P50 to P56            */
+    GPIO_PORT6_PIN_MASK = 0xFF, /* Available pins: P60 to P67            */
+    GPIO_PORT7_PIN_MASK = 0xFF, /* Available pins: P70 to P77            */
+    GPIO_PORT8_PIN_MASK = 0xCF, /* Available pins: P80 to P83, P86, P87  */
+    GPIO_PORT9_PIN_MASK = 0x0F, /* Available pins: P90 to P93            */
+    GPIO_PORTA_PIN_MASK = 0xFF, /* Available pins: PA0 to PA7            */
+    GPIO_PORTB_PIN_MASK = 0xFF, /* Available pins: PB0 to PB7            */
+    GPIO_PORTC_PIN_MASK = 0xFF, /* Available pins: PC0 to PC7            */
+    GPIO_PORTD_PIN_MASK = 0xFF, /* Available pins: PD0 to PD7            */
+    GPIO_PORTE_PIN_MASK = 0xFF, /* Available pins: PE0 to PE7            */
+    GPIO_PORTF_PIN_MASK = 0x32, /* Available pins: PF5                   */
+    GPIO_PORTJ_PIN_MASK = 0x40, /* Available pins: PJ3, PJ5    		    */
 } gpio_pin_bit_mask_t;
 
 typedef enum
@@ -677,8 +700,9 @@ typedef enum
     GPIO_PORT_J_PIN_5 = 0x1205,
 } gpio_port_pin_t;
 
-#elif (BSP_PACKAGE_PINS == 100)
-/* This enumerator has each available GPIO port on this MCU. This list will change depending on the MCU chosen. */
+    #elif( BSP_PACKAGE_PINS == 100 )
+/* This enumerator has each available GPIO port on this MCU. This list will
+ * change depending on the MCU chosen. */
 typedef enum
 {
     GPIO_PORT_0 = 0x0000,
@@ -695,21 +719,22 @@ typedef enum
     GPIO_PORT_J = 0x1200,
 } gpio_port_t;
 
-/* This enumerator has a bit mask for each available GPIO pin for the given port on this MCU. */
+/* This enumerator has a bit mask for each available GPIO pin for the given port
+ * on this MCU. */
 typedef enum
 {
-    GPIO_PORT0_PIN_MASK = 0xA0,    /* Available pins: P05, P07	            */
-    GPIO_PORT1_PIN_MASK = 0xFC,    /* Available pins: P12 to P17            */
-    GPIO_PORT2_PIN_MASK = 0xFF,    /* Available pins: P20 to P27            */
-    GPIO_PORT3_PIN_MASK = 0xFF,    /* Available pins: P30 to P37            */
-    GPIO_PORT4_PIN_MASK = 0xFF,    /* Available pins: P40 to P47            */
-    GPIO_PORT5_PIN_MASK = 0x3F,    /* Available pins: P50 to P55            */
-    GPIO_PORTA_PIN_MASK = 0xFF,    /* Available pins: PA0 to PA7            */
-    GPIO_PORTB_PIN_MASK = 0xFF,    /* Available pins: PB0 to PB7            */
-    GPIO_PORTC_PIN_MASK = 0xFF,    /* Available pins: PC0 to PC7            */
-    GPIO_PORTD_PIN_MASK = 0xFF,    /* Available pins: PD0 to PD7            */
-    GPIO_PORTE_PIN_MASK = 0xFF,    /* Available pins: PE0 to PE7            */
-    GPIO_PORTJ_PIN_MASK = 0x08,    /* Available pins: PJ3    		        */
+    GPIO_PORT0_PIN_MASK = 0xA0, /* Available pins: P05, P07	            */
+    GPIO_PORT1_PIN_MASK = 0xFC, /* Available pins: P12 to P17            */
+    GPIO_PORT2_PIN_MASK = 0xFF, /* Available pins: P20 to P27            */
+    GPIO_PORT3_PIN_MASK = 0xFF, /* Available pins: P30 to P37            */
+    GPIO_PORT4_PIN_MASK = 0xFF, /* Available pins: P40 to P47            */
+    GPIO_PORT5_PIN_MASK = 0x3F, /* Available pins: P50 to P55            */
+    GPIO_PORTA_PIN_MASK = 0xFF, /* Available pins: PA0 to PA7            */
+    GPIO_PORTB_PIN_MASK = 0xFF, /* Available pins: PB0 to PB7            */
+    GPIO_PORTC_PIN_MASK = 0xFF, /* Available pins: PC0 to PC7            */
+    GPIO_PORTD_PIN_MASK = 0xFF, /* Available pins: PD0 to PD7            */
+    GPIO_PORTE_PIN_MASK = 0xFF, /* Available pins: PE0 to PE7            */
+    GPIO_PORTJ_PIN_MASK = 0x08, /* Available pins: PJ3    		        */
 } gpio_pin_bit_mask_t;
 
 typedef enum
@@ -795,16 +820,15 @@ typedef enum
     GPIO_PORT_J_PIN_3 = 0x1203,
 } gpio_port_pin_t;
 
-#endif /* BSP_PACKAGE_PINS */
+    #endif /* BSP_PACKAGE_PINS */
 
+    /***********************************************************************************************************************
+    Exported global variables
+    ***********************************************************************************************************************/
 
-/***********************************************************************************************************************
-Exported global variables
-***********************************************************************************************************************/
-
-/***********************************************************************************************************************
-Exported global functions (to be accessed by other files)
-***********************************************************************************************************************/
+    /***********************************************************************************************************************
+    Exported global functions (to be accessed by other files)
+    ***********************************************************************************************************************/
 
 #endif /* BSP_MCU_RX72N */
 #endif /* GPIO_RX72N */

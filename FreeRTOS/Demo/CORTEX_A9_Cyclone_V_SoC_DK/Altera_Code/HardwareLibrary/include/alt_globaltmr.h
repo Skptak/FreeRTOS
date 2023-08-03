@@ -3,47 +3,45 @@
  */
 
 /******************************************************************************
-*
-* Copyright 2013 Altera Corporation. All Rights Reserved.
-*
-* Redistribution and use in source and binary forms, with or without
-* modification, are permitted provided that the following conditions are met:
-*
-* 1. Redistributions of source code must retain the above copyright notice,
-* this list of conditions and the following disclaimer.
-*
-* 2. Redistributions in binary form must reproduce the above copyright notice,
-* this list of conditions and the following disclaimer in the documentation
-* and/or other materials provided with the distribution.
-*
-* 3. The name of the author may not be used to endorse or promote products
-* derived from this software without specific prior written permission.
-*
-* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDER "AS IS" AND ANY EXPRESS OR
-* IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
-* MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED. IN NO
-* EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
-* EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
-* OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-* INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-* CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING
-* IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
-* OF SUCH DAMAGE.
-*
-******************************************************************************/
+ *
+ * Copyright 2013 Altera Corporation. All Rights Reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright notice,
+ * this list of conditions and the following disclaimer.
+ *
+ * 2. Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation
+ * and/or other materials provided with the distribution.
+ *
+ * 3. The name of the author may not be used to endorse or promote products
+ * derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDER "AS IS" AND ANY EXPRESS OR
+ * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED. IN NO
+ * EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ *SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ *PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+ *BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
+ *IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ *ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ *POSSIBILITY OF SUCH DAMAGE.
+ *
+ ******************************************************************************/
 
 #ifndef __ALT_GBLTMR_H__
 #define __ALT_GBLTMR_H__
 
-#include <stdint.h>
-#include <stdbool.h>
 #include "hwlib.h"
+#include <stdbool.h>
+#include <stdint.h>
 
 #ifdef __cplusplus
-extern "C"
-{
-#endif  /* __cplusplus */
-
+extern "C" {
+#endif /* __cplusplus */
 
 /******************************************************************************/
 /*! \addtogroup GBLTMR_MGR The Global Timer Manager API
@@ -60,13 +58,13 @@ extern "C"
 /*! Uninitialize the Global timer module
  *
  */
-ALT_STATUS_CODE alt_globaltmr_uninit(void);
+ALT_STATUS_CODE alt_globaltmr_uninit( void );
 
 /******************************************************************************/
 /*! Initialize the Global timer module
  *
  */
-ALT_STATUS_CODE alt_globaltmr_init(void);
+ALT_STATUS_CODE alt_globaltmr_init( void );
 
 /******************************************************************************/
 /*!
@@ -80,7 +78,7 @@ ALT_STATUS_CODE alt_globaltmr_init(void);
  * \retval      ALT_E_SUCCESS   The operation was successful.
  * \retval      ALT_E_ERROR     The operation failed.
  */
-ALT_STATUS_CODE alt_globaltmr_stop(void);
+ALT_STATUS_CODE alt_globaltmr_stop( void );
 
 /******************************************************************************/
 /*!
@@ -95,7 +93,7 @@ ALT_STATUS_CODE alt_globaltmr_stop(void);
  * \retval      ALT_E_SUCCESS   The operation was successful.
  * \retval      ALT_E_ERROR     The operation failed.
  */
-ALT_STATUS_CODE alt_globaltmr_start(void);
+ALT_STATUS_CODE alt_globaltmr_start( void );
 
 /******************************************************************************/
 /*!
@@ -114,7 +112,7 @@ ALT_STATUS_CODE alt_globaltmr_start(void);
  * \retval      ALT_E_ERROR     The operation failed.
  * \retval      ALT_E_BAD_ARG   Invalid input argument.
  */
-ALT_STATUS_CODE alt_globaltmr_get(uint32_t* highword, uint32_t* lowword);
+ALT_STATUS_CODE alt_globaltmr_get( uint32_t * highword, uint32_t * lowword );
 
 /******************************************************************************/
 /*!
@@ -127,7 +125,7 @@ ALT_STATUS_CODE alt_globaltmr_get(uint32_t* highword, uint32_t* lowword);
  * \retval      uint64_t
  *              The current value of the 64-bit counter.
  */
-uint64_t alt_globaltmr_get64(void);
+uint64_t alt_globaltmr_get64( void );
 
 /******************************************************************************/
 /*!
@@ -140,7 +138,7 @@ uint64_t alt_globaltmr_get64(void);
  *
  * \retval      uint32_t The current 32-bit counter value.
  */
-uint32_t alt_globaltmr_counter_get_low32(void);
+uint32_t alt_globaltmr_counter_get_low32( void );
 
 /******************************************************************************/
 /*!
@@ -151,7 +149,7 @@ uint32_t alt_globaltmr_counter_get_low32(void);
  *
  * \retval      uint32_t The current 32-bit counter value.
  */
-uint32_t alt_globaltmr_counter_get_hi32(void);
+uint32_t alt_globaltmr_counter_get_hi32( void );
 
 /******************************************************************************/
 /*!
@@ -172,7 +170,7 @@ uint32_t alt_globaltmr_counter_get_hi32(void);
  * \retval      ALT_E_ERROR     The operation failed.
  * \retval      ALT_E_BAD_ARG   Invalid input argument.
  */
-ALT_STATUS_CODE alt_globaltmr_comp_set(uint32_t highword, uint32_t loword);
+ALT_STATUS_CODE alt_globaltmr_comp_set( uint32_t highword, uint32_t loword );
 
 /******************************************************************************/
 /*!
@@ -191,7 +189,7 @@ ALT_STATUS_CODE alt_globaltmr_comp_set(uint32_t highword, uint32_t loword);
  * \retval      ALT_E_ERROR     The operation failed.
  * \retval      ALT_E_BAD_ARG   Invalid input argument.
  */
-ALT_STATUS_CODE alt_globaltmr_comp_set64(uint64_t compval);
+ALT_STATUS_CODE alt_globaltmr_comp_set64( uint64_t compval );
 
 /******************************************************************************/
 /*!
@@ -206,15 +204,16 @@ ALT_STATUS_CODE alt_globaltmr_comp_set64(uint64_t compval);
  *
  *
  * \param       highword
- *              Pointer to location to store the 32 MSBits of the comparator value.
- * \param       lowword
- *              Pointer to location to store the 32 LSBits of the comparator value.
+ *              Pointer to location to store the 32 MSBits of the comparator
+ * value. \param       lowword Pointer to location to store the 32 LSBits of the
+ * comparator value.
  *
  * \retval      ALT_E_SUCCESS   The operation was successful.
  * \retval      ALT_E_ERROR     The operation failed.
  * \retval      ALT_E_BAD_ARG   Invalid input argument.
  */
-ALT_STATUS_CODE alt_globaltmr_comp_get(uint32_t *highword, uint32_t *lowword);
+ALT_STATUS_CODE alt_globaltmr_comp_get( uint32_t * highword,
+                                        uint32_t * lowword );
 
 /******************************************************************************/
 /*!
@@ -233,8 +232,7 @@ ALT_STATUS_CODE alt_globaltmr_comp_get(uint32_t *highword, uint32_t *lowword);
  * \retval      uint64_t
  *              The 64-bit value of the global timer comparator.
  */
-uint64_t alt_globaltmr_comp_get64(void);
-
+uint64_t alt_globaltmr_comp_get64( void );
 
 /******************************************************************************/
 /*!
@@ -245,7 +243,7 @@ uint64_t alt_globaltmr_comp_get64(void);
  * \retval      ALT_E_ERROR     The operation failed.
  * \retval      ALT_E_BAD_ARG   Invalid input argument.
  */
-ALT_STATUS_CODE alt_globaltmr_comp_mode_start(void);
+ALT_STATUS_CODE alt_globaltmr_comp_mode_start( void );
 
 /******************************************************************************/
 /*!
@@ -256,7 +254,7 @@ ALT_STATUS_CODE alt_globaltmr_comp_mode_start(void);
  * \retval      ALT_E_ERROR     The operation failed.
  * \retval      ALT_E_BAD_ARG   Invalid input argument.
  */
-ALT_STATUS_CODE alt_globaltmr_comp_mode_stop(void);
+ALT_STATUS_CODE alt_globaltmr_comp_mode_stop( void );
 
 /******************************************************************************/
 /*!
@@ -267,8 +265,7 @@ ALT_STATUS_CODE alt_globaltmr_comp_mode_stop(void);
  * \retval      FALSE           Comparison mode is not enabled.
  * \retval      TRUE            Comparison mode is enabled.
  */
-bool alt_globaltmr_is_comp_mode(void);
-
+bool alt_globaltmr_is_comp_mode( void );
 
 /******************************************************************************/
 /*!
@@ -278,8 +275,7 @@ bool alt_globaltmr_is_comp_mode(void);
  * \retval      uint32_t    The prescaler value. Valid range is 0-255.
  *                          Actual clock divisor ratio is this number plus one.
  */
-uint32_t alt_globaltmr_prescaler_get(void);
-
+uint32_t alt_globaltmr_prescaler_get( void );
 
 /******************************************************************************/
 /*!
@@ -294,17 +290,17 @@ uint32_t alt_globaltmr_prescaler_get(void);
  * \retval      ALT_E_ERROR     The operation failed.
  * \retval      ALT_E_BAD_ARG   Invalid input argument.
  */
-ALT_STATUS_CODE alt_globaltmr_prescaler_set(uint32_t val);
+ALT_STATUS_CODE alt_globaltmr_prescaler_set( uint32_t val );
 
 /******************************************************************************/
 /*!
  * Sets a 32-bit global timer auto-increment value in the global
  * timer block for this CPU. The global timer continually increments its count
  * and when it reaches the value set in the comparator register or above, if
- * both comparison and free-run modes are selected, it adds the value set by this
- * function to the comparator value and saves it as the new comparator value.
- * This count then sets the time delay until the next global timer compare
- * value is reached.
+ * both comparison and free-run modes are selected, it adds the value set by
+ * this function to the comparator value and saves it as the new comparator
+ * value. This count then sets the time delay until the next global timer
+ * compare value is reached.
  *
  *
  * \param       inc
@@ -314,7 +310,7 @@ ALT_STATUS_CODE alt_globaltmr_prescaler_set(uint32_t val);
  * \retval      ALT_E_ERROR     The operation failed.
  * \retval      ALT_E_BAD_ARG   Invalid input argument.
  */
-ALT_STATUS_CODE alt_globaltmr_autoinc_set(uint32_t inc);
+ALT_STATUS_CODE alt_globaltmr_autoinc_set( uint32_t inc );
 
 /******************************************************************************/
 /*!
@@ -327,7 +323,7 @@ ALT_STATUS_CODE alt_globaltmr_autoinc_set(uint32_t inc);
  * \retval      uint32_t
  *              The current comparator auto-increment value.
  */
-uint32_t alt_globaltmr_autoinc_get(void);
+uint32_t alt_globaltmr_autoinc_get( void );
 
 /******************************************************************************/
 /*!
@@ -338,7 +334,7 @@ uint32_t alt_globaltmr_autoinc_get(void);
  * \retval      ALT_E_ERROR     The operation failed.
  * \retval      ALT_E_BAD_ARG   Invalid input argument.
  */
-ALT_STATUS_CODE alt_globaltmr_autoinc_mode_start(void);
+ALT_STATUS_CODE alt_globaltmr_autoinc_mode_start( void );
 
 /******************************************************************************/
 /*!
@@ -349,7 +345,7 @@ ALT_STATUS_CODE alt_globaltmr_autoinc_mode_start(void);
  * \retval      ALT_E_ERROR     The operation failed.
  * \retval      ALT_E_BAD_ARG   Invalid input argument.
  */
-ALT_STATUS_CODE alt_globaltmr_autoinc_mode_stop(void);
+ALT_STATUS_CODE alt_globaltmr_autoinc_mode_stop( void );
 
 /******************************************************************************/
 /*!
@@ -359,7 +355,7 @@ ALT_STATUS_CODE alt_globaltmr_autoinc_mode_stop(void);
  * \retval      FALSE           Auto-increment mode is not enabled.
  * \retval      TRUE            Auto-increment mode is enabled.
  */
-bool alt_globaltmr_is_autoinc_mode(void);
+bool alt_globaltmr_is_autoinc_mode( void );
 
 /******************************************************************************/
 /*!
@@ -373,7 +369,7 @@ bool alt_globaltmr_is_autoinc_mode(void);
  * \retval      0           An error occurred.
  *
  */
-uint32_t alt_globaltmr_maxcounter_get(void);
+uint32_t alt_globaltmr_maxcounter_get( void );
 
 /******************************************************************************/
 /*!
@@ -385,7 +381,7 @@ uint32_t alt_globaltmr_maxcounter_get(void);
  * \retval      ALT_E_ERROR     The operation failed.
  * \retval      ALT_E_BAD_ARG   Invalid input argument.
  */
-ALT_STATUS_CODE alt_globaltmr_int_disable(void);
+ALT_STATUS_CODE alt_globaltmr_int_disable( void );
 
 /******************************************************************************/
 
@@ -416,7 +412,7 @@ ALT_STATUS_CODE alt_globaltmr_int_enable(void);
  * \retval      ALT_E_SUCCESS   The operation was successful.
  * \retval      ALT_E_ERROR     The operation failed.
  */
-ALT_STATUS_CODE alt_globaltmr_int_enable(void);
+ALT_STATUS_CODE alt_globaltmr_int_enable( void );
 
 #endif
 
@@ -435,7 +431,7 @@ ALT_STATUS_CODE alt_globaltmr_int_enable(void);
  * \retval      TRUE            The timer interrupt is currently enabled.
  * \retval      FALSE           The timer interrupt is currently disabled.
  */
-bool alt_globaltmr_int_is_enabled(void);
+bool alt_globaltmr_int_is_enabled( void );
 
 /******************************************************************************/
 /*!
@@ -448,7 +444,7 @@ bool alt_globaltmr_int_is_enabled(void);
  * \retval      ALT_E_ERROR     The operation failed.
  * \retval      ALT_E_BAD_ARG   Invalid input argument.
  */
-ALT_STATUS_CODE alt_globaltmr_int_clear_pending(void);
+ALT_STATUS_CODE alt_globaltmr_int_clear_pending( void );
 
 /******************************************************************************/
 /*!
@@ -462,7 +458,7 @@ ALT_STATUS_CODE alt_globaltmr_int_clear_pending(void);
  * \retval      TRUE            The timer interrupt is currently pending.
  * \retval      FALSE           The timer interrupt is not currently pending.
  */
-bool alt_globaltmr_int_is_pending(void);
+bool alt_globaltmr_int_is_pending( void );
 
 /******************************************************************************/
 /*!
@@ -476,7 +472,7 @@ bool alt_globaltmr_int_is_pending(void);
  * \retval      TRUE            The timer interrupt was pending.
  * \retval      FALSE           The timer interrupt was not pending.
  */
-bool alt_globaltmr_int_if_pending_clear(void);
+bool alt_globaltmr_int_if_pending_clear( void );
 
 /*! @} */
 /*! @} */
@@ -484,5 +480,5 @@ bool alt_globaltmr_int_if_pending_clear(void);
 
 #ifdef __cplusplus
 }
-#endif  /* __cplusplus */
-#endif  /* __ALT_GBLTMR_H__ */
+#endif /* __cplusplus */
+#endif /* __ALT_GBLTMR_H__ */

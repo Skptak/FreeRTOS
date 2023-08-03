@@ -33,10 +33,9 @@
 // Open a handle for stdio functions (both stdin and stdout).
 //
 //*****************************************************************************
-int
-DiagOpenStdio(void)
+int DiagOpenStdio( void )
 {
-    return(-1);
+    return ( -1 );
 }
 
 //*****************************************************************************
@@ -44,10 +43,9 @@ DiagOpenStdio(void)
 // Open a host file system file.
 //
 //*****************************************************************************
-int
-DiagOpen(const char *pcName, int iMode)
+int DiagOpen( const char * pcName, int iMode )
 {
-    return(-1);
+    return ( -1 );
 }
 
 //*****************************************************************************
@@ -55,10 +53,9 @@ DiagOpen(const char *pcName, int iMode)
 // Close a host file system file.
 //
 //*****************************************************************************
-int
-DiagClose(int iHandle)
+int DiagClose( int iHandle )
 {
-    return(-1);
+    return ( -1 );
 }
 
 //*****************************************************************************
@@ -66,10 +63,9 @@ DiagClose(int iHandle)
 // Write data to a host file system file.
 //
 //*****************************************************************************
-int
-DiagWrite(int iHandle, const char *pcBuf, unsigned long ulLen, int iMode)
+int DiagWrite( int iHandle, const char * pcBuf, unsigned long ulLen, int iMode )
 {
-    return(-1);
+    return ( -1 );
 }
 
 //*****************************************************************************
@@ -77,10 +73,9 @@ DiagWrite(int iHandle, const char *pcBuf, unsigned long ulLen, int iMode)
 // Read data from a host file system file.
 //
 //*****************************************************************************
-int
-DiagRead(int iHandle, char *pcBuf, unsigned long ulLen, int iMode)
+int DiagRead( int iHandle, char * pcBuf, unsigned long ulLen, int iMode )
 {
-    return(-1);
+    return ( -1 );
 }
 
 //*****************************************************************************
@@ -88,10 +83,9 @@ DiagRead(int iHandle, char *pcBuf, unsigned long ulLen, int iMode)
 // Get the length of a host file system file.
 //
 //*****************************************************************************
-long
-DiagFlen(int iHandle)
+long DiagFlen( int iHandle )
 {
-    return(-1);
+    return ( -1 );
 }
 
 //*****************************************************************************
@@ -99,10 +93,9 @@ DiagFlen(int iHandle)
 // Terminate the application.
 //
 //*****************************************************************************
-void
-DiagExit(int iRet)
+void DiagExit( int iRet )
 {
-    while(1)
+    while( 1 )
     {
     }
 }
@@ -112,8 +105,7 @@ DiagExit(int iRet)
 // Get the command line arguments from the debugger.
 //
 //*****************************************************************************
-char *
-DiagCommandString(char *pcBuf, unsigned long ulLen)
+char * DiagCommandString( char * pcBuf, unsigned long ulLen )
 {
-    return(0);
+    return ( 0 );
 }

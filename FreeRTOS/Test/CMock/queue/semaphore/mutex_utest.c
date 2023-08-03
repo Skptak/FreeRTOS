@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -30,8 +31,8 @@
 /* Queue includes */
 #include "FreeRTOS.h"
 #include "FreeRTOSConfig.h"
-#include "semphr.h"
 #include "mock_fake_port.h"
+#include "semphr.h"
 
 /* ============================  GLOBAL VARIABLES =========================== */
 static SemaphoreHandle_t xSemaphoreHandleStatic = NULL;
@@ -63,7 +64,6 @@ int suiteTearDown( int numFailures )
 /* ==========================  Helper functions =========================== */
 
 /* ==========================  Test Cases =========================== */
-
 
 /**
  * @brief Test xSemaphoreCreateMutex where the call to malloc fails
@@ -317,7 +317,8 @@ void test_macro_xSemaphoreGetMutexHolder_NULL( void )
 
 /**
  * @brief Test xSemaphoreGetMutexHolder with a handle of a binary semaphore
- * @details Verify that xSemaphoreGetMutexHolder returns NULL when given a handle to a binary semaphore rather than a mutex.
+ * @details Verify that xSemaphoreGetMutexHolder returns NULL when given a
+ * handle to a binary semaphore rather than a mutex.
  * @coverage xQueueGetMutexHolder
  */
 void test_macro_xSemaphoreGetMutexHolder_binary_semaphore( void )
@@ -337,7 +338,8 @@ void test_macro_xSemaphoreGetMutexHolder_binary_semaphore( void )
  */
 void test_macro_xSemaphoreGetMutexHolder_Mutex( void )
 {
-    TaskHandle_t xMutexHolder = ( void * ) ( BaseType_t ) getNextMonotonicTestValue();
+    TaskHandle_t xMutexHolder = ( void * ) ( BaseType_t )
+        getNextMonotonicTestValue();
 
     xTaskPriorityDisinherit_ExpectAndReturn( NULL, pdFALSE );
 
@@ -353,7 +355,8 @@ void test_macro_xSemaphoreGetMutexHolder_Mutex( void )
 }
 
 /**
- * @brief Test xSemaphoreGetMutexHolderFromISR with an invalid (null) SemaphoreHandle_t
+ * @brief Test xSemaphoreGetMutexHolderFromISR with an invalid (null)
+ * SemaphoreHandle_t
  * @coverage xQueueGetMutexHolderFromISR
  */
 void test_macro_xSemaphoreGetMutexHolderFromISR_Mutex_NULL( void )
@@ -362,8 +365,10 @@ void test_macro_xSemaphoreGetMutexHolderFromISR_Mutex_NULL( void )
 }
 
 /**
- * @brief Test xSemaphoreGetMutexHolderFromISR with a handle of a binary semaphore
- * @details Verify that xSemaphoreGetMutexHolderFromISR returns NULL when given a handle to a binary semaphore rather than a mutex.
+ * @brief Test xSemaphoreGetMutexHolderFromISR with a handle of a binary
+ * semaphore
+ * @details Verify that xSemaphoreGetMutexHolderFromISR returns NULL when given
+ * a handle to a binary semaphore rather than a mutex.
  * @coverage xQueueGetMutexHolderFromISR
  */
 void test_macro_xSemaphoreGetMutexHolderFromISR_binary_semaphore( void )
@@ -383,7 +388,8 @@ void test_macro_xSemaphoreGetMutexHolderFromISR_binary_semaphore( void )
  */
 void test_macro_xSemaphoreGetMutexHolderFromISR_Mutex( void )
 {
-    TaskHandle_t xMutexHolder = ( void * ) ( BaseType_t ) getNextMonotonicTestValue();
+    TaskHandle_t xMutexHolder = ( void * ) ( BaseType_t )
+        getNextMonotonicTestValue();
 
     xTaskPriorityDisinherit_ExpectAndReturn( NULL, pdFALSE );
 
@@ -393,19 +399,22 @@ void test_macro_xSemaphoreGetMutexHolderFromISR_Mutex( void )
 
     TEST_ASSERT_EQUAL( pdTRUE, xSemaphoreTake( xSemaphore, 0 ) );
 
-    TEST_ASSERT_EQUAL( xMutexHolder, xSemaphoreGetMutexHolderFromISR( xSemaphore ) );
+    TEST_ASSERT_EQUAL( xMutexHolder,
+                       xSemaphoreGetMutexHolderFromISR( xSemaphore ) );
 
     vSemaphoreDelete( xSemaphore );
 }
 
 /**
  * @brief Test xSemaphoreGiveFromISR with a Mutex that has an owner.
- * @details Verify that xSemaphoreGiveFromISR configASSERTs when an owned mutex is given as the xSemaphore argument.
+ * @details Verify that xSemaphoreGiveFromISR configASSERTs when an owned mutex
+ * is given as the xSemaphore argument.
  * @coverage xQueueGiveFromISR
  */
 void test_macro_xSemaphoreGiveFromISR_mutex_owned( void )
 {
-    TaskHandle_t xMutexHolder = ( void * ) ( BaseType_t ) getNextMonotonicTestValue();
+    TaskHandle_t xMutexHolder = ( void * ) ( BaseType_t )
+        getNextMonotonicTestValue();
 
     xTaskPriorityDisinherit_ExpectAndReturn( NULL, pdFALSE );
 
@@ -431,7 +440,8 @@ void test_macro_xSemaphoreGiveFromISR_mutex_owned( void )
 
 /**
  * @brief Test xSemaphoreGiveFromISR with a Mutex that has a NULL owner.
- * @details Verify that xSemaphoreGiveFromISR does not configASSERT when a mutex with a NULL owner is given in the xSemaphore argument.
+ * @details Verify that xSemaphoreGiveFromISR does not configASSERT when a mutex
+ * with a NULL owner is given in the xSemaphore argument.
  * @coverage xQueueGiveFromISR
  */
 void test_macro_xSemaphoreGiveFromISR_mutex_not_owned( void )
@@ -455,7 +465,8 @@ void test_macro_xSemaphoreGiveFromISR_mutex_not_owned( void )
 
 /**
  * @brief Test xSemaphoreTake in blocking mode on an already owned mutex.
- * @details Test xSemaphoreTake on a mutex owned by another task where the owning task has lower priority.
+ * @details Test xSemaphoreTake on a mutex owned by another task where the
+ * owning task has lower priority.
  * @coverage xQueueSemaphoreTake prvGetDisinheritPriorityAfterTimeout
  */
 void test_macro_xSemaphoreTake_blocking_mutex_inherit_timeout( void )
@@ -467,7 +478,8 @@ void test_macro_xSemaphoreTake_blocking_mutex_inherit_timeout( void )
     BaseType_t xFakeMutexHolder = getNextMonotonicTestValue();
 
     /* Return a test value from the call to pvTaskIncrementMutexHeldCount */
-    pvTaskIncrementMutexHeldCount_ExpectAndReturn( ( void * ) xFakeMutexHolder );
+    pvTaskIncrementMutexHeldCount_ExpectAndReturn(
+        ( void * ) xFakeMutexHolder );
 
     /* Take the mutex */
     TEST_ASSERT_EQUAL( pdTRUE, xSemaphoreTake( xSemaphore, 0 ) );
@@ -475,10 +487,13 @@ void test_macro_xSemaphoreTake_blocking_mutex_inherit_timeout( void )
     for( int i = 0; i < TICKS_TO_WAIT; i++ )
     {
         /* Return pdTRUE to signify that priority inheritance occurred */
-        xTaskPriorityInherit_ExpectAndReturn( ( void * ) xFakeMutexHolder, pdTRUE );
+        xTaskPriorityInherit_ExpectAndReturn( ( void * ) xFakeMutexHolder,
+                                              pdTRUE );
     }
 
-    vTaskPriorityDisinheritAfterTimeout_Expect( ( void * ) ( BaseType_t ) getLastMonotonicTestValue(), tskIDLE_PRIORITY );
+    vTaskPriorityDisinheritAfterTimeout_Expect( ( void * ) ( BaseType_t )
+                                                    getLastMonotonicTestValue(),
+                                                tskIDLE_PRIORITY );
 
     TEST_ASSERT_EQUAL( pdFALSE, xSemaphoreTake( xSemaphore, TICKS_TO_WAIT ) );
 
@@ -491,16 +506,20 @@ void test_macro_xSemaphoreTake_blocking_mutex_inherit_timeout( void )
 
 /**
  * @brief Test xSemaphoreTake in blocking mode on an already owned mutex.
- * @details Test xSemaphoreTake on a mutex owned by another task with another high priority task waiting and the current task timing out.
+ * @details Test xSemaphoreTake on a mutex owned by another task with another
+ * high priority task waiting and the current task timing out.
  * @coverage xQueueSemaphoreTake prvGetDisinheritPriorityAfterTimeout
  */
-void test_macro_xSemaphoreTake_blocking_mutex_inherit_timeout_high_prio_waiting( void )
+void test_macro_xSemaphoreTake_blocking_mutex_inherit_timeout_high_prio_waiting(
+    void )
 {
     xTaskPriorityDisinherit_ExpectAndReturn( NULL, pdFALSE );
 
     SemaphoreHandle_t xSemaphore = xSemaphoreCreateMutex();
 
-    TaskHandle_t xFakeMutexHolder = ( TaskHandle_t ) ( ( uint64_t ) 0 + getNextMonotonicTestValue() );
+    TaskHandle_t
+        xFakeMutexHolder = ( TaskHandle_t ) ( ( uint64_t ) 0 +
+                                              getNextMonotonicTestValue() );
 
     /* Return a test value from the call to pvTaskIncrementMutexHeldCount */
     pvTaskIncrementMutexHeldCount_ExpectAndReturn( xFakeMutexHolder );
@@ -518,22 +537,25 @@ void test_macro_xSemaphoreTake_blocking_mutex_inherit_timeout_high_prio_waiting(
         xTaskPriorityInherit_ExpectAndReturn( xFakeMutexHolder, pdTRUE );
     }
 
-    vTaskPriorityDisinheritAfterTimeout_Expect( xFakeMutexHolder, DEFAULT_PRIORITY + 1 );
-
+    vTaskPriorityDisinheritAfterTimeout_Expect( xFakeMutexHolder,
+                                                DEFAULT_PRIORITY + 1 );
 
     TEST_ASSERT_EQUAL( pdFALSE, xSemaphoreTake( xSemaphore, TICKS_TO_WAIT ) );
 
     TEST_ASSERT_EQUAL( TICKS_TO_WAIT + 1, td_task_getYieldCount() );
 
-    TEST_ASSERT_EQUAL( TICKS_TO_WAIT + 1, td_task_getCount_YieldFromTaskResumeAll() );
+    TEST_ASSERT_EQUAL( TICKS_TO_WAIT + 1,
+                       td_task_getCount_YieldFromTaskResumeAll() );
 
     vSemaphoreDelete( xSemaphore );
 }
 
 /**
- * @brief Callback for test_macro_xSemaphoreTake_blocking_mutex_inherit_disinherit
+ * @brief Callback for
+ * test_macro_xSemaphoreTake_blocking_mutex_inherit_disinherit
  */
-static BaseType_t xSemaphoreTake_blocking_xTaskResumeAllStub( int cmock_num_calls )
+static BaseType_t xSemaphoreTake_blocking_xTaskResumeAllStub(
+    int cmock_num_calls )
 {
     BaseType_t xReturnValue = td_task_xTaskResumeAllStub( cmock_num_calls );
 
@@ -546,7 +568,8 @@ static BaseType_t xSemaphoreTake_blocking_xTaskResumeAllStub( int cmock_num_call
 }
 
 /**
- * @brief Test priority inheritance during a successful blocking call to xSemaphoreTake
+ * @brief Test priority inheritance during a successful blocking call to
+ * xSemaphoreTake
  * @coverage xQueueSemaphoreTake
  */
 void test_macro_xSemaphoreTake_blocking_mutex_inherit_disinherit( void )
@@ -557,7 +580,9 @@ void test_macro_xSemaphoreTake_blocking_mutex_inherit_disinherit( void )
 
     xSemaphoreHandleStatic = xSemaphore;
 
-    TaskHandle_t xFakeMutexHolder = ( TaskHandle_t ) ( ( uint64_t ) 0 + getNextMonotonicTestValue() );
+    TaskHandle_t
+        xFakeMutexHolder = ( TaskHandle_t ) ( ( uint64_t ) 0 +
+                                              getNextMonotonicTestValue() );
 
     xTaskResumeAll_Stub( &xSemaphoreTake_blocking_xTaskResumeAllStub );
 
@@ -582,7 +607,8 @@ void test_macro_xSemaphoreTake_blocking_mutex_inherit_disinherit( void )
 
     TEST_ASSERT_EQUAL( NUM_CALLS_TO_INTERCEPT + 2, td_task_getYieldCount() );
 
-    TEST_ASSERT_EQUAL( NUM_CALLS_TO_INTERCEPT + 2, td_task_getCount_vPortYieldWithinAPI() );
+    TEST_ASSERT_EQUAL( NUM_CALLS_TO_INTERCEPT + 2,
+                       td_task_getCount_vPortYieldWithinAPI() );
 
     vSemaphoreDelete( xSemaphore );
 }

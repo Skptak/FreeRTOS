@@ -30,24 +30,24 @@
 // Forward declaration of the default fault handlers.
 //
 //*****************************************************************************
-void ResetISR(void);
-static void NmiSR(void);
-static void FaultISR(void);
-static void IntDefaultHandler(void);
+void ResetISR( void );
+static void NmiSR( void );
+static void FaultISR( void );
+static void IntDefaultHandler( void );
 
 //*****************************************************************************
 //
 // The entry point for the application.
 //
 //*****************************************************************************
-extern int main(void);
-extern void xPortPendSVHandler(void);
-extern void xPortSysTickHandler(void);
+extern int main( void );
+extern void xPortPendSVHandler( void );
+extern void xPortSysTickHandler( void );
 extern void vPortSVCHandler( void );
 extern void Timer0IntHandler( void );
 extern void vT2InterruptHandler( void );
 extern void vT3InterruptHandler( void );
-void vAssertCalled( const char *pcFile, unsigned long ulLine );
+void vAssertCalled( const char * pcFile, unsigned long ulLine );
 
 //*****************************************************************************
 //
@@ -55,9 +55,9 @@ void vAssertCalled( const char *pcFile, unsigned long ulLine );
 //
 //*****************************************************************************
 #ifndef STACK_SIZE
-#define STACK_SIZE                              120
+    #define STACK_SIZE 120
 #endif
-static unsigned long pulStack[STACK_SIZE];
+static unsigned long pulStack[ STACK_SIZE ];
 
 //*****************************************************************************
 //
@@ -66,70 +66,69 @@ static unsigned long pulStack[STACK_SIZE];
 // 0x0000.0000.
 //
 //*****************************************************************************
-__attribute__ ((section(".isr_vector")))
-void (* const g_pfnVectors[])(void) =
-{
-    (void (*)(void))((unsigned long)pulStack + sizeof(pulStack)),
-                                            // The initial stack pointer
-    ResetISR,                               // The reset handler
-    NmiSR,                                  // The NMI handler
-    FaultISR,                               // The hard fault handler
-    IntDefaultHandler,                      // The MPU fault handler
-    IntDefaultHandler,                      // The bus fault handler
-    IntDefaultHandler,                      // The usage fault handler
-    0,                                      // Reserved
-    0,                                      // Reserved
-    0,                                      // Reserved
-    0,                                      // Reserved
-    vPortSVCHandler,						// SVCall handler
-    IntDefaultHandler,                      // Debug monitor handler
-    0,                                      // Reserved
-    xPortPendSVHandler,                     // The PendSV handler
-    xPortSysTickHandler,                    // The SysTick handler
-    IntDefaultHandler,                      // GPIO Port A
-    IntDefaultHandler,                      // GPIO Port B
-    IntDefaultHandler,                      // GPIO Port C
-    IntDefaultHandler,                      // GPIO Port D
-    IntDefaultHandler,                      // GPIO Port E
-    IntDefaultHandler,                      // UART0 Rx and Tx
-    IntDefaultHandler,                      // UART1 Rx and Tx
-    IntDefaultHandler,                      // SSI Rx and Tx
-    IntDefaultHandler,                      // I2C Master and Slave
-    IntDefaultHandler,                      // PWM Fault
-    IntDefaultHandler,                      // PWM Generator 0
-    IntDefaultHandler,                      // PWM Generator 1
-    IntDefaultHandler,                      // PWM Generator 2
-    IntDefaultHandler,                      // Quadrature Encoder
-    IntDefaultHandler,                      // ADC Sequence 0
-    IntDefaultHandler,                      // ADC Sequence 1
-    IntDefaultHandler,                      // ADC Sequence 2
-    IntDefaultHandler,                      // ADC Sequence 3
-    IntDefaultHandler,                      // Watchdog timer
-	Timer0IntHandler,                      // Timer 0 subtimer A
-    IntDefaultHandler,                      // Timer 0 subtimer B
-    IntDefaultHandler,                      // Timer 1 subtimer A
-    IntDefaultHandler,                      // Timer 1 subtimer B
-	vT2InterruptHandler,                      // Timer 2 subtimer A
-    IntDefaultHandler,                      // Timer 2 subtimer B
-    IntDefaultHandler,                      // Analog Comparator 0
-    IntDefaultHandler,                      // Analog Comparator 1
-    IntDefaultHandler,                      // Analog Comparator 2
-    IntDefaultHandler,                      // System Control (PLL, OSC, BO)
-    IntDefaultHandler,                      // FLASH Control
-    IntDefaultHandler,                      // GPIO Port F
-    IntDefaultHandler,                      // GPIO Port G
-    IntDefaultHandler,                      // GPIO Port H
-    IntDefaultHandler,                      // UART2 Rx and Tx
-    IntDefaultHandler,                      // SSI1 Rx and Tx
-	vT3InterruptHandler,                    // Timer 3 subtimer A
-    IntDefaultHandler,                      // Timer 3 subtimer B
-    IntDefaultHandler,                      // I2C1 Master and Slave
-    IntDefaultHandler,                      // Quadrature Encoder 1
-    IntDefaultHandler,                      // CAN0
-    IntDefaultHandler,                      // CAN1
-    0,                                      // Reserved
-    IntDefaultHandler,                              // Ethernet
-    IntDefaultHandler                       // Hibernate
+__attribute__( ( section( ".isr_vector" ) ) ) void ( *const g_pfnVectors[] )(
+    void ) = {
+    ( void ( * )( void ) )( ( unsigned long ) pulStack + sizeof( pulStack ) ),
+    // The initial stack pointer
+    ResetISR,            // The reset handler
+    NmiSR,               // The NMI handler
+    FaultISR,            // The hard fault handler
+    IntDefaultHandler,   // The MPU fault handler
+    IntDefaultHandler,   // The bus fault handler
+    IntDefaultHandler,   // The usage fault handler
+    0,                   // Reserved
+    0,                   // Reserved
+    0,                   // Reserved
+    0,                   // Reserved
+    vPortSVCHandler,     // SVCall handler
+    IntDefaultHandler,   // Debug monitor handler
+    0,                   // Reserved
+    xPortPendSVHandler,  // The PendSV handler
+    xPortSysTickHandler, // The SysTick handler
+    IntDefaultHandler,   // GPIO Port A
+    IntDefaultHandler,   // GPIO Port B
+    IntDefaultHandler,   // GPIO Port C
+    IntDefaultHandler,   // GPIO Port D
+    IntDefaultHandler,   // GPIO Port E
+    IntDefaultHandler,   // UART0 Rx and Tx
+    IntDefaultHandler,   // UART1 Rx and Tx
+    IntDefaultHandler,   // SSI Rx and Tx
+    IntDefaultHandler,   // I2C Master and Slave
+    IntDefaultHandler,   // PWM Fault
+    IntDefaultHandler,   // PWM Generator 0
+    IntDefaultHandler,   // PWM Generator 1
+    IntDefaultHandler,   // PWM Generator 2
+    IntDefaultHandler,   // Quadrature Encoder
+    IntDefaultHandler,   // ADC Sequence 0
+    IntDefaultHandler,   // ADC Sequence 1
+    IntDefaultHandler,   // ADC Sequence 2
+    IntDefaultHandler,   // ADC Sequence 3
+    IntDefaultHandler,   // Watchdog timer
+    Timer0IntHandler,    // Timer 0 subtimer A
+    IntDefaultHandler,   // Timer 0 subtimer B
+    IntDefaultHandler,   // Timer 1 subtimer A
+    IntDefaultHandler,   // Timer 1 subtimer B
+    vT2InterruptHandler, // Timer 2 subtimer A
+    IntDefaultHandler,   // Timer 2 subtimer B
+    IntDefaultHandler,   // Analog Comparator 0
+    IntDefaultHandler,   // Analog Comparator 1
+    IntDefaultHandler,   // Analog Comparator 2
+    IntDefaultHandler,   // System Control (PLL, OSC, BO)
+    IntDefaultHandler,   // FLASH Control
+    IntDefaultHandler,   // GPIO Port F
+    IntDefaultHandler,   // GPIO Port G
+    IntDefaultHandler,   // GPIO Port H
+    IntDefaultHandler,   // UART2 Rx and Tx
+    IntDefaultHandler,   // SSI1 Rx and Tx
+    vT3InterruptHandler, // Timer 3 subtimer A
+    IntDefaultHandler,   // Timer 3 subtimer B
+    IntDefaultHandler,   // I2C1 Master and Slave
+    IntDefaultHandler,   // Quadrature Encoder 1
+    IntDefaultHandler,   // CAN0
+    IntDefaultHandler,   // CAN1
+    0,                   // Reserved
+    IntDefaultHandler,   // Ethernet
+    IntDefaultHandler    // Hibernate
 };
 
 //*****************************************************************************
@@ -155,8 +154,7 @@ extern unsigned long _ebss;
 // application.
 //
 //*****************************************************************************
-void
-ResetISR(void)
+void ResetISR( void )
 {
     register unsigned long *pulSrc, *pulDest;
 
@@ -164,7 +162,7 @@ ResetISR(void)
     // Copy the data segment initializers from flash to SRAM.
     //
     pulSrc = &_etext;
-    for(pulDest = &_data; pulDest < &_edata; )
+    for( pulDest = &_data; pulDest < &_edata; )
     {
         *pulDest++ = *pulSrc++;
     }
@@ -172,7 +170,7 @@ ResetISR(void)
     //
     // Zero fill the bss segment.
     //
-    for(pulDest = &_bss; pulDest < &_ebss; )
+    for( pulDest = &_bss; pulDest < &_ebss; )
     {
         *pulDest++ = 0;
     }
@@ -190,15 +188,14 @@ ResetISR(void)
 // by a debugger.
 //
 //*****************************************************************************
-static void
-NmiSR(void)
+static void NmiSR( void )
 {
     //
     // Enter an infinite loop.
     //
-    while(1)
+    while( 1 )
     {
-    	vAssertCalled( __FILE__, __LINE__ );
+        vAssertCalled( __FILE__, __LINE__ );
     }
 }
 
@@ -209,15 +206,14 @@ NmiSR(void)
 // for examination by a debugger.
 //
 //*****************************************************************************
-static void
-FaultISR(void)
+static void FaultISR( void )
 {
     //
     // Enter an infinite loop.
     //
-    while(1)
+    while( 1 )
     {
-    	vAssertCalled( __FILE__, __LINE__ );
+        vAssertCalled( __FILE__, __LINE__ );
     }
 }
 
@@ -228,15 +224,14 @@ FaultISR(void)
 // for examination by a debugger.
 //
 //*****************************************************************************
-static void
-IntDefaultHandler(void)
+static void IntDefaultHandler( void )
 {
     //
     // Go into an infinite loop.
     //
-    while(1)
+    while( 1 )
     {
-    	vAssertCalled( __FILE__, __LINE__ );
+        vAssertCalled( __FILE__, __LINE__ );
     }
 }
 
@@ -246,10 +241,8 @@ IntDefaultHandler(void)
 // avoids pulling in the run-time library.
 //
 //*****************************************************************************
-int
-uipprintf(const char *fmt, ...)
+int uipprintf( const char * fmt, ... )
 {
-	( void ) fmt;
-    return(0);
+    ( void ) fmt;
+    return ( 0 );
 }
-

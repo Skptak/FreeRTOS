@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -30,8 +31,8 @@
 /* Queue includes */
 #include "FreeRTOS.h"
 #include "FreeRTOSConfig.h"
-#include "semphr.h"
 #include "mock_fake_port.h"
+#include "semphr.h"
 
 /* ============================  GLOBAL VARIABLES =========================== */
 
@@ -120,7 +121,8 @@ void test_macro_xSemaphoreCreateRecursiveMutexStatic_nullptr( void )
 }
 
 /**
- * @brief Verify that calling xSemaphoreTakeRecursive with a NULL mutex handle causes a configASSERT failure.
+ * @brief Verify that calling xSemaphoreTakeRecursive with a NULL mutex handle
+ * causes a configASSERT failure.
  * @coverage xQueueTakeMutexRecursive
  */
 void test_macro_xSemaphoreTakeRecursive_null_handle( void )
@@ -129,12 +131,14 @@ void test_macro_xSemaphoreTakeRecursive_null_handle( void )
 }
 
 /**
- * @brief Test xSemaphoreTakeRecursive with a mutex that is not owned by any task.
+ * @brief Test xSemaphoreTakeRecursive with a mutex that is not owned by any
+ * task.
  * @coverage xQueueTakeMutexRecursive
  */
 void test_macro_xSemaphoreTakeRecursive_not_owned_once( void )
 {
-    TaskHandle_t xMutexHolder = ( void * ) ( BaseType_t ) getNextMonotonicTestValue();
+    TaskHandle_t xMutexHolder = ( void * ) ( BaseType_t )
+        getNextMonotonicTestValue();
 
     SemaphoreHandle_t xSemaphore = xSemaphoreCreateRecursiveMutex();
 
@@ -151,12 +155,14 @@ void test_macro_xSemaphoreTakeRecursive_not_owned_once( void )
 }
 
 /**
- * @brief Test xSemaphoreTakeRecursive with a mutex that is already owned by the current task
+ * @brief Test xSemaphoreTakeRecursive with a mutex that is already owned by the
+ * current task
  * @coverage xQueueTakeMutexRecursive
  */
 void test_macro_xSemaphoreTakeRecursive_self_owned_twice( void )
 {
-    TaskHandle_t xMutexHolder = ( void * ) ( BaseType_t ) getNextMonotonicTestValue();
+    TaskHandle_t xMutexHolder = ( void * ) ( BaseType_t )
+        getNextMonotonicTestValue();
 
     SemaphoreHandle_t xSemaphore = xSemaphoreCreateRecursiveMutex();
 
@@ -179,13 +185,16 @@ void test_macro_xSemaphoreTakeRecursive_self_owned_twice( void )
 }
 
 /**
- * @brief Test xSemaphoreTakeRecursive on a mutex that is already owned by a different task
+ * @brief Test xSemaphoreTakeRecursive on a mutex that is already owned by a
+ * different task
  * @coverage xQueueTakeMutexRecursive
  */
 void test_macro_xSemaphoreTakeRecursive_owned_other_task( void )
 {
-    TaskHandle_t xMutexHolder1 = ( void * ) ( BaseType_t ) getNextMonotonicTestValue();
-    TaskHandle_t xMutexHolder2 = ( void * ) ( BaseType_t ) getNextMonotonicTestValue();
+    TaskHandle_t xMutexHolder1 = ( void * ) ( BaseType_t )
+        getNextMonotonicTestValue();
+    TaskHandle_t xMutexHolder2 = ( void * ) ( BaseType_t )
+        getNextMonotonicTestValue();
 
     SemaphoreHandle_t xSemaphore = xSemaphoreCreateRecursiveMutex();
 
@@ -202,7 +211,8 @@ void test_macro_xSemaphoreTakeRecursive_owned_other_task( void )
 }
 
 /**
- * @brief Verify that calling xSemaphoreGiveRecursive with a NULL mutex handle causes a configASSERT failure.
+ * @brief Verify that calling xSemaphoreGiveRecursive with a NULL mutex handle
+ * causes a configASSERT failure.
  * @coverage xQueueGiveMutexRecursive
  */
 void test_macro_xSemaphoreGiveRecursive_null_handle( void )
@@ -211,12 +221,14 @@ void test_macro_xSemaphoreGiveRecursive_null_handle( void )
 }
 
 /**
- * @brief Test xSemaphoreGiveRecursive with a mutex that is not already owned by any task.
+ * @brief Test xSemaphoreGiveRecursive with a mutex that is not already owned by
+ * any task.
  * @coverage xQueueGiveMutexRecursive
  */
 void test_macro_xSemaphoreGiveRecursive_unowned( void )
 {
-    TaskHandle_t xMutexHolder = ( void * ) ( BaseType_t ) getNextMonotonicTestValue();
+    TaskHandle_t xMutexHolder = ( void * ) ( BaseType_t )
+        getNextMonotonicTestValue();
 
     SemaphoreHandle_t xSemaphore = xSemaphoreCreateRecursiveMutex();
 
@@ -232,7 +244,8 @@ void test_macro_xSemaphoreGiveRecursive_unowned( void )
 }
 
 /**
- * @brief Test xSemaphoreGiveRecursive with a mutex that is not owned by any task with a NULL TaskHandle returned by calls to xTaskGetCurrentTaskHandle.
+ * @brief Test xSemaphoreGiveRecursive with a mutex that is not owned by any
+ * task with a NULL TaskHandle returned by calls to xTaskGetCurrentTaskHandle.
  * @coverage xQueueGiveMutexRecursive
  */
 void test_macro_xSemaphoreGiveRecursive_unowned_null_taskhandle( void )
@@ -251,12 +264,14 @@ void test_macro_xSemaphoreGiveRecursive_unowned_null_taskhandle( void )
 }
 
 /**
- * @brief Test xSemaphoreGiveRecursive with a mutex that is already owned by the current task
+ * @brief Test xSemaphoreGiveRecursive with a mutex that is already owned by the
+ * current task
  * @coverage xQueueGiveMutexRecursive
  */
 void test_macro_xSemaphoreGiveRecursive_self_owned( void )
 {
-    TaskHandle_t xMutexHolder = ( void * ) ( BaseType_t ) getNextMonotonicTestValue();
+    TaskHandle_t xMutexHolder = ( void * ) ( BaseType_t )
+        getNextMonotonicTestValue();
 
     SemaphoreHandle_t xSemaphore = xSemaphoreCreateRecursiveMutex();
 
@@ -281,13 +296,16 @@ void test_macro_xSemaphoreGiveRecursive_self_owned( void )
 }
 
 /**
- * @brief Test xSemaphoreGiveRecursive on a mutex that is already owned by a different task
+ * @brief Test xSemaphoreGiveRecursive on a mutex that is already owned by a
+ * different task
  * @coverage xQueueGiveMutexRecursive
  */
 void test_macro_xSemaphoreGiveRecursive_owned_other_task( void )
 {
-    TaskHandle_t xMutexHolder1 = ( void * ) ( BaseType_t ) getNextMonotonicTestValue();
-    TaskHandle_t xMutexHolder2 = ( void * ) ( BaseType_t ) getNextMonotonicTestValue();
+    TaskHandle_t xMutexHolder1 = ( void * ) ( BaseType_t )
+        getNextMonotonicTestValue();
+    TaskHandle_t xMutexHolder2 = ( void * ) ( BaseType_t )
+        getNextMonotonicTestValue();
 
     SemaphoreHandle_t xSemaphore = xSemaphoreCreateRecursiveMutex();
 
@@ -311,14 +329,15 @@ void test_macro_xSemaphoreGiveRecursive_owned_other_task( void )
     vSemaphoreDelete( xSemaphore );
 }
 
-
 /**
- * @brief Call xSemaphoreTakeRecursive and xSemaphoreGiveRecursive each multiple times
+ * @brief Call xSemaphoreTakeRecursive and xSemaphoreGiveRecursive each multiple
+ * times
  * @coverage xQueueTakeMutexRecursive xQueueGiveMutexRecursive
  */
 void test_macro_xSemaphoreTakeRecursive_xSemaphoreGiveRecursive_recursive( void )
 {
-    TaskHandle_t xMutexHolder = ( void * ) ( BaseType_t ) getNextMonotonicTestValue();
+    TaskHandle_t xMutexHolder = ( void * ) ( BaseType_t )
+        getNextMonotonicTestValue();
 
     SemaphoreHandle_t xSemaphore = xSemaphoreCreateRecursiveMutex();
 
@@ -337,14 +356,16 @@ void test_macro_xSemaphoreTakeRecursive_xSemaphoreGiveRecursive_recursive( void 
     /* Verify that the Recursive Mutex remains in the taken state */
     TEST_ASSERT_EQUAL( B_SEMPHR_TAKEN, uxSemaphoreGetCount( xSemaphore ) );
 
-    /* call xSemaphoreGiveRecursive to release the Recursive Mutex (first time) */
+    /* call xSemaphoreGiveRecursive to release the Recursive Mutex (first time)
+     */
     xTaskGetCurrentTaskHandle_ExpectAndReturn( xMutexHolder );
     TEST_ASSERT_EQUAL( pdTRUE, xSemaphoreGiveRecursive( xSemaphore ) );
 
     /* Verify that the Recursive Mutex remains in the taken state */
     TEST_ASSERT_EQUAL( B_SEMPHR_TAKEN, uxSemaphoreGetCount( xSemaphore ) );
 
-    /* call xSemaphoreGiveRecursive to release the Recursive Mutex (second time) */
+    /* call xSemaphoreGiveRecursive to release the Recursive Mutex (second time)
+     */
     xTaskGetCurrentTaskHandle_ExpectAndReturn( xMutexHolder );
     TEST_ASSERT_EQUAL( pdTRUE, xSemaphoreGiveRecursive( xSemaphore ) );
 

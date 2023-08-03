@@ -9,45 +9,55 @@
 /*  NOTE:THIS IS A TYPICAL EXAMPLE.                                    */
 /*                                                                     */
 /***********************************************************************/
-                  
-
 
 /*********************************************************************
-*
-* Device     : RX/RX600
-*
-* File Name  : intprg.c
-*
-* Abstract   : Interrupt Program.
-*
-* History    : 1.00  (2009-08-07)
-*
-* NOTE       : THIS IS A TYPICAL EXAMPLE.
-*
-* Copyright(c) 2009 Renesas Technology Corp.
-*               And Renesas Solutions Corp.,All Rights Reserved. 
-*
-*********************************************************************/
+ *
+ * Device     : RX/RX600
+ *
+ * File Name  : intprg.c
+ *
+ * Abstract   : Interrupt Program.
+ *
+ * History    : 1.00  (2009-08-07)
+ *
+ * NOTE       : THIS IS A TYPICAL EXAMPLE.
+ *
+ * Copyright(c) 2009 Renesas Technology Corp.
+ *               And Renesas Solutions Corp.,All Rights Reserved.
+ *
+ *********************************************************************/
 
-#include <machine.h>
 #include "vect.h"
+#include <machine.h>
 #pragma section IntPRG
 
 // Exception(Supervisor Instruction)
-void Excep_SuperVisorInst(void){/* brk(); */}
+void Excep_SuperVisorInst( void )
+{ /* brk(); */
+}
 
 // Exception(Undefined Instruction)
-void Excep_UndefinedInst(void){/* brk(); */}
+void Excep_UndefinedInst( void )
+{ /* brk(); */
+}
 
 // Exception(Floating Point)
-void Excep_FloatingPoint(void){/* brk(); */}
+void Excep_FloatingPoint( void )
+{ /* brk(); */
+}
 
 // NMI
-void NonMaskableInterrupt(void){/* brk(); */}
+void NonMaskableInterrupt( void )
+{ /* brk(); */
+}
 
 // Dummy
-void Dummy(void){/* brk(); */}
+void Dummy( void )
+{ /* brk(); */
+}
 
 // BRK
-void Excep_BRK(void){ wait(); }
-
+void Excep_BRK( void )
+{
+    wait();
+}

@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
- *         ATMEL Microcontroller Software Support 
+ *         ATMEL Microcontroller Software Support
  * ----------------------------------------------------------------------------
  * Copyright (c) 2008, Atmel Corporation
  *
@@ -51,17 +51,16 @@
 /// \param mode  Triggering mode and priority of the interrupt.
 /// \param handler  Interrupt handler function.
 //------------------------------------------------------------------------------
-void AIC_ConfigureIT(
-    unsigned int source,
-    unsigned int mode,
-    void (*handler)(void))
+void AIC_ConfigureIT( unsigned int source,
+                      unsigned int mode,
+                      void ( *handler )( void ) )
 {
     // Disable the interrupt first
     AT91C_BASE_AIC->AIC_IDCR = 1 << source;
 
     // Configure mode and handler
-    AT91C_BASE_AIC->AIC_SMR[source] = mode;
-    AT91C_BASE_AIC->AIC_SVR[source] = (unsigned int) handler;
+    AT91C_BASE_AIC->AIC_SMR[ source ] = mode;
+    AT91C_BASE_AIC->AIC_SVR[ source ] = ( unsigned int ) handler;
 
     // Clear interrupt
     AT91C_BASE_AIC->AIC_ICCR = 1 << source;
@@ -71,7 +70,7 @@ void AIC_ConfigureIT(
 /// Enables interrupts coming from the given (unique) source (AT91C_ID_xxx).
 /// \param source  Interrupt source to enable.
 //------------------------------------------------------------------------------
-void AIC_EnableIT(unsigned int source)
+void AIC_EnableIT( unsigned int source )
 {
     AT91C_BASE_AIC->AIC_IECR = 1 << source;
 }
@@ -80,8 +79,7 @@ void AIC_EnableIT(unsigned int source)
 /// Disables interrupts coming from the given (unique) source (AT91C_ID_xxx).
 /// \param source  Interrupt source to enable.
 //------------------------------------------------------------------------------
-void AIC_DisableIT(unsigned int source)
+void AIC_DisableIT( unsigned int source )
 {
     AT91C_BASE_AIC->AIC_IDCR = 1 << source;
 }
-

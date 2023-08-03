@@ -70,12 +70,12 @@ extern "C" {
  */
 
 #ifdef DEBUG
-#define ASSERT(condition)                                                                                              \
-	if (!(condition))                                                                                                  \
-		while (true)                                                                                                   \
-			;
+    #define ASSERT( condition ) \
+        if( !( condition ) )    \
+            while( true )       \
+                ;
 #else
-#define ASSERT(condition) ((void)0)
+    #define ASSERT( condition ) ( ( void ) 0 )
 #endif
 
 #ifdef __cplusplus

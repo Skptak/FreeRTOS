@@ -19,22 +19,17 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1335, USA
  */
 
-
 /* default blank options for autoconf */
 
 #ifndef WOLFSSL_OPTIONS_H
 #define WOLFSSL_OPTIONS_H
 
-
 #ifdef __cplusplus
 extern "C" {
 #endif
-
 
 #ifdef __cplusplus
 }
 #endif
 
-
 #endif /* WOLFSSL_OPTIONS_H */
-

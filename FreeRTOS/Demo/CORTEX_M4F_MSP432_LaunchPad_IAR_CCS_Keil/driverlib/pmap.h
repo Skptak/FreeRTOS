@@ -1,6 +1,6 @@
 /*
  * -------------------------------------------
- *    MSP432 DriverLib - v3_10_00_09 
+ *    MSP432 DriverLib - v3_10_00_09
  * -------------------------------------------
  *
  * --COPYRIGHT--,BSD,BSD
@@ -51,40 +51,38 @@
 //
 //*****************************************************************************
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
-#include <stdint.h>
 #include <msp.h>
+#include <stdint.h>
 
 //*****************************************************************************
 //
-//The following are values that can be passed to the PMAP_configurePorts() API
-//as the portMapReconfigure parameter.
+// The following are values that can be passed to the PMAP_configurePorts() API
+// as the portMapReconfigure parameter.
 //
 //*****************************************************************************
-#define PMAP_ENABLE_RECONFIGURATION     PMAP_CTL_PRECFG
-#define PMAP_DISABLE_RECONFIGURATION    0x00
+#define PMAP_ENABLE_RECONFIGURATION  PMAP_CTL_PRECFG
+#define PMAP_DISABLE_RECONFIGURATION 0x00
 
 //*****************************************************************************
 //
-//The following are values that can be passed to the PMAP_configurePorts() API
-//as the portMapReconfigure parameter.
+// The following are values that can be passed to the PMAP_configurePorts() API
+// as the portMapReconfigure parameter.
 //
 //*****************************************************************************
-#define PMAP_P1MAP ((uint32_t)P1MAP - PMAP_BASE)
-#define PMAP_P2MAP ((uint32_t)P2MAP - PMAP_BASE)
-#define PMAP_P3MAP ((uint32_t)P3MAP - PMAP_BASE)
-#define PMAP_P4MAP ((uint32_t)P4MAP - PMAP_BASE)
-#define PMAP_P5MAP ((uint32_t)P5MAP - PMAP_BASE)
-#define PMAP_P6MAP ((uint32_t)P6MAP - PMAP_BASE)
-#define PMAP_P7MAP ((uint32_t)P7MAP - PMAP_BASE)
-
+#define PMAP_P1MAP                   ( ( uint32_t ) P1MAP - PMAP_BASE )
+#define PMAP_P2MAP                   ( ( uint32_t ) P2MAP - PMAP_BASE )
+#define PMAP_P3MAP                   ( ( uint32_t ) P3MAP - PMAP_BASE )
+#define PMAP_P4MAP                   ( ( uint32_t ) P4MAP - PMAP_BASE )
+#define PMAP_P5MAP                   ( ( uint32_t ) P5MAP - PMAP_BASE )
+#define PMAP_P6MAP                   ( ( uint32_t ) P6MAP - PMAP_BASE )
+#define PMAP_P7MAP                   ( ( uint32_t ) P7MAP - PMAP_BASE )
 
 //*****************************************************************************
 //
-//Prototypes for the APIs.
+// Prototypes for the APIs.
 //
 //*****************************************************************************
 
@@ -104,11 +102,14 @@ extern "C"
 //! \return None
 //
 //*****************************************************************************
-extern void PMAP_configurePorts(const uint8_t *portMapping, uint8_t pxMAPy,
-        uint8_t numberOfPorts, uint8_t portMapReconfigure);
+extern void PMAP_configurePorts( const uint8_t * portMapping,
+                                 uint8_t pxMAPy,
+                                 uint8_t numberOfPorts,
+                                 uint8_t portMapReconfigure );
 
 /* Defines for future devices that might have multiple instances */
-#define PMAP_configurePortsMultipleInstance(a,b,c,d,e) PMAP_configurePorts(b,c,d,e)
+#define PMAP_configurePortsMultipleInstance( a, b, c, d, e ) \
+    PMAP_configurePorts( b, c, d, e )
 
 //*****************************************************************************
 //

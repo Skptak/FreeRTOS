@@ -32,15 +32,17 @@
  *
  * \par Purpose
  *
- * Interface for configuration the Pulse Width Modulation Controller (PWM) peripheral.
+ * Interface for configuration the Pulse Width Modulation Controller (PWM)
+ * peripheral.
  *
  * \par Usage
  *
  *    -# Configures PWM clocks A & B to run at the given frequencies using
  *       pwmc_configure_clocks().
- *    -# Configure PWMC channel using pwmc_configure_channel(), pwmc_set_period()
- *       and pwmc_set_duty_cycle().
- *    -# Enable & disable channel using pwmc_enable_channel() and pwmc_disable_channel().
+ *    -# Configure PWMC channel using pwmc_configure_channel(),
+ * pwmc_set_period() and pwmc_set_duty_cycle().
+ *    -# Enable & disable channel using pwmc_enable_channel() and
+ * pwmc_disable_channel().
  *    -# Enable & disable the period interrupt for the given PWM channel using
  *       pwmc_enable_channel_it() and pwmc_disable_channel_it().
  *
@@ -70,7 +72,7 @@ extern "C" {
  * \param p_pwm  Pointer to a Pwm instance
  * \param mode  PWM clock source selection and divide factor.
  */
-extern void pwmc_configure_clocks(Pwm * p_pwm, uint32_t mode);
+extern void pwmc_configure_clocks( Pwm * p_pwm, uint32_t mode );
 
 /**
  * \brief Enables the given PWM channel.
@@ -81,7 +83,7 @@ extern void pwmc_configure_clocks(Pwm * p_pwm, uint32_t mode);
  * \param p_pwm  Pointer to a Pwm instance
  * \param channel  Channel number.
  */
-extern void pwmc_enable_channel(Pwm * p_pwm, uint8_t channel);
+extern void pwmc_enable_channel( Pwm * p_pwm, uint8_t channel );
 
 /**
  * \brief Disables the given PWM channel.
@@ -95,21 +97,21 @@ extern void pwmc_enable_channel(Pwm * p_pwm, uint8_t channel);
  * \param p_pwm  Pointer to a Pwm instance
  * \param channel  Channel number.
  */
-extern void pwmc_disable_channel(Pwm * p_pwm, uint8_t channel);
+extern void pwmc_disable_channel( Pwm * p_pwm, uint8_t channel );
 
 /**
  * \brief Enables the selected interrupts sources on a PWMC peripheral.
  * \param p_pwm  Pointer to a Pwm instance
  * \param channel  Channel number.
  */
-extern void pwmc_enable_channel_it(Pwm * p_pwm, uint8_t channel);
+extern void pwmc_enable_channel_it( Pwm * p_pwm, uint8_t channel );
 
 /**
  * \brief Disables the selected interrupts sources on a PWMC peripheral.
  * \param p_pwm  Pointer to a Pwm instance
  * \param channel  Channel number.
  */
-extern void pwmc_disable_channel_it(Pwm * p_pwm, uint8_t channel);
+extern void pwmc_disable_channel_it( Pwm * p_pwm, uint8_t channel );
 
 /**
  * \brief Configures a PWM channel with the given parameters, basic configure
@@ -124,7 +126,9 @@ extern void pwmc_disable_channel_it(Pwm * p_pwm, uint8_t channel);
  * \param channel  Channel number.
  * \param mode  Channel mode.
  */
-extern void pwmc_configure_channel(Pwm * p_pwm, uint8_t channel, uint32_t mode);
+extern void pwmc_configure_channel( Pwm * p_pwm,
+                                    uint8_t channel,
+                                    uint32_t mode );
 
 /**
  * \brief Sets the period value used by a PWM channel.
@@ -136,7 +140,7 @@ extern void pwmc_configure_channel(Pwm * p_pwm, uint8_t channel, uint32_t mode);
  * \param channel  Channel number.
  * \param period  Period value.
  */
-extern void pwmc_set_period(Pwm * p_pwm, uint8_t channel, uint16_t period);
+extern void pwmc_set_period( Pwm * p_pwm, uint8_t channel, uint16_t period );
 
 /**
  * \brief Sets the duty cycle used by a PWM channel.
@@ -149,9 +153,9 @@ extern void pwmc_set_period(Pwm * p_pwm, uint8_t channel, uint16_t period);
  * \param channel  Channel number.
  * \param duty  Duty cycle value.
  */
-extern void pwmc_set_duty_cycle(Pwm * p_pwm, uint8_t channel, uint16_t duty);
+extern void pwmc_set_duty_cycle( Pwm * p_pwm, uint8_t channel, uint16_t duty );
 
 #ifdef __cplusplus
 }
 #endif
-#endif				/* #ifndef _PWMC_ */
+#endif /* #ifndef _PWMC_ */

@@ -9,25 +9,23 @@
 /*  NOTE:THIS IS A TYPICAL EXAMPLE.                                    */
 /*                                                                     */
 /***********************************************************************/
-                  
-
 
 /*********************************************************************
-*
-* Device     : RX
-*
-* File Name  : typedefine.h
-*
-* Abstract   : Aliases of Integer Type.
-*
-* History    : 1.00  (2009-08-07)
-*
-* NOTE       : THIS IS A TYPICAL EXAMPLE.
-*
-* Copyright(c) 2009 Renesas Technology Corp.
-*               And Renesas Solutions Corp.,All Rights Reserved. 
-*
-*********************************************************************/
+ *
+ * Device     : RX
+ *
+ * File Name  : typedefine.h
+ *
+ * Abstract   : Aliases of Integer Type.
+ *
+ * History    : 1.00  (2009-08-07)
+ *
+ * NOTE       : THIS IS A TYPICAL EXAMPLE.
+ *
+ * Copyright(c) 2009 Renesas Technology Corp.
+ *               And Renesas Solutions Corp.,All Rights Reserved.
+ *
+ *********************************************************************/
 
 typedef signed char _SBYTE;
 typedef unsigned char _UBYTE;

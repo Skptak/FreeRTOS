@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -36,61 +37,63 @@
 #include <time.h>
 
 /* FreeRTOS includes. */
-#include <FreeRTOS.h>
 #include "task.h"
+#include <FreeRTOS.h>
 
 #include "FreeRTOSIPConfig.h"
 
 /* Demo application includes. */
 #include "FreeRTOS_IP.h"
 #include "FreeRTOS_Sockets.h"
-#include "SimpleUDPClientAndServer.h"
 #include "SimpleTCPEchoServer.h"
+#include "SimpleUDPClientAndServer.h"
 #include "TCPEchoClient_SingleTasks.h"
 #include "logging.h"
 
 /* Simple UDP client and server task parameters. */
-#define mainSIMPLE_UDP_CLIENT_SERVER_TASK_PRIORITY    ( tskIDLE_PRIORITY )
-#define mainSIMPLE_UDP_CLIENT_SERVER_PORT             ( 5005UL )
+#define mainSIMPLE_UDP_CLIENT_SERVER_TASK_PRIORITY ( tskIDLE_PRIORITY )
+#define mainSIMPLE_UDP_CLIENT_SERVER_PORT          ( 5005UL )
 
 /* Echo client task parameters - used for both TCP and UDP echo clients. */
-#define mainECHO_CLIENT_TASK_STACK_SIZE               ( configMINIMAL_STACK_SIZE * 2 )      /* Not used in the Windows port. */
-#define mainECHO_CLIENT_TASK_PRIORITY                 ( tskIDLE_PRIORITY + 1 )
+#define mainECHO_CLIENT_TASK_STACK_SIZE \
+    ( configMINIMAL_STACK_SIZE * 2 ) /* Not used in the Windows port. */
+#define mainECHO_CLIENT_TASK_PRIORITY ( tskIDLE_PRIORITY + 1 )
 
 /* Echo server task parameters. */
-#define mainECHO_SERVER_TASK_STACK_SIZE               ( configMINIMAL_STACK_SIZE * 2 )      /* Not used in the Windows port. */
-#define mainECHO_SERVER_TASK_PRIORITY                 ( tskIDLE_PRIORITY + 1 )
+#define mainECHO_SERVER_TASK_STACK_SIZE \
+    ( configMINIMAL_STACK_SIZE * 2 ) /* Not used in the Windows port. */
+#define mainECHO_SERVER_TASK_PRIORITY             ( tskIDLE_PRIORITY + 1 )
 
 /* Define a name that will be used for LLMNR and NBNS searches. */
-#define mainHOST_NAME                                 "RTOSDemo"
-#define mainDEVICE_NICK_NAME                          "windows_demo"
+#define mainHOST_NAME                             "RTOSDemo"
+#define mainDEVICE_NICK_NAME                      "windows_demo"
 
 /* Set the following constants to 1 or 0 to define which tasks to include and
  * exclude:
  *
- * mainCREATE_SIMPLE_UDP_CLIENT_SERVER_TASKS:  When set to 1 two UDP client tasks
- * and two UDP server tasks are created.  The clients talk to the servers.  One set
- * of tasks use the standard sockets interface, and the other the zero copy sockets
- * interface.  These tasks are self checking and will trigger a configASSERT() if
- * they detect a difference in the data that is received from that which was sent.
- * As these tasks use UDP, and can therefore loose packets, they will cause
- * configASSERT() to be called when they are run in a less than perfect networking
- * environment.
+ * mainCREATE_SIMPLE_UDP_CLIENT_SERVER_TASKS:  When set to 1 two UDP client
+ * tasks and two UDP server tasks are created.  The clients talk to the servers.
+ * One set of tasks use the standard sockets interface, and the other the zero
+ * copy sockets interface.  These tasks are self checking and will trigger a
+ * configASSERT() if they detect a difference in the data that is received from
+ * that which was sent. As these tasks use UDP, and can therefore loose packets,
+ * they will cause configASSERT() to be called when they are run in a less than
+ * perfect networking environment.
  *
- * mainCREATE_TCP_ECHO_TASKS_SINGLE:  When set to 1 a set of tasks are created that
- * send TCP echo requests to the standard echo port (port 7), then wait for and
- * verify the echo reply, from within the same task (Tx and Rx are performed in the
- * same RTOS task).  The IP address of the echo server must be configured using the
- * configECHO_SERVER_ADDR0 to configECHO_SERVER_ADDR3 constants in
+ * mainCREATE_TCP_ECHO_TASKS_SINGLE:  When set to 1 a set of tasks are created
+ * that send TCP echo requests to the standard echo port (port 7), then wait for
+ * and verify the echo reply, from within the same task (Tx and Rx are performed
+ * in the same RTOS task).  The IP address of the echo server must be configured
+ * using the configECHO_SERVER_ADDR0 to configECHO_SERVER_ADDR3 constants in
  * FreeRTOSConfig.h.
  *
- * mainCREATE_TCP_ECHO_SERVER_TASK:  When set to 1 a task is created that accepts
- * connections on the standard echo port (port 7), then echos back any data
- * received on that connection.
+ * mainCREATE_TCP_ECHO_SERVER_TASK:  When set to 1 a task is created that
+ * accepts connections on the standard echo port (port 7), then echos back any
+ * data received on that connection.
  */
-#define mainCREATE_SIMPLE_UDP_CLIENT_SERVER_TASKS     0
-#define mainCREATE_TCP_ECHO_TASKS_SINGLE              1
-#define mainCREATE_TCP_ECHO_SERVER_TASK               0
+#define mainCREATE_SIMPLE_UDP_CLIENT_SERVER_TASKS 0
+#define mainCREATE_TCP_ECHO_TASKS_SINGLE          1
+#define mainCREATE_TCP_ECHO_SERVER_TASK           0
 /*-----------------------------------------------------------*/
 
 /*
@@ -108,15 +111,27 @@ static void prvMiscInitialisation( void );
  * defined here will be used if ipconfigUSE_DHCP is 0, or if ipconfigUSE_DHCP is
  * 1 but a DHCP server could not be contacted.  See the online documentation for
  * more information. */
-static const uint8_t ucIPAddress[ 4 ] = { configIP_ADDR0, configIP_ADDR1, configIP_ADDR2, configIP_ADDR3 };
-static const uint8_t ucNetMask[ 4 ] = { configNET_MASK0, configNET_MASK1, configNET_MASK2, configNET_MASK3 };
-static const uint8_t ucGatewayAddress[ 4 ] = { configGATEWAY_ADDR0, configGATEWAY_ADDR1, configGATEWAY_ADDR2, configGATEWAY_ADDR3 };
-static const uint8_t ucDNSServerAddress[ 4 ] = { configDNS_SERVER_ADDR0, configDNS_SERVER_ADDR1, configDNS_SERVER_ADDR2, configDNS_SERVER_ADDR3 };
+static const uint8_t ucIPAddress[ 4 ] = { configIP_ADDR0,
+                                          configIP_ADDR1,
+                                          configIP_ADDR2,
+                                          configIP_ADDR3 };
+static const uint8_t ucNetMask[ 4 ] = { configNET_MASK0,
+                                        configNET_MASK1,
+                                        configNET_MASK2,
+                                        configNET_MASK3 };
+static const uint8_t ucGatewayAddress[ 4 ] = { configGATEWAY_ADDR0,
+                                               configGATEWAY_ADDR1,
+                                               configGATEWAY_ADDR2,
+                                               configGATEWAY_ADDR3 };
+static const uint8_t ucDNSServerAddress[ 4 ] = { configDNS_SERVER_ADDR0,
+                                                 configDNS_SERVER_ADDR1,
+                                                 configDNS_SERVER_ADDR2,
+                                                 configDNS_SERVER_ADDR3 };
 
 /* Set the following constant to pdTRUE to log using the method indicated by the
  * name of the constant, or pdFALSE to not log using the method indicated by the
- * name of the constant.  Options include to standard out (xLogToStdout) and to a
- * file on disk (xLogToFile). */
+ * name of the constant.  Options include to standard out (xLogToStdout) and to
+ * a file on disk (xLogToFile). */
 const BaseType_t xLogToStdout = pdTRUE, xLogToFile = pdFALSE;
 
 /* Default MAC address configuration.  The demo creates a virtual network
@@ -124,22 +139,26 @@ const BaseType_t xLogToStdout = pdTRUE, xLogToFile = pdFALSE;
  * to and from a real network connection on the host PC.  See the
  * configNETWORK_INTERFACE_TO_USE definition for information on how to configure
  * the real network connection to use. */
-const uint8_t ucMACAddress[ 6 ] = { configMAC_ADDR0, configMAC_ADDR1, configMAC_ADDR2, configMAC_ADDR3, configMAC_ADDR4, configMAC_ADDR5 };
+const uint8_t ucMACAddress[ 6 ] = { configMAC_ADDR0, configMAC_ADDR1,
+                                    configMAC_ADDR2, configMAC_ADDR3,
+                                    configMAC_ADDR4, configMAC_ADDR5 };
 
 /* Use by the pseudo random number generator. */
 static UBaseType_t ulNextRand;
 /*-----------------------------------------------------------*/
 
-#if defined( ipconfigIPv4_BACKWARD_COMPATIBLE ) && ( ipconfigIPv4_BACKWARD_COMPATIBLE == 0 )
-    /* In case multiple interfaces are used, define them statically. */
+#if defined( ipconfigIPv4_BACKWARD_COMPATIBLE ) && \
+    ( ipconfigIPv4_BACKWARD_COMPATIBLE == 0 )
+/* In case multiple interfaces are used, define them statically. */
 
-    /* With WinPCap there is only 1 physical interface. */
-    static NetworkInterface_t xInterfaces[ 1 ];
+/* With WinPCap there is only 1 physical interface. */
+static NetworkInterface_t xInterfaces[ 1 ];
 
-    /* It will have several end-points. */
-    static NetworkEndPoint_t xEndPoints[ 4 ];
+/* It will have several end-points. */
+static NetworkEndPoint_t xEndPoints[ 4 ];
 
-#endif /* defined( ipconfigIPv4_BACKWARD_COMPATIBLE ) && ( ipconfigIPv4_BACKWARD_COMPATIBLE == 0 ) */
+#endif /* defined( ipconfigIPv4_BACKWARD_COMPATIBLE ) && ( \
+          ipconfigIPv4_BACKWARD_COMPATIBLE == 0 ) */
 
 /*-----------------------------------------------------------*/
 
@@ -160,26 +179,34 @@ int main( void )
      *
      ***NOTE*** Tasks that use the network are created in the network event hook
      * when the network is connected and ready for use (see the definition of
-     * vApplicationIPNetworkEventHook() below).  The address values passed in here
-     * are used if ipconfigUSE_DHCP is set to 0, or if ipconfigUSE_DHCP is set to 1
-     * but a DHCP server cannot be	contacted. */
+     * vApplicationIPNetworkEventHook() below).  The address values passed in
+     *here are used if ipconfigUSE_DHCP is set to 0, or if ipconfigUSE_DHCP is
+     *set to 1 but a DHCP server cannot be	contacted. */
 
     /* Initialise the network interface.*/
     FreeRTOS_debug_printf( ( "FreeRTOS_IPInit\r\n" ) );
 
-#if defined( ipconfigIPv4_BACKWARD_COMPATIBLE ) && ( ipconfigIPv4_BACKWARD_COMPATIBLE == 0 )
+#if defined( ipconfigIPv4_BACKWARD_COMPATIBLE ) && \
+    ( ipconfigIPv4_BACKWARD_COMPATIBLE == 0 )
 
-#ifdef ipconfigUSE_LIBSLIRP
-    extern NetworkInterface_t* pxFillInterfaceDescriptor(BaseType_t xEMACIndex,
-        NetworkInterface_t * pxInterface);
+    #ifdef ipconfigUSE_LIBSLIRP
+    extern NetworkInterface_t * pxFillInterfaceDescriptor( BaseType_t xEMACIndex,
+                                                           NetworkInterface_t *
+                                                               pxInterface );
     pxFillInterfaceDescriptor( 0, &( xInterfaces[ 0 ] ) );
-#else
+    #else
     pxWinPcap_FillInterfaceDescriptor( 0, &( xInterfaces[ 0 ] ) );
-#endif
+    #endif
 
     /* === End-point 0 === */
-    FreeRTOS_FillEndPoint( &( xInterfaces[ 0 ] ), &( xEndPoints[ 0 ] ), ucIPAddress, ucNetMask, ucGatewayAddress, ucDNSServerAddress, ucMACAddress );
-    #if ( ipconfigUSE_DHCP != 0 )
+    FreeRTOS_FillEndPoint( &( xInterfaces[ 0 ] ),
+                           &( xEndPoints[ 0 ] ),
+                           ucIPAddress,
+                           ucNetMask,
+                           ucGatewayAddress,
+                           ucDNSServerAddress,
+                           ucMACAddress );
+    #if( ipconfigUSE_DHCP != 0 )
     {
         /* End-point 0 wants to use DHCPv4. */
         xEndPoints[ 0 ].bits.bWantDHCP = pdTRUE;
@@ -190,9 +217,15 @@ int main( void )
 
     FreeRTOS_IPInit_Multi();
 #else
-    /* Using the old /single /IPv4 library, or using backward compatible mode of the new /multi library. */
-    FreeRTOS_IPInit( ucIPAddress, ucNetMask, ucGatewayAddress, ucDNSServerAddress, ucMACAddress );
-#endif /* defined( ipconfigIPv4_BACKWARD_COMPATIBLE ) && ( ipconfigIPv4_BACKWARD_COMPATIBLE == 0 ) */
+    /* Using the old /single /IPv4 library, or using backward compatible mode of
+     * the new /multi library. */
+    FreeRTOS_IPInit( ucIPAddress,
+                     ucNetMask,
+                     ucGatewayAddress,
+                     ucDNSServerAddress,
+                     ucMACAddress );
+#endif /* defined( ipconfigIPv4_BACKWARD_COMPATIBLE ) && ( \
+          ipconfigIPv4_BACKWARD_COMPATIBLE == 0 ) */
 
     /* Start the RTOS scheduler. */
     FreeRTOS_debug_printf( ( "vTaskStartScheduler\r\n" ) );
@@ -204,7 +237,7 @@ int main( void )
      * timer tasks	to be created.  See the memory management section on the
      * FreeRTOS web site for more details (this is standard text that is not not
      * really applicable to the Win32 simulator port). */
-    for( ; ; )
+    for( ;; )
     {
         Sleep( ulLongTime_ms );
     }
@@ -223,15 +256,16 @@ void vApplicationIdleHook( void )
 }
 /*-----------------------------------------------------------*/
 
-
 /* Called by FreeRTOS+TCP when the network connects or disconnects.  Disconnect
  * events are only received if implemented in the MAC driver. */
-#if defined( ipconfigIPv4_BACKWARD_COMPATIBLE ) && ( ipconfigIPv4_BACKWARD_COMPATIBLE == 0 )
-    void vApplicationIPNetworkEventHook_Multi( eIPCallbackEvent_t eNetworkEvent,
-                                                   struct xNetworkEndPoint * pxEndPoint )
+#if defined( ipconfigIPv4_BACKWARD_COMPATIBLE ) && \
+    ( ipconfigIPv4_BACKWARD_COMPATIBLE == 0 )
+void vApplicationIPNetworkEventHook_Multi( eIPCallbackEvent_t eNetworkEvent,
+                                           struct xNetworkEndPoint * pxEndPoint )
 #else
-    void vApplicationIPNetworkEventHook( eIPCallbackEvent_t eNetworkEvent )
-#endif /* defined( ipconfigIPv4_BACKWARD_COMPATIBLE ) && ( ipconfigIPv4_BACKWARD_COMPATIBLE == 0 ) */
+void vApplicationIPNetworkEventHook( eIPCallbackEvent_t eNetworkEvent )
+#endif /* defined( ipconfigIPv4_BACKWARD_COMPATIBLE ) && ( \
+          ipconfigIPv4_BACKWARD_COMPATIBLE == 0 ) */
 {
     uint32_t ulIPAddress, ulNetMask, ulGatewayAddress, ulDNSServerAddress;
     char cBuffer[ 16 ];
@@ -244,26 +278,32 @@ void vApplicationIdleHook( void )
          * created. */
         if( xTasksAlreadyCreated == pdFALSE )
         {
-            /* See the comments above the definitions of these pre-processor
-             * macros at the top of this file for a description of the individual
-             * demo tasks. */
-            #if ( mainCREATE_SIMPLE_UDP_CLIENT_SERVER_TASKS == 1 )
-                {
-                    vStartSimpleUDPClientServerTasks( configMINIMAL_STACK_SIZE, mainSIMPLE_UDP_CLIENT_SERVER_PORT, mainSIMPLE_UDP_CLIENT_SERVER_TASK_PRIORITY );
-                }
-            #endif /* mainCREATE_SIMPLE_UDP_CLIENT_SERVER_TASKS */
+/* See the comments above the definitions of these pre-processor
+ * macros at the top of this file for a description of the individual
+ * demo tasks. */
+#if( mainCREATE_SIMPLE_UDP_CLIENT_SERVER_TASKS == 1 )
+            {
+                vStartSimpleUDPClientServerTasks(
+                    configMINIMAL_STACK_SIZE,
+                    mainSIMPLE_UDP_CLIENT_SERVER_PORT,
+                    mainSIMPLE_UDP_CLIENT_SERVER_TASK_PRIORITY );
+            }
+#endif /* mainCREATE_SIMPLE_UDP_CLIENT_SERVER_TASKS */
 
-            #if ( mainCREATE_TCP_ECHO_TASKS_SINGLE == 1 )
-                {
-                    vStartTCPEchoClientTasks_SingleTasks( mainECHO_CLIENT_TASK_STACK_SIZE, mainECHO_CLIENT_TASK_PRIORITY );
-                }
-            #endif /* mainCREATE_TCP_ECHO_TASKS_SINGLE */
+#if( mainCREATE_TCP_ECHO_TASKS_SINGLE == 1 )
+            {
+                vStartTCPEchoClientTasks_SingleTasks(
+                    mainECHO_CLIENT_TASK_STACK_SIZE,
+                    mainECHO_CLIENT_TASK_PRIORITY );
+            }
+#endif /* mainCREATE_TCP_ECHO_TASKS_SINGLE */
 
-            #if ( mainCREATE_TCP_ECHO_SERVER_TASK == 1 )
-                {
-                    vStartSimpleTCPServerTasks( mainECHO_SERVER_TASK_STACK_SIZE, mainECHO_SERVER_TASK_PRIORITY );
-                }
-            #endif
+#if( mainCREATE_TCP_ECHO_SERVER_TASK == 1 )
+            {
+                vStartSimpleTCPServerTasks( mainECHO_SERVER_TASK_STACK_SIZE,
+                                            mainECHO_SERVER_TASK_PRIORITY );
+            }
+#endif
 
             xTasksAlreadyCreated = pdTRUE;
         }
@@ -274,11 +314,20 @@ void vApplicationIdleHook( void )
         /* Using ipconfigIPv4_BACKWARD_COMPATIBLE as the substitute of the
          * downward compatibility*/
 
-    #if defined( ipconfigIPv4_BACKWARD_COMPATIBLE ) && ( ipconfigIPv4_BACKWARD_COMPATIBLE == 0 )
-        FreeRTOS_GetEndPointConfiguration( &ulIPAddress, &ulNetMask, &ulGatewayAddress, &ulDNSServerAddress, pxNetworkEndPoints );
-    #else
-        FreeRTOS_GetAddressConfiguration( &ulIPAddress, &ulNetMask, &ulGatewayAddress, &ulDNSServerAddress );
-    #endif /* defined( ipconfigIPv4_BACKWARD_COMPATIBLE ) && ( ipconfigIPv4_BACKWARD_COMPATIBLE == 0 ) */
+#if defined( ipconfigIPv4_BACKWARD_COMPATIBLE ) && \
+    ( ipconfigIPv4_BACKWARD_COMPATIBLE == 0 )
+        FreeRTOS_GetEndPointConfiguration( &ulIPAddress,
+                                           &ulNetMask,
+                                           &ulGatewayAddress,
+                                           &ulDNSServerAddress,
+                                           pxNetworkEndPoints );
+#else
+        FreeRTOS_GetAddressConfiguration( &ulIPAddress,
+                                          &ulNetMask,
+                                          &ulGatewayAddress,
+                                          &ulDNSServerAddress );
+#endif /* defined( ipconfigIPv4_BACKWARD_COMPATIBLE ) && ( \
+          ipconfigIPv4_BACKWARD_COMPATIBLE == 0 ) */
         FreeRTOS_inet_ntoa( ulIPAddress, cBuffer );
         FreeRTOS_printf( ( "\r\n\r\nIP Address: %s\r\n", cBuffer ) );
 
@@ -304,7 +353,6 @@ void vApplicationMallocFailedHook( void )
     vAssertCalled( __FILE__, __LINE__ );
 }
 /*-----------------------------------------------------------*/
-
 
 static void prvSRand( UBaseType_t ulSeed )
 {
@@ -337,48 +385,51 @@ static void prvMiscInitialisation( void )
 }
 /*-----------------------------------------------------------*/
 
-#if ( ipconfigUSE_LLMNR != 0 ) || ( ipconfigUSE_NBNS != 0 ) || ( ipconfigDHCP_REGISTER_HOSTNAME == 1 )
+#if( ipconfigUSE_LLMNR != 0 ) || ( ipconfigUSE_NBNS != 0 ) || \
+    ( ipconfigDHCP_REGISTER_HOSTNAME == 1 )
 
-    const char * pcApplicationHostnameHook( void )
-    {
-        /* Assign the name "FreeRTOS" to this network node.  This function will
-         * be called during the DHCP: the machine will be registered with an IP
-         * address plus this name. */
-        return mainHOST_NAME;
-    }
+const char * pcApplicationHostnameHook( void )
+{
+    /* Assign the name "FreeRTOS" to this network node.  This function will
+     * be called during the DHCP: the machine will be registered with an IP
+     * address plus this name. */
+    return mainHOST_NAME;
+}
 
 #endif
 /*-----------------------------------------------------------*/
 
-#if ( ipconfigUSE_LLMNR != 0 ) || ( ipconfigUSE_NBNS != 0 )
+#if( ipconfigUSE_LLMNR != 0 ) || ( ipconfigUSE_NBNS != 0 )
 
-    #if defined( ipconfigIPv4_BACKWARD_COMPATIBLE ) && ( ipconfigIPv4_BACKWARD_COMPATIBLE == 0 )
-        BaseType_t xApplicationDNSQueryHook_Multi( struct xNetworkEndPoint * pxEndPoint,
-                                                            const char * pcName )
+    #if defined( ipconfigIPv4_BACKWARD_COMPATIBLE ) && \
+        ( ipconfigIPv4_BACKWARD_COMPATIBLE == 0 )
+BaseType_t xApplicationDNSQueryHook_Multi( struct xNetworkEndPoint * pxEndPoint,
+                                           const char * pcName )
     #else
-        BaseType_t xApplicationDNSQueryHook( const char * pcName )
-    #endif /* defined( ipconfigIPv4_BACKWARD_COMPATIBLE ) && ( ipconfigIPv4_BACKWARD_COMPATIBLE == 0 ) */
+BaseType_t xApplicationDNSQueryHook( const char * pcName )
+    #endif /* defined( ipconfigIPv4_BACKWARD_COMPATIBLE ) && ( \
+              ipconfigIPv4_BACKWARD_COMPATIBLE == 0 ) */
+{
+    BaseType_t xReturn;
+
+    /* Determine if a name lookup is for this node.  Two names are given
+     * to this node: that returned by pcApplicationHostnameHook() and that set
+     * by mainDEVICE_NICK_NAME. */
+    if( _stricmp( pcName, pcApplicationHostnameHook() ) == 0 )
     {
-        BaseType_t xReturn;
-
-        /* Determine if a name lookup is for this node.  Two names are given
-         * to this node: that returned by pcApplicationHostnameHook() and that set
-         * by mainDEVICE_NICK_NAME. */
-        if( _stricmp( pcName, pcApplicationHostnameHook() ) == 0 )
-        {
-            xReturn = pdPASS;
-        }
-        else if( _stricmp( pcName, mainDEVICE_NICK_NAME ) == 0 )
-        {
-            xReturn = pdPASS;
-        }
-        else
-        {
-            xReturn = pdFAIL;
-        }
-
-        return xReturn;
+        xReturn = pdPASS;
     }
+    else if( _stricmp( pcName, mainDEVICE_NICK_NAME ) == 0 )
+    {
+        xReturn = pdPASS;
+    }
+    else
+    {
+        xReturn = pdFAIL;
+    }
+
+    return xReturn;
+}
 
 #endif /* if ( ipconfigUSE_LLMNR != 0 ) || ( ipconfigUSE_NBNS != 0 ) */
 /*-----------------------------------------------------------*/
@@ -389,10 +440,11 @@ static void prvMiscInitialisation( void )
  * THAT RETURNS A PSEUDO RANDOM NUMBER SO IS NOT INTENDED FOR USE IN PRODUCTION
  * SYSTEMS.
  */
-extern uint32_t ulApplicationGetNextSequenceNumber( uint32_t ulSourceAddress,
-                                                    uint16_t usSourcePort,
-                                                    uint32_t ulDestinationAddress,
-                                                    uint16_t usDestinationPort )
+extern uint32_t ulApplicationGetNextSequenceNumber(
+    uint32_t ulSourceAddress,
+    uint16_t usSourcePort,
+    uint32_t ulDestinationAddress,
+    uint16_t usDestinationPort )
 {
     ( void ) ulSourceAddress;
     ( void ) usSourcePort;
@@ -415,15 +467,16 @@ BaseType_t xApplicationGetRandomNumber( uint32_t * pulNumber )
 }
 /*-----------------------------------------------------------*/
 
-#if ( ( ipconfigUSE_TCP == 1 ) && ( ipconfigUSE_DHCP_HOOK != 0 ) )
+#if( ( ipconfigUSE_TCP == 1 ) && ( ipconfigUSE_DHCP_HOOK != 0 ) )
 
-    #if ( ipconfigIPv4_BACKWARD_COMPATIBLE == 1 )
-        eDHCPCallbackAnswer_t xApplicationDHCPHook( eDHCPCallbackPhase_t eDHCPPhase,
-                                                    uint32_t ulIPAddress )
-    #else /* ( ipconfigIPv4_BACKWARD_COMPATIBLE == 1 ) */
-        eDHCPCallbackAnswer_t xApplicationDHCPHook_Multi( eDHCPCallbackPhase_t eDHCPPhase,
-                                                          struct xNetworkEndPoint * pxEndPoint,
-                                                          IP_Address_t * pxIPAddress )
+    #if( ipconfigIPv4_BACKWARD_COMPATIBLE == 1 )
+eDHCPCallbackAnswer_t xApplicationDHCPHook( eDHCPCallbackPhase_t eDHCPPhase,
+                                            uint32_t ulIPAddress )
+    #else  /* ( ipconfigIPv4_BACKWARD_COMPATIBLE == 1 ) */
+eDHCPCallbackAnswer_t xApplicationDHCPHook_Multi(
+    eDHCPCallbackPhase_t eDHCPPhase,
+    struct xNetworkEndPoint * pxEndPoint,
+    IP_Address_t * pxIPAddress )
     #endif /* ( ipconfigIPv4_BACKWARD_COMPATIBLE == 1 ) */
 {
     /* Provide a stub for this function. */

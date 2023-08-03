@@ -14,36 +14,38 @@
  *
  */
 
-#include <string.h>
-#include <stdio.h>
-#include "mpfs_hal/mss_hal.h"
 #include "mss_nwc_init.h"
+#include "mpfs_hal/mss_hal.h"
 #include "simulation.h"
+#include <stdio.h>
+#include <string.h>
 
 #ifdef DEBUG_DDR_INIT
-#include "drivers/mss/mss_mmuart/mss_uart.h"
-extern mss_uart_instance_t *g_debug_uart ;
-uint32_t setup_ddr_debug_port(mss_uart_instance_t * uart);
+    #include "drivers/mss/mss_mmuart/mss_uart.h"
+extern mss_uart_instance_t * g_debug_uart;
+uint32_t setup_ddr_debug_port( mss_uart_instance_t * uart );
 #endif
 
 /*******************************************************************************
  * Local Defines
  */
-CFG_DDR_SGMII_PHY_TypeDef       * const CFG_DDR_SGMII_PHY   =  ((CFG_DDR_SGMII_PHY_TypeDef *) CFG_DDR_SGMII_PHY_BASE);
-DDR_CSR_APB_TypeDef             * const DDRCFG              = ((DDR_CSR_APB_TypeDef *)       DDRCFG_BASE);
-IOSCBCFG_TypeDef                * const SCBCFG_REGS         =  (IOSCBCFG_TypeDef            *)IOSCBCFG_BASE ;
-g5_mss_top_scb_regs_TypeDef     * const SCB_REGS            = (g5_mss_top_scb_regs_TypeDef *) SYSREGSCB_BASE;
+CFG_DDR_SGMII_PHY_TypeDef * const CFG_DDR_SGMII_PHY = ( (
+    CFG_DDR_SGMII_PHY_TypeDef * ) CFG_DDR_SGMII_PHY_BASE );
+DDR_CSR_APB_TypeDef * const DDRCFG = ( ( DDR_CSR_APB_TypeDef * ) DDRCFG_BASE );
+IOSCBCFG_TypeDef * const SCBCFG_REGS = ( IOSCBCFG_TypeDef * ) IOSCBCFG_BASE;
+g5_mss_top_scb_regs_TypeDef * const SCB_REGS = ( g5_mss_top_scb_regs_TypeDef * )
+    SYSREGSCB_BASE;
 
 /*******************************************************************************
  * Local functions
  */
-void delay(uint32_t n);
+void delay( uint32_t n );
 
 /*******************************************************************************
  * extern defined functions
  */
 #ifdef DEBUG_DDR_INIT
-uint32_t setup_ddr_debug_port(mss_uart_instance_t * uart);
+uint32_t setup_ddr_debug_port( mss_uart_instance_t * uart );
 #endif
 
 /******************************************************************************
@@ -56,13 +58,13 @@ uint32_t setup_ddr_debug_port(mss_uart_instance_t * uart);
  *
  * @return
  */
-uint8_t mss_nwc_init(void)
+uint8_t mss_nwc_init( void )
 {
     uint8_t error = 0U;
 
 #ifndef SIFIVE_HIFIVE_UNLEASHED
 
-#ifdef SIMULATION_TEST_FEEDBACK
+    #ifdef SIMULATION_TEST_FEEDBACK
     /*
      * set the test version- this is read in Simulation environment
      * x.y.z
@@ -70,13 +72,13 @@ uint8_t mss_nwc_init(void)
      * byte[1] = y
      * byte[2] = x
      */
-    SIM_FEEDBACK0(0x33333333);
-    SYSREG->TEMP0 = (0U << 16U) | (3U << 8U) | 3U;
+    SIM_FEEDBACK0( 0x33333333 );
+    SYSREG->TEMP0 = ( 0U << 16U ) | ( 3U << 8U ) | 3U;
     SYSREG->TEMP0 = 0x44444444U;
-    SIM_FEEDBACK0(1);
-    SIM_FEEDBACK0(0x55555555);
-    SIM_FEEDBACK0(1);
-#endif
+    SIM_FEEDBACK0( 1 );
+    SIM_FEEDBACK0( 0x55555555 );
+    SIM_FEEDBACK0( 1 );
+    #endif
     /*
      * Assumptions:
      *  1. We enter here shortly after start-up of E51 code by  the system
@@ -156,22 +158,22 @@ uint8_t mss_nwc_init(void)
      * bit 1    DATA_Lockdn
      * bit 0    ADD_CMD_Lockdn
      */
-    CFG_DDR_SGMII_PHY->DDRPHY_STARTUP.DDRPHY_STARTUP =\
-            (0x3FU << 16U) | (0x1FU << 8U);
+    CFG_DDR_SGMII_PHY->DDRPHY_STARTUP.DDRPHY_STARTUP = ( 0x3FU << 16U ) |
+                                                       ( 0x1FU << 8U );
     /* Enable all dynamic enables
        When in dynamic enable more, this allows:
        1. writing directly using SCB
        2. setting using RPC on a soft reset
      */
-    CFG_DDR_SGMII_PHY->DYN_CNTL.DYN_CNTL = (0x01U<< 10U) | (0x7FU<<0U);
+    CFG_DDR_SGMII_PHY->DYN_CNTL.DYN_CNTL = ( 0x01U << 10U ) | ( 0x7FU << 0U );
 
     /*
      * Configure IOMUX and I/O settings for bank 2 and 4
      */
     {
-#ifdef MSSIO_SUPPORT
+    #ifdef MSSIO_SUPPORT
         error |= mssio_setup();
-#endif
+    #endif
     }
 
     /*************************************************************************/
@@ -198,10 +200,9 @@ uint8_t mss_nwc_init(void)
      *      step 5: make sure all RPC registers are set to desired values
      *              (using mode and direct RPC writes to RPC)
      *      step 6: soft reset IP so SCB registers are written with RPC values.
-     *          note: We will carry out step 5/6 later, once we have modified any
-     *          RPC registers directly that may need tweaking or are not
-     *          included in the mode write state machine, carried out in a
-     *          previous step.
+     *          note: We will carry out step 5/6 later, once we have modified
+     * any RPC registers directly that may need tweaking or are not included in
+     * the mode write state machine, carried out in a previous step.
      *
      *          Note 1: The SCB bus can be used to update/write new values to
      *          the SCB registers through the SCB bus interface while in Dynamic
@@ -300,96 +301,103 @@ uint8_t mss_nwc_init(void)
        mss_flash_valid      :1;
        mss_io_en            :1;
     */
-     /* DCE:111, CORE_UP:1, FLASH_VALID:0, mss_io_en:0 */
-    SCB_REGS->MSSIO_CONTROL_CR.MSSIO_CONTROL_CR =\
-            (0x07U<<8U)|(0x01U<<11U)|(0x00U<<12U)|(0x00U<<13U);
-    delay((uint32_t) 10U);
+    /* DCE:111, CORE_UP:1, FLASH_VALID:0, mss_io_en:0 */
+    SCB_REGS->MSSIO_CONTROL_CR.MSSIO_CONTROL_CR = ( 0x07U << 8U ) |
+                                                  ( 0x01U << 11U ) |
+                                                  ( 0x00U << 12U ) |
+                                                  ( 0x00U << 13U );
+    delay( ( uint32_t ) 10U );
     /* DCE:000, CORE_UP:1, FLASH_VALID:0, mss_io_en:0 */
-    SCB_REGS->MSSIO_CONTROL_CR.MSSIO_CONTROL_CR =\
-            (0x00U<<8U)|(0x01U<<11U)|(0x00U<<12U)|(0x00U<<13U);
-    delay((uint32_t) 10U);
+    SCB_REGS->MSSIO_CONTROL_CR.MSSIO_CONTROL_CR = ( 0x00U << 8U ) |
+                                                  ( 0x01U << 11U ) |
+                                                  ( 0x00U << 12U ) |
+                                                  ( 0x00U << 13U );
+    delay( ( uint32_t ) 10U );
     /* DCE:000, CORE_UP:1, FLASH_VALID:1, mss_io_en:0 */
-    SCB_REGS->MSSIO_CONTROL_CR.MSSIO_CONTROL_CR =\
-            (0x00U<<8U)|(0x01U<<11U)|(0x01U<<12U)|(0x00U<<13U);
-    delay((uint32_t) 10U);
+    SCB_REGS->MSSIO_CONTROL_CR.MSSIO_CONTROL_CR = ( 0x00U << 8U ) |
+                                                  ( 0x01U << 11U ) |
+                                                  ( 0x01U << 12U ) |
+                                                  ( 0x00U << 13U );
+    delay( ( uint32_t ) 10U );
     /* DCE:000, CORE_UP:1, FLASH_VALID:1, mss_io_en:1  */
-    SCB_REGS->MSSIO_CONTROL_CR.MSSIO_CONTROL_CR =\
-            (0x00U<<8U)|(0x01U<<11U)|(0x01U<<12U)|(0x01U<<13U);
+    SCB_REGS->MSSIO_CONTROL_CR.MSSIO_CONTROL_CR = ( 0x00U << 8U ) |
+                                                  ( 0x01U << 11U ) |
+                                                  ( 0x01U << 12U ) |
+                                                  ( 0x01U << 13U );
 
     /*
      * Setup SGMII
      * The SGMII set-upset configures the external clock reference so this must
      * be called before configuring the MSS PLL
      */
-    SIM_FEEDBACK0(2);
+    SIM_FEEDBACK0( 2 );
     sgmii_setup();
 
     /*
      * Setup the MSS PLL
      */
-    SIM_FEEDBACK0(3);
+    SIM_FEEDBACK0( 3 );
     mss_pll_config();
 
     {
-#ifdef DDR_SUPPORT
-#ifdef DEBUG_DDR_INIT
+    #ifdef DDR_SUPPORT
+        #ifdef DEBUG_DDR_INIT
         {
-            (void)setup_ddr_debug_port(g_debug_uart);
+            ( void ) setup_ddr_debug_port( g_debug_uart );
         }
-#endif
+        #endif
 
-        uint32_t  ddr_status;
-        ddr_status = ddr_state_machine(DDR_SS__INIT);
+        uint32_t ddr_status;
+        ddr_status = ddr_state_machine( DDR_SS__INIT );
 
-        while((ddr_status & DDR_SETUP_DONE) != DDR_SETUP_DONE)
+        while( ( ddr_status & DDR_SETUP_DONE ) != DDR_SETUP_DONE )
         {
-            ddr_status = ddr_state_machine(DDR_SS_MONITOR);
+            ddr_status = ddr_state_machine( DDR_SS_MONITOR );
         }
-        if ((ddr_status & DDR_SETUP_FAIL) == DDR_SETUP_FAIL)
+        if( ( ddr_status & DDR_SETUP_FAIL ) == DDR_SETUP_FAIL )
         {
-            error |= (0x1U << 2U);
+            error |= ( 0x1U << 2U );
         }
-        //todo: remove, just for sim test ddr_recalib_io_test();
-#endif
+            // todo: remove, just for sim test ddr_recalib_io_test();
+    #endif
     }
 
 #endif /* end of !define SIFIVE_HIFIVE_UNLEASHED */
-    SIM_FEEDBACK0(0x12345678U);
-    SIM_FEEDBACK0(error);
-    SIM_FEEDBACK0(0x87654321U);
+    SIM_FEEDBACK0( 0x12345678U );
+    SIM_FEEDBACK0( error );
+    SIM_FEEDBACK0( 0x87654321U );
     return error;
 }
 
-
-/*-------------------------------------------------------------------------*//**
- * delay()
- * Not absolute. Dependency on current clk rate
- * @param n Number of iterations to wait.
- */
-void delay(uint32_t n)
+/*-------------------------------------------------------------------------*/ /**
+                                                                               * delay()
+                                                                               * Not absolute. Dependency on current clk rate
+                                                                               * @param n Number of iterations to wait.
+                                                                               */
+void delay( uint32_t n )
 {
     volatile uint32_t count = n;
-    while(count!=0U)
+    while( count != 0U )
     {
         count--;
     }
 }
 
-/*-------------------------------------------------------------------------*//**
- * mtime_delay()
- * waits x microseconds
- * Assumption 1 is we have ensured clock is 1MHz
- * Assumption 2 is we have not setup tick timer when using this function. It is
- * only used by the startup code
- * @param microseconds microseconds to delay
- */
+/*-------------------------------------------------------------------------*/ /**
+                                                                               * mtime_delay()
+                                                                               * waits x microseconds
+                                                                               * Assumption 1 is we have ensured clock is 1MHz
+                                                                               * Assumption 2 is we have not setup tick timer when using this function. It is
+                                                                               * only used by the startup code
+                                                                               * @param microseconds microseconds to delay
+                                                                               */
 
-void mtime_delay(uint32_t microseconds)
+void mtime_delay( uint32_t microseconds )
 {
     CLINT->MTIME = 0ULL;
     volatile uint32_t count = 0ULL;
 
-    while(CLINT->MTIME < microseconds)
+    while( CLINT->MTIME < microseconds )
     {
         count++;
     }

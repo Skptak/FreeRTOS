@@ -8,16 +8,16 @@
 **     Compiler  : Metrowerks HC12 C Compiler
 **     Date/Time : 19/05/2005, 19:02
 **     Abstract  :
-**         This bean "ExtInt" implements an external 
-**         interrupt, its control methods and interrupt/event 
+**         This bean "ExtInt" implements an external
+**         interrupt, its control methods and interrupt/event
 **         handling procedure.
-**         The bean uses one pin which generates interrupt on 
+**         The bean uses one pin which generates interrupt on
 **         selected edge.
 **     Settings  :
 **         Interrupt name              : INT_PortP
 **         User handling procedure     : ButtonInterrupt_OnInterrupt
 **
-**         Used pin                    : 
+**         Used pin                    :
 **             ----------------------------------------------------
 **                Number (on package)  |    Name
 **             ----------------------------------------------------
@@ -54,22 +54,22 @@
 ** ###################################################################*/
 
 #ifndef __ButtonInterrupt_H
-#define __ButtonInterrupt_H
+    #define __ButtonInterrupt_H
 
-/* MODULE ButtonInterrupt. */
+    /* MODULE ButtonInterrupt. */
 
-/*Including shared modules, which are used in the whole project*/
-#include "PE_Types.h"
-#include "PE_Error.h"
-#include "PE_Const.h"
-#include "IO_Map.h"
-#include "PE_Timer.h"
-#include "Events.h"
-#include "Cpu.h"
+    /*Including shared modules, which are used in the whole project*/
+    #include "Cpu.h"
+    #include "Events.h"
+    #include "IO_Map.h"
+    #include "PE_Const.h"
+    #include "PE_Error.h"
+    #include "PE_Timer.h"
+    #include "PE_Types.h"
 
-#pragma CODE_SEG ButtonInterrupt_CODE  /* Code section for this module. */
+    #pragma CODE_SEG ButtonInterrupt_CODE /* Code section for this module. */
 
-void ButtonInterrupt_Enable(void);
+void ButtonInterrupt_Enable( void );
 /*
 ** ===================================================================
 **     Method      :  ButtonInterrupt_Enable (bean ExtInt)
@@ -81,20 +81,22 @@ void ButtonInterrupt_Enable(void);
 ** ===================================================================
 */
 
-#pragma CODE_SEG __NEAR_SEG NON_BANKED /* Interrupt section for this module. Placement will be in NON_BANKED area. */
-__interrupt void ButtonInterrupt_Interrupt(void);
-#pragma CODE_SEG ButtonInterrupt_CODE  /* Code section for this module. */
-/*
-** ===================================================================
-**     Method      :  ButtonInterrupt_Interrupt (bean ExtInt)
-**
-**     Description :
-**         This method is internal. It is used by Processor Expert
-**         only.
-** ===================================================================
-*/
+    #pragma CODE_SEG __NEAR_SEG NON_BANKED /* Interrupt section for this   \
+                                              module. Placement will be in \
+                                              NON_BANKED area. */
+__interrupt void ButtonInterrupt_Interrupt( void );
+    #pragma CODE_SEG ButtonInterrupt_CODE /* Code section for this module. */
+                                          /*
+                                          ** ===================================================================
+                                          **     Method      :  ButtonInterrupt_Interrupt (bean ExtInt)
+                                          **
+                                          **     Description :
+                                          **         This method is internal. It is used by Processor Expert
+                                          **         only.
+                                          ** ===================================================================
+                                          */
 
-#pragma CODE_SEG DEFAULT               /* Change code section to DEFAULT. */
+    #pragma CODE_SEG DEFAULT /* Change code section to DEFAULT. */
 
 /* END ButtonInterrupt. */
 
@@ -102,7 +104,7 @@ __interrupt void ButtonInterrupt_Interrupt(void);
 /*
 ** ###################################################################
 **
-**     This file was created by UNIS Processor Expert 03.33 for 
+**     This file was created by UNIS Processor Expert 03.33 for
 **     the Motorola HCS12 series of microcontrollers.
 **
 ** ###################################################################

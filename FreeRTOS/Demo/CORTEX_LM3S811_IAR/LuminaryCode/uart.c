@@ -32,6 +32,7 @@
 //
 //*****************************************************************************
 
+#include "uart.h"
 #include "../hw_ints.h"
 #include "../hw_memmap.h"
 #include "../hw_types.h"
@@ -39,7 +40,6 @@
 #include "debug.h"
 #include "interrupt.h"
 #include "sysctl.h"
-#include "uart.h"
 
 //*****************************************************************************
 //
@@ -57,26 +57,26 @@
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_paritymodeset) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-UARTParityModeSet(unsigned long ulBase, unsigned long ulParity)
+#if defined( GROUP_paritymodeset ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void UARTParityModeSet( unsigned long ulBase, unsigned long ulParity )
 {
     //
     // Check the arguments.
     //
-    ASSERT((ulBase == UART0_BASE) || (ulBase == UART1_BASE));
-    ASSERT((ulParity == UART_CONFIG_PAR_NONE) ||
-           (ulParity == UART_CONFIG_PAR_EVEN) ||
-           (ulParity == UART_CONFIG_PAR_ODD) ||
-           (ulParity == UART_CONFIG_PAR_ONE) ||
-           (ulParity == UART_CONFIG_PAR_ZERO));
+    ASSERT( ( ulBase == UART0_BASE ) || ( ulBase == UART1_BASE ) );
+    ASSERT( ( ulParity == UART_CONFIG_PAR_NONE ) ||
+            ( ulParity == UART_CONFIG_PAR_EVEN ) ||
+            ( ulParity == UART_CONFIG_PAR_ODD ) ||
+            ( ulParity == UART_CONFIG_PAR_ONE ) ||
+            ( ulParity == UART_CONFIG_PAR_ZERO ) );
 
     //
     // Set the parity mode.
     //
-    HWREG(ulBase + UART_O_LCR_H) = ((HWREG(ulBase + UART_O_LCR_H) &
-                                     ~(UART_LCR_H_SPS | UART_LCR_H_EPS |
-                                       UART_LCR_H_PEN)) | ulParity);
+    HWREG( ulBase + UART_O_LCR_H ) = ( ( HWREG( ulBase + UART_O_LCR_H ) &
+                                         ~( UART_LCR_H_SPS | UART_LCR_H_EPS |
+                                            UART_LCR_H_PEN ) ) |
+                                       ulParity );
 }
 #endif
 
@@ -91,20 +91,19 @@ UARTParityModeSet(unsigned long ulBase, unsigned long ulParity)
 //! \b UART_CONFIG_PAR_ONE, or \b UART_CONFIG_PAR_ZERO.
 //
 //*****************************************************************************
-#if defined(GROUP_paritymodeget) || defined(BUILD_ALL) || defined(DOXYGEN)
-unsigned long
-UARTParityModeGet(unsigned long ulBase)
+#if defined( GROUP_paritymodeget ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+unsigned long UARTParityModeGet( unsigned long ulBase )
 {
     //
     // Check the arguments.
     //
-    ASSERT((ulBase == UART0_BASE) || (ulBase == UART1_BASE));
+    ASSERT( ( ulBase == UART0_BASE ) || ( ulBase == UART1_BASE ) );
 
     //
     // Return the current parity setting.
     //
-    return(HWREG(ulBase + UART_O_LCR_H) &
-           (UART_LCR_H_SPS | UART_LCR_H_EPS | UART_LCR_H_PEN));
+    return ( HWREG( ulBase + UART_O_LCR_H ) &
+             ( UART_LCR_H_SPS | UART_LCR_H_EPS | UART_LCR_H_PEN ) );
 }
 #endif
 
@@ -138,22 +137,22 @@ UARTParityModeGet(unsigned long ulBase)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_configset) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-UARTConfigSet(unsigned long ulBase, unsigned long ulBaud,
-              unsigned long ulConfig)
+#if defined( GROUP_configset ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void UARTConfigSet( unsigned long ulBase,
+                    unsigned long ulBaud,
+                    unsigned long ulConfig )
 {
     unsigned long ulUARTClk, ulInt, ulFrac;
 
     //
     // Check the arguments.
     //
-    ASSERT((ulBase == UART0_BASE) || (ulBase == UART1_BASE));
+    ASSERT( ( ulBase == UART0_BASE ) || ( ulBase == UART1_BASE ) );
 
     //
     // Stop the UART.
     //
-    UARTDisable(ulBase);
+    UARTDisable( ulBase );
 
     //
     // Determine the UART clock rate.
@@ -163,30 +162,30 @@ UARTConfigSet(unsigned long ulBase, unsigned long ulBaud,
     //
     // Compute the fractional baud rate divider.
     //
-    ulInt = ulUARTClk / (16 * ulBaud);
-    ulFrac = ulUARTClk % (16 * ulBaud);
-    ulFrac = ((((2 * ulFrac * 4) / ulBaud) + 1) / 2);
+    ulInt = ulUARTClk / ( 16 * ulBaud );
+    ulFrac = ulUARTClk % ( 16 * ulBaud );
+    ulFrac = ( ( ( ( 2 * ulFrac * 4 ) / ulBaud ) + 1 ) / 2 );
 
     //
     // Set the baud rate.
     //
-    HWREG(ulBase + UART_O_IBRD) = ulInt;
-    HWREG(ulBase + UART_O_FBRD) = ulFrac;
+    HWREG( ulBase + UART_O_IBRD ) = ulInt;
+    HWREG( ulBase + UART_O_FBRD ) = ulFrac;
 
     //
     // Set parity, data length, and number of stop bits.
     //
-    HWREG(ulBase + UART_O_LCR_H) = ulConfig;
+    HWREG( ulBase + UART_O_LCR_H ) = ulConfig;
 
     //
     // Clear the flags register.
     //
-    HWREG(ulBase + UART_O_FR) = 0;
+    HWREG( ulBase + UART_O_FR ) = 0;
 
     //
     // Start the UART.
     //
-    UARTEnable(ulBase);
+    UARTEnable( ulBase );
 }
 #endif
 
@@ -211,10 +210,10 @@ UARTConfigSet(unsigned long ulBase, unsigned long ulBaud,
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_configget) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-UARTConfigGet(unsigned long ulBase, unsigned long *pulBaud,
-              unsigned long *pulConfig)
+#if defined( GROUP_configget ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void UARTConfigGet( unsigned long ulBase,
+                    unsigned long * pulBaud,
+                    unsigned long * pulConfig )
 
 {
     unsigned long ulInt, ulFrac;
@@ -222,21 +221,21 @@ UARTConfigGet(unsigned long ulBase, unsigned long *pulBaud,
     //
     // Check the arguments.
     //
-    ASSERT((ulBase == UART0_BASE) || (ulBase == UART1_BASE));
+    ASSERT( ( ulBase == UART0_BASE ) || ( ulBase == UART1_BASE ) );
 
     //
     // Compute the baud rate.
     //
-    ulInt = HWREG(ulBase + UART_O_IBRD);
-    ulFrac = HWREG(ulBase + UART_O_FBRD);
-    *pulBaud = (SysCtlClockGet() * 4) / ((64 * ulInt) + ulFrac);
+    ulInt = HWREG( ulBase + UART_O_IBRD );
+    ulFrac = HWREG( ulBase + UART_O_FBRD );
+    *pulBaud = ( SysCtlClockGet() * 4 ) / ( ( 64 * ulInt ) + ulFrac );
 
     //
     // Get the parity, data length, and number of stop bits.
     //
-    *pulConfig = (HWREG(ulBase + UART_O_LCR_H) &
-                  (UART_LCR_H_SPS | UART_LCR_H_WLEN | UART_LCR_H_STP2 |
-                   UART_LCR_H_EPS | UART_LCR_H_PEN));
+    *pulConfig = ( HWREG( ulBase + UART_O_LCR_H ) &
+                   ( UART_LCR_H_SPS | UART_LCR_H_WLEN | UART_LCR_H_STP2 |
+                     UART_LCR_H_EPS | UART_LCR_H_PEN ) );
 }
 #endif
 
@@ -252,25 +251,24 @@ UARTConfigGet(unsigned long ulBase, unsigned long *pulBaud,
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_enable) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-UARTEnable(unsigned long ulBase)
+#if defined( GROUP_enable ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void UARTEnable( unsigned long ulBase )
 {
     //
     // Check the arguments.
     //
-    ASSERT((ulBase == UART0_BASE) || (ulBase == UART1_BASE));
+    ASSERT( ( ulBase == UART0_BASE ) || ( ulBase == UART1_BASE ) );
 
     //
     // Enable the FIFO.
     //
-    HWREG(ulBase + UART_O_LCR_H) |= UART_LCR_H_FEN;
+    HWREG( ulBase + UART_O_LCR_H ) |= UART_LCR_H_FEN;
 
     //
     // Enable RX, TX, and the UART.
     //
-    HWREG(ulBase + UART_O_CTL) |= (UART_CTL_UARTEN | UART_CTL_TXE |
-                                   UART_CTL_RXE);
+    HWREG( ulBase + UART_O_CTL ) |= ( UART_CTL_UARTEN | UART_CTL_TXE |
+                                      UART_CTL_RXE );
 }
 #endif
 
@@ -286,32 +284,31 @@ UARTEnable(unsigned long ulBase)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_disable) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-UARTDisable(unsigned long ulBase)
+#if defined( GROUP_disable ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void UARTDisable( unsigned long ulBase )
 {
     //
     // Check the arguments.
     //
-    ASSERT((ulBase == UART0_BASE) || (ulBase == UART1_BASE));
+    ASSERT( ( ulBase == UART0_BASE ) || ( ulBase == UART1_BASE ) );
 
     //
     // Wait for end of TX.
     //
-    while(HWREG(ulBase + UART_O_FR) & UART_FR_BUSY)
+    while( HWREG( ulBase + UART_O_FR ) & UART_FR_BUSY )
     {
     }
 
     //
     // Disable the FIFO.
     //
-    HWREG(ulBase + UART_O_LCR_H) &= ~(UART_LCR_H_FEN);
+    HWREG( ulBase + UART_O_LCR_H ) &= ~( UART_LCR_H_FEN );
 
     //
     // Disable the UART.
     //
-    HWREG(ulBase + UART_O_CTL) &= ~(UART_CTL_UARTEN | UART_CTL_TXE |
-                                    UART_CTL_RXE);
+    HWREG( ulBase + UART_O_CTL ) &= ~( UART_CTL_UARTEN | UART_CTL_TXE |
+                                       UART_CTL_RXE );
 }
 #endif
 
@@ -328,19 +325,18 @@ UARTDisable(unsigned long ulBase)
 //! if there is no data in the receive FIFO.
 //
 //*****************************************************************************
-#if defined(GROUP_charsavail) || defined(BUILD_ALL) || defined(DOXYGEN)
-tBoolean
-UARTCharsAvail(unsigned long ulBase)
+#if defined( GROUP_charsavail ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+tBoolean UARTCharsAvail( unsigned long ulBase )
 {
     //
     // Check the arguments.
     //
-    ASSERT((ulBase == UART0_BASE) || (ulBase == UART1_BASE));
+    ASSERT( ( ulBase == UART0_BASE ) || ( ulBase == UART1_BASE ) );
 
     //
     // Return the availability of characters.
     //
-    return((HWREG(ulBase + UART_O_FR) & UART_FR_RXFE) ? false : true);
+    return ( ( HWREG( ulBase + UART_O_FR ) & UART_FR_RXFE ) ? false : true );
 }
 #endif
 
@@ -357,19 +353,18 @@ UARTCharsAvail(unsigned long ulBase)
 //! and \b false if there is no space available in the transmit FIFO.
 //
 //*****************************************************************************
-#if defined(GROUP_spaceavail) || defined(BUILD_ALL) || defined(DOXYGEN)
-tBoolean
-UARTSpaceAvail(unsigned long ulBase)
+#if defined( GROUP_spaceavail ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+tBoolean UARTSpaceAvail( unsigned long ulBase )
 {
     //
     // Check the arguments.
     //
-    ASSERT((ulBase == UART0_BASE) || (ulBase == UART1_BASE));
+    ASSERT( ( ulBase == UART0_BASE ) || ( ulBase == UART1_BASE ) );
 
     //
     // Return the availability of space.
     //
-    return((HWREG(ulBase + UART_O_FR) & UART_FR_TXFF) ? false : true);
+    return ( ( HWREG( ulBase + UART_O_FR ) & UART_FR_TXFF ) ? false : true );
 }
 #endif
 
@@ -387,31 +382,31 @@ UARTSpaceAvail(unsigned long ulBase)
 //! attempting to call this function.
 //
 //*****************************************************************************
-#if defined(GROUP_charnonblockingget) || defined(BUILD_ALL) || defined(DOXYGEN)
-long
-UARTCharNonBlockingGet(unsigned long ulBase)
+#if defined( GROUP_charnonblockingget ) || defined( BUILD_ALL ) || \
+    defined( DOXYGEN )
+long UARTCharNonBlockingGet( unsigned long ulBase )
 {
     //
     // Check the arguments.
     //
-    ASSERT((ulBase == UART0_BASE) || (ulBase == UART1_BASE));
+    ASSERT( ( ulBase == UART0_BASE ) || ( ulBase == UART1_BASE ) );
 
     //
     // See if there are any characters in the receive FIFO.
     //
-    if(!(HWREG(ulBase + UART_O_FR) & UART_FR_RXFE))
+    if( !( HWREG( ulBase + UART_O_FR ) & UART_FR_RXFE ) )
     {
         //
         // Read and return the next character.
         //
-        return(HWREG(ulBase + UART_O_DR));
+        return ( HWREG( ulBase + UART_O_DR ) );
     }
     else
     {
         //
         // There are no characters, so return a failure.
         //
-        return(-1);
+        return ( -1 );
     }
 }
 #endif
@@ -430,26 +425,25 @@ UARTCharNonBlockingGet(unsigned long ulBase)
 //! \e int.
 //
 //*****************************************************************************
-#if defined(GROUP_charget) || defined(BUILD_ALL) || defined(DOXYGEN)
-long
-UARTCharGet(unsigned long ulBase)
+#if defined( GROUP_charget ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+long UARTCharGet( unsigned long ulBase )
 {
     //
     // Check the arguments.
     //
-    ASSERT((ulBase == UART0_BASE) || (ulBase == UART1_BASE));
+    ASSERT( ( ulBase == UART0_BASE ) || ( ulBase == UART1_BASE ) );
 
     //
     // Wait until a char is available.
     //
-    while(HWREG(ulBase + UART_O_FR) & UART_FR_RXFE)
+    while( HWREG( ulBase + UART_O_FR ) & UART_FR_RXFE )
     {
     }
 
     //
     // Now get the char.
     //
-    return(HWREG(ulBase + UART_O_DR));
+    return ( HWREG( ulBase + UART_O_DR ) );
 }
 #endif
 
@@ -470,36 +464,36 @@ UARTCharGet(unsigned long ulBase)
 //! FIFO.
 //
 //*****************************************************************************
-#if defined(GROUP_charnonblockingput) || defined(BUILD_ALL) || defined(DOXYGEN)
-tBoolean
-UARTCharNonBlockingPut(unsigned long ulBase, unsigned char ucData)
+#if defined( GROUP_charnonblockingput ) || defined( BUILD_ALL ) || \
+    defined( DOXYGEN )
+tBoolean UARTCharNonBlockingPut( unsigned long ulBase, unsigned char ucData )
 {
     //
     // Check the arguments.
     //
-    ASSERT((ulBase == UART0_BASE) || (ulBase == UART1_BASE));
+    ASSERT( ( ulBase == UART0_BASE ) || ( ulBase == UART1_BASE ) );
 
     //
     // See if there is space in the transmit FIFO.
     //
-    if(!(HWREG(ulBase + UART_O_FR) & UART_FR_TXFF))
+    if( !( HWREG( ulBase + UART_O_FR ) & UART_FR_TXFF ) )
     {
         //
         // Write this character to the transmit FIFO.
         //
-        HWREG(ulBase + UART_O_DR) = ucData;
+        HWREG( ulBase + UART_O_DR ) = ucData;
 
         //
         // Success.
         //
-        return(true);
+        return ( true );
     }
     else
     {
         //
         // There is no space in the transmit FIFO, so return a failure.
         //
-        return(false);
+        return ( false );
     }
 }
 #endif
@@ -518,26 +512,25 @@ UARTCharNonBlockingPut(unsigned long ulBase, unsigned char ucData)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_charput) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-UARTCharPut(unsigned long ulBase, unsigned char ucData)
+#if defined( GROUP_charput ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void UARTCharPut( unsigned long ulBase, unsigned char ucData )
 {
     //
     // Check the arguments.
     //
-    ASSERT((ulBase == UART0_BASE) || (ulBase == UART1_BASE));
+    ASSERT( ( ulBase == UART0_BASE ) || ( ulBase == UART1_BASE ) );
 
     //
     // Wait until space is available.
     //
-    while(HWREG(ulBase + UART_O_FR) & UART_FR_TXFF)
+    while( HWREG( ulBase + UART_O_FR ) & UART_FR_TXFF )
     {
     }
 
     //
     // Send the char.
     //
-    HWREG(ulBase + UART_O_DR) = ucData;
+    HWREG( ulBase + UART_O_DR ) = ucData;
 }
 #endif
 
@@ -556,22 +549,22 @@ UARTCharPut(unsigned long ulBase, unsigned char ucData)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_breakctl) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-UARTBreakCtl(unsigned long ulBase, tBoolean bBreakState)
+#if defined( GROUP_breakctl ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void UARTBreakCtl( unsigned long ulBase, tBoolean bBreakState )
 {
     //
     // Check the arguments.
     //
-    ASSERT((ulBase == UART0_BASE) || (ulBase == UART1_BASE));
+    ASSERT( ( ulBase == UART0_BASE ) || ( ulBase == UART1_BASE ) );
 
     //
     // Set the break condition as requested.
     //
-    HWREG(ulBase + UART_O_LCR_H) =
-        (bBreakState ?
-         (HWREG(ulBase + UART_O_LCR_H) | UART_LCR_H_BRK) :
-         (HWREG(ulBase + UART_O_LCR_H) & ~(UART_LCR_H_BRK)));
+    HWREG( ulBase + UART_O_LCR_H ) = ( bBreakState
+                                           ? ( HWREG( ulBase + UART_O_LCR_H ) |
+                                               UART_LCR_H_BRK )
+                                           : ( HWREG( ulBase + UART_O_LCR_H ) &
+                                               ~( UART_LCR_H_BRK ) ) );
 }
 #endif
 
@@ -594,31 +587,30 @@ UARTBreakCtl(unsigned long ulBase, tBoolean bBreakState)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_intregister) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-UARTIntRegister(unsigned long ulBase, void (*pfnHandler)(void))
+#if defined( GROUP_intregister ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void UARTIntRegister( unsigned long ulBase, void ( *pfnHandler )( void ) )
 {
     unsigned long ulInt;
 
     //
     // Check the arguments.
     //
-    ASSERT((ulBase == UART0_BASE) || (ulBase == UART1_BASE));
+    ASSERT( ( ulBase == UART0_BASE ) || ( ulBase == UART1_BASE ) );
 
     //
     // Determine the interrupt number based on the UART port.
     //
-    ulInt = (ulBase == UART0_BASE) ? INT_UART0 : INT_UART1;
+    ulInt = ( ulBase == UART0_BASE ) ? INT_UART0 : INT_UART1;
 
     //
     // Register the interrupt handler.
     //
-    IntRegister(ulInt, pfnHandler);
+    IntRegister( ulInt, pfnHandler );
 
     //
     // Enable the UART interrupt.
     //
-    IntEnable(ulInt);
+    IntEnable( ulInt );
 }
 #endif
 
@@ -639,31 +631,30 @@ UARTIntRegister(unsigned long ulBase, void (*pfnHandler)(void))
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_intunregister) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-UARTIntUnregister(unsigned long ulBase)
+#if defined( GROUP_intunregister ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void UARTIntUnregister( unsigned long ulBase )
 {
     unsigned long ulInt;
 
     //
     // Check the arguments.
     //
-    ASSERT((ulBase == UART0_BASE) || (ulBase == UART1_BASE));
+    ASSERT( ( ulBase == UART0_BASE ) || ( ulBase == UART1_BASE ) );
 
     //
     // Determine the interrupt number based on the UART port.
     //
-    ulInt = (ulBase == UART0_BASE) ? INT_UART0 : INT_UART1;
+    ulInt = ( ulBase == UART0_BASE ) ? INT_UART0 : INT_UART1;
 
     //
     // Disable the interrupt.
     //
-    IntDisable(ulInt);
+    IntDisable( ulInt );
 
     //
     // Unregister the interrupt handler.
     //
-    IntUnregister(ulInt);
+    IntUnregister( ulInt );
 }
 #endif
 
@@ -691,19 +682,18 @@ UARTIntUnregister(unsigned long ulBase)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_intenable) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-UARTIntEnable(unsigned long ulBase, unsigned long ulIntFlags)
+#if defined( GROUP_intenable ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void UARTIntEnable( unsigned long ulBase, unsigned long ulIntFlags )
 {
     //
     // Check the arguments.
     //
-    ASSERT((ulBase == UART0_BASE) || (ulBase == UART1_BASE));
+    ASSERT( ( ulBase == UART0_BASE ) || ( ulBase == UART1_BASE ) );
 
     //
     // Enable the specified interrupts.
     //
-    HWREG(ulBase + UART_O_IM) |= ulIntFlags;
+    HWREG( ulBase + UART_O_IM ) |= ulIntFlags;
 }
 #endif
 
@@ -724,19 +714,18 @@ UARTIntEnable(unsigned long ulBase, unsigned long ulIntFlags)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_intdisable) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-UARTIntDisable(unsigned long ulBase, unsigned long ulIntFlags)
+#if defined( GROUP_intdisable ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void UARTIntDisable( unsigned long ulBase, unsigned long ulIntFlags )
 {
     //
     // Check the arguments.
     //
-    ASSERT((ulBase == UART0_BASE) || (ulBase == UART1_BASE));
+    ASSERT( ( ulBase == UART0_BASE ) || ( ulBase == UART1_BASE ) );
 
     //
     // Disable the specified interrupts.
     //
-    HWREG(ulBase + UART_O_IM) &= ~(ulIntFlags);
+    HWREG( ulBase + UART_O_IM ) &= ~( ulIntFlags );
 }
 #endif
 
@@ -756,26 +745,25 @@ UARTIntDisable(unsigned long ulBase, unsigned long ulIntFlags)
 //! values described in UARTIntEnable().
 //
 //*****************************************************************************
-#if defined(GROUP_intstatus) || defined(BUILD_ALL) || defined(DOXYGEN)
-unsigned long
-UARTIntStatus(unsigned long ulBase, tBoolean bMasked)
+#if defined( GROUP_intstatus ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+unsigned long UARTIntStatus( unsigned long ulBase, tBoolean bMasked )
 {
     //
     // Check the arguments.
     //
-    ASSERT((ulBase == UART0_BASE) || (ulBase == UART1_BASE));
+    ASSERT( ( ulBase == UART0_BASE ) || ( ulBase == UART1_BASE ) );
 
     //
     // Return either the interrupt status or the raw interrupt status as
     // requested.
     //
-    if(bMasked)
+    if( bMasked )
     {
-        return(HWREG(ulBase + UART_O_MIS));
+        return ( HWREG( ulBase + UART_O_MIS ) );
     }
     else
     {
-        return(HWREG(ulBase + UART_O_RIS));
+        return ( HWREG( ulBase + UART_O_RIS ) );
     }
 }
 #endif
@@ -797,19 +785,18 @@ UARTIntStatus(unsigned long ulBase, tBoolean bMasked)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_intclear) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-UARTIntClear(unsigned long ulBase, unsigned long ulIntFlags)
+#if defined( GROUP_intclear ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void UARTIntClear( unsigned long ulBase, unsigned long ulIntFlags )
 {
     //
     // Check the arguments.
     //
-    ASSERT((ulBase == UART0_BASE) || (ulBase == UART1_BASE));
+    ASSERT( ( ulBase == UART0_BASE ) || ( ulBase == UART1_BASE ) );
 
     //
     // Clear the requested interrupt sources.
     //
-    HWREG(ulBase + UART_O_ICR) = ulIntFlags;
+    HWREG( ulBase + UART_O_ICR ) = ulIntFlags;
 }
 #endif
 

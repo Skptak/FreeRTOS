@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -48,8 +49,8 @@
 #include "FreeRTOS.h"
 
 /* Demo includes. */
-#include "IntQueueTimer.h"
 #include "IntQueue.h"
+#include "IntQueueTimer.h"
 
 /* Library includes. */
 #include "board.h"
@@ -58,22 +59,23 @@
 ensure they don't remain synchronised.  The frequency of the highest priority
 interrupt is 20 times faster so really hammers the interrupt entry and exit
 code. */
-#define tmrTIMER_0_FREQUENCY	( 2000UL )
-#define tmrTIMER_1_FREQUENCY	( 2003UL )
-#define tmrTIMER_2_FREQUENCY	( 20000UL )
+#define tmrTIMER_0_FREQUENCY ( 2000UL )
+#define tmrTIMER_1_FREQUENCY ( 2003UL )
+#define tmrTIMER_2_FREQUENCY ( 20000UL )
 
 /* The channels used in TC0 for generating the three interrupts. */
-#define tmrTC0_CHANNEL_0		0 /* At tmrTIMER_0_FREQUENCY */
-#define tmrTC0_CHANNEL_1		1 /* At tmrTIMER_1_FREQUENCY */
-#define tmrTC1_CHANNEL_0		0 /* At tmrTIMER_2_FREQUENCY */
+#define tmrTC0_CHANNEL_0     0 /* At tmrTIMER_0_FREQUENCY */
+#define tmrTC0_CHANNEL_1     1 /* At tmrTIMER_1_FREQUENCY */
+#define tmrTC1_CHANNEL_0     0 /* At tmrTIMER_2_FREQUENCY */
 
 /* The bit within the RC_SR register that indicates an RC compare. */
-#define tmrRC_COMPARE			( 1UL << 4UL )
+#define tmrRC_COMPARE        ( 1UL << 4UL )
 
 /* The high frequency interrupt given the highest priority or all.  The priority
-of the lower frequency timers must still be above the tick interrupt priority. */
-#define tmrLOWER_PRIORITY		1
-#define tmrHIGHER_PRIORITY		5
+of the lower frequency timers must still be above the tick interrupt priority.
+*/
+#define tmrLOWER_PRIORITY    1
+#define tmrHIGHER_PRIORITY   5
 /*-----------------------------------------------------------*/
 
 /* Handlers for the two timer peripherals - two channels are used in the TC0
@@ -94,71 +96,76 @@ volatile uint32_t ulHighFrequencyTimerCounts = 0;
 
 void vInitialiseTimerForIntQueueTest( void )
 {
-const uint32_t ulDivider = 128UL, ulTCCLKS = 3UL;
+    const uint32_t ulDivider = 128UL, ulTCCLKS = 3UL;
 
-	/* Enable the TC clocks. */
-	PMC->PMC_PCER0 = 1 << ID_TC0;
-	PMC->PMC_PCER0 = 1 << ID_TC1;
+    /* Enable the TC clocks. */
+    PMC->PMC_PCER0 = 1 << ID_TC0;
+    PMC->PMC_PCER0 = 1 << ID_TC1;
 
-	/* Configure TC0 channel 0 for a tmrTIMER_0_FREQUENCY frequency and trigger
-	on RC compare. */
-	TC_Configure( TC0, tmrTC0_CHANNEL_0, ulTCCLKS | TC_CMR_CPCTRG );
-	TC0->TC_CHANNEL[ tmrTC0_CHANNEL_0 ].TC_RC = BOARD_MCK / ( tmrTIMER_0_FREQUENCY * ulDivider );
-	TC0->TC_CHANNEL[ tmrTC0_CHANNEL_0 ].TC_IER = TC_IER_CPCS;
+    /* Configure TC0 channel 0 for a tmrTIMER_0_FREQUENCY frequency and trigger
+    on RC compare. */
+    TC_Configure( TC0, tmrTC0_CHANNEL_0, ulTCCLKS | TC_CMR_CPCTRG );
+    TC0->TC_CHANNEL[ tmrTC0_CHANNEL_0 ].TC_RC = BOARD_MCK /
+                                                ( tmrTIMER_0_FREQUENCY *
+                                                  ulDivider );
+    TC0->TC_CHANNEL[ tmrTC0_CHANNEL_0 ].TC_IER = TC_IER_CPCS;
 
-	/* Configure TC0 channel 1 for a tmrTIMER_1_FREQUENCY frequency and trigger
-	on RC compare. */
-	TC_Configure( TC0, tmrTC0_CHANNEL_1, ulTCCLKS | TC_CMR_CPCTRG );
-	TC0->TC_CHANNEL[ tmrTC0_CHANNEL_1 ].TC_RC = BOARD_MCK / ( tmrTIMER_1_FREQUENCY * ulDivider );
-	TC0->TC_CHANNEL[ tmrTC0_CHANNEL_1 ].TC_IER = TC_IER_CPCS;
+    /* Configure TC0 channel 1 for a tmrTIMER_1_FREQUENCY frequency and trigger
+    on RC compare. */
+    TC_Configure( TC0, tmrTC0_CHANNEL_1, ulTCCLKS | TC_CMR_CPCTRG );
+    TC0->TC_CHANNEL[ tmrTC0_CHANNEL_1 ].TC_RC = BOARD_MCK /
+                                                ( tmrTIMER_1_FREQUENCY *
+                                                  ulDivider );
+    TC0->TC_CHANNEL[ tmrTC0_CHANNEL_1 ].TC_IER = TC_IER_CPCS;
 
-	/* Configure TC1 channel 0 tmrTIMER_2_FREQUENCY frequency and trigger on
-	RC compare. */
-	TC_Configure( TC1, tmrTC1_CHANNEL_0, ulTCCLKS | TC_CMR_CPCTRG );
-	TC1->TC_CHANNEL[ tmrTC1_CHANNEL_0 ].TC_RC = BOARD_MCK / ( tmrTIMER_2_FREQUENCY * ulDivider );
-	TC1->TC_CHANNEL[ tmrTC1_CHANNEL_0 ].TC_IER = TC_IER_CPCS;
+    /* Configure TC1 channel 0 tmrTIMER_2_FREQUENCY frequency and trigger on
+    RC compare. */
+    TC_Configure( TC1, tmrTC1_CHANNEL_0, ulTCCLKS | TC_CMR_CPCTRG );
+    TC1->TC_CHANNEL[ tmrTC1_CHANNEL_0 ].TC_RC = BOARD_MCK /
+                                                ( tmrTIMER_2_FREQUENCY *
+                                                  ulDivider );
+    TC1->TC_CHANNEL[ tmrTC1_CHANNEL_0 ].TC_IER = TC_IER_CPCS;
 
-	/* Enable interrupts and start the timers. */
-	IRQ_ConfigureIT( ID_TC0, tmrLOWER_PRIORITY, prvTC0_Handler );
-	IRQ_ConfigureIT( ID_TC1, tmrHIGHER_PRIORITY, prvTC1_Handler );
-	IRQ_EnableIT( ID_TC0 );
-	IRQ_EnableIT( ID_TC1 );
-	TC_Start( TC0, tmrTC0_CHANNEL_0 );
-	TC_Start( TC0, tmrTC0_CHANNEL_1 );
-	TC_Start( TC1, tmrTC1_CHANNEL_0 );
+    /* Enable interrupts and start the timers. */
+    IRQ_ConfigureIT( ID_TC0, tmrLOWER_PRIORITY, prvTC0_Handler );
+    IRQ_ConfigureIT( ID_TC1, tmrHIGHER_PRIORITY, prvTC1_Handler );
+    IRQ_EnableIT( ID_TC0 );
+    IRQ_EnableIT( ID_TC1 );
+    TC_Start( TC0, tmrTC0_CHANNEL_0 );
+    TC_Start( TC0, tmrTC0_CHANNEL_1 );
+    TC_Start( TC1, tmrTC1_CHANNEL_0 );
 }
 /*-----------------------------------------------------------*/
 
 static void prvTC0_Handler( void )
 {
     /* Read will clear the status bit. */
-	if( ( TC0->TC_CHANNEL[ tmrTC0_CHANNEL_0 ].TC_SR & tmrRC_COMPARE ) != 0 )
-	{
-		portYIELD_FROM_ISR( xFirstTimerHandler() );
-	}
+    if( ( TC0->TC_CHANNEL[ tmrTC0_CHANNEL_0 ].TC_SR & tmrRC_COMPARE ) != 0 )
+    {
+        portYIELD_FROM_ISR( xFirstTimerHandler() );
+    }
 
-	if( ( TC0->TC_CHANNEL[ tmrTC0_CHANNEL_1 ].TC_SR & tmrRC_COMPARE ) != 0 )
-	{
-		portYIELD_FROM_ISR( xSecondTimerHandler() );
-	}
+    if( ( TC0->TC_CHANNEL[ tmrTC0_CHANNEL_1 ].TC_SR & tmrRC_COMPARE ) != 0 )
+    {
+        portYIELD_FROM_ISR( xSecondTimerHandler() );
+    }
 }
 /*-----------------------------------------------------------*/
 
 static void prvTC1_Handler( void )
 {
-volatile uint32_t ulDummy;
+    volatile uint32_t ulDummy;
 
     /* Dummy read to clear status bit. */
     ulDummy = TC1->TC_CHANNEL[ tmrTC1_CHANNEL_0 ].TC_SR;
 
-	/* Latch the maximum nesting count. */
-	if( ulPortInterruptNesting > ulMaxRecordedNesting )
-	{
-		ulMaxRecordedNesting = ulPortInterruptNesting;
-	}
+    /* Latch the maximum nesting count. */
+    if( ulPortInterruptNesting > ulMaxRecordedNesting )
+    {
+        ulMaxRecordedNesting = ulPortInterruptNesting;
+    }
 
-	/* Keep a count of the number of interrupts to use as a time base for the
-	run-time stats. */
-	ulHighFrequencyTimerCounts++;
+    /* Keep a count of the number of interrupts to use as a time base for the
+    run-time stats. */
+    ulHighFrequencyTimerCounts++;
 }
-

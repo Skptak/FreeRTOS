@@ -3,25 +3,25 @@
 // can.h - Defines and Macros for the CAN controller.
 //
 // Copyright (c) 2006-2008 Luminary Micro, Inc.  All rights reserved.
-// 
+//
 // Software License Agreement
-// 
+//
 // Luminary Micro, Inc. (LMI) is supplying this software for use solely and
 // exclusively on LMI's microcontroller products.
-// 
+//
 // The software is owned by LMI and/or its suppliers, and is protected under
 // applicable copyright laws.  All rights are reserved.  You may not combine
 // this software with "viral" open-source software in order to form a larger
 // program.  Any use in violation of the foregoing restrictions may subject
 // the user to criminal sanctions under applicable laws, as well as to civil
 // liability for the breach of the terms and conditions of this license.
-// 
+//
 // THIS SOFTWARE IS PROVIDED "AS IS".  NO WARRANTIES, WHETHER EXPRESS, IMPLIED
 // OR STATUTORY, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF
 // MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE APPLY TO THIS SOFTWARE.
 // LMI SHALL NOT, IN ANY CIRCUMSTANCES, BE LIABLE FOR SPECIAL, INCIDENTAL, OR
 // CONSEQUENTIAL DAMAGES, FOR ANY REASON WHATSOEVER.
-// 
+//
 // This is part of revision 2523 of the Stellaris Peripheral Driver Library.
 //
 //*****************************************************************************
@@ -43,8 +43,7 @@
 //
 //*****************************************************************************
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 //*****************************************************************************
@@ -65,62 +64,61 @@ typedef enum
     //! This indicates that transmit interrupts should be enabled, or are
     //! enabled.
     //
-    MSG_OBJ_TX_INT_ENABLE =     0x00000001,
+    MSG_OBJ_TX_INT_ENABLE = 0x00000001,
 
     //
     //! This indicates that receive interrupts should be enabled, or are
     //! enabled.
     //
-    MSG_OBJ_RX_INT_ENABLE =     0x00000002,
+    MSG_OBJ_RX_INT_ENABLE = 0x00000002,
 
     //
     //! This indicates that a message object will use or is using an extended
     //! identifier.
     //
-    MSG_OBJ_EXTENDED_ID =       0x00000004,
+    MSG_OBJ_EXTENDED_ID = 0x00000004,
 
     //
     //! This indicates that a message object will use or is using filtering
     //! based on the object's message identifier.
     //
-    MSG_OBJ_USE_ID_FILTER =     0x00000008,
+    MSG_OBJ_USE_ID_FILTER = 0x00000008,
 
     //
     //! This indicates that new data was available in the message object.
     //
-    MSG_OBJ_NEW_DATA =          0x00000080,
+    MSG_OBJ_NEW_DATA = 0x00000080,
 
     //
     //! This indicates that data was lost since this message object was last
     //! read.
     //
-    MSG_OBJ_DATA_LOST =         0x00000100,
+    MSG_OBJ_DATA_LOST = 0x00000100,
 
     //
     //! This indicates that a message object will use or is using filtering
     //! based on the direction of the transfer.  If the direction filtering is
     //! used, then ID filtering must also be enabled.
     //
-    MSG_OBJ_USE_DIR_FILTER =    (0x00000010 | MSG_OBJ_USE_ID_FILTER),
+    MSG_OBJ_USE_DIR_FILTER = ( 0x00000010 | MSG_OBJ_USE_ID_FILTER ),
 
     //
     //! This indicates that a message object will use or is using message
     //! identifier filtering based on the extended identifier.  If the extended
     //! identifier filtering is used, then ID filtering must also be enabled.
     //
-    MSG_OBJ_USE_EXT_FILTER =    (0x00000020 | MSG_OBJ_USE_ID_FILTER),
+    MSG_OBJ_USE_EXT_FILTER = ( 0x00000020 | MSG_OBJ_USE_ID_FILTER ),
 
     //
     //! This indicates that a message object is a remote frame.
     //
-    MSG_OBJ_REMOTE_FRAME =      0x00000040,
+    MSG_OBJ_REMOTE_FRAME = 0x00000040,
 
     //
     //! This indicates that a message object has no flags set.
     //
-    MSG_OBJ_NO_FLAGS =          0x00000000
-}
-tCANObjFlags;
+    MSG_OBJ_NO_FLAGS = 0x00000000
+} tCANObjFlags;
 
 //*****************************************************************************
 //
@@ -128,7 +126,7 @@ tCANObjFlags;
 //! checking only status flags and not configuration flags.
 //
 //*****************************************************************************
-#define MSG_OBJ_STATUS_MASK     (MSG_OBJ_NEW_DATA | MSG_OBJ_DATA_LOST)
+#define MSG_OBJ_STATUS_MASK ( MSG_OBJ_NEW_DATA | MSG_OBJ_DATA_LOST )
 
 //*****************************************************************************
 //
@@ -162,9 +160,8 @@ typedef struct
     //
     //! This is a pointer to the message object's data.
     //
-    unsigned char *pucMsgData;
-}
-tCANMsgObject;
+    unsigned char * pucMsgData;
+} tCANMsgObject;
 
 //*****************************************************************************
 //
@@ -200,8 +197,7 @@ typedef struct
     //
     unsigned int uQuantumPrescaler;
 
-}
-tCANBitClkParms;
+} tCANBitClkParms;
 
 //*****************************************************************************
 //
@@ -220,8 +216,7 @@ typedef enum
     //! Read a message object's interrupt status.
     //
     CAN_INT_STS_OBJECT
-}
-tCANIntStsReg;
+} tCANIntStsReg;
 
 //*****************************************************************************
 //
@@ -251,8 +246,7 @@ typedef enum
     //! Read the full 32-bit mask of message objects that are enabled.
     //
     CAN_STS_MSGVAL
-}
-tCANStsReg;
+} tCANStsReg;
 
 //*****************************************************************************
 //
@@ -266,22 +260,21 @@ typedef enum
     //! This flag is used to allow a CAN controller to generate error
     //! interrupts.
     //
-    CAN_INT_ERROR =             0x00000008,
+    CAN_INT_ERROR = 0x00000008,
 
     //
     //! This flag is used to allow a CAN controller to generate status
     //! interrupts.
     //
-    CAN_INT_STATUS =            0x00000004,
+    CAN_INT_STATUS = 0x00000004,
 
     //
     //! This flag is used to allow a CAN controller to generate any CAN
     //! interrupts.  If this is not set, then no interrupts will be generated
     //! by the CAN controller.
     //
-    CAN_INT_MASTER =            0x00000002
-}
-tCANIntFlags;
+    CAN_INT_MASTER = 0x00000002
+} tCANIntFlags;
 
 //*****************************************************************************
 //
@@ -315,8 +308,7 @@ typedef enum
     //! Remote frame receive remote, with auto-transmit message object.
     //
     MSG_OBJ_TYPE_RXTX_REMOTE
-}
-tMsgObjType;
+} tMsgObjType;
 
 //*****************************************************************************
 //
@@ -329,110 +321,120 @@ typedef enum
     //
     //! CAN controller has entered a Bus Off state.
     //
-    CAN_STATUS_BUS_OFF =        0x00000080,
+    CAN_STATUS_BUS_OFF = 0x00000080,
 
     //
     //! CAN controller error level has reached warning level.
     //
-    CAN_STATUS_EWARN =          0x00000040,
+    CAN_STATUS_EWARN = 0x00000040,
 
     //
     //! CAN controller error level has reached error passive level.
     //
-    CAN_STATUS_EPASS =          0x00000020,
+    CAN_STATUS_EPASS = 0x00000020,
 
     //
     //! A message was received successfully since the last read of this status.
     //
-    CAN_STATUS_RXOK =           0x00000010,
+    CAN_STATUS_RXOK = 0x00000010,
 
     //
     //! A message was transmitted successfully since the last read of this
     //! status.
     //
-    CAN_STATUS_TXOK =           0x00000008,
+    CAN_STATUS_TXOK = 0x00000008,
 
     //
     //! This is the mask for the last error code field.
     //
-    CAN_STATUS_LEC_MSK =        0x00000007,
+    CAN_STATUS_LEC_MSK = 0x00000007,
 
     //
     //! There was no error.
     //
-    CAN_STATUS_LEC_NONE =       0x00000000,
+    CAN_STATUS_LEC_NONE = 0x00000000,
 
     //
     //! A bit stuffing error has occurred.
     //
-    CAN_STATUS_LEC_STUFF =      0x00000001,
+    CAN_STATUS_LEC_STUFF = 0x00000001,
 
     //
     //! A formatting error has occurred.
     //
-    CAN_STATUS_LEC_FORM =       0x00000002,
+    CAN_STATUS_LEC_FORM = 0x00000002,
 
     //
     //! An acknowledge error has occurred.
     //
-    CAN_STATUS_LEC_ACK =        0x00000003,
+    CAN_STATUS_LEC_ACK = 0x00000003,
 
     //
     //! The bus remained a bit level of 1 for longer than is allowed.
     //
-    CAN_STATUS_LEC_BIT1 =       0x00000004,
+    CAN_STATUS_LEC_BIT1 = 0x00000004,
 
     //
     //! The bus remained a bit level of 0 for longer than is allowed.
     //
-    CAN_STATUS_LEC_BIT0 =       0x00000005,
+    CAN_STATUS_LEC_BIT0 = 0x00000005,
 
     //
     //! A CRC error has occurred.
     //
-    CAN_STATUS_LEC_CRC =        0x00000006,
+    CAN_STATUS_LEC_CRC = 0x00000006,
 
     //
     //! This is the mask for the CAN Last Error Code (LEC).
     //
-    CAN_STATUS_LEC_MASK =       0x00000007
-}
-tCANStatusCtrl;
+    CAN_STATUS_LEC_MASK = 0x00000007
+} tCANStatusCtrl;
 
 //*****************************************************************************
 //
 // API Function prototypes
 //
 //*****************************************************************************
-extern void CANInit(unsigned long ulBase);
-extern void CANEnable(unsigned long ulBase);
-extern void CANDisable(unsigned long ulBase);
-extern void CANSetBitTiming(unsigned long ulBase, tCANBitClkParms *pClkParms);
-extern void CANGetBitTiming(unsigned long ulBase, tCANBitClkParms *pClkParms);
-extern unsigned long CANReadReg(unsigned long ulRegAddress);
-extern void CANWriteReg(unsigned long ulRegAddress, unsigned long ulRegValue);
-extern void CANMessageSet(unsigned long ulBase, unsigned long ulObjID,
-                          tCANMsgObject *pMsgObject, tMsgObjType eMsgType);
-extern void CANMessageGet(unsigned long ulBase, unsigned long ulObjID,
-                          tCANMsgObject *pMsgObject, tBoolean bClrPendingInt);
-extern unsigned long CANStatusGet(unsigned long ulBase, tCANStsReg eStatusReg);
-extern void CANMessageClear(unsigned long ulBase, unsigned long ulObjID);
-extern void CANIntRegister(unsigned long ulBase, void (*pfnHandler)(void));
-extern void CANIntUnregister(unsigned long ulBase);
-extern void CANIntEnable(unsigned long ulBase, unsigned long ulIntFlags);
-extern void CANIntDisable(unsigned long ulBase, unsigned long ulIntFlags);
-extern void CANIntClear(unsigned long ulBase, unsigned long ulIntClr);
-extern unsigned long CANIntStatus(unsigned long ulBase,
-                                  tCANIntStsReg eIntStsReg);
-extern tBoolean CANRetryGet(unsigned long ulBase);
-extern void CANRetrySet(unsigned long ulBase, tBoolean bAutoRetry);
-extern tBoolean CANErrCntrGet(unsigned long ulBase, unsigned long *pulRxCount,
-                              unsigned long *pulTxCount);
-extern long CANGetIntNumber(unsigned long ulBase);
-extern void CANReadDataReg(unsigned char *pucData, unsigned long *pulRegister,
-                           int iSize);
-extern void CANWriteDataReg(unsigned char *pucData, unsigned long *pulRegister,
-                            int iSize);
+extern void CANInit( unsigned long ulBase );
+extern void CANEnable( unsigned long ulBase );
+extern void CANDisable( unsigned long ulBase );
+extern void CANSetBitTiming( unsigned long ulBase,
+                             tCANBitClkParms * pClkParms );
+extern void CANGetBitTiming( unsigned long ulBase,
+                             tCANBitClkParms * pClkParms );
+extern unsigned long CANReadReg( unsigned long ulRegAddress );
+extern void CANWriteReg( unsigned long ulRegAddress, unsigned long ulRegValue );
+extern void CANMessageSet( unsigned long ulBase,
+                           unsigned long ulObjID,
+                           tCANMsgObject * pMsgObject,
+                           tMsgObjType eMsgType );
+extern void CANMessageGet( unsigned long ulBase,
+                           unsigned long ulObjID,
+                           tCANMsgObject * pMsgObject,
+                           tBoolean bClrPendingInt );
+extern unsigned long CANStatusGet( unsigned long ulBase,
+                                   tCANStsReg eStatusReg );
+extern void CANMessageClear( unsigned long ulBase, unsigned long ulObjID );
+extern void CANIntRegister( unsigned long ulBase,
+                            void ( *pfnHandler )( void ) );
+extern void CANIntUnregister( unsigned long ulBase );
+extern void CANIntEnable( unsigned long ulBase, unsigned long ulIntFlags );
+extern void CANIntDisable( unsigned long ulBase, unsigned long ulIntFlags );
+extern void CANIntClear( unsigned long ulBase, unsigned long ulIntClr );
+extern unsigned long CANIntStatus( unsigned long ulBase,
+                                   tCANIntStsReg eIntStsReg );
+extern tBoolean CANRetryGet( unsigned long ulBase );
+extern void CANRetrySet( unsigned long ulBase, tBoolean bAutoRetry );
+extern tBoolean CANErrCntrGet( unsigned long ulBase,
+                               unsigned long * pulRxCount,
+                               unsigned long * pulTxCount );
+extern long CANGetIntNumber( unsigned long ulBase );
+extern void CANReadDataReg( unsigned char * pucData,
+                            unsigned long * pulRegister,
+                            int iSize );
+extern void CANWriteDataReg( unsigned char * pucData,
+                             unsigned long * pulRegister,
+                             int iSize );
 
 //*****************************************************************************
 //

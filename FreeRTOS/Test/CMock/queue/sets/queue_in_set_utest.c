@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -26,8 +27,8 @@
 /*! @file queue_in_set_utest.c */
 
 /* C runtime includes. */
-#include <stdlib.h>
 #include <stdbool.h>
+#include <stdlib.h>
 #include <string.h>
 
 #include "../queue_utest_common.h"
@@ -35,11 +36,12 @@
 /* Queue includes */
 #include "FreeRTOS.h"
 #include "FreeRTOSConfig.h"
-#include "queue.h"
 #include "mock_fake_port.h"
+#include "queue.h"
 
 /* ============================  GLOBAL VARIABLES =========================== */
-/* Share QueueHandle_t / QueueSetHandle_t between a test case and it's callbacks */
+/* Share QueueHandle_t / QueueSetHandle_t between a test case and it's callbacks
+ */
 static QueueHandle_t xQueueHandleStatic;
 static QueueSetHandle_t xQueueSetHandleStatic;
 
@@ -74,7 +76,6 @@ int suiteTearDown( int numFailures )
 
 /* ==============================  Test Cases =============================== */
 
-
 /**
  * @brief Test xQueueSend on a member Queue (size 1) of a QueueSet (size 1)
  * @details: Send an item to a queue that is part of a QueueSet.
@@ -108,12 +109,15 @@ void test_macro_xQueueSend_xQueueSelectFromSet_xQueueReceive_success( void )
 }
 
 /**
- * @brief Test xQueueSendFromISR on a member Queue (size 1) of a QueueSet (size 1)
+ * @brief Test xQueueSendFromISR on a member Queue (size 1) of a QueueSet (size
+ * 1)
  * @details: Send an item to a queue that is part of a QueueSet.
- *  Verify that the item can be received from the Queue via xQueueSelectFromSetFromISR and xQueueReceiveFromISR.
+ *  Verify that the item can be received from the Queue via
+ * xQueueSelectFromSetFromISR and xQueueReceiveFromISR.
  * @coverage xQueueGenericSendFromISR
  */
-void test_macro_xQueueSendFromISR_xQueueSelectFromSetFromISR_xQueueReceiveFromISR_success( void )
+void test_macro_xQueueSendFromISR_xQueueSelectFromSetFromISR_xQueueReceiveFromISR_success(
+    void )
 {
     QueueSetHandle_t xQueueSet = xQueueCreateSet( 1 );
 
@@ -136,14 +140,16 @@ void test_macro_xQueueSendFromISR_xQueueSelectFromSetFromISR_xQueueReceiveFromIS
 
     uint32_t checkValue = INVALID_UINT32;
 
-    TEST_ASSERT_EQUAL( pdTRUE, xQueueReceiveFromISR( xQueue2, &checkValue, NULL ) );
+    TEST_ASSERT_EQUAL( pdTRUE,
+                       xQueueReceiveFromISR( xQueue2, &checkValue, NULL ) );
 
     vQueueDelete( xQueueSet );
     vQueueDelete( xQueue );
 }
 
 /**
- * @brief Test xQueueOverwrite on an empty member Queue (size 1) of a QueueSet (size 1)
+ * @brief Test xQueueOverwrite on an empty member Queue (size 1) of a QueueSet
+ * (size 1)
  * @details: Perform an xQueueOverwrite operation to add a value to a queue.
  * Verify that the item can be received from the Queue via xQueueSelectFromSet.
  * @coverage xQueueGenericSend
@@ -175,12 +181,15 @@ void test_macro_xQueueOverwrite_xQueueSelectFromSet_xQueueReceive_success( void 
 }
 
 /**
- * @brief Test xQueueOverwriteFromISR on an empty member Queue (size 1) of a QueueSet (size 1)
- * @details: Perform an xQueueOverwriteFromISR operation to add a value to a queue.
- * Verify that the item can be received from the Queue via xQueueSelectFromSetFromISR.
+ * @brief Test xQueueOverwriteFromISR on an empty member Queue (size 1) of a
+ * QueueSet (size 1)
+ * @details: Perform an xQueueOverwriteFromISR operation to add a value to a
+ * queue. Verify that the item can be received from the Queue via
+ * xQueueSelectFromSetFromISR.
  * @coverage xQueueGenericSendFromISR
  */
-void test_macro_xQueueOverwriteFromISR_xQueueSelectFromSetFromISR_xQueueReceive_success( void )
+void test_macro_xQueueOverwriteFromISR_xQueueSelectFromSetFromISR_xQueueReceive_success(
+    void )
 {
     QueueSetHandle_t xQueueSet = xQueueCreateSet( 1 );
 
@@ -191,7 +200,8 @@ void test_macro_xQueueOverwriteFromISR_xQueueSelectFromSetFromISR_xQueueReceive_
     vFakePortAssertIfInterruptPriorityInvalid_Expect();
     uint32_t testVal = getNextMonotonicTestValue();
 
-    TEST_ASSERT_EQUAL( pdTRUE, xQueueOverwriteFromISR( xQueue, &testVal, NULL ) );
+    TEST_ASSERT_EQUAL( pdTRUE,
+                       xQueueOverwriteFromISR( xQueue, &testVal, NULL ) );
 
     vFakePortAssertIfInterruptPriorityInvalid_Expect();
     QueueHandle_t xQueue2 = xQueueSelectFromSetFromISR( xQueueSet );
@@ -201,7 +211,8 @@ void test_macro_xQueueOverwriteFromISR_xQueueSelectFromSetFromISR_xQueueReceive_
     vFakePortAssertIfInterruptPriorityInvalid_Expect();
     uint32_t checkVal = INVALID_UINT32;
 
-    TEST_ASSERT_EQUAL( pdTRUE, xQueueReceiveFromISR( xQueue2, &checkVal, NULL ) );
+    TEST_ASSERT_EQUAL( pdTRUE,
+                       xQueueReceiveFromISR( xQueue2, &checkVal, NULL ) );
 
     TEST_ASSERT_EQUAL( testVal, checkVal );
 
@@ -210,12 +221,15 @@ void test_macro_xQueueOverwriteFromISR_xQueueSelectFromSetFromISR_xQueueReceive_
 }
 
 /**
- * @brief Test xQueueOverwrite on a full member Queue (size 1) of a QueueSet (size 1)
- * @details: Send an item to a queue that is part of a QueueSet. Overwrite that same item.
- *  Verify that the item can be received from the Queue via xQueueSelectFromSet.
+ * @brief Test xQueueOverwrite on a full member Queue (size 1) of a QueueSet
+ * (size 1)
+ * @details: Send an item to a queue that is part of a QueueSet. Overwrite that
+ * same item. Verify that the item can be received from the Queue via
+ * xQueueSelectFromSet.
  * @coverage xQueueGenericSend
  */
-void test_macro_xQueueSend_xQueueOverwrite_xQueueSelectFromSet_xQueueReceive_success( void )
+void test_macro_xQueueSend_xQueueOverwrite_xQueueSelectFromSet_xQueueReceive_success(
+    void )
 {
     QueueSetHandle_t xQueueSet = xQueueCreateSet( 1 );
 
@@ -246,9 +260,11 @@ void test_macro_xQueueSend_xQueueOverwrite_xQueueSelectFromSet_xQueueReceive_suc
 }
 
 /**
- * @brief Test xQueueOverwriteFromISR on a member Queue (size 1) of a QueueSet (size 1)
- * @details: Send an item to a queue that is part of a QueueSet. Overwrite that same item.
- *  Verify that the item can be received from the Queue via xQueueSelectFromSetFromISR.
+ * @brief Test xQueueOverwriteFromISR on a member Queue (size 1) of a QueueSet
+ * (size 1)
+ * @details: Send an item to a queue that is part of a QueueSet. Overwrite that
+ * same item. Verify that the item can be received from the Queue via
+ * xQueueSelectFromSetFromISR.
  * @coverage xQueueGenericSendFromISR
  */
 void test_macro_xQueueSendFromISR_xQueueOverwriteFromISR_in_set_success( void )
@@ -272,12 +288,14 @@ void test_macro_xQueueSendFromISR_xQueueOverwriteFromISR_in_set_success( void )
     vFakePortAssertIfInterruptPriorityInvalid_Expect();
     uint32_t testVal2 = getNextMonotonicTestValue();
 
-    TEST_ASSERT_EQUAL( pdTRUE, xQueueOverwriteFromISR( xQueue, &testVal2, NULL ) );
+    TEST_ASSERT_EQUAL( pdTRUE,
+                       xQueueOverwriteFromISR( xQueue, &testVal2, NULL ) );
 
     vFakePortAssertIfInterruptPriorityInvalid_Expect();
     uint32_t checkVal = INVALID_UINT32;
 
-    TEST_ASSERT_EQUAL( pdTRUE, xQueueReceiveFromISR( xQueue2, &checkVal, NULL ) );
+    TEST_ASSERT_EQUAL( pdTRUE,
+                       xQueueReceiveFromISR( xQueue2, &checkVal, NULL ) );
 
     TEST_ASSERT_EQUAL( testVal2, checkVal );
 
@@ -286,9 +304,11 @@ void test_macro_xQueueSendFromISR_xQueueOverwriteFromISR_in_set_success( void )
 }
 
 /**
- * @brief Test xQueueSendFromISR with a higher priority task waiting and a null pointer for pxHigherPriorityTaskWoken
- * @details Test xQueueSendFromISR on a queue that is in a Queue Set with a higher priority task waiting.
- *  Verify that a null pxHigherPriorityTaskWoken is handled correctly.
+ * @brief Test xQueueSendFromISR with a higher priority task waiting and a null
+ * pointer for pxHigherPriorityTaskWoken
+ * @details Test xQueueSendFromISR on a queue that is in a Queue Set with a
+ * higher priority task waiting. Verify that a null pxHigherPriorityTaskWoken is
+ * handled correctly.
  * @coverage xQueueGenericSendFromISR
  */
 void test_macro_xQueueSendFromISR_in_set_high_priority_pending_null_ptr( void )
@@ -328,7 +348,8 @@ void test_macro_xQueueSendFromISR_in_set_high_priority_pending_null_ptr( void )
 }
 
 /**
- * @brief Test xQueueSendFromISR with a higher priority task waiting on a queue in and Queue Set
+ * @brief Test xQueueSendFromISR with a higher priority task waiting on a queue
+ * in and Queue Set
  * @details Test xQueueSendFromISR with a higher priority task waiting and
  *  verifies that xHigherPriorityTaskWoken is set accordingly.
  * @coverage xQueueGenericSendFromISR
@@ -352,7 +373,10 @@ void test_macro_xQueueSendFromISR_in_set_high_priority_pending( void )
     BaseType_t xHigherPriorityTaskWoken = pdFALSE;
 
     /* Add item to queue*/
-    TEST_ASSERT_EQUAL( pdTRUE, xQueueSendFromISR( xQueue, &testVal, &xHigherPriorityTaskWoken ) );
+    TEST_ASSERT_EQUAL( pdTRUE,
+                       xQueueSendFromISR( xQueue,
+                                          &testVal,
+                                          &xHigherPriorityTaskWoken ) );
 
     TEST_ASSERT_EQUAL( pdTRUE, xHigherPriorityTaskWoken );
 
@@ -371,9 +395,10 @@ void test_macro_xQueueSendFromISR_in_set_high_priority_pending( void )
 }
 
 /**
- * @brief Test xQueueSendFromISR with a higher priority task waiting on a locked queue in Queue Set.
- * @details Test xQueueSendFromISR with a higher priority task waiting on a locked queue and
- *  verifies that xTaskResumeAll resumes the high priority task.
+ * @brief Test xQueueSendFromISR with a higher priority task waiting on a locked
+ * queue in Queue Set.
+ * @details Test xQueueSendFromISR with a higher priority task waiting on a
+ * locked queue and verifies that xTaskResumeAll resumes the high priority task.
  * @coverage xQueueGenericSendFromISR
  */
 void test_macro_xQueueSendFromISR_in_set_locked_and_high_priority_pending( void )
@@ -397,7 +422,8 @@ void test_macro_xQueueSendFromISR_in_set_locked_and_high_priority_pending( void 
 
     /* Add item to queue. */
     TEST_ASSERT_EQUAL( pdTRUE, xQueueSendFromISR( xQueue, &testVal, NULL ) );
-    /* This call will trigger unlocking of the queue which eventually calls xTaskResumeAll. */
+    /* This call will trigger unlocking of the queue which eventually calls
+     * xTaskResumeAll. */
     TEST_ASSERT_EQUAL( errQUEUE_FULL, xQueueSend( xQueue, &testVal, 1 ) );
 
     /* Ensure that the xTaskResumeAll resumes high priority task. */
@@ -416,9 +442,10 @@ void test_macro_xQueueSendFromISR_in_set_locked_and_high_priority_pending( void 
 }
 
 /**
- * @brief Test xQueueSendFromISR with a low priority task waiting on a locked queue in Queue Set.
- * @details Test xQueueSendFromISR with a low priority task waiting on a locked queue and
- *  verifies that xTaskResumeAll does not resume the low priority task.
+ * @brief Test xQueueSendFromISR with a low priority task waiting on a locked
+ * queue in Queue Set.
+ * @details Test xQueueSendFromISR with a low priority task waiting on a locked
+ * queue and verifies that xTaskResumeAll does not resume the low priority task.
  * @coverage xQueueGenericSendFromISR
  */
 void test_macro_xQueueSendFromISR_in_set_locked_and_low_priority_pending( void )
@@ -442,7 +469,8 @@ void test_macro_xQueueSendFromISR_in_set_locked_and_low_priority_pending( void )
 
     /* Add item to queue. */
     TEST_ASSERT_EQUAL( pdTRUE, xQueueSendFromISR( xQueue, &testVal, NULL ) );
-    /* This call will trigger unlocking of the queue which eventually calls xTaskResumeAll. */
+    /* This call will trigger unlocking of the queue which eventually calls
+     * xTaskResumeAll. */
     TEST_ASSERT_EQUAL( errQUEUE_FULL, xQueueSend( xQueue, &testVal, 1 ) );
 
     /* Ensure that the xTaskResumeAll does not resume low priority task. */
@@ -462,9 +490,11 @@ void test_macro_xQueueSendFromISR_in_set_locked_and_low_priority_pending( void )
 }
 
 /**
- * @brief Test xQueueSendFromISR with a lower priority task waiting on a queue in a Queue Set
- * @details Test xQueueSendFromISR on a Queeu in a Queue Set with a lower priority task waiting and
- *  verify that xHigherPriorityTaskWoken is not modified.
+ * @brief Test xQueueSendFromISR with a lower priority task waiting on a queue
+ * in a Queue Set
+ * @details Test xQueueSendFromISR on a Queeu in a Queue Set with a lower
+ * priority task waiting and verify that xHigherPriorityTaskWoken is not
+ * modified.
  * @coverage xQueueGenericSendFromISR
  */
 void test_macro_xQueueSendFromISR_in_set_low_priority_pending( void )
@@ -486,7 +516,10 @@ void test_macro_xQueueSendFromISR_in_set_low_priority_pending( void )
     BaseType_t xHigherPriorityTaskWoken = pdFALSE;
 
     /* Add item to queue*/
-    TEST_ASSERT_EQUAL( pdTRUE, xQueueSendFromISR( xQueue, &testVal, &xHigherPriorityTaskWoken ) );
+    TEST_ASSERT_EQUAL( pdTRUE,
+                       xQueueSendFromISR( xQueue,
+                                          &testVal,
+                                          &xHigherPriorityTaskWoken ) );
 
     TEST_ASSERT_EQUAL( pdFALSE, xHigherPriorityTaskWoken );
 
@@ -505,7 +538,8 @@ void test_macro_xQueueSendFromISR_in_set_low_priority_pending( void )
 
 /**
  * @brief Test xQueueSendFromISR on a queue in a Queue Set with no tasks waiting
- * @details Test xQueueSendFromISR on a Queue in a Queue Set no tasks waiting and verify that xHigherPriorityTaskWoken is not modified.
+ * @details Test xQueueSendFromISR on a Queue in a Queue Set no tasks waiting
+ * and verify that xHigherPriorityTaskWoken is not modified.
  * @coverage xQueueGenericSendFromISR
  */
 void test_macro_xQueueSendFromISR_in_set_no_pending( void )
@@ -523,7 +557,10 @@ void test_macro_xQueueSendFromISR_in_set_no_pending( void )
     BaseType_t xHigherPriorityTaskWoken = pdFALSE;
 
     /* Add item to queue*/
-    TEST_ASSERT_EQUAL( pdTRUE, xQueueSendFromISR( xQueue, &testVal, &xHigherPriorityTaskWoken ) );
+    TEST_ASSERT_EQUAL( pdTRUE,
+                       xQueueSendFromISR( xQueue,
+                                          &testVal,
+                                          &xHigherPriorityTaskWoken ) );
 
     TEST_ASSERT_EQUAL( pdFALSE, xHigherPriorityTaskWoken );
 
@@ -541,7 +578,8 @@ void test_macro_xQueueSendFromISR_in_set_no_pending( void )
 }
 
 /**
- * @brief Test a non-blocking call to xQueueSend on a queue in a Queue Set with a higher priority task pending.
+ * @brief Test a non-blocking call to xQueueSend on a queue in a Queue Set with
+ * a higher priority task pending.
  * @coverage xQueueGenericSend
  */
 void test_macro_xQueueSend_in_set_high_priority_pending( void )
@@ -579,7 +617,8 @@ void test_macro_xQueueSend_in_set_high_priority_pending( void )
 }
 
 /**
- * @brief Test a non-blocking call to xQueueSend on a queue in a Queue Set with a lower priority task pending.
+ * @brief Test a non-blocking call to xQueueSend on a queue in a Queue Set with
+ * a lower priority task pending.
  * @coverage xQueueGenericSend
  */
 void test_macro_xQueueSend_in_set_low_priority_pending( void )
@@ -614,7 +653,8 @@ void test_macro_xQueueSend_in_set_low_priority_pending( void )
 }
 
 /**
- * @brief Test a non-blocking call to xQueueSend on a queue in a Queue Set with no pending tasks.
+ * @brief Test a non-blocking call to xQueueSend on a queue in a Queue Set with
+ * no pending tasks.
  * @coverage xQueueGenericSend
  */
 void test_macro_xQueueSend_in_set_no_pending( void )
@@ -671,7 +711,8 @@ void test_xQueueSendFromISR_locked( void )
     TEST_ASSERT_EQUAL( queueLOCKED_UNMODIFIED, cGetQueueRxLock( xQueue ) );
 
     /* Verify that the cTxLock counter has been incremented */
-    TEST_ASSERT_EQUAL( queueLOCKED_UNMODIFIED + 1, cGetQueueTxLock( xQueueSet ) );
+    TEST_ASSERT_EQUAL( queueLOCKED_UNMODIFIED + 1,
+                       cGetQueueTxLock( xQueueSet ) );
 
     QueueHandle_t xQueue2 = xQueueSelectFromSet( xQueueSet, 0 );
 
@@ -688,7 +729,8 @@ void test_xQueueSendFromISR_locked( void )
 }
 
 /**
- * @brief Test xQueueSendFromISR on a queue that is locked where cRxLock overflows.
+ * @brief Test xQueueSendFromISR on a queue that is locked where cRxLock
+ * overflows.
  * @coverage prvNotifyQueueSetContainer
  */
 void test_xQueueSendFromISR_locked_overflow( void )
@@ -708,7 +750,6 @@ void test_xQueueSendFromISR_locked_overflow( void )
     /* The number of tasks need to be more than 127 to trigger the
      * overflow assertion. */
     uxTaskGetNumberOfTasks_IgnoreAndReturn( 128 );
-
 
     /* Expect an assertion since the cTxLock value has overflowed */
     fakeAssertExpectFail();
@@ -759,17 +800,22 @@ void test_xQueueSendFromISR_locked_overflow( void )
 /**
  *  @brief Callback for xQueueSend blocking tests which empties the test queue.
  */
-static BaseType_t xQueueSend_locked_xTaskCheckForTimeOutCB( TimeOut_t * const pxTimeOut,
-                                                            TickType_t * const pxTicksToWait,
-                                                            int cmock_num_calls )
+static BaseType_t xQueueSend_locked_xTaskCheckForTimeOutCB(
+    TimeOut_t * const pxTimeOut,
+    TickType_t * const pxTicksToWait,
+    int cmock_num_calls )
 {
-    BaseType_t xReturnValue = td_task_xTaskCheckForTimeOutStub( pxTimeOut, pxTicksToWait, cmock_num_calls );
+    BaseType_t
+        xReturnValue = td_task_xTaskCheckForTimeOutStub( pxTimeOut,
+                                                         pxTicksToWait,
+                                                         cmock_num_calls );
 
     if( cmock_num_calls == NUM_CALLS_TO_INTERCEPT )
     {
         uxTaskGetNumberOfTasks_IgnoreAndReturn( 1 );
         uint32_t checkVal = INVALID_UINT32;
-        QueueHandle_t xQueue = xQueueSelectFromSetFromISR( xQueueSetHandleStatic );
+        QueueHandle_t xQueue = xQueueSelectFromSetFromISR(
+            xQueueSetHandleStatic );
         TEST_ASSERT_NOT_NULL( xQueue );
         xQueueReceiveFromISR( xQueue, &checkVal, NULL );
         TEST_ASSERT_EQUAL( getLastMonotonicTestValue(), checkVal );
@@ -779,7 +825,8 @@ static BaseType_t xQueueSend_locked_xTaskCheckForTimeOutCB( TimeOut_t * const px
 }
 
 /**
- * @brief Test a blocking call to xQueueSend on a queue in a Queue Set with no pending tasks.
+ * @brief Test a blocking call to xQueueSend on a queue in a Queue Set with no
+ * pending tasks.
  * @coverage xQueueGenericSend
  */
 void test_macro_xQueueSend_in_set_blocking_success_locked_no_pending( void )
@@ -809,7 +856,8 @@ void test_macro_xQueueSend_in_set_blocking_success_locked_no_pending( void )
     TEST_ASSERT_EQUAL( 0, td_task_getCount_vTaskMissedYield() );
 
     /* Check that vPortYieldWithinAPI was called */
-    TEST_ASSERT_EQUAL( NUM_CALLS_TO_INTERCEPT, td_task_getCount_vPortYieldWithinAPI() );
+    TEST_ASSERT_EQUAL( NUM_CALLS_TO_INTERCEPT,
+                       td_task_getCount_vPortYieldWithinAPI() );
 
     ( void ) xQueueRemoveFromSet( xQueue, xQueueSet );
     vQueueDelete( xQueueSet );
@@ -817,14 +865,15 @@ void test_macro_xQueueSend_in_set_blocking_success_locked_no_pending( void )
 }
 
 /**
- *  @brief Callback for xQueueSend blocking tests which adds an item to the test queue.
+ *  @brief Callback for xQueueSend blocking tests which adds an item to the test
+ * queue.
  */
 static BaseType_t xQueueSend_xTaskResumeAllCallback( int cmock_num_calls )
 {
     BaseType_t xReturnValue = td_task_xTaskResumeAllStub( cmock_num_calls );
 
-    /* If td_task_xTaskResumeAllStub returns pdTRUE, a higher priority task is pending
-     * Send from an ISR to block */
+    /* If td_task_xTaskResumeAllStub returns pdTRUE, a higher priority task is
+     * pending Send from an ISR to block */
     if( pdTRUE == xReturnValue )
     {
         if( cmock_num_calls == NUM_CALLS_TO_INTERCEPT )
@@ -839,7 +888,8 @@ static BaseType_t xQueueSend_xTaskResumeAllCallback( int cmock_num_calls )
 }
 
 /**
- * @brief Test a blocking call to xQueueSend on a queue in a Queue Set with a higher priority pending task.
+ * @brief Test a blocking call to xQueueSend on a queue in a Queue Set with a
+ * higher priority pending task.
  * @coverage prvUnlockQueue
  */
 void test_macro_xQueueSend_in_set_blocking_fail_locked_high_prio_pending( void )
@@ -868,15 +918,18 @@ void test_macro_xQueueSend_in_set_blocking_fail_locked_high_prio_pending( void )
 
     uint32_t testVal2 = getLastMonotonicTestValue() + 12345;
 
-    TEST_ASSERT_EQUAL( pdFALSE, xQueueSend( xQueue, &testVal2, TICKS_TO_WAIT ) );
+    TEST_ASSERT_EQUAL( pdFALSE,
+                       xQueueSend( xQueue, &testVal2, TICKS_TO_WAIT ) );
 
     TEST_ASSERT_EQUAL( TICKS_TO_WAIT, td_task_getYieldCount() );
 
     /* Check that xTaskResumeAll was called and would have yielded */
-    TEST_ASSERT_EQUAL( NUM_CALLS_TO_INTERCEPT + 1, td_task_getCount_YieldFromTaskResumeAll() );
+    TEST_ASSERT_EQUAL( NUM_CALLS_TO_INTERCEPT + 1,
+                       td_task_getCount_YieldFromTaskResumeAll() );
 
     /* Check that vPortYieldWithinAPI was called and would have yielded */
-    TEST_ASSERT_EQUAL( NUM_CALLS_TO_INTERCEPT - 1, td_task_getCount_vPortYieldWithinAPI() );
+    TEST_ASSERT_EQUAL( NUM_CALLS_TO_INTERCEPT - 1,
+                       td_task_getCount_vPortYieldWithinAPI() );
 
     /* Check that vTaskMissedYield was called */
     TEST_ASSERT_EQUAL( 1, td_task_getCount_vTaskMissedYield() );
@@ -887,10 +940,12 @@ void test_macro_xQueueSend_in_set_blocking_fail_locked_high_prio_pending( void )
 }
 
 /**
- * @brief Test a blocking call to xQueueSend on a queue in a Queue Set with a lower priority pending task.
+ * @brief Test a blocking call to xQueueSend on a queue in a Queue Set with a
+ * lower priority pending task.
  * @coverage prvUnlockQueue
  */
-void test_macro_xQueueSend_in_set_blocking_success_locked_low_prio_pending( void )
+void test_macro_xQueueSend_in_set_blocking_success_locked_low_prio_pending(
+    void )
 {
     QueueSetHandle_t xQueueSet = xQueueCreateSet( 1 );
 
@@ -920,7 +975,8 @@ void test_macro_xQueueSend_in_set_blocking_success_locked_low_prio_pending( void
 
     TEST_ASSERT_EQUAL( NUM_CALLS_TO_INTERCEPT, td_task_getYieldCount() );
 
-    TEST_ASSERT_EQUAL( NUM_CALLS_TO_INTERCEPT, td_task_getCount_vPortYieldWithinAPI() );
+    TEST_ASSERT_EQUAL( NUM_CALLS_TO_INTERCEPT,
+                       td_task_getCount_vPortYieldWithinAPI() );
 
     TEST_ASSERT_EQUAL( 0, td_task_getCount_vTaskMissedYield() );
 
@@ -930,25 +986,32 @@ void test_macro_xQueueSend_in_set_blocking_success_locked_low_prio_pending( void
 }
 
 /**
- *  @brief Callback for test_xQueueReceive_blocking_success_locked_no_pending which adds an item to it's test queue.
+ *  @brief Callback for test_xQueueReceive_blocking_success_locked_no_pending
+ * which adds an item to it's test queue.
  */
-static BaseType_t xQueueReceive_xTaskCheckForTimeOutCB( TimeOut_t * const pxTimeOut,
-                                                        TickType_t * const pxTicksToWait,
-                                                        int cmock_num_calls )
+static BaseType_t xQueueReceive_xTaskCheckForTimeOutCB(
+    TimeOut_t * const pxTimeOut,
+    TickType_t * const pxTicksToWait,
+    int cmock_num_calls )
 {
-    BaseType_t xReturnValue = td_task_xTaskCheckForTimeOutStub( pxTimeOut, pxTicksToWait, cmock_num_calls );
+    BaseType_t
+        xReturnValue = td_task_xTaskCheckForTimeOutStub( pxTimeOut,
+                                                         pxTicksToWait,
+                                                         cmock_num_calls );
 
     if( cmock_num_calls == NUM_CALLS_TO_INTERCEPT )
     {
         uint32_t testVal = getNextMonotonicTestValue();
-        TEST_ASSERT_TRUE( xQueueSendFromISR( xQueueHandleStatic, &testVal, NULL ) );
+        TEST_ASSERT_TRUE(
+            xQueueSendFromISR( xQueueHandleStatic, &testVal, NULL ) );
     }
 
     return xReturnValue;
 }
 
 /**
- * @brief Test a blocking call to xQueueReceive on a queue in a Queue Set with no pending tasks.
+ * @brief Test a blocking call to xQueueReceive on a queue in a Queue Set with
+ * no pending tasks.
  * @coverage prvUnlockQueue
  */
 void test_xQueueReceive_in_set_blocking_success_locked_no_pending( void )
@@ -968,7 +1031,8 @@ void test_xQueueReceive_in_set_blocking_success_locked_no_pending( void )
 
     uint32_t checkVal = INVALID_UINT32;
 
-    QueueHandle_t xQueueFromSet = xQueueSelectFromSet( xQueueSet, TICKS_TO_WAIT );
+    QueueHandle_t xQueueFromSet = xQueueSelectFromSet( xQueueSet,
+                                                       TICKS_TO_WAIT );
 
     TEST_ASSERT_NOT_NULL( xQueueFromSet );
 
@@ -978,7 +1042,8 @@ void test_xQueueReceive_in_set_blocking_success_locked_no_pending( void )
 
     TEST_ASSERT_EQUAL( NUM_CALLS_TO_INTERCEPT, td_task_getYieldCount() );
 
-    TEST_ASSERT_EQUAL( NUM_CALLS_TO_INTERCEPT, td_task_getCount_vPortYieldWithinAPI() );
+    TEST_ASSERT_EQUAL( NUM_CALLS_TO_INTERCEPT,
+                       td_task_getCount_vPortYieldWithinAPI() );
 
     TEST_ASSERT_EQUAL( 0, td_task_getCount_vTaskMissedYield() );
 
@@ -988,22 +1053,25 @@ void test_xQueueReceive_in_set_blocking_success_locked_no_pending( void )
 }
 
 /**
- * @brief Stub for xTaskResumeAll used in xQueueReceive tests where the queue under test is in a queue set.
+ * @brief Stub for xTaskResumeAll used in xQueueReceive tests where the queue
+ * under test is in a queue set.
  */
 static BaseType_t xQueueReceive_xTaskResumeAllCallback( int cmock_num_calls )
 {
     BaseType_t xReturnValue = td_task_xTaskResumeAllStub( cmock_num_calls );
 
-    /* If td_task_xTaskResumeAllStub returns pdTRUE, a higher priority task is pending
-     * Receive from an ISR to block */
+    /* If td_task_xTaskResumeAllStub returns pdTRUE, a higher priority task is
+     * pending Receive from an ISR to block */
 
     if( pdTRUE == xReturnValue )
     {
         if( cmock_num_calls == NUM_CALLS_TO_INTERCEPT )
         {
             uint32_t checkValue = INVALID_UINT32;
-            QueueHandle_t xQueue = xQueueSelectFromSetFromISR( xQueueSetHandleStatic );
-            TEST_ASSERT_TRUE( xQueueReceiveFromISR( xQueue, &checkValue, NULL ) );
+            QueueHandle_t xQueue = xQueueSelectFromSetFromISR(
+                xQueueSetHandleStatic );
+            TEST_ASSERT_TRUE(
+                xQueueReceiveFromISR( xQueue, &checkValue, NULL ) );
             TEST_ASSERT_EQUAL( getLastMonotonicTestValue(), checkValue );
         }
     }
@@ -1012,7 +1080,8 @@ static BaseType_t xQueueReceive_xTaskResumeAllCallback( int cmock_num_calls )
 }
 
 /**
- * @brief Test a blocking call to xQueueReceive on a queue in a Queue Set with a higher priority task pending.
+ * @brief Test a blocking call to xQueueReceive on a queue in a Queue Set with a
+ * higher priority task pending.
  * @coverage prvUnlockQueue
  */
 void test_xQueueReceive_in_set_blocking_fail_locked_high_prio_pending( void )
@@ -1035,15 +1104,18 @@ void test_xQueueReceive_in_set_blocking_fail_locked_high_prio_pending( void )
 
     td_task_addFakeTaskWaitingToReceiveFromQueue( xQueueSet );
 
-    QueueHandle_t xQueueFromSet = xQueueSelectFromSet( xQueueSet, TICKS_TO_WAIT );
+    QueueHandle_t xQueueFromSet = xQueueSelectFromSet( xQueueSet,
+                                                       TICKS_TO_WAIT );
 
     TEST_ASSERT_EQUAL( NULL, xQueueFromSet );
 
     TEST_ASSERT_EQUAL( TICKS_TO_WAIT, td_task_getYieldCount() );
 
-    TEST_ASSERT_EQUAL( NUM_CALLS_TO_INTERCEPT + 1, td_task_getCount_YieldFromTaskResumeAll() );
+    TEST_ASSERT_EQUAL( NUM_CALLS_TO_INTERCEPT + 1,
+                       td_task_getCount_YieldFromTaskResumeAll() );
 
-    TEST_ASSERT_EQUAL( NUM_CALLS_TO_INTERCEPT - 1, td_task_getCount_vPortYieldWithinAPI() );
+    TEST_ASSERT_EQUAL( NUM_CALLS_TO_INTERCEPT - 1,
+                       td_task_getCount_vPortYieldWithinAPI() );
 
     /* Check that vTaskMissedYield was called */
     TEST_ASSERT_EQUAL( 1, td_task_getCount_vTaskMissedYield() );
@@ -1055,7 +1127,8 @@ void test_xQueueReceive_in_set_blocking_fail_locked_high_prio_pending( void )
 }
 
 /**
- * @brief Test a blocking call to xQueueReceive on a queue in a Queue Set with a lower priority task pending.
+ * @brief Test a blocking call to xQueueReceive on a queue in a Queue Set with a
+ * lower priority task pending.
  * @coverage prvUnlockQueue
  */
 void test_xQueueReceive_in_set_blocking_success_locked_low_prio_pending( void )
@@ -1080,18 +1153,23 @@ void test_xQueueReceive_in_set_blocking_success_locked_low_prio_pending( void )
 
     uint32_t checkVal = INVALID_UINT32;
 
-    QueueHandle_t xQueueFromSet = xQueueSelectFromSet( xQueueSet, NUM_CALLS_TO_INTERCEPT );
+    QueueHandle_t xQueueFromSet = xQueueSelectFromSet( xQueueSet,
+                                                       NUM_CALLS_TO_INTERCEPT );
 
     TEST_ASSERT_EQUAL( NUM_CALLS_TO_INTERCEPT, td_task_getYieldCount() );
 
-    TEST_ASSERT_EQUAL( NUM_CALLS_TO_INTERCEPT, td_task_getCount_vPortYieldWithinAPI() );
+    TEST_ASSERT_EQUAL( NUM_CALLS_TO_INTERCEPT,
+                       td_task_getCount_vPortYieldWithinAPI() );
 
     /* Check that vTaskMissedYield was not called */
     TEST_ASSERT_EQUAL( pdFALSE, td_task_getCount_vTaskMissedYield() );
 
     TEST_ASSERT_NOT_NULL( xQueueFromSet );
 
-    TEST_ASSERT_EQUAL( pdTRUE, xQueueReceive( xQueueFromSet, &checkVal, TICKS_TO_WAIT ) );
+    TEST_ASSERT_EQUAL( pdTRUE,
+                       xQueueReceive( xQueueFromSet,
+                                      &checkVal,
+                                      TICKS_TO_WAIT ) );
 
     TEST_ASSERT_EQUAL( getLastMonotonicTestValue(), checkVal );
 

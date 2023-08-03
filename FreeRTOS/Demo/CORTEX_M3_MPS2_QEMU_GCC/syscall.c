@@ -2,29 +2,30 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
  *
  */
 #ifdef __cplusplus
-    extern "C" {
+extern "C" {
 #endif
 
 #include <sys/types.h>
@@ -38,13 +39,12 @@ typedef struct UART_t
     volatile uint32_t BAUDDIV;
 } UART_t;
 
-#define UART0_ADDR           ( ( UART_t * ) ( 0x40004000 ) )
-#define UART_DR( baseaddr )    ( *( unsigned int * ) ( baseaddr ) )
+#define UART0_ADDR          ( ( UART_t * ) ( 0x40004000 ) )
+#define UART_DR( baseaddr ) ( *( unsigned int * ) ( baseaddr ) )
 
-#define UART_STATE_TXFULL    ( 1 << 0 )
-#define UART_CTRL_TX_EN      ( 1 << 0 )
-#define UART_CTRL_RX_EN      ( 1 << 1 )
-
+#define UART_STATE_TXFULL   ( 1 << 0 )
+#define UART_CTRL_TX_EN     ( 1 << 0 )
+#define UART_CTRL_RX_EN     ( 1 << 1 )
 
 extern unsigned long _heap_bottom;
 extern unsigned long _heap_top;
@@ -61,7 +61,7 @@ void uart_init()
 
 #ifdef __PICOLIBC__
 
-#include <stdio.h>
+    #include <stdio.h>
 
 /**
  * @brief  Write byte to the UART channel to be displayed on the command line
@@ -71,17 +71,19 @@ void uart_init()
  * @returns the character written (cast to unsigned so it is not an error value)
  */
 
-int
-_uart_putc(char c, FILE *file)
+int _uart_putc( char c, FILE * file )
 {
-    (void) file;
+    ( void ) file;
     UART_DR( UART0_ADDR ) = c;
-    return (unsigned char) c;
+    return ( unsigned char ) c;
 }
 
-static FILE __stdio = FDEV_SETUP_STREAM(_uart_putc, NULL, NULL, _FDEV_SETUP_WRITE);
+static FILE __stdio = FDEV_SETUP_STREAM( _uart_putc,
+                                         NULL,
+                                         NULL,
+                                         _FDEV_SETUP_WRITE );
 
-FILE *const stdout = &__stdio;
+FILE * const stdout = &__stdio;
 
 #else
 
@@ -92,7 +94,7 @@ static void * heap_end = 0;
  * @todo  implement if necessary
  *
  */
-int _fstat(__attribute__((unused)) int file )
+int _fstat( __attribute__( ( unused ) ) int file )
 {
     return 0;
 }
@@ -102,9 +104,9 @@ int _fstat(__attribute__((unused)) int file )
  * @todo  implement if necessary
  *
  */
-int _read(__attribute__((unused)) int file,
-          __attribute__((unused)) char * buf,
-          __attribute__((unused)) int len )
+int _read( __attribute__( ( unused ) ) int file,
+           __attribute__( ( unused ) ) char * buf,
+           __attribute__( ( unused ) ) int len )
 {
     return -1;
 }
@@ -117,9 +119,9 @@ int _read(__attribute__((unused)) int file,
  * @param [in] len   length of the buffer
  * @returns the number of bytes written
  */
-int _write(__attribute__((unused)) int file,
-           __attribute__((unused)) char * buf,
-           int len )
+int _write( __attribute__( ( unused ) ) int file,
+            __attribute__( ( unused ) ) char * buf,
+            int len )
 {
     int todo;
 
@@ -135,7 +137,8 @@ int _write(__attribute__((unused)) int file,
  * @brief function called by malloc and friends to reserve memory on the heap
  * @param [in] incr the amount of bytes to increase or decrease
  * @returns the previous top of the heap
- * @note uses a global variable <b>heap_end</b> to keep track of the previous top
+ * @note uses a global variable <b>heap_end</b> to keep track of the previous
+ * top
  */
 void * _sbrk( int incr )
 {
@@ -161,5 +164,5 @@ void * _sbrk( int incr )
 #endif
 
 #ifdef __cplusplus
-    }
+}
 #endif

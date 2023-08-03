@@ -36,11 +36,11 @@
 typedef unsigned char tBoolean;
 
 #ifndef true
-#define true 1
+    #define true 1
 #endif
 
 #ifndef false
-#define false 0
+    #define false 0
 #endif
 
 //*****************************************************************************
@@ -48,16 +48,15 @@ typedef unsigned char tBoolean;
 // Macros for hardware access, both direct and via the bit-band region.
 //
 //*****************************************************************************
-#define HWREG(x)                                                              \
-        (*((volatile unsigned long *)(x)))
-#define HWREGBITW(x, b)                                                       \
-        HWREG(((unsigned long)(x) & 0xF0000000) | 0x02000000 |                \
-              (((unsigned long)(x) & 0x000FFFFF) << 5) | ((b) << 2))
-#define HWREGBITH(x, b)                                                       \
-        HWREG(((unsigned long)(x) & 0xF0000000) | 0x02000000 |                \
-              (((unsigned long)(x) & 0x000FFFFF) << 5) | ((b) << 2))
-#define HWREGBITB(x, b)                                                       \
-        HWREG(((unsigned long)(x) & 0xF0000000) | 0x02000000 |                \
-              (((unsigned long)(x) & 0x000FFFFF) << 5) | ((b) << 2))
+#define HWREG( x ) ( *( ( volatile unsigned long * ) ( x ) ) )
+#define HWREGBITW( x, b )                                         \
+    HWREG( ( ( unsigned long ) ( x ) &0xF0000000 ) | 0x02000000 | \
+           ( ( ( unsigned long ) ( x ) &0x000FFFFF ) << 5 ) | ( ( b ) << 2 ) )
+#define HWREGBITH( x, b )                                         \
+    HWREG( ( ( unsigned long ) ( x ) &0xF0000000 ) | 0x02000000 | \
+           ( ( ( unsigned long ) ( x ) &0x000FFFFF ) << 5 ) | ( ( b ) << 2 ) )
+#define HWREGBITB( x, b )                                         \
+    HWREG( ( ( unsigned long ) ( x ) &0xF0000000 ) | 0x02000000 | \
+           ( ( ( unsigned long ) ( x ) &0x000FFFFF ) << 5 ) | ( ( b ) << 2 ) )
 
 #endif // __HW_TYPES_H__

@@ -42,7 +42,7 @@
  *----------------------------------------------------------------------------*/
 
 #ifdef PINS_LEDS
-static const Pin pinsLeds[] = {PIN_LED_0, PIN_LED_1};
+static const Pin pinsLeds[] = { PIN_LED_0, PIN_LED_1 };
 static const uint32_t numLeds = PIO_LISTSIZE( pinsLeds );
 #endif
 
@@ -59,15 +59,16 @@ static const uint32_t numLeds = PIO_LISTSIZE( pinsLeds );
 extern uint32_t LED_Configure( uint32_t dwLed )
 {
 #ifdef PINS_LEDS
-	// Check that LED exists
-	if ( dwLed >= numLeds) {
-		return 0;
-	}
+    // Check that LED exists
+    if( dwLed >= numLeds )
+    {
+        return 0;
+    }
 
-	// Configure LED
-	return ( PIO_Configure( &pinsLeds[dwLed], 1 ) );
+    // Configure LED
+    return ( PIO_Configure( &pinsLeds[ dwLed ], 1 ) );
 #else
-	return 0;
+    return 0;
 #endif
 }
 
@@ -79,21 +80,25 @@ extern uint32_t LED_Configure( uint32_t dwLed )
 extern uint32_t LED_Set( uint32_t dwLed )
 {
 #ifdef PINS_LEDS
-	/* Check if LED exists */
-	if ( dwLed >= numLeds ) {
-		return 0;
-	}
+    /* Check if LED exists */
+    if( dwLed >= numLeds )
+    {
+        return 0;
+    }
 
-	/* Turn LED on */
-	if ( pinsLeds[dwLed].type == PIO_OUTPUT_0 ) {
-		PIO_Set( &pinsLeds[dwLed] );
-	} else {
-		PIO_Clear( &pinsLeds[dwLed] );
-	}
+    /* Turn LED on */
+    if( pinsLeds[ dwLed ].type == PIO_OUTPUT_0 )
+    {
+        PIO_Set( &pinsLeds[ dwLed ] );
+    }
+    else
+    {
+        PIO_Clear( &pinsLeds[ dwLed ] );
+    }
 
-	return 1;
+    return 1;
 #else
-	return 0;
+    return 0;
 #endif
 }
 
@@ -106,21 +111,25 @@ extern uint32_t LED_Set( uint32_t dwLed )
 extern uint32_t LED_Clear( uint32_t dwLed )
 {
 #ifdef PINS_LEDS
-	/* Check if LED exists */
-	if ( dwLed >= numLeds ) {
-		return 0;
-	}
+    /* Check if LED exists */
+    if( dwLed >= numLeds )
+    {
+        return 0;
+    }
 
-	/* Turn LED off */
-	if ( pinsLeds[dwLed].type == PIO_OUTPUT_0 ) {
-		PIO_Clear( &pinsLeds[dwLed] );
-	} else {
-		PIO_Set( &pinsLeds[dwLed] );
-	}
+    /* Turn LED off */
+    if( pinsLeds[ dwLed ].type == PIO_OUTPUT_0 )
+    {
+        PIO_Clear( &pinsLeds[ dwLed ] );
+    }
+    else
+    {
+        PIO_Set( &pinsLeds[ dwLed ] );
+    }
 
-	return 1;
+    return 1;
 #else
-	return 0;
+    return 0;
 #endif
 }
 
@@ -133,21 +142,24 @@ extern uint32_t LED_Clear( uint32_t dwLed )
 extern uint32_t LED_Toggle( uint32_t dwLed )
 {
 #ifdef PINS_LEDS
-	/* Check if LED exists */
-	if ( dwLed >= numLeds ) {
-		return 0;
-	}
+    /* Check if LED exists */
+    if( dwLed >= numLeds )
+    {
+        return 0;
+    }
 
-	/* Toggle LED */
-	if ( PIO_GetOutputDataStatus( &pinsLeds[dwLed] ) ) {
-		PIO_Clear( &pinsLeds[dwLed] );
-	} else {
-		PIO_Set( &pinsLeds[dwLed] );
-	}
+    /* Toggle LED */
+    if( PIO_GetOutputDataStatus( &pinsLeds[ dwLed ] ) )
+    {
+        PIO_Clear( &pinsLeds[ dwLed ] );
+    }
+    else
+    {
+        PIO_Set( &pinsLeds[ dwLed ] );
+    }
 
-	return 1;
+    return 1;
 #else
-	return 0;
+    return 0;
 #endif
 }
-

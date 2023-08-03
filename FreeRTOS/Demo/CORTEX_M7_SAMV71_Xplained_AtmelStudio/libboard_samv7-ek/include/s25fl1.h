@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
- *         SAM Software Package License 
+ *         SAM Software Package License
  * ----------------------------------------------------------------------------
  * Copyright (c) 2013, Atmel Corporation
  *
@@ -41,15 +41,15 @@
  *        Macros
  *----------------------------------------------------------------------------*/
 
-#define Size(pAt25)            ((pAt25)->pDesc->size)
-#define PageSize(pAt25)        ((pAt25)->pDesc->pageSize)
-#define BlockSize(pAt25)       ((pAt25)->pDesc->blockSize)
-#define Name(pAt25)            ((pAt25)->pDesc->name)
-#define ManId(pAt25)           (((pAt25)->pDesc->jedecId) & 0xFF)
-#define PageNumber(pAt25)      (Size(pAt25) / PageSize(pAt25))
-#define BlockNumber(pAt25)     (Size(pAt25) / BlockSize(pAt25))
-#define PagePerBlock(pAt25)    (BlockSize(pAt25) / PageSize(pAt25))
-#define BlockEraseCmd(pAt25)   ((pAt25)->pDesc->blockEraseCmd)
+#define Size( pAt25 )          ( ( pAt25 )->pDesc->size )
+#define PageSize( pAt25 )      ( ( pAt25 )->pDesc->pageSize )
+#define BlockSize( pAt25 )     ( ( pAt25 )->pDesc->blockSize )
+#define Name( pAt25 )          ( ( pAt25 )->pDesc->name )
+#define ManId( pAt25 )         ( ( ( pAt25 )->pDesc->jedecId ) & 0xFF )
+#define PageNumber( pAt25 )    ( Size( pAt25 ) / PageSize( pAt25 ) )
+#define BlockNumber( pAt25 )   ( Size( pAt25 ) / BlockSize( pAt25 ) )
+#define PagePerBlock( pAt25 )  ( BlockSize( pAt25 ) / PageSize( pAt25 ) )
+#define BlockEraseCmd( pAt25 ) ( ( pAt25 )->pDesc->blockEraseCmd )
 
 /*----------------------------------------------------------------------------
  *        Local definitions
@@ -65,61 +65,61 @@
 #define ERROR_SPI              4
 
 /** Device ready/busy status bit. */
-#define STATUS_RDYBSY          (1 << 0)
+#define STATUS_RDYBSY          ( 1 << 0 )
 /** Device is ready. */
-#define STATUS_RDYBSY_READY    (0 << 0)
+#define STATUS_RDYBSY_READY    ( 0 << 0 )
 /** Device is busy with internal operations. */
-#define STATUS_RDYBSY_BUSY     (1 << 0)
+#define STATUS_RDYBSY_BUSY     ( 1 << 0 )
 /** Write enable latch status bit. */
-#define STATUS_WEL             (1 << 1)
+#define STATUS_WEL             ( 1 << 1 )
 /** Device is not write enabled. */
-#define STATUS_WEL_DISABLED    (0 << 1)
+#define STATUS_WEL_DISABLED    ( 0 << 1 )
 /** Device is write enabled. */
-#define STATUS_WEL_ENABLED     (1 << 1)
+#define STATUS_WEL_ENABLED     ( 1 << 1 )
 /** Software protection status bit-field. */
-#define STATUS_SWP             (3 << 2)
+#define STATUS_SWP             ( 3 << 2 )
 /** All sectors are software protected. */
-#define STATUS_SWP_PROTALL     (3 << 2)
+#define STATUS_SWP_PROTALL     ( 3 << 2 )
 /** Some sectors are software protected. */
-#define STATUS_SWP_PROTSOME    (1 << 2)
+#define STATUS_SWP_PROTSOME    ( 1 << 2 )
 /** No sector is software protected. */
-#define STATUS_SWP_PROTNONE    (0 << 2)
+#define STATUS_SWP_PROTNONE    ( 0 << 2 )
 /** Write protect pin status bit. */
-#define STATUS_WPP             (1 << 4)
+#define STATUS_WPP             ( 1 << 4 )
 /** Write protect signal is not asserted. */
-#define STATUS_WPP_NOTASSERTED (0 << 4)
+#define STATUS_WPP_NOTASSERTED ( 0 << 4 )
 /** Write protect signal is asserted. */
-#define STATUS_WPP_ASSERTED    (1 << 4)
+#define STATUS_WPP_ASSERTED    ( 1 << 4 )
 /** Erase/program error bit. */
-#define STATUS_EPE             (1 << 5)
+#define STATUS_EPE             ( 1 << 5 )
 /** Erase or program operation was successful. */
-#define STATUS_EPE_SUCCESS     (0 << 5)
+#define STATUS_EPE_SUCCESS     ( 0 << 5 )
 /** Erase or program error detected. */
-#define STATUS_EPE_ERROR       (1 << 5)
+#define STATUS_EPE_ERROR       ( 1 << 5 )
 /** Sector protection registers locked bit. */
-#define STATUS_SPRL            (1 << 7)
+#define STATUS_SPRL            ( 1 << 7 )
 /** Sector protection registers are unlocked. */
-#define STATUS_SPRL_UNLOCKED   (0 << 7)
+#define STATUS_SPRL_UNLOCKED   ( 0 << 7 )
 /** Sector protection registers are locked. */
-#define STATUS_SPRL_LOCKED     (1 << 7)
-   
+#define STATUS_SPRL_LOCKED     ( 1 << 7 )
+
 /** Quad enable bit */
-#define STATUS_QUAD_ENABLE     (1 << 1)
-   /** Quad enable bit */
-#define STATUS_WRAP_ENABLE     (0 << 4)
-   
-   /** Latency control bits */
-#define STATUS_LATENCY_CTRL    (0xF << 0)   
-   
-#define STATUS_WRAP_BYTE       (1 << 5)
-   
-#define BLOCK_PROTECT_Msk      (7 << 2)
-   
-#define TOP_BTM_PROTECT_Msk    (1 << 5)
-   
-#define SEC_PROTECT_Msk        (1 << 6)   
-   
-#define CHIP_PROTECT_Msk       (0x1F << 2)    
+#define STATUS_QUAD_ENABLE     ( 1 << 1 )
+/** Quad enable bit */
+#define STATUS_WRAP_ENABLE     ( 0 << 4 )
+
+/** Latency control bits */
+#define STATUS_LATENCY_CTRL    ( 0xF << 0 )
+
+#define STATUS_WRAP_BYTE       ( 1 << 5 )
+
+#define BLOCK_PROTECT_Msk      ( 7 << 2 )
+
+#define TOP_BTM_PROTECT_Msk    ( 1 << 5 )
+
+#define SEC_PROTECT_Msk        ( 1 << 6 )
+
+#define CHIP_PROTECT_Msk       ( 0x1F << 2 )
 
 /** Read array command code. */
 #define READ_ARRAY             0x0B
@@ -128,11 +128,11 @@
 /** Fast Read array  command code. */
 #define READ_ARRAY_DUAL        0x3B
 /** Fast Read array  command code. */
-#define READ_ARRAY_QUAD        0x6B   
+#define READ_ARRAY_QUAD        0x6B
 /** Fast Read array  command code. */
 #define READ_ARRAY_DUAL_IO     0xBB
 /** Fast Read array  command code. */
-#define READ_ARRAY_QUAD_IO     0xEB   
+#define READ_ARRAY_QUAD_IO     0xEB
 /** Block erase command code (4K block). */
 #define BLOCK_ERASE_4K         0x20
 /** Block erase command code (32K block). */
@@ -161,9 +161,9 @@
 #define READ_SECTOR_PROT       0x3C
 /** Read status register command code. */
 #define READ_STATUS_1          0x05
-   /** Read status register command code. */
+/** Read status register command code. */
 #define READ_STATUS_2          0x35
-   /** Read status register command code. */
+/** Read status register command code. */
 #define READ_STATUS_3          0x33
 /** Write status register command code. */
 #define WRITE_STATUS           0x01
@@ -181,72 +181,65 @@
 #define WRAP_ENABLE            0x77
 
 /** SPI Flash Manufacturer JEDEC ID */
-#define ATMEL_SPI_FLASH             0x1F
-#define ST_SPI_FLASH                0x20
-#define WINBOND_SPI_FLASH           0xEF
-#define MACRONIX_SPI_FLASH          0xC2
-#define SST_SPI_FLASH               0xBF
+#define ATMEL_SPI_FLASH        0x1F
+#define ST_SPI_FLASH           0x20
+#define WINBOND_SPI_FLASH      0xEF
+#define MACRONIX_SPI_FLASH     0xC2
+#define SST_SPI_FLASH          0xBF
 
 /*----------------------------------------------------------------------------
  *        Exported functions
  *----------------------------------------------------------------------------*/
 
-uint32_t S25FL1D_ReadJedecId(void);
+uint32_t S25FL1D_ReadJedecId( void );
 
-void S25FL1D_InitFlashInterface(uint8_t Mode);
+void S25FL1D_InitFlashInterface( uint8_t Mode );
 
-void S25FL1D_SoftReset(void);
+void S25FL1D_SoftReset( void );
 
-unsigned char S25FL1D_Unprotect(void);
+unsigned char S25FL1D_Unprotect( void );
 
-unsigned char S25FL1D_Protect(uint32_t StartAddr, uint32_t Size);
+unsigned char S25FL1D_Protect( uint32_t StartAddr, uint32_t Size );
 
-void S25FL1D_QuadMode(uint8_t Enable);
+void S25FL1D_QuadMode( uint8_t Enable );
 
-void S25FL1D_EnableWrap(uint8_t ByetAlign);
+void S25FL1D_EnableWrap( uint8_t ByetAlign );
 
-void S25FL1D_SetReadLatencyControl(uint8_t Latency);
+void S25FL1D_SetReadLatencyControl( uint8_t Latency );
 
-unsigned char S25FL1D_EraseChip(void);
+unsigned char S25FL1D_EraseChip( void );
 
-unsigned char S25FL1D_EraseSector( unsigned int address);
+unsigned char S25FL1D_EraseSector( unsigned int address );
 
-unsigned char S25FL1D_Erase64KBlock(  unsigned int address);
+unsigned char S25FL1D_Erase64KBlock( unsigned int address );
 
-unsigned char S25FL1D_Write(
-				uint32_t *pData,
-				uint32_t size,
-				uint32_t address,
-				uint8_t Secure);
+unsigned char S25FL1D_Write( uint32_t * pData,
+                             uint32_t size,
+                             uint32_t address,
+                             uint8_t Secure );
 
-extern unsigned char S25FL1D_Read(
-				uint32_t *pData,
-				uint32_t size,
-				uint32_t address);
+extern unsigned char S25FL1D_Read( uint32_t * pData,
+                                   uint32_t size,
+                                   uint32_t address );
 
-extern unsigned char S25FL1D_ReadDual(
-				uint32_t *pData,
-				uint32_t size,
-				uint32_t address);
+extern unsigned char S25FL1D_ReadDual( uint32_t * pData,
+                                       uint32_t size,
+                                       uint32_t address );
 
-extern unsigned char S25FL1D_ReadQuad(
-				uint32_t *pData,
-				uint32_t size,
-				uint32_t address);
+extern unsigned char S25FL1D_ReadQuad( uint32_t * pData,
+                                       uint32_t size,
+                                       uint32_t address );
 
-extern unsigned char S25FL1D_ReadDualIO(
-				uint32_t *pData,
-				uint32_t size,
-				uint32_t address,
-				uint8_t ContMode,
-				uint8_t Secure);
+extern unsigned char S25FL1D_ReadDualIO( uint32_t * pData,
+                                         uint32_t size,
+                                         uint32_t address,
+                                         uint8_t ContMode,
+                                         uint8_t Secure );
 
-extern unsigned char S25FL1D_ReadQuadIO(
-				uint32_t *pData,
-				uint32_t size,
-				uint32_t address,
-				uint8_t ContMode,
-				uint8_t Secure);
+extern unsigned char S25FL1D_ReadQuadIO( uint32_t * pData,
+                                         uint32_t size,
+                                         uint32_t address,
+                                         uint8_t ContMode,
+                                         uint8_t Secure );
 
 #endif // #ifndef S25FL1_H
-

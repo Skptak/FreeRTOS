@@ -13,7 +13,8 @@
 #include <stdint.h>
 
 /*! @brief L2 prefetcher configuration */
-typedef struct {
+typedef struct
+{
     /* Enable L2 hardware prefetcher */
     uint8_t HwPrefetchEnable;
 
@@ -58,21 +59,21 @@ typedef struct {
 /*! @brief Enable L2 hardware prefetcher unit.
  * @param None.
  * @return None.*/
-void sifive_l2pf0_enable(void);
+void sifive_l2pf0_enable( void );
 
 /*! @brief Disable L2 hardware prefetcher unit.
  * @param None.
  * @return None.*/
-void sifive_l2pf0_disable(void);
+void sifive_l2pf0_disable( void );
 
 /*! @brief Get currently active L2 prefetcher configuration.
  * @param config Pointer to user specified configuration structure.
  * @return None.*/
-void sifive_l2pf0_get_config(sifive_l2pf0_config *config);
+void sifive_l2pf0_get_config( sifive_l2pf0_config * config );
 
 /*! @brief Enables fine grain access to L2 prefetcher configuration.
  * @param config Pointer to user structure with values to be set.
  * @return None.*/
-void sifive_l2pf0_set_config(sifive_l2pf0_config *config);
+void sifive_l2pf0_set_config( sifive_l2pf0_config * config );
 
 #endif

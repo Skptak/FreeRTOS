@@ -28,7 +28,7 @@
  * in advertising or otherwise to promote the sale, use or other dealings in
  * this Software without prior written authorization from Xilinx.
  *
-*******************************************************************************/
+ *******************************************************************************/
 /******************************************************************************/
 /**
  *
@@ -46,11 +46,10 @@
  * 1.0   aad  01/17/17 Initial release.
  * </pre>
  *
-*******************************************************************************/
+ *******************************************************************************/
 
 /******************************* Include Files ********************************/
 #include "xdpdma.h"
-
 
 /*************************************************************************/
 /**
@@ -64,9 +63,9 @@
  * @note     None.
  *
  * **************************************************************************/
-void XDpDma_InterruptEnable(XDpDma *InstancePtr, u32 Mask)
+void XDpDma_InterruptEnable( XDpDma * InstancePtr, u32 Mask )
 {
-	XDpDma_WriteReg(InstancePtr->Config.BaseAddr, XDPDMA_IEN, Mask);
+    XDpDma_WriteReg( InstancePtr->Config.BaseAddr, XDPDMA_IEN, Mask );
 }
 
 /*************************************************************************/
@@ -81,28 +80,32 @@ void XDpDma_InterruptEnable(XDpDma *InstancePtr, u32 Mask)
  * @note     None.
  *
  * **************************************************************************/
-void XDpDma_InterruptHandler(XDpDma *InstancePtr)
+void XDpDma_InterruptHandler( XDpDma * InstancePtr )
 {
-	u32 RegVal;
-	RegVal = XDpDma_ReadReg(InstancePtr->Config.BaseAddr,
-				XDPDMA_ISR);
-	if(RegVal & XDPDMA_ISR_VSYNC_INT_MASK) {
-		XDpDma_VSyncHandler(InstancePtr);
-	}
+    u32 RegVal;
+    RegVal = XDpDma_ReadReg( InstancePtr->Config.BaseAddr, XDPDMA_ISR );
+    if( RegVal & XDPDMA_ISR_VSYNC_INT_MASK )
+    {
+        XDpDma_VSyncHandler( InstancePtr );
+    }
 
-	if(RegVal & XDPDMA_ISR_DSCR_DONE4_MASK) {
-		XDpDma_SetChannelState(InstancePtr, AudioChan0, XDPDMA_DISABLE);
-		InstancePtr->Audio[0].Current = NULL;
-		XDpDma_WriteReg(InstancePtr->Config.BaseAddr, XDPDMA_ISR,
-				XDPDMA_ISR_DSCR_DONE4_MASK);
-	}
+    if( RegVal & XDPDMA_ISR_DSCR_DONE4_MASK )
+    {
+        XDpDma_SetChannelState( InstancePtr, AudioChan0, XDPDMA_DISABLE );
+        InstancePtr->Audio[ 0 ].Current = NULL;
+        XDpDma_WriteReg( InstancePtr->Config.BaseAddr,
+                         XDPDMA_ISR,
+                         XDPDMA_ISR_DSCR_DONE4_MASK );
+    }
 
-	if(RegVal & XDPDMA_ISR_DSCR_DONE5_MASK) {
-		XDpDma_SetChannelState(InstancePtr, AudioChan1, XDPDMA_DISABLE);
-		InstancePtr->Audio[1].Current = NULL;
-		XDpDma_WriteReg(InstancePtr->Config.BaseAddr, XDPDMA_ISR,
-				XDPDMA_ISR_DSCR_DONE5_MASK);
-	}
+    if( RegVal & XDPDMA_ISR_DSCR_DONE5_MASK )
+    {
+        XDpDma_SetChannelState( InstancePtr, AudioChan1, XDPDMA_DISABLE );
+        InstancePtr->Audio[ 1 ].Current = NULL;
+        XDpDma_WriteReg( InstancePtr->Config.BaseAddr,
+                         XDPDMA_ISR,
+                         XDPDMA_ISR_DSCR_DONE5_MASK );
+    }
 }
 
 /*************************************************************************/
@@ -117,50 +120,53 @@ void XDpDma_InterruptHandler(XDpDma *InstancePtr)
  * @note     None.
  *
  * **************************************************************************/
-void XDpDma_VSyncHandler(XDpDma *InstancePtr)
+void XDpDma_VSyncHandler( XDpDma * InstancePtr )
 {
-	Xil_AssertVoid(InstancePtr != NULL);
+    Xil_AssertVoid( InstancePtr != NULL );
 
-	/* Video Channel Trigger/Retrigger Handler */
-	if(InstancePtr->Video.TriggerStatus == XDPDMA_TRIGGER_EN) {
-		XDpDma_SetupChannel(InstancePtr, VideoChan);
-		XDpDma_SetChannelState(InstancePtr, VideoChan,
-				       XDPDMA_ENABLE);
-		XDpDma_Trigger(InstancePtr, VideoChan);
-	}
-	else if(InstancePtr->Video.TriggerStatus == XDPDMA_RETRIGGER_EN) {
-		XDpDma_SetupChannel(InstancePtr, VideoChan);
-		XDpDma_ReTrigger(InstancePtr, VideoChan);
-	}
+    /* Video Channel Trigger/Retrigger Handler */
+    if( InstancePtr->Video.TriggerStatus == XDPDMA_TRIGGER_EN )
+    {
+        XDpDma_SetupChannel( InstancePtr, VideoChan );
+        XDpDma_SetChannelState( InstancePtr, VideoChan, XDPDMA_ENABLE );
+        XDpDma_Trigger( InstancePtr, VideoChan );
+    }
+    else if( InstancePtr->Video.TriggerStatus == XDPDMA_RETRIGGER_EN )
+    {
+        XDpDma_SetupChannel( InstancePtr, VideoChan );
+        XDpDma_ReTrigger( InstancePtr, VideoChan );
+    }
 
-	/* Graphics Channel Trigger/Retrigger Handler */
-	if(InstancePtr->Gfx.TriggerStatus == XDPDMA_TRIGGER_EN) {
-		XDpDma_SetupChannel(InstancePtr, GraphicsChan);
-		XDpDma_SetChannelState(InstancePtr, GraphicsChan,
-				       XDPDMA_ENABLE);
-		XDpDma_Trigger(InstancePtr, GraphicsChan);
-	}
-	else if(InstancePtr->Gfx.TriggerStatus == XDPDMA_RETRIGGER_EN) {
-		XDpDma_SetupChannel(InstancePtr, GraphicsChan);
-		XDpDma_ReTrigger(InstancePtr, GraphicsChan);
-	}
+    /* Graphics Channel Trigger/Retrigger Handler */
+    if( InstancePtr->Gfx.TriggerStatus == XDPDMA_TRIGGER_EN )
+    {
+        XDpDma_SetupChannel( InstancePtr, GraphicsChan );
+        XDpDma_SetChannelState( InstancePtr, GraphicsChan, XDPDMA_ENABLE );
+        XDpDma_Trigger( InstancePtr, GraphicsChan );
+    }
+    else if( InstancePtr->Gfx.TriggerStatus == XDPDMA_RETRIGGER_EN )
+    {
+        XDpDma_SetupChannel( InstancePtr, GraphicsChan );
+        XDpDma_ReTrigger( InstancePtr, GraphicsChan );
+    }
 
-	/* Audio Channel 0 Trigger Handler */
-	if(InstancePtr->Audio[0].TriggerStatus == XDPDMA_TRIGGER_EN) {
-		XDpDma_SetupChannel(InstancePtr, AudioChan0);
-		XDpDma_SetChannelState(InstancePtr, AudioChan0,
-				       XDPDMA_ENABLE);
-		XDpDma_Trigger(InstancePtr, AudioChan0);
-	}
+    /* Audio Channel 0 Trigger Handler */
+    if( InstancePtr->Audio[ 0 ].TriggerStatus == XDPDMA_TRIGGER_EN )
+    {
+        XDpDma_SetupChannel( InstancePtr, AudioChan0 );
+        XDpDma_SetChannelState( InstancePtr, AudioChan0, XDPDMA_ENABLE );
+        XDpDma_Trigger( InstancePtr, AudioChan0 );
+    }
 
-	/* Audio Channel 1 Trigger Handler */
-	if(InstancePtr->Audio[1].TriggerStatus == XDPDMA_TRIGGER_EN) {
-		XDpDma_SetupChannel(InstancePtr, AudioChan1);
-		XDpDma_SetChannelState(InstancePtr, AudioChan1,
-				       XDPDMA_ENABLE);
-		XDpDma_Trigger(InstancePtr, AudioChan1);
-	}
-	/* Clear VSync Interrupt */
-	XDpDma_WriteReg(InstancePtr->Config.BaseAddr, XDPDMA_ISR,
-			XDPDMA_ISR_VSYNC_INT_MASK);
+    /* Audio Channel 1 Trigger Handler */
+    if( InstancePtr->Audio[ 1 ].TriggerStatus == XDPDMA_TRIGGER_EN )
+    {
+        XDpDma_SetupChannel( InstancePtr, AudioChan1 );
+        XDpDma_SetChannelState( InstancePtr, AudioChan1, XDPDMA_ENABLE );
+        XDpDma_Trigger( InstancePtr, AudioChan1 );
+    }
+    /* Clear VSync Interrupt */
+    XDpDma_WriteReg( InstancePtr->Config.BaseAddr,
+                     XDPDMA_ISR,
+                     XDPDMA_ISR_VSYNC_INT_MASK );
 }

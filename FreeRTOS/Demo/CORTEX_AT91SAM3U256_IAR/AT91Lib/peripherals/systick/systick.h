@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
- *         ATMEL Microcontroller Software Support 
+ *         ATMEL Microcontroller Software Support
  * ----------------------------------------------------------------------------
  * Copyright (c) 2008, Atmel Corporation
  *
@@ -31,9 +31,9 @@
 /// \unit
 ///
 /// !Purpose
-/// 
+///
 /// Methods and definitions for configuring System Tick in Cortex-M3.
-/// 
+///
 /// !Usage
 ///
 /// -# Configure the System Tick with SysTick_Configure
@@ -55,14 +55,14 @@
 //------------------------------------------------------------------------------
 
 /// Vendor define it's own SysTickConfig function
-#define __Vendor_SysTickConfig     1
+#define __Vendor_SysTickConfig 1
 
 //------------------------------------------------------------------------------
 //         Global functions
 //------------------------------------------------------------------------------
 
-extern void SysTick_Configure(unsigned char countEnable,
-                           unsigned int reloadValue,
-                           void( *handler )( void ));
+extern void SysTick_Configure( unsigned char countEnable,
+                               unsigned int reloadValue,
+                               void ( *handler )( void ) );
 
-#endif //#ifndef SYSTICK_H
+#endif // #ifndef SYSTICK_H

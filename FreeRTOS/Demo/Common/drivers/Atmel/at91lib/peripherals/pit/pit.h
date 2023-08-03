@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
- *         ATMEL Microcontroller Software Support 
+ *         ATMEL Microcontroller Software Support
  * ----------------------------------------------------------------------------
  * Copyright (c) 2008, Atmel Corporation
  *
@@ -61,14 +61,14 @@
 //------------------------------------------------------------------------------
 //         Exported functions
 //------------------------------------------------------------------------------
-extern void PIT_Init(unsigned int period, unsigned int pit_frequency);
-extern void PIT_SetPIV(unsigned int piv);
-extern void PIT_Enable(void);
-extern void PIT_EnableIT(void);
-extern void PIT_DisableIT(void);
-extern unsigned int PIT_GetMode(void);
-extern unsigned int PIT_GetStatus(void);
-extern unsigned int PIT_GetPIIR(void);
-extern unsigned int PIT_GetPIVR(void);
+extern void PIT_Init( unsigned int period, unsigned int pit_frequency );
+extern void PIT_SetPIV( unsigned int piv );
+extern void PIT_Enable( void );
+extern void PIT_EnableIT( void );
+extern void PIT_DisableIT( void );
+extern unsigned int PIT_GetMode( void );
+extern unsigned int PIT_GetStatus( void );
+extern unsigned int PIT_GetPIIR( void );
+extern unsigned int PIT_GetPIVR( void );
 
-#endif //#ifndef PIT_H
+#endif // #ifndef PIT_H

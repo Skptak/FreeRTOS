@@ -48,5 +48,5 @@ int nop_putc(int c) {
 }
 int metal_tty_putc(int c) __attribute__((weak, alias("nop_putc")));
 #pragma message(                                                               \
-    "There is no default output device, metal_tty_putc() will throw away all input.")
+        "There is no default output device, metal_tty_putc() will throw away all input.")
 #endif

@@ -51,7 +51,8 @@ TaskHandle_t xUnconstrainedTCB( void )
 
     if( nondet_bool() )
     {
-        listSET_LIST_ITEM_VALUE( &( pxTCB->xStateListItem ), pxTCB->uxPriority );
+        listSET_LIST_ITEM_VALUE( &( pxTCB->xStateListItem ),
+                                 pxTCB->uxPriority );
     }
     else
     {
@@ -60,14 +61,17 @@ TaskHandle_t xUnconstrainedTCB( void )
 
     if( nondet_bool() )
     {
-        listSET_LIST_ITEM_VALUE( &( pxTCB->xEventListItem ), ( TickType_t ) configMAX_PRIORITIES - ( TickType_t ) pxTCB->uxPriority );
+        listSET_LIST_ITEM_VALUE( &( pxTCB->xEventListItem ),
+                                 ( TickType_t ) configMAX_PRIORITIES -
+                                     ( TickType_t ) pxTCB->uxPriority );
     }
     else
     {
         listSET_LIST_ITEM_VALUE( &( pxTCB->xEventListItem ), portMAX_DELAY );
     }
 
-    pxTCB->pxStack = ( StackType_t * ) pvPortMalloc( ( ( ( size_t ) STACK_DEPTH ) * sizeof( StackType_t ) ) );
+    pxTCB->pxStack = ( StackType_t * ) pvPortMalloc(
+        ( ( ( size_t ) STACK_DEPTH ) * sizeof( StackType_t ) ) );
 
     if( pxTCB->pxStack == NULL )
     {
@@ -75,8 +79,10 @@ TaskHandle_t xUnconstrainedTCB( void )
         return NULL;
     }
 
-    __CPROVER_assume( ucStaticAllocationFlag <= tskSTATICALLY_ALLOCATED_STACK_AND_TCB );
-    __CPROVER_assume( ucStaticAllocationFlag >= tskDYNAMICALLY_ALLOCATED_STACK_AND_TCB );
+    __CPROVER_assume( ucStaticAllocationFlag <=
+                      tskSTATICALLY_ALLOCATED_STACK_AND_TCB );
+    __CPROVER_assume( ucStaticAllocationFlag >=
+                      tskDYNAMICALLY_ALLOCATED_STACK_AND_TCB );
     pxTCB->ucStaticallyAllocated = ucStaticAllocationFlag;
 
     return pxTCB;
@@ -106,9 +112,10 @@ BaseType_t xPrepareTaskLists( TaskHandle_t * xTask )
 
     /*
      * The task handle passed to TaskDelete can be NULL. In that case, the
-     * task to delete is the one in `pxCurrentTCB`, see the macro `prvGetTCBFromHandle`
-     * in line 1165 (tasks.c) for reference. For that reason, we provide a similar
-     * initialization for an arbitrary task `pxTCB` and `pxCurrentTCB`.
+     * task to delete is the one in `pxCurrentTCB`, see the macro
+     * `prvGetTCBFromHandle` in line 1165 (tasks.c) for reference. For that
+     * reason, we provide a similar initialization for an arbitrary task `pxTCB`
+     * and `pxCurrentTCB`.
      */
 
     pxTCB = xUnconstrainedTCB();
@@ -126,7 +133,8 @@ BaseType_t xPrepareTaskLists( TaskHandle_t * xTask )
              */
             if( pxOtherTCB != NULL )
             {
-                vListInsert( &xPendingReadyList, &( pxOtherTCB->xStateListItem ) );
+                vListInsert( &xPendingReadyList,
+                             &( pxOtherTCB->xStateListItem ) );
             }
         }
 
@@ -142,12 +150,14 @@ BaseType_t xPrepareTaskLists( TaskHandle_t * xTask )
         }
     }
 
-    /* Note that `*xTask = NULL` can happen here, but this is fine -- `pxCurrentTCB` will be used instead */
+    /* Note that `*xTask = NULL` can happen here, but this is fine --
+     * `pxCurrentTCB` will be used instead */
     *xTask = pxTCB;
 
     /*
-     * `pxCurrentTCB` must be initialized the same way as the previous task, but an
-     * allocation failure cannot happen in this case (i.e., if the previous task is NULL)
+     * `pxCurrentTCB` must be initialized the same way as the previous task, but
+     * an allocation failure cannot happen in this case (i.e., if the previous
+     * task is NULL)
      */
     pxCurrentTCB = xUnconstrainedTCB();
 
@@ -163,14 +173,18 @@ BaseType_t xPrepareTaskLists( TaskHandle_t * xTask )
 
         if( pxOtherTCB != NULL )
         {
-            vListInsert( &pxReadyTasksLists[ pxOtherTCB->uxPriority ], &( pxOtherTCB->xStateListItem ) );
+            vListInsert( &pxReadyTasksLists[ pxOtherTCB->uxPriority ],
+                         &( pxOtherTCB->xStateListItem ) );
         }
     }
 
-    vListInsert( &pxReadyTasksLists[ pxCurrentTCB->uxPriority ], &( pxCurrentTCB->xStateListItem ) );
+    vListInsert( &pxReadyTasksLists[ pxCurrentTCB->uxPriority ],
+                 &( pxCurrentTCB->xStateListItem ) );
 
     /* Use of this macro ensures coverage on line 185 (list.c) */
-    listGET_OWNER_OF_NEXT_ENTRY( pxCurrentTCB, &pxReadyTasksLists[ pxCurrentTCB->uxPriority ] );
+    listGET_OWNER_OF_NEXT_ENTRY(
+        pxCurrentTCB,
+        &pxReadyTasksLists[ pxCurrentTCB->uxPriority ] );
 
     if( nondet_bool() )
     {

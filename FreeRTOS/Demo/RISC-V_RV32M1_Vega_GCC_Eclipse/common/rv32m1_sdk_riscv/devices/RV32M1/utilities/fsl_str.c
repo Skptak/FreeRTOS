@@ -2,15 +2,15 @@
  * Copyright 2017 NXP
  * All rights reserved.
  *
- * 
+ *
  * SPDX-License-Identifier: BSD-3-Clause
  *
  */
+#include "fsl_str.h"
+#include "fsl_debug_console_conf.h"
 #include <math.h>
 #include <stdarg.h>
 #include <stdlib.h>
-#include "fsl_str.h"
-#include "fsl_debug_console_conf.h"
 
 /*******************************************************************************
  * Definitions
@@ -18,7 +18,7 @@
 
 /*! @brief The overflow value.*/
 #ifndef HUGE_VAL
-#define HUGE_VAL (99.e99)
+    #define HUGE_VAL ( 99.e99 )
 #endif /* HUGE_VAL */
 
 #if SCANF_FLOAT_ENABLE
@@ -65,8 +65,8 @@ enum _debugconsole_scanf_flag
 };
 
 /*! @brief Keil: suppress ellipsis warning in va_arg usage below. */
-#if defined(__CC_ARM)
-#pragma diag_suppress 1256
+#if defined( __CC_ARM )
+    #pragma diag_suppress 1256
 #endif /* __CC_ARM */
 
 /*******************************************************************************
@@ -78,7 +78,7 @@ enum _debugconsole_scanf_flag
  * @param[in]   s The address of the string pointer to update.
  * @return      String without white spaces.
  */
-static uint32_t ScanIgnoreWhiteSpace(const char **s);
+static uint32_t ScanIgnoreWhiteSpace( const char ** s );
 
 /*!
  * @brief Converts a radix number to a string and return its length.
@@ -91,7 +91,11 @@ static uint32_t ScanIgnoreWhiteSpace(const char **s);
 
  * @return Length of the converted string.
  */
-static int32_t ConvertRadixNumToString(char *numstr, void *nump, int32_t neg, int32_t radix, bool use_caps);
+static int32_t ConvertRadixNumToString( char * numstr,
+                                        void * nump,
+                                        int32_t neg,
+                                        int32_t radix,
+                                        bool use_caps );
 
 #if PRINTF_FLOAT_ENABLE
 /*!
@@ -104,32 +108,40 @@ static int32_t ConvertRadixNumToString(char *numstr, void *nump, int32_t neg, in
 
  * @return Length of the converted string.
  */
-static int32_t ConvertFloatRadixNumToString(char *numstr, void *nump, int32_t radix, uint32_t precision_width);
+static int32_t ConvertFloatRadixNumToString( char * numstr,
+                                             void * nump,
+                                             int32_t radix,
+                                             uint32_t precision_width );
 #endif /* PRINTF_FLOAT_ENABLE */
 
 /*!
-*
+ *
  */
-double modf(double input_dbl, double *intpart_ptr);
+double modf( double input_dbl, double * intpart_ptr );
 
 /*************Code for process formatted data*******************************/
 
-static uint32_t ScanIgnoreWhiteSpace(const char **s)
+static uint32_t ScanIgnoreWhiteSpace( const char ** s )
 {
     uint8_t count = 0;
     uint8_t c;
 
     c = **s;
-    while ((c == ' ') || (c == '\t') || (c == '\n') || (c == '\r') || (c == '\v') || (c == '\f'))
+    while( ( c == ' ' ) || ( c == '\t' ) || ( c == '\n' ) || ( c == '\r' ) ||
+           ( c == '\v' ) || ( c == '\f' ) )
     {
         count++;
-        (*s)++;
+        ( *s )++;
         c = **s;
     }
     return count;
 }
 
-static int32_t ConvertRadixNumToString(char *numstr, void *nump, int32_t neg, int32_t radix, bool use_caps)
+static int32_t ConvertRadixNumToString( char * numstr,
+                                        void * nump,
+                                        int32_t neg,
+                                        int32_t radix,
+                                        bool use_caps )
 {
 #if PRINTF_ADVANCED_ENABLE
     int64_t a;
@@ -150,42 +162,42 @@ static int32_t ConvertRadixNumToString(char *numstr, void *nump, int32_t neg, in
 #endif /* PRINTF_ADVANCED_ENABLE */
 
     int32_t nlen;
-    char *nstrp;
+    char * nstrp;
 
     nlen = 0;
     nstrp = numstr;
     *nstrp++ = '\0';
 
-    if (neg)
+    if( neg )
     {
 #if PRINTF_ADVANCED_ENABLE
-        a = *(int64_t *)nump;
+        a = *( int64_t * ) nump;
 #else
-        a = *(int32_t *)nump;
+        a = *( int32_t * ) nump;
 #endif /* PRINTF_ADVANCED_ENABLE */
-        if (a == 0)
+        if( a == 0 )
         {
             *nstrp = '0';
             ++nlen;
             return nlen;
         }
-        while (a != 0)
+        while( a != 0 )
         {
 #if PRINTF_ADVANCED_ENABLE
-            b = (int64_t)a / (int64_t)radix;
-            c = (int64_t)a - ((int64_t)b * (int64_t)radix);
-            if (c < 0)
+            b = ( int64_t ) a / ( int64_t ) radix;
+            c = ( int64_t ) a - ( ( int64_t ) b * ( int64_t ) radix );
+            if( c < 0 )
             {
-                uc = (uint64_t)c;
-                c = (int64_t)(~uc) + 1 + '0';
+                uc = ( uint64_t ) c;
+                c = ( int64_t ) ( ~uc ) + 1 + '0';
             }
 #else
             b = a / radix;
-            c = a - (b * radix);
-            if (c < 0)
+            c = a - ( b * radix );
+            if( c < 0 )
             {
-                uc = (uint32_t)c;
-                c = (uint32_t)(~uc) + 1 + '0';
+                uc = ( uint32_t ) c;
+                c = ( uint32_t ) ( ~uc ) + 1 + '0';
             }
 #endif /* PRINTF_ADVANCED_ENABLE */
             else
@@ -193,43 +205,43 @@ static int32_t ConvertRadixNumToString(char *numstr, void *nump, int32_t neg, in
                 c = c + '0';
             }
             a = b;
-            *nstrp++ = (char)c;
+            *nstrp++ = ( char ) c;
             ++nlen;
         }
     }
     else
     {
 #if PRINTF_ADVANCED_ENABLE
-        ua = *(uint64_t *)nump;
+        ua = *( uint64_t * ) nump;
 #else
-        ua = *(uint32_t *)nump;
+        ua = *( uint32_t * ) nump;
 #endif /* PRINTF_ADVANCED_ENABLE */
-        if (ua == 0)
+        if( ua == 0 )
         {
             *nstrp = '0';
             ++nlen;
             return nlen;
         }
-        while (ua != 0)
+        while( ua != 0 )
         {
 #if PRINTF_ADVANCED_ENABLE
-            ub = (uint64_t)ua / (uint64_t)radix;
-            uc = (uint64_t)ua - ((uint64_t)ub * (uint64_t)radix);
+            ub = ( uint64_t ) ua / ( uint64_t ) radix;
+            uc = ( uint64_t ) ua - ( ( uint64_t ) ub * ( uint64_t ) radix );
 #else
-            ub = ua / (uint32_t)radix;
-            uc = ua - (ub * (uint32_t)radix);
+            ub = ua / ( uint32_t ) radix;
+            uc = ua - ( ub * ( uint32_t ) radix );
 #endif /* PRINTF_ADVANCED_ENABLE */
 
-            if (uc < 10)
+            if( uc < 10 )
             {
                 uc = uc + '0';
             }
             else
             {
-                uc = uc - 10 + (use_caps ? 'A' : 'a');
+                uc = uc - 10 + ( use_caps ? 'A' : 'a' );
             }
             ua = ub;
-            *nstrp++ = (char)uc;
+            *nstrp++ = ( char ) uc;
             ++nlen;
         }
     }
@@ -237,7 +249,10 @@ static int32_t ConvertRadixNumToString(char *numstr, void *nump, int32_t neg, in
 }
 
 #if PRINTF_FLOAT_ENABLE
-static int32_t ConvertFloatRadixNumToString(char *numstr, void *nump, int32_t radix, uint32_t precision_width)
+static int32_t ConvertFloatRadixNumToString( char * numstr,
+                                             void * nump,
+                                             int32_t radix,
+                                             uint32_t precision_width )
 {
     int32_t a;
     int32_t b;
@@ -252,82 +267,82 @@ static int32_t ConvertFloatRadixNumToString(char *numstr, void *nump, int32_t ra
     double intpart;
 
     int32_t nlen;
-    char *nstrp;
+    char * nstrp;
     nlen = 0;
     nstrp = numstr;
     *nstrp++ = '\0';
-    r = *(double *)nump;
-    if (!r)
+    r = *( double * ) nump;
+    if( !r )
     {
         *nstrp = '0';
         ++nlen;
         return nlen;
     }
-    fractpart = modf((double)r, (double *)&intpart);
+    fractpart = modf( ( double ) r, ( double * ) &intpart );
     /* Process fractional part. */
-    for (i = 0; i < precision_width; i++)
+    for( i = 0; i < precision_width; i++ )
     {
         fractpart *= radix;
     }
-    if (r >= 0)
+    if( r >= 0 )
     {
-        fa = fractpart + (double)0.5;
-        if (fa >= pow(10, precision_width))
+        fa = fractpart + ( double ) 0.5;
+        if( fa >= pow( 10, precision_width ) )
         {
             intpart++;
         }
     }
     else
     {
-        fa = fractpart - (double)0.5;
-        if (fa <= -pow(10, precision_width))
+        fa = fractpart - ( double ) 0.5;
+        if( fa <= -pow( 10, precision_width ) )
         {
             intpart--;
         }
     }
-    for (i = 0; i < precision_width; i++)
+    for( i = 0; i < precision_width; i++ )
     {
-        fb = fa / (int32_t)radix;
-        dc = (fa - (int64_t)fb * (int32_t)radix);
-        c = (int32_t)dc;
-        if (c < 0)
+        fb = fa / ( int32_t ) radix;
+        dc = ( fa - ( int64_t ) fb * ( int32_t ) radix );
+        c = ( int32_t ) dc;
+        if( c < 0 )
         {
-            uc = (uint32_t)c;
-            c = (int32_t)(~uc) + 1 + '0';
+            uc = ( uint32_t ) c;
+            c = ( int32_t ) ( ~uc ) + 1 + '0';
         }
         else
         {
             c = c + '0';
         }
         fa = fb;
-        *nstrp++ = (char)c;
+        *nstrp++ = ( char ) c;
         ++nlen;
     }
-    *nstrp++ = (char)'.';
+    *nstrp++ = ( char ) '.';
     ++nlen;
-    a = (int32_t)intpart;
-    if (a == 0)
+    a = ( int32_t ) intpart;
+    if( a == 0 )
     {
         *nstrp++ = '0';
         ++nlen;
     }
     else
     {
-        while (a != 0)
+        while( a != 0 )
         {
-            b = (int32_t)a / (int32_t)radix;
-            c = (int32_t)a - ((int32_t)b * (int32_t)radix);
-            if (c < 0)
+            b = ( int32_t ) a / ( int32_t ) radix;
+            c = ( int32_t ) a - ( ( int32_t ) b * ( int32_t ) radix );
+            if( c < 0 )
             {
-                uc = (uint32_t)c;
-                c = (int32_t)(~uc) + 1 + '0';
+                uc = ( uint32_t ) c;
+                c = ( int32_t ) ( ~uc ) + 1 + '0';
             }
             else
             {
                 c = c + '0';
             }
             a = b;
-            *nstrp++ = (char)c;
+            *nstrp++ = ( char ) c;
             ++nlen;
         }
     }
@@ -335,14 +350,14 @@ static int32_t ConvertFloatRadixNumToString(char *numstr, void *nump, int32_t ra
 }
 #endif /* PRINTF_FLOAT_ENABLE */
 
-int StrFormatPrintf(const char *fmt, va_list ap, char *buf, printfCb cb)
+int StrFormatPrintf( const char * fmt, va_list ap, char * buf, printfCb cb )
 {
     /* va_list ap; */
-    char *p;
+    char * p;
     int32_t c;
 
-    char vstr[33];
-    char *vstrp = NULL;
+    char vstr[ 33 ];
+    char * vstrp = NULL;
     int32_t vlen = 0;
 
     int32_t done;
@@ -350,7 +365,7 @@ int StrFormatPrintf(const char *fmt, va_list ap, char *buf, printfCb cb)
 
     uint32_t field_width;
     uint32_t precision_width;
-    char *sval;
+    char * sval;
     int32_t cval;
     bool use_caps;
     uint8_t radix = 0;
@@ -370,8 +385,9 @@ int StrFormatPrintf(const char *fmt, va_list ap, char *buf, printfCb cb)
     double fval;
 #endif /* PRINTF_FLOAT_ENABLE */
 
-    /* Start parsing apart the format string and display appropriate formats and data. */
-    for (p = (char *)fmt; (c = *p) != 0; p++)
+    /* Start parsing apart the format string and display appropriate formats and
+     * data. */
+    for( p = ( char * ) fmt; ( c = *p ) != 0; p++ )
     {
         /*
          * All formats begin with a '%' marker.  Special chars like
@@ -379,10 +395,11 @@ int StrFormatPrintf(const char *fmt, va_list ap, char *buf, printfCb cb)
          * character by the __compiler__.  Thus, no need for this
          * routine to account for the '\' character.
          */
-        if (c != '%')
+        if( c != '%' )
         {
-            cb(buf, &count, c, 1);
-            /* By using 'continue', the next iteration of the loop is used, skipping the code that follows. */
+            cb( buf, &count, c, 1 );
+            /* By using 'continue', the next iteration of the loop is used,
+             * skipping the code that follows. */
             continue;
         }
 
@@ -392,9 +409,9 @@ int StrFormatPrintf(const char *fmt, va_list ap, char *buf, printfCb cb)
         /* First check for specification modifier flags. */
         flags_used = 0;
         done = false;
-        while (!done)
+        while( !done )
         {
-            switch (*++p)
+            switch( *++p )
             {
                 case '-':
                     flags_used |= kPRINTF_Minus;
@@ -423,17 +440,17 @@ int StrFormatPrintf(const char *fmt, va_list ap, char *buf, printfCb cb)
         /* Next check for minimum field width. */
         field_width = 0;
         done = false;
-        while (!done)
+        while( !done )
         {
             c = *++p;
-            if ((c >= '0') && (c <= '9'))
+            if( ( c >= '0' ) && ( c <= '9' ) )
             {
-                field_width = (field_width * 10) + (c - '0');
+                field_width = ( field_width * 10 ) + ( c - '0' );
             }
 #if PRINTF_ADVANCED_ENABLE
-            else if (c == '*')
+            else if( c == '*' )
             {
-                field_width = (uint32_t)va_arg(ap, uint32_t);
+                field_width = ( uint32_t ) va_arg( ap, uint32_t );
             }
 #endif /* PRINTF_ADVANCED_ENABLE */
             else
@@ -448,25 +465,25 @@ int StrFormatPrintf(const char *fmt, va_list ap, char *buf, printfCb cb)
 #if PRINTF_ADVANCED_ENABLE
         valid_precision_width = false;
 #endif /* PRINTF_ADVANCED_ENABLE */
-        if (*++p == '.')
+        if( *++p == '.' )
         {
             /* Must get precision field width, if present. */
             precision_width = 0;
             done = false;
-            while (!done)
+            while( !done )
             {
                 c = *++p;
-                if ((c >= '0') && (c <= '9'))
+                if( ( c >= '0' ) && ( c <= '9' ) )
                 {
-                    precision_width = (precision_width * 10) + (c - '0');
+                    precision_width = ( precision_width * 10 ) + ( c - '0' );
 #if PRINTF_ADVANCED_ENABLE
                     valid_precision_width = true;
 #endif /* PRINTF_ADVANCED_ENABLE */
                 }
 #if PRINTF_ADVANCED_ENABLE
-                else if (c == '*')
+                else if( c == '*' )
                 {
-                    precision_width = (uint32_t)va_arg(ap, uint32_t);
+                    precision_width = ( uint32_t ) va_arg( ap, uint32_t );
                     valid_precision_width = true;
                 }
 #endif /* PRINTF_ADVANCED_ENABLE */
@@ -487,10 +504,10 @@ int StrFormatPrintf(const char *fmt, va_list ap, char *buf, printfCb cb)
         /*
          * Check for the length modifier.
          */
-        switch (/* c = */ *++p)
+        switch( /* c = */ *++p )
         {
             case 'h':
-                if (*++p != 'h')
+                if( *++p != 'h' )
                 {
                     flags_used |= kPRINTF_LengthShortInt;
                     --p;
@@ -501,7 +518,7 @@ int StrFormatPrintf(const char *fmt, va_list ap, char *buf, printfCb cb)
                 }
                 break;
             case 'l':
-                if (*++p != 'l')
+                if( *++p != 'l' )
                 {
                     flags_used |= kPRINTF_LengthLongInt;
                     --p;
@@ -520,39 +537,44 @@ int StrFormatPrintf(const char *fmt, va_list ap, char *buf, printfCb cb)
         /* Now we're ready to examine the format. */
         c = *++p;
         {
-            if ((c == 'd') || (c == 'i') || (c == 'f') || (c == 'F') || (c == 'x') || (c == 'X') || (c == 'o') ||
-                (c == 'b') || (c == 'p') || (c == 'u'))
+            if( ( c == 'd' ) || ( c == 'i' ) || ( c == 'f' ) || ( c == 'F' ) ||
+                ( c == 'x' ) || ( c == 'X' ) || ( c == 'o' ) || ( c == 'b' ) ||
+                ( c == 'p' ) || ( c == 'u' ) )
             {
-                if ((c == 'd') || (c == 'i'))
+                if( ( c == 'd' ) || ( c == 'i' ) )
                 {
 #if PRINTF_ADVANCED_ENABLE
-                    if (flags_used & kPRINTF_LengthLongLongInt)
+                    if( flags_used & kPRINTF_LengthLongLongInt )
                     {
-                        ival = (int64_t)va_arg(ap, int64_t);
+                        ival = ( int64_t ) va_arg( ap, int64_t );
                     }
                     else
 #endif /* PRINTF_ADVANCED_ENABLE */
                     {
-                        ival = (int32_t)va_arg(ap, int32_t);
+                        ival = ( int32_t ) va_arg( ap, int32_t );
                     }
-                    vlen = ConvertRadixNumToString(vstr, &ival, true, 10, use_caps);
-                    vstrp = &vstr[vlen];
+                    vlen = ConvertRadixNumToString( vstr,
+                                                    &ival,
+                                                    true,
+                                                    10,
+                                                    use_caps );
+                    vstrp = &vstr[ vlen ];
 #if PRINTF_ADVANCED_ENABLE
-                    if (ival < 0)
+                    if( ival < 0 )
                     {
                         schar = '-';
                         ++vlen;
                     }
                     else
                     {
-                        if (flags_used & kPRINTF_Plus)
+                        if( flags_used & kPRINTF_Plus )
                         {
                             schar = '+';
                             ++vlen;
                         }
                         else
                         {
-                            if (flags_used & kPRINTF_Space)
+                            if( flags_used & kPRINTF_Space )
                             {
                                 schar = ' ';
                                 ++vlen;
@@ -565,60 +587,64 @@ int StrFormatPrintf(const char *fmt, va_list ap, char *buf, printfCb cb)
                     }
                     dschar = false;
                     /* Do the ZERO pad. */
-                    if (flags_used & kPRINTF_Zero)
+                    if( flags_used & kPRINTF_Zero )
                     {
-                        if (schar)
+                        if( schar )
                         {
-                            cb(buf, &count, schar, 1);
+                            cb( buf, &count, schar, 1 );
                         }
                         dschar = true;
 
-                        cb(buf, &count, '0', field_width - vlen);
+                        cb( buf, &count, '0', field_width - vlen );
                         vlen = field_width;
                     }
                     else
                     {
-                        if (!(flags_used & kPRINTF_Minus))
+                        if( !( flags_used & kPRINTF_Minus ) )
                         {
-                            cb(buf, &count, ' ', field_width - vlen);
-                            if (schar)
+                            cb( buf, &count, ' ', field_width - vlen );
+                            if( schar )
                             {
-                                cb(buf, &count, schar, 1);
+                                cb( buf, &count, schar, 1 );
                             }
                             dschar = true;
                         }
                     }
-                    /* The string was built in reverse order, now display in correct order. */
-                    if ((!dschar) && schar)
+                    /* The string was built in reverse order, now display in
+                     * correct order. */
+                    if( ( !dschar ) && schar )
                     {
-                        cb(buf, &count, schar, 1);
+                        cb( buf, &count, schar, 1 );
                     }
 #endif /* PRINTF_ADVANCED_ENABLE */
                 }
 
 #if PRINTF_FLOAT_ENABLE
-                if ((c == 'f') || (c == 'F'))
+                if( ( c == 'f' ) || ( c == 'F' ) )
                 {
-                    fval = (double)va_arg(ap, double);
-                    vlen = ConvertFloatRadixNumToString(vstr, &fval, 10, precision_width);
-                    vstrp = &vstr[vlen];
+                    fval = ( double ) va_arg( ap, double );
+                    vlen = ConvertFloatRadixNumToString( vstr,
+                                                         &fval,
+                                                         10,
+                                                         precision_width );
+                    vstrp = &vstr[ vlen ];
 
-#if PRINTF_ADVANCED_ENABLE
-                    if (fval < 0)
+    #if PRINTF_ADVANCED_ENABLE
+                    if( fval < 0 )
                     {
                         schar = '-';
                         ++vlen;
                     }
                     else
                     {
-                        if (flags_used & kPRINTF_Plus)
+                        if( flags_used & kPRINTF_Plus )
                         {
                             schar = '+';
                             ++vlen;
                         }
                         else
                         {
-                            if (flags_used & kPRINTF_Space)
+                            if( flags_used & kPRINTF_Space )
                             {
                                 schar = ' ';
                                 ++vlen;
@@ -630,106 +656,111 @@ int StrFormatPrintf(const char *fmt, va_list ap, char *buf, printfCb cb)
                         }
                     }
                     dschar = false;
-                    if (flags_used & kPRINTF_Zero)
+                    if( flags_used & kPRINTF_Zero )
                     {
-                        if (schar)
+                        if( schar )
                         {
-                            cb(buf, &count, schar, 1);
+                            cb( buf, &count, schar, 1 );
                         }
                         dschar = true;
-                        cb(buf, &count, '0', field_width - vlen);
+                        cb( buf, &count, '0', field_width - vlen );
                         vlen = field_width;
                     }
                     else
                     {
-                        if (!(flags_used & kPRINTF_Minus))
+                        if( !( flags_used & kPRINTF_Minus ) )
                         {
-                            cb(buf, &count, ' ', field_width - vlen);
-                            if (schar)
+                            cb( buf, &count, ' ', field_width - vlen );
+                            if( schar )
                             {
-                                cb(buf, &count, schar, 1);
+                                cb( buf, &count, schar, 1 );
                             }
                             dschar = true;
                         }
                     }
-                    if ((!dschar) && schar)
+                    if( ( !dschar ) && schar )
                     {
-                        cb(buf, &count, schar, 1);
+                        cb( buf, &count, schar, 1 );
                     }
-#endif /* PRINTF_ADVANCED_ENABLE */
+    #endif /* PRINTF_ADVANCED_ENABLE */
                 }
 #endif /* PRINTF_FLOAT_ENABLE */
-                if ((c == 'X') || (c == 'x'))
+                if( ( c == 'X' ) || ( c == 'x' ) )
                 {
-                    if (c == 'x')
+                    if( c == 'x' )
                     {
                         use_caps = false;
                     }
 #if PRINTF_ADVANCED_ENABLE
-                    if (flags_used & kPRINTF_LengthLongLongInt)
+                    if( flags_used & kPRINTF_LengthLongLongInt )
                     {
-                        uval = (uint64_t)va_arg(ap, uint64_t);
+                        uval = ( uint64_t ) va_arg( ap, uint64_t );
                     }
                     else
 #endif /* PRINTF_ADVANCED_ENABLE */
                     {
-                        uval = (uint32_t)va_arg(ap, uint32_t);
+                        uval = ( uint32_t ) va_arg( ap, uint32_t );
                     }
-                    vlen = ConvertRadixNumToString(vstr, &uval, false, 16, use_caps);
-                    vstrp = &vstr[vlen];
+                    vlen = ConvertRadixNumToString( vstr,
+                                                    &uval,
+                                                    false,
+                                                    16,
+                                                    use_caps );
+                    vstrp = &vstr[ vlen ];
 
 #if PRINTF_ADVANCED_ENABLE
                     dschar = false;
-                    if (flags_used & kPRINTF_Zero)
+                    if( flags_used & kPRINTF_Zero )
                     {
-                        if (flags_used & kPRINTF_Pound)
+                        if( flags_used & kPRINTF_Pound )
                         {
-                            cb(buf, &count, '0', 1);
-                            cb(buf, &count, (use_caps ? 'X' : 'x'), 1);
+                            cb( buf, &count, '0', 1 );
+                            cb( buf, &count, ( use_caps ? 'X' : 'x' ), 1 );
                             dschar = true;
                         }
-                        cb(buf, &count, '0', field_width - vlen);
+                        cb( buf, &count, '0', field_width - vlen );
                         vlen = field_width;
                     }
                     else
                     {
-                        if (!(flags_used & kPRINTF_Minus))
+                        if( !( flags_used & kPRINTF_Minus ) )
                         {
-                            if (flags_used & kPRINTF_Pound)
+                            if( flags_used & kPRINTF_Pound )
                             {
                                 vlen += 2;
                             }
-                            cb(buf, &count, ' ', field_width - vlen);
-                            if (flags_used & kPRINTF_Pound)
+                            cb( buf, &count, ' ', field_width - vlen );
+                            if( flags_used & kPRINTF_Pound )
                             {
-                                cb(buf, &count, '0', 1);
-                                cb(buf, &count, (use_caps ? 'X' : 'x'), 1);
+                                cb( buf, &count, '0', 1 );
+                                cb( buf, &count, ( use_caps ? 'X' : 'x' ), 1 );
                                 dschar = true;
                             }
                         }
                     }
 
-                    if ((flags_used & kPRINTF_Pound) && (!dschar))
+                    if( ( flags_used & kPRINTF_Pound ) && ( !dschar ) )
                     {
-                        cb(buf, &count, '0', 1);
-                        cb(buf, &count, (use_caps ? 'X' : 'x'), 1);
+                        cb( buf, &count, '0', 1 );
+                        cb( buf, &count, ( use_caps ? 'X' : 'x' ), 1 );
                         vlen += 2;
                     }
 #endif /* PRINTF_ADVANCED_ENABLE */
                 }
-                if ((c == 'o') || (c == 'b') || (c == 'p') || (c == 'u'))
+                if( ( c == 'o' ) || ( c == 'b' ) || ( c == 'p' ) ||
+                    ( c == 'u' ) )
                 {
 #if PRINTF_ADVANCED_ENABLE
-                    if (flags_used & kPRINTF_LengthLongLongInt)
+                    if( flags_used & kPRINTF_LengthLongLongInt )
                     {
-                        uval = (uint64_t)va_arg(ap, uint64_t);
+                        uval = ( uint64_t ) va_arg( ap, uint64_t );
                     }
                     else
 #endif /* PRINTF_ADVANCED_ENABLE */
                     {
-                        uval = (uint32_t)va_arg(ap, uint32_t);
+                        uval = ( uint32_t ) va_arg( ap, uint32_t );
                     }
-                    switch (c)
+                    switch( c )
                     {
                         case 'o':
                             radix = 8;
@@ -746,75 +777,79 @@ int StrFormatPrintf(const char *fmt, va_list ap, char *buf, printfCb cb)
                         default:
                             break;
                     }
-                    vlen = ConvertRadixNumToString(vstr, &uval, false, radix, use_caps);
-                    vstrp = &vstr[vlen];
+                    vlen = ConvertRadixNumToString( vstr,
+                                                    &uval,
+                                                    false,
+                                                    radix,
+                                                    use_caps );
+                    vstrp = &vstr[ vlen ];
 #if PRINTF_ADVANCED_ENABLE
-                    if (flags_used & kPRINTF_Zero)
+                    if( flags_used & kPRINTF_Zero )
                     {
-                        cb(buf, &count, '0', field_width - vlen);
+                        cb( buf, &count, '0', field_width - vlen );
                         vlen = field_width;
                     }
                     else
                     {
-                        if (!(flags_used & kPRINTF_Minus))
+                        if( !( flags_used & kPRINTF_Minus ) )
                         {
-                            cb(buf, &count, ' ', field_width - vlen);
+                            cb( buf, &count, ' ', field_width - vlen );
                         }
                     }
 #endif /* PRINTF_ADVANCED_ENABLE */
                 }
 #if !PRINTF_ADVANCED_ENABLE
-                cb(buf, &count, ' ', field_width - vlen);
+                cb( buf, &count, ' ', field_width - vlen );
 #endif /* !PRINTF_ADVANCED_ENABLE */
-                if (vstrp != NULL)
+                if( vstrp != NULL )
                 {
-                    while (*vstrp)
+                    while( *vstrp )
                     {
-                        cb(buf, &count, *vstrp--, 1);
+                        cb( buf, &count, *vstrp--, 1 );
                     }
                 }
 #if PRINTF_ADVANCED_ENABLE
-                if (flags_used & kPRINTF_Minus)
+                if( flags_used & kPRINTF_Minus )
                 {
-                    cb(buf, &count, ' ', field_width - vlen);
+                    cb( buf, &count, ' ', field_width - vlen );
                 }
 #endif /* PRINTF_ADVANCED_ENABLE */
             }
-            else if (c == 'c')
+            else if( c == 'c' )
             {
-                cval = (char)va_arg(ap, uint32_t);
-                cb(buf, &count, cval, 1);
+                cval = ( char ) va_arg( ap, uint32_t );
+                cb( buf, &count, cval, 1 );
             }
-            else if (c == 's')
+            else if( c == 's' )
             {
-                sval = (char *)va_arg(ap, char *);
-                if (sval)
+                sval = ( char * ) va_arg( ap, char * );
+                if( sval )
                 {
 #if PRINTF_ADVANCED_ENABLE
-                    if (valid_precision_width)
+                    if( valid_precision_width )
                     {
                         vlen = precision_width;
                     }
                     else
                     {
-                        vlen = strlen(sval);
+                        vlen = strlen( sval );
                     }
 #else
-                    vlen = strlen(sval);
+                    vlen = strlen( sval );
 #endif /* PRINTF_ADVANCED_ENABLE */
 #if PRINTF_ADVANCED_ENABLE
-                    if (!(flags_used & kPRINTF_Minus))
+                    if( !( flags_used & kPRINTF_Minus ) )
 #endif /* PRINTF_ADVANCED_ENABLE */
                     {
-                        cb(buf, &count, ' ', field_width - vlen);
+                        cb( buf, &count, ' ', field_width - vlen );
                     }
 
 #if PRINTF_ADVANCED_ENABLE
-                    if (valid_precision_width)
+                    if( valid_precision_width )
                     {
-                        while ((*sval) && (vlen > 0))
+                        while( ( *sval ) && ( vlen > 0 ) )
                         {
-                            cb(buf, &count, *sval++, 1);
+                            cb( buf, &count, *sval++, 1 );
                             vlen--;
                         }
                         /* In case that vlen sval is shorter than vlen */
@@ -823,25 +858,25 @@ int StrFormatPrintf(const char *fmt, va_list ap, char *buf, printfCb cb)
                     else
                     {
 #endif /* PRINTF_ADVANCED_ENABLE */
-                        while (*sval)
+                        while( *sval )
                         {
-                            cb(buf, &count, *sval++, 1);
+                            cb( buf, &count, *sval++, 1 );
                         }
 #if PRINTF_ADVANCED_ENABLE
                     }
 #endif /* PRINTF_ADVANCED_ENABLE */
 
 #if PRINTF_ADVANCED_ENABLE
-                    if (flags_used & kPRINTF_Minus)
+                    if( flags_used & kPRINTF_Minus )
                     {
-                        cb(buf, &count, ' ', field_width - vlen);
+                        cb( buf, &count, ' ', field_width - vlen );
                     }
 #endif /* PRINTF_ADVANCED_ENABLE */
                 }
             }
             else
             {
-                cb(buf, &count, c, 1);
+                cb( buf, &count, c, 1 );
             }
         }
     }
@@ -849,14 +884,14 @@ int StrFormatPrintf(const char *fmt, va_list ap, char *buf, printfCb cb)
     return count;
 }
 
-int StrFormatScanf(const char *line_ptr, char *format, va_list args_ptr)
+int StrFormatScanf( const char * line_ptr, char * format, va_list args_ptr )
 {
     uint8_t base;
     int8_t neg;
     /* Identifier for the format string. */
-    char *c = format;
+    char * c = format;
     char temp;
-    char *buf;
+    char * buf;
     /* Flag telling the conversion specification. */
     uint32_t flag = 0;
     /* Filed width for the matching input streams. */
@@ -868,29 +903,29 @@ int StrFormatScanf(const char *line_ptr, char *format, va_list args_ptr)
 
     int32_t val;
 
-    const char *s;
+    const char * s;
     /* Identifier for the input string. */
-    const char *p = line_ptr;
+    const char * p = line_ptr;
 
     /* Return EOF error before any conversion. */
-    if (*p == '\0')
+    if( *p == '\0' )
     {
         return -1;
     }
 
     /* Decode directives. */
-    while ((*c) && (*p))
+    while( ( *c ) && ( *p ) )
     {
         /* Ignore all white-spaces in the format strings. */
-        if (ScanIgnoreWhiteSpace((const char **)&c))
+        if( ScanIgnoreWhiteSpace( ( const char ** ) &c ) )
         {
-            n_decode += ScanIgnoreWhiteSpace(&p);
+            n_decode += ScanIgnoreWhiteSpace( &p );
         }
-        else if ((*c != '%') || ((*c == '%') && (*(c + 1) == '%')))
+        else if( ( *c != '%' ) || ( ( *c == '%' ) && ( *( c + 1 ) == '%' ) ) )
         {
             /* Ordinary characters. */
             c++;
-            if (*p == *c)
+            if( *p == *c )
             {
                 n_decode++;
                 p++;
@@ -898,8 +933,9 @@ int StrFormatScanf(const char *line_ptr, char *format, va_list args_ptr)
             }
             else
             {
-                /* Match failure. Misalignment with C99, the unmatched characters need to be pushed back to stream.
-                 * However, it is deserted now. */
+                /* Match failure. Misalignment with C99, the unmatched
+                 * characters need to be pushed back to stream. However, it is
+                 * deserted now. */
                 break;
             }
         }
@@ -913,13 +949,13 @@ int StrFormatScanf(const char *line_ptr, char *format, va_list args_ptr)
             base = 0;
 
             /* Loop to get full conversion specification. */
-            while ((*c) && (!(flag & kSCANF_DestMask)))
+            while( ( *c ) && ( !( flag & kSCANF_DestMask ) ) )
             {
-                switch (*c)
+                switch( *c )
                 {
 #if SCANF_ADVANCED_ENABLE
                     case '*':
-                        if (flag & kSCANF_Suppress)
+                        if( flag & kSCANF_Suppress )
                         {
                             /* Match failure. */
                             return nassigned;
@@ -928,13 +964,13 @@ int StrFormatScanf(const char *line_ptr, char *format, va_list args_ptr)
                         c++;
                         break;
                     case 'h':
-                        if (flag & kSCANF_LengthMask)
+                        if( flag & kSCANF_LengthMask )
                         {
                             /* Match failure. */
                             return nassigned;
                         }
 
-                        if (c[1] == 'h')
+                        if( c[ 1 ] == 'h' )
                         {
                             flag |= kSCANF_LengthChar;
                             c++;
@@ -946,13 +982,13 @@ int StrFormatScanf(const char *line_ptr, char *format, va_list args_ptr)
                         c++;
                         break;
                     case 'l':
-                        if (flag & kSCANF_LengthMask)
+                        if( flag & kSCANF_LengthMask )
                         {
                             /* Match failure. */
                             return nassigned;
                         }
 
-                        if (c[1] == 'l')
+                        if( c[ 1 ] == 'l' )
                         {
                             flag |= kSCANF_LengthLongLongInt;
                             c++;
@@ -966,7 +1002,7 @@ int StrFormatScanf(const char *line_ptr, char *format, va_list args_ptr)
 #endif /* SCANF_ADVANCED_ENABLE */
 #if SCANF_FLOAT_ENABLE
                     case 'L':
-                        if (flag & kSCANF_LengthMask)
+                        if( flag & kSCANF_LengthMask )
                         {
                             /* Match failure. */
                             return nassigned;
@@ -985,7 +1021,7 @@ int StrFormatScanf(const char *line_ptr, char *format, va_list args_ptr)
                     case '7':
                     case '8':
                     case '9':
-                        if (field_width)
+                        if( field_width )
                         {
                             /* Match failure. */
                             return nassigned;
@@ -994,7 +1030,7 @@ int StrFormatScanf(const char *line_ptr, char *format, va_list args_ptr)
                         {
                             field_width = field_width * 10 + *c - '0';
                             c++;
-                        } while ((*c >= '0') && (*c <= '9'));
+                        } while( ( *c >= '0' ) && ( *c <= '9' ) );
                         break;
                     case 'd':
                         base = 10;
@@ -1038,7 +1074,7 @@ int StrFormatScanf(const char *line_ptr, char *format, va_list args_ptr)
 #endif /* SCANF_FLOAT_ENABLE */
                     case 'c':
                         flag |= kSCANF_DestChar;
-                        if (!field_width)
+                        if( !field_width )
                         {
                             field_width = 1;
                         }
@@ -1053,27 +1089,27 @@ int StrFormatScanf(const char *line_ptr, char *format, va_list args_ptr)
                 }
             }
 
-            if (!(flag & kSCANF_DestMask))
+            if( !( flag & kSCANF_DestMask ) )
             {
                 /* Format strings are exhausted. */
                 return nassigned;
             }
 
-            if (!field_width)
+            if( !field_width )
             {
                 /* Large than length of a line. */
                 field_width = 99;
             }
 
             /* Matching strings in input streams and assign to argument. */
-            switch (flag & kSCANF_DestMask)
+            switch( flag & kSCANF_DestMask )
             {
                 case kSCANF_DestChar:
-                    s = (const char *)p;
-                    buf = va_arg(args_ptr, char *);
-                    while ((field_width--) && (*p))
+                    s = ( const char * ) p;
+                    buf = va_arg( args_ptr, char * );
+                    while( ( field_width-- ) && ( *p ) )
                     {
-                        if (!(flag & kSCANF_Suppress))
+                        if( !( flag & kSCANF_Suppress ) )
                         {
                             *buf++ = *p++;
                         }
@@ -1084,19 +1120,20 @@ int StrFormatScanf(const char *line_ptr, char *format, va_list args_ptr)
                         n_decode++;
                     }
 
-                    if ((!(flag & kSCANF_Suppress)) && (s != p))
+                    if( ( !( flag & kSCANF_Suppress ) ) && ( s != p ) )
                     {
                         nassigned++;
                     }
                     break;
                 case kSCANF_DestString:
-                    n_decode += ScanIgnoreWhiteSpace(&p);
+                    n_decode += ScanIgnoreWhiteSpace( &p );
                     s = p;
-                    buf = va_arg(args_ptr, char *);
-                    while ((field_width--) && (*p != '\0') && (*p != ' ') && (*p != '\t') && (*p != '\n') &&
-                           (*p != '\r') && (*p != '\v') && (*p != '\f'))
+                    buf = va_arg( args_ptr, char * );
+                    while( ( field_width-- ) && ( *p != '\0' ) &&
+                           ( *p != ' ' ) && ( *p != '\t' ) && ( *p != '\n' ) &&
+                           ( *p != '\r' ) && ( *p != '\v' ) && ( *p != '\f' ) )
                     {
-                        if (flag & kSCANF_Suppress)
+                        if( flag & kSCANF_Suppress )
                         {
                             p++;
                         }
@@ -1107,7 +1144,7 @@ int StrFormatScanf(const char *line_ptr, char *format, va_list args_ptr)
                         n_decode++;
                     }
 
-                    if ((!(flag & kSCANF_Suppress)) && (s != p))
+                    if( ( !( flag & kSCANF_Suppress ) ) && ( s != p ) )
                     {
                         /* Add NULL to end of string. */
                         *buf = '\0';
@@ -1115,15 +1152,16 @@ int StrFormatScanf(const char *line_ptr, char *format, va_list args_ptr)
                     }
                     break;
                 case kSCANF_DestInt:
-                    n_decode += ScanIgnoreWhiteSpace(&p);
+                    n_decode += ScanIgnoreWhiteSpace( &p );
                     s = p;
                     val = 0;
-                    if ((base == 0) || (base == 16))
+                    if( ( base == 0 ) || ( base == 16 ) )
                     {
-                        if ((s[0] == '0') && ((s[1] == 'x') || (s[1] == 'X')))
+                        if( ( s[ 0 ] == '0' ) &&
+                            ( ( s[ 1 ] == 'x' ) || ( s[ 1 ] == 'X' ) ) )
                         {
                             base = 16;
-                            if (field_width >= 1)
+                            if( field_width >= 1 )
                             {
                                 p += 2;
                                 n_decode += 2;
@@ -1132,9 +1170,9 @@ int StrFormatScanf(const char *line_ptr, char *format, va_list args_ptr)
                         }
                     }
 
-                    if (base == 0)
+                    if( base == 0 )
                     {
-                        if (s[0] == '0')
+                        if( s[ 0 ] == '0' )
                         {
                             base = 8;
                         }
@@ -1145,7 +1183,7 @@ int StrFormatScanf(const char *line_ptr, char *format, va_list args_ptr)
                     }
 
                     neg = 1;
-                    switch (*p)
+                    switch( *p )
                     {
                         case '-':
                             neg = -1;
@@ -1163,17 +1201,17 @@ int StrFormatScanf(const char *line_ptr, char *format, va_list args_ptr)
                             break;
                     }
 
-                    while ((*p) && (field_width--))
+                    while( ( *p ) && ( field_width-- ) )
                     {
-                        if ((*p <= '9') && (*p >= '0'))
+                        if( ( *p <= '9' ) && ( *p >= '0' ) )
                         {
                             temp = *p - '0';
                         }
-                        else if ((*p <= 'f') && (*p >= 'a'))
+                        else if( ( *p <= 'f' ) && ( *p >= 'a' ) )
                         {
                             temp = *p - 'a' + 10;
                         }
-                        else if ((*p <= 'F') && (*p >= 'A'))
+                        else if( ( *p <= 'F' ) && ( *p >= 'A' ) )
                         {
                             temp = *p - 'A' + 10;
                         }
@@ -1182,7 +1220,7 @@ int StrFormatScanf(const char *line_ptr, char *format, va_list args_ptr)
                             temp = base;
                         }
 
-                        if (temp >= base)
+                        if( temp >= base )
                         {
                             break;
                         }
@@ -1194,72 +1232,94 @@ int StrFormatScanf(const char *line_ptr, char *format, va_list args_ptr)
                         n_decode++;
                     }
                     val *= neg;
-                    if (!(flag & kSCANF_Suppress))
+                    if( !( flag & kSCANF_Suppress ) )
                     {
 #if SCANF_ADVANCED_ENABLE
-                        switch (flag & kSCANF_LengthMask)
+                        switch( flag & kSCANF_LengthMask )
                         {
                             case kSCANF_LengthChar:
-                                if (flag & kSCANF_TypeSinged)
+                                if( flag & kSCANF_TypeSinged )
                                 {
-                                    *va_arg(args_ptr, signed char *) = (signed char)val;
+                                    *va_arg( args_ptr,
+                                             signed char * ) = ( signed char )
+                                        val;
                                 }
                                 else
                                 {
-                                    *va_arg(args_ptr, unsigned char *) = (unsigned char)val;
+                                    *va_arg( args_ptr,
+                                             unsigned char * ) = ( unsigned char )
+                                        val;
                                 }
                                 break;
                             case kSCANF_LengthShortInt:
-                                if (flag & kSCANF_TypeSinged)
+                                if( flag & kSCANF_TypeSinged )
                                 {
-                                    *va_arg(args_ptr, signed short *) = (signed short)val;
+                                    *va_arg( args_ptr,
+                                             signed short * ) = ( signed short )
+                                        val;
                                 }
                                 else
                                 {
-                                    *va_arg(args_ptr, unsigned short *) = (unsigned short)val;
+                                    *va_arg(
+                                        args_ptr,
+                                        unsigned short * ) = ( unsigned short )
+                                        val;
                                 }
                                 break;
                             case kSCANF_LengthLongInt:
-                                if (flag & kSCANF_TypeSinged)
+                                if( flag & kSCANF_TypeSinged )
                                 {
-                                    *va_arg(args_ptr, signed long int *) = (signed long int)val;
+                                    *va_arg(
+                                        args_ptr,
+                                        signed long int * ) = ( signed long int )
+                                        val;
                                 }
                                 else
                                 {
-                                    *va_arg(args_ptr, unsigned long int *) = (unsigned long int)val;
+                                    *va_arg( args_ptr, unsigned long int * ) =
+                                        ( unsigned long int ) val;
                                 }
                                 break;
                             case kSCANF_LengthLongLongInt:
-                                if (flag & kSCANF_TypeSinged)
+                                if( flag & kSCANF_TypeSinged )
                                 {
-                                    *va_arg(args_ptr, signed long long int *) = (signed long long int)val;
+                                    *va_arg( args_ptr,
+                                             signed long long int * ) =
+                                        ( signed long long int ) val;
                                 }
                                 else
                                 {
-                                    *va_arg(args_ptr, unsigned long long int *) = (unsigned long long int)val;
+                                    *va_arg( args_ptr,
+                                             unsigned long long int * ) =
+                                        ( unsigned long long int ) val;
                                 }
                                 break;
                             default:
                                 /* The default type is the type int. */
-                                if (flag & kSCANF_TypeSinged)
+                                if( flag & kSCANF_TypeSinged )
                                 {
-                                    *va_arg(args_ptr, signed int *) = (signed int)val;
+                                    *va_arg( args_ptr,
+                                             signed int * ) = ( signed int ) val;
                                 }
                                 else
                                 {
-                                    *va_arg(args_ptr, unsigned int *) = (unsigned int)val;
+                                    *va_arg( args_ptr,
+                                             unsigned int * ) = ( unsigned int )
+                                        val;
                                 }
                                 break;
                         }
 #else
                         /* The default type is the type int. */
-                        if (flag & kSCANF_TypeSinged)
+                        if( flag & kSCANF_TypeSinged )
                         {
-                            *va_arg(args_ptr, signed int *) = (signed int)val;
+                            *va_arg( args_ptr,
+                                     signed int * ) = ( signed int ) val;
                         }
                         else
                         {
-                            *va_arg(args_ptr, unsigned int *) = (unsigned int)val;
+                            *va_arg( args_ptr,
+                                     unsigned int * ) = ( unsigned int ) val;
                         }
 #endif /* SCANF_ADVANCED_ENABLE */
                         nassigned++;
@@ -1267,25 +1327,25 @@ int StrFormatScanf(const char *line_ptr, char *format, va_list args_ptr)
                     break;
 #if SCANF_FLOAT_ENABLE
                 case kSCANF_DestFloat:
-                    n_decode += ScanIgnoreWhiteSpace(&p);
-                    fnum = strtod(p, (char **)&s);
+                    n_decode += ScanIgnoreWhiteSpace( &p );
+                    fnum = strtod( p, ( char ** ) &s );
 
-                    if ((fnum >= HUGE_VAL) || (fnum <= -HUGE_VAL))
+                    if( ( fnum >= HUGE_VAL ) || ( fnum <= -HUGE_VAL ) )
                     {
                         break;
                     }
 
-                    n_decode += (int)(s) - (int)(p);
+                    n_decode += ( int ) ( s ) - ( int ) ( p );
                     p = s;
-                    if (!(flag & kSCANF_Suppress))
+                    if( !( flag & kSCANF_Suppress ) )
                     {
-                        if (flag & kSCANF_LengthLongLongDouble)
+                        if( flag & kSCANF_LengthLongLongDouble )
                         {
-                            *va_arg(args_ptr, double *) = fnum;
+                            *va_arg( args_ptr, double * ) = fnum;
                         }
                         else
                         {
-                            *va_arg(args_ptr, float *) = (float)fnum;
+                            *va_arg( args_ptr, float * ) = ( float ) fnum;
                         }
                         nassigned++;
                     }

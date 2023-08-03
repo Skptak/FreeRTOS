@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -72,35 +73,35 @@ void TEST_RUNNER_RunTests_task( void * pvParameters )
 
     /* Give the print buffer time to empty */
     vTaskDelay( pdMS_TO_TICKS( 500 ) );
-    /* Measure the heap size before any tests are run. */
-    #if ( testrunnerFULL_MEMORYLEAK_ENABLED == 1 )
-        xHeapBefore = xPortGetFreeHeapSize();
-    #endif
+/* Measure the heap size before any tests are run. */
+#if( testrunnerFULL_MEMORYLEAK_ENABLED == 1 )
+    xHeapBefore = xPortGetFreeHeapSize();
+#endif
 
     RunTests();
 
-    #if ( testrunnerFULL_MEMORYLEAK_ENABLED == 1 )
+#if( testrunnerFULL_MEMORYLEAK_ENABLED == 1 )
 
-        /* Measure the heap size after tests are done running.
-         * This test must run last. */
+    /* Measure the heap size after tests are done running.
+     * This test must run last. */
 
-        /* Perform any global resource cleanup necessary to avoid memory leaks. */
-        #ifdef testrunnerMEMORYLEAK_CLEANUP
-            testrunnerMEMORYLEAK_CLEANUP();
-        #endif
+    /* Perform any global resource cleanup necessary to avoid memory leaks. */
+    #ifdef testrunnerMEMORYLEAK_CLEANUP
+    testrunnerMEMORYLEAK_CLEANUP();
+    #endif
 
-        /* Give the print buffer time to empty */
-        vTaskDelay( pdMS_TO_TICKS( 500 ) );
-        xHeapAfter = xPortGetFreeHeapSize();
-        RUN_TEST_GROUP( Full_MemoryLeak );
-    #endif /* if ( testrunnerFULL_MEMORYLEAK_ENABLED == 1 ) */
+    /* Give the print buffer time to empty */
+    vTaskDelay( pdMS_TO_TICKS( 500 ) );
+    xHeapAfter = xPortGetFreeHeapSize();
+    RUN_TEST_GROUP( Full_MemoryLeak );
+#endif /* if ( testrunnerFULL_MEMORYLEAK_ENABLED == 1 ) */
 
     /* Currently disabled. Will be enabled after cleanup. */
     UNITY_END();
 
-    #ifdef CODE_COVERAGE
-        exit( 0 );
-    #endif
+#ifdef CODE_COVERAGE
+    exit( 0 );
+#endif
 
     /* This task has finished.  FreeRTOS does not allow a task to run off the
      * end of its implementing function, so the task must be deleted. */

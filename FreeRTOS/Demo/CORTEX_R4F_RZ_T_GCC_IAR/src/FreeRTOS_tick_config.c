@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -28,8 +29,8 @@
 #include "FreeRTOS.h"
 
 /* Renesas includes. */
-#include "r_cg_macrodriver.h"
 #include "r_cg_cmt.h"
+#include "r_cg_macrodriver.h"
 #include "r_reset.h"
 
 /*-----------------------------------------------------------*/
@@ -40,12 +41,12 @@
  * IRQ handler.
  */
 #ifdef __GNUC__
-	static void FreeRTOS_Tick_Handler_Entry( void ) __attribute__((naked));
+static void FreeRTOS_Tick_Handler_Entry( void ) __attribute__( ( naked ) );
 #endif /* __GNUC__ */
 #ifdef __ICCARM__
-	/* IAR requires the entry point to be in an assembly file.  The function is
-	implemented in $PROJ_DIR$/System/IAR/Interrupt_Entry_Stubs.asm. */
-	extern void FreeRTOS_Tick_Handler_Entry( void );
+/* IAR requires the entry point to be in an assembly file.  The function is
+implemented in $PROJ_DIR$/System/IAR/Interrupt_Entry_Stubs.asm. */
+extern void FreeRTOS_Tick_Handler_Entry( void );
 #endif /* __ICCARM__ */
 
 /*
@@ -76,48 +77,48 @@ ISRFunction_t pxISRFunction = NULL;
  */
 void vConfigureTickInterrupt( void )
 {
-uint32_t ulCompareMatchValue;
-const uint32_t ulPeripheralClockDivider = 6UL, ulCMTClockDivider = 8UL;
+    uint32_t ulCompareMatchValue;
+    const uint32_t ulPeripheralClockDivider = 6UL, ulCMTClockDivider = 8UL;
 
-	/* Disable CMI5 interrupt. */
-	VIC.IEC9.LONG = 0x00001000UL;
+    /* Disable CMI5 interrupt. */
+    VIC.IEC9.LONG = 0x00001000UL;
 
-	/* Cancel CMT stop state in LPC. */
-	r_rst_write_enable();
-	MSTP( CMT2 ) = 0U;
-	r_rst_write_disable();
+    /* Cancel CMT stop state in LPC. */
+    r_rst_write_enable();
+    MSTP( CMT2 ) = 0U;
+    r_rst_write_disable();
 
-	/* Interrupt on compare match. */
-	CMT5.CMCR.BIT.CMIE = 1;
+    /* Interrupt on compare match. */
+    CMT5.CMCR.BIT.CMIE = 1;
 
-	/* Calculate the compare match value. */
-	ulCompareMatchValue = configCPU_CLOCK_HZ / ulPeripheralClockDivider;
-	ulCompareMatchValue /= ulCMTClockDivider;
-	ulCompareMatchValue /= configTICK_RATE_HZ;
-	ulCompareMatchValue -= 1UL;
+    /* Calculate the compare match value. */
+    ulCompareMatchValue = configCPU_CLOCK_HZ / ulPeripheralClockDivider;
+    ulCompareMatchValue /= ulCMTClockDivider;
+    ulCompareMatchValue /= configTICK_RATE_HZ;
+    ulCompareMatchValue -= 1UL;
 
-	/* Set the compare match value. */
-	CMT5.CMCOR = ( unsigned short ) ulCompareMatchValue;
+    /* Set the compare match value. */
+    CMT5.CMCOR = ( unsigned short ) ulCompareMatchValue;
 
-	/* Divide the PCLK by 8. */
-	CMT5.CMCR.BIT.CKS = 0;
+    /* Divide the PCLK by 8. */
+    CMT5.CMCR.BIT.CKS = 0;
 
-	CMT5.CMCNT = 0;
+    CMT5.CMCNT = 0;
 
-	/* Set CMI5 edge detection type. */
-	VIC.PLS9.LONG |= 0x00001000UL;
+    /* Set CMI5 edge detection type. */
+    VIC.PLS9.LONG |= 0x00001000UL;
 
-	/* Set CMI5 priority level to the lowest possible. */
-	VIC.PRL300.LONG = _CMT_PRIORITY_LEVEL31;
+    /* Set CMI5 priority level to the lowest possible. */
+    VIC.PRL300.LONG = _CMT_PRIORITY_LEVEL31;
 
-	/* Set CMI5 interrupt address */
-	VIC.VAD300.LONG = ( uint32_t ) FreeRTOS_Tick_Handler_Entry;
+    /* Set CMI5 interrupt address */
+    VIC.VAD300.LONG = ( uint32_t ) FreeRTOS_Tick_Handler_Entry;
 
-	/* Enable CMI5 interrupt in ICU. */
-	VIC.IEN9.LONG |= 0x00001000UL;
+    /* Enable CMI5 interrupt in ICU. */
+    VIC.IEN9.LONG |= 0x00001000UL;
 
-	/* Start CMT5 count. */
-	CMT.CMSTR2.BIT.STR5 = 1U;
+    /* Start CMT5 count. */
+    CMT.CMSTR2.BIT.STR5 = 1U;
 }
 /*-----------------------------------------------------------*/
 
@@ -129,12 +130,12 @@ const uint32_t ulPeripheralClockDivider = 6UL, ulCMTClockDivider = 8UL;
  */
 void vApplicationIRQHandler( void )
 {
-ISRFunction_t pxISRToCall = pxISRFunction;
+    ISRFunction_t pxISRToCall = pxISRFunction;
 
-	portENABLE_INTERRUPTS();
+    portENABLE_INTERRUPTS();
 
-	/* Call the installed ISR. */
-	pxISRToCall();
+    /* Call the installed ISR. */
+    pxISRToCall();
 }
 /*-----------------------------------------------------------*/
 
@@ -149,22 +150,16 @@ ISRFunction_t pxISRToCall = pxISRFunction;
  * function - do not add C code to this function.
  */
 #ifdef __GNUC__
-	/* The IAR equivalent is implemented in
-	$PROJ_DIR$/System/IAR/Interrupt_Entry_Stubs.asm */
-	static void FreeRTOS_Tick_Handler_Entry( void )
-	{
-		__asm volatile (
-							"PUSH	{r0-r1}								\t\n"
-							"LDR	r0, =pxISRFunction					\t\n"
-							"LDR	R1, =FreeRTOS_Tick_Handler			\t\n"
-							"STR	R1, [r0]							\t\n"
-							"POP	{r0-r1}								\t\n"
-							"B		FreeRTOS_IRQ_Handler					"
-						);
-	}
+/* The IAR equivalent is implemented in
+$PROJ_DIR$/System/IAR/Interrupt_Entry_Stubs.asm */
+static void FreeRTOS_Tick_Handler_Entry( void )
+{
+    __asm volatile( "PUSH	{r0-r1}								\t\n"
+                    "LDR	r0, =pxISRFunction					\t\n"
+                    "LDR	R1, =FreeRTOS_Tick_Handler			\t\n"
+                    "STR	R1, [r0]							\t\n"
+                    "POP	{r0-r1}								\t\n"
+                    "B		FreeRTOS_IRQ_Handler					" );
+}
 #endif /* __GNUC__ */
 /*-----------------------------------------------------------*/
-
-
-
-

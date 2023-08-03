@@ -50,7 +50,8 @@ TaskHandle_t xUnconstrainedTCB( void )
 
     if( nondet_bool() )
     {
-        listSET_LIST_ITEM_VALUE( &( pxTCB->xStateListItem ), pxTCB->uxPriority );
+        listSET_LIST_ITEM_VALUE( &( pxTCB->xStateListItem ),
+                                 pxTCB->uxPriority );
     }
     else
     {
@@ -59,7 +60,9 @@ TaskHandle_t xUnconstrainedTCB( void )
 
     if( nondet_bool() )
     {
-        listSET_LIST_ITEM_VALUE( &( pxTCB->xEventListItem ), ( TickType_t ) configMAX_PRIORITIES - ( TickType_t ) pxTCB->uxPriority );
+        listSET_LIST_ITEM_VALUE( &( pxTCB->xEventListItem ),
+                                 ( TickType_t ) configMAX_PRIORITIES -
+                                     ( TickType_t ) pxTCB->uxPriority );
     }
     else
     {
@@ -144,7 +147,8 @@ BaseType_t xPrepareTaskLists( void )
         return pdFAIL;
     }
 
-    vListInsert( &pxReadyTasksLists[ pxCurrentTCB->uxPriority ], &( pxCurrentTCB->xStateListItem ) );
+    vListInsert( &pxReadyTasksLists[ pxCurrentTCB->uxPriority ],
+                 &( pxCurrentTCB->xStateListItem ) );
 
     return pdPASS;
 }

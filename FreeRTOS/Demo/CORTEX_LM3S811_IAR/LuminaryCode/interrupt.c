@@ -32,12 +32,12 @@
 //
 //*****************************************************************************
 
+#include "interrupt.h"
 #include "../hw_ints.h"
 #include "../hw_nvic.h"
 #include "../hw_types.h"
 #include "cpu.h"
 #include "debug.h"
-#include "interrupt.h"
 
 //*****************************************************************************
 //
@@ -45,9 +45,8 @@
 // preemption priority bits.
 //
 //*****************************************************************************
-#if defined(GROUP_pulpriority) || defined(BUILD_ALL)
-const unsigned long g_pulPriority[] =
-{
+#if defined( GROUP_pulpriority ) || defined( BUILD_ALL )
+const unsigned long g_pulPriority[] = {
     NVIC_APINT_PRIGROUP_0_8, NVIC_APINT_PRIGROUP_1_7, NVIC_APINT_PRIGROUP_2_6,
     NVIC_APINT_PRIGROUP_3_5, NVIC_APINT_PRIGROUP_4_4, NVIC_APINT_PRIGROUP_5_3,
     NVIC_APINT_PRIGROUP_6_2, NVIC_APINT_PRIGROUP_7_1
@@ -62,14 +61,14 @@ extern const unsigned long g_pulPriority[];
 // the priority encoding for that interrupt.
 //
 //*****************************************************************************
-#if defined(GROUP_pulregs) || defined(BUILD_ALL)
-const unsigned long g_pulRegs[12] =
-{
-    0, NVIC_SYS_PRI1, NVIC_SYS_PRI2, NVIC_SYS_PRI3, NVIC_PRI0, NVIC_PRI1,
-    NVIC_PRI2, NVIC_PRI3, NVIC_PRI4, NVIC_PRI5, NVIC_PRI6, NVIC_PRI7
+#if defined( GROUP_pulregs ) || defined( BUILD_ALL )
+const unsigned long g_pulRegs[ 12 ] = {
+    0,         NVIC_SYS_PRI1, NVIC_SYS_PRI2, NVIC_SYS_PRI3,
+    NVIC_PRI0, NVIC_PRI1,     NVIC_PRI2,     NVIC_PRI3,
+    NVIC_PRI4, NVIC_PRI5,     NVIC_PRI6,     NVIC_PRI7
 };
 #else
-extern const unsigned long g_pulRegs[12];
+extern const unsigned long g_pulRegs[ 12 ];
 #endif
 
 //*****************************************************************************
@@ -85,19 +84,18 @@ extern const unsigned long g_pulRegs[12];
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_defaulthandler) || defined(BUILD_ALL)
-void
-IntDefaultHandler(void)
+#if defined( GROUP_defaulthandler ) || defined( BUILD_ALL )
+void IntDefaultHandler( void )
 {
     //
     // Go into an infinite loop.
     //
-    while(1)
+    while( 1 )
     {
     }
 }
 #else
-extern void IntDefaultHandler(void);
+extern void IntDefaultHandler( void );
 #endif
 
 //*****************************************************************************
@@ -110,15 +108,15 @@ extern void IntDefaultHandler(void);
 // address given in the corresponding location in this list.
 //
 //*****************************************************************************
-#if defined(GROUP_vtable) || defined(BUILD_ALL)
-#ifdef ewarm
-__no_init void (*g_pfnRAMVectors[NUM_INTERRUPTS])(void) @ "VTABLE";
+#if defined( GROUP_vtable ) || defined( BUILD_ALL )
+    #ifdef ewarm
+__no_init void ( *g_pfnRAMVectors[ NUM_INTERRUPTS ] )( void ) @ "VTABLE";
+    #else
+__attribute__( ( section( "vtable" ) ) ) void (
+    *g_pfnRAMVectors[ NUM_INTERRUPTS ] )( void );
+    #endif
 #else
-__attribute__((section("vtable")))
-void (*g_pfnRAMVectors[NUM_INTERRUPTS])(void);
-#endif
-#else
-extern void (*g_pfnRAMVectors[NUM_INTERRUPTS])(void);
+extern void ( *g_pfnRAMVectors[ NUM_INTERRUPTS ] )( void );
 #endif
 
 //*****************************************************************************
@@ -132,9 +130,8 @@ extern void (*g_pfnRAMVectors[NUM_INTERRUPTS])(void);
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_masterenable) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-IntMasterEnable(void)
+#if defined( GROUP_masterenable ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void IntMasterEnable( void )
 {
     //
     // Enable processor interrupts.
@@ -154,9 +151,8 @@ IntMasterEnable(void)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_masterdisable) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-IntMasterDisable(void)
+#if defined( GROUP_masterdisable ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void IntMasterDisable( void )
 {
     //
     // Disable processor interrupts.
@@ -194,46 +190,46 @@ IntMasterDisable(void)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_register) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-IntRegister(unsigned long ulInterrupt, void (*pfnHandler)(void))
+#if defined( GROUP_register ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void IntRegister( unsigned long ulInterrupt, void ( *pfnHandler )( void ) )
 {
     unsigned long ulIdx;
 
     //
     // Check the arguments.
     //
-    ASSERT(ulInterrupt < NUM_INTERRUPTS);
+    ASSERT( ulInterrupt < NUM_INTERRUPTS );
 
     //
     // Make sure that the RAM vector table is correctly aligned.
     //
-    ASSERT(((unsigned long)g_pfnRAMVectors & 0x000003ff) == 0);
+    ASSERT( ( ( unsigned long ) g_pfnRAMVectors & 0x000003ff ) == 0 );
 
     //
     // See if the RAM vector table has been initialized.
     //
-    if(HWREG(NVIC_VTABLE) != (unsigned long)g_pfnRAMVectors)
+    if( HWREG( NVIC_VTABLE ) != ( unsigned long ) g_pfnRAMVectors )
     {
         //
         // Copy the vector table from the beginning of FLASH to the RAM vector
         // table.
         //
-        for(ulIdx = 0; ulIdx < NUM_INTERRUPTS; ulIdx++)
+        for( ulIdx = 0; ulIdx < NUM_INTERRUPTS; ulIdx++ )
         {
-            g_pfnRAMVectors[ulIdx] = (void (*)(void))HWREG(ulIdx * 4);
+            g_pfnRAMVectors[ ulIdx ] = ( void ( * )( void ) ) HWREG( ulIdx *
+                                                                     4 );
         }
 
         //
         // Point NVIC at the RAM vector table.
         //
-        HWREG(NVIC_VTABLE) = (unsigned long)g_pfnRAMVectors;
+        HWREG( NVIC_VTABLE ) = ( unsigned long ) g_pfnRAMVectors;
     }
 
     //
     // Save the interrupt handler.
     //
-    g_pfnRAMVectors[ulInterrupt] = pfnHandler;
+    g_pfnRAMVectors[ ulInterrupt ] = pfnHandler;
 }
 #endif
 
@@ -253,19 +249,18 @@ IntRegister(unsigned long ulInterrupt, void (*pfnHandler)(void))
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_unregister) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-IntUnregister(unsigned long ulInterrupt)
+#if defined( GROUP_unregister ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void IntUnregister( unsigned long ulInterrupt )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulInterrupt < NUM_INTERRUPTS);
+    ASSERT( ulInterrupt < NUM_INTERRUPTS );
 
     //
     // Reset the interrupt handler.
     //
-    g_pfnRAMVectors[ulInterrupt] = IntDefaultHandler;
+    g_pfnRAMVectors[ ulInterrupt ] = IntDefaultHandler;
 }
 #endif
 
@@ -283,20 +278,19 @@ IntUnregister(unsigned long ulInterrupt)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_prioritygroupingset) || defined(BUILD_ALL) || \
-    defined(DOXYGEN)
-void
-IntPriorityGroupingSet(unsigned long ulBits)
+#if defined( GROUP_prioritygroupingset ) || defined( BUILD_ALL ) || \
+    defined( DOXYGEN )
+void IntPriorityGroupingSet( unsigned long ulBits )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBits < NUM_PRIORITY_BITS);
+    ASSERT( ulBits < NUM_PRIORITY_BITS );
 
     //
     // Set the priority grouping.
     //
-    HWREG(NVIC_APINT) = NVIC_APINT_VECTKEY | g_pulPriority[ulBits];
+    HWREG( NVIC_APINT ) = NVIC_APINT_VECTKEY | g_pulPriority[ ulBits ];
 }
 #endif
 
@@ -310,27 +304,26 @@ IntPriorityGroupingSet(unsigned long ulBits)
 //! \return The number of bits of preemptable priority.
 //
 //*****************************************************************************
-#if defined(GROUP_prioritygroupingget) || defined(BUILD_ALL) || \
-    defined(DOXYGEN)
-unsigned long
-IntPriorityGroupingGet(void)
+#if defined( GROUP_prioritygroupingget ) || defined( BUILD_ALL ) || \
+    defined( DOXYGEN )
+unsigned long IntPriorityGroupingGet( void )
 {
     unsigned long ulLoop, ulValue;
 
     //
     // Read the priority grouping.
     //
-    ulValue = HWREG(NVIC_APINT) & NVIC_APINT_PRIGROUP_M;
+    ulValue = HWREG( NVIC_APINT ) & NVIC_APINT_PRIGROUP_M;
 
     //
     // Loop through the priority grouping values.
     //
-    for(ulLoop = 0; ulLoop < 8; ulLoop++)
+    for( ulLoop = 0; ulLoop < 8; ulLoop++ )
     {
         //
         // Stop looping if this value matches.
         //
-        if(ulValue == g_pulPriority[ulLoop])
+        if( ulValue == g_pulPriority[ ulLoop ] )
         {
             break;
         }
@@ -339,7 +332,7 @@ IntPriorityGroupingGet(void)
     //
     // Return the number of priority bits.
     //
-    return(ulLoop);
+    return ( ulLoop );
 }
 #endif
 
@@ -367,24 +360,23 @@ IntPriorityGroupingGet(void)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_priorityset) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-IntPrioritySet(unsigned long ulInterrupt, unsigned char ucPriority)
+#if defined( GROUP_priorityset ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void IntPrioritySet( unsigned long ulInterrupt, unsigned char ucPriority )
 {
     unsigned long ulTemp;
 
     //
     // Check the arguments.
     //
-    ASSERT((ulInterrupt >= 4) && (ulInterrupt < NUM_INTERRUPTS));
+    ASSERT( ( ulInterrupt >= 4 ) && ( ulInterrupt < NUM_INTERRUPTS ) );
 
     //
     // Set the interrupt priority.
     //
-    ulTemp = HWREG(g_pulRegs[ulInterrupt >> 2]);
-    ulTemp &= ~(0xFF << (8 * (ulInterrupt & 3)));
-    ulTemp |= ucPriority << (8 * (ulInterrupt & 3));
-    HWREG(g_pulRegs[ulInterrupt >> 2]) = ulTemp;
+    ulTemp = HWREG( g_pulRegs[ ulInterrupt >> 2 ] );
+    ulTemp &= ~( 0xFF << ( 8 * ( ulInterrupt & 3 ) ) );
+    ulTemp |= ucPriority << ( 8 * ( ulInterrupt & 3 ) );
+    HWREG( g_pulRegs[ ulInterrupt >> 2 ] ) = ulTemp;
 }
 #endif
 
@@ -401,20 +393,20 @@ IntPrioritySet(unsigned long ulInterrupt, unsigned char ucPriority)
 //! specified.
 //
 //*****************************************************************************
-#if defined(GROUP_priorityget) || defined(BUILD_ALL) || defined(DOXYGEN)
-long
-IntPriorityGet(unsigned long ulInterrupt)
+#if defined( GROUP_priorityget ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+long IntPriorityGet( unsigned long ulInterrupt )
 {
     //
     // Check the arguments.
     //
-    ASSERT((ulInterrupt >= 4) && (ulInterrupt < NUM_INTERRUPTS));
+    ASSERT( ( ulInterrupt >= 4 ) && ( ulInterrupt < NUM_INTERRUPTS ) );
 
     //
     // Return the interrupt priority.
     //
-    return((HWREG(g_pulRegs[ulInterrupt >> 2]) >> (8 * (ulInterrupt & 3))) &
-           0xFF);
+    return ( ( HWREG( g_pulRegs[ ulInterrupt >> 2 ] ) >>
+               ( 8 * ( ulInterrupt & 3 ) ) ) &
+             0xFF );
 }
 #endif
 
@@ -431,52 +423,51 @@ IntPriorityGet(unsigned long ulInterrupt)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_enable) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-IntEnable(unsigned long ulInterrupt)
+#if defined( GROUP_enable ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void IntEnable( unsigned long ulInterrupt )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulInterrupt < NUM_INTERRUPTS);
+    ASSERT( ulInterrupt < NUM_INTERRUPTS );
 
     //
     // Determine the interrupt to enable.
     //
-    if(ulInterrupt == FAULT_MPU)
+    if( ulInterrupt == FAULT_MPU )
     {
         //
         // Enable the MemManage interrupt.
         //
-        HWREG(NVIC_SYS_HND_CTRL) |= NVIC_SYS_HND_CTRL_MEM;
+        HWREG( NVIC_SYS_HND_CTRL ) |= NVIC_SYS_HND_CTRL_MEM;
     }
-    else if(ulInterrupt == FAULT_BUS)
+    else if( ulInterrupt == FAULT_BUS )
     {
         //
         // Enable the bus fault interrupt.
         //
-        HWREG(NVIC_SYS_HND_CTRL) |= NVIC_SYS_HND_CTRL_BUS;
+        HWREG( NVIC_SYS_HND_CTRL ) |= NVIC_SYS_HND_CTRL_BUS;
     }
-    else if(ulInterrupt == FAULT_USAGE)
+    else if( ulInterrupt == FAULT_USAGE )
     {
         //
         // Enable the usage fault interrupt.
         //
-        HWREG(NVIC_SYS_HND_CTRL) |= NVIC_SYS_HND_CTRL_USAGE;
+        HWREG( NVIC_SYS_HND_CTRL ) |= NVIC_SYS_HND_CTRL_USAGE;
     }
-    else if(ulInterrupt == FAULT_SYSTICK)
+    else if( ulInterrupt == FAULT_SYSTICK )
     {
         //
         // Enable the System Tick interrupt.
         //
-        HWREG(NVIC_ST_CTRL) |= NVIC_ST_CTRL_INTEN;
+        HWREG( NVIC_ST_CTRL ) |= NVIC_ST_CTRL_INTEN;
     }
-    else if(ulInterrupt >= INT_GPIOA)
+    else if( ulInterrupt >= INT_GPIOA )
     {
         //
         // Enable the general interrupt.
         //
-        HWREG(NVIC_EN0) = 1 << (ulInterrupt - INT_GPIOA);
+        HWREG( NVIC_EN0 ) = 1 << ( ulInterrupt - INT_GPIOA );
     }
 }
 #endif
@@ -494,52 +485,51 @@ IntEnable(unsigned long ulInterrupt)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_disable) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-IntDisable(unsigned long ulInterrupt)
+#if defined( GROUP_disable ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void IntDisable( unsigned long ulInterrupt )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulInterrupt < NUM_INTERRUPTS);
+    ASSERT( ulInterrupt < NUM_INTERRUPTS );
 
     //
     // Determine the interrupt to disable.
     //
-    if(ulInterrupt == FAULT_MPU)
+    if( ulInterrupt == FAULT_MPU )
     {
         //
         // Disable the MemManage interrupt.
         //
-        HWREG(NVIC_SYS_HND_CTRL) &= ~(NVIC_SYS_HND_CTRL_MEM);
+        HWREG( NVIC_SYS_HND_CTRL ) &= ~( NVIC_SYS_HND_CTRL_MEM );
     }
-    else if(ulInterrupt == FAULT_BUS)
+    else if( ulInterrupt == FAULT_BUS )
     {
         //
         // Disable the bus fault interrupt.
         //
-        HWREG(NVIC_SYS_HND_CTRL) &= ~(NVIC_SYS_HND_CTRL_BUS);
+        HWREG( NVIC_SYS_HND_CTRL ) &= ~( NVIC_SYS_HND_CTRL_BUS );
     }
-    else if(ulInterrupt == FAULT_USAGE)
+    else if( ulInterrupt == FAULT_USAGE )
     {
         //
         // Disable the usage fault interrupt.
         //
-        HWREG(NVIC_SYS_HND_CTRL) &= ~(NVIC_SYS_HND_CTRL_USAGE);
+        HWREG( NVIC_SYS_HND_CTRL ) &= ~( NVIC_SYS_HND_CTRL_USAGE );
     }
-    else if(ulInterrupt == FAULT_SYSTICK)
+    else if( ulInterrupt == FAULT_SYSTICK )
     {
         //
         // Disable the System Tick interrupt.
         //
-        HWREG(NVIC_ST_CTRL) &= ~(NVIC_ST_CTRL_INTEN);
+        HWREG( NVIC_ST_CTRL ) &= ~( NVIC_ST_CTRL_INTEN );
     }
-    else if(ulInterrupt >= INT_GPIOA)
+    else if( ulInterrupt >= INT_GPIOA )
     {
         //
         // Disable the general interrupt.
         //
-        HWREG(NVIC_DIS0) = 1 << (ulInterrupt - INT_GPIOA);
+        HWREG( NVIC_DIS0 ) = 1 << ( ulInterrupt - INT_GPIOA );
     }
 }
 #endif

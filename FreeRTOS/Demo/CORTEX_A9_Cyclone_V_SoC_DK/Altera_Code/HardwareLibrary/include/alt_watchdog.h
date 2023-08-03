@@ -1,32 +1,32 @@
 /******************************************************************************
-*
-* Copyright 2013 Altera Corporation. All Rights Reserved.
-*
-* Redistribution and use in source and binary forms, with or without
-* modification, are permitted provided that the following conditions are met:
-*
-* 1. Redistributions of source code must retain the above copyright notice,
-* this list of conditions and the following disclaimer.
-*
-* 2. Redistributions in binary form must reproduce the above copyright notice,
-* this list of conditions and the following disclaimer in the documentation
-* and/or other materials provided with the distribution.
-*
-* 3. The name of the author may not be used to endorse or promote products
-* derived from this software without specific prior written permission.
-*
-* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDER "AS IS" AND ANY EXPRESS OR
-* IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
-* MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED. IN NO
-* EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
-* EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
-* OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-* INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-* CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING
-* IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
-* OF SUCH DAMAGE.
-*
-******************************************************************************/
+ *
+ * Copyright 2013 Altera Corporation. All Rights Reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright notice,
+ * this list of conditions and the following disclaimer.
+ *
+ * 2. Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation
+ * and/or other materials provided with the distribution.
+ *
+ * 3. The name of the author may not be used to endorse or promote products
+ * derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDER "AS IS" AND ANY EXPRESS OR
+ * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED. IN NO
+ * EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ *SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ *PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+ *BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
+ *IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ *ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ *POSSIBILITY OF SUCH DAMAGE.
+ *
+ ******************************************************************************/
 
 #ifndef __ALT_WDOG_H__
 #define __ALT_WDOG_H__
@@ -35,11 +35,12 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif  /* __cplusplus */
+#endif /* __cplusplus */
 
 /*! \addtogroup WDOG_MGR The Watchdog Timer Manager API
  *
- * This module defines the Watchdog Timer Manager API for accessing, configuring, and
+ * This module defines the Watchdog Timer Manager API for accessing,
+configuring, and
  * controlling the HPS Watchdog Timer resources.
  *
  *
@@ -47,17 +48,15 @@ A typical initialization might be:
 \verbatim
 ALT_STATUS_CODE ret;
 ret = alt_wdog_int_clear(ALT_CPU_WATCHDOG);
-if (ret == ALT_E_SUCCESS) {ret = alt_wdog_counter_set(ALT_CPU_WATCHDOG, 0x7FFFFFFF); }
-if (ret == ALT_E_SUCCESS) {ret = alt_wdog_core_prescaler_set(0x80); }
-if (ret == ALT_E_SUCCESS) {ret = alt_wdog_response_mode_set(ALT_CPU_WATCHDOG, ALT_WDOG_TIMER_MODE_FREERUN); }
-if (ret == ALT_E_SUCCESS) {ret = alt_wdog_int_enable(ALT_CPU_WATCHDOG); }
-if (ret == ALT_E_SUCCESS) {ret = alt_wdog_start(ALT_CPU_WATCHDOG); }
-\endverbatim
+if (ret == ALT_E_SUCCESS) {ret = alt_wdog_counter_set(ALT_CPU_WATCHDOG,
+0x7FFFFFFF); } if (ret == ALT_E_SUCCESS) {ret =
+alt_wdog_core_prescaler_set(0x80); } if (ret == ALT_E_SUCCESS) {ret =
+alt_wdog_response_mode_set(ALT_CPU_WATCHDOG, ALT_WDOG_TIMER_MODE_FREERUN); } if
+(ret == ALT_E_SUCCESS) {ret = alt_wdog_int_enable(ALT_CPU_WATCHDOG); } if (ret
+== ALT_E_SUCCESS) {ret = alt_wdog_start(ALT_CPU_WATCHDOG); } \endverbatim
 
-Then periodically (before it runs out) call this function to restart the watchdog:
-\verbatim
-alt_wdog_reset(ALT_CPU_WATCHDOG);
-\endverbatim
+Then periodically (before it runs out) call this function to restart the
+watchdog: \verbatim alt_wdog_reset(ALT_CPU_WATCHDOG); \endverbatim
 
 If the interrupt is enabled in the interrupt manager and is triggered, it can be
 cleared like this:
@@ -80,7 +79,8 @@ alt_wdog_int_if_pending_clear(ALT_CPU_WATCHDOG);
  * This type definition enumerates the names of the timers managed by
  * the Watchdog Timers Manager.
  */
-typedef enum ALT_WDOG_TIMER_e {
+typedef enum ALT_WDOG_TIMER_e
+{
     /* OSC1 Clock Group */
     /*!
      * \b ALT_CPU_WATCHDOG - Each CPU core has its own watchdog timer, which is
@@ -130,10 +130,11 @@ typedef enum ALT_WDOG_TIMER_e {
 /******************************************************************************/
 /*!
  * This type definition enumerates the encoded countdown values that \b
- * ALT_WATCHDOG0, \b ALT_WATCHDOG1, \b ALT_WATCHDOG0_INITIAL, and \b ALT_WATCHDOG1_INITIAL
- * can be set to use.
+ * ALT_WATCHDOG0, \b ALT_WATCHDOG1, \b ALT_WATCHDOG0_INITIAL, and \b
+ * ALT_WATCHDOG1_INITIAL can be set to use.
  */
-typedef enum ALT_WDOG_TIMEOUT_e {
+typedef enum ALT_WDOG_TIMEOUT_e
+{
     /*!
      * \b ALT_WDOG_TIMEOUT64K - Timeout = 65,536 osc1_clk periods.
      */
@@ -221,23 +222,24 @@ typedef enum ALT_WDOG_TIMEOUT_e {
  * This type definition enumerates the reset types that the watchdog
  * timers can be set to trigger.
  */
-typedef enum ALT_WDOG_RESET_TYPE_e {
+typedef enum ALT_WDOG_RESET_TYPE_e
+{
     /*!
-     * \b Reset -  For \b  ALT_WATCHDOG0, \b ALT_WATCHDOG1, \b ALT_WATCHDOG0_INITIAL,
-     * and \b ALT_WATCHDOG1_INITIAL, if the counter reaches zero without being
-     * reset, generate a system-wide warm reset request.
-     * This is the default mode out of reset. \n For \b ALT_CPU_WATCHDOG, no
-     * interrupt is triggered and a reset request is asserted. The response
-     * to the reset request is set in the reset controller block and may
-     * not automatically trigger a system reset.
+     * \b Reset -  For \b  ALT_WATCHDOG0, \b ALT_WATCHDOG1, \b
+     * ALT_WATCHDOG0_INITIAL, and \b ALT_WATCHDOG1_INITIAL, if the counter
+     * reaches zero without being reset, generate a system-wide warm reset
+     * request. This is the default mode out of reset. \n For \b
+     * ALT_CPU_WATCHDOG, no interrupt is triggered and a reset request is
+     * asserted. The response to the reset request is set in the reset
+     * controller block and may not automatically trigger a system reset.
      */
     ALT_WDOG_WARM_RESET,
 
     /*!
      * \b Interrupt_First - When the counter reaches zero without being
      * reset, generate an interrupt. For \b ALT_WATCHDOG0, \b
-     * ALT_WATCHDOG1, \b ALT_WATCHDOG0_INITIAL, and \b ALT_WATCHDOG1_INITIAL, if the
-     * interrupt is not cleared by the time a second timeout occurs, then
+     * ALT_WATCHDOG1, \b ALT_WATCHDOG0_INITIAL, and \b ALT_WATCHDOG1_INITIAL, if
+     * the interrupt is not cleared by the time a second timeout occurs, then
      * generate a system warm reset request. \n For \b ALT_CPU_WATCHDOG, the
      * interrupt is triggered and a \b WDRESETREQ
      * reset request is asserted. The response to the interrupt and the reset
@@ -267,7 +269,8 @@ typedef enum ALT_WDOG_RESET_TYPE_e {
      * free-run or wraparound timer mode, and can optionally trigger an
      * interrupt when the counter reaches zero without being reset. \n
      * This selection has no meaning for \b
-     * ALT_WATCHDOG0, \b ALT_WATCHDOG1, \b ALT_WATCHDOG0_INITIAL, and \b ALT_WATCHDOG1_INITIAL.
+     * ALT_WATCHDOG0, \b ALT_WATCHDOG1, \b ALT_WATCHDOG0_INITIAL, and \b
+     * ALT_WATCHDOG1_INITIAL.
      */
     ALT_WDOG_TIMER_MODE_FREERUN
 } ALT_WDOG_RESET_TYPE_t;
@@ -287,7 +290,7 @@ typedef enum ALT_WDOG_RESET_TYPE_e {
  * \retval      ALT_E_SUCCESS   The operation was successful.
  * \retval      ALT_E_ERROR     The operation failed.
  */
-ALT_STATUS_CODE alt_wdog_init(void);
+ALT_STATUS_CODE alt_wdog_init( void );
 
 /******************************************************************************/
 /*!
@@ -296,7 +299,7 @@ ALT_STATUS_CODE alt_wdog_init(void);
  * \retval      ALT_E_SUCCESS   The operation was successful.
  * \retval      ALT_E_ERROR     The operation failed.
  */
-ALT_STATUS_CODE alt_wdog_uninit(void);
+ALT_STATUS_CODE alt_wdog_uninit( void );
 
 /******************************************************************************/
 /*!
@@ -311,7 +314,7 @@ ALT_STATUS_CODE alt_wdog_uninit(void);
  * \retval      ALT_E_ERROR     The operation failed.
  * \retval      ALT_E_BAD_ARG   Tried to stop an invalid watchdog timer.
  */
-ALT_STATUS_CODE alt_wdog_stop(ALT_WDOG_TIMER_t tmr_id);
+ALT_STATUS_CODE alt_wdog_stop( ALT_WDOG_TIMER_t tmr_id );
 
 /******************************************************************************/
 /*!
@@ -325,7 +328,7 @@ ALT_STATUS_CODE alt_wdog_stop(ALT_WDOG_TIMER_t tmr_id);
  * \retval      ALT_E_ERROR     The operation failed.
  * \retval      ALT_E_BAD_ARG   Tried to enable an invalid watchdog timer.
  */
-ALT_STATUS_CODE alt_wdog_start(ALT_WDOG_TIMER_t tmr_id);
+ALT_STATUS_CODE alt_wdog_start( ALT_WDOG_TIMER_t tmr_id );
 
 /******************************************************************************/
 /*!
@@ -338,7 +341,7 @@ ALT_STATUS_CODE alt_wdog_start(ALT_WDOG_TIMER_t tmr_id);
  * \retval      TRUE            The timer is currently running.
  * \retval      FALSE           The timer is currently not running.
  */
-bool alt_wdog_tmr_is_enabled(ALT_WDOG_TIMER_t tmr_id);
+bool alt_wdog_tmr_is_enabled( ALT_WDOG_TIMER_t tmr_id );
 
 /******************************************************************************/
 /*!
@@ -357,7 +360,7 @@ bool alt_wdog_tmr_is_enabled(ALT_WDOG_TIMER_t tmr_id);
  * \retval      ALT_E_ERROR     The operation failed.
  * \retval      ALT_E_BAD_ARG   Tried to reset an invalid watchdog timer.
  */
-ALT_STATUS_CODE alt_wdog_reset(ALT_WDOG_TIMER_t tmr_id);
+ALT_STATUS_CODE alt_wdog_reset( ALT_WDOG_TIMER_t tmr_id );
 
 /*! @} */
 /******************************************************************************/
@@ -372,12 +375,11 @@ ALT_STATUS_CODE alt_wdog_reset(ALT_WDOG_TIMER_t tmr_id);
 /******************************************************************************/
 /*! Sets the countdown value of the specified timer. This is a regular value
  *  for \b ALT_CPU_WATCHDOG. For tmr_id = \b ALT_WATCHDOG0, \b ALT_WATCHDOG1, \b
- *  ALT_WATCHDOG0_INITIAL or \b ALT_WATCHDOG1_INITIAL however, this is an encoded
- *  power-of-two value such that 2**(16 + val). \n
- *  If this value is set before the watchdog timer is started, then this
- *  value is used from the start. If this value is set after the timer
- *  has been started, it takes effect when the timer rolls over or the next
- *  time it is started.
+ *  ALT_WATCHDOG0_INITIAL or \b ALT_WATCHDOG1_INITIAL however, this is an
+ * encoded power-of-two value such that 2**(16 + val). \n If this value is set
+ * before the watchdog timer is started, then this value is used from the start.
+ * If this value is set after the timer has been started, it takes effect when
+ * the timer rolls over or the next time it is started.
  *
  * \param       tmr_id
  *              The watchdog timer identifier.
@@ -390,8 +392,7 @@ ALT_STATUS_CODE alt_wdog_reset(ALT_WDOG_TIMER_t tmr_id);
  * \retval      ALT_E_BAD_ARG   Tried to write an invalid watchdog timer or
  *                                 timeout value.
  */
-ALT_STATUS_CODE alt_wdog_counter_set(ALT_WDOG_TIMER_t tmr_id,
-        uint32_t val);
+ALT_STATUS_CODE alt_wdog_counter_set( ALT_WDOG_TIMER_t tmr_id, uint32_t val );
 
 /******************************************************************************/
 /*!
@@ -403,7 +404,7 @@ ALT_STATUS_CODE alt_wdog_counter_set(ALT_WDOG_TIMER_t tmr_id,
  *
  * \retval      uint32_t   The current 32-bit counter value.
  */
-uint32_t alt_wdog_counter_get_current(ALT_WDOG_TIMER_t tmr_id);
+uint32_t alt_wdog_counter_get_current( ALT_WDOG_TIMER_t tmr_id );
 
 /******************************************************************************/
 /*!
@@ -417,7 +418,7 @@ uint32_t alt_wdog_counter_get_current(ALT_WDOG_TIMER_t tmr_id);
  *
  * \retval      uint32_t   The current 32-bit counter value (in milliseconds).
  */
-uint32_t alt_wdog_counter_get_curtime_millisecs(ALT_WDOG_TIMER_t tmr_id);
+uint32_t alt_wdog_counter_get_curtime_millisecs( ALT_WDOG_TIMER_t tmr_id );
 
 /******************************************************************************/
 /*!
@@ -434,7 +435,7 @@ uint32_t alt_wdog_counter_get_curtime_millisecs(ALT_WDOG_TIMER_t tmr_id);
  * \retval      uint32_t   The current 32-bit counter value.
  *              0           Indicates an error.
  */
-uint32_t alt_wdog_counter_get_init(ALT_WDOG_TIMER_t tmr_id);
+uint32_t alt_wdog_counter_get_init( ALT_WDOG_TIMER_t tmr_id );
 
 /******************************************************************************/
 /*!
@@ -451,7 +452,7 @@ uint32_t alt_wdog_counter_get_init(ALT_WDOG_TIMER_t tmr_id);
  * \retval      uint64_t   The currently-selected watchdog delay time (in
  *              nanoseconds).
  */
-uint64_t alt_wdog_counter_get_inittime_nanosecs(ALT_WDOG_TIMER_t tmr_id);
+uint64_t alt_wdog_counter_get_inittime_nanosecs( ALT_WDOG_TIMER_t tmr_id );
 
 /******************************************************************************/
 /*!
@@ -467,8 +468,8 @@ uint64_t alt_wdog_counter_get_inittime_nanosecs(ALT_WDOG_TIMER_t tmr_id);
  * \retval      uint32_t   The currently-selected watchdog delay time (in
  *              milliseconds).
  *              0           Indicates an error.
-*/
-uint32_t alt_wdog_counter_get_inittime_millisecs(ALT_WDOG_TIMER_t tmr_id);
+ */
+uint32_t alt_wdog_counter_get_inittime_millisecs( ALT_WDOG_TIMER_t tmr_id );
 
 /******************************************************************************/
 /*!
@@ -482,7 +483,7 @@ uint32_t alt_wdog_counter_get_inittime_millisecs(ALT_WDOG_TIMER_t tmr_id);
  * \retval      ALT_E_SUCCESS   The operation was successful.
  * \retval      ALT_E_BAD_ARG   Bad prescaler value specified.
  */
-ALT_STATUS_CODE alt_wdog_core_prescaler_set(uint32_t val);
+ALT_STATUS_CODE alt_wdog_core_prescaler_set( uint32_t val );
 
 /******************************************************************************/
 /*!
@@ -493,7 +494,7 @@ ALT_STATUS_CODE alt_wdog_core_prescaler_set(uint32_t val);
  *                 The eight-bit prescaler value.
  *
  */
-uint32_t alt_wdog_core_prescaler_get(void);
+uint32_t alt_wdog_core_prescaler_get( void );
 
 /******************************************************************************/
 /*!
@@ -508,7 +509,7 @@ uint32_t alt_wdog_core_prescaler_get(void);
  *
  * \retval      uint32_t   The current 32-bit counter value.
  */
-uint32_t alt_wdog_counter_get_max(ALT_WDOG_TIMER_t tmr_id);
+uint32_t alt_wdog_counter_get_max( ALT_WDOG_TIMER_t tmr_id );
 
 /******************************************************************************/
 /*!
@@ -523,8 +524,7 @@ uint32_t alt_wdog_counter_get_max(ALT_WDOG_TIMER_t tmr_id);
  * \retval      uint64_t   The maximum delay time before timeout (in
  *              nanoseconds).
  */
-uint64_t alt_wdog_counter_get_max_nanosecs(ALT_WDOG_TIMER_t tmr_id);
-
+uint64_t alt_wdog_counter_get_max_nanosecs( ALT_WDOG_TIMER_t tmr_id );
 
 /******************************************************************************/
 /*!
@@ -539,7 +539,7 @@ uint64_t alt_wdog_counter_get_max_nanosecs(ALT_WDOG_TIMER_t tmr_id);
  * \retval      uint32_t   The maximum delay time before timeout (in
  *              milliseconds).
  */
-uint32_t alt_wdog_counter_get_max_millisecs(ALT_WDOG_TIMER_t tmr_id);
+uint32_t alt_wdog_counter_get_max_millisecs( ALT_WDOG_TIMER_t tmr_id );
 
 /*! @} */
 /******************************************************************************/
@@ -564,8 +564,8 @@ uint32_t alt_wdog_counter_get_max_millisecs(ALT_WDOG_TIMER_t tmr_id);
  * \retval      ALT_E_SUCCESS   The operation was successful.
  * \retval      ALT_E_ERROR     The operation failed.
  * \retval      ALT_E_BAD_ARG   Specified an incorrect timer.
-  */
-ALT_STATUS_CODE alt_wdog_int_disable(ALT_WDOG_TIMER_t tmr_id);
+ */
+ALT_STATUS_CODE alt_wdog_int_disable( ALT_WDOG_TIMER_t tmr_id );
 
 /******************************************************************************/
 /*!
@@ -580,8 +580,8 @@ ALT_STATUS_CODE alt_wdog_int_disable(ALT_WDOG_TIMER_t tmr_id);
  * \retval      ALT_E_SUCCESS   The operation was successful.
  * \retval      ALT_E_ERROR     The operation failed.
  * \retval      ALT_E_BAD_ARG   Specified an incorrect timer.
-  */
-ALT_STATUS_CODE alt_wdog_int_enable(ALT_WDOG_TIMER_t tmr_id);
+ */
+ALT_STATUS_CODE alt_wdog_int_enable( ALT_WDOG_TIMER_t tmr_id );
 
 /******************************************************************************/
 /*!
@@ -595,7 +595,7 @@ ALT_STATUS_CODE alt_wdog_int_enable(ALT_WDOG_TIMER_t tmr_id);
  * \retval      TRUE            The timer interrupt is currently pending.
  * \retval      FALSE           The timer interrupt is not currently pending.
  */
-bool alt_wdog_int_is_pending(ALT_WDOG_TIMER_t tmr_id);
+bool alt_wdog_int_is_pending( ALT_WDOG_TIMER_t tmr_id );
 
 /******************************************************************************/
 /*!
@@ -613,7 +613,7 @@ bool alt_wdog_int_is_pending(ALT_WDOG_TIMER_t tmr_id);
  * \retval      TRUE            The timer interrupt is currently pending.
  * \retval      FALSE           The timer interrupt is not currently pending.
  */
-bool alt_wdog_int_is_enabled(ALT_WDOG_TIMER_t tmr_id);
+bool alt_wdog_int_is_enabled( ALT_WDOG_TIMER_t tmr_id );
 
 /******************************************************************************/
 /*!
@@ -627,7 +627,7 @@ bool alt_wdog_int_is_enabled(ALT_WDOG_TIMER_t tmr_id);
  * \retval      ALT_E_SUCCESS   The operation was successful.
  * \retval      ALT_E_ERROR     The operation failed.
  */
-ALT_STATUS_CODE alt_wdog_int_clear(ALT_WDOG_TIMER_t tmr_id);
+ALT_STATUS_CODE alt_wdog_int_clear( ALT_WDOG_TIMER_t tmr_id );
 
 /******************************************************************************/
 /*!
@@ -641,7 +641,7 @@ ALT_STATUS_CODE alt_wdog_int_clear(ALT_WDOG_TIMER_t tmr_id);
  * \retval      TRUE            The timer interrupt was pending.
  * \retval      FALSE           The timer interrupt was not pending.
  */
-bool alt_wdog_int_if_pending_clear(ALT_WDOG_TIMER_t tmr_id);
+bool alt_wdog_int_if_pending_clear( ALT_WDOG_TIMER_t tmr_id );
 
 /*! @} */
 #if ALTERA_INTERNAL_ONLY_DOCS
@@ -666,39 +666,36 @@ bool alt_wdog_int_if_pending_clear(ALT_WDOG_TIMER_t tmr_id);
 /******************************************************************************/
 /*!
  * Sets the timeout response mode of the specified watchdog timer. For \b
- * ALT_WATCHDOG0, \b ALT_WATCHDOG1, \b ALT_WATCHDOG0_INITIAL or \b ALT_WATCHDOG1_INITIAL, the
- * options are to generate a system reset or to generate an interrupt and then
- * generate a system reset if the interrupt is not cleared by the next time
- * the watchdog timer counter rolls over.\n
- * For \b ALT_CPU_WATCHDOG, the options are to trigger an interrupt request (with
- * the result set in the interrupt manager) or a reset request (with the
- * result set in the reset manager) plus two more options available
- * when it is used as a general-purpose timer.
- * \param       tmr_id
- *              The timer identifier.
+ * ALT_WATCHDOG0, \b ALT_WATCHDOG1, \b ALT_WATCHDOG0_INITIAL or \b
+ * ALT_WATCHDOG1_INITIAL, the options are to generate a system reset or to
+ * generate an interrupt and then generate a system reset if the interrupt is
+ * not cleared by the next time the watchdog timer counter rolls over.\n For \b
+ * ALT_CPU_WATCHDOG, the options are to trigger an interrupt request (with the
+ * result set in the interrupt manager) or a reset request (with the result set
+ * in the reset manager) plus two more options available when it is used as a
+ * general-purpose timer. \param       tmr_id The timer identifier.
  *
  * \param       type
- *              \b ALT_WDOG_WARM_RESET - For \b ALT_WATCHDOG0, \b ALT_WATCHDOG1, \b
- *              ALT_WATCHDOG0_INITIAL or \b  ALT_WATCHDOG1_INITIAL, reset the core
+ *              \b ALT_WDOG_WARM_RESET - For \b ALT_WATCHDOG0, \b ALT_WATCHDOG1,
+ * \b ALT_WATCHDOG0_INITIAL or \b  ALT_WATCHDOG1_INITIAL, reset the core
  *              immediately. \n For \b ALT_CPU_WATCHDOG, the action is
  *              determined by the current setting in the reset manager.\n\n
- *              \b ALT_WDOG_INT_THEN_RESET -  For \b ALT_WATCHDOG0, \b ALT_WATCHDOG1, \b
- *              ALT_WATCHDOG0_INITIAL or \b  ALT_WATCHDOG1_INITIAL, raise an interrupt.
- *              If the interrupt is not cleared before the timer counts down
- *              to zero again, reset the CPU cores. \n For \b ALT_CPU_WATCHDOG,
- *              raise an interrupt. \n\n \b ALT_WDOG_TIMER_MODE_ONESHOT - For \b
- *              ALT_CPU_WATCHDOG, watchdog timer is set to timer mode and one-shot
- *              operation is selected.\n\n \b ALT_WDOG_TIMER_MODE_FREERUN - For \b
- *              ALT_CPU_WATCHDOG, watchdog timer is set to timer mode and free-run
- *              operation is selected.
+ *              \b ALT_WDOG_INT_THEN_RESET -  For \b ALT_WATCHDOG0, \b
+ * ALT_WATCHDOG1, \b ALT_WATCHDOG0_INITIAL or \b  ALT_WATCHDOG1_INITIAL, raise
+ * an interrupt. If the interrupt is not cleared before the timer counts down to
+ * zero again, reset the CPU cores. \n For \b ALT_CPU_WATCHDOG, raise an
+ * interrupt. \n\n \b ALT_WDOG_TIMER_MODE_ONESHOT - For \b ALT_CPU_WATCHDOG,
+ * watchdog timer is set to timer mode and one-shot operation is selected.\n\n
+ * \b ALT_WDOG_TIMER_MODE_FREERUN - For \b ALT_CPU_WATCHDOG, watchdog timer is
+ * set to timer mode and free-run operation is selected.
  *
  * \retval      ALT_E_SUCCESS   The operation was successful.
  * \retval      ALT_E_ERROR     The operation failed.
  * \retval      ALT_E_BAD_ARG   Specified an incorrect timer or an unsupported
  *                              response mode for the specified timer.
  */
-ALT_STATUS_CODE alt_wdog_response_mode_set(ALT_WDOG_TIMER_t tmr_id,
-                                           ALT_WDOG_RESET_TYPE_t type);
+ALT_STATUS_CODE alt_wdog_response_mode_set( ALT_WDOG_TIMER_t tmr_id,
+                                            ALT_WDOG_RESET_TYPE_t type );
 
 /******************************************************************************/
 /*!
@@ -709,24 +706,21 @@ ALT_STATUS_CODE alt_wdog_response_mode_set(ALT_WDOG_TIMER_t tmr_id,
  *
  *
  * \retval      ALT_WDOG_WARM_RESET
- *              For \b ALT_WATCHDOG0, \b ALT_WATCHDOG1, \b ALT_WATCHDOG0_INITIAL or \b
- *              ALT_WATCHDOG1_INITIAL, reset the core immediately. \n For \b
- *              ALT_CPU_WATCHDOG, the action is determined by the current setting
- *              in the reset manager.
- * \retval      ALT_WDOG_INT_THEN_RESET Raise an interrupt. For \b ALT_WATCHDOG0, \b
- *              ALT_WATCHDOG1, \b ALT_WATCHDOG0_INITIAL or \b ALT_WATCHDOG1_INITIAL, if
- *              the interrupt is not cleared before timer wraps around again,
- *              reset the CPU cores. \n For \b ALT_CPU_WATCHDOG, the action is
- *              determined by the current setting in the interrupt manager.
- * \retval      ALT_WDOG_TIMER_MODE_ONESHOT    Core watchdog timer is set to timer
- *              mode and one-shot operation is selected.
- * \retval      ALT_WDOG_TIMER_MODE_FREERUN    Core watchdog timer is set to timer
- *              mode and free-run operation is selected.
+ *              For \b ALT_WATCHDOG0, \b ALT_WATCHDOG1, \b ALT_WATCHDOG0_INITIAL
+ * or \b ALT_WATCHDOG1_INITIAL, reset the core immediately. \n For \b
+ *              ALT_CPU_WATCHDOG, the action is determined by the current
+ * setting in the reset manager. \retval      ALT_WDOG_INT_THEN_RESET Raise an
+ * interrupt. For \b ALT_WATCHDOG0, \b ALT_WATCHDOG1, \b ALT_WATCHDOG0_INITIAL
+ * or \b ALT_WATCHDOG1_INITIAL, if the interrupt is not cleared before timer
+ * wraps around again, reset the CPU cores. \n For \b ALT_CPU_WATCHDOG, the
+ * action is determined by the current setting in the interrupt manager. \retval
+ * ALT_WDOG_TIMER_MODE_ONESHOT    Core watchdog timer is set to timer mode and
+ * one-shot operation is selected. \retval      ALT_WDOG_TIMER_MODE_FREERUN Core
+ * watchdog timer is set to timer mode and free-run operation is selected.
  * \retval      ALT_E_ERROR     The operation failed.
  * \retval      ALT_E_BAD_ARG   Specified an invalid timer.
  */
-int32_t alt_wdog_response_mode_get(ALT_WDOG_TIMER_t tmr_id);
-
+int32_t alt_wdog_response_mode_get( ALT_WDOG_TIMER_t tmr_id );
 
 #if ALTERA_INTERNAL_ONLY_DOCS
 
@@ -745,7 +739,7 @@ int32_t alt_wdog_response_mode_get(ALT_WDOG_TIMER_t tmr_id);
  * \note    This is an Altera Internal Only function
  *
  */
-uint32_t alt_wdog_compcode_get(ALT_WDOG_TIMER_t tmr_id);
+uint32_t alt_wdog_compcode_get( ALT_WDOG_TIMER_t tmr_id );
 
 /******************************************************************************/
 /*!
@@ -763,18 +757,19 @@ uint32_t alt_wdog_compcode_get(ALT_WDOG_TIMER_t tmr_id);
  * \note    This is an Altera Internal Only function
  *
  */
-uint32_t alt_wdog_ver_get(ALT_WDOG_TIMER_t tmr_id);
+uint32_t alt_wdog_ver_get( ALT_WDOG_TIMER_t tmr_id );
 
 #else
 
 /******************************************************************************/
 /* Returns the component code of the watchdog timer module. Only valid
- * for ALT_WATCHDOG0, ALT_WATCHDOG1, ALT_WATCHDOG0_INITIAL or ALT_WATCHDOG1_INITIAL.
+ * for ALT_WATCHDOG0, ALT_WATCHDOG1, ALT_WATCHDOG0_INITIAL or
+ * ALT_WATCHDOG1_INITIAL.
  *
  *   This is an Altera Internal Only function
  */
 
-uint32_t alt_wdog_compcode_get(ALT_WDOG_TIMER_t tmr_id);
+uint32_t alt_wdog_compcode_get( ALT_WDOG_TIMER_t tmr_id );
 
 /******************************************************************************/
 /* Returns the version code of the watchdog timer module. Only valid for
@@ -783,9 +778,9 @@ uint32_t alt_wdog_compcode_get(ALT_WDOG_TIMER_t tmr_id);
  * This is an Altera Internal Only function
  */
 
-uint32_t alt_wdog_ver_get(ALT_WDOG_TIMER_t tmr_id);
+uint32_t alt_wdog_ver_get( ALT_WDOG_TIMER_t tmr_id );
 
-#endif      /* ALTERA_INTERNAL_ONLY_DOCS */
+#endif /* ALTERA_INTERNAL_ONLY_DOCS */
 
 /******************************************************************************/
 
@@ -793,5 +788,5 @@ uint32_t alt_wdog_ver_get(ALT_WDOG_TIMER_t tmr_id);
 /*! @} */
 #ifdef __cplusplus
 }
-#endif  /* __cplusplus */
-#endif  /* __ALT_WDOG_H__ */
+#endif /* __cplusplus */
+#endif /* __ALT_WDOG_H__ */

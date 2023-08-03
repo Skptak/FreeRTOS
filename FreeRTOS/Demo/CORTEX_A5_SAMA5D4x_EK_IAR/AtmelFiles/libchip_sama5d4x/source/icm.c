@@ -28,10 +28,10 @@
  */
 
 /** \addtogroup icm_module Working with ICM
- * The TWI driver provides the interface to True Random Number Generator (ICM) passes the American NIST Special Publication 800-22 and Diehard
-Random Tests Suites.
-The ICM may be used as an entropy source for seeding an NIST approved DRNG (Deterministic RNG) as required by
-FIPS PUB 140-2 and 140-3. use the TWI
+ * The TWI driver provides the interface to True Random Number Generator (ICM)
+passes the American NIST Special Publication 800-22 and Diehard Random Tests
+Suites. The ICM may be used as an entropy source for seeding an NIST approved
+DRNG (Deterministic RNG) as required by FIPS PUB 140-2 and 140-3. use the TWI
  * peripheral.
  *
  * \section Usage
@@ -45,9 +45,12 @@ FIPS PUB 140-2 and 140-3. use the TWI
  * <li> Starts a write operation on the TWI to access the selected slave using
  * TWI_StartWrite(). A byte of data must be provided to start the write;
  * other bytes are written next.</li>
- * <li> Sends a byte of data to one of the TWI slaves on the bus using TWI_WriteByte().
- * This function must be called once before TWI_StartWrite() with the first byte of data
- * to send, then it ICMll be called repeatedly after that to send the remaining bytes.</li>
+ * <li> Sends a byte of data to one of the TWI slaves on the bus using
+TWI_WriteByte().
+ * This function must be called once before TWI_StartWrite() with the first byte
+of data
+ * to send, then it ICMll be called repeatedly after that to send the remaining
+bytes.</li>
  * <li> Check if a byte has been received and can be read on the given TWI
  * peripheral using TWI_ByteReceived().<
  * Check if a byte has been sent using TWI_ByteSent().</li>
@@ -83,7 +86,6 @@ FIPS PUB 140-2 and 140-3. use the TWI
 
 #include "chip.h"
 
-
 /** \brief Structure for storing parameters for DMA view1 that can be
  * performed by the DMA Master transfer.*/
 typedef struct _LinkedListDescriporView1
@@ -96,11 +98,11 @@ typedef struct _LinkedListDescriporView1
     uint32_t mbr_sa;
     /** Destination Address Member. */
     uint32_t mbr_da;
-}LinkedListDescriporView1;
+} LinkedListDescriporView1;
 /*----------------------------------------------------------------------------
  *        Local functions
  *----------------------------------------------------------------------------*/
- 
+
 /*----------------------------------------------------------------------------
  *        Exported functions
  *----------------------------------------------------------------------------*/
@@ -108,7 +110,7 @@ typedef struct _LinkedListDescriporView1
 /**
  * \brief Enable ICM, the ICM controller is activated
  */
-void ICM_Enable(void)
+void ICM_Enable( void )
 {
     ICM->ICM_CTRL = ICM_CTRL_ENABLE;
 }
@@ -116,7 +118,7 @@ void ICM_Enable(void)
 /**
  * \brief Disable ICM, if a region is active, this region is terminated
  */
-void ICM_Disable(void)
+void ICM_Disable( void )
 {
     ICM->ICM_CTRL = ICM_CTRL_DISABLE;
 }
@@ -124,53 +126,56 @@ void ICM_Disable(void)
 /**
  * \brief Resets the ICM controller.
  */
-void ICM_SoftReset(void)
+void ICM_SoftReset( void )
 {
     ICM->ICM_CTRL = ICM_CTRL_SWRST;
 }
 
 /**
  * \brief Recompute Internal hash.
- * \param region, When REHASH[region] is set to one, the region digest is re-computed. 
- * \note This bit is only available when Region monitoring is disabled.
+ * \param region, When REHASH[region] is set to one, the region digest is
+ * re-computed. \note This bit is only available when Region monitoring is
+ * disabled.
  */
-void ICM_ReComputeHash(uint8_t region)
+void ICM_ReComputeHash( uint8_t region )
 {
-    ICM->ICM_CTRL = ICM_CTRL_REHASH(region);
+    ICM->ICM_CTRL = ICM_CTRL_REHASH( region );
 }
 
 /**
  * \brief Enable region monitoring for given region
- * \param region, When bit RMEN[region] is set to one, the monitoring of Region is activated.
+ * \param region, When bit RMEN[region] is set to one, the monitoring of Region
+ * is activated.
  */
-void ICM_EnableMonitor(uint8_t region)
+void ICM_EnableMonitor( uint8_t region )
 {
-    ICM->ICM_CTRL = ICM_CTRL_RMEN(region);
+    ICM->ICM_CTRL = ICM_CTRL_RMEN( region );
 }
 
 /**
  * \brief Disable region monitoring for given region
- * \param region, When bit RMDIS[region] is set to one, the monitoring of Region is disabled.
+ * \param region, When bit RMDIS[region] is set to one, the monitoring of Region
+ * is disabled.
  */
-void ICM_DisableMonitor(uint8_t region)
+void ICM_DisableMonitor( uint8_t region )
 {
-    ICM->ICM_CTRL = ICM_CTRL_RMDIS(region);
+    ICM->ICM_CTRL = ICM_CTRL_RMDIS( region );
 }
 
 /**
  * \brief Configures an ICM peripheral with the specified parameters.
  *  \param mode  Desired value for the ICM mode register (see the datasheet).
  */
-void ICM_Configure(uint32_t mode)
+void ICM_Configure( uint32_t mode )
 {
-    ICM->ICM_CFG = mode; 
+    ICM->ICM_CFG = mode;
 }
 
 /**
  * \brief Enables the selected interrupts sources on a ICM peripheral.
  * \param sources  Bitwise OR of selected interrupt sources.
  */
-void ICM_EnableIt(uint32_t sources)
+void ICM_EnableIt( uint32_t sources )
 {
     ICM->ICM_IER = sources;
 }
@@ -179,7 +184,7 @@ void ICM_EnableIt(uint32_t sources)
  * \brief Disables the selected interrupts sources on a ICM peripheral.
  * \param sources  Bitwise OR of selected interrupt sources.
  */
-void ICM_DisableIt(uint32_t sources)
+void ICM_DisableIt( uint32_t sources )
 {
     ICM->ICM_IDR = sources;
 }
@@ -188,7 +193,7 @@ void ICM_DisableIt(uint32_t sources)
  * \brief Get the current interrupt status register of the given ICM peripheral.
  * \return  ICM status register.
  */
-uint32_t ICM_GetIntStatus(void)
+uint32_t ICM_GetIntStatus( void )
 {
     return ICM->ICM_ISR;
 }
@@ -197,17 +202,16 @@ uint32_t ICM_GetIntStatus(void)
  * \brief Get the current status register of the given ICM peripheral.
  * \return  ICM status register.
  */
-uint32_t ICM_GetStatus(void)
+uint32_t ICM_GetStatus( void )
 {
     return ICM->ICM_SR;
 }
-
 
 /**
  * \brief Get the undefined access status register of the given ICM peripheral.
  * \return  ICM status register.
  */
-uint32_t ICM_GetUStatus(void)
+uint32_t ICM_GetUStatus( void )
 {
     return ICM->ICM_UASR;
 }
@@ -215,9 +219,10 @@ uint32_t ICM_GetUStatus(void)
 /**
  * \brief Set descriptor area start address register.
  * \param addr start address
- * \note The start address is a multiple of the total size of the data structure (64 bytes).
+ * \note The start address is a multiple of the total size of the data structure
+ * (64 bytes).
  */
-void ICM_SetDescStartAddress(uint32_t addr)
+void ICM_SetDescStartAddress( uint32_t addr )
 {
     ICM->ICM_DSCR = addr;
 }
@@ -225,9 +230,10 @@ void ICM_SetDescStartAddress(uint32_t addr)
 /**
  * \brief Set hash area start address register.
  * \param addr start address
- * \note This field points at the Hash memory location. The address must be a multiple of 128 bytes.
+ * \note This field points at the Hash memory location. The address must be a
+ * multiple of 128 bytes.
  */
-void ICM_SetHashStartAddress(uint32_t addr)
+void ICM_SetHashStartAddress( uint32_t addr )
 {
     ICM->ICM_HASH = addr;
 }
@@ -236,8 +242,7 @@ void ICM_SetHashStartAddress(uint32_t addr)
  * \brief Set ICM user initial Hash value register.
  * \param val Initial Hash Value
  */
-void ICM_SetInitHashValue(uint32_t val)
+void ICM_SetInitHashValue( uint32_t val )
 {
-    ICM->ICM_UIHVAL[0] = ICM_UIHVAL_VAL(val);
+    ICM->ICM_UIHVAL[ 0 ] = ICM_UIHVAL_VAL( val );
 }
-

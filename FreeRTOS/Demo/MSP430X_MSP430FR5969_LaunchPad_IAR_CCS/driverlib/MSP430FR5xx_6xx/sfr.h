@@ -42,60 +42,59 @@
 
 #ifdef __MSP430_HAS_SFR__
 
-//*****************************************************************************
-//
-// If building with a C++ compiler, make all of the definitions in this header
-// have a C binding.
-//
-//*****************************************************************************
-#ifdef __cplusplus
-extern "C"
-{
-#endif
+    //*****************************************************************************
+    //
+    // If building with a C++ compiler, make all of the definitions in this
+    // header have a C binding.
+    //
+    //*****************************************************************************
+    #ifdef __cplusplus
+extern "C" {
+    #endif
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the interruptMask parameter
-// for functions: SFR_enableInterrupt(), and SFR_disableInterrupt(); the
-// interruptFlagMask parameter for functions: SFR_getInterruptStatus(), and
-// SFR_clearInterrupt() as well as returned by the SFR_getInterruptStatus()
-// function.
-//
-//*****************************************************************************
-#define SFR_JTAG_OUTBOX_INTERRUPT                                      JMBOUTIE
-#define SFR_JTAG_INBOX_INTERRUPT                                        JMBINIE
-#define SFR_NMI_PIN_INTERRUPT                                             NMIIE
-#define SFR_VACANT_MEMORY_ACCESS_INTERRUPT                                VMAIE
-#define SFR_OSCILLATOR_FAULT_INTERRUPT                                     OFIE
-#define SFR_WATCHDOG_INTERVAL_TIMER_INTERRUPT                             WDTIE
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the interruptMask
+    // parameter for functions: SFR_enableInterrupt(), and
+    // SFR_disableInterrupt(); the interruptFlagMask parameter for functions:
+    // SFR_getInterruptStatus(), and SFR_clearInterrupt() as well as returned by
+    // the SFR_getInterruptStatus() function.
+    //
+    //*****************************************************************************
+    #define SFR_JTAG_OUTBOX_INTERRUPT             JMBOUTIE
+    #define SFR_JTAG_INBOX_INTERRUPT              JMBINIE
+    #define SFR_NMI_PIN_INTERRUPT                 NMIIE
+    #define SFR_VACANT_MEMORY_ACCESS_INTERRUPT    VMAIE
+    #define SFR_OSCILLATOR_FAULT_INTERRUPT        OFIE
+    #define SFR_WATCHDOG_INTERVAL_TIMER_INTERRUPT WDTIE
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the pullResistorSetup
-// parameter for functions: SFR_setResetPinPullResistor().
-//
-//*****************************************************************************
-#define SFR_RESISTORDISABLE                            (!(SYSRSTRE + SYSRSTUP))
-#define SFR_RESISTORENABLE_PULLUP                         (SYSRSTRE + SYSRSTUP)
-#define SFR_RESISTORENABLE_PULLDOWN                                  (SYSRSTRE)
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the pullResistorSetup
+    // parameter for functions: SFR_setResetPinPullResistor().
+    //
+    //*****************************************************************************
+    #define SFR_RESISTORDISABLE                   ( !( SYSRSTRE + SYSRSTUP ) )
+    #define SFR_RESISTORENABLE_PULLUP             ( SYSRSTRE + SYSRSTUP )
+    #define SFR_RESISTORENABLE_PULLDOWN           ( SYSRSTRE )
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the edgeDirection parameter
-// for functions: SFR_setNMIEdge().
-//
-//*****************************************************************************
-#define SFR_NMI_RISINGEDGE                                       (!(SYSNMIIES))
-#define SFR_NMI_FALLINGEDGE                                         (SYSNMIIES)
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the edgeDirection
+    // parameter for functions: SFR_setNMIEdge().
+    //
+    //*****************************************************************************
+    #define SFR_NMI_RISINGEDGE                    ( !( SYSNMIIES ) )
+    #define SFR_NMI_FALLINGEDGE                   ( SYSNMIIES )
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the resetPinFunction
-// parameter for functions: SFR_setResetNMIPinFunction().
-//
-//*****************************************************************************
-#define SFR_RESETPINFUNC_RESET                                      (!(SYSNMI))
-#define SFR_RESETPINFUNC_NMI                                           (SYSNMI)
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the resetPinFunction
+    // parameter for functions: SFR_setResetNMIPinFunction().
+    //
+    //*****************************************************************************
+    #define SFR_RESETPINFUNC_RESET                ( !( SYSNMI ) )
+    #define SFR_RESETPINFUNC_NMI                  ( SYSNMI )
 
 //*****************************************************************************
 //
@@ -126,7 +125,7 @@ extern "C"
 //! \return None
 //
 //*****************************************************************************
-extern void SFR_enableInterrupt(uint8_t interruptMask);
+extern void SFR_enableInterrupt( uint8_t interruptMask );
 
 //*****************************************************************************
 //
@@ -151,7 +150,7 @@ extern void SFR_enableInterrupt(uint8_t interruptMask);
 //! \return None
 //
 //*****************************************************************************
-extern void SFR_disableInterrupt(uint8_t interruptMask);
+extern void SFR_disableInterrupt( uint8_t interruptMask );
 
 //*****************************************************************************
 //
@@ -187,7 +186,7 @@ extern void SFR_disableInterrupt(uint8_t interruptMask);
 //!         \n indicating the status of the masked interrupts
 //
 //*****************************************************************************
-extern uint8_t SFR_getInterruptStatus(uint8_t interruptFlagMask);
+extern uint8_t SFR_getInterruptStatus( uint8_t interruptFlagMask );
 
 //*****************************************************************************
 //
@@ -211,7 +210,7 @@ extern uint8_t SFR_getInterruptStatus(uint8_t interruptFlagMask);
 //! \return None
 //
 //*****************************************************************************
-extern void SFR_clearInterrupt(uint8_t interruptFlagMask);
+extern void SFR_clearInterrupt( uint8_t interruptFlagMask );
 
 //*****************************************************************************
 //
@@ -232,7 +231,7 @@ extern void SFR_clearInterrupt(uint8_t interruptFlagMask);
 //! \return None
 //
 //*****************************************************************************
-extern void SFR_setResetPinPullResistor(uint16_t pullResistorSetup);
+extern void SFR_setResetPinPullResistor( uint16_t pullResistorSetup );
 
 //*****************************************************************************
 //
@@ -254,7 +253,7 @@ extern void SFR_setResetPinPullResistor(uint16_t pullResistorSetup);
 //! \return None
 //
 //*****************************************************************************
-extern void SFR_setNMIEdge(uint16_t edgeDirection);
+extern void SFR_setNMIEdge( uint16_t edgeDirection );
 
 //*****************************************************************************
 //
@@ -275,16 +274,16 @@ extern void SFR_setNMIEdge(uint16_t edgeDirection);
 //! \return None
 //
 //*****************************************************************************
-extern void SFR_setResetNMIPinFunction(uint8_t resetPinFunction);
+extern void SFR_setResetNMIPinFunction( uint8_t resetPinFunction );
 
-//*****************************************************************************
-//
-// Mark the end of the C bindings section for C++ compilers.
-//
-//*****************************************************************************
-#ifdef __cplusplus
+    //*****************************************************************************
+    //
+    // Mark the end of the C bindings section for C++ compilers.
+    //
+    //*****************************************************************************
+    #ifdef __cplusplus
 }
-#endif
+    #endif
 
 #endif
 #endif // __MSP430WARE_SFR_H__

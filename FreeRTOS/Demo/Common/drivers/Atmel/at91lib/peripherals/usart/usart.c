@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
- *         ATMEL Microcontroller Software Support 
+ *         ATMEL Microcontroller Software Support
  * ----------------------------------------------------------------------------
  * Copyright (c) 2008, Atmel Corporation
  *
@@ -44,24 +44,23 @@
 /// \param baudrate  Baudrate at which the USART should operate (in Hz).
 /// \param masterClock  Frequency of the system master clock (in Hz).
 //------------------------------------------------------------------------------
-void USART_Configure(AT91S_USART *usart,
-                            unsigned int mode,
-                            unsigned int baudrate,
-                            unsigned int masterClock)
+void USART_Configure( AT91S_USART * usart,
+                      unsigned int mode,
+                      unsigned int baudrate,
+                      unsigned int masterClock )
 {
     // Reset and disable receiver & transmitter
-    usart->US_CR = AT91C_US_RSTRX | AT91C_US_RSTTX
-                   | AT91C_US_RXDIS | AT91C_US_TXDIS;
+    usart->US_CR = AT91C_US_RSTRX | AT91C_US_RSTTX | AT91C_US_RXDIS |
+                   AT91C_US_TXDIS;
 
     // Configure mode
     usart->US_MR = mode;
 
     // Configure baudrate
     // Asynchronous, no oversampling
-    if (((mode & AT91C_US_SYNC) == 0)
-        && ((mode & AT91C_US_OVER) == 0)) {
-    
-        usart->US_BRGR = (masterClock / baudrate) / 16;
+    if( ( ( mode & AT91C_US_SYNC ) == 0 ) && ( ( mode & AT91C_US_OVER ) == 0 ) )
+    {
+        usart->US_BRGR = ( masterClock / baudrate ) / 16;
     }
     // TODO other modes
 }
@@ -72,15 +71,14 @@ void USART_Configure(AT91S_USART *usart,
 /// \param enabled  If true, the transmitter is enabled; otherwise it is
 ///                 disabled.
 //------------------------------------------------------------------------------
-void USART_SetTransmitterEnabled(AT91S_USART *usart,
-                                        unsigned char enabled)
+void USART_SetTransmitterEnabled( AT91S_USART * usart, unsigned char enabled )
 {
-    if (enabled) {
-
+    if( enabled )
+    {
         usart->US_CR = AT91C_US_TXEN;
     }
-    else {
-
+    else
+    {
         usart->US_CR = AT91C_US_TXDIS;
     }
 }
@@ -90,15 +88,14 @@ void USART_SetTransmitterEnabled(AT91S_USART *usart,
 /// \param usart  Pointer to an USART peripheral
 /// \param enabled  If true, the receiver is enabled; otherwise it is disabled.
 //------------------------------------------------------------------------------
-void USART_SetReceiverEnabled(AT91S_USART *usart,
-                                     unsigned char enabled)
+void USART_SetReceiverEnabled( AT91S_USART * usart, unsigned char enabled )
 {
-    if (enabled) {
-
+    if( enabled )
+    {
         usart->US_CR = AT91C_US_RXEN;
     }
-    else {
-
+    else
+    {
         usart->US_CR = AT91C_US_RXDIS;
     }
 }
@@ -112,22 +109,22 @@ void USART_SetReceiverEnabled(AT91S_USART *usart,
 ///              the same format as the US_THR register in the datasheet).
 /// \param timeOut  Time out value (0 = no timeout).
 //------------------------------------------------------------------------------
-void USART_Write(
-    AT91S_USART *usart,
-    unsigned short data,
-    volatile unsigned int timeOut)
+void USART_Write( AT91S_USART * usart,
+                  unsigned short data,
+                  volatile unsigned int timeOut )
 {
-    if (timeOut == 0) {
-
-        while ((usart->US_CSR & AT91C_US_TXEMPTY) == 0);
+    if( timeOut == 0 )
+    {
+        while( ( usart->US_CSR & AT91C_US_TXEMPTY ) == 0 )
+            ;
     }
-    else {
-
-        while ((usart->US_CSR & AT91C_US_TXEMPTY) == 0) {
-
-            if (timeOut == 0) {
-
-                trace_LOG(trace_ERROR, "-E- USART_Write: Timed out.\n\r");
+    else
+    {
+        while( ( usart->US_CSR & AT91C_US_TXEMPTY ) == 0 )
+        {
+            if( timeOut == 0 )
+            {
+                trace_LOG( trace_ERROR, "-E- USART_Write: Timed out.\n\r" );
                 return;
             }
             timeOut--;
@@ -146,30 +143,29 @@ void USART_Write(
 /// \param buffer  Pointer to the data buffer to send.
 /// \param size  Size of the data buffer (in bytes).
 //------------------------------------------------------------------------------
-unsigned char USART_WriteBuffer(
-    AT91S_USART *usart,
-    void *buffer,
-    unsigned int size)
+unsigned char USART_WriteBuffer( AT91S_USART * usart,
+                                 void * buffer,
+                                 unsigned int size )
 {
     // Check if the first PDC bank is free
-    if ((usart->US_TCR == 0) && (usart->US_TNCR == 0)) {
-
-        usart->US_TPR = (unsigned int) buffer;
+    if( ( usart->US_TCR == 0 ) && ( usart->US_TNCR == 0 ) )
+    {
+        usart->US_TPR = ( unsigned int ) buffer;
         usart->US_TCR = size;
         usart->US_PTCR = AT91C_PDC_TXTEN;
 
         return 1;
     }
     // Check if the second PDC bank is free
-    else if (usart->US_TNCR == 0) {
-
-        usart->US_TNPR = (unsigned int) buffer;
+    else if( usart->US_TNCR == 0 )
+    {
+        usart->US_TNPR = ( unsigned int ) buffer;
         usart->US_TNCR = size;
 
         return 1;
     }
-    else {
-
+    else
+    {
         return 0;
     }
 }
@@ -181,21 +177,20 @@ unsigned char USART_WriteBuffer(
 /// \param usart  Pointer to an USART peripheral.
 /// \param timeOut  Time out value (0 -> no timeout).
 //------------------------------------------------------------------------------
-unsigned short USART_Read(
-    AT91S_USART *usart,
-    volatile unsigned int timeOut)
+unsigned short USART_Read( AT91S_USART * usart, volatile unsigned int timeOut )
 {
-    if (timeOut == 0) {
-
-        while ((usart->US_CSR & AT91C_US_RXRDY) == 0);
+    if( timeOut == 0 )
+    {
+        while( ( usart->US_CSR & AT91C_US_RXRDY ) == 0 )
+            ;
     }
-    else {
-
-        while ((usart->US_CSR & AT91C_US_RXRDY) == 0) {
-
-            if (timeOut == 0) {
-
-                trace_LOG(trace_ERROR, "-E- USART_Read: Timed out.\n\r");
+    else
+    {
+        while( ( usart->US_CSR & AT91C_US_RXRDY ) == 0 )
+        {
+            if( timeOut == 0 )
+            {
+                trace_LOG( trace_ERROR, "-E- USART_Read: Timed out.\n\r" );
                 return 0;
             }
             timeOut--;
@@ -213,29 +208,29 @@ unsigned short USART_Read(
 /// \param buffer  Pointer to the buffer where the received data will be stored.
 /// \param size  Size of the data buffer (in bytes).
 //------------------------------------------------------------------------------
-unsigned char USART_ReadBuffer(AT91S_USART *usart,
-                                      void *buffer,
-                                      unsigned int size)
+unsigned char USART_ReadBuffer( AT91S_USART * usart,
+                                void * buffer,
+                                unsigned int size )
 {
     // Check if the first PDC bank is free
-    if ((usart->US_RCR == 0) && (usart->US_RNCR == 0)) {
-
-        usart->US_RPR = (unsigned int) buffer;
+    if( ( usart->US_RCR == 0 ) && ( usart->US_RNCR == 0 ) )
+    {
+        usart->US_RPR = ( unsigned int ) buffer;
         usart->US_RCR = size;
         usart->US_PTCR = AT91C_PDC_RXTEN;
 
         return 1;
     }
     // Check if the second PDC bank is free
-    else if (usart->US_RNCR == 0) {
-
-        usart->US_RNPR = (unsigned int) buffer;
+    else if( usart->US_RNCR == 0 )
+    {
+        usart->US_RNPR = ( unsigned int ) buffer;
         usart->US_RNCR = size;
 
         return 1;
     }
-    else {
-
+    else
+    {
         return 0;
     }
 }
@@ -245,15 +240,14 @@ unsigned char USART_ReadBuffer(AT91S_USART *usart,
 /// otherwise returns 0.
 /// \param usart  Pointer to an AT91S_USART instance.
 //------------------------------------------------------------------------------
-unsigned char USART_IsDataAvailable(AT91S_USART *usart)
+unsigned char USART_IsDataAvailable( AT91S_USART * usart )
 {
-    if ((usart->US_CSR & AT91C_US_RXRDY) != 0) {
-
+    if( ( usart->US_CSR & AT91C_US_RXRDY ) != 0 )
+    {
         return 1;
     }
-    else {
-
+    else
+    {
         return 0;
     }
 }
-

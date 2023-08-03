@@ -23,20 +23,19 @@
 ** ###################################################################*/
 /* MODULE Events */
 
-
 /*Including used modules for compilling procedure*/
+#include "Byte1.h"
+#include "COM0.h"
 #include "Cpu.h"
 #include "Events.h"
 #include "TickTimer.h"
-#include "Byte1.h"
-#include "COM0.h"
 
 /*Include shared modules, which are used for whole project*/
-#include "PE_Types.h"
-#include "PE_Error.h"
-#include "PE_Const.h"
 #include "IO_Map.h"
+#include "PE_Const.h"
+#include "PE_Error.h"
 #include "PE_Timer.h"
+#include "PE_Types.h"
 
 /*
 ** ===================================================================
@@ -51,11 +50,10 @@
 **     Returns     : Nothing
 ** ===================================================================
 */
-void TickTimer_OnInterrupt(void)
+void TickTimer_OnInterrupt( void )
 {
-  /* Write your code here ... */
+    /* Write your code here ... */
 }
-
 
 /*
 ** ===================================================================
@@ -70,9 +68,9 @@ void TickTimer_OnInterrupt(void)
 **     Returns     : Nothing
 ** ===================================================================
 */
-void COM0_OnError(void)
+void COM0_OnError( void )
 {
-  /* Write your code here ... */
+    /* Write your code here ... */
 }
 
 /*
@@ -87,9 +85,9 @@ void COM0_OnError(void)
 **     Returns     : Nothing
 ** ===================================================================
 */
-void COM0_OnRxChar(void)
+void COM0_OnRxChar( void )
 {
-  /* Write your code here ... */
+    /* Write your code here ... */
 }
 
 /*
@@ -103,9 +101,9 @@ void COM0_OnRxChar(void)
 **     Returns     : Nothing
 ** ===================================================================
 */
-void COM0_OnTxChar(void)
+void COM0_OnTxChar( void )
 {
-  /* Write your code here ... */
+    /* Write your code here ... */
 }
 
 /*
@@ -119,9 +117,9 @@ void COM0_OnTxChar(void)
 **     Returns     : Nothing
 ** ===================================================================
 */
-void COM0_OnFullRxBuf(void)
+void COM0_OnFullRxBuf( void )
 {
-  /* Write your code here ... */
+    /* Write your code here ... */
 }
 
 /*
@@ -136,9 +134,9 @@ void COM0_OnFullRxBuf(void)
 **     Returns     : Nothing
 ** ===================================================================
 */
-void COM0_OnFreeTxBuf(void)
+void COM0_OnFreeTxBuf( void )
 {
-  /* Write your code here ... */
+    /* Write your code here ... */
 }
 
 /* END Events */
@@ -146,7 +144,7 @@ void COM0_OnFreeTxBuf(void)
 /*
 ** ###################################################################
 **
-**     This file was created by UNIS Processor Expert 03.33 for 
+**     This file was created by UNIS Processor Expert 03.33 for
 **     the Motorola HCS12 series of microcontrollers.
 **
 ** ###################################################################

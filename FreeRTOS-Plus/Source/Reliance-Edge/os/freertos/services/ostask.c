@@ -30,14 +30,14 @@
 
 #include <redfs.h>
 
-#if (REDCONF_TASK_COUNT > 1U) && (REDCONF_API_POSIX == 1)
+#if( REDCONF_TASK_COUNT > 1U ) && ( REDCONF_API_POSIX == 1 )
 
-#include <redosdeviations.h>
+    #include <redosdeviations.h>
 
-#if INCLUDE_xTaskGetCurrentTaskHandle != 1
-  #error "INCLUDE_xTaskGetCurrentTaskHandle must be 1 when REDCONF_TASK_COUNT > 1 and REDCONF_API_POSIX == 1"
-#endif
-
+    #if INCLUDE_xTaskGetCurrentTaskHandle != 1
+        #error \
+            "INCLUDE_xTaskGetCurrentTaskHandle must be 1 when REDCONF_TASK_COUNT > 1 and REDCONF_API_POSIX == 1"
+    #endif
 
 /** @brief Get the current task ID.
 
@@ -45,24 +45,23 @@
 
     @return The task ID.  Must not be 0.
 */
-uint32_t RedOsTaskId(void)
+uint32_t RedOsTaskId( void )
 {
     /*  Simply casting the xTaskGetCurrentTaskHandle() return value results in
         warnings from some compilers, so use variables.
     */
-    TaskHandle_t    xTask = xTaskGetCurrentTaskHandle();
-    uintptr_t       taskptr = CAST_TASK_PTR_TO_UINTPTR(xTask);
-    uint32_t        ulTaskPtr = (uint32_t)taskptr;
+    TaskHandle_t xTask = xTaskGetCurrentTaskHandle();
+    uintptr_t taskptr = CAST_TASK_PTR_TO_UINTPTR( xTask );
+    uint32_t ulTaskPtr = ( uint32_t ) taskptr;
 
     /*  Assert no information was lost casting from uintptr_t to uint32_t.
-    */
-    REDASSERT(ulTaskPtr == taskptr);
+     */
+    REDASSERT( ulTaskPtr == taskptr );
 
     /*  NULL is a valid task handle in FreeRTOS, so add one to all task IDs.
-    */
-    REDASSERT((ulTaskPtr + 1U) != 0U);
+     */
+    REDASSERT( ( ulTaskPtr + 1U ) != 0U );
     return ulTaskPtr + 1U;
 }
 
 #endif
-

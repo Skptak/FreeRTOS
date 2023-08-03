@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
- *         SAM Software Package License 
+ *         SAM Software Package License
  * ----------------------------------------------------------------------------
  * Copyright (c) 2014, Atmel Corporation
  *
@@ -60,46 +60,45 @@
 #include <assert.h>
 
 #ifdef __cplusplus
- extern "C" {
+extern "C" {
 #endif
 
-   
-#define ENABLE          1
-#define DISABLE         0   
-   
-#define OFFSET_BIT      5
-#define INDEX_BIT       9
-#define TAG_BIT         18          
-   
-#define DCACHE_CLEAN            0
-#define DCACHE_INVAL            1
-#define DCACHE_FLUSH            2   
-   
-#define RESET_EVCOUNTER0        0
-#define RESET_EVCOUNTER1        1   
-#define RESET_BOTH_COUNTER      3
+#define ENABLE                1
+#define DISABLE               0
 
-#define FWA_DEFAULT             0
-#define FWA_NO_ALLOCATE         1
-#define FWA_FORCE_ALLOCATE      2
-#define FWA_INTERNALLY_MAPPED   3
- /*----------------------------------------------------------------------------
+#define OFFSET_BIT            5
+#define INDEX_BIT             9
+#define TAG_BIT               18
+
+#define DCACHE_CLEAN          0
+#define DCACHE_INVAL          1
+#define DCACHE_FLUSH          2
+
+#define RESET_EVCOUNTER0      0
+#define RESET_EVCOUNTER1      1
+#define RESET_BOTH_COUNTER    3
+
+#define FWA_DEFAULT           0
+#define FWA_NO_ALLOCATE       1
+#define FWA_FORCE_ALLOCATE    2
+#define FWA_INTERNALLY_MAPPED 3
+/*----------------------------------------------------------------------------
  *        Types
  *----------------------------------------------------------------------------*/
 
 typedef struct
 {
-  uint8_t  SetupLAT;
-  uint8_t  ReadLAT;
-  uint8_t  WriteLAT;
-}Latency;
+    uint8_t SetupLAT;
+    uint8_t ReadLAT;
+    uint8_t WriteLAT;
+} Latency;
 
 typedef struct
 {
-  Latency       TagRAM;
-  Latency       DataRAM;  
-}RAMLatencyControl;
-   
+    Latency TagRAM;
+    Latency DataRAM;
+} RAMLatencyControl;
+
 /** L2CC structur */
 typedef struct
 {
@@ -111,19 +110,19 @@ typedef struct
     uint32_t SAIE_Val;
     /** Event Monitor Bus Enable */
     uint32_t EMBEN_Val;
-    /** Parity Enable */    
+    /** Parity Enable */
     uint32_t PEN_Val;
-    /** Shared Attribute Override Enable */    
+    /** Shared Attribute Override Enable */
     uint32_t SAOEN_Val;
-    /** Force Write Allocate */    
+    /** Force Write Allocate */
     uint32_t FWA_Val;
-    /** Cache Replacement Policy */    
+    /** Cache Replacement Policy */
     uint32_t CRPOL_Val;
-    /** Non-Secure Lockdown Enable*/    
+    /** Non-Secure Lockdown Enable*/
     uint32_t NSLEN_Val;
-    /** Non-Secure Interrupt Access Control */    
+    /** Non-Secure Interrupt Access Control */
     uint32_t NSIAC_Val;
-     /** Data Prefetch Enable*/
+    /** Data Prefetch Enable*/
     uint32_t DPEN_Val;
     /** Instruction Prefetch Enable */
     uint32_t IPEN_Val;
@@ -147,42 +146,47 @@ typedef struct
     uint32_t DCL_Val;
     /** Disable Write-back, Force Write-through */
     uint32_t DWB_Val;
-}L2CC_Control;
+} L2CC_Control;
 /*----------------------------------------------------------------------------
  *        Exported functions
  *----------------------------------------------------------------------------*/
 
+extern unsigned int L2CC_IsEnabled( L2cc * pL2CC );
+extern void L2CC_Enable( L2cc * pL2CC );
+extern void L2CC_Disable( L2cc * pL2CC );
+extern void L2CC_ExclusiveCache( L2cc * pL2CC, uint8_t Enable );
+extern void L2CC_ConfigLatRAM( L2cc * pL2CC, RAMLatencyControl * pLat );
+extern void L2CC_Config( L2cc * pL2CC, L2CC_Control L2cc_Config );
+extern void L2CC_DataPrefetchEnable( L2cc * pL2CC );
+extern void L2CC_InstPrefetchEnable( L2cc * pL2CC );
+extern void L2CC_EnableResetCounter( L2cc * pL2CC, uint8_t EvenetCounter );
+extern void L2CC_EventConfig( L2cc * pL2CC,
+                              uint8_t EventCounter,
+                              uint8_t Source,
+                              uint8_t IntGen );
+extern unsigned int L2CC_EventCounterValue( L2cc * pL2CC,
+                                            uint8_t EventCounter );
+extern void L2CC_EnableIT( L2cc * pL2CC, uint16_t ITSource );
+extern void L2CC_DisableIT( L2cc * pL2CC, uint16_t ITSource );
+extern unsigned short L2CC_ITStatusRaw( L2cc * pL2CC, uint16_t ITSource );
+extern unsigned short L2CC_ITStatusMask( L2cc * pL2CC, uint16_t ITSource );
+extern void L2CC_ITClear( L2cc * pL2CC, uint16_t ITSource );
+uint8_t L2CC_PollSPNIDEN( L2cc * pL2CC );
+extern void L2CC_CacheSync( L2cc * pL2CC );
+extern void L2CC_InvalidateWay( L2cc * pL2CC, uint8_t Way );
+extern void L2CC_CleanWay( L2cc * pL2CC, uint8_t Way );
+extern void L2CC_InvalidatePAL( L2cc * pL2CC, uint32_t P_Address );
+extern void L2CC_CleanPAL( L2cc * pL2CC, uint32_t P_Address );
+extern void L2CC_CleanIx( L2cc * pL2CC, uint32_t P_Address );
 
-extern unsigned int L2CC_IsEnabled(L2cc* pL2CC);
-extern void L2CC_Enable(L2cc* pL2CC);
-extern void L2CC_Disable(L2cc* pL2CC);
-extern void L2CC_ExclusiveCache(L2cc* pL2CC, uint8_t Enable);
-extern void L2CC_ConfigLatRAM(L2cc* pL2CC, RAMLatencyControl  *pLat);
-extern void L2CC_Config(L2cc* pL2CC, L2CC_Control L2cc_Config);
-extern void L2CC_DataPrefetchEnable(L2cc* pL2CC );
-extern void L2CC_InstPrefetchEnable(L2cc* pL2CC );
-extern void L2CC_EnableResetCounter(L2cc* pL2CC , uint8_t EvenetCounter);
-extern void L2CC_EventConfig(L2cc* pL2CC, uint8_t EventCounter, uint8_t Source, uint8_t IntGen);
-extern unsigned int L2CC_EventCounterValue(L2cc* pL2CC, uint8_t EventCounter);
-extern void L2CC_EnableIT(L2cc* pL2CC, uint16_t ITSource);
-extern void L2CC_DisableIT(L2cc* pL2CC, uint16_t ITSource);
-extern unsigned short L2CC_ITStatusRaw(L2cc* pL2CC, uint16_t ITSource);
-extern unsigned short L2CC_ITStatusMask(L2cc* pL2CC, uint16_t ITSource);
-extern void L2CC_ITClear(L2cc* pL2CC, uint16_t ITSource);
-uint8_t L2CC_PollSPNIDEN(L2cc* pL2CC);
-extern void L2CC_CacheSync(L2cc* pL2CC);
-extern void L2CC_InvalidateWay(L2cc* pL2CC, uint8_t Way);
-extern void L2CC_CleanWay(L2cc* pL2CC, uint8_t Way);
-extern void L2CC_InvalidatePAL(L2cc* pL2CC, uint32_t P_Address);
-extern void L2CC_CleanPAL(L2cc* pL2CC, uint32_t P_Address);
-extern void L2CC_CleanIx(L2cc* pL2CC, uint32_t P_Address);
-
-extern void L2CC_CleanIndex(L2cc* pL2CC, uint32_t P_Address, uint8_t Way);
-extern void L2CC_CleanInvalidateIndex(L2cc* pL2CC, uint32_t P_Address, uint8_t Way);
-extern void L2CC_DataLockdown(L2cc* pL2CC, uint8_t Way);
-extern void L2CC_InstructionLockdown(L2cc* pL2CC, uint8_t Way);
-extern void L2CC_CacheMaintenance(uint8_t Maint_Op);
-extern void Enable_L2CC(void);
+extern void L2CC_CleanIndex( L2cc * pL2CC, uint32_t P_Address, uint8_t Way );
+extern void L2CC_CleanInvalidateIndex( L2cc * pL2CC,
+                                       uint32_t P_Address,
+                                       uint8_t Way );
+extern void L2CC_DataLockdown( L2cc * pL2CC, uint8_t Way );
+extern void L2CC_InstructionLockdown( L2cc * pL2CC, uint8_t Way );
+extern void L2CC_CacheMaintenance( uint8_t Maint_Op );
+extern void Enable_L2CC( void );
 
 #ifdef __cplusplus
 }

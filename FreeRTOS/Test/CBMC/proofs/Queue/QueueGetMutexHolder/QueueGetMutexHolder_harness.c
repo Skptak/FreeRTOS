@@ -27,8 +27,8 @@
  */
 
 #include "FreeRTOS.h"
-#include "queue_init.h"
 #include "queue.h"
+#include "queue_init.h"
 
 #include "cbmc.h"
 

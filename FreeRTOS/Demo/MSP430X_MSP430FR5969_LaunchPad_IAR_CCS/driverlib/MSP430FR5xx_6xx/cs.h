@@ -40,111 +40,110 @@
 
 #include "inc/hw_memmap.h"
 
-#if defined(__MSP430_HAS_CS__) || defined(__MSP430_HAS_SFR__)
+#if defined( __MSP430_HAS_CS__ ) || defined( __MSP430_HAS_SFR__ )
 
-//*****************************************************************************
-//
-// If building with a C++ compiler, make all of the definitions in this header
-// have a C binding.
-//
-//*****************************************************************************
-#ifdef __cplusplus
-extern "C"
-{
-#endif
+    //*****************************************************************************
+    //
+    // If building with a C++ compiler, make all of the definitions in this
+    // header have a C binding.
+    //
+    //*****************************************************************************
+    #ifdef __cplusplus
+extern "C" {
+    #endif
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the clockSourceDivider
-// parameter for functions: CS_initClockSignal().
-//
-//*****************************************************************************
-#define CS_CLOCK_DIVIDER_1                                              DIVM__1
-#define CS_CLOCK_DIVIDER_2                                              DIVM__2
-#define CS_CLOCK_DIVIDER_4                                              DIVM__4
-#define CS_CLOCK_DIVIDER_8                                              DIVM__8
-#define CS_CLOCK_DIVIDER_16                                            DIVM__16
-#define CS_CLOCK_DIVIDER_32                                            DIVM__32
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the clockSourceDivider
+    // parameter for functions: CS_initClockSignal().
+    //
+    //*****************************************************************************
+    #define CS_CLOCK_DIVIDER_1        DIVM__1
+    #define CS_CLOCK_DIVIDER_2        DIVM__2
+    #define CS_CLOCK_DIVIDER_4        DIVM__4
+    #define CS_CLOCK_DIVIDER_8        DIVM__8
+    #define CS_CLOCK_DIVIDER_16       DIVM__16
+    #define CS_CLOCK_DIVIDER_32       DIVM__32
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the selectClock parameter for
-// functions: CS_enableClockRequest(), and CS_disableClockRequest(); the
-// selectedClockSignal parameter for functions: CS_initClockSignal().
-//
-//*****************************************************************************
-#define CS_ACLK                                                            0x01
-#define CS_MCLK                                                            0x02
-#define CS_SMCLK                                                           0x04
-#define CS_MODOSC                                                   MODCLKREQEN
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the selectClock parameter
+    // for functions: CS_enableClockRequest(), and CS_disableClockRequest(); the
+    // selectedClockSignal parameter for functions: CS_initClockSignal().
+    //
+    //*****************************************************************************
+    #define CS_ACLK                   0x01
+    #define CS_MCLK                   0x02
+    #define CS_SMCLK                  0x04
+    #define CS_MODOSC                 MODCLKREQEN
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the clockSource parameter for
-// functions: CS_initClockSignal().
-//
-//*****************************************************************************
-#define CS_VLOCLK_SELECT                                           SELM__VLOCLK
-#define CS_DCOCLK_SELECT                                           SELM__DCOCLK
-#define CS_LFXTCLK_SELECT                                         SELM__LFXTCLK
-#define CS_HFXTCLK_SELECT                                         SELM__HFXTCLK
-#define CS_LFMODOSC_SELECT                                       SELM__LFMODOSC
-#define CS_MODOSC_SELECT                                           SELM__MODOSC
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the clockSource parameter
+    // for functions: CS_initClockSignal().
+    //
+    //*****************************************************************************
+    #define CS_VLOCLK_SELECT          SELM__VLOCLK
+    #define CS_DCOCLK_SELECT          SELM__DCOCLK
+    #define CS_LFXTCLK_SELECT         SELM__LFXTCLK
+    #define CS_HFXTCLK_SELECT         SELM__HFXTCLK
+    #define CS_LFMODOSC_SELECT        SELM__LFMODOSC
+    #define CS_MODOSC_SELECT          SELM__MODOSC
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the lfxtdrive parameter for
-// functions: CS_turnOnLFXT(), and CS_turnOnLFXTWithTimeout().
-//
-//*****************************************************************************
-#define CS_LFXT_DRIVE_0                                             LFXTDRIVE_0
-#define CS_LFXT_DRIVE_1                                             LFXTDRIVE_1
-#define CS_LFXT_DRIVE_2                                             LFXTDRIVE_2
-#define CS_LFXT_DRIVE_3                                             LFXTDRIVE_3
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the lfxtdrive parameter
+    // for functions: CS_turnOnLFXT(), and CS_turnOnLFXTWithTimeout().
+    //
+    //*****************************************************************************
+    #define CS_LFXT_DRIVE_0           LFXTDRIVE_0
+    #define CS_LFXT_DRIVE_1           LFXTDRIVE_1
+    #define CS_LFXT_DRIVE_2           LFXTDRIVE_2
+    #define CS_LFXT_DRIVE_3           LFXTDRIVE_3
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the hfxtdrive parameter for
-// functions: CS_turnOnHFXT(), and CS_turnOnHFXTWithTimeout().
-//
-//*****************************************************************************
-#define CS_HFXT_DRIVE_4MHZ_8MHZ                                     HFXTDRIVE_0
-#define CS_HFXT_DRIVE_8MHZ_16MHZ                                    HFXTDRIVE_1
-#define CS_HFXT_DRIVE_16MHZ_24MHZ                                   HFXTDRIVE_2
-#define CS_HFXT_DRIVE_24MHZ_32MHZ                                   HFXTDRIVE_3
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the hfxtdrive parameter
+    // for functions: CS_turnOnHFXT(), and CS_turnOnHFXTWithTimeout().
+    //
+    //*****************************************************************************
+    #define CS_HFXT_DRIVE_4MHZ_8MHZ   HFXTDRIVE_0
+    #define CS_HFXT_DRIVE_8MHZ_16MHZ  HFXTDRIVE_1
+    #define CS_HFXT_DRIVE_16MHZ_24MHZ HFXTDRIVE_2
+    #define CS_HFXT_DRIVE_24MHZ_32MHZ HFXTDRIVE_3
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the mask parameter for
-// functions: CS_getFaultFlagStatus(), and CS_clearFaultFlag() as well as
-// returned by the CS_getFaultFlagStatus() function.
-//
-//*****************************************************************************
-#define CS_LFXTOFFG                                                    LFXTOFFG
-#define CS_HFXTOFFG                                                    HFXTOFFG
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the mask parameter for
+    // functions: CS_getFaultFlagStatus(), and CS_clearFaultFlag() as well as
+    // returned by the CS_getFaultFlagStatus() function.
+    //
+    //*****************************************************************************
+    #define CS_LFXTOFFG               LFXTOFFG
+    #define CS_HFXTOFFG               HFXTOFFG
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the dcorsel parameter for
-// functions: CS_setDCOFreq().
-//
-//*****************************************************************************
-#define CS_DCORSEL_0                                                       0x00
-#define CS_DCORSEL_1                                                    DCORSEL
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the dcorsel parameter for
+    // functions: CS_setDCOFreq().
+    //
+    //*****************************************************************************
+    #define CS_DCORSEL_0              0x00
+    #define CS_DCORSEL_1              DCORSEL
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the dcofsel parameter for
-// functions: CS_setDCOFreq().
-//
-//*****************************************************************************
-#define CS_DCOFSEL_0                                                  DCOFSEL_0
-#define CS_DCOFSEL_1                                                  DCOFSEL_1
-#define CS_DCOFSEL_2                                                  DCOFSEL_2
-#define CS_DCOFSEL_3                                                  DCOFSEL_3
-#define CS_DCOFSEL_4                                                  DCOFSEL_4
-#define CS_DCOFSEL_5                                                  DCOFSEL_5
-#define CS_DCOFSEL_6                                                  DCOFSEL_6
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the dcofsel parameter for
+    // functions: CS_setDCOFreq().
+    //
+    //*****************************************************************************
+    #define CS_DCOFSEL_0              DCOFSEL_0
+    #define CS_DCOFSEL_1              DCOFSEL_1
+    #define CS_DCOFSEL_2              DCOFSEL_2
+    #define CS_DCOFSEL_3              DCOFSEL_3
+    #define CS_DCOFSEL_4              DCOFSEL_4
+    #define CS_DCOFSEL_5              DCOFSEL_5
+    #define CS_DCOFSEL_6              DCOFSEL_6
 
 //*****************************************************************************
 //
@@ -169,8 +168,8 @@ extern "C"
 //! \return None
 //
 //*****************************************************************************
-extern void CS_setExternalClockSource(uint32_t LFXTCLK_frequency,
-                                      uint32_t HFXTCLK_frequency);
+extern void CS_setExternalClockSource( uint32_t LFXTCLK_frequency,
+                                       uint32_t HFXTCLK_frequency );
 
 //*****************************************************************************
 //
@@ -212,9 +211,9 @@ extern void CS_setExternalClockSource(uint32_t LFXTCLK_frequency,
 //! \return None
 //
 //*****************************************************************************
-extern void CS_initClockSignal(uint8_t selectedClockSignal,
-                               uint16_t clockSource,
-                               uint16_t clockSourceDivider);
+extern void CS_initClockSignal( uint8_t selectedClockSignal,
+                                uint16_t clockSource,
+                                uint16_t clockSourceDivider );
 
 //*****************************************************************************
 //
@@ -240,7 +239,7 @@ extern void CS_initClockSignal(uint8_t selectedClockSignal,
 //! \return None
 //
 //*****************************************************************************
-extern void CS_turnOnLFXT(uint16_t lfxtdrive);
+extern void CS_turnOnLFXT( uint16_t lfxtdrive );
 
 //*****************************************************************************
 //
@@ -258,7 +257,7 @@ extern void CS_turnOnLFXT(uint16_t lfxtdrive);
 //! \return None
 //
 //*****************************************************************************
-extern void CS_bypassLFXT(void);
+extern void CS_bypassLFXT( void );
 
 //*****************************************************************************
 //
@@ -289,8 +288,7 @@ extern void CS_bypassLFXT(void);
 //!         oscillator was initialized successfully
 //
 //*****************************************************************************
-extern bool CS_turnOnLFXTWithTimeout(uint16_t lfxtdrive,
-                                     uint32_t timeout);
+extern bool CS_turnOnLFXTWithTimeout( uint16_t lfxtdrive, uint32_t timeout );
 
 //*****************************************************************************
 //
@@ -311,7 +309,7 @@ extern bool CS_turnOnLFXTWithTimeout(uint16_t lfxtdrive,
 //! \return STATUS_SUCCESS or STATUS_FAIL
 //
 //*****************************************************************************
-extern bool CS_bypassLFXTWithTimeout(uint32_t timeout);
+extern bool CS_bypassLFXTWithTimeout( uint32_t timeout );
 
 //*****************************************************************************
 //
@@ -323,7 +321,7 @@ extern bool CS_bypassLFXTWithTimeout(uint32_t timeout);
 //! \return None
 //
 //*****************************************************************************
-extern void CS_turnOffLFXT(void);
+extern void CS_turnOffLFXT( void );
 
 //*****************************************************************************
 //
@@ -350,7 +348,7 @@ extern void CS_turnOffLFXT(void);
 //! \return None
 //
 //*****************************************************************************
-extern void CS_turnOnHFXT(uint16_t hfxtdrive);
+extern void CS_turnOnHFXT( uint16_t hfxtdrive );
 
 //*****************************************************************************
 //
@@ -368,7 +366,7 @@ extern void CS_turnOnHFXT(uint16_t hfxtdrive);
 //! \return None
 //
 //*****************************************************************************
-extern void CS_bypassHFXT(void);
+extern void CS_bypassHFXT( void );
 
 //*****************************************************************************
 //
@@ -397,8 +395,7 @@ extern void CS_bypassHFXT(void);
 //! \return STATUS_SUCCESS or STATUS_FAIL
 //
 //*****************************************************************************
-extern bool CS_turnOnHFXTWithTimeout(uint16_t hfxtdrive,
-                                     uint32_t timeout);
+extern bool CS_turnOnHFXTWithTimeout( uint16_t hfxtdrive, uint32_t timeout );
 
 //*****************************************************************************
 //
@@ -419,7 +416,7 @@ extern bool CS_turnOnHFXTWithTimeout(uint16_t hfxtdrive,
 //! \return STATUS_SUCCESS or STATUS_FAIL
 //
 //*****************************************************************************
-extern bool CS_bypassHFXTWithTimeout(uint32_t timeout);
+extern bool CS_bypassHFXTWithTimeout( uint32_t timeout );
 
 //*****************************************************************************
 //
@@ -431,7 +428,7 @@ extern bool CS_bypassHFXTWithTimeout(uint32_t timeout);
 //! \return None
 //
 //*****************************************************************************
-extern void CS_turnOffHFXT(void);
+extern void CS_turnOffHFXT( void );
 
 //*****************************************************************************
 //
@@ -449,7 +446,7 @@ extern void CS_turnOffHFXT(void);
 //! \return None
 //
 //*****************************************************************************
-extern void CS_enableClockRequest(uint8_t selectClock);
+extern void CS_enableClockRequest( uint8_t selectClock );
 
 //*****************************************************************************
 //
@@ -467,7 +464,7 @@ extern void CS_enableClockRequest(uint8_t selectClock);
 //! \return None
 //
 //*****************************************************************************
-extern void CS_disableClockRequest(uint8_t selectClock);
+extern void CS_disableClockRequest( uint8_t selectClock );
 
 //*****************************************************************************
 //
@@ -485,7 +482,7 @@ extern void CS_disableClockRequest(uint8_t selectClock);
 //!         \n indicating the status of the masked interrupts
 //
 //*****************************************************************************
-extern uint8_t CS_getFaultFlagStatus(uint8_t mask);
+extern uint8_t CS_getFaultFlagStatus( uint8_t mask );
 
 //*****************************************************************************
 //
@@ -502,7 +499,7 @@ extern uint8_t CS_getFaultFlagStatus(uint8_t mask);
 //! \return None
 //
 //*****************************************************************************
-extern void CS_clearFaultFlag(uint8_t mask);
+extern void CS_clearFaultFlag( uint8_t mask );
 
 //*****************************************************************************
 //
@@ -517,7 +514,7 @@ extern void CS_clearFaultFlag(uint8_t mask);
 //! \return Current ACLK frequency in Hz
 //
 //*****************************************************************************
-extern uint32_t CS_getACLK(void);
+extern uint32_t CS_getACLK( void );
 
 //*****************************************************************************
 //
@@ -532,7 +529,7 @@ extern uint32_t CS_getACLK(void);
 //! \return Current SMCLK frequency in Hz
 //
 //*****************************************************************************
-extern uint32_t CS_getSMCLK(void);
+extern uint32_t CS_getSMCLK( void );
 
 //*****************************************************************************
 //
@@ -547,7 +544,7 @@ extern uint32_t CS_getSMCLK(void);
 //! \return Current MCLK frequency in Hz
 //
 //*****************************************************************************
-extern uint32_t CS_getMCLK(void);
+extern uint32_t CS_getMCLK( void );
 
 //*****************************************************************************
 //
@@ -559,7 +556,7 @@ extern uint32_t CS_getMCLK(void);
 //! \return None
 //
 //*****************************************************************************
-extern void CS_turnOffVLO(void);
+extern void CS_turnOffVLO( void );
 
 //*****************************************************************************
 //
@@ -573,7 +570,7 @@ extern void CS_turnOffVLO(void);
 //! \return the mask of the oscillator flag status
 //
 //*****************************************************************************
-extern uint16_t CS_clearAllOscFlagsWithTimeout(uint32_t timeout);
+extern uint16_t CS_clearAllOscFlagsWithTimeout( uint32_t timeout );
 
 //*****************************************************************************
 //
@@ -604,17 +601,16 @@ extern uint16_t CS_clearAllOscFlagsWithTimeout(uint32_t timeout);
 //! \return None
 //
 //*****************************************************************************
-extern void CS_setDCOFreq(uint16_t dcorsel,
-                          uint16_t dcofsel);
+extern void CS_setDCOFreq( uint16_t dcorsel, uint16_t dcofsel );
 
-//*****************************************************************************
-//
-// Mark the end of the C bindings section for C++ compilers.
-//
-//*****************************************************************************
-#ifdef __cplusplus
+    //*****************************************************************************
+    //
+    // Mark the end of the C bindings section for C++ compilers.
+    //
+    //*****************************************************************************
+    #ifdef __cplusplus
 }
-#endif
+    #endif
 
 #endif
 #endif // __MSP430WARE_CS_H__

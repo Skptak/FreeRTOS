@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
- *         SAM Software Package License 
+ *         SAM Software Package License
  * ----------------------------------------------------------------------------
  * Copyright (c) 2011, Atmel Corporation
  *
@@ -32,14 +32,16 @@
  *
  * \par Purpose
  *
- * Interface for configuration the Pulse Width Modulation Controller (PWM) peripheral.
+ * Interface for configuration the Pulse Width Modulation Controller (PWM)
+ * peripheral.
  *
  * \par Usage
  *
  *    -# Configures PWM clocks A & B to run at the given frequencies using
  *       \ref PWMC_ConfigureClocks().
- *    -# Configure PWMC channel using \ref PWMC_ConfigureChannel(), \ref PWMC_ConfigureChannelExt()
- *       \ref PWMC_SetPeriod(), \ref PWMC_SetDutyCycle() and \ref PWMC_SetDeadTime().
+ *    -# Configure PWMC channel using \ref PWMC_ConfigureChannel(), \ref
+ * PWMC_ConfigureChannelExt() \ref PWMC_SetPeriod(), \ref PWMC_SetDutyCycle()
+ * and \ref PWMC_SetDeadTime().
  *    -# Enable & disable channel using \ref PWMC_EnableChannel() and
  *       \ref PWMC_DisableChannel().
  *    -# Enable & disable the period interrupt for the given PWM channel using
@@ -47,7 +49,8 @@
  *    -# Enable & disable the selected interrupts sources on a PWMC peripheral
  *       using  \ref PWMC_EnableIt() and \ref PWMC_DisableIt().
  *    -# Control syncronous channel using \ref PWMC_ConfigureSyncChannel(),
- *       \ref PWMC_SetSyncChannelUpdatePeriod() and \ref PWMC_SetSyncChannelUpdateUnlock().
+ *       \ref PWMC_SetSyncChannelUpdatePeriod() and \ref
+ * PWMC_SetSyncChannelUpdateUnlock().
  *    -# Control PWM override output using \ref PWMC_SetOverrideValue(),
  *       \ref PWMC_EnableOverrideOutput() and \ref PWMC_DisableOverrideOutput().
  *    -# Send data through the transmitter using \ref PWMC_WriteBuffer().
@@ -66,31 +69,30 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
- extern "C" {
+extern "C" {
 #endif
 
 /*----------------------------------------------------------------------------
  *        Exported functions
  *----------------------------------------------------------------------------*/
-extern void PWMC_ConfigureClocks(Pwm* pPwm, uint32_t mode);
+extern void PWMC_ConfigureClocks( Pwm * pPwm, uint32_t mode );
 
-extern void PWMC_EnableChannel(Pwm* pPwm,uint8_t channel);
+extern void PWMC_EnableChannel( Pwm * pPwm, uint8_t channel );
 
-extern void PWMC_DisableChannel(Pwm* pPwm,uint8_t channel);
+extern void PWMC_DisableChannel( Pwm * pPwm, uint8_t channel );
 
-extern void PWMC_EnableChannelIt(Pwm* pPwm,uint8_t channel);
+extern void PWMC_EnableChannelIt( Pwm * pPwm, uint8_t channel );
 
-extern void PWMC_DisableChannelIt(Pwm* pPwm,uint8_t channel);
+extern void PWMC_DisableChannelIt( Pwm * pPwm, uint8_t channel );
 
-extern void PWMC_ConfigureChannel(Pwm* pPwm,uint8_t channel,uint32_t mode);
+extern void PWMC_ConfigureChannel( Pwm * pPwm, uint8_t channel, uint32_t mode );
 
-extern void PWMC_SetPeriod( Pwm* pPwm, uint8_t channel, uint16_t period);
+extern void PWMC_SetPeriod( Pwm * pPwm, uint8_t channel, uint16_t period );
 
-extern void PWMC_SetDutyCycle( Pwm* pPwm, uint8_t channel, uint16_t duty);
+extern void PWMC_SetDutyCycle( Pwm * pPwm, uint8_t channel, uint16_t duty );
 
 #ifdef __cplusplus
 }
 #endif
 
 #endif /* #ifndef _PWMC_ */
-

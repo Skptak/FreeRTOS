@@ -27,10 +27,9 @@
  */
 
 #include "FreeRTOS.h"
+#include "cbmc.h"
 #include "queue.h"
 #include "queue_datastructure.h"
-#include "cbmc.h"
-
 
 void harness()
 {
@@ -39,7 +38,8 @@ void harness()
     uint8_t ucQueueType;
 
     /* Allow CBMC to run in a reasonable amount of time. */
-    __CPROVER_assume( ( uxQueueLength == QUEUE_LENGTH ) || ( uxItemSize == QUEUE_ITEM_SIZE ) );
+    __CPROVER_assume( ( uxQueueLength == QUEUE_LENGTH ) ||
+                      ( uxItemSize == QUEUE_ITEM_SIZE ) );
 
     xQueueGenericCreate( uxQueueLength, uxItemSize, ucQueueType );
 }

@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -32,38 +33,38 @@
 
 /* Kernel includes. */
 #include "FreeRTOS.h"
-#include "task.h"
 #include "queue.h"
+#include "task.h"
 
 /* Demo includes. */
 #include "blocktim.h"
 
 /* Task priorities and stack sizes.  Allow these to be overridden. */
 #ifndef bktPRIMARY_PRIORITY
-    #define bktPRIMARY_PRIORITY    ( configMAX_PRIORITIES - 3 )
+    #define bktPRIMARY_PRIORITY ( configMAX_PRIORITIES - 3 )
 #endif
 
 #ifndef bktSECONDARY_PRIORITY
-    #define bktSECONDARY_PRIORITY    ( configMAX_PRIORITIES - 4 )
+    #define bktSECONDARY_PRIORITY ( configMAX_PRIORITIES - 4 )
 #endif
 
 #ifndef bktBLOCK_TIME_TASK_STACK_SIZE
-    #define bktBLOCK_TIME_TASK_STACK_SIZE    configMINIMAL_STACK_SIZE
+    #define bktBLOCK_TIME_TASK_STACK_SIZE configMINIMAL_STACK_SIZE
 #endif
 
 /* Task behaviour. */
-#define bktQUEUE_LENGTH          ( 5 )
-#define bktSHORT_WAIT            pdMS_TO_TICKS( ( TickType_t ) 20 )
-#define bktPRIMARY_BLOCK_TIME    ( 10 )
-#define bktALLOWABLE_MARGIN      ( 15 )
-#define bktTIME_TO_BLOCK         ( 175 )
-#define bktDONT_BLOCK            ( ( TickType_t ) 0 )
-#define bktRUN_INDICATOR         ( ( UBaseType_t ) 0x55 )
+#define bktQUEUE_LENGTH       ( 5 )
+#define bktSHORT_WAIT         pdMS_TO_TICKS( ( TickType_t ) 20 )
+#define bktPRIMARY_BLOCK_TIME ( 10 )
+#define bktALLOWABLE_MARGIN   ( 15 )
+#define bktTIME_TO_BLOCK      ( 175 )
+#define bktDONT_BLOCK         ( ( TickType_t ) 0 )
+#define bktRUN_INDICATOR      ( ( UBaseType_t ) 0x55 )
 
 /* In case the demo does not have software timers enabled, as this file uses
  * the configTIMER_TASK_PRIORITY setting. */
 #ifndef configTIMER_TASK_PRIORITY
-    #define configTIMER_TASK_PRIORITY    ( configMAX_PRIORITIES - 1 )
+    #define configTIMER_TASK_PRIORITY ( configMAX_PRIORITIES - 1 )
 #endif
 
 /*-----------------------------------------------------------*/
@@ -106,16 +107,26 @@ void vCreateBlockTimeTasks( void )
     if( xTestQueue != NULL )
     {
         /* vQueueAddToRegistry() adds the queue to the queue registry, if one
-         * is in use.  The queue registry is provided as a means for kernel aware
-         * debuggers to locate queues and has no purpose if a kernel aware
-         * debugger is not being used.  The call to vQueueAddToRegistry() will be
-         * removed by the pre-processor if configQUEUE_REGISTRY_SIZE is not
+         * is in use.  The queue registry is provided as a means for kernel
+         * aware debuggers to locate queues and has no purpose if a kernel aware
+         * debugger is not being used.  The call to vQueueAddToRegistry() will
+         * be removed by the pre-processor if configQUEUE_REGISTRY_SIZE is not
          * defined or is defined to be less than 1. */
         vQueueAddToRegistry( xTestQueue, "Block_Time_Queue" );
 
         /* Create the two test tasks. */
-        xTaskCreate( vPrimaryBlockTimeTestTask, "BTest1", bktBLOCK_TIME_TASK_STACK_SIZE, NULL, bktPRIMARY_PRIORITY, NULL );
-        xTaskCreate( vSecondaryBlockTimeTestTask, "BTest2", bktBLOCK_TIME_TASK_STACK_SIZE, NULL, bktSECONDARY_PRIORITY, &xSecondary );
+        xTaskCreate( vPrimaryBlockTimeTestTask,
+                     "BTest1",
+                     bktBLOCK_TIME_TASK_STACK_SIZE,
+                     NULL,
+                     bktPRIMARY_PRIORITY,
+                     NULL );
+        xTaskCreate( vSecondaryBlockTimeTestTask,
+                     "BTest2",
+                     bktBLOCK_TIME_TASK_STACK_SIZE,
+                     NULL,
+                     bktSECONDARY_PRIORITY,
+                     &xSecondary );
     }
 }
 /*-----------------------------------------------------------*/
@@ -128,7 +139,7 @@ static void vPrimaryBlockTimeTestTask( void * pvParameters )
 
     ( void ) pvParameters;
 
-    for( ; ; )
+    for( ;; )
     {
         /*********************************************************************
          * Test 0
@@ -150,7 +161,8 @@ static void vPrimaryBlockTimeTestTask( void * pvParameters )
 
             /* We should unblock after xTimeToBlock having not received
              * anything on the queue. */
-            if( xQueueReceive( xTestQueue, &xData, xTimeToBlock ) != errQUEUE_EMPTY )
+            if( xQueueReceive( xTestQueue, &xData, xTimeToBlock ) !=
+                errQUEUE_EMPTY )
             {
                 xErrorOccurred = pdTRUE;
             }
@@ -178,7 +190,8 @@ static void vPrimaryBlockTimeTestTask( void * pvParameters )
          *
          *  Simple block time wakeup test on queue sends.
          *
-         *  First fill the queue.  It should be empty so all sends should pass. */
+         *  First fill the queue.  It should be empty so all sends should pass.
+         */
         for( xItem = 0; xItem < bktQUEUE_LENGTH; xItem++ )
         {
             if( xQueueSend( xTestQueue, &xItem, bktDONT_BLOCK ) != pdPASS )
@@ -186,9 +199,9 @@ static void vPrimaryBlockTimeTestTask( void * pvParameters )
                 xErrorOccurred = pdTRUE;
             }
 
-            #if configUSE_PREEMPTION == 0
-                taskYIELD();
-            #endif
+#if configUSE_PREEMPTION == 0
+            taskYIELD();
+#endif
         }
 
         for( xItem = 0; xItem < bktQUEUE_LENGTH; xItem++ )
@@ -201,7 +214,8 @@ static void vPrimaryBlockTimeTestTask( void * pvParameters )
 
             /* We should unblock after xTimeToBlock having not received
              * anything on the queue. */
-            if( xQueueSend( xTestQueue, &xItem, xTimeToBlock ) != errQUEUE_FULL )
+            if( xQueueSend( xTestQueue, &xItem, xTimeToBlock ) !=
+                errQUEUE_FULL )
             {
                 xErrorOccurred = pdTRUE;
             }
@@ -388,7 +402,7 @@ static void vSecondaryBlockTimeTestTask( void * pvParameters )
 
     ( void ) pvParameters;
 
-    for( ; ; )
+    for( ;; )
     {
         /*********************************************************************
          * Test 0, 1 and 2
@@ -399,9 +413,9 @@ static void vSecondaryBlockTimeTestTask( void * pvParameters )
         /*********************************************************************
          * Test 3
          *
-         * The first thing we do is attempt to read from the queue.  It should be
-         * full so we block.  Note the time before we block so we can check the
-         * wake time is as per that expected. */
+         * The first thing we do is attempt to read from the queue.  It should
+         * be full so we block.  Note the time before we block so we can check
+         * the wake time is as per that expected. */
         xTimeWhenBlocking = xTaskGetTickCount();
 
         /* We should unblock after bktTIME_TO_BLOCK having not sent anything to
@@ -409,7 +423,8 @@ static void vSecondaryBlockTimeTestTask( void * pvParameters )
         xData = 0;
         xRunIndicator = bktRUN_INDICATOR;
 
-        if( xQueueSend( xTestQueue, &xData, bktTIME_TO_BLOCK ) != errQUEUE_FULL )
+        if( xQueueSend( xTestQueue, &xData, bktTIME_TO_BLOCK ) !=
+            errQUEUE_FULL )
         {
             xErrorOccurred = pdTRUE;
         }
@@ -445,7 +460,8 @@ static void vSecondaryBlockTimeTestTask( void * pvParameters )
          * anything on the queue. */
         xRunIndicator = bktRUN_INDICATOR;
 
-        if( xQueueReceive( xTestQueue, &xData, bktTIME_TO_BLOCK ) != errQUEUE_EMPTY )
+        if( xQueueReceive( xTestQueue, &xData, bktTIME_TO_BLOCK ) !=
+            errQUEUE_EMPTY )
         {
             xErrorOccurred = pdTRUE;
         }
@@ -459,8 +475,8 @@ static void vSecondaryBlockTimeTestTask( void * pvParameters )
         }
 
         /* We should of not blocked for much longer than bktALLOWABLE_MARGIN
-         * either.  A margin is permitted as we would not necessarily run as soon
-         * as we unblocked. */
+         * either.  A margin is permitted as we would not necessarily run as
+         * soon as we unblocked. */
         if( xBlockedTime > ( bktTIME_TO_BLOCK + bktALLOWABLE_MARGIN ) )
         {
             xErrorOccurred = pdTRUE;
@@ -476,7 +492,9 @@ static void vSecondaryBlockTimeTestTask( void * pvParameters )
 static void prvBasicDelayTests( void )
 {
     TickType_t xPreTime, xPostTime, x, xLastUnblockTime, xExpectedUnblockTime;
-    const TickType_t xPeriod = 75, xCycles = 5, xAllowableMargin = ( bktALLOWABLE_MARGIN >> 1 ), xHalfPeriod = xPeriod / ( TickType_t ) 2;
+    const TickType_t xPeriod = 75, xCycles = 5,
+                     xAllowableMargin = ( bktALLOWABLE_MARGIN >> 1 ),
+                     xHalfPeriod = xPeriod / ( TickType_t ) 2;
     BaseType_t xDidBlock;
 
     /* Temporarily increase priority so the timing is more accurate, but not so
@@ -508,7 +526,8 @@ static void prvBasicDelayTests( void )
 
         vTaskDelayUntil( &xLastUnblockTime, xPeriod );
 
-        if( ( xTaskGetTickCount() - xExpectedUnblockTime ) > ( bktTIME_TO_BLOCK + xAllowableMargin ) )
+        if( ( xTaskGetTickCount() - xExpectedUnblockTime ) >
+            ( bktTIME_TO_BLOCK + xAllowableMargin ) )
         {
             xErrorOccurred = pdTRUE;
         }
@@ -516,8 +535,8 @@ static void prvBasicDelayTests( void )
         xPrimaryCycles++;
     }
 
-    /* Crude tests for return value of xTaskDelayUntil().  First a standard block
-     * should return that the task does block. */
+    /* Crude tests for return value of xTaskDelayUntil().  First a standard
+     * block should return that the task does block. */
     xDidBlock = xTaskDelayUntil( &xLastUnblockTime, xPeriod );
 
     if( xDidBlock != pdTRUE )
@@ -525,8 +544,8 @@ static void prvBasicDelayTests( void )
         xErrorOccurred = pdTRUE;
     }
 
-    /* Now delay a few ticks so repeating the above block period will not block for
-     * the full amount of time, but will still block. */
+    /* Now delay a few ticks so repeating the above block period will not block
+     * for the full amount of time, but will still block. */
     vTaskDelay( xHalfPeriod );
     xDidBlock = xTaskDelayUntil( &xLastUnblockTime, xPeriod );
 
@@ -535,8 +554,8 @@ static void prvBasicDelayTests( void )
         xErrorOccurred = pdTRUE;
     }
 
-    /* This time block for longer than xPeriod before calling xTaskDelayUntil() so
-     * the call to xTaskDelayUntil() should not block. */
+    /* This time block for longer than xPeriod before calling xTaskDelayUntil()
+     * so the call to xTaskDelayUntil() should not block. */
     vTaskDelay( xPeriod );
     xDidBlock = xTaskDelayUntil( &xLastUnblockTime, xPeriod );
 
@@ -553,8 +572,8 @@ static void prvBasicDelayTests( void )
         xErrorOccurred = pdTRUE;
     }
 
-    /* Again block for slightly longer than a period so ensure the time is in the
-     * past next time xTaskDelayUntil() gets called. */
+    /* Again block for slightly longer than a period so ensure the time is in
+     * the past next time xTaskDelayUntil() gets called. */
     vTaskDelay( xPeriod + xAllowableMargin );
     xDidBlock = xTaskDelayUntil( &xLastUnblockTime, xPeriod );
 

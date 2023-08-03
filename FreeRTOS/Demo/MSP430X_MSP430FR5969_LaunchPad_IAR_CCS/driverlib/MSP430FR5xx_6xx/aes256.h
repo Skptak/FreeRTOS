@@ -42,54 +42,53 @@
 
 #ifdef __MSP430_HAS_AES256__
 
-//*****************************************************************************
-//
-// If building with a C++ compiler, make all of the definitions in this header
-// have a C binding.
-//
-//*****************************************************************************
-#ifdef __cplusplus
-extern "C"
-{
-#endif
+    //*****************************************************************************
+    //
+    // If building with a C++ compiler, make all of the definitions in this
+    // header have a C binding.
+    //
+    //*****************************************************************************
+    #ifdef __cplusplus
+extern "C" {
+    #endif
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the keyLength parameter for
-// functions: AES256_setCipherKey(), AES256_setDecipherKey(), and
-// AES256_startSetDecipherKey().
-//
-//*****************************************************************************
-#define AES256_KEYLENGTH_128BIT                                             128
-#define AES256_KEYLENGTH_192BIT                                             192
-#define AES256_KEYLENGTH_256BIT                                             256
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the keyLength parameter
+    // for functions: AES256_setCipherKey(), AES256_setDecipherKey(), and
+    // AES256_startSetDecipherKey().
+    //
+    //*****************************************************************************
+    #define AES256_KEYLENGTH_128BIT   128
+    #define AES256_KEYLENGTH_192BIT   192
+    #define AES256_KEYLENGTH_256BIT   256
 
-//*****************************************************************************
-//
-// The following are values that can be passed toThe following are values that
-// can be returned by the AES256_getErrorFlagStatus() function.
-//
-//*****************************************************************************
-#define AES256_ERROR_OCCURRED                                          AESERRFG
-#define AES256_NO_ERROR                                                    0x00
+    //*****************************************************************************
+    //
+    // The following are values that can be passed toThe following are values
+    // that can be returned by the AES256_getErrorFlagStatus() function.
+    //
+    //*****************************************************************************
+    #define AES256_ERROR_OCCURRED     AESERRFG
+    #define AES256_NO_ERROR           0x00
 
-//*****************************************************************************
-//
-// The following are values that can be passed toThe following are values that
-// can be returned by the AES256_isBusy() function.
-//
-//*****************************************************************************
-#define AES256_BUSY                                                     AESBUSY
-#define AES256_NOT_BUSY                                                    0x00
+    //*****************************************************************************
+    //
+    // The following are values that can be passed toThe following are values
+    // that can be returned by the AES256_isBusy() function.
+    //
+    //*****************************************************************************
+    #define AES256_BUSY               AESBUSY
+    #define AES256_NOT_BUSY           0x00
 
-//*****************************************************************************
-//
-// The following are values that can be passed toThe following are values that
-// can be returned by the AES256_getInterruptStatus() function.
-//
-//*****************************************************************************
-#define AES256_READY_INTERRUPT                                         AESRDYIE
-#define AES256_NOTREADY_INTERRUPT                                          0x00
+    //*****************************************************************************
+    //
+    // The following are values that can be passed toThe following are values
+    // that can be returned by the AES256_getInterruptStatus() function.
+    //
+    //*****************************************************************************
+    #define AES256_READY_INTERRUPT    AESRDYIE
+    #define AES256_NOTREADY_INTERRUPT 0x00
 
 //*****************************************************************************
 //
@@ -118,9 +117,9 @@ extern "C"
 //! \return STATUS_SUCCESS or STATUS_FAIL of key loading
 //
 //*****************************************************************************
-extern uint8_t AES256_setCipherKey(uint16_t baseAddress,
-                                   const uint8_t *cipherKey,
-                                   uint16_t keyLength);
+extern uint8_t AES256_setCipherKey( uint16_t baseAddress,
+                                    const uint8_t * cipherKey,
+                                    uint16_t keyLength );
 
 //*****************************************************************************
 //
@@ -138,9 +137,9 @@ extern uint8_t AES256_setCipherKey(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void AES256_encryptData(uint16_t baseAddress,
-                               const uint8_t *data,
-                               uint8_t *encryptedData);
+extern void AES256_encryptData( uint16_t baseAddress,
+                                const uint8_t * data,
+                                uint8_t * encryptedData );
 
 //*****************************************************************************
 //
@@ -159,9 +158,9 @@ extern void AES256_encryptData(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void AES256_decryptData(uint16_t baseAddress,
-                               const uint8_t *data,
-                               uint8_t *decryptedData);
+extern void AES256_decryptData( uint16_t baseAddress,
+                                const uint8_t * data,
+                                uint8_t * decryptedData );
 
 //*****************************************************************************
 //
@@ -182,9 +181,9 @@ extern void AES256_decryptData(uint16_t baseAddress,
 //! \return STATUS_SUCCESS or STATUS_FAIL of key loading
 //
 //*****************************************************************************
-extern uint8_t AES256_setDecipherKey(uint16_t baseAddress,
-                                     const uint8_t *cipherKey,
-                                     uint16_t keyLength);
+extern uint8_t AES256_setDecipherKey( uint16_t baseAddress,
+                                      const uint8_t * cipherKey,
+                                      uint16_t keyLength );
 
 //*****************************************************************************
 //
@@ -203,7 +202,7 @@ extern uint8_t AES256_setDecipherKey(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void AES256_clearInterrupt(uint16_t baseAddress);
+extern void AES256_clearInterrupt( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -222,7 +221,7 @@ extern void AES256_clearInterrupt(uint16_t baseAddress);
 //!         \n indicating the status of the AES256 ready status
 //
 //*****************************************************************************
-extern uint32_t AES256_getInterruptStatus(uint16_t baseAddress);
+extern uint32_t AES256_getInterruptStatus( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -238,7 +237,7 @@ extern uint32_t AES256_getInterruptStatus(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void AES256_enableInterrupt(uint16_t baseAddress);
+extern void AES256_enableInterrupt( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -254,7 +253,7 @@ extern void AES256_enableInterrupt(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void AES256_disableInterrupt(uint16_t baseAddress);
+extern void AES256_disableInterrupt( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -270,7 +269,7 @@ extern void AES256_disableInterrupt(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void AES256_reset(uint16_t baseAddress);
+extern void AES256_reset( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -289,8 +288,8 @@ extern void AES256_reset(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void AES256_startEncryptData(uint16_t baseAddress,
-                                    const uint8_t *data);
+extern void AES256_startEncryptData( uint16_t baseAddress,
+                                     const uint8_t * data );
 
 //*****************************************************************************
 //
@@ -310,8 +309,8 @@ extern void AES256_startEncryptData(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void AES256_startDecryptData(uint16_t baseAddress,
-                                    const uint8_t *data);
+extern void AES256_startDecryptData( uint16_t baseAddress,
+                                     const uint8_t * data );
 
 //*****************************************************************************
 //
@@ -332,9 +331,9 @@ extern void AES256_startDecryptData(uint16_t baseAddress,
 //! \return STATUS_SUCCESS or STATUS_FAIL of key loading
 //
 //*****************************************************************************
-extern uint8_t AES256_startSetDecipherKey(uint16_t baseAddress,
-                                          const uint8_t *cipherKey,
-                                          uint16_t keyLength);
+extern uint8_t AES256_startSetDecipherKey( uint16_t baseAddress,
+                                           const uint8_t * cipherKey,
+                                           uint16_t keyLength );
 
 //*****************************************************************************
 //
@@ -351,8 +350,7 @@ extern uint8_t AES256_startSetDecipherKey(uint16_t baseAddress,
 //! \return STATUS_SUCCESS if data is valid, otherwise STATUS_FAIL
 //
 //*****************************************************************************
-extern uint8_t AES256_getDataOut(uint16_t baseAddress,
-                                 uint8_t *outputData);
+extern uint8_t AES256_getDataOut( uint16_t baseAddress, uint8_t * outputData );
 
 //*****************************************************************************
 //
@@ -369,7 +367,7 @@ extern uint8_t AES256_getDataOut(uint16_t baseAddress,
 //!         \n indicating if the AES256 module is busy
 //
 //*****************************************************************************
-extern uint16_t AES256_isBusy(uint16_t baseAddress);
+extern uint16_t AES256_isBusy( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -385,7 +383,7 @@ extern uint16_t AES256_isBusy(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void AES256_clearErrorFlag(uint16_t baseAddress);
+extern void AES256_clearErrorFlag( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -403,16 +401,16 @@ extern void AES256_clearErrorFlag(uint16_t baseAddress);
 //!         \n indicating the error flag status
 //
 //*****************************************************************************
-extern uint32_t AES256_getErrorFlagStatus(uint16_t baseAddress);
+extern uint32_t AES256_getErrorFlagStatus( uint16_t baseAddress );
 
-//*****************************************************************************
-//
-// Mark the end of the C bindings section for C++ compilers.
-//
-//*****************************************************************************
-#ifdef __cplusplus
+    //*****************************************************************************
+    //
+    // Mark the end of the C bindings section for C++ compilers.
+    //
+    //*****************************************************************************
+    #ifdef __cplusplus
 }
-#endif
+    #endif
 
 #endif
 #endif // __MSP430WARE_AES256_H__

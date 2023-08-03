@@ -14,14 +14,13 @@
  * limitations under the License.
  */
 
-/**************************************************************************//**
- * @file     soc.h
- * @brief    CSI Core Peripheral Access Layer Header File for
- *           CSKYSOC Device Series
- * @version  V1.0
- * @date     02. June 2017
- ******************************************************************************/
-
+/**************************************************************************/ /**
+                                                                              * @file     soc.h
+                                                                              * @brief    CSI Core Peripheral Access Layer Header File for
+                                                                              *           CSKYSOC Device Series
+                                                                              * @version  V1.0
+                                                                              * @date     02. June 2017
+                                                                              ******************************************************************************/
 
 #ifndef SOC_H
 #define SOC_H
@@ -31,69 +30,75 @@ extern "C" {
 #endif
 
 #ifndef SYSTEM_CLOCK
-#define  SYSTEM_CLOCK    (24000000)
+    #define SYSTEM_CLOCK ( 24000000 )
 #endif
 
 #ifndef IHS_VALUE
-#define  IHS_VALUE    (8000000)
+    #define IHS_VALUE ( 8000000 )
 #endif
 
 #ifndef EHS_VALUE
-#define  EHS_VALUE    (8000000)
+    #define EHS_VALUE ( 8000000 )
 #endif
-/* -------------------------  Interrupt Number Definition  ------------------------ */
+/* -------------------------  Interrupt Number Definition
+ * ------------------------ */
 
 typedef enum IRQn
 {
-    /* ----------------------  CSKYCK801 Specific Interrupt Numbers  --------------------- */
-    GPIOA_IRQn                      =   0,       /* gpio Interrupt */
-    CORET_IRQn                      =   1,      /* core Timer Interrupt */
-    TIMA0_IRQn                      =   2,      /* timerA0 Interrupt */
-    TIMA1_IRQn                      =   3,      /* timerA1 Interrupt */
-    I2S_IRQn                        =   4,      /* i2s Interrupt */
-    WDT_IRQn                        =   5,      /* wdt Interrupt */
-    UART0_IRQn                      =   6,      /* uart0 Interrupt */
-    UART1_IRQn                      =   7,      /* uart1 Interrupt */
-    UART2_IRQn                      =   8,      /* uart2 Interrupt */
-    I2C0_IRQn                       =   9,      /* i2c0 Interrupt */
-    I2C1_IRQn                       =   10,     /* i2c1 Interrupt */
-    SPI1_IRQn                       =   11,     /* spi0 Interrupt */
-    SPI0_IRQn                       =   12,     /* spi1 Interrupt */
-    RTC_IRQn                        =   13,     /* rtc Interrupt */
-    EXTWAK_IRQn                     =   14,     /* extwakeup Interrupt */
-    ADC_IRQn                        =   15,     /* adc interrupt */
-    CMP_IRQn                        =   16,     /* cmp interrupt */
-    SEU_DMAC_IRQn                   =   17,     /* seu dmac Interrupt */
-    POWM_IRQn                       =   18,     /* powm Interrupt */
-    PWM_IRQn                        =   19,     /* pwm Interrupt */
-    SYS_RESET_IRQn                  =   20,     /* system reset Interrupt */
-    REV_IRQn                        =   21,     /* rev Interrupt */
-    NONSEU_DMAC_IRQn                =   22,     /* nonuseu dmac Interrupt */
-    TIMB0_IRQn                      =   23,     /* timerB0 Interrupt */
-    TIMB1_IRQn                      =   24,     /* timerB1 Interrupt */
-    RTC1_IRQn                       =   25,     /* rtc1 Interrupt */
-    AES_IRQn                        =   26,     /* aes Interrupt */
-    GPIOB_IRQn                       =   27,     /* trng Interrupt */
-    RSA_IRQn                        =   28,     /* rsa Interrupt */
-    SHA_IRQn                        =   29,     /* sha Interrupt */
-}
-IRQn_Type;
+    /* ----------------------  CSKYCK801 Specific Interrupt Numbers
+     * --------------------- */
+    GPIOA_IRQn = 0,        /* gpio Interrupt */
+    CORET_IRQn = 1,        /* core Timer Interrupt */
+    TIMA0_IRQn = 2,        /* timerA0 Interrupt */
+    TIMA1_IRQn = 3,        /* timerA1 Interrupt */
+    I2S_IRQn = 4,          /* i2s Interrupt */
+    WDT_IRQn = 5,          /* wdt Interrupt */
+    UART0_IRQn = 6,        /* uart0 Interrupt */
+    UART1_IRQn = 7,        /* uart1 Interrupt */
+    UART2_IRQn = 8,        /* uart2 Interrupt */
+    I2C0_IRQn = 9,         /* i2c0 Interrupt */
+    I2C1_IRQn = 10,        /* i2c1 Interrupt */
+    SPI1_IRQn = 11,        /* spi0 Interrupt */
+    SPI0_IRQn = 12,        /* spi1 Interrupt */
+    RTC_IRQn = 13,         /* rtc Interrupt */
+    EXTWAK_IRQn = 14,      /* extwakeup Interrupt */
+    ADC_IRQn = 15,         /* adc interrupt */
+    CMP_IRQn = 16,         /* cmp interrupt */
+    SEU_DMAC_IRQn = 17,    /* seu dmac Interrupt */
+    POWM_IRQn = 18,        /* powm Interrupt */
+    PWM_IRQn = 19,         /* pwm Interrupt */
+    SYS_RESET_IRQn = 20,   /* system reset Interrupt */
+    REV_IRQn = 21,         /* rev Interrupt */
+    NONSEU_DMAC_IRQn = 22, /* nonuseu dmac Interrupt */
+    TIMB0_IRQn = 23,       /* timerB0 Interrupt */
+    TIMB1_IRQn = 24,       /* timerB1 Interrupt */
+    RTC1_IRQn = 25,        /* rtc1 Interrupt */
+    AES_IRQn = 26,         /* aes Interrupt */
+    GPIOB_IRQn = 27,       /* trng Interrupt */
+    RSA_IRQn = 28,         /* rsa Interrupt */
+    SHA_IRQn = 29,         /* sha Interrupt */
+} IRQn_Type;
 
+/* ================================================================================
+ */
+/* ================      Processor and Core Peripheral Section ================
+ */
+/* ================================================================================
+ */
 
-/* ================================================================================ */
-/* ================      Processor and Core Peripheral Section     ================ */
-/* ================================================================================ */
+/* --------  Configuration of the CK801 Processor and Core Peripherals  -------
+ */
+#define __CK802_REV      0x0000U /* Core revision r0p0 */
+#define __MGU_PRESENT    0       /* MGU present or not */
+#define __NVIC_PRIO_BITS 2       /* Number of Bits used for Priority Levels */
+#define __Vendor_SysTickConfig \
+    0 /* Set to 1 if different SysTick Config is used */
 
-/* --------  Configuration of the CK801 Processor and Core Peripherals  ------- */
-#define __CK802_REV               0x0000U   /* Core revision r0p0 */
-#define __MGU_PRESENT             0         /* MGU present or not */
-#define __NVIC_PRIO_BITS          2         /* Number of Bits used for Priority Levels */
-#define __Vendor_SysTickConfig    0         /* Set to 1 if different SysTick Config is used */
-
-#include "core_ck802.h"                     /* Processor and core peripherals */
+#include "core_ck802.h" /* Processor and core peripherals */
 #include "stdint.h"
 
-typedef enum {
+typedef enum
+{
     CKENUM_DMA_UART0_RX,
     CKENUM_DMA_UART0_TX,
     CKENUM_DMA_UART1_RX,
@@ -113,9 +118,11 @@ typedef enum {
     CKENUM_DMA_MEMORY
 } ckenum_dma_device_e;
 
-/* ================================================================================ */
-/* ================       Device Specific Peripheral Section       ================ */
-/* ================================================================================ */
+/* ================================================================================
+ */
+/* ================       Device Specific Peripheral Section ================ */
+/* ================================================================================
+ */
 #if 0
 
 /* ================================================================================ */
@@ -246,88 +253,91 @@ typedef struct {
     __IOM uint32_t SHA_DATA2;                   /* Offset: 0x088 (R/W)  DATA2 register */
 } CSKY_SHA_TypeDef;
 
-
 #endif
 
-#define CONFIG_PMU_NUM  1
-#define CONFIG_CRC_NUM  1
-#define CONFIG_EFLASH_NUM  1
-#define CONFIG_IIC_NUM  2
-#define CONFIG_TRNG_NUM 1
-#define CONFIG_AES_NUM  1
-#define CONFIG_RSA_NUM  1
-#define CONFIG_SHA_NUM  1
-#define CONFIG_SPI_NUM  2
-#define CONFIG_PWM_NUM  6
-#define CONFIG_TIMER_NUM 4
-#define CONFIG_RTC_NUM 2
-#define CONFIG_WDT_NUM 1
-#define CONFIG_DMAC_NUM 2
-#define CONFIG_GPIO_NUM            2
-#define CONFIG_GPIO_PIN_NUM        32
-#define CONFIG_USART_NUM 3
-#define CONFIG_ETH_NUM 2
+#define CONFIG_PMU_NUM           1
+#define CONFIG_CRC_NUM           1
+#define CONFIG_EFLASH_NUM        1
+#define CONFIG_IIC_NUM           2
+#define CONFIG_TRNG_NUM          1
+#define CONFIG_AES_NUM           1
+#define CONFIG_RSA_NUM           1
+#define CONFIG_SHA_NUM           1
+#define CONFIG_SPI_NUM           2
+#define CONFIG_PWM_NUM           6
+#define CONFIG_TIMER_NUM         4
+#define CONFIG_RTC_NUM           2
+#define CONFIG_WDT_NUM           1
+#define CONFIG_DMAC_NUM          2
+#define CONFIG_GPIO_NUM          2
+#define CONFIG_GPIO_PIN_NUM      32
+#define CONFIG_USART_NUM         3
+#define CONFIG_ETH_NUM           2
 
-/* ================================================================================ */
-/* ================              Peripheral memory map             ================ */
-/* ================================================================================ */
-/* --------------------------  CHIP memory map  ------------------------------- */
-#define CSKY_EFLASH_BASE           (0x10000000UL)
-#define CSKY_SRAM_BASE             (0x60000000UL)
+/* ================================================================================
+ */
+/* ================              Peripheral memory map ================ */
+/* ================================================================================
+ */
+/* --------------------------  CHIP memory map  -------------------------------
+ */
+#define CSKY_EFLASH_BASE         ( 0x10000000UL )
+#define CSKY_SRAM_BASE           ( 0x60000000UL )
 
 /* AHB */
-#define CSKY_AHB_ARB_BASE          (0x40000000UL)
-#define CSKY_DMAC0_BASE            (0x40001000UL)
-#define CSKY_CLKGEN_BASE           (0x40002000UL)
-#define CSKY_CRC_BASE              (0x40003000UL)
-#define CSKY_DMAC1_BASE            (0x40004000UL)
-#define CSKY_OTP_BASE              (0x4003F000UL)
-#define CSKY_AES_BASE              (0x40006000UL)
-#define CSKY_SRAM_SASC_BASE        (0x40007000UL)
-#define CSKY_SHA_BASE              (0x40008000UL)
-#define CSKY_TRNG_BASE             (0x40009000UL)
-#define CSKY_RSA_BASE              (0x4000a000UL)
-#define CSKY_EFLASH_CONTROL_BASE   (0x4003f000UL)
-#define CSKY_APB0_BRIDGE_BASE      (0x50000000UL)
-#define CSKY_APB1_BRIDGE_BASE      (0x50010000UL)
+#define CSKY_AHB_ARB_BASE        ( 0x40000000UL )
+#define CSKY_DMAC0_BASE          ( 0x40001000UL )
+#define CSKY_CLKGEN_BASE         ( 0x40002000UL )
+#define CSKY_CRC_BASE            ( 0x40003000UL )
+#define CSKY_DMAC1_BASE          ( 0x40004000UL )
+#define CSKY_OTP_BASE            ( 0x4003F000UL )
+#define CSKY_AES_BASE            ( 0x40006000UL )
+#define CSKY_SRAM_SASC_BASE      ( 0x40007000UL )
+#define CSKY_SHA_BASE            ( 0x40008000UL )
+#define CSKY_TRNG_BASE           ( 0x40009000UL )
+#define CSKY_RSA_BASE            ( 0x4000a000UL )
+#define CSKY_EFLASH_CONTROL_BASE ( 0x4003f000UL )
+#define CSKY_APB0_BRIDGE_BASE    ( 0x50000000UL )
+#define CSKY_APB1_BRIDGE_BASE    ( 0x50010000UL )
 
 /* APB0 */
-#define CSKY_WDT_BASE              (0x50001000UL)
-#define CSKY_SPI0_BASE             (0x50002000UL)
-#define CSKY_RTC0_BASE             (0x50003000UL)
-#define CSKY_UART0_BASE            (0x50004000UL)
-#define CSKY_UART1_BASE            (0x50005000UL)
-#define CSKY_GPIO0_BASE            (0x50006000UL)
-#define CSKY_I2C0_BASE             (0x50007000UL)
-#define CSKY_I2S_BASE              (0x50008000UL)
-#define CSKY_GPIO1_BASE            (0x50009000UL)
-#define CSKY_SIPC_BASE             (0x5000a000UL)
+#define CSKY_WDT_BASE            ( 0x50001000UL )
+#define CSKY_SPI0_BASE           ( 0x50002000UL )
+#define CSKY_RTC0_BASE           ( 0x50003000UL )
+#define CSKY_UART0_BASE          ( 0x50004000UL )
+#define CSKY_UART1_BASE          ( 0x50005000UL )
+#define CSKY_GPIO0_BASE          ( 0x50006000UL )
+#define CSKY_I2C0_BASE           ( 0x50007000UL )
+#define CSKY_I2S_BASE            ( 0x50008000UL )
+#define CSKY_GPIO1_BASE          ( 0x50009000UL )
+#define CSKY_SIPC_BASE           ( 0x5000a000UL )
 
 /* APB1 */
-#define CSKY_TIM0_BASE             (0x50011000UL)
-#define CSKY_SPI1_BASE             (0x50012000UL)
-#define CSKY_I2C1_BASE             (0x50013000UL)
-#define CSKY_PWM_BASE              (0x50014000UL)
-#define CSKY_UART2_BASE            (0x50015000UL)
-#define CSKY_ADC_CTL_BASE          (0x50016000UL)
-#define CSKY_CMP_CTL_BASE          (0x50017000UL)
-#define CSKY_ETB_BASE              (0x50018000UL)
-#define CSKY_TIM1_BASE             (0x50019000UL)
-#define CSKY_RTC1_BASE             (0x5001a000UL)
+#define CSKY_TIM0_BASE           ( 0x50011000UL )
+#define CSKY_SPI1_BASE           ( 0x50012000UL )
+#define CSKY_I2C1_BASE           ( 0x50013000UL )
+#define CSKY_PWM_BASE            ( 0x50014000UL )
+#define CSKY_UART2_BASE          ( 0x50015000UL )
+#define CSKY_ADC_CTL_BASE        ( 0x50016000UL )
+#define CSKY_CMP_CTL_BASE        ( 0x50017000UL )
+#define CSKY_ETB_BASE            ( 0x50018000UL )
+#define CSKY_TIM1_BASE           ( 0x50019000UL )
+#define CSKY_RTC1_BASE           ( 0x5001a000UL )
 
-#define SHA_CONTEXT_SIZE       224
+#define SHA_CONTEXT_SIZE         224
 
-/* ================================================================================ */
-/* ================             Peripheral declaration             ================ */
-/* ================================================================================ */
-#define CSKY_UART1                 ((   CSKY_UART_TypeDef *)    CSKY_UART1_BASE)
-#define CSKY_SHA                   ((   CSKY_SHA_TypeDef *)     CSKY_SHA_BASE)
+/* ================================================================================
+ */
+/* ================             Peripheral declaration ================ */
+/* ================================================================================
+ */
+#define CSKY_UART1               ( ( CSKY_UART_TypeDef * ) CSKY_UART1_BASE )
+#define CSKY_SHA                 ( ( CSKY_SHA_TypeDef * ) CSKY_SHA_BASE )
 
 #include <config.h>
-
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif  /* SOC_H */
+#endif /* SOC_H */

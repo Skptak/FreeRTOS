@@ -1,35 +1,35 @@
 /*****************************************************************************
-* lcp.h - Network Link Control Protocol header file.
-*
-* Copyright (c) 2003 by Marc Boucher, Services Informatiques (MBSI) inc.
-* portions Copyright (c) 1997 Global Election Systems Inc.
-*
-* The authors hereby grant permission to use, copy, modify, distribute,
-* and license this software and its documentation for any purpose, provided
-* that existing copyright notices are retained in all copies and that this
-* notice and the following disclaimer are included verbatim in any 
-* distributions. No written agreement, license, or royalty fee is required
-* for any of the authorized uses.
-*
-* THIS SOFTWARE IS PROVIDED BY THE CONTRIBUTORS *AS IS* AND ANY EXPRESS OR
-* IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
-* OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
-* IN NO EVENT SHALL THE CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
-* INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
-* NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-* DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-* THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-* (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
-* THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-*
-******************************************************************************
-* REVISION HISTORY
-*
-* 03-01-01 Marc Boucher <marc@mbsi.ca>
-*   Ported to lwIP.
-* 97-11-05 Guy Lancaster <glanca@gesn.com>, Global Election Systems Inc.
-*   Original derived from BSD codes.
-*****************************************************************************/
+ * lcp.h - Network Link Control Protocol header file.
+ *
+ * Copyright (c) 2003 by Marc Boucher, Services Informatiques (MBSI) inc.
+ * portions Copyright (c) 1997 Global Election Systems Inc.
+ *
+ * The authors hereby grant permission to use, copy, modify, distribute,
+ * and license this software and its documentation for any purpose, provided
+ * that existing copyright notices are retained in all copies and that this
+ * notice and the following disclaimer are included verbatim in any
+ * distributions. No written agreement, license, or royalty fee is required
+ * for any of the authorized uses.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE CONTRIBUTORS *AS IS* AND ANY EXPRESS OR
+ * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+ * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+ * IN NO EVENT SHALL THE CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+ * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+ * NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+ * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ ******************************************************************************
+ * REVISION HISTORY
+ *
+ * 03-01-01 Marc Boucher <marc@mbsi.ca>
+ *   Ported to lwIP.
+ * 97-11-05 Guy Lancaster <glanca@gesn.com>, Global Election Systems Inc.
+ *   Original derived from BSD codes.
+ *****************************************************************************/
 /*
  * lcp.h - Link Control Protocol definitions.
  *
@@ -80,7 +80,8 @@
 /*
  * The state of options is described by an lcp_options structure.
  */
-typedef struct lcp_options {
+typedef struct lcp_options
+{
     u_int passive           : 1; /* Don't die if we don't get a response */
     u_int silent            : 1; /* Wait for the other end to start first */
     u_int restart           : 1; /* Restart vs. exit after close */
@@ -94,53 +95,51 @@ typedef struct lcp_options {
     u_int neg_lqr           : 1; /* Negotiate use of Link Quality Reports */
     u_int neg_cbcp          : 1; /* Negotiate use of CBCP */
 #ifdef PPP_MULTILINK
-    u_int neg_mrru          : 1; /* Negotiate multilink MRRU */
-    u_int neg_ssnhf         : 1; /* Negotiate short sequence numbers */
-    u_int neg_endpoint      : 1; /* Negotiate endpoint discriminator */
+    u_int neg_mrru     : 1; /* Negotiate multilink MRRU */
+    u_int neg_ssnhf    : 1; /* Negotiate short sequence numbers */
+    u_int neg_endpoint : 1; /* Negotiate endpoint discriminator */
 #endif
-    u_short mru;                 /* Value of MRU */
+    u_short mru; /* Value of MRU */
 #ifdef PPP_MULTILINK
-    u_short mrru;                /* Value of MRRU, and multilink enable */
+    u_short mrru; /* Value of MRRU, and multilink enable */
 #endif
-    u_char chap_mdtype;          /* which MD type (hashing algorithm) */
-    u32_t asyncmap;              /* Value of async map */
+    u_char chap_mdtype; /* which MD type (hashing algorithm) */
+    u32_t asyncmap;     /* Value of async map */
     u32_t magicnumber;
-    int numloops;                /* Number of loops during magic number neg. */
-    u32_t lqr_period;            /* Reporting period for LQR 1/100ths second */
+    int numloops;     /* Number of loops during magic number neg. */
+    u32_t lqr_period; /* Reporting period for LQR 1/100ths second */
 #ifdef PPP_MULTILINK
-    struct epdisc endpoint;      /* endpoint discriminator */
+    struct epdisc endpoint; /* endpoint discriminator */
 #endif
 } lcp_options;
 
 /*
  * Values for phase from BSD pppd.h based on RFC 1661.
  */
-typedef enum {
-  PHASE_DEAD = 0,
-  PHASE_INITIALIZE,
-  PHASE_ESTABLISH,
-  PHASE_AUTHENTICATE,
-  PHASE_CALLBACK,
-  PHASE_NETWORK,
-  PHASE_TERMINATE
+typedef enum
+{
+    PHASE_DEAD = 0,
+    PHASE_INITIALIZE,
+    PHASE_ESTABLISH,
+    PHASE_AUTHENTICATE,
+    PHASE_CALLBACK,
+    PHASE_NETWORK,
+    PHASE_TERMINATE
 } LinkPhase;
 
-
-
-extern LinkPhase lcp_phase[NUM_PPP]; /* Phase of link session (RFC 1661) */
+extern LinkPhase lcp_phase[ NUM_PPP ]; /* Phase of link session (RFC 1661) */
 extern lcp_options lcp_wantoptions[];
 extern lcp_options lcp_gotoptions[];
 extern lcp_options lcp_allowoptions[];
 extern lcp_options lcp_hisoptions[];
 extern ext_accm xmit_accm[];
 
-
-void lcp_init     (int);
-void lcp_open     (int);
-void lcp_close    (int, char *);
-void lcp_lowerup  (int);
-void lcp_lowerdown(int);
-void lcp_sprotrej (int, u_char *, int); /* send protocol reject */
+void lcp_init( int );
+void lcp_open( int );
+void lcp_close( int, char * );
+void lcp_lowerup( int );
+void lcp_lowerdown( int );
+void lcp_sprotrej( int, u_char *, int ); /* send protocol reject */
 
 extern struct protent lcp_protent;
 

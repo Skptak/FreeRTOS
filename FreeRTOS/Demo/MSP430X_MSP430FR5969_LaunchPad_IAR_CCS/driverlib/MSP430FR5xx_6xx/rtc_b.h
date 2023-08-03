@@ -42,18 +42,17 @@
 
 #ifdef __MSP430_HAS_RTC_B__
 
-//*****************************************************************************
-//
-// If building with a C++ compiler, make all of the definitions in this header
-// have a C binding.
-//
-//*****************************************************************************
-#ifdef __cplusplus
-extern "C"
-{
-#endif
+    //*****************************************************************************
+    //
+    // If building with a C++ compiler, make all of the definitions in this
+    // header have a C binding.
+    //
+    //*****************************************************************************
+    #ifdef __cplusplus
+extern "C" {
+    #endif
 
-#include "inc/hw_regaccess.h"
+    #include "inc/hw_regaccess.h"
 //*****************************************************************************
 //
 //! \brief Used in the RTC_B_initCalendar() function as the CalendarTime
@@ -104,95 +103,96 @@ typedef struct RTC_B_configureCalendarAlarmParam
     uint8_t dayOfMonthAlarm;
 } RTC_B_configureCalendarAlarmParam;
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the frequencySelect parameter
-// for functions: RTC_B_setCalibrationFrequency().
-//
-//*****************************************************************************
-#define RTC_B_CALIBRATIONFREQ_OFF                                   (RTCCALF_0)
-#define RTC_B_CALIBRATIONFREQ_512HZ                                 (RTCCALF_1)
-#define RTC_B_CALIBRATIONFREQ_256HZ                                 (RTCCALF_2)
-#define RTC_B_CALIBRATIONFREQ_1HZ                                   (RTCCALF_3)
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the frequencySelect
+    // parameter for functions: RTC_B_setCalibrationFrequency().
+    //
+    //*****************************************************************************
+    #define RTC_B_CALIBRATIONFREQ_OFF        ( RTCCALF_0 )
+    #define RTC_B_CALIBRATIONFREQ_512HZ      ( RTCCALF_1 )
+    #define RTC_B_CALIBRATIONFREQ_256HZ      ( RTCCALF_2 )
+    #define RTC_B_CALIBRATIONFREQ_1HZ        ( RTCCALF_3 )
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the offsetDirection parameter
-// for functions: RTC_B_setCalibrationData().
-//
-//*****************************************************************************
-#define RTC_B_CALIBRATION_DOWN2PPM                                 (!(RTCCALS))
-#define RTC_B_CALIBRATION_UP4PPM                                      (RTCCALS)
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the offsetDirection
+    // parameter for functions: RTC_B_setCalibrationData().
+    //
+    //*****************************************************************************
+    #define RTC_B_CALIBRATION_DOWN2PPM       ( !( RTCCALS ) )
+    #define RTC_B_CALIBRATION_UP4PPM         ( RTCCALS )
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the formatSelect parameter
-// for functions: RTC_B_initCalendar().
-//
-//*****************************************************************************
-#define RTC_B_FORMAT_BINARY                                         (!(RTCBCD))
-#define RTC_B_FORMAT_BCD                                               (RTCBCD)
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the formatSelect parameter
+    // for functions: RTC_B_initCalendar().
+    //
+    //*****************************************************************************
+    #define RTC_B_FORMAT_BINARY              ( !( RTCBCD ) )
+    #define RTC_B_FORMAT_BCD                 ( RTCBCD )
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the param parameter for
-// functions: RTC_B_configureCalendarAlarm(), RTC_B_configureCalendarAlarm(),
-// RTC_B_configureCalendarAlarm(), and RTC_B_configureCalendarAlarm().
-//
-//*****************************************************************************
-#define RTC_B_ALARMCONDITION_OFF                                         (0x80)
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the param parameter for
+    // functions: RTC_B_configureCalendarAlarm(),
+    // RTC_B_configureCalendarAlarm(), RTC_B_configureCalendarAlarm(), and
+    // RTC_B_configureCalendarAlarm().
+    //
+    //*****************************************************************************
+    #define RTC_B_ALARMCONDITION_OFF         ( 0x80 )
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the eventSelect parameter for
-// functions: RTC_B_setCalendarEvent().
-//
-//*****************************************************************************
-#define RTC_B_CALENDAREVENT_MINUTECHANGE                             (RTCTEV_0)
-#define RTC_B_CALENDAREVENT_HOURCHANGE                               (RTCTEV_1)
-#define RTC_B_CALENDAREVENT_NOON                                     (RTCTEV_2)
-#define RTC_B_CALENDAREVENT_MIDNIGHT                                 (RTCTEV_3)
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the eventSelect parameter
+    // for functions: RTC_B_setCalendarEvent().
+    //
+    //*****************************************************************************
+    #define RTC_B_CALENDAREVENT_MINUTECHANGE ( RTCTEV_0 )
+    #define RTC_B_CALENDAREVENT_HOURCHANGE   ( RTCTEV_1 )
+    #define RTC_B_CALENDAREVENT_NOON         ( RTCTEV_2 )
+    #define RTC_B_CALENDAREVENT_MIDNIGHT     ( RTCTEV_3 )
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the prescaleEventDivider
-// parameter for functions: RTC_B_definePrescaleEvent().
-//
-//*****************************************************************************
-#define RTC_B_PSEVENTDIVIDER_2                                        (RT0IP_0)
-#define RTC_B_PSEVENTDIVIDER_4                                        (RT0IP_1)
-#define RTC_B_PSEVENTDIVIDER_8                                        (RT0IP_2)
-#define RTC_B_PSEVENTDIVIDER_16                                       (RT0IP_3)
-#define RTC_B_PSEVENTDIVIDER_32                                       (RT0IP_4)
-#define RTC_B_PSEVENTDIVIDER_64                                       (RT0IP_5)
-#define RTC_B_PSEVENTDIVIDER_128                                      (RT0IP_6)
-#define RTC_B_PSEVENTDIVIDER_256                                      (RT0IP_7)
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the prescaleEventDivider
+    // parameter for functions: RTC_B_definePrescaleEvent().
+    //
+    //*****************************************************************************
+    #define RTC_B_PSEVENTDIVIDER_2           ( RT0IP_0 )
+    #define RTC_B_PSEVENTDIVIDER_4           ( RT0IP_1 )
+    #define RTC_B_PSEVENTDIVIDER_8           ( RT0IP_2 )
+    #define RTC_B_PSEVENTDIVIDER_16          ( RT0IP_3 )
+    #define RTC_B_PSEVENTDIVIDER_32          ( RT0IP_4 )
+    #define RTC_B_PSEVENTDIVIDER_64          ( RT0IP_5 )
+    #define RTC_B_PSEVENTDIVIDER_128         ( RT0IP_6 )
+    #define RTC_B_PSEVENTDIVIDER_256         ( RT0IP_7 )
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the prescaleSelect parameter
-// for functions: RTC_B_definePrescaleEvent(), RTC_B_getPrescaleValue(), and
-// RTC_B_setPrescaleValue().
-//
-//*****************************************************************************
-#define RTC_B_PRESCALE_0                                                  (0x0)
-#define RTC_B_PRESCALE_1                                                  (0x2)
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the prescaleSelect
+    // parameter for functions: RTC_B_definePrescaleEvent(),
+    // RTC_B_getPrescaleValue(), and RTC_B_setPrescaleValue().
+    //
+    //*****************************************************************************
+    #define RTC_B_PRESCALE_0                 ( 0x0 )
+    #define RTC_B_PRESCALE_1                 ( 0x2 )
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the interruptMask parameter
-// for functions: RTC_B_enableInterrupt(), and RTC_B_disableInterrupt(); the
-// interruptFlagMask parameter for functions: RTC_B_getInterruptStatus(), and
-// RTC_B_clearInterrupt() as well as returned by the RTC_B_getInterruptStatus()
-// function.
-//
-//*****************************************************************************
-#define RTC_B_TIME_EVENT_INTERRUPT                                     RTCTEVIE
-#define RTC_B_CLOCK_ALARM_INTERRUPT                                      RTCAIE
-#define RTC_B_CLOCK_READ_READY_INTERRUPT                               RTCRDYIE
-#define RTC_B_PRESCALE_TIMER0_INTERRUPT                                    0x02
-#define RTC_B_PRESCALE_TIMER1_INTERRUPT                                    0x01
-#define RTC_B_OSCILLATOR_FAULT_INTERRUPT                                RTCOFIE
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the interruptMask
+    // parameter for functions: RTC_B_enableInterrupt(), and
+    // RTC_B_disableInterrupt(); the interruptFlagMask parameter for functions:
+    // RTC_B_getInterruptStatus(), and RTC_B_clearInterrupt() as well as
+    // returned by the RTC_B_getInterruptStatus() function.
+    //
+    //*****************************************************************************
+    #define RTC_B_TIME_EVENT_INTERRUPT       RTCTEVIE
+    #define RTC_B_CLOCK_ALARM_INTERRUPT      RTCAIE
+    #define RTC_B_CLOCK_READ_READY_INTERRUPT RTCRDYIE
+    #define RTC_B_PRESCALE_TIMER0_INTERRUPT  0x02
+    #define RTC_B_PRESCALE_TIMER1_INTERRUPT  0x01
+    #define RTC_B_OSCILLATOR_FAULT_INTERRUPT RTCOFIE
 
 //*****************************************************************************
 //
@@ -211,7 +211,7 @@ typedef struct RTC_B_configureCalendarAlarmParam
 //! \return None
 //
 //*****************************************************************************
-extern void RTC_B_startClock(uint16_t baseAddress);
+extern void RTC_B_startClock( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -224,7 +224,7 @@ extern void RTC_B_startClock(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void RTC_B_holdClock(uint16_t baseAddress);
+extern void RTC_B_holdClock( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -250,8 +250,8 @@ extern void RTC_B_holdClock(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void RTC_B_setCalibrationFrequency(uint16_t baseAddress,
-                                          uint16_t frequencySelect);
+extern void RTC_B_setCalibrationFrequency( uint16_t baseAddress,
+                                           uint16_t frequencySelect );
 
 //*****************************************************************************
 //
@@ -278,9 +278,9 @@ extern void RTC_B_setCalibrationFrequency(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void RTC_B_setCalibrationData(uint16_t baseAddress,
-                                     uint8_t offsetDirection,
-                                     uint8_t offsetValue);
+extern void RTC_B_setCalibrationData( uint16_t baseAddress,
+                                      uint8_t offsetDirection,
+                                      uint8_t offsetValue );
 
 //*****************************************************************************
 //
@@ -309,9 +309,9 @@ extern void RTC_B_setCalibrationData(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void RTC_B_initCalendar(uint16_t baseAddress,
-                               Calendar *CalendarTime,
-                               uint16_t formatSelect);
+extern void RTC_B_initCalendar( uint16_t baseAddress,
+                                Calendar * CalendarTime,
+                                uint16_t formatSelect );
 
 //*****************************************************************************
 //
@@ -327,7 +327,7 @@ extern void RTC_B_initCalendar(uint16_t baseAddress,
 //! \return A Calendar structure containing the current time.
 //
 //*****************************************************************************
-extern Calendar RTC_B_getCalendarTime(uint16_t baseAddress);
+extern Calendar RTC_B_getCalendarTime( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -346,8 +346,9 @@ extern Calendar RTC_B_getCalendarTime(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void RTC_B_configureCalendarAlarm(uint16_t baseAddress,
-                                         RTC_B_configureCalendarAlarmParam *param);
+extern void RTC_B_configureCalendarAlarm(
+    uint16_t baseAddress,
+    RTC_B_configureCalendarAlarmParam * param );
 
 //*****************************************************************************
 //
@@ -369,8 +370,8 @@ extern void RTC_B_configureCalendarAlarm(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void RTC_B_setCalendarEvent(uint16_t baseAddress,
-                                   uint16_t eventSelect);
+extern void RTC_B_setCalendarEvent( uint16_t baseAddress,
+                                    uint16_t eventSelect );
 
 //*****************************************************************************
 //
@@ -401,9 +402,9 @@ extern void RTC_B_setCalendarEvent(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void RTC_B_definePrescaleEvent(uint16_t baseAddress,
-                                      uint8_t prescaleSelect,
-                                      uint8_t prescaleEventDivider);
+extern void RTC_B_definePrescaleEvent( uint16_t baseAddress,
+                                       uint8_t prescaleSelect,
+                                       uint8_t prescaleEventDivider );
 
 //*****************************************************************************
 //
@@ -422,8 +423,8 @@ extern void RTC_B_definePrescaleEvent(uint16_t baseAddress,
 //! \return The value of the specified prescaler count register
 //
 //*****************************************************************************
-extern uint8_t RTC_B_getPrescaleValue(uint16_t baseAddress,
-                                      uint8_t prescaleSelect);
+extern uint8_t RTC_B_getPrescaleValue( uint16_t baseAddress,
+                                       uint8_t prescaleSelect );
 
 //*****************************************************************************
 //
@@ -444,9 +445,9 @@ extern uint8_t RTC_B_getPrescaleValue(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void RTC_B_setPrescaleValue(uint16_t baseAddress,
-                                   uint8_t prescaleSelect,
-                                   uint8_t prescaleCounterValue);
+extern void RTC_B_setPrescaleValue( uint16_t baseAddress,
+                                    uint8_t prescaleSelect,
+                                    uint8_t prescaleCounterValue );
 
 //*****************************************************************************
 //
@@ -476,8 +477,8 @@ extern void RTC_B_setPrescaleValue(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void RTC_B_enableInterrupt(uint16_t baseAddress,
-                                  uint8_t interruptMask);
+extern void RTC_B_enableInterrupt( uint16_t baseAddress,
+                                   uint8_t interruptMask );
 
 //*****************************************************************************
 //
@@ -507,8 +508,8 @@ extern void RTC_B_enableInterrupt(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void RTC_B_disableInterrupt(uint16_t baseAddress,
-                                   uint8_t interruptMask);
+extern void RTC_B_disableInterrupt( uint16_t baseAddress,
+                                    uint8_t interruptMask );
 
 //*****************************************************************************
 //
@@ -552,8 +553,8 @@ extern void RTC_B_disableInterrupt(uint16_t baseAddress,
 //!         \n indicating the status of the masked interrupts
 //
 //*****************************************************************************
-extern uint8_t RTC_B_getInterruptStatus(uint16_t baseAddress,
-                                        uint8_t interruptFlagMask);
+extern uint8_t RTC_B_getInterruptStatus( uint16_t baseAddress,
+                                         uint8_t interruptFlagMask );
 
 //*****************************************************************************
 //
@@ -583,8 +584,8 @@ extern uint8_t RTC_B_getInterruptStatus(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void RTC_B_clearInterrupt(uint16_t baseAddress,
-                                 uint8_t interruptFlagMask);
+extern void RTC_B_clearInterrupt( uint16_t baseAddress,
+                                  uint8_t interruptFlagMask );
 
 //*****************************************************************************
 //
@@ -600,8 +601,8 @@ extern void RTC_B_clearInterrupt(uint16_t baseAddress,
 //! \return The binary version of the input parameter
 //
 //*****************************************************************************
-extern uint16_t RTC_B_convertBCDToBinary(uint16_t baseAddress,
-                                         uint16_t valueToConvert);
+extern uint16_t RTC_B_convertBCDToBinary( uint16_t baseAddress,
+                                          uint16_t valueToConvert );
 
 //*****************************************************************************
 //
@@ -617,17 +618,17 @@ extern uint16_t RTC_B_convertBCDToBinary(uint16_t baseAddress,
 //! \return The BCD version of the valueToConvert parameter
 //
 //*****************************************************************************
-extern uint16_t RTC_B_convertBinaryToBCD(uint16_t baseAddress,
-                                         uint16_t valueToConvert);
+extern uint16_t RTC_B_convertBinaryToBCD( uint16_t baseAddress,
+                                          uint16_t valueToConvert );
 
-//*****************************************************************************
-//
-// Mark the end of the C bindings section for C++ compilers.
-//
-//*****************************************************************************
-#ifdef __cplusplus
+    //*****************************************************************************
+    //
+    // Mark the end of the C bindings section for C++ compilers.
+    //
+    //*****************************************************************************
+    #ifdef __cplusplus
 }
-#endif
+    #endif
 
 #endif
 #endif // __MSP430WARE_RTC_B_H__

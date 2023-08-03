@@ -2,7 +2,7 @@
  * Copyright 2017 NXP
  * All rights reserved.
  *
- * 
+ *
  * SPDX-License-Identifier: BSD-3-Clause
  *
  */
@@ -15,14 +15,14 @@
 /*******************************************************************************
  * Prototypes
  ******************************************************************************/
-#if defined(__cplusplus)
+#if defined( __cplusplus )
 extern "C" {
 #endif /* __cplusplus */
 
 /*!
  * @brief A function pointer which is used when format printf log.
  */
-typedef void (*printfCb)(char *buf, int32_t *indicator, char val, int len);
+typedef void ( *printfCb )( char * buf, int32_t * indicator, char val, int len );
 
 /*!
  * @brief This function outputs its parameters according to a formatted string.
@@ -37,7 +37,7 @@ typedef void (*printfCb)(char *buf, int32_t *indicator, char val, int len);
  *
  * @return Number of characters to be print
  */
-int StrFormatPrintf(const char *fmt, va_list ap, char *buf, printfCb cb);
+int StrFormatPrintf( const char * fmt, va_list ap, char * buf, printfCb cb );
 
 /*!
  * @brief Converts an input line of ASCII characters based upon a provided
@@ -50,9 +50,9 @@ int StrFormatPrintf(const char *fmt, va_list ap, char *buf, printfCb cb);
  * @return Number of input items converted and assigned.
  * @retval IO_EOF When line_ptr is empty string "".
  */
-int StrFormatScanf(const char *line_ptr, char *format, va_list args_ptr);
+int StrFormatScanf( const char * line_ptr, char * format, va_list args_ptr );
 
-#if defined(__cplusplus)
+#if defined( __cplusplus )
 }
 #endif /* __cplusplus */
 

@@ -42,18 +42,17 @@
 
 #ifdef __MSP430_HAS_EUSCI_Ax__
 
-//*****************************************************************************
-//
-// If building with a C++ compiler, make all of the definitions in this header
-// have a C binding.
-//
-//*****************************************************************************
-#ifdef __cplusplus
-extern "C"
-{
-#endif
+    //*****************************************************************************
+    //
+    // If building with a C++ compiler, make all of the definitions in this
+    // header have a C binding.
+    //
+    //*****************************************************************************
+    #ifdef __cplusplus
+extern "C" {
+    #endif
 
-#include "inc/hw_regaccess.h"
+    #include "inc/hw_regaccess.h"
 //*****************************************************************************
 //
 //! \brief Used in the EUSCI_A_SPI_changeMasterClock() function as the param
@@ -138,83 +137,85 @@ typedef struct EUSCI_A_SPI_initMasterParam
     uint16_t spiMode;
 } EUSCI_A_SPI_initMasterParam;
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the clockPhase parameter for
-// functions: EUSCI_A_SPI_changeClockPhasePolarity(); the param parameter for
-// functions: EUSCI_A_SPI_initMaster(), and EUSCI_A_SPI_initSlave().
-//
-//*****************************************************************************
-#define EUSCI_A_SPI_PHASE_DATA_CHANGED_ONFIRST_CAPTURED_ON_NEXT            0x00
-#define EUSCI_A_SPI_PHASE_DATA_CAPTURED_ONFIRST_CHANGED_ON_NEXT          UCCKPH
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the clockPhase parameter
+    // for functions: EUSCI_A_SPI_changeClockPhasePolarity(); the param
+    // parameter for functions: EUSCI_A_SPI_initMaster(), and
+    // EUSCI_A_SPI_initSlave().
+    //
+    //*****************************************************************************
+    #define EUSCI_A_SPI_PHASE_DATA_CHANGED_ONFIRST_CAPTURED_ON_NEXT 0x00
+    #define EUSCI_A_SPI_PHASE_DATA_CAPTURED_ONFIRST_CHANGED_ON_NEXT UCCKPH
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the param parameter for
-// functions: EUSCI_A_SPI_initMaster(), and EUSCI_A_SPI_initSlave().
-//
-//*****************************************************************************
-#define EUSCI_A_SPI_MSB_FIRST                                             UCMSB
-#define EUSCI_A_SPI_LSB_FIRST                                              0x00
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the param parameter for
+    // functions: EUSCI_A_SPI_initMaster(), and EUSCI_A_SPI_initSlave().
+    //
+    //*****************************************************************************
+    #define EUSCI_A_SPI_MSB_FIRST                                   UCMSB
+    #define EUSCI_A_SPI_LSB_FIRST                                   0x00
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the param parameter for
-// functions: EUSCI_A_SPI_initMaster(), and EUSCI_A_SPI_initSlave(); the
-// clockPolarity parameter for functions:
-// EUSCI_A_SPI_changeClockPhasePolarity().
-//
-//*****************************************************************************
-#define EUSCI_A_SPI_CLOCKPOLARITY_INACTIVITY_HIGH                        UCCKPL
-#define EUSCI_A_SPI_CLOCKPOLARITY_INACTIVITY_LOW                           0x00
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the param parameter for
+    // functions: EUSCI_A_SPI_initMaster(), and EUSCI_A_SPI_initSlave(); the
+    // clockPolarity parameter for functions:
+    // EUSCI_A_SPI_changeClockPhasePolarity().
+    //
+    //*****************************************************************************
+    #define EUSCI_A_SPI_CLOCKPOLARITY_INACTIVITY_HIGH               UCCKPL
+    #define EUSCI_A_SPI_CLOCKPOLARITY_INACTIVITY_LOW                0x00
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the param parameter for
-// functions: EUSCI_A_SPI_initMaster().
-//
-//*****************************************************************************
-#define EUSCI_A_SPI_CLOCKSOURCE_ACLK                               UCSSEL__ACLK
-#define EUSCI_A_SPI_CLOCKSOURCE_SMCLK                             UCSSEL__SMCLK
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the param parameter for
+    // functions: EUSCI_A_SPI_initMaster().
+    //
+    //*****************************************************************************
+    #define EUSCI_A_SPI_CLOCKSOURCE_ACLK                            UCSSEL__ACLK
+    #define EUSCI_A_SPI_CLOCKSOURCE_SMCLK                           UCSSEL__SMCLK
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the param parameter for
-// functions: EUSCI_A_SPI_initMaster(), and EUSCI_A_SPI_initSlave().
-//
-//*****************************************************************************
-#define EUSCI_A_SPI_3PIN                                               UCMODE_0
-#define EUSCI_A_SPI_4PIN_UCxSTE_ACTIVE_HIGH                            UCMODE_1
-#define EUSCI_A_SPI_4PIN_UCxSTE_ACTIVE_LOW                             UCMODE_2
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the param parameter for
+    // functions: EUSCI_A_SPI_initMaster(), and EUSCI_A_SPI_initSlave().
+    //
+    //*****************************************************************************
+    #define EUSCI_A_SPI_3PIN                                        UCMODE_0
+    #define EUSCI_A_SPI_4PIN_UCxSTE_ACTIVE_HIGH                     UCMODE_1
+    #define EUSCI_A_SPI_4PIN_UCxSTE_ACTIVE_LOW                      UCMODE_2
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the select4PinFunctionality
-// parameter for functions: EUSCI_A_SPI_select4PinFunctionality().
-//
-//*****************************************************************************
-#define EUSCI_A_SPI_PREVENT_CONFLICTS_WITH_OTHER_MASTERS                   0x00
-#define EUSCI_A_SPI_ENABLE_SIGNAL_FOR_4WIRE_SLAVE                        UCSTEM
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the
+    // select4PinFunctionality parameter for functions:
+    // EUSCI_A_SPI_select4PinFunctionality().
+    //
+    //*****************************************************************************
+    #define EUSCI_A_SPI_PREVENT_CONFLICTS_WITH_OTHER_MASTERS        0x00
+    #define EUSCI_A_SPI_ENABLE_SIGNAL_FOR_4WIRE_SLAVE               UCSTEM
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the mask parameter for
-// functions: EUSCI_A_SPI_enableInterrupt(), EUSCI_A_SPI_disableInterrupt(),
-// EUSCI_A_SPI_getInterruptStatus(), and EUSCI_A_SPI_clearInterrupt() as well
-// as returned by the EUSCI_A_SPI_getInterruptStatus() function.
-//
-//*****************************************************************************
-#define EUSCI_A_SPI_TRANSMIT_INTERRUPT                                   UCTXIE
-#define EUSCI_A_SPI_RECEIVE_INTERRUPT                                    UCRXIE
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the mask parameter for
+    // functions: EUSCI_A_SPI_enableInterrupt(), EUSCI_A_SPI_disableInterrupt(),
+    // EUSCI_A_SPI_getInterruptStatus(), and EUSCI_A_SPI_clearInterrupt() as
+    // well as returned by the EUSCI_A_SPI_getInterruptStatus() function.
+    //
+    //*****************************************************************************
+    #define EUSCI_A_SPI_TRANSMIT_INTERRUPT                          UCTXIE
+    #define EUSCI_A_SPI_RECEIVE_INTERRUPT                           UCRXIE
 
-//*****************************************************************************
-//
-// The following are values that can be passed toThe following are values that
-// can be returned by the EUSCI_A_SPI_isBusy() function.
-//
-//*****************************************************************************
-#define EUSCI_A_SPI_BUSY                                                 UCBUSY
-#define EUSCI_A_SPI_NOT_BUSY                                               0x00
+    //*****************************************************************************
+    //
+    // The following are values that can be passed toThe following are values
+    // that can be returned by the EUSCI_A_SPI_isBusy() function.
+    //
+    //*****************************************************************************
+    #define EUSCI_A_SPI_BUSY                                        UCBUSY
+    #define EUSCI_A_SPI_NOT_BUSY                                    0x00
 
 //*****************************************************************************
 //
@@ -239,8 +240,8 @@ typedef struct EUSCI_A_SPI_initMasterParam
 //! \return STATUS_SUCCESS
 //
 //*****************************************************************************
-extern void EUSCI_A_SPI_initMaster(uint16_t baseAddress,
-                                   EUSCI_A_SPI_initMasterParam *param);
+extern void EUSCI_A_SPI_initMaster( uint16_t baseAddress,
+                                    EUSCI_A_SPI_initMasterParam * param );
 
 //*****************************************************************************
 //
@@ -260,8 +261,9 @@ extern void EUSCI_A_SPI_initMaster(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void EUSCI_A_SPI_select4PinFunctionality(uint16_t baseAddress,
-                                                uint8_t select4PinFunctionality);
+extern void EUSCI_A_SPI_select4PinFunctionality(
+    uint16_t baseAddress,
+    uint8_t select4PinFunctionality );
 
 //*****************************************************************************
 //
@@ -276,8 +278,9 @@ extern void EUSCI_A_SPI_select4PinFunctionality(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void EUSCI_A_SPI_changeMasterClock(uint16_t baseAddress,
-                                          EUSCI_A_SPI_changeMasterClockParam *param);
+extern void EUSCI_A_SPI_changeMasterClock(
+    uint16_t baseAddress,
+    EUSCI_A_SPI_changeMasterClockParam * param );
 
 //*****************************************************************************
 //
@@ -296,8 +299,8 @@ extern void EUSCI_A_SPI_changeMasterClock(uint16_t baseAddress,
 //! \return STATUS_SUCCESS
 //
 //*****************************************************************************
-extern void EUSCI_A_SPI_initSlave(uint16_t baseAddress,
-                                  EUSCI_A_SPI_initSlaveParam *param);
+extern void EUSCI_A_SPI_initSlave( uint16_t baseAddress,
+                                   EUSCI_A_SPI_initSlaveParam * param );
 
 //*****************************************************************************
 //
@@ -321,9 +324,9 @@ extern void EUSCI_A_SPI_initSlave(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void EUSCI_A_SPI_changeClockPhasePolarity(uint16_t baseAddress,
-                                                 uint16_t clockPhase,
-                                                 uint16_t clockPolarity);
+extern void EUSCI_A_SPI_changeClockPhasePolarity( uint16_t baseAddress,
+                                                  uint16_t clockPhase,
+                                                  uint16_t clockPolarity );
 
 //*****************************************************************************
 //
@@ -338,8 +341,8 @@ extern void EUSCI_A_SPI_changeClockPhasePolarity(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void EUSCI_A_SPI_transmitData(uint16_t baseAddress,
-                                     uint8_t transmitData);
+extern void EUSCI_A_SPI_transmitData( uint16_t baseAddress,
+                                      uint8_t transmitData );
 
 //*****************************************************************************
 //
@@ -353,7 +356,7 @@ extern void EUSCI_A_SPI_transmitData(uint16_t baseAddress,
 //!         uint8_t.
 //
 //*****************************************************************************
-extern uint8_t EUSCI_A_SPI_receiveData(uint16_t baseAddress);
+extern uint8_t EUSCI_A_SPI_receiveData( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -374,8 +377,7 @@ extern uint8_t EUSCI_A_SPI_receiveData(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void EUSCI_A_SPI_enableInterrupt(uint16_t baseAddress,
-                                        uint8_t mask);
+extern void EUSCI_A_SPI_enableInterrupt( uint16_t baseAddress, uint8_t mask );
 
 //*****************************************************************************
 //
@@ -396,8 +398,7 @@ extern void EUSCI_A_SPI_enableInterrupt(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void EUSCI_A_SPI_disableInterrupt(uint16_t baseAddress,
-                                         uint8_t mask);
+extern void EUSCI_A_SPI_disableInterrupt( uint16_t baseAddress, uint8_t mask );
 
 //*****************************************************************************
 //
@@ -418,8 +419,8 @@ extern void EUSCI_A_SPI_disableInterrupt(uint16_t baseAddress,
 //!         \n indicating the status of the masked interrupts
 //
 //*****************************************************************************
-extern uint8_t EUSCI_A_SPI_getInterruptStatus(uint16_t baseAddress,
-                                              uint8_t mask);
+extern uint8_t EUSCI_A_SPI_getInterruptStatus( uint16_t baseAddress,
+                                               uint8_t mask );
 
 //*****************************************************************************
 //
@@ -436,8 +437,7 @@ extern uint8_t EUSCI_A_SPI_getInterruptStatus(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void EUSCI_A_SPI_clearInterrupt(uint16_t baseAddress,
-                                       uint8_t mask);
+extern void EUSCI_A_SPI_clearInterrupt( uint16_t baseAddress, uint8_t mask );
 
 //*****************************************************************************
 //
@@ -452,7 +452,7 @@ extern void EUSCI_A_SPI_clearInterrupt(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void EUSCI_A_SPI_enable(uint16_t baseAddress);
+extern void EUSCI_A_SPI_enable( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -467,7 +467,7 @@ extern void EUSCI_A_SPI_enable(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void EUSCI_A_SPI_disable(uint16_t baseAddress);
+extern void EUSCI_A_SPI_disable( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -481,7 +481,7 @@ extern void EUSCI_A_SPI_disable(uint16_t baseAddress);
 //! \return the address of the RX Buffer
 //
 //*****************************************************************************
-extern uint32_t EUSCI_A_SPI_getReceiveBufferAddress(uint16_t baseAddress);
+extern uint32_t EUSCI_A_SPI_getReceiveBufferAddress( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -495,7 +495,7 @@ extern uint32_t EUSCI_A_SPI_getReceiveBufferAddress(uint16_t baseAddress);
 //! \return the address of the TX Buffer
 //
 //*****************************************************************************
-extern uint32_t EUSCI_A_SPI_getTransmitBufferAddress(uint16_t baseAddress);
+extern uint32_t EUSCI_A_SPI_getTransmitBufferAddress( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -512,16 +512,16 @@ extern uint32_t EUSCI_A_SPI_getTransmitBufferAddress(uint16_t baseAddress);
 //!         \n indicating if the EUSCI_A_SPI is busy
 //
 //*****************************************************************************
-extern uint16_t EUSCI_A_SPI_isBusy(uint16_t baseAddress);
+extern uint16_t EUSCI_A_SPI_isBusy( uint16_t baseAddress );
 
-//*****************************************************************************
-//
-// Mark the end of the C bindings section for C++ compilers.
-//
-//*****************************************************************************
-#ifdef __cplusplus
+    //*****************************************************************************
+    //
+    // Mark the end of the C bindings section for C++ compilers.
+    //
+    //*****************************************************************************
+    #ifdef __cplusplus
 }
-#endif
+    #endif
 
 #endif
 #endif // __MSP430WARE_EUSCI_A_SPI_H__

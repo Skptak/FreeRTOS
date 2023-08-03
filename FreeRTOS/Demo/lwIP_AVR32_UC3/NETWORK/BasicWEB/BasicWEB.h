@@ -39,12 +39,10 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-
 #ifndef BASIC_WEB_SERVER_H
 #define BASIC_WEB_SERVER_H
 
 #include "portmacro.h"
-
 
 /*! \brief WEB server main task
  *
@@ -54,4 +52,3 @@
 portTASK_FUNCTION_PROTO( vBasicWEBServer, pvParameters );
 
 #endif
-

@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -34,8 +35,8 @@ typedef QueueHandle_t SemaphoreHandle_t;
 
 typedef struct threadInfo
 {
-    void * pArgument;                   /**< @brief Argument to `threadRoutine`. */
-    void ( * threadRoutine )( void * ); /**< @brief Thread function to run. */
+    void * pArgument; /**< @brief Argument to `threadRoutine`. */
+    void ( *threadRoutine )( void * ); /**< @brief Thread function to run. */
 } threadInfo_t;
 
 /*-----------------------------------------------------------*/
@@ -56,8 +57,7 @@ static void prvThreadRoutineWrapper( void * pArgument );
  *
  * @return true if mutex is locked successfully. Otherwise false.
  */
-static bool prIotMutexTimedLock( PlatformMutex_t * pMutex,
-                                 TickType_t timeout );
+static bool prIotMutexTimedLock( PlatformMutex_t * pMutex, TickType_t timeout );
 
 /*-----------------------------------------------------------*/
 
@@ -74,8 +74,7 @@ static void prvThreadRoutineWrapper( void * pArgument )
 
 /*-----------------------------------------------------------*/
 
-static bool prIotMutexTimedLock( PlatformMutex_t * pMutex,
-                                 TickType_t timeout )
+static bool prIotMutexTimedLock( PlatformMutex_t * pMutex, TickType_t timeout )
 {
     BaseType_t lockResult = pdTRUE;
 
@@ -86,19 +85,22 @@ static bool prIotMutexTimedLock( PlatformMutex_t * pMutex,
     /* Call the correct FreeRTOS mutex take function based on mutex type. */
     if( pMutex->recursive == pdTRUE )
     {
-        lockResult = xSemaphoreTakeRecursive( ( SemaphoreHandle_t ) &pMutex->xMutex, timeout );
+        lockResult = xSemaphoreTakeRecursive( ( SemaphoreHandle_t ) &pMutex
+                                                  ->xMutex,
+                                              timeout );
     }
     else
     {
-        lockResult = xSemaphoreTake( ( SemaphoreHandle_t ) &pMutex->xMutex, timeout );
+        lockResult = xSemaphoreTake( ( SemaphoreHandle_t ) &pMutex->xMutex,
+                                     timeout );
     }
 
-    return( lockResult == pdTRUE );
+    return ( lockResult == pdTRUE );
 }
 
 /*-----------------------------------------------------------*/
 
-bool Platform_CreateDetachedThread( void ( * threadRoutine )( void * ),
+bool Platform_CreateDetachedThread( void ( *threadRoutine )( void * ),
                                     void * pArgument,
                                     int32_t priority,
                                     size_t stackSize )
@@ -114,7 +116,8 @@ bool Platform_CreateDetachedThread( void ( * threadRoutine )( void * ),
 
     if( pThreadInfo == NULL )
     {
-        LogDebug( ( "Unable to allocate memory for threadRoutine %p.", threadRoutine ) );
+        LogDebug( ( "Unable to allocate memory for threadRoutine %p.",
+                    threadRoutine ) );
         status = false;
     }
 
@@ -147,8 +150,7 @@ bool Platform_CreateDetachedThread( void ( * threadRoutine )( void * ),
 
 /*-----------------------------------------------------------*/
 
-bool PlatformMutex_Create( PlatformMutex_t * pNewMutex,
-                           bool recursive )
+bool PlatformMutex_Create( PlatformMutex_t * pNewMutex, bool recursive )
 {
     SemaphoreHandle_t xSemaphore = NULL;
     bool retMutexCreate = false;
@@ -223,7 +225,8 @@ void PlatformMutex_Unlock( PlatformMutex_t * pMutex )
     /* Call the correct FreeRTOS mutex unlock function based on mutex type. */
     if( pMutex->recursive == pdTRUE )
     {
-        ( void ) xSemaphoreGiveRecursive( ( SemaphoreHandle_t ) &pMutex->xMutex );
+        ( void ) xSemaphoreGiveRecursive(
+            ( SemaphoreHandle_t ) &pMutex->xMutex );
     }
     else
     {

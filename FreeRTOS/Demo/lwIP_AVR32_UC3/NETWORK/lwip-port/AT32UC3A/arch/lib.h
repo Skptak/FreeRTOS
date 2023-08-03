@@ -44,5 +44,4 @@
 
 #include <string.h>
 
-
 #endif /* __LIB_H__ */

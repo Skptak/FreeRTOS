@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
- *         SAM Software Package License 
+ *         SAM Software Package License
  * ----------------------------------------------------------------------------
  * Copyright (c) 2011, Atmel Corporation
  *
@@ -26,7 +26,7 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * ----------------------------------------------------------------------------
  */
- 
+
 /** \file */
 
 /*----------------------------------------------------------------------------
@@ -42,11 +42,11 @@
  *----------------------------------------------------------------------------*/
 
 /* WAV letters "RIFF" */
-#define WAV_CHUNKID       0x46464952
+#define WAV_CHUNKID    0x46464952
 /* WAV letters "WAVE"*/
-#define WAV_FORMAT        0x45564157
+#define WAV_FORMAT     0x45564157
 /* WAV letters "fmt "*/
-#define WAV_SUBCHUNKID    0x20746D66
+#define WAV_SUBCHUNKID 0x20746D66
 
 /*----------------------------------------------------------------------------
  *        Exported functions
@@ -58,11 +58,11 @@
  * \param file  Buffer holding the file to examinate.
  * \return 1 if the header of a Wav file is valid; otherwise returns 0.
  */
-unsigned char WAV_IsValid(const WavHeader *header)
+unsigned char WAV_IsValid( const WavHeader * header )
 {
-    return ((header->chunkID == WAV_CHUNKID)
-            && (header->format == WAV_FORMAT)
-            && (header->subchunk1Size == 0x10));
+    return ( ( header->chunkID == WAV_CHUNKID ) &&
+             ( header->format == WAV_FORMAT ) &&
+             ( header->subchunk1Size == 0x10 ) );
 }
 
 /**
@@ -72,22 +72,21 @@ unsigned char WAV_IsValid(const WavHeader *header)
  * \param header  Wav head information.
  */
 
-void WAV_DisplayInfo(const WavHeader *header)
+void WAV_DisplayInfo( const WavHeader * header )
 {
-    printf( "Wave file header information\n\r");
-    printf( "--------------------------------\n\r");
-    printf( "  - Chunk ID        = 0x%08X\n\r", header->chunkID);
-    printf( "  - Chunk Size      = %u\n\r",     header->chunkSize);
-    printf( "  - Format          = 0x%08X\n\r", header->format);
-    printf( "  - SubChunk ID     = 0x%08X\n\r", header->subchunk1ID);
-    printf( "  - Subchunk1 Size  = %u\n\r",     header->subchunk1Size);
-    printf( "  - Audio Format    = 0x%04X\n\r", header->audioFormat);
-    printf( "  - Num. Channels   = %d\n\r",     header->numChannels);
-    printf( "  - Sample Rate     = %u\n\r",     header->sampleRate);
-    printf( "  - Byte Rate       = %u\n\r",     header->byteRate);
-    printf( "  - Block Align     = %d\n\r",     header->blockAlign);
-    printf( "  - Bits Per Sample = %d\n\r",     header->bitsPerSample);
-    printf( "  - Subchunk2 ID    = 0x%08X\n\r", header->subchunk2ID);
-    printf( "  - Subchunk2 Size  = %u\n\r",     header->subchunk2Size);
+    printf( "Wave file header information\n\r" );
+    printf( "--------------------------------\n\r" );
+    printf( "  - Chunk ID        = 0x%08X\n\r", header->chunkID );
+    printf( "  - Chunk Size      = %u\n\r", header->chunkSize );
+    printf( "  - Format          = 0x%08X\n\r", header->format );
+    printf( "  - SubChunk ID     = 0x%08X\n\r", header->subchunk1ID );
+    printf( "  - Subchunk1 Size  = %u\n\r", header->subchunk1Size );
+    printf( "  - Audio Format    = 0x%04X\n\r", header->audioFormat );
+    printf( "  - Num. Channels   = %d\n\r", header->numChannels );
+    printf( "  - Sample Rate     = %u\n\r", header->sampleRate );
+    printf( "  - Byte Rate       = %u\n\r", header->byteRate );
+    printf( "  - Block Align     = %d\n\r", header->blockAlign );
+    printf( "  - Bits Per Sample = %d\n\r", header->bitsPerSample );
+    printf( "  - Subchunk2 ID    = 0x%08X\n\r", header->subchunk2ID );
+    printf( "  - Subchunk2 Size  = %u\n\r", header->subchunk2Size );
 }
-

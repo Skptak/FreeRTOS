@@ -88,134 +88,134 @@
 #define STM32F107VB 0x1074B
 #define STM32F107VC 0x1074C
 
-#if (__TARGET_PROCESSOR == STM32F101C4)
-#include <targets/STM32F101C4.h>
-#elif (__TARGET_PROCESSOR == STM32F101C6)
-#include <targets/STM32F101C6.h>
-#elif (__TARGET_PROCESSOR == STM32F101C8)
-#include <targets/STM32F101C6.h>
-#elif (__TARGET_PROCESSOR == STM32F101CB)
-#include <targets/STM32F101C8.h>
-#elif (__TARGET_PROCESSOR == STM32F101R4)
-#include <targets/STM32F101R4.h>
-#elif (__TARGET_PROCESSOR == STM32F101R6)
-#include <targets/STM32F101R6.h>
-#elif (__TARGET_PROCESSOR == STM32F101R8)
-#include <targets/STM32F101R8.h>
-#elif (__TARGET_PROCESSOR == STM32F101RB)
-#include <targets/STM32F101RB.h>
-#elif (__TARGET_PROCESSOR == STM32F101RC)
-#include <targets/STM32F101RC.h>
-#elif (__TARGET_PROCESSOR == STM32F101RD)
-#include <targets/STM32F101RD.h>
-#elif (__TARGET_PROCESSOR == STM32F101RE)
-#include <targets/STM32F101RE.h>
-#elif (__TARGET_PROCESSOR == STM32F101T4)
-#include <targets/STM32F101T4.h>
-#elif (__TARGET_PROCESSOR == STM32F101T6)
-#include <targets/STM32F101T6.h>
-#elif (__TARGET_PROCESSOR == STM32F101T8)
-#include <targets/STM32F101T8.h>
-#elif (__TARGET_PROCESSOR == STM32F101V8)
-#include <targets/STM32F101V8.h>
-#elif (__TARGET_PROCESSOR == STM32F101VB)
-#include <targets/STM32F101VB.h>
-#elif (__TARGET_PROCESSOR == STM32F101VC)
-#include <targets/STM32F101VC.h>
-#elif (__TARGET_PROCESSOR == STM32F101VD)
-#include <targets/STM32F101VD.h>
-#elif (__TARGET_PROCESSOR == STM32F101VE)
-#include <targets/STM32F101VE.h>
-#elif (__TARGET_PROCESSOR == STM32F101ZC)
-#include <targets/STM32F101ZC.h>
-#elif (__TARGET_PROCESSOR == STM32F101ZD)
-#include <targets/STM32F101ZD.h>
-#elif (__TARGET_PROCESSOR == STM32F101ZE)
-#include <targets/STM32F101ZE.h>
-#elif (__TARGET_PROCESSOR == STM32F102C4)
-#include <targets/STM32F102C4.h>
-#elif (__TARGET_PROCESSOR == STM32F102C6)
-#include <targets/STM32F102C6.h>
-#elif (__TARGET_PROCESSOR == STM32F102C8)
-#include <targets/STM32F102C8.h>
-#elif (__TARGET_PROCESSOR == STM32F102CB)
-#include <targets/STM32F102CB.h>
-#elif (__TARGET_PROCESSOR == STM32F102R4)
-#include <targets/STM32F102R4.h>
-#elif (__TARGET_PROCESSOR == STM32F102R6)
-#include <targets/STM32F102R6.h>
-#elif (__TARGET_PROCESSOR == STM32F102R8)
-#include <targets/STM32F102R8.h>
-#elif (__TARGET_PROCESSOR == STM32F102RB)
-#include <targets/STM32F102RB.h>
-#elif (__TARGET_PROCESSOR == STM32F103C4)
-#include <targets/STM32F103C4.h>
-#elif (__TARGET_PROCESSOR == STM32F103C6)
-#include <targets/STM32F103C6.h>
-#elif (__TARGET_PROCESSOR == STM32F103C8)
-#include <targets/STM32F103C8.h>
-#elif (__TARGET_PROCESSOR == STM32F103CB)
-#include <targets/STM32F103CB.h>
-#elif (__TARGET_PROCESSOR == STM32F103R4)
-#include <targets/STM32F103R4.h>
-#elif (__TARGET_PROCESSOR == STM32F103R6)
-#include <targets/STM32F103R6.h>
-#elif (__TARGET_PROCESSOR == STM32F103R8)
-#include <targets/STM32F101C6.h>
-#elif (__TARGET_PROCESSOR == STM32F103RB)
-#include <targets/STM32F103RB.h>
-#elif (__TARGET_PROCESSOR == STM32F103RC)
-#include <targets/STM32F103RC.h>
-#elif (__TARGET_PROCESSOR == STM32F103RD)
-#include <targets/STM32F103RD.h>
-#elif (__TARGET_PROCESSOR == STM32F103RE)
-#include <targets/STM32F103RE.h>
-#elif (__TARGET_PROCESSOR == STM32F103T4)
-#include <targets/STM32F103T4.h>
-#elif (__TARGET_PROCESSOR == STM32F103T6)
-#include <targets/STM32F103T6.h>
-#elif (__TARGET_PROCESSOR == STM32F103T8)
-#include <targets/STM32F103T8.h>
-#elif (__TARGET_PROCESSOR == STM32F103TB)
-#include <targets/STM32F103TB.h>
-#elif (__TARGET_PROCESSOR == STM32F103V8)
-#include <targets/STM32F103V8.h>
-#elif (__TARGET_PROCESSOR == STM32F103VB)
-#include <targets/STM32F103VB.h>
-#elif (__TARGET_PROCESSOR == STM32F103VC)
-#include <targets/STM32F103VC.h>
-#elif (__TARGET_PROCESSOR == STM32F103VD)
-#include <targets/STM32F103VD.h>
-#elif (__TARGET_PROCESSOR == STM32F103VE)
-#include <targets/STM32F103VE.h>
-#elif (__TARGET_PROCESSOR == STM32F103ZC)
-#include <targets/STM32F103ZC.h>
-#elif (__TARGET_PROCESSOR == STM32F103ZD)
-#include <targets/STM32F103ZD.h>
-#elif (__TARGET_PROCESSOR == STM32F103ZE)
-#include <targets/STM32F103ZE.h>
-#elif (__TARGET_PROCESSOR == STM32F105R8)
-#include <targets/STM32F105R8.h>
-#elif (__TARGET_PROCESSOR == STM32F105RB)
-#include <targets/STM32F105RB.h>
-#elif (__TARGET_PROCESSOR == STM32F105RC)
-#include <targets/STM32F105RC.h>
-#elif (__TARGET_PROCESSOR == STM32F105V8)
-#include <targets/STM32F105V8.h>
-#elif (__TARGET_PROCESSOR == STM32F105VB)
-#include <targets/STM32F105VB.h>
-#elif (__TARGET_PROCESSOR == STM32F105VC)
-#include <targets/STM32F105VC.h>
-#elif (__TARGET_PROCESSOR == STM32F107RB)
-#include <targets/STM32F107RB.h>
-#elif (__TARGET_PROCESSOR == STM32F107RC)
-#include <targets/STM32F107RC.h>
-#elif (__TARGET_PROCESSOR == STM32F107VB)
-#include <targets/STM32F107VB.h>
-#elif (__TARGET_PROCESSOR == STM32F107VC)
-#include <targets/STM32F107VC.h>
+#if( __TARGET_PROCESSOR == STM32F101C4 )
+    #include <targets/STM32F101C4.h>
+#elif( __TARGET_PROCESSOR == STM32F101C6 )
+    #include <targets/STM32F101C6.h>
+#elif( __TARGET_PROCESSOR == STM32F101C8 )
+    #include <targets/STM32F101C6.h>
+#elif( __TARGET_PROCESSOR == STM32F101CB )
+    #include <targets/STM32F101C8.h>
+#elif( __TARGET_PROCESSOR == STM32F101R4 )
+    #include <targets/STM32F101R4.h>
+#elif( __TARGET_PROCESSOR == STM32F101R6 )
+    #include <targets/STM32F101R6.h>
+#elif( __TARGET_PROCESSOR == STM32F101R8 )
+    #include <targets/STM32F101R8.h>
+#elif( __TARGET_PROCESSOR == STM32F101RB )
+    #include <targets/STM32F101RB.h>
+#elif( __TARGET_PROCESSOR == STM32F101RC )
+    #include <targets/STM32F101RC.h>
+#elif( __TARGET_PROCESSOR == STM32F101RD )
+    #include <targets/STM32F101RD.h>
+#elif( __TARGET_PROCESSOR == STM32F101RE )
+    #include <targets/STM32F101RE.h>
+#elif( __TARGET_PROCESSOR == STM32F101T4 )
+    #include <targets/STM32F101T4.h>
+#elif( __TARGET_PROCESSOR == STM32F101T6 )
+    #include <targets/STM32F101T6.h>
+#elif( __TARGET_PROCESSOR == STM32F101T8 )
+    #include <targets/STM32F101T8.h>
+#elif( __TARGET_PROCESSOR == STM32F101V8 )
+    #include <targets/STM32F101V8.h>
+#elif( __TARGET_PROCESSOR == STM32F101VB )
+    #include <targets/STM32F101VB.h>
+#elif( __TARGET_PROCESSOR == STM32F101VC )
+    #include <targets/STM32F101VC.h>
+#elif( __TARGET_PROCESSOR == STM32F101VD )
+    #include <targets/STM32F101VD.h>
+#elif( __TARGET_PROCESSOR == STM32F101VE )
+    #include <targets/STM32F101VE.h>
+#elif( __TARGET_PROCESSOR == STM32F101ZC )
+    #include <targets/STM32F101ZC.h>
+#elif( __TARGET_PROCESSOR == STM32F101ZD )
+    #include <targets/STM32F101ZD.h>
+#elif( __TARGET_PROCESSOR == STM32F101ZE )
+    #include <targets/STM32F101ZE.h>
+#elif( __TARGET_PROCESSOR == STM32F102C4 )
+    #include <targets/STM32F102C4.h>
+#elif( __TARGET_PROCESSOR == STM32F102C6 )
+    #include <targets/STM32F102C6.h>
+#elif( __TARGET_PROCESSOR == STM32F102C8 )
+    #include <targets/STM32F102C8.h>
+#elif( __TARGET_PROCESSOR == STM32F102CB )
+    #include <targets/STM32F102CB.h>
+#elif( __TARGET_PROCESSOR == STM32F102R4 )
+    #include <targets/STM32F102R4.h>
+#elif( __TARGET_PROCESSOR == STM32F102R6 )
+    #include <targets/STM32F102R6.h>
+#elif( __TARGET_PROCESSOR == STM32F102R8 )
+    #include <targets/STM32F102R8.h>
+#elif( __TARGET_PROCESSOR == STM32F102RB )
+    #include <targets/STM32F102RB.h>
+#elif( __TARGET_PROCESSOR == STM32F103C4 )
+    #include <targets/STM32F103C4.h>
+#elif( __TARGET_PROCESSOR == STM32F103C6 )
+    #include <targets/STM32F103C6.h>
+#elif( __TARGET_PROCESSOR == STM32F103C8 )
+    #include <targets/STM32F103C8.h>
+#elif( __TARGET_PROCESSOR == STM32F103CB )
+    #include <targets/STM32F103CB.h>
+#elif( __TARGET_PROCESSOR == STM32F103R4 )
+    #include <targets/STM32F103R4.h>
+#elif( __TARGET_PROCESSOR == STM32F103R6 )
+    #include <targets/STM32F103R6.h>
+#elif( __TARGET_PROCESSOR == STM32F103R8 )
+    #include <targets/STM32F101C6.h>
+#elif( __TARGET_PROCESSOR == STM32F103RB )
+    #include <targets/STM32F103RB.h>
+#elif( __TARGET_PROCESSOR == STM32F103RC )
+    #include <targets/STM32F103RC.h>
+#elif( __TARGET_PROCESSOR == STM32F103RD )
+    #include <targets/STM32F103RD.h>
+#elif( __TARGET_PROCESSOR == STM32F103RE )
+    #include <targets/STM32F103RE.h>
+#elif( __TARGET_PROCESSOR == STM32F103T4 )
+    #include <targets/STM32F103T4.h>
+#elif( __TARGET_PROCESSOR == STM32F103T6 )
+    #include <targets/STM32F103T6.h>
+#elif( __TARGET_PROCESSOR == STM32F103T8 )
+    #include <targets/STM32F103T8.h>
+#elif( __TARGET_PROCESSOR == STM32F103TB )
+    #include <targets/STM32F103TB.h>
+#elif( __TARGET_PROCESSOR == STM32F103V8 )
+    #include <targets/STM32F103V8.h>
+#elif( __TARGET_PROCESSOR == STM32F103VB )
+    #include <targets/STM32F103VB.h>
+#elif( __TARGET_PROCESSOR == STM32F103VC )
+    #include <targets/STM32F103VC.h>
+#elif( __TARGET_PROCESSOR == STM32F103VD )
+    #include <targets/STM32F103VD.h>
+#elif( __TARGET_PROCESSOR == STM32F103VE )
+    #include <targets/STM32F103VE.h>
+#elif( __TARGET_PROCESSOR == STM32F103ZC )
+    #include <targets/STM32F103ZC.h>
+#elif( __TARGET_PROCESSOR == STM32F103ZD )
+    #include <targets/STM32F103ZD.h>
+#elif( __TARGET_PROCESSOR == STM32F103ZE )
+    #include <targets/STM32F103ZE.h>
+#elif( __TARGET_PROCESSOR == STM32F105R8 )
+    #include <targets/STM32F105R8.h>
+#elif( __TARGET_PROCESSOR == STM32F105RB )
+    #include <targets/STM32F105RB.h>
+#elif( __TARGET_PROCESSOR == STM32F105RC )
+    #include <targets/STM32F105RC.h>
+#elif( __TARGET_PROCESSOR == STM32F105V8 )
+    #include <targets/STM32F105V8.h>
+#elif( __TARGET_PROCESSOR == STM32F105VB )
+    #include <targets/STM32F105VB.h>
+#elif( __TARGET_PROCESSOR == STM32F105VC )
+    #include <targets/STM32F105VC.h>
+#elif( __TARGET_PROCESSOR == STM32F107RB )
+    #include <targets/STM32F107RB.h>
+#elif( __TARGET_PROCESSOR == STM32F107RC )
+    #include <targets/STM32F107RC.h>
+#elif( __TARGET_PROCESSOR == STM32F107VB )
+    #include <targets/STM32F107VB.h>
+#elif( __TARGET_PROCESSOR == STM32F107VC )
+    #include <targets/STM32F107VC.h>
 #else
-#error bad __TARGET_PROCESSOR
+    #error bad __TARGET_PROCESSOR
 #endif
 
 #endif

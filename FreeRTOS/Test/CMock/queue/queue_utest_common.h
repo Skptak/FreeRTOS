@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -29,44 +30,44 @@
 #define QUEUE_UTEST_COMMON_H
 
 /* C runtime includes. */
-#include <stdlib.h>
 #include <stdbool.h>
+#include <stdlib.h>
 #include <string.h>
 
 /* Test includes. */
+#include "CException.h"
 #include "unity.h"
 #include "unity_memory.h"
-#include "CException.h"
 
 /* FreeRTOS includes */
 #include "FreeRTOS.h"
 #include "queue.h"
 
 /* Mock includes. */
-#include "mock_task.h"
 #include "mock_fake_assert.h"
+#include "mock_task.h"
 
 /* ================================  CONSTANTS ===============================*/
 
-#define MAX_MULTI_LEN             16
-#define MAX_QUEUE_ITEMS           500
-#define QUEUE_T_SIZE              sizeof( StaticQueue_t )
+#define MAX_MULTI_LEN          16
+#define MAX_QUEUE_ITEMS        500
+#define QUEUE_T_SIZE           sizeof( StaticQueue_t )
 
-#define B_SEMPHR_AVAILABLE        1
-#define B_SEMPHR_TAKEN            0
+#define B_SEMPHR_AVAILABLE     1
+#define B_SEMPHR_TAKEN         0
 
-#define INVALID_UINT32            0xFFFFFFFF
-#define INVALID_PTR               ( ( void * ) INVALID_UINT32 )
+#define INVALID_UINT32         0xFFFFFFFF
+#define INVALID_PTR            ( ( void * ) INVALID_UINT32 )
 
-#define configASSERT_E            0xAA101
+#define configASSERT_E         0xAA101
 
-#define queueUNLOCKED             ( ( int8_t ) -1 )
-#define queueLOCKED_UNMODIFIED    ( ( int8_t ) 0 )
+#define queueUNLOCKED          ( ( int8_t ) -1 )
+#define queueLOCKED_UNMODIFIED ( ( int8_t ) 0 )
 
-#define DEFAULT_PRIORITY          5
+#define DEFAULT_PRIORITY       5
 
-#define TICKS_TO_WAIT             10
-#define NUM_CALLS_TO_INTERCEPT    TICKS_TO_WAIT / 2
+#define TICKS_TO_WAIT          10
+#define NUM_CALLS_TO_INTERCEPT TICKS_TO_WAIT / 2
 
 /* ===========================  FUNCTION PROTOTYPES  ======================== */
 void setxMaskAssertAndAbort( bool mask );
@@ -81,18 +82,17 @@ bool getxMaskAssertAndAbort();
  * @details Use this macro when the call passsed in as a parameter is expected
  * to cause invalid memory access.
  */
-#define EXPECT_ASSERT_BREAK( call )             \
-    do                                          \
-    {                                           \
-        setxMaskAssertAndAbort( true );         \
-        CEXCEPTION_T e = CEXCEPTION_NONE;       \
-        Try                                     \
-        {                                       \
-            call;                               \
-            TEST_FAIL();                        \
-        }                                       \
-        Catch( e )                              \
-        TEST_ASSERT_EQUAL( configASSERT_E, e ); \
+#define EXPECT_ASSERT_BREAK( call )                        \
+    do                                                     \
+    {                                                      \
+        setxMaskAssertAndAbort( true );                    \
+        CEXCEPTION_T e = CEXCEPTION_NONE;                  \
+        Try                                                \
+        {                                                  \
+            call;                                          \
+            TEST_FAIL();                                   \
+        }                                                  \
+        Catch( e ) TEST_ASSERT_EQUAL( configASSERT_E, e ); \
     } while( 0 )
 
 /* ==========================  CALLBACK FUNCTIONS =========================== */
@@ -121,10 +121,7 @@ void vPortFree( void * pv );
  * @param line Line number of the assertion
  * @param num_calls Number of times configASSERT() was called
  */
-void fakeAssertCallback( bool assertion,
-                         char * file,
-                         int line,
-                         int num_calls );
+void fakeAssertCallback( bool assertion, char * file, int line, int num_calls );
 
 /* ==========================  Unity fixtures =========================== */
 
@@ -176,7 +173,8 @@ int commonSuiteTearDown( int numFailures );
 uint32_t getNextMonotonicTestValue();
 
 /**
- * @brief Get the test value provided by the last call to getNextMonotonicTestValue().
+ * @brief Get the test value provided by the last call to
+ * getNextMonotonicTestValue().
  */
 uint32_t getLastMonotonicTestValue();
 
@@ -234,27 +232,28 @@ int8_t cGetQueueTxLock( QueueHandle_t xQueue );
 /**
  * @brief Set the value of a given queue's cRxLock to the specified value.
  */
-void vSetQueueRxLock( QueueHandle_t xQueue,
-                      int8_t value );
+void vSetQueueRxLock( QueueHandle_t xQueue, int8_t value );
 
 /**
  * @brief Set the value of a given queue's cTxLock to the specified value.
  */
-void vSetQueueTxLock( QueueHandle_t xQueue,
-                      int8_t value );
+void vSetQueueTxLock( QueueHandle_t xQueue, int8_t value );
 
 /**
- * @brief Get the number of asserts that have occurred since the last call to this function in a given test case.
+ * @brief Get the number of asserts that have occurred since the last call to
+ * this function in a given test case.
  */
 BaseType_t fakeAssertGetNumAssertsAndClear( void );
 
 /**
- * @brief Check that the number of failed configASSERTs that have occurred in this test case equals the given number.
+ * @brief Check that the number of failed configASSERTs that have occurred in
+ * this test case equals the given number.
  */
 void fakeAssertVerifyNumAssertsAndClear( uint32_t ulNumAssertsExpected );
 
 /**
- * @brief Receives a given number of items from the given queue and verifies that the items contain sequential values.
+ * @brief Receives a given number of items from the given queue and verifies
+ * that the items contain sequential values.
  */
 void queue_common_receive_sequential_from_queue( QueueHandle_t xQueue,
                                                  uint32_t maxItems,
@@ -262,14 +261,15 @@ void queue_common_receive_sequential_from_queue( QueueHandle_t xQueue,
                                                  uint32_t expectedFirstValue );
 
 /**
- * @brief Adds a given number of itesm to the given queue with sequential values in each item.
+ * @brief Adds a given number of itesm to the given queue with sequential values
+ * in each item.
  */
 void queue_common_add_sequential_to_queue( QueueHandle_t xQueue,
                                            uint32_t numberOfItems );
 
-
 /**
- * @brief Register the stubs contained in td_port.c using the relevant CMock _Stub calls.
+ * @brief Register the stubs contained in td_port.c using the relevant CMock
+ * _Stub calls.
  * @details This function should be called before every test case.
  */
 void td_port_register_stubs( void );
@@ -288,7 +288,8 @@ void td_port_teardown_check( void );
 BaseType_t td_port_isInCriticalSection( void );
 
 /**
- * @brief Register the stubs contained in td_task.c using the relevant CMock _Stub calls.
+ * @brief Register the stubs contained in td_task.c using the relevant CMock
+ * _Stub calls.
  * @details This function should be called before every test case.
  */
 void td_task_register_stubs( void );
@@ -317,12 +318,14 @@ void td_task_setFakeTaskPriority( TickType_t priority );
 TickType_t td_task_getFakeTaskPriority( void );
 
 /**
- * @brief Adds the td_task.c fake task to the given queue's WaitingToSend event list.
+ * @brief Adds the td_task.c fake task to the given queue's WaitingToSend event
+ * list.
  */
 void td_task_addFakeTaskWaitingToSendToQueue( QueueHandle_t xQueue );
 
 /**
- * @brief Adds the td_task.c fake task to the given queue's WaitingToReceive event list.
+ * @brief Adds the td_task.c fake task to the given queue's WaitingToReceive
+ * event list.
  */
 void td_task_addFakeTaskWaitingToReceiveFromQueue( QueueHandle_t xQueue );
 
@@ -339,7 +342,8 @@ BaseType_t td_task_xTaskCheckForTimeOutStub( TimeOut_t * const pxTimeOut,
 BaseType_t td_task_xTaskResumeAllStub( int cmock_num_calls );
 
 /**
- * @brief Test double for vTaskSuspendAll which does not check the scheduler state when called.
+ * @brief Test double for vTaskSuspendAll which does not check the scheduler
+ * state when called.
  */
 void td_task_vTaskSuspendAllStubNoCheck( int cmock_num_calls );
 
@@ -360,20 +364,26 @@ BaseType_t td_task_getYieldCount( void );
 BaseType_t td_task_getCount_vPortYield( void );
 
 /**
- * @brief Get the number of times vPortYieldFromISR was called and clear the counter.
- * @return number of times vPortYieldFromISR was called during the current test case.
+ * @brief Get the number of times vPortYieldFromISR was called and clear the
+ * counter.
+ * @return number of times vPortYieldFromISR was called during the current test
+ * case.
  */
 BaseType_t td_task_getCount_vPortYieldFromISR( void );
 
 /**
- * @brief Get the number of times vPortYieldWithinAPI was called and clear the counter.
- * @return number of times vPortYieldWithinAPI was called during the current test case.
+ * @brief Get the number of times vPortYieldWithinAPI was called and clear the
+ * counter.
+ * @return number of times vPortYieldWithinAPI was called during the current
+ * test case.
  */
 BaseType_t td_task_getCount_vPortYieldWithinAPI( void );
 
 /**
- * @brief Get the number of times vTaskMissedYield was called and clear the counter.
- * @return number of times vTaskMissedYield was called during the current test case.
+ * @brief Get the number of times vTaskMissedYield was called and clear the
+ * counter.
+ * @return number of times vTaskMissedYield was called during the current test
+ * case.
  */
 BaseType_t td_task_getCount_vTaskMissedYield( void );
 
@@ -391,6 +401,5 @@ BaseType_t td_task_getCount_YieldFromTaskResumeAll( void );
  * or xTaskRemoveFromEventList
  */
 BaseType_t td_task_getYieldPending( void );
-
 
 #endif /* QUEUE_UTEST_COMMON_H */

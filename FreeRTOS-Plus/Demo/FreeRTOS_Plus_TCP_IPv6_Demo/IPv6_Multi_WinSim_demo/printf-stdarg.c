@@ -24,62 +24,55 @@
 #include <stdlib.h>
 #include <string.h>
 
-
-#if ( USE_FREERTOS != 0 )
+#if( USE_FREERTOS != 0 )
     #include "FreeRTOS.h"
 #else
     #include <stdint.h>
-    typedef int        BaseType_t;
-    typedef uint32_t   TickType_t;
-    #define pdTRUE     1
-    #define pdFALSE    0
-    #define pdMS_TO_TICKS( x )    ( x )
+typedef int BaseType_t;
+typedef uint32_t TickType_t;
+    #define pdTRUE             1
+    #define pdFALSE            0
+    #define pdMS_TO_TICKS( x ) ( x )
 #endif
 
-#define PAD_RIGHT    1
-#define PAD_ZERO     2
+#define PAD_RIGHT 1
+#define PAD_ZERO  2
 
-int sprintf( char * apBuf,
-             const char * apFmt,
-             ... );
+int sprintf( char * apBuf, const char * apFmt, ... );
 
 /*
  * Return 1 for readable, 2 for writable, 3 for both.
  * Function must be provided by the application.
  */
 extern BaseType_t xApplicationMemoryPermissions( uint32_t aAddress );
-extern void vOutputChar( const char cChar,
-                         const TickType_t xTicksToWait );
+extern void vOutputChar( const char cChar, const TickType_t xTicksToWait );
 
 #ifdef __GNUC__
 
-    __attribute__( ( weak ) ) BaseType_t xApplicationMemoryPermissions( uint32_t aAddress )
-    {
-        ( void ) aAddress;
-        /* Return 1 for readable, 2 for writable, 3 for both. */
-        return 0x03;
-    }
+__attribute__( ( weak ) ) BaseType_t xApplicationMemoryPermissions(
+    uint32_t aAddress )
+{
+    ( void ) aAddress;
+    /* Return 1 for readable, 2 for writable, 3 for both. */
+    return 0x03;
+}
 
-
-    __attribute__( ( weak ) ) void vOutputChar( const char cChar,
-                                                const TickType_t xTicksToWait )
-    {
-        ( void ) cChar;
-        ( void ) xTicksToWait;
-        /* Do nothing. */
-    }
+__attribute__( ( weak ) ) void vOutputChar( const char cChar,
+                                            const TickType_t xTicksToWait )
+{
+    ( void ) cChar;
+    ( void ) xTicksToWait;
+    /* Do nothing. */
+}
 
 #endif /* __GNUC__ */
 
 static const TickType_t xTicksToWait = pdMS_TO_TICKS( 20 );
 
-int tiny_printf( const char * format,
-                 ... );
+int tiny_printf( const char * format, ... );
 
 /* Defined here: write a large amount as GB, MB, KB or bytes */
-const char * mkSize( unsigned long long aSize,
-                     char * apBuf,
-                     int aLen );
+const char * mkSize( unsigned long long aSize, char * apBuf, int aLen );
 
 typedef union
 {
@@ -93,12 +86,7 @@ struct xPrintFlags
     int base;
     int width;
     int printLimit;
-    unsigned
-        pad : 8,
-        letBase : 8,
-        isSigned : 1,
-        isNumber : 1,
-        long32 : 1,
+    unsigned pad : 8, letBase : 8, isSigned : 1, isNumber : 1, long32 : 1,
         long64 : 1;
 };
 
@@ -112,12 +100,9 @@ struct SStringBuf
 };
 
 #ifdef __GNUC__
-    const static _U32 u32 =
-    {
-        ucBytes : { 0, 1, 2, 3 }
-    };
+const static _U32 u32 = { ucBytes : { 0, 1, 2, 3 } };
 #else
-    const static _U32 u32 = { 0, 1, 2, 3 };
+const static _U32 u32 = { 0, 1, 2, 3 };
 #endif
 
 static void strbuf_init( struct SStringBuf * apStr,
@@ -133,8 +118,7 @@ static void strbuf_init( struct SStringBuf * apStr,
 }
 /*-----------------------------------------------------------*/
 
-static BaseType_t strbuf_printchar( struct SStringBuf * apStr,
-                                    int c )
+static BaseType_t strbuf_printchar( struct SStringBuf * apStr, int c )
 {
     if( apStr->str == NULL )
     {
@@ -214,8 +198,7 @@ static __inline int i2hex( int aCh )
 }
 /*-----------------------------------------------------------*/
 
-static BaseType_t prints( struct SStringBuf * apBuf,
-                          const char * apString )
+static BaseType_t prints( struct SStringBuf * apBuf, const char * apString )
 {
     register int padchar = ' ';
     int i, len;
@@ -289,7 +272,8 @@ static BaseType_t prints( struct SStringBuf * apBuf,
     /* The string to print is not the result of a number conversion to ascii.
      * For a string, printLimit is the max number of characters to display
      */
-    for( ; apBuf->flags.printLimit && *apString; ++apString, --apBuf->flags.printLimit )
+    for( ; apBuf->flags.printLimit && *apString;
+         ++apString, --apBuf->flags.printLimit )
     {
         if( !strbuf_printchar( apBuf, *apString ) )
         {
@@ -310,84 +294,83 @@ static BaseType_t prints( struct SStringBuf * apBuf,
 /*-----------------------------------------------------------*/
 
 /* the following should be enough for 32 bit int */
-#define PRINT_BUF_LEN    12 /* to print 4294967296 */
+#define PRINT_BUF_LEN 12 /* to print 4294967296 */
 
 #if SPRINTF_LONG_LONG
     #warning 64-bit libraries will be included as well
-    static BaseType_t printll( struct SStringBuf * apBuf,
-                               long long i )
+static BaseType_t printll( struct SStringBuf * apBuf, long long i )
+{
+    char print_buf[ 2 * PRINT_BUF_LEN ];
+    register char * s;
+    register int t, neg = 0;
+    register unsigned long long u = i;
+    lldiv_t lldiv_result;
+
+    /* typedef struct
+     * {
+     *  long long int quot; // quotient
+     *  long long int rem;  // remainder
+     * } lldiv_t;
+     */
+
+    apBuf->flags.isNumber = pdTRUE; /* Parameter for prints */
+
+    if( i == 0LL )
     {
-        char print_buf[ 2 * PRINT_BUF_LEN ];
-        register char * s;
-        register int t, neg = 0;
-        register unsigned long long u = i;
-        lldiv_t lldiv_result;
-
-/* typedef struct
- * {
- *  long long int quot; // quotient
- *  long long int rem;  // remainder
- * } lldiv_t;
- */
-
-        apBuf->flags.isNumber = pdTRUE; /* Parameter for prints */
-
-        if( i == 0LL )
-        {
-            print_buf[ 0 ] = '0';
-            print_buf[ 1 ] = '\0';
-            return prints( apBuf, print_buf );
-        }
-
-        if( ( apBuf->flags.isSigned == pdTRUE ) && ( apBuf->flags.base == 10 ) && ( i < 0LL ) )
-        {
-            neg = 1;
-            u = -i;
-        }
-
-        s = print_buf + sizeof print_buf - 1;
-
-        *s = '\0';
-
-        /* 18446744073709551616 */
-        while( u != 0 )
-        {
-            lldiv_result = lldiv( u, ( unsigned long long ) apBuf->flags.base );
-            t = lldiv_result.rem;
-
-            if( t >= 10 )
-            {
-                t += apBuf->flags.letBase - '0' - 10;
-            }
-
-            *( --s ) = t + '0';
-            u = lldiv_result.quot;
-        }
-
-        if( neg != 0 )
-        {
-            if( ( apBuf->flags.width != 0 ) && ( apBuf->flags.pad & PAD_ZERO ) )
-            {
-                if( !strbuf_printchar( apBuf, '-' ) )
-                {
-                    return pdFALSE;
-                }
-
-                --apBuf->flags.width;
-            }
-            else
-            {
-                *( --s ) = '-';
-            }
-        }
-
-        return prints( apBuf, s );
+        print_buf[ 0 ] = '0';
+        print_buf[ 1 ] = '\0';
+        return prints( apBuf, print_buf );
     }
+
+    if( ( apBuf->flags.isSigned == pdTRUE ) && ( apBuf->flags.base == 10 ) &&
+        ( i < 0LL ) )
+    {
+        neg = 1;
+        u = -i;
+    }
+
+    s = print_buf + sizeof print_buf - 1;
+
+    *s = '\0';
+
+    /* 18446744073709551616 */
+    while( u != 0 )
+    {
+        lldiv_result = lldiv( u, ( unsigned long long ) apBuf->flags.base );
+        t = lldiv_result.rem;
+
+        if( t >= 10 )
+        {
+            t += apBuf->flags.letBase - '0' - 10;
+        }
+
+        *( --s ) = t + '0';
+        u = lldiv_result.quot;
+    }
+
+    if( neg != 0 )
+    {
+        if( ( apBuf->flags.width != 0 ) && ( apBuf->flags.pad & PAD_ZERO ) )
+        {
+            if( !strbuf_printchar( apBuf, '-' ) )
+            {
+                return pdFALSE;
+            }
+
+            --apBuf->flags.width;
+        }
+        else
+        {
+            *( --s ) = '-';
+        }
+    }
+
+    return prints( apBuf, s );
+}
 #endif /* SPRINTF_LONG_LONG */
 /*-----------------------------------------------------------*/
 
-static BaseType_t printi( struct SStringBuf * apBuf,
-                          int i )
+static BaseType_t printi( struct SStringBuf * apBuf, int i )
 {
     char print_buf[ PRINT_BUF_LEN ];
     register char * s;
@@ -446,21 +429,21 @@ static BaseType_t printi( struct SStringBuf * apBuf,
 
             break;
 
-/*
- *  // The generic case, not yet in use
- *  default:
- *      while( u )
- *      {
- *          t = u % base;
- *          if( t >= 10)
- *          {
- *              t += apBuf->flags.letBase - '0' - 10;
- *          }
- *( --s ) = t + '0';
- *          u /= base;
- *      }
- *      break;
- */
+            /*
+             *  // The generic case, not yet in use
+             *  default:
+             *      while( u )
+             *      {
+             *          t = u % base;
+             *          if( t >= 10)
+             *          {
+             *              t += apBuf->flags.letBase - '0' - 10;
+             *          }
+             *( --s ) = t + '0';
+             *          u /= base;
+             *      }
+             *      break;
+             */
     }
 
     if( neg != 0 )
@@ -484,12 +467,12 @@ static BaseType_t printi( struct SStringBuf * apBuf,
 }
 /*-----------------------------------------------------------*/
 
-static BaseType_t printIp( struct SStringBuf * apBuf,
-                           unsigned i )
+static BaseType_t printIp( struct SStringBuf * apBuf, unsigned i )
 {
     char print_buf[ 16 ];
 
-    sprintf( print_buf, "%u.%u.%u.%u",
+    sprintf( print_buf,
+             "%u.%u.%u.%u",
              i >> 24,
              ( i >> 16 ) & 0xff,
              ( i >> 8 ) & 0xff,
@@ -513,8 +496,7 @@ static uint16_t usNetToHost( uint16_t usValue )
     }
 }
 
-static BaseType_t printIPv6( struct SStringBuf * apBuf,
-                             uint16_t * pusAddress )
+static BaseType_t printIPv6( struct SStringBuf * apBuf, uint16_t * pusAddress )
 {
     int iIndex;
     int iZeroStart = -1;
@@ -570,7 +552,9 @@ static BaseType_t printIPv6( struct SStringBuf * apBuf,
                 strbuf_printchar( apBuf, ':' );
             }
 
-            printi( apBuf, ( int ) ( ( uint32_t ) usNetToHost( pusAddress[ iIndex ] ) ) );
+            printi( apBuf,
+                    ( int ) ( ( uint32_t ) usNetToHost(
+                        pusAddress[ iIndex ] ) ) );
         }
     }
 
@@ -584,7 +568,7 @@ static void tiny_print( struct SStringBuf * apBuf,
 {
     char scr[ 2 ];
 
-    for( ; ; )
+    for( ;; )
     {
         int ch = *( format++ );
 
@@ -735,21 +719,21 @@ static void tiny_print( struct SStringBuf * apBuf,
         if( ( ch == 'd' ) || ( ch == 'u' ) )
         {
             apBuf->flags.isSigned = ( ch == 'd' );
-            #if SPRINTF_LONG_LONG
-                if( apBuf->flags.long64 != pdFALSE )
-                {
-                    if( printll( apBuf, va_arg( args, long long ) ) == 0 )
-                    {
-                        break;
-                    }
-                }
-                else
-            #endif /* SPRINTF_LONG_LONG */
-
-            if( printi( apBuf, va_arg( args, int ) ) == 0 )
+#if SPRINTF_LONG_LONG
+            if( apBuf->flags.long64 != pdFALSE )
             {
-                break;
+                if( printll( apBuf, va_arg( args, long long ) ) == 0 )
+                {
+                    break;
+                }
             }
+            else
+#endif /* SPRINTF_LONG_LONG */
+
+                if( printi( apBuf, va_arg( args, int ) ) == 0 )
+                {
+                    break;
+                }
 
             continue;
         }
@@ -780,21 +764,21 @@ static void tiny_print( struct SStringBuf * apBuf,
                 apBuf->flags.base = 8;
             }
 
-            #if SPRINTF_LONG_LONG
-                if( apBuf->flags.long64 != pdFALSE )
-                {
-                    if( printll( apBuf, va_arg( args, long long ) ) == 0 )
-                    {
-                        break;
-                    }
-                }
-                else
-            #endif /* SPRINTF_LONG_LONG */
-
-            if( printi( apBuf, va_arg( args, int ) ) == 0 )
+#if SPRINTF_LONG_LONG
+            if( apBuf->flags.long64 != pdFALSE )
             {
-                break;
+                if( printll( apBuf, va_arg( args, long long ) ) == 0 )
+                {
+                    break;
+                }
             }
+            else
+#endif /* SPRINTF_LONG_LONG */
+
+                if( printi( apBuf, va_arg( args, int ) ) == 0 )
+                {
+                    break;
+                }
 
             continue;
         }
@@ -804,8 +788,7 @@ static void tiny_print( struct SStringBuf * apBuf,
 }
 /*-----------------------------------------------------------*/
 
-int tiny_printf( const char * format,
-                 ... )
+int tiny_printf( const char * format, ... )
 {
     va_list args;
 
@@ -819,10 +802,7 @@ int tiny_printf( const char * format,
 }
 /*-----------------------------------------------------------*/
 
-int vsnprintf( char * apBuf,
-               size_t aMaxLen,
-               const char * apFmt,
-               va_list args )
+int vsnprintf( char * apBuf, size_t aMaxLen, const char * apFmt, va_list args )
 {
     struct SStringBuf strBuf;
 
@@ -836,28 +816,23 @@ int vsnprintf( char * apBuf,
 /*void timer_start( void ); */
 /*void timer_stop( void ); */
 
-int snprintf( char * apBuf,
-              size_t aMaxLen,
-              const char * apFmt,
-              ... )
+int snprintf( char * apBuf, size_t aMaxLen, const char * apFmt, ... )
 {
     va_list args;
 
-/*timer_stop(); */
+    /*timer_stop(); */
     va_start( args, apFmt );
     struct SStringBuf strBuf;
     strbuf_init( &strBuf, apBuf, ( const char * ) apBuf + aMaxLen );
     tiny_print( &strBuf, apFmt, args );
     va_end( args );
-/*timer_start(); */
+    /*timer_start(); */
 
     return strBuf.curLen;
 }
 /*-----------------------------------------------------------*/
 
-int sprintf( char * apBuf,
-             const char * apFmt,
-             ... )
+int sprintf( char * apBuf, const char * apFmt, ... )
 {
     va_list args;
 
@@ -871,9 +846,7 @@ int sprintf( char * apBuf,
 }
 /*-----------------------------------------------------------*/
 
-int vsprintf( char * apBuf,
-              const char * apFmt,
-              va_list args )
+int vsprintf( char * apBuf, const char * apFmt, va_list args )
 {
     struct SStringBuf strBuf;
 
@@ -884,9 +857,7 @@ int vsprintf( char * apBuf,
 }
 /*-----------------------------------------------------------*/
 
-const char * mkSize( unsigned long long aSize,
-                     char * apBuf,
-                     int aLen )
+const char * mkSize( unsigned long long aSize, char * apBuf, int aLen )
 {
     static char retString[ 33 ];
     size_t gb, mb, kb, sb;
@@ -907,15 +878,27 @@ const char * mkSize( unsigned long long aSize,
 
     if( gb )
     {
-        snprintf( apBuf, aLen, "%u.%02u GB", ( unsigned ) gb, ( unsigned ) ( ( 100 * mb ) / 1024ul ) );
+        snprintf( apBuf,
+                  aLen,
+                  "%u.%02u GB",
+                  ( unsigned ) gb,
+                  ( unsigned ) ( ( 100 * mb ) / 1024ul ) );
     }
     else if( mb )
     {
-        snprintf( apBuf, aLen, "%u.%02u MB", ( unsigned ) mb, ( unsigned ) ( ( 100 * kb ) / 1024ul ) );
+        snprintf( apBuf,
+                  aLen,
+                  "%u.%02u MB",
+                  ( unsigned ) mb,
+                  ( unsigned ) ( ( 100 * kb ) / 1024ul ) );
     }
     else if( kb != 0ul )
     {
-        snprintf( apBuf, aLen, "%u.%02u KB", ( unsigned ) kb, ( unsigned ) ( ( 100 * sb ) / 1024ul ) );
+        snprintf( apBuf,
+                  aLen,
+                  "%u.%02u KB",
+                  ( unsigned ) kb,
+                  ( unsigned ) ( ( 100 * sb ) / 1024ul ) );
     }
     else
     {
@@ -929,125 +912,144 @@ const char * mkSize( unsigned long long aSize,
 
     #if defined( _NO_CRT_STDIO_INLINE )
 
-        int printf( char const * const _Format,
-                    ... )
-        {
-            int _Result;
-            va_list _ArgList;
+int printf( char const * const _Format, ... )
+{
+    int _Result;
+    va_list _ArgList;
 
-            __crt_va_start( _ArgList, _Format );
-            _Result = _vfprintf_l( stdout, _Format, NULL, _ArgList );
-            __crt_va_end( _ArgList );
-            return _Result;
-        }
-
-    #endif /* if defined( _NO_CRT_STDIO_INLINE ) */
-
-    #if defined( _NO_CRT_STDIO_INLINE )
-
-        int sscanf( char const * const _Buffer,
-                    char const * const _Format,
-                    ... )
-        {
-            int _Result;
-            va_list _ArgList;
-
-            __crt_va_start( _ArgList, _Format );
-            _Result = _vsscanf_l( _Buffer, _Format, NULL, _ArgList );
-            __crt_va_end( _ArgList );
-            return _Result;
-        }
+    __crt_va_start( _ArgList, _Format );
+    _Result = _vfprintf_l( stdout, _Format, NULL, _ArgList );
+    __crt_va_end( _ArgList );
+    return _Result;
+}
 
     #endif /* if defined( _NO_CRT_STDIO_INLINE ) */
 
     #if defined( _NO_CRT_STDIO_INLINE )
 
-        int _vfprintf_l( FILE * const _Stream,
-                         char const * const _Format,
-                         _locale_t const _Locale,
-                         va_list _ArgList )
-        {
-            return __stdio_common_vfprintf( _CRT_INTERNAL_LOCAL_PRINTF_OPTIONS, _Stream, _Format, _Locale, _ArgList );
-        }
+int sscanf( char const * const _Buffer, char const * const _Format, ... )
+{
+    int _Result;
+    va_list _ArgList;
+
+    __crt_va_start( _ArgList, _Format );
+    _Result = _vsscanf_l( _Buffer, _Format, NULL, _ArgList );
+    __crt_va_end( _ArgList );
+    return _Result;
+}
+
+    #endif /* if defined( _NO_CRT_STDIO_INLINE ) */
+
+    #if defined( _NO_CRT_STDIO_INLINE )
+
+int _vfprintf_l( FILE * const _Stream,
+                 char const * const _Format,
+                 _locale_t const _Locale,
+                 va_list _ArgList )
+{
+    return __stdio_common_vfprintf( _CRT_INTERNAL_LOCAL_PRINTF_OPTIONS,
+                                    _Stream,
+                                    _Format,
+                                    _Locale,
+                                    _ArgList );
+}
 
     #endif
 
     #if defined( _NO_CRT_STDIO_INLINE )
 
-        int _vsscanf_l( char const * const _Buffer,
-                        char const * const _Format,
-                        _locale_t const _Locale,
-                        va_list _ArgList )
-        {
-            return __stdio_common_vsscanf(
-                _CRT_INTERNAL_LOCAL_SCANF_OPTIONS,
-                _Buffer, ( size_t ) -1, _Format, _Locale, _ArgList );
-        }
+int _vsscanf_l( char const * const _Buffer,
+                char const * const _Format,
+                _locale_t const _Locale,
+                va_list _ArgList )
+{
+    return __stdio_common_vsscanf( _CRT_INTERNAL_LOCAL_SCANF_OPTIONS,
+                                   _Buffer,
+                                   ( size_t ) -1,
+                                   _Format,
+                                   _Locale,
+                                   _ArgList );
+}
 
     #endif /* if defined( _NO_CRT_STDIO_INLINE ) */
 
     #if defined( _NO_CRT_STDIO_INLINE )
-        int scanf( char const * const _Format,
-                   ... )
-        {
-            int _Result;
-            va_list _ArgList;
+int scanf( char const * const _Format, ... )
+{
+    int _Result;
+    va_list _ArgList;
 
-            __crt_va_start( _ArgList, _Format );
-            _Result = _vfscanf_l( stdin, _Format, NULL, _ArgList );
-            __crt_va_end( _ArgList );
-            return _Result;
-        }
+    __crt_va_start( _ArgList, _Format );
+    _Result = _vfscanf_l( stdin, _Format, NULL, _ArgList );
+    __crt_va_end( _ArgList );
+    return _Result;
+}
     #endif /* if defined( _NO_CRT_STDIO_INLINE ) */
 
     #if defined( _NO_CRT_STDIO_INLINE )
-        int _vfscanf_l( _Inout_ FILE * const _Stream,
-                        char const * const _Format,
-                        const _Locale,
-                        va_list _ArgList )
-        {
-            return __stdio_common_vfscanf(
-                _CRT_INTERNAL_LOCAL_SCANF_OPTIONS,
-                _Stream, _Format, _Locale, _ArgList );
-        }
-
-    #endif /* if defined( _NO_CRT_STDIO_INLINE ) */
-
-
-    #if defined( _NO_CRT_STDIO_INLINE )
-        int vsnprintf_s( char * const _Buffer,
-                         size_t const _BufferCount,
-                         size_t const _MaxCount,
-                         char const * const _Format,
-                         va_list _ArgList )
-        {
-            return _vsnprintf_s_l( _Buffer, _BufferCount, _MaxCount, _Format, NULL, _ArgList );
-        }
-        int _vsnprintf_s( char * const _Buffer,
-                          size_t const _BufferCount,
-                          size_t const _MaxCount,
-                          char const * const _Format,
-                          va_list _ArgList )
-        {
-            return _vsnprintf_s_l( _Buffer, _BufferCount, _MaxCount, _Format, NULL, _ArgList );
-        }
+int _vfscanf_l( _Inout_ FILE * const _Stream,
+                char const * const _Format,
+                const _Locale,
+                va_list _ArgList )
+{
+    return __stdio_common_vfscanf( _CRT_INTERNAL_LOCAL_SCANF_OPTIONS,
+                                   _Stream,
+                                   _Format,
+                                   _Locale,
+                                   _ArgList );
+}
 
     #endif /* if defined( _NO_CRT_STDIO_INLINE ) */
 
     #if defined( _NO_CRT_STDIO_INLINE )
-        int _vsnprintf_s_l( char * const _Buffer,
-                            size_t const _BufferCount,
-                            size_t const _MaxCount,
-                            char const * const _Format,
-                            _locale_t const _Locale,
-                            va_list _ArgList )
-        {
-            int const _Result = __stdio_common_vsnprintf_s(
-                _CRT_INTERNAL_LOCAL_PRINTF_OPTIONS,
-                _Buffer, _BufferCount, _MaxCount, _Format, _Locale, _ArgList );
+int vsnprintf_s( char * const _Buffer,
+                 size_t const _BufferCount,
+                 size_t const _MaxCount,
+                 char const * const _Format,
+                 va_list _ArgList )
+{
+    return _vsnprintf_s_l( _Buffer,
+                           _BufferCount,
+                           _MaxCount,
+                           _Format,
+                           NULL,
+                           _ArgList );
+}
+int _vsnprintf_s( char * const _Buffer,
+                  size_t const _BufferCount,
+                  size_t const _MaxCount,
+                  char const * const _Format,
+                  va_list _ArgList )
+{
+    return _vsnprintf_s_l( _Buffer,
+                           _BufferCount,
+                           _MaxCount,
+                           _Format,
+                           NULL,
+                           _ArgList );
+}
 
-            return _Result < 0 ? -1 : _Result;
-        }
+    #endif /* if defined( _NO_CRT_STDIO_INLINE ) */
+
+    #if defined( _NO_CRT_STDIO_INLINE )
+int _vsnprintf_s_l( char * const _Buffer,
+                    size_t const _BufferCount,
+                    size_t const _MaxCount,
+                    char const * const _Format,
+                    _locale_t const _Locale,
+                    va_list _ArgList )
+{
+    int const _Result = __stdio_common_vsnprintf_s(
+        _CRT_INTERNAL_LOCAL_PRINTF_OPTIONS,
+        _Buffer,
+        _BufferCount,
+        _MaxCount,
+        _Format,
+        _Locale,
+        _ArgList );
+
+    return _Result < 0 ? -1 : _Result;
+}
     #endif /* if defined( _NO_CRT_STDIO_INLINE ) */
 
 #endif /* __WIN32__ */

@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
- *         ATMEL Microcontroller Software Support 
+ *         ATMEL Microcontroller Software Support
  * ----------------------------------------------------------------------------
  * Copyright (c) 2010, Atmel Corporation
  *
@@ -47,8 +47,8 @@
  * \param pLineCoding   Pointer to new LineCoding settings.
  * \return USBRC_SUCCESS if ready to receive the line coding.
  */
-extern WEAK uint8_t CDCDSerial_LineCodingIsToChange(
-    CDCLineCoding * pLineCoding)
+extern WEAK uint8_t
+CDCDSerial_LineCodingIsToChange( CDCLineCoding * pLineCoding )
 {
     /* Accept any of linecoding settings */
     pLineCoding = pLineCoding;
@@ -61,10 +61,9 @@ extern WEAK uint8_t CDCDSerial_LineCodingIsToChange(
  * \param DTR   New DTR value.
  * \param RTS   New RTS value.
  */
-extern WEAK void CDCDSerial_ControlLineStateChanged(uint8_t DTR,
-                                                    uint8_t RTS)
+extern WEAK void CDCDSerial_ControlLineStateChanged( uint8_t DTR, uint8_t RTS )
 {
     /* Do nothing */
-    DTR = DTR; RTS = RTS;
+    DTR = DTR;
+    RTS = RTS;
 }
-

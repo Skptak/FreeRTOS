@@ -42,61 +42,61 @@
 
 #ifdef __MSP430_HAS_FRAM__
 
-//*****************************************************************************
-//
-// If building with a C++ compiler, make all of the definitions in this header
-// have a C binding.
-//
-//*****************************************************************************
-#ifdef __cplusplus
-extern "C"
-{
-#endif
+    //*****************************************************************************
+    //
+    // If building with a C++ compiler, make all of the definitions in this
+    // header have a C binding.
+    //
+    //*****************************************************************************
+    #ifdef __cplusplus
+extern "C" {
+    #endif
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the interruptMask parameter
-// for functions: FRAMCtl_enableInterrupt(), and FRAMCtl_disableInterrupt().
-//
-//*****************************************************************************
-#define FRAMCTL_PUC_ON_UNCORRECTABLE_BIT                               UBDRSTEN
-#define FRAMCTL_UNCORRECTABLE_BIT_INTERRUPT                               UBDIE
-#define FRAMCTL_CORRECTABLE_BIT_INTERRUPT                                 CBDIE
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the interruptMask
+    // parameter for functions: FRAMCtl_enableInterrupt(), and
+    // FRAMCtl_disableInterrupt().
+    //
+    //*****************************************************************************
+    #define FRAMCTL_PUC_ON_UNCORRECTABLE_BIT    UBDRSTEN
+    #define FRAMCTL_UNCORRECTABLE_BIT_INTERRUPT UBDIE
+    #define FRAMCTL_CORRECTABLE_BIT_INTERRUPT   CBDIE
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the interruptFlagMask
-// parameter for functions: FRAMCtl_getInterruptStatus() as well as returned by
-// the FRAMCtl_getInterruptStatus() function.
-//
-//*****************************************************************************
-#define FRAMCTL_ACCESS_TIME_ERROR_FLAG                                 ACCTEIFG
-#define FRAMCTL_UNCORRECTABLE_BIT_FLAG                                   UBDIFG
-#define FRAMCTL_CORRECTABLE_BIT_FLAG                                     CBDIFG
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the interruptFlagMask
+    // parameter for functions: FRAMCtl_getInterruptStatus() as well as returned
+    // by the FRAMCtl_getInterruptStatus() function.
+    //
+    //*****************************************************************************
+    #define FRAMCTL_ACCESS_TIME_ERROR_FLAG      ACCTEIFG
+    #define FRAMCTL_UNCORRECTABLE_BIT_FLAG      UBDIFG
+    #define FRAMCTL_CORRECTABLE_BIT_FLAG        CBDIFG
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the waitState parameter for
-// functions: FRAMCtl_configureWaitStateControl().
-//
-//*****************************************************************************
-#define FRAMCTL_ACCESS_TIME_CYCLES_0                                   NWAITS_0
-#define FRAMCTL_ACCESS_TIME_CYCLES_1                                   NWAITS_1
-#define FRAMCTL_ACCESS_TIME_CYCLES_2                                   NWAITS_2
-#define FRAMCTL_ACCESS_TIME_CYCLES_3                                   NWAITS_3
-#define FRAMCTL_ACCESS_TIME_CYCLES_4                                   NWAITS_4
-#define FRAMCTL_ACCESS_TIME_CYCLES_5                                   NWAITS_5
-#define FRAMCTL_ACCESS_TIME_CYCLES_6                                   NWAITS_6
-#define FRAMCTL_ACCESS_TIME_CYCLES_7                                   NWAITS_7
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the waitState parameter
+    // for functions: FRAMCtl_configureWaitStateControl().
+    //
+    //*****************************************************************************
+    #define FRAMCTL_ACCESS_TIME_CYCLES_0        NWAITS_0
+    #define FRAMCTL_ACCESS_TIME_CYCLES_1        NWAITS_1
+    #define FRAMCTL_ACCESS_TIME_CYCLES_2        NWAITS_2
+    #define FRAMCTL_ACCESS_TIME_CYCLES_3        NWAITS_3
+    #define FRAMCTL_ACCESS_TIME_CYCLES_4        NWAITS_4
+    #define FRAMCTL_ACCESS_TIME_CYCLES_5        NWAITS_5
+    #define FRAMCTL_ACCESS_TIME_CYCLES_6        NWAITS_6
+    #define FRAMCTL_ACCESS_TIME_CYCLES_7        NWAITS_7
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the delayStatus parameter for
-// functions: FRAMCtl_delayPowerUpFromLPM().
-//
-//*****************************************************************************
-#define FRAMCTL_DELAY_FROM_LPM_ENABLE                                      0x00
-#define FRAMCTL_DELAY_FROM_LPM_DISABLE                                     0x02
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the delayStatus parameter
+    // for functions: FRAMCtl_delayPowerUpFromLPM().
+    //
+    //*****************************************************************************
+    #define FRAMCTL_DELAY_FROM_LPM_ENABLE       0x00
+    #define FRAMCTL_DELAY_FROM_LPM_DISABLE      0x02
 
 //*****************************************************************************
 //
@@ -115,9 +115,9 @@ extern "C"
 //! \return None
 //
 //*****************************************************************************
-extern void FRAMCtl_write8(uint8_t *dataPtr,
-                           uint8_t *framPtr,
-                           uint16_t numberOfBytes);
+extern void FRAMCtl_write8( uint8_t * dataPtr,
+                            uint8_t * framPtr,
+                            uint16_t numberOfBytes );
 
 //*****************************************************************************
 //
@@ -130,9 +130,9 @@ extern void FRAMCtl_write8(uint8_t *dataPtr,
 //! \return None
 //
 //*****************************************************************************
-extern void FRAMCtl_write16(uint16_t *dataPtr,
-                            uint16_t *framPtr,
-                            uint16_t numberOfWords);
+extern void FRAMCtl_write16( uint16_t * dataPtr,
+                             uint16_t * framPtr,
+                             uint16_t numberOfWords );
 
 //*****************************************************************************
 //
@@ -145,9 +145,9 @@ extern void FRAMCtl_write16(uint16_t *dataPtr,
 //! \return None
 //
 //*****************************************************************************
-extern void FRAMCtl_write32(uint32_t *dataPtr,
-                            uint32_t *framPtr,
-                            uint16_t count);
+extern void FRAMCtl_write32( uint32_t * dataPtr,
+                             uint32_t * framPtr,
+                             uint16_t count );
 
 //*****************************************************************************
 //
@@ -160,9 +160,9 @@ extern void FRAMCtl_write32(uint32_t *dataPtr,
 //! \return None
 //
 //*****************************************************************************
-extern void FRAMCtl_fillMemory32(uint32_t value,
-                                 uint32_t *framPtr,
-                                 uint16_t count);
+extern void FRAMCtl_fillMemory32( uint32_t value,
+                                  uint32_t * framPtr,
+                                  uint16_t count );
 
 //*****************************************************************************
 //
@@ -187,7 +187,7 @@ extern void FRAMCtl_fillMemory32(uint32_t value,
 //! \return None
 //
 //*****************************************************************************
-extern void FRAMCtl_enableInterrupt(uint8_t interruptMask);
+extern void FRAMCtl_enableInterrupt( uint8_t interruptMask );
 
 //*****************************************************************************
 //
@@ -219,7 +219,7 @@ extern void FRAMCtl_enableInterrupt(uint8_t interruptMask);
 //!         \n indicating the status of the masked flags
 //
 //*****************************************************************************
-extern uint8_t FRAMCtl_getInterruptStatus(uint16_t interruptFlagMask);
+extern uint8_t FRAMCtl_getInterruptStatus( uint16_t interruptFlagMask );
 
 //*****************************************************************************
 //
@@ -242,7 +242,7 @@ extern uint8_t FRAMCtl_getInterruptStatus(uint16_t interruptFlagMask);
 //! \return None
 //
 //*****************************************************************************
-extern void FRAMCtl_disableInterrupt(uint16_t interruptMask);
+extern void FRAMCtl_disableInterrupt( uint16_t interruptMask );
 
 //*****************************************************************************
 //
@@ -267,7 +267,7 @@ extern void FRAMCtl_disableInterrupt(uint16_t interruptMask);
 //! \return None
 //
 //*****************************************************************************
-extern void FRAMCtl_configureWaitStateControl(uint8_t waitState);
+extern void FRAMCtl_configureWaitStateControl( uint8_t waitState );
 
 //*****************************************************************************
 //
@@ -288,16 +288,16 @@ extern void FRAMCtl_configureWaitStateControl(uint8_t waitState);
 //! \return None
 //
 //*****************************************************************************
-extern void FRAMCtl_delayPowerUpFromLPM(uint8_t delayStatus);
+extern void FRAMCtl_delayPowerUpFromLPM( uint8_t delayStatus );
 
-//*****************************************************************************
-//
-// Mark the end of the C bindings section for C++ compilers.
-//
-//*****************************************************************************
-#ifdef __cplusplus
+    //*****************************************************************************
+    //
+    // Mark the end of the C bindings section for C++ compilers.
+    //
+    //*****************************************************************************
+    #ifdef __cplusplus
 }
-#endif
+    #endif
 
 #endif
 #endif // __MSP430WARE_FRAMCTL_H__

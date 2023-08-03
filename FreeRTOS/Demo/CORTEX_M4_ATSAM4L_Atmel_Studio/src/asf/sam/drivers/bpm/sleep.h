@@ -53,7 +53,8 @@ extern "C" {
 /**
  * \defgroup sleep_group Backup Power Manager (BPM)
  *
- * This is a stub on the SAM4L Backup Power Manager(BPM) for the sleepmgr service.
+ * This is a stub on the SAM4L Backup Power Manager(BPM) for the sleepmgr
+ * service.
  *
  * \note To minimize the code overhead, these functions do not feature
  * interrupt-protected access since they are likely to be called inside
@@ -64,7 +65,7 @@ extern "C" {
  * @{
  */
 
-#if defined(__DOXYGEN__)
+#if defined( __DOXYGEN__ )
 /**
  * \brief Sets the MCU in the specified sleep mode
  * \param sleep_mode Sleep mode to set.
@@ -73,65 +74,78 @@ extern "C" {
 
 #include "bpm.h"
 
-static inline void bpm_sleep(Bpm *bpm, uint32_t sleep_mode)
+static inline void bpm_sleep( Bpm * bpm, uint32_t sleep_mode )
 {
-	uint32_t pmcon;
+    uint32_t pmcon;
 
-	/* Read PMCON register */
-	pmcon = bpm->BPM_PMCON;
-	pmcon &= ~BPM_PMCON_BKUP;
-	pmcon &= ~BPM_PMCON_RET;
-	pmcon &= ~BPM_PMCON_SLEEP_Msk;
+    /* Read PMCON register */
+    pmcon = bpm->BPM_PMCON;
+    pmcon &= ~BPM_PMCON_BKUP;
+    pmcon &= ~BPM_PMCON_RET;
+    pmcon &= ~BPM_PMCON_SLEEP_Msk;
 
-	/* Unlock PMCON register */
-	BPM_UNLOCK(PMCON);
+    /* Unlock PMCON register */
+    BPM_UNLOCK( PMCON );
 
-	if (sleep_mode == BPM_SM_SLEEP_0) {
-		pmcon |= BPM_PMCON_SLEEP(0);
-		bpm->BPM_PMCON = pmcon;
-		SCB->SCR &= ~SCB_SCR_SLEEPDEEP_Msk;
-	} else if (sleep_mode == BPM_SM_SLEEP_1) {
-		pmcon |= BPM_PMCON_SLEEP(1);
-		bpm->BPM_PMCON = pmcon;
-		SCB->SCR &= ~SCB_SCR_SLEEPDEEP_Msk;
-	} else if (sleep_mode == BPM_SM_SLEEP_2) {
-		pmcon |= BPM_PMCON_SLEEP(2);
-		bpm->BPM_PMCON = pmcon;
-		SCB->SCR &= ~SCB_SCR_SLEEPDEEP_Msk;
-	} else if (sleep_mode == BPM_SM_SLEEP_3) {
-		pmcon |= BPM_PMCON_SLEEP(3);
-		bpm->BPM_PMCON = pmcon;
-		SCB->SCR &= ~SCB_SCR_SLEEPDEEP_Msk;
-	} else if (sleep_mode == BPM_SM_WAIT) {
-		bpm->BPM_PMCON = pmcon;
-		SCB->SCR |= SCB_SCR_SLEEPDEEP_Msk;
-	} else if (sleep_mode == BPM_SM_RET) {
-		pmcon |= BPM_PMCON_RET;
-		bpm->BPM_PMCON = pmcon;
-		SCB->SCR |= SCB_SCR_SLEEPDEEP_Msk;
-	} else { /* if (sleep_mode == BPM_SM_BACKUP) */
-		pmcon |= BPM_PMCON_BKUP;
-		bpm->BPM_PMCON = pmcon;
-		SCB->SCR |= SCB_SCR_SLEEPDEEP_Msk;
-	}
+    if( sleep_mode == BPM_SM_SLEEP_0 )
+    {
+        pmcon |= BPM_PMCON_SLEEP( 0 );
+        bpm->BPM_PMCON = pmcon;
+        SCB->SCR &= ~SCB_SCR_SLEEPDEEP_Msk;
+    }
+    else if( sleep_mode == BPM_SM_SLEEP_1 )
+    {
+        pmcon |= BPM_PMCON_SLEEP( 1 );
+        bpm->BPM_PMCON = pmcon;
+        SCB->SCR &= ~SCB_SCR_SLEEPDEEP_Msk;
+    }
+    else if( sleep_mode == BPM_SM_SLEEP_2 )
+    {
+        pmcon |= BPM_PMCON_SLEEP( 2 );
+        bpm->BPM_PMCON = pmcon;
+        SCB->SCR &= ~SCB_SCR_SLEEPDEEP_Msk;
+    }
+    else if( sleep_mode == BPM_SM_SLEEP_3 )
+    {
+        pmcon |= BPM_PMCON_SLEEP( 3 );
+        bpm->BPM_PMCON = pmcon;
+        SCB->SCR &= ~SCB_SCR_SLEEPDEEP_Msk;
+    }
+    else if( sleep_mode == BPM_SM_WAIT )
+    {
+        bpm->BPM_PMCON = pmcon;
+        SCB->SCR |= SCB_SCR_SLEEPDEEP_Msk;
+    }
+    else if( sleep_mode == BPM_SM_RET )
+    {
+        pmcon |= BPM_PMCON_RET;
+        bpm->BPM_PMCON = pmcon;
+        SCB->SCR |= SCB_SCR_SLEEPDEEP_Msk;
+    }
+    else
+    { /* if (sleep_mode == BPM_SM_BACKUP) */
+        pmcon |= BPM_PMCON_BKUP;
+        bpm->BPM_PMCON = pmcon;
+        SCB->SCR |= SCB_SCR_SLEEPDEEP_Msk;
+    }
 
-	/* Wait until vreg is ok. */
-	while(!(BSCIF->BSCIF_PCLKSR & BSCIF_PCLKSR_VREGOK));
-	asm volatile ("wfi");
-	/* ensure sleep request propagation to flash. */
-	asm volatile ("nop");
+    /* Wait until vreg is ok. */
+    while( !( BSCIF->BSCIF_PCLKSR & BSCIF_PCLKSR_VREGOK ) )
+        ;
+    asm volatile( "wfi" );
+    /* ensure sleep request propagation to flash. */
+    asm volatile( "nop" );
 
-	/* The interrupts wake-up from the previous wfi, but there are still
-	 * masked since we are in the critical section thanks to the previous
-	 * set_pri_mask(1). Thus, we need to leave the critical section.
-	 * Please note that we should probably use something like
-	 * cpu_leave_critical(), using set_pri_mask(0)
-	 */
-	/* In this demo interrupts are managed by the FreeRTOS kernel and must not
-	be altered here so the following line has been removed _RB_
-	cpu_irq_enable(); */
+    /* The interrupts wake-up from the previous wfi, but there are still
+     * masked since we are in the critical section thanks to the previous
+     * set_pri_mask(1). Thus, we need to leave the critical section.
+     * Please note that we should probably use something like
+     * cpu_leave_critical(), using set_pri_mask(0)
+     */
+    /* In this demo interrupts are managed by the FreeRTOS kernel and must not
+    be altered here so the following line has been removed _RB_
+    cpu_irq_enable(); */
 }
-
 
 //! @}
 
@@ -140,4 +154,3 @@ static inline void bpm_sleep(Bpm *bpm, uint32_t sleep_mode)
 #endif
 
 #endif /* SLEEP_H */
-

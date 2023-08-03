@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -41,7 +42,8 @@ typedef enum
 } eReportBuilderStatus;
 
 /**
- * @brief Represents metrics to be included in the report, including custom metrics.
+ * @brief Represents metrics to be included in the report, including custom
+ * metrics.
  *
  * This demo demonstrates the use of the stack high water mark and list of
  * running task ids as custom metrics sent to AWS IoT Device Defender service.
@@ -65,15 +67,16 @@ typedef struct ReportMetrics
 } ReportMetrics_t;
 
 /**
- * @brief Generate a report in the format expected by the AWS IoT Device Defender
- * Service.
+ * @brief Generate a report in the format expected by the AWS IoT Device
+ * Defender Service.
  *
  * @param[in] pcBuffer The buffer to write the report into.
  * @param[in] xBufferLength The length of the buffer.
  * @param[in] pxMetrics Metrics to write in the generated report.
  * @param[in] ulMajorReportVersion Major version of the report.
  * @param[in] ulMinorReportVersion Minor version of the report.
- * @param[in] ulReportId Value to be used as the ulReportId in the generated report.
+ * @param[in] ulReportId Value to be used as the ulReportId in the generated
+ * report.
  * @param[out] pxOutReprotLength The length of the generated report.
  *
  * @return #ReportBuilderSuccess if the report is successfully generated;

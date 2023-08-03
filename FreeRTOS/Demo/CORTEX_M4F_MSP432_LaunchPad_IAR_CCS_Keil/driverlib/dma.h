@@ -1,6 +1,6 @@
 /*
  * -------------------------------------------
- *    MSP432 DriverLib - v3_10_00_09 
+ *    MSP432 DriverLib - v3_10_00_09
  * -------------------------------------------
  *
  * --COPYRIGHT--,BSD,BSD
@@ -51,12 +51,11 @@
 //
 //*****************************************************************************
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
-#include <stdbool.h>
 #include <msp.h>
+#include <stdbool.h>
 
 //*****************************************************************************
 //
@@ -70,12 +69,12 @@ typedef struct _DMA_ControlTable
     //
     // The ending source address of the data transfer.
     //
-    volatile void *srcEndAddr;
+    volatile void * srcEndAddr;
 
     //
     // The ending destination address of the data transfer.
     //
-    volatile void *dstEndAddr;
+    volatile void * dstEndAddr;
 
     //
     // The channel control mode.
@@ -157,26 +156,36 @@ typedef struct _DMA_ControlTable
 //! \return Nothing; this is not a function.
 //
 //*****************************************************************************
-#define DMA_TaskStructEntry(transferCount,                                     \
-                            itemSize,                                          \
-                            srcIncrement,                                      \
-                            srcAddr,                                           \
-                            dstIncrement,                                      \
-                            dstAddr,                                           \
-                            arbSize,                                           \
-                            mode)                                              \
+#define DMA_TaskStructEntry( transferCount,                                    \
+                             itemSize,                                         \
+                             srcIncrement,                                     \
+                             srcAddr,                                          \
+                             dstIncrement,                                     \
+                             dstAddr,                                          \
+                             arbSize,                                          \
+                             mode )                                            \
     {                                                                          \
-        (((srcIncrement) == UDMA_SRC_INC_NONE) ? (void *)(srcAddr) :           \
-            ((void *)(&((uint8_t *)(srcAddr))[((transferCount) <<              \
-                                         ((srcIncrement) >> 26)) - 1]))),      \
-            (((dstIncrement) == UDMA_DST_INC_NONE) ? (void *)(dstAddr) :       \
-            ((void *)(&((uint8_t *)(dstAddr))[((transferCount) <<              \
-                                         ((dstIncrement) >> 30)) - 1]))),      \
-        (srcIncrement) | (dstIncrement) | (itemSize) | (arbSize) |             \
-        (((transferCount) - 1) << 4) |                                         \
-        ((((mode) == UDMA_MODE_MEM_SCATTER_GATHER) ||                          \
-          ((mode) == UDMA_MODE_PER_SCATTER_GATHER)) ?                          \
-                (mode) | UDMA_MODE_ALT_SELECT : (mode)), 0                     \
+        ( ( ( srcIncrement ) == UDMA_SRC_INC_NONE )                            \
+              ? ( void * ) ( srcAddr )                                         \
+              : ( ( void * ) ( &(                                              \
+                    ( uint8_t * ) ( srcAddr ) )[ ( ( transferCount )           \
+                                                   << ( ( srcIncrement ) >>    \
+                                                        26 ) ) -               \
+                                                 1 ] ) ) ),                    \
+            ( ( ( dstIncrement ) == UDMA_DST_INC_NONE )                        \
+                  ? ( void * ) ( dstAddr )                                     \
+                  : ( ( void * ) ( &( (                                        \
+                        uint8_t * ) ( dstAddr ) )[ ( ( transferCount )         \
+                                                     << ( ( dstIncrement ) >>  \
+                                                          30 ) ) -             \
+                                                   1 ] ) ) ),                  \
+            ( srcIncrement ) | ( dstIncrement ) | ( itemSize ) | ( arbSize ) | \
+                ( ( ( transferCount ) -1 ) << 4 ) |                            \
+                ( ( ( ( mode ) == UDMA_MODE_MEM_SCATTER_GATHER ) ||            \
+                    ( ( mode ) == UDMA_MODE_PER_SCATTER_GATHER ) )             \
+                      ? ( mode ) | UDMA_MODE_ALT_SELECT                        \
+                      : ( mode ) ),                                            \
+            0                                                                  \
     }
 
 //*****************************************************************************
@@ -185,11 +194,11 @@ typedef struct _DMA_ControlTable
 // DMA_disableChannelAttribute(), and returned from DMA_getChannelAttribute().
 //
 //*****************************************************************************
-#define UDMA_ATTR_USEBURST      0x00000001
-#define UDMA_ATTR_ALTSELECT     0x00000002
-#define UDMA_ATTR_HIGH_PRIORITY 0x00000004
-#define UDMA_ATTR_REQMASK       0x00000008
-#define UDMA_ATTR_ALL           0x0000000F
+#define UDMA_ATTR_USEBURST           0x00000001
+#define UDMA_ATTR_ALTSELECT          0x00000002
+#define UDMA_ATTR_HIGH_PRIORITY      0x00000004
+#define UDMA_ATTR_REQMASK            0x00000008
+#define UDMA_ATTR_ALL                0x0000000F
 
 //*****************************************************************************
 //
@@ -197,46 +206,44 @@ typedef struct _DMA_ControlTable
 // DMAModeGet().
 //
 //*****************************************************************************
-#define UDMA_MODE_STOP          0x00000000
-#define UDMA_MODE_BASIC         0x00000001
-#define UDMA_MODE_AUTO          0x00000002
-#define UDMA_MODE_PINGPONG      0x00000003
-#define UDMA_MODE_MEM_SCATTER_GATHER                                          \
-                                0x00000004
-#define UDMA_MODE_PER_SCATTER_GATHER                                          \
-                                0x00000006
-#define UDMA_MODE_ALT_SELECT    0x00000001
+#define UDMA_MODE_STOP               0x00000000
+#define UDMA_MODE_BASIC              0x00000001
+#define UDMA_MODE_AUTO               0x00000002
+#define UDMA_MODE_PINGPONG           0x00000003
+#define UDMA_MODE_MEM_SCATTER_GATHER 0x00000004
+#define UDMA_MODE_PER_SCATTER_GATHER 0x00000006
+#define UDMA_MODE_ALT_SELECT         0x00000001
 
 //*****************************************************************************
 //
 // Channel configuration values that can be passed to DMAControlSet().
 //
 //*****************************************************************************
-#define UDMA_DST_INC_8          0x00000000
-#define UDMA_DST_INC_16         0x40000000
-#define UDMA_DST_INC_32         0x80000000
-#define UDMA_DST_INC_NONE       0xc0000000
-#define UDMA_SRC_INC_8          0x00000000
-#define UDMA_SRC_INC_16         0x04000000
-#define UDMA_SRC_INC_32         0x08000000
-#define UDMA_SRC_INC_NONE       0x0c000000
-#define UDMA_SIZE_8             0x00000000
-#define UDMA_SIZE_16            0x11000000
-#define UDMA_SIZE_32            0x22000000
-#define UDMA_DST_PROT_PRIV      0x00200000
-#define UDMA_SRC_PROT_PRIV      0x00040000
-#define UDMA_ARB_1              0x00000000
-#define UDMA_ARB_2              0x00004000
-#define UDMA_ARB_4              0x00008000
-#define UDMA_ARB_8              0x0000c000
-#define UDMA_ARB_16             0x00010000
-#define UDMA_ARB_32             0x00014000
-#define UDMA_ARB_64             0x00018000
-#define UDMA_ARB_128            0x0001c000
-#define UDMA_ARB_256            0x00020000
-#define UDMA_ARB_512            0x00024000
-#define UDMA_ARB_1024           0x00028000
-#define UDMA_NEXT_USEBURST      0x00000008
+#define UDMA_DST_INC_8               0x00000000
+#define UDMA_DST_INC_16              0x40000000
+#define UDMA_DST_INC_32              0x80000000
+#define UDMA_DST_INC_NONE            0xc0000000
+#define UDMA_SRC_INC_8               0x00000000
+#define UDMA_SRC_INC_16              0x04000000
+#define UDMA_SRC_INC_32              0x08000000
+#define UDMA_SRC_INC_NONE            0x0c000000
+#define UDMA_SIZE_8                  0x00000000
+#define UDMA_SIZE_16                 0x11000000
+#define UDMA_SIZE_32                 0x22000000
+#define UDMA_DST_PROT_PRIV           0x00200000
+#define UDMA_SRC_PROT_PRIV           0x00040000
+#define UDMA_ARB_1                   0x00000000
+#define UDMA_ARB_2                   0x00004000
+#define UDMA_ARB_4                   0x00008000
+#define UDMA_ARB_8                   0x0000c000
+#define UDMA_ARB_16                  0x00010000
+#define UDMA_ARB_32                  0x00014000
+#define UDMA_ARB_64                  0x00018000
+#define UDMA_ARB_128                 0x0001c000
+#define UDMA_ARB_256                 0x00020000
+#define UDMA_ARB_512                 0x00024000
+#define UDMA_ARB_1024                0x00028000
+#define UDMA_NEXT_USEBURST           0x00000008
 
 //*****************************************************************************
 //
@@ -244,8 +251,8 @@ typedef struct _DMA_ControlTable
 // control structure should be used.
 //
 //*****************************************************************************
-#define UDMA_PRI_SELECT         0x00000000
-#define UDMA_ALT_SELECT         0x00000008
+#define UDMA_PRI_SELECT              0x00000000
+#define UDMA_ALT_SELECT              0x00000008
 
 //*****************************************************************************
 //
@@ -257,117 +264,117 @@ typedef struct _DMA_ControlTable
 //
 // Channel 0
 //
-#define DMA_CH0_RESERVED0          0x00000000
-#define DMA_CH0_EUSCIA0TX          0x01000000
-#define DMA_CH0_EUSCIB0TX0         0x02000000
-#define DMA_CH0_EUSCIB3TX1         0x03000000
-#define DMA_CH0_EUSCIB2TX2         0x04000000
-#define DMA_CH0_EUSCIB1TX3         0x05000000
-#define DMA_CH0_TIMERA0CCR0        0x06000000
-#define DMA_CH0_AESTRIGGER0        0x07000000
+#define DMA_CH0_RESERVED0            0x00000000
+#define DMA_CH0_EUSCIA0TX            0x01000000
+#define DMA_CH0_EUSCIB0TX0           0x02000000
+#define DMA_CH0_EUSCIB3TX1           0x03000000
+#define DMA_CH0_EUSCIB2TX2           0x04000000
+#define DMA_CH0_EUSCIB1TX3           0x05000000
+#define DMA_CH0_TIMERA0CCR0          0x06000000
+#define DMA_CH0_AESTRIGGER0          0x07000000
 
 //
 // Channel 1
 //
-#define DMA_CH1_RESERVED0          0x00000001
-#define DMA_CH1_EUSCIA0RX          0x01000001
-#define DMA_CH1_EUSCIB0RX0         0x02000001
-#define DMA_CH1_EUSCIB3RX1         0x03000001
-#define DMA_CH1_EUSCIB2RX2         0x04000001
-#define DMA_CH1_EUSCIB1RX3         0x05000001
-#define DMA_CH1_TIMERA0CCR2        0x06000001
-#define DMA_CH1_AESTRIGGER1        0x07000001
+#define DMA_CH1_RESERVED0            0x00000001
+#define DMA_CH1_EUSCIA0RX            0x01000001
+#define DMA_CH1_EUSCIB0RX0           0x02000001
+#define DMA_CH1_EUSCIB3RX1           0x03000001
+#define DMA_CH1_EUSCIB2RX2           0x04000001
+#define DMA_CH1_EUSCIB1RX3           0x05000001
+#define DMA_CH1_TIMERA0CCR2          0x06000001
+#define DMA_CH1_AESTRIGGER1          0x07000001
 
 //
 // Channel 2
 //
-#define DMA_CH2_RESERVED0          0x00000002
-#define DMA_CH2_EUSCIA1TX          0x01000002
-#define DMA_CH2_EUSCIB1TX0         0x02000002
-#define DMA_CH2_EUSCIB0TX1         0x03000002
-#define DMA_CH2_EUSCIB3TX2         0x04000002
-#define DMA_CH2_EUSCIB2TX3         0x05000002
-#define DMA_CH2_TIMERA1CCR0        0x06000002
-#define DMA_CH2_AESTRIGGER2        0x07000002
+#define DMA_CH2_RESERVED0            0x00000002
+#define DMA_CH2_EUSCIA1TX            0x01000002
+#define DMA_CH2_EUSCIB1TX0           0x02000002
+#define DMA_CH2_EUSCIB0TX1           0x03000002
+#define DMA_CH2_EUSCIB3TX2           0x04000002
+#define DMA_CH2_EUSCIB2TX3           0x05000002
+#define DMA_CH2_TIMERA1CCR0          0x06000002
+#define DMA_CH2_AESTRIGGER2          0x07000002
 
 //
 // Channel 3
 //
-#define DMA_CH3_RESERVED0          0x00000003
-#define DMA_CH3_EUSCIA1RX          0x01000003
-#define DMA_CH3_EUSCIB1RX0         0x02000003
-#define DMA_CH3_EUSCIB0RX1         0x03000003
-#define DMA_CH3_EUSCIB3RX2         0x04000003
-#define DMA_CH3_EUSCIB2RX3         0x05000003
-#define DMA_CH3_TIMERA1CCR2        0x06000003
-#define DMA_CH3_RESERVED1          0x07000003
+#define DMA_CH3_RESERVED0            0x00000003
+#define DMA_CH3_EUSCIA1RX            0x01000003
+#define DMA_CH3_EUSCIB1RX0           0x02000003
+#define DMA_CH3_EUSCIB0RX1           0x03000003
+#define DMA_CH3_EUSCIB3RX2           0x04000003
+#define DMA_CH3_EUSCIB2RX3           0x05000003
+#define DMA_CH3_TIMERA1CCR2          0x06000003
+#define DMA_CH3_RESERVED1            0x07000003
 
 //
 // Channel 4
 //
-#define DMA_CH4_RESERVED0          0x00000004
-#define DMA_CH4_EUSCIA2TX          0x01000004
-#define DMA_CH4_EUSCIB2TX0         0x02000004
-#define DMA_CH4_EUSCIB1TX1         0x03000004
-#define DMA_CH4_EUSCIB0TX2         0x04000004
-#define DMA_CH4_EUSCIB3TX3         0x05000004
-#define DMA_CH4_TIMERA2CCR0        0x06000004
-#define DMA_CH4_RESERVED1          0x07000004
+#define DMA_CH4_RESERVED0            0x00000004
+#define DMA_CH4_EUSCIA2TX            0x01000004
+#define DMA_CH4_EUSCIB2TX0           0x02000004
+#define DMA_CH4_EUSCIB1TX1           0x03000004
+#define DMA_CH4_EUSCIB0TX2           0x04000004
+#define DMA_CH4_EUSCIB3TX3           0x05000004
+#define DMA_CH4_TIMERA2CCR0          0x06000004
+#define DMA_CH4_RESERVED1            0x07000004
 
 //
 // Channel 5
 //
-#define DMA_CH5_RESERVED0          0x00000005
-#define DMA_CH5_EUSCIA2RX          0x01000005
-#define DMA_CH5_EUSCIB2RX0         0x02000005
-#define DMA_CH5_EUSCIB1RX1         0x03000005
-#define DMA_CH5_EUSCIB0RX2         0x04000005
-#define DMA_CH5_EUSCIB3RX3         0x05000005
-#define DMA_CH5_TIMERA2CCR2        0x06000005
-#define DMA_CH5_RESERVED1          0x07000005
+#define DMA_CH5_RESERVED0            0x00000005
+#define DMA_CH5_EUSCIA2RX            0x01000005
+#define DMA_CH5_EUSCIB2RX0           0x02000005
+#define DMA_CH5_EUSCIB1RX1           0x03000005
+#define DMA_CH5_EUSCIB0RX2           0x04000005
+#define DMA_CH5_EUSCIB3RX3           0x05000005
+#define DMA_CH5_TIMERA2CCR2          0x06000005
+#define DMA_CH5_RESERVED1            0x07000005
 
 //
 // Channel 6
 //
-#define DMA_CH6_RESERVED0          0x00000006
-#define DMA_CH6_EUSCIA3TX          0x01000006
-#define DMA_CH6_EUSCIB3TX0         0x02000006
-#define DMA_CH6_EUSCIB2TX1         0x03000006
-#define DMA_CH6_EUSCIB1TX2         0x04000006
-#define DMA_CH6_EUSCIB0TX3         0x05000006
-#define DMA_CH6_TIMERA3CCR0        0x06000006
-#define DMA_CH6_EXTERNALPIN        0x07000006
+#define DMA_CH6_RESERVED0            0x00000006
+#define DMA_CH6_EUSCIA3TX            0x01000006
+#define DMA_CH6_EUSCIB3TX0           0x02000006
+#define DMA_CH6_EUSCIB2TX1           0x03000006
+#define DMA_CH6_EUSCIB1TX2           0x04000006
+#define DMA_CH6_EUSCIB0TX3           0x05000006
+#define DMA_CH6_TIMERA3CCR0          0x06000006
+#define DMA_CH6_EXTERNALPIN          0x07000006
 
 //
 // Channel 7
 //
-#define DMA_CH7_RESERVED0          0x00000007
-#define DMA_CH7_EUSCIA3RX          0x01000007
-#define DMA_CH7_EUSCIB3RX0         0x02000007
-#define DMA_CH7_EUSCIB2RX1         0x03000007
-#define DMA_CH7_EUSCIB1RX2         0x04000007
-#define DMA_CH7_EUSCIB0RX3         0x05000007
-#define DMA_CH7_TIMERA3CCR2        0x06000007
-#define DMA_CH7_ADC14              0x07000007
+#define DMA_CH7_RESERVED0            0x00000007
+#define DMA_CH7_EUSCIA3RX            0x01000007
+#define DMA_CH7_EUSCIB3RX0           0x02000007
+#define DMA_CH7_EUSCIB2RX1           0x03000007
+#define DMA_CH7_EUSCIB1RX2           0x04000007
+#define DMA_CH7_EUSCIB0RX3           0x05000007
+#define DMA_CH7_TIMERA3CCR2          0x06000007
+#define DMA_CH7_ADC14                0x07000007
 
 //
 //  Different interrupt handlers to pass into DMA_registerInterrupt and
 //   DMA_unregisterInterrupt and other Int functions
 //
-#define DMA_INT0   INT_DMA_INT0
-#define DMA_INT1   INT_DMA_INT1
-#define DMA_INT2   INT_DMA_INT2
-#define DMA_INT3   INT_DMA_INT3
-#define DMA_INTERR INT_DMA_ERR
+#define DMA_INT0                     INT_DMA_INT0
+#define DMA_INT1                     INT_DMA_INT1
+#define DMA_INT2                     INT_DMA_INT2
+#define DMA_INT3                     INT_DMA_INT3
+#define DMA_INTERR                   INT_DMA_ERR
 
-#define DMA_CHANNEL_0       0
-#define DMA_CHANNEL_1       1
-#define DMA_CHANNEL_2       2
-#define DMA_CHANNEL_3       3
-#define DMA_CHANNEL_4       4
-#define DMA_CHANNEL_5       5
-#define DMA_CHANNEL_6       6
-#define DMA_CHANNEL_7       7
+#define DMA_CHANNEL_0                0
+#define DMA_CHANNEL_1                1
+#define DMA_CHANNEL_2                2
+#define DMA_CHANNEL_3                3
+#define DMA_CHANNEL_4                4
+#define DMA_CHANNEL_5                5
+#define DMA_CHANNEL_6                6
+#define DMA_CHANNEL_7                7
 
 //*****************************************************************************
 //
@@ -385,7 +392,7 @@ typedef struct _DMA_ControlTable
 //! \return None.
 //
 //*****************************************************************************
-extern void DMA_enableModule(void);
+extern void DMA_enableModule( void );
 
 //*****************************************************************************
 //
@@ -397,7 +404,7 @@ extern void DMA_enableModule(void);
 //! \return None.
 //
 //*****************************************************************************
-extern void DMA_disableModule(void);
+extern void DMA_disableModule( void );
 
 //*****************************************************************************
 //
@@ -410,7 +417,7 @@ extern void DMA_disableModule(void);
 //! \return Returns non-zero if a DMA error is pending.
 //
 //*****************************************************************************
-extern uint32_t DMA_getErrorStatus(void);
+extern uint32_t DMA_getErrorStatus( void );
 
 //*****************************************************************************
 //
@@ -423,7 +430,7 @@ extern uint32_t DMA_getErrorStatus(void);
 //! \return None.
 //
 //*****************************************************************************
-extern void DMA_clearErrorStatus(void);
+extern void DMA_clearErrorStatus( void );
 
 //*****************************************************************************
 //
@@ -442,7 +449,7 @@ extern void DMA_clearErrorStatus(void);
 //! \return None.
 //
 //*****************************************************************************
-extern void DMA_enableChannel(uint32_t channelNum);
+extern void DMA_enableChannel( uint32_t channelNum );
 
 //*****************************************************************************
 //
@@ -457,7 +464,7 @@ extern void DMA_enableChannel(uint32_t channelNum);
 //! \return None.
 //
 //*****************************************************************************
-extern void DMA_disableChannel(uint32_t channelNum);
+extern void DMA_disableChannel( uint32_t channelNum );
 
 //*****************************************************************************
 //
@@ -472,7 +479,7 @@ extern void DMA_disableChannel(uint32_t channelNum);
 //! \return Returns \b true if the channel is enabled, \b false if disabled.
 //
 //*****************************************************************************
-extern bool DMA_isChannelEnabled(uint32_t channelNum);
+extern bool DMA_isChannelEnabled( uint32_t channelNum );
 
 //*****************************************************************************
 //
@@ -494,7 +501,7 @@ extern bool DMA_isChannelEnabled(uint32_t channelNum);
 //! \return None.
 //
 //*****************************************************************************
-extern void DMA_setControlBase(void *controlTable);
+extern void DMA_setControlBase( void * controlTable );
 
 //*****************************************************************************
 //
@@ -507,7 +514,7 @@ extern void DMA_setControlBase(void *controlTable);
 //! \return Returns a pointer to the base address of the channel control table.
 //
 //*****************************************************************************
-extern void* DMA_getControlBase(void);
+extern void * DMA_getControlBase( void );
 
 //*****************************************************************************
 //
@@ -520,7 +527,7 @@ extern void* DMA_getControlBase(void);
 //! channel control table.
 //
 //*****************************************************************************
-extern void* DMA_getControlAlternateBase(void);
+extern void * DMA_getControlAlternateBase( void );
 
 //*****************************************************************************
 //
@@ -537,7 +544,7 @@ extern void* DMA_getControlAlternateBase(void);
 //! \return None.
 //
 //*****************************************************************************
-extern void DMA_requestChannel(uint32_t channelNum);
+extern void DMA_requestChannel( uint32_t channelNum );
 
 //*****************************************************************************
 //
@@ -561,7 +568,7 @@ extern void DMA_requestChannel(uint32_t channelNum);
 //! \return None.
 //
 //*****************************************************************************
-extern void DMA_enableChannelAttribute(uint32_t channelNum, uint32_t attr);
+extern void DMA_enableChannelAttribute( uint32_t channelNum, uint32_t attr );
 
 //*****************************************************************************
 //
@@ -585,7 +592,7 @@ extern void DMA_enableChannelAttribute(uint32_t channelNum, uint32_t attr);
 //! \return None.
 //
 //*****************************************************************************
-extern void DMA_disableChannelAttribute(uint32_t channelNum, uint32_t attr);
+extern void DMA_disableChannelAttribute( uint32_t channelNum, uint32_t attr );
 
 //*****************************************************************************
 //
@@ -607,7 +614,7 @@ extern void DMA_disableChannelAttribute(uint32_t channelNum, uint32_t attr);
 //!   peripheral for this channel.
 //
 //*****************************************************************************
-extern uint32_t DMA_getChannelAttribute(uint32_t channelNum);
+extern uint32_t DMA_getChannelAttribute( uint32_t channelNum );
 
 //*****************************************************************************
 //
@@ -657,8 +664,8 @@ extern uint32_t DMA_getChannelAttribute(uint32_t channelNum);
 //! \return None.
 //
 //*****************************************************************************
-extern void DMA_setChannelControl(uint32_t channelStructIndex,
-        uint32_t control);
+extern void DMA_setChannelControl( uint32_t channelStructIndex,
+                                   uint32_t control );
 
 //*****************************************************************************
 //
@@ -729,8 +736,11 @@ extern void DMA_setChannelControl(uint32_t channelStructIndex,
 //! \return None.
 //
 //*****************************************************************************
-extern void DMA_setChannelTransfer(uint32_t channelStructIndex, uint32_t mode,
-        void *srcAddr, void *dstAddr, uint32_t transferSize);
+extern void DMA_setChannelTransfer( uint32_t channelStructIndex,
+                                    uint32_t mode,
+                                    void * srcAddr,
+                                    void * dstAddr,
+                                    uint32_t transferSize );
 
 //*****************************************************************************
 //
@@ -756,8 +766,10 @@ extern void DMA_setChannelTransfer(uint32_t channelStructIndex, uint32_t mode,
 //! \return None.
 //
 //*****************************************************************************
-extern void DMA_setChannelScatterGather(uint32_t channelNum, uint32_t taskCount,
-        void *taskList, uint32_t isPeriphSG);
+extern void DMA_setChannelScatterGather( uint32_t channelNum,
+                                         uint32_t taskCount,
+                                         void * taskList,
+                                         uint32_t isPeriphSG );
 
 //*****************************************************************************
 //
@@ -775,7 +787,7 @@ extern void DMA_setChannelScatterGather(uint32_t channelNum, uint32_t taskCount,
 //! \return Returns the number of items remaining to transfer.
 //
 //*****************************************************************************
-extern uint32_t DMA_getChannelSize(uint32_t channelStructIndex);
+extern uint32_t DMA_getChannelSize( uint32_t channelStructIndex );
 
 //*****************************************************************************
 //
@@ -794,7 +806,7 @@ extern uint32_t DMA_getChannelSize(uint32_t channelStructIndex);
 //! \b UDMA_MODE_MEM_SCATTER_GATHER, or \b UDMA_MODE_PER_SCATTER_GATHER.
 //
 //*****************************************************************************
-extern uint32_t DMA_getChannelMode(uint32_t channelStructIndex);
+extern uint32_t DMA_getChannelMode( uint32_t channelStructIndex );
 
 //*****************************************************************************
 //
@@ -817,7 +829,7 @@ extern uint32_t DMA_getChannelMode(uint32_t channelStructIndex);
 //! \return None.
 //
 //*****************************************************************************
-extern void DMA_assignChannel(uint32_t mapping);
+extern void DMA_assignChannel( uint32_t mapping );
 
 //*****************************************************************************
 //
@@ -832,7 +844,7 @@ extern void DMA_assignChannel(uint32_t mapping);
 //! \return None
 //
 //*****************************************************************************
-extern void DMA_requestSoftwareTransfer(uint32_t channel);
+extern void DMA_requestSoftwareTransfer( uint32_t channel );
 
 //*****************************************************************************
 //
@@ -842,9 +854,10 @@ extern void DMA_requestSoftwareTransfer(uint32_t channel);
 //! provided configurable DMA interrupt.
 //!
 //! Note that once a channel is assigned to a configurable interrupt, it will be
-//! masked in hardware from the master DMA interrupt (interruptNumber zero). This
-//! function can also be used in conjunction with the DMAIntTrigger function
-//! to provide the feature to software trigger specific channel interrupts.
+//! masked in hardware from the master DMA interrupt (interruptNumber zero).
+//! This function can also be used in conjunction with the DMAIntTrigger
+//! function to provide the feature to software trigger specific channel
+//! interrupts.
 //!
 //! \param interruptNumber is the configurable interrupt to assign the given
 //! channel. Valid values are:
@@ -857,7 +870,7 @@ extern void DMA_requestSoftwareTransfer(uint32_t channel);
 //! \return None.
 //
 //*****************************************************************************
-extern void DMA_assignInterrupt(uint32_t interruptNumber, uint32_t channel);
+extern void DMA_assignInterrupt( uint32_t interruptNumber, uint32_t channel );
 
 //*****************************************************************************
 //
@@ -878,7 +891,7 @@ extern void DMA_assignInterrupt(uint32_t interruptNumber, uint32_t channel);
 //! \return None.
 //
 //*****************************************************************************
-extern void DMA_enableInterrupt(uint32_t interruptNumber);
+extern void DMA_enableInterrupt( uint32_t interruptNumber );
 
 //*****************************************************************************
 //
@@ -900,7 +913,7 @@ extern void DMA_enableInterrupt(uint32_t interruptNumber);
 //! \return None.
 //
 //*****************************************************************************
-extern void DMA_disableInterrupt(uint32_t interruptNumber);
+extern void DMA_disableInterrupt( uint32_t interruptNumber );
 
 //*****************************************************************************
 //
@@ -922,7 +935,7 @@ extern void DMA_disableInterrupt(uint32_t interruptNumber);
 //! is requesting an interrupt.  Multiple bits can be set.
 //
 //*****************************************************************************
-extern uint32_t DMA_getInterruptStatus(void);
+extern uint32_t DMA_getInterruptStatus( void );
 
 //*****************************************************************************
 //
@@ -939,7 +952,7 @@ extern uint32_t DMA_getInterruptStatus(void);
 //! \return None
 //
 //*****************************************************************************
-extern void DMA_clearInterruptFlag(uint32_t intChannel);
+extern void DMA_clearInterruptFlag( uint32_t intChannel );
 
 //*****************************************************************************
 //
@@ -965,8 +978,8 @@ extern void DMA_clearInterruptFlag(uint32_t intChannel);
 //! \return None.
 //
 //*****************************************************************************
-extern void DMA_registerInterrupt(uint32_t intChannel, 
-                                    void (*intHandler)(void));
+extern void DMA_registerInterrupt( uint32_t intChannel,
+                                   void ( *intHandler )( void ) );
 
 //*****************************************************************************
 //
@@ -989,7 +1002,7 @@ extern void DMA_registerInterrupt(uint32_t intChannel,
 //! \return None.
 //
 //*****************************************************************************
-extern void DMA_unregisterInterrupt(uint32_t intChannel);
+extern void DMA_unregisterInterrupt( uint32_t intChannel );
 
 //*****************************************************************************
 //

@@ -1,6 +1,6 @@
 /*
  * -------------------------------------------
- *    MSP432 DriverLib - v3_10_00_09 
+ *    MSP432 DriverLib - v3_10_00_09
  * -------------------------------------------
  *
  * --COPYRIGHT--,BSD,BSD
@@ -51,38 +51,37 @@
 //
 //*****************************************************************************
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
-#include <stdint.h>
-#include <stdbool.h>
 #include <msp.h>
+#include <stdbool.h>
+#include <stdint.h>
 
 //*****************************************************************************
 //
 // Control specific variables
 //
 //*****************************************************************************
-#define TIMER32_CMSIS(x) ((Timer32_Type *) x)
+#define TIMER32_CMSIS( x )         ( ( Timer32_Type * ) x )
 
-#define TIMER_OFFSET    0x020
+#define TIMER_OFFSET               0x020
 
-#define TIMER32_0_BASE   TIMER32_1
-#define TIMER32_1_BASE   TIMER32_2
+#define TIMER32_0_BASE             TIMER32_1
+#define TIMER32_1_BASE             TIMER32_2
 
-#define TIMER32_0_INTERRUPT         INT_T32_INT1
-#define TIMER32_1_INTERRUPT         INT_T32_INT2
-#define TIMER32_COMBINED_INTERRUPT  INT_T32_INTC
+#define TIMER32_0_INTERRUPT        INT_T32_INT1
+#define TIMER32_1_INTERRUPT        INT_T32_INT2
+#define TIMER32_COMBINED_INTERRUPT INT_T32_INTC
 
-#define TIMER32_1_MODULE6BIT           0x00
-#define TIMER32_32BIT           0x01
+#define TIMER32_1_MODULE6BIT       0x00
+#define TIMER32_32BIT              0x01
 
-#define TIMER32_PRESCALER_1      0x00
-#define TIMER32_PRESCALER_16     0x04
-#define TIMER32_PRESCALER_256    0x08
+#define TIMER32_PRESCALER_1        0x00
+#define TIMER32_PRESCALER_16       0x04
+#define TIMER32_PRESCALER_256      0x08
 
-#define TIMER32_FREE_RUN_MODE   0x00
-#define TIMER32_PERIODIC_MODE   0x01
+#define TIMER32_FREE_RUN_MODE      0x00
+#define TIMER32_PERIODIC_MODE      0x01
 
 //*****************************************************************************
 //
@@ -121,8 +120,10 @@ extern "C"
 //! \return None.
 //
 //*****************************************************************************
-extern void Timer32_initModule(uint32_t timer, uint32_t preScaler,
-        uint32_t resolution, uint32_t mode);
+extern void Timer32_initModule( uint32_t timer,
+                                uint32_t preScaler,
+                                uint32_t resolution,
+                                uint32_t mode );
 
 //*****************************************************************************
 //
@@ -145,7 +146,7 @@ extern void Timer32_initModule(uint32_t timer, uint32_t preScaler,
 //! \return None
 //
 //*****************************************************************************
-extern void Timer32_setCount(uint32_t timer, uint32_t count);
+extern void Timer32_setCount( uint32_t timer, uint32_t count );
 
 //*****************************************************************************
 //
@@ -168,7 +169,7 @@ extern void Timer32_setCount(uint32_t timer, uint32_t count);
 //! \return None
 //
 //*****************************************************************************
-extern void Timer32_setCountInBackground(uint32_t timer, uint32_t count);
+extern void Timer32_setCountInBackground( uint32_t timer, uint32_t count );
 
 //*****************************************************************************
 //
@@ -182,7 +183,7 @@ extern void Timer32_setCountInBackground(uint32_t timer, uint32_t count);
 //! \return The current count of the timer.
 //
 //*****************************************************************************
-extern uint32_t Timer32_getValue(uint32_t timer);
+extern uint32_t Timer32_getValue( uint32_t timer );
 
 //*****************************************************************************
 //
@@ -199,7 +200,8 @@ extern uint32_t Timer32_getValue(uint32_t timer);
 //!  or continuous mode. In one shot mode, the timer will halt when a zero is
 //!  reached and stay halted until either:
 //!         - The user calls the Timer32PeriodSet function
-//!         - The Timer32_initModule is called to reinitialize the timer with one-shot
+//!         - The Timer32_initModule is called to reinitialize the timer with
+//!         one-shot
 //!             mode disabled.
 //!
 //! A true value will cause the timer to operate in one shot mode while a false
@@ -208,7 +210,7 @@ extern uint32_t Timer32_getValue(uint32_t timer);
 //! \return None
 //
 //*****************************************************************************
-extern void Timer32_startTimer(uint32_t timer, bool oneShot);
+extern void Timer32_startTimer( uint32_t timer, bool oneShot );
 
 //*****************************************************************************
 //
@@ -222,7 +224,7 @@ extern void Timer32_startTimer(uint32_t timer, bool oneShot);
 //! \return None
 //
 //*****************************************************************************
-extern void Timer32_haltTimer(uint32_t timer);
+extern void Timer32_haltTimer( uint32_t timer );
 
 //*****************************************************************************
 //
@@ -238,7 +240,7 @@ extern void Timer32_haltTimer(uint32_t timer);
 //! \return None.
 //
 //*****************************************************************************
-extern void Timer32_enableInterrupt(uint32_t timer);
+extern void Timer32_enableInterrupt( uint32_t timer );
 
 //*****************************************************************************
 //
@@ -254,7 +256,7 @@ extern void Timer32_enableInterrupt(uint32_t timer);
 //! \return None.
 //
 //*****************************************************************************
-extern void Timer32_disableInterrupt(uint32_t timer);
+extern void Timer32_disableInterrupt( uint32_t timer );
 
 //*****************************************************************************
 //
@@ -270,7 +272,7 @@ extern void Timer32_disableInterrupt(uint32_t timer);
 //! \return None.
 //
 //*****************************************************************************
-extern void Timer32_clearInterruptFlag(uint32_t timer);
+extern void Timer32_clearInterruptFlag( uint32_t timer );
 
 //*****************************************************************************
 //
@@ -288,7 +290,7 @@ extern void Timer32_clearInterruptFlag(uint32_t timer);
 //! \return The current interrupt status
 //
 //*****************************************************************************
-extern uint32_t Timer32_getInterruptStatus(uint32_t timer);
+extern uint32_t Timer32_getInterruptStatus( uint32_t timer );
 
 //*****************************************************************************
 //
@@ -315,8 +317,8 @@ extern uint32_t Timer32_getInterruptStatus(uint32_t timer);
 //! \return None.
 //
 //*****************************************************************************
-extern void Timer32_registerInterrupt(uint32_t timerInterrupt,
-        void (*intHandler)(void));
+extern void Timer32_registerInterrupt( uint32_t timerInterrupt,
+                                       void ( *intHandler )( void ) );
 
 //*****************************************************************************
 //
@@ -340,7 +342,7 @@ extern void Timer32_registerInterrupt(uint32_t timerInterrupt,
 //! \return None.
 //
 //*****************************************************************************
-extern void Timer32_unregisterInterrupt(uint32_t timerInterrupt);
+extern void Timer32_unregisterInterrupt( uint32_t timerInterrupt );
 
 //*****************************************************************************
 //

@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
- *         ATMEL Microcontroller Software Support 
+ *         ATMEL Microcontroller Software Support
  * ----------------------------------------------------------------------------
  * Copyright (c) 2009, Atmel Corporation
  *
@@ -26,16 +26,16 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * ----------------------------------------------------------------------------
  */
- 
+
 //------------------------------------------------------------------------------
 //         Headers
 //------------------------------------------------------------------------------
 
-#include <board.h>
 #include "eefc.h"
+#include <board.h>
 
-#if !defined (CHIP_FLASH_EEFC)
-#error eefc not supported
+#if !defined( CHIP_FLASH_EEFC )
+    #error eefc not supported
 #endif
 
 #include <utility/assert.h>
@@ -49,7 +49,7 @@
 /// Enables the flash ready interrupt source on the EEFC peripheral.
 /// \param pEfc  Pointer to an AT91S_EFC structure.
 //------------------------------------------------------------------------------
-void EFC_EnableFrdyIt(AT91S_EFC *pEfc)
+void EFC_EnableFrdyIt( AT91S_EFC * pEfc )
 {
     pEfc->EFC_FMR |= AT91C_EFC_FRDY;
 }
@@ -58,7 +58,7 @@ void EFC_EnableFrdyIt(AT91S_EFC *pEfc)
 /// Disables the flash ready interrupt source on the EEFC peripheral.
 /// \param pEfc  Pointer to an AT91S_EFC structure.
 //------------------------------------------------------------------------------
-void EFC_DisableFrdyIt(AT91S_EFC *pEfc)
+void EFC_DisableFrdyIt( AT91S_EFC * pEfc )
 {
     pEfc->EFC_FMR &= ~AT91C_EFC_FRDY;
 }
@@ -71,54 +71,59 @@ void EFC_DisableFrdyIt(AT91S_EFC *pEfc)
 /// \param pPage  First page accessed.
 /// \param pOffset  Byte offset in first page.
 //------------------------------------------------------------------------------
-void EFC_TranslateAddress(
-    AT91S_EFC **ppEfc,
-    unsigned int address,
-    unsigned short *pPage,
-    unsigned short *pOffset)
+void EFC_TranslateAddress( AT91S_EFC ** ppEfc,
+                           unsigned int address,
+                           unsigned short * pPage,
+                           unsigned short * pOffset )
 {
-    AT91S_EFC *pEfc;
+    AT91S_EFC * pEfc;
     unsigned short page;
     unsigned short offset;
-    
-#if defined(AT91C_BASE_EFC1)
-    SANITY_CHECK(address >= AT91C_IFLASH);
-    if (address >= AT91C_IFLASH1) {
-        SANITY_CHECK(address <= (AT91C_IFLASH1 + AT91C_IFLASH1_SIZE));    
+
+#if defined( AT91C_BASE_EFC1 )
+    SANITY_CHECK( address >= AT91C_IFLASH );
+    if( address >= AT91C_IFLASH1 )
+    {
+        SANITY_CHECK( address <= ( AT91C_IFLASH1 + AT91C_IFLASH1_SIZE ) );
     }
-    else {
-        SANITY_CHECK(address <= (AT91C_IFLASH + AT91C_IFLASH_SIZE));
+    else
+    {
+        SANITY_CHECK( address <= ( AT91C_IFLASH + AT91C_IFLASH_SIZE ) );
     }
 #else
-    SANITY_CHECK(address >= AT91C_IFLASH);
-    SANITY_CHECK(address <= (AT91C_IFLASH + AT91C_IFLASH_SIZE));
+    SANITY_CHECK( address >= AT91C_IFLASH );
+    SANITY_CHECK( address <= ( AT91C_IFLASH + AT91C_IFLASH_SIZE ) );
 #endif
 
     pEfc = AT91C_BASE_EFC;
-    page = (address - AT91C_IFLASH) / AT91C_IFLASH_PAGE_SIZE;
-    offset = (address - AT91C_IFLASH) % AT91C_IFLASH_PAGE_SIZE;
-    
-#if defined(AT91C_BASE_EFC1)
-    if (address >= AT91C_IFLASH1) {
+    page = ( address - AT91C_IFLASH ) / AT91C_IFLASH_PAGE_SIZE;
+    offset = ( address - AT91C_IFLASH ) % AT91C_IFLASH_PAGE_SIZE;
+
+#if defined( AT91C_BASE_EFC1 )
+    if( address >= AT91C_IFLASH1 )
+    {
         pEfc = AT91C_BASE_EFC1;
-        page = (address - AT91C_IFLASH1) / AT91C_IFLASH1_PAGE_SIZE;
-        offset = (address - AT91C_IFLASH1) % AT91C_IFLASH1_PAGE_SIZE;
+        page = ( address - AT91C_IFLASH1 ) / AT91C_IFLASH1_PAGE_SIZE;
+        offset = ( address - AT91C_IFLASH1 ) % AT91C_IFLASH1_PAGE_SIZE;
     }
 #endif
-   
-    TRACE_DEBUG("Translated 0x%08X to page=%d and offset=%d\n\r",
-              address, page, offset);
+
+    TRACE_DEBUG( "Translated 0x%08X to page=%d and offset=%d\n\r",
+                 address,
+                 page,
+                 offset );
 
     // Store values
-    if (ppEfc) {
+    if( ppEfc )
+    {
         *ppEfc = pEfc;
     }
-    if (pPage) {
-
+    if( pPage )
+    {
         *pPage = page;
     }
-    if (pOffset) {
-
+    if( pOffset )
+    {
         *pOffset = offset;
     }
 }
@@ -130,67 +135,72 @@ void EFC_TranslateAddress(
 /// \param offset  Byte offset inside page.
 /// \param pAddress  Computed address (optional).
 //------------------------------------------------------------------------------
-void EFC_ComputeAddress(
-    AT91S_EFC *pEfc,
-    unsigned short page,
-    unsigned short offset,
-    unsigned int *pAddress)
+void EFC_ComputeAddress( AT91S_EFC * pEfc,
+                         unsigned short page,
+                         unsigned short offset,
+                         unsigned int * pAddress )
 {
     unsigned int address;
-    SANITY_CHECK(pEfc);
-    SANITY_CHECK(page <= AT91C_IFLASH_NB_OF_PAGES);
-    SANITY_CHECK(offset < AT91C_IFLASH_PAGE_SIZE);
+    SANITY_CHECK( pEfc );
+    SANITY_CHECK( page <= AT91C_IFLASH_NB_OF_PAGES );
+    SANITY_CHECK( offset < AT91C_IFLASH_PAGE_SIZE );
 
     // Compute address
     address = AT91C_IFLASH + page * AT91C_IFLASH_PAGE_SIZE + offset;
-#if defined(AT91C_BASE_EFC1)
-    if (pEfc == AT91C_BASE_EFC1) {
+#if defined( AT91C_BASE_EFC1 )
+    if( pEfc == AT91C_BASE_EFC1 )
+    {
         address = AT91C_IFLASH1 + page * AT91C_IFLASH1_PAGE_SIZE + offset;
     }
-#endif    
+#endif
 
     // Store result
-    if (pAddress) {
-
+    if( pAddress )
+    {
         *pAddress = address;
     }
 }
 
 //------------------------------------------------------------------------------
 /// Starts the executing the given command on the EEFC. This function returns
-/// as soon as the command is started. It does NOT set the FMCN field automatically.
-/// \param pEfc  Pointer to an AT91S_EFC structure.
-/// \param command  Command to execute.
-/// \param argument  Command argument (should be 0 if not used).
+/// as soon as the command is started. It does NOT set the FMCN field
+/// automatically. \param pEfc  Pointer to an AT91S_EFC structure. \param
+/// command  Command to execute. \param argument  Command argument (should be 0
+/// if not used).
 //------------------------------------------------------------------------------
-#if defined(flash) || defined (USE_FLASH)
-   #ifdef __ICCARM__
+#if defined( flash ) || defined( USE_FLASH )
+    #ifdef __ICCARM__
 __ramfunc
-   #else
+    #else
 __attribute__ ((section (".ramfunc")))
-   #endif
+    #endif
 #endif
-void EFC_StartCommand(AT91S_EFC *pEfc, unsigned char command, unsigned short argument)
+    void
+    EFC_StartCommand( AT91S_EFC * pEfc,
+                      unsigned char command,
+                      unsigned short argument )
 {
     // Check command & argument
-    switch (command) {
-
+    switch( command )
+    {
         case AT91C_EFC_FCMD_WP:
         case AT91C_EFC_FCMD_WPL:
-        case AT91C_EFC_FCMD_EWP: 
+        case AT91C_EFC_FCMD_EWP:
         case AT91C_EFC_FCMD_EWPL:
         case AT91C_EFC_FCMD_EPL:
         case AT91C_EFC_FCMD_EPA:
         case AT91C_EFC_FCMD_SLB:
         case AT91C_EFC_FCMD_CLB:
-            ASSERT(argument < AT91C_IFLASH_NB_OF_PAGES,
-                   "-F- Embedded flash has only %d pages\n\r",
-                   AT91C_IFLASH_NB_OF_PAGES);
+            ASSERT( argument < AT91C_IFLASH_NB_OF_PAGES,
+                    "-F- Embedded flash has only %d pages\n\r",
+                    AT91C_IFLASH_NB_OF_PAGES );
             break;
 
         case AT91C_EFC_FCMD_SFB:
         case AT91C_EFC_FCMD_CFB:
-            ASSERT(argument < CHIP_EFC_NUM_GPNVMS, "-F- Embedded flash has only %d GPNVMs\n\r", CHIP_EFC_NUM_GPNVMS);
+            ASSERT( argument < CHIP_EFC_NUM_GPNVMS,
+                    "-F- Embedded flash has only %d GPNVMs\n\r",
+                    CHIP_EFC_NUM_GPNVMS );
             break;
 
         case AT91C_EFC_FCMD_GETD:
@@ -200,15 +210,18 @@ void EFC_StartCommand(AT91S_EFC *pEfc, unsigned char command, unsigned short arg
 #ifdef AT91C_EFC_FCMD_STUI
         case AT91C_EFC_FCMD_STUI:
 #endif
-            ASSERT(argument == 0, "-F- Argument is meaningless for the given command.\n\r");
+            ASSERT( argument == 0,
+                    "-F- Argument is meaningless for the given command.\n\r" );
             break;
 
-        default: ASSERT(0, "-F- Unknown command %d\n\r", command);
+        default:
+            ASSERT( 0, "-F- Unknown command %d\n\r", command );
     }
 
-    // Start commandEmbedded flash 
-    ASSERT((pEfc->EFC_FSR & AT91C_EFC_FRDY) == AT91C_EFC_FRDY, "-F- EEFC is not ready\n\r");
-    pEfc->EFC_FCR = (0x5A << 24) | (argument << 8) | command;
+    // Start commandEmbedded flash
+    ASSERT( ( pEfc->EFC_FSR & AT91C_EFC_FRDY ) == AT91C_EFC_FRDY,
+            "-F- EEFC is not ready\n\r" );
+    pEfc->EFC_FCR = ( 0x5A << 24 ) | ( argument << 8 ) | command;
 }
 
 //------------------------------------------------------------------------------
@@ -218,47 +231,51 @@ void EFC_StartCommand(AT91S_EFC *pEfc, unsigned char command, unsigned short arg
 /// \param command  Command to perform.
 /// \param argument  Optional command argument.
 //------------------------------------------------------------------------------
-#if defined(flash) || defined (USE_FLASH)
-   #ifdef __ICCARM__
+#if defined( flash ) || defined( USE_FLASH )
+    #ifdef __ICCARM__
 __ramfunc
-   #else
-__attribute__ ((section (".ramfunc")))
-   #endif
+    #else
+__attribute__( ( section( ".ramfunc" ) ) )
+    #endif
 #endif
-unsigned char EFC_PerformCommand(AT91S_EFC *pEfc, unsigned char command, unsigned short argument)
+    unsigned char
+    EFC_PerformCommand( AT91S_EFC * pEfc,
+                        unsigned char command,
+                        unsigned short argument )
 {
     unsigned int status;
 
 #ifdef CHIP_FLASH_IAP_ADDRESS
     // Pointer on IAP function in ROM
-    static void (*IAP_PerformCommand)(unsigned int);
-    IAP_PerformCommand = (void (*)(unsigned int)) *((unsigned int *) CHIP_FLASH_IAP_ADDRESS);
+    static void ( *IAP_PerformCommand )( unsigned int );
+    IAP_PerformCommand = ( void ( * )( unsigned int ) ) *
+                         ( ( unsigned int * ) CHIP_FLASH_IAP_ADDRESS );
 
     // Check if IAP function is implemented (opcode in SWI != 'b' or 'ldr') */
-    if ((((((unsigned long) IAP_PerformCommand >> 24) & 0xFF) != 0xEA) &&
-        (((unsigned long) IAP_PerformCommand >> 24) & 0xFF) != 0xE5)) {
-
-        IAP_PerformCommand((0x5A << 24) | (argument << 8) | command);
-        return (pEfc->EFC_FSR & (AT91C_EFC_LOCKE | AT91C_EFC_FCMDE));
+    if( ( ( ( ( ( unsigned long ) IAP_PerformCommand >> 24 ) & 0xFF ) !=
+            0xEA ) &&
+          ( ( ( unsigned long ) IAP_PerformCommand >> 24 ) & 0xFF ) != 0xE5 ) )
+    {
+        IAP_PerformCommand( ( 0x5A << 24 ) | ( argument << 8 ) | command );
+        return ( pEfc->EFC_FSR & ( AT91C_EFC_LOCKE | AT91C_EFC_FCMDE ) );
     }
 #endif
 
-    pEfc->EFC_FCR = (0x5A << 24) | (argument << 8) | command;
-    do {
-
+    pEfc->EFC_FCR = ( 0x5A << 24 ) | ( argument << 8 ) | command;
+    do
+    {
         status = pEfc->EFC_FSR;
-    }
-    while ((status & AT91C_EFC_FRDY) != AT91C_EFC_FRDY);
+    } while( ( status & AT91C_EFC_FRDY ) != AT91C_EFC_FRDY );
 
-    return (status & (AT91C_EFC_LOCKE | AT91C_EFC_FCMDE));
+    return ( status & ( AT91C_EFC_LOCKE | AT91C_EFC_FCMDE ) );
 }
 
 //------------------------------------------------------------------------------
-/// Returns the current status of the EEFC. Keep in mind that this function clears
-/// the value of some status bits (LOCKE, PROGE).
-/// \param pEfc  Pointer to an AT91S_EFC structure.
+/// Returns the current status of the EEFC. Keep in mind that this function
+/// clears the value of some status bits (LOCKE, PROGE). \param pEfc  Pointer to
+/// an AT91S_EFC structure.
 //------------------------------------------------------------------------------
-unsigned int EFC_GetStatus(AT91S_EFC *pEfc)
+unsigned int EFC_GetStatus( AT91S_EFC * pEfc )
 {
     return pEfc->EFC_FSR;
 }
@@ -267,8 +284,7 @@ unsigned int EFC_GetStatus(AT91S_EFC *pEfc)
 /// Returns the result of the last executed command.
 /// \param pEfc  Pointer to an AT91S_EFC structure.
 //------------------------------------------------------------------------------
-unsigned int EFC_GetResult(AT91S_EFC *pEfc) {
-
+unsigned int EFC_GetResult( AT91S_EFC * pEfc )
+{
     return pEfc->EFC_FRR;
 }
-

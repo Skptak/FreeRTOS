@@ -30,12 +30,12 @@ extern "C" {
 #include <stdint.h>
 
 /****** TEE AES mode *****/
-typedef enum {
-    TEE_AES_MODE_ECB = 0,    ///< TEE AES ECB mode
-    TEE_AES_MODE_CBC = 1,    ///< TEE AES CBC mode
-    TEE_AES_MODE_MAX,        ///< invaild mode
-}
-tee_aes_mode_e;
+typedef enum
+{
+    TEE_AES_MODE_ECB = 0, ///< TEE AES ECB mode
+    TEE_AES_MODE_CBC = 1, ///< TEE AES CBC mode
+    TEE_AES_MODE_MAX,     ///< invaild mode
+} tee_aes_mode_e;
 
 /**
   \brief       TEE AES encrypt
@@ -44,16 +44,18 @@ tee_aes_mode_e;
   \param[in]   in      Pointer to plaintext buffer
   \param[in]   in_len  Plaintext buffer length
   \param[in]   key     Pointer to secret key
-  \param[in]   key_len Secret key size,must be 16 bytes for AES128,24 bytes for AES192 or 32byes for AES256
-  \param[out]  out     Pointer to ciphertext buffer
+  \param[in]   key_len Secret key size,must be 16 bytes for AES128,24 bytes for
+  AES192 or 32byes for AES256 \param[out]  out     Pointer to ciphertext buffer
   \param[in]   mode    \ref tee_aes_mode_e
   \return      return  0 if successful,otherwise error code
 */
-int32_t csi_tee_aes_encrypt(const uint8_t *in, uint32_t in_len,
-                            const uint8_t *key, uint32_t key_len,
-                            uint8_t iv[16],
-                            uint8_t *out,
-                            tee_aes_mode_e mode);
+int32_t csi_tee_aes_encrypt( const uint8_t * in,
+                             uint32_t in_len,
+                             const uint8_t * key,
+                             uint32_t key_len,
+                             uint8_t iv[ 16 ],
+                             uint8_t * out,
+                             tee_aes_mode_e mode );
 
 /**
   \brief       TEE AES decrypt
@@ -62,16 +64,18 @@ int32_t csi_tee_aes_encrypt(const uint8_t *in, uint32_t in_len,
   \param[in]   in      Pointer to ciphertext buffer
   \param[in]   in_len  Ciphertext buffer length
   \param[in]   key     Pointer to secret key
-  \param[in]   key_len Secret key size,must be 16 bytes for AES128,24 bytes for AES192 or 32byes for AES256
-  \param[out]  out     Pointer to plaintext buffer
+  \param[in]   key_len Secret key size,must be 16 bytes for AES128,24 bytes for
+  AES192 or 32byes for AES256 \param[out]  out     Pointer to plaintext buffer
   \param[in]   mode    \ref tee_aes_mode_e
   \return      return  0 if successful,otherwise error code
 */
-int32_t csi_tee_aes_decrypt(const uint8_t *in, uint32_t in_len,
-                            const uint8_t *key, uint32_t key_len,
-                            uint8_t iv[16],
-                            uint8_t *out,
-                            uint32_t mode);
+int32_t csi_tee_aes_decrypt( const uint8_t * in,
+                             uint32_t in_len,
+                             const uint8_t * key,
+                             uint32_t key_len,
+                             uint8_t iv[ 16 ],
+                             uint8_t * out,
+                             uint32_t mode );
 
 /**
   \brief       TEE AES ECB encrypt
@@ -80,12 +84,12 @@ int32_t csi_tee_aes_decrypt(const uint8_t *in, uint32_t in_len,
   \param[in]   in      Pointer to plaintext buffer
   \param[in]   in_len  Plaintext buffer length
   \param[in]   key     Pointer to secret key
-  \param[in]   key_len Secret key size,must be 16 bytes for AES128,24 bytes for AES192 or 32byes for AES256
-  \param[out]  out     Pointer to ciphertext buffer
+  \param[in]   key_len Secret key size,must be 16 bytes for AES128,24 bytes for
+  AES192 or 32byes for AES256 \param[out]  out     Pointer to ciphertext buffer
   \return      return  0 if successful,otherwise error code
 */
-#define csi_tee_aes_encrypt_ecb(in, in_len, key, key_len, out) \
-    csi_tee_aes_encrypt(in, in_len, key, key_len, NULL, out, TEE_AES_MODE_ECB)
+#define csi_tee_aes_encrypt_ecb( in, in_len, key, key_len, out ) \
+    csi_tee_aes_encrypt( in, in_len, key, key_len, NULL, out, TEE_AES_MODE_ECB )
 
 /**
   \brief       TEE AES ECB decrypt
@@ -94,12 +98,12 @@ int32_t csi_tee_aes_decrypt(const uint8_t *in, uint32_t in_len,
   \param[in]   in      Pointer to ciphertext buffer
   \param[in]   in_len  Ciphertext buffer length
   \param[in]   key     Pointer to secret key
-  \param[in]   key_len Secret key size,must be 16 bytes for AES128,24 bytes for AES192 or 32byes for AES256
-  \param[out]  out     Pointer to plaintext buffer
+  \param[in]   key_len Secret key size,must be 16 bytes for AES128,24 bytes for
+  AES192 or 32byes for AES256 \param[out]  out     Pointer to plaintext buffer
   \return      return  0 if successful,otherwise error code
 */
-#define csi_tee_aes_decrypt_ecb(in, in_len, key, key_len, out) \
-    csi_tee_aes_decrypt(in, in_len, key, key_len, NULL, out, TEE_AES_MODE_ECB)
+#define csi_tee_aes_decrypt_ecb( in, in_len, key, key_len, out ) \
+    csi_tee_aes_decrypt( in, in_len, key, key_len, NULL, out, TEE_AES_MODE_ECB )
 
 /**
   \brief       TEE AES CBC encrypt
@@ -108,12 +112,12 @@ int32_t csi_tee_aes_decrypt(const uint8_t *in, uint32_t in_len,
   \param[in]   in      Pointer to ciphertext buffer
   \param[in]   in_len  Ciphertext buffer length
   \param[in]   key     Pointer to secret key
-  \param[in]   key_len Secret key size,must be 16 bytes for AES128,24 bytes for AES192 or 32byes for AES256
-  \param[out]  out     Pointer to plaintext buffer
+  \param[in]   key_len Secret key size,must be 16 bytes for AES128,24 bytes for
+  AES192 or 32byes for AES256 \param[out]  out     Pointer to plaintext buffer
   \return      return  0 if successful,otherwise error code
 */
-#define csi_tee_aes_encrypt_cbc(in, in_len, key, key_len, iv, out) \
-    csi_tee_aes_encrypt(in, in_len, key, key_len, iv, out, TEE_AES_MODE_CBC)
+#define csi_tee_aes_encrypt_cbc( in, in_len, key, key_len, iv, out ) \
+    csi_tee_aes_encrypt( in, in_len, key, key_len, iv, out, TEE_AES_MODE_CBC )
 
 /**
   \brief       TEE AES CBC decrypt
@@ -122,12 +126,12 @@ int32_t csi_tee_aes_decrypt(const uint8_t *in, uint32_t in_len,
   \param[in]   in      Pointer to ciphertext buffer
   \param[in]   in_len  Ciphertext buffer length
   \param[in]   key     Pointer to secret key
-  \param[in]   key_len Secret key size,must be 16 bytes for AES128,24 bytes for AES192 or 32byes for AES256
-  \param[out]  out     Pointer to plaintext buffer
+  \param[in]   key_len Secret key size,must be 16 bytes for AES128,24 bytes for
+  AES192 or 32byes for AES256 \param[out]  out     Pointer to plaintext buffer
   \return      return  0 if successful,otherwise error code
 */
-#define csi_tee_aes_decrypt_cbc(in, in_len, key, key_len, iv, out) \
-    csi_tee_aes_decrypt(in, in_len, key, key_len, iv, out, TEE_AES_MODE_CBC)
+#define csi_tee_aes_decrypt_cbc( in, in_len, key, key_len, iv, out ) \
+    csi_tee_aes_decrypt( in, in_len, key, key_len, iv, out, TEE_AES_MODE_CBC )
 
 /**
   \brief       TEE BASE64 encode/decode
@@ -139,10 +143,12 @@ int32_t csi_tee_aes_decrypt(const uint8_t *in, uint32_t in_len,
   \param[in]   wsafe     base64 websafe feature,set 1, replace "+/" with "-_"
   \return      return 0 if successful,otherwise error code
 */
-int32_t csi_tee_base64(const uint8_t *in, uint32_t in_len,
-                       uint8_t *out, uint32_t *out_len,
-                       uint32_t is_encode,
-                       uint32_t wsafe);
+int32_t csi_tee_base64( const uint8_t * in,
+                        uint32_t in_len,
+                        uint8_t * out,
+                        uint32_t * out_len,
+                        uint32_t is_encode,
+                        uint32_t wsafe );
 
 /**
   \brief       TEE BASE64 encode
@@ -152,8 +158,8 @@ int32_t csi_tee_base64(const uint8_t *in, uint32_t in_len,
   \param[out]  out_len   output data buffer length
   \return      return 0 if successful,otherwise error code
 */
-#define csi_tee_base64_encode(in,in_len,out,out_len) \
-    csi_tee_base64(in,in_len,out,out_len,1,0)
+#define csi_tee_base64_encode( in, in_len, out, out_len ) \
+    csi_tee_base64( in, in_len, out, out_len, 1, 0 )
 
 /**
   \brief       TEE BASE64 decode
@@ -163,8 +169,8 @@ int32_t csi_tee_base64(const uint8_t *in, uint32_t in_len,
   \param[out]  out_len   output data buffer length
   \return      return 0 if successful,otherwise error code
 */
-#define csi_tee_base64_decode(in,in_len,out,out_len) \
-    csi_tee_base64(in,in_len,out,out_len,0,0)
+#define csi_tee_base64_decode( in, in_len, out, out_len ) \
+    csi_tee_base64( in, in_len, out, out_len, 0, 0 )
 
 /**
   \brief       TEE BASE64 web safe encode
@@ -174,8 +180,8 @@ int32_t csi_tee_base64(const uint8_t *in, uint32_t in_len,
   \param[out]  out_len   output data buffer length
   \return      return 0 if successful,otherwise error code
 */
-#define csi_tee_base64_websafe_encode(in,in_len,out,out_len) \
-    csi_tee_base64(in,in_len,out,out_len,1,1)
+#define csi_tee_base64_websafe_encode( in, in_len, out, out_len ) \
+    csi_tee_base64( in, in_len, out, out_len, 1, 1 )
 
 /**
   \brief       TEE BASE64 web safe decode
@@ -185,8 +191,8 @@ int32_t csi_tee_base64(const uint8_t *in, uint32_t in_len,
   \param[out]  out_len   output data buffer length
   \return      return 0 if successful,otherwise error code
 */
-#define csi_tee_base64_websafe_decode(in,in_len,out,out_len) \
-    csi_tee_base64(in,in_len,out,out_len,0,1)
+#define csi_tee_base64_websafe_decode( in, in_len, out, out_len ) \
+    csi_tee_base64( in, in_len, out, out_len, 0, 1 )
 
 /**
   \brief       TEE obtain CID from Key Provisioning
@@ -195,13 +201,14 @@ int32_t csi_tee_base64(const uint8_t *in, uint32_t in_len,
                          out_len is updated to actual cid sizes
   \return      return 0 if successful,otherwise error code
 */
-int32_t csi_tee_get_cid(uint8_t *out, uint32_t *out_len);
+int32_t csi_tee_get_cid( uint8_t * out, uint32_t * out_len );
 
 /****** lpm mode *****/
-typedef enum {
-    TEE_LPM_MODE_WAIT = 0,   ///< lpm wait
-    TEE_LPM_MODE_DOZE = 1,   ///< lpm doze
-    TEE_LPM_MODE_STOP = 2,   ///< lpm stop
+typedef enum
+{
+    TEE_LPM_MODE_WAIT = 0,    ///< lpm wait
+    TEE_LPM_MODE_DOZE = 1,    ///< lpm doze
+    TEE_LPM_MODE_STOP = 2,    ///< lpm stop
     TEE_LPM_MODE_STANDBY = 3, ///< lpm standby
     TEE_LPM_MODE_MAX,
 } tee_lpm_mode_e;
@@ -213,18 +220,20 @@ typedef enum {
   \param[in]   mode  \ref tee_lpm_mode_e
   \return      return 0 if successful,otherwise error code
 */
-int32_t csi_tee_enter_lpm(uint32_t gate, uint32_t irqid, tee_lpm_mode_e mode);
+int32_t csi_tee_enter_lpm( uint32_t gate, uint32_t irqid, tee_lpm_mode_e mode );
 
 /**
   \brief       TEE obtain manifest info from manifest table
-  \note        call csi_tee_get_sys_img_info, csi_tee_get_sys_os_version or csi_tee_get_sys_partition is better
-  \param[out]  out     Pointer to info buffer
-  \param[out]  out_len Info buffer length,if info obtain successfully,
+  \note        call csi_tee_get_sys_img_info, csi_tee_get_sys_os_version or
+  csi_tee_get_sys_partition is better \param[out]  out     Pointer to info
+  buffer \param[out]  out_len Info buffer length,if info obtain successfully,
                        out_len is updated to actual sizes
   \param[in]   name    info name
   \return      return 0 if successful,otherwise error code
 */
-int32_t csi_tee_get_manifest_info(uint8_t *out, uint32_t *out_len, char *name);
+int32_t csi_tee_get_manifest_info( uint8_t * out,
+                                   uint32_t * out_len,
+                                   char * name );
 
 /**
   \brief       TEE obtain image buffer from manifest table
@@ -234,8 +243,8 @@ int32_t csi_tee_get_manifest_info(uint8_t *out, uint32_t *out_len, char *name);
   \param[in]   img_name image name
   \return      return 0 if successful,otherwise error code
 */
-#define csi_tee_get_sys_img_info(out,out_len,img_name) \
-    csi_tee_get_manifest_info(out,out_len,img_name)
+#define csi_tee_get_sys_img_info( out, out_len, img_name ) \
+    csi_tee_get_manifest_info( out, out_len, img_name )
 
 /**
   \brief       TEE obtain os version from manifest table
@@ -244,8 +253,8 @@ int32_t csi_tee_get_manifest_info(uint8_t *out, uint32_t *out_len, char *name);
                        out_len is updated to actual os version buffer sizes
   \return      return 0 if successful,otherwise error code
 */
-#define csi_tee_get_sys_os_version(out,out_len) \
-    csi_tee_get_manifest_info(out,out_len,"os_v")
+#define csi_tee_get_sys_os_version( out, out_len ) \
+    csi_tee_get_manifest_info( out, out_len, "os_v" )
 
 /**
   \brief       TEE obtain partition buffer from manifest table
@@ -254,15 +263,15 @@ int32_t csi_tee_get_manifest_info(uint8_t *out, uint32_t *out_len, char *name);
                        out_len is updated to actual partition buffer sizes
   \return      return 0 if successful,otherwise error code
 */
-#define csi_tee_get_sys_partition(out,out_len) \
-    csi_tee_get_manifest_info(out,out_len,"sys_p")
+#define csi_tee_get_sys_partition( out, out_len ) \
+    csi_tee_get_manifest_info( out, out_len, "sys_p" )
 
 /**
   \brief       TEE set random seed
   \param[in]   Seed random sedd
   \return      return 0 if successful,otherwise error code
 */
-int32_t csi_tee_rand_seed(uint32_t seed);
+int32_t csi_tee_rand_seed( uint32_t seed );
 
 /**
   \brief       TEE ramdom date generation
@@ -270,14 +279,15 @@ int32_t csi_tee_rand_seed(uint32_t seed);
   \param[in]   out_len Data buffer length
   \return      return 0 if successful,otherwise error code
 */
-int32_t csi_tee_rand_generate(uint8_t *out, uint32_t out_len);
+int32_t csi_tee_rand_generate( uint8_t * out, uint32_t out_len );
 
 /****** TEE RSA sign type *****/
-typedef enum {
-    TEE_RSA_MD5    = 0,     ///< MD5
-    TEE_RSA_SHA1   = 1,     ///< SHA1
-    TEE_RSA_SHA256 = 3,     ///< SHA256
-    TEE_RSA_SIGN_TYPE_MAX,  ///< invailed type
+typedef enum
+{
+    TEE_RSA_MD5 = 0,       ///< MD5
+    TEE_RSA_SHA1 = 1,      ///< SHA1
+    TEE_RSA_SHA256 = 3,    ///< SHA256
+    TEE_RSA_SIGN_TYPE_MAX, ///< invailed type
 } tee_rsa_sign_type_e;
 
 /**
@@ -285,37 +295,44 @@ typedef enum {
   \param[in]   in       Pointer to digest buffer
   \param[in]   in_len   Digest buffer length
   \param[in]   key      Pointer to private key,key contains n, e, d
-  \param[in]   key_len  Private key size,must be 128*3 = 384 bytes for RSA1024, 256*3 = 768 bytes for RSA2048
-  \param[out]  sign     Pointer to sign buffer
+  \param[in]   key_len  Private key size,must be 128*3 = 384 bytes for RSA1024,
+  256*3 = 768 bytes for RSA2048 \param[out]  sign     Pointer to sign buffer
   \param[out]  sign_len Sign buffer length
   \param[in]   type     \ref tee_rsa_sign_type_e
   \return      return  0 if successful,otherwise error code
 */
-int32_t csi_tee_rsa_sign(const uint8_t *in, uint32_t in_len,
-                         const uint8_t *key, uint32_t key_len,
-                         uint8_t *sign, uint32_t *sign_len,
-                         tee_rsa_sign_type_e type);
+int32_t csi_tee_rsa_sign( const uint8_t * in,
+                          uint32_t in_len,
+                          const uint8_t * key,
+                          uint32_t key_len,
+                          uint8_t * sign,
+                          uint32_t * sign_len,
+                          tee_rsa_sign_type_e type );
 
 /**
   \brief       TEE RSA verify with public key
   \param[in]   in       Pointer to digest buffer
   \param[in]   in_len   Digest buffer length
   \param[in]   key      Pointer to public key,key contains n, e
-  \param[in]   key_len  Public key size,must be 128*2 = 256 bytes for RSA1024, 256*2 = 512 bytes for RSA2048
-  \param[in]   sign     Pointer to sign buffer
+  \param[in]   key_len  Public key size,must be 128*2 = 256 bytes for RSA1024,
+  256*2 = 512 bytes for RSA2048 \param[in]   sign     Pointer to sign buffer
   \param[in]   sign_len Sign buffer length
   \param[in]   type     \ref tee_rsa_sign_type_e
   \return      return  0 if verify successful,otherwise error code
 */
-int32_t csi_tee_rsa_verify(const uint8_t *in, uint32_t in_len,
-                           const uint8_t *key, uint32_t key_len,
-                           uint8_t *sign, uint32_t sign_len,
-                           tee_rsa_sign_type_e type);
+int32_t csi_tee_rsa_verify( const uint8_t * in,
+                            uint32_t in_len,
+                            const uint8_t * key,
+                            uint32_t key_len,
+                            uint8_t * sign,
+                            uint32_t sign_len,
+                            tee_rsa_sign_type_e type );
 
 /****** TEE RSA padding mode *****/
-typedef enum {
-    TEE_RSA_PKCS1_PADDING = 0x01,     ///< RSA PKCS padding mode
-    TEE_RSA_NO_PADDING    = 0x02,     ///< RSA no padding mode
+typedef enum
+{
+    TEE_RSA_PKCS1_PADDING = 0x01, ///< RSA PKCS padding mode
+    TEE_RSA_NO_PADDING = 0x02,    ///< RSA no padding mode
 } tee_rsa_padding_mode_e;
 
 /**
@@ -323,31 +340,37 @@ typedef enum {
   \param[in]   in       Pointer to plaintext buffer
   \param[in]   in_len   Plaintext buffer length
   \param[in]   key      Pointer to public key,key contains n, e
-  \param[in]   key_len  Public key size, must be 128*2 = 256 bytes for RSA1024, 256*2 = 512 bytes for RSA2048
-  \param[in]   out      Pointer to ciphertext buffer
-  \param[in]   out_len  Ciphertext buffer length
-  \param[in]   padding  \ref tee_rsa_padding_mode_e
-  \return      return  0 if successful,otherwise error code
+  \param[in]   key_len  Public key size, must be 128*2 = 256 bytes for RSA1024,
+  256*2 = 512 bytes for RSA2048 \param[in]   out      Pointer to ciphertext
+  buffer \param[in]   out_len  Ciphertext buffer length \param[in]   padding
+  \ref tee_rsa_padding_mode_e \return      return  0 if successful,otherwise
+  error code
 */
-int32_t csi_tee_rsa_encrypt(const uint8_t *in, uint32_t in_len,
-                            const uint8_t *key, uint32_t key_len,
-                            uint8_t *out, uint32_t *out_len,
-                            tee_rsa_padding_mode_e padding);
+int32_t csi_tee_rsa_encrypt( const uint8_t * in,
+                             uint32_t in_len,
+                             const uint8_t * key,
+                             uint32_t key_len,
+                             uint8_t * out,
+                             uint32_t * out_len,
+                             tee_rsa_padding_mode_e padding );
 /**
   \brief       TEE RSA decrypt with private key
   \param[in]   in       Pointer to ciphertext buffer
   \param[in]   in_len   Ciphertext buffer length
   \param[in]   key      Pointer to private key,key contains n, e, d
-  \param[in]   key_len  Private key size,must be 128*3 = 384 bytes for RSA1024, 256*3 = 768 bytes for RSA2048
-  \param[in]   out      Pointer to plaintext buffer
-  \param[in]   out_len  Plaintext buffer length
-  \param[in]   padding  \ref tee_rsa_padding_mode_e
-  \return      return  0 if successful,otherwise error code
+  \param[in]   key_len  Private key size,must be 128*3 = 384 bytes for RSA1024,
+  256*3 = 768 bytes for RSA2048 \param[in]   out      Pointer to plaintext
+  buffer \param[in]   out_len  Plaintext buffer length \param[in]   padding \ref
+  tee_rsa_padding_mode_e \return      return  0 if successful,otherwise error
+  code
 */
-int32_t csi_tee_rsa_decrypt(const uint8_t *in, uint32_t in_len,
-                            const uint8_t *key, uint32_t key_len,
-                            uint8_t *out, uint32_t *out_len,
-                            tee_rsa_padding_mode_e padding);
+int32_t csi_tee_rsa_decrypt( const uint8_t * in,
+                             uint32_t in_len,
+                             const uint8_t * key,
+                             uint32_t key_len,
+                             uint8_t * out,
+                             uint32_t * out_len,
+                             tee_rsa_padding_mode_e padding );
 
 /**
   \brief       TEE RSA sign with internal private key
@@ -359,8 +382,8 @@ int32_t csi_tee_rsa_decrypt(const uint8_t *in, uint32_t in_len,
   \param[in]   type     \ref tee_rsa_sign_type_e
   \return      return  0 if successful,otherwise error code
 */
-#define csi_tee_cid_rsa_sign(in,in_len,sign,sign_len,type) \
-    csi_tee_rsa_sign(in,in_len,NULL,0,sign,sign_len,type)
+#define csi_tee_cid_rsa_sign( in, in_len, sign, sign_len, type ) \
+    csi_tee_rsa_sign( in, in_len, NULL, 0, sign, sign_len, type )
 
 /**
   \brief       TEE RSA verify with internal public key
@@ -372,8 +395,8 @@ int32_t csi_tee_rsa_decrypt(const uint8_t *in, uint32_t in_len,
   \param[in]   type     \ref tee_rsa_sign_type_e
   \return      return  0 if verify successful,otherwise error code
 */
-#define csi_tee_cid_rsa_verify(in,in_len,sign,sign_len,type) \
-    csi_tee_rsa_verify(in,in_len,NULL,0,sign,sign_len,type)
+#define csi_tee_cid_rsa_verify( in, in_len, sign, sign_len, type ) \
+    csi_tee_rsa_verify( in, in_len, NULL, 0, sign, sign_len, type )
 
 /**
   \brief       TEE RSA encrypt with internal public key
@@ -385,8 +408,8 @@ int32_t csi_tee_rsa_decrypt(const uint8_t *in, uint32_t in_len,
   \param[in]   padding  \ref tee_rsa_padding_mode_e
   \return      return  0 if successful,otherwise error code
 */
-#define csi_tee_cid_rsa_encrypt(in,in_len,out,out_len,padding) \
-    csi_tee_rsa_encrypt(in,in_len,NULL,0,out,out_len,padding)
+#define csi_tee_cid_rsa_encrypt( in, in_len, out, out_len, padding ) \
+    csi_tee_rsa_encrypt( in, in_len, NULL, 0, out, out_len, padding )
 
 /**
   \brief       TEE RSA decrypt with internal private key
@@ -394,14 +417,14 @@ int32_t csi_tee_rsa_decrypt(const uint8_t *in, uint32_t in_len,
   \param[in]   in       Pointer to ciphertext buffer
   \param[in]   in_len   Ciphertext buffer length
   \param[in]   key      Pointer to private key,key contains n, e, d
-  \param[in]   key_len  Private key size,must be 128*3 = 384 bytes for RSA1024, 256*3 = 768 bytes for RSA2048
-  \param[in]   out      Pointer to plaintext buffer
-  \param[in]   out_len  Plaintext buffer length
-  \param[in]   padding  \ref tee_rsa_padding_mode_e
-  \return      return  0 if successful,otherwise error code
+  \param[in]   key_len  Private key size,must be 128*3 = 384 bytes for RSA1024,
+  256*3 = 768 bytes for RSA2048 \param[in]   out      Pointer to plaintext
+  buffer \param[in]   out_len  Plaintext buffer length \param[in]   padding \ref
+  tee_rsa_padding_mode_e \return      return  0 if successful,otherwise error
+  code
 */
-#define csi_tee_cid_rsa_decrypt(in,in_len,out,out_len,padding) \
-    csi_tee_rsa_decrypt(in,in_len,NULL,0,out,out_len,padding)
+#define csi_tee_cid_rsa_decrypt( in, in_len, out, out_len, padding ) \
+    csi_tee_rsa_decrypt( in, in_len, NULL, 0, out, out_len, padding )
 
 /**
   \brief       verify boot image with boot public key
@@ -413,29 +436,33 @@ int32_t csi_tee_rsa_decrypt(const uint8_t *in, uint32_t in_len,
   \param[in]   type     \ref tee_rsa_sign_type_e
   \return      return  0 if verify successful,otherwise error code
 */
-int32_t csi_tee_img_rsa_verify(const uint8_t *in, uint32_t in_len,
-                               uint8_t *sign, uint32_t sign_len,
-                               tee_rsa_sign_type_e type);
+int32_t csi_tee_img_rsa_verify( const uint8_t * in,
+                                uint32_t in_len,
+                                uint8_t * sign,
+                                uint32_t sign_len,
+                                tee_rsa_sign_type_e type );
 
 /****** TEE HASH operation mode *****/
-typedef enum {
-    TEE_HASH_OP_NONE = 0,     ///< No operation
-    TEE_HASH_OP_START = 1,    ///< HASH init
-    TEE_HASH_OP_UPDATA = 2,   ///< HASH update
-    TEE_HASH_OP_FINISH = 3,   ///< HASH finish
-    TEE_HASH_OP_MAX,          ///< invailed operation
+typedef enum
+{
+    TEE_HASH_OP_NONE = 0,   ///< No operation
+    TEE_HASH_OP_START = 1,  ///< HASH init
+    TEE_HASH_OP_UPDATA = 2, ///< HASH update
+    TEE_HASH_OP_FINISH = 3, ///< HASH finish
+    TEE_HASH_OP_MAX,        ///< invailed operation
 } tee_hash_op_e;
 
 /****** TEE HMAC type *****/
-typedef enum {
-    TEE_HMAC_SHA1 = 1,    ///< HMAC with SHA1
+typedef enum
+{
+    TEE_HMAC_SHA1 = 1, ///< HMAC with SHA1
 } tee_hmac_type_e;
 
 /**
   \brief       TEE HAMC
   \note        Call csi_tee_hmac_digest is better
-               out buffer size must be large enough according to type, eg. 20 bytes for TEE_HMAC_SHA1
-  \param[in]   in       Pointer to input data buffer
+               out buffer size must be large enough according to type, eg. 20
+  bytes for TEE_HMAC_SHA1 \param[in]   in       Pointer to input data buffer
   \param[in]   in_len   Input data buffer length
   \param[in]   key      Pointer to key buffer
   \param[in]   key_len  Key buffer size
@@ -445,17 +472,19 @@ typedef enum {
   \param[in]   ctx      Pointer to context of hmac
   \return      return  0 if successful,otherwise error code
 */
-int32_t csi_tee_hmac(const uint8_t *in, uint32_t  in_len,
-                     const uint8_t *key, uint32_t key_len,
-                     uint8_t *out,
-                     tee_hmac_type_e type,
-                     tee_hash_op_e hash_op,
-                     uint32_t *ctx);
+int32_t csi_tee_hmac( const uint8_t * in,
+                      uint32_t in_len,
+                      const uint8_t * key,
+                      uint32_t key_len,
+                      uint8_t * out,
+                      tee_hmac_type_e type,
+                      tee_hash_op_e hash_op,
+                      uint32_t * ctx );
 
 /**
   \brief       TEE HAMC digest
-  \note        out buffer size must be large enough according to type, eg. 20 bytes for TEE_HMAC_SHA1
-  \param[in]   in       Pointer to input data buffer
+  \note        out buffer size must be large enough according to type, eg. 20
+  bytes for TEE_HMAC_SHA1 \param[in]   in       Pointer to input data buffer
   \param[in]   in_len   Input data buffer length
   \param[in]   key      Pointer to key buffer
   \param[in]   key_len  Key buffer size
@@ -463,11 +492,12 @@ int32_t csi_tee_hmac(const uint8_t *in, uint32_t  in_len,
   \param[in]   type     \ref tee_hmac_type_e
   \return      return  0 if successful,otherwise error code
 */
-#define csi_tee_hmac_digest(in,in_len,key,key_len,out,type) \
-    csi_tee_hmac(in,in_len,key,key_len,out,type,TEE_HASH_OP_NONE,NULL)
+#define csi_tee_hmac_digest( in, in_len, key, key_len, out, type ) \
+    csi_tee_hmac( in, in_len, key, key_len, out, type, TEE_HASH_OP_NONE, NULL )
 
 /****** TEE SHA type *****/
-typedef enum {
+typedef enum
+{
     TEE_SHA1 = 0,   ///< SHA1
     TEE_SHA256 = 1, ///< SHA256
     TEE_SHA224 = 2, ///< SHA224
@@ -478,33 +508,33 @@ typedef enum {
 
 /**
   \brief       TEE SHA
-  \note        Call csi_tee_sha_digest, csi_tee_sha_start, csi_tee_sha_update or csi_tee_sha_finish is better
-               out buffer size must be large enough according to type, eg. 20 bytes for TEE_SHA1, 32 bytes for TEE_SHA256
-  \param[in]   in       Pointer to input data buffer
-  \param[in]   in_len   Input data buffer length
+  \note        Call csi_tee_sha_digest, csi_tee_sha_start, csi_tee_sha_update or
+  csi_tee_sha_finish is better out buffer size must be large enough according to
+  type, eg. 20 bytes for TEE_SHA1, 32 bytes for TEE_SHA256 \param[in]   in
+  Pointer to input data buffer \param[in]   in_len   Input data buffer length
   \param[out]  out      Pointer to output date buffer
   \param[in]   type     \ref tee_sha_type_t
   \param[in]   hash_op  \ref tee_hash_op_e
   \param[in]   ctx      Pointer to context of sha
   \return      return  0 if successful,otherwise error code
 */
-int32_t csi_tee_sha(const uint8_t *in, uint32_t in_len,
-                    uint8_t *out,
-                    tee_sha_type_t type,
-                    tee_hash_op_e hash_op,
-                    void *ctx);
+int32_t csi_tee_sha( const uint8_t * in,
+                     uint32_t in_len,
+                     uint8_t * out,
+                     tee_sha_type_t type,
+                     tee_hash_op_e hash_op,
+                     void * ctx );
 
 /**
   \brief       TEE SHA digest
-  \note        out buffer size must be large enough according to type, eg. 20 bytes for TEE_SHA1, 32 bytes for TEE_SHA256
-  \param[in]   in       Pointer to input data buffer
-  \param[in]   in_len   Input data buffer length
-  \param[out]  out      Pointer to output date buffer
-  \param[in]   type     \ref tee_sha_type_t
-  \return      return  0 if successful,otherwise error code
+  \note        out buffer size must be large enough according to type, eg. 20
+  bytes for TEE_SHA1, 32 bytes for TEE_SHA256 \param[in]   in       Pointer to
+  input data buffer \param[in]   in_len   Input data buffer length \param[out]
+  out      Pointer to output date buffer \param[in]   type     \ref
+  tee_sha_type_t \return      return  0 if successful,otherwise error code
 */
-#define csi_tee_sha_digest(in,in_len,out,type) \
-    csi_tee_sha(in,in_len,out,type,TEE_HASH_OP_NONE,NULL);
+#define csi_tee_sha_digest( in, in_len, out, type ) \
+    csi_tee_sha( in, in_len, out, type, TEE_HASH_OP_NONE, NULL );
 
 /**
   \brief       TEE SHA start, initial sha
@@ -512,8 +542,8 @@ int32_t csi_tee_sha(const uint8_t *in, uint32_t in_len,
   \param[in]   ctx      Pointer to context of sha
   \return      return  0 if successful,otherwise error code
 */
-#define csi_tee_sha_start(type,ctx) \
-    csi_tee_sha(NULL,0,NULL,type,TEE_HASH_OP_START,ctx);
+#define csi_tee_sha_start( type, ctx ) \
+    csi_tee_sha( NULL, 0, NULL, type, TEE_HASH_OP_START, ctx );
 
 /**
   \brief       TEE SHA update, update data
@@ -522,35 +552,39 @@ int32_t csi_tee_sha(const uint8_t *in, uint32_t in_len,
   \param[in]   ctx      Pointer to context of sha
   \return      return  0 if successful,otherwise error code
 */
-#define csi_tee_sha_update(in,in_len,ctx) \
-    csi_tee_sha(in,in_len,NULL,0,TEE_HASH_OP_UPDATA,ctx);
+#define csi_tee_sha_update( in, in_len, ctx ) \
+    csi_tee_sha( in, in_len, NULL, 0, TEE_HASH_OP_UPDATA, ctx );
 
 /**
   \brief       TEE SHA digest, get sha digest
-  \note        out buffer size must be large enough according to type, eg. 20 bytes for TEE_SHA1, 32 bytes for TEE_SHA256
-  \param[out]  out      Pointer to output date buffer
-  \param[in]   ctx      Pointer to context of sha
-  \return      return  0 if successful,otherwise error code
+  \note        out buffer size must be large enough according to type, eg. 20
+  bytes for TEE_SHA1, 32 bytes for TEE_SHA256 \param[out]  out      Pointer to
+  output date buffer \param[in]   ctx      Pointer to context of sha \return
+  return  0 if successful,otherwise error code
 */
-#define csi_tee_sha_finish(out,ctx) \
-    csi_tee_sha(NULL,0,out,0,TEE_HASH_OP_FINISH,ctx);
+#define csi_tee_sha_finish( out, ctx ) \
+    csi_tee_sha( NULL, 0, out, 0, TEE_HASH_OP_FINISH, ctx );
 
 /**
   \brief       TEE get device name and product key
   \param[in]   name_encrypted             Pointer to device name ciphertext
   \param[in]   name_encrypted_len         device name ciphertext length
-  \param[in]   product_key_encrypted      Pointer to device product key ciphertext
-  \param[in]   product_key_encrypted_len  Device product key ciphertext length
-  \param[out]  name                       Pointer to device name
-  \param[out]  name_len                   Device name length
-  \param[out]  product_key                Pointer to device product key
-  \param[out]  product_key_len            Device product key length
-  \return      return  0 if successful,otherwise error code
+  \param[in]   product_key_encrypted      Pointer to device product key
+  ciphertext \param[in]   product_key_encrypted_len  Device product key
+  ciphertext length \param[out]  name                       Pointer to device
+  name \param[out]  name_len                   Device name length \param[out]
+  product_key                Pointer to device product key \param[out]
+  product_key_len            Device product key length \return      return  0 if
+  successful,otherwise error code
 */
-int32_t csi_tee_dev_info_get(const uint8_t *name_encrypted, uint32_t name_encrypted_len,
-                             const uint8_t *product_key_encrypted, uint32_t product_key_encrypted_len,
-                             const uint8_t *name, uint32_t *name_len,
-                             const uint8_t *product_key, uint32_t *product_key_len);
+int32_t csi_tee_dev_info_get( const uint8_t * name_encrypted,
+                              uint32_t name_encrypted_len,
+                              const uint8_t * product_key_encrypted,
+                              uint32_t product_key_encrypted_len,
+                              const uint8_t * name,
+                              uint32_t * name_len,
+                              const uint8_t * product_key,
+                              uint32_t * product_key_len );
 
 /**
   \brief       TEE device info sign
@@ -562,9 +596,12 @@ int32_t csi_tee_dev_info_get(const uint8_t *name_encrypted, uint32_t name_encryp
   \param[out]  sign_len           Signed buffer length
   \return      return  0 if successful,otherwise error code
 */
-int32_t csi_tee_dev_info_sign(const uint8_t *in, uint32_t in_len,
-                              const uint8_t *device_secret, uint32_t device_secret_len,
-                              const uint8_t *sign, uint32_t *sign_len);
+int32_t csi_tee_dev_info_sign( const uint8_t * in,
+                               uint32_t in_len,
+                               const uint8_t * device_secret,
+                               uint32_t device_secret_len,
+                               const uint8_t * sign,
+                               uint32_t * sign_len );
 
 /**
   \brief       TEE device info encrypt/decrypt
@@ -575,9 +612,11 @@ int32_t csi_tee_dev_info_sign(const uint8_t *in, uint32_t in_len,
   \param[in]   is_enc             1 incrypt 0 decrypt
   \return      return  0 if successful,otherwise error code
 */
-int32_t csi_tee_dev_info_crypt(const uint8_t *in, uint32_t in_len,
-                              uint8_t *out, uint32_t *out_len,
-                              uint8_t is_enc);
+int32_t csi_tee_dev_info_crypt( const uint8_t * in,
+                                uint32_t in_len,
+                                uint8_t * out,
+                                uint32_t * out_len,
+                                uint8_t is_enc );
 
 /**
   \brief       TEE device info encrypt
@@ -587,8 +626,8 @@ int32_t csi_tee_dev_info_crypt(const uint8_t *in, uint32_t in_len,
   \param[in]   out_len            Onput data buffer length
   \return      return  0 if successful,otherwise error code
 */
-#define csi_tee_dev_info_encrypt(in, in_len, out, out_len) \
-    csi_tee_dev_info_crypt(in, in_len, out, out_len, 1)
+#define csi_tee_dev_info_encrypt( in, in_len, out, out_len ) \
+    csi_tee_dev_info_crypt( in, in_len, out, out_len, 1 )
 
 /**
   \brief       TEE device info decrypt
@@ -598,22 +637,24 @@ int32_t csi_tee_dev_info_crypt(const uint8_t *in, uint32_t in_len,
   \param[in]   out_len            Onput data buffer length
   \return      return  0 if successful,otherwise error code
 */
-#define csi_tee_dev_info_decrypt(in, in_len, out, out_len) \
-    csi_tee_dev_info_crypt(in, in_len, out, out_len, 0)
+#define csi_tee_dev_info_decrypt( in, in_len, out, out_len ) \
+    csi_tee_dev_info_crypt( in, in_len, out, out_len, 0 )
 
 /****** system clock source type *****/
-typedef enum {
-    IHS_CLK       = 0, ///< internel clock source
-    EHS_CLK       = 1  ///< externel clock source
+typedef enum
+{
+    IHS_CLK = 0, ///< internel clock source
+    EHS_CLK = 1  ///< externel clock source
 } clk_src_e;
 
 /****** system clock value scope *****/
-typedef enum {
-    OSR_8M_CLK_16M      = 0x80204, ///< register value for clock 16M
-    OSR_8M_CLK_24M      = 0x80206, ///< register value for clock 24M
-    OSR_8M_CLK_32M      = 0x80208, ///< register value for clock 32M
-    OSR_8M_CLK_40M      = 0x8020a, ///< register value for clock 40M
-    OSR_8M_CLK_48M      = 0x8020c  ///< register value for clock 48M
+typedef enum
+{
+    OSR_8M_CLK_16M = 0x80204, ///< register value for clock 16M
+    OSR_8M_CLK_24M = 0x80206, ///< register value for clock 24M
+    OSR_8M_CLK_32M = 0x80208, ///< register value for clock 32M
+    OSR_8M_CLK_40M = 0x8020a, ///< register value for clock 40M
+    OSR_8M_CLK_48M = 0x8020c  ///< register value for clock 48M
 } clk_val_e;
 
 /**
@@ -622,17 +663,16 @@ typedef enum {
   \param[in]   clk_val      system freqence to be set
   \return      return  0 if successful,otherwise error code
 */
-int32_t csi_tee_set_sys_freq(uint32_t clk_src, uint32_t clk_val);
+int32_t csi_tee_set_sys_freq( uint32_t clk_src, uint32_t clk_val );
 
 /**
   \brief       Get system frequence
   \param[in]   clk_val      value address to store system freqence
   \return      return  0 if successful,otherwise error code
 */
-int32_t csi_tee_get_sys_freq(uint32_t *clk_val);
+int32_t csi_tee_get_sys_freq( uint32_t * clk_val );
 
-
-int32_t csi_tee_xor(uint8_t *out, uint32_t *out_len);
+int32_t csi_tee_xor( uint8_t * out, uint32_t * out_len );
 #ifdef __cplusplus
 }
 #endif

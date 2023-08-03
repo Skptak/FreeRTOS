@@ -8,9 +8,10 @@
  (c) 2018 Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms,you may use this software and
-    any derivatives exclusively with Microchip products.It is your responsibility
-    to comply with third party license terms applicable to your use of third party
-    software (including open source software) that may accompany Microchip software.
+    any derivatives exclusively with Microchip products.It is your
+ responsibility to comply with third party license terms applicable to your use
+ of third party software (including open source software) that may accompany
+ Microchip software.
 
     THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES, WHETHER
     EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE, INCLUDING ANY IMPLIED
@@ -44,27 +45,29 @@
 extern "C" {
 #endif
 
-#define MCU_RESET_CAUSE_POR (1 << PORF)
-#define MCU_RESET_CAUSE_EXT (1 << EXTRF)
-#define MCU_RESET_CAUSE_BOR (1 << BORF)
-#define MCU_RESET_CAUSE_WDT (1 << WDRF)
+#define MCU_RESET_CAUSE_POR ( 1 << PORF )
+#define MCU_RESET_CAUSE_EXT ( 1 << EXTRF )
+#define MCU_RESET_CAUSE_BOR ( 1 << BORF )
+#define MCU_RESET_CAUSE_WDT ( 1 << WDRF )
 
-static inline void mcu_init(void)
+static inline void mcu_init( void )
 {
-	/* On AVR devices all peripherals are enabled from power on reset, this
-	 * disables all peripherals to save power. Driver shall enable
-	 * peripheral if used */
+    /* On AVR devices all peripherals are enabled from power on reset, this
+     * disables all peripherals to save power. Driver shall enable
+     * peripheral if used */
 
-	PRR1 = (1 << PRTWI1) | (1 << PRTIM4) | (1 << PRSPI1) | (1 << PRPTC) | (1 << PRTIM3);
+    PRR1 = ( 1 << PRTWI1 ) | ( 1 << PRTIM4 ) | ( 1 << PRSPI1 ) |
+           ( 1 << PRPTC ) | ( 1 << PRTIM3 );
 
-	PRR0 = (1 << PRTIM2) | (1 << PRTIM0) | (1 << PRTIM1) | (1 << PRTWI0) | (1 << PRUSART1) | (1 << PRUSART0)
-	       | (1 << PRADC) | (1 << PRSPI0);
+    PRR0 = ( 1 << PRTIM2 ) | ( 1 << PRTIM0 ) | ( 1 << PRTIM1 ) |
+           ( 1 << PRTWI0 ) | ( 1 << PRUSART1 ) | ( 1 << PRUSART0 ) |
+           ( 1 << PRADC ) | ( 1 << PRSPI0 );
 
-	/* Set all pins to low power mode */
-	PORTB_set_port_dir(0xff, PORT_DIR_OFF);
-	PORTC_set_port_dir(0x7f, PORT_DIR_OFF);
-	PORTD_set_port_dir(0xff, PORT_DIR_OFF);
-	PORTE_set_port_dir(0x0f, PORT_DIR_OFF);
+    /* Set all pins to low power mode */
+    PORTB_set_port_dir( 0xff, PORT_DIR_OFF );
+    PORTC_set_port_dir( 0x7f, PORT_DIR_OFF );
+    PORTD_set_port_dir( 0xff, PORT_DIR_OFF );
+    PORTE_set_port_dir( 0x0f, PORT_DIR_OFF );
 }
 
 #ifdef __cplusplus

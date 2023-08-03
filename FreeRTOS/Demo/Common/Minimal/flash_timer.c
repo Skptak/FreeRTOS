@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -34,14 +35,14 @@
 #include "timers.h"
 
 /* Demo program include files. */
-#include "partest.h"
 #include "flash_timer.h"
+#include "partest.h"
 
 /* The toggle rates are all a multple of ledFLASH_RATE_BASE. */
-#define ledFLASH_RATE_BASE    ( ( ( TickType_t ) 333 ) / portTICK_PERIOD_MS )
+#define ledFLASH_RATE_BASE ( ( ( TickType_t ) 333 ) / portTICK_PERIOD_MS )
 
 /* A block time of zero simple means "don't block". */
-#define ledDONT_BLOCK         ( ( TickType_t ) 0 )
+#define ledDONT_BLOCK      ( ( TickType_t ) 0 )
 
 /*-----------------------------------------------------------*/
 
@@ -63,17 +64,23 @@ void vStartLEDFlashTimers( UBaseType_t uxNumberOfLEDs )
     for( uxLEDTimer = 0; uxLEDTimer < uxNumberOfLEDs; ++uxLEDTimer )
     {
         /* Create the timer. */
-        xTimer = xTimerCreate( "Flasher",                               /* A text name, purely to help debugging. */
-                               ledFLASH_RATE_BASE * ( uxLEDTimer + 1 ), /* The timer period, which is a multiple of ledFLASH_RATE_BASE. */
-                               pdTRUE,                                  /* This is an auto-reload timer, so xAutoReload is set to pdTRUE. */
-                               ( void * ) uxLEDTimer,                   /* The ID is used to identify the timer within the timer callback function, as each timer uses the same callback. */
-                               prvLEDTimerCallback                      /* Each timer uses the same callback. */
-                               );
+        xTimer = xTimerCreate(
+            "Flasher", /* A text name, purely to help debugging. */
+            ledFLASH_RATE_BASE * ( uxLEDTimer + 1 ), /* The timer period, which
+                                                        is a multiple of
+                                                        ledFLASH_RATE_BASE. */
+            pdTRUE, /* This is an auto-reload timer, so xAutoReload is set to
+                       pdTRUE. */
+            ( void * ) uxLEDTimer, /* The ID is used to identify the timer
+                                      within the timer callback function, as
+                                      each timer uses the same callback. */
+            prvLEDTimerCallback    /* Each timer uses the same callback. */
+        );
 
         /* If the timer was created successfully, attempt to start it.  If the
          * scheduler has not yet been started then the timer command queue must
-         * be long enough to hold each command sent to it until such time that the
-         * scheduler is started.  The timer command queue length is set by
+         * be long enough to hold each command sent to it until such time that
+         * the scheduler is started.  The timer command queue length is set by
          * configTIMER_QUEUE_LENGTH in FreeRTOSConfig.h. */
         if( xTimer != NULL )
         {
@@ -88,8 +95,8 @@ static void prvLEDTimerCallback( TimerHandle_t xTimer )
     BaseType_t xTimerID;
 
     /* The timer ID is used to identify the timer that has actually expired as
-     * each timer uses the same callback.  The ID is then also used as the number
-     * of the LED that is to be toggled. */
+     * each timer uses the same callback.  The ID is then also used as the
+     * number of the LED that is to be toggled. */
     xTimerID = ( BaseType_t ) pvTimerGetTimerID( xTimer );
     vParTestToggleLED( xTimerID );
 }

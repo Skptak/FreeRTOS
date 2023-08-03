@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
- *         ATMEL Microcontroller Software Support 
+ *         ATMEL Microcontroller Software Support
  * ----------------------------------------------------------------------------
  * Copyright (c) 2008, Atmel Corporation
  *
@@ -29,16 +29,15 @@
 
 #include <board.h>
 
-#if defined (AT91C_ID_LCDC)
+#if defined( AT91C_ID_LCDC )
 
 //------------------------------------------------------------------------------
 //         Headers
 //------------------------------------------------------------------------------
 
-#include "lcd.h"
-#include <utility/assert.h>
-#include <utility/trace.h>
-
+    #include "lcd.h"
+    #include <utility/assert.h>
+    #include <utility/trace.h>
 
 //------------------------------------------------------------------------------
 //         Exported functions
@@ -49,15 +48,16 @@
 /// frames.
 /// \param frames  Number of frames before the LCD is enabled.
 //------------------------------------------------------------------------------
-void LCD_Enable(unsigned int frames)
+void LCD_Enable( unsigned int frames )
 {
-    TRACE_DEBUG("LCD enable\n\r");
-    ASSERT((frames & 0xFFFFFF80) == 0,
-           "LCD_Enable: Wrong frames value.\n\r");
-    if( (AT91C_BASE_LCDC->LCDC_PWRCON & AT91C_LCDC_BUSY) == AT91C_LCDC_BUSY ) {
-        TRACE_DEBUG("LCD BUSY E\n\r");
+    TRACE_DEBUG( "LCD enable\n\r" );
+    ASSERT( ( frames & 0xFFFFFF80 ) == 0,
+            "LCD_Enable: Wrong frames value.\n\r" );
+    if( ( AT91C_BASE_LCDC->LCDC_PWRCON & AT91C_LCDC_BUSY ) == AT91C_LCDC_BUSY )
+    {
+        TRACE_DEBUG( "LCD BUSY E\n\r" );
     }
-    AT91C_BASE_LCDC->LCDC_PWRCON = AT91C_LCDC_PWR | (frames << 1);
+    AT91C_BASE_LCDC->LCDC_PWRCON = AT91C_LCDC_PWR | ( frames << 1 );
 }
 
 //------------------------------------------------------------------------------
@@ -65,26 +65,30 @@ void LCD_Enable(unsigned int frames)
 /// frames.
 /// \param frames  Number of frames before the LCD is shut down.
 //------------------------------------------------------------------------------
-void LCD_Disable(unsigned int frames)
+void LCD_Disable( unsigned int frames )
 {
-    TRACE_DEBUG("LCD disable\n\r");
-    ASSERT((frames & 0xFFFFFF80) == 0,
-           "LCD_Disable: Wrong frames value.\n\r");
+    TRACE_DEBUG( "LCD disable\n\r" );
+    ASSERT( ( frames & 0xFFFFFF80 ) == 0,
+            "LCD_Disable: Wrong frames value.\n\r" );
     // Remove AT91C_LCDC_PWR
     AT91C_BASE_LCDC->LCDC_PWRCON = frames << 1;
     // wait LCDC Core is in idle state
-    while( (AT91C_BASE_LCDC->LCDC_PWRCON & AT91C_LCDC_BUSY) == AT91C_LCDC_BUSY ) {
+    while( ( AT91C_BASE_LCDC->LCDC_PWRCON & AT91C_LCDC_BUSY ) ==
+           AT91C_LCDC_BUSY )
+    {
     }
-    TRACE_DEBUG("LCD is in IDLE state\n\r");
+    TRACE_DEBUG( "LCD is in IDLE state\n\r" );
 }
 
 //------------------------------------------------------------------------------
 /// Enables the DMA of the LCD controller.
 //------------------------------------------------------------------------------
-void LCD_EnableDma(void)
+void LCD_EnableDma( void )
 {
-    if( (AT91C_BASE_LCDC->LCDC_DMACON & AT91C_LCDC_DMABUSY) == AT91C_LCDC_DMABUSY ) {
-        TRACE_DEBUG("LCD DMA BUSY E\n\r");
+    if( ( AT91C_BASE_LCDC->LCDC_DMACON & AT91C_LCDC_DMABUSY ) ==
+        AT91C_LCDC_DMABUSY )
+    {
+        TRACE_DEBUG( "LCD DMA BUSY E\n\r" );
     }
     AT91C_BASE_LCDC->LCDC_DMACON = AT91C_LCDC_DMAEN;
 }
@@ -92,46 +96,52 @@ void LCD_EnableDma(void)
 //------------------------------------------------------------------------------
 /// Disables the DMA of the LCD controller.
 //------------------------------------------------------------------------------
-void LCD_DisableDma(void)
+void LCD_DisableDma( void )
 {
     AT91C_BASE_LCDC->LCDC_DMACON = 0;
     // wait LCDC DMA is in idle state
-    while( (AT91C_BASE_LCDC->LCDC_DMACON & AT91C_LCDC_DMABUSY) == AT91C_LCDC_DMABUSY ) {
+    while( ( AT91C_BASE_LCDC->LCDC_DMACON & AT91C_LCDC_DMABUSY ) ==
+           AT91C_LCDC_DMABUSY )
+    {
     }
-    TRACE_DEBUG("LCD DMA is in IDLE state\n\r");
+    TRACE_DEBUG( "LCD DMA is in IDLE state\n\r" );
 }
 
 //------------------------------------------------------------------------------
 /// Enables the selected LDC interrupt sources.
 /// \param sources  Interrupt sources to enable.
 //------------------------------------------------------------------------------
-void LCD_EnableInterrupts(unsigned int sources)
+void LCD_EnableInterrupts( unsigned int sources )
 {
     AT91C_BASE_LCDC->LCDC_IER = sources;
 }
 
 //------------------------------------------------------------------------------
-/// Configures the internal clock of the LCD controller given the master clock of
-/// the system and the desired pixel clock in MHz.
-/// \param masterClock  Master clock frequency.
-/// \param pixelClock  Pixel clock frequency.
+/// Configures the internal clock of the LCD controller given the master clock
+/// of the system and the desired pixel clock in MHz. \param masterClock  Master
+/// clock frequency. \param pixelClock  Pixel clock frequency.
 //------------------------------------------------------------------------------
-void LCD_SetPixelClock(unsigned int masterClock, unsigned int pixelClock)
+void LCD_SetPixelClock( unsigned int masterClock, unsigned int pixelClock )
 {
-    AT91C_BASE_LCDC->LCDC_LCDCON1 = ((masterClock / 2 / pixelClock) - 2) << 12;
+    AT91C_BASE_LCDC->LCDC_LCDCON1 = ( ( masterClock / 2 / pixelClock ) - 2 )
+                                    << 12;
 }
 
 //------------------------------------------------------------------------------
 /// DMA reset
 //------------------------------------------------------------------------------
-void LCD_DMAReset(void)
+void LCD_DMAReset( void )
 {
     // DMA Module should be reset only when disabled and in idle state
-    if( AT91C_LCDC_DMABUSY == (AT91C_BASE_LCDC->LCDC_DMACON & AT91C_LCDC_DMABUSY)) {
-        TRACE_ERROR("LCD BUSY so NO DMA RESET\n\r");
+    if( AT91C_LCDC_DMABUSY ==
+        ( AT91C_BASE_LCDC->LCDC_DMACON & AT91C_LCDC_DMABUSY ) )
+    {
+        TRACE_ERROR( "LCD BUSY so NO DMA RESET\n\r" );
     }
-    if( AT91C_LCDC_DMAEN == (AT91C_BASE_LCDC->LCDC_DMACON & AT91C_LCDC_DMAEN)) {
-        TRACE_ERROR("DMA Enabled, so NO DMA RESET\n\r");
+    if( AT91C_LCDC_DMAEN ==
+        ( AT91C_BASE_LCDC->LCDC_DMACON & AT91C_LCDC_DMAEN ) )
+    {
+        TRACE_ERROR( "DMA Enabled, so NO DMA RESET\n\r" );
     }
     AT91C_BASE_LCDC->LCDC_DMACON = AT91C_LCDC_DMARST;
 }
@@ -140,12 +150,12 @@ void LCD_DMAReset(void)
 /// Sets the type of display used with the LCD controller.
 /// \param displayType  Type of display used.
 //------------------------------------------------------------------------------
-void LCD_SetDisplayType(unsigned int displayType)
+void LCD_SetDisplayType( unsigned int displayType )
 {
     unsigned int value;
 
-    ASSERT((displayType & ~AT91C_LCDC_DISTYPE) == 0,
-           "LCD_SetDisplayType: Wrong display type value.\n\r");
+    ASSERT( ( displayType & ~AT91C_LCDC_DISTYPE ) == 0,
+            "LCD_SetDisplayType: Wrong display type value.\n\r" );
 
     value = AT91C_BASE_LCDC->LCDC_LCDCON2;
     value &= ~AT91C_LCDC_DISTYPE;
@@ -157,12 +167,12 @@ void LCD_SetDisplayType(unsigned int displayType)
 /// Sets the scan mode used by the LCD (either single scan or double-scan).
 /// \param scanMode  Scan mode to use.
 //------------------------------------------------------------------------------
-void LCD_SetScanMode(unsigned int scanMode)
+void LCD_SetScanMode( unsigned int scanMode )
 {
     unsigned int value;
 
-    ASSERT((scanMode & ~AT91C_LCDC_SCANMOD) == 0,
-           "LCD_SetScanMode: Wrong scan mode value.\n\r");
+    ASSERT( ( scanMode & ~AT91C_LCDC_SCANMOD ) == 0,
+            "LCD_SetScanMode: Wrong scan mode value.\n\r" );
 
     value = AT91C_BASE_LCDC->LCDC_LCDCON2;
     value &= ~AT91C_LCDC_SCANMOD;
@@ -174,12 +184,12 @@ void LCD_SetScanMode(unsigned int scanMode)
 /// Sets the number of bits per pixel used by the LCD display.
 /// \param bitsPerPixel  Number of bits per pixel to use.
 //------------------------------------------------------------------------------
-void LCD_SetBitsPerPixel(unsigned int bitsPerPixel)
+void LCD_SetBitsPerPixel( unsigned int bitsPerPixel )
 {
     unsigned int value;
 
-    ASSERT((bitsPerPixel & ~AT91C_LCDC_PIXELSIZE) == 0,
-           "LCD_SetScanMode: Wrong bitsPerPixel value.\n\r");
+    ASSERT( ( bitsPerPixel & ~AT91C_LCDC_PIXELSIZE ) == 0,
+            "LCD_SetScanMode: Wrong bitsPerPixel value.\n\r" );
 
     value = AT91C_BASE_LCDC->LCDC_LCDCON2;
     value &= ~AT91C_LCDC_PIXELSIZE;
@@ -195,25 +205,24 @@ void LCD_SetBitsPerPixel(unsigned int bitsPerPixel)
 /// \param lcddotclk  LCDDOTCLK signal polarity.
 /// \param lcdden  LCDDEN signal polarity.
 //------------------------------------------------------------------------------
-void LCD_SetPolarities(
-    unsigned int lcdd,
-    unsigned int lcdvsync,
-    unsigned int lcdhsync,
-    unsigned int lcddotclk,
-    unsigned int lcdden)
+void LCD_SetPolarities( unsigned int lcdd,
+                        unsigned int lcdvsync,
+                        unsigned int lcdhsync,
+                        unsigned int lcddotclk,
+                        unsigned int lcdden )
 {
     unsigned int value;
 
-    ASSERT((lcdd & ~AT91C_LCDC_INVVD) == 0,
-           "LCD_SetPolarities: Wrong lcdd value.\n\r");
-    ASSERT((lcdvsync & ~AT91C_LCDC_INVFRAME) == 0,
-           "LCD_SetPolarities: Wrong lcdvsync value.\n\r");
-    ASSERT((lcdhsync & ~AT91C_LCDC_INVLINE) == 0,
-           "LCD_SetPolarities: Wrong lcdhsync value.\n\r");
-    ASSERT((lcddotclk & ~AT91C_LCDC_INVCLK) == 0,
-           "LCD_SetPolarities: Wrong lcddotclk value.\n\r");
-    ASSERT((lcdden & ~AT91C_LCDC_INVDVAL) == 0,
-           "LCD_SetPolarities: Wrong lcdden value.\n\r");
+    ASSERT( ( lcdd & ~AT91C_LCDC_INVVD ) == 0,
+            "LCD_SetPolarities: Wrong lcdd value.\n\r" );
+    ASSERT( ( lcdvsync & ~AT91C_LCDC_INVFRAME ) == 0,
+            "LCD_SetPolarities: Wrong lcdvsync value.\n\r" );
+    ASSERT( ( lcdhsync & ~AT91C_LCDC_INVLINE ) == 0,
+            "LCD_SetPolarities: Wrong lcdhsync value.\n\r" );
+    ASSERT( ( lcddotclk & ~AT91C_LCDC_INVCLK ) == 0,
+            "LCD_SetPolarities: Wrong lcddotclk value.\n\r" );
+    ASSERT( ( lcdden & ~AT91C_LCDC_INVDVAL ) == 0,
+            "LCD_SetPolarities: Wrong lcdden value.\n\r" );
 
     value = AT91C_BASE_LCDC->LCDC_LCDCON2;
     value &= 0xFFFFE0FF;
@@ -226,12 +235,12 @@ void LCD_SetPolarities(
 /// period.
 /// \param clockMode  Clock mode to use.
 //------------------------------------------------------------------------------
-void LCD_SetClockMode(unsigned int clockMode)
+void LCD_SetClockMode( unsigned int clockMode )
 {
     unsigned int value;
 
-    ASSERT((clockMode & ~AT91C_LCDC_CLKMOD) == 0,
-           "LCD_SetScanMode: Wrong scan mode value.\n\r");
+    ASSERT( ( clockMode & ~AT91C_LCDC_CLKMOD ) == 0,
+            "LCD_SetScanMode: Wrong scan mode value.\n\r" );
 
     value = AT91C_BASE_LCDC->LCDC_LCDCON2;
     value &= ~AT91C_LCDC_CLKMOD;
@@ -243,12 +252,12 @@ void LCD_SetClockMode(unsigned int clockMode)
 /// Sets the format of the frame buffer memory.
 /// \param format  Memory ordering format.
 //------------------------------------------------------------------------------
-void LCD_SetMemoryFormat(unsigned int format)
+void LCD_SetMemoryFormat( unsigned int format )
 {
     unsigned int value;
 
-    ASSERT((format & ~AT91C_LCDC_MEMOR) == 0,
-           "LCD_SetMemoryFormat: Wrong memory format value.\n\r");
+    ASSERT( ( format & ~AT91C_LCDC_MEMOR ) == 0,
+            "LCD_SetMemoryFormat: Wrong memory format value.\n\r" );
 
     value = AT91C_BASE_LCDC->LCDC_LCDCON2;
     value &= ~AT91C_LCDC_MEMOR;
@@ -261,14 +270,14 @@ void LCD_SetMemoryFormat(unsigned int format)
 /// \param width  Width in pixel of the LCD display.
 /// \param height  Height in pixel of the LCD display.
 //------------------------------------------------------------------------------
-void LCD_SetSize(unsigned int width, unsigned int height)
+void LCD_SetSize( unsigned int width, unsigned int height )
 {
-    ASSERT(((width - 1) & 0xFFFFF800) == 0,
-           "LCD_SetSize: Wrong width value.\n\r");
-    ASSERT(((height - 1) & 0xFFFFF800) == 0,
-           "LCD_SetSize: Wrong height value.\n\r");
+    ASSERT( ( ( width - 1 ) & 0xFFFFF800 ) == 0,
+            "LCD_SetSize: Wrong width value.\n\r" );
+    ASSERT( ( ( height - 1 ) & 0xFFFFF800 ) == 0,
+            "LCD_SetSize: Wrong height value.\n\r" );
 
-    AT91C_BASE_LCDC->LCDC_LCDFRCFG = ((width - 1) << 21) | (height - 1);
+    AT91C_BASE_LCDC->LCDC_LCDFRCFG = ( ( width - 1 ) << 21 ) | ( height - 1 );
 }
 
 //------------------------------------------------------------------------------
@@ -280,25 +289,22 @@ void LCD_SetSize(unsigned int width, unsigned int height)
 /// \param vhdly  Delay between LCDVSYNC edge and LCDHSYNC rising edge, in
 ///               LCDDOTCLK cycles.
 //------------------------------------------------------------------------------
-void LCD_SetVerticalTimings(
-    unsigned int vfp,
-    unsigned int vbp,
-    unsigned int vpw,
-    unsigned int vhdly)
+void LCD_SetVerticalTimings( unsigned int vfp,
+                             unsigned int vbp,
+                             unsigned int vpw,
+                             unsigned int vhdly )
 {
-    ASSERT((vfp & 0xFFFFFF00) == 0,
-           "LCD_SetVerticalTimings: Wrong vfp value.\n\r");
-    ASSERT((vbp & 0xFFFFFF00) == 0,
-           "LCD_SetVerticalTimings: Wrong vbp value.\n\r");
-    ASSERT(((vpw-1) & 0xFFFFFFC0) == 0,
-           "LCD_SetVerticalTimings: Wrong vpw value.\n\r");
-    ASSERT(((vhdly-1) & 0xFFFFFFF0) == 0,
-           "LCD_SetVerticalTimings: Wrong vhdly value.\n\r");
+    ASSERT( ( vfp & 0xFFFFFF00 ) == 0,
+            "LCD_SetVerticalTimings: Wrong vfp value.\n\r" );
+    ASSERT( ( vbp & 0xFFFFFF00 ) == 0,
+            "LCD_SetVerticalTimings: Wrong vbp value.\n\r" );
+    ASSERT( ( ( vpw - 1 ) & 0xFFFFFFC0 ) == 0,
+            "LCD_SetVerticalTimings: Wrong vpw value.\n\r" );
+    ASSERT( ( ( vhdly - 1 ) & 0xFFFFFFF0 ) == 0,
+            "LCD_SetVerticalTimings: Wrong vhdly value.\n\r" );
 
-    AT91C_BASE_LCDC->LCDC_TIM1 = vfp
-                                 | (vbp << 8)
-                                 | ((vpw-1) << 16)
-                                 | ((vhdly-1) << 24);
+    AT91C_BASE_LCDC->LCDC_TIM1 = vfp | ( vbp << 8 ) | ( ( vpw - 1 ) << 16 ) |
+                                 ( ( vhdly - 1 ) << 24 );
 }
 
 //------------------------------------------------------------------------------
@@ -308,19 +314,19 @@ void LCD_SetVerticalTimings(
 /// \param hpw  Width of the LCDHSYNC pulse, in LCDDOTCLK cycles.
 /// \param hfp  Number of idel LCDDOTCLK cycles at the end of a line.
 //------------------------------------------------------------------------------
-void LCD_SetHorizontalTimings(
-    unsigned int hbp,
-    unsigned int hpw,
-    unsigned int hfp)
+void LCD_SetHorizontalTimings( unsigned int hbp,
+                               unsigned int hpw,
+                               unsigned int hfp )
 {
-    ASSERT(((hbp-1) & 0xFFFFFF00) == 0,
-           "LCD_SetHorizontalTimings: Wrong hbp value.\n\r");
-    ASSERT(((hpw-1) & 0xFFFFFFC0) == 0,
-           "LCD_SetHorizontalTimings: Wrong hpw value.\n\r");
-    ASSERT(((hfp-1) & 0xFFFFFF00) == 0,
-           "LCD_SetHorizontalTimings: Wrong hfp value.\n\r");
+    ASSERT( ( ( hbp - 1 ) & 0xFFFFFF00 ) == 0,
+            "LCD_SetHorizontalTimings: Wrong hbp value.\n\r" );
+    ASSERT( ( ( hpw - 1 ) & 0xFFFFFFC0 ) == 0,
+            "LCD_SetHorizontalTimings: Wrong hpw value.\n\r" );
+    ASSERT( ( ( hfp - 1 ) & 0xFFFFFF00 ) == 0,
+            "LCD_SetHorizontalTimings: Wrong hfp value.\n\r" );
 
-    AT91C_BASE_LCDC->LCDC_TIM2 = (hbp-1) | ((hpw-1) << 8) | ((hfp-1) << 24);
+    AT91C_BASE_LCDC->LCDC_TIM2 = ( hbp - 1 ) | ( ( hpw - 1 ) << 8 ) |
+                                 ( ( hfp - 1 ) << 24 );
 }
 
 //------------------------------------------------------------------------------
@@ -328,13 +334,13 @@ void LCD_SetHorizontalTimings(
 /// dual-scan mode, this is the upper frame buffer.
 /// \param address  Frame buffer address.
 //------------------------------------------------------------------------------
-void* LCD_SetFrameBufferAddress(void *address)
+void * LCD_SetFrameBufferAddress( void * address )
 {
-    void *pOldBuffer;
-    
-    pOldBuffer = (void *) AT91C_BASE_LCDC->LCDC_BA1;
-    AT91C_BASE_LCDC->LCDC_BA1 = (unsigned int) address;
-    
+    void * pOldBuffer;
+
+    pOldBuffer = ( void * ) AT91C_BASE_LCDC->LCDC_BA1;
+    AT91C_BASE_LCDC->LCDC_BA1 = ( unsigned int ) address;
+
     return pOldBuffer;
 }
 
@@ -342,38 +348,41 @@ void* LCD_SetFrameBufferAddress(void *address)
 /// Sets the size in pixels of a frame (height * width * bpp).
 /// \param frameSize  Size of frame in pixels.
 //------------------------------------------------------------------------------
-void LCD_SetFrameSize(unsigned int frameSize)
+void LCD_SetFrameSize( unsigned int frameSize )
 {
-    ASSERT((frameSize & 0xFF800000) == 0,
-           "LCD_SetFrameSize: Wrong frameSize value.\n\r");
+    ASSERT( ( frameSize & 0xFF800000 ) == 0,
+            "LCD_SetFrameSize: Wrong frameSize value.\n\r" );
 
-    AT91C_BASE_LCDC->LCDC_FRMCFG = (frameSize& AT91C_LCDC_FRSIZE)
-                                 | (AT91C_BASE_LCDC->LCDC_FRMCFG & AT91C_LCDC_BLENGTH);
+    AT91C_BASE_LCDC->LCDC_FRMCFG = ( frameSize & AT91C_LCDC_FRSIZE ) |
+                                   ( AT91C_BASE_LCDC->LCDC_FRMCFG &
+                                     AT91C_LCDC_BLENGTH );
 }
 
 //------------------------------------------------------------------------------
 /// Sets the DMA controller burst length.
 /// \param burstLength  Desired burst length.
 //------------------------------------------------------------------------------
-void LCD_SetBurstLength(unsigned int burstLength)
+void LCD_SetBurstLength( unsigned int burstLength )
 {
-    ASSERT(((burstLength-1) & 0xFFFFFF80) == 0,
-           "LCD_SetBurstLength: Wrong burstLength value.\n\r");
+    ASSERT( ( ( burstLength - 1 ) & 0xFFFFFF80 ) == 0,
+            "LCD_SetBurstLength: Wrong burstLength value.\n\r" );
 
     AT91C_BASE_LCDC->LCDC_FRMCFG &= ~AT91C_LCDC_BLENGTH;
-    AT91C_BASE_LCDC->LCDC_FRMCFG |= (((burstLength-1) << 24) & AT91C_LCDC_BLENGTH);
+    AT91C_BASE_LCDC->LCDC_FRMCFG |= ( ( ( burstLength - 1 ) << 24 ) &
+                                      AT91C_LCDC_BLENGTH );
 
-    AT91C_BASE_LCDC->LCDC_FIFO = (2048 - (2 * burstLength + 3)) & AT91C_LCDC_FIFOTH;
+    AT91C_BASE_LCDC->LCDC_FIFO = ( 2048 - ( 2 * burstLength + 3 ) ) &
+                                 AT91C_LCDC_FIFOTH;
 }
 
 //------------------------------------------------------------------------------
 /// Sets the prescaler value of the contrast control PWM.
 /// \param prescaler  Desired prescaler value.
 //------------------------------------------------------------------------------
-void LCD_SetContrastPrescaler(unsigned int prescaler)
+void LCD_SetContrastPrescaler( unsigned int prescaler )
 {
-    ASSERT((prescaler & ~AT91C_LCDC_PS) == 0,
-           "LCD_SetContrastPrescaler: Wrong prescaler value\n\r");
+    ASSERT( ( prescaler & ~AT91C_LCDC_PS ) == 0,
+            "LCD_SetContrastPrescaler: Wrong prescaler value\n\r" );
 
     AT91C_BASE_LCDC->LCDC_CTRSTCON &= ~AT91C_LCDC_PS;
     AT91C_BASE_LCDC->LCDC_CTRSTCON |= prescaler;
@@ -383,10 +392,10 @@ void LCD_SetContrastPrescaler(unsigned int prescaler)
 /// Sets the polarity of the contrast PWM.
 /// \param polarity  PWM polarity
 //------------------------------------------------------------------------------
-void LCD_SetContrastPolarity(unsigned int polarity)
+void LCD_SetContrastPolarity( unsigned int polarity )
 {
-    ASSERT((polarity & ~AT91C_LCDC_POL) == 0,
-           "LCD_SetContrastPolarity: Wrong polarity value\n\r");
+    ASSERT( ( polarity & ~AT91C_LCDC_POL ) == 0,
+            "LCD_SetContrastPolarity: Wrong polarity value\n\r" );
 
     AT91C_BASE_LCDC->LCDC_CTRSTCON &= ~AT91C_LCDC_POL;
     AT91C_BASE_LCDC->LCDC_CTRSTCON |= polarity;
@@ -396,10 +405,10 @@ void LCD_SetContrastPolarity(unsigned int polarity)
 /// Sets the threshold value of the constrast PWM.
 /// \param value  PWM threshold value.
 //------------------------------------------------------------------------------
-void LCD_SetContrastValue(unsigned int value)
+void LCD_SetContrastValue( unsigned int value )
 {
-    ASSERT((value & ~AT91C_LCDC_CVAL) == 0,
-           "LCD_SetContrastValue: Wrong value.\n\r");
+    ASSERT( ( value & ~AT91C_LCDC_CVAL ) == 0,
+            "LCD_SetContrastValue: Wrong value.\n\r" );
 
     AT91C_BASE_LCDC->LCDC_CTRSTVAL = value;
 }
@@ -407,7 +416,7 @@ void LCD_SetContrastValue(unsigned int value)
 //------------------------------------------------------------------------------
 /// Enables the contrast PWM generator.
 //------------------------------------------------------------------------------
-void LCD_EnableContrast(void)
+void LCD_EnableContrast( void )
 {
     AT91C_BASE_LCDC->LCDC_CTRSTCON |= AT91C_LCDC_ENA_PWMGEMENABLED;
 }
@@ -420,47 +429,53 @@ void LCD_EnableContrast(void)
 /// \param height  Buffer height in pixels.
 /// \param bpp  Number of bits per pixels that the buffer stores.
 //------------------------------------------------------------------------------
-void LCD_DecodeRGB(
-    unsigned char *file,
-    unsigned char *bufferLCD,
-    unsigned int width,
-    unsigned int height,
-    unsigned char bpp)
+void LCD_DecodeRGB( unsigned char * file,
+                    unsigned char * bufferLCD,
+                    unsigned int width,
+                    unsigned int height,
+                    unsigned char bpp )
 {
-    unsigned int offsetLine=0, offsetLCD=0;
-    unsigned int offset=1;
+    unsigned int offsetLine = 0, offsetLCD = 0;
+    unsigned int offset = 1;
 
-    while( offset < (BOARD_LCD_HEIGHT)) {
-        //TRACE_DEBUG("LCD:%d LINE:%d off:%d\n\r", offsetLCD,  offsetLine, offset);
-        if( width < BOARD_LCD_WIDTH ) {
-            //TRACE_DEBUG("width < BOARD_LCD_WIDTH\n\r");
-            while( offsetLine < (width*offset*(bpp/8)) ) {
-                bufferLCD[offsetLCD] = file[offsetLine];
+    while( offset < ( BOARD_LCD_HEIGHT ) )
+    {
+        // TRACE_DEBUG("LCD:%d LINE:%d off:%d\n\r", offsetLCD,  offsetLine,
+        // offset);
+        if( width < BOARD_LCD_WIDTH )
+        {
+            // TRACE_DEBUG("width < BOARD_LCD_WIDTH\n\r");
+            while( offsetLine < ( width * offset * ( bpp / 8 ) ) )
+            {
+                bufferLCD[ offsetLCD ] = file[ offsetLine ];
                 offsetLine++;
                 offsetLCD++;
             }
-            //TRACE_DEBUG("add white\n\r");
-            while( offsetLCD < (BOARD_LCD_WIDTH*offset*(bpp/8)) ) {
-                bufferLCD[offsetLCD] = 0;
-                //offsetLine++;
+            // TRACE_DEBUG("add white\n\r");
+            while( offsetLCD < ( BOARD_LCD_WIDTH * offset * ( bpp / 8 ) ) )
+            {
+                bufferLCD[ offsetLCD ] = 0;
+                // offsetLine++;
                 offsetLCD++;
             }
         }
-        else {
-            //TRACE_DEBUG(">");
-            while( offsetLCD < (BOARD_LCD_WIDTH*offset*(bpp/8)) ) {
-                bufferLCD[offsetLCD] = file[offsetLine];
+        else
+        {
+            // TRACE_DEBUG(">");
+            while( offsetLCD < ( BOARD_LCD_WIDTH * offset * ( bpp / 8 ) ) )
+            {
+                bufferLCD[ offsetLCD ] = file[ offsetLine ];
                 offsetLine++;
                 offsetLCD++;
             }
-            //TRACE_DEBUG("r ");
-            while( offsetLine < (width*offset*(bpp/8)) ) {
+            // TRACE_DEBUG("r ");
+            while( offsetLine < ( width * offset * ( bpp / 8 ) ) )
+            {
                 offsetLine++;
-            }            
+            }
         }
         offset++;
-    }        
+    }
 }
 
 #endif
-

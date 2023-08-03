@@ -27,9 +27,9 @@
  */
 
 #include "FreeRTOS.h"
+#include "cbmc.h"
 #include "queue.h"
 #include "queue_init.h"
-#include "cbmc.h"
 
 void harness()
 {

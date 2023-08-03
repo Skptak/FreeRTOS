@@ -28,7 +28,7 @@
  * in advertising or otherwise to promote the sale, use or other dealings in
  * this Software without prior written authorization from Xilinx.
  *
-*******************************************************************************/
+ *******************************************************************************/
 /******************************************************************************/
 /**
  *
@@ -53,14 +53,13 @@
  *
  * </pre>
  *
-*******************************************************************************/
+ *******************************************************************************/
 
 #ifndef XDDRPS_H_
-/* Prevent circular inclusions by using protection macros. */
-#define XDDRPS_H_
+    /* Prevent circular inclusions by using protection macros. */
+    #define XDDRPS_H_
 
 /******************************* Include Files ********************************/
-
 
 #endif /* XDDRPS_H_ */
 /** @} */

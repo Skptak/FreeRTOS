@@ -1,6 +1,6 @@
 /*
  * -------------------------------------------
- *    MSP432 DriverLib - v3_10_00_09 
+ *    MSP432 DriverLib - v3_10_00_09
  * -------------------------------------------
  *
  * --COPYRIGHT--,BSD,BSD
@@ -51,69 +51,68 @@
 //
 //*****************************************************************************
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
-#include <stdint.h>
-#include <stdbool.h>
 #include <msp.h>
+#include <stdbool.h>
+#include <stdint.h>
 
 /* Module defines for Comp */
-#define COMP_E_CMSIS(x) ((COMP_E_Type *) x)
+#define COMP_E_CMSIS( x )                       ( ( COMP_E_Type * ) x )
 
-#define COMP_E_FILTEROUTPUT_OFF                                            0x00
-#define COMP_E_FILTEROUTPUT_DLYLVL1         (COMP_E_CTL1_F + COMP_E_CTL1_FDLY_0)
-#define COMP_E_FILTEROUTPUT_DLYLVL2         (COMP_E_CTL1_F + COMP_E_CTL1_FDLY_1)
-#define COMP_E_FILTEROUTPUT_DLYLVL3         (COMP_E_CTL1_F + COMP_E_CTL1_FDLY_2)
-#define COMP_E_FILTEROUTPUT_DLYLVL4         (COMP_E_CTL1_F + COMP_E_CTL1_FDLY_3)
+#define COMP_E_FILTEROUTPUT_OFF                 0x00
+#define COMP_E_FILTEROUTPUT_DLYLVL1             ( COMP_E_CTL1_F + COMP_E_CTL1_FDLY_0 )
+#define COMP_E_FILTEROUTPUT_DLYLVL2             ( COMP_E_CTL1_F + COMP_E_CTL1_FDLY_1 )
+#define COMP_E_FILTEROUTPUT_DLYLVL3             ( COMP_E_CTL1_F + COMP_E_CTL1_FDLY_2 )
+#define COMP_E_FILTEROUTPUT_DLYLVL4             ( COMP_E_CTL1_F + COMP_E_CTL1_FDLY_3 )
 
-#define COMP_E_INPUT0                                                    (0x01)
-#define COMP_E_INPUT1                                                    (0x02)
-#define COMP_E_INPUT2                                                    (0x04)
-#define COMP_E_INPUT3                                                    (0x08)
-#define COMP_E_INPUT4                                                    (0x10)
-#define COMP_E_INPUT5                                                    (0x20)
-#define COMP_E_INPUT6                                                    (0x40)
-#define COMP_E_INPUT7                                                    (0x80)
-#define COMP_E_INPUT8                                                   (0x100)
-#define COMP_E_INPUT9                                                   (0x200)
-#define COMP_E_INPUT10                                                  (0x400)
-#define COMP_E_INPUT11                                                  (0x800)
-#define COMP_E_INPUT12                                                 (0x1000)
-#define COMP_E_INPUT13                                                 (0x2000)
-#define COMP_E_INPUT14                                                 (0x4000)
-#define COMP_E_INPUT15                                                 (0x8000)
-#define COMP_E_VREF                                                      (0x9F)
+#define COMP_E_INPUT0                           ( 0x01 )
+#define COMP_E_INPUT1                           ( 0x02 )
+#define COMP_E_INPUT2                           ( 0x04 )
+#define COMP_E_INPUT3                           ( 0x08 )
+#define COMP_E_INPUT4                           ( 0x10 )
+#define COMP_E_INPUT5                           ( 0x20 )
+#define COMP_E_INPUT6                           ( 0x40 )
+#define COMP_E_INPUT7                           ( 0x80 )
+#define COMP_E_INPUT8                           ( 0x100 )
+#define COMP_E_INPUT9                           ( 0x200 )
+#define COMP_E_INPUT10                          ( 0x400 )
+#define COMP_E_INPUT11                          ( 0x800 )
+#define COMP_E_INPUT12                          ( 0x1000 )
+#define COMP_E_INPUT13                          ( 0x2000 )
+#define COMP_E_INPUT14                          ( 0x4000 )
+#define COMP_E_INPUT15                          ( 0x8000 )
+#define COMP_E_VREF                             ( 0x9F )
 
-#define COMP_E_NORMALOUTPUTPOLARITY                      (!(COMP_E_CTL1_OUTPOL))
-#define COMP_E_INVERTEDOUTPUTPOLARITY                       (COMP_E_CTL1_OUTPOL)
+#define COMP_E_NORMALOUTPUTPOLARITY             ( !( COMP_E_CTL1_OUTPOL ) )
+#define COMP_E_INVERTEDOUTPUTPOLARITY           ( COMP_E_CTL1_OUTPOL )
 
-#define COMP_E_REFERENCE_AMPLIFIER_DISABLED               (COMP_E_CTL2_CEREFL_0)
-#define COMP_E_VREFBASE1_2V                               (COMP_E_CTL2_CEREFL_1)
-#define COMP_E_VREFBASE2_0V                               (COMP_E_CTL2_CEREFL_2)
-#define COMP_E_VREFBASE2_5V                               (COMP_E_CTL2_CEREFL_3)
+#define COMP_E_REFERENCE_AMPLIFIER_DISABLED     ( COMP_E_CTL2_CEREFL_0 )
+#define COMP_E_VREFBASE1_2V                     ( COMP_E_CTL2_CEREFL_1 )
+#define COMP_E_VREFBASE2_0V                     ( COMP_E_CTL2_CEREFL_2 )
+#define COMP_E_VREFBASE2_5V                     ( COMP_E_CTL2_CEREFL_3 )
 
-#define COMP_E_ACCURACY_STATIC                             (!COMP_E_CTL2_REFACC)
-#define COMP_E_ACCURACY_CLOCKED                             (COMP_E_CTL2_REFACC)
+#define COMP_E_ACCURACY_STATIC                  ( !COMP_E_CTL2_REFACC )
+#define COMP_E_ACCURACY_CLOCKED                 ( COMP_E_CTL2_REFACC )
 
-#define COMP_E_HIGH_SPEED_MODE                             (COMP_E_CTL1_PWRMD_0)
-#define COMP_E_NORMAL_MODE                                 (COMP_E_CTL1_PWRMD_1)
-#define COMP_E_ULTRA_LOW_POWER_MODE                        (COMP_E_CTL1_PWRMD_2)
+#define COMP_E_HIGH_SPEED_MODE                  ( COMP_E_CTL1_PWRMD_0 )
+#define COMP_E_NORMAL_MODE                      ( COMP_E_CTL1_PWRMD_1 )
+#define COMP_E_ULTRA_LOW_POWER_MODE             ( COMP_E_CTL1_PWRMD_2 )
 
-#define COMP_E_OUTPUT_INTERRUPT                                  (COMP_E_INT_IE)
-#define COMP_E_INVERTED_POLARITY_INTERRUPT                      (COMP_E_INT_IIE)
-#define COMP_E_READY_INTERRUPT                                (COMP_E_INT_RDYIE)
+#define COMP_E_OUTPUT_INTERRUPT                 ( COMP_E_INT_IE )
+#define COMP_E_INVERTED_POLARITY_INTERRUPT      ( COMP_E_INT_IIE )
+#define COMP_E_READY_INTERRUPT                  ( COMP_E_INT_RDYIE )
 
-#define COMP_E_OUTPUT_INTERRUPT_FLAG                            (COMP_E_INT_IFG)
-#define COMP_E_INTERRUPT_FLAG_INVERTED_POLARITY                (COMP_E_INT_IIFG)
-#define COMP_E_INTERRUPT_FLAG_READY                          (COMP_E_INT_RDYIFG)
+#define COMP_E_OUTPUT_INTERRUPT_FLAG            ( COMP_E_INT_IFG )
+#define COMP_E_INTERRUPT_FLAG_INVERTED_POLARITY ( COMP_E_INT_IIFG )
+#define COMP_E_INTERRUPT_FLAG_READY             ( COMP_E_INT_RDYIFG )
 
-#define COMP_E_FALLINGEDGE                                  (!(COMP_E_CTL1_IES))
-#define COMP_E_RISINGEDGE                                      (COMP_E_CTL1_IES)
+#define COMP_E_FALLINGEDGE                      ( !( COMP_E_CTL1_IES ) )
+#define COMP_E_RISINGEDGE                       ( COMP_E_CTL1_IES )
 
-#define COMP_E_LOW                                                         (0x0)
-#define COMP_E_HIGH                                            (COMP_E_CTL1_OUT)
+#define COMP_E_LOW                              ( 0x0 )
+#define COMP_E_HIGH                             ( COMP_E_CTL1_OUT )
 
 //*****************************************************************************
 //
@@ -121,7 +120,7 @@ extern "C"
 //! \brief Type definition for \link _COMP_E_Config \endlink structure
 //!
 //! \struct _COMP_E_Config
-//! \brief Configuration structure for Comparator module. See 
+//! \brief Configuration structure for Comparator module. See
 //!        \link COMP_E_initModule \endlink for parameter documentation.
 //
 //*****************************************************************************
@@ -221,7 +220,8 @@ typedef struct _COMP_E_Config
 //! \return true or false of the initialization process.
 //
 //*****************************************************************************
-extern bool COMP_E_initModule(uint32_t comparator, const COMP_E_Config *config);
+extern bool COMP_E_initModule( uint32_t comparator,
+                               const COMP_E_Config * config );
 
 //*****************************************************************************
 //
@@ -256,10 +256,11 @@ extern bool COMP_E_initModule(uint32_t comparator, const COMP_E_Config *config);
 //! \return NONE
 //
 //*****************************************************************************
-extern void COMP_E_setReferenceVoltage(uint32_t comparator,
-        uint_fast16_t supplyVoltageReferenceBase,
-        uint_fast16_t lowerLimitSupplyVoltageFractionOf32,
-        uint_fast16_t upperLimitSupplyVoltageFractionOf32);
+extern void COMP_E_setReferenceVoltage(
+    uint32_t comparator,
+    uint_fast16_t supplyVoltageReferenceBase,
+    uint_fast16_t lowerLimitSupplyVoltageFractionOf32,
+    uint_fast16_t upperLimitSupplyVoltageFractionOf32 );
 
 //*****************************************************************************
 //
@@ -282,8 +283,8 @@ extern void COMP_E_setReferenceVoltage(uint32_t comparator,
 //! \return NONE
 //
 //*****************************************************************************
-extern void COMP_E_setReferenceAccuracy(uint32_t comparator,
-        uint_fast16_t referenceAccuracy);
+extern void COMP_E_setReferenceAccuracy( uint32_t comparator,
+                                         uint_fast16_t referenceAccuracy );
 
 //*****************************************************************************
 //
@@ -303,7 +304,7 @@ extern void COMP_E_setReferenceAccuracy(uint32_t comparator,
 //! \return NONE
 //
 //*****************************************************************************
-extern void COMP_E_setPowerMode(uint32_t comparator, uint_fast16_t powerMode);
+extern void COMP_E_setPowerMode( uint32_t comparator, uint_fast16_t powerMode );
 
 //*****************************************************************************
 //
@@ -320,7 +321,7 @@ extern void COMP_E_setPowerMode(uint32_t comparator, uint_fast16_t powerMode);
 //! \return NONE
 //
 //*****************************************************************************
-extern void COMP_E_enableModule(uint32_t comparator);
+extern void COMP_E_enableModule( uint32_t comparator );
 
 //*****************************************************************************
 //
@@ -338,7 +339,7 @@ extern void COMP_E_enableModule(uint32_t comparator);
 //! \return NONE
 //
 //*****************************************************************************
-extern void COMP_E_disableModule(uint32_t comparator);
+extern void COMP_E_disableModule( uint32_t comparator );
 
 //*****************************************************************************
 //
@@ -356,7 +357,7 @@ extern void COMP_E_disableModule(uint32_t comparator);
 //! \return NONE
 //
 //*****************************************************************************
-extern void COMP_E_shortInputs(uint32_t comparator);
+extern void COMP_E_shortInputs( uint32_t comparator );
 
 //*****************************************************************************
 //
@@ -374,7 +375,7 @@ extern void COMP_E_shortInputs(uint32_t comparator);
 //! \return NONE
 //
 //*****************************************************************************
-extern void COMP_E_unshortInputs(uint32_t comparator);
+extern void COMP_E_unshortInputs( uint32_t comparator );
 
 //*****************************************************************************
 //
@@ -415,8 +416,8 @@ extern void COMP_E_unshortInputs(uint32_t comparator);
 //! \return NONE
 //
 //*****************************************************************************
-extern void COMP_E_disableInputBuffer(uint32_t comparator,
-        uint_fast16_t inputPort);
+extern void COMP_E_disableInputBuffer( uint32_t comparator,
+                                       uint_fast16_t inputPort );
 
 //*****************************************************************************
 //
@@ -455,8 +456,8 @@ extern void COMP_E_disableInputBuffer(uint32_t comparator,
 //! \return NONE
 //
 //*****************************************************************************
-extern void COMP_E_enableInputBuffer(uint32_t comparator,
-        uint_fast16_t inputPort);
+extern void COMP_E_enableInputBuffer( uint32_t comparator,
+                                      uint_fast16_t inputPort );
 
 //*****************************************************************************
 //
@@ -476,7 +477,7 @@ extern void COMP_E_enableInputBuffer(uint32_t comparator,
 //! \return NONE
 //
 //*****************************************************************************
-extern void COMP_E_swapIO(uint32_t comparator);
+extern void COMP_E_swapIO( uint32_t comparator );
 
 //*****************************************************************************
 //
@@ -493,7 +494,7 @@ extern void COMP_E_swapIO(uint32_t comparator);
 //!          module.
 //
 //*****************************************************************************
-extern uint8_t COMP_E_outputValue(uint32_t comparator);
+extern uint8_t COMP_E_outputValue( uint32_t comparator );
 
 //*****************************************************************************
 //
@@ -519,7 +520,7 @@ extern uint8_t COMP_E_outputValue(uint32_t comparator);
 //! \return NONE
 //
 //*****************************************************************************
-extern void COMP_E_enableInterrupt(uint32_t comparator, uint_fast16_t mask);
+extern void COMP_E_enableInterrupt( uint32_t comparator, uint_fast16_t mask );
 
 //*****************************************************************************
 //
@@ -543,7 +544,7 @@ extern void COMP_E_enableInterrupt(uint32_t comparator, uint_fast16_t mask);
 //! \return NONE
 //
 //*****************************************************************************
-extern void COMP_E_disableInterrupt(uint32_t comparator, uint_fast16_t mask);
+extern void COMP_E_disableInterrupt( uint32_t comparator, uint_fast16_t mask );
 
 //*****************************************************************************
 //
@@ -567,7 +568,8 @@ extern void COMP_E_disableInterrupt(uint32_t comparator, uint_fast16_t mask);
 //! \return NONE
 //
 //*****************************************************************************
-extern void COMP_E_clearInterruptFlag(uint32_t comparator, uint_fast16_t mask);
+extern void COMP_E_clearInterruptFlag( uint32_t comparator,
+                                       uint_fast16_t mask );
 
 //*****************************************************************************
 //
@@ -584,7 +586,7 @@ extern void COMP_E_clearInterruptFlag(uint32_t comparator, uint_fast16_t mask);
 //! \return The current interrupt flag status for the corresponding mask.
 //
 //*****************************************************************************
-extern uint_fast16_t COMP_E_getInterruptStatus(uint32_t comparator);
+extern uint_fast16_t COMP_E_getInterruptStatus( uint32_t comparator );
 
 //*****************************************************************************
 //
@@ -607,7 +609,7 @@ extern uint_fast16_t COMP_E_getInterruptStatus(uint32_t comparator);
 //! \return NONE
 //
 //*****************************************************************************
-extern uint_fast16_t COMP_E_getEnabledInterruptStatus(uint32_t comparator);
+extern uint_fast16_t COMP_E_getEnabledInterruptStatus( uint32_t comparator );
 
 //*****************************************************************************
 //
@@ -624,7 +626,8 @@ extern uint_fast16_t COMP_E_getEnabledInterruptStatus(uint32_t comparator);
 //!             the output of the comparator falls from HIGH to LOW if the
 //!             normal interrupt bit is set(and LOW to HIGH if the inverted
 //!             interrupt enable bit is set). [Default]
-//!        - \b COMP_E_RISINGEDGE - sets the bit to generate an interrupt when the
+//!        - \b COMP_E_RISINGEDGE - sets the bit to generate an interrupt when
+//!        the
 //!             output of the comparator rises from LOW to HIGH if the normal
 //!             interrupt bit is set(and HIGH to LOW if the inverted interrupt
 //!             enable bit is set).
@@ -637,8 +640,8 @@ extern uint_fast16_t COMP_E_getEnabledInterruptStatus(uint32_t comparator);
 //! \return NONE
 //
 //*****************************************************************************
-extern void COMP_E_setInterruptEdgeDirection(uint32_t comparator,
-        uint_fast8_t edgeDirection);
+extern void COMP_E_setInterruptEdgeDirection( uint32_t comparator,
+                                              uint_fast8_t edgeDirection );
 
 //*****************************************************************************
 //
@@ -659,7 +662,7 @@ extern void COMP_E_setInterruptEdgeDirection(uint32_t comparator,
 //! \return NONE
 //
 //*****************************************************************************
-extern void COMP_E_toggleInterruptEdgeDirection(uint32_t comparator);
+extern void COMP_E_toggleInterruptEdgeDirection( uint32_t comparator );
 
 //*****************************************************************************
 //
@@ -676,14 +679,14 @@ extern void COMP_E_toggleInterruptEdgeDirection(uint32_t comparator);
 //! This function registers the handler to be called when a Comparator
 //! interrupt occurs. This function enables the global interrupt in the
 //! interrupt controller; specific Comparator interrupts must be enabled
-//! via COMP_E_enableInterrupt().  It is the interrupt handler's responsibility to
-//! clear the interrupt source via COMP_E_clearInterruptFlag().
+//! via COMP_E_enableInterrupt().  It is the interrupt handler's responsibility
+//! to clear the interrupt source via COMP_E_clearInterruptFlag().
 //!
 //! \return None.
 //
 //*****************************************************************************
-extern void COMP_E_registerInterrupt(uint32_t comparator,
-        void (*intHandler)(void));
+extern void COMP_E_registerInterrupt( uint32_t comparator,
+                                      void ( *intHandler )( void ) );
 
 //*****************************************************************************
 //
@@ -704,14 +707,15 @@ extern void COMP_E_registerInterrupt(uint32_t comparator,
 //! \return None.
 //
 //*****************************************************************************
-extern void COMP_E_unregisterInterrupt(uint32_t comparator);
+extern void COMP_E_unregisterInterrupt( uint32_t comparator );
 
 /* Backwards Compatibility Layer */
-#define COMP_E_enable(a) COMP_E_enableModule(a)
-#define COMP_E_disable(a) COMP_E_disableModule(a)
-#define COMP_E_IOSwap(a) COMP_E_swapIO(a)
-#define COMP_E_interruptToggleEdgeDirection(a) COMP_E_toggleInterruptEdgeDirection(a)
-#define COMP_E_clearInterrupt(a,b) COMP_E_clearInterruptFlag(a,b)
+#define COMP_E_enable( a )  COMP_E_enableModule( a )
+#define COMP_E_disable( a ) COMP_E_disableModule( a )
+#define COMP_E_IOSwap( a )  COMP_E_swapIO( a )
+#define COMP_E_interruptToggleEdgeDirection( a ) \
+    COMP_E_toggleInterruptEdgeDirection( a )
+#define COMP_E_clearInterrupt( a, b ) COMP_E_clearInterruptFlag( a, b )
 
 //*****************************************************************************
 //
@@ -728,6 +732,5 @@ extern void COMP_E_unregisterInterrupt(uint32_t comparator);
 //! @}
 //
 //*****************************************************************************
-
 
 #endif /* COMP_E_H_ */

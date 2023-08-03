@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
- *         SAM Software Package License 
+ *         SAM Software Package License
  * ----------------------------------------------------------------------------
  * Copyright (c) 2013, Atmel Corporation
  *
@@ -17,7 +17,7 @@
  * DISCLAIMER: THIS SOFTWARE IS PROVIDED BY ATMEL "AS IS" AND ANY EXPRESS OR
  * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
  * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT ARE
- * DISCLAIMED. IN NO EVENT SHALL ATMEL BE LIABLE FOR ANY DIRECT, INDIRECT,
+ * DISCLAIMED. IN NO EVENT SHALL ATMEL BE LIABLE FOR ANY DIRECT, INDIRECT,
  * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
  * OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
@@ -35,7 +35,6 @@
  *---------------------------------------------------------------------------*/
 
 #include <board.h>
-
 
 /*---------------------------------------------------------------------------
  *         Exported variable
@@ -60,9 +59,7 @@ extern const struct ov_reg OV7740_QQVGA_RGB888[];
 extern const struct ov_reg OV7740_CIF_YUV422[];
 extern const struct ov_reg OV7740_TEST_PATTERN[];
 
-
 extern const struct ov_reg ov9740_yuv_sxga[];
 extern const struct ov_reg ov9740_yuv_vga[];
 
 #endif // #ifndef _YUV_H_
-

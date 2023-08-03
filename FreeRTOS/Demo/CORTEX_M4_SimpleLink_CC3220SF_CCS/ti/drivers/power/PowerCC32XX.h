@@ -60,14 +60,14 @@
 #define ti_drivers_power_PowerCC32XX__include
 
 #include <stdint.h>
-#include <ti/drivers/utils/List.h>
 #include <ti/drivers/Power.h>
+#include <ti/drivers/utils/List.h>
 
 /* driverlib header files */
-#include <ti/devices/cc32xx/inc/hw_types.h>
+#include <ti/devices/cc32xx/driverlib/pin.h>
 #include <ti/devices/cc32xx/driverlib/rom.h>
 #include <ti/devices/cc32xx/driverlib/rom_map.h>
-#include <ti/devices/cc32xx/driverlib/pin.h>
+#include <ti/devices/cc32xx/inc/hw_types.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -76,93 +76,93 @@ extern "C" {
 /* latency values were measured with a logic analyzer, and rounded up */
 
 /*! The latency to reserve for resuming from LPDS (usec) */
-#define PowerCC32XX_RESUMETIMELPDS          2500
+#define PowerCC32XX_RESUMETIMELPDS       2500
 
 /*! The total latency to reserve for entry to and exit from LPDS (usec) */
-#define PowerCC32XX_TOTALTIMELPDS           20000
+#define PowerCC32XX_TOTALTIMELPDS        20000
 
 /*! The total latency to reserve for entry to and exit from Shutdown (usec) */
-#define PowerCC32XX_TOTALTIMESHUTDOWN       500000
+#define PowerCC32XX_TOTALTIMESHUTDOWN    500000
 
 /* Power resources */
-#define PowerCC32XX_PERIPH_CAMERA       0
+#define PowerCC32XX_PERIPH_CAMERA        0
 /*!< Resource ID: Camera */
 
-#define PowerCC32XX_PERIPH_I2S          1
+#define PowerCC32XX_PERIPH_I2S           1
 /*!< Resource ID: I2S */
 
-#define PowerCC32XX_PERIPH_SDHOST       2
+#define PowerCC32XX_PERIPH_SDHOST        2
 /*!< Resource ID: SDHost */
 
-#define PowerCC32XX_PERIPH_GSPI         3
+#define PowerCC32XX_PERIPH_GSPI          3
 /*!< Resource ID: General Purpose SPI (GSPI) */
 
-#define PowerCC32XX_PERIPH_LSPI         4
+#define PowerCC32XX_PERIPH_LSPI          4
 /*!< Resource ID: LSPI */
 
-#define PowerCC32XX_PERIPH_UDMA         5
+#define PowerCC32XX_PERIPH_UDMA          5
 /*!< Resource ID: uDMA Controller */
 
-#define PowerCC32XX_PERIPH_GPIOA0       6
+#define PowerCC32XX_PERIPH_GPIOA0        6
 /*!< Resource ID: General Purpose I/O Port A0 */
 
-#define PowerCC32XX_PERIPH_GPIOA1       7
+#define PowerCC32XX_PERIPH_GPIOA1        7
 /*!< Resource ID: General Purpose I/O Port A1 */
 
-#define PowerCC32XX_PERIPH_GPIOA2       8
+#define PowerCC32XX_PERIPH_GPIOA2        8
 /*!< Resource ID: General Purpose I/O Port A2 */
 
-#define PowerCC32XX_PERIPH_GPIOA3       9
+#define PowerCC32XX_PERIPH_GPIOA3        9
 /*!< Resource ID: General Purpose I/O Port A3 */
 
-#define PowerCC32XX_PERIPH_GPIOA4       10
+#define PowerCC32XX_PERIPH_GPIOA4        10
 /*!< Resource ID: General Purpose I/O Port A4 */
 
-#define PowerCC32XX_PERIPH_WDT          11
+#define PowerCC32XX_PERIPH_WDT           11
 /*!< Resource ID: Watchdog module */
 
-#define PowerCC32XX_PERIPH_UARTA0       12
+#define PowerCC32XX_PERIPH_UARTA0        12
 /*!< Resource ID: UART 0 */
 
-#define PowerCC32XX_PERIPH_UARTA1       13
+#define PowerCC32XX_PERIPH_UARTA1        13
 /*!< Resource ID: UART 1 */
 
-#define PowerCC32XX_PERIPH_TIMERA0      14
+#define PowerCC32XX_PERIPH_TIMERA0       14
 /*!< Resource ID: General Purpose Timer A0 */
 
-#define PowerCC32XX_PERIPH_TIMERA1      15
+#define PowerCC32XX_PERIPH_TIMERA1       15
 /*!< Resource ID: General Purpose Timer A1 */
 
-#define PowerCC32XX_PERIPH_TIMERA2      16
+#define PowerCC32XX_PERIPH_TIMERA2       16
 /*!< Resource ID: General Purpose Timer A2 */
 
-#define PowerCC32XX_PERIPH_TIMERA3      17
+#define PowerCC32XX_PERIPH_TIMERA3       17
 /*!< Resource ID: General Purpose Timer A3 */
 
-#define PowerCC32XX_PERIPH_DTHE         18
+#define PowerCC32XX_PERIPH_DTHE          18
 /*!< Resource ID: Cryptography Accelerator (DTHE) */
 
-#define PowerCC32XX_PERIPH_SSPI         19
+#define PowerCC32XX_PERIPH_SSPI          19
 /*!< Resource ID: Serial Flash SPI (SSPI) */
 
-#define PowerCC32XX_PERIPH_I2CA0        20
+#define PowerCC32XX_PERIPH_I2CA0         20
 /*!< Resource ID: I2C */
 
 /* \cond */
-#define PowerCC32XX_NUMRESOURCES        21 /* Number of resources in database */
+#define PowerCC32XX_NUMRESOURCES         21 /* Number of resources in database */
 /* \endcond */
 
 /*
  *  Power constraints on the CC32XX device
  */
-#define PowerCC32XX_DISALLOW_LPDS       0
+#define PowerCC32XX_DISALLOW_LPDS        0
 /*!< Constraint: Disallow entry to Low Power Deep Sleep (LPDS) */
 
-#define PowerCC32XX_DISALLOW_SHUTDOWN   1
+#define PowerCC32XX_DISALLOW_SHUTDOWN    1
 /*!< Constraint: Disallow entry to Shutdown */
 
 /* \cond */
-#define PowerCC32XX_NUMCONSTRAINTS      2   /*!< number of constraints */
+#define PowerCC32XX_NUMCONSTRAINTS       2 /*!< number of constraints */
 /* \endcond */
 
 /*
@@ -171,35 +171,36 @@ extern "C" {
  *  Each event must be a power of two, and the event IDs must be sequential
  *  without any gaps.
  */
-#define PowerCC32XX_ENTERING_LPDS       0x1
+#define PowerCC32XX_ENTERING_LPDS        0x1
 /*!< Power event: The device is entering the LPDS sleep state */
 
-#define PowerCC32XX_ENTERING_SHUTDOWN   0x2
+#define PowerCC32XX_ENTERING_SHUTDOWN    0x2
 /*!< Power event: The device is entering the Shutdown state */
 
-#define PowerCC32XX_AWAKE_LPDS          0x4
+#define PowerCC32XX_AWAKE_LPDS           0x4
 /*!< Power event: The device is waking from the LPDS sleep state */
 
 /* \cond */
-#define PowerCC32XX_NUMEVENTS           3    /*!< number of events */
+#define PowerCC32XX_NUMEVENTS            3 /*!< number of events */
 /* \endcond */
 
 /* Power sleep states */
-#define PowerCC32XX_LPDS                0x1 /*!< The LPDS sleep state */
+#define PowerCC32XX_LPDS                 0x1 /*!< The LPDS sleep state */
 
 /* \cond */
 /* Use by NVIC Register structure */
-#define PowerCC32XX_numNVICSetEnableRegs    6
-#define PowerCC32XX_numNVICIntPriority      49
+#define PowerCC32XX_numNVICSetEnableRegs 6
+#define PowerCC32XX_numNVICIntPriority   49
 /* \endcond */
 
 /* \cond */
 /* Number of pins that can be parked in LPDS */
-#define PowerCC32XX_NUMPINS             34
+#define PowerCC32XX_NUMPINS              34
 /* \endcond */
 
 /*! @brief  Used to specify parking of a pin during LPDS */
-typedef struct PowerCC32XX_ParkInfo {
+typedef struct PowerCC32XX_ParkInfo
+{
     uint32_t pin;
     /*!< The pin to be parked */
     uint32_t parkState;
@@ -207,7 +208,8 @@ typedef struct PowerCC32XX_ParkInfo {
 } PowerCC32XX_ParkInfo;
 
 /*! @brief Power global configuration */
-typedef struct PowerCC32XX_ConfigV1 {
+typedef struct PowerCC32XX_ConfigV1
+{
     /*! Initialization function for the power policy */
     Power_PolicyInitFxn policyInitFxn;
     /*! The power policy function */
@@ -218,14 +220,14 @@ typedef struct PowerCC32XX_ConfigV1 {
      *  This function is called after any notifications are complete,
      *  and before any pins are parked, just before entry to LPDS.
      */
-    void (*enterLPDSHookFxn)(void);
+    void ( *enterLPDSHookFxn )( void );
     /*!
      *  @brief  Hook function called when resuming from LPDS
      *
      *  This function is called early in the wake sequence, before any
      *  notification functions are run.
      */
-    void (*resumeLPDSHookFxn)(void);
+    void ( *resumeLPDSHookFxn )( void );
     /*! Determines whether to run the power policy function */
     bool enablePolicy;
     /*! Enable GPIO as a wakeup source for LPDS */
@@ -272,7 +274,7 @@ typedef struct PowerCC32XX_ConfigV1 {
      *  in Power_sleep(), after all notifications have been sent out, and after
      *  pins have been restored to their previous (non-parked) states.
      */
-    void (*wakeupGPIOFxnLPDS)(uint_least8_t argument);
+    void ( *wakeupGPIOFxnLPDS )( uint_least8_t argument );
     /*!
      *  @brief  The argument to be passed to wakeupGPIOFxnLPDS()
      */
@@ -337,7 +339,8 @@ typedef struct PowerCC32XX_ConfigV1 {
  *  @cond NODOC
  *  NVIC registers that need to be saved before entering LPDS.
  */
-typedef struct PowerCC32XX_NVICRegisters {
+typedef struct PowerCC32XX_NVICRegisters
+{
     uint32_t vectorTable;
     uint32_t auxCtrl;
     uint32_t intCtrlState;
@@ -351,8 +354,8 @@ typedef struct PowerCC32XX_NVICRegisters {
     uint32_t systickCtrl;
     uint32_t systickReload;
     uint32_t systickCalib;
-    uint32_t intSetEn[PowerCC32XX_numNVICSetEnableRegs];
-    uint32_t intPriority[PowerCC32XX_numNVICIntPriority];
+    uint32_t intSetEn[ PowerCC32XX_numNVICSetEnableRegs ];
+    uint32_t intPriority[ PowerCC32XX_numNVICIntPriority ];
 } PowerCC32XX_NVICRegisters;
 /*! @endcond */
 
@@ -360,7 +363,8 @@ typedef struct PowerCC32XX_NVICRegisters {
  *  @cond NODOC
  *  MCU core registers that need to be save before entering LPDS.
  */
-typedef struct PowerCC32XX_MCURegisters {
+typedef struct PowerCC32XX_MCURegisters
+{
     uint32_t msp;
     uint32_t psp;
     uint32_t psr;
@@ -375,14 +379,16 @@ typedef struct PowerCC32XX_MCURegisters {
  *  @cond NODOC
  *  Structure of context registers to save before entering LPDS.
  */
-typedef struct PowerCC32XX_SaveRegisters {
+typedef struct PowerCC32XX_SaveRegisters
+{
     PowerCC32XX_MCURegisters m4Regs;
     PowerCC32XX_NVICRegisters nvicRegs;
 } PowerCC32XX_SaveRegisters;
 /*! @endcond */
 
 /*! @brief Enumeration of states a pin can be parked in */
-typedef enum {
+typedef enum
+{
     /*! No pull resistor, leave pin in a HIZ state */
     PowerCC32XX_NO_PULL_HIZ = PIN_TYPE_STD,
     /*! Pull-up resistor for standard pin type */
@@ -402,7 +408,8 @@ typedef enum {
 } PowerCC32XX_ParkState;
 
 /*! @brief Enumeration of pins that can be parked */
-typedef enum {
+typedef enum
+{
     /*! PIN_01 */
     PowerCC32XX_PIN01 = PIN_01,
     /*! PIN_02 */
@@ -481,7 +488,8 @@ typedef enum {
  *  should fill a structure of this type, and pass it as the parameter
  *  to PowerCC32XX_configureWakeup() to specify the new wakeup settings.
  */
-typedef struct PowerCC32XX_Wakeup {
+typedef struct PowerCC32XX_Wakeup
+{
     /*! Enable GPIO as a wakeup source for LPDS */
     bool enableGPIOWakeupLPDS;
     /*! Enable GPIO as a wakeup source for shutdown */
@@ -526,7 +534,7 @@ typedef struct PowerCC32XX_Wakeup {
      *  in Power_sleep(), after all notifications have been sent out, and after
      *  pins have been restored to their previous (non-parked) states.
      */
-    void (*wakeupGPIOFxnLPDS)(uint_least8_t argument);
+    void ( *wakeupGPIOFxnLPDS )( uint_least8_t argument );
     /*!
      *  @brief  The argument to be passed to wakeupGPIOFxnLPDS()
      */
@@ -555,19 +563,20 @@ typedef struct PowerCC32XX_Wakeup {
  *  @cond NODOC
  *  Internal structure defining Power module state.
  */
-typedef struct PowerCC32XX_ModuleState {
+typedef struct PowerCC32XX_ModuleState
+{
     List_List notifyList;
     uint32_t constraintMask;
     uint32_t state;
-    uint16_t dbRecords[PowerCC32XX_NUMRESOURCES];
+    uint16_t dbRecords[ PowerCC32XX_NUMRESOURCES ];
     bool enablePolicy;
     bool initialized;
-    uint8_t refCount[PowerCC32XX_NUMRESOURCES];
-    uint8_t constraintCounts[PowerCC32XX_NUMCONSTRAINTS];
+    uint8_t refCount[ PowerCC32XX_NUMRESOURCES ];
+    uint8_t constraintCounts[ PowerCC32XX_NUMCONSTRAINTS ];
     Power_PolicyFxn policyFxn;
-    uint32_t pinType[PowerCC32XX_NUMPINS];
-    uint16_t pinDir[PowerCC32XX_NUMPINS];
-    uint8_t pinMode[PowerCC32XX_NUMPINS];
+    uint32_t pinType[ PowerCC32XX_NUMPINS ];
+    uint16_t pinDir[ PowerCC32XX_NUMPINS ];
+    uint8_t pinMode[ PowerCC32XX_NUMPINS ];
     uint16_t stateAntPin29;
     uint16_t stateAntPin30;
     uint32_t pinLockMask;
@@ -585,10 +594,10 @@ typedef struct PowerCC32XX_ModuleState {
  *
  *  @param  wakeup      Settings applied to wakeup configuration
  */
-void PowerCC32XX_configureWakeup(PowerCC32XX_Wakeup *wakeup);
+void PowerCC32XX_configureWakeup( PowerCC32XX_Wakeup * wakeup );
 
 /*! OS-specific power policy initialization function */
-void PowerCC32XX_initPolicy(void);
+void PowerCC32XX_initPolicy( void );
 
 /*!
  *  @brief  Function to get wakeup configuration settings
@@ -598,10 +607,10 @@ void PowerCC32XX_initPolicy(void);
  *
  *  @param  wakeup      A PowerCC32XX_Wakeup structure to be written into
  */
-void PowerCC32XX_getWakeup(PowerCC32XX_Wakeup *wakeup);
+void PowerCC32XX_getWakeup( PowerCC32XX_Wakeup * wakeup );
 
 /*! CC32XX-specific function to dynamically set the LPDS park state for a pin */
-void PowerCC32XX_setParkState(PowerCC32XX_Pin pin, uint32_t level);
+void PowerCC32XX_setParkState( PowerCC32XX_Pin pin, uint32_t level );
 
 /*!
  *  @brief  Function to disable IO retention and unlock pin groups following
@@ -619,14 +628,14 @@ void PowerCC32XX_setParkState(PowerCC32XX_Pin pin, uint32_t level);
  *      PRCM_IO_RET_GRP_2 - JTAG TDI and TDO interface pins 16,17
  *      PRCM_IO_RET_GRP_3 - JTAG TCK and TMS interface pins 19,20
  */
-void PowerCC32XX_disableIORetention(unsigned long groupFlags);
+void PowerCC32XX_disableIORetention( unsigned long groupFlags );
 
 /*! OS-specific power policy function */
-void PowerCC32XX_sleepPolicy(void);
+void PowerCC32XX_sleepPolicy( void );
 
 /* \cond */
-#define Power_getPerformanceLevel(void)   0
-#define Power_setPerformanceLevel(level)  Power_EFAIL
+#define Power_getPerformanceLevel( void )  0
+#define Power_setPerformanceLevel( level ) Power_EFAIL
 /* \endcond */
 
 #ifdef __cplusplus

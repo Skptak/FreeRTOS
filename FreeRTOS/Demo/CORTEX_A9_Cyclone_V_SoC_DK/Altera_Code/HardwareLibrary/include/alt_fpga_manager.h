@@ -1,43 +1,42 @@
 /******************************************************************************
-*
-* Copyright 2013 Altera Corporation. All Rights Reserved.
-* 
-* Redistribution and use in source and binary forms, with or without
-* modification, are permitted provided that the following conditions are met:
-* 
-* 1. Redistributions of source code must retain the above copyright notice,
-* this list of conditions and the following disclaimer.
-* 
-* 2. Redistributions in binary form must reproduce the above copyright notice,
-* this list of conditions and the following disclaimer in the documentation
-* and/or other materials provided with the distribution.
-* 
-* 3. The name of the author may not be used to endorse or promote products
-* derived from this software without specific prior written permission.
-* 
-* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDER "AS IS" AND ANY EXPRESS OR
-* IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
-* MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED. IN NO
-* EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
-* EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
-* OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-* INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-* CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING
-* IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
-* OF SUCH DAMAGE.
-* 
-******************************************************************************/
+ *
+ * Copyright 2013 Altera Corporation. All Rights Reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright notice,
+ * this list of conditions and the following disclaimer.
+ *
+ * 2. Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation
+ * and/or other materials provided with the distribution.
+ *
+ * 3. The name of the author may not be used to endorse or promote products
+ * derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDER "AS IS" AND ANY EXPRESS OR
+ * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED. IN NO
+ * EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ *SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ *PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+ *BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
+ *IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ *ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ *POSSIBILITY OF SUCH DAMAGE.
+ *
+ ******************************************************************************/
 
 #ifndef __ALT_FPGA_MGR_H__
 #define __ALT_FPGA_MGR_H__
 
-#include "hwlib.h"
 #include "alt_dma.h"
+#include "hwlib.h"
 #include <stdio.h>
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif /* __cplusplus */
 
 /*!
@@ -49,7 +48,6 @@ extern "C"
  * @{
  */
 
-
 /*!
  * This preprocessor definition determines if DMA support for FPGA programming
  * is enabled or not. Enabling DMA support enables the following API:
@@ -59,7 +57,7 @@ extern "C"
  * To enable DMA support, define ALT_FPGA_ENABLE_DMA_SUPPORT=1 in the Makefile.
  */
 #ifndef ALT_FPGA_ENABLE_DMA_SUPPORT
-#define ALT_FPGA_ENABLE_DMA_SUPPORT (0)
+    #define ALT_FPGA_ENABLE_DMA_SUPPORT ( 0 )
 #endif
 
 /*!
@@ -69,7 +67,7 @@ extern "C"
  * \retval      ALT_E_SUCCESS   The operation was successful.
  * \retval      ALT_E_ERROR     The operation failed.
  */
-ALT_STATUS_CODE alt_fpga_init(void);
+ALT_STATUS_CODE alt_fpga_init( void );
 
 /*!
  * Uninitializes the FPGA manager
@@ -77,7 +75,7 @@ ALT_STATUS_CODE alt_fpga_init(void);
  * \retval      ALT_E_SUCCESS   The operation was successful.
  * \retval      ALT_E_ERROR     The operation failed.
  */
-ALT_STATUS_CODE alt_fpga_uninit(void);
+ALT_STATUS_CODE alt_fpga_uninit( void );
 
 /*!
  * \addtogroup FPGA_MGR_STATUS FPGA Manager Status and Control
@@ -99,7 +97,7 @@ ALT_STATUS_CODE alt_fpga_uninit(void);
  *                                  block or a repeat call to this API without
  *                                  first being released.
  */
-ALT_STATUS_CODE alt_fpga_control_enable(void);
+ALT_STATUS_CODE alt_fpga_control_enable( void );
 
 /*!
  * Instructs the CPU core to release control of the FPGA control block. This
@@ -109,7 +107,7 @@ ALT_STATUS_CODE alt_fpga_control_enable(void);
  * \retval      ALT_E_SUCCESS       Successful status.
  * \retval      ALT_E_ERROR         Failure status.
  */
-ALT_STATUS_CODE alt_fpga_control_disable(void);
+ALT_STATUS_CODE alt_fpga_control_disable( void );
 
 /*!
  * Returns \b true if the HPS currently has control of the FPGA control block
@@ -119,7 +117,7 @@ ALT_STATUS_CODE alt_fpga_control_disable(void);
  * \retval      false               HPS does not have control of the FPGA
  *                                  control block.
  */
-bool alt_fpga_control_is_enabled(void);
+bool alt_fpga_control_is_enabled( void );
 
 /*!
  * This type definition enumerates the possible states the FPGA can be in at
@@ -194,7 +192,7 @@ typedef enum ALT_FPGA_STATE_e
  *
  * \returns     The current operational state of the FPGA.
  */
-ALT_FPGA_STATE_t alt_fpga_state_get(void);
+ALT_FPGA_STATE_t alt_fpga_state_get( void );
 
 /*!
  * This type definition enumerates the monitored status conditions for the FPGA
@@ -299,18 +297,18 @@ typedef enum ALT_FPGA_MON_STATUS_e
  *              asserted.
  *
  * \internal
- * Use the Raw Interrupt Status Register \b hps::fpgamgrregs::mon::gpio_ext_porta
- * to retrieve the monitor status conditions.
- * \endinternal
+ * Use the Raw Interrupt Status Register \b
+ * hps::fpgamgrregs::mon::gpio_ext_porta to retrieve the monitor status
+ * conditions. \endinternal
  */
-uint32_t alt_fpga_mon_status_get(void);
+uint32_t alt_fpga_mon_status_get( void );
 
 /*!
  * Assert and hold the FPGA in reset.
  *
  * This function asserts and holds the FPGA in reset. Any FPGA configuration is
  * cleared. The FPGA must be reconfigured to resume operation.
- * 
+ *
  * The FPGA is reset by the assertion of the nCONFIG signal. The signal remains
  * asserted until alt_fgpa_reset_deassert() is called.
  *
@@ -320,15 +318,15 @@ uint32_t alt_fpga_mon_status_get(void);
  *                                      FPGA. Use alt_fpga_control_enable() to
  *                                      gain control.
  */
-ALT_STATUS_CODE alt_fgpa_reset_assert(void);
+ALT_STATUS_CODE alt_fgpa_reset_assert( void );
 
 /*!
  * Deassert and release the FPGA from reset.
  *
  * This function deasserts the FPGA from reset. The FPGA must be reconfigured to
  * resume operation.
- * 
- * The FPGA is reset by the deassertion of the nCONFIG signal. 
+ *
+ * The FPGA is reset by the deassertion of the nCONFIG signal.
  *
  * \retval      ALT_E_SUCCESS           Successful status.
  * \retval      ALT_E_FPGA_PWR_OFF      FPGA is not powered on.
@@ -336,7 +334,7 @@ ALT_STATUS_CODE alt_fgpa_reset_assert(void);
  *                                      FPGA. Use alt_fpga_control_enable() to
  *                                      gain control.
  */
-ALT_STATUS_CODE alt_fgpa_reset_deassert(void);
+ALT_STATUS_CODE alt_fgpa_reset_deassert( void );
 
 /*!
  * @}
@@ -416,7 +414,7 @@ typedef enum ALT_FPGA_CFG_MODE_e
     /*!
      * 32-bit Passive Parallel with Slow Power on Reset Delay; No AES
      * Encryption; No Data Compression. CDRATIO must be programmed to x1.
-         */
+     */
     ALT_FPGA_CFG_MODE_PP32_SLOW_NOAES_NODC = 0xc,
 
     /*!
@@ -447,7 +445,7 @@ typedef enum ALT_FPGA_CFG_MODE_e
  * \returns     The current FPGA configuration mode as determined by the MSEL
  *              pin values.
  */
-ALT_FPGA_CFG_MODE_t alt_fpga_cfg_mode_get(void);
+ALT_FPGA_CFG_MODE_t alt_fpga_cfg_mode_get( void );
 
 /*!
  * Sets the FPGA configuration mode.
@@ -469,7 +467,7 @@ ALT_FPGA_CFG_MODE_t alt_fpga_cfg_mode_get(void);
  * decoded from msel.
  * \endinternal
  */
-ALT_STATUS_CODE alt_fpga_cfg_mode_set(ALT_FPGA_CFG_MODE_t cfg_mode);
+ALT_STATUS_CODE alt_fpga_cfg_mode_set( ALT_FPGA_CFG_MODE_t cfg_mode );
 
 /*!
  * Type definition for the callback function prototype used by the FPGA Manager
@@ -509,12 +507,14 @@ ALT_STATUS_CODE alt_fpga_cfg_mode_set(ALT_FPGA_CFG_MODE_t cfg_mode);
  *              A 32-bit data word for passing user defined data. The content
  *              of this parameter is user defined. The FPGA Manager merely
  *              forwards the \e user_data value when it invokes the callback.
- * 
+ *
  * \retval      >0      The number of bytes returned in buf.
  * \retval      =0      The end of the input stream has been reached.
  * \retval      <0      An error occurred on the input stream.
  */
-typedef int32_t (*alt_fpga_istream_t)(void* buf, size_t buf_len, void* user_data);
+typedef int32_t ( *alt_fpga_istream_t )( void * buf,
+                                         size_t buf_len,
+                                         void * user_data );
 
 /*!
  * \addtogroup FPGA_MGR_CFG_FULL FPGA Full Configuration
@@ -555,8 +555,7 @@ typedef int32_t (*alt_fpga_istream_t)(void* buf, size_t buf_len, void* user_data
  *                                      FPGA. Use alt_fpga_control_enable() to
  *                                      gain control.
  */
-ALT_STATUS_CODE alt_fpga_configure(const void* cfg_buf,
-                                   size_t cfg_buf_len);
+ALT_STATUS_CODE alt_fpga_configure( const void * cfg_buf, size_t cfg_buf_len );
 
 #if ALT_FPGA_ENABLE_DMA_SUPPORT
 
@@ -594,9 +593,9 @@ ALT_STATUS_CODE alt_fpga_configure(const void* cfg_buf,
  *                                      to the 32-bit boundary.
  */
 
-ALT_STATUS_CODE alt_fpga_configure_dma(const void* cfg_buf,
-                                       size_t cfg_buf_len,
-                                       ALT_DMA_CHANNEL_t dma_channel);
+ALT_STATUS_CODE alt_fpga_configure_dma( const void * cfg_buf,
+                                        size_t cfg_buf_len,
+                                        ALT_DMA_CHANNEL_t dma_channel );
 
 #endif
 
@@ -618,7 +617,7 @@ ALT_STATUS_CODE alt_fpga_configure_dma(const void* cfg_buf,
  * \param       cfg_stream
  *              A pointer to a callback function used to consecutively read
  *              configuration bitstream data from a user defined input stream.
- * 
+ *
  * \param       user_data
  *              A 32-bit user defined data word. The content of this parameter
  *              is user defined. The FPGA Manager merely forwards the \e
@@ -634,8 +633,8 @@ ALT_STATUS_CODE alt_fpga_configure_dma(const void* cfg_buf,
  *                                      FPGA. Use alt_fpga_control_enable() to
  *                                      gain control.
  */
-ALT_STATUS_CODE alt_fpga_istream_configure(alt_fpga_istream_t cfg_stream,
-                                           void * user_data);
+ALT_STATUS_CODE alt_fpga_istream_configure( alt_fpga_istream_t cfg_stream,
+                                            void * user_data );
 
 #if ALT_FPGA_ENABLE_DMA_SUPPORT
 
@@ -658,7 +657,7 @@ ALT_STATUS_CODE alt_fpga_istream_configure(alt_fpga_istream_t cfg_stream,
  * \param       cfg_stream
  *              A pointer to a callback function used to consecutively read
  *              configuration bitstream data from a user defined input stream.
- * 
+ *
  * \param       user_data
  *              A 32-bit user defined data word. The content of this parameter
  *              is user defined. The FPGA Manager merely forwards the \e
@@ -676,9 +675,9 @@ ALT_STATUS_CODE alt_fpga_istream_configure(alt_fpga_istream_t cfg_stream,
  * \retval      ALT_E_BAD_ARG           The user provided buffer is unaligned
  *                                      to the 32-bit boundary.
  */
-ALT_STATUS_CODE alt_fpga_istream_configure_dma(alt_fpga_istream_t cfg_stream,
-                                               void * user_data,
-                                               ALT_DMA_CHANNEL_t dma_channel);
+ALT_STATUS_CODE alt_fpga_istream_configure_dma( alt_fpga_istream_t cfg_stream,
+                                                void * user_data,
+                                                ALT_DMA_CHANNEL_t dma_channel );
 
 #endif
 
@@ -742,7 +741,7 @@ ALT_STATUS_CODE alt_fpga_istream_configure_dma(alt_fpga_istream_t cfg_stream,
  * \retval      ALT_E_BAD_ARG   The \e mon_stat_mask argument contains an
  *                              unknown monitor status value.
  */
-ALT_STATUS_CODE alt_fpga_man_irq_disable(ALT_FPGA_MON_STATUS_t mon_stat_mask);
+ALT_STATUS_CODE alt_fpga_man_irq_disable( ALT_FPGA_MON_STATUS_t mon_stat_mask );
 
 /*!
  * Enable the \b fpga_man_IRQ interrupt signal source monitor status
@@ -766,7 +765,7 @@ ALT_STATUS_CODE alt_fpga_man_irq_disable(ALT_FPGA_MON_STATUS_t mon_stat_mask);
  * \retval      ALT_E_BAD_ARG   The \e mon_stat_mask argument contains an
  *                              unknown monitor status value.
  */
-ALT_STATUS_CODE alt_fpga_man_irq_enable(ALT_FPGA_MON_STATUS_t mon_stat_mask);
+ALT_STATUS_CODE alt_fpga_man_irq_enable( ALT_FPGA_MON_STATUS_t mon_stat_mask );
 
 /*!
  * @}
@@ -791,100 +790,100 @@ ALT_STATUS_CODE alt_fpga_man_irq_enable(ALT_FPGA_MON_STATUS_t mon_stat_mask);
 typedef enum ALT_FPGA_GPI_e
 {
     /*! Signal driven from the FPGA fabric on f2s_gp[0] */
-    ALT_FPGA_GPI_0  = (int32_t)(1UL <<  0),
+    ALT_FPGA_GPI_0 = ( int32_t ) ( 1UL << 0 ),
 
     /*! Signal driven from the FPGA fabric on f2s_gp[1] */
-    ALT_FPGA_GPI_1  = (int32_t)(1UL <<  1),
+    ALT_FPGA_GPI_1 = ( int32_t ) ( 1UL << 1 ),
 
     /*! Signal driven from the FPGA fabric on f2s_gp[2] */
-    ALT_FPGA_GPI_2  = (int32_t)(1UL <<  2),
+    ALT_FPGA_GPI_2 = ( int32_t ) ( 1UL << 2 ),
 
     /*! Signal driven from the FPGA fabric on f2s_gp[3] */
-    ALT_FPGA_GPI_3  = (int32_t)(1UL <<  3),
+    ALT_FPGA_GPI_3 = ( int32_t ) ( 1UL << 3 ),
 
     /*! Signal driven from the FPGA fabric on f2s_gp[4] */
-    ALT_FPGA_GPI_4  = (int32_t)(1UL <<  4),
+    ALT_FPGA_GPI_4 = ( int32_t ) ( 1UL << 4 ),
 
     /*! Signal driven from the FPGA fabric on f2s_gp[5] */
-    ALT_FPGA_GPI_5  = (int32_t)(1UL <<  5),
+    ALT_FPGA_GPI_5 = ( int32_t ) ( 1UL << 5 ),
 
     /*! Signal driven from the FPGA fabric on f2s_gp[6] */
-    ALT_FPGA_GPI_6  = (int32_t)(1UL <<  6),
+    ALT_FPGA_GPI_6 = ( int32_t ) ( 1UL << 6 ),
 
     /*! Signal driven from the FPGA fabric on f2s_gp[7] */
-    ALT_FPGA_GPI_7  = (int32_t)(1UL <<  7),
+    ALT_FPGA_GPI_7 = ( int32_t ) ( 1UL << 7 ),
 
     /*! Signal driven from the FPGA fabric on f2s_gp[8] */
-    ALT_FPGA_GPI_8  = (int32_t)(1UL <<  8),
+    ALT_FPGA_GPI_8 = ( int32_t ) ( 1UL << 8 ),
 
     /*! Signal driven from the FPGA fabric on f2s_gp[9] */
-    ALT_FPGA_GPI_9  = (int32_t)(1UL <<  9),
+    ALT_FPGA_GPI_9 = ( int32_t ) ( 1UL << 9 ),
 
     /*! Signal driven from the FPGA fabric on f2s_gp[10] */
-    ALT_FPGA_GPI_10 = (int32_t)(1UL << 10),
+    ALT_FPGA_GPI_10 = ( int32_t ) ( 1UL << 10 ),
 
     /*! Signal driven from the FPGA fabric on f2s_gp[11] */
-    ALT_FPGA_GPI_11 = (int32_t)(1UL << 11),
+    ALT_FPGA_GPI_11 = ( int32_t ) ( 1UL << 11 ),
 
     /*! Signal driven from the FPGA fabric on f2s_gp[12] */
-    ALT_FPGA_GPI_12 = (int32_t)(1UL << 12),
+    ALT_FPGA_GPI_12 = ( int32_t ) ( 1UL << 12 ),
 
     /*! Signal driven from the FPGA fabric on f2s_gp[13] */
-    ALT_FPGA_GPI_13 = (int32_t)(1UL << 13),
+    ALT_FPGA_GPI_13 = ( int32_t ) ( 1UL << 13 ),
 
     /*! Signal driven from the FPGA fabric on f2s_gp[14] */
-    ALT_FPGA_GPI_14 = (int32_t)(1UL << 14),
+    ALT_FPGA_GPI_14 = ( int32_t ) ( 1UL << 14 ),
 
     /*! Signal driven from the FPGA fabric on f2s_gp[15] */
-    ALT_FPGA_GPI_15 = (int32_t)(1UL << 15),
+    ALT_FPGA_GPI_15 = ( int32_t ) ( 1UL << 15 ),
 
     /*! Signal driven from the FPGA fabric on f2s_gp[16] */
-    ALT_FPGA_GPI_16 = (int32_t)(1UL << 16),
+    ALT_FPGA_GPI_16 = ( int32_t ) ( 1UL << 16 ),
 
     /*! Signal driven from the FPGA fabric on f2s_gp[17] */
-    ALT_FPGA_GPI_17 = (int32_t)(1UL << 17),
+    ALT_FPGA_GPI_17 = ( int32_t ) ( 1UL << 17 ),
 
     /*! Signal driven from the FPGA fabric on f2s_gp[18] */
-    ALT_FPGA_GPI_18 = (int32_t)(1UL << 18),
+    ALT_FPGA_GPI_18 = ( int32_t ) ( 1UL << 18 ),
 
     /*! Signal driven from the FPGA fabric on f2s_gp[19] */
-    ALT_FPGA_GPI_19 = (int32_t)(1UL << 19),
+    ALT_FPGA_GPI_19 = ( int32_t ) ( 1UL << 19 ),
 
     /*! Signal driven from the FPGA fabric on f2s_gp[20] */
-    ALT_FPGA_GPI_20 = (int32_t)(1UL << 20),
+    ALT_FPGA_GPI_20 = ( int32_t ) ( 1UL << 20 ),
 
     /*! Signal driven from the FPGA fabric on f2s_gp[21] */
-    ALT_FPGA_GPI_21 = (int32_t)(1UL << 21),
+    ALT_FPGA_GPI_21 = ( int32_t ) ( 1UL << 21 ),
 
     /*! Signal driven from the FPGA fabric on f2s_gp[22] */
-    ALT_FPGA_GPI_22 = (int32_t)(1UL << 22),
+    ALT_FPGA_GPI_22 = ( int32_t ) ( 1UL << 22 ),
 
     /*! Signal driven from the FPGA fabric on f2s_gp[23] */
-    ALT_FPGA_GPI_23 = (int32_t)(1UL << 23),
+    ALT_FPGA_GPI_23 = ( int32_t ) ( 1UL << 23 ),
 
     /*! Signal driven from the FPGA fabric on f2s_gp[24] */
-    ALT_FPGA_GPI_24 = (int32_t)(1UL << 24),
+    ALT_FPGA_GPI_24 = ( int32_t ) ( 1UL << 24 ),
 
     /*! Signal driven from the FPGA fabric on f2s_gp[25] */
-    ALT_FPGA_GPI_25 = (int32_t)(1UL << 25),
+    ALT_FPGA_GPI_25 = ( int32_t ) ( 1UL << 25 ),
 
     /*! Signal driven from the FPGA fabric on f2s_gp[26] */
-    ALT_FPGA_GPI_26 = (int32_t)(1UL << 26),
+    ALT_FPGA_GPI_26 = ( int32_t ) ( 1UL << 26 ),
 
     /*! Signal driven from the FPGA fabric on f2s_gp[27] */
-    ALT_FPGA_GPI_27 = (int32_t)(1UL << 27),
+    ALT_FPGA_GPI_27 = ( int32_t ) ( 1UL << 27 ),
 
     /*! Signal driven from the FPGA fabric on f2s_gp[28] */
-    ALT_FPGA_GPI_28 = (int32_t)(1UL << 28),
+    ALT_FPGA_GPI_28 = ( int32_t ) ( 1UL << 28 ),
 
     /*! Signal driven from the FPGA fabric on f2s_gp[29] */
-    ALT_FPGA_GPI_29 = (int32_t)(1UL << 29),
+    ALT_FPGA_GPI_29 = ( int32_t ) ( 1UL << 29 ),
 
     /*! Signal driven from the FPGA fabric on f2s_gp[30] */
-    ALT_FPGA_GPI_30 = (int32_t)(1UL << 30),
+    ALT_FPGA_GPI_30 = ( int32_t ) ( 1UL << 30 ),
 
     /*! Signal driven from the FPGA fabric on f2s_gp[31] */
-    ALT_FPGA_GPI_31 = (int32_t)(1UL << 31)
+    ALT_FPGA_GPI_31 = ( int32_t ) ( 1UL << 31 )
 
 } ALT_FPGA_GPI_t;
 
@@ -905,7 +904,7 @@ typedef enum ALT_FPGA_GPI_e
  * \returns     Returns the GPI register value that is the masked selection of
  *              the 32 \b f2s_gp signals from the FPGA.
  */
-uint32_t alt_fpga_gpi_read(uint32_t mask);
+uint32_t alt_fpga_gpi_read( uint32_t mask );
 
 /*!
  * This type definition enumerates the signal mask selections for the General
@@ -914,100 +913,100 @@ uint32_t alt_fpga_gpi_read(uint32_t mask);
 typedef enum ALT_FPGA_GPO_e
 {
     /*! Signal driven from the FPGA fabric on s2f_gp[0] */
-    ALT_FPGA_GPO_0  = (int32_t)(1UL <<  0),
+    ALT_FPGA_GPO_0 = ( int32_t ) ( 1UL << 0 ),
 
     /*! Signal driven from the FPGA fabric on s2f_gp[1] */
-    ALT_FPGA_GPO_1  = (int32_t)(1UL <<  1),
+    ALT_FPGA_GPO_1 = ( int32_t ) ( 1UL << 1 ),
 
     /*! Signal driven from the FPGA fabric on s2f_gp[2] */
-    ALT_FPGA_GPO_2  = (int32_t)(1UL <<  2),
+    ALT_FPGA_GPO_2 = ( int32_t ) ( 1UL << 2 ),
 
     /*! Signal driven from the FPGA fabric on s2f_gp[3] */
-    ALT_FPGA_GPO_3  = (int32_t)(1UL <<  3),
+    ALT_FPGA_GPO_3 = ( int32_t ) ( 1UL << 3 ),
 
     /*! Signal driven from the FPGA fabric on s2f_gp[4] */
-    ALT_FPGA_GPO_4  = (int32_t)(1UL <<  4),
+    ALT_FPGA_GPO_4 = ( int32_t ) ( 1UL << 4 ),
 
     /*! Signal driven from the FPGA fabric on s2f_gp[5] */
-    ALT_FPGA_GPO_5  = (int32_t)(1UL <<  5),
+    ALT_FPGA_GPO_5 = ( int32_t ) ( 1UL << 5 ),
 
     /*! Signal driven from the FPGA fabric on s2f_gp[6] */
-    ALT_FPGA_GPO_6  = (int32_t)(1UL <<  6),
+    ALT_FPGA_GPO_6 = ( int32_t ) ( 1UL << 6 ),
 
     /*! Signal driven from the FPGA fabric on s2f_gp[7] */
-    ALT_FPGA_GPO_7  = (int32_t)(1UL <<  7),
+    ALT_FPGA_GPO_7 = ( int32_t ) ( 1UL << 7 ),
 
     /*! Signal driven from the FPGA fabric on s2f_gp[8] */
-    ALT_FPGA_GPO_8  = (int32_t)(1UL <<  8),
+    ALT_FPGA_GPO_8 = ( int32_t ) ( 1UL << 8 ),
 
     /*! Signal driven from the FPGA fabric on s2f_gp[9] */
-    ALT_FPGA_GPO_9  = (int32_t)(1UL <<  9),
+    ALT_FPGA_GPO_9 = ( int32_t ) ( 1UL << 9 ),
 
     /*! Signal driven from the FPGA fabric on s2f_gp[10] */
-    ALT_FPGA_GPO_10 = (int32_t)(1UL << 10),
+    ALT_FPGA_GPO_10 = ( int32_t ) ( 1UL << 10 ),
 
     /*! Signal driven from the FPGA fabric on s2f_gp[11] */
-    ALT_FPGA_GPO_11 = (int32_t)(1UL << 11),
+    ALT_FPGA_GPO_11 = ( int32_t ) ( 1UL << 11 ),
 
     /*! Signal driven from the FPGA fabric on s2f_gp[12] */
-    ALT_FPGA_GPO_12 = (int32_t)(1UL << 12),
+    ALT_FPGA_GPO_12 = ( int32_t ) ( 1UL << 12 ),
 
     /*! Signal driven from the FPGA fabric on s2f_gp[13] */
-    ALT_FPGA_GPO_13 = (int32_t)(1UL << 13),
+    ALT_FPGA_GPO_13 = ( int32_t ) ( 1UL << 13 ),
 
     /*! Signal driven from the FPGA fabric on s2f_gp[14] */
-    ALT_FPGA_GPO_14 = (int32_t)(1UL << 14),
+    ALT_FPGA_GPO_14 = ( int32_t ) ( 1UL << 14 ),
 
     /*! Signal driven from the FPGA fabric on s2f_gp[15] */
-    ALT_FPGA_GPO_15 = (int32_t)(1UL << 15),
+    ALT_FPGA_GPO_15 = ( int32_t ) ( 1UL << 15 ),
 
     /*! Signal driven from the FPGA fabric on s2f_gp[16] */
-    ALT_FPGA_GPO_16 = (int32_t)(1UL << 16),
+    ALT_FPGA_GPO_16 = ( int32_t ) ( 1UL << 16 ),
 
     /*! Signal driven from the FPGA fabric on s2f_gp[17] */
-    ALT_FPGA_GPO_17 = (int32_t)(1UL << 17),
+    ALT_FPGA_GPO_17 = ( int32_t ) ( 1UL << 17 ),
 
     /*! Signal driven from the FPGA fabric on s2f_gp[18] */
-    ALT_FPGA_GPO_18 = (int32_t)(1UL << 18),
+    ALT_FPGA_GPO_18 = ( int32_t ) ( 1UL << 18 ),
 
     /*! Signal driven from the FPGA fabric on s2f_gp[19] */
-    ALT_FPGA_GPO_19 = (int32_t)(1UL << 19),
+    ALT_FPGA_GPO_19 = ( int32_t ) ( 1UL << 19 ),
 
     /*! Signal driven from the FPGA fabric on s2f_gp[20] */
-    ALT_FPGA_GPO_20 = (int32_t)(1UL << 20),
+    ALT_FPGA_GPO_20 = ( int32_t ) ( 1UL << 20 ),
 
     /*! Signal driven from the FPGA fabric on s2f_gp[21] */
-    ALT_FPGA_GPO_21 = (int32_t)(1UL << 21),
+    ALT_FPGA_GPO_21 = ( int32_t ) ( 1UL << 21 ),
 
     /*! Signal driven from the FPGA fabric on s2f_gp[22] */
-    ALT_FPGA_GPO_22 = (int32_t)(1UL << 22),
+    ALT_FPGA_GPO_22 = ( int32_t ) ( 1UL << 22 ),
 
     /*! Signal driven from the FPGA fabric on s2f_gp[23] */
-    ALT_FPGA_GPO_23 = (int32_t)(1UL << 23),
+    ALT_FPGA_GPO_23 = ( int32_t ) ( 1UL << 23 ),
 
     /*! Signal driven from the FPGA fabric on s2f_gp[24] */
-    ALT_FPGA_GPO_24 = (int32_t)(1UL << 24),
+    ALT_FPGA_GPO_24 = ( int32_t ) ( 1UL << 24 ),
 
     /*! Signal driven from the FPGA fabric on s2f_gp[25] */
-    ALT_FPGA_GPO_25 = (int32_t)(1UL << 25),
+    ALT_FPGA_GPO_25 = ( int32_t ) ( 1UL << 25 ),
 
     /*! Signal driven from the FPGA fabric on s2f_gp[26] */
-    ALT_FPGA_GPO_26 = (int32_t)(1UL << 26),
+    ALT_FPGA_GPO_26 = ( int32_t ) ( 1UL << 26 ),
 
     /*! Signal driven from the FPGA fabric on s2f_gp[27] */
-    ALT_FPGA_GPO_27 = (int32_t)(1UL << 27),
+    ALT_FPGA_GPO_27 = ( int32_t ) ( 1UL << 27 ),
 
     /*! Signal driven from the FPGA fabric on s2f_gp[28] */
-    ALT_FPGA_GPO_28 = (int32_t)(1UL << 28),
+    ALT_FPGA_GPO_28 = ( int32_t ) ( 1UL << 28 ),
 
     /*! Signal driven from the FPGA fabric on s2f_gp[29] */
-    ALT_FPGA_GPO_29 = (int32_t)(1UL << 29),
+    ALT_FPGA_GPO_29 = ( int32_t ) ( 1UL << 29 ),
 
     /*! Signal driven from the FPGA fabric on s2f_gp[30] */
-    ALT_FPGA_GPO_30 = (int32_t)(1UL << 30),
+    ALT_FPGA_GPO_30 = ( int32_t ) ( 1UL << 30 ),
 
     /*! Signal driven from the FPGA fabric on s2f_gp[31] */
-    ALT_FPGA_GPO_31 = (int32_t)(1UL << 31)
+    ALT_FPGA_GPO_31 = ( int32_t ) ( 1UL << 31 )
 
 } ALT_FPGA_GPO_t;
 
@@ -1018,7 +1017,7 @@ typedef enum ALT_FPGA_GPO_e
  * \b s2f_gp signal values to the FPGA. Output signals are only written if
  * their corresponding mask bits are set.
  *
- * NOTE: If the FPGA is not in User Mode then the effect of this operation is 
+ * NOTE: If the FPGA is not in User Mode then the effect of this operation is
  *       undefined.
  *
  * \param       mask
@@ -1035,7 +1034,7 @@ typedef enum ALT_FPGA_GPO_e
  * \retval      ALT_E_SUCCESS   Successful status.
  * \retval      ALT_E_ERROR     The write failed.
  */
-ALT_STATUS_CODE alt_fpga_gpo_write(uint32_t mask, uint32_t value);
+ALT_STATUS_CODE alt_fpga_gpo_write( uint32_t mask, uint32_t value );
 
 /*!
  * @}
@@ -1047,6 +1046,6 @@ ALT_STATUS_CODE alt_fpga_gpo_write(uint32_t mask, uint32_t value);
 
 #ifdef __cplusplus
 }
-#endif  /* __cplusplus */
+#endif /* __cplusplus */
 
-#endif  /* __ALT_FPGA_MGR_H__ */
+#endif /* __ALT_FPGA_MGR_H__ */

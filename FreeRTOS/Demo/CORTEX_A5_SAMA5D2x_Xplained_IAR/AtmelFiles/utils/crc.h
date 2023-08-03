@@ -35,7 +35,6 @@
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 
-extern uint8_t compute_crc8 (uint8_t* pData, uint8_t Length);
-
+extern uint8_t compute_crc8( uint8_t * pData, uint8_t Length );
 
 #endif // _CRC_H_

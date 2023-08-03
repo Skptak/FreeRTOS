@@ -29,8 +29,7 @@
 #define __FLASH_H__
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 //*****************************************************************************
@@ -41,32 +40,32 @@ extern "C"
 //*****************************************************************************
 typedef enum
 {
-    FlashReadWrite,                         // Flash can be read and written
-    FlashReadOnly,                          // Flash can only be read
-    FlashExecuteOnly                        // Flash can only be executed
-}
-tFlashProtection;
+    FlashReadWrite,  // Flash can be read and written
+    FlashReadOnly,   // Flash can only be read
+    FlashExecuteOnly // Flash can only be executed
+} tFlashProtection;
 
 //*****************************************************************************
 //
 // Prototypes for the APIs.
 //
 //*****************************************************************************
-extern unsigned long FlashUsecGet(void);
-extern void FlashUsecSet(unsigned long ulClocks);
-extern long FlashErase(unsigned long ulAddress);
-extern long FlashProgram(unsigned long *pulData, unsigned long ulAddress,
-                         unsigned long ulCount);
-extern tFlashProtection FlashProtectGet(unsigned long ulAddress);
-extern long FlashProtectSet(unsigned long ulAddress,
-                            tFlashProtection eProtect);
-extern long FlashProtectSave(void);
-extern void FlashIntRegister(void (*pfnHandler)(void));
-extern void FlashIntUnregister(void);
-extern void FlashIntEnable(unsigned long ulIntFlags);
-extern void FlashIntDisable(unsigned long ulIntFlags);
-extern unsigned long FlashIntGetStatus(tBoolean bMasked);
-extern void FlashIntClear(unsigned long ulIntFlags);
+extern unsigned long FlashUsecGet( void );
+extern void FlashUsecSet( unsigned long ulClocks );
+extern long FlashErase( unsigned long ulAddress );
+extern long FlashProgram( unsigned long * pulData,
+                          unsigned long ulAddress,
+                          unsigned long ulCount );
+extern tFlashProtection FlashProtectGet( unsigned long ulAddress );
+extern long FlashProtectSet( unsigned long ulAddress,
+                             tFlashProtection eProtect );
+extern long FlashProtectSave( void );
+extern void FlashIntRegister( void ( *pfnHandler )( void ) );
+extern void FlashIntUnregister( void );
+extern void FlashIntEnable( unsigned long ulIntFlags );
+extern void FlashIntDisable( unsigned long ulIntFlags );
+extern unsigned long FlashIntGetStatus( tBoolean bMasked );
+extern void FlashIntClear( unsigned long ulIntFlags );
 
 #ifdef __cplusplus
 }

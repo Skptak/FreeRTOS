@@ -23,14 +23,13 @@ NOTICE: This file has been modified by Nordic Semiconductor ASA.
 #ifndef SYSTEM_NRF52_H
 #define SYSTEM_NRF52_H
 #ifndef __ASSEMBLY__
-#ifdef __cplusplus
+    #ifdef __cplusplus
 extern "C" {
-#endif
+    #endif
 
-#include <stdint.h>
+    #include <stdint.h>
 
-
-extern uint32_t SystemCoreClock;    /*!< System Clock Frequency (Core Clock)  */
+extern uint32_t SystemCoreClock; /*!< System Clock Frequency (Core Clock)  */
 
 /**
  * Initialize the system
@@ -41,7 +40,7 @@ extern uint32_t SystemCoreClock;    /*!< System Clock Frequency (Core Clock)  */
  * @brief  Setup the microcontroller system.
  *         Initialize the System and update the SystemCoreClock variable.
  */
-extern void SystemInit (void);
+extern void SystemInit( void );
 
 /**
  * Update SystemCoreClock variable
@@ -52,12 +51,11 @@ extern void SystemInit (void);
  * @brief  Updates the SystemCoreClock with current core Clock
  *         retrieved from cpu registers.
  */
-extern void SystemCoreClockUpdate (void);
+extern void SystemCoreClockUpdate( void );
 
-
-#ifdef __cplusplus
+    #ifdef __cplusplus
 }
-#endif
+    #endif
 
 #endif /* __ASSEMBLY__ */
 #endif /* SYSTEM_NRF52_H */

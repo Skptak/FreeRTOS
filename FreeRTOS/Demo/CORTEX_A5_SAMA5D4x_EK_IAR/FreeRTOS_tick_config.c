@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -49,8 +50,8 @@ static void System_Handler( void );
 
 static void System_Handler( void )
 {
-	/* See the comments above the function prototype in this file. */
-	FreeRTOS_Tick_Handler();
+    /* See the comments above the function prototype in this file. */
+    FreeRTOS_Tick_Handler();
 }
 /*-----------------------------------------------------------*/
 
@@ -62,40 +63,39 @@ static void System_Handler( void )
  */
 void vConfigureTickInterrupt( void )
 {
-	/* NOTE:  The PIT interrupt is cleared by the configCLEAR_TICK_INTERRUPT()
-	macro in FreeRTOSConfig.h. */
+    /* NOTE:  The PIT interrupt is cleared by the configCLEAR_TICK_INTERRUPT()
+    macro in FreeRTOSConfig.h. */
 
-	/* Enable the PIT clock. */
-	PMC->PMC_PCER0 = 1 << ID_PIT;
+    /* Enable the PIT clock. */
+    PMC->PMC_PCER0 = 1 << ID_PIT;
 
-	/* Initialize the PIT to the desired frequency - specified in uS. */
-	PIT_Init( 1000000UL / configTICK_RATE_HZ, ( BOARD_MCK / 2 ) / 1000000 );
+    /* Initialize the PIT to the desired frequency - specified in uS. */
+    PIT_Init( 1000000UL / configTICK_RATE_HZ, ( BOARD_MCK / 2 ) / 1000000 );
 
-	/* Enable IRQ / select PIT interrupt. */
-	PMC->PMC_PCER1 = ( 1 << ( ID_IRQ - 32 ) );
-	AIC->AIC_SSR  = ID_PIT;
+    /* Enable IRQ / select PIT interrupt. */
+    PMC->PMC_PCER1 = ( 1 << ( ID_IRQ - 32 ) );
+    AIC->AIC_SSR = ID_PIT;
 
-	/* Ensure interrupt is disabled before setting the mode and installing the
-	handler.  The priority of the tick interrupt should always be set to the
-	lowest possible. */
-	AIC->AIC_IDCR = AIC_IDCR_INTD;
-	AIC->AIC_SMR  = AIC_SMR_SRCTYPE_EXT_POSITIVE_EDGE;
-	AIC->AIC_SVR = ( uint32_t ) FreeRTOS_Tick_Handler;
+    /* Ensure interrupt is disabled before setting the mode and installing the
+    handler.  The priority of the tick interrupt should always be set to the
+    lowest possible. */
+    AIC->AIC_IDCR = AIC_IDCR_INTD;
+    AIC->AIC_SMR = AIC_SMR_SRCTYPE_EXT_POSITIVE_EDGE;
+    AIC->AIC_SVR = ( uint32_t ) FreeRTOS_Tick_Handler;
 
-	/* Start with the interrupt clear. */
-	AIC->AIC_ICCR = AIC_ICCR_INTCLR;
+    /* Start with the interrupt clear. */
+    AIC->AIC_ICCR = AIC_ICCR_INTCLR;
 
-	/* Enable the interrupt in the AIC and peripheral. */
-	AIC_EnableIT( ID_PIT );
-	PIT_EnableIT();
+    /* Enable the interrupt in the AIC and peripheral. */
+    AIC_EnableIT( ID_PIT );
+    PIT_EnableIT();
 
-	/* Enable the peripheral. */
-	PIT_Enable();
+    /* Enable the peripheral. */
+    PIT_Enable();
 
-	/* Prevent compiler warnings in the case where System_Handler() is not used
-	as the handler.  See the comments above the System_Handler() function
-	prototype at the top of this file. */
-	( void ) System_Handler;
+    /* Prevent compiler warnings in the case where System_Handler() is not used
+    as the handler.  See the comments above the System_Handler() function
+    prototype at the top of this file. */
+    ( void ) System_Handler;
 }
 /*-----------------------------------------------------------*/
-

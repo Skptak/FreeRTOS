@@ -195,7 +195,7 @@
 extern "C" {
 #endif
 
-#define PLL_CTRL_LOCK_BIT ((0x01U) << 25U)
+#define PLL_CTRL_LOCK_BIT             ( ( 0x01U ) << 25U )
 /*
  * bit0 1: This when asserted resets all the non-volatile register  bits
  *         e.g. RW-P bits, the bit self clears i.e. is similar to a W1P bit
@@ -203,146 +203,144 @@ extern "C" {
  *         non-volatile registers,  the bit self clears.  i.e. is similar to a
  *         W1P bit
  */
-#define PLL_INIT_AND_OUT_OF_RESET               0x00000003UL
+#define PLL_INIT_AND_OUT_OF_RESET     0x00000003UL
 
-#define PLL_CTRL_REG_POWERDOWN_B_MASK           0x00000001UL
+#define PLL_CTRL_REG_POWERDOWN_B_MASK 0x00000001UL
 
 typedef enum RTC_CLK_SOURCE_
 {
-    SCB_80M_CLOCK                   = 0x00,       /*!< 0 SCB clock source */
-    MSS_PLL_CLOCK                   = 0x01,       /*!< 1 MSS PLL clock source */
-}   RTC_CLK_SOURCE;
+    SCB_80M_CLOCK = 0x00, /*!< 0 SCB clock source */
+    MSS_PLL_CLOCK = 0x01, /*!< 1 MSS PLL clock source */
+} RTC_CLK_SOURCE;
 
 typedef enum REG_LOAD_METHOD_
 {
-    SCB_UPDATE                   = 0x00,       /*!< 0 SCB direct load */
-    RPC_REG_UPDATE               = 0x01,       /*!< 1 RPC -> SCB load */
-}   REG_LOAD_METHOD;
+    SCB_UPDATE = 0x00,     /*!< 0 SCB direct load */
+    RPC_REG_UPDATE = 0x01, /*!< 1 RPC -> SCB load */
+} REG_LOAD_METHOD;
 
+/***************************************************************************/ /**
+   ddr_pll_config() configure DDR PLL
 
+   Example:
+   @code
 
-/***************************************************************************//**
-  ddr_pll_config() configure DDR PLL
+       ddr_pll_config();
 
-  Example:
-  @code
+   @endcode
 
-      ddr_pll_config();
+  */
+void ddr_pll_config( REG_LOAD_METHOD option );
 
-  @endcode
+/***************************************************************************/ /**
+   ddr_pll_lock_scb() Checks if PLL locked
 
- */
-void ddr_pll_config(REG_LOAD_METHOD option);
+   @return
+     0U if locked
 
-/***************************************************************************//**
-  ddr_pll_lock_scb() Checks if PLL locked
+   Example:
+   @code
+       if (ddr_pvt_calibration() == 0U)
+       {
+            PLL is locked
+       }
+   @endcode
 
-  @return
-    0U if locked
+  */
+uint8_t ddr_pll_lock_scb( void );
 
-  Example:
-  @code
-      if (ddr_pvt_calibration() == 0U)
-      {
-           PLL is locked
-      }
-  @endcode
+/***************************************************************************/ /**
+   sgmii_pll_config_scb() configure sgmii PLL
 
- */
-uint8_t ddr_pll_lock_scb(void);
+    @param option 1 => soft reset, load RPC settings
+                  0 => write values using SCB
 
-/***************************************************************************//**
-  sgmii_pll_config_scb() configure sgmii PLL
+   Example:
+   @code
+
+       sgmii_pll_config_scb(1U);
+
+   @endcode
+
+  */
+void sgmii_pll_config_scb( uint8_t option );
+
+/***************************************************************************/ /**
+   sgmii_pll_lock_scb() Checks if PLL is locked
+
+    @return
+     0U if locked
+
+   Example:
+   @code
+       if (ddr_pvt_calibration() == 0U)
+       {
+            PLL is locked
+       }
+   @endcode
+
+  */
+uint8_t sgmii_pll_lock_scb( void );
+
+/***************************************************************************/ /**
+   ddr_pll_config_scb_turn_off() Puts PLL in reset
+
+   Example:
+   @code
+
+       ddr_pll_config_scb_turn_off();
+
+   @endcode
+
+  */
+void ddr_pll_config_scb_turn_off( void );
+
+/***************************************************************************/ /**
+   set_RTC_divisor() Sets the RTC divisor based on values from Libero
+   It is assumed the RTC clock is set to 1MHz
+   Example:
+   @code
+
+       set_RTC_divisor();
+
+   @endcode
+
+  */
+void set_RTC_divisor( void );
+
+/***************************************************************************/ /**
+   sgmii_mux_config_via_scb() configures mux for SGMii
+
+   Example:
+   @code
+
+       sgmii_mux_config_via_scb();
+
+   @endcode
+
+  */
+void sgmii_mux_config_via_scb( uint8_t option );
+
+/***************************************************************************/ /**
+   pre_configure_sgmii_and_ddr_pll_via_scb()
 
    @param option 1 => soft reset, load RPC settings
                  0 => write values using SCB
 
-  Example:
-  @code
+   Example:
+   @code
 
-      sgmii_pll_config_scb(1U);
+       ddr_pvt_calibration(1U);
 
-  @endcode
+   @endcode
 
- */
-void sgmii_pll_config_scb(uint8_t option);
-
-/***************************************************************************//**
-  sgmii_pll_lock_scb() Checks if PLL is locked
-
-   @return
-    0U if locked
-
-  Example:
-  @code
-      if (ddr_pvt_calibration() == 0U)
-      {
-           PLL is locked
-      }
-  @endcode
-
- */
-uint8_t sgmii_pll_lock_scb(void);
-
-/***************************************************************************//**
-  ddr_pll_config_scb_turn_off() Puts PLL in reset
-
-  Example:
-  @code
-
-      ddr_pll_config_scb_turn_off();
-
-  @endcode
-
- */
-void ddr_pll_config_scb_turn_off(void);
-
-/***************************************************************************//**
-  set_RTC_divisor() Sets the RTC divisor based on values from Libero
-  It is assumed the RTC clock is set to 1MHz
-  Example:
-  @code
-
-      set_RTC_divisor();
-
-  @endcode
-
- */
-void set_RTC_divisor(void);
-
-/***************************************************************************//**
-  sgmii_mux_config_via_scb() configures mux for SGMii
-
-  Example:
-  @code
-
-      sgmii_mux_config_via_scb();
-
-  @endcode
-
- */
-void sgmii_mux_config_via_scb(uint8_t option);
-
-/***************************************************************************//**
-  pre_configure_sgmii_and_ddr_pll_via_scb()
-
-  @param option 1 => soft reset, load RPC settings
-                0 => write values using SCB
-
-  Example:
-  @code
-
-      ddr_pvt_calibration(1U);
-
-  @endcode
-
- */
-void pre_configure_sgmii_and_ddr_pll_via_scb(uint8_t option);
+  */
+void pre_configure_sgmii_and_ddr_pll_via_scb( uint8_t option );
 
 /******************************************************************************
  * Public Functions - API                                                      *
  ******************************************************************************/
-void mss_pll_config(void);
+void mss_pll_config( void );
 
 #ifdef __cplusplus
 }

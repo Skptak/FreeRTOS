@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
- *         SAM Software Package License 
+ *         SAM Software Package License
  * ----------------------------------------------------------------------------
  * Copyright (c) 2011, Atmel Corporation
  *
@@ -26,7 +26,6 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * ----------------------------------------------------------------------------
  */
-
 
 /** \file */
 
@@ -79,7 +78,7 @@
     @{*/
 
 /** The reset length setting for external reset configuration */
-#define MACB_RESET_LENGTH         0xD
+#define MACB_RESET_LENGTH 0xD
 
 /** @}*/
 /*---------------------------------------------------------------------------
@@ -89,8 +88,9 @@
     @{*/
 
 /** The DM9161 instance */
-typedef struct _Macb {
-    sEmacd *pEmacd;     /**< Driver */
+typedef struct _Macb
+{
+    sEmacd * pEmacd;    /**< Driver */
     uint32_t retryMax;  /**< The retry & timeout settings */
     uint8_t phyAddress; /**< PHY address ( pre-defined by pins on reset ) */
     uint8_t speed;      /**< 100M/10M speed */
@@ -105,28 +105,26 @@ typedef struct _Macb {
 /** \addtogroup macb_functions
     @{*/
 
-extern void MACB_SetupTimeout(Macb *pMacb, uint32_t toMax);
+extern void MACB_SetupTimeout( Macb * pMacb, uint32_t toMax );
 
-extern void MACB_Init(Macb *pMacb, sEmacd *pEmacd, uint8_t phyAddress);
+extern void MACB_Init( Macb * pMacb, sEmacd * pEmacd, uint8_t phyAddress );
 
-extern uint8_t MACB_InitPhy(Macb *pMacb, 
-                            uint32_t mck,
-                            const Pin *pResetPins,
-                            uint32_t nbResetPins,
-                            const Pin *pEmacPins,
-                            uint32_t nbEmacPins);
+extern uint8_t MACB_InitPhy( Macb * pMacb,
+                             uint32_t mck,
+                             const Pin * pResetPins,
+                             uint32_t nbResetPins,
+                             const Pin * pEmacPins,
+                             uint32_t nbEmacPins );
 
-extern uint8_t MACB_FindValidPhy(Macb * pMacb,uint8_t addrStart);
+extern uint8_t MACB_FindValidPhy( Macb * pMacb, uint8_t addrStart );
 
-extern uint8_t MACB_ResetPhy(Macb * pMacb);
+extern uint8_t MACB_ResetPhy( Macb * pMacb );
 
-extern uint8_t MACB_AutoNegotiate(Macb *pMacb, uint8_t rmiiMode);
+extern uint8_t MACB_AutoNegotiate( Macb * pMacb, uint8_t rmiiMode );
 
-extern uint8_t MACB_GetLinkSpeed(Macb *pMacb,
-                                 uint8_t applySettings);
+extern uint8_t MACB_GetLinkSpeed( Macb * pMacb, uint8_t applySettings );
 
-extern void MACB_DumpRegisters(Macb * pMacb);
+extern void MACB_DumpRegisters( Macb * pMacb );
 
 /** @}*/
 #endif // #ifndef _MACB_H
-

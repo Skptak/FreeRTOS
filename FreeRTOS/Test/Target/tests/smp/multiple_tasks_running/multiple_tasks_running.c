@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2022 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -26,8 +27,8 @@
 
 /**
  * @file multiple_tasks_running.c
- * @brief The user shall be able to schedule tasks across multiple identical processor cores
- *        with one instance of FreeRTOS scheduler.
+ * @brief The user shall be able to schedule tasks across multiple identical
+ * processor cores with one instance of FreeRTOS scheduler.
  *
  * Procedure:
  *   - Create ( num of cores - 1 ) tasks and keep them in busy loop.
@@ -47,15 +48,15 @@
     #error test_config.h must be included at the end of FreeRTOSConfig.h.
 #endif
 
-#if ( configNUMBER_OF_CORES < 2 )
+#if( configNUMBER_OF_CORES < 2 )
     #error This test is for FreeRTOS SMP and therefore, requires at least 2 cores.
 #endif /* if configNUMBER_OF_CORES != 2 */
 
-#if ( configRUN_MULTIPLE_PRIORITIES != 1 )
+#if( configRUN_MULTIPLE_PRIORITIES != 1 )
     #error configRUN_MULTIPLE_PRIORITIES must be set to 1 for this test.
 #endif /* if ( configRUN_MULTIPLE_PRIORITIES != 1 ) */
 
-#if ( configMAX_PRIORITIES <= 2 )
+#if( configMAX_PRIORITIES <= 2 )
     #error configMAX_PRIORITIES must be larger than 2 to avoid scheduling idle tasks unexpectedly.
 #endif /* if ( configMAX_PRIORITIES <= 2 ) */
 /*-----------------------------------------------------------*/
@@ -90,7 +91,9 @@ static void Test_MultipleTasksRunning( void )
     {
         xTaskState = eTaskGetState( xTaskHandles[ i ] );
 
-        TEST_ASSERT_EQUAL_MESSAGE( eRunning, xTaskState, "Task is not running." );
+        TEST_ASSERT_EQUAL_MESSAGE( eRunning,
+                                   xTaskState,
+                                   "Task is not running." );
     }
 }
 /*-----------------------------------------------------------*/
@@ -100,10 +103,10 @@ static void prvEverRunningTask( void * pvParameters )
     /* Silence warnings about unused parameters. */
     ( void ) pvParameters;
 
-    for( ; ; )
+    for( ;; )
     {
         /* Always running, put asm here to avoid optimization by compiler. */
-        __asm volatile ( "nop" );
+        __asm volatile( "nop" );
     }
 }
 /*-----------------------------------------------------------*/
@@ -124,7 +127,9 @@ void setUp( void )
                                            configMAX_PRIORITIES - 2,
                                            &( xTaskHandles[ i ] ) );
 
-        TEST_ASSERT_EQUAL_MESSAGE( pdPASS, xTaskCreationResult, "Task creation failed." );
+        TEST_ASSERT_EQUAL_MESSAGE( pdPASS,
+                                   xTaskCreationResult,
+                                   "Task creation failed." );
     }
 }
 /*-----------------------------------------------------------*/

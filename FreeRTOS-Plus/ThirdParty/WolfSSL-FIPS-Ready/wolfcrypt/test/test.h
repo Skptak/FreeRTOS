@@ -19,25 +19,21 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1335, USA
  */
 
-
 #ifndef WOLFCRYPT_TEST_H
 #define WOLFCRYPT_TEST_H
 
-
 #ifdef __cplusplus
-    extern "C" {
+extern "C" {
 #endif
 
 #ifdef HAVE_STACK_SIZE
-THREAD_RETURN WOLFSSL_THREAD wolfcrypt_test(void* args);
+THREAD_RETURN WOLFSSL_THREAD wolfcrypt_test( void * args );
 #else
-int wolfcrypt_test(void* args);
+int wolfcrypt_test( void * args );
 #endif
 
 #ifdef __cplusplus
-    }  /* extern "C" */
+} /* extern "C" */
 #endif
 
-
 #endif /* WOLFCRYPT_TEST_H */
-

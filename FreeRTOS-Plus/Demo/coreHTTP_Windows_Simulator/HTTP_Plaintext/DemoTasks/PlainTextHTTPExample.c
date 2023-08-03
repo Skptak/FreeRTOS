@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -101,75 +102,78 @@
 
 /* Check that a transport timeout for transport send and receive is defined. */
 #ifndef democonfigTRANSPORT_SEND_RECV_TIMEOUT_MS
-    #define democonfigTRANSPORT_SEND_RECV_TIMEOUT_MS    ( 1000 )
+    #define democonfigTRANSPORT_SEND_RECV_TIMEOUT_MS ( 1000 )
 #endif
 
 /* Check that a size for the user buffer is defined. */
 #ifndef democonfigUSER_BUFFER_LENGTH
-    #define democonfigUSER_BUFFER_LENGTH    ( 2048 )
+    #define democonfigUSER_BUFFER_LENGTH ( 2048 )
 #endif
 
 /**
  * @brief The length of the server's hostname.
  */
-#define httpexampleSERVER_HOSTNAME_LENGTH     ( sizeof( democonfigSERVER_HOSTNAME ) - 1 )
+#define httpexampleSERVER_HOSTNAME_LENGTH \
+    ( sizeof( democonfigSERVER_HOSTNAME ) - 1 )
 
 /**
  * @brief The length of the HTTP GET method.
  */
-#define httpexampleHTTP_METHOD_GET_LENGTH     ( sizeof( HTTP_METHOD_GET ) - 1 )
+#define httpexampleHTTP_METHOD_GET_LENGTH  ( sizeof( HTTP_METHOD_GET ) - 1 )
 
 /**
  * @brief The length of the HTTP HEAD method.
  */
-#define httpexampleHTTP_METHOD_HEAD_LENGTH    ( sizeof( HTTP_METHOD_HEAD ) - 1 )
+#define httpexampleHTTP_METHOD_HEAD_LENGTH ( sizeof( HTTP_METHOD_HEAD ) - 1 )
 
 /**
  * @brief The length of the HTTP PUT method.
  */
-#define httpexampleHTTP_METHOD_PUT_LENGTH     ( sizeof( HTTP_METHOD_PUT ) - 1 )
+#define httpexampleHTTP_METHOD_PUT_LENGTH  ( sizeof( HTTP_METHOD_PUT ) - 1 )
 
 /**
  * @brief The length of the HTTP POST method.
  */
-#define httpexampleHTTP_METHOD_POST_LENGTH    ( sizeof( HTTP_METHOD_POST ) - 1 )
+#define httpexampleHTTP_METHOD_POST_LENGTH ( sizeof( HTTP_METHOD_POST ) - 1 )
 
 /**
  * @brief The length of the HTTP GET path.
  */
-#define httpexampleGET_PATH_LENGTH            ( sizeof( democonfigGET_PATH ) - 1 )
+#define httpexampleGET_PATH_LENGTH         ( sizeof( democonfigGET_PATH ) - 1 )
 
 /**
  * @brief The length of the HTTP HEAD path.
  */
-#define httpexampleHEAD_PATH_LENGTH           ( sizeof( democonfigHEAD_PATH ) - 1 )
+#define httpexampleHEAD_PATH_LENGTH        ( sizeof( democonfigHEAD_PATH ) - 1 )
 
 /**
  * @brief The length of the HTTP PUT path.
  */
-#define httpexamplePUT_PATH_LENGTH            ( sizeof( democonfigPUT_PATH ) - 1 )
+#define httpexamplePUT_PATH_LENGTH         ( sizeof( democonfigPUT_PATH ) - 1 )
 
 /**
  * @brief The length of the HTTP POST path.
  */
-#define httpexamplePOST_PATH_LENGTH           ( sizeof( democonfigPOST_PATH ) - 1 )
+#define httpexamplePOST_PATH_LENGTH        ( sizeof( democonfigPOST_PATH ) - 1 )
 
 /**
  * @brief Length of the request body.
  */
-#define httpexampleREQUEST_BODY_LENGTH        ( sizeof( democonfigREQUEST_BODY ) - 1 )
+#define httpexampleREQUEST_BODY_LENGTH     ( sizeof( democonfigREQUEST_BODY ) - 1 )
 
 /**
  * @brief Number of HTTP paths to request.
  */
-#define httpexampleNUMBER_HTTP_PATHS          ( 4 )
+#define httpexampleNUMBER_HTTP_PATHS       ( 4 )
 
 /**
  * @brief Each compilation unit that consumes the NetworkContext must define it.
  * It should contain a single pointer to the type of your desired transport.
- * When using multiple transports in the same compilation unit, define this pointer as void *.
+ * When using multiple transports in the same compilation unit, define this
+ * pointer as void *.
  *
- * @note Transport stacks are defined in FreeRTOS-Plus/Source/Application-Protocols/network_transport.
+ * @note Transport stacks are defined in
+ * FreeRTOS-Plus/Source/Application-Protocols/network_transport.
  */
 struct NetworkContext
 {
@@ -183,14 +187,14 @@ struct NetworkContext
  * Once the demo loop succeeds in an iteration, the demo exits successfully.
  */
 #ifndef HTTP_MAX_DEMO_LOOP_COUNT
-    #define HTTP_MAX_DEMO_LOOP_COUNT    ( 3 )
+    #define HTTP_MAX_DEMO_LOOP_COUNT ( 3 )
 #endif
 
 /**
  * @brief Time in ticks to wait between retries of the demo loop if
  * demo loop fails.
  */
-#define DELAY_BETWEEN_DEMO_RETRY_ITERATIONS_TICKS    ( pdMS_TO_TICKS( 5000U ) )
+#define DELAY_BETWEEN_DEMO_RETRY_ITERATIONS_TICKS ( pdMS_TO_TICKS( 5000U ) )
 
 /**
  * @brief A pair containing a path string of the URI and its length.
@@ -225,16 +229,16 @@ static uint8_t ucUserBuffer[ democonfigUSER_BUFFER_LENGTH ];
 /**
  * @brief The task used to demonstrate the HTTP API.
  *
- * @param[in] pvParameters Parameters as passed at the time of task creation. Not
- * used in this example.
+ * @param[in] pvParameters Parameters as passed at the time of task creation.
+ * Not used in this example.
  */
 static void prvHTTPDemoTask( void * pvParameters );
-
 
 /**
  * @brief Connect to HTTP server with reconnection retries.
  *
- * @param[out] pxNetworkContext The output parameter to return the created network context.
+ * @param[out] pxNetworkContext The output parameter to return the created
+ * network context.
  *
  * @return pdPASS on successful connection, pdFAIL otherwise.
  */
@@ -244,7 +248,8 @@ static BaseType_t prvConnectToServer( NetworkContext_t * pxNetworkContext );
  * @brief Send an HTTP request based on a specified method and path, then
  * print the response received from the server.
  *
- * @param[in] pxTransportInterface The transport interface for making network calls.
+ * @param[in] pxTransportInterface The transport interface for making network
+ * calls.
  * @param[in] pcMethod The HTTP request method.
  * @param[in] xMethodLen The length of the HTTP request method.
  * @param[in] pcPath The Request-URI to the objects of interest.
@@ -252,11 +257,12 @@ static BaseType_t prvConnectToServer( NetworkContext_t * pxNetworkContext );
  *
  * @return pdFAIL on failure; pdPASS on success.
  */
-static BaseType_t prvSendHttpRequest( const TransportInterface_t * pxTransportInterface,
-                                      const char * pcMethod,
-                                      size_t xMethodLen,
-                                      const char * pcPath,
-                                      size_t xPathLen );
+static BaseType_t prvSendHttpRequest(
+    const TransportInterface_t * pxTransportInterface,
+    const char * pcMethod,
+    size_t xMethodLen,
+    const char * pcPath,
+    size_t xPathLen );
 
 /*-----------------------------------------------------------*/
 
@@ -269,12 +275,17 @@ void vStartSimpleHTTPDemo( void )
     /* This example uses a single application task, which in turn is used to
      * connect, send requests, receive responses, and disconnect from the HTTP
      * server */
-    xTaskCreate( prvHTTPDemoTask,          /* Function that implements the task. */
-                 "DemoTask",               /* Text name for the task - only used for debugging. */
-                 democonfigDEMO_STACKSIZE, /* Size of stack (in words, not bytes) to allocate for the task. */
-                 NULL,                     /* Task parameter - not used in this case. */
-                 tskIDLE_PRIORITY,         /* Task priority, must be between 0 and configMAX_PRIORITIES - 1. */
-                 NULL );                   /* Used to pass out a handle to the created task - not used in this case. */
+    xTaskCreate( prvHTTPDemoTask, /* Function that implements the task. */
+                 "DemoTask",      /* Text name for the task - only used for
+                                     debugging. */
+                 democonfigDEMO_STACKSIZE, /* Size of stack (in words, not
+                                              bytes) to allocate for the task.
+                                            */
+                 NULL,             /* Task parameter - not used in this case. */
+                 tskIDLE_PRIORITY, /* Task priority, must be between 0 and
+                                      configMAX_PRIORITIES - 1. */
+                 NULL ); /* Used to pass out a handle to the created task - not
+                            used in this case. */
 }
 
 /*-----------------------------------------------------------*/
@@ -299,19 +310,17 @@ static void prvHTTPDemoTask( void * pvParameters )
     NetworkContext_t xNetworkContext = { 0 };
     PlaintextTransportParams_t xPlaintextTransportParams = { 0 };
     /* An array of HTTP paths to request. */
-    const httpPathStrings_t xHttpMethodPaths[] =
-    {
-        { democonfigGET_PATH,  httpexampleGET_PATH_LENGTH  },
+    const httpPathStrings_t xHttpMethodPaths[] = {
+        { democonfigGET_PATH, httpexampleGET_PATH_LENGTH },
         { democonfigHEAD_PATH, httpexampleHEAD_PATH_LENGTH },
-        { democonfigPUT_PATH,  httpexamplePUT_PATH_LENGTH  },
+        { democonfigPUT_PATH, httpexamplePUT_PATH_LENGTH },
         { democonfigPOST_PATH, httpexamplePOST_PATH_LENGTH }
     };
     /* The respective method for the HTTP paths listed in #httpMethodPaths. */
-    const httpMethodStrings_t xHttpMethods[] =
-    {
-        { HTTP_METHOD_GET,  httpexampleHTTP_METHOD_GET_LENGTH  },
+    const httpMethodStrings_t xHttpMethods[] = {
+        { HTTP_METHOD_GET, httpexampleHTTP_METHOD_GET_LENGTH },
         { HTTP_METHOD_HEAD, httpexampleHTTP_METHOD_HEAD_LENGTH },
-        { HTTP_METHOD_PUT,  httpexampleHTTP_METHOD_PUT_LENGTH  },
+        { HTTP_METHOD_PUT, httpexampleHTTP_METHOD_PUT_LENGTH },
         { HTTP_METHOD_POST, httpexampleHTTP_METHOD_POST_LENGTH }
     };
     BaseType_t xIsConnectionEstablished = pdFALSE;
@@ -327,9 +336,9 @@ static void prvHTTPDemoTask( void * pvParameters )
     /* Set the pParams member of the network context with desired transport. */
     xNetworkContext.pParams = &xPlaintextTransportParams;
 
-    /* This demo runs a single loop unless there are failures in the demo execution.
-     * In case of failures in the demo execution, demo loop will be retried for up to
-     * HTTP_MAX_DEMO_LOOP_COUNT times. */
+    /* This demo runs a single loop unless there are failures in the demo
+     * execution. In case of failures in the demo execution, demo loop will be
+     * retried for up to HTTP_MAX_DEMO_LOOP_COUNT times. */
     do
     {
         LogInfo( ( "---------STARTING DEMO---------\r\n" ) );
@@ -347,17 +356,19 @@ static void prvHTTPDemoTask( void * pvParameters )
 
         /**************************** Connect. ******************************/
 
-        /* Attempt to connect to the HTTP server. If connection fails, retry after a
-         * timeout. The timeout value will be exponentially increased until either the
-         * maximum number of attempts or the maximum timeout value is reached. The
-         * function returns pdFAIL if the TCP connection cannot be established with
-         * the server after the number of attempts. */
+        /* Attempt to connect to the HTTP server. If connection fails, retry
+         * after a timeout. The timeout value will be exponentially increased
+         * until either the maximum number of attempts or the maximum timeout
+         * value is reached. The function returns pdFAIL if the TCP connection
+         * cannot be established with the server after the number of attempts.
+         */
         xDemoStatus = connectToServerWithBackoffRetries( prvConnectToServer,
                                                          &xNetworkContext );
 
         if( xDemoStatus == pdPASS )
         {
-            /* Set a flag indicating that a TCP connection has been established. */
+            /* Set a flag indicating that a TCP connection has been established.
+             */
             xIsConnectionEstablished = pdTRUE;
 
             /* Define the transport interface. */
@@ -376,15 +387,18 @@ static void prvHTTPDemoTask( void * pvParameters )
 
         /*********************** Send HTTP request.************************/
 
-        for( uxHttpPathCount = 0; uxHttpPathCount < httpexampleNUMBER_HTTP_PATHS; ++uxHttpPathCount )
+        for( uxHttpPathCount = 0;
+             uxHttpPathCount < httpexampleNUMBER_HTTP_PATHS;
+             ++uxHttpPathCount )
         {
             if( xDemoStatus == pdPASS )
             {
-                xDemoStatus = prvSendHttpRequest( &xTransportInterface,
-                                                  xHttpMethods[ uxHttpPathCount ].pcHttpMethod,
-                                                  xHttpMethods[ uxHttpPathCount ].ulHttpMethodLength,
-                                                  xHttpMethodPaths[ uxHttpPathCount ].pcHttpPath,
-                                                  xHttpMethodPaths[ uxHttpPathCount ].ulHttpPathLength );
+                xDemoStatus = prvSendHttpRequest(
+                    &xTransportInterface,
+                    xHttpMethods[ uxHttpPathCount ].pcHttpMethod,
+                    xHttpMethods[ uxHttpPathCount ].ulHttpMethodLength,
+                    xHttpMethodPaths[ uxHttpPathCount ].pcHttpPath,
+                    xHttpMethodPaths[ uxHttpPathCount ].ulHttpPathLength );
             }
             else
             {
@@ -392,17 +406,19 @@ static void prvHTTPDemoTask( void * pvParameters )
             }
         }
 
-        /**************************** Disconnect. ******************************/
+        /**************************** Disconnect.
+         * ******************************/
 
-        /* Close the network connection to clean up any system resources that the
-         * demo may have consumed. */
+        /* Close the network connection to clean up any system resources that
+         * the demo may have consumed. */
         if( xIsConnectionEstablished == pdTRUE )
         {
             /* Close the network connection.  */
             Plaintext_FreeRTOS_Disconnect( &xNetworkContext );
         }
 
-        /*********************** Retry in case of failure. ************************/
+        /*********************** Retry in case of failure.
+         * ************************/
 
         /* Increment the demo run count. */
         uxDemoRunCount++;
@@ -411,16 +427,19 @@ static void prvHTTPDemoTask( void * pvParameters )
         {
             LogInfo( ( "Demo iteration %lu was successful.", uxDemoRunCount ) );
         }
-        /* Attempt to retry a failed demo iteration for up to #HTTP_MAX_DEMO_LOOP_COUNT times. */
+        /* Attempt to retry a failed demo iteration for up to
+         * #HTTP_MAX_DEMO_LOOP_COUNT times. */
         else if( uxDemoRunCount < HTTP_MAX_DEMO_LOOP_COUNT )
         {
-            LogWarn( ( "Demo iteration %lu failed. Retrying...", uxDemoRunCount ) );
+            LogWarn(
+                ( "Demo iteration %lu failed. Retrying...", uxDemoRunCount ) );
             vTaskDelay( DELAY_BETWEEN_DEMO_RETRY_ITERATIONS_TICKS );
         }
         /* Failed all #HTTP_MAX_DEMO_LOOP_COUNT demo iterations. */
         else
         {
-            LogError( ( "All %d demo iterations failed.", HTTP_MAX_DEMO_LOOP_COUNT ) );
+            LogError( ( "All %d demo iterations failed.",
+                        HTTP_MAX_DEMO_LOOP_COUNT ) );
             break;
         }
     } while( xDemoStatus != pdPASS );
@@ -453,11 +472,12 @@ static BaseType_t prvConnectToServer( NetworkContext_t * pxNetworkContext )
                ( int32_t ) httpexampleSERVER_HOSTNAME_LENGTH,
                democonfigSERVER_HOSTNAME,
                democonfigHTTP_PORT ) );
-    xNetworkStatus = Plaintext_FreeRTOS_Connect( pxNetworkContext,
-                                                 democonfigSERVER_HOSTNAME,
-                                                 democonfigHTTP_PORT,
-                                                 democonfigTRANSPORT_SEND_RECV_TIMEOUT_MS,
-                                                 democonfigTRANSPORT_SEND_RECV_TIMEOUT_MS );
+    xNetworkStatus = Plaintext_FreeRTOS_Connect(
+        pxNetworkContext,
+        democonfigSERVER_HOSTNAME,
+        democonfigHTTP_PORT,
+        democonfigTRANSPORT_SEND_RECV_TIMEOUT_MS,
+        democonfigTRANSPORT_SEND_RECV_TIMEOUT_MS );
 
     if( xNetworkStatus != PLAINTEXT_TRANSPORT_SUCCESS )
     {
@@ -469,11 +489,12 @@ static BaseType_t prvConnectToServer( NetworkContext_t * pxNetworkContext )
 
 /*-----------------------------------------------------------*/
 
-static BaseType_t prvSendHttpRequest( const TransportInterface_t * pxTransportInterface,
-                                      const char * pcMethod,
-                                      size_t xMethodLen,
-                                      const char * pcPath,
-                                      size_t xPathLen )
+static BaseType_t prvSendHttpRequest(
+    const TransportInterface_t * pxTransportInterface,
+    const char * pcMethod,
+    size_t xMethodLen,
+    const char * pcPath,
+    size_t xPathLen )
 {
     /* Return value of this method. */
     BaseType_t xStatus = pdPASS;
@@ -524,14 +545,18 @@ static BaseType_t prvSendHttpRequest( const TransportInterface_t * pxTransportIn
         xResponse.bufferLen = democonfigUSER_BUFFER_LENGTH;
 
         LogInfo( ( "Sending HTTP %.*s request to %.*s%.*s...",
-                   ( int32_t ) xRequestInfo.methodLen, xRequestInfo.pMethod,
-                   ( int32_t ) httpexampleSERVER_HOSTNAME_LENGTH, democonfigSERVER_HOSTNAME,
-                   ( int32_t ) xRequestInfo.pathLen, xRequestInfo.pPath ) );
+                   ( int32_t ) xRequestInfo.methodLen,
+                   xRequestInfo.pMethod,
+                   ( int32_t ) httpexampleSERVER_HOSTNAME_LENGTH,
+                   democonfigSERVER_HOSTNAME,
+                   ( int32_t ) xRequestInfo.pathLen,
+                   xRequestInfo.pPath ) );
         LogInfo( ( "Request Headers:\n%.*s\n"
                    "Request Body:\n%.*s\n",
                    ( int32_t ) xRequestHeaders.headersLen,
                    ( char * ) xRequestHeaders.pBuffer,
-                   ( int32_t ) httpexampleREQUEST_BODY_LENGTH, democonfigREQUEST_BODY ) );
+                   ( int32_t ) httpexampleREQUEST_BODY_LENGTH,
+                   democonfigREQUEST_BODY ) );
 
         /* Send the request and receive the response. */
         xHTTPStatus = HTTPClient_Send( pxTransportInterface,
@@ -550,21 +575,27 @@ static BaseType_t prvSendHttpRequest( const TransportInterface_t * pxTransportIn
     if( xHTTPStatus == HTTPSuccess )
     {
         LogInfo( ( "Received HTTP response from %.*s%.*s...\n",
-                   ( int32_t ) httpexampleSERVER_HOSTNAME_LENGTH, democonfigSERVER_HOSTNAME,
-                   ( int32_t ) xRequestInfo.pathLen, xRequestInfo.pPath ) );
+                   ( int32_t ) httpexampleSERVER_HOSTNAME_LENGTH,
+                   democonfigSERVER_HOSTNAME,
+                   ( int32_t ) xRequestInfo.pathLen,
+                   xRequestInfo.pPath ) );
         LogDebug( ( "Response Headers:\n%.*s\n",
-                    ( int32_t ) xResponse.headersLen, xResponse.pHeaders ) );
-        LogDebug( ( "Status Code:\n%u\n",
-                    xResponse.statusCode ) );
+                    ( int32_t ) xResponse.headersLen,
+                    xResponse.pHeaders ) );
+        LogDebug( ( "Status Code:\n%u\n", xResponse.statusCode ) );
         LogDebug( ( "Response Body:\n%.*s\n",
-                    ( int32_t ) xResponse.bodyLen, xResponse.pBody ) );
+                    ( int32_t ) xResponse.bodyLen,
+                    xResponse.pBody ) );
     }
     else
     {
         LogError( ( "Failed to send HTTP %.*s request to %.*s%.*s: Error=%s.",
-                    ( int32_t ) xRequestInfo.methodLen, xRequestInfo.pMethod,
-                    ( int32_t ) httpexampleSERVER_HOSTNAME_LENGTH, democonfigSERVER_HOSTNAME,
-                    ( int32_t ) xRequestInfo.pathLen, xRequestInfo.pPath,
+                    ( int32_t ) xRequestInfo.methodLen,
+                    xRequestInfo.pMethod,
+                    ( int32_t ) httpexampleSERVER_HOSTNAME_LENGTH,
+                    democonfigSERVER_HOSTNAME,
+                    ( int32_t ) xRequestInfo.pathLen,
+                    xRequestInfo.pPath,
                     HTTPClient_strerror( xHTTPStatus ) ) );
     }
 

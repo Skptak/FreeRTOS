@@ -70,11 +70,11 @@
 #ifndef ti_drivers_NVS__include
 #define ti_drivers_NVS__include
 
-#include <stdint.h>
-#include <stddef.h>
 #include <stdbool.h>
+#include <stddef.h>
+#include <stdint.h>
 
-#if defined (__cplusplus)
+#if defined( __cplusplus )
 extern "C" {
 #endif
 
@@ -95,7 +95,7 @@ extern "C" {
  * #define NVSXYZ_CMD_COMMAND1     NVS_CMD_RESERVED + 1
  * @endcode
  */
-#define NVS_CMD_RESERVED            32
+#define NVS_CMD_RESERVED        32
 
 /*!
  * Common NVS_control status code reservation offset.
@@ -109,7 +109,7 @@ extern "C" {
  * #define NVSXYZ_STATUS_ERROR2    NVS_STATUS_RESERVED - 2
  * @endcode
  */
-#define NVS_STATUS_RESERVED        -32
+#define NVS_STATUS_RESERVED     -32
 
 /**
  *  @defgroup NVS_STATUS Status Codes
@@ -124,7 +124,7 @@ extern "C" {
  * NVS_control() returns NVS_STATUS_SUCCESS if the control code was executed
  * successfully.
  */
-#define NVS_STATUS_SUCCESS         0
+#define NVS_STATUS_SUCCESS      0
 
 /*!
  * @brief   Generic error status code returned by NVS_control().
@@ -132,7 +132,7 @@ extern "C" {
  * NVS_control() returns NVS_STATUS_ERROR if the control code was not executed
  * successfully.
  */
-#define NVS_STATUS_ERROR          -1
+#define NVS_STATUS_ERROR        -1
 
 /*!
  * @brief   An error status code returned by NVS_control() for undefined
@@ -141,7 +141,7 @@ extern "C" {
  * NVS_control() returns NVS_STATUS_UNDEFINEDCMD if the control code is not
  * recognized by the driver implementation.
  */
-#define NVS_STATUS_UNDEFINEDCMD   -2
+#define NVS_STATUS_UNDEFINEDCMD -2
 /** @}*/
 
 /**
@@ -161,17 +161,17 @@ extern "C" {
 /*!
  *  @brief Success return code
  */
-#define NVS_SOK (0)
+#define NVS_SOK                 ( 0 )
 
 /*!
  *  @brief General failure return code
  */
-#define NVS_EFAIL               (-1)
-#define NVS_EOFFSET             (-3)
-#define NVS_EALIGN              (-4)
-#define NVS_ENOTENOUGHBYTES     (-5)
-#define NVS_EALREADYWRITTEN     (-6)
-#define NVS_ECOPYBLOCK          (-7)
+#define NVS_EFAIL               ( -1 )
+#define NVS_EOFFSET             ( -3 )
+#define NVS_EALIGN              ( -4 )
+#define NVS_ENOTENOUGHBYTES     ( -5 )
+#define NVS_EALREADYWRITTEN     ( -6 )
+#define NVS_ECOPYBLOCK          ( -7 )
 
 /*!
  *  @brief NVS write flags
@@ -192,7 +192,7 @@ extern "C" {
  *  last time the NVS block was erarsed.  If that is the case, NVS_write()
  *  will return an error.
  */
-#define NVS_WRITE_EXCLUSIVE           (0x1)
+#define NVS_WRITE_EXCLUSIVE     ( 0x1 )
 
 /*!
  *  @brief Erase write flag.
@@ -200,7 +200,7 @@ extern "C" {
  *  If NVS_WRITE_ERASE is set in the flags passed to NVS_write(), the entire
  *  NVS block will be erased before being written to.
  */
-#define NVS_WRITE_ERASE               (0x2)
+#define NVS_WRITE_ERASE         ( 0x2 )
 
 /*!
  *  @brief Validate write flag.
@@ -209,7 +209,7 @@ extern "C" {
  *  in the NVS block that was written to will be validated (i.e., compared
  *  against the data buffer passed to NVS_write()).
  */
-#define NVS_WRITE_VALIDATE            (0x4)
+#define NVS_WRITE_VALIDATE      ( 0x4 )
 
 /*!
  *  @brief    NVS Parameters
@@ -219,8 +219,9 @@ extern "C" {
  *
  *  @sa       NVS_Params_init()
  */
-typedef struct NVS_Params {
-    bool    eraseOnOpen;    /*!< Erase block on open */
+typedef struct NVS_Params
+{
+    bool eraseOnOpen; /*!< Erase block on open */
 } NVS_Params;
 
 /*!
@@ -243,97 +244,104 @@ typedef struct NVS_Params {
  *
  *  @sa     NVS_getAttrs()
  */
-typedef struct NVS_Attrs {
-    size_t  pageSize;    /*! Hardware page size */
-    size_t  blockSize;   /*! Size of the NVS block to manage */
+typedef struct NVS_Attrs
+{
+    size_t pageSize;  /*! Hardware page size */
+    size_t blockSize; /*! Size of the NVS block to manage */
 } NVS_Attrs;
 
 /*!
  *  @brief      A handle that is returned from the NVS_open() call.
  */
-typedef struct NVS_Config      *NVS_Handle;
+typedef struct NVS_Config * NVS_Handle;
 
 /*!
  *  @brief      A function pointer to a driver specific implementation of
  *              NVS_close().
  */
-typedef void        (*NVS_CloseFxn)    (NVS_Handle handle);
+typedef void ( *NVS_CloseFxn )( NVS_Handle handle );
 
 /*!
  *  @brief      A function pointer to a driver specific implementation of
  *              NVS_control().
  */
-typedef int         (*NVS_ControlFxn)  (NVS_Handle handle, unsigned int cmd,
-                                        uintptr_t arg);
+typedef int ( *NVS_ControlFxn )( NVS_Handle handle,
+                                 unsigned int cmd,
+                                 uintptr_t arg );
 
 /*!
  *  @brief      A function pointer to a driver specific implementation of
  *              NVS_exit().
  */
-typedef void        (*NVS_ExitFxn)     (NVS_Handle handle);
+typedef void ( *NVS_ExitFxn )( NVS_Handle handle );
 
 /*!
  *  @brief      A function pointer to a driver specific implementation of
  *              NVS_getAttrs().
  */
-typedef int         (*NVS_GetAttrsFxn) (NVS_Handle handle, NVS_Attrs *attrs);
+typedef int ( *NVS_GetAttrsFxn )( NVS_Handle handle, NVS_Attrs * attrs );
 
 /*!
  *  @brief      A function pointer to a driver specific implementation of
  *              NVS_init().
  */
-typedef void        (*NVS_InitFxn)     (NVS_Handle handle);
+typedef void ( *NVS_InitFxn )( NVS_Handle handle );
 
 /*!
  *  @brief      A function pointer to a driver specific implementation of
  *              NVS_open().
  */
-typedef NVS_Handle  (*NVS_OpenFxn)     (NVS_Handle handle, NVS_Params *params);
+typedef NVS_Handle ( *NVS_OpenFxn )( NVS_Handle handle, NVS_Params * params );
 
 /*!
  *  @brief      A function pointer to a driver specific implementation of
  *              NVS_read().
  */
-typedef int         (*NVS_ReadFxn)     (NVS_Handle handle, size_t offset,
-                                        void *buffer, size_t bufferSize);
+typedef int ( *NVS_ReadFxn )( NVS_Handle handle,
+                              size_t offset,
+                              void * buffer,
+                              size_t bufferSize );
 
 /*!
  *  @brief      A function pointer to a driver specific implementation of
  *              NVS_write().
  */
-typedef int         (*NVS_WriteFxn)    (NVS_Handle handle, size_t offset,
-                                        void *buffer, size_t bufferSize,
-                                        unsigned int flags);
+typedef int ( *NVS_WriteFxn )( NVS_Handle handle,
+                               size_t offset,
+                               void * buffer,
+                               size_t bufferSize,
+                               unsigned int flags );
 
 /*!
  *  @brief      The definition of an NVS function table that contains the
  *              required set of functions to control a specific NVS driver
  *              implementation.
  */
-typedef struct NVS_FxnTable {
+typedef struct NVS_FxnTable
+{
     /*! Function to close the specified NVS block */
-    NVS_CloseFxn        closeFxn;
+    NVS_CloseFxn closeFxn;
 
     /*! Function to apply control command to the specified NVS block */
-    NVS_ControlFxn      controlFxn;
+    NVS_ControlFxn controlFxn;
 
     /*! Function to de-initialize the NVS module */
-    NVS_ExitFxn         exitFxn;
+    NVS_ExitFxn exitFxn;
 
     /*! Function to get the NVS device-specific attributes */
-    NVS_GetAttrsFxn     getAttrsFxn;
+    NVS_GetAttrsFxn getAttrsFxn;
 
     /*! Function to initialize the NVS module */
-    NVS_InitFxn         initFxn;
+    NVS_InitFxn initFxn;
 
     /*! Function to open an NVS block */
-    NVS_OpenFxn         openFxn;
+    NVS_OpenFxn openFxn;
 
     /*! Function to read from the specified NVS block */
-    NVS_ReadFxn         readFxn;
+    NVS_ReadFxn readFxn;
 
     /*! Function to write to the specified NVS block */
-    NVS_WriteFxn        writeFxn;
+    NVS_WriteFxn writeFxn;
 } NVS_FxnTable;
 
 /*!
@@ -347,15 +355,16 @@ typedef struct NVS_FxnTable {
  *
  *  @sa     NVS_init()
  */
-typedef struct NVS_Config {
+typedef struct NVS_Config
+{
     /*! Pointer to a table of driver-specific implementations of NVS APIs */
-    NVS_FxnTable const *fxnTablePtr;
+    NVS_FxnTable const * fxnTablePtr;
 
     /*! Pointer to a driver specific data object */
-    void               *object;
+    void * object;
 
     /*! Pointer to a driver specific hardware attributes structure */
-    void         const *hwAttrs;
+    void const * hwAttrs;
 } NVS_Config;
 
 /*!
@@ -365,7 +374,7 @@ typedef struct NVS_Config {
  *
  *  @sa     NVS_open()
  */
-extern void NVS_close(NVS_Handle handle);
+extern void NVS_close( NVS_Handle handle );
 
 /*!
  *  @brief  Function performs implementation specific features on a given
@@ -386,7 +395,7 @@ extern void NVS_close(NVS_Handle handle);
  *
  *  @sa     NVS_open()
  */
-extern int NVS_control(NVS_Handle handle, unsigned int cmd, uintptr_t arg);
+extern int NVS_control( NVS_Handle handle, unsigned int cmd, uintptr_t arg );
 
 /*!
  *  @brief  Erase the block of storage reference by an NVS handle
@@ -396,14 +405,14 @@ extern int NVS_control(NVS_Handle handle, unsigned int cmd, uintptr_t arg);
  *  @return  NVS_SOK    Success.
  *  @return  NVS_EFAIL  An error occurred erasing the flash.
  */
-extern int NVS_erase(NVS_Handle handle);
+extern int NVS_erase( NVS_Handle handle );
 
 /*!
  *  @brief  Function to de-initialize the NVS module
  *
  *  @pre    NVS_init() was called.
  */
-extern void NVS_exit(void);
+extern void NVS_exit( void );
 
 /*!
  *  @brief  Function to get the NVS attributes
@@ -412,7 +421,7 @@ extern void NVS_exit(void);
  *
  *  @param  attrs       Location to store attributes.
  */
-extern int NVS_getAttrs(NVS_Handle handle, NVS_Attrs *attrs);
+extern int NVS_getAttrs( NVS_Handle handle, NVS_Attrs * attrs );
 
 /*!
  *  @brief  Function to initialize the NVS module
@@ -421,7 +430,7 @@ extern int NVS_getAttrs(NVS_Handle handle, NVS_Attrs *attrs);
  *          function can be called. This function must also be called before
  *          any other NVS APIs.
  */
-extern void NVS_init(void);
+extern void NVS_init( void );
 
 /*!
  *  @brief  Get an NVS block for reading and writing.
@@ -434,7 +443,7 @@ extern void NVS_init(void);
  *  @param  params        Pointer to a parameter block.  If NULL, default
  *                        parameter values will be used.
  */
-extern NVS_Handle NVS_open(int index, NVS_Params *params);
+extern NVS_Handle NVS_open( int index, NVS_Params * params );
 
 /*!
  *  @brief   Read data from an NVS block.
@@ -454,8 +463,10 @@ extern NVS_Handle NVS_open(int index, NVS_Params *params);
  *
  *  @remark  This call may block to ensure atomic access to the block.
  */
-extern int NVS_read(NVS_Handle handle, size_t offset, void *buffer,
-                    size_t bufferSize);
+extern int NVS_read( NVS_Handle handle,
+                     size_t offset,
+                     void * buffer,
+                     size_t bufferSize );
 
 /*!
  *  @brief   Write data to an NVS block.
@@ -488,10 +499,13 @@ extern int NVS_read(NVS_Handle handle, size_t offset, void *buffer,
  *
  *  @remark  This call may block to ensure atomic access to the block.
  */
-extern int NVS_write(NVS_Handle handle, size_t offset, void *buffer,
-                     size_t bufferSize, unsigned int flags);
+extern int NVS_write( NVS_Handle handle,
+                      size_t offset,
+                      void * buffer,
+                      size_t bufferSize,
+                      unsigned int flags );
 
-#if defined (__cplusplus)
+#if defined( __cplusplus )
 }
 #endif /* defined (__cplusplus) */
 

@@ -8,11 +8,11 @@
  *
  *
  * Note 1: This file should not be edited. If you need to modify a parameter
- * without going through regenerating using the MSS Configurator Libero flow 
+ * without going through regenerating using the MSS Configurator Libero flow
  * or editing the associated xml file
- * the following method is recommended: 
+ * the following method is recommended:
 
- * 1. edit the following file 
+ * 1. edit the following file
  * boards/your_board/platform_config/mpfs_hal_config/mss_sw_config.h
 
  * 2. define the value you want to override there.
@@ -27,14 +27,13 @@
 #ifndef HW_CLK_MSS_PLL_H_
 #define HW_CLK_MSS_PLL_H_
 
-
 #ifdef __cplusplus
-extern  "C" {
+extern "C" {
 #endif
 
-#if !defined (LIBERO_SETTING_MSS_PLL_CTRL)
-/*PLL control register */
-#define LIBERO_SETTING_MSS_PLL_CTRL    0x01000037UL
+#if !defined( LIBERO_SETTING_MSS_PLL_CTRL )
+    /*PLL control register */
+    #define LIBERO_SETTING_MSS_PLL_CTRL 0x01000037UL
     /* REG_POWERDOWN_B                   [0:1]   RW value= 0x1 */
     /* REG_RFDIV_EN                      [1:1]   RW value= 0x1 */
     /* REG_DIVQ0_EN                      [2:1]   RW value= 0x1 */
@@ -57,9 +56,9 @@ extern  "C" {
     /* RESERVE11                         [30:1]  RSVD */
     /* LOCK_B                            [31:1]  RO */
 #endif
-#if !defined (LIBERO_SETTING_MSS_PLL_REF_FB)
-/*PLL reference and feedback registers */
-#define LIBERO_SETTING_MSS_PLL_REF_FB    0x00000500UL
+#if !defined( LIBERO_SETTING_MSS_PLL_REF_FB )
+    /*PLL reference and feedback registers */
+    #define LIBERO_SETTING_MSS_PLL_REF_FB 0x00000500UL
     /* FSE_B                             [0:1]   RW value= 0x0 */
     /* FBCK_SEL                          [1:2]   RW value= 0x0 */
     /* FOUTFB_SELMUX_EN                  [3:1]   RW value= 0x0 */
@@ -69,17 +68,17 @@ extern  "C" {
     /* RESERVE14                         [16:12] RSVD */
     /* RESERVE15                         [28:4]  RSVD */
 #endif
-#if !defined (LIBERO_SETTING_MSS_PLL_FRACN)
-/*PLL fractional register */
-#define LIBERO_SETTING_MSS_PLL_FRACN    0x00000000UL
+#if !defined( LIBERO_SETTING_MSS_PLL_FRACN )
+    /*PLL fractional register */
+    #define LIBERO_SETTING_MSS_PLL_FRACN 0x00000000UL
     /* FRACN_EN                          [0:1]   RW value= 0x0 */
     /* FRACN_DAC_EN                      [1:1]   RW value= 0x0 */
     /* RESERVE16                         [2:6]   RSVD */
     /* RESERVE17                         [8:24]  RSVD */
 #endif
-#if !defined (LIBERO_SETTING_MSS_PLL_DIV_0_1)
-/*PLL 0/1 division registers */
-#define LIBERO_SETTING_MSS_PLL_DIV_0_1    0x01000200UL
+#if !defined( LIBERO_SETTING_MSS_PLL_DIV_0_1 )
+    /*PLL 0/1 division registers */
+    #define LIBERO_SETTING_MSS_PLL_DIV_0_1 0x01000200UL
     /* VCO0PH_SEL                        [0:3]   RO */
     /* DIV0_START                        [3:3]   RW value= 0x0 */
     /* RESERVE18                         [6:2]   RSVD */
@@ -91,9 +90,9 @@ extern  "C" {
     /* POST1DIV                          [24:7]  RW value= 0x1 */
     /* RESERVE21                         [31:1]  RSVD */
 #endif
-#if !defined (LIBERO_SETTING_MSS_PLL_DIV_2_3)
-/*PLL 2/3 division registers */
-#define LIBERO_SETTING_MSS_PLL_DIV_2_3    0x0F000600UL
+#if !defined( LIBERO_SETTING_MSS_PLL_DIV_2_3 )
+    /*PLL 2/3 division registers */
+    #define LIBERO_SETTING_MSS_PLL_DIV_2_3 0x0F000600UL
     /* VCO2PH_SEL                        [0:3]   RO */
     /* DIV2_START                        [3:3]   RW value= 0x0 */
     /* RESERVE22                         [6:2]   RSVD */
@@ -105,9 +104,9 @@ extern  "C" {
     /* POST3DIV                          [24:7]  RW value= 0xF */
     /* CKPOST3_SEL                       [31:1]  RW value= 0x0 */
 #endif
-#if !defined (LIBERO_SETTING_MSS_PLL_CTRL2)
-/*PLL control register */
-#define LIBERO_SETTING_MSS_PLL_CTRL2    0x00001020UL
+#if !defined( LIBERO_SETTING_MSS_PLL_CTRL2 )
+    /*PLL control register */
+    #define LIBERO_SETTING_MSS_PLL_CTRL2 0x00001020UL
     /* BWI                               [0:2]   RW value= 0x0 */
     /* BWP                               [2:2]   RW value= 0x0 */
     /* IREF_EN                           [4:1]   RW value= 0x0 */
@@ -119,9 +118,9 @@ extern  "C" {
     /* ATEST_SEL                         [18:3]  RW value= 0x0 */
     /* RESERVE27                         [21:11] RSVD */
 #endif
-#if !defined (LIBERO_SETTING_MSS_PLL_CAL)
-/*PLL calibration register */
-#define LIBERO_SETTING_MSS_PLL_CAL    0x00000D06UL
+#if !defined( LIBERO_SETTING_MSS_PLL_CAL )
+    /*PLL calibration register */
+    #define LIBERO_SETTING_MSS_PLL_CAL 0x00000D06UL
     /* DSKEWCALCNT                       [0:3]   RW value= 0x6 */
     /* DSKEWCAL_EN                       [3:1]   RW value= 0x0 */
     /* DSKEWCALBYP                       [4:1]   RW value= 0x0 */
@@ -131,9 +130,9 @@ extern  "C" {
     /* DSKEWCALOUT                       [16:7]  RO */
     /* RESERVE30                         [23:9]  RSVD */
 #endif
-#if !defined (LIBERO_SETTING_MSS_PLL_PHADJ)
-/*PLL phase registers */
-#define LIBERO_SETTING_MSS_PLL_PHADJ    0x00004003UL
+#if !defined( LIBERO_SETTING_MSS_PLL_PHADJ )
+    /*PLL phase registers */
+    #define LIBERO_SETTING_MSS_PLL_PHADJ 0x00004003UL
     /* PLL_REG_SYNCREFDIV_EN             [0:1]   RW value= 0x1 */
     /* PLL_REG_ENABLE_SYNCREFDIV         [1:1]   RW value= 0x1 */
     /* REG_OUT0_PHSINIT                  [2:3]   RW value= 0x0 */
@@ -143,31 +142,31 @@ extern  "C" {
     /* REG_LOADPHS_B                     [14:1]  RW value= 0x0 */
     /* RESERVE31                         [15:17] RSVD */
 #endif
-#if !defined (LIBERO_SETTING_MSS_SSCG_REG_0)
-/*SSCG registers 0 */
-#define LIBERO_SETTING_MSS_SSCG_REG_0    0x00000000UL
+#if !defined( LIBERO_SETTING_MSS_SSCG_REG_0 )
+    /*SSCG registers 0 */
+    #define LIBERO_SETTING_MSS_SSCG_REG_0 0x00000000UL
     /* DIVVAL                            [0:6]   RW value= 0x0 */
     /* FRACIN                            [6:24]  RW value= 0x0 */
     /* RESERVE00                         [30:2]  RSVD */
 #endif
-#if !defined (LIBERO_SETTING_MSS_SSCG_REG_1)
-/*SSCG registers 1 */
-#define LIBERO_SETTING_MSS_SSCG_REG_1    0x00000000UL
+#if !defined( LIBERO_SETTING_MSS_SSCG_REG_1 )
+    /*SSCG registers 1 */
+    #define LIBERO_SETTING_MSS_SSCG_REG_1 0x00000000UL
     /* DOWNSPREAD                        [0:1]   RW value= 0x0 */
     /* SSMD                              [1:5]   RW value= 0x0 */
     /* FRACMOD                           [6:24]  RO */
     /* RESERVE01                         [30:2]  RSVD */
 #endif
-#if !defined (LIBERO_SETTING_MSS_SSCG_REG_2)
-/*SSCG registers 2 */
-#define LIBERO_SETTING_MSS_SSCG_REG_2    0x000000C0UL
+#if !defined( LIBERO_SETTING_MSS_SSCG_REG_2 )
+    /*SSCG registers 2 */
+    #define LIBERO_SETTING_MSS_SSCG_REG_2 0x000000C0UL
     /* INTIN                             [0:12]  RW value= 0xC0 */
     /* INTMOD                            [12:12] RO */
     /* RESERVE02                         [24:8]  RSVD */
 #endif
-#if !defined (LIBERO_SETTING_MSS_SSCG_REG_3)
-/*SSCG registers 3 */
-#define LIBERO_SETTING_MSS_SSCG_REG_3    0x00000001UL
+#if !defined( LIBERO_SETTING_MSS_SSCG_REG_3 )
+    /*SSCG registers 3 */
+    #define LIBERO_SETTING_MSS_SSCG_REG_3 0x00000001UL
     /* SSE_B                             [0:1]   RW value= 0x1 */
     /* SEL_EXTWAVE                       [1:2]   RW value= 0x0 */
     /* EXT_MAXADDR                       [3:8]   RW value= 0x0 */
@@ -182,6 +181,4 @@ extern  "C" {
 }
 #endif
 
-
 #endif /* #ifdef HW_CLK_MSS_PLL_H_ */
-

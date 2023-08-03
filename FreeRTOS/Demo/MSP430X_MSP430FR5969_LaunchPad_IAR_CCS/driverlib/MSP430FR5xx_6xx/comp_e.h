@@ -42,18 +42,17 @@
 
 #ifdef __MSP430_HAS_COMP_E__
 
-//*****************************************************************************
-//
-// If building with a C++ compiler, make all of the definitions in this header
-// have a C binding.
-//
-//*****************************************************************************
-#ifdef __cplusplus
-extern "C"
-{
-#endif
+    //*****************************************************************************
+    //
+    // If building with a C++ compiler, make all of the definitions in this
+    // header have a C binding.
+    //
+    //*****************************************************************************
+    #ifdef __cplusplus
+extern "C" {
+    #endif
 
-#include "inc/hw_regaccess.h"
+    #include "inc/hw_regaccess.h"
 //*****************************************************************************
 //
 //! \brief Used in the Comp_E_init() function as the param parameter.
@@ -118,126 +117,127 @@ typedef struct Comp_E_initParam
     uint16_t invertedOutputPolarity;
 } Comp_E_initParam;
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the
-// outputFilterEnableAndDelayLevel parameter for functions: Comp_E_init(); the
-// param parameter for functions: Comp_E_init().
-//
-//*****************************************************************************
-#define COMP_E_FILTEROUTPUT_OFF                                            0x00
-#define COMP_E_FILTEROUTPUT_DLYLVL1                            (CEF + CEFDLY_0)
-#define COMP_E_FILTEROUTPUT_DLYLVL2                            (CEF + CEFDLY_1)
-#define COMP_E_FILTEROUTPUT_DLYLVL3                            (CEF + CEFDLY_2)
-#define COMP_E_FILTEROUTPUT_DLYLVL4                            (CEF + CEFDLY_3)
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the
+    // outputFilterEnableAndDelayLevel parameter for functions: Comp_E_init();
+    // the param parameter for functions: Comp_E_init().
+    //
+    //*****************************************************************************
+    #define COMP_E_FILTEROUTPUT_OFF                 0x00
+    #define COMP_E_FILTEROUTPUT_DLYLVL1             ( CEF + CEFDLY_0 )
+    #define COMP_E_FILTEROUTPUT_DLYLVL2             ( CEF + CEFDLY_1 )
+    #define COMP_E_FILTEROUTPUT_DLYLVL3             ( CEF + CEFDLY_2 )
+    #define COMP_E_FILTEROUTPUT_DLYLVL4             ( CEF + CEFDLY_3 )
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the posTerminalInput
-// parameter for functions: Comp_E_init(); the inputPort parameter for
-// functions: Comp_E_disableInputBuffer(), and Comp_E_enableInputBuffer(); the
-// param parameter for functions: Comp_E_init(), and Comp_E_init(); the
-// negTerminalInput parameter for functions: Comp_E_init().
-//
-//*****************************************************************************
-#define COMP_E_INPUT0                                                    (0x01)
-#define COMP_E_INPUT1                                                    (0x02)
-#define COMP_E_INPUT2                                                    (0x04)
-#define COMP_E_INPUT3                                                    (0x08)
-#define COMP_E_INPUT4                                                    (0x10)
-#define COMP_E_INPUT5                                                    (0x20)
-#define COMP_E_INPUT6                                                    (0x40)
-#define COMP_E_INPUT7                                                    (0x80)
-#define COMP_E_INPUT8                                                   (0x100)
-#define COMP_E_INPUT9                                                   (0x200)
-#define COMP_E_INPUT10                                                  (0x400)
-#define COMP_E_INPUT11                                                  (0x800)
-#define COMP_E_INPUT12                                                 (0x1000)
-#define COMP_E_INPUT13                                                 (0x2000)
-#define COMP_E_INPUT14                                                 (0x4000)
-#define COMP_E_INPUT15                                                 (0x8000)
-#define COMP_E_VREF                                                      (0x9F)
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the posTerminalInput
+    // parameter for functions: Comp_E_init(); the inputPort parameter for
+    // functions: Comp_E_disableInputBuffer(), and Comp_E_enableInputBuffer();
+    // the param parameter for functions: Comp_E_init(), and Comp_E_init(); the
+    // negTerminalInput parameter for functions: Comp_E_init().
+    //
+    //*****************************************************************************
+    #define COMP_E_INPUT0                           ( 0x01 )
+    #define COMP_E_INPUT1                           ( 0x02 )
+    #define COMP_E_INPUT2                           ( 0x04 )
+    #define COMP_E_INPUT3                           ( 0x08 )
+    #define COMP_E_INPUT4                           ( 0x10 )
+    #define COMP_E_INPUT5                           ( 0x20 )
+    #define COMP_E_INPUT6                           ( 0x40 )
+    #define COMP_E_INPUT7                           ( 0x80 )
+    #define COMP_E_INPUT8                           ( 0x100 )
+    #define COMP_E_INPUT9                           ( 0x200 )
+    #define COMP_E_INPUT10                          ( 0x400 )
+    #define COMP_E_INPUT11                          ( 0x800 )
+    #define COMP_E_INPUT12                          ( 0x1000 )
+    #define COMP_E_INPUT13                          ( 0x2000 )
+    #define COMP_E_INPUT14                          ( 0x4000 )
+    #define COMP_E_INPUT15                          ( 0x8000 )
+    #define COMP_E_VREF                             ( 0x9F )
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the invertedOutputPolarity
-// parameter for functions: Comp_E_init(); the param parameter for functions:
-// Comp_E_init().
-//
-//*****************************************************************************
-#define COMP_E_NORMALOUTPUTPOLARITY                               (!(CEOUTPOL))
-#define COMP_E_INVERTEDOUTPUTPOLARITY                                (CEOUTPOL)
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the invertedOutputPolarity
+    // parameter for functions: Comp_E_init(); the param parameter for
+    // functions: Comp_E_init().
+    //
+    //*****************************************************************************
+    #define COMP_E_NORMALOUTPUTPOLARITY             ( !( CEOUTPOL ) )
+    #define COMP_E_INVERTEDOUTPUTPOLARITY           ( CEOUTPOL )
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the
-// supplyVoltageReferenceBase parameter for functions:
-// Comp_E_setReferenceVoltage().
-//
-//*****************************************************************************
-#define COMP_E_REFERENCE_AMPLIFIER_DISABLED                          (CEREFL_0)
-#define COMP_E_VREFBASE1_2V                                          (CEREFL_1)
-#define COMP_E_VREFBASE2_0V                                          (CEREFL_2)
-#define COMP_E_VREFBASE2_5V                                          (CEREFL_3)
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the
+    // supplyVoltageReferenceBase parameter for functions:
+    // Comp_E_setReferenceVoltage().
+    //
+    //*****************************************************************************
+    #define COMP_E_REFERENCE_AMPLIFIER_DISABLED     ( CEREFL_0 )
+    #define COMP_E_VREFBASE1_2V                     ( CEREFL_1 )
+    #define COMP_E_VREFBASE2_0V                     ( CEREFL_2 )
+    #define COMP_E_VREFBASE2_5V                     ( CEREFL_3 )
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the referenceAccuracy
-// parameter for functions: Comp_E_setReferenceAccuracy().
-//
-//*****************************************************************************
-#define COMP_E_ACCURACY_STATIC                                      (!CEREFACC)
-#define COMP_E_ACCURACY_CLOCKED                                      (CEREFACC)
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the referenceAccuracy
+    // parameter for functions: Comp_E_setReferenceAccuracy().
+    //
+    //*****************************************************************************
+    #define COMP_E_ACCURACY_STATIC                  ( !CEREFACC )
+    #define COMP_E_ACCURACY_CLOCKED                 ( CEREFACC )
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the powerMode parameter for
-// functions: Comp_E_setPowerMode().
-//
-//*****************************************************************************
-#define COMP_E_HIGH_SPEED_MODE                                      (CEPWRMD_0)
-#define COMP_E_NORMAL_MODE                                          (CEPWRMD_1)
-#define COMP_E_ULTRA_LOW_POWER_MODE                                 (CEPWRMD_2)
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the powerMode parameter
+    // for functions: Comp_E_setPowerMode().
+    //
+    //*****************************************************************************
+    #define COMP_E_HIGH_SPEED_MODE                  ( CEPWRMD_0 )
+    #define COMP_E_NORMAL_MODE                      ( CEPWRMD_1 )
+    #define COMP_E_ULTRA_LOW_POWER_MODE             ( CEPWRMD_2 )
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the interruptMask parameter
-// for functions: Comp_E_enableInterrupt(), and Comp_E_disableInterrupt().
-//
-//*****************************************************************************
-#define COMP_E_OUTPUT_INTERRUPT                                          (CEIE)
-#define COMP_E_INVERTED_POLARITY_INTERRUPT                              (CEIIE)
-#define COMP_E_READY_INTERRUPT                                        (CERDYIE)
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the interruptMask
+    // parameter for functions: Comp_E_enableInterrupt(), and
+    // Comp_E_disableInterrupt().
+    //
+    //*****************************************************************************
+    #define COMP_E_OUTPUT_INTERRUPT                 ( CEIE )
+    #define COMP_E_INVERTED_POLARITY_INTERRUPT      ( CEIIE )
+    #define COMP_E_READY_INTERRUPT                  ( CERDYIE )
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the interruptFlagMask
-// parameter for functions: Comp_E_clearInterrupt(), and
-// Comp_E_getInterruptStatus() as well as returned by the
-// Comp_E_getInterruptStatus() function.
-//
-//*****************************************************************************
-#define COMP_E_OUTPUT_INTERRUPT_FLAG                                    (CEIFG)
-#define COMP_E_INTERRUPT_FLAG_INVERTED_POLARITY                        (CEIIFG)
-#define COMP_E_INTERRUPT_FLAG_READY                                  (CERDYIFG)
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the interruptFlagMask
+    // parameter for functions: Comp_E_clearInterrupt(), and
+    // Comp_E_getInterruptStatus() as well as returned by the
+    // Comp_E_getInterruptStatus() function.
+    //
+    //*****************************************************************************
+    #define COMP_E_OUTPUT_INTERRUPT_FLAG            ( CEIFG )
+    #define COMP_E_INTERRUPT_FLAG_INVERTED_POLARITY ( CEIIFG )
+    #define COMP_E_INTERRUPT_FLAG_READY             ( CERDYIFG )
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the edgeDirection parameter
-// for functions: Comp_E_setInterruptEdgeDirection().
-//
-//*****************************************************************************
-#define COMP_E_FALLINGEDGE                                           (!(CEIES))
-#define COMP_E_RISINGEDGE                                               (CEIES)
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the edgeDirection
+    // parameter for functions: Comp_E_setInterruptEdgeDirection().
+    //
+    //*****************************************************************************
+    #define COMP_E_FALLINGEDGE                      ( !( CEIES ) )
+    #define COMP_E_RISINGEDGE                       ( CEIES )
 
-//*****************************************************************************
-//
-// The following are values that can be passed toThe following are values that
-// can be returned by the Comp_E_outputValue() function.
-//
-//*****************************************************************************
-#define COMP_E_LOW                                                        (0x0)
-#define COMP_E_HIGH                                                     (CEOUT)
+    //*****************************************************************************
+    //
+    // The following are values that can be passed toThe following are values
+    // that can be returned by the Comp_E_outputValue() function.
+    //
+    //*****************************************************************************
+    #define COMP_E_LOW                              ( 0x0 )
+    #define COMP_E_HIGH                             ( CEOUT )
 
 //*****************************************************************************
 //
@@ -262,8 +262,7 @@ typedef struct Comp_E_initParam
 //! \return STATUS_SUCCESS or STATUS_FAILURE of the initialization process
 //
 //*****************************************************************************
-extern bool Comp_E_init(uint16_t baseAddress,
-                        Comp_E_initParam *param);
+extern bool Comp_E_init( uint16_t baseAddress, Comp_E_initParam * param );
 
 //*****************************************************************************
 //
@@ -297,10 +296,11 @@ extern bool Comp_E_init(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void Comp_E_setReferenceVoltage(uint16_t baseAddress,
-                                       uint16_t supplyVoltageReferenceBase,
-                                       uint16_t lowerLimitSupplyVoltageFractionOf32,
-                                       uint16_t upperLimitSupplyVoltageFractionOf32);
+extern void Comp_E_setReferenceVoltage(
+    uint16_t baseAddress,
+    uint16_t supplyVoltageReferenceBase,
+    uint16_t lowerLimitSupplyVoltageFractionOf32,
+    uint16_t upperLimitSupplyVoltageFractionOf32 );
 
 //*****************************************************************************
 //
@@ -319,8 +319,8 @@ extern void Comp_E_setReferenceVoltage(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void Comp_E_setReferenceAccuracy(uint16_t baseAddress,
-                                        uint16_t referenceAccuracy);
+extern void Comp_E_setReferenceAccuracy( uint16_t baseAddress,
+                                         uint16_t referenceAccuracy );
 
 //*****************************************************************************
 //
@@ -337,8 +337,7 @@ extern void Comp_E_setReferenceAccuracy(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void Comp_E_setPowerMode(uint16_t baseAddress,
-                                uint16_t powerMode);
+extern void Comp_E_setPowerMode( uint16_t baseAddress, uint16_t powerMode );
 
 //*****************************************************************************
 //
@@ -359,8 +358,8 @@ extern void Comp_E_setPowerMode(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void Comp_E_enableInterrupt(uint16_t baseAddress,
-                                   uint16_t interruptMask);
+extern void Comp_E_enableInterrupt( uint16_t baseAddress,
+                                    uint16_t interruptMask );
 
 //*****************************************************************************
 //
@@ -381,8 +380,8 @@ extern void Comp_E_enableInterrupt(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void Comp_E_disableInterrupt(uint16_t baseAddress,
-                                    uint16_t interruptMask);
+extern void Comp_E_disableInterrupt( uint16_t baseAddress,
+                                     uint16_t interruptMask );
 
 //*****************************************************************************
 //
@@ -403,8 +402,8 @@ extern void Comp_E_disableInterrupt(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void Comp_E_clearInterrupt(uint16_t baseAddress,
-                                  uint16_t interruptFlagMask);
+extern void Comp_E_clearInterrupt( uint16_t baseAddress,
+                                   uint16_t interruptFlagMask );
 
 //*****************************************************************************
 //
@@ -429,8 +428,8 @@ extern void Comp_E_clearInterrupt(uint16_t baseAddress,
 //!         \n indicating the status of the masked flags
 //
 //*****************************************************************************
-extern uint8_t Comp_E_getInterruptStatus(uint16_t baseAddress,
-                                         uint16_t interruptFlagMask);
+extern uint8_t Comp_E_getInterruptStatus( uint16_t baseAddress,
+                                          uint16_t interruptFlagMask );
 
 //*****************************************************************************
 //
@@ -457,8 +456,8 @@ extern uint8_t Comp_E_getInterruptStatus(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void Comp_E_setInterruptEdgeDirection(uint16_t baseAddress,
-                                             uint16_t edgeDirection);
+extern void Comp_E_setInterruptEdgeDirection( uint16_t baseAddress,
+                                              uint16_t edgeDirection );
 
 //*****************************************************************************
 //
@@ -476,7 +475,7 @@ extern void Comp_E_setInterruptEdgeDirection(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void Comp_E_toggleInterruptEdgeDirection(uint16_t baseAddress);
+extern void Comp_E_toggleInterruptEdgeDirection( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -489,7 +488,7 @@ extern void Comp_E_toggleInterruptEdgeDirection(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void Comp_E_enable(uint16_t baseAddress);
+extern void Comp_E_enable( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -505,7 +504,7 @@ extern void Comp_E_enable(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void Comp_E_disable(uint16_t baseAddress);
+extern void Comp_E_disable( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -521,7 +520,7 @@ extern void Comp_E_disable(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void Comp_E_shortInputs(uint16_t baseAddress);
+extern void Comp_E_shortInputs( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -538,7 +537,7 @@ extern void Comp_E_shortInputs(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void Comp_E_unshortInputs(uint16_t baseAddress);
+extern void Comp_E_unshortInputs( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -577,8 +576,8 @@ extern void Comp_E_unshortInputs(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void Comp_E_disableInputBuffer(uint16_t baseAddress,
-                                      uint16_t inputPort);
+extern void Comp_E_disableInputBuffer( uint16_t baseAddress,
+                                       uint16_t inputPort );
 
 //*****************************************************************************
 //
@@ -615,8 +614,8 @@ extern void Comp_E_disableInputBuffer(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void Comp_E_enableInputBuffer(uint16_t baseAddress,
-                                     uint16_t inputPort);
+extern void Comp_E_enableInputBuffer( uint16_t baseAddress,
+                                      uint16_t inputPort );
 
 //*****************************************************************************
 //
@@ -633,7 +632,7 @@ extern void Comp_E_enableInputBuffer(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void Comp_E_swapIO(uint16_t baseAddress);
+extern void Comp_E_swapIO( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -649,16 +648,16 @@ extern void Comp_E_swapIO(uint16_t baseAddress);
 //!         \n indicating the output value of the Comp_E module
 //
 //*****************************************************************************
-extern uint16_t Comp_E_outputValue(uint16_t baseAddress);
+extern uint16_t Comp_E_outputValue( uint16_t baseAddress );
 
-//*****************************************************************************
-//
-// Mark the end of the C bindings section for C++ compilers.
-//
-//*****************************************************************************
-#ifdef __cplusplus
+    //*****************************************************************************
+    //
+    // Mark the end of the C bindings section for C++ compilers.
+    //
+    //*****************************************************************************
+    #ifdef __cplusplus
 }
-#endif
+    #endif
 
 #endif
 #endif // __MSP430WARE_COMP_E_H__

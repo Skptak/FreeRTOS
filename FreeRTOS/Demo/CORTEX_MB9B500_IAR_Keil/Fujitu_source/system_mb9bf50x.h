@@ -35,8 +35,8 @@
 #define _SYSTEM_MB9B5XX_H_
 
 #ifdef __cplusplus
- extern "C" {
-#endif 
+extern "C" {
+#endif
 
 /*
  *  Clock
@@ -52,12 +52,11 @@ extern uint32_t SysFreTPIU;            /* TPIU                   */
 /*
  *  Setup the microcontroller system
  */
-extern void SystemInit(void);
-extern void SystemCoreClockUpdate(void);
+extern void SystemInit( void );
+extern void SystemCoreClockUpdate( void );
 
 #ifdef __cplusplus
 }
 #endif
 
 #endif /* _SYSTEM_MB9B5XX_H_ */
-

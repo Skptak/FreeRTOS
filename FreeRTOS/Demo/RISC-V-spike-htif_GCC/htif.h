@@ -10,12 +10,12 @@
 
 #include <stdint.h>
 
-void htif_putc(char ch);
+void htif_putc( char ch );
 
-int htif_getc(void);
+int htif_getc( void );
 
-int htif_system_reset_check(uint32_t type, uint32_t reason);
+int htif_system_reset_check( uint32_t type, uint32_t reason );
 
-void htif_system_reset(uint32_t type, uint32_t reason);
+void htif_system_reset( uint32_t type, uint32_t reason );
 
 #endif

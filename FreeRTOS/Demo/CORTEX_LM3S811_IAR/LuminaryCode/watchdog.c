@@ -32,13 +32,13 @@
 //
 //*****************************************************************************
 
+#include "watchdog.h"
 #include "../hw_ints.h"
 #include "../hw_memmap.h"
 #include "../hw_types.h"
 #include "../hw_watchdog.h"
 #include "debug.h"
 #include "interrupt.h"
-#include "watchdog.h"
 
 //*****************************************************************************
 //
@@ -52,19 +52,18 @@
 //! if it is not.
 //
 //*****************************************************************************
-#if defined(GROUP_running) || defined(BUILD_ALL) || defined(DOXYGEN)
-tBoolean
-WatchdogRunning(unsigned long ulBase)
+#if defined( GROUP_running ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+tBoolean WatchdogRunning( unsigned long ulBase )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == WATCHDOG_BASE);
+    ASSERT( ulBase == WATCHDOG_BASE );
 
     //
     // See if the watchdog timer module is enabled, and return.
     //
-    return(HWREG(ulBase + WDT_O_CTL) & WDT_CTL_INTEN);
+    return ( HWREG( ulBase + WDT_O_CTL ) & WDT_CTL_INTEN );
 }
 #endif
 
@@ -84,19 +83,18 @@ WatchdogRunning(unsigned long ulBase)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_enable) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-WatchdogEnable(unsigned long ulBase)
+#if defined( GROUP_enable ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void WatchdogEnable( unsigned long ulBase )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == WATCHDOG_BASE);
+    ASSERT( ulBase == WATCHDOG_BASE );
 
     //
     // Enable the watchdog timer module.
     //
-    HWREG(ulBase + WDT_O_CTL) |= WDT_CTL_INTEN;
+    HWREG( ulBase + WDT_O_CTL ) |= WDT_CTL_INTEN;
 }
 #endif
 
@@ -117,19 +115,18 @@ WatchdogEnable(unsigned long ulBase)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_resetenable) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-WatchdogResetEnable(unsigned long ulBase)
+#if defined( GROUP_resetenable ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void WatchdogResetEnable( unsigned long ulBase )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == WATCHDOG_BASE);
+    ASSERT( ulBase == WATCHDOG_BASE );
 
     //
     // Enable the watchdog reset.
     //
-    HWREG(ulBase + WDT_O_CTL) |= WDT_CTL_RESEN;
+    HWREG( ulBase + WDT_O_CTL ) |= WDT_CTL_RESEN;
 }
 #endif
 
@@ -150,19 +147,18 @@ WatchdogResetEnable(unsigned long ulBase)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_resetdisable) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-WatchdogResetDisable(unsigned long ulBase)
+#if defined( GROUP_resetdisable ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void WatchdogResetDisable( unsigned long ulBase )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == WATCHDOG_BASE);
+    ASSERT( ulBase == WATCHDOG_BASE );
 
     //
     // Disable the watchdog reset.
     //
-    HWREG(ulBase + WDT_O_CTL) &= ~(WDT_CTL_RESEN);
+    HWREG( ulBase + WDT_O_CTL ) &= ~( WDT_CTL_RESEN );
 }
 #endif
 
@@ -177,20 +173,19 @@ WatchdogResetDisable(unsigned long ulBase)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_lock) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-WatchdogLock(unsigned long ulBase)
+#if defined( GROUP_lock ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void WatchdogLock( unsigned long ulBase )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == WATCHDOG_BASE);
+    ASSERT( ulBase == WATCHDOG_BASE );
 
     //
     // Lock out watchdog register writes.  Writing anything to the WDT_O_LOCK
     // register causes the lock to go into effect.
     //
-    HWREG(ulBase + WDT_O_LOCK) = WDT_LOCK_LOCKED;
+    HWREG( ulBase + WDT_O_LOCK ) = WDT_LOCK_LOCKED;
 }
 #endif
 
@@ -205,19 +200,18 @@ WatchdogLock(unsigned long ulBase)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_unlock) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-WatchdogUnlock(unsigned long ulBase)
+#if defined( GROUP_unlock ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void WatchdogUnlock( unsigned long ulBase )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == WATCHDOG_BASE);
+    ASSERT( ulBase == WATCHDOG_BASE );
 
     //
     // Unlock watchdog register writes.
     //
-    HWREG(ulBase + WDT_O_LOCK) = WDT_LOCK_UNLOCK;
+    HWREG( ulBase + WDT_O_LOCK ) = WDT_LOCK_UNLOCK;
 }
 #endif
 
@@ -233,19 +227,19 @@ WatchdogUnlock(unsigned long ulBase)
 //! \b false if they are not locked.
 //
 //*****************************************************************************
-#if defined(GROUP_lockstate) || defined(BUILD_ALL) || defined(DOXYGEN)
-tBoolean
-WatchdogLockState(unsigned long ulBase)
+#if defined( GROUP_lockstate ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+tBoolean WatchdogLockState( unsigned long ulBase )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == WATCHDOG_BASE);
+    ASSERT( ulBase == WATCHDOG_BASE );
 
     //
     // Get the lock state.
     //
-    return((HWREG(ulBase + WDT_O_LOCK) == WDT_LOCK_LOCKED) ? true : false);
+    return ( ( HWREG( ulBase + WDT_O_LOCK ) == WDT_LOCK_LOCKED ) ? true
+                                                                 : false );
 }
 #endif
 
@@ -270,19 +264,18 @@ WatchdogLockState(unsigned long ulBase)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_reloadset) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-WatchdogReloadSet(unsigned long ulBase, unsigned long ulLoadVal)
+#if defined( GROUP_reloadset ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void WatchdogReloadSet( unsigned long ulBase, unsigned long ulLoadVal )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == WATCHDOG_BASE);
+    ASSERT( ulBase == WATCHDOG_BASE );
 
     //
     // Set the load register.
     //
-    HWREG(ulBase + WDT_O_LOAD) = ulLoadVal;
+    HWREG( ulBase + WDT_O_LOAD ) = ulLoadVal;
 }
 #endif
 
@@ -300,19 +293,18 @@ WatchdogReloadSet(unsigned long ulBase, unsigned long ulLoadVal)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_reloadget) || defined(BUILD_ALL) || defined(DOXYGEN)
-unsigned long
-WatchdogReloadGet(unsigned long ulBase)
+#if defined( GROUP_reloadget ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+unsigned long WatchdogReloadGet( unsigned long ulBase )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == WATCHDOG_BASE);
+    ASSERT( ulBase == WATCHDOG_BASE );
 
     //
     // Get the load register.
     //
-    return(HWREG(ulBase + WDT_O_LOAD));
+    return ( HWREG( ulBase + WDT_O_LOAD ) );
 }
 #endif
 
@@ -327,19 +319,18 @@ WatchdogReloadGet(unsigned long ulBase)
 //! \return Returns the current value of the watchdog timer.
 //
 //*****************************************************************************
-#if defined(GROUP_valueget) || defined(BUILD_ALL) || defined(DOXYGEN)
-unsigned long
-WatchdogValueGet(unsigned long ulBase)
+#if defined( GROUP_valueget ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+unsigned long WatchdogValueGet( unsigned long ulBase )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == WATCHDOG_BASE);
+    ASSERT( ulBase == WATCHDOG_BASE );
 
     //
     // Get the current watchdog timer register value.
     //
-    return(HWREG(ulBase + WDT_O_VALUE));
+    return ( HWREG( ulBase + WDT_O_VALUE ) );
 }
 #endif
 
@@ -363,24 +354,23 @@ WatchdogValueGet(unsigned long ulBase)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_intregister) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-WatchdogIntRegister(unsigned long ulBase, void (*pfnHandler)(void))
+#if defined( GROUP_intregister ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void WatchdogIntRegister( unsigned long ulBase, void ( *pfnHandler )( void ) )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == WATCHDOG_BASE);
+    ASSERT( ulBase == WATCHDOG_BASE );
 
     //
     // Register the interrupt handler.
     //
-    IntRegister(INT_WATCHDOG, pfnHandler);
+    IntRegister( INT_WATCHDOG, pfnHandler );
 
     //
     // Enable the watchdog timer interrupt.
     //
-    IntEnable(INT_WATCHDOG);
+    IntEnable( INT_WATCHDOG );
 }
 #endif
 
@@ -401,24 +391,23 @@ WatchdogIntRegister(unsigned long ulBase, void (*pfnHandler)(void))
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_intunregister) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-WatchdogIntUnregister(unsigned long ulBase)
+#if defined( GROUP_intunregister ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void WatchdogIntUnregister( unsigned long ulBase )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == WATCHDOG_BASE);
+    ASSERT( ulBase == WATCHDOG_BASE );
 
     //
     // Disable the interrupt.
     //
-    IntDisable(INT_WATCHDOG);
+    IntDisable( INT_WATCHDOG );
 
     //
     // Unregister the interrupt handler.
     //
-    IntUnregister(INT_WATCHDOG);
+    IntUnregister( INT_WATCHDOG );
 }
 #endif
 
@@ -438,19 +427,18 @@ WatchdogIntUnregister(unsigned long ulBase)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_intenable) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-WatchdogIntEnable(unsigned long ulBase)
+#if defined( GROUP_intenable ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void WatchdogIntEnable( unsigned long ulBase )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == WATCHDOG_BASE);
+    ASSERT( ulBase == WATCHDOG_BASE );
 
     //
     // Enable the watchdog interrupt.
     //
-    HWREG(ulBase + WDT_O_CTL) |= WDT_CTL_INTEN;
+    HWREG( ulBase + WDT_O_CTL ) |= WDT_CTL_INTEN;
 }
 #endif
 
@@ -470,26 +458,25 @@ WatchdogIntEnable(unsigned long ulBase)
 //! interrupt is active, and a 0 indicates that it is not active.
 //
 //*****************************************************************************
-#if defined(GROUP_intstatus) || defined(BUILD_ALL) || defined(DOXYGEN)
-unsigned long
-WatchdogIntStatus(unsigned long ulBase, tBoolean bMasked)
+#if defined( GROUP_intstatus ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+unsigned long WatchdogIntStatus( unsigned long ulBase, tBoolean bMasked )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == WATCHDOG_BASE);
+    ASSERT( ulBase == WATCHDOG_BASE );
 
     //
     // Return either the interrupt status or the raw interrupt status as
     // requested.
     //
-    if(bMasked)
+    if( bMasked )
     {
-        return(HWREG(ulBase + WDT_O_MIS));
+        return ( HWREG( ulBase + WDT_O_MIS ) );
     }
     else
     {
-        return(HWREG(ulBase + WDT_O_RIS));
+        return ( HWREG( ulBase + WDT_O_RIS ) );
     }
 }
 #endif
@@ -506,19 +493,18 @@ WatchdogIntStatus(unsigned long ulBase, tBoolean bMasked)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_intclear) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-WatchdogIntClear(unsigned long ulBase)
+#if defined( GROUP_intclear ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void WatchdogIntClear( unsigned long ulBase )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == WATCHDOG_BASE);
+    ASSERT( ulBase == WATCHDOG_BASE );
 
     //
     // Clear the interrupt source.
     //
-    HWREG(ulBase + WDT_O_ICR) = WDT_INT_TIMEOUT;
+    HWREG( ulBase + WDT_O_ICR ) = WDT_INT_TIMEOUT;
 }
 #endif
 
@@ -539,19 +525,18 @@ WatchdogIntClear(unsigned long ulBase)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_stallenable) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-WatchdogStallEnable(unsigned long ulBase)
+#if defined( GROUP_stallenable ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void WatchdogStallEnable( unsigned long ulBase )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == WATCHDOG_BASE);
+    ASSERT( ulBase == WATCHDOG_BASE );
 
     //
     // Enable timer stalling.
     //
-    HWREG(ulBase + WDT_O_TEST) |= WDT_TEST_STALL;
+    HWREG( ulBase + WDT_O_TEST ) |= WDT_TEST_STALL;
 }
 #endif
 
@@ -568,19 +553,18 @@ WatchdogStallEnable(unsigned long ulBase)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_stalldisable) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-WatchdogStallDisable(unsigned long ulBase)
+#if defined( GROUP_stalldisable ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void WatchdogStallDisable( unsigned long ulBase )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == WATCHDOG_BASE);
+    ASSERT( ulBase == WATCHDOG_BASE );
 
     //
     // Disable timer stalling.
     //
-    HWREG(ulBase + WDT_O_TEST) &= ~(WDT_TEST_STALL);
+    HWREG( ulBase + WDT_O_TEST ) &= ~( WDT_TEST_STALL );
 }
 #endif
 

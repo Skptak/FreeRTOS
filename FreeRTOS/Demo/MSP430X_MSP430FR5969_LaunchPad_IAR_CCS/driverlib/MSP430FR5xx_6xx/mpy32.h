@@ -42,59 +42,58 @@
 
 #ifdef __MSP430_HAS_MPY32__
 
-//*****************************************************************************
-//
-// If building with a C++ compiler, make all of the definitions in this header
-// have a C binding.
-//
-//*****************************************************************************
-#ifdef __cplusplus
-extern "C"
-{
-#endif
+    //*****************************************************************************
+    //
+    // If building with a C++ compiler, make all of the definitions in this
+    // header have a C binding.
+    //
+    //*****************************************************************************
+    #ifdef __cplusplus
+extern "C" {
+    #endif
 
-#include "inc/hw_regaccess.h"
+    #include "inc/hw_regaccess.h"
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the writeDelaySelect
-// parameter for functions: MPY32_setWriteDelay().
-//
-//*****************************************************************************
-#define MPY32_WRITEDELAY_OFF                        (!(MPYDLY32 + MPYDLYWRTEN))
-#define MPY32_WRITEDELAY_32BIT                                    (MPYDLYWRTEN)
-#define MPY32_WRITEDELAY_64BIT                         (MPYDLY32 + MPYDLYWRTEN)
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the writeDelaySelect
+    // parameter for functions: MPY32_setWriteDelay().
+    //
+    //*****************************************************************************
+    #define MPY32_WRITEDELAY_OFF              ( !( MPYDLY32 + MPYDLYWRTEN ) )
+    #define MPY32_WRITEDELAY_32BIT            ( MPYDLYWRTEN )
+    #define MPY32_WRITEDELAY_64BIT            ( MPYDLY32 + MPYDLYWRTEN )
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the multiplicationType
-// parameter for functions: MPY32_setOperandOne8Bit(),
-// MPY32_setOperandOne16Bit(), MPY32_setOperandOne24Bit(), and
-// MPY32_setOperandOne32Bit().
-//
-//*****************************************************************************
-#define MPY32_MULTIPLY_UNSIGNED                                          (0x00)
-#define MPY32_MULTIPLY_SIGNED                                            (0x02)
-#define MPY32_MULTIPLYACCUMULATE_UNSIGNED                                (0x04)
-#define MPY32_MULTIPLYACCUMULATE_SIGNED                                  (0x06)
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the multiplicationType
+    // parameter for functions: MPY32_setOperandOne8Bit(),
+    // MPY32_setOperandOne16Bit(), MPY32_setOperandOne24Bit(), and
+    // MPY32_setOperandOne32Bit().
+    //
+    //*****************************************************************************
+    #define MPY32_MULTIPLY_UNSIGNED           ( 0x00 )
+    #define MPY32_MULTIPLY_SIGNED             ( 0x02 )
+    #define MPY32_MULTIPLYACCUMULATE_UNSIGNED ( 0x04 )
+    #define MPY32_MULTIPLYACCUMULATE_SIGNED   ( 0x06 )
 
-//*****************************************************************************
-//
-// The following are values that can be passed toThe following are values that
-// can be returned by the MPY32_getSaturationMode() function.
-//
-//*****************************************************************************
-#define MPY32_SATURATION_MODE_DISABLED                                     0x00
-#define MPY32_SATURATION_MODE_ENABLED                                    MPYSAT
+    //*****************************************************************************
+    //
+    // The following are values that can be passed toThe following are values
+    // that can be returned by the MPY32_getSaturationMode() function.
+    //
+    //*****************************************************************************
+    #define MPY32_SATURATION_MODE_DISABLED    0x00
+    #define MPY32_SATURATION_MODE_ENABLED     MPYSAT
 
-//*****************************************************************************
-//
-// The following are values that can be passed toThe following are values that
-// can be returned by the MPY32_getFractionalMode() function.
-//
-//*****************************************************************************
-#define MPY32_FRACTIONAL_MODE_DISABLED                                     0x00
-#define MPY32_FRACTIONAL_MODE_ENABLED                                   MPYFRAC
+    //*****************************************************************************
+    //
+    // The following are values that can be passed toThe following are values
+    // that can be returned by the MPY32_getFractionalMode() function.
+    //
+    //*****************************************************************************
+    #define MPY32_FRACTIONAL_MODE_DISABLED    0x00
+    #define MPY32_FRACTIONAL_MODE_ENABLED     MPYFRAC
 
 //*****************************************************************************
 //
@@ -127,7 +126,7 @@ extern "C"
 //! \return None
 //
 //*****************************************************************************
-extern void MPY32_setWriteDelay(uint16_t writeDelaySelect);
+extern void MPY32_setWriteDelay( uint16_t writeDelaySelect );
 
 //*****************************************************************************
 //
@@ -144,7 +143,7 @@ extern void MPY32_setWriteDelay(uint16_t writeDelaySelect);
 //! \return None
 //
 //*****************************************************************************
-extern void MPY32_enableSaturationMode(void);
+extern void MPY32_enableSaturationMode( void );
 
 //*****************************************************************************
 //
@@ -157,7 +156,7 @@ extern void MPY32_enableSaturationMode(void);
 //! \return None
 //
 //*****************************************************************************
-extern void MPY32_disableSaturationMode(void);
+extern void MPY32_disableSaturationMode( void );
 
 //*****************************************************************************
 //
@@ -173,7 +172,7 @@ extern void MPY32_disableSaturationMode(void);
 //!         \n Gets the Saturation Mode
 //
 //*****************************************************************************
-extern uint8_t MPY32_getSaturationMode(void);
+extern uint8_t MPY32_getSaturationMode( void );
 
 //*****************************************************************************
 //
@@ -185,7 +184,7 @@ extern uint8_t MPY32_getSaturationMode(void);
 //! \return None
 //
 //*****************************************************************************
-extern void MPY32_enableFractionalMode(void);
+extern void MPY32_enableFractionalMode( void );
 
 //*****************************************************************************
 //
@@ -197,7 +196,7 @@ extern void MPY32_enableFractionalMode(void);
 //! \return None
 //
 //*****************************************************************************
-extern void MPY32_disableFractionalMode(void);
+extern void MPY32_disableFractionalMode( void );
 
 //*****************************************************************************
 //
@@ -213,7 +212,7 @@ extern void MPY32_disableFractionalMode(void);
 //!         \n Gets the Fractional Mode
 //
 //*****************************************************************************
-extern uint8_t MPY32_getFractionalMode(void);
+extern uint8_t MPY32_getFractionalMode( void );
 
 //*****************************************************************************
 //
@@ -235,8 +234,8 @@ extern uint8_t MPY32_getFractionalMode(void);
 //! \return None
 //
 //*****************************************************************************
-extern void MPY32_setOperandOne8Bit(uint8_t multiplicationType,
-                                    uint8_t operand);
+extern void MPY32_setOperandOne8Bit( uint8_t multiplicationType,
+                                     uint8_t operand );
 
 //*****************************************************************************
 //
@@ -258,8 +257,8 @@ extern void MPY32_setOperandOne8Bit(uint8_t multiplicationType,
 //! \return None
 //
 //*****************************************************************************
-extern void MPY32_setOperandOne16Bit(uint8_t multiplicationType,
-                                     uint16_t operand);
+extern void MPY32_setOperandOne16Bit( uint8_t multiplicationType,
+                                      uint16_t operand );
 
 //*****************************************************************************
 //
@@ -281,8 +280,8 @@ extern void MPY32_setOperandOne16Bit(uint8_t multiplicationType,
 //! \return None
 //
 //*****************************************************************************
-extern void MPY32_setOperandOne24Bit(uint8_t multiplicationType,
-                                     uint32_t operand);
+extern void MPY32_setOperandOne24Bit( uint8_t multiplicationType,
+                                      uint32_t operand );
 
 //*****************************************************************************
 //
@@ -304,8 +303,8 @@ extern void MPY32_setOperandOne24Bit(uint8_t multiplicationType,
 //! \return None
 //
 //*****************************************************************************
-extern void MPY32_setOperandOne32Bit(uint8_t multiplicationType,
-                                     uint32_t operand);
+extern void MPY32_setOperandOne32Bit( uint8_t multiplicationType,
+                                      uint32_t operand );
 
 //*****************************************************************************
 //
@@ -319,7 +318,7 @@ extern void MPY32_setOperandOne32Bit(uint8_t multiplicationType,
 //! \return None
 //
 //*****************************************************************************
-extern void MPY32_setOperandTwo8Bit(uint8_t operand);
+extern void MPY32_setOperandTwo8Bit( uint8_t operand );
 
 //*****************************************************************************
 //
@@ -334,7 +333,7 @@ extern void MPY32_setOperandTwo8Bit(uint8_t operand);
 //! \return None
 //
 //*****************************************************************************
-extern void MPY32_setOperandTwo16Bit(uint16_t operand);
+extern void MPY32_setOperandTwo16Bit( uint16_t operand );
 
 //*****************************************************************************
 //
@@ -349,7 +348,7 @@ extern void MPY32_setOperandTwo16Bit(uint16_t operand);
 //! \return None
 //
 //*****************************************************************************
-extern void MPY32_setOperandTwo24Bit(uint32_t operand);
+extern void MPY32_setOperandTwo24Bit( uint32_t operand );
 
 //*****************************************************************************
 //
@@ -364,7 +363,7 @@ extern void MPY32_setOperandTwo24Bit(uint32_t operand);
 //! \return None
 //
 //*****************************************************************************
-extern void MPY32_setOperandTwo32Bit(uint32_t operand);
+extern void MPY32_setOperandTwo32Bit( uint32_t operand );
 
 //*****************************************************************************
 //
@@ -376,7 +375,7 @@ extern void MPY32_setOperandTwo32Bit(uint32_t operand);
 //! \return The 64-bit result is returned as a uint64_t type
 //
 //*****************************************************************************
-extern uint64_t MPY32_getResult(void);
+extern uint64_t MPY32_getResult( void );
 
 //*****************************************************************************
 //
@@ -391,7 +390,7 @@ extern uint64_t MPY32_getResult(void);
 //! \return The value of the MPY32 module Sum Extension.
 //
 //*****************************************************************************
-extern uint16_t MPY32_getSumExtension(void);
+extern uint16_t MPY32_getSumExtension( void );
 
 //*****************************************************************************
 //
@@ -405,7 +404,7 @@ extern uint16_t MPY32_getSumExtension(void);
 //! \return The value of the MPY32 module Carry Bit 0x0 or 0x1.
 //
 //*****************************************************************************
-extern uint16_t MPY32_getCarryBitValue(void);
+extern uint16_t MPY32_getCarryBitValue( void );
 
 //*****************************************************************************
 //
@@ -417,7 +416,7 @@ extern uint16_t MPY32_getCarryBitValue(void);
 //! \return The value of the MPY32 module Carry Bit 0x0 or 0x1.
 //
 //*****************************************************************************
-extern void MPY32_clearCarryBitValue(void);
+extern void MPY32_clearCarryBitValue( void );
 
 //*****************************************************************************
 //
@@ -430,16 +429,16 @@ extern void MPY32_clearCarryBitValue(void);
 //! \return None
 //
 //*****************************************************************************
-extern void MPY32_preloadResult(uint64_t result);
+extern void MPY32_preloadResult( uint64_t result );
 
-//*****************************************************************************
-//
-// Mark the end of the C bindings section for C++ compilers.
-//
-//*****************************************************************************
-#ifdef __cplusplus
+    //*****************************************************************************
+    //
+    // Mark the end of the C bindings section for C++ compilers.
+    //
+    //*****************************************************************************
+    #ifdef __cplusplus
 }
-#endif
+    #endif
 
 #endif
 #endif // __MSP430WARE_MPY32_H__

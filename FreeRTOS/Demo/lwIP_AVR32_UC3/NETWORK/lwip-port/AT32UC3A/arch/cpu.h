@@ -39,7 +39,6 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-
 #ifndef __CPU_H__
 #define __CPU_H__
 

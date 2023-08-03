@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -30,15 +31,15 @@
  */
 
 /* FreeRTOS include. */
-#include <FreeRTOS.h>
 #include "task.h"
+#include <FreeRTOS.h>
 /* TCP/IP stack includes. */
 #include "FreeRTOS_IP.h"
 #include "FreeRTOS_Sockets.h"
 
 /* Standard includes. */
-#include <stdio.h>
 #include <stdbool.h>
+#include <stdio.h>
 #include <time.h>
 
 /* Visual studio intrinsics used so the __debugbreak() function is available
@@ -74,9 +75,9 @@ void CellularTestTask( void * pvParameters )
     /* Run Unity Tests. */
     UNITY_BEGIN();
 
-    #if defined( testCELLULAR_API ) && testCELLULAR_API == 1
-        RUN_TEST_GROUP( Full_CELLULAR_API );
-    #endif
+#if defined( testCELLULAR_API ) && testCELLULAR_API == 1
+    RUN_TEST_GROUP( Full_CELLULAR_API );
+#endif
 
     UNITY_END();
 
@@ -89,18 +90,24 @@ void CellularTestTask( void * pvParameters )
 int main( void )
 {
     /***
-     * See https://www.FreeRTOS.org/mqtt_lts/index.html for configuration and usage instructions.
+     * See https://www.FreeRTOS.org/mqtt_lts/index.html for configuration and
+     *usage instructions.
      ***/
 
     /* FreeRTOS Cellular Library init needs thread ready environment.
-     * CellularDemoTask invoke setupCellular to init FreeRTOS Cellular Library and register network.
-     * Then it runs the MQTT demo. */
-    xTaskCreate( CellularTestTask,         /* Function that implements the task. */
-                 "CellularTest",           /* Text name for the task - only used for debugging. */
-                 testconfigTEST_STACKSIZE, /* Size of stack (in words, not bytes) to allocate for the task. */
-                 NULL,                     /* Task parameter - not used in this case. */
-                 testconfigTEST_PRIORITY,  /* Task priority, must be between 0 and configMAX_PRIORITIES - 1. */
-                 NULL );                   /* Used to pass out a handle to the created task - not used in this case. */
+     * CellularDemoTask invoke setupCellular to init FreeRTOS Cellular Library
+     * and register network. Then it runs the MQTT demo. */
+    xTaskCreate( CellularTestTask, /* Function that implements the task. */
+                 "CellularTest",   /* Text name for the task - only used for
+                                      debugging. */
+                 testconfigTEST_STACKSIZE, /* Size of stack (in words, not
+                                              bytes) to allocate for the task.
+                                            */
+                 NULL, /* Task parameter - not used in this case. */
+                 testconfigTEST_PRIORITY, /* Task priority, must be between 0
+                                             and configMAX_PRIORITIES - 1. */
+                 NULL ); /* Used to pass out a handle to the created task - not
+                            used in this case. */
 
     /* Start the RTOS scheduler. */
     vTaskStartScheduler();
@@ -109,20 +116,21 @@ int main( void )
 
 /* Called by FreeRTOS+TCP when the network connects or disconnects.  Disconnect
  * events are only received if implemented in the MAC driver. */
-#if defined( ipconfigIPv4_BACKWARD_COMPATIBLE ) && ( ipconfigIPv4_BACKWARD_COMPATIBLE == 0 )
-    void vApplicationIPNetworkEventHook_Multi( eIPCallbackEvent_t eNetworkEvent,
-                                                   struct xNetworkEndPoint * pxEndPoint )
+#if defined( ipconfigIPv4_BACKWARD_COMPATIBLE ) && \
+    ( ipconfigIPv4_BACKWARD_COMPATIBLE == 0 )
+void vApplicationIPNetworkEventHook_Multi( eIPCallbackEvent_t eNetworkEvent,
+                                           struct xNetworkEndPoint * pxEndPoint )
 #else
-    void vApplicationIPNetworkEventHook( eIPCallbackEvent_t eNetworkEvent )
-#endif /* defined( ipconfigIPv4_BACKWARD_COMPATIBLE ) && ( ipconfigIPv4_BACKWARD_COMPATIBLE == 0 ) */
+void vApplicationIPNetworkEventHook( eIPCallbackEvent_t eNetworkEvent )
+#endif /* defined( ipconfigIPv4_BACKWARD_COMPATIBLE ) && ( \
+          ipconfigIPv4_BACKWARD_COMPATIBLE == 0 ) */
 {
     ( void ) eNetworkEvent;
 }
 
 /*-----------------------------------------------------------*/
 
-void vAssertCalled( const char * pcFile,
-                    uint32_t ulLine )
+void vAssertCalled( const char * pcFile, uint32_t ulLine )
 {
     volatile uint32_t ulBlockVariable = 0UL;
     volatile char * pcFileName = ( volatile char * ) pcFile;
@@ -139,9 +147,9 @@ void vAssertCalled( const char * pcFile,
     {
         while( ulBlockVariable == 0UL )
         {
-            #if defined( _WIN32 )
-                __debugbreak();
-            #endif
+#if defined( _WIN32 )
+            __debugbreak();
+#endif
         }
     }
     taskENABLE_INTERRUPTS();
@@ -156,14 +164,15 @@ void vApplicationIdleHook( void )
     static TickType_t xTimeNow, xLastTimeCheck = 0;
 
     /* vApplicationIdleHook() will only be called if configUSE_IDLE_HOOK is set
-     * to 1 in FreeRTOSConfig.h.  It will be called on each iteration of the idle
-     * task.  It is essential that code added to this hook function never attempts
-     * to block in any way (for example, call xQueueReceive() with a block time
-     * specified, or call vTaskDelay()).  If application tasks make use of the
-     * vTaskDelete() API function to delete themselves then it is also important
-     * that vApplicationIdleHook() is permitted to return to its calling function,
-     * because it is the responsibility of the idle task to clean up memory
-     * allocated by the kernel to any task that has since deleted itself. */
+     * to 1 in FreeRTOSConfig.h.  It will be called on each iteration of the
+     * idle task.  It is essential that code added to this hook function never
+     * attempts to block in any way (for example, call xQueueReceive() with a
+     * block time specified, or call vTaskDelay()).  If application tasks make
+     * use of the vTaskDelete() API function to delete themselves then it is
+     * also important that vApplicationIdleHook() is permitted to return to its
+     * calling function, because it is the responsibility of the idle task to
+     * clean up memory allocated by the kernel to any task that has since
+     * deleted itself. */
 
     /* _kbhit() is a Windows system function, and system functions can cause
      * crashes if they somehow block the FreeRTOS thread.  The call to _kbhit()
@@ -187,63 +196,66 @@ void vApplicationIdleHook( void )
 }
 /*-----------------------------------------------------------*/
 
-#if ( ipconfigUSE_LLMNR != 0 ) || ( ipconfigUSE_NBNS != 0 ) || ( ipconfigDHCP_REGISTER_HOSTNAME == 1 )
+#if( ipconfigUSE_LLMNR != 0 ) || ( ipconfigUSE_NBNS != 0 ) || \
+    ( ipconfigDHCP_REGISTER_HOSTNAME == 1 )
 
-    const char * pcApplicationHostnameHook( void )
-    {
-        /* Assign the name "FreeRTOS" to this network node.  This function will
-         * be called during the DHCP: the machine will be registered with an IP
-         * address plus this name. */
-        return mainHOST_NAME;
-    }
+const char * pcApplicationHostnameHook( void )
+{
+    /* Assign the name "FreeRTOS" to this network node.  This function will
+     * be called during the DHCP: the machine will be registered with an IP
+     * address plus this name. */
+    return mainHOST_NAME;
+}
 
 #endif
 /*-----------------------------------------------------------*/
 
-#if ( ipconfigUSE_LLMNR != 0 ) || ( ipconfigUSE_NBNS != 0 )
+#if( ipconfigUSE_LLMNR != 0 ) || ( ipconfigUSE_NBNS != 0 )
 
-    #if defined( ipconfigIPv4_BACKWARD_COMPATIBLE ) && ( ipconfigIPv4_BACKWARD_COMPATIBLE == 0 )
-        BaseType_t xApplicationDNSQueryHook_Multi( struct xNetworkEndPoint * pxEndPoint,
-                                                            const char * pcName )
+    #if defined( ipconfigIPv4_BACKWARD_COMPATIBLE ) && \
+        ( ipconfigIPv4_BACKWARD_COMPATIBLE == 0 )
+BaseType_t xApplicationDNSQueryHook_Multi( struct xNetworkEndPoint * pxEndPoint,
+                                           const char * pcName )
     #else
-        BaseType_t xApplicationDNSQueryHook( const char * pcName )
-    #endif /* defined( ipconfigIPv4_BACKWARD_COMPATIBLE ) && ( ipconfigIPv4_BACKWARD_COMPATIBLE == 0 ) */
+BaseType_t xApplicationDNSQueryHook( const char * pcName )
+    #endif /* defined( ipconfigIPv4_BACKWARD_COMPATIBLE ) && ( \
+              ipconfigIPv4_BACKWARD_COMPATIBLE == 0 ) */
+{
+    BaseType_t xReturn;
+
+    /* Determine if a name lookup is for this node.  Two names are given
+     * to this node: that returned by pcApplicationHostnameHook() and that set
+     * by mainDEVICE_NICK_NAME. */
+    if( _stricmp( pcName, pcApplicationHostnameHook() ) == 0 )
     {
-        BaseType_t xReturn;
-
-        /* Determine if a name lookup is for this node.  Two names are given
-         * to this node: that returned by pcApplicationHostnameHook() and that set
-         * by mainDEVICE_NICK_NAME. */
-        if( _stricmp( pcName, pcApplicationHostnameHook() ) == 0 )
-        {
-            xReturn = pdPASS;
-        }
-        else if( _stricmp( pcName, mainDEVICE_NICK_NAME ) == 0 )
-        {
-            xReturn = pdPASS;
-        }
-        else
-        {
-            xReturn = pdFAIL;
-        }
-
-        return xReturn;
+        xReturn = pdPASS;
     }
+    else if( _stricmp( pcName, mainDEVICE_NICK_NAME ) == 0 )
+    {
+        xReturn = pdPASS;
+    }
+    else
+    {
+        xReturn = pdFAIL;
+    }
+
+    return xReturn;
+}
 
 #endif /* if ( ipconfigUSE_LLMNR != 0 ) || ( ipconfigUSE_NBNS != 0 ) */
 
 /*-----------------------------------------------------------*/
 
 /* configUSE_STATIC_ALLOCATION is set to 1, so the application must provide an
- * implementation of vApplicationGetIdleTaskMemory() to provide the memory that is
- * used by the Idle task. */
+ * implementation of vApplicationGetIdleTaskMemory() to provide the memory that
+ * is used by the Idle task. */
 void vApplicationGetIdleTaskMemory( StaticTask_t ** ppxIdleTaskTCBBuffer,
                                     StackType_t ** ppxIdleTaskStackBuffer,
                                     uint32_t * pulIdleTaskStackSize )
 {
     /* If the buffers to be provided to the Idle task are declared inside this
-     * function then they must be declared static - otherwise they will be allocated on
-     * the stack and so not exists after this function exits. */
+     * function then they must be declared static - otherwise they will be
+     * allocated on the stack and so not exists after this function exits. */
     static StaticTask_t xIdleTaskTCB;
     static StackType_t uxIdleTaskStack[ configMINIMAL_STACK_SIZE ];
 
@@ -276,7 +288,7 @@ UBaseType_t uxRand( void )
     /* Utility function to generate a pseudo random number. */
 
     ulNextRand = ( ulMultiplier * ulNextRand ) + ulIncrement;
-    return( ( int ) ( ulNextRand >> 16UL ) & 0x7fffUL );
+    return ( ( int ) ( ulNextRand >> 16UL ) & 0x7fffUL );
 }
 
 /*-----------------------------------------------------------*/
@@ -294,10 +306,11 @@ BaseType_t xApplicationGetRandomNumber()
  * THAT RETURNS A PSEUDO RANDOM NUMBER SO IS NOT INTENDED FOR USE IN PRODUCTION
  * SYSTEMS.
  */
-extern uint32_t ulApplicationGetNextSequenceNumber( uint32_t ulSourceAddress,
-                                                    uint16_t usSourcePort,
-                                                    uint32_t ulDestinationAddress,
-                                                    uint16_t usDestinationPort )
+extern uint32_t ulApplicationGetNextSequenceNumber(
+    uint32_t ulSourceAddress,
+    uint16_t usSourcePort,
+    uint32_t ulDestinationAddress,
+    uint16_t usDestinationPort )
 {
     ( void ) ulSourceAddress;
     ( void ) usSourcePort;
@@ -310,15 +323,16 @@ extern uint32_t ulApplicationGetNextSequenceNumber( uint32_t ulSourceAddress,
 /*-----------------------------------------------------------*/
 
 /* configUSE_STATIC_ALLOCATION and configUSE_TIMERS are both set to 1, so the
- * application must provide an implementation of vApplicationGetTimerTaskMemory()
- * to provide the memory that is used by the Timer service task. */
+ * application must provide an implementation of
+ * vApplicationGetTimerTaskMemory() to provide the memory that is used by the
+ * Timer service task. */
 void vApplicationGetTimerTaskMemory( StaticTask_t ** ppxTimerTaskTCBBuffer,
                                      StackType_t ** ppxTimerTaskStackBuffer,
                                      uint32_t * pulTimerTaskStackSize )
 {
     /* If the buffers to be provided to the Timer task are declared inside this
-     * function then they must be declared static - otherwise they will be allocated on
-     * the stack and so not exists after this function exits. */
+     * function then they must be declared static - otherwise they will be
+     * allocated on the stack and so not exists after this function exits. */
     static StaticTask_t xTimerTaskTCB;
     static StackType_t uxTimerTaskStack[ configTIMER_TASK_STACK_DEPTH ];
 

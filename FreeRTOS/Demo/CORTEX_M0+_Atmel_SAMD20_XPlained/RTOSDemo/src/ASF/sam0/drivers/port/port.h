@@ -76,14 +76,14 @@
  * the physical pin input samplers and output drivers, so that pins can be read
  * from or written to for general purpose external hardware control.
  *
- * \subsection asfdoc_samd20_port_module_overview_pin_numbering Physical and Logical GPIO Pins
- * SAM D20 devices use two naming conventions for the I/O pins in the device; one
- * physical, and one logical. Each physical pin on a device package is assigned
- * both a physical port and pin identifier (e.g. "PORTA.0") as well as a
- * monotonically incrementing logical GPIO number (e.g. "GPIO0"). While the
- * former is used to map physical pins to their physical internal device module
- * counterparts, for simplicity the design of this driver uses the logical GPIO
- * numbers instead.
+ * \subsection asfdoc_samd20_port_module_overview_pin_numbering Physical and
+ * Logical GPIO Pins SAM D20 devices use two naming conventions for the I/O pins
+ * in the device; one physical, and one logical. Each physical pin on a device
+ * package is assigned both a physical port and pin identifier (e.g. "PORTA.0")
+ * as well as a monotonically incrementing logical GPIO number (e.g. "GPIO0").
+ * While the former is used to map physical pins to their physical internal
+ * device module counterparts, for simplicity the design of this driver uses the
+ * logical GPIO numbers instead.
  *
  * \subsection asfdoc_samd20_port_module_overview_physical Physical Connection
  *
@@ -98,7 +98,8 @@
  *   subgraph driver {
  *     node [label="Peripheral Mux" shape=trapezium] pinmux;
  *     node [label="GPIO Module" shape=ellipse] gpio;
- *     node [label="Other Peripheral Modules" shape=ellipse style=filled fillcolor=lightgray] peripherals;
+ *     node [label="Other Peripheral Modules" shape=ellipse style=filled
+ * fillcolor=lightgray] peripherals;
  *   }
  *
  *   pinmux -> gpio;
@@ -146,26 +147,26 @@ extern "C" {
 
 /** Convenience definition for GPIO module group A on the device (if
  *  available). */
-#if (PORT_GROUPS > 0) || defined(__DOXYGEN__)
-#  define PORTA             PORT->Group[0]
+#if( PORT_GROUPS > 0 ) || defined( __DOXYGEN__ )
+    #define PORTA PORT->Group[ 0 ]
 #endif
 
-#if (PORT_GROUPS > 1) || defined(__DOXYGEN__)
-/** Convenience definition for GPIO module group B on the device (if
- *  available). */
-#  define PORTB             PORT->Group[1]
+#if( PORT_GROUPS > 1 ) || defined( __DOXYGEN__ )
+    /** Convenience definition for GPIO module group B on the device (if
+     *  available). */
+    #define PORTB PORT->Group[ 1 ]
 #endif
 
-#if (PORT_GROUPS > 2) || defined(__DOXYGEN__)
-/** Convenience definition for GPIO module group C on the device (if
- *  available). */
-#  define PORTC             PORT->Group[2]
+#if( PORT_GROUPS > 2 ) || defined( __DOXYGEN__ )
+    /** Convenience definition for GPIO module group C on the device (if
+     *  available). */
+    #define PORTC PORT->Group[ 2 ]
 #endif
 
-#if (PORT_GROUPS > 3) || defined(__DOXYGEN__)
-/** Convenience definition for GPIO module group D on the device (if
- *  available). */
-#  define PORTD             PORT->Group[3]
+#if( PORT_GROUPS > 3 ) || defined( __DOXYGEN__ )
+    /** Convenience definition for GPIO module group D on the device (if
+     *  available). */
+    #define PORTD PORT->Group[ 3 ]
 #endif
 
 /** @} */
@@ -176,16 +177,17 @@ extern "C" {
  *  Enum for the possible pin direction settings of the port pin configuration
  *  structure, to indicate the direction the pin should use.
  */
-enum port_pin_dir {
-	/** The pin's input buffer should be enabled, so that the pin state can
-	 *  be read. */
-	PORT_PIN_DIR_INPUT               = SYSTEM_PINMUX_PIN_DIR_INPUT,
-	/** The pin's output buffer should be enabled, so that the pin state can
-	 *  be set. */
-	PORT_PIN_DIR_OUTPUT              = SYSTEM_PINMUX_PIN_DIR_OUTPUT,
-	/** The pin's output and input buffers should be enabled, so that the pin
-	 *  state can be set and read back. */
-	PORT_PIN_DIR_OUTPUT_WTH_READBACK = SYSTEM_PINMUX_PIN_DIR_OUTPUT_WITH_READBACK,
+enum port_pin_dir
+{
+    /** The pin's input buffer should be enabled, so that the pin state can
+     *  be read. */
+    PORT_PIN_DIR_INPUT = SYSTEM_PINMUX_PIN_DIR_INPUT,
+    /** The pin's output buffer should be enabled, so that the pin state can
+     *  be set. */
+    PORT_PIN_DIR_OUTPUT = SYSTEM_PINMUX_PIN_DIR_OUTPUT,
+    /** The pin's output and input buffers should be enabled, so that the pin
+     *  state can be set and read back. */
+    PORT_PIN_DIR_OUTPUT_WTH_READBACK = SYSTEM_PINMUX_PIN_DIR_OUTPUT_WITH_READBACK,
 };
 
 /**
@@ -194,13 +196,14 @@ enum port_pin_dir {
  *  Enum for the possible pin pull settings of the port pin configuration
  *  structure, to indicate the type of logic level pull the pin should use.
  */
-enum port_pin_pull {
-	/** No logical pull should be applied to the pin. */
-	PORT_PIN_PULL_NONE = SYSTEM_PINMUX_PIN_PULL_NONE,
-	/** Pin should be pulled up when idle. */
-	PORT_PIN_PULL_UP   = SYSTEM_PINMUX_PIN_PULL_UP,
-	/** Pin should be pulled down when idle. */
-	PORT_PIN_PULL_DOWN = SYSTEM_PINMUX_PIN_PULL_DOWN,
+enum port_pin_pull
+{
+    /** No logical pull should be applied to the pin. */
+    PORT_PIN_PULL_NONE = SYSTEM_PINMUX_PIN_PULL_NONE,
+    /** Pin should be pulled up when idle. */
+    PORT_PIN_PULL_UP = SYSTEM_PINMUX_PIN_PULL_UP,
+    /** Pin should be pulled down when idle. */
+    PORT_PIN_PULL_DOWN = SYSTEM_PINMUX_PIN_PULL_DOWN,
 };
 
 /**
@@ -210,12 +213,13 @@ enum port_pin_pull {
  *  initialized by the \ref port_get_config_defaults() function before being
  *  modified by the user application.
  */
-struct port_config {
-	/** Port buffer input/output direction. */
-	enum port_pin_dir  direction;
+struct port_config
+{
+    /** Port buffer input/output direction. */
+    enum port_pin_dir direction;
 
-	/** Port pull-up/pull-down for input pins. */
-	enum port_pin_pull input_pull;
+    /** Port pull-up/pull-down for input pins. */
+    enum port_pin_pull input_pull;
 };
 
 /** \name State reading/writing (physical group orientated)
@@ -223,7 +227,8 @@ struct port_config {
  */
 
 /**
- *  \brief Retrieves the PORT module group instance from a given GPIO pin number.
+ *  \brief Retrieves the PORT module group instance from a given GPIO pin
+ * number.
  *
  *  Retrieves the PORT module group instance associated with a given logical
  *  GPIO pin number.
@@ -232,14 +237,14 @@ struct port_config {
  *
  *  \return Base address of the associated PORT module.
  */
-static inline PortGroup* port_get_group_from_gpio_pin(
-		const uint8_t gpio_pin)
+static inline PortGroup * port_get_group_from_gpio_pin( const uint8_t gpio_pin )
 {
-	return system_pinmux_get_group_from_gpio_pin(gpio_pin);
+    return system_pinmux_get_group_from_gpio_pin( gpio_pin );
 }
 
 /**
- *  \brief Retrieves the state of a group of port pins that are configured as inputs.
+ *  \brief Retrieves the state of a group of port pins that are configured as
+ * inputs.
  *
  *  Reads the current logic level of a port module's pins and returns the
  *  current levels as a bitmask.
@@ -249,18 +254,18 @@ static inline PortGroup* port_get_group_from_gpio_pin(
  *
  *  \return Status of the port pin(s) input buffers.
  */
-static inline uint32_t port_group_get_input_level(
-		const PortGroup *const port,
-		const uint32_t mask)
+static inline uint32_t port_group_get_input_level( const PortGroup * const port,
+                                                   const uint32_t mask )
 {
-	/* Sanity check arguments */
-	Assert(port);
+    /* Sanity check arguments */
+    Assert( port );
 
-	return (port->IN.reg & mask);
+    return ( port->IN.reg & mask );
 }
 
 /**
- *  \brief Retrieves the state of a group of port pins that are configured as outputs.
+ *  \brief Retrieves the state of a group of port pins that are configured as
+ * outputs.
  *
  *  Reads the current logical output level of a port module's pins and returns
  *  the current levels as a bitmask.
@@ -270,18 +275,18 @@ static inline uint32_t port_group_get_input_level(
  *
  *  \return Status of the port pin(s) output buffers.
  */
-static inline uint32_t port_group_get_output_level(
-		const PortGroup *const port,
-		const uint32_t mask)
+static inline uint32_t port_group_get_output_level( const PortGroup * const port,
+                                                    const uint32_t mask )
 {
-	/* Sanity check arguments */
-	Assert(port);
+    /* Sanity check arguments */
+    Assert( port );
 
-	return (port->OUT.reg & mask);
+    return ( port->OUT.reg & mask );
 }
 
 /**
- *  \brief Sets the state of a group of port pins that are configured as outputs.
+ *  \brief Sets the state of a group of port pins that are configured as
+ * outputs.
  *
  *  Sets the current output level of a port module's pins to a given logic
  *  level.
@@ -290,34 +295,33 @@ static inline uint32_t port_group_get_output_level(
  *  \param[in]  mask        Mask of the port pin(s) to change.
  *  \param[in]  level_mask  Mask of the port level(s) to set.
  */
-static inline void port_group_set_output_level(
-		PortGroup *const port,
-		const uint32_t mask,
-		const uint32_t level_mask)
+static inline void port_group_set_output_level( PortGroup * const port,
+                                                const uint32_t mask,
+                                                const uint32_t level_mask )
 {
-	/* Sanity check arguments */
-	Assert(port);
+    /* Sanity check arguments */
+    Assert( port );
 
-	port->OUTSET.reg = (mask &  level_mask);
-	port->OUTCLR.reg = (mask & ~level_mask);
+    port->OUTSET.reg = ( mask & level_mask );
+    port->OUTCLR.reg = ( mask & ~level_mask );
 }
 
 /**
- *  \brief Toggles the state of a group of port pins that are configured as an outputs.
+ *  \brief Toggles the state of a group of port pins that are configured as an
+ * outputs.
  *
  *  Toggles the current output levels of a port module's pins.
  *
  *  \param[out] port  Base of the PORT module to write to.
  *  \param[in]  mask  Mask of the port pin(s) to toggle.
  */
-static inline void port_group_toggle_output_level(
-		PortGroup *const port,
-		const uint32_t mask)
+static inline void port_group_toggle_output_level( PortGroup * const port,
+                                                   const uint32_t mask )
 {
-	/* Sanity check arguments */
-	Assert(port);
+    /* Sanity check arguments */
+    Assert( port );
 
-	port->OUTTGL.reg = mask;
+    port->OUTTGL.reg = mask;
 }
 
 /** @} */
@@ -339,25 +343,22 @@ static inline void port_group_toggle_output_level(
  *
  *  \param[out] config  Configuration structure to initialize to default values.
  */
-static inline void port_get_config_defaults(
-		struct port_config *const config)
+static inline void port_get_config_defaults( struct port_config * const config )
 {
-	/* Sanity check arguments */
-	Assert(config);
+    /* Sanity check arguments */
+    Assert( config );
 
-	/* Default configuration values */
-	config->direction = PORT_PIN_DIR_INPUT;
-	config->input_pull = PORT_PIN_PULL_UP;
+    /* Default configuration values */
+    config->direction = PORT_PIN_DIR_INPUT;
+    config->input_pull = PORT_PIN_PULL_UP;
 }
 
-void port_pin_set_config(
-		const uint8_t gpio_pin,
-		const struct port_config *const config);
+void port_pin_set_config( const uint8_t gpio_pin,
+                          const struct port_config * const config );
 
-void port_group_set_config(
-		PortGroup *const port,
-		const uint32_t mask,
-		const struct port_config *const config);
+void port_group_set_config( PortGroup * const port,
+                            const uint32_t mask,
+                            const struct port_config * const config );
 
 /** @} */
 
@@ -375,13 +376,12 @@ void port_group_set_config(
  *
  *  \return Status of the port pin's input buffer.
  */
-static inline bool port_pin_get_input_level(
-		const uint8_t gpio_pin)
+static inline bool port_pin_get_input_level( const uint8_t gpio_pin )
 {
-	PortGroup *const port_base = port_get_group_from_gpio_pin(gpio_pin);
-	uint32_t pin_mask  = (1UL << (gpio_pin % 32));
+    PortGroup * const port_base = port_get_group_from_gpio_pin( gpio_pin );
+    uint32_t pin_mask = ( 1UL << ( gpio_pin % 32 ) );
 
-	return (port_base->IN.reg & pin_mask);
+    return ( port_base->IN.reg & pin_mask );
 }
 
 /**
@@ -394,13 +394,12 @@ static inline bool port_pin_get_input_level(
  *
  *  \return Status of the port pin's output buffer.
  */
-static inline bool port_pin_get_output_level(
-		const uint8_t gpio_pin)
+static inline bool port_pin_get_output_level( const uint8_t gpio_pin )
 {
-	PortGroup *const port_base = port_get_group_from_gpio_pin(gpio_pin);
-	uint32_t pin_mask  = (1UL << (gpio_pin % 32));
+    PortGroup * const port_base = port_get_group_from_gpio_pin( gpio_pin );
+    uint32_t pin_mask = ( 1UL << ( gpio_pin % 32 ) );
 
-	return (port_base->OUT.reg & pin_mask);
+    return ( port_base->OUT.reg & pin_mask );
 }
 
 /**
@@ -411,19 +410,21 @@ static inline bool port_pin_get_output_level(
  *  \param[in] gpio_pin  Index of the GPIO pin to write to.
  *  \param[in] level     Logical level to set the given pin to.
  */
-static inline void port_pin_set_output_level(
-		const uint8_t gpio_pin,
-		const bool level)
+static inline void port_pin_set_output_level( const uint8_t gpio_pin,
+                                              const bool level )
 {
-	PortGroup *const port_base = port_get_group_from_gpio_pin(gpio_pin);
-	uint32_t pin_mask  = (1UL << (gpio_pin % 32));
+    PortGroup * const port_base = port_get_group_from_gpio_pin( gpio_pin );
+    uint32_t pin_mask = ( 1UL << ( gpio_pin % 32 ) );
 
-	/* Set the pin to high or low atomically based on the requested level */
-	if (level) {
-		port_base->OUTSET.reg = pin_mask;
-	} else {
-		port_base->OUTCLR.reg = pin_mask;
-	}
+    /* Set the pin to high or low atomically based on the requested level */
+    if( level )
+    {
+        port_base->OUTSET.reg = pin_mask;
+    }
+    else
+    {
+        port_base->OUTCLR.reg = pin_mask;
+    }
 }
 
 /**
@@ -433,14 +434,13 @@ static inline void port_pin_set_output_level(
  *
  *  \param[in] gpio_pin  Index of the GPIO pin to toggle.
  */
-static inline void port_pin_toggle_output_level(
-		const uint8_t gpio_pin)
+static inline void port_pin_toggle_output_level( const uint8_t gpio_pin )
 {
-	PortGroup *const port_base = port_get_group_from_gpio_pin(gpio_pin);
-	uint32_t pin_mask  = (1UL << (gpio_pin % 32));
+    PortGroup * const port_base = port_get_group_from_gpio_pin( gpio_pin );
+    uint32_t pin_mask = ( 1UL << ( gpio_pin % 32 ) );
 
-	/* Toggle pin output level */
-	port_base->OUTTGL.reg = pin_mask;
+    /* Toggle pin output level */
+    port_base->OUTTGL.reg = pin_mask;
 }
 
 /** @} */

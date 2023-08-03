@@ -36,7 +36,7 @@
  * \param b  The second integer.
  * \return  The absolute difference.
  */
-#define ABS_DIFF(a,b) ((a) < (b) ? (b) - (a) : (a) - (b))
+#define ABS_DIFF( a, b ) ( ( a ) < ( b ) ? ( b ) - ( a ) : ( a ) - ( b ) )
 
 /*------------------------------------------------------------------------------
  *         Exported functions
@@ -49,18 +49,18 @@
  *  \param a First integer to compare
  *  \param b Second integer to compare
  */
-static inline int32_t min_u32(uint32_t a, uint32_t b)
+static inline int32_t min_u32( uint32_t a, uint32_t b )
 {
-	return a < b ? a : b;
+    return a < b ? a : b;
 }
 
 /**
  *  Returns the absolute value of an integer.
  *  \param value Integer value
  */
-static inline uint32_t abs_u32(int32_t value)
+static inline uint32_t abs_u32( int32_t value )
 {
-	return value > 0 ? value : -value;
+    return value > 0 ? value : -value;
 }
 
 /**
@@ -68,30 +68,31 @@ static inline uint32_t abs_u32(int32_t value)
  *  \param x Value
  *  \param y Power
  */
-static inline uint32_t power_u32(uint32_t x, uint32_t y)
+static inline uint32_t power_u32( uint32_t x, uint32_t y )
 {
-        uint32_t result = 1;
-        while (y > 0) {
-                result *= x;
-                y--;
-        }
-        return result;
+    uint32_t result = 1;
+    while( y > 0 )
+    {
+        result *= x;
+        y--;
+    }
+    return result;
 }
 
 /** ISO/IEC 14882:2003(E) - 5.6 Multiplicative operators:
- * The binary / operator yields the quotient, and the binary % operator yields the remainder
- * from the division of the first expression by the second.
- * If the second operand of / or % is zero the behavior is undefined; otherwise (a/b)*b + a%b is equal to a.
- * If both operands are nonnegative then the remainder is nonnegative;
- * if not, the sign of the remainder is implementation-defined 74).
+ * The binary / operator yields the quotient, and the binary % operator yields
+ * the remainder from the division of the first expression by the second. If the
+ * second operand of / or % is zero the behavior is undefined; otherwise (a/b)*b
+ * + a%b is equal to a. If both operands are nonnegative then the remainder is
+ * nonnegative; if not, the sign of the remainder is implementation-defined 74).
  */
-static inline int fixed_mod(int a, int b)
+static inline int fixed_mod( int a, int b )
 {
-	int rem = a % b;
-	while (rem < 0)
-		rem += b;
+    int rem = a % b;
+    while( rem < 0 )
+        rem += b;
 
-	return rem;
+    return rem;
 }
 
 #endif /* _INTMATH_H_ */

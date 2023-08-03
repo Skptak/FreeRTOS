@@ -24,7 +24,7 @@
 #ifndef WOLFSSL_OBJ_MAC_H_
 #define WOLFSSL_OBJ_MAC_H_
 #ifdef __cplusplus
-    extern "C" {
+extern "C" {
 #endif
 
 #define NID_sect163k1 721
@@ -43,8 +43,7 @@
 #define NID_sect571r1 734
 
 #ifdef __cplusplus
-    } /* extern "C" */
+} /* extern "C" */
 #endif
 
 #endif /* WOLFSSL_OBJ_MAC_H_ */
-

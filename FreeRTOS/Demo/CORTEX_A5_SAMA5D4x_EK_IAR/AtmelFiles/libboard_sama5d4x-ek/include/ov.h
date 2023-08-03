@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
- *         SAM Software Package License 
+ *         SAM Software Package License
  * ----------------------------------------------------------------------------
  * Copyright (c) 2013, Atmel Corporation
  *
@@ -27,7 +27,6 @@
  * ----------------------------------------------------------------------------
  */
 
-
 #ifndef OV_H
 #define OV_H
 
@@ -36,7 +35,8 @@
  *----------------------------------------------------------------------------*/
 
 /** Captor capture size */
-struct capture_size {
+struct capture_size
+{
     uint32_t width;
     uint32_t height;
 };
@@ -44,7 +44,9 @@ struct capture_size {
 /*----------------------------------------------------------------------------
  *       Exported functions
  *----------------------------------------------------------------------------*/
-extern void ov_configure(Twid *pTwid, uint8_t type, uint32_t width, uint32_t heigth);
-extern void ov_5640Afc_Firmware(Twid *pTwid);
+extern void ov_configure( Twid * pTwid,
+                          uint8_t type,
+                          uint32_t width,
+                          uint32_t heigth );
+extern void ov_5640Afc_Firmware( Twid * pTwid );
 #endif
-

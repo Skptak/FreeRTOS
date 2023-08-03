@@ -1,38 +1,38 @@
 /*
  * -------------------------------------------
- *    CC3220 SDK - v0.10.00.00 
+ *    CC3220 SDK - v0.10.00.00
  * -------------------------------------------
  *
- *  Copyright (C) 2015 Texas Instruments Incorporated - http://www.ti.com/ 
- *  
- *  Redistribution and use in source and binary forms, with or without 
- *  modification, are permitted provided that the following conditions 
+ *  Copyright (C) 2015 Texas Instruments Incorporated - http://www.ti.com/
+ *
+ *  Redistribution and use in source and binary forms, with or without
+ *  modification, are permitted provided that the following conditions
  *  are met:
  *
- *    Redistributions of source code must retain the above copyright 
+ *    Redistributions of source code must retain the above copyright
  *    notice, this list of conditions and the following disclaimer.
  *
  *    Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in the 
- *    documentation and/or other materials provided with the   
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the
  *    distribution.
  *
  *    Neither the name of Texas Instruments Incorporated nor the names of
  *    its contributors may be used to endorse or promote products derived
  *    from this software without specific prior written permission.
  *
- *  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
- *  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+ *  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ *  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
  *  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
- *  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
- *  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
- *  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+ *  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+ *  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ *  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
  *  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
  *  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
- *  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
- *  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
+ *  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ *  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  *  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- *  
+ *
  */
 //*****************************************************************************
 //
@@ -49,12 +49,12 @@
 //
 //*****************************************************************************
 
+#include "systick.h"
+#include "debug.h"
 #include "inc/hw_ints.h"
 #include "inc/hw_nvic.h"
 #include "inc/hw_types.h"
-#include "debug.h"
 #include "interrupt.h"
-#include "systick.h"
 
 //*****************************************************************************
 //
@@ -74,13 +74,12 @@
 //! \return None.
 //
 //*****************************************************************************
-void
-SysTickEnable(void)
+void SysTickEnable( void )
 {
     //
     // Enable SysTick.
     //
-    HWREG(NVIC_ST_CTRL) |= NVIC_ST_CTRL_CLK_SRC | NVIC_ST_CTRL_ENABLE;
+    HWREG( NVIC_ST_CTRL ) |= NVIC_ST_CTRL_CLK_SRC | NVIC_ST_CTRL_ENABLE;
 }
 
 //*****************************************************************************
@@ -93,13 +92,12 @@ SysTickEnable(void)
 //! \return None.
 //
 //*****************************************************************************
-void
-SysTickDisable(void)
+void SysTickDisable( void )
 {
     //
     // Disable SysTick.
     //
-    HWREG(NVIC_ST_CTRL) &= ~(NVIC_ST_CTRL_ENABLE);
+    HWREG( NVIC_ST_CTRL ) &= ~( NVIC_ST_CTRL_ENABLE );
 }
 
 //*****************************************************************************
@@ -118,18 +116,17 @@ SysTickDisable(void)
 //! \return None.
 //
 //*****************************************************************************
-void
-SysTickIntRegister(void (*pfnHandler)(void))
+void SysTickIntRegister( void ( *pfnHandler )( void ) )
 {
     //
     // Register the interrupt handler, returning an error if an error occurs.
     //
-    IntRegister(FAULT_SYSTICK, pfnHandler);
+    IntRegister( FAULT_SYSTICK, pfnHandler );
 
     //
     // Enable the SysTick interrupt.
     //
-    HWREG(NVIC_ST_CTRL) |= NVIC_ST_CTRL_INTEN;
+    HWREG( NVIC_ST_CTRL ) |= NVIC_ST_CTRL_INTEN;
 }
 
 //*****************************************************************************
@@ -145,18 +142,17 @@ SysTickIntRegister(void (*pfnHandler)(void))
 //! \return None.
 //
 //*****************************************************************************
-void
-SysTickIntUnregister(void)
+void SysTickIntUnregister( void )
 {
     //
     // Disable the SysTick interrupt.
     //
-    HWREG(NVIC_ST_CTRL) &= ~(NVIC_ST_CTRL_INTEN);
+    HWREG( NVIC_ST_CTRL ) &= ~( NVIC_ST_CTRL_INTEN );
 
     //
     // Unregister the interrupt handler.
     //
-    IntUnregister(FAULT_SYSTICK);
+    IntUnregister( FAULT_SYSTICK );
 }
 
 //*****************************************************************************
@@ -173,13 +169,12 @@ SysTickIntUnregister(void)
 //! \return None.
 //
 //*****************************************************************************
-void
-SysTickIntEnable(void)
+void SysTickIntEnable( void )
 {
     //
     // Enable the SysTick interrupt.
     //
-    HWREG(NVIC_ST_CTRL) |= NVIC_ST_CTRL_INTEN;
+    HWREG( NVIC_ST_CTRL ) |= NVIC_ST_CTRL_INTEN;
 }
 
 //*****************************************************************************
@@ -192,13 +187,12 @@ SysTickIntEnable(void)
 //! \return None.
 //
 //*****************************************************************************
-void
-SysTickIntDisable(void)
+void SysTickIntDisable( void )
 {
     //
     // Disable the SysTick interrupt.
     //
-    HWREG(NVIC_ST_CTRL) &= ~(NVIC_ST_CTRL_INTEN);
+    HWREG( NVIC_ST_CTRL ) &= ~( NVIC_ST_CTRL_INTEN );
 }
 
 //*****************************************************************************
@@ -220,18 +214,17 @@ SysTickIntDisable(void)
 //! \return None.
 //
 //*****************************************************************************
-void
-SysTickPeriodSet(unsigned long ulPeriod)
+void SysTickPeriodSet( unsigned long ulPeriod )
 {
     //
     // Check the arguments.
     //
-    ASSERT((ulPeriod > 0) && (ulPeriod <= 16777216));
+    ASSERT( ( ulPeriod > 0 ) && ( ulPeriod <= 16777216 ) );
 
     //
     // Set the period of the SysTick counter.
     //
-    HWREG(NVIC_ST_RELOAD) = ulPeriod - 1;
+    HWREG( NVIC_ST_RELOAD ) = ulPeriod - 1;
 }
 
 //*****************************************************************************
@@ -244,13 +237,12 @@ SysTickPeriodSet(unsigned long ulPeriod)
 //! \return Returns the period of the SysTick counter.
 //
 //*****************************************************************************
-unsigned long
-SysTickPeriodGet(void)
+unsigned long SysTickPeriodGet( void )
 {
     //
     // Return the period of the SysTick counter.
     //
-    return(HWREG(NVIC_ST_RELOAD) + 1);
+    return ( HWREG( NVIC_ST_RELOAD ) + 1 );
 }
 
 //*****************************************************************************
@@ -263,13 +255,12 @@ SysTickPeriodGet(void)
 //! \return Returns the current value of the SysTick counter.
 //
 //*****************************************************************************
-unsigned long
-SysTickValueGet(void)
+unsigned long SysTickValueGet( void )
 {
     //
     // Return the current value of the SysTick counter.
     //
-    return(HWREG(NVIC_ST_CURRENT));
+    return ( HWREG( NVIC_ST_CURRENT ) );
 }
 
 //*****************************************************************************

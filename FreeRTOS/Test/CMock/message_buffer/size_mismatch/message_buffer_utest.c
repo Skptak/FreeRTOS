@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -26,8 +27,8 @@
 /*! @file message_buffer_utest.c */
 
 /* C runtime includes. */
-#include <stdlib.h>
 #include <stdbool.h>
+#include <stdlib.h>
 
 /* Message Buffer includes */
 #include "FreeRTOS.h"
@@ -35,19 +36,19 @@
 #include "message_buffer.h"
 
 /* Test includes. */
+#include "CException.h"
 #include "unity.h"
 #include "unity_memory.h"
-#include "CException.h"
 
 /* Mock includes. */
-#include "mock_task.h"
 #include "mock_fake_assert.h"
 #include "mock_fake_port.h"
+#include "mock_task.h"
 
 /**
  * @brief CException code for when a configASSERT should be intercepted.
  */
-#define configASSERT_E    0xAA101
+#define configASSERT_E 0xAA101
 
 /**
  * @brief Expect a configASSERT from the function called.
@@ -79,22 +80,26 @@
 static int assertionFailed = 0;
 
 /**
- * @brief Global counter to keep track of how many times a sender task was woken up by a task receiving from the stream buffer.
+ * @brief Global counter to keep track of how many times a sender task was woken
+ * up by a task receiving from the stream buffer.
  */
 static int senderTaskWoken = 0;
 
 /**
- * @brief Global counter to keep track of how many times a receiver task was woken up by a task sending to the buffer.
+ * @brief Global counter to keep track of how many times a receiver task was
+ * woken up by a task sending to the buffer.
  */
 static int receiverTaskWoken = 0;
 
 /**
- * @brief Dummy sender task handle to which the stream buffer receive APIs will send notification.
+ * @brief Dummy sender task handle to which the stream buffer receive APIs will
+ * send notification.
  */
 /*static TaskHandle_t senderTask = ( TaskHandle_t ) ( 0xAABBCCDD ); */
 
 /**
- * @brief Dummy receiver task handle to which the stream buffer send APIs will send notifications.
+ * @brief Dummy receiver task handle to which the stream buffer send APIs will
+ * send notifications.
  */
 /*static TaskHandle_t receiverTask = ( TaskHandle_t ) ( 0xABCDEEFF ); */
 
@@ -119,10 +124,7 @@ void vPortFree( void * pv )
     return unity_free( pv );
 }
 
-static void vFakeAssertStub( bool x,
-                             char * file,
-                             int line,
-                             int cmock_num_calls )
+static void vFakeAssertStub( bool x, char * file, int line, int cmock_num_calls )
 {
     if( !x )
     {
@@ -162,7 +164,9 @@ void setUp( void )
 /*! called before each test case */
 void tearDown( void )
 {
-    TEST_ASSERT_EQUAL_MESSAGE( 0, assertionFailed, "Assertion check failed in code." );
+    TEST_ASSERT_EQUAL_MESSAGE( 0,
+                               assertionFailed,
+                               "Assertion check failed in code." );
     UnityMalloc_EndTest();
 
     mock_task_Verify();
@@ -186,7 +190,6 @@ int suiteTearDown( int numFailures )
     return numFailures;
 }
 
-
 static void validate_and_clear_assertions( void )
 {
     TEST_ASSERT_EQUAL( 1, assertionFailed );
@@ -194,7 +197,6 @@ static void validate_and_clear_assertions( void )
 }
 
 /* ==============================  Test Cases  ============================== */
-
 
 /**
  * @brief assert if xDataLengthBytes does not fit in
@@ -213,10 +215,8 @@ void test_xMessageBufferSend_size_mismatch( void )
     /* Create a message buffer of sample size. */
     TEST_ASSERT_NOT_NULL( xMessageBuffer );
 
-    EXPECT_ASSERT_BREAK( ( void ) xMessageBufferSend( xMessageBuffer,
-                                                      message,
-                                                      UINT8_MAX + 5,
-                                                      0 ) );
+    EXPECT_ASSERT_BREAK( (
+        void ) xMessageBufferSend( xMessageBuffer, message, UINT8_MAX + 5, 0 ) );
     vStreamBufferDelete( xMessageBuffer );
 
     validate_and_clear_assertions();

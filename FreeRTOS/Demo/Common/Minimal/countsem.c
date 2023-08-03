@@ -2,28 +2,28 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
  *
  */
-
 
 /*
  * Simple demonstration of the usage of counting semaphore.
@@ -31,26 +31,26 @@
 
 /* Scheduler include files. */
 #include "FreeRTOS.h"
-#include "task.h"
 #include "semphr.h"
+#include "task.h"
 
 /* Demo program include files. */
 #include "countsem.h"
 
 /* The maximum count value that the semaphore used for the demo can hold. */
-#define countMAX_COUNT_VALUE       ( 200 )
+#define countMAX_COUNT_VALUE    ( 200 )
 
 /* Constants used to indicate whether or not the semaphore should have been
  * created with its maximum count value, or its minimum count value.  These
  * numbers are used to ensure that the pointers passed in as the task parameters
  * are valid. */
-#define countSTART_AT_MAX_COUNT    ( 0xaa )
-#define countSTART_AT_ZERO         ( 0x55 )
+#define countSTART_AT_MAX_COUNT ( 0xaa )
+#define countSTART_AT_ZERO      ( 0x55 )
 
 /* Two tasks are created for the test.  One uses a semaphore created with its
  * count value set to the maximum, and one with the count value set to zero. */
-#define countNUM_TEST_TASKS        ( 2 )
-#define countDONT_BLOCK            ( 0 )
+#define countNUM_TEST_TASKS     ( 2 )
+#define countDONT_BLOCK         ( 0 )
 
 /*-----------------------------------------------------------*/
 
@@ -109,30 +109,48 @@ void vStartCountingSemaphoreTasks( void )
 {
     /* Create the semaphores that we are going to use for the test/demo.  The
      * first should be created such that it starts at its maximum count value,
-     * the second should be created such that it starts with a count value of zero. */
-    xParameters[ 0 ].xSemaphore = xSemaphoreCreateCounting( countMAX_COUNT_VALUE, countMAX_COUNT_VALUE );
+     * the second should be created such that it starts with a count value of
+     * zero. */
+    xParameters[ 0 ]
+        .xSemaphore = xSemaphoreCreateCounting( countMAX_COUNT_VALUE,
+                                                countMAX_COUNT_VALUE );
     xParameters[ 0 ].uxExpectedStartCount = countSTART_AT_MAX_COUNT;
     xParameters[ 0 ].uxLoopCounter = 0;
 
-    xParameters[ 1 ].xSemaphore = xSemaphoreCreateCounting( countMAX_COUNT_VALUE, 0 );
+    xParameters[ 1 ].xSemaphore = xSemaphoreCreateCounting( countMAX_COUNT_VALUE,
+                                                            0 );
     xParameters[ 1 ].uxExpectedStartCount = 0;
     xParameters[ 1 ].uxLoopCounter = 0;
 
     /* Were the semaphores created? */
-    if( ( xParameters[ 0 ].xSemaphore != NULL ) || ( xParameters[ 1 ].xSemaphore != NULL ) )
+    if( ( xParameters[ 0 ].xSemaphore != NULL ) ||
+        ( xParameters[ 1 ].xSemaphore != NULL ) )
     {
         /* vQueueAddToRegistry() adds the semaphore to the registry, if one is
          * in use.  The registry is provided as a means for kernel aware
          * debuggers to locate semaphores and has no purpose if a kernel aware
-         * debugger is not being used.  The call to vQueueAddToRegistry() will be
-         * removed by the pre-processor if configQUEUE_REGISTRY_SIZE is not
+         * debugger is not being used.  The call to vQueueAddToRegistry() will
+         * be removed by the pre-processor if configQUEUE_REGISTRY_SIZE is not
          * defined or is defined to be less than 1. */
-        vQueueAddToRegistry( ( QueueHandle_t ) xParameters[ 0 ].xSemaphore, "Counting_Sem_1" );
-        vQueueAddToRegistry( ( QueueHandle_t ) xParameters[ 1 ].xSemaphore, "Counting_Sem_2" );
+        vQueueAddToRegistry( ( QueueHandle_t ) xParameters[ 0 ].xSemaphore,
+                             "Counting_Sem_1" );
+        vQueueAddToRegistry( ( QueueHandle_t ) xParameters[ 1 ].xSemaphore,
+                             "Counting_Sem_2" );
 
-        /* Create the demo tasks, passing in the semaphore to use as the parameter. */
-        xTaskCreate( prvCountingSemaphoreTask, "CNT1", configMINIMAL_STACK_SIZE, ( void * ) &( xParameters[ 0 ] ), tskIDLE_PRIORITY, NULL );
-        xTaskCreate( prvCountingSemaphoreTask, "CNT2", configMINIMAL_STACK_SIZE, ( void * ) &( xParameters[ 1 ] ), tskIDLE_PRIORITY, NULL );
+        /* Create the demo tasks, passing in the semaphore to use as the
+         * parameter. */
+        xTaskCreate( prvCountingSemaphoreTask,
+                     "CNT1",
+                     configMINIMAL_STACK_SIZE,
+                     ( void * ) &( xParameters[ 0 ] ),
+                     tskIDLE_PRIORITY,
+                     NULL );
+        xTaskCreate( prvCountingSemaphoreTask,
+                     "CNT2",
+                     configMINIMAL_STACK_SIZE,
+                     ( void * ) &( xParameters[ 1 ] ),
+                     tskIDLE_PRIORITY,
+                     NULL );
     }
 }
 /*-----------------------------------------------------------*/
@@ -152,7 +170,8 @@ static void prvDecrementSemaphoreCount( SemaphoreHandle_t xSemaphore,
     /* We should be able to 'take' the semaphore countMAX_COUNT_VALUE times. */
     for( ux = 0; ux < countMAX_COUNT_VALUE; ux++ )
     {
-        configASSERT( uxSemaphoreGetCount( xSemaphore ) == ( countMAX_COUNT_VALUE - ux ) );
+        configASSERT( uxSemaphoreGetCount( xSemaphore ) ==
+                      ( countMAX_COUNT_VALUE - ux ) );
 
         if( xSemaphoreTake( xSemaphore, countDONT_BLOCK ) != pdPASS )
         {
@@ -163,9 +182,9 @@ static void prvDecrementSemaphoreCount( SemaphoreHandle_t xSemaphore,
         ( *puxLoopCounter )++;
     }
 
-    #if configUSE_PREEMPTION == 0
-        taskYIELD();
-    #endif
+#if configUSE_PREEMPTION == 0
+    taskYIELD();
+#endif
 
     /* If the semaphore count is zero then we should not be able to	'take'
      * the semaphore. */
@@ -204,9 +223,9 @@ static void prvIncrementSemaphoreCount( SemaphoreHandle_t xSemaphore,
         ( *puxLoopCounter )++;
     }
 
-    #if configUSE_PREEMPTION == 0
-        taskYIELD();
-    #endif
+#if configUSE_PREEMPTION == 0
+    taskYIELD();
+#endif
 
     /* If the semaphore count is at its maximum then we should not be able to
      * 'give' the semaphore. */
@@ -221,14 +240,14 @@ static void prvCountingSemaphoreTask( void * pvParameters )
 {
     xCountSemStruct * pxParameter;
 
-    #ifdef USE_STDIO
-        void vPrintDisplayMessage( const char * const * ppcMessageToSend );
+#ifdef USE_STDIO
+    void vPrintDisplayMessage( const char * const * ppcMessageToSend );
 
-        const char * const pcTaskStartMsg = "Counting semaphore demo started.\r\n";
+    const char * const pcTaskStartMsg = "Counting semaphore demo started.\r\n";
 
-        /* Queue a message for printing to say the task has started. */
-        vPrintDisplayMessage( &pcTaskStartMsg );
-    #endif
+    /* Queue a message for printing to say the task has started. */
+    vPrintDisplayMessage( &pcTaskStartMsg );
+#endif
 
     /* The semaphore to be used was passed as the parameter. */
     pxParameter = ( xCountSemStruct * ) pvParameters;
@@ -237,7 +256,8 @@ static void prvCountingSemaphoreTask( void * pvParameters )
      * at zero? */
     if( pxParameter->uxExpectedStartCount == countSTART_AT_MAX_COUNT )
     {
-        prvDecrementSemaphoreCount( pxParameter->xSemaphore, &( pxParameter->uxLoopCounter ) );
+        prvDecrementSemaphoreCount( pxParameter->xSemaphore,
+                                    &( pxParameter->uxLoopCounter ) );
     }
 
     /* Now we expect the semaphore count to be 0, so this time there is an
@@ -247,10 +267,12 @@ static void prvCountingSemaphoreTask( void * pvParameters )
         xErrorDetected = pdTRUE;
     }
 
-    for( ; ; )
+    for( ;; )
     {
-        prvIncrementSemaphoreCount( pxParameter->xSemaphore, &( pxParameter->uxLoopCounter ) );
-        prvDecrementSemaphoreCount( pxParameter->xSemaphore, &( pxParameter->uxLoopCounter ) );
+        prvIncrementSemaphoreCount( pxParameter->xSemaphore,
+                                    &( pxParameter->uxLoopCounter ) );
+        prvDecrementSemaphoreCount( pxParameter->xSemaphore,
+                                    &( pxParameter->uxLoopCounter ) );
     }
 }
 /*-----------------------------------------------------------*/

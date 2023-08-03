@@ -42,18 +42,17 @@
 
 #ifdef __MSP430_HAS_EUSCI_Bx__
 
-//*****************************************************************************
-//
-// If building with a C++ compiler, make all of the definitions in this header
-// have a C binding.
-//
-//*****************************************************************************
-#ifdef __cplusplus
-extern "C"
-{
-#endif
+    //*****************************************************************************
+    //
+    // If building with a C++ compiler, make all of the definitions in this
+    // header have a C binding.
+    //
+    //*****************************************************************************
+    #ifdef __cplusplus
+extern "C" {
+    #endif
 
-#include "inc/hw_regaccess.h"
+    #include "inc/hw_regaccess.h"
 //*****************************************************************************
 //
 //! \brief Used in the EUSCI_B_I2C_initMaster() function as the param
@@ -108,114 +107,114 @@ typedef struct EUSCI_B_I2C_initSlaveParam
     uint32_t slaveOwnAddressEnable;
 } EUSCI_B_I2C_initSlaveParam;
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the param parameter for
-// functions: EUSCI_B_I2C_initMaster().
-//
-//*****************************************************************************
-#define EUSCI_B_I2C_NO_AUTO_STOP                                       UCASTP_0
-#define EUSCI_B_I2C_SET_BYTECOUNT_THRESHOLD_FLAG                       UCASTP_1
-#define EUSCI_B_I2C_SEND_STOP_AUTOMATICALLY_ON_BYTECOUNT_THRESHOLD     UCASTP_2
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the param parameter for
+    // functions: EUSCI_B_I2C_initMaster().
+    //
+    //*****************************************************************************
+    #define EUSCI_B_I2C_NO_AUTO_STOP                                   UCASTP_0
+    #define EUSCI_B_I2C_SET_BYTECOUNT_THRESHOLD_FLAG                   UCASTP_1
+    #define EUSCI_B_I2C_SEND_STOP_AUTOMATICALLY_ON_BYTECOUNT_THRESHOLD UCASTP_2
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the param parameter for
-// functions: EUSCI_B_I2C_initMaster().
-//
-//*****************************************************************************
-#define EUSCI_B_I2C_SET_DATA_RATE_400KBPS                                400000
-#define EUSCI_B_I2C_SET_DATA_RATE_100KBPS                                100000
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the param parameter for
+    // functions: EUSCI_B_I2C_initMaster().
+    //
+    //*****************************************************************************
+    #define EUSCI_B_I2C_SET_DATA_RATE_400KBPS                          400000
+    #define EUSCI_B_I2C_SET_DATA_RATE_100KBPS                          100000
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the param parameter for
-// functions: EUSCI_B_I2C_initMaster().
-//
-//*****************************************************************************
-#define EUSCI_B_I2C_CLOCKSOURCE_ACLK                               UCSSEL__ACLK
-#define EUSCI_B_I2C_CLOCKSOURCE_SMCLK                             UCSSEL__SMCLK
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the param parameter for
+    // functions: EUSCI_B_I2C_initMaster().
+    //
+    //*****************************************************************************
+    #define EUSCI_B_I2C_CLOCKSOURCE_ACLK                               UCSSEL__ACLK
+    #define EUSCI_B_I2C_CLOCKSOURCE_SMCLK                              UCSSEL__SMCLK
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the param parameter for
-// functions: EUSCI_B_I2C_initSlave().
-//
-//*****************************************************************************
-#define EUSCI_B_I2C_OWN_ADDRESS_OFFSET0                                    0x00
-#define EUSCI_B_I2C_OWN_ADDRESS_OFFSET1                                    0x02
-#define EUSCI_B_I2C_OWN_ADDRESS_OFFSET2                                    0x04
-#define EUSCI_B_I2C_OWN_ADDRESS_OFFSET3                                    0x06
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the param parameter for
+    // functions: EUSCI_B_I2C_initSlave().
+    //
+    //*****************************************************************************
+    #define EUSCI_B_I2C_OWN_ADDRESS_OFFSET0                            0x00
+    #define EUSCI_B_I2C_OWN_ADDRESS_OFFSET1                            0x02
+    #define EUSCI_B_I2C_OWN_ADDRESS_OFFSET2                            0x04
+    #define EUSCI_B_I2C_OWN_ADDRESS_OFFSET3                            0x06
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the param parameter for
-// functions: EUSCI_B_I2C_initSlave().
-//
-//*****************************************************************************
-#define EUSCI_B_I2C_OWN_ADDRESS_DISABLE                                    0x00
-#define EUSCI_B_I2C_OWN_ADDRESS_ENABLE                                   UCOAEN
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the param parameter for
+    // functions: EUSCI_B_I2C_initSlave().
+    //
+    //*****************************************************************************
+    #define EUSCI_B_I2C_OWN_ADDRESS_DISABLE                            0x00
+    #define EUSCI_B_I2C_OWN_ADDRESS_ENABLE                             UCOAEN
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the mode parameter for
-// functions: EUSCI_B_I2C_setMode() as well as returned by the
-// EUSCI_B_I2C_getMode() function.
-//
-//*****************************************************************************
-#define EUSCI_B_I2C_TRANSMIT_MODE                                          UCTR
-#define EUSCI_B_I2C_RECEIVE_MODE                                           0x00
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the mode parameter for
+    // functions: EUSCI_B_I2C_setMode() as well as returned by the
+    // EUSCI_B_I2C_getMode() function.
+    //
+    //*****************************************************************************
+    #define EUSCI_B_I2C_TRANSMIT_MODE                                  UCTR
+    #define EUSCI_B_I2C_RECEIVE_MODE                                   0x00
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the mask parameter for
-// functions: EUSCI_B_I2C_enableInterrupt(), EUSCI_B_I2C_disableInterrupt(),
-// EUSCI_B_I2C_clearInterrupt(), and EUSCI_B_I2C_getInterruptStatus() as well
-// as returned by the EUSCI_B_I2C_getInterruptStatus() function.
-//
-//*****************************************************************************
-#define EUSCI_B_I2C_NAK_INTERRUPT                                      UCNACKIE
-#define EUSCI_B_I2C_ARBITRATIONLOST_INTERRUPT                            UCALIE
-#define EUSCI_B_I2C_STOP_INTERRUPT                                      UCSTPIE
-#define EUSCI_B_I2C_START_INTERRUPT                                     UCSTTIE
-#define EUSCI_B_I2C_TRANSMIT_INTERRUPT0                                 UCTXIE0
-#define EUSCI_B_I2C_TRANSMIT_INTERRUPT1                                 UCTXIE1
-#define EUSCI_B_I2C_TRANSMIT_INTERRUPT2                                 UCTXIE2
-#define EUSCI_B_I2C_TRANSMIT_INTERRUPT3                                 UCTXIE3
-#define EUSCI_B_I2C_RECEIVE_INTERRUPT0                                  UCRXIE0
-#define EUSCI_B_I2C_RECEIVE_INTERRUPT1                                  UCRXIE1
-#define EUSCI_B_I2C_RECEIVE_INTERRUPT2                                  UCRXIE2
-#define EUSCI_B_I2C_RECEIVE_INTERRUPT3                                  UCRXIE3
-#define EUSCI_B_I2C_BIT9_POSITION_INTERRUPT                            UCBIT9IE
-#define EUSCI_B_I2C_CLOCK_LOW_TIMEOUT_INTERRUPT                        UCCLTOIE
-#define EUSCI_B_I2C_BYTE_COUNTER_INTERRUPT                             UCBCNTIE
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the mask parameter for
+    // functions: EUSCI_B_I2C_enableInterrupt(), EUSCI_B_I2C_disableInterrupt(),
+    // EUSCI_B_I2C_clearInterrupt(), and EUSCI_B_I2C_getInterruptStatus() as
+    // well as returned by the EUSCI_B_I2C_getInterruptStatus() function.
+    //
+    //*****************************************************************************
+    #define EUSCI_B_I2C_NAK_INTERRUPT                                  UCNACKIE
+    #define EUSCI_B_I2C_ARBITRATIONLOST_INTERRUPT                      UCALIE
+    #define EUSCI_B_I2C_STOP_INTERRUPT                                 UCSTPIE
+    #define EUSCI_B_I2C_START_INTERRUPT                                UCSTTIE
+    #define EUSCI_B_I2C_TRANSMIT_INTERRUPT0                            UCTXIE0
+    #define EUSCI_B_I2C_TRANSMIT_INTERRUPT1                            UCTXIE1
+    #define EUSCI_B_I2C_TRANSMIT_INTERRUPT2                            UCTXIE2
+    #define EUSCI_B_I2C_TRANSMIT_INTERRUPT3                            UCTXIE3
+    #define EUSCI_B_I2C_RECEIVE_INTERRUPT0                             UCRXIE0
+    #define EUSCI_B_I2C_RECEIVE_INTERRUPT1                             UCRXIE1
+    #define EUSCI_B_I2C_RECEIVE_INTERRUPT2                             UCRXIE2
+    #define EUSCI_B_I2C_RECEIVE_INTERRUPT3                             UCRXIE3
+    #define EUSCI_B_I2C_BIT9_POSITION_INTERRUPT                        UCBIT9IE
+    #define EUSCI_B_I2C_CLOCK_LOW_TIMEOUT_INTERRUPT                    UCCLTOIE
+    #define EUSCI_B_I2C_BYTE_COUNTER_INTERRUPT                         UCBCNTIE
 
-//*****************************************************************************
-//
-// The following are values that can be passed toThe following are values that
-// can be returned by the EUSCI_B_I2C_isBusBusy() function.
-//
-//*****************************************************************************
-#define EUSCI_B_I2C_BUS_BUSY                                            UCBBUSY
-#define EUSCI_B_I2C_BUS_NOT_BUSY                                           0x00
+    //*****************************************************************************
+    //
+    // The following are values that can be passed toThe following are values
+    // that can be returned by the EUSCI_B_I2C_isBusBusy() function.
+    //
+    //*****************************************************************************
+    #define EUSCI_B_I2C_BUS_BUSY                                       UCBBUSY
+    #define EUSCI_B_I2C_BUS_NOT_BUSY                                   0x00
 
-//*****************************************************************************
-//
-// The following are values that can be passed toThe following are values that
-// can be returned by the EUSCI_B_I2C_masterIsStopSent() function.
-//
-//*****************************************************************************
-#define EUSCI_B_I2C_STOP_SEND_COMPLETE                                     0x00
-#define EUSCI_B_I2C_SENDING_STOP                                        UCTXSTP
+    //*****************************************************************************
+    //
+    // The following are values that can be passed toThe following are values
+    // that can be returned by the EUSCI_B_I2C_masterIsStopSent() function.
+    //
+    //*****************************************************************************
+    #define EUSCI_B_I2C_STOP_SEND_COMPLETE                             0x00
+    #define EUSCI_B_I2C_SENDING_STOP                                   UCTXSTP
 
-//*****************************************************************************
-//
-// The following are values that can be passed toThe following are values that
-// can be returned by the EUSCI_B_I2C_masterIsStartSent() function.
-//
-//*****************************************************************************
-#define EUSCI_B_I2C_START_SEND_COMPLETE                                    0x00
-#define EUSCI_B_I2C_SENDING_START                                       UCTXSTT
+    //*****************************************************************************
+    //
+    // The following are values that can be passed toThe following are values
+    // that can be returned by the EUSCI_B_I2C_masterIsStartSent() function.
+    //
+    //*****************************************************************************
+    #define EUSCI_B_I2C_START_SEND_COMPLETE                            0x00
+    #define EUSCI_B_I2C_SENDING_START                                  UCTXSTT
 
 //*****************************************************************************
 //
@@ -238,8 +237,8 @@ typedef struct EUSCI_B_I2C_initSlaveParam
 //! \return None
 //
 //*****************************************************************************
-extern void EUSCI_B_I2C_initMaster(uint16_t baseAddress,
-                                   EUSCI_B_I2C_initMasterParam *param);
+extern void EUSCI_B_I2C_initMaster( uint16_t baseAddress,
+                                    EUSCI_B_I2C_initMasterParam * param );
 
 //*****************************************************************************
 //
@@ -256,8 +255,8 @@ extern void EUSCI_B_I2C_initMaster(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void EUSCI_B_I2C_initSlave(uint16_t baseAddress,
-                                  EUSCI_B_I2C_initSlaveParam *param);
+extern void EUSCI_B_I2C_initSlave( uint16_t baseAddress,
+                                   EUSCI_B_I2C_initSlaveParam * param );
 
 //*****************************************************************************
 //
@@ -272,7 +271,7 @@ extern void EUSCI_B_I2C_initSlave(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void EUSCI_B_I2C_enable(uint16_t baseAddress);
+extern void EUSCI_B_I2C_enable( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -287,7 +286,7 @@ extern void EUSCI_B_I2C_enable(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void EUSCI_B_I2C_disable(uint16_t baseAddress);
+extern void EUSCI_B_I2C_disable( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -304,8 +303,8 @@ extern void EUSCI_B_I2C_disable(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void EUSCI_B_I2C_setSlaveAddress(uint16_t baseAddress,
-                                        uint8_t slaveAddress);
+extern void EUSCI_B_I2C_setSlaveAddress( uint16_t baseAddress,
+                                         uint8_t slaveAddress );
 
 //*****************************************************************************
 //
@@ -326,8 +325,7 @@ extern void EUSCI_B_I2C_setSlaveAddress(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void EUSCI_B_I2C_setMode(uint16_t baseAddress,
-                                uint8_t mode);
+extern void EUSCI_B_I2C_setMode( uint16_t baseAddress, uint8_t mode );
 
 //*****************************************************************************
 //
@@ -345,7 +343,7 @@ extern void EUSCI_B_I2C_setMode(uint16_t baseAddress,
 //!         \n indicating the current mode
 //
 //*****************************************************************************
-extern uint8_t EUSCI_B_I2C_getMode(uint16_t baseAddress);
+extern uint8_t EUSCI_B_I2C_getMode( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -362,8 +360,8 @@ extern uint8_t EUSCI_B_I2C_getMode(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void EUSCI_B_I2C_slavePutData(uint16_t baseAddress,
-                                     uint8_t transmitData);
+extern void EUSCI_B_I2C_slavePutData( uint16_t baseAddress,
+                                      uint8_t transmitData );
 
 //*****************************************************************************
 //
@@ -377,7 +375,7 @@ extern void EUSCI_B_I2C_slavePutData(uint16_t baseAddress,
 //!         uint8_t.
 //
 //*****************************************************************************
-extern uint8_t EUSCI_B_I2C_slaveGetData(uint16_t baseAddress);
+extern uint8_t EUSCI_B_I2C_slaveGetData( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -395,7 +393,7 @@ extern uint8_t EUSCI_B_I2C_slaveGetData(uint16_t baseAddress);
 //!         \n indicating whether the bus is busy
 //
 //*****************************************************************************
-extern uint16_t EUSCI_B_I2C_isBusBusy(uint16_t baseAddress);
+extern uint16_t EUSCI_B_I2C_isBusBusy( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -412,7 +410,7 @@ extern uint16_t EUSCI_B_I2C_isBusBusy(uint16_t baseAddress);
 //!         \n indicating whether the stop was sent
 //
 //*****************************************************************************
-extern uint16_t EUSCI_B_I2C_masterIsStopSent(uint16_t baseAddress);
+extern uint16_t EUSCI_B_I2C_masterIsStopSent( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -429,7 +427,7 @@ extern uint16_t EUSCI_B_I2C_masterIsStopSent(uint16_t baseAddress);
 //!         \n indicating whether the start was sent
 //
 //*****************************************************************************
-extern uint16_t EUSCI_B_I2C_masterIsStartSent(uint16_t baseAddress);
+extern uint16_t EUSCI_B_I2C_masterIsStartSent( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -466,8 +464,7 @@ extern uint16_t EUSCI_B_I2C_masterIsStartSent(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void EUSCI_B_I2C_enableInterrupt(uint16_t baseAddress,
-                                        uint16_t mask);
+extern void EUSCI_B_I2C_enableInterrupt( uint16_t baseAddress, uint16_t mask );
 
 //*****************************************************************************
 //
@@ -504,8 +501,7 @@ extern void EUSCI_B_I2C_enableInterrupt(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void EUSCI_B_I2C_disableInterrupt(uint16_t baseAddress,
-                                         uint16_t mask);
+extern void EUSCI_B_I2C_disableInterrupt( uint16_t baseAddress, uint16_t mask );
 
 //*****************************************************************************
 //
@@ -542,8 +538,7 @@ extern void EUSCI_B_I2C_disableInterrupt(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void EUSCI_B_I2C_clearInterrupt(uint16_t baseAddress,
-                                       uint16_t mask);
+extern void EUSCI_B_I2C_clearInterrupt( uint16_t baseAddress, uint16_t mask );
 
 //*****************************************************************************
 //
@@ -596,8 +591,8 @@ extern void EUSCI_B_I2C_clearInterrupt(uint16_t baseAddress,
 //!         \n indicating the status of the masked interrupts
 //
 //*****************************************************************************
-extern uint16_t EUSCI_B_I2C_getInterruptStatus(uint16_t baseAddress,
-                                               uint16_t mask);
+extern uint16_t EUSCI_B_I2C_getInterruptStatus( uint16_t baseAddress,
+                                                uint16_t mask );
 
 //*****************************************************************************
 //
@@ -616,8 +611,8 @@ extern uint16_t EUSCI_B_I2C_getInterruptStatus(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void EUSCI_B_I2C_masterSendSingleByte(uint16_t baseAddress,
-                                             uint8_t txData);
+extern void EUSCI_B_I2C_masterSendSingleByte( uint16_t baseAddress,
+                                              uint8_t txData );
 
 //*****************************************************************************
 //
@@ -635,7 +630,7 @@ extern void EUSCI_B_I2C_masterSendSingleByte(uint16_t baseAddress,
 //! \return STATUS_SUCCESS or STATUS_FAILURE of the transmission process.
 //
 //*****************************************************************************
-extern uint8_t EUSCI_B_I2C_masterReceiveSingleByte(uint16_t baseAddress);
+extern uint8_t EUSCI_B_I2C_masterReceiveSingleByte( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -655,9 +650,9 @@ extern uint8_t EUSCI_B_I2C_masterReceiveSingleByte(uint16_t baseAddress);
 //! \return STATUS_SUCCESS or STATUS_FAILURE of the transmission process.
 //
 //*****************************************************************************
-extern bool EUSCI_B_I2C_masterSendSingleByteWithTimeout(uint16_t baseAddress,
-                                                        uint8_t txData,
-                                                        uint32_t timeout);
+extern bool EUSCI_B_I2C_masterSendSingleByteWithTimeout( uint16_t baseAddress,
+                                                         uint8_t txData,
+                                                         uint32_t timeout );
 
 //*****************************************************************************
 //
@@ -675,8 +670,8 @@ extern bool EUSCI_B_I2C_masterSendSingleByteWithTimeout(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void EUSCI_B_I2C_masterSendMultiByteStart(uint16_t baseAddress,
-                                                 uint8_t txData);
+extern void EUSCI_B_I2C_masterSendMultiByteStart( uint16_t baseAddress,
+                                                  uint8_t txData );
 
 //*****************************************************************************
 //
@@ -698,7 +693,7 @@ extern void EUSCI_B_I2C_masterSendMultiByteStart(uint16_t baseAddress,
 extern bool EUSCI_B_I2C_masterSendMultiByteStartWithTimeout(
     uint16_t baseAddress,
     uint8_t txData,
-    uint32_t timeout);
+    uint32_t timeout );
 
 //*****************************************************************************
 //
@@ -716,8 +711,8 @@ extern bool EUSCI_B_I2C_masterSendMultiByteStartWithTimeout(
 //! \return None
 //
 //*****************************************************************************
-extern void EUSCI_B_I2C_masterSendMultiByteNext(uint16_t baseAddress,
-                                                uint8_t txData);
+extern void EUSCI_B_I2C_masterSendMultiByteNext( uint16_t baseAddress,
+                                                 uint8_t txData );
 
 //*****************************************************************************
 //
@@ -736,9 +731,9 @@ extern void EUSCI_B_I2C_masterSendMultiByteNext(uint16_t baseAddress,
 //! \return STATUS_SUCCESS or STATUS_FAILURE of the transmission process.
 //
 //*****************************************************************************
-extern bool EUSCI_B_I2C_masterSendMultiByteNextWithTimeout(uint16_t baseAddress,
-                                                           uint8_t txData,
-                                                           uint32_t timeout);
+extern bool EUSCI_B_I2C_masterSendMultiByteNextWithTimeout( uint16_t baseAddress,
+                                                            uint8_t txData,
+                                                            uint32_t timeout );
 
 //*****************************************************************************
 //
@@ -757,8 +752,8 @@ extern bool EUSCI_B_I2C_masterSendMultiByteNextWithTimeout(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void EUSCI_B_I2C_masterSendMultiByteFinish(uint16_t baseAddress,
-                                                  uint8_t txData);
+extern void EUSCI_B_I2C_masterSendMultiByteFinish( uint16_t baseAddress,
+                                                   uint8_t txData );
 
 //*****************************************************************************
 //
@@ -781,7 +776,7 @@ extern void EUSCI_B_I2C_masterSendMultiByteFinish(uint16_t baseAddress,
 extern bool EUSCI_B_I2C_masterSendMultiByteFinishWithTimeout(
     uint16_t baseAddress,
     uint8_t txData,
-    uint32_t timeout);
+    uint32_t timeout );
 
 //*****************************************************************************
 //
@@ -796,7 +791,7 @@ extern bool EUSCI_B_I2C_masterSendMultiByteFinishWithTimeout(
 //! \return None
 //
 //*****************************************************************************
-extern void EUSCI_B_I2C_masterSendStart(uint16_t baseAddress);
+extern void EUSCI_B_I2C_masterSendStart( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -814,7 +809,7 @@ extern void EUSCI_B_I2C_masterSendStart(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void EUSCI_B_I2C_masterSendMultiByteStop(uint16_t baseAddress);
+extern void EUSCI_B_I2C_masterSendMultiByteStop( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -833,8 +828,8 @@ extern void EUSCI_B_I2C_masterSendMultiByteStop(uint16_t baseAddress);
 //! \return STATUS_SUCCESS or STATUS_FAILURE of the transmission process.
 //
 //*****************************************************************************
-extern bool EUSCI_B_I2C_masterSendMultiByteStopWithTimeout(uint16_t baseAddress,
-                                                           uint32_t timeout);
+extern bool EUSCI_B_I2C_masterSendMultiByteStopWithTimeout( uint16_t baseAddress,
+                                                            uint32_t timeout );
 
 //*****************************************************************************
 //
@@ -850,7 +845,7 @@ extern bool EUSCI_B_I2C_masterSendMultiByteStopWithTimeout(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void EUSCI_B_I2C_masterReceiveStart(uint16_t baseAddress);
+extern void EUSCI_B_I2C_masterReceiveStart( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -864,7 +859,7 @@ extern void EUSCI_B_I2C_masterReceiveStart(uint16_t baseAddress);
 //! \return Received byte at Master end.
 //
 //*****************************************************************************
-extern uint8_t EUSCI_B_I2C_masterReceiveMultiByteNext(uint16_t baseAddress);
+extern uint8_t EUSCI_B_I2C_masterReceiveMultiByteNext( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -881,7 +876,7 @@ extern uint8_t EUSCI_B_I2C_masterReceiveMultiByteNext(uint16_t baseAddress);
 //! \return Received byte at Master end.
 //
 //*****************************************************************************
-extern uint8_t EUSCI_B_I2C_masterReceiveMultiByteFinish(uint16_t baseAddress);
+extern uint8_t EUSCI_B_I2C_masterReceiveMultiByteFinish( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -903,8 +898,8 @@ extern uint8_t EUSCI_B_I2C_masterReceiveMultiByteFinish(uint16_t baseAddress);
 //*****************************************************************************
 extern bool EUSCI_B_I2C_masterReceiveMultiByteFinishWithTimeout(
     uint16_t baseAddress,
-    uint8_t *txData,
-    uint32_t timeout);
+    uint8_t * txData,
+    uint32_t timeout );
 
 //*****************************************************************************
 //
@@ -920,7 +915,7 @@ extern bool EUSCI_B_I2C_masterReceiveMultiByteFinishWithTimeout(
 //! \return None
 //
 //*****************************************************************************
-extern void EUSCI_B_I2C_masterReceiveMultiByteStop(uint16_t baseAddress);
+extern void EUSCI_B_I2C_masterReceiveMultiByteStop( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -936,7 +931,7 @@ extern void EUSCI_B_I2C_masterReceiveMultiByteStop(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void EUSCI_B_I2C_enableMultiMasterMode(uint16_t baseAddress);
+extern void EUSCI_B_I2C_enableMultiMasterMode( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -952,7 +947,7 @@ extern void EUSCI_B_I2C_enableMultiMasterMode(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void EUSCI_B_I2C_disableMultiMasterMode(uint16_t baseAddress);
+extern void EUSCI_B_I2C_disableMultiMasterMode( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -966,7 +961,7 @@ extern void EUSCI_B_I2C_disableMultiMasterMode(uint16_t baseAddress);
 //!         uint8_t.
 //
 //*****************************************************************************
-extern uint8_t EUSCI_B_I2C_masterReceiveSingle(uint16_t baseAddress);
+extern uint8_t EUSCI_B_I2C_masterReceiveSingle( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -980,7 +975,7 @@ extern uint8_t EUSCI_B_I2C_masterReceiveSingle(uint16_t baseAddress);
 //! \return The address of the I2C RX Buffer
 //
 //*****************************************************************************
-extern uint32_t EUSCI_B_I2C_getReceiveBufferAddress(uint16_t baseAddress);
+extern uint32_t EUSCI_B_I2C_getReceiveBufferAddress( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -994,16 +989,16 @@ extern uint32_t EUSCI_B_I2C_getReceiveBufferAddress(uint16_t baseAddress);
 //! \return The address of the I2C TX Buffer
 //
 //*****************************************************************************
-extern uint32_t EUSCI_B_I2C_getTransmitBufferAddress(uint16_t baseAddress);
+extern uint32_t EUSCI_B_I2C_getTransmitBufferAddress( uint16_t baseAddress );
 
-//*****************************************************************************
-//
-// Mark the end of the C bindings section for C++ compilers.
-//
-//*****************************************************************************
-#ifdef __cplusplus
+    //*****************************************************************************
+    //
+    // Mark the end of the C bindings section for C++ compilers.
+    //
+    //*****************************************************************************
+    #ifdef __cplusplus
 }
-#endif
+    #endif
 
 #endif
 #endif // __MSP430WARE_EUSCI_B_I2C_H__

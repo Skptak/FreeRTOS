@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
- *         SAM Software Package License 
+ *         SAM Software Package License
  * ----------------------------------------------------------------------------
  * Copyright (c) 2011, Atmel Corporation
  *
@@ -26,7 +26,6 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * ----------------------------------------------------------------------------
  */
-
 
 /**
  * \file
@@ -61,52 +60,54 @@
  *----------------------------------------------------------------------------*/
 
 /** SPI transfer complete callback. */
-typedef void (*QspidCallback)( uint8_t, void* ) ;
+typedef void ( *QspidCallback )( uint8_t, void * );
 
 /** Constant structure associated with SPI port. This structure prevents
-	client applications to have access in the same time. */
+    client applications to have access in the same time. */
 typedef struct _Qspid
 {
-	Qspid_t Qspid;
-	/** Pointer to DMA driver */
-	sXdmad* pXdmad;
-	/** Polling  */
-	uint8_t Polling ;
-	/** Tx ch num  */
-	uint8_t TxChNum ;
-	/** Rx ch num  */
-	uint8_t RxChNum ;
-	/** QSPI Xfr state. */
-	volatile uint8_t progress ;
-} QspiDma_t ;
+    Qspid_t Qspid;
+    /** Pointer to DMA driver */
+    sXdmad * pXdmad;
+    /** Polling  */
+    uint8_t Polling;
+    /** Tx ch num  */
+    uint8_t TxChNum;
+    /** Rx ch num  */
+    uint8_t RxChNum;
+    /** QSPI Xfr state. */
+    volatile uint8_t progress;
+} QspiDma_t;
 
 #ifdef __cplusplus
- extern "C" {
+extern "C" {
 #endif
 /*----------------------------------------------------------------------------
  *        Exported functions
  *----------------------------------------------------------------------------*/
 
-uint32_t QSPID_Configure( QspiDma_t *pQspidma, QspiMode_t Mode,
-		uint32_t dwConfiguration,  sXdmad* pXdmad);
+uint32_t QSPID_Configure( QspiDma_t * pQspidma,
+                          QspiMode_t Mode,
+                          uint32_t dwConfiguration,
+                          sXdmad * pXdmad );
 
-uint32_t QSPID_EnableQspiRxChannel(QspiDma_t *pQspidma);
-  
-uint32_t QSPID_EnableQspiTxChannel(QspiDma_t *pQspidma);
+uint32_t QSPID_EnableQspiRxChannel( QspiDma_t * pQspidma );
 
-uint32_t QSPID_DisableQspiRxChannel(QspiDma_t *pQspidma);
+uint32_t QSPID_EnableQspiTxChannel( QspiDma_t * pQspidma );
 
-uint32_t QSPID_DisableQspiTxChannel(QspiDma_t *pQspidma);
+uint32_t QSPID_DisableQspiRxChannel( QspiDma_t * pQspidma );
 
-uint32_t QSPID_DisableSpiChannel(QspiDma_t *pQspidma);
+uint32_t QSPID_DisableQspiTxChannel( QspiDma_t * pQspidma );
 
-uint32_t QSPID_EnableSpiChannel(QspiDma_t *pQspidma);
+uint32_t QSPID_DisableSpiChannel( QspiDma_t * pQspidma );
 
-uint32_t QSPID_ReadWriteQSPI( QspiDma_t *pQspidma, Access_t const ReadWrite);
+uint32_t QSPID_EnableSpiChannel( QspiDma_t * pQspidma );
 
-uint32_t QSPID_ReadWriteSPI(QspiDma_t *pQspidma, Access_t const ReadWrite);
+uint32_t QSPID_ReadWriteQSPI( QspiDma_t * pQspidma, Access_t const ReadWrite );
 
-uint32_t QSPID_IsBusy( volatile uint8_t *QspiSemaphore) ;
+uint32_t QSPID_ReadWriteSPI( QspiDma_t * pQspidma, Access_t const ReadWrite );
+
+uint32_t QSPID_IsBusy( volatile uint8_t * QspiSemaphore );
 
 #ifdef __cplusplus
 }

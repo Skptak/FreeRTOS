@@ -27,9 +27,9 @@
  */
 
 #include "FreeRTOS.h"
+#include "cbmc.h"
 #include "queue.h"
 #include "queue_datastructure.h"
-#include "cbmc.h"
 
 void harness()
 {
@@ -39,14 +39,21 @@ void harness()
     size_t storageSize;
 
     /* Allow CBMC to run in a reasonable amount of time. */
-    __CPROVER_assume( ( uxQueueLength == QUEUE_LENGTH ) || ( uxItemSize == QUEUE_ITEM_SIZE ) );
+    __CPROVER_assume( ( uxQueueLength == QUEUE_LENGTH ) ||
+                      ( uxItemSize == QUEUE_ITEM_SIZE ) );
 
     /* Prevent overflow in this harness. */
-    __CPROVER_assume( ( uxQueueLength > 0 ) && ( ( storageSize / uxQueueLength ) == uxItemSize ) );
+    __CPROVER_assume( ( uxQueueLength > 0 ) &&
+                      ( ( storageSize / uxQueueLength ) == uxItemSize ) );
 
     uint8_t * pucQueueStorage = ( uint8_t * ) pvPortMalloc( storageSize );
 
-    StaticQueue_t * pxStaticQueue = ( StaticQueue_t * ) pvPortMalloc( sizeof( StaticQueue_t ) );
+    StaticQueue_t * pxStaticQueue = ( StaticQueue_t * ) pvPortMalloc(
+        sizeof( StaticQueue_t ) );
 
-    xQueueGenericCreateStatic( uxQueueLength, uxItemSize, pucQueueStorage, pxStaticQueue, ucQueueType );
+    xQueueGenericCreateStatic( uxQueueLength,
+                               uxItemSize,
+                               pucQueueStorage,
+                               pxStaticQueue,
+                               ucQueueType );
 }

@@ -24,13 +24,13 @@
 #ifndef _CSI_GCC_H_
 #define _CSI_GCC_H_
 
-#define __ASM            __asm                                      /*!< asm keyword for GNU Compiler */
-#define __INLINE         inline                                     /*!< inline keyword for GNU Compiler */
-#define __ALWAYS_INLINE  __attribute__((always_inline)) static inline
+#define __ASM           __asm  /*!< asm keyword for GNU Compiler */
+#define __INLINE        inline /*!< inline keyword for GNU Compiler */
+#define __ALWAYS_INLINE __attribute__( ( always_inline ) ) static inline
 
-#include <stdlib.h>
-#include "csi_reg.h"
 #include "csi_instr.h"
+#include "csi_reg.h"
 #include "csi_simd.h"
+#include <stdlib.h>
 
 #endif /* _CSI_GCC_H_ */

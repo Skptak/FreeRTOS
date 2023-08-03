@@ -17,7 +17,7 @@
 extern "C" {
 #endif
 
-void boot_multicore_slave(void);
+void boot_multicore_slave( void );
 
 #ifdef __cplusplus
 }

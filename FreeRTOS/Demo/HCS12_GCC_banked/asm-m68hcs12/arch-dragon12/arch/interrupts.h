@@ -31,11 +31,11 @@ Boston, MA 02111-1307, USA.  */
 #define USE_INTERRUPT_TABLE
 
 /* Only for RAM target. Initializes an interrupt handler vector.  */
-extern inline void
-set_interrupt_handler (interrupt_vector_id id ATTRIBUTE_UNUSED,
-                       interrupt_t handler ATTRIBUTE_UNUSED)
+extern inline void set_interrupt_handler( interrupt_vector_id id
+                                              ATTRIBUTE_UNUSED,
+                                          interrupt_t handler ATTRIBUTE_UNUSED )
 {
-  _vectors_addr[id] = handler;
+    _vectors_addr[ id ] = handler;
 }
 
-#endif  /* _M68HC12_ARCH_DRAGON12_INTERRUPTS_H */
+#endif /* _M68HC12_ARCH_DRAGON12_INTERRUPTS_H */

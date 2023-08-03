@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -32,10 +33,10 @@
 #include "stdio.h"
 
 /* PKCS #11 includes. */
-#include "core_pkcs11_config.h"
 #include "core_pkcs11.h"
-#include "pkcs11.h"
+#include "core_pkcs11_config.h"
 #include "core_pki_utils.h"
+#include "pkcs11.h"
 
 /* Demo includes. */
 #include "demo_helpers.h"
@@ -152,21 +153,23 @@ void vPKCS11SignVerifyDemo( void )
      * This will acquire the object handle for the private key created in the
      * "objects.c" demo.
      */
-    xResult = xFindObjectWithLabelAndClass( hSession,
-                                            pkcs11configLABEL_DEVICE_PRIVATE_KEY_FOR_TLS,
-                                            sizeof( pkcs11configLABEL_DEVICE_PRIVATE_KEY_FOR_TLS ) - 1UL,
-                                            CKO_PRIVATE_KEY,
-                                            &xPrivateKeyHandle );
+    xResult = xFindObjectWithLabelAndClass(
+        hSession,
+        pkcs11configLABEL_DEVICE_PRIVATE_KEY_FOR_TLS,
+        sizeof( pkcs11configLABEL_DEVICE_PRIVATE_KEY_FOR_TLS ) - 1UL,
+        CKO_PRIVATE_KEY,
+        &xPrivateKeyHandle );
     configASSERT( xResult == CKR_OK );
     configASSERT( xPrivateKeyHandle != CK_INVALID_HANDLE );
 
     /* Acquire the object handle for the public key created in the "objects.c"
      * demo. */
-    xResult = xFindObjectWithLabelAndClass( hSession,
-                                            pkcs11configLABEL_DEVICE_PUBLIC_KEY_FOR_TLS,
-                                            sizeof( pkcs11configLABEL_DEVICE_PUBLIC_KEY_FOR_TLS ) - 1UL,
-                                            CKO_PUBLIC_KEY,
-                                            &xPublicKeyHandle );
+    xResult = xFindObjectWithLabelAndClass(
+        hSession,
+        pkcs11configLABEL_DEVICE_PUBLIC_KEY_FOR_TLS,
+        sizeof( pkcs11configLABEL_DEVICE_PUBLIC_KEY_FOR_TLS ) - 1UL,
+        CKO_PUBLIC_KEY,
+        &xPublicKeyHandle );
     configASSERT( xResult == CKR_OK );
     configASSERT( xPublicKeyHandle != CK_INVALID_HANDLE );
 
@@ -175,8 +178,7 @@ void vPKCS11SignVerifyDemo( void )
 
     /* Initializes the digest operation and sets what mechanism will be used
      * for the digest. */
-    xResult = pxFunctionList->C_DigestInit( hSession,
-                                            &xDigestMechanism );
+    xResult = pxFunctionList->C_DigestInit( hSession, &xDigestMechanism );
     configASSERT( CKR_OK == xResult );
 
     /* Pass a pointer to the buffer of bytes to be hashed, and it's size. */
@@ -191,14 +193,12 @@ void vPKCS11SignVerifyDemo( void )
      * Cryptoki library to fill the third parameter with the required amount of
      * bytes to store the resulting digest.
      */
-    xResult = pxFunctionList->C_DigestFinal( hSession,
-                                             NULL,
-                                             &ulDigestLength );
+    xResult = pxFunctionList->C_DigestFinal( hSession, NULL, &ulDigestLength );
     configASSERT( CKR_OK == xResult );
 
     /* Since the length of a SHA-256 digest is known, we made an assumption and
-     * allocated the buffer originally with the known length. Assert to make sure
-     * we queried the length we expected. */
+     * allocated the buffer originally with the known length. Assert to make
+     * sure we queried the length we expected. */
     configASSERT( pkcs11SHA256_DIGEST_LENGTH == ulDigestLength );
 
     /* Now that ulDigestLength contains the required byte length, retrieve the
@@ -211,12 +211,12 @@ void vPKCS11SignVerifyDemo( void )
 
     /********************************* Sign **********************************/
 
-    configPRINTF( ( "Signing known message:\r\n %s\r\n",
-                    ( char * ) pxKnownMessage ) );
+    configPRINTF(
+        ( "Signing known message:\r\n %s\r\n", ( char * ) pxKnownMessage ) );
 
     /* Initializes the sign operation and sets what mechanism will be used
-     * for signing the message digest. Specify what object handle to use for this
-     * operation, in this case the private key object handle. */
+     * for signing the message digest. Specify what object handle to use for
+     * this operation, in this case the private key object handle. */
     xResult = pxFunctionList->C_SignInit( hSession,
                                           &xMechanism,
                                           xPrivateKeyHandle );
@@ -233,15 +233,15 @@ void vPKCS11SignVerifyDemo( void )
     configASSERT( xResult == CKR_OK );
     configASSERT( ulSignatureLength == pkcs11ECDSA_P256_SIGNATURE_LENGTH );
 
-
-    /********************************* Verify **********************************/
+    /********************************* Verify
+     * **********************************/
 
     /* Verify the signature created by C_Sign. First we will verify that the
      * same Cryptoki library was able to trust itself.
      *
-     * C_VerifyInit will begin the verify operation, by specifying what mechanism
-     * to use (CKM_ECDSA, the same as the sign operation) and then specifying
-     * which public key handle to use.
+     * C_VerifyInit will begin the verify operation, by specifying what
+     * mechanism to use (CKM_ECDSA, the same as the sign operation) and then
+     * specifying which public key handle to use.
      */
     xResult = pxFunctionList->C_VerifyInit( hSession,
                                             &xMechanism,
@@ -249,9 +249,9 @@ void vPKCS11SignVerifyDemo( void )
     configASSERT( xResult == CKR_OK );
 
     /* Given the signature and it's length, the Cryptoki will use the public key
-     * to verify that the signature was created by the corresponding private key.
-     * If C_Verify returns CKR_OK, it means that the sender of the message has
-     * the same private key as the private key that was used to generate the
+     * to verify that the signature was created by the corresponding private
+     * key. If C_Verify returns CKR_OK, it means that the sender of the message
+     * has the same private key as the private key that was used to generate the
      * public key, and we can trust that the message we received was from that
      * sender.
      *
@@ -266,12 +266,12 @@ void vPKCS11SignVerifyDemo( void )
 
     if( xResult == CKR_OK )
     {
-        configPRINTF( ( "The signature of the digest was verified with the" \
+        configPRINTF( ( "The signature of the digest was verified with the"
                         " public key and can be trusted.\r\n" ) );
     }
     else
     {
-        configPRINTF( ( "Unable to verify the signature with the given public" \
+        configPRINTF( ( "Unable to verify the signature with the given public"
                         " key, the message cannot be trusted.\r\n" ) );
     }
 
@@ -301,7 +301,8 @@ void vPKCS11SignVerifyDemo( void )
      * The following command will create a PEM file of the public key called
      * "public_key.pem"
      *
-     * "$ openssl ec -inform der -in DevicePublicKeyDer.bin -pubin -pubout -outform pem -out public_key.pem"
+     * "$ openssl ec -inform der -in DevicePublicKeyDer.bin -pubin -pubout
+     * -outform pem -out public_key.pem"
      *
      * Now we can use the extracted public key to verify the signature of the
      * device's private key.
@@ -330,7 +331,6 @@ void vPKCS11SignVerifyDemo( void )
     xSignatureLength = ulSignatureLength;
     PKI_pkcs11SignatureTombedTLSSignature( xSignature, &xSignatureLength );
 
-
     /* The following loop will output the signature in hex.
      *
      * In order to get the signature exported in binary form copy the output
@@ -351,8 +351,8 @@ void vPKCS11SignVerifyDemo( void )
      * newlines, so the messages are similar.
      *
      * The contents of the echo command can be replaced with whatever data was
-     * in the known message, but the example uses "Hello world" to make it easier
-     * for copy and pasting.
+     * in the known message, but the example uses "Hello world" to make it
+     * easier for copy and pasting.
      *
      * "$ echo -n "Hello world" > msg.txt"
      *
@@ -360,9 +360,9 @@ void vPKCS11SignVerifyDemo( void )
      * trusted by another device using the public key we created and then
      * extracted earlier.
      *
-     * "$ openssl dgst -sha256 -verify public_key.pem -signature signature.bin msg.txt"
-     * This command should output "Verified OK" and we then know we can trust
-     * the sender of the message!
+     * "$ openssl dgst -sha256 -verify public_key.pem -signature signature.bin
+     * msg.txt" This command should output "Verified OK" and we then know we can
+     * trust the sender of the message!
      */
     configPRINTF( ( "Created signature: \r\n" ) );
 

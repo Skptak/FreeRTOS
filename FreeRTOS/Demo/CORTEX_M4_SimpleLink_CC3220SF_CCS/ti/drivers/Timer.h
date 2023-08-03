@@ -48,7 +48,8 @@
  *
  *  The Timer driver also handles the general purpose timer resource allocation.
  *  For the driver that requires to use the general purpose timer, it calls
- *  Timer_open() to occupy the specified timer, and calls Timer_close() to release
+ *  Timer_open() to occupy the specified timer, and calls Timer_close() to
+ release
  *  the occupied timer resource.
  *
  *  ## Opening the Driver ##
@@ -117,19 +118,18 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 /*!
  *  @brief      A handle that is returned from a Timer_open() call.
  */
-typedef struct Timer_Config_ *Timer_Handle;
+typedef struct Timer_Config_ * Timer_Handle;
 
 /*!
  * Common Timer_control command code reservation offset.
- * Timer driver implementations should offset command codes with TIMER_CMD_RESERVED
- * growing positively
+ * Timer driver implementations should offset command codes with
+ * TIMER_CMD_RESERVED growing positively
  *
  * Example implementation specific command codes:
  * @code
@@ -137,7 +137,7 @@ typedef struct Timer_Config_ *Timer_Handle;
  * #define TIMERXYZ_CMD_COMMAND1      TIMER_CMD_RESERVED + 1
  * @endcode
  */
-#define TIMER_CMD_RESERVED                (32)
+#define TIMER_CMD_RESERVED        ( 32 )
 
 /*!
  * Common Timer_control status code reservation offset.
@@ -151,7 +151,7 @@ typedef struct Timer_Config_ *Timer_Handle;
  * #define TIMERXYZ_STATUS_ERROR2     TIMER_STATUS_RESERVED - 2
  * @endcode
  */
-#define TIMER_STATUS_RESERVED            (-32)
+#define TIMER_STATUS_RESERVED     ( -32 )
 
 /*!
  * @brief   Successful status code returned by Timer_control().
@@ -159,15 +159,15 @@ typedef struct Timer_Config_ *Timer_Handle;
  * Timer_control() returns TIMER_STATUS_SUCCESS if the control code was executed
  * successfully.
  */
-#define TIMER_STATUS_SUCCESS               (0)
+#define TIMER_STATUS_SUCCESS      ( 0 )
 
 /*!
  * @brief   Generic error status code returned by Timer_control().
  *
- * Timer_control() returns TIMER_STATUS_ERROR if the control code was not executed
- * successfully.
+ * Timer_control() returns TIMER_STATUS_ERROR if the control code was not
+ * executed successfully.
  */
-#define TIMER_STATUS_ERROR                (-1)
+#define TIMER_STATUS_ERROR        ( -1 )
 
 /*!
  * @brief   An error status code returned by Timer_control() for undefined
@@ -176,23 +176,25 @@ typedef struct Timer_Config_ *Timer_Handle;
  * Timer_control() returns TIMER_STATUS_UNDEFINEDCMD if the control code is not
  * recognized by the driver implementation.
  */
-#define TIMER_STATUS_UNDEFINEDCMD         (-2)
+#define TIMER_STATUS_UNDEFINEDCMD ( -2 )
 
 /*!
  *  @brief Timer mode enum
  *
- *  The Timer mode needs to be passed in Timer_open() to specify the timer running
- *  mode which handles the interrupt differently.
+ *  The Timer mode needs to be passed in Timer_open() to specify the timer
+ * running mode which handles the interrupt differently.
  *
  */
 typedef enum Timer_Mode_
 {
     TIMER_ONESHOT_CB, /*!< User routine doesn't get blocked and user-specified
-     callback function is invoked once the timer interrupt happens for only one time */
+     callback function is invoked once the timer interrupt happens for only one
+     time */
     TIMER_ONESHOT_BLOCK, /*!< User routine gets blocked until timer interrupt
      happens for only one time */
-    TIMER_CONTINUOUS_CB, /*!< User routine doesn't get blocked and user-specified
-     callback function is invoked every time the timer interrupt happens */
+    TIMER_CONTINUOUS_CB, /*!< User routine doesn't get blocked and
+     user-specified callback function is invoked every time the timer interrupt
+     happens */
     TIMER_MODE_FREE_RUNNING
 } Timer_Mode;
 
@@ -205,8 +207,8 @@ typedef enum Timer_Mode_
  */
 typedef enum Timer_Period_Units_
 {
-    TIMER_PERIOD_US, /* Period in microseconds */
-    TIMER_PERIOD_HZ, /* Period in frequency */
+    TIMER_PERIOD_US,    /* Period in microseconds */
+    TIMER_PERIOD_HZ,    /* Period in frequency */
     TIMER_PERIOD_COUNTS /* Period in counts */
 } Timer_Period_Units;
 
@@ -214,12 +216,12 @@ typedef enum Timer_Period_Units_
  *  @brief  Timer callback function
  *
  *  User definable callback function prototype. The Timer driver will call the
- *  defined function and pass in the Timer driver's handle and the pointer to the
- *  user-specified the argument.
+ *  defined function and pass in the Timer driver's handle and the pointer to
+ * the user-specified the argument.
  *
  *  @param  handle         Timer_Handle
  */
-typedef void (*Timer_CallBackFxn)(Timer_Handle handle);
+typedef void ( *Timer_CallBackFxn )( Timer_Handle handle );
 
 /*!
  *  @brief Timer Parameters
@@ -240,45 +242,46 @@ typedef struct Timer_Params_
  *  @brief      A function pointer to a driver specific implementation of
  *              Timer_control().
  */
-typedef int_fast16_t (*Timer_ControlFxn)(Timer_Handle handle, uint_fast16_t cmd,
-        void *arg);
+typedef int_fast16_t ( *Timer_ControlFxn )( Timer_Handle handle,
+                                            uint_fast16_t cmd,
+                                            void * arg );
 
 /*!
  *  @brief      A function pointer to a driver specific implementation of
  *              Timer_close().
  */
-typedef void (*Timer_CloseFxn)(Timer_Handle handle);
+typedef void ( *Timer_CloseFxn )( Timer_Handle handle );
 
 /*!
  *  @brief      A function pointer to a driver specific implementation of
  *              Timer_getCount().
  */
-typedef uint32_t (*Timer_GetCountFxn)(Timer_Handle handle);
+typedef uint32_t ( *Timer_GetCountFxn )( Timer_Handle handle );
 
 /*!
  *  @brief      A function pointer to a driver specific implementation of
  *              Timer_init().
  */
-typedef void (*Timer_InitFxn)(Timer_Handle handle);
+typedef void ( *Timer_InitFxn )( Timer_Handle handle );
 
 /*!
  *  @brief      A function pointer to a driver specific implementation of
  *              Timer_open().
  */
-typedef Timer_Handle (*Timer_OpenFxn)(Timer_Handle handle,
-        Timer_Params *params);
+typedef Timer_Handle ( *Timer_OpenFxn )( Timer_Handle handle,
+                                         Timer_Params * params );
 
 /*!
  *  @brief      A function pointer to a driver specific implementation of
  *              Timer_start().
  */
-typedef void (*Timer_StartFxn)(Timer_Handle handle);
+typedef void ( *Timer_StartFxn )( Timer_Handle handle );
 
 /*!
  *  @brief      A function pointer to a driver specific implementation of
  *              Timer_stop().
  */
-typedef void (*Timer_StopFxn)(Timer_Handle handle);
+typedef void ( *Timer_StopFxn )( Timer_Handle handle );
 
 /*!
  *  @brief      The definition of a Timer function table that contains the
@@ -289,7 +292,8 @@ typedef struct Timer_FxnTable_
 {
     /*! Function to close the specified instance */
     Timer_CloseFxn closeFxn;
-    /*! Function to send contorl commands to the counter for a specific instance */
+    /*! Function to send contorl commands to the counter for a specific instance
+     */
     Timer_ControlFxn controlFxn;
     /*! Function to get the count of the timer for a specific instance */
     Timer_GetCountFxn getCountFxn;
@@ -305,9 +309,9 @@ typedef struct Timer_FxnTable_
 
 typedef struct Timer_Config_
 {
-    Timer_FxnTable const *fxnTablePtr;
-    void *object;
-    void const *hwAttrs;
+    Timer_FxnTable const * fxnTablePtr;
+    void * object;
+    void const * hwAttrs;
 } Timer_Config;
 
 /*!
@@ -329,15 +333,16 @@ typedef struct Timer_Config_
  *
  *  @sa     Timer_open()
  */
-extern int_fast16_t Timer_control(Timer_Handle handle, uint_fast16_t cmd,
-                                  void *arg);
-
+extern int_fast16_t Timer_control( Timer_Handle handle,
+                                   uint_fast16_t cmd,
+                                   void * arg );
 
 /*!
  *  @brief  Function to close a Timer peripheral specified by the Timer handle
  *
- *  The function takes care of timer resource allocation. The corresponding timer
- *  resource to the Timer_Handle is released to be an available timer resource.
+ *  The function takes care of timer resource allocation. The corresponding
+ * timer resource to the Timer_Handle is released to be an available timer
+ * resource.
  *
  *  @pre    Timer_open() had to be called first.
  *
@@ -345,7 +350,7 @@ extern int_fast16_t Timer_control(Timer_Handle handle, uint_fast16_t cmd,
  *
  *  @sa     Timer_open()
  */
-extern void Timer_close(Timer_Handle handle);
+extern void Timer_close( Timer_Handle handle );
 
 /*!
  *  @brief  Function to get the current count of a started timer
@@ -359,8 +364,7 @@ extern void Timer_close(Timer_Handle handle);
  *  @return The current count of the specified Timer
  *
  */
-extern uint32_t Timer_getCount(Timer_Handle handle);
-
+extern uint32_t Timer_getCount( Timer_Handle handle );
 
 /*!
  *  @brief  Function to initialize a timer module. This function will go through
@@ -368,17 +372,17 @@ extern uint32_t Timer_getCount(Timer_Handle handle);
  *
  *  @sa     Timer_open()
  */
-extern void Timer_init(void);
+extern void Timer_init( void );
 
 /*!
  *  @brief  Function to initialize a given Timer peripheral specified by the
  *          particular index value. The parameter specifies which mode the Timer
  *          will operate.
  *
- *  The function takes care of timer resource allocation. If the particular timer
- *  passed by user has already been used by other modules, the return value is NULL.
- *  If the particular timer is available to use, Timer module owns it and returns
- *  a Timer_Handle.
+ *  The function takes care of timer resource allocation. If the particular
+ * timer passed by user has already been used by other modules, the return value
+ * is NULL. If the particular timer is available to use, Timer module owns it
+ * and returns a Timer_Handle.
  *
  *  @param  index         Logical peripheral number for the Timer indexed into
  *                        the Timer_config table
@@ -393,7 +397,7 @@ extern void Timer_init(void);
  *  @sa     Timer_init()
  *  @sa     Timer_close()
  */
-extern Timer_Handle Timer_open(uint_least8_t index, Timer_Params *params);
+extern Timer_Handle Timer_open( uint_least8_t index, Timer_Params * params );
 
 /*!
  *  @brief  Function to initialize the Timer_Params struct to its defaults
@@ -407,11 +411,11 @@ extern Timer_Handle Timer_open(uint_least8_t index, Timer_Params *params);
  *      periodUnit = TIMER_PERIOD_US
  *      period = 0xFFFF
  */
-extern void Timer_Params_init(Timer_Params *params);
+extern void Timer_Params_init( Timer_Params * params );
 
 /*!
- *  @brief  Function to start Timer with the given period. The timer running mode
- *          and interval period unit are specified in the Timer_Params when calling
+ *  @brief  Function to start Timer with the given period. The timer running
+ * mode and interval period unit are specified in the Timer_Params when calling
  *          Timer_open().
  *
  *  @param  handle        Timer_Handle
@@ -420,7 +424,7 @@ extern void Timer_Params_init(Timer_Params *params);
  *          TIMER_STATUS_ERROR if timer fails to start.
  *
  */
-extern void Timer_start(Timer_Handle handle);
+extern void Timer_start( Timer_Handle handle );
 
 /*!
  *  @brief  Function to stop timer after Timer_start() is called with success.
@@ -428,7 +432,7 @@ extern void Timer_start(Timer_Handle handle);
  *  @param  handle        Timer_Handle
  *
  */
-extern void Timer_stop(Timer_Handle handle);
+extern void Timer_stop( Timer_Handle handle );
 
 #ifdef __cplusplus
 }

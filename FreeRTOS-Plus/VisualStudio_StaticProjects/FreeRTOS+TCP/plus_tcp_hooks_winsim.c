@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -37,63 +38,68 @@
 
 /*-----------------------------------------------------------*/
 
-#if defined( ipconfigIPv4_BACKWARD_COMPATIBLE ) && ( ipconfigIPv4_BACKWARD_COMPATIBLE == 0 )
+#if defined( ipconfigIPv4_BACKWARD_COMPATIBLE ) && \
+    ( ipconfigIPv4_BACKWARD_COMPATIBLE == 0 )
 
-    /* In case multiple interfaces are used, define them statically. */
+/* In case multiple interfaces are used, define them statically. */
 
-    /* there is only 1 physical interface. */
-    static NetworkInterface_t xInterfaces[ 1 ];
+/* there is only 1 physical interface. */
+static NetworkInterface_t xInterfaces[ 1 ];
 
-    /* It will have several end-points. */
-    static NetworkEndPoint_t xEndPoints[ 4 ];
+/* It will have several end-points. */
+static NetworkEndPoint_t xEndPoints[ 4 ];
 
-#endif /* defined( ipconfigIPv4_BACKWARD_COMPATIBLE ) && ( ipconfigIPv4_BACKWARD_COMPATIBLE == 0 ) */
+#endif /* defined( ipconfigIPv4_BACKWARD_COMPATIBLE ) && ( \
+          ipconfigIPv4_BACKWARD_COMPATIBLE == 0 ) */
 
 /*-----------------------------------------------------------*/
 
-#if ( ipconfigUSE_LLMNR != 0 ) || ( ipconfigUSE_NBNS != 0 ) || ( ipconfigDHCP_REGISTER_HOSTNAME == 1 )
+#if( ipconfigUSE_LLMNR != 0 ) || ( ipconfigUSE_NBNS != 0 ) || \
+    ( ipconfigDHCP_REGISTER_HOSTNAME == 1 )
 
-    const char * pcApplicationHostnameHook( void )
-    {
-        /* Assign the name "FreeRTOS" to this network node.  This function will
-         * be called during the DHCP: the machine will be registered with an IP
-         * address plus this name. */
-        return "FreeRTOSWinSim";
-    }
+const char * pcApplicationHostnameHook( void )
+{
+    /* Assign the name "FreeRTOS" to this network node.  This function will
+     * be called during the DHCP: the machine will be registered with an IP
+     * address plus this name. */
+    return "FreeRTOSWinSim";
+}
 
 #endif
 
 /*-----------------------------------------------------------*/
 
-#if ( ipconfigUSE_LLMNR != 0 ) || ( ipconfigUSE_NBNS != 0 )
+#if( ipconfigUSE_LLMNR != 0 ) || ( ipconfigUSE_NBNS != 0 )
 
-    #if defined( ipconfigIPv4_BACKWARD_COMPATIBLE ) && ( ipconfigIPv4_BACKWARD_COMPATIBLE == 0 )
-        BaseType_t xApplicationDNSQueryHook_Multi( struct xNetworkEndPoint * pxEndPoint,
-                                                            const char * pcName )
+    #if defined( ipconfigIPv4_BACKWARD_COMPATIBLE ) && \
+        ( ipconfigIPv4_BACKWARD_COMPATIBLE == 0 )
+BaseType_t xApplicationDNSQueryHook_Multi( struct xNetworkEndPoint * pxEndPoint,
+                                           const char * pcName )
     #else
-        BaseType_t xApplicationDNSQueryHook( const char * pcName )
-    #endif /* defined( ipconfigIPv4_BACKWARD_COMPATIBLE ) && ( ipconfigIPv4_BACKWARD_COMPATIBLE == 0 ) */
+BaseType_t xApplicationDNSQueryHook( const char * pcName )
+    #endif /* defined( ipconfigIPv4_BACKWARD_COMPATIBLE ) && ( \
+              ipconfigIPv4_BACKWARD_COMPATIBLE == 0 ) */
+{
+    BaseType_t xReturn;
+
+    /* Determine if a name lookup is for this node.  Two names are given
+     * to this node: that returned by pcApplicationHostnameHook() and that set
+     * by mainDEVICE_NICK_NAME. */
+    if( _stricmp( pcName, pcApplicationHostnameHook() ) == 0 )
     {
-        BaseType_t xReturn;
-
-        /* Determine if a name lookup is for this node.  Two names are given
-         * to this node: that returned by pcApplicationHostnameHook() and that set
-         * by mainDEVICE_NICK_NAME. */
-        if( _stricmp( pcName, pcApplicationHostnameHook() ) == 0 )
-        {
-            xReturn = pdPASS;
-        }
-        else if( _stricmp( pcName, mainDEVICE_NICK_NAME ) == 0 )
-        {
-            xReturn = pdPASS;
-        }
-        else
-        {
-            xReturn = pdFAIL;
-        }
-
-        return xReturn;
+        xReturn = pdPASS;
     }
+    else if( _stricmp( pcName, mainDEVICE_NICK_NAME ) == 0 )
+    {
+        xReturn = pdPASS;
+    }
+    else
+    {
+        xReturn = pdFAIL;
+    }
+
+    return xReturn;
+}
 
 #endif /* if ( ipconfigUSE_LLMNR != 0 ) || ( ipconfigUSE_NBNS != 0 ) */
 
@@ -130,11 +136,12 @@ uint32_t ulApplicationGetNextSequenceNumber( uint32_t ulSourceAddress,
 
 /* Called by FreeRTOS+TCP when the network connects or disconnects.  Disconnect
  * events are only received if implemented in the MAC driver. */
-#if defined( ipconfigIPv4_BACKWARD_COMPATIBLE ) && ( ipconfigIPv4_BACKWARD_COMPATIBLE == 0 )
-    void vApplicationIPNetworkEventHook_Multi( eIPCallbackEvent_t eNetworkEvent,
-                                                   struct xNetworkEndPoint * pxEndPoint )
+#if defined( ipconfigIPv4_BACKWARD_COMPATIBLE ) && \
+    ( ipconfigIPv4_BACKWARD_COMPATIBLE == 0 )
+void vApplicationIPNetworkEventHook_Multi( eIPCallbackEvent_t eNetworkEvent,
+                                           struct xNetworkEndPoint * pxEndPoint )
 #else
-    void vApplicationIPNetworkEventHook( eIPCallbackEvent_t eNetworkEvent )
+void vApplicationIPNetworkEventHook( eIPCallbackEvent_t eNetworkEvent )
 #endif
 {
     uint32_t ulIPAddress, ulNetMask, ulGatewayAddress, ulDNSServerAddress;
@@ -146,11 +153,20 @@ uint32_t ulApplicationGetNextSequenceNumber( uint32_t ulSourceAddress,
     {
         /* Print out the network configuration, which may have come from a DHCP
          * server. */
-    #if defined( ipconfigIPv4_BACKWARD_COMPATIBLE ) && ( ipconfigIPv4_BACKWARD_COMPATIBLE == 0 )
-        FreeRTOS_GetEndPointConfiguration( &ulIPAddress, &ulNetMask, &ulGatewayAddress, &ulDNSServerAddress, pxNetworkEndPoints );
-    #else
-        FreeRTOS_GetAddressConfiguration( &ulIPAddress, &ulNetMask, &ulGatewayAddress, &ulDNSServerAddress );
-    #endif /* defined( ipconfigIPv4_BACKWARD_COMPATIBLE ) && ( ipconfigIPv4_BACKWARD_COMPATIBLE == 0 ) */
+#if defined( ipconfigIPv4_BACKWARD_COMPATIBLE ) && \
+    ( ipconfigIPv4_BACKWARD_COMPATIBLE == 0 )
+        FreeRTOS_GetEndPointConfiguration( &ulIPAddress,
+                                           &ulNetMask,
+                                           &ulGatewayAddress,
+                                           &ulDNSServerAddress,
+                                           pxNetworkEndPoints );
+#else
+        FreeRTOS_GetAddressConfiguration( &ulIPAddress,
+                                          &ulNetMask,
+                                          &ulGatewayAddress,
+                                          &ulDNSServerAddress );
+#endif /* defined( ipconfigIPv4_BACKWARD_COMPATIBLE ) && ( \
+          ipconfigIPv4_BACKWARD_COMPATIBLE == 0 ) */
 
         FreeRTOS_inet_ntoa( ulIPAddress, cBuffer );
         FreeRTOS_printf( ( "\r\n\r\nIP Address: %s\r\n", cBuffer ) );
@@ -172,7 +188,10 @@ void vPlatformInitIpStack( void )
 {
     BaseType_t xResult;
     uint8_t ucIPAddress[ 4 ];
-    uint8_t ucNetMask[ 4 ] = { configNET_MASK0, configNET_MASK1, configNET_MASK2, configNET_MASK3 };
+    uint8_t ucNetMask[ 4 ] = { configNET_MASK0,
+                               configNET_MASK1,
+                               configNET_MASK2,
+                               configNET_MASK3 };
     uint8_t ucMACAddress[ 6 ];
     uint8_t ucDNSServerAddress[ 4 ];
     uint8_t ucGatewayAddress[ 4 ];
@@ -202,19 +221,27 @@ void vPlatformInitIpStack( void )
     /* Initialise the network interface.*/
     FreeRTOS_debug_printf( ( "FreeRTOS_IPInit\r\n" ) );
 
-#if defined( ipconfigIPv4_BACKWARD_COMPATIBLE ) && ( ipconfigIPv4_BACKWARD_COMPATIBLE == 0 )
+#if defined( ipconfigIPv4_BACKWARD_COMPATIBLE ) && \
+    ( ipconfigIPv4_BACKWARD_COMPATIBLE == 0 )
     /* Initialise the interface descriptor for WinPCap. */
     #ifdef ipconfigUSE_LIBSLIRP
-        extern NetworkInterface_t* pxFillInterfaceDescriptor(BaseType_t xEMACIndex,
-            NetworkInterface_t * pxInterface);
-        pxFillInterfaceDescriptor( 0, &( xInterfaces[ 0 ] ) );
+    extern NetworkInterface_t * pxFillInterfaceDescriptor( BaseType_t xEMACIndex,
+                                                           NetworkInterface_t *
+                                                               pxInterface );
+    pxFillInterfaceDescriptor( 0, &( xInterfaces[ 0 ] ) );
     #else
-        pxWinPcap_FillInterfaceDescriptor( 0, &( xInterfaces[ 0 ] ) );
+    pxWinPcap_FillInterfaceDescriptor( 0, &( xInterfaces[ 0 ] ) );
     #endif
 
     /* === End-point 0 === */
-    FreeRTOS_FillEndPoint( &( xInterfaces[ 0 ] ), &( xEndPoints[ 0 ] ), ucIPAddress, ucNetMask, ucGatewayAddress, ucDNSServerAddress, ucMACAddress );
-    #if ( ipconfigUSE_DHCP != 0 )
+    FreeRTOS_FillEndPoint( &( xInterfaces[ 0 ] ),
+                           &( xEndPoints[ 0 ] ),
+                           ucIPAddress,
+                           ucNetMask,
+                           ucGatewayAddress,
+                           ucDNSServerAddress,
+                           ucMACAddress );
+    #if( ipconfigUSE_DHCP != 0 )
     {
         /* End-point 0 wants to use DHCPv4. */
         xEndPoints[ 0 ].bits.bWantDHCP = pdTRUE;
@@ -223,9 +250,15 @@ void vPlatformInitIpStack( void )
     memcpy( ipLOCAL_MAC_ADDRESS, ucMACAddress, sizeof( ucMACAddress ) );
     xResult = FreeRTOS_IPInit_Multi();
 #else
-    /* Using the old /single /IPv4 library, or using backward compatible mode of the new /multi library. */
-    xResult = FreeRTOS_IPInit( ucIPAddress, ucNetMask, ucGatewayAddress, ucDNSServerAddress, ucMACAddress );
-#endif /* defined( FREERTOS_PLUS_TCP_VERSION ) && ( FREERTOS_PLUS_TCP_VERSION >= 10 ) */
+    /* Using the old /single /IPv4 library, or using backward compatible mode of
+     * the new /multi library. */
+    xResult = FreeRTOS_IPInit( ucIPAddress,
+                               ucNetMask,
+                               ucGatewayAddress,
+                               ucDNSServerAddress,
+                               ucMACAddress );
+#endif /* defined( FREERTOS_PLUS_TCP_VERSION ) && ( FREERTOS_PLUS_TCP_VERSION \
+          >= 10 ) */
 
     configASSERT( xResult == pdTRUE );
 }
@@ -239,20 +272,21 @@ BaseType_t xPlatformIsNetworkUp( void )
 
 /*-----------------------------------------------------------*/
 
-#if ( ( ipconfigUSE_TCP == 1 ) && ( ipconfigUSE_DHCP_HOOK != 0 ) )
+#if( ( ipconfigUSE_TCP == 1 ) && ( ipconfigUSE_DHCP_HOOK != 0 ) )
 
-    #if ( ipconfigIPv4_BACKWARD_COMPATIBLE == 1 )
-        eDHCPCallbackAnswer_t xApplicationDHCPHook( eDHCPCallbackPhase_t eDHCPPhase,
-                                                    uint32_t ulIPAddress )
-    #else /* ( ipconfigIPv4_BACKWARD_COMPATIBLE == 1 ) */
-        eDHCPCallbackAnswer_t xApplicationDHCPHook_Multi( eDHCPCallbackPhase_t eDHCPPhase,
-                                                          struct xNetworkEndPoint * pxEndPoint,
-                                                          IP_Address_t * pxIPAddress )
+    #if( ipconfigIPv4_BACKWARD_COMPATIBLE == 1 )
+eDHCPCallbackAnswer_t xApplicationDHCPHook( eDHCPCallbackPhase_t eDHCPPhase,
+                                            uint32_t ulIPAddress )
+    #else  /* ( ipconfigIPv4_BACKWARD_COMPATIBLE == 1 ) */
+eDHCPCallbackAnswer_t xApplicationDHCPHook_Multi(
+    eDHCPCallbackPhase_t eDHCPPhase,
+    struct xNetworkEndPoint * pxEndPoint,
+    IP_Address_t * pxIPAddress )
     #endif /* ( ipconfigIPv4_BACKWARD_COMPATIBLE == 1 ) */
-    {
-        /* Provide a stub for this function. */
-        return eDHCPContinue;
-    }
+{
+    /* Provide a stub for this function. */
+    return eDHCPContinue;
+}
 
 #endif
 /*-----------------------------------------------------------*/

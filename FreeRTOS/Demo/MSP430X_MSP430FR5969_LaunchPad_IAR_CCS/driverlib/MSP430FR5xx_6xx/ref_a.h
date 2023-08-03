@@ -42,64 +42,63 @@
 
 #ifdef __MSP430_HAS_REF_A__
 
-//*****************************************************************************
-//
-// If building with a C++ compiler, make all of the definitions in this header
-// have a C binding.
-//
-//*****************************************************************************
-#ifdef __cplusplus
-extern "C"
-{
-#endif
+    //*****************************************************************************
+    //
+    // If building with a C++ compiler, make all of the definitions in this
+    // header have a C binding.
+    //
+    //*****************************************************************************
+    #ifdef __cplusplus
+extern "C" {
+    #endif
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the referenceVoltageSelect
-// parameter for functions: Ref_A_setReferenceVoltage().
-//
-//*****************************************************************************
-#define REF_A_VREF1_2V                                              (REFVSEL_0)
-#define REF_A_VREF2_0V                                              (REFVSEL_1)
-#define REF_A_VREF2_5V                                              (REFVSEL_2)
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the referenceVoltageSelect
+    // parameter for functions: Ref_A_setReferenceVoltage().
+    //
+    //*****************************************************************************
+    #define REF_A_VREF1_2V   ( REFVSEL_0 )
+    #define REF_A_VREF2_0V   ( REFVSEL_1 )
+    #define REF_A_VREF2_5V   ( REFVSEL_2 )
 
-//*****************************************************************************
-//
-// The following are values that can be passed toThe following are values that
-// can be returned by the Ref_A_isBandgapActive() function and the
-// Ref_A_isRefGenActive() function.
-//
-//*****************************************************************************
-#define REF_A_ACTIVE                                                       true
-#define REF_A_INACTIVE                                                    false
+    //*****************************************************************************
+    //
+    // The following are values that can be passed toThe following are values
+    // that can be returned by the Ref_A_isBandgapActive() function and the
+    // Ref_A_isRefGenActive() function.
+    //
+    //*****************************************************************************
+    #define REF_A_ACTIVE     true
+    #define REF_A_INACTIVE   false
 
-//*****************************************************************************
-//
-// The following are values that can be passed toThe following are values that
-// can be returned by the Ref_A_getBandgapMode() function.
-//
-//*****************************************************************************
-#define REF_A_STATICMODE                                                   0x00
-#define REF_A_SAMPLEMODE                                                 BGMODE
+    //*****************************************************************************
+    //
+    // The following are values that can be passed toThe following are values
+    // that can be returned by the Ref_A_getBandgapMode() function.
+    //
+    //*****************************************************************************
+    #define REF_A_STATICMODE 0x00
+    #define REF_A_SAMPLEMODE BGMODE
 
-//*****************************************************************************
-//
-// The following are values that can be passed toThe following are values that
-// can be returned by the Ref_A_isRefGenBusy() function.
-//
-//*****************************************************************************
-#define REF_A_NOTBUSY                                                      0x00
-#define REF_A_BUSY                                                   REFGENBUSY
+    //*****************************************************************************
+    //
+    // The following are values that can be passed toThe following are values
+    // that can be returned by the Ref_A_isRefGenBusy() function.
+    //
+    //*****************************************************************************
+    #define REF_A_NOTBUSY    0x00
+    #define REF_A_BUSY       REFGENBUSY
 
-//*****************************************************************************
-//
-// The following are values that can be passed toThe following are values that
-// can be returned by the Ref_A_isVariableReferenceVoltageOutputReady()
-// function and the Ref_A_isBufferedBandgapVoltageReady() function.
-//
-//*****************************************************************************
-#define REF_A_NOTREADY                                                    false
-#define REF_A_READY                                                        true
+    //*****************************************************************************
+    //
+    // The following are values that can be passed toThe following are values
+    // that can be returned by the Ref_A_isVariableReferenceVoltageOutputReady()
+    // function and the Ref_A_isBufferedBandgapVoltageReady() function.
+    //
+    //*****************************************************************************
+    #define REF_A_NOTREADY   false
+    #define REF_A_READY      true
 
 //*****************************************************************************
 //
@@ -128,8 +127,8 @@ extern "C"
 //! \return None
 //
 //*****************************************************************************
-extern void Ref_A_setReferenceVoltage(uint16_t baseAddress,
-                                      uint8_t referenceVoltageSelect);
+extern void Ref_A_setReferenceVoltage( uint16_t baseAddress,
+                                       uint8_t referenceVoltageSelect );
 
 //*****************************************************************************
 //
@@ -149,7 +148,7 @@ extern void Ref_A_setReferenceVoltage(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void Ref_A_disableTempSensor(uint16_t baseAddress);
+extern void Ref_A_disableTempSensor( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -167,7 +166,7 @@ extern void Ref_A_disableTempSensor(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void Ref_A_enableTempSensor(uint16_t baseAddress);
+extern void Ref_A_enableTempSensor( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -187,7 +186,7 @@ extern void Ref_A_enableTempSensor(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void Ref_A_enableReferenceVoltageOutput(uint16_t baseAddress);
+extern void Ref_A_enableReferenceVoltageOutput( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -204,7 +203,7 @@ extern void Ref_A_enableReferenceVoltageOutput(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void Ref_A_disableReferenceVoltageOutput(uint16_t baseAddress);
+extern void Ref_A_disableReferenceVoltageOutput( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -224,7 +223,7 @@ extern void Ref_A_disableReferenceVoltageOutput(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void Ref_A_enableReferenceVoltage(uint16_t baseAddress);
+extern void Ref_A_enableReferenceVoltage( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -241,7 +240,7 @@ extern void Ref_A_enableReferenceVoltage(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void Ref_A_disableReferenceVoltage(uint16_t baseAddress);
+extern void Ref_A_disableReferenceVoltage( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -263,7 +262,7 @@ extern void Ref_A_disableReferenceVoltage(uint16_t baseAddress);
 //!         \n indicating the bandgap mode of the module
 //
 //*****************************************************************************
-extern uint16_t Ref_A_getBandgapMode(uint16_t baseAddress);
+extern uint16_t Ref_A_getBandgapMode( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -281,7 +280,7 @@ extern uint16_t Ref_A_getBandgapMode(uint16_t baseAddress);
 //!         \n indicating the bandgap active status of the module
 //
 //*****************************************************************************
-extern bool Ref_A_isBandgapActive(uint16_t baseAddress);
+extern bool Ref_A_isBandgapActive( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -301,7 +300,7 @@ extern bool Ref_A_isBandgapActive(uint16_t baseAddress);
 //!         \n indicating the reference generator busy status of the module
 //
 //*****************************************************************************
-extern uint16_t Ref_A_isRefGenBusy(uint16_t baseAddress);
+extern uint16_t Ref_A_isRefGenBusy( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -320,7 +319,7 @@ extern uint16_t Ref_A_isRefGenBusy(uint16_t baseAddress);
 //!         \n indicating the reference generator active status of the module
 //
 //*****************************************************************************
-extern bool Ref_A_isRefGenActive(uint16_t baseAddress);
+extern bool Ref_A_isRefGenActive( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -340,7 +339,7 @@ extern bool Ref_A_isRefGenActive(uint16_t baseAddress);
 //!         module
 //
 //*****************************************************************************
-extern bool Ref_A_isBufferedBandgapVoltageReady(uint16_t baseAddress);
+extern bool Ref_A_isBufferedBandgapVoltageReady( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -360,7 +359,7 @@ extern bool Ref_A_isBufferedBandgapVoltageReady(uint16_t baseAddress);
 //!         in the module
 //
 //*****************************************************************************
-extern bool Ref_A_isVariableReferenceVoltageOutputReady(uint16_t baseAddress);
+extern bool Ref_A_isVariableReferenceVoltageOutputReady( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -376,7 +375,7 @@ extern bool Ref_A_isVariableReferenceVoltageOutputReady(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void Ref_A_setReferenceVoltageOneTimeTrigger(uint16_t baseAddress);
+extern void Ref_A_setReferenceVoltageOneTimeTrigger( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -392,16 +391,17 @@ extern void Ref_A_setReferenceVoltageOneTimeTrigger(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void Ref_A_setBufferedBandgapVoltageOneTimeTrigger(uint16_t baseAddress);
+extern void Ref_A_setBufferedBandgapVoltageOneTimeTrigger(
+    uint16_t baseAddress );
 
-//*****************************************************************************
-//
-// Mark the end of the C bindings section for C++ compilers.
-//
-//*****************************************************************************
-#ifdef __cplusplus
+    //*****************************************************************************
+    //
+    // Mark the end of the C bindings section for C++ compilers.
+    //
+    //*****************************************************************************
+    #ifdef __cplusplus
 }
-#endif
+    #endif
 
 #endif
 #endif // __MSP430WARE_REF_A_H__

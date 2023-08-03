@@ -29,22 +29,22 @@ Boston, MA 02111-1307, USA.  */
 extern "C" {
 #endif
 
-extern void serial_init (void);
+extern void serial_init( void );
 
 /* Return != 0 if there is something to read on the serial line.  */
-extern unsigned char serial_receive_pending (void);
+extern unsigned char serial_receive_pending( void );
 
 /* Wait until the SIO has finished to send the character.  */
-extern void serial_flush (void);
+extern void serial_flush( void );
 
 /* Return != 0 if serial port is ready to send another char.  */
-extern unsigned char serial_send_ready (void);
+extern unsigned char serial_send_ready( void );
 
 /* Send the character on the serial line.  */
-extern void serial_send (char c);
+extern void serial_send( char c );
 
 /* Wait for a character on the serial line and return it.  */
-extern unsigned char serial_recv (void);
+extern unsigned char serial_recv( void );
 
 /** Write the string on the serial line.
 
@@ -52,7 +52,7 @@ extern unsigned char serial_recv (void);
 
     @see serial_init, serial_send
 */
-extern void serial_print (const char *msg);
+extern void serial_print( const char * msg );
 
 /** Wait for a string from serial line.
 
@@ -60,21 +60,19 @@ extern void serial_print (const char *msg);
 
     @see serial_init, serial_recv
 */
-extern void serial_getline (char *buf);
+extern void serial_getline( char * buf );
 
 #ifdef mc6811
-//# include <asm-m68hc11/sio.h>
+// # include <asm-m68hc11/sio.h>
 #endif
 
 #ifdef mc68hcs12
-# include <asm-m68hcs12/sio.h>
-#elif defined(mc6812)
-//# include <asm-m68hc12/sio.h>
+    #include <asm-m68hcs12/sio.h>
+#elif defined( mc6812 )
+// # include <asm-m68hc12/sio.h>
 #endif
-
 
 #ifdef __cplusplus
 };
 #endif
 #endif /* _SYS_SIO_H */
-

@@ -29,8 +29,7 @@
 #define __WATCHDOG_H__
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 //*****************************************************************************
@@ -38,23 +37,25 @@ extern "C"
 // Prototypes for the APIs.
 //
 //*****************************************************************************
-extern tBoolean WatchdogRunning(unsigned long ulBase);
-extern void WatchdogEnable(unsigned long ulBase);
-extern void WatchdogResetEnable(unsigned long ulBase);
-extern void WatchdogResetDisable(unsigned long ulBase);
-extern void WatchdogLock(unsigned long ulBase);
-extern void WatchdogUnlock(unsigned long ulBase);
-extern tBoolean WatchdogLockState(unsigned long ulBase);
-extern void WatchdogReloadSet(unsigned long ulBase, unsigned long ulLoadVal);
-extern unsigned long WatchdogReloadGet(unsigned long ulBase);
-extern unsigned long WatchdogValueGet(unsigned long ulBase);
-extern void WatchdogIntRegister(unsigned long ulBase, void(*pfnHandler)(void));
-extern void WatchdogIntUnregister(unsigned long ulBase);
-extern void WatchdogIntEnable(unsigned long ulBase);
-extern unsigned long WatchdogIntStatus(unsigned long ulBase, tBoolean bMasked);
-extern void WatchdogIntClear(unsigned long ulBase);
-extern void WatchdogStallDisable(unsigned long ulBase);
-extern void WatchdogStallDisable(unsigned long ulBase);
+extern tBoolean WatchdogRunning( unsigned long ulBase );
+extern void WatchdogEnable( unsigned long ulBase );
+extern void WatchdogResetEnable( unsigned long ulBase );
+extern void WatchdogResetDisable( unsigned long ulBase );
+extern void WatchdogLock( unsigned long ulBase );
+extern void WatchdogUnlock( unsigned long ulBase );
+extern tBoolean WatchdogLockState( unsigned long ulBase );
+extern void WatchdogReloadSet( unsigned long ulBase, unsigned long ulLoadVal );
+extern unsigned long WatchdogReloadGet( unsigned long ulBase );
+extern unsigned long WatchdogValueGet( unsigned long ulBase );
+extern void WatchdogIntRegister( unsigned long ulBase,
+                                 void ( *pfnHandler )( void ) );
+extern void WatchdogIntUnregister( unsigned long ulBase );
+extern void WatchdogIntEnable( unsigned long ulBase );
+extern unsigned long WatchdogIntStatus( unsigned long ulBase,
+                                        tBoolean bMasked );
+extern void WatchdogIntClear( unsigned long ulBase );
+extern void WatchdogStallDisable( unsigned long ulBase );
+extern void WatchdogStallDisable( unsigned long ulBase );
 
 #ifdef __cplusplus
 }

@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -30,8 +31,8 @@
  *
  * This project provides two demo applications.  A simple blinky style
  * project and a more comprehensive test and demo application.
- * The mainCREATE_SIMPLY_BLINKY_DEMO_ONLY setting (defined in this file) is used to
- * select between the two.  The simply blinky demo is implemented and
+ * The mainCREATE_SIMPLY_BLINKY_DEMO_ONLY setting (defined in this file) is used
+ * to select between the two.  The simply blinky demo is implemented and
  * described in main_blinky.c.  The more comprehensive test and demo application
  * is implemented and described in main_full.c.
  *
@@ -57,38 +58,40 @@
  * APPLICATION, AND ITS ASSOCIATE FreeRTOS ARCHITECTURE PORT!
  *
  * Command to run in QEMU and wait for the debugger to attach:
- * qemu-system-arm -M xilinx-zynq-a9 -smp 1 -nographic -kernel [path_to]/RTOSDemo.elf -nographic -serial stdio -semihosting -semihosting-config enable=on,target=native -s -S
+ * qemu-system-arm -M xilinx-zynq-a9 -smp 1 -nographic -kernel
+ * [path_to]/RTOSDemo.elf -nographic -serial stdio -semihosting
+ * -semihosting-config enable=on,target=native -s -S
  *
  * Omit the -s -S to run without waiting for the debugger.
  *
  */
 
 /* Standard includes. */
-#include <stdio.h>
 #include <limits.h>
+#include <stdio.h>
 
 /* Scheduler include files. */
 #include "FreeRTOS.h"
-#include "task.h"
 #include "semphr.h"
+#include "task.h"
 
 /* Standard demo includes. */
-#include "partest.h"
-#include "TimerDemo.h"
-#include "QueueOverwrite.h"
 #include "EventGroupsDemo.h"
-#include "TaskNotify.h"
 #include "IntSemTest.h"
-#include "StreamBufferInterrupt.h"
-#include "StreamBufferDemo.h"
+#include "QueueOverwrite.h"
 #include "QueueSet.h"
+#include "StreamBufferDemo.h"
+#include "StreamBufferInterrupt.h"
+#include "TaskNotify.h"
+#include "TimerDemo.h"
+#include "partest.h"
 
 /* Xilinx includes. */
 #include "platform.h"
-#include "xparameters.h"
-#include "xscutimer.h"
-#include "xscugic.h"
 #include "xil_exception.h"
+#include "xparameters.h"
+#include "xscugic.h"
+#include "xscutimer.h"
 #include "xuartps_hw.h"
 
 /* mainCREATE_SIMPLY_BLINKY_DEMO_ONLY is used to select between three demo
@@ -100,7 +103,7 @@
  * When mainCREATE_SIMPLY_BLINKY_DEMO_ONLY is set to 0 the comprehensive test
  * and demo application will be built.
  */
-#define mainCREATE_SIMPLY_BLINKY_DEMO_ONLY	1
+#define mainCREATE_SIMPLY_BLINKY_DEMO_ONLY 1
 
 /*-----------------------------------------------------------*/
 
@@ -113,10 +116,10 @@ static void prvSetupHardware( void );
  * See the comments at the top of this file and above the
  * mainCREATE_SIMPLY_BLINKY_DEMO_ONLY definition.
  */
-#if ( mainCREATE_SIMPLY_BLINKY_DEMO_ONLY == 1 )
-	extern void main_blinky( void );
+#if( mainCREATE_SIMPLY_BLINKY_DEMO_ONLY == 1 )
+extern void main_blinky( void );
 #else
-	extern void main_full( void );
+extern void main_full( void );
 #endif
 
 /*
@@ -142,300 +145,316 @@ extern XScuGic xInterruptController;
 
 int main( void )
 {
-	/* See http://www.freertos.org/RTOS-Xilinx-Zynq-QEMU.html for instructions. */
+    /* See http://www.freertos.org/RTOS-Xilinx-Zynq-QEMU.html for instructions.
+     */
 
-	/* Configure the hardware ready to run the demo. */
-	prvSetupHardware();
+    /* Configure the hardware ready to run the demo. */
+    prvSetupHardware();
 
-	/* The mainCREATE_SIMPLY_BLINKY_DEMO_ONLY setting is described at the top	of this
-	file. */
-	#if( mainCREATE_SIMPLY_BLINKY_DEMO_ONLY == 1 )
-	{
-		main_blinky();
-	}
-	#else
-	{
-		main_full();
-	}
-	#endif
+/* The mainCREATE_SIMPLY_BLINKY_DEMO_ONLY setting is described at the top	of
+this file. */
+#if( mainCREATE_SIMPLY_BLINKY_DEMO_ONLY == 1 )
+    {
+        main_blinky();
+    }
+#else
+    {
+        main_full();
+    }
+#endif
 
-	/* Don't expect to reach here as the scheduler should now be running the
-	individual tasks.  If the code does reach here then it is likely there was
-	not enough heap space to allocate a stack to either the idle or timer task.
-	However as configSUPPORT_STATIC_ALLOCATION is set to 1 those stacks are
-	statically allocated so that should never happen.
-	See https://freertos.org/a00111.html */
-	return 0;
+    /* Don't expect to reach here as the scheduler should now be running the
+    individual tasks.  If the code does reach here then it is likely there was
+    not enough heap space to allocate a stack to either the idle or timer task.
+    However as configSUPPORT_STATIC_ALLOCATION is set to 1 those stacks are
+    statically allocated so that should never happen.
+    See https://freertos.org/a00111.html */
+    return 0;
 }
 /*-----------------------------------------------------------*/
 
 static void prvSetupHardware( void )
 {
-BaseType_t xStatus;
-XScuGic_Config *pxGICConfig;
+    BaseType_t xStatus;
+    XScuGic_Config * pxGICConfig;
 
-	/* Ensure no interrupts execute while the scheduler is in an inconsistent
-	state.  Interrupts are automatically enabled when the scheduler is
-	started. */
-	portDISABLE_INTERRUPTS();
+    /* Ensure no interrupts execute while the scheduler is in an inconsistent
+    state.  Interrupts are automatically enabled when the scheduler is
+    started. */
+    portDISABLE_INTERRUPTS();
 
-	/* Obtain the configuration of the GIC. */
-	pxGICConfig = XScuGic_LookupConfig( XPAR_SCUGIC_SINGLE_DEVICE_ID );
+    /* Obtain the configuration of the GIC. */
+    pxGICConfig = XScuGic_LookupConfig( XPAR_SCUGIC_SINGLE_DEVICE_ID );
 
-	/* Sanity check the FreeRTOSConfig.h settings are correct for the
-	hardware. */
-	configASSERT( pxGICConfig );
-	configASSERT( pxGICConfig->CpuBaseAddress == ( configINTERRUPT_CONTROLLER_BASE_ADDRESS + configINTERRUPT_CONTROLLER_CPU_INTERFACE_OFFSET ) );
-	configASSERT( pxGICConfig->DistBaseAddress == configINTERRUPT_CONTROLLER_BASE_ADDRESS );
+    /* Sanity check the FreeRTOSConfig.h settings are correct for the
+    hardware. */
+    configASSERT( pxGICConfig );
+    configASSERT( pxGICConfig->CpuBaseAddress ==
+                  ( configINTERRUPT_CONTROLLER_BASE_ADDRESS +
+                    configINTERRUPT_CONTROLLER_CPU_INTERFACE_OFFSET ) );
+    configASSERT( pxGICConfig->DistBaseAddress ==
+                  configINTERRUPT_CONTROLLER_BASE_ADDRESS );
 
-	/* Install a default handler for each GIC interrupt. */
-	xStatus = XScuGic_CfgInitialize( &xInterruptController, pxGICConfig, pxGICConfig->CpuBaseAddress );
-	configASSERT( xStatus == XST_SUCCESS );
-	( void ) xStatus; /* Remove compiler warning if configASSERT() is not defined. */
+    /* Install a default handler for each GIC interrupt. */
+    xStatus = XScuGic_CfgInitialize( &xInterruptController,
+                                     pxGICConfig,
+                                     pxGICConfig->CpuBaseAddress );
+    configASSERT( xStatus == XST_SUCCESS );
+    ( void ) xStatus; /* Remove compiler warning if configASSERT() is not
+                         defined. */
 
-	/* Initialise the LED port in case execution is on the real hardware rather
-	than in QEMU. */
-	vParTestInitialise();
+    /* Initialise the LED port in case execution is on the real hardware rather
+    than in QEMU. */
+    vParTestInitialise();
 
-	/* The Xilinx projects use a BSP that does not allow the start up code to be
-	altered easily.  Therefore the vector table used by FreeRTOS is defined in
-	FreeRTOS_asm_vectors.S, which is part of this project.  Switch to use the
-	FreeRTOS vector table. */
-	vPortInstallFreeRTOSVectorTable();
+    /* The Xilinx projects use a BSP that does not allow the start up code to be
+    altered easily.  Therefore the vector table used by FreeRTOS is defined in
+    FreeRTOS_asm_vectors.S, which is part of this project.  Switch to use the
+    FreeRTOS vector table. */
+    vPortInstallFreeRTOSVectorTable();
 
-	/* Initialise UART for use with QEMU. */
-	XUartPs_ResetHw( 0xE0000000 );
-	XUartPs_WriteReg(0xE0000000, XUARTPS_CR_OFFSET, ((u32)XUARTPS_CR_RX_DIS | (u32)XUARTPS_CR_TX_EN | (u32)XUARTPS_CR_STOPBRK));
+    /* Initialise UART for use with QEMU. */
+    XUartPs_ResetHw( 0xE0000000 );
+    XUartPs_WriteReg( 0xE0000000,
+                      XUARTPS_CR_OFFSET,
+                      ( ( u32 ) XUARTPS_CR_RX_DIS | ( u32 ) XUARTPS_CR_TX_EN |
+                        ( u32 ) XUARTPS_CR_STOPBRK ) );
 }
 /*-----------------------------------------------------------*/
 
 void vApplicationMallocFailedHook( void )
 {
-	/* Called if a call to pvPortMalloc() fails because there is insufficient
-	free memory available in the FreeRTOS heap.  pvPortMalloc() is called
-	internally by FreeRTOS API functions that create tasks, queues, software
-	timers, and semaphores.  The size of the FreeRTOS heap is set by the
-	configTOTAL_HEAP_SIZE configuration constant in FreeRTOSConfig.h. */
-	taskDISABLE_INTERRUPTS();
-	for( ;; );
+    /* Called if a call to pvPortMalloc() fails because there is insufficient
+    free memory available in the FreeRTOS heap.  pvPortMalloc() is called
+    internally by FreeRTOS API functions that create tasks, queues, software
+    timers, and semaphores.  The size of the FreeRTOS heap is set by the
+    configTOTAL_HEAP_SIZE configuration constant in FreeRTOSConfig.h. */
+    taskDISABLE_INTERRUPTS();
+    for( ;; )
+        ;
 }
 /*-----------------------------------------------------------*/
 
-void vApplicationStackOverflowHook( TaskHandle_t pxTask, char *pcTaskName )
+void vApplicationStackOverflowHook( TaskHandle_t pxTask, char * pcTaskName )
 {
-	( void ) pcTaskName;
-	( void ) pxTask;
+    ( void ) pcTaskName;
+    ( void ) pxTask;
 
-	/* Run time stack overflow checking is performed if
-	configCHECK_FOR_STACK_OVERFLOW is defined to 1 or 2.  This hook
-	function is called if a stack overflow is detected. */
-	taskDISABLE_INTERRUPTS();
-	for( ;; );
+    /* Run time stack overflow checking is performed if
+    configCHECK_FOR_STACK_OVERFLOW is defined to 1 or 2.  This hook
+    function is called if a stack overflow is detected. */
+    taskDISABLE_INTERRUPTS();
+    for( ;; )
+        ;
 }
 /*-----------------------------------------------------------*/
 
 void vApplicationIdleHook( void )
 {
-volatile size_t xFreeHeapSpace, xMinimumEverFreeHeapSpace;
+    volatile size_t xFreeHeapSpace, xMinimumEverFreeHeapSpace;
 
-	/* This is just a trivial example of an idle hook.  It is called on each
-	cycle of the idle task.  It must *NOT* attempt to block.  In this case the
-	idle task just queries the amount of FreeRTOS heap that remains.  See the
-	memory management section on the http://www.FreeRTOS.org web site for memory
-	management options.  If there is a lot of heap memory free then the
-	configTOTAL_HEAP_SIZE value in FreeRTOSConfig.h can be reduced to free up
-	RAM. */
-	xFreeHeapSpace = xPortGetFreeHeapSize();
-	xMinimumEverFreeHeapSpace = xPortGetMinimumEverFreeHeapSize();
+    /* This is just a trivial example of an idle hook.  It is called on each
+    cycle of the idle task.  It must *NOT* attempt to block.  In this case the
+    idle task just queries the amount of FreeRTOS heap that remains.  See the
+    memory management section on the http://www.FreeRTOS.org web site for memory
+    management options.  If there is a lot of heap memory free then the
+    configTOTAL_HEAP_SIZE value in FreeRTOSConfig.h can be reduced to free up
+    RAM. */
+    xFreeHeapSpace = xPortGetFreeHeapSize();
+    xMinimumEverFreeHeapSpace = xPortGetMinimumEverFreeHeapSize();
 
-	/* Remove compiler warning about xFreeHeapSpace being set but never used. */
-	( void ) xFreeHeapSpace;
-	( void ) xMinimumEverFreeHeapSpace;
+    /* Remove compiler warning about xFreeHeapSpace being set but never used. */
+    ( void ) xFreeHeapSpace;
+    ( void ) xMinimumEverFreeHeapSpace;
 }
 /*-----------------------------------------------------------*/
 
 void vAssertCalled( const char * pcFile, unsigned long ulLine )
 {
-volatile unsigned long ul = 0;
+    volatile unsigned long ul = 0;
 
-	( void ) pcFile;
-	( void ) ulLine;
+    ( void ) pcFile;
+    ( void ) ulLine;
 
-	xil_printf( "ASSERT:  %s:%d\n", pcFile, ( int ) ulLine );
+    xil_printf( "ASSERT:  %s:%d\n", pcFile, ( int ) ulLine );
 
-	taskENTER_CRITICAL();
-	{
-		/* Set ul to a non-zero value using the debugger to step out of this
-		function. */
-		while( ul == 0 )
-		{
-			portNOP();
-		}
-	}
-	taskEXIT_CRITICAL();
+    taskENTER_CRITICAL();
+    {
+        /* Set ul to a non-zero value using the debugger to step out of this
+        function. */
+        while( ul == 0 )
+        {
+            portNOP();
+        }
+    }
+    taskEXIT_CRITICAL();
 }
 /*-----------------------------------------------------------*/
 
 void vApplicationTickHook( void )
 {
-	#if( mainCREATE_SIMPLY_BLINKY_DEMO_ONLY == 0 )
-	{
-		/* The full demo includes a software timer demo/test that requires
-		prodding periodically from the tick interrupt. */
-		vTimerPeriodicISRTests();
+#if( mainCREATE_SIMPLY_BLINKY_DEMO_ONLY == 0 )
+    {
+        /* The full demo includes a software timer demo/test that requires
+        prodding periodically from the tick interrupt. */
+        vTimerPeriodicISRTests();
 
-		/* Call the periodic queue overwrite from ISR demo. */
-		vQueueOverwritePeriodicISRDemo();
+        /* Call the periodic queue overwrite from ISR demo. */
+        vQueueOverwritePeriodicISRDemo();
 
-		/* Call the periodic event group from ISR demo. */
-		vPeriodicEventGroupsProcessing();
+        /* Call the periodic event group from ISR demo. */
+        vPeriodicEventGroupsProcessing();
 
-		/* Use task notifications from an interrupt. */
-		xNotifyTaskFromISR();
+        /* Use task notifications from an interrupt. */
+        xNotifyTaskFromISR();
 
-		/* Use mutexes from interrupts. */
-		vInterruptSemaphorePeriodicTest();
+        /* Use mutexes from interrupts. */
+        vInterruptSemaphorePeriodicTest();
 
-		/* Writes to stream buffer byte by byte to test the stream buffer trigger
-		level functionality. */
-		vPeriodicStreamBufferProcessing();
+        /* Writes to stream buffer byte by byte to test the stream buffer
+        trigger level functionality. */
+        vPeriodicStreamBufferProcessing();
 
-		/* Writes a string to a string buffer four bytes at a time to demonstrate
-		a stream being sent from an interrupt to a task. */
-		vBasicStreamBufferSendFromISR();
+        /* Writes a string to a string buffer four bytes at a time to
+        demonstrate a stream being sent from an interrupt to a task. */
+        vBasicStreamBufferSendFromISR();
 
-		#if( configUSE_QUEUE_SETS == 1 )
-		{
-			vQueueSetAccessQueueSetFromISR();
-		}
-		#endif
+    #if( configUSE_QUEUE_SETS == 1 )
+        {
+            vQueueSetAccessQueueSetFromISR();
+        }
+    #endif
 
-		/* Test flop alignment in interrupts - calling printf from an interrupt
-		is BAD! */
-		#if( configASSERT_DEFINED == 1 )
-		{
-		char cBuf[ 20 ];
-		UBaseType_t uxSavedInterruptStatus;
+    /* Test flop alignment in interrupts - calling printf from an interrupt
+    is BAD! */
+    #if( configASSERT_DEFINED == 1 )
+        {
+            char cBuf[ 20 ];
+            UBaseType_t uxSavedInterruptStatus;
 
-			uxSavedInterruptStatus = portSET_INTERRUPT_MASK_FROM_ISR();
-			{
-				sprintf( cBuf, "%1.3f", 1.234 );
-			}
-			portCLEAR_INTERRUPT_MASK_FROM_ISR( uxSavedInterruptStatus );
+            uxSavedInterruptStatus = portSET_INTERRUPT_MASK_FROM_ISR();
+            {
+                sprintf( cBuf, "%1.3f", 1.234 );
+            }
+            portCLEAR_INTERRUPT_MASK_FROM_ISR( uxSavedInterruptStatus );
 
-			configASSERT( strcmp( cBuf, "1.234" ) == 0 );
-		}
-		#endif /* configASSERT_DEFINED */
-	}
-	#endif
+            configASSERT( strcmp( cBuf, "1.234" ) == 0 );
+        }
+    #endif /* configASSERT_DEFINED */
+    }
+#endif
 }
 /*-----------------------------------------------------------*/
 
-void *memcpy( void *pvDest, const void *pvSource, size_t xBytes )
+void * memcpy( void * pvDest, const void * pvSource, size_t xBytes )
 {
-/* The compiler used during development seems to err unless these volatiles are
-included at -O3 optimisation.  */
-volatile unsigned char *pcDest = ( volatile unsigned char * ) pvDest, *pcSource = ( volatile unsigned char * ) pvSource;
-size_t x;
+    /* The compiler used during development seems to err unless these volatiles
+    are included at -O3 optimisation.  */
+    volatile unsigned char *pcDest = ( volatile unsigned char * ) pvDest,
+                           *pcSource = ( volatile unsigned char * ) pvSource;
+    size_t x;
 
-	/* Extremely crude standard library implementations in lieu of having a C
-	library. */
-	if( pvDest != pvSource )
-	{
-		for( x = 0; x < xBytes; x++ )
-		{
-			pcDest[ x ] = pcSource[ x ];
-		}
-	}
+    /* Extremely crude standard library implementations in lieu of having a C
+    library. */
+    if( pvDest != pvSource )
+    {
+        for( x = 0; x < xBytes; x++ )
+        {
+            pcDest[ x ] = pcSource[ x ];
+        }
+    }
 
-	return pvDest;
+    return pvDest;
 }
 /*-----------------------------------------------------------*/
 
-void *memset( void *pvDest, int iValue, size_t xBytes )
+void * memset( void * pvDest, int iValue, size_t xBytes )
 {
-/* The compiler used during development seems to err unless these volatiles are
-included at -O3 optimisation.  */
-volatile unsigned char * volatile pcDest = ( volatile unsigned char * volatile ) pvDest;
-volatile size_t x;
+    /* The compiler used during development seems to err unless these volatiles
+    are included at -O3 optimisation.  */
+    volatile unsigned char * volatile pcDest = ( volatile unsigned char * volatile )
+        pvDest;
+    volatile size_t x;
 
-	/* Extremely crude standard library implementations in lieu of having a C
-	library. */
-	for( x = 0; x < xBytes; x++ )
-	{
-		pcDest[ x ] = ( unsigned char ) iValue;
-	}
+    /* Extremely crude standard library implementations in lieu of having a C
+    library. */
+    for( x = 0; x < xBytes; x++ )
+    {
+        pcDest[ x ] = ( unsigned char ) iValue;
+    }
 
-	return pvDest;
+    return pvDest;
 }
 /*-----------------------------------------------------------*/
 
-int memcmp( const void *pvMem1, const void *pvMem2, size_t xBytes )
+int memcmp( const void * pvMem1, const void * pvMem2, size_t xBytes )
 {
-const volatile unsigned char *pucMem1 = pvMem1, *pucMem2 = pvMem2;
-volatile size_t x;
+    const volatile unsigned char *pucMem1 = pvMem1, *pucMem2 = pvMem2;
+    volatile size_t x;
 
-	/* Extremely crude standard library implementations in lieu of having a C
-	library. */
-	for( x = 0; x < xBytes; x++ )
-	{
-		if( pucMem1[ x ] != pucMem2[ x ] )
-		{
-			break;
-		}
-	}
+    /* Extremely crude standard library implementations in lieu of having a C
+    library. */
+    for( x = 0; x < xBytes; x++ )
+    {
+        if( pucMem1[ x ] != pucMem2[ x ] )
+        {
+            break;
+        }
+    }
 
-	return xBytes - x;
+    return xBytes - x;
 }
 /*-----------------------------------------------------------*/
 
 /* configUSE_STATIC_ALLOCATION is set to 1, so the application must provide an
 implementation of vApplicationGetIdleTaskMemory() to provide the memory that is
 used by the Idle task. */
-void vApplicationGetIdleTaskMemory( StaticTask_t **ppxIdleTaskTCBBuffer, StackType_t **ppxIdleTaskStackBuffer, uint32_t *pulIdleTaskStackSize )
+void vApplicationGetIdleTaskMemory( StaticTask_t ** ppxIdleTaskTCBBuffer,
+                                    StackType_t ** ppxIdleTaskStackBuffer,
+                                    uint32_t * pulIdleTaskStackSize )
 {
-/* If the buffers to be provided to the Idle task are declared inside this
-function then they must be declared static - otherwise they will be allocated on
-the stack and so not exists after this function exits. */
-static StaticTask_t xIdleTaskTCB;
-static StackType_t uxIdleTaskStack[ configMINIMAL_STACK_SIZE ];
+    /* If the buffers to be provided to the Idle task are declared inside this
+    function then they must be declared static - otherwise they will be
+    allocated on the stack and so not exists after this function exits. */
+    static StaticTask_t xIdleTaskTCB;
+    static StackType_t uxIdleTaskStack[ configMINIMAL_STACK_SIZE ];
 
-	/* Pass out a pointer to the StaticTask_t structure in which the Idle task's
-	state will be stored. */
-	*ppxIdleTaskTCBBuffer = &xIdleTaskTCB;
+    /* Pass out a pointer to the StaticTask_t structure in which the Idle task's
+    state will be stored. */
+    *ppxIdleTaskTCBBuffer = &xIdleTaskTCB;
 
-	/* Pass out the array that will be used as the Idle task's stack. */
-	*ppxIdleTaskStackBuffer = uxIdleTaskStack;
+    /* Pass out the array that will be used as the Idle task's stack. */
+    *ppxIdleTaskStackBuffer = uxIdleTaskStack;
 
-	/* Pass out the size of the array pointed to by *ppxIdleTaskStackBuffer.
-	Note that, as the array is necessarily of type StackType_t,
-	configMINIMAL_STACK_SIZE is specified in words, not bytes. */
-	*pulIdleTaskStackSize = configMINIMAL_STACK_SIZE;
+    /* Pass out the size of the array pointed to by *ppxIdleTaskStackBuffer.
+    Note that, as the array is necessarily of type StackType_t,
+    configMINIMAL_STACK_SIZE is specified in words, not bytes. */
+    *pulIdleTaskStackSize = configMINIMAL_STACK_SIZE;
 }
 /*-----------------------------------------------------------*/
 
 /* configUSE_STATIC_ALLOCATION and configUSE_TIMERS are both set to 1, so the
 application must provide an implementation of vApplicationGetTimerTaskMemory()
 to provide the memory that is used by the Timer service task. */
-void vApplicationGetTimerTaskMemory( StaticTask_t **ppxTimerTaskTCBBuffer, StackType_t **ppxTimerTaskStackBuffer, uint32_t *pulTimerTaskStackSize )
+void vApplicationGetTimerTaskMemory( StaticTask_t ** ppxTimerTaskTCBBuffer,
+                                     StackType_t ** ppxTimerTaskStackBuffer,
+                                     uint32_t * pulTimerTaskStackSize )
 {
-/* If the buffers to be provided to the Timer task are declared inside this
-function then they must be declared static - otherwise they will be allocated on
-the stack and so not exists after this function exits. */
-static StaticTask_t xTimerTaskTCB;
-static StackType_t uxTimerTaskStack[ configTIMER_TASK_STACK_DEPTH ];
+    /* If the buffers to be provided to the Timer task are declared inside this
+    function then they must be declared static - otherwise they will be
+    allocated on the stack and so not exists after this function exits. */
+    static StaticTask_t xTimerTaskTCB;
+    static StackType_t uxTimerTaskStack[ configTIMER_TASK_STACK_DEPTH ];
 
-	/* Pass out a pointer to the StaticTask_t structure in which the Timer
-	task's state will be stored. */
-	*ppxTimerTaskTCBBuffer = &xTimerTaskTCB;
+    /* Pass out a pointer to the StaticTask_t structure in which the Timer
+    task's state will be stored. */
+    *ppxTimerTaskTCBBuffer = &xTimerTaskTCB;
 
-	/* Pass out the array that will be used as the Timer task's stack. */
-	*ppxTimerTaskStackBuffer = uxTimerTaskStack;
+    /* Pass out the array that will be used as the Timer task's stack. */
+    *ppxTimerTaskStackBuffer = uxTimerTaskStack;
 
-	/* Pass out the size of the array pointed to by *ppxTimerTaskStackBuffer.
-	Note that, as the array is necessarily of type StackType_t,
-	configMINIMAL_STACK_SIZE is specified in words, not bytes. */
-	*pulTimerTaskStackSize = configTIMER_TASK_STACK_DEPTH;
+    /* Pass out the size of the array pointed to by *ppxTimerTaskStackBuffer.
+    Note that, as the array is necessarily of type StackType_t,
+    configMINIMAL_STACK_SIZE is specified in words, not bytes. */
+    *pulTimerTaskStackSize = configTIMER_TASK_STACK_DEPTH;
 }
-
-

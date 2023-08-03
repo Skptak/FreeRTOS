@@ -27,18 +27,19 @@
 #include <wolfssl/openssl/x509v3.h>
 
 #ifdef __cplusplus
-    extern "C" {
+extern "C" {
 #endif
 
-#if defined(WOLFSSL_QT) || defined(OPENSSL_ALL)
-    WOLFSSL_API int wolfSSL_X509_STORE_CTX_set_purpose(WOLFSSL_X509_STORE_CTX *ctx, int purpose);
+#if defined( WOLFSSL_QT ) || defined( OPENSSL_ALL )
+WOLFSSL_API int wolfSSL_X509_STORE_CTX_set_purpose( WOLFSSL_X509_STORE_CTX * ctx,
+                                                    int purpose );
 #endif
 
 #ifdef WOLFSSL_QT
-    #define X509_STORE_CTX_set_purpose  wolfSSL_X509_STORE_CTX_set_purpose
+    #define X509_STORE_CTX_set_purpose wolfSSL_X509_STORE_CTX_set_purpose
 #endif
 
-#ifdef  __cplusplus
+#ifdef __cplusplus
 } /* extern "C" */
 #endif
 

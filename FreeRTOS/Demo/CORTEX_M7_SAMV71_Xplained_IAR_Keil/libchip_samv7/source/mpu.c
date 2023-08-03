@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
- *         SAM Software Package License 
+ *         SAM Software Package License
  * ----------------------------------------------------------------------------
  * Copyright (c) 2014, Atmel Corporation
  *
@@ -29,35 +29,41 @@
 
 /** \file */
 
-/** 
+/**
  * \addtogroup mmu MMU Initialization
  *
  * \section Usage
  *
- * Translation Lookaside Buffers (TLBs) are an implementation technique that caches translations or
- * translation table entries. TLBs avoid the requirement for every memory access to perform a translation table
- * lookup. The ARM architecture does not specify the exact form of the TLB structures for any design. In a
- * similar way to the requirements for caches, the architecture only defines certain principles for TLBs:
- * 
+ * Translation Lookaside Buffers (TLBs) are an implementation technique that
+ * caches translations or translation table entries. TLBs avoid the requirement
+ * for every memory access to perform a translation table lookup. The ARM
+ * architecture does not specify the exact form of the TLB structures for any
+ * design. In a similar way to the requirements for caches, the architecture
+ * only defines certain principles for TLBs:
+ *
  * The MMU supports memory accesses based on memory sections or pages:
- * Supersections Consist of 16MB blocks of memory. Support for Supersections is optional.
+ * Supersections Consist of 16MB blocks of memory. Support for Supersections is
+ * optional.
  * -# Sections Consist of 1MB blocks of memory.
  * -# Large pages Consist of 64KB blocks of memory.
  * -# Small pages Consist of 4KB blocks of memory.
  *
- * Access to a memory region is controlled by the access permission bits and the domain field in the TLB entry.
- * Memory region attributes
- * Each TLB entry has an associated set of memory region attributes. These control accesses to the caches,
- * how the write buffer is used, and if the memory region is Shareable and therefore must be kept coherent.
+ * Access to a memory region is controlled by the access permission bits and the
+ * domain field in the TLB entry. Memory region attributes Each TLB entry has an
+ * associated set of memory region attributes. These control accesses to the
+ * caches, how the write buffer is used, and if the memory region is Shareable
+ * and therefore must be kept coherent.
  *
  * Related files:\n
  * \ref mmu.c\n
  * \ref mmu.h \n
  */
 
-/*------------------------------------------------------------------------------ */
-/*         Headers                                                               */
-/*------------------------------------------------------------------------------ */
+/*------------------------------------------------------------------------------
+ */
+/*         Headers */
+/*------------------------------------------------------------------------------
+ */
 #include <chip.h>
 
 /*----------------------------------------------------------------------------
@@ -71,7 +77,7 @@
  */
 void MPU_Enable( uint32_t dwMPUEnable )
 {
-    MPU->CTRL = dwMPUEnable ;
+    MPU->CTRL = dwMPUEnable;
 }
 
 /**
@@ -96,14 +102,13 @@ extern void MPU_DisableRegion( void )
  * \brief Setup a memory region.
  *
  * \param dwRegionBaseAddr  Memory region base address.
- * \param dwRegionAttr  Memory region attributes.  
+ * \param dwRegionAttr  Memory region attributes.
  */
 void MPU_SetRegion( uint32_t dwRegionBaseAddr, uint32_t dwRegionAttr )
 {
     MPU->RBAR = dwRegionBaseAddr;
     MPU->RASR = dwRegionAttr;
 }
-
 
 /**
  * \brief Calculate region size for the RASR.
@@ -130,18 +135,19 @@ uint32_t MPU_CalMPURegionSize( uint32_t dwActualSizeInBytes )
     return ( dwReturnValue << 1 );
 }
 
-
 /**
  *  \brief Update MPU regions.
  *
  *  \return Unused (ANSI-C compatibility).
  */
-void MPU_UpdateRegions( uint32_t dwRegionNum, uint32_t dwRegionBaseAddr,
-        uint32_t dwRegionAttr)
+void MPU_UpdateRegions( uint32_t dwRegionNum,
+                        uint32_t dwRegionBaseAddr,
+                        uint32_t dwRegionAttr )
 {
     /* Raise privilege, the MPU register could be set only in privilege mode */
-    asm volatile(" swi 0x00 ");
-    while (!dwRaisePriDone);
+    asm volatile( " swi 0x00 " );
+    while( !dwRaisePriDone )
+        ;
     dwRaisePriDone = 0;
 
     /* Disable interrupt */
@@ -152,15 +158,15 @@ void MPU_UpdateRegions( uint32_t dwRegionNum, uint32_t dwRegionBaseAddr,
     __ISB();
 
     /* Set active region */
-    MPU_SetRegionNum(dwRegionNum);
+    MPU_SetRegionNum( dwRegionNum );
 
     /* Disable region */
     MPU_DisableRegion();
 
     /* Update region attribute */
-    MPU_SetRegion( dwRegionBaseAddr, dwRegionAttr);
+    MPU_SetRegion( dwRegionBaseAddr, dwRegionAttr );
 
-    /* Clean up data and instruction buffer to make the new region taking 
+    /* Clean up data and instruction buffer to make the new region taking
        effect at once */
     __DSB();
     __ISB();
@@ -169,6 +175,5 @@ void MPU_UpdateRegions( uint32_t dwRegionNum, uint32_t dwRegionBaseAddr,
     __enable_irq();
 
     /* Reset to thread mode */
-    __set_CONTROL(USER_MODE);
+    __set_CONTROL( USER_MODE );
 }
-

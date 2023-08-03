@@ -1,6 +1,6 @@
 /*
  * -------------------------------------------
- *    MSP432 DriverLib - v3_10_00_09 
+ *    MSP432 DriverLib - v3_10_00_09
  * -------------------------------------------
  *
  * --COPYRIGHT--,BSD,BSD
@@ -55,23 +55,22 @@
 //
 //*****************************************************************************
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 //*****************************************************************************
 //
-//The following are values that can be passed to Ref_setReferenceVoltage()
-//in the referenceVoltageSelect parameter.
+// The following are values that can be passed to Ref_setReferenceVoltage()
+// in the referenceVoltageSelect parameter.
 //
 //*****************************************************************************
-#define REF_A_VREF1_2V  REF_A_CTL0_VSEL_0
-#define REF_A_VREF1_45V REF_A_CTL0_VSEL_1
-#define REF_A_VREF2_5V  REF_A_CTL0_VSEL_3
+#define REF_A_VREF1_2V   REF_A_CTL0_VSEL_0
+#define REF_A_VREF1_45V  REF_A_CTL0_VSEL_1
+#define REF_A_VREF2_5V   REF_A_CTL0_VSEL_3
 
 //*****************************************************************************
 //
-//The following are values that are returned by Ref_getBandgapMode().
+// The following are values that are returned by Ref_getBandgapMode().
 //
 //*****************************************************************************
 #define REF_A_STATICMODE 0x0
@@ -98,7 +97,7 @@ extern "C"
 //! \return none
 //
 //*****************************************************************************
-extern void REF_A_setReferenceVoltage(uint_fast8_t referenceVoltageSelect);
+extern void REF_A_setReferenceVoltage( uint_fast8_t referenceVoltageSelect );
 
 //*****************************************************************************
 //
@@ -115,7 +114,7 @@ extern void REF_A_setReferenceVoltage(uint_fast8_t referenceVoltageSelect);
 //! \return none
 //
 //*****************************************************************************
-extern void REF_A_disableTempSensor(void);
+extern void REF_A_disableTempSensor( void );
 
 //*****************************************************************************
 //
@@ -131,7 +130,7 @@ extern void REF_A_disableTempSensor(void);
 //! \return none
 //
 //*****************************************************************************
-extern void REF_A_enableTempSensor(void);
+extern void REF_A_enableTempSensor( void );
 
 //*****************************************************************************
 //
@@ -149,7 +148,7 @@ extern void REF_A_enableTempSensor(void);
 //! \return none
 //
 //*****************************************************************************
-extern void REF_A_enableReferenceVoltageOutput(void);
+extern void REF_A_enableReferenceVoltageOutput( void );
 
 //*****************************************************************************
 //
@@ -164,7 +163,7 @@ extern void REF_A_enableReferenceVoltageOutput(void);
 //! \return none
 //
 //*****************************************************************************
-extern void REF_A_disableReferenceVoltageOutput(void);
+extern void REF_A_disableReferenceVoltageOutput( void );
 
 //*****************************************************************************
 //
@@ -181,7 +180,7 @@ extern void REF_A_disableReferenceVoltageOutput(void);
 //! \return none
 //
 //*****************************************************************************
-extern void REF_A_enableReferenceVoltage(void);
+extern void REF_A_enableReferenceVoltage( void );
 
 //*****************************************************************************
 //
@@ -195,7 +194,7 @@ extern void REF_A_enableReferenceVoltage(void);
 //! \return none
 //
 //*****************************************************************************
-extern void REF_A_disableReferenceVoltage(void);
+extern void REF_A_disableReferenceVoltage( void );
 
 //*****************************************************************************
 //
@@ -214,7 +213,7 @@ extern void REF_A_disableReferenceVoltage(void);
 //!        - \b REF_A_SAMPLEMODE if the bandgap is operating in sample mode
 //
 //*****************************************************************************
-extern uint_fast8_t REF_A_getBandgapMode(void);
+extern uint_fast8_t REF_A_getBandgapMode( void );
 
 //*****************************************************************************
 //
@@ -227,7 +226,7 @@ extern uint_fast8_t REF_A_getBandgapMode(void);
 //! \return true if the bandgap is being used, false otherwise
 //
 //*****************************************************************************
-extern bool REF_A_isBandgapActive(void);
+extern bool REF_A_isBandgapActive( void );
 
 //*****************************************************************************
 //
@@ -239,7 +238,7 @@ extern bool REF_A_isBandgapActive(void);
 //!
 //! \return true if the reference generator is being used, false otherwise.
 //*****************************************************************************
-extern bool REF_A_isRefGenBusy(void);
+extern bool REF_A_isRefGenBusy( void );
 
 //*****************************************************************************
 //
@@ -252,7 +251,7 @@ extern bool REF_A_isRefGenBusy(void);
 //! \return true if the reference generator is active, false otherwise.
 //
 //*****************************************************************************
-extern bool REF_A_isRefGenActive(void);
+extern bool REF_A_isRefGenActive( void );
 
 //*****************************************************************************
 //
@@ -266,7 +265,7 @@ extern bool REF_A_isRefGenActive(void);
 //!         otherwise
 //
 //*****************************************************************************
-extern bool REF_A_getBufferedBandgapVoltageStatus(void);
+extern bool REF_A_getBufferedBandgapVoltageStatus( void );
 
 //*****************************************************************************
 //
@@ -280,7 +279,7 @@ extern bool REF_A_getBufferedBandgapVoltageStatus(void);
 //!         otherwise
 //
 //*****************************************************************************
-extern bool REF_A_getVariableReferenceVoltageStatus(void);
+extern bool REF_A_getVariableReferenceVoltageStatus( void );
 
 //*****************************************************************************
 //
@@ -294,7 +293,7 @@ extern bool REF_A_getVariableReferenceVoltageStatus(void);
 //! \return none
 //
 //*****************************************************************************
-extern void REF_A_setReferenceVoltageOneTimeTrigger(void);
+extern void REF_A_setReferenceVoltageOneTimeTrigger( void );
 
 //*****************************************************************************
 //
@@ -308,24 +307,33 @@ extern void REF_A_setReferenceVoltageOneTimeTrigger(void);
 //! \return none
 //
 //*****************************************************************************
-extern void REF_A_setBufferedBandgapVoltageOneTimeTrigger(void);
+extern void REF_A_setBufferedBandgapVoltageOneTimeTrigger( void );
 
 /* Defines for future devices that might have multiple instances */
-#define REF_A_setReferenceVoltageMultipleInstance(a,b) REF_A_setReferenceVoltage(b)
-#define REF_A_disableTempSensorMultipleInstance(a) REF_A_disableTempSensor()
-#define REF_A_enableTempSensorMultipleInstance(a) REF_A_enableTempSensor()
-#define REF_A_enableReferenceVoltageOutputMultipleInstance(a) REF_A_enableReferenceVoltageOutput()
-#define REF_A_disableReferenceVoltageOutputMultipleInstance(a) REF_A_disableReferenceVoltageOutput()
-#define REF_A_enableReferenceVoltageMultipleInstance(a) REF_A_enableReferenceVoltage()
-#define REF_A_disableReferenceVoltageMultipleInstance(a) REF_A_disableReferenceVoltage()
-#define REF_A_getBandgapModeMultipleInstance(a) REF_A_getBandgapMode()
-#define REF_A_isBandgapActiveMultipleInstance(a) REF_A_isBandgapActive()
-#define REF_A_isRefGenBusyMultipleInstance(a) REF_A_isRefGenBusy()
-#define REF_A_isRefGenActiveMultipleInstance(a) REF_A_isRefGenActive()
-#define REF_A_getBufferedBandgapVoltageStatusMultipleInstance(a) REF_A_getBufferedBandgapVoltageStatus()
-#define REF_A_getVariableReferenceVoltageStatusMultipleInstance(a) REF_A_getVariableReferenceVoltageStatus()
-#define REF_A_setReferenceVoltageOneTimeTriggerMultipleInstance(a) REF_A_setReferenceVoltageOneTimeTrigger()
-#define REF_A_setBufferedBandgapVoltageOneTimeTriggerMultipleInstance(a) REF_A_setBufferedBandgapVoltageOneTimeTrigger()
+#define REF_A_setReferenceVoltageMultipleInstance( a, b ) \
+    REF_A_setReferenceVoltage( b )
+#define REF_A_disableTempSensorMultipleInstance( a ) REF_A_disableTempSensor()
+#define REF_A_enableTempSensorMultipleInstance( a )  REF_A_enableTempSensor()
+#define REF_A_enableReferenceVoltageOutputMultipleInstance( a ) \
+    REF_A_enableReferenceVoltageOutput()
+#define REF_A_disableReferenceVoltageOutputMultipleInstance( a ) \
+    REF_A_disableReferenceVoltageOutput()
+#define REF_A_enableReferenceVoltageMultipleInstance( a ) \
+    REF_A_enableReferenceVoltage()
+#define REF_A_disableReferenceVoltageMultipleInstance( a ) \
+    REF_A_disableReferenceVoltage()
+#define REF_A_getBandgapModeMultipleInstance( a )  REF_A_getBandgapMode()
+#define REF_A_isBandgapActiveMultipleInstance( a ) REF_A_isBandgapActive()
+#define REF_A_isRefGenBusyMultipleInstance( a )    REF_A_isRefGenBusy()
+#define REF_A_isRefGenActiveMultipleInstance( a )  REF_A_isRefGenActive()
+#define REF_A_getBufferedBandgapVoltageStatusMultipleInstance( a ) \
+    REF_A_getBufferedBandgapVoltageStatus()
+#define REF_A_getVariableReferenceVoltageStatusMultipleInstance( a ) \
+    REF_A_getVariableReferenceVoltageStatus()
+#define REF_A_setReferenceVoltageOneTimeTriggerMultipleInstance( a ) \
+    REF_A_setReferenceVoltageOneTimeTrigger()
+#define REF_A_setBufferedBandgapVoltageOneTimeTriggerMultipleInstance( a ) \
+    REF_A_setBufferedBandgapVoltageOneTimeTrigger()
 
 //*****************************************************************************
 //

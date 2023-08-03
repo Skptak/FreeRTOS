@@ -26,44 +26,43 @@ Boston, MA 02111-1307, USA.  */
 extern "C" {
 #endif
 
-  extern unsigned short get_timer_counter (void);
-  extern void set_timer_counter (unsigned short);
-  extern unsigned short get_input_capture_1 (void);
-  extern void set_input_capture_1 (unsigned short);
-  extern unsigned short get_input_capture_2 (void);
-  extern void set_input_capture_2 (unsigned short);
-  extern unsigned short get_input_capture_3 (void);
-  extern void set_input_capture_3 (unsigned short);
-  extern unsigned short get_output_compare_1 (void);
-  extern void set_output_compare_1 (unsigned short);
-  extern unsigned short get_output_compare_2 (void);
-  extern void set_output_compare_2 (unsigned short);
-  extern unsigned short get_output_compare_3 (void);
-  extern void set_output_compare_3 (unsigned short);
-  extern unsigned short get_output_compare_4 (void);
-  extern void set_output_compare_4 (unsigned short);
-  extern unsigned short get_output_compare_5 (void);
-  extern void set_output_compare_5 (unsigned short);
-  extern void set_bus_expanded (void);
-  extern void set_bus_single_chip (void);
-  extern void cop_reset (void);
-  extern void cop_optional_reset (void);
-  extern void timer_acknowledge (void);
-  extern void timer_initialize_rate (unsigned char);
-  
+extern unsigned short get_timer_counter( void );
+extern void set_timer_counter( unsigned short );
+extern unsigned short get_input_capture_1( void );
+extern void set_input_capture_1( unsigned short );
+extern unsigned short get_input_capture_2( void );
+extern void set_input_capture_2( unsigned short );
+extern unsigned short get_input_capture_3( void );
+extern void set_input_capture_3( unsigned short );
+extern unsigned short get_output_compare_1( void );
+extern void set_output_compare_1( unsigned short );
+extern unsigned short get_output_compare_2( void );
+extern void set_output_compare_2( unsigned short );
+extern unsigned short get_output_compare_3( void );
+extern void set_output_compare_3( unsigned short );
+extern unsigned short get_output_compare_4( void );
+extern void set_output_compare_4( unsigned short );
+extern unsigned short get_output_compare_5( void );
+extern void set_output_compare_5( unsigned short );
+extern void set_bus_expanded( void );
+extern void set_bus_single_chip( void );
+extern void cop_reset( void );
+extern void cop_optional_reset( void );
+extern void timer_acknowledge( void );
+extern void timer_initialize_rate( unsigned char );
+
 #ifdef mc6811
-//# include <asm-m68hc11/ports.h>
+// # include <asm-m68hc11/ports.h>
 #endif
 
 #ifdef mc68hcs12
-# include <asm-m68hcs12/ports.h>
-#elif defined(mc6812)
-//# include <asm-m68hc12/ports.h>
+    #include <asm-m68hcs12/ports.h>
+#elif defined( mc6812 )
+// # include <asm-m68hc12/ports.h>
 #endif
 
 #ifdef __cplusplus
 };
 #endif
-  
-#endif /* _SYS_PORTS_H */
 
+#endif /* _SYS_PORTS_H */

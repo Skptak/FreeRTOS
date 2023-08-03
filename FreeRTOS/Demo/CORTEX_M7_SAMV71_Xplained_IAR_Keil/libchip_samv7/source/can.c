@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
- *         SAM Software Package License 
+ *         SAM Software Package License
  * ----------------------------------------------------------------------------
  * Copyright (c) 2012, Atmel Corporation
  *
@@ -42,7 +42,7 @@
 
 #include <assert.h>
 
-#if defined(REG_CAN0_MR) || defined(REG_CAN_MR)
+#if defined( REG_CAN0_MR ) || defined( REG_CAN_MR )
 
 /* ----------- CAN_MR Operations --------------- */
 /**
@@ -50,7 +50,7 @@
  * \param pCan Pointer to Can instance.
  * \param dwMr Mode register settings.
  */
-void CAN_ConfigureMode(Can *pCan, uint32_t dwMr)
+void CAN_ConfigureMode( Can * pCan, uint32_t dwMr )
 {
     pCan->CAN_MR = dwMr;
 }
@@ -60,10 +60,12 @@ void CAN_ConfigureMode(Can *pCan, uint32_t dwMr)
  * \param pCan   Pointer to Can instance.
  * \param bEnDis 1 to enable and 0 to disable.
  */
-void CAN_Enable(Can *pCan, uint8_t bEnDis)
+void CAN_Enable( Can * pCan, uint8_t bEnDis )
 {
-    if (bEnDis) pCan->CAN_MR |=  CAN_MR_CANEN;
-    else        pCan->CAN_MR &= ~CAN_MR_CANEN;
+    if( bEnDis )
+        pCan->CAN_MR |= CAN_MR_CANEN;
+    else
+        pCan->CAN_MR &= ~CAN_MR_CANEN;
 }
 
 /**
@@ -71,10 +73,12 @@ void CAN_Enable(Can *pCan, uint8_t bEnDis)
  * \param pCan   Pointer to Can instance.
  * \param bEnDis 1 to enable and 0 to disable.
  */
-void CAN_EnableLowPower(Can *pCan, uint8_t bEnDis)
+void CAN_EnableLowPower( Can * pCan, uint8_t bEnDis )
 {
-    if (bEnDis) pCan->CAN_MR |=  CAN_MR_LPM;
-    else        pCan->CAN_MR &= ~CAN_MR_LPM;
+    if( bEnDis )
+        pCan->CAN_MR |= CAN_MR_LPM;
+    else
+        pCan->CAN_MR &= ~CAN_MR_LPM;
 }
 
 /**
@@ -82,10 +86,12 @@ void CAN_EnableLowPower(Can *pCan, uint8_t bEnDis)
  * \param pCan   Pointer to Can instance.
  * \param bEnDis 1 to enable and 0 to disable.
  */
-void CAN_EnableAutobaud(Can *pCan, uint8_t bEnDis)
+void CAN_EnableAutobaud( Can * pCan, uint8_t bEnDis )
 {
-    if (bEnDis) pCan->CAN_MR |=  CAN_MR_ABM;
-    else        pCan->CAN_MR &= ~CAN_MR_ABM;
+    if( bEnDis )
+        pCan->CAN_MR |= CAN_MR_ABM;
+    else
+        pCan->CAN_MR &= ~CAN_MR_ABM;
 }
 
 /**
@@ -93,10 +99,12 @@ void CAN_EnableAutobaud(Can *pCan, uint8_t bEnDis)
  * \param pCan   Pointer to Can instance.
  * \param bEnDis 1 to enable and 0 to disable.
  */
-void CAN_EnableOverloadFrame(Can *pCan, uint8_t bEnDis)
+void CAN_EnableOverloadFrame( Can * pCan, uint8_t bEnDis )
 {
-    if (bEnDis) pCan->CAN_MR |=  CAN_MR_OVL;
-    else        pCan->CAN_MR &= ~CAN_MR_OVL;
+    if( bEnDis )
+        pCan->CAN_MR |= CAN_MR_OVL;
+    else
+        pCan->CAN_MR &= ~CAN_MR_OVL;
 }
 
 /**
@@ -104,10 +112,12 @@ void CAN_EnableOverloadFrame(Can *pCan, uint8_t bEnDis)
  * \param pCan      Pointer to Can instance.
  * \param bEofSof   1 for EOF/0 for SOF.
  */
-void CAN_EnableTimeStampEof(Can *pCan, uint8_t bEofSof)
+void CAN_EnableTimeStampEof( Can * pCan, uint8_t bEofSof )
 {
-    if (bEofSof) pCan->CAN_MR |=  CAN_MR_TEOF;
-    else         pCan->CAN_MR &= ~CAN_MR_TEOF;
+    if( bEofSof )
+        pCan->CAN_MR |= CAN_MR_TEOF;
+    else
+        pCan->CAN_MR &= ~CAN_MR_TEOF;
 }
 
 /**
@@ -115,10 +125,12 @@ void CAN_EnableTimeStampEof(Can *pCan, uint8_t bEofSof)
  * \param pCan      Pointer to Can instance.
  * \param bEnDis    Enable/Disable Time Trigger Mode.
  */
-void CAN_EnableTimeTriggerMode(Can *pCan, uint8_t bEnDis)
+void CAN_EnableTimeTriggerMode( Can * pCan, uint8_t bEnDis )
 {
-    if (bEnDis) pCan->CAN_MR |=  CAN_MR_TTM;
-    else        pCan->CAN_MR &= ~CAN_MR_TTM;
+    if( bEnDis )
+        pCan->CAN_MR |= CAN_MR_TTM;
+    else
+        pCan->CAN_MR &= ~CAN_MR_TTM;
 }
 
 /**
@@ -126,10 +138,12 @@ void CAN_EnableTimeTriggerMode(Can *pCan, uint8_t bEnDis)
  * \param pCan      Pointer to Can instance.
  * \param bEnDis    Enable/Disable Timer Freeze.
  */
-void CAN_EnableTimerFreeze(Can *pCan, uint8_t bEnDis)
+void CAN_EnableTimerFreeze( Can * pCan, uint8_t bEnDis )
 {
-    if (bEnDis) pCan->CAN_MR |=  CAN_MR_TIMFRZ;
-    else        pCan->CAN_MR &= ~CAN_MR_TIMFRZ;
+    if( bEnDis )
+        pCan->CAN_MR |= CAN_MR_TIMFRZ;
+    else
+        pCan->CAN_MR &= ~CAN_MR_TIMFRZ;
 }
 
 /**
@@ -137,10 +151,12 @@ void CAN_EnableTimerFreeze(Can *pCan, uint8_t bEnDis)
  * \param pCan      Pointer to Can instance.
  * \param bEnDis    Disable/Enable Repeat.
  */
-void CAN_DisableRepeat(Can *pCan, uint8_t bDisEn)
+void CAN_DisableRepeat( Can * pCan, uint8_t bDisEn )
 {
-    if (bDisEn) pCan->CAN_MR |=  CAN_MR_DRPT;
-    else        pCan->CAN_MR &= ~CAN_MR_DRPT;
+    if( bDisEn )
+        pCan->CAN_MR |= CAN_MR_DRPT;
+    else
+        pCan->CAN_MR &= ~CAN_MR_DRPT;
 }
 
 /* ---------- Interrupt settings ------------- */
@@ -150,7 +166,7 @@ void CAN_DisableRepeat(Can *pCan, uint8_t bDisEn)
  * \param pCan      Pointer to Can instance.
  * \param dwSources Interrupt sources bits.
  */
-void CAN_EnableIt(Can *pCan, uint32_t dwSources)
+void CAN_EnableIt( Can * pCan, uint32_t dwSources )
 {
     pCan->CAN_IER = dwSources;
 }
@@ -160,7 +176,7 @@ void CAN_EnableIt(Can *pCan, uint32_t dwSources)
  * \param pCan      Pointer to Can instance.
  * \param dwSources Interrupt sources bits.
  */
-void CAN_DisableIt(Can *pCan, uint32_t dwSources)
+void CAN_DisableIt( Can * pCan, uint32_t dwSources )
 {
     pCan->CAN_IDR = dwSources;
 }
@@ -169,7 +185,7 @@ void CAN_DisableIt(Can *pCan, uint32_t dwSources)
  * \brief Return CAN Interrupts Masks
  * \param pCan      Pointer to Can instance.
  */
-uint32_t CAN_GetItMask(Can *pCan)
+uint32_t CAN_GetItMask( Can * pCan )
 {
     return pCan->CAN_IMR;
 }
@@ -178,7 +194,7 @@ uint32_t CAN_GetItMask(Can *pCan)
  * \brief Return CAN Statuses
  * \param pCan      Pointer to Can instance.
  */
-uint32_t CAN_GetStatus(Can *pCan)
+uint32_t CAN_GetStatus( Can * pCan )
 {
     return pCan->CAN_SR;
 }
@@ -191,22 +207,27 @@ uint32_t CAN_GetStatus(Can *pCan)
  * \param dwMck      MCK.
  * \return 1 in success, otherwise return 0.
  */
-uint8_t CAN_CalcBaudrate(Can *pCan, uint32_t dwBaudrate, uint32_t dwMck)
+uint8_t CAN_CalcBaudrate( Can * pCan, uint32_t dwBaudrate, uint32_t dwMck )
 {
     uint32_t BRP, PROPAG, PHASE1, PHASE2, SJW;
-    uint8_t  TQ;
+    uint8_t TQ;
     uint32_t t1t2;
     uint32_t maxClock;
     uint32_t id = ID_CAN0;
 
-    if ((uint32_t)pCan == (uint32_t)CAN0) id = ID_CAN0;
-       else if ((uint32_t)pCan == (uint32_t)CAN1) id = ID_CAN1;
-    maxClock = PMC_SetPeriMaxClock(id, dwMck);
+    if( ( uint32_t ) pCan == ( uint32_t ) CAN0 )
+        id = ID_CAN0;
+    else if( ( uint32_t ) pCan == ( uint32_t ) CAN1 )
+        id = ID_CAN1;
+    maxClock = PMC_SetPeriMaxClock( id, dwMck );
 
-    if (dwBaudrate >= 1000) TQ = 8;
-    else                    TQ = 16;
-    BRP = (maxClock / (dwBaudrate * 1000 * TQ)) - 1;
-    if (BRP == 0) {
+    if( dwBaudrate >= 1000 )
+        TQ = 8;
+    else
+        TQ = 16;
+    BRP = ( maxClock / ( dwBaudrate * 1000 * TQ ) ) - 1;
+    if( BRP == 0 )
+    {
         return 0;
     }
 
@@ -214,34 +235,36 @@ uint8_t CAN_CalcBaudrate(Can *pCan, uint32_t dwBaudrate, uint32_t dwMck)
        Delay Bus Driver     - 50ns
        Delay Receiver       - 30ns
        Delay Bus Line (20m) - 110ns */
-    if ( (TQ * dwBaudrate * 2 * (50+30+110)/1000000) >= 1 )
-        PROPAG = (TQ * dwBaudrate * 2 * (50+30+110)/1000000) - 1;
+    if( ( TQ * dwBaudrate * 2 * ( 50 + 30 + 110 ) / 1000000 ) >= 1 )
+        PROPAG = ( TQ * dwBaudrate * 2 * ( 50 + 30 + 110 ) / 1000000 ) - 1;
     else
         PROPAG = 0;
-    t1t2 = TQ - 1 - (PROPAG + 1);
+    t1t2 = TQ - 1 - ( PROPAG + 1 );
 
-    if ( (t1t2 & 0x01) == 0x01 ) {
-        PHASE1 = ((t1t2 - 1) / 2) - 1;
+    if( ( t1t2 & 0x01 ) == 0x01 )
+    {
+        PHASE1 = ( ( t1t2 - 1 ) / 2 ) - 1;
         PHASE2 = PHASE1 + 1;
     }
-    else {
-        PHASE1 = ((t1t2) / 2) - 1;
+    else
+    {
+        PHASE1 = ( ( t1t2 ) / 2 ) - 1;
         PHASE2 = PHASE1;
     }
 
-    if ( 1 > (4/(PHASE1 + 1)) ) SJW = 3;
-    else                        SJW = PHASE1;
+    if( 1 > ( 4 / ( PHASE1 + 1 ) ) )
+        SJW = 3;
+    else
+        SJW = PHASE1;
 
-    if ( (PROPAG + PHASE1 + PHASE2) != (uint32_t)(TQ - 4) ) {
+    if( ( PROPAG + PHASE1 + PHASE2 ) != ( uint32_t ) ( TQ - 4 ) )
+    {
         return 0;
     }
 
-    pCan->CAN_BR = CAN_BR_PHASE2(PHASE2)
-                 | CAN_BR_PHASE1(PHASE1)
-                 | CAN_BR_PROPAG(PROPAG)
-                 | CAN_BR_SJW(SJW)
-                 | CAN_BR_BRP(BRP)
-                 | CAN_BR_SMP_ONCE;
+    pCan->CAN_BR = CAN_BR_PHASE2( PHASE2 ) | CAN_BR_PHASE1( PHASE1 ) |
+                   CAN_BR_PROPAG( PROPAG ) | CAN_BR_SJW( SJW ) |
+                   CAN_BR_BRP( BRP ) | CAN_BR_SMP_ONCE;
     return 1;
 }
 
@@ -250,7 +273,7 @@ uint8_t CAN_CalcBaudrate(Can *pCan, uint32_t dwBaudrate, uint32_t dwMck)
  * \param pCan      Pointer to Can instance.
  * \param dwBr      Setting value for CAN_BR.
  */
-void CAN_ConfigureBaudrate(Can *pCan, uint32_t dwBr)
+void CAN_ConfigureBaudrate( Can * pCan, uint32_t dwBr )
 {
     pCan->CAN_BR = dwBr;
 }
@@ -260,17 +283,19 @@ void CAN_ConfigureBaudrate(Can *pCan, uint32_t dwBr)
  * \param pCan      Pointer to Can instance.
  * \param bAvg3     Sample 3 times/sample once at sample point.
  */
-void CAN_SetSamplingMode(Can *pCan, uint8_t bAvg3)
+void CAN_SetSamplingMode( Can * pCan, uint8_t bAvg3 )
 {
-    if (bAvg3) pCan->CAN_BR |=  CAN_BR_SMP;
-    else       pCan->CAN_BR &= ~CAN_BR_SMP;
+    if( bAvg3 )
+        pCan->CAN_BR |= CAN_BR_SMP;
+    else
+        pCan->CAN_BR &= ~CAN_BR_SMP;
 }
 
 /**
  * \brief Return CAN Timer Register
  * \param pCan      Pointer to Can instance.
  */
-uint32_t CAN_GetTimer(Can *pCan)
+uint32_t CAN_GetTimer( Can * pCan )
 {
     return pCan->CAN_TIM;
 }
@@ -279,7 +304,7 @@ uint32_t CAN_GetTimer(Can *pCan)
  * \brief Return CAN TimeStamp Register
  * \param pCan      Pointer to Can instance.
  */
-uint32_t CAN_GetTimestamp(Can *pCan)
+uint32_t CAN_GetTimestamp( Can * pCan )
 {
     return pCan->CAN_TIMESTP;
 }
@@ -288,7 +313,7 @@ uint32_t CAN_GetTimestamp(Can *pCan)
  * \brief Return Error Count (TEC << 16) + REC
  * \param pCan      Pointer to Can instance.
  */
-uint32_t CAN_GetErrorCount(Can *pCan)
+uint32_t CAN_GetErrorCount( Can * pCan )
 {
     return pCan->CAN_ECR;
 }
@@ -297,18 +322,18 @@ uint32_t CAN_GetErrorCount(Can *pCan)
  * \brief Return Receive Error Count
  * \param pCan      Pointer to Can instance.
  */
-uint32_t CAN_GetRxErrorCount(Can *pCan)
+uint32_t CAN_GetRxErrorCount( Can * pCan )
 {
-    return (pCan->CAN_ECR & CAN_ECR_REC_Msk) >> CAN_ECR_REC_Pos;
+    return ( pCan->CAN_ECR & CAN_ECR_REC_Msk ) >> CAN_ECR_REC_Pos;
 }
 
 /**
  * \brief Return Transmit Error Count
  * \param pCan      Pointer to Can instance.
  */
-uint32_t CAN_GetTxErrorCount(Can *pCan)
+uint32_t CAN_GetTxErrorCount( Can * pCan )
 {
-    return (pCan->CAN_ECR & CAN_ECR_TEC_Msk) >> CAN_ECR_TEC_Pos;
+    return ( pCan->CAN_ECR & CAN_ECR_TEC_Msk ) >> CAN_ECR_TEC_Pos;
 }
 
 /**
@@ -316,7 +341,7 @@ uint32_t CAN_GetTxErrorCount(Can *pCan)
  * \param pCan       Pointer to Can instance.
  * \param dwRequests Transfer Command Requests.
  */
-void CAN_Command(Can *pCan, uint32_t dwRequests)
+void CAN_Command( Can * pCan, uint32_t dwRequests )
 {
     pCan->CAN_TCR = dwRequests;
 }
@@ -325,7 +350,7 @@ void CAN_Command(Can *pCan, uint32_t dwRequests)
  * \brief Resets CAN internal timer counter.
  * \param pCan       Pointer to Can instance.
  */
-void CAN_ResetTimer(Can *pCan)
+void CAN_ResetTimer( Can * pCan )
 {
     pCan->CAN_TCR = CAN_TCR_TIMRST;
 }
@@ -335,7 +360,7 @@ void CAN_ResetTimer(Can *pCan)
  * \param pCan       Pointer to Can instance.
  * \param bMb        Mailbox number.
  */
-void CAN_Tx(Can *pCan, uint8_t bMb)
+void CAN_Tx( Can * pCan, uint8_t bMb )
 {
     pCan->CAN_TCR = CAN_TCR_MB0 << bMb;
 }
@@ -345,7 +370,7 @@ void CAN_Tx(Can *pCan, uint8_t bMb)
  * \param pCan       Pointer to Can instance.
  * \param dwAborts   Abort requests.
  */
-void CAN_Abort(Can *pCan, uint32_t dwAborts)
+void CAN_Abort( Can * pCan, uint32_t dwAborts )
 {
     pCan->CAN_ACR = dwAborts;
 }
@@ -355,7 +380,7 @@ void CAN_Abort(Can *pCan, uint32_t dwAborts)
  * \param pCan       Pointer to Can instance.
  * \param bMb        Mailbox number.
  */
-void CAN_AbortMailbox(Can *pCan, uint8_t bMb)
+void CAN_AbortMailbox( Can * pCan, uint8_t bMb )
 {
     pCan->CAN_ACR = CAN_ACR_MB0 << bMb;
 }
@@ -366,9 +391,9 @@ void CAN_AbortMailbox(Can *pCan, uint8_t bMb)
  * \param bMb        Mailbox number.
  * \param dwMr       Mode settings.
  */
-void CAN_ConfigureMessageMode(Can *pCan, uint8_t bMb, uint32_t dwMr)
+void CAN_ConfigureMessageMode( Can * pCan, uint8_t bMb, uint32_t dwMr )
 {
-    pCan->CAN_MB[bMb].CAN_MMR = dwMr;
+    pCan->CAN_MB[ bMb ].CAN_MMR = dwMr;
 }
 
 /**
@@ -376,9 +401,9 @@ void CAN_ConfigureMessageMode(Can *pCan, uint8_t bMb, uint32_t dwMr)
  * \param pCan       Pointer to Can instance.
  * \param bMb        Mailbox number.
  */
-uint32_t CAN_GetMessageMode(Can *pCan, uint8_t bMb)
+uint32_t CAN_GetMessageMode( Can * pCan, uint8_t bMb )
 {
-    return pCan->CAN_MB[bMb].CAN_MMR;
+    return pCan->CAN_MB[ bMb ].CAN_MMR;
 }
 
 /**
@@ -387,10 +412,10 @@ uint32_t CAN_GetMessageMode(Can *pCan, uint8_t bMb)
  * \param bMb        Mailbox number.
  * \param bTimemarks Mailbox timemarks.
  */
-void CAN_SetTimemark(Can *pCan, uint8_t bMb, uint8_t bTimemarks)
+void CAN_SetTimemark( Can * pCan, uint8_t bMb, uint8_t bTimemarks )
 {
-    uint32_t dwMmr = (pCan->CAN_MB[bMb].CAN_MMR) & (~0xFFu);
-    pCan->CAN_MB[bMb].CAN_MMR = dwMmr | ((bTimemarks << 0) & 0xFF);
+    uint32_t dwMmr = ( pCan->CAN_MB[ bMb ].CAN_MMR ) & ( ~0xFFu );
+    pCan->CAN_MB[ bMb ].CAN_MMR = dwMmr | ( ( bTimemarks << 0 ) & 0xFF );
 }
 
 /**
@@ -399,10 +424,10 @@ void CAN_SetTimemark(Can *pCan, uint8_t bMb, uint8_t bTimemarks)
  * \param bMb        Mailbox number.
  * \param bPriority  Mailbox Priority.
  */
-void CAN_SetPriority(Can *pCan, uint8_t bMb, uint8_t bPriority)
+void CAN_SetPriority( Can * pCan, uint8_t bMb, uint8_t bPriority )
 {
-    uint32_t dwMmr = (pCan->CAN_MB[bMb].CAN_MMR & ~CAN_MMR_PRIOR_Msk);
-    pCan->CAN_MB[bMb].CAN_MMR = dwMmr | CAN_MMR_PRIOR(bPriority);
+    uint32_t dwMmr = ( pCan->CAN_MB[ bMb ].CAN_MMR & ~CAN_MMR_PRIOR_Msk );
+    pCan->CAN_MB[ bMb ].CAN_MMR = dwMmr | CAN_MMR_PRIOR( bPriority );
 }
 
 /**
@@ -411,10 +436,12 @@ void CAN_SetPriority(Can *pCan, uint8_t bMb, uint8_t bPriority)
  * \param bMb        Mailbox number.
  * \param bType      Mailbox Object Type.
  */
-void CAN_SetObjectType(Can *pCan, uint8_t bMb, uint8_t bType)
+void CAN_SetObjectType( Can * pCan, uint8_t bMb, uint8_t bType )
 {
-    uint32_t dwMr = (pCan->CAN_MB[bMb].CAN_MMR & CAN_MMR_MOT_Msk) >> CAN_MMR_MOT_Pos;
-    pCan->CAN_MB[bMb].CAN_MMR |= dwMr | ((bType << CAN_MMR_MOT_Pos) & CAN_MMR_MOT_Msk);
+    uint32_t dwMr = ( pCan->CAN_MB[ bMb ].CAN_MMR & CAN_MMR_MOT_Msk ) >>
+                    CAN_MMR_MOT_Pos;
+    pCan->CAN_MB[ bMb ].CAN_MMR |= dwMr | ( ( bType << CAN_MMR_MOT_Pos ) &
+                                            CAN_MMR_MOT_Msk );
 }
 
 /**
@@ -423,9 +450,11 @@ void CAN_SetObjectType(Can *pCan, uint8_t bMb, uint8_t bType)
  * \param bMb        Mailbox number.
  * \param dwMam      The setting value for _MAMx.
  */
-void CAN_ConfigureMessageAcceptanceMask(Can *pCan, uint8_t bMb, uint32_t dwMAM)
+void CAN_ConfigureMessageAcceptanceMask( Can * pCan,
+                                         uint8_t bMb,
+                                         uint32_t dwMAM )
 {
-    pCan->CAN_MB[bMb].CAN_MAM = dwMAM;
+    pCan->CAN_MB[ bMb ].CAN_MAM = dwMAM;
 }
 
 /**
@@ -433,9 +462,9 @@ void CAN_ConfigureMessageAcceptanceMask(Can *pCan, uint8_t bMb, uint32_t dwMAM)
  * \param pCan       Pointer to Can instance.
  * \param bMb        Mailbox number.
  */
-uint32_t CAN_GetMessageAcceptanceMask(Can *pCan, uint8_t bMb)
+uint32_t CAN_GetMessageAcceptanceMask( Can * pCan, uint8_t bMb )
 {
-    return pCan->CAN_MB[bMb].CAN_MAM;
+    return pCan->CAN_MB[ bMb ].CAN_MAM;
 }
 
 /**
@@ -444,10 +473,12 @@ uint32_t CAN_GetMessageAcceptanceMask(Can *pCan, uint8_t bMb)
  * \param bMb        Mailbox number.
  * \param bIdCfg     IDvA and IDvB/IDvA only Identify.
  */
-void CAN_ConfigureIdentifierMask(Can *pCan, uint8_t bMb, uint8_t bIdCfg)
+void CAN_ConfigureIdentifierMask( Can * pCan, uint8_t bMb, uint8_t bIdCfg )
 {
-    if (bIdCfg) pCan->CAN_MB[bMb].CAN_MAM |=  CAN_MAM_MIDE;
-    else        pCan->CAN_MB[bMb].CAN_MAM &= ~CAN_MAM_MIDE;
+    if( bIdCfg )
+        pCan->CAN_MB[ bMb ].CAN_MAM |= CAN_MAM_MIDE;
+    else
+        pCan->CAN_MB[ bMb ].CAN_MAM &= ~CAN_MAM_MIDE;
 }
 
 /**
@@ -456,22 +487,21 @@ void CAN_ConfigureIdentifierMask(Can *pCan, uint8_t bMb, uint8_t bIdCfg)
  * \param bMb        Mailbox number.
  * \param dwMIDvA    Identifier for standard frame mode.
  */
-void CAN_SetMIDvAMask(Can *pCan, uint8_t bMb, uint32_t dwIDvA)
+void CAN_SetMIDvAMask( Can * pCan, uint8_t bMb, uint32_t dwIDvA )
 {
-    uint32_t dwMam = pCan->CAN_MB[bMb].CAN_MAM & CAN_MAM_MIDvA_Msk;
-    pCan->CAN_MB[bMb].CAN_MAM = dwMam | CAN_MAM_MIDvA(dwIDvA);
+    uint32_t dwMam = pCan->CAN_MB[ bMb ].CAN_MAM & CAN_MAM_MIDvA_Msk;
+    pCan->CAN_MB[ bMb ].CAN_MAM = dwMam | CAN_MAM_MIDvA( dwIDvA );
 }
 
 /**
- * \brief Set Complementary bits for identifier in extended frame mode (MIDvB) mask
- * \param pCan       Pointer to Can instance.
- * \param bMb        Mailbox number.
- * \param dwMIDvB    Identifier for extended frame mode.
+ * \brief Set Complementary bits for identifier in extended frame mode (MIDvB)
+ * mask \param pCan       Pointer to Can instance. \param bMb        Mailbox
+ * number. \param dwMIDvB    Identifier for extended frame mode.
  */
-void CAN_SetMIDvBMask(Can *pCan, uint8_t bMb, uint32_t dwIDvA)
+void CAN_SetMIDvBMask( Can * pCan, uint8_t bMb, uint32_t dwIDvA )
 {
-    uint32_t dwMam = pCan->CAN_MB[bMb].CAN_MAM & CAN_MAM_MIDvB_Msk;
-    pCan->CAN_MB[bMb].CAN_MAM = dwMam | CAN_MAM_MIDvB(dwIDvA);
+    uint32_t dwMam = pCan->CAN_MB[ bMb ].CAN_MAM & CAN_MAM_MIDvB_Msk;
+    pCan->CAN_MB[ bMb ].CAN_MAM = dwMam | CAN_MAM_MIDvB( dwIDvA );
 }
 
 /**
@@ -480,9 +510,9 @@ void CAN_SetMIDvBMask(Can *pCan, uint8_t bMb, uint32_t dwIDvA)
  * \param bMb        Mailbox number.
  * \param dwMID      The setting value for _MIDx.
  */
-void CAN_ConfigureMessageID(Can *pCan, uint8_t bMb, uint32_t dwMID)
+void CAN_ConfigureMessageID( Can * pCan, uint8_t bMb, uint32_t dwMID )
 {
-    pCan->CAN_MB[bMb].CAN_MID = dwMID;
+    pCan->CAN_MB[ bMb ].CAN_MID = dwMID;
 }
 
 /**
@@ -490,9 +520,9 @@ void CAN_ConfigureMessageID(Can *pCan, uint8_t bMb, uint32_t dwMID)
  * \param pCan       Pointer to Can instance.
  * \param bMb        Mailbox number.
  */
-uint32_t CAN_GetMessageID(Can *pCan, uint8_t bMb)
+uint32_t CAN_GetMessageID( Can * pCan, uint8_t bMb )
 {
-    return pCan->CAN_MB[bMb].CAN_MID;
+    return pCan->CAN_MB[ bMb ].CAN_MID;
 }
 
 /**
@@ -501,10 +531,10 @@ uint32_t CAN_GetMessageID(Can *pCan, uint8_t bMb)
  * \param bMb        Mailbox number.
  * \param bIdVer     2.0 Part B/2.0 Part A.
  */
-void CAN_ConfigureIdVer(Can *pCan, uint8_t bMb, uint8_t bIdVer)
+void CAN_ConfigureIdVer( Can * pCan, uint8_t bMb, uint8_t bIdVer )
 {
-    uint32_t dwMid = pCan->CAN_MB[bMb].CAN_MID & CAN_MID_MIDE;
-    pCan->CAN_MB[bMb].CAN_MID = dwMid | (bIdVer ? CAN_MID_MIDE : 0);
+    uint32_t dwMid = pCan->CAN_MB[ bMb ].CAN_MID & CAN_MID_MIDE;
+    pCan->CAN_MB[ bMb ].CAN_MID = dwMid | ( bIdVer ? CAN_MID_MIDE : 0 );
 }
 
 /**
@@ -513,22 +543,21 @@ void CAN_ConfigureIdVer(Can *pCan, uint8_t bMb, uint8_t bIdVer)
  * \param bMb        Mailbox number.
  * \param dwMIDvA    Identifier for standard frame mode.
  */
-void CAN_SetMIDvA(Can *pCan, uint8_t bMb, uint32_t dwIDvA)
+void CAN_SetMIDvA( Can * pCan, uint8_t bMb, uint32_t dwIDvA )
 {
-    uint32_t dwMam = pCan->CAN_MB[bMb].CAN_MID & CAN_MID_MIDvA_Msk;
-    pCan->CAN_MB[bMb].CAN_MID = dwMam | CAN_MID_MIDvA(dwIDvA);
+    uint32_t dwMam = pCan->CAN_MB[ bMb ].CAN_MID & CAN_MID_MIDvA_Msk;
+    pCan->CAN_MB[ bMb ].CAN_MID = dwMam | CAN_MID_MIDvA( dwIDvA );
 }
 
 /**
- * \brief Set Complementary bits for identifier in extended frame mode (MIDvB) value
- * \param pCan       Pointer to Can instance.
- * \param bMb        Mailbox number.
- * \param dwMIDvB    Identifier for extended frame mode.
+ * \brief Set Complementary bits for identifier in extended frame mode (MIDvB)
+ * value \param pCan       Pointer to Can instance. \param bMb        Mailbox
+ * number. \param dwMIDvB    Identifier for extended frame mode.
  */
-void CAN_SetMIDvB(Can *pCan, uint8_t bMb, uint32_t dwIDvA)
+void CAN_SetMIDvB( Can * pCan, uint8_t bMb, uint32_t dwIDvA )
 {
-    uint32_t dwMam = pCan->CAN_MB[bMb].CAN_MID & CAN_MID_MIDvB_Msk;
-    pCan->CAN_MB[bMb].CAN_MID = dwMam | CAN_MID_MIDvB(dwIDvA);
+    uint32_t dwMam = pCan->CAN_MB[ bMb ].CAN_MID & CAN_MID_MIDvB_Msk;
+    pCan->CAN_MB[ bMb ].CAN_MID = dwMam | CAN_MID_MIDvB( dwIDvA );
 }
 
 /**
@@ -536,9 +565,9 @@ void CAN_SetMIDvB(Can *pCan, uint8_t bMb, uint32_t dwIDvA)
  * \param pCan       Pointer to Can instance.
  * \param bMb        Mailbox number.
  */
-uint32_t CAN_GetFamilyID(Can *pCan, uint8_t bMb)
+uint32_t CAN_GetFamilyID( Can * pCan, uint8_t bMb )
 {
-    return pCan->CAN_MB[bMb].CAN_MFID;
+    return pCan->CAN_MB[ bMb ].CAN_MFID;
 }
 
 /**
@@ -546,9 +575,9 @@ uint32_t CAN_GetFamilyID(Can *pCan, uint8_t bMb)
  * \param pCan       Pointer to Can instance.
  * \param bMb        Mailbox number.
  */
-uint32_t CAN_GetMessageStatus(Can *pCan, uint8_t bMb)
+uint32_t CAN_GetMessageStatus( Can * pCan, uint8_t bMb )
 {
-    return pCan->CAN_MB[bMb].CAN_MSR;
+    return pCan->CAN_MB[ bMb ].CAN_MSR;
 }
 
 /**
@@ -556,9 +585,9 @@ uint32_t CAN_GetMessageStatus(Can *pCan, uint8_t bMb)
  * \param pCan       Pointer to Can instance.
  * \param bMb        Mailbox number.
  */
-uint32_t CAN_GetMessageDataL(Can *pCan, uint8_t bMb)
+uint32_t CAN_GetMessageDataL( Can * pCan, uint8_t bMb )
 {
-    return pCan->CAN_MB[bMb].CAN_MDL;
+    return pCan->CAN_MB[ bMb ].CAN_MDL;
 }
 
 /**
@@ -567,9 +596,9 @@ uint32_t CAN_GetMessageDataL(Can *pCan, uint8_t bMb)
  * \param bMb        Mailbox number.
  * \param dwL        Data Low Value.
  */
-void CAN_SetMessageDataL(Can *pCan, uint8_t bMb, uint32_t dwL)
+void CAN_SetMessageDataL( Can * pCan, uint8_t bMb, uint32_t dwL )
 {
-    pCan->CAN_MB[bMb].CAN_MDL = dwL;
+    pCan->CAN_MB[ bMb ].CAN_MDL = dwL;
 }
 
 /**
@@ -578,9 +607,9 @@ void CAN_SetMessageDataL(Can *pCan, uint8_t bMb, uint32_t dwL)
  * \param bMb        Mailbox number.
  * \param dwH        Data High Value.
  */
-void CAN_SetMessageDataH(Can *pCan, uint8_t bMb, uint32_t dwH)
+void CAN_SetMessageDataH( Can * pCan, uint8_t bMb, uint32_t dwH )
 {
-    pCan->CAN_MB[bMb].CAN_MDH = dwH;
+    pCan->CAN_MB[ bMb ].CAN_MDH = dwH;
 }
 
 /**
@@ -588,9 +617,9 @@ void CAN_SetMessageDataH(Can *pCan, uint8_t bMb, uint32_t dwH)
  * \param pCan       Pointer to Can instance.
  * \param bMb        Mailbox number.
  */
-uint32_t CAN_GetMessageDataH(Can *pCan, uint8_t bMb)
+uint32_t CAN_GetMessageDataH( Can * pCan, uint8_t bMb )
 {
-    return pCan->CAN_MB[bMb].CAN_MDH;
+    return pCan->CAN_MB[ bMb ].CAN_MDH;
 }
 
 /**
@@ -599,10 +628,10 @@ uint32_t CAN_GetMessageDataH(Can *pCan, uint8_t bMb)
  * \param bMb        Mailbox number.
  * \param pDwData    Pointer to a buffer for data.
  */
-void CAN_SetMessage(Can *pCan, uint8_t bMb, uint32_t *pDwData)
+void CAN_SetMessage( Can * pCan, uint8_t bMb, uint32_t * pDwData )
 {
-    pCan->CAN_MB[bMb].CAN_MDL = pDwData[0];
-    pCan->CAN_MB[bMb].CAN_MDH = pDwData[1];
+    pCan->CAN_MB[ bMb ].CAN_MDL = pDwData[ 0 ];
+    pCan->CAN_MB[ bMb ].CAN_MDH = pDwData[ 1 ];
 }
 
 /**
@@ -611,10 +640,10 @@ void CAN_SetMessage(Can *pCan, uint8_t bMb, uint32_t *pDwData)
  * \param bMb        Mailbox number.
  * \param pDwData    Pointer to a buffer for data.
  */
-void CAN_GetMessage(Can *pCan, uint8_t bMb, uint32_t *pDwData)
+void CAN_GetMessage( Can * pCan, uint8_t bMb, uint32_t * pDwData )
 {
-    pDwData[0] = pCan->CAN_MB[bMb].CAN_MDL;
-    pDwData[1] = pCan->CAN_MB[bMb].CAN_MDH;
+    pDwData[ 0 ] = pCan->CAN_MB[ bMb ].CAN_MDL;
+    pDwData[ 1 ] = pCan->CAN_MB[ bMb ].CAN_MDH;
 }
 
 /**
@@ -622,10 +651,10 @@ void CAN_GetMessage(Can *pCan, uint8_t bMb, uint32_t *pDwData)
  * \param pCan       Pointer to Can instance.
  * \param bMb        Mailbox number.
  */
-void CAN_SetMessageData64(Can *pCan, uint8_t bMb, uint64_t u64)
+void CAN_SetMessageData64( Can * pCan, uint8_t bMb, uint64_t u64 )
 {
-    pCan->CAN_MB[bMb].CAN_MDL = (uint32_t)u64;
-    pCan->CAN_MB[bMb].CAN_MDH = (u64 >> 32);
+    pCan->CAN_MB[ bMb ].CAN_MDL = ( uint32_t ) u64;
+    pCan->CAN_MB[ bMb ].CAN_MDH = ( u64 >> 32 );
 }
 
 /**
@@ -633,10 +662,10 @@ void CAN_SetMessageData64(Can *pCan, uint8_t bMb, uint64_t u64)
  * \param pCan       Pointer to Can instance.
  * \param bMb        Mailbox number.
  */
-uint64_t CAN_GetMessageData64(Can *pCan, uint8_t bMb)
+uint64_t CAN_GetMessageData64( Can * pCan, uint8_t bMb )
 {
-    uint64_t ddwMd = (uint64_t)pCan->CAN_MB[bMb].CAN_MDH << 32;
-    ddwMd += pCan->CAN_MB[bMb].CAN_MDL;
+    uint64_t ddwMd = ( uint64_t ) pCan->CAN_MB[ bMb ].CAN_MDH << 32;
+    ddwMd += pCan->CAN_MB[ bMb ].CAN_MDL;
     return ddwMd;
 }
 
@@ -646,9 +675,9 @@ uint64_t CAN_GetMessageData64(Can *pCan, uint8_t bMb)
  * \param bMb        Mailbox number.
  * \param dwCtrl     Control value.
  */
-void CAN_MessageControl(Can *pCan, uint8_t bMb, uint32_t dwCtrl)
+void CAN_MessageControl( Can * pCan, uint8_t bMb, uint32_t dwCtrl )
 {
-    pCan->CAN_MB[bMb].CAN_MCR = dwCtrl;
+    pCan->CAN_MB[ bMb ].CAN_MCR = dwCtrl;
 }
 
 /**
@@ -656,9 +685,9 @@ void CAN_MessageControl(Can *pCan, uint8_t bMb, uint32_t dwCtrl)
  * \param pCan       Pointer to Can instance.
  * \param bMb        Mailbox number.
  */
-void CAN_MessageRemote(Can *pCan, uint8_t bMb)
+void CAN_MessageRemote( Can * pCan, uint8_t bMb )
 {
-    pCan->CAN_MB[bMb].CAN_MCR = CAN_MCR_MRTR;
+    pCan->CAN_MB[ bMb ].CAN_MCR = CAN_MCR_MRTR;
 }
 
 /**
@@ -666,9 +695,9 @@ void CAN_MessageRemote(Can *pCan, uint8_t bMb)
  * \param pCan       Pointer to Can instance.
  * \param bMb        Mailbox number.
  */
-void CAN_MessageAbort(Can *pCan, uint8_t bMb)
+void CAN_MessageAbort( Can * pCan, uint8_t bMb )
 {
-    pCan->CAN_MB[bMb].CAN_MCR = CAN_MCR_MACR;
+    pCan->CAN_MB[ bMb ].CAN_MCR = CAN_MCR_MACR;
 }
 
 /**
@@ -677,9 +706,9 @@ void CAN_MessageAbort(Can *pCan, uint8_t bMb)
  * \param bMb        Mailbox number.
  * \param bLen       Message length.
  */
-void CAN_MessageTx(Can *pCan, uint8_t bMb, uint8_t bLen)
+void CAN_MessageTx( Can * pCan, uint8_t bMb, uint8_t bLen )
 {
-    pCan->CAN_MB[bMb].CAN_MCR = CAN_MCR_MTCR | CAN_MCR_MDLC(bLen);
+    pCan->CAN_MB[ bMb ].CAN_MCR = CAN_MCR_MTCR | CAN_MCR_MDLC( bLen );
 }
 
 /**
@@ -687,11 +716,10 @@ void CAN_MessageTx(Can *pCan, uint8_t bMb, uint8_t bLen)
  * \param pCan       Pointer to Can instance.
  * \param bMb        Mailbox number.
  */
-void CAN_MessageRx(Can *pCan, uint8_t bMb)
+void CAN_MessageRx( Can * pCan, uint8_t bMb )
 {
-    pCan->CAN_MB[bMb].CAN_MCR = CAN_MCR_MTCR;
+    pCan->CAN_MB[ bMb ].CAN_MCR = CAN_MCR_MTCR;
 }
 
 #endif
 /**@}*/
-

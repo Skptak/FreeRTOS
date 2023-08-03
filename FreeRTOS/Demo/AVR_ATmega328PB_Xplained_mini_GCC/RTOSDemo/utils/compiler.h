@@ -57,21 +57,21 @@
  * \{
  */
 
-#if defined(__GNUC__)
-#include <avr/io.h>
-#include <avr/builtins.h>
-#elif defined(__ICCAVR__)
-#define ENABLE_BIT_DEFINITIONS 1
-#include <ioavr.h>
-#include <intrinsics.h>
+#if defined( __GNUC__ )
+    #include <avr/builtins.h>
+    #include <avr/io.h>
+#elif defined( __ICCAVR__ )
+    #define ENABLE_BIT_DEFINITIONS 1
+    #include <intrinsics.h>
+    #include <ioavr.h>
 
 #else
-#error Unsupported compiler.
+    #error Unsupported compiler.
 #endif
 
 #include <stdbool.h>
-#include <stdint.h>
 #include <stddef.h>
+#include <stdint.h>
 #include <stdlib.h>
 
 #include <interrupt_avr8.h>
@@ -80,6 +80,6 @@
  * \def UNUSED
  * \brief Marking \a v as a unused parameter or value.
  */
-#define UNUSED(v) (void)(v)
+#define UNUSED( v ) ( void ) ( v )
 
 #endif /* UTILS_COMPILER_H */

@@ -13,8 +13,8 @@
  * @brief MSS IO related code
  *
  */
-#include <string.h>
 #include <stdio.h>
+#include <string.h>
 
 #include "mpfs_hal/mss_hal.h"
 
@@ -22,11 +22,10 @@
  * external functions
  */
 
-
 /*
  * IOMUX values from Libero
  */
-IOMUX_CONFIG   iomux_config_values = {
+IOMUX_CONFIG iomux_config_values = {
     LIBERO_SETTING_IOMUX0_CR, /* Selects whether the peripheral is connected to
                                  the Fabric or IOMUX structure. */
     LIBERO_SETTING_IOMUX1_CR, /* BNK4 SDV PAD 0 to 7, each IO has 4 bits   */
@@ -96,51 +95,51 @@ MSSIO_BANK2_CONFIG mssio_bank2_io_config = {
 /*******************************************************************************
  * Local functions
  */
-static uint8_t io_mux_and_bank_config(void);
+static uint8_t io_mux_and_bank_config( void );
 
-/***************************************************************************//**
- *    MSSIO OFF Mode
- *
- *    The following settings are applied if MMSIO unused/off
- *
- *      The IO Buffers are disabled.
- *      Output drivers are disabled (set the drv<3:0> bits to 0000, output
- *      enable "mss_oe" bit to 0)
- *      Disable the WPU bit set to 0 and enable the WPD bit set to 1.
- *      Receivers are disabled. (Ibufmd<2:0> set to 7)
- *
- *      MSS can enable OFF mode through configurator bit for selective MSSIO
- *      from Bank2/Bank4 by making drv<3:0>/mss_oe bit to "0" for that
- *      particular MSSIO making Output driver disabled and ibufmd <2:0>  bit to
- *      "7" for that particular MSSIO making input receiver disabled.
- *
- */
+/***************************************************************************/ /**
+                                                                               *    MSSIO OFF Mode
+                                                                               *
+                                                                               *    The following settings are applied if MMSIO unused/off
+                                                                               *
+                                                                               *      The IO Buffers are disabled.
+                                                                               *      Output drivers are disabled (set the drv<3:0> bits to 0000, output
+                                                                               *      enable "mss_oe" bit to 0)
+                                                                               *      Disable the WPU bit set to 0 and enable the WPD bit set to 1.
+                                                                               *      Receivers are disabled. (Ibufmd<2:0> set to 7)
+                                                                               *
+                                                                               *      MSS can enable OFF mode through configurator bit for selective MSSIO
+                                                                               *      from Bank2/Bank4 by making drv<3:0>/mss_oe bit to "0" for that
+                                                                               *      particular MSSIO making Output driver disabled and ibufmd <2:0>  bit to
+                                                                               *      "7" for that particular MSSIO making input receiver disabled.
+                                                                               *
+                                                                               */
 
-/***************************************************************************//**
- * mssio_setup()
- *
- * Setup the IOMUX and IO bank 2 and 4.
- *
- * To setup bank 2 and 4, ncode and pcode scb registers in system
- * register block are set as per Libero supplied values.
- * These need to be transferred to I/0
- *
- * @return 0 => pass
- */
-uint8_t mssio_setup(void)
+/***************************************************************************/ /**
+                                                                               * mssio_setup()
+                                                                               *
+                                                                               * Setup the IOMUX and IO bank 2 and 4.
+                                                                               *
+                                                                               * To setup bank 2 and 4, ncode and pcode scb registers in system
+                                                                               * register block are set as per Libero supplied values.
+                                                                               * These need to be transferred to I/0
+                                                                               *
+                                                                               * @return 0 => pass
+                                                                               */
+uint8_t mssio_setup( void )
 {
     uint8_t ret_status = 0U;
     ret_status = io_mux_and_bank_config();
     set_bank2_and_bank4_volts();
-    return (ret_status);
+    return ( ret_status );
 }
 
-/***************************************************************************//**
- * io_mux_and_bank_config(void)
- * sets up the IOMUX and bank 2 and 4 pcodes and n codes
- * @return 0 => OK
- */
-static uint8_t io_mux_and_bank_config(void)
+/***************************************************************************/ /**
+                                                                               * io_mux_and_bank_config(void)
+                                                                               * sets up the IOMUX and bank 2 and 4 pcodes and n codes
+                                                                               * @return 0 => OK
+                                                                               */
+static uint8_t io_mux_and_bank_config( void )
 {
     /* Configure IO mux's
      *
@@ -155,9 +154,9 @@ static uint8_t io_mux_and_bank_config(void)
      * entry to the IOMUX structure
      *
      * */
-    config_32_copy((void *)(&(SYSREG->IOMUX0_CR)),
-                &(iomux_config_values),
-                sizeof(IOMUX_CONFIG));
+    config_32_copy( ( void * ) ( &( SYSREG->IOMUX0_CR ) ),
+                    &( iomux_config_values ),
+                    sizeof( IOMUX_CONFIG ) );
 
     /*
      * Configure MSS IO banks
@@ -187,17 +186,17 @@ static uint8_t io_mux_and_bank_config(void)
         |      io_cfg_lp_bypass_en  |14             |      |
      * */
 
-    config_32_copy((void *)(&(SYSREG->MSSIO_BANK4_IO_CFG_0_1_CR)),
-                &(mssio_bank4_io_config),
-                sizeof(MSSIO_BANK4_CONFIG));
+    config_32_copy( ( void * ) ( &( SYSREG->MSSIO_BANK4_IO_CFG_0_1_CR ) ),
+                    &( mssio_bank4_io_config ),
+                    sizeof( MSSIO_BANK4_CONFIG ) );
 
-    config_32_copy((void *)(&(SYSREG->MSSIO_BANK2_IO_CFG_0_1_CR)),
-                &(mssio_bank2_io_config),
-                sizeof(MSSIO_BANK2_CONFIG));
+    config_32_copy( ( void * ) ( &( SYSREG->MSSIO_BANK2_IO_CFG_0_1_CR ) ),
+                    &( mssio_bank2_io_config ),
+                    sizeof( MSSIO_BANK2_CONFIG ) );
 
     set_bank2_and_bank4_volts();
 
-    return(0L);
+    return ( 0L );
 }
 
 /**
@@ -208,74 +207,72 @@ static uint8_t io_mux_and_bank_config(void)
  *   vs
  * @return
  */
-void set_bank2_and_bank4_volts(void)
+void set_bank2_and_bank4_volts( void )
 {
-
-    SCB_REGS->MSSIO_BANK2_CFG_CR.MSSIO_BANK2_CFG_CR =\
-                (uint32_t)LIBERO_SETTING_MSSIO_BANK2_CFG_CR;
-    SCB_REGS->MSSIO_BANK4_CFG_CR.MSSIO_BANK4_CFG_CR =\
-                (uint32_t)LIBERO_SETTING_MSSIO_BANK4_CFG_CR;
+    SCB_REGS->MSSIO_BANK2_CFG_CR.MSSIO_BANK2_CFG_CR = ( uint32_t )
+        LIBERO_SETTING_MSSIO_BANK2_CFG_CR;
+    SCB_REGS->MSSIO_BANK4_CFG_CR.MSSIO_BANK4_CFG_CR = ( uint32_t )
+        LIBERO_SETTING_MSSIO_BANK4_CFG_CR;
 
     return;
 }
 
 #ifdef EXAMPLE_MSSIO_APP_CODE
-#include "drivers/mss_gpio/mss_gpio.h"
+    #include "drivers/mss_gpio/mss_gpio.h"
 /**
  *
  * @return 0 => OK
  */
-int32_t gpio_toggle_test(void)
+int32_t gpio_toggle_test( void )
 {
     SYSREG->TEMP0 = 0x11111111;
 
-    for (int l = 0 ; l < 14 ; l++)
+    for( int l = 0; l < 14; l++ )
     {
-        for (int i = 0 ; i < 14 ; i++)
+        for( int i = 0; i < 14; i++ )
         {
             SYSREG->TEMP0 = 0x12345678;
-            MSS_GPIO_set_output(GPIO0_LO, i, 0x0);
+            MSS_GPIO_set_output( GPIO0_LO, i, 0x0 );
         }
-        for (int i = 0 ; i < 24 ; i++)
+        for( int i = 0; i < 24; i++ )
         {
             SYSREG->TEMP0 = 0x12345678;
-            MSS_GPIO_set_output(GPIO1_LO, i, 0x0);
+            MSS_GPIO_set_output( GPIO1_LO, i, 0x0 );
         }
         SYSREG->TEMP0 = 0xFFFFFFFFUL;
-        for (int i = 0 ; i < 14 ; i++)
+        for( int i = 0; i < 14; i++ )
         {
             SYSREG->TEMP0 = 0x12345678;
-            MSS_GPIO_set_output(GPIO0_LO, i, 0x1);
+            MSS_GPIO_set_output( GPIO0_LO, i, 0x1 );
         }
-        for (int i = 0 ; i < 24 ; i++)
+        for( int i = 0; i < 24; i++ )
         {
             SYSREG->TEMP0 = 0x12345678;
-            MSS_GPIO_set_output(GPIO1_LO, i, 0x1);
+            MSS_GPIO_set_output( GPIO1_LO, i, 0x1 );
         }
     }
-    return(0UL);
+    return ( 0UL );
 }
-
 
 /**
  *
  * @return 0 => OK
  */
-int32_t gpio_set_config(void)
+int32_t gpio_set_config( void )
 {
-    SYSREG->SOFT_RESET_CR &= ~((1U<<20U)|(1U<<21U)|(1U<<22U));
-    SYSREG->SUBBLK_CLOCK_CR |= ((1U<<20U)|(1U<<21U)|(1U<<22U));
-    MSS_GPIO_init(GPIO0_LO);
-    MSS_GPIO_init(GPIO1_LO);
-    for (int i = 0 ; i < 14 ; i++)
+    SYSREG->SOFT_RESET_CR &= ~( ( 1U << 20U ) | ( 1U << 21U ) | ( 1U << 22U ) );
+    SYSREG->SUBBLK_CLOCK_CR |= ( ( 1U << 20U ) | ( 1U << 21U ) |
+                                 ( 1U << 22U ) );
+    MSS_GPIO_init( GPIO0_LO );
+    MSS_GPIO_init( GPIO1_LO );
+    for( int i = 0; i < 14; i++ )
     {
-        MSS_GPIO_config(GPIO0_LO, i, MSS_GPIO_OUTPUT_MODE);
+        MSS_GPIO_config( GPIO0_LO, i, MSS_GPIO_OUTPUT_MODE );
     }
-    for (int i = 0 ; i < 24 ; i++)
+    for( int i = 0; i < 24; i++ )
     {
-        MSS_GPIO_config(GPIO1_LO, i, MSS_GPIO_OUTPUT_MODE);
+        MSS_GPIO_config( GPIO1_LO, i, MSS_GPIO_OUTPUT_MODE );
     }
-    return(0UL);
+    return ( 0UL );
 }
 #endif
-

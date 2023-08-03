@@ -2,29 +2,29 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
  *
  */
 /*! @file timers_utest.c */
-
 
 /* Test includes. */
 #include "FreeRTOS.h"
@@ -38,17 +38,17 @@
 #include "unity_memory.h"
 
 /* Mock includes. */
-#include "mock_queue.h"
+#include "mock_fake_assert.h"
 #include "mock_list.h"
 #include "mock_list_macros.h"
-#include "mock_fake_assert.h"
 #include "mock_portable.h"
+#include "mock_queue.h"
 #include "mock_task.h"
 
 /* C runtime includes. */
-#include <stdlib.h>
-#include <stdbool.h>
 #include <pthread.h>
+#include <stdbool.h>
+#include <stdlib.h>
 
 void stopTimers();
 
@@ -67,42 +67,48 @@ static bool xCallback_Test_1_end_called = pdFALSE;
 static bool xCallback_Test_2_end_called = pdFALSE;
 
 /* =================================  DEFINES  ============================== */
-#define DEFAULT_TIMER_PEIOD    1000
-#define DEFAULT_TIMER_NAME     "ut_timer"
+#define DEFAULT_TIMER_PEIOD 1000
+#define DEFAULT_TIMER_NAME  "ut_timer"
 
 /* =============================  FUNCTION MACROS  ========================== */
 #define ASSERT_APPLICATION_DAEMON_STARTUP_HOOK_CALLED()               \
-    do {                                                              \
+    do                                                                \
+    {                                                                 \
         TEST_ASSERT_TRUE( vApplicationDaemonTaskStartupHook_Called ); \
         vApplicationDaemonTaskStartupHook_Called = pdFALSE;           \
     } while( 0 )
 
 #define ASSERT_XCALLBACK_TEST_CALLED()             \
-    do {                                           \
+    do                                             \
+    {                                              \
         TEST_ASSERT_TRUE( xCallback_Test_Called ); \
         xCallback_Test_Called = pdFALSE;           \
     } while( 0 )
 
 #define ASSERT_PENDED_FUNCTION_4_END_CALLED()             \
-    do {                                                  \
+    do                                                    \
+    {                                                     \
         TEST_ASSERT_TRUE( pended_function_4_end_called ); \
         pended_function_4_end_called = pdFALSE;           \
     } while( 0 )
 
 #define ASSERT_XCALLBACK_TEST_1_END_CALLED()             \
-    do {                                                 \
+    do                                                   \
+    {                                                    \
         TEST_ASSERT_TRUE( xCallback_Test_1_end_called ); \
         xCallback_Test_1_end_called = pdFALSE;           \
     } while( 0 )
 
 #define ASSERT_XCALLBACK_TEST_2_END_CALLED()             \
-    do {                                                 \
+    do                                                   \
+    {                                                    \
         TEST_ASSERT_TRUE( xCallback_Test_2_end_called ); \
         xCallback_Test_2_end_called = pdFALSE;           \
     } while( 0 )
 
 #define ASSERT_PORT_YIELD_WITHIN_API_CALLED()             \
-    do {                                                  \
+    do                                                    \
+    {                                                     \
         TEST_ASSERT_TRUE( port_yield_within_api_called ); \
         port_yield_within_api_called = pdFALSE;           \
     } while( 0 )
@@ -137,7 +143,6 @@ void vApplicationGetTimerTaskMemory( StaticTask_t ** ppxTimerTaskTCBBuffer,
     *pulTimerTaskStackSize = configTIMER_TASK_STACK_DEPTH;
 }
 
-
 void vApplicationDaemonTaskStartupHook( void )
 {
     vApplicationDaemonTaskStartupHook_Called = pdTRUE;
@@ -150,17 +155,14 @@ static void xCallback_Test( TimerHandle_t xTimer )
     HOOK_DIAG();
     xCallback_Test_Called = pdTRUE;
 }
-typedef void (* PendedFunction_t)( void *,
-                                   uint32_t );
+typedef void ( *PendedFunction_t )( void *, uint32_t );
 
-static void pended_function( void * arg1,
-                             uint32_t arg2 )
+static void pended_function( void * arg1, uint32_t arg2 )
 {
     HOOK_DIAG();
 }
 static int32_t end_4_timer = 0;
-static void pended_function_4_end( void * arg1,
-                                   uint32_t arg2 )
+static void pended_function_4_end( void * arg1, uint32_t arg2 )
 {
     HOOK_DIAG();
     static int i = 4;
@@ -291,8 +293,10 @@ void setUp( void )
 /*! called before each testcase */
 void tearDown( void )
 {
-    TEST_ASSERT_EQUAL_INT_MESSAGE( 0, usMallocFreeCalls,
-                                   "free is not called the same number of times as malloc,"
+    TEST_ASSERT_EQUAL_INT_MESSAGE( 0,
+                                   usMallocFreeCalls,
+                                   "free is not called the same number of "
+                                   "times as malloc,"
                                    "you might have a memory leak!!" );
     usMallocFreeCalls = 0;
     vApplicationDaemonTaskStartupHook_Called = pdFALSE;
@@ -310,7 +314,6 @@ int suiteTearDown( int numFailures )
 {
     return numFailures;
 }
-
 
 /* ==============================  TEST FUNCTIONS  ========================== */
 
@@ -361,8 +364,8 @@ void test_xTimerCreateTimerTask_fail_null_task( void )
 }
 
 /*!
- * @brief success test case, when the timer task function has already been called
- *        expects pdFAIL
+ * @brief success test case, when the timer task function has already been
+ * called expects pdFAIL
  */
 void test_xTimerCreateTimerTask_fail_null_queue( void )
 {
@@ -783,7 +786,8 @@ void test_timer_function_expired_callback( void )
     /* prvSampleTimeNow */
 
     /* returns xTimeNow > xNextExpireTime timer expired */
-    xTaskGetTickCount_ExpectAndReturn( saved_last_time + 500 ); /* time now / static last_time = 0 */
+    xTaskGetTickCount_ExpectAndReturn(
+        saved_last_time + 500 ); /* time now / static last_time = 0 */
     saved_last_time += 500;
     /* back to prvProcessTimerOrBlockTask */
     xTaskResumeAll_ExpectAndReturn( pdTRUE );
@@ -816,7 +820,8 @@ void test_timer_function_success3( void )
     /* prvProcessTimerOrBlockTask */
     vTaskSuspendAll_Expect();
     /* prvSampleTimeNow */
-    xTaskGetTickCount_ExpectAndReturn( saved_last_time + 500 ); /* time now / static last_time = 0 */
+    xTaskGetTickCount_ExpectAndReturn(
+        saved_last_time + 500 ); /* time now / static last_time = 0 */
     saved_last_time += 500;
     listLIST_IS_EMPTY_ExpectAnyArgsAndReturn( pdFALSE );
     /* back to prvProcessTimerOrBlockTask */
@@ -862,7 +867,8 @@ void test_timer_function_success4( void )
     /* prvProcessTimerOrBlockTask */
     vTaskSuspendAll_Expect();
     /* prvSampleTimeNow */
-    xTaskGetTickCount_ExpectAndReturn( saved_last_time + 500 ); /* time now / static last_time = 0 */
+    xTaskGetTickCount_ExpectAndReturn(
+        saved_last_time + 500 ); /* time now / static last_time = 0 */
     saved_last_time += 500;
     /* back to prvProcessTimerOrBlockTask */
     listLIST_IS_EMPTY_ExpectAnyArgsAndReturn( pdFALSE );
@@ -878,7 +884,8 @@ void test_timer_function_success4( void )
     listIS_CONTAINED_WITHIN_ExpectAnyArgsAndReturn( pdFALSE );
     uxListRemove_ExpectAnyArgsAndReturn( pdTRUE );
     /*   prvSampleTimeNow*/
-    xTaskGetTickCount_ExpectAndReturn( saved_last_time - 50 ); /* time now / static last_time = 0 */
+    xTaskGetTickCount_ExpectAndReturn(
+        saved_last_time - 50 ); /* time now / static last_time = 0 */
     saved_last_time -= 50;
     /*     prvSwitchTimerLists */
     listLIST_IS_EMPTY_ExpectAnyArgsAndReturn( pdFALSE );
@@ -916,14 +923,10 @@ void test_timer_function_success5( void )
     callback_param.ulParameter2 = 0xa9a9a9a9;
     end_1_timer = 2;
 
-
-
     DaemonTaskMessage_t xMessage;
     xMessage.xMessageID = tmrCOMMAND_START;
     xMessage.u.xCallbackParameters = callback_param;
     xMessage.u.xTimerParameters.pxTimer = &xTimer;
-
-
 
     end_4_timer = 10;
     DaemonTaskMessage_t xMessage2;
@@ -940,7 +943,8 @@ void test_timer_function_success5( void )
     /* prvProcessTimerOrBlockTask */
     vTaskSuspendAll_Expect();
     /* prvSampleTimeNow */
-    xTaskGetTickCount_ExpectAndReturn( saved_last_time + 500 ); /* time now / static last_time = 0 */
+    xTaskGetTickCount_ExpectAndReturn(
+        saved_last_time + 500 ); /* time now / static last_time = 0 */
     saved_last_time += 500;
     /* prvSwitchTimerLists */
     listLIST_IS_EMPTY_ExpectAnyArgsAndReturn( pdFALSE );
@@ -955,8 +959,6 @@ void test_timer_function_success5( void )
     xQueueReceive_ReturnMemThruPtr_pvBuffer( &xMessage2,
                                              sizeof( DaemonTaskMessage_t ) );
 
-
-
     xQueueReceive_ExpectAndReturn( NULL, NULL, tmrNO_DELAY, pdPASS );
     xQueueReceive_IgnoreArg_xQueue();
     xQueueReceive_IgnoreArg_pvBuffer();
@@ -966,7 +968,8 @@ void test_timer_function_success5( void )
     listIS_CONTAINED_WITHIN_ExpectAnyArgsAndReturn( pdFALSE );
     uxListRemove_ExpectAnyArgsAndReturn( pdTRUE );
     /* prvSampleTimeNow*/
-    xTaskGetTickCount_ExpectAndReturn( saved_last_time - 50 ); /* time now / static last_time = 0 */
+    xTaskGetTickCount_ExpectAndReturn(
+        saved_last_time - 50 ); /* time now / static last_time = 0 */
     saved_last_time -= 50;
     /* prvSwitchTimerLists */
     listLIST_IS_EMPTY_ExpectAnyArgsAndReturn( pdTRUE );
@@ -1018,7 +1021,8 @@ void test_timer_function_success6( void )
     /* prvProcessTimerOrBlockTask */
     vTaskSuspendAll_Expect();
     /* prvSampleTimeNow */
-    xTaskGetTickCount_ExpectAndReturn( saved_last_time + 500 ); /* time now / static last_time = 0 */
+    xTaskGetTickCount_ExpectAndReturn(
+        saved_last_time + 500 ); /* time now / static last_time = 0 */
     saved_last_time += 500;
     /* prvSwitchTimerLists */
     listLIST_IS_EMPTY_ExpectAnyArgsAndReturn( pdFALSE );
@@ -1035,7 +1039,8 @@ void test_timer_function_success6( void )
     listIS_CONTAINED_WITHIN_ExpectAnyArgsAndReturn( pdFALSE );
     uxListRemove_ExpectAnyArgsAndReturn( pdTRUE );
     /* prvSampleTimeNow*/
-    xTaskGetTickCount_ExpectAndReturn( saved_last_time - 50 ); /* time now / static last_time = 0 */
+    xTaskGetTickCount_ExpectAndReturn(
+        saved_last_time - 50 ); /* time now / static last_time = 0 */
     saved_last_time -= 50;
     /* prvSwitchTimerLists */
     listLIST_IS_EMPTY_ExpectAnyArgsAndReturn( pdTRUE );
@@ -1046,11 +1051,13 @@ void test_timer_function_success6( void )
     /* back prvTimerTask */
     /* prvGetNextExpireTime */
     listLIST_IS_EMPTY_ExpectAnyArgsAndReturn( pdFALSE );
-    listGET_ITEM_VALUE_OF_HEAD_ENTRY_ExpectAnyArgsAndReturn( saved_last_time + 1 );
+    listGET_ITEM_VALUE_OF_HEAD_ENTRY_ExpectAnyArgsAndReturn( saved_last_time +
+                                                             1 );
     /* prvProcessTimerOrBlockTask */
     vTaskSuspendAll_Expect();
     /* prvSampleTimeNow */
-    xTaskGetTickCount_ExpectAndReturn( saved_last_time - 5 ); /* time now / static last_time = 0 */
+    xTaskGetTickCount_ExpectAndReturn(
+        saved_last_time - 5 ); /* time now / static last_time = 0 */
     saved_last_time -= 5;
     /* prvSwitchTimerLists */
     listLIST_IS_EMPTY_ExpectAnyArgsAndReturn( pdTRUE );
@@ -1064,7 +1071,8 @@ void test_timer_function_success6( void )
                                              sizeof( DaemonTaskMessage_t ) );
     listIS_CONTAINED_WITHIN_ExpectAnyArgsAndReturn( pdTRUE );
     /* prvInsertTimerInActiveList */
-    xTaskGetTickCount_ExpectAndReturn( saved_last_time - 50 ); /* time now / static last_time = 0 */
+    xTaskGetTickCount_ExpectAndReturn(
+        saved_last_time - 50 ); /* time now / static last_time = 0 */
     saved_last_time -= 50;
     listLIST_IS_EMPTY_ExpectAnyArgsAndReturn( pdTRUE );
     /* prvInsertTimerInActiveList */
@@ -1104,7 +1112,8 @@ void test_timer_function_success2( void )
     /* prvProcessTimerOrBlockTask */
     vTaskSuspendAll_Expect();
     /* prvSampleTimeNow */
-    xTaskGetTickCount_ExpectAndReturn( saved_last_time + 500 ); /* time now / static last_time = 0 */
+    xTaskGetTickCount_ExpectAndReturn(
+        saved_last_time + 500 ); /* time now / static last_time = 0 */
     saved_last_time += 500;
     /* back to prvProcessTimerOrBlockTask */
     xTaskResumeAll_ExpectAndReturn( pdTRUE );
@@ -1118,7 +1127,8 @@ void test_timer_function_success2( void )
     xQueueReceive_ExpectAndReturn( NULL, NULL, tmrNO_DELAY, pdPASS );
     xQueueReceive_IgnoreArg_xQueue();
     xQueueReceive_IgnoreArg_pvBuffer();
-    xQueueReceive_ReturnMemThruPtr_pvBuffer( &xMessage, sizeof( DaemonTaskMessage_t ) );
+    xQueueReceive_ReturnMemThruPtr_pvBuffer( &xMessage,
+                                             sizeof( DaemonTaskMessage_t ) );
 
     /* API Call */
     pthread_create( &thread_id, NULL, &timer_thread_function, NULL );
@@ -1148,7 +1158,8 @@ void test_timer_function_success3_command_start( void )
     /* prvProcessTimerOrBlockTask */
     vTaskSuspendAll_Expect();
     /* prvSampleTimeNow */
-    xTaskGetTickCount_ExpectAndReturn( saved_last_time + 100 ); /* time now / static last_time = 0 */
+    xTaskGetTickCount_ExpectAndReturn(
+        saved_last_time + 100 ); /* time now / static last_time = 0 */
     saved_last_time += 100;
     /* back to prvProcessTimerOrBlockTask */
     xTaskResumeAll_ExpectAndReturn( pdTRUE );
@@ -1188,7 +1199,8 @@ void test_timer_function_success3_command_start2( void )
     /* prvProcessTimerOrBlockTask */
     vTaskSuspendAll_Expect();
     /* prvSampleTimeNow */
-    xTaskGetTickCount_ExpectAndReturn( saved_last_time + 100 ); /* time now / static last_time = 0 */
+    xTaskGetTickCount_ExpectAndReturn(
+        saved_last_time + 100 ); /* time now / static last_time = 0 */
     saved_last_time += 100;
     /* back to prvProcessTimerOrBlockTask */
     xTaskResumeAll_ExpectAndReturn( pdTRUE );
@@ -1228,7 +1240,8 @@ void test_timer_function_success3_command_start3( void )
     /* prvProcessTimerOrBlockTask */
     vTaskSuspendAll_Expect();
     /* prvSampleTimeNow */
-    xTaskGetTickCount_ExpectAndReturn( saved_last_time + 100 ); /* time now / static last_time = 0 */
+    xTaskGetTickCount_ExpectAndReturn(
+        saved_last_time + 100 ); /* time now / static last_time = 0 */
     saved_last_time += 100;
     /* back to prvProcessTimerOrBlockTask */
     xTaskResumeAll_ExpectAndReturn( pdTRUE );
@@ -1276,7 +1289,8 @@ void test_timer_function_success3_command_start4( void )
     /* prvProcessTimerOrBlockTask */
     vTaskSuspendAll_Expect();
     /* prvSampleTimeNow */
-    xTaskGetTickCount_ExpectAndReturn( saved_last_time + 100 ); /* time now / static last_time = 0 */
+    xTaskGetTickCount_ExpectAndReturn(
+        saved_last_time + 100 ); /* time now / static last_time = 0 */
     saved_last_time += 100;
     /* back to prvProcessTimerOrBlockTask */
     xTaskResumeAll_ExpectAndReturn( pdTRUE );
@@ -1289,11 +1303,13 @@ void test_timer_function_success3_command_start4( void )
     xQueueReceive_ExpectAndReturn( NULL, NULL, tmrNO_DELAY, pdPASS );
     xQueueReceive_IgnoreArg_xQueue();
     xQueueReceive_IgnoreArg_pvBuffer();
-    xQueueReceive_ReturnMemThruPtr_pvBuffer( &xMessage, sizeof( DaemonTaskMessage_t ) );
+    xQueueReceive_ReturnMemThruPtr_pvBuffer( &xMessage,
+                                             sizeof( DaemonTaskMessage_t ) );
     listIS_CONTAINED_WITHIN_ExpectAnyArgsAndReturn( pdFALSE );
     uxListRemove_ExpectAnyArgsAndReturn( pdTRUE );
     /* prvSampleTimeNow*/
-    xTaskGetTickCount_ExpectAndReturn( saved_last_time - 50 ); /* time now / static last_time = 0 */
+    xTaskGetTickCount_ExpectAndReturn(
+        saved_last_time - 50 ); /* time now / static last_time = 0 */
     saved_last_time -= 50;
     /* prvSwitchTimerLists */
     listLIST_IS_EMPTY_ExpectAnyArgsAndReturn( pdFALSE );
@@ -1352,7 +1368,8 @@ void test_timer_function_success3_command_start5( void )
     /* prvProcessTimerOrBlockTask */
     vTaskSuspendAll_Expect();
     /* prvSampleTimeNow */
-    xTaskGetTickCount_ExpectAndReturn( saved_last_time + 1000 ); /* time now / static last_time = 0 */
+    xTaskGetTickCount_ExpectAndReturn(
+        saved_last_time + 1000 ); /* time now / static last_time = 0 */
     saved_last_time += 1000;
     /* back to prvProcessTimerOrBlockTask */
     xTaskResumeAll_ExpectAndReturn( pdTRUE );
@@ -1366,11 +1383,13 @@ void test_timer_function_success3_command_start5( void )
     xQueueReceive_ExpectAndReturn( NULL, NULL, tmrNO_DELAY, pdPASS );
     xQueueReceive_IgnoreArg_xQueue();
     xQueueReceive_IgnoreArg_pvBuffer();
-    xQueueReceive_ReturnMemThruPtr_pvBuffer( &xMessage, sizeof( DaemonTaskMessage_t ) );
+    xQueueReceive_ReturnMemThruPtr_pvBuffer( &xMessage,
+                                             sizeof( DaemonTaskMessage_t ) );
     listIS_CONTAINED_WITHIN_ExpectAnyArgsAndReturn( pdFALSE );
     uxListRemove_ExpectAnyArgsAndReturn( pdTRUE );
     /* prvSampleTimeNow*/
-    xTaskGetTickCount_ExpectAndReturn( saved_last_time + 5000 ); /* time now / static last_time = 0 */
+    xTaskGetTickCount_ExpectAndReturn(
+        saved_last_time + 5000 ); /* time now / static last_time = 0 */
     saved_last_time += 5000;
     /* prvInsertTimerInActiveList */
     listSET_LIST_ITEM_VALUE_ExpectAnyArgs();
@@ -1379,7 +1398,8 @@ void test_timer_function_success3_command_start5( void )
     xQueueReceive_ExpectAndReturn( NULL, NULL, tmrNO_DELAY, pdPASS );
     xQueueReceive_IgnoreArg_xQueue();
     xQueueReceive_IgnoreArg_pvBuffer();
-    xQueueReceive_ReturnMemThruPtr_pvBuffer( &xMessage2, sizeof( DaemonTaskMessage_t ) );
+    xQueueReceive_ReturnMemThruPtr_pvBuffer( &xMessage2,
+                                             sizeof( DaemonTaskMessage_t ) );
     /* API Call */
     pthread_create( &thread_id, NULL, &timer_thread_function, NULL );
     pthread_join( thread_id, ( void ** ) &retVal );
@@ -1420,7 +1440,8 @@ void test_timer_function_success3_command_stop( void )
     xMessage.u.xTimerParameters.pxTimer = &xTimer;
     xMessage.u.xTimerParameters.xMessageValue = saved_last_time - 500;
 
-    xMessage2.xMessageID = tmrCOMMAND_EXECUTE_CALLBACK; /* used to end the loop */
+    xMessage2.xMessageID = tmrCOMMAND_EXECUTE_CALLBACK; /* used to end the loop
+                                                         */
     xMessage2.u.xCallbackParameters = callback_param;
     /* Expectations */
     /* prvGetNextExpireTime */
@@ -1429,7 +1450,8 @@ void test_timer_function_success3_command_stop( void )
     /* prvProcessTimerOrBlockTask */
     vTaskSuspendAll_Expect();
     /* prvSampleTimeNow */
-    xTaskGetTickCount_ExpectAndReturn( saved_last_time + 1000 ); /* time now / static last_time = 0 */
+    xTaskGetTickCount_ExpectAndReturn(
+        saved_last_time + 1000 ); /* time now / static last_time = 0 */
     saved_last_time += 1000;
     /* back to prvProcessTimerOrBlockTask */
     xTaskResumeAll_ExpectAndReturn( pdTRUE );
@@ -1443,17 +1465,20 @@ void test_timer_function_success3_command_stop( void )
     xQueueReceive_ExpectAndReturn( NULL, NULL, tmrNO_DELAY, pdPASS );
     xQueueReceive_IgnoreArg_xQueue();
     xQueueReceive_IgnoreArg_pvBuffer();
-    xQueueReceive_ReturnMemThruPtr_pvBuffer( &xMessage, sizeof( DaemonTaskMessage_t ) );
+    xQueueReceive_ReturnMemThruPtr_pvBuffer( &xMessage,
+                                             sizeof( DaemonTaskMessage_t ) );
     listIS_CONTAINED_WITHIN_ExpectAnyArgsAndReturn( pdFALSE );
     uxListRemove_ExpectAnyArgsAndReturn( pdTRUE );
     /* prvSampleTimeNow*/
-    xTaskGetTickCount_ExpectAndReturn( saved_last_time + 5000 ); /* time now / static last_time = 0 */
+    xTaskGetTickCount_ExpectAndReturn(
+        saved_last_time + 5000 ); /* time now / static last_time = 0 */
     saved_last_time += 5000;
     /* back to prvProcessReceivedCommands */
     xQueueReceive_ExpectAndReturn( NULL, NULL, tmrNO_DELAY, pdPASS );
     xQueueReceive_IgnoreArg_xQueue();
     xQueueReceive_IgnoreArg_pvBuffer();
-    xQueueReceive_ReturnMemThruPtr_pvBuffer( &xMessage2, sizeof( DaemonTaskMessage_t ) );
+    xQueueReceive_ReturnMemThruPtr_pvBuffer( &xMessage2,
+                                             sizeof( DaemonTaskMessage_t ) );
     /* API Call */
     pthread_create( &thread_id, NULL, &timer_thread_function, NULL );
     pthread_join( thread_id, ( void ** ) &retVal );
@@ -1495,7 +1520,8 @@ void test_timer_function_success3_command_change_period( void )
     xMessage.u.xTimerParameters.pxTimer = &xTimer;
     xMessage.u.xTimerParameters.xMessageValue = saved_last_time;
 
-    xMessage2.xMessageID = tmrCOMMAND_EXECUTE_CALLBACK; /* used to end the loop */
+    xMessage2.xMessageID = tmrCOMMAND_EXECUTE_CALLBACK; /* used to end the loop
+                                                         */
     xMessage2.u.xCallbackParameters = callback_param;
     /* Expectations */
     /* prvGetNextExpireTime */
@@ -1504,7 +1530,8 @@ void test_timer_function_success3_command_change_period( void )
     /* prvProcessTimerOrBlockTask */
     vTaskSuspendAll_Expect();
     /* prvSampleTimeNow */
-    xTaskGetTickCount_ExpectAndReturn( saved_last_time ); /* time now / static last_time = 0 */
+    xTaskGetTickCount_ExpectAndReturn( saved_last_time ); /* time now / static
+                                                             last_time = 0 */
     /* back to prvProcessTimerOrBlockTask */
     xTaskResumeAll_ExpectAndReturn( pdTRUE );
     /* prvProcessExpiredTimer */
@@ -1517,11 +1544,13 @@ void test_timer_function_success3_command_change_period( void )
     xQueueReceive_ExpectAndReturn( NULL, NULL, tmrNO_DELAY, pdPASS );
     xQueueReceive_IgnoreArg_xQueue();
     xQueueReceive_IgnoreArg_pvBuffer();
-    xQueueReceive_ReturnMemThruPtr_pvBuffer( &xMessage, sizeof( DaemonTaskMessage_t ) );
+    xQueueReceive_ReturnMemThruPtr_pvBuffer( &xMessage,
+                                             sizeof( DaemonTaskMessage_t ) );
     listIS_CONTAINED_WITHIN_ExpectAnyArgsAndReturn( pdFALSE );
     uxListRemove_ExpectAnyArgsAndReturn( pdTRUE );
     /* prvSampleTimeNow*/
-    xTaskGetTickCount_ExpectAndReturn( saved_last_time ); /* time now / static last_time = 0 */
+    xTaskGetTickCount_ExpectAndReturn( saved_last_time ); /* time now / static
+                                                             last_time = 0 */
     /* prvInsertTimerInActiveList */
     listSET_LIST_ITEM_VALUE_ExpectAnyArgs();
     vListInsert_ExpectAnyArgs();
@@ -1529,7 +1558,8 @@ void test_timer_function_success3_command_change_period( void )
     xQueueReceive_ExpectAndReturn( NULL, NULL, tmrNO_DELAY, pdPASS );
     xQueueReceive_IgnoreArg_xQueue();
     xQueueReceive_IgnoreArg_pvBuffer();
-    xQueueReceive_ReturnMemThruPtr_pvBuffer( &xMessage2, sizeof( DaemonTaskMessage_t ) );
+    xQueueReceive_ReturnMemThruPtr_pvBuffer( &xMessage2,
+                                             sizeof( DaemonTaskMessage_t ) );
     /* API Call */
     pthread_create( &thread_id, NULL, &timer_thread_function, NULL );
     pthread_join( thread_id, ( void ** ) &retVal );
@@ -1573,7 +1603,8 @@ void test_timer_function_success3_command_delete_static( void )
     xMessage.u.xTimerParameters.pxTimer = &xTimer;
     xMessage.u.xTimerParameters.xMessageValue = saved_last_time;
 
-    xMessage2.xMessageID = tmrCOMMAND_EXECUTE_CALLBACK; /* used to end the loop */
+    xMessage2.xMessageID = tmrCOMMAND_EXECUTE_CALLBACK; /* used to end the loop
+                                                         */
     xMessage2.u.xCallbackParameters = callback_param;
     /* Expectations */
     /* prvGetNextExpireTime */
@@ -1582,7 +1613,8 @@ void test_timer_function_success3_command_delete_static( void )
     /* prvProcessTimerOrBlockTask */
     vTaskSuspendAll_Expect();
     /* prvSampleTimeNow */
-    xTaskGetTickCount_ExpectAndReturn( saved_last_time ); /* time now / static last_time = 0 */
+    xTaskGetTickCount_ExpectAndReturn( saved_last_time ); /* time now / static
+                                                             last_time = 0 */
     /* back to prvProcessTimerOrBlockTask */
     xTaskResumeAll_ExpectAndReturn( pdTRUE );
     /* prvProcessExpiredTimer */
@@ -1595,16 +1627,19 @@ void test_timer_function_success3_command_delete_static( void )
     xQueueReceive_ExpectAndReturn( NULL, NULL, tmrNO_DELAY, pdPASS );
     xQueueReceive_IgnoreArg_xQueue();
     xQueueReceive_IgnoreArg_pvBuffer();
-    xQueueReceive_ReturnMemThruPtr_pvBuffer( &xMessage, sizeof( DaemonTaskMessage_t ) );
+    xQueueReceive_ReturnMemThruPtr_pvBuffer( &xMessage,
+                                             sizeof( DaemonTaskMessage_t ) );
     listIS_CONTAINED_WITHIN_ExpectAnyArgsAndReturn( pdFALSE );
     uxListRemove_ExpectAnyArgsAndReturn( pdTRUE );
     /* prvSampleTimeNow*/
-    xTaskGetTickCount_ExpectAndReturn( saved_last_time ); /* time now / static last_time = 0 */
+    xTaskGetTickCount_ExpectAndReturn( saved_last_time ); /* time now / static
+                                                             last_time = 0 */
     /* back to prvProcessReceivedCommands */
     xQueueReceive_ExpectAndReturn( NULL, NULL, tmrNO_DELAY, pdPASS );
     xQueueReceive_IgnoreArg_xQueue();
     xQueueReceive_IgnoreArg_pvBuffer();
-    xQueueReceive_ReturnMemThruPtr_pvBuffer( &xMessage2, sizeof( DaemonTaskMessage_t ) );
+    xQueueReceive_ReturnMemThruPtr_pvBuffer( &xMessage2,
+                                             sizeof( DaemonTaskMessage_t ) );
     /* API Call */
     pthread_create( &thread_id, NULL, &timer_thread_function, NULL );
     pthread_join( thread_id, ( void ** ) &retVal );
@@ -1612,7 +1647,6 @@ void test_timer_function_success3_command_delete_static( void )
     TEST_ASSERT_EQUAL( 4, *retVal );
     TEST_ASSERT_FALSE( xTimer.ucStatus & tmrSTATUS_IS_ACTIVE );
 }
-
 
 void test_timer_function_success3_command_unknown( void )
 {
@@ -1648,7 +1682,8 @@ void test_timer_function_success3_command_unknown( void )
     xMessage.u.xTimerParameters.pxTimer = &xTimer;
     xMessage.u.xTimerParameters.xMessageValue = saved_last_time;
 
-    xMessage2.xMessageID = tmrCOMMAND_EXECUTE_CALLBACK; /* used to end the loop */
+    xMessage2.xMessageID = tmrCOMMAND_EXECUTE_CALLBACK; /* used to end the loop
+                                                         */
     xMessage2.u.xCallbackParameters = callback_param;
     /* Expectations */
     /* prvGetNextExpireTime */
@@ -1657,7 +1692,8 @@ void test_timer_function_success3_command_unknown( void )
     /* prvProcessTimerOrBlockTask */
     vTaskSuspendAll_Expect();
     /* prvSampleTimeNow */
-    xTaskGetTickCount_ExpectAndReturn( saved_last_time ); /* time now / static last_time = 0 */
+    xTaskGetTickCount_ExpectAndReturn( saved_last_time ); /* time now / static
+                                                             last_time = 0 */
     /* back to prvProcessTimerOrBlockTask */
     xTaskResumeAll_ExpectAndReturn( pdTRUE );
     /* prvProcessExpiredTimer */
@@ -1670,16 +1706,19 @@ void test_timer_function_success3_command_unknown( void )
     xQueueReceive_ExpectAndReturn( NULL, NULL, tmrNO_DELAY, pdPASS );
     xQueueReceive_IgnoreArg_xQueue();
     xQueueReceive_IgnoreArg_pvBuffer();
-    xQueueReceive_ReturnMemThruPtr_pvBuffer( &xMessage, sizeof( DaemonTaskMessage_t ) );
+    xQueueReceive_ReturnMemThruPtr_pvBuffer( &xMessage,
+                                             sizeof( DaemonTaskMessage_t ) );
     listIS_CONTAINED_WITHIN_ExpectAnyArgsAndReturn( pdFALSE );
     uxListRemove_ExpectAnyArgsAndReturn( pdTRUE );
     /* prvSampleTimeNow*/
-    xTaskGetTickCount_ExpectAndReturn( saved_last_time ); /* time now / static last_time = 0 */
+    xTaskGetTickCount_ExpectAndReturn( saved_last_time ); /* time now / static
+                                                             last_time = 0 */
     /* back to prvProcessReceivedCommands */
     xQueueReceive_ExpectAndReturn( NULL, NULL, tmrNO_DELAY, pdPASS );
     xQueueReceive_IgnoreArg_xQueue();
     xQueueReceive_IgnoreArg_pvBuffer();
-    xQueueReceive_ReturnMemThruPtr_pvBuffer( &xMessage2, sizeof( DaemonTaskMessage_t ) );
+    xQueueReceive_ReturnMemThruPtr_pvBuffer( &xMessage2,
+                                             sizeof( DaemonTaskMessage_t ) );
     /* API Call */
     pthread_create( &thread_id, NULL, &timer_thread_function, NULL );
     pthread_join( thread_id, ( void ** ) &retVal );
@@ -1717,7 +1756,8 @@ void test_timer_function_success_wrap_timer( void )
     /* prvProcessTimerOrBlockTask */
     vTaskSuspendAll_Expect();
     /* prvSampleTimeNow */
-    xTaskGetTickCount_ExpectAndReturn( saved_last_time + 500 ); /* time now / static last_time = 0 */
+    xTaskGetTickCount_ExpectAndReturn(
+        saved_last_time + 500 ); /* time now / static last_time = 0 */
     saved_last_time += 500;
     /* back to prvProcessTimerOrBlockTask */
     listLIST_IS_EMPTY_ExpectAnyArgsAndReturn( pdFALSE );
@@ -1733,9 +1773,9 @@ void test_timer_function_success_wrap_timer( void )
     listIS_CONTAINED_WITHIN_ExpectAnyArgsAndReturn( pdFALSE );
     uxListRemove_ExpectAnyArgsAndReturn( pdTRUE );
 
-
     /* prvSampleTimeNow*/
-    xTaskGetTickCount_ExpectAndReturn( saved_last_time - 50 ); /* time now / static last_time = 0 */
+    xTaskGetTickCount_ExpectAndReturn(
+        saved_last_time - 50 ); /* time now / static last_time = 0 */
     saved_last_time -= 50;
     /* prvSwitchTimerLists */
     listLIST_IS_EMPTY_ExpectAnyArgsAndReturn( pdFALSE );
@@ -1753,7 +1793,6 @@ void test_timer_function_success_wrap_timer( void )
     /* back prvSampleTimeNow */
     /* back prvProcessReceivedCommands */
 
-
     /* prvInsertTimerInActiveList */
     listSET_LIST_ITEM_VALUE_ExpectAnyArgs();
     vListInsert_ExpectAnyArgs();
@@ -1767,7 +1806,8 @@ void test_timer_function_success_wrap_timer( void )
     listIS_CONTAINED_WITHIN_ExpectAnyArgsAndReturn( pdFALSE );
     uxListRemove_ExpectAnyArgsAndReturn( pdTRUE );
     /* prvSampleTimeNow */
-    xTaskGetTickCount_ExpectAndReturn( saved_last_time - 50 ); /* time now / static last_time = 0 */
+    xTaskGetTickCount_ExpectAndReturn(
+        saved_last_time - 50 ); /* time now / static last_time = 0 */
     saved_last_time -= 50;
     /* prvSwitchTimerLists */
     listLIST_IS_EMPTY_ExpectAnyArgsAndReturn( pdFALSE );
@@ -1810,7 +1850,9 @@ void test_xTimerGetStaticBuffer_static( void )
                                            xCallback_Test,
                                            pxTimerBuffer );
 
-    TEST_ASSERT_EQUAL( pdTRUE, xTimerGetStaticBuffer( ret_timer_create, &pxTimerBufferRet ) );
+    TEST_ASSERT_EQUAL( pdTRUE,
+                       xTimerGetStaticBuffer( ret_timer_create,
+                                              &pxTimerBufferRet ) );
     TEST_ASSERT_EQUAL( pxTimerBuffer, pxTimerBufferRet );
 }
 
@@ -1833,7 +1875,6 @@ void test_xTimerGetStaticBuffer_dynamic( void )
     /* Back prvInitialiseNewTimer */
     vListInitialiseItem_ExpectAnyArgs();
 
-
     /* API Call */
     xTimer = xTimerCreate( "ut_timer_task",
                            pdMS_TO_TICKS( 1000 ),
@@ -1841,6 +1882,7 @@ void test_xTimerGetStaticBuffer_dynamic( void )
                            ( void * ) &pvTimerID,
                            xCallback_Test );
 
-    TEST_ASSERT_EQUAL( pdFALSE, xTimerGetStaticBuffer( xTimer, &pxTimerBufferRet ) );
+    TEST_ASSERT_EQUAL( pdFALSE,
+                       xTimerGetStaticBuffer( xTimer, &pxTimerBufferRet ) );
     TEST_ASSERT_EQUAL( NULL, pxTimerBufferRet );
 }

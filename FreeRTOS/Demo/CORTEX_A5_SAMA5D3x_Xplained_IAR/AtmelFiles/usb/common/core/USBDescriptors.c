@@ -52,7 +52,7 @@
  * \return Length of descriptor in bytes.
  */
 uint32_t USBGenericDescriptor_GetLength(
-    const USBGenericDescriptor *descriptor)
+    const USBGenericDescriptor * descriptor )
 {
     return descriptor->bLength;
 }
@@ -62,8 +62,7 @@ uint32_t USBGenericDescriptor_GetLength(
  * \param descriptor Pointer to a USBGenericDescriptor instance.
  * \return Type of descriptor.
  */
-uint8_t USBGenericDescriptor_GetType(
-    const USBGenericDescriptor *descriptor)
+uint8_t USBGenericDescriptor_GetType( const USBGenericDescriptor * descriptor )
 {
     return descriptor->bDescriptorType;
 }
@@ -74,11 +73,12 @@ uint8_t USBGenericDescriptor_GetType(
  * \param descriptor - Pointer to a USBGenericDescriptor instance.
  * \return Pointer to the next descriptor.
  */
-USBGenericDescriptor *USBGenericDescriptor_GetNextDescriptor(
-    const USBGenericDescriptor *descriptor)
+USBGenericDescriptor * USBGenericDescriptor_GetNextDescriptor(
+    const USBGenericDescriptor * descriptor )
 {
-    return (USBGenericDescriptor *)
-        (((char *) descriptor) + USBGenericDescriptor_GetLength(descriptor));
+    return ( USBGenericDescriptor * ) ( ( ( char * ) descriptor ) +
+                                        USBGenericDescriptor_GetLength(
+                                            descriptor ) );
 }
 
 /** Parses the given descriptor list via costomized function.
@@ -89,36 +89,37 @@ USBGenericDescriptor *USBGenericDescriptor_GetNextDescriptor(
  *  \param parseArg      Argument passed to parse function.
  *  \return Pointer to USBGenericDescriptor instance for next descriptor.
  */
-USBGenericDescriptor *USBGenericDescriptor_Parse(
-    const USBGenericDescriptor *descriptor,
+USBGenericDescriptor * USBGenericDescriptor_Parse(
+    const USBGenericDescriptor * descriptor,
     uint32_t totalLength,
     USBDescriptorParseFunction parseFunction,
-    void *parseArg)
+    void * parseArg )
 {
     int32_t size = totalLength;
 
-    if (size == 0)
+    if( size == 0 )
         return 0;
 
     /* Start parsing descriptors */
-    while (1) {
-
+    while( 1 )
+    {
         uint32_t parseRC = 0;
 
         /* Parse current descriptor */
-        if (parseFunction) {
-
-            parseRC = parseFunction((void*)descriptor, parseArg);
+        if( parseFunction )
+        {
+            parseRC = parseFunction( ( void * ) descriptor, parseArg );
         }
 
         /* Get next descriptor */
-        size -= USBGenericDescriptor_GetLength(descriptor);
-        descriptor = USBGenericDescriptor_GetNextDescriptor(descriptor);
+        size -= USBGenericDescriptor_GetLength( descriptor );
+        descriptor = USBGenericDescriptor_GetNextDescriptor( descriptor );
 
-        if (size) {
-            if (parseRC != 0) {
-
-                return (USBGenericDescriptor *)descriptor;
+        if( size )
+        {
+            if( parseRC != 0 )
+            {
+                return ( USBGenericDescriptor * ) descriptor;
             }
         }
         else
@@ -128,14 +129,12 @@ USBGenericDescriptor *USBGenericDescriptor_Parse(
     return 0;
 }
 
-
 /**
  *  Returns the number of an endpoint given its descriptor.
  *  \param endpoint Pointer to a USBEndpointDescriptor instance.
  *  \return Endpoint number.
  */
-uint8_t USBEndpointDescriptor_GetNumber(
-    const USBEndpointDescriptor *endpoint)
+uint8_t USBEndpointDescriptor_GetNumber( const USBEndpointDescriptor * endpoint )
 {
     return endpoint->bEndpointAddress & 0xF;
 }
@@ -146,14 +145,14 @@ uint8_t USBEndpointDescriptor_GetNumber(
  *  \return Endpoint direction (see \ref usb_ep_dir).
  */
 uint8_t USBEndpointDescriptor_GetDirection(
-    const USBEndpointDescriptor *endpoint)
+    const USBEndpointDescriptor * endpoint )
 {
-    if ((endpoint->bEndpointAddress & 0x80) != 0) {
-
+    if( ( endpoint->bEndpointAddress & 0x80 ) != 0 )
+    {
         return USBEndpointDescriptor_IN;
     }
-    else {
-
+    else
+    {
         return USBEndpointDescriptor_OUT;
     }
 }
@@ -163,8 +162,7 @@ uint8_t USBEndpointDescriptor_GetDirection(
  *  \param endpoint Pointer to a USBEndpointDescriptor instance.
  *  \return Endpoint type (see \ref usb_ep_type).
  */
-uint8_t USBEndpointDescriptor_GetType(
-    const USBEndpointDescriptor *endpoint)
+uint8_t USBEndpointDescriptor_GetType( const USBEndpointDescriptor * endpoint )
 {
     return endpoint->bmAttributes & 0x3;
 }
@@ -176,16 +174,16 @@ uint8_t USBEndpointDescriptor_GetType(
  *  \return Maximum packet size of endpoint.
  */
 uint16_t USBEndpointDescriptor_GetMaxPacketSize(
-    const USBEndpointDescriptor *endpoint)
+    const USBEndpointDescriptor * endpoint )
 {
-uint16_t usTemp;
-uint8_t *pc1, *pc2;
+    uint16_t usTemp;
+    uint8_t *pc1, *pc2;
 
-	pc1 = ( uint8_t * ) &( endpoint->wMaxPacketSize );
-	pc2 = pc1 + 1;
-	usTemp = ( ( *pc2 ) << 8 ) | *pc1;
+    pc1 = ( uint8_t * ) &( endpoint->wMaxPacketSize );
+    pc2 = pc1 + 1;
+    usTemp = ( ( *pc2 ) << 8 ) | *pc1;
 
-	return usTemp;
+    return usTemp;
 }
 
 /**
@@ -194,12 +192,10 @@ uint8_t *pc1, *pc2;
  *  \return Polling interval of endpoint.
  */
 uint8_t USBEndpointDescriptor_GetInterval(
-    const USBEndpointDescriptor *endpoint)
+    const USBEndpointDescriptor * endpoint )
 {
     return endpoint->bInterval;
 }
-
-
 
 /** Returns the total length of a configuration, i.e. including the
  *  descriptors following it.
@@ -207,7 +203,7 @@ uint8_t USBEndpointDescriptor_GetInterval(
  *  \return Total length (in bytes) of the configuration.
  */
 uint32_t USBConfigurationDescriptor_GetTotalLength(
-    const USBConfigurationDescriptor *configuration)
+    const USBConfigurationDescriptor * configuration )
 {
     return configuration->wTotalLength;
 }
@@ -217,7 +213,7 @@ uint32_t USBConfigurationDescriptor_GetTotalLength(
  *  \return Number of interfaces in configuration.
  */
 unsigned char USBConfigurationDescriptor_GetNumInterfaces(
-    const USBConfigurationDescriptor *configuration)
+    const USBConfigurationDescriptor * configuration )
 {
     return configuration->bNumInterfaces;
 }
@@ -228,14 +224,14 @@ unsigned char USBConfigurationDescriptor_GetNumInterfaces(
  *          otherwise 0.
  */
 unsigned char USBConfigurationDescriptor_IsSelfPowered(
-    const USBConfigurationDescriptor *configuration)
+    const USBConfigurationDescriptor * configuration )
 {
-    if ((configuration->bmAttributes & (1 << 6)) != 0) {
-
+    if( ( configuration->bmAttributes & ( 1 << 6 ) ) != 0 )
+    {
         return 1;
     }
-    else {
-
+    else
+    {
         return 0;
     }
 }
@@ -255,63 +251,62 @@ unsigned char USBConfigurationDescriptor_IsSelfPowered(
  *  \param others        Pointer to the class-specific descriptor array.
  */
 void USBConfigurationDescriptor_Parse(
-    const USBConfigurationDescriptor *configuration,
-    USBInterfaceDescriptor **interfaces,
-    USBEndpointDescriptor **endpoints,
-    USBGenericDescriptor **others)
+    const USBConfigurationDescriptor * configuration,
+    USBInterfaceDescriptor ** interfaces,
+    USBEndpointDescriptor ** endpoints,
+    USBGenericDescriptor ** others )
 {
     /* Get size of configuration to parse */
-    int size = USBConfigurationDescriptor_GetTotalLength(configuration);
-    size -= sizeof(USBConfigurationDescriptor);
+    int size = USBConfigurationDescriptor_GetTotalLength( configuration );
+    size -= sizeof( USBConfigurationDescriptor );
 
     /* Start parsing descriptors */
-    USBGenericDescriptor *descriptor = (USBGenericDescriptor *) configuration;
-    while (size > 0) {
-
+    USBGenericDescriptor * descriptor = ( USBGenericDescriptor * ) configuration;
+    while( size > 0 )
+    {
         /* Get next descriptor */
-        descriptor = USBGenericDescriptor_GetNextDescriptor(descriptor);
-        size -= USBGenericDescriptor_GetLength(descriptor);
+        descriptor = USBGenericDescriptor_GetNextDescriptor( descriptor );
+        size -= USBGenericDescriptor_GetLength( descriptor );
 
         /* Store descriptor in correponding array */
-        if (USBGenericDescriptor_GetType(descriptor)
-             == USBGenericDescriptor_INTERFACE) {
-
-            if (interfaces) {
-
-                *interfaces = (USBInterfaceDescriptor *) descriptor;
+        if( USBGenericDescriptor_GetType( descriptor ) ==
+            USBGenericDescriptor_INTERFACE )
+        {
+            if( interfaces )
+            {
+                *interfaces = ( USBInterfaceDescriptor * ) descriptor;
                 interfaces++;
             }
         }
-        else if (USBGenericDescriptor_GetType(descriptor)
-                  == USBGenericDescriptor_ENDPOINT) {
-
-            if (endpoints) {
-
-                *endpoints = (USBEndpointDescriptor *) descriptor;
+        else if( USBGenericDescriptor_GetType( descriptor ) ==
+                 USBGenericDescriptor_ENDPOINT )
+        {
+            if( endpoints )
+            {
+                *endpoints = ( USBEndpointDescriptor * ) descriptor;
                 endpoints++;
             }
         }
-        else if (others) {
-
+        else if( others )
+        {
             *others = descriptor;
             others++;
         }
     }
 
     /* Null-terminate arrays */
-    if (interfaces) {
-
+    if( interfaces )
+    {
         *interfaces = 0;
     }
-    if (endpoints) {
-
+    if( endpoints )
+    {
         *endpoints = 0;
     }
-    if (others) {
-
+    if( others )
+    {
         *others = 0;
     }
 }
 
 /**@}*/
-

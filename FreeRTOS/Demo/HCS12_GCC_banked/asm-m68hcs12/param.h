@@ -1,6 +1,6 @@
 /* param.h - Board specific parameters
    Copyright (C) 2000 Free Software Foundation, Inc.
-   Written by Stephane Carrez (stcarrez@worldnet.fr)	
+   Written by Stephane Carrez (stcarrez@worldnet.fr)
 
 This file is free software; you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by the
@@ -35,63 +35,63 @@ Boston, MA 02111-1307, USA.  */
 /*@{*/
 
 /** CPU Clock frequency.
- 
+
    Define the frequency of the oscillator plugged on the processor.
    The value is in hertz. */
 #ifndef M6811_CPU_CLOCK
-# define M6811_CPU_CLOCK (16e6L)
+    #define M6811_CPU_CLOCK ( 16e6L )
 #endif
 
 /** CPU E clock.
-    
+
    The E clock frequency.  This frequency is used as the
    basis for timer computation.  The value is in hertz.  */
 #ifndef M6811_CPU_E_CLOCK
-# define M6811_CPU_E_CLOCK (24e6L)
+    #define M6811_CPU_E_CLOCK ( 24e6L )
 #endif
 
 #ifndef M6812_REFCLOCK
-# define M6812_REFCLOCK		M6811_CPU_CLOCK
+    #define M6812_REFCLOCK M6811_CPU_CLOCK
 #endif
 
 #ifndef M6812_REFDVVAL
-# define M6812_REFDVVAL		(M6811_CPU_CLOCK / M6812_REFCLOCK) - 1
+    #define M6812_REFDVVAL ( M6811_CPU_CLOCK / M6812_REFCLOCK ) - 1
 #endif
 
 #ifndef M6812_SYNRVAL
-#define M6812_SYNRVAL		(M6811_CPU_E_CLOCK / M6812_REFCLOCK) - 1
+    #define M6812_SYNRVAL ( M6811_CPU_E_CLOCK / M6812_REFCLOCK ) - 1
 #endif
 
 /** SIO default baud rate.
-    
+
    Defines the default baud rate of the SIO.  This value
    is used to configure the BAUD register.
   */
 #ifndef M6811_DEF_BAUD
-# define M6811_DEF_BAUD	(unsigned short)(M6811_CPU_E_CLOCK / 16 / 9600)
+    #define M6811_DEF_BAUD ( unsigned short ) ( M6811_CPU_E_CLOCK / 16 / 9600 )
 #endif
 
 /** Use the COP.
-    
+
    Define this if you are using the COP timer.
    This activate the COP reset while polling and writing on
    the serial line.  */
 #ifndef M6811_USE_COP
-# define M6811_USE_COP 0
+    #define M6811_USE_COP 0
 #endif
 
 /** Timer prescaler value.  */
 #ifndef M6811_DEF_TPR
-# define M6811_DEF_TPR 0
+    #define M6811_DEF_TPR 0
 #endif
 
 #ifndef M6811_DEF_RTR
-# define M6811_DEF_RTR 0
+    #define M6811_DEF_RTR 0
 #endif
 
 /** SCI default port. */
 #ifndef M6812_DEF_SCI
-# define M6812_DEF_SCI   0
+    #define M6812_DEF_SCI 0
 #endif
 
 /*@}*/

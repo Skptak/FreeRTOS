@@ -23,24 +23,21 @@
     more information.
 */
 /** @file
-*/
+ */
 #ifndef REDFS_H
 #define REDFS_H
 
-
-#include <redconf.h>
-#include "redver.h"
-#include "redconfigchk.h"
-#include <redtypes.h>
-#include "rederrno.h"
-#include "reddeviations.h"
-#include "redmacs.h"
 #include "redapimacs.h"
-#include "redutils.h"
-#include "redosserv.h"
-#include "redmisc.h"
+#include "redconfigchk.h"
+#include "reddeviations.h"
+#include "rederrno.h"
 #include "redexclude.h"
-
+#include "redmacs.h"
+#include "redmisc.h"
+#include "redosserv.h"
+#include "redutils.h"
+#include "redver.h"
+#include <redconf.h>
+#include <redtypes.h>
 
 #endif
-

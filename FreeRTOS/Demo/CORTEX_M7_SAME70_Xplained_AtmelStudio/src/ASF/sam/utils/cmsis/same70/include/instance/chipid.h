@@ -39,19 +39,26 @@
  *
  */
 /*
- * Support and FAQ: visit <a href="http://www.atmel.com/design-support/">Atmel Support</a>
+ * Support and FAQ: visit <a href="http://www.atmel.com/design-support/">Atmel
+ * Support</a>
  */
 
 #ifndef _SAME70_CHIPID_INSTANCE_
 #define _SAME70_CHIPID_INSTANCE_
 
 /* ========== Register definition for CHIPID peripheral ========== */
-#if (defined(__ASSEMBLY__) || defined(__IAR_SYSTEMS_ASM__))
-  #define REG_CHIPID_CIDR                 (0x400E0940U) /**< \brief (CHIPID) Chip ID Register */
-  #define REG_CHIPID_EXID                 (0x400E0944U) /**< \brief (CHIPID) Chip ID Extension Register */
+#if( defined( __ASSEMBLY__ ) || defined( __IAR_SYSTEMS_ASM__ ) )
+    #define REG_CHIPID_CIDR \
+        ( 0x400E0940U ) /**< \brief (CHIPID) Chip ID Register */
+    #define REG_CHIPID_EXID \
+        ( 0x400E0944U ) /**< \brief (CHIPID) Chip ID Extension Register */
 #else
-  #define REG_CHIPID_CIDR (*(__I uint32_t*)0x400E0940U) /**< \brief (CHIPID) Chip ID Register */
-  #define REG_CHIPID_EXID (*(__I uint32_t*)0x400E0944U) /**< \brief (CHIPID) Chip ID Extension Register */
+    #define REG_CHIPID_CIDR                                              \
+        ( *( __I uint32_t * ) 0x400E0940U ) /**< \brief (CHIPID) Chip ID \
+                                               Register */
+    #define REG_CHIPID_EXID                                              \
+        ( *( __I uint32_t * ) 0x400E0944U ) /**< \brief (CHIPID) Chip ID \
+                                               Extension Register */
 #endif /* (defined(__ASSEMBLY__) || defined(__IAR_SYSTEMS_ASM__)) */
 
 #endif /* _SAME70_CHIPID_INSTANCE_ */

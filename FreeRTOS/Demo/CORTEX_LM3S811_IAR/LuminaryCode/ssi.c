@@ -32,13 +32,13 @@
 //
 //*****************************************************************************
 
+#include "ssi.h"
 #include "../hw_ints.h"
 #include "../hw_memmap.h"
 #include "../hw_ssi.h"
 #include "../hw_types.h"
 #include "debug.h"
 #include "interrupt.h"
-#include "ssi.h"
 #include "sysctl.h"
 
 //*****************************************************************************
@@ -90,10 +90,12 @@
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_config) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-SSIConfig(unsigned long ulBase, unsigned long ulProtocol, unsigned long ulMode,
-          unsigned long ulBitRate, unsigned long ulDataWidth)
+#if defined( GROUP_config ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void SSIConfig( unsigned long ulBase,
+                unsigned long ulProtocol,
+                unsigned long ulMode,
+                unsigned long ulBitRate,
+                unsigned long ulDataWidth )
 {
     unsigned long ulMaxBitRate;
     unsigned long ulRegVal;
@@ -105,17 +107,15 @@ SSIConfig(unsigned long ulBase, unsigned long ulProtocol, unsigned long ulMode,
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == SSI_BASE);
-    ASSERT((ulProtocol == SSI_FRF_MOTO_MODE_0) ||
-           (ulProtocol == SSI_FRF_MOTO_MODE_1) ||
-           (ulProtocol == SSI_FRF_MOTO_MODE_2) ||
-           (ulProtocol == SSI_FRF_MOTO_MODE_3) ||
-           (ulProtocol == SSI_FRF_TI) ||
-           (ulProtocol == SSI_FRF_NMW));
-    ASSERT((ulMode == SSI_MODE_MASTER) ||
-           (ulMode == SSI_MODE_SLAVE) ||
-           (ulMode == SSI_MODE_SLAVE_OD));
-    ASSERT((ulDataWidth >= 4) && (ulDataWidth <= 16));
+    ASSERT( ulBase == SSI_BASE );
+    ASSERT( ( ulProtocol == SSI_FRF_MOTO_MODE_0 ) ||
+            ( ulProtocol == SSI_FRF_MOTO_MODE_1 ) ||
+            ( ulProtocol == SSI_FRF_MOTO_MODE_2 ) ||
+            ( ulProtocol == SSI_FRF_MOTO_MODE_3 ) ||
+            ( ulProtocol == SSI_FRF_TI ) || ( ulProtocol == SSI_FRF_NMW ) );
+    ASSERT( ( ulMode == SSI_MODE_MASTER ) || ( ulMode == SSI_MODE_SLAVE ) ||
+            ( ulMode == SSI_MODE_SLAVE_OD ) );
+    ASSERT( ( ulDataWidth >= 4 ) && ( ulDataWidth <= 16 ) );
 
     //
     // Get the processor clock rate.
@@ -125,16 +125,18 @@ SSIConfig(unsigned long ulBase, unsigned long ulProtocol, unsigned long ulMode,
     //
     // Validate the clock speed.
     //
-    ASSERT(((ulMode == SSI_MODE_MASTER) && (ulBitRate <= (ulClock / 2))) ||
-           ((ulMode != SSI_MODE_MASTER) && (ulBitRate <= (ulClock / 12))));
-    ASSERT((ulClock / ulBitRate) <= (254 * 256));
+    ASSERT(
+        ( ( ulMode == SSI_MODE_MASTER ) && ( ulBitRate <= ( ulClock / 2 ) ) ) ||
+        ( ( ulMode != SSI_MODE_MASTER ) &&
+          ( ulBitRate <= ( ulClock / 12 ) ) ) );
+    ASSERT( ( ulClock / ulBitRate ) <= ( 254 * 256 ) );
 
     //
     // Set the mode.
     //
-    ulRegVal = (ulMode == SSI_MODE_SLAVE_OD) ? SSI_CR1_SOD : 0;
-    ulRegVal |= (ulMode == SSI_MODE_MASTER) ? 0 : SSI_CR1_MS;
-    HWREG(ulBase + SSI_O_CR1) = ulRegVal;
+    ulRegVal = ( ulMode == SSI_MODE_SLAVE_OD ) ? SSI_CR1_SOD : 0;
+    ulRegVal |= ( ulMode == SSI_MODE_MASTER ) ? 0 : SSI_CR1_MS;
+    HWREG( ulBase + SSI_O_CR1 ) = ulRegVal;
 
     //
     // Set the clock predivider.
@@ -144,18 +146,17 @@ SSIConfig(unsigned long ulBase, unsigned long ulProtocol, unsigned long ulMode,
     do
     {
         ulPreDiv += 2;
-        ulSCR = (ulMaxBitRate / ulPreDiv) - 1;
-    }
-    while(ulSCR > 255);
-    HWREG(ulBase + SSI_O_CPSR) = ulPreDiv;
+        ulSCR = ( ulMaxBitRate / ulPreDiv ) - 1;
+    } while( ulSCR > 255 );
+    HWREG( ulBase + SSI_O_CPSR ) = ulPreDiv;
 
     //
     // Set protocol and clock rate.
     //
     ulSPH_SPO = ulProtocol << 6;
     ulProtocol &= SSI_CR0_FRF_MASK;
-    ulRegVal = (ulSCR << 8) | ulSPH_SPO | ulProtocol | (ulDataWidth - 1);
-    HWREG(ulBase + SSI_O_CR0) = ulRegVal;
+    ulRegVal = ( ulSCR << 8 ) | ulSPH_SPO | ulProtocol | ( ulDataWidth - 1 );
+    HWREG( ulBase + SSI_O_CR0 ) = ulRegVal;
 }
 #endif
 
@@ -171,19 +172,18 @@ SSIConfig(unsigned long ulBase, unsigned long ulProtocol, unsigned long ulMode,
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_enable) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-SSIEnable(unsigned long ulBase)
+#if defined( GROUP_enable ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void SSIEnable( unsigned long ulBase )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == SSI_BASE);
+    ASSERT( ulBase == SSI_BASE );
 
     //
     // Read-modify-write the enable bit.
     //
-    HWREG(ulBase + SSI_O_CR1) |= SSI_CR1_SSE;
+    HWREG( ulBase + SSI_O_CR1 ) |= SSI_CR1_SSE;
 }
 #endif
 
@@ -198,19 +198,18 @@ SSIEnable(unsigned long ulBase)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_disable) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-SSIDisable(unsigned long ulBase)
+#if defined( GROUP_disable ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void SSIDisable( unsigned long ulBase )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == SSI_BASE);
+    ASSERT( ulBase == SSI_BASE );
 
     //
     // Read-modify-write the enable bit.
     //
-    HWREG(ulBase + SSI_O_CR1) &= ~(SSI_CR1_SSE);
+    HWREG( ulBase + SSI_O_CR1 ) &= ~( SSI_CR1_SSE );
 }
 #endif
 
@@ -234,24 +233,23 @@ SSIDisable(unsigned long ulBase)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_intregister) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-SSIIntRegister(unsigned long ulBase, void (*pfnHandler)(void))
+#if defined( GROUP_intregister ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void SSIIntRegister( unsigned long ulBase, void ( *pfnHandler )( void ) )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == SSI_BASE);
+    ASSERT( ulBase == SSI_BASE );
 
     //
     // Register the interrupt handler, returning an error if an error occurs.
     //
-    IntRegister(INT_SSI, pfnHandler);
+    IntRegister( INT_SSI, pfnHandler );
 
     //
     // Enable the synchronous serial interface interrupt.
     //
-    IntEnable(INT_SSI);
+    IntEnable( INT_SSI );
 }
 #endif
 
@@ -271,24 +269,23 @@ SSIIntRegister(unsigned long ulBase, void (*pfnHandler)(void))
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_intunregister) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-SSIIntUnregister(unsigned long ulBase)
+#if defined( GROUP_intunregister ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void SSIIntUnregister( unsigned long ulBase )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == SSI_BASE);
+    ASSERT( ulBase == SSI_BASE );
 
     //
     // Disable the interrupt.
     //
-    IntDisable(INT_SSI);
+    IntDisable( INT_SSI );
 
     //
     // Unregister the interrupt handler.
     //
-    IntUnregister(INT_SSI);
+    IntUnregister( INT_SSI );
 }
 #endif
 
@@ -307,19 +304,18 @@ SSIIntUnregister(unsigned long ulBase)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_intenable) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-SSIIntEnable(unsigned long ulBase, unsigned long ulIntFlags)
+#if defined( GROUP_intenable ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void SSIIntEnable( unsigned long ulBase, unsigned long ulIntFlags )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == SSI_BASE);
+    ASSERT( ulBase == SSI_BASE );
 
     //
     // Enable the specified interrupts.
     //
-    HWREG(ulBase + SSI_O_IM) |= ulIntFlags;
+    HWREG( ulBase + SSI_O_IM ) |= ulIntFlags;
 }
 #endif
 
@@ -337,19 +333,18 @@ SSIIntEnable(unsigned long ulBase, unsigned long ulIntFlags)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_intdisable) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-SSIIntDisable(unsigned long ulBase, unsigned long ulIntFlags)
+#if defined( GROUP_intdisable ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void SSIIntDisable( unsigned long ulBase, unsigned long ulIntFlags )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == SSI_BASE);
+    ASSERT( ulBase == SSI_BASE );
 
     //
     // Disable the specified interrupts.
     //
-    HWREG(ulBase + SSI_O_IM) &= ~(ulIntFlags);
+    HWREG( ulBase + SSI_O_IM ) &= ~( ulIntFlags );
 }
 #endif
 
@@ -369,26 +364,25 @@ SSIIntDisable(unsigned long ulBase, unsigned long ulIntFlags)
 //! SSI_TXFF, SSI_RXFF, SSI_RXTO, and SSI_RXOR.
 //
 //*****************************************************************************
-#if defined(GROUP_intstatus) || defined(BUILD_ALL) || defined(DOXYGEN)
-unsigned long
-SSIIntStatus(unsigned long ulBase, tBoolean bMasked)
+#if defined( GROUP_intstatus ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+unsigned long SSIIntStatus( unsigned long ulBase, tBoolean bMasked )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == SSI_BASE);
+    ASSERT( ulBase == SSI_BASE );
 
     //
     // Return either the interrupt status or the raw interrupt status as
     // requested.
     //
-    if(bMasked)
+    if( bMasked )
     {
-        return(HWREG(ulBase + SSI_O_MIS));
+        return ( HWREG( ulBase + SSI_O_MIS ) );
     }
     else
     {
-        return(HWREG(ulBase + SSI_O_RIS));
+        return ( HWREG( ulBase + SSI_O_RIS ) );
     }
 }
 #endif
@@ -409,19 +403,18 @@ SSIIntStatus(unsigned long ulBase, tBoolean bMasked)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_intclear) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-SSIIntClear(unsigned long ulBase, unsigned long ulIntFlags)
+#if defined( GROUP_intclear ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void SSIIntClear( unsigned long ulBase, unsigned long ulIntFlags )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == SSI_BASE);
+    ASSERT( ulBase == SSI_BASE );
 
     //
     // Clear the requested interrupt sources.
     //
-    HWREG(ulBase + SSI_O_ICR) = ulIntFlags;
+    HWREG( ulBase + SSI_O_ICR ) = ulIntFlags;
 }
 #endif
 
@@ -443,28 +436,27 @@ SSIIntClear(unsigned long ulBase, unsigned long ulIntFlags)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_dataput) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-SSIDataPut(unsigned long ulBase, unsigned long ulData)
+#if defined( GROUP_dataput ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void SSIDataPut( unsigned long ulBase, unsigned long ulData )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == SSI_BASE);
-    ASSERT((ulData & (0xfffffffe << (HWREG(ulBase + SSI_O_CR0) &
-                                     SSI_CR0_DSS))) == 0);
+    ASSERT( ulBase == SSI_BASE );
+    ASSERT( ( ulData & ( 0xfffffffe << ( HWREG( ulBase + SSI_O_CR0 ) &
+                                         SSI_CR0_DSS ) ) ) == 0 );
 
     //
     // Wait until there is space.
     //
-    while(!(HWREG(ulBase + SSI_O_SR) & SSI_SR_TNF))
+    while( !( HWREG( ulBase + SSI_O_SR ) & SSI_SR_TNF ) )
     {
     }
 
     //
     // Write the data to the SSI.
     //
-    HWREG(ulBase + SSI_O_DR) = ulData;
+    HWREG( ulBase + SSI_O_DR ) = ulData;
 }
 #endif
 
@@ -487,28 +479,28 @@ SSIDataPut(unsigned long ulBase, unsigned long ulData)
 //! \return Returns the number of elements written to the SSI transmit FIFO.
 //
 //*****************************************************************************
-#if defined(GROUP_datanonblockingput) || defined(BUILD_ALL) || defined(DOXYGEN)
-long
-SSIDataNonBlockingPut(unsigned long ulBase, unsigned long ulData)
+#if defined( GROUP_datanonblockingput ) || defined( BUILD_ALL ) || \
+    defined( DOXYGEN )
+long SSIDataNonBlockingPut( unsigned long ulBase, unsigned long ulData )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == SSI_BASE);
-    ASSERT((ulData & (0xfffffffe << (HWREG(ulBase + SSI_O_CR0) &
-                                     SSI_CR0_DSS))) == 0);
+    ASSERT( ulBase == SSI_BASE );
+    ASSERT( ( ulData & ( 0xfffffffe << ( HWREG( ulBase + SSI_O_CR0 ) &
+                                         SSI_CR0_DSS ) ) ) == 0 );
 
     //
     // Check for space to write.
     //
-    if(HWREG(ulBase + SSI_O_SR) & SSI_SR_TNF)
+    if( HWREG( ulBase + SSI_O_SR ) & SSI_SR_TNF )
     {
-        HWREG(ulBase + SSI_O_DR) = ulData;
-        return(1);
+        HWREG( ulBase + SSI_O_DR ) = ulData;
+        return ( 1 );
     }
     else
     {
-        return(0);
+        return ( 0 );
     }
 }
 #endif
@@ -533,26 +525,25 @@ SSIDataNonBlockingPut(unsigned long ulBase, unsigned long ulData)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_dataget) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-SSIDataGet(unsigned long ulBase, unsigned long *pulData)
+#if defined( GROUP_dataget ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void SSIDataGet( unsigned long ulBase, unsigned long * pulData )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == SSI_BASE);
+    ASSERT( ulBase == SSI_BASE );
 
     //
     // Wait until there is data to be read.
     //
-    while(!(HWREG(ulBase + SSI_O_SR) & SSI_SR_RNE))
+    while( !( HWREG( ulBase + SSI_O_SR ) & SSI_SR_RNE ) )
     {
     }
 
     //
     // Read data from SSI.
     //
-    *pulData = HWREG(ulBase + SSI_O_DR);
+    *pulData = HWREG( ulBase + SSI_O_DR );
 }
 #endif
 
@@ -577,26 +568,26 @@ SSIDataGet(unsigned long ulBase, unsigned long *pulData)
 //! \return Returns the number of elements read from the SSI receive FIFO.
 //
 //*****************************************************************************
-#if defined(GROUP_datanonblockingget) || defined(BUILD_ALL) || defined(DOXYGEN)
-long
-SSIDataNonBlockingGet(unsigned long ulBase, unsigned long *pulData)
-{ 
-   //
+#if defined( GROUP_datanonblockingget ) || defined( BUILD_ALL ) || \
+    defined( DOXYGEN )
+long SSIDataNonBlockingGet( unsigned long ulBase, unsigned long * pulData )
+{
+    //
     // Check the arguments.
     //
-    ASSERT(ulBase == SSI_BASE);
+    ASSERT( ulBase == SSI_BASE );
 
     //
     // Check for data to read.
     //
-    if(HWREG(ulBase + SSI_O_SR) & SSI_SR_RNE)
+    if( HWREG( ulBase + SSI_O_SR ) & SSI_SR_RNE )
     {
-        *pulData = HWREG(ulBase + SSI_O_DR);
-        return(1);
+        *pulData = HWREG( ulBase + SSI_O_DR );
+        return ( 1 );
     }
     else
     {
-        return(0);
+        return ( 0 );
     }
 }
 #endif

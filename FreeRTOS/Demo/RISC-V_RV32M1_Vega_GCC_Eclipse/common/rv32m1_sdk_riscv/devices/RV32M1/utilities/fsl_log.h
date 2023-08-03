@@ -2,7 +2,7 @@
  * Copyright 2017 NXP
  * All rights reserved.
  *
- * 
+ *
  * SPDX-License-Identifier: BSD-3-Clause
  *
  */
@@ -19,7 +19,7 @@
 /*************************************************************************************************
  * Prototypes
  ************************************************************************************************/
-#if defined(__cplusplus)
+#if defined( __cplusplus )
 extern "C" {
 #endif /* __cplusplus */
 
@@ -32,11 +32,15 @@ extern "C" {
  * @param baudRate, device communicate baudrate
  * @param clkSrcFreq, device source clock freq
  *
- * @return              	Indicates whether initialization was successful or not.
+ * @return              	Indicates whether initialization was successful or
+ * not.
  * @retval kStatus_Success  Execution successfully
  * @retval kStatus_Fail     Execution failure
  */
-status_t LOG_Init(uint32_t baseAddr, uint8_t device, uint32_t baudRate, uint32_t clkSrcFreq);
+status_t LOG_Init( uint32_t baseAddr,
+                   uint8_t device,
+                   uint32_t baudRate,
+                   uint32_t clkSrcFreq );
 
 /*!
  * @brief De-Initializes
@@ -45,7 +49,7 @@ status_t LOG_Init(uint32_t baseAddr, uint8_t device, uint32_t baudRate, uint32_t
  *
  * @return Indicates whether Deinit was successful or not.
  */
-void LOG_Deinit(void);
+void LOG_Deinit( void );
 
 /*!
  * @brief log push interface
@@ -57,7 +61,7 @@ void LOG_Deinit(void);
  * @retval-1 indicate buffer is full or transfer fail.
  * @retval size return the push log size.
  */
-int LOG_Push(uint8_t *buf, size_t size);
+int LOG_Push( uint8_t * buf, size_t size );
 
 /*!
  * @brief log read one line function
@@ -67,7 +71,7 @@ int LOG_Push(uint8_t *buf, size_t size);
  * @param size, avaliable size
  * @reutrn the number of the recieved character
  */
-int LOG_ReadLine(uint8_t *buf, size_t size);
+int LOG_ReadLine( uint8_t * buf, size_t size );
 
 /*!
  * @brief log read one character function
@@ -76,15 +80,16 @@ int LOG_ReadLine(uint8_t *buf, size_t size);
  * @param ch receive address
  * @reutrn the number of the recieved character
  */
-int LOG_ReadCharacter(uint8_t *ch);
+int LOG_ReadCharacter( uint8_t * ch );
 
 /*!
  * @brief wait log and io idle
  *
- * Call this function to wait log buffer empty and io idle before enter low power mode.
+ * Call this function to wait log buffer empty and io idle before enter low
+ * power mode.
  * @return Indicates whether wait idle was successful or not.
  */
-status_t LOG_WaitIdle(void);
+status_t LOG_WaitIdle( void );
 
 /*!
  * @brief log pop function
@@ -94,9 +99,9 @@ status_t LOG_WaitIdle(void);
  * @param size log size to pop
  * @return pop log size.
  */
-int LOG_Pop(uint8_t *buf, size_t size);
+int LOG_Pop( uint8_t * buf, size_t size );
 
-#if defined(__cplusplus)
+#if defined( __cplusplus )
 }
 #endif /* __cplusplus */
 

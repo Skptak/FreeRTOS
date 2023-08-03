@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
- *         ATMEL Microcontroller Software Support 
+ *         ATMEL Microcontroller Software Support
  * ----------------------------------------------------------------------------
  * Copyright (c) 2010, Atmel Corporation
  *
@@ -29,12 +29,12 @@
 
 /** \file
  *  \section Purpose
- * 
+ *
  *    Definitions and methods for USB request structures described by the
  *    USB specification.
- * 
+ *
  *  \section Usage
- * 
+ *
  */
 
 #ifndef _USBREQUESTS_H_
@@ -63,7 +63,7 @@
 /** \addtogroup usb_request_define USB Generic Request definitions
  *      @{
  *  This section lists the codes of USB generic request.
- * 
+ *
  *  - \ref usb_request_code USB Request codes
  *     - \ref USBGenericRequest_GETSTATUS
  *     - \ref USBGenericRequest_CLEARFEATURE
@@ -76,18 +76,18 @@
  *     - \ref USBGenericRequest_GETINTERFACE
  *     - \ref USBGenericRequest_SETINTERFACE
  *     - \ref USBGenericRequest_SYNCHFRAME
- * 
+ *
  *  - \ref usb_request_recipient USB Request Recipients
  *     - \ref USBGenericRequest_DEVICE
  *     - \ref USBGenericRequest_INTERFACE
  *     - \ref USBGenericRequest_ENDPOINT
  *     - \ref USBGenericRequest_OTHER
- * 
+ *
  *  - \ref usb_request_type USB Request Types
  *     - \ref USBGenericRequest_STANDARD
  *     - \ref USBGenericRequest_CLASS
  *     - \ref USBGenericRequest_VENDOR
- * 
+ *
  *  - \ref usb_request_dir USB Request Directions
  *     - \ref USBGenericRequest_IN
  *     - \ref USBGenericRequest_OUT
@@ -178,7 +178,6 @@
 /**         @}*/
 /**     @}*/
 
-
 /*----------- Feature Request ------------*/
 
 /** \addtogroup usb_feature_def USB Feature Request Definitions
@@ -213,7 +212,7 @@
 /** Test mode of the device. */
 #define USBFeatureRequest_TESTMODE              2
 /** OTG set feature */
-#define USBFeatureRequest_OTG                0x0B
+#define USBFeatureRequest_OTG                   0x0B
 /** OTG b_hnp_enable */
 #define USBFeatureRequest_OTG_B_HNP_ENABLE      3
 /** OTG a_hnp_support */
@@ -253,39 +252,39 @@
  *      Types
  *---------------------------------------------------------------------------*/
 
-/* 
+/*
  *          Function types
  */
 
-/* 
+/*
  *          Descriptor structs types
  */
-#pragma pack(1)
-#if defined   ( __CC_ARM   ) /* Keil ¦ÌVision 4 */
-#elif defined ( __ICCARM__ ) /* IAR Ewarm 5.41+ */
-#define __attribute__(...)
-#elif defined (  __GNUC__  ) /* GCC CS3 2009q3-68 */
+#pragma pack( 1 )
+#if defined( __CC_ARM )     /* Keil ¦ÌVision 4 */
+#elif defined( __ICCARM__ ) /* IAR Ewarm 5.41+ */
+    #define __attribute__( ... )
+#elif defined( __GNUC__ ) /* GCC CS3 2009q3-68 */
 #endif
 
 /**
  *  Generic USB SETUP request sent over Control endpoints.
  */
-typedef struct {
-
+typedef struct
+{
     /**  Type of request
      *  \sa usb_request_recipient "USB Request Recipients"
      *  \sa usb_request_type "USB Request Types"
      *  \sa usb_request_dir "USB Request Directions" */
-    uint8_t bmRequestType:8;
+    uint8_t bmRequestType : 8;
     /**  Request code
      *  \sa usb_request_code "USB Request Codes" */
-    uint8_t bRequest:8;
+    uint8_t bRequest      : 8;
     /**  Request-specific value parameter. */
-    uint16_t wValue:16;
+    uint16_t wValue       : 16;
     /**  Request-specific index parameter. */
-    uint16_t wIndex:16;
+    uint16_t wIndex       : 16;
     /**  Expected length (in bytes) of the data phase. */
-    uint16_t wLength:16;
+    uint16_t wLength      : 16;
 
 } USBGenericRequest;
 
@@ -295,60 +294,49 @@ typedef struct {
  *      Exported Functions
  *---------------------------------------------------------------------------*/
 
-extern uint8_t USBGenericRequest_GetType(
-    const USBGenericRequest *request);
+extern uint8_t USBGenericRequest_GetType( const USBGenericRequest * request );
 
-extern uint8_t USBGenericRequest_GetRequest(
-    const USBGenericRequest *request);
+extern uint8_t USBGenericRequest_GetRequest( const USBGenericRequest * request );
 
-extern uint16_t USBGenericRequest_GetValue(
-    const USBGenericRequest *request);
+extern uint16_t USBGenericRequest_GetValue( const USBGenericRequest * request );
 
-extern uint16_t USBGenericRequest_GetIndex(
-    const USBGenericRequest *request);
+extern uint16_t USBGenericRequest_GetIndex( const USBGenericRequest * request );
 
-extern uint16_t USBGenericRequest_GetLength(
-    const USBGenericRequest *request);
+extern uint16_t USBGenericRequest_GetLength( const USBGenericRequest * request );
 
 extern uint8_t USBGenericRequest_GetEndpointNumber(
-    const USBGenericRequest *request);
+    const USBGenericRequest * request );
 
 extern uint8_t USBGenericRequest_GetRecipient(
-    const USBGenericRequest *request);
+    const USBGenericRequest * request );
 
 extern uint8_t USBGenericRequest_GetDirection(
-    const USBGenericRequest *request);
-
+    const USBGenericRequest * request );
 
 extern uint8_t USBGetDescriptorRequest_GetDescriptorType(
-    const USBGenericRequest *request);
+    const USBGenericRequest * request );
 
 extern uint8_t USBGetDescriptorRequest_GetDescriptorIndex(
-    const USBGenericRequest *request);
-
+    const USBGenericRequest * request );
 
 extern uint8_t USBSetAddressRequest_GetAddress(
-    const USBGenericRequest *request);
-
+    const USBGenericRequest * request );
 
 extern uint8_t USBSetConfigurationRequest_GetConfiguration(
-    const USBGenericRequest *request);
-
+    const USBGenericRequest * request );
 
 extern uint8_t USBInterfaceRequest_GetInterface(
-    const USBGenericRequest *request);
+    const USBGenericRequest * request );
 
 extern uint8_t USBInterfaceRequest_GetAlternateSetting(
-    const USBGenericRequest *request);
-
+    const USBGenericRequest * request );
 
 extern uint8_t USBFeatureRequest_GetFeatureSelector(
-    const USBGenericRequest *request);
+    const USBGenericRequest * request );
 
 extern uint8_t USBFeatureRequest_GetTestSelector(
-    const USBGenericRequest *request);
+    const USBGenericRequest * request );
 
 /** @}*/
 /**@}*/
 #endif /* #ifndef _USBREQUESTS_H_ */
-

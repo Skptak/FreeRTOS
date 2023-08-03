@@ -28,30 +28,30 @@
 #ifndef REDOSDEVIATIONS_H
 #define REDOSDEVIATIONS_H
 
-
 #if REDCONF_OUTPUT == 1
-/*  Needed for PRINT_ASSERT() and OUTPUT_CHARACTER().
-*/
-#include <stdio.h>
+    /*  Needed for PRINT_ASSERT() and OUTPUT_CHARACTER().
+     */
+    #include <stdio.h>
 #endif
 
+#if( REDCONF_ASSERTS == 1 ) && ( REDCONF_OUTPUT == 1 )
+    /** Print a formatted message for an assertion.
 
-#if (REDCONF_ASSERTS == 1) && (REDCONF_OUTPUT == 1)
-/** Print a formatted message for an assertion.
+        Usages of this macro deviate from MISRA C:2012 Rule 21.6 (required).
+       Using printf() is the most convenient way to output this information; and
+       the risk of "unspecified, undefined and implementation-defined" behavior
+       causing problems (as cited in the rationale for the rule) is small.  The
+       driver does not depend on this string being outputted correctly.
+       Furthermore, use of printf() disappears when either asserts or output are
+       disabled.
 
-    Usages of this macro deviate from MISRA C:2012 Rule 21.6 (required).  Using
-    printf() is the most convenient way to output this information; and the risk
-    of "unspecified, undefined and implementation-defined" behavior causing
-    problems (as cited in the rationale for the rule) is small.  The driver does
-    not depend on this string being outputted correctly.  Furthermore, use of
-    printf() disappears when either asserts or output are disabled.
-
-    As Rule 21.6 is required, a separate deviation record is required.
-*/
-#define PRINT_ASSERT(file, line) \
-    printf("Assertion failed in \"%s\" at line %u\n\r", ((file) == NULL) ? "" : (file), (unsigned)(line))
+        As Rule 21.6 is required, a separate deviation record is required.
+    */
+    #define PRINT_ASSERT( file, line )                       \
+        printf( "Assertion failed in \"%s\" at line %u\n\r", \
+                ( ( file ) == NULL ) ? "" : ( file ),        \
+                ( unsigned ) ( line ) )
 #endif
-
 
 /** Cast a value to unsigned long.
 
@@ -68,8 +68,7 @@
     As Directive 4.6 is advisory, a deviation record is not required.  This
     notice is the only record of the deviation.
 */
-#define CAST_ULONG(ull) ((unsigned long)(ull))
-
+#define CAST_ULONG( ull )                        ( ( unsigned long ) ( ull ) )
 
 /** Cast a const-qualified pointer to a pointer which is *not* const-qualified.
 
@@ -87,8 +86,7 @@
 
     As Rule 11.8 is required, a separate deviation record is required.
 */
-#define CAST_AWAY_CONST(type, ptr) ((type *)(ptr))
-
+#define CAST_AWAY_CONST( type, ptr )             ( ( type * ) ( ptr ) )
 
 /** Allocate zero-initialized (cleared) memory.
 
@@ -118,44 +116,43 @@
     As Directive 4.12, Rule 21.3, and Rule 22.1 are all required, separate
     deviation records are required.
 */
-#define ALLOCATE_CLEARED_MEMORY(nelem, elsize) calloc(nelem, elsize)
-
+#define ALLOCATE_CLEARED_MEMORY( nelem, elsize ) calloc( nelem, elsize )
 
 #if REDCONF_OUTPUT == 1
-/** Output a character to a serial port or other display device.
+    /** Output a character to a serial port or other display device.
 
-    Usages of this macro deviate from MISRA C:2012 Rule 21.6 (required).
-    FreeRTOS does not include a standard method of printing characters, so
-    putchar() is the most convenient and portable way to accomplish the task.
-    The risk of "unspecified, undefined and implementation-defined" behavior
-    causing problems (as cited in the rationale for the rule) is small.  The
-    driver does not depend on the character being outputted correctly.
-    Furthermore, use of putchar() disappears when output is disabled.
+        Usages of this macro deviate from MISRA C:2012 Rule 21.6 (required).
+        FreeRTOS does not include a standard method of printing characters, so
+        putchar() is the most convenient and portable way to accomplish the
+       task. The risk of "unspecified, undefined and implementation-defined"
+       behavior causing problems (as cited in the rationale for the rule) is
+       small.  The driver does not depend on the character being outputted
+       correctly. Furthermore, use of putchar() disappears when output is
+       disabled.
 
-    As Rule 21.6 is required, a separate deviation record is required.
-*/
-#define OUTPUT_CHARACTER(ch) (void)putchar(ch)
+        As Rule 21.6 is required, a separate deviation record is required.
+    */
+    #define OUTPUT_CHARACTER( ch ) ( void ) putchar( ch )
 #endif
 
+#if( REDCONF_TASK_COUNT > 1U ) && ( REDCONF_API_POSIX == 1 )
+    /** Cast a TaskHandle_t (a pointer type) to uintptr_t.
 
-#if (REDCONF_TASK_COUNT > 1U) && (REDCONF_API_POSIX == 1)
-/** Cast a TaskHandle_t (a pointer type) to uintptr_t.
+        Usage of this macro deivate from MISRA-C:2012 Rule 11.4 (advisory). This
+        macro is used for the FreeRTOS version of RedOsTaskId().  Some RTOSes
+        natively use an integer for task IDs; others use pointers. RedOsTaskId()
+        uses integers, FreeRTOS uses pointers; to reconcile this difference, the
+        pointer must be cast to integer.  This is fairly safe, since the
+       resulting integer is never cast back to a pointer; and although the
+       integer representation of a pointer is implementation-defined, the
+       representation is irrelevant provided that unique pointers are converted
+       to unique integers.
 
-    Usage of this macro deivate from MISRA-C:2012 Rule 11.4 (advisory).  This
-    macro is used for the FreeRTOS version of RedOsTaskId().  Some RTOSes
-    natively use an integer for task IDs; others use pointers.  RedOsTaskId()
-    uses integers, FreeRTOS uses pointers; to reconcile this difference, the
-    pointer must be cast to integer.  This is fairly safe, since the resulting
-    integer is never cast back to a pointer; and although the integer
-    representation of a pointer is implementation-defined, the representation is
-    irrelevant provided that unique pointers are converted to unique integers.
-
-    As Rule 11.4 is advisory, a deviation record is not required.  This notice
-    is the only record of the deviation.
-*/
-#define CAST_TASK_PTR_TO_UINTPTR(taskptr) ((uintptr_t)(taskptr))
+        As Rule 11.4 is advisory, a deviation record is not required.  This
+       notice is the only record of the deviation.
+    */
+    #define CAST_TASK_PTR_TO_UINTPTR( taskptr ) ( ( uintptr_t ) ( taskptr ) )
 #endif
-
 
 /** Ignore the return value of a function (cast to void)
 
@@ -190,8 +187,7 @@
 
     As Directive 4.7 is required, a separate deviation record is required.
 */
-#define IGNORE_ERRORS(fn) ((void) (fn))
-
+#define IGNORE_ERRORS( fn ) ( ( void ) ( fn ) )
 
 /** @brief Determine whether a pointer is aligned on a 32-bit boundary.
 
@@ -220,8 +216,8 @@
     As Rule 11.4 is advisory, a deviation record is not required.  This notice
     is the only record of deviation.
 */
-#define IS_UINT32_ALIGNED_PTR(ptr) (((uintptr_t)(ptr) & (sizeof(uint32_t) - 1U)) == 0U)
-
+#define IS_UINT32_ALIGNED_PTR( ptr ) \
+    ( ( ( uintptr_t ) ( ptr ) & ( sizeof( uint32_t ) - 1U ) ) == 0U )
 
 /** @brief Cast a 32-bit aligned void pointer to a uint32 pointer.
 
@@ -237,8 +233,6 @@
     As rule 11.5 is advisory, a deviation record is not required.  This notice
     is the only record of the deviation.
 */
-#define CAST_UINT32_PTR(ptr) ((uint32_t *) (ptr))
-
+#define CAST_UINT32_PTR( ptr ) ( ( uint32_t * ) ( ptr ) )
 
 #endif
-

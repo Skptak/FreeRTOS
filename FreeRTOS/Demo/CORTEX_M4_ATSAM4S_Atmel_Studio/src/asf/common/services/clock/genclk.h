@@ -44,29 +44,29 @@
 #include "parts.h"
 
 #if SAM3S
-# include "sam3s/genclk.h"
+    #include "sam3s/genclk.h"
 #elif SAM3U
-# include "sam3u/genclk.h"
+    #include "sam3u/genclk.h"
 #elif SAM3N
-# include "sam3n/genclk.h"
+    #include "sam3n/genclk.h"
 #elif SAM3XA
-# include "sam3x/genclk.h"
+    #include "sam3x/genclk.h"
 #elif SAM4S
-# include "sam4s/genclk.h"
-#elif (UC3A0 || UC3A1)
-# include "uc3a0_a1/genclk.h"
+    #include "sam4s/genclk.h"
+#elif( UC3A0 || UC3A1 )
+    #include "uc3a0_a1/genclk.h"
 #elif UC3A3
-# include "uc3a3_a4/genclk.h"
+    #include "uc3a3_a4/genclk.h"
 #elif UC3B
-# include "uc3b0_b1/genclk.h"
+    #include "uc3b0_b1/genclk.h"
 #elif UC3C
-# include "uc3c/genclk.h"
+    #include "uc3c/genclk.h"
 #elif UC3D
-# include "uc3d/genclk.h"
+    #include "uc3d/genclk.h"
 #elif UC3L
-# include "uc3l/genclk.h"
+    #include "uc3l/genclk.h"
 #else
-# error Unsupported chip type
+    #error Unsupported chip type
 #endif
 
 /**
@@ -133,7 +133,7 @@
  * \fn void genclk_enable_source(enum genclk_source src)
  * \brief Enable the source clock \a src used by a generic clock.
  */
- //@}
+//@}
 
 //! \name Enabling and disabling Generic Clocks
 //@{
@@ -156,15 +156,17 @@
  * \param src     The source clock of the generic clock.
  * \param divider The divider used to generate the generic clock.
  */
-static inline void genclk_enable_config(unsigned int id, enum genclk_source src, unsigned int divider)
+static inline void genclk_enable_config( unsigned int id,
+                                         enum genclk_source src,
+                                         unsigned int divider )
 {
-	struct genclk_config gcfg;
+    struct genclk_config gcfg;
 
-	genclk_config_defaults(&gcfg, id);
-	genclk_enable_source(src);
-	genclk_config_set_source(&gcfg, src);
-	genclk_config_set_divider(&gcfg, divider);
-	genclk_enable(&gcfg, id);
+    genclk_config_defaults( &gcfg, id );
+    genclk_enable_source( src );
+    genclk_config_set_source( &gcfg, src );
+    genclk_config_set_divider( &gcfg, divider );
+    genclk_enable( &gcfg, id );
 }
 
 //! @}

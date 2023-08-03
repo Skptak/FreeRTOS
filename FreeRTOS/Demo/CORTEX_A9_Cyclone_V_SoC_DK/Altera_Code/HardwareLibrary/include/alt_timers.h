@@ -3,47 +3,45 @@
  */
 
 /******************************************************************************
-*
-* Copyright 2013 Altera Corporation. All Rights Reserved.
-*
-* Redistribution and use in source and binary forms, with or without
-* modification, are permitted provided that the following conditions are met:
-*
-* 1. Redistributions of source code must retain the above copyright notice,
-* this list of conditions and the following disclaimer.
-*
-* 2. Redistributions in binary form must reproduce the above copyright notice,
-* this list of conditions and the following disclaimer in the documentation
-* and/or other materials provided with the distribution.
-*
-* 3. The name of the author may not be used to endorse or promote products
-* derived from this software without specific prior written permission.
-*
-* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDER "AS IS" AND ANY EXPRESS OR
-* IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
-* MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED. IN NO
-* EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
-* EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
-* OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-* INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-* CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING
-* IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
-* OF SUCH DAMAGE.
-*
-******************************************************************************/
+ *
+ * Copyright 2013 Altera Corporation. All Rights Reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright notice,
+ * this list of conditions and the following disclaimer.
+ *
+ * 2. Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation
+ * and/or other materials provided with the distribution.
+ *
+ * 3. The name of the author may not be used to endorse or promote products
+ * derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDER "AS IS" AND ANY EXPRESS OR
+ * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED. IN NO
+ * EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ *SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ *PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+ *BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
+ *IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ *ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ *POSSIBILITY OF SUCH DAMAGE.
+ *
+ ******************************************************************************/
 
 #ifndef __ALT_GPT_H__
 #define __ALT_GPT_H__
 
-#include <stdint.h>
-#include <stdbool.h>
 #include "hwlib.h"
+#include <stdbool.h>
+#include <stdint.h>
 
 #ifdef __cplusplus
-extern "C"
-{
-#endif  /* __cplusplus */
-
+extern "C" {
+#endif /* __cplusplus */
 
 /******************************************************************************/
 /*! \addtogroup GPT_MGR The General Purpose Timer Manager API
@@ -54,12 +52,11 @@ extern "C"
  *     - Four general-purpose countdown timers available to CPU0, CPU1, or the
  *     FPGA.\n
  *     - Each CPU has a private GP countdown timer available only to itself.\n
- *     - Each CPU has a watchdog timer  available only to itself that can work in
- *     GP timer countdown mode.\n
- *     - One continuous-countup global timer with compare capabilities available to
- *     both CPUs and the FPGA.\n\n
- *     Each type has a somewhat different HW interface This API presents the same
- *     external interface for each.
+ *     - Each CPU has a watchdog timer  available only to itself that can work
+ * in GP timer countdown mode.\n
+ *     - One continuous-countup global timer with compare capabilities available
+ * to both CPUs and the FPGA.\n\n Each type has a somewhat different HW
+ * interface This API presents the same external interface for each.
  *
  * @{
  */
@@ -71,13 +68,13 @@ extern "C"
  */
 typedef enum ALT_GPT_TIMER_e
 {
-     /*!
-      * \b CPU_GLOBAL_TMR - CPU Core Global timer - There is one 64-bit
-      * continuously incrementing counter for all CPU cores that is clocked
-      * by PERIPHCLK. CPU_GLOBAL_TMR selects the comparator value, compare
-      * enable, autoincrement value, autoincrement enable, and interrupt
-      * enable for the CPU this code is running on.
-      */
+    /*!
+     * \b CPU_GLOBAL_TMR - CPU Core Global timer - There is one 64-bit
+     * continuously incrementing counter for all CPU cores that is clocked
+     * by PERIPHCLK. CPU_GLOBAL_TMR selects the comparator value, compare
+     * enable, autoincrement value, autoincrement enable, and interrupt
+     * enable for the CPU this code is running on.
+     */
     ALT_GPT_CPU_GLOBAL_TMR,
 
     /*!
@@ -126,8 +123,7 @@ typedef enum ALT_GPT_TIMER_e
      */
     ALT_GPT_SP_TMR1
 
-}  ALT_GPT_TIMER_t;
-
+} ALT_GPT_TIMER_t;
 
 /*!
  * This type definition enumerates the possible rollover or restart modes
@@ -135,7 +131,7 @@ typedef enum ALT_GPT_TIMER_e
  */
 typedef enum ALT_GPT_RESTART_MODE_e
 {
-     /*!
+    /*!
      * \b ONE-SHOT \b MODE - \b CPU_PRIVATE_TMR,
      * \b OSC1_TMR0, \b OSC1_TMR1, \b SP_TMR0, and \b SP_TMR1
      * count down from the value set with alt_gpt_counter_set() to
@@ -144,7 +140,7 @@ typedef enum ALT_GPT_RESTART_MODE_e
      * set by the compare value, triggers an interrupt and stops
      * comparing.
      */
-     ALT_GPT_RESTART_MODE_ONESHOT,
+    ALT_GPT_RESTART_MODE_ONESHOT,
 
     /*!
      * \b USER-SUPPLIED \b COUNT - For \b CPU_PRIVATE_TMR,  \b OSC1_TMR0,
@@ -155,10 +151,9 @@ typedef enum ALT_GPT_RESTART_MODE_e
      * the value set in alt_gpt_counter_set() to the comparator value and
      * continues counting.
      */
-     ALT_GPT_RESTART_MODE_PERIODIC
+    ALT_GPT_RESTART_MODE_PERIODIC
 
 } ALT_GPT_RESTART_MODE_t;
-
 
 /******************************************************************************/
 /*! \addtogroup GPT_STATUS Enable, Disable, and Status
@@ -172,13 +167,13 @@ typedef enum ALT_GPT_RESTART_MODE_e
 /*! Uninitialize all of the general-purpose timer modules
  *
  */
-ALT_STATUS_CODE alt_gpt_all_tmr_uninit(void);
+ALT_STATUS_CODE alt_gpt_all_tmr_uninit( void );
 
 /******************************************************************************/
 /*! Initialize all of the general-purpose timer modules
  *
  */
-ALT_STATUS_CODE alt_gpt_all_tmr_init(void);
+ALT_STATUS_CODE alt_gpt_all_tmr_init( void );
 
 /******************************************************************************/
 /*!
@@ -192,7 +187,7 @@ ALT_STATUS_CODE alt_gpt_all_tmr_init(void);
  * \retval      ALT_E_ERROR     The operation failed.
  * \retval      ALT_E_BAD_ARG   Tried to stop an invalid timer.
  */
-ALT_STATUS_CODE alt_gpt_tmr_stop(ALT_GPT_TIMER_t tmr_id);
+ALT_STATUS_CODE alt_gpt_tmr_stop( ALT_GPT_TIMER_t tmr_id );
 
 /******************************************************************************/
 /*!
@@ -206,7 +201,7 @@ ALT_STATUS_CODE alt_gpt_tmr_stop(ALT_GPT_TIMER_t tmr_id);
  * \retval      ALT_E_ERROR     The operation failed.
  * \retval      ALT_E_BAD_ARG   Tried to start an invalid timer.
  */
-ALT_STATUS_CODE alt_gpt_tmr_start(ALT_GPT_TIMER_t tmr_id);
+ALT_STATUS_CODE alt_gpt_tmr_start( ALT_GPT_TIMER_t tmr_id );
 
 /******************************************************************************/
 /*!
@@ -221,7 +216,7 @@ ALT_STATUS_CODE alt_gpt_tmr_start(ALT_GPT_TIMER_t tmr_id);
  * \retval      ALT_E_FALSE     The timer is currently disabled and stopped.
  * \retval      ALT_E_BAD_ARG   Tried to access an invalid timer.
  */
-ALT_STATUS_CODE alt_gpt_tmr_is_running(ALT_GPT_TIMER_t tmr_id);
+ALT_STATUS_CODE alt_gpt_tmr_is_running( ALT_GPT_TIMER_t tmr_id );
 
 /******************************************************************************/
 /*!
@@ -238,8 +233,7 @@ ALT_STATUS_CODE alt_gpt_tmr_is_running(ALT_GPT_TIMER_t tmr_id);
  * \retval      ALT_E_ERROR     The operation failed.
  * \retval      ALT_E_BAD_ARG   Tried to access an invalid timer.
  */
-ALT_STATUS_CODE alt_gpt_tmr_reset(ALT_GPT_TIMER_t tmr_id);
-
+ALT_STATUS_CODE alt_gpt_tmr_reset( ALT_GPT_TIMER_t tmr_id );
 
 /*! @} */
 /******************************************************************************/
@@ -272,8 +266,7 @@ ALT_STATUS_CODE alt_gpt_tmr_reset(ALT_GPT_TIMER_t tmr_id);
  * \retval      ALT_E_ERROR     The operation failed.
  * \retval      ALT_E_BAD_ARG   Invalid input argument.
  */
-ALT_STATUS_CODE alt_gpt_counter_set(ALT_GPT_TIMER_t tmr_id,
-        uint32_t val);
+ALT_STATUS_CODE alt_gpt_counter_set( ALT_GPT_TIMER_t tmr_id, uint32_t val );
 
 /******************************************************************************/
 /*!
@@ -290,7 +283,7 @@ ALT_STATUS_CODE alt_gpt_counter_set(ALT_GPT_TIMER_t tmr_id,
  *
  * \retval      uint32_t     The current 32-bit counter value.
  */
-uint32_t alt_gpt_counter_get(ALT_GPT_TIMER_t tmr_id);
+uint32_t alt_gpt_counter_get( ALT_GPT_TIMER_t tmr_id );
 
 /******************************************************************************/
 /*!
@@ -313,7 +306,7 @@ uint32_t alt_gpt_counter_get(ALT_GPT_TIMER_t tmr_id);
  * \retval      uint32_t    The reset counter value currently set.
  * \retval      0           An error occurred.
  */
-uint32_t alt_gpt_reset_value_get(ALT_GPT_TIMER_t tmr_id);
+uint32_t alt_gpt_reset_value_get( ALT_GPT_TIMER_t tmr_id );
 
 /******************************************************************************/
 /*!
@@ -332,7 +325,7 @@ uint32_t alt_gpt_reset_value_get(ALT_GPT_TIMER_t tmr_id);
  * \retval      0           An error occurred.
  *
  */
-uint32_t alt_gpt_maxcounter_get(ALT_GPT_TIMER_t tmr_id);
+uint32_t alt_gpt_maxcounter_get( ALT_GPT_TIMER_t tmr_id );
 
 /******************************************************************************/
 /*!
@@ -351,8 +344,7 @@ uint32_t alt_gpt_maxcounter_get(ALT_GPT_TIMER_t tmr_id);
  * \retval      ALT_E_ERROR     The operation failed.
  * \retval      ALT_E_BAD_ARG   Invalid input argument.
  */
-ALT_STATUS_CODE alt_gpt_prescaler_set(ALT_GPT_TIMER_t tmr_id,
-        uint32_t val);
+ALT_STATUS_CODE alt_gpt_prescaler_set( ALT_GPT_TIMER_t tmr_id, uint32_t val );
 
 /******************************************************************************/
 /*!
@@ -368,7 +360,7 @@ ALT_STATUS_CODE alt_gpt_prescaler_set(ALT_GPT_TIMER_t tmr_id,
  * \retval      uint32_t    The prescaler value. Valid range is 1-256.
  *                             Zero indicates an error.
  */
-uint32_t alt_gpt_prescaler_get(ALT_GPT_TIMER_t tmr_id);
+uint32_t alt_gpt_prescaler_get( ALT_GPT_TIMER_t tmr_id );
 
 /******************************************************************************/
 /*!
@@ -380,9 +372,10 @@ uint32_t alt_gpt_prescaler_get(ALT_GPT_TIMER_t tmr_id);
  *              The timer identifier.
  *
  * \retval      unint32_t    The integer portion of the repeat frequency of the
- *                             given timer, measured in Hertz (cycles per second).
+ *                             given timer, measured in Hertz (cycles per
+ * second).
  */
-uint32_t alt_gpt_freq_get(ALT_GPT_TIMER_t tmr_id);
+uint32_t alt_gpt_freq_get( ALT_GPT_TIMER_t tmr_id );
 
 /******************************************************************************/
 /*!
@@ -396,7 +389,7 @@ uint32_t alt_gpt_freq_get(ALT_GPT_TIMER_t tmr_id);
  * \retval      uint32_t      The current period of the given timer, measured
  *                         in seconds.
  */
-uint32_t alt_gpt_time_get(ALT_GPT_TIMER_t tmr_id);
+uint32_t alt_gpt_time_get( ALT_GPT_TIMER_t tmr_id );
 
 /******************************************************************************/
 /*!
@@ -414,7 +407,7 @@ uint32_t alt_gpt_time_get(ALT_GPT_TIMER_t tmr_id);
  *                         alt_gpt_microsecs_get() can be used to obtain
  *                         more precise measurements of shorter periods.
  */
-uint32_t alt_gpt_time_millisecs_get(ALT_GPT_TIMER_t tmr_id);
+uint32_t alt_gpt_time_millisecs_get( ALT_GPT_TIMER_t tmr_id );
 
 /******************************************************************************/
 /*!
@@ -431,7 +424,7 @@ uint32_t alt_gpt_time_millisecs_get(ALT_GPT_TIMER_t tmr_id);
  *                         alt_gpt_time_get() can be used to obtain
  *                         measurements of longer periods.
  */
-uint32_t alt_gpt_time_microsecs_get(ALT_GPT_TIMER_t tmr_id);
+uint32_t alt_gpt_time_microsecs_get( ALT_GPT_TIMER_t tmr_id );
 
 /******************************************************************************/
 /*!
@@ -444,8 +437,7 @@ uint32_t alt_gpt_time_microsecs_get(ALT_GPT_TIMER_t tmr_id);
  *
  * \retval      uint32_t     The current 32-bit counter value.
  */
-uint32_t alt_gpt_curtime_get(ALT_GPT_TIMER_t tmr_id);
-
+uint32_t alt_gpt_curtime_get( ALT_GPT_TIMER_t tmr_id );
 
 /******************************************************************************/
 /*!
@@ -459,8 +451,7 @@ uint32_t alt_gpt_curtime_get(ALT_GPT_TIMER_t tmr_id);
  *
  * \retval      uint32_t     The current 32-bit counter value.
  */
-uint32_t alt_gpt_curtime_millisecs_get(ALT_GPT_TIMER_t tmr_id);
-
+uint32_t alt_gpt_curtime_millisecs_get( ALT_GPT_TIMER_t tmr_id );
 
 /******************************************************************************/
 /*!
@@ -474,8 +465,7 @@ uint32_t alt_gpt_curtime_millisecs_get(ALT_GPT_TIMER_t tmr_id);
  *
  * \retval      uint32_t     The current 32-bit counter value.
  */
-uint32_t alt_gpt_curtime_microsecs_get(ALT_GPT_TIMER_t tmr_id);
-
+uint32_t alt_gpt_curtime_microsecs_get( ALT_GPT_TIMER_t tmr_id );
 
 /******************************************************************************/
 /*!
@@ -489,8 +479,7 @@ uint32_t alt_gpt_curtime_microsecs_get(ALT_GPT_TIMER_t tmr_id);
  *
  * \retval      uint32_t     The current 32-bit counter value.
  */
-uint32_t alt_gpt_curtime_nanosecs_get(ALT_GPT_TIMER_t tmr_id);
-
+uint32_t alt_gpt_curtime_nanosecs_get( ALT_GPT_TIMER_t tmr_id );
 
 /******************************************************************************/
 /*!
@@ -505,7 +494,7 @@ uint32_t alt_gpt_curtime_nanosecs_get(ALT_GPT_TIMER_t tmr_id);
  *                         in seconds. Returns 0 if result cannot fit
  *                         in 32 bits.
  */
-uint32_t alt_gpt_maxtime_get(ALT_GPT_TIMER_t tmr_id);
+uint32_t alt_gpt_maxtime_get( ALT_GPT_TIMER_t tmr_id );
 
 /******************************************************************************/
 /*!
@@ -520,7 +509,7 @@ uint32_t alt_gpt_maxtime_get(ALT_GPT_TIMER_t tmr_id);
  *                         in milliseconds. Returns 0 if result cannot fit
  *                         in 32 bits.
  */
-uint32_t alt_gpt_maxtime_millisecs_get(ALT_GPT_TIMER_t tmr_id);
+uint32_t alt_gpt_maxtime_millisecs_get( ALT_GPT_TIMER_t tmr_id );
 
 /*! @} */
 
@@ -542,7 +531,7 @@ uint32_t alt_gpt_maxtime_millisecs_get(ALT_GPT_TIMER_t tmr_id);
  * \retval      ALT_E_ERROR     The operation failed.
  * \retval      ALT_E_BAD_ARG   Invalid input argument.
  */
-ALT_STATUS_CODE alt_gpt_int_disable(ALT_GPT_TIMER_t tmr_id);
+ALT_STATUS_CODE alt_gpt_int_disable( ALT_GPT_TIMER_t tmr_id );
 
 /******************************************************************************/
 /*!
@@ -557,7 +546,7 @@ ALT_STATUS_CODE alt_gpt_int_disable(ALT_GPT_TIMER_t tmr_id);
  * \retval      ALT_E_ERROR     The operation failed.
  * \retval      ALT_E_BAD_ARG   Invalid input argument.
  */
-ALT_STATUS_CODE alt_gpt_int_enable(ALT_GPT_TIMER_t tmr_id);
+ALT_STATUS_CODE alt_gpt_int_enable( ALT_GPT_TIMER_t tmr_id );
 
 /******************************************************************************/
 /*!
@@ -570,7 +559,7 @@ ALT_STATUS_CODE alt_gpt_int_enable(ALT_GPT_TIMER_t tmr_id);
  * \retval      TRUE            The timer interrupt is currently enabled.
  * \retval      FALSE           The timer interrupt is currently disabled.
  */
-bool alt_gpt_int_is_enabled(ALT_GPT_TIMER_t tmr_id);
+bool alt_gpt_int_is_enabled( ALT_GPT_TIMER_t tmr_id );
 
 /******************************************************************************/
 /*!
@@ -584,7 +573,7 @@ bool alt_gpt_int_is_enabled(ALT_GPT_TIMER_t tmr_id);
  * \retval      ALT_E_ERROR     The operation failed.
  * \retval      ALT_E_BAD_ARG   Invalid input argument.
  */
-ALT_STATUS_CODE alt_gpt_int_clear_pending(ALT_GPT_TIMER_t tmr_id);
+ALT_STATUS_CODE alt_gpt_int_clear_pending( ALT_GPT_TIMER_t tmr_id );
 
 /******************************************************************************/
 /*!
@@ -596,10 +585,10 @@ ALT_STATUS_CODE alt_gpt_int_clear_pending(ALT_GPT_TIMER_t tmr_id);
  *              The timer identifier.
  *
  * \retval      ALT_E_TRUE            The timer interrupt is currently pending.
- * \retval      ALT_E_FALSE           The timer interrupt is not currently pending.
- * \retval      ALT_E_BAD_ARG   Invalid input argument.
+ * \retval      ALT_E_FALSE           The timer interrupt is not currently
+ * pending. \retval      ALT_E_BAD_ARG   Invalid input argument.
  */
-ALT_STATUS_CODE alt_gpt_int_is_pending(ALT_GPT_TIMER_t tmr_id);
+ALT_STATUS_CODE alt_gpt_int_is_pending( ALT_GPT_TIMER_t tmr_id );
 
 /******************************************************************************/
 /*!
@@ -611,10 +600,10 @@ ALT_STATUS_CODE alt_gpt_int_is_pending(ALT_GPT_TIMER_t tmr_id);
  *              The timer identifier.
  *
  * \retval      ALT_E_TRUE            The timer interrupt is currently pending.
- * \retval      ALT_E_FALSE           The timer interrupt is not currently pending.
- * \retval      ALT_E_BAD_ARG   Invalid input argument.
+ * \retval      ALT_E_FALSE           The timer interrupt is not currently
+ * pending. \retval      ALT_E_BAD_ARG   Invalid input argument.
  */
-ALT_STATUS_CODE alt_gpt_int_if_pending_clear(ALT_GPT_TIMER_t tmr_id);
+ALT_STATUS_CODE alt_gpt_int_if_pending_clear( ALT_GPT_TIMER_t tmr_id );
 /*! @} */
 
 /******************************************************************************/
@@ -653,8 +642,8 @@ ALT_STATUS_CODE alt_gpt_int_if_pending_clear(ALT_GPT_TIMER_t tmr_id);
  * \retval      ALT_E_ERROR     The operation failed.
  * \retval      ALT_E_BAD_ARG   Invalid input argument.
  */
-ALT_STATUS_CODE alt_gpt_mode_set(ALT_GPT_TIMER_t tmr_id,
-        ALT_GPT_RESTART_MODE_t mode);
+ALT_STATUS_CODE alt_gpt_mode_set( ALT_GPT_TIMER_t tmr_id,
+                                  ALT_GPT_RESTART_MODE_t mode );
 
 /******************************************************************************/
 /*!
@@ -668,7 +657,7 @@ ALT_STATUS_CODE alt_gpt_mode_set(ALT_GPT_TIMER_t tmr_id,
  *                                              user-defined value.
  * \retval      ALT_E_BAD_ARG               Invalid input argument.
  */
-int32_t alt_gpt_mode_get(ALT_GPT_TIMER_t tmr_id);
+int32_t alt_gpt_mode_get( ALT_GPT_TIMER_t tmr_id );
 
 /*! @} */
 /*! @} */
@@ -677,5 +666,5 @@ int32_t alt_gpt_mode_get(ALT_GPT_TIMER_t tmr_id);
 
 #ifdef __cplusplus
 }
-#endif  /* __cplusplus */
-#endif  /* __ALT_GPT_H__ */
+#endif /* __cplusplus */
+#endif /* __ALT_GPT_H__ */

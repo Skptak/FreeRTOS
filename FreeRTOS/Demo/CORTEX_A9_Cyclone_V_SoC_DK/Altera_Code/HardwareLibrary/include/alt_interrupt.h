@@ -3,47 +3,46 @@
  */
 
 /******************************************************************************
-*
-* Copyright 2013 Altera Corporation. All Rights Reserved.
-* 
-* Redistribution and use in source and binary forms, with or without
-* modification, are permitted provided that the following conditions are met:
-* 
-* 1. Redistributions of source code must retain the above copyright notice,
-* this list of conditions and the following disclaimer.
-* 
-* 2. Redistributions in binary form must reproduce the above copyright notice,
-* this list of conditions and the following disclaimer in the documentation
-* and/or other materials provided with the distribution.
-* 
-* 3. The name of the author may not be used to endorse or promote products
-* derived from this software without specific prior written permission.
-* 
-* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDER "AS IS" AND ANY EXPRESS OR
-* IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
-* MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED. IN NO
-* EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
-* EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
-* OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-* INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-* CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING
-* IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
-* OF SUCH DAMAGE.
-* 
-******************************************************************************/
+ *
+ * Copyright 2013 Altera Corporation. All Rights Reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright notice,
+ * this list of conditions and the following disclaimer.
+ *
+ * 2. Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation
+ * and/or other materials provided with the distribution.
+ *
+ * 3. The name of the author may not be used to endorse or promote products
+ * derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDER "AS IS" AND ANY EXPRESS OR
+ * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED. IN NO
+ * EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ *SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ *PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+ *BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
+ *IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ *ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ *POSSIBILITY OF SUCH DAMAGE.
+ *
+ ******************************************************************************/
 
 #ifndef __ALT_INT_H__
 #define __ALT_INT_H__
 
 #ifdef __ALT_INT_NS_H__
-#error Secure and Non-Secure interrupt API cannot be used together.
+    #error Secure and Non-Secure interrupt API cannot be used together.
 #endif
 
 #include "alt_interrupt_common.h"
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif /* __cplusplus */
 
 /*!
@@ -85,7 +84,7 @@ extern "C"
  * will not be added.
  */
 #ifndef ALT_INT_PROVISION_VECTOR_SUPPORT
-#define ALT_INT_PROVISION_VECTOR_SUPPORT    (1)
+    #define ALT_INT_PROVISION_VECTOR_SUPPORT ( 1 )
 #endif
 
 /*!
@@ -98,7 +97,7 @@ extern "C"
  * ALT_INT_PROVISION_STACK_SUPPORT=(0) in the Makefile.
  */
 #ifndef ALT_INT_PROVISION_STACK_SUPPORT
-#define ALT_INT_PROVISION_STACK_SUPPORT     (1)
+    #define ALT_INT_PROVISION_STACK_SUPPORT ( 1 )
 #endif
 
 /*!
@@ -115,7 +114,7 @@ extern "C"
  * should be defined to a multiple of 32 in the Makefile.
  */
 #ifndef ALT_INT_PROVISION_STACK_SIZE
-#define ALT_INT_PROVISION_STACK_SIZE        (4096)
+    #define ALT_INT_PROVISION_STACK_SIZE ( 4096 )
 #endif
 
 /*!
@@ -126,7 +125,7 @@ extern "C"
  *
  * This preprocessor definition should not be redefined in the Makefile.
  */
-#define ALT_INT_PROVISION_INT_COUNT         (256)
+#define ALT_INT_PROVISION_INT_COUNT ( 256 )
 
 /*!
  * This preprocessor definition determines the total number of CPUs that the
@@ -139,7 +138,7 @@ extern "C"
  * ALT_INT_PROVISION_CPU_COUNT in the Makefile.
  */
 #ifndef ALT_INT_PROVISION_CPU_COUNT
-#define ALT_INT_PROVISION_CPU_COUNT         (1)
+    #define ALT_INT_PROVISION_CPU_COUNT ( 1 )
 #endif
 
 /*!
@@ -163,7 +162,7 @@ extern "C"
  * \retval      ALT_E_SUCCESS   The operation was successful.
  * \retval      ALT_E_ERROR     The operation failed.
  */
-ALT_STATUS_CODE alt_int_global_init(void);
+ALT_STATUS_CODE alt_int_global_init( void );
 
 /*!
  * Performs the uninitialization steps needed by the interrupt controller
@@ -172,7 +171,7 @@ ALT_STATUS_CODE alt_int_global_init(void);
  * \retval      ALT_E_SUCCESS   The operation was successful.
  * \retval      ALT_E_ERROR     The operation failed.
  */
-ALT_STATUS_CODE alt_int_global_uninit(void);
+ALT_STATUS_CODE alt_int_global_uninit( void );
 
 /*!
  * Enables all secure interrupt forwarding from the interrupt controller to
@@ -184,7 +183,7 @@ ALT_STATUS_CODE alt_int_global_uninit(void);
  * \retval      ALT_E_SUCCESS   The operation was successful.
  * \retval      ALT_E_ERROR     The operation failed.
  */
-ALT_STATUS_CODE alt_int_global_enable(void);
+ALT_STATUS_CODE alt_int_global_enable( void );
 
 /*!
  * Disables all secure interrupt forwarding from the interrupt controller to
@@ -196,7 +195,7 @@ ALT_STATUS_CODE alt_int_global_enable(void);
  * \retval      ALT_E_SUCCESS   The operation was successful.
  * \retval      ALT_E_ERROR     The operation failed.
  */
-ALT_STATUS_CODE alt_int_global_disable(void);
+ALT_STATUS_CODE alt_int_global_disable( void );
 
 /*!
  * Enables all non-secure interrupt forwarding from the interrupt controller to
@@ -208,7 +207,7 @@ ALT_STATUS_CODE alt_int_global_disable(void);
  * \retval      ALT_E_SUCCESS   The operation was successful.
  * \retval      ALT_E_ERROR     The operation failed.
  */
-ALT_STATUS_CODE alt_int_global_enable_ns(void);
+ALT_STATUS_CODE alt_int_global_enable_ns( void );
 
 /*!
  * Disables all non-secure interrupt forwarding from the interrupt controller to
@@ -220,7 +219,7 @@ ALT_STATUS_CODE alt_int_global_enable_ns(void);
  * \retval      ALT_E_SUCCESS   The operation was successful.
  * \retval      ALT_E_ERROR     The operation failed.
  */
-ALT_STATUS_CODE alt_int_global_disable_ns(void);
+ALT_STATUS_CODE alt_int_global_disable_ns( void );
 
 /*!
  * Enables all secure and non-secure interrupt forwarding from the interrupt
@@ -232,7 +231,7 @@ ALT_STATUS_CODE alt_int_global_disable_ns(void);
  * \retval      ALT_E_SUCCESS   The operation was successful.
  * \retval      ALT_E_ERROR     The operation failed.
  */
-ALT_STATUS_CODE alt_int_global_enable_all(void);
+ALT_STATUS_CODE alt_int_global_enable_all( void );
 
 /*!
  * Disables all secure and non-secure interrupt forwarding from the interrupt
@@ -244,7 +243,7 @@ ALT_STATUS_CODE alt_int_global_enable_all(void);
  * \retval      ALT_E_SUCCESS   The operation was successful.
  * \retval      ALT_E_ERROR     The operation failed.
  */
-ALT_STATUS_CODE alt_int_global_disable_all(void);
+ALT_STATUS_CODE alt_int_global_disable_all( void );
 
 /*!
  * @}
@@ -274,7 +273,7 @@ ALT_STATUS_CODE alt_int_global_disable_all(void);
  * \retval      ALT_E_ERROR     The operation failed.
  * \retval      ALT_E_BAD_ARG   The given interrupt identifier is invalid.
  */
-ALT_STATUS_CODE alt_int_dist_secure_enable(ALT_INT_INTERRUPT_t int_id);
+ALT_STATUS_CODE alt_int_dist_secure_enable( ALT_INT_INTERRUPT_t int_id );
 
 /*!
  * Disable the specified interrupt from secure operation.
@@ -288,7 +287,7 @@ ALT_STATUS_CODE alt_int_dist_secure_enable(ALT_INT_INTERRUPT_t int_id);
  * \retval      ALT_E_ERROR     The operation failed.
  * \retval      ALT_E_BAD_ARG   The given interrupt identifier is invalid.
  */
-ALT_STATUS_CODE alt_int_dist_secure_disable(ALT_INT_INTERRUPT_t int_id);
+ALT_STATUS_CODE alt_int_dist_secure_disable( ALT_INT_INTERRUPT_t int_id );
 
 /*!
  * Returns \b true if the specified interrupt is enabled for secure operation
@@ -301,8 +300,7 @@ ALT_STATUS_CODE alt_int_dist_secure_disable(ALT_INT_INTERRUPT_t int_id);
  * \retval      ALT_E_FALSE     Interrupt is Non-Secure.
  * \retval      ALT_E_BAD_ARG   The given interrupt identifier is invalid.
  */
-ALT_STATUS_CODE  alt_int_dist_is_secure(ALT_INT_INTERRUPT_t int_id);
-
+ALT_STATUS_CODE alt_int_dist_is_secure( ALT_INT_INTERRUPT_t int_id );
 
 /*!
  * Enable the specified interrupt to be forwarded to the CPU interface.
@@ -319,7 +317,7 @@ ALT_STATUS_CODE  alt_int_dist_is_secure(ALT_INT_INTERRUPT_t int_id);
  * \retval      ALT_E_ERROR     The operation failed.
  * \retval      ALT_E_BAD_ARG   The given interrupt identifier is invalid.
  */
-ALT_STATUS_CODE alt_int_dist_enable(ALT_INT_INTERRUPT_t int_id);
+ALT_STATUS_CODE alt_int_dist_enable( ALT_INT_INTERRUPT_t int_id );
 
 /*!
  * Disables the specified interrupt from being forwarded to the CPU interface.
@@ -336,7 +334,7 @@ ALT_STATUS_CODE alt_int_dist_enable(ALT_INT_INTERRUPT_t int_id);
  * \retval      ALT_E_ERROR     The operation failed.
  * \retval      ALT_E_BAD_ARG   The given interrupt identifier is invalid.
  */
-ALT_STATUS_CODE alt_int_dist_disable(ALT_INT_INTERRUPT_t int_id);
+ALT_STATUS_CODE alt_int_dist_disable( ALT_INT_INTERRUPT_t int_id );
 
 /*!
  * Return \b true if the specified interrupt is enabled and \b false
@@ -354,8 +352,7 @@ ALT_STATUS_CODE alt_int_dist_disable(ALT_INT_INTERRUPT_t int_id);
  * \retval      ALT_E_FALSE     Interrupt is disabled.
  * \retval      ALT_E_BAD_ARG   The given interrupt identifier is invalid.
  */
-ALT_STATUS_CODE alt_int_dist_is_enabled(ALT_INT_INTERRUPT_t int_id);
-
+ALT_STATUS_CODE alt_int_dist_is_enabled( ALT_INT_INTERRUPT_t int_id );
 
 /*!
  * Set the pending status of the specified peripheral interrupt.
@@ -375,7 +372,7 @@ ALT_STATUS_CODE alt_int_dist_is_enabled(ALT_INT_INTERRUPT_t int_id);
  * \retval      ALT_E_ERROR     The operation failed.
  * \retval      ALT_E_BAD_ARG   The given interrupt identifier is invalid.
  */
-ALT_STATUS_CODE alt_int_dist_pending_set(ALT_INT_INTERRUPT_t int_id);
+ALT_STATUS_CODE alt_int_dist_pending_set( ALT_INT_INTERRUPT_t int_id );
 
 /*!
  * Clear the pending status of the specified peripheral interrupt.
@@ -394,7 +391,7 @@ ALT_STATUS_CODE alt_int_dist_pending_set(ALT_INT_INTERRUPT_t int_id);
  * \retval      ALT_E_ERROR     The operation failed.
  * \retval      ALT_E_BAD_ARG   The given interrupt identifier is invalid.
  */
-ALT_STATUS_CODE alt_int_dist_pending_clear(ALT_INT_INTERRUPT_t int_id);
+ALT_STATUS_CODE alt_int_dist_pending_clear( ALT_INT_INTERRUPT_t int_id );
 
 /*!
  * Returns \b true if the specified interrupt is pending or active and
@@ -413,7 +410,7 @@ ALT_STATUS_CODE alt_int_dist_pending_clear(ALT_INT_INTERRUPT_t int_id);
  *                              not active and pending.
  * \retval      ALT_E_BAD_ARG   The given interrupt identifier is invalid.
  */
-ALT_STATUS_CODE alt_int_dist_is_pending(ALT_INT_INTERRUPT_t int_id);
+ALT_STATUS_CODE alt_int_dist_is_pending( ALT_INT_INTERRUPT_t int_id );
 
 /*!
  * Returns \b true if the specified interrupt is active or active and pending,
@@ -432,8 +429,7 @@ ALT_STATUS_CODE alt_int_dist_is_pending(ALT_INT_INTERRUPT_t int_id);
  *                              not active and pending.
  * \retval      ALT_E_BAD_ARG   The given interrupt identifier is invalid.
  */
-ALT_STATUS_CODE alt_int_dist_is_active(ALT_INT_INTERRUPT_t int_id);
-
+ALT_STATUS_CODE alt_int_dist_is_active( ALT_INT_INTERRUPT_t int_id );
 
 /*!
  * Get the priority field value of the specified interrupt.
@@ -455,8 +451,8 @@ ALT_STATUS_CODE alt_int_dist_is_active(ALT_INT_INTERRUPT_t int_id);
  * \retval      ALT_E_ERROR     The operation failed.
  * \retval      ALT_E_BAD_ARG   The given interrupt identifier is invalid.
  */
-ALT_STATUS_CODE alt_int_dist_priority_get(ALT_INT_INTERRUPT_t int_id,
-                                          uint32_t * priority);
+ALT_STATUS_CODE alt_int_dist_priority_get( ALT_INT_INTERRUPT_t int_id,
+                                           uint32_t * priority );
 
 /*!
  * Sets the priority field value of the specified interrupt.
@@ -478,9 +474,8 @@ ALT_STATUS_CODE alt_int_dist_priority_get(ALT_INT_INTERRUPT_t int_id,
  * \retval      ALT_E_BAD_ARG   The given interrupt identifier and / or
  *                              priority value is invalid.
  */
-ALT_STATUS_CODE alt_int_dist_priority_set(ALT_INT_INTERRUPT_t int_id, 
-                                          uint32_t priority);
-
+ALT_STATUS_CODE alt_int_dist_priority_set( ALT_INT_INTERRUPT_t int_id,
+                                           uint32_t priority );
 
 /*!
  * Get the processor target list for the specified interrupt.
@@ -500,8 +495,8 @@ ALT_STATUS_CODE alt_int_dist_priority_set(ALT_INT_INTERRUPT_t int_id,
  * \retval      ALT_E_ERROR     The operation failed.
  * \retval      ALT_E_BAD_ARG   The given interrupt identifier is invalid.
  */
-ALT_STATUS_CODE alt_int_dist_target_get(ALT_INT_INTERRUPT_t int_id,
-                                        alt_int_cpu_target_t * target);
+ALT_STATUS_CODE alt_int_dist_target_get( ALT_INT_INTERRUPT_t int_id,
+                                         alt_int_cpu_target_t * target );
 
 /*!
  * Sets the the list of processors that the interrupt is sent to if it is
@@ -519,9 +514,8 @@ ALT_STATUS_CODE alt_int_dist_target_get(ALT_INT_INTERRUPT_t int_id,
  * \retval      ALT_E_BAD_ARG   The given interrupt identifier and / or target
  *                              list is invalid.
  */
-ALT_STATUS_CODE alt_int_dist_target_set(ALT_INT_INTERRUPT_t int_id,
-                                        alt_int_cpu_target_t target);
-
+ALT_STATUS_CODE alt_int_dist_target_set( ALT_INT_INTERRUPT_t int_id,
+                                         alt_int_cpu_target_t target );
 
 /*!
  * Get the configured trigger type for the specified Private Peripheral
@@ -542,8 +536,8 @@ ALT_STATUS_CODE alt_int_dist_target_set(ALT_INT_INTERRUPT_t int_id,
  * \retval      ALT_E_ERROR     The operation failed.
  * \retval      ALT_E_BAD_ARG   The given interrupt identifier is invalid.
  */
-ALT_STATUS_CODE alt_int_dist_trigger_get(ALT_INT_INTERRUPT_t int_id,
-                                         ALT_INT_TRIGGER_t * trigger_type);
+ALT_STATUS_CODE alt_int_dist_trigger_get( ALT_INT_INTERRUPT_t int_id,
+                                          ALT_INT_TRIGGER_t * trigger_type );
 
 /*!
  * Sets the trigger type for the specified interrupt Private Peripheral
@@ -565,8 +559,8 @@ ALT_STATUS_CODE alt_int_dist_trigger_get(ALT_INT_INTERRUPT_t int_id,
  * \retval      ALT_E_BAD_ARG   The given interrupt identifier and / or other
  *                              configuration is invalid.
  */
-ALT_STATUS_CODE alt_int_dist_trigger_set(ALT_INT_INTERRUPT_t int_id,
-                                         ALT_INT_TRIGGER_t trigger_type);
+ALT_STATUS_CODE alt_int_dist_trigger_set( ALT_INT_INTERRUPT_t int_id,
+                                          ALT_INT_TRIGGER_t trigger_type );
 
 /*!
  * @}
@@ -582,7 +576,7 @@ ALT_STATUS_CODE alt_int_dist_trigger_set(ALT_INT_INTERRUPT_t int_id,
  *  * interrupting only the processor that initiates the SGI
  *  * interrupting all processors other than the one that initiates the SGI
  *  * interrupting the processor initiating the SGI
- * 
+ *
  * SGIs from different processors use the same interrupt IDs. Therefore, any
  * target processor can receive SGIs with the same interrupt ID from different
  * processors. On the CPU interface of the target processor, the pending
@@ -591,7 +585,7 @@ ALT_STATUS_CODE alt_int_dist_trigger_set(ALT_INT_INTERRUPT_t int_id,
  * Reading the Interrupt Controller CPU Interrupt Acknowledge Register
  * (ICCIAR) for an SGI returns both the interrupt ID and the CPU ID of the
  * processor that generated the interrupt, uniquely identifying the interrupt.
- * In a multiprocessor implementation, the interrupt priority of each SGI 
+ * In a multiprocessor implementation, the interrupt priority of each SGI
  * interrupt ID is defined independently for each CPU interface. This means
  * that, for each CPU interface, all SGIs with a particular interrupt ID that
  * are pending on that interface have the same priority and must be handled
@@ -624,10 +618,10 @@ ALT_STATUS_CODE alt_int_dist_trigger_set(ALT_INT_INTERRUPT_t int_id,
  * \retval      ALT_E_BAD_ARG   The given interrupt identifier, target filter,
  *                              and / or target list is invalid.
  */
-ALT_STATUS_CODE alt_int_sgi_trigger(ALT_INT_INTERRUPT_t int_id,
-                                    ALT_INT_SGI_TARGET_t target_filter,
-                                    alt_int_cpu_target_t target_list,
-                                    bool secure_only);
+ALT_STATUS_CODE alt_int_sgi_trigger( ALT_INT_INTERRUPT_t int_id,
+                                     ALT_INT_SGI_TARGET_t target_filter,
+                                     alt_int_cpu_target_t target_list,
+                                     bool secure_only );
 
 /*!
  * @}
@@ -650,13 +644,13 @@ ALT_STATUS_CODE alt_int_sgi_trigger(ALT_INT_INTERRUPT_t int_id,
  * \retval      ALT_E_SUCCESS   The operation was successful.
  * \retval      ALT_E_ERROR     The operation failed.
  */
-ALT_STATUS_CODE alt_int_cpu_init(void);
+ALT_STATUS_CODE alt_int_cpu_init( void );
 
 /*!
  * Performs the uninitialization steps needed by the interrupt controller CPU
  * interface.
  */
-ALT_STATUS_CODE alt_int_cpu_uninit(void);
+ALT_STATUS_CODE alt_int_cpu_uninit( void );
 
 /*!
  * Enables all secure interrupt forwarding from the interrupt controller to
@@ -668,7 +662,7 @@ ALT_STATUS_CODE alt_int_cpu_uninit(void);
  * \retval      ALT_E_SUCCESS   The operation was successful.
  * \retval      ALT_E_ERROR     The operation failed.
  */
-ALT_STATUS_CODE alt_int_cpu_enable(void);
+ALT_STATUS_CODE alt_int_cpu_enable( void );
 
 /*!
  * Disables all secure interrupt forwarding from the interrupt controller to
@@ -680,7 +674,7 @@ ALT_STATUS_CODE alt_int_cpu_enable(void);
  * \retval      ALT_E_SUCCESS   The operation was successful.
  * \retval      ALT_E_ERROR     The operation failed.
  */
-ALT_STATUS_CODE alt_int_cpu_disable(void);
+ALT_STATUS_CODE alt_int_cpu_disable( void );
 
 /*!
  * Enables all non-secure interrupt forwarding from the interrupt controller
@@ -692,7 +686,7 @@ ALT_STATUS_CODE alt_int_cpu_disable(void);
  * \retval      ALT_E_SUCCESS   The operation was successful.
  * \retval      ALT_E_ERROR     The operation failed.
  */
-ALT_STATUS_CODE alt_int_cpu_enable_ns(void);
+ALT_STATUS_CODE alt_int_cpu_enable_ns( void );
 
 /*!
  * Disables all non-secure interrupt forwarding from the interrupt controller
@@ -704,7 +698,7 @@ ALT_STATUS_CODE alt_int_cpu_enable_ns(void);
  * \retval      ALT_E_SUCCESS   The operation was successful.
  * \retval      ALT_E_ERROR     The operation failed.
  */
-ALT_STATUS_CODE alt_int_cpu_disable_ns(void);
+ALT_STATUS_CODE alt_int_cpu_disable_ns( void );
 
 /*!
  * Enables all secure and non-secure interrupt forwarding from the interrupt
@@ -716,7 +710,7 @@ ALT_STATUS_CODE alt_int_cpu_disable_ns(void);
  * \retval      ALT_E_SUCCESS   The operation was successful.
  * \retval      ALT_E_ERROR     The operation failed.
  */
-ALT_STATUS_CODE alt_int_cpu_enable_all(void);
+ALT_STATUS_CODE alt_int_cpu_enable_all( void );
 
 /*!
  * Disables all secure and non-secure interrupt forwarding from the interrupt
@@ -728,8 +722,7 @@ ALT_STATUS_CODE alt_int_cpu_enable_all(void);
  * \retval      ALT_E_SUCCESS   The operation was successful.
  * \retval      ALT_E_ERROR     The operation failed.
  */
-ALT_STATUS_CODE alt_int_cpu_disable_all(void);
-
+ALT_STATUS_CODE alt_int_cpu_disable_all( void );
 
 /*!
  * Gets the configuration of the signaling interface between the GIC and the
@@ -789,9 +782,9 @@ ALT_STATUS_CODE alt_int_cpu_disable_all(void);
  * \retval      ALT_E_SUCCESS   The operation was successful.
  * \retval      ALT_E_ERROR     The operation failed.
  */
-ALT_STATUS_CODE alt_int_cpu_config_get(bool* use_secure_binary_point,
-                                       bool* use_FIQ_for_secure_interrupts,
-                                       bool* allow_secure_ack_all_interrupts);
+ALT_STATUS_CODE alt_int_cpu_config_get( bool * use_secure_binary_point,
+                                        bool * use_FIQ_for_secure_interrupts,
+                                        bool * allow_secure_ack_all_interrupts );
 
 /*!
  * Sets the configuration of the signaling interface between the GIC and the
@@ -847,10 +840,9 @@ ALT_STATUS_CODE alt_int_cpu_config_get(bool* use_secure_binary_point,
  * \retval      ALT_E_SUCCESS   The operation was successful.
  * \retval      ALT_E_ERROR     The operation failed.
  */
-ALT_STATUS_CODE alt_int_cpu_config_set(bool use_secure_binary_point,
-                                       bool use_FIQ_for_secure_interrupts,
-                                       bool allow_secure_ack_all_interrupts);
-
+ALT_STATUS_CODE alt_int_cpu_config_set( bool use_secure_binary_point,
+                                        bool use_FIQ_for_secure_interrupts,
+                                        bool allow_secure_ack_all_interrupts );
 
 /*!
  * Gets the secure interrupt priority mask for the current CPU. Only
@@ -860,7 +852,7 @@ ALT_STATUS_CODE alt_int_cpu_config_set(bool use_secure_binary_point,
  * \returns     The interrupt priority mask used to determine interrupt
  *              preemption.
  */
-uint32_t alt_int_cpu_priority_mask_get(void);
+uint32_t alt_int_cpu_priority_mask_get( void );
 
 /*!
  * Sets the secure interrupt priority mask for the current CPU. Only
@@ -876,7 +868,7 @@ uint32_t alt_int_cpu_priority_mask_get(void);
  * \retval      ALT_E_ERROR     The operation failed.
  * \retval      ALT_E_BAD_ARG   The given priority mask is invalid.
  */
-ALT_STATUS_CODE alt_int_cpu_priority_mask_set(uint32_t priority_mask);
+ALT_STATUS_CODE alt_int_cpu_priority_mask_set( uint32_t priority_mask );
 
 /*!
  * Gets the binary point value for the current CPU.
@@ -887,7 +879,7 @@ ALT_STATUS_CODE alt_int_cpu_priority_mask_set(uint32_t priority_mask);
  *
  * \returns     The configured binary point value.
  */
-uint32_t alt_int_cpu_binary_point_get(void);
+uint32_t alt_int_cpu_binary_point_get( void );
 
 /*!
  * Sets the binary point value for the current CPU.
@@ -904,7 +896,7 @@ uint32_t alt_int_cpu_binary_point_get(void);
  * \retval      ALT_E_ERROR     The operation failed.
  * \retval      ALT_E_BAD_ARG   The given binary point value is invalid.
  */
-ALT_STATUS_CODE alt_int_cpu_binary_point_set(uint32_t binary_point);
+ALT_STATUS_CODE alt_int_cpu_binary_point_set( uint32_t binary_point );
 
 /*!
  * Gets the non-secure binary point value for the current CPU using the secure
@@ -916,11 +908,11 @@ ALT_STATUS_CODE alt_int_cpu_binary_point_set(uint32_t binary_point);
  *
  * \returns     The configured binary point value.
  */
-uint32_t alt_int_cpu_binary_point_get_ns(void);
+uint32_t alt_int_cpu_binary_point_get_ns( void );
 
 /*!
  * Sets the non-secure binary point value for the current CPU using the secure
- * interface. 
+ * interface.
  *
  * The binary point is point at which the priority value fields split into two
  * parts, the group priority field and the subpriority field. The group
@@ -934,7 +926,7 @@ uint32_t alt_int_cpu_binary_point_get_ns(void);
  * \retval      ALT_E_ERROR     The operation failed.
  * \retval      ALT_E_BAD_ARG   The given binary point value is invalid.
  */
-ALT_STATUS_CODE alt_int_cpu_binary_point_set_ns(uint32_t binary_point);
+ALT_STATUS_CODE alt_int_cpu_binary_point_set_ns( uint32_t binary_point );
 
 /*!
  * @}
@@ -971,9 +963,9 @@ ALT_STATUS_CODE alt_int_cpu_binary_point_set_ns(uint32_t binary_point);
  * \retval      ALT_E_SUCCESS   The operation was successful.
  * \retval      ALT_E_ERROR     The operation failed.
  */
-ALT_STATUS_CODE alt_int_isr_register(ALT_INT_INTERRUPT_t int_id,
-                                     alt_int_callback_t callback,
-                                     void * context);
+ALT_STATUS_CODE alt_int_isr_register( ALT_INT_INTERRUPT_t int_id,
+                                      alt_int_callback_t callback,
+                                      void * context );
 
 /*!
  * Unregisters the callback for the specified secure interrupt for the CPU
@@ -989,7 +981,7 @@ ALT_STATUS_CODE alt_int_isr_register(ALT_INT_INTERRUPT_t int_id,
  * \retval      ALT_E_SUCCESS   The operation was successful.
  * \retval      ALT_E_ERROR     The operation failed.
  */
-ALT_STATUS_CODE alt_int_isr_unregister(ALT_INT_INTERRUPT_t int_id);
+ALT_STATUS_CODE alt_int_isr_unregister( ALT_INT_INTERRUPT_t int_id );
 
 /*!
  * @}
@@ -1008,21 +1000,21 @@ ALT_STATUS_CODE alt_int_isr_unregister(ALT_INT_INTERRUPT_t int_id);
  *
  * \returns     The CPU count of the system.
  */
-uint32_t alt_int_util_cpu_count(void);
+uint32_t alt_int_util_cpu_count( void );
 
 /*!
  * Gets the number of supported interrupts in the system.
  *
  * \returns     The supported interrupt count of the system.
  */
-uint32_t alt_int_util_int_count(void);
+uint32_t alt_int_util_int_count( void );
 
 /*!
  * Gets the CPU indentifier of the current CPU interface.
  *
  * \returns     The set of CPUs representing the current CPU interface.
  */
-alt_int_cpu_target_t alt_int_util_cpu_current(void);
+alt_int_cpu_target_t alt_int_util_cpu_current( void );
 
 /*!
  * @}

@@ -58,7 +58,6 @@ extern "C" {
  *        Exported functions
  *----------------------------------------------------------------------------*/
 
-
 /**
  * \brief Enable watchdog with given mode.
  *
@@ -69,7 +68,7 @@ extern "C" {
  * \param delta WDT delta value
  * \param counter WDT counter value
  */
-extern void wdt_enable(uint32_t mode, uint32_t delta, uint32_t counter);
+extern void wdt_enable( uint32_t mode, uint32_t delta, uint32_t counter );
 
 /**
  * \brief Disable watchdog.
@@ -77,22 +76,22 @@ extern void wdt_enable(uint32_t mode, uint32_t delta, uint32_t counter);
  * \note The Watchdog Mode Register (WDT_MR) can be written only once.
  * Only a processor reset resets it.
  */
-extern void wdt_disable(void);
+extern void wdt_disable( void );
 
 /**
  * \brief Watchdog restart.
  */
-extern void wdt_restart(void);
+extern void wdt_restart( void );
 
 /**
  * \brief Watchdog get status.
  */
-extern uint32_t wdt_get_status(void);
+extern uint32_t wdt_get_status( void );
 
 /**
  * \brief Watchdog get counter value.
  */
-extern uint32_t wdt_get_counter_value(void);
+extern uint32_t wdt_get_counter_value( void );
 
 #ifdef __cplusplus
 }

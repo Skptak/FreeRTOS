@@ -3,34 +3,34 @@
  */
 
 /******************************************************************************
-*
-* Copyright 2013 Altera Corporation. All Rights Reserved.
-* 
-* Redistribution and use in source and binary forms, with or without
-* modification, are permitted provided that the following conditions are met:
-* 
-* 1. Redistributions of source code must retain the above copyright notice,
-* this list of conditions and the following disclaimer.
-* 
-* 2. Redistributions in binary form must reproduce the above copyright notice,
-* this list of conditions and the following disclaimer in the documentation
-* and/or other materials provided with the distribution.
-* 
-* 3. The name of the author may not be used to endorse or promote products
-* derived from this software without specific prior written permission.
-* 
-* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDER "AS IS" AND ANY EXPRESS OR
-* IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
-* MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED. IN NO
-* EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
-* EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
-* OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-* INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-* CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING
-* IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
-* OF SUCH DAMAGE.
-* 
-******************************************************************************/
+ *
+ * Copyright 2013 Altera Corporation. All Rights Reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright notice,
+ * this list of conditions and the following disclaimer.
+ *
+ * 2. Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation
+ * and/or other materials provided with the distribution.
+ *
+ * 3. The name of the author may not be used to endorse or promote products
+ * derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDER "AS IS" AND ANY EXPRESS OR
+ * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED. IN NO
+ * EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ *SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ *PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+ *BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
+ *IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ *ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ *POSSIBILITY OF SUCH DAMAGE.
+ *
+ ******************************************************************************/
 
 #ifndef __ALT_RESET_MGR_H__
 #define __ALT_RESET_MGR_H__
@@ -39,9 +39,8 @@
 #include <stdbool.h>
 
 #ifdef __cplusplus
-extern "C"
-{
-#endif  /* __cplusplus */
+extern "C" {
+#endif /* __cplusplus */
 
 /*! \addtogroup RST_MGR The Reset Manager
  *
@@ -67,61 +66,61 @@ extern "C"
 typedef enum ALT_RESET_EVENT_e
 {
     /*! Power-On Voltage Detector Cold Reset */
-    ALT_RESET_EVENT_PORVOLTRST          = 0x00000001,
+    ALT_RESET_EVENT_PORVOLTRST = 0x00000001,
 
     /*! nPOR Pin Cold Reset                  */
-    ALT_RESET_EVENT_NPORPINRST          = 0x00000002,
+    ALT_RESET_EVENT_NPORPINRST = 0x00000002,
 
     /*! FPGA Core Cold Reset                 */
-    ALT_RESET_EVENT_FPGACOLDRST         = 0x00000004,
+    ALT_RESET_EVENT_FPGACOLDRST = 0x00000004,
 
     /*! CONFIG_IO Cold Reset                 */
-    ALT_RESET_EVENT_CONFIGIOCOLDRST     = 0x00000008,
+    ALT_RESET_EVENT_CONFIGIOCOLDRST = 0x00000008,
 
     /*! Software Cold Reset                  */
-    ALT_RESET_EVENT_SWCOLDRST           = 0x00000010,
+    ALT_RESET_EVENT_SWCOLDRST = 0x00000010,
 
     /*! nRST Pin Warm Reset                  */
-    ALT_RESET_EVENT_NRSTPINRST          = 0x00000100,
+    ALT_RESET_EVENT_NRSTPINRST = 0x00000100,
 
     /*! FPGA Core Warm Reset                 */
-    ALT_RESET_EVENT_FPGAWARMRST         = 0x00000200,
+    ALT_RESET_EVENT_FPGAWARMRST = 0x00000200,
 
     /*! Software Warm Reset                  */
-    ALT_RESET_EVENT_SWWARMRST           = 0x00000400,
+    ALT_RESET_EVENT_SWWARMRST = 0x00000400,
 
     /*! MPU Watchdog 0 Warm Reset            */
-    ALT_RESET_EVENT_MPUWD0RST           = 0x00001000,
+    ALT_RESET_EVENT_MPUWD0RST = 0x00001000,
 
     /*! MPU Watchdog 1 Warm Reset            */
-    ALT_RESET_EVENT_MPUWD1RST           = 0x00002000,
+    ALT_RESET_EVENT_MPUWD1RST = 0x00002000,
 
     /*! L4 Watchdog 0 Warm Reset             */
-    ALT_RESET_EVENT_L4WD0RST            = 0x00004000,
+    ALT_RESET_EVENT_L4WD0RST = 0x00004000,
 
     /*! L4 Watchdog 1 Warm Reset             */
-    ALT_RESET_EVENT_L4WD1RST            = 0x00008000,
+    ALT_RESET_EVENT_L4WD1RST = 0x00008000,
 
     /*! FPGA Core Debug Reset                */
-    ALT_RESET_EVENT_FPGADBGRST          = 0x00040000,
+    ALT_RESET_EVENT_FPGADBGRST = 0x00040000,
 
     /*! DAP Debug Reset                      */
-    ALT_RESET_EVENT_CDBGREQRST          = 0x00080000,
+    ALT_RESET_EVENT_CDBGREQRST = 0x00080000,
 
     /*! SDRAM Self-Refresh Timeout           */
-    ALT_RESET_EVENT_SDRSELFREFTIMEOUT   = 0x01000000,
+    ALT_RESET_EVENT_SDRSELFREFTIMEOUT = 0x01000000,
 
     /*! FPGA manager handshake Timeout       */
-    ALT_RESET_EVENT_FPGAMGRHSTIMEOUT    = 0x02000000,
+    ALT_RESET_EVENT_FPGAMGRHSTIMEOUT = 0x02000000,
 
     /*! SCAN manager handshake Timeout       */
-    ALT_RESET_EVENT_SCANHSTIMEOUT       = 0x04000000,
+    ALT_RESET_EVENT_SCANHSTIMEOUT = 0x04000000,
 
     /*! FPGA handshake Timeout               */
-    ALT_RESET_EVENT_FPGAHSTIMEOUT       = 0x08000000,
+    ALT_RESET_EVENT_FPGAHSTIMEOUT = 0x08000000,
 
     /*! ETR Stall Timeout                    */
-    ALT_RESET_EVENT_ETRSTALLTIMEOUT     = 0x10000000
+    ALT_RESET_EVENT_ETRSTALLTIMEOUT = 0x10000000
 } ALT_RESET_EVENT_t;
 
 /******************************************************************************/
@@ -134,7 +133,7 @@ typedef enum ALT_RESET_EVENT_e
  * \returns     A mask of the reset and/or timeout events that caused the last
  *              reset.
  */
-uint32_t alt_reset_event_get(void);
+uint32_t alt_reset_event_get( void );
 
 /******************************************************************************/
 /*!
@@ -148,7 +147,7 @@ uint32_t alt_reset_event_get(void);
  * \retval      ALT_E_SUCCESS   The operation was succesful.
  * \retval      ALT_E_ERROR     The operation failed.
  */
-ALT_STATUS_CODE alt_reset_event_clear(uint32_t event_mask);
+ALT_STATUS_CODE alt_reset_event_clear( uint32_t event_mask );
 
 /*! @} */
 
@@ -170,7 +169,7 @@ ALT_STATUS_CODE alt_reset_event_clear(uint32_t event_mask);
  * \retval      ALT_E_SUCCESS   The operation was succesful.
  * \retval      ALT_E_ERROR     The operation failed.
  */
-ALT_STATUS_CODE alt_reset_cold_reset(void);
+ALT_STATUS_CODE alt_reset_cold_reset( void );
 
 /******************************************************************************/
 /*!
@@ -188,8 +187,8 @@ ALT_STATUS_CODE alt_reset_cold_reset(void);
  *
  * \param       nRST_pin_clk_assertion
  *              Specifies that number of clock cycles (osc1_clk?) to externally
- *              assert the warm reset pin (nRST). 0 <= \e nRST_pin_clk_assertion <=
- *              (2**20 - 1). A value of 0 prevents any assertion of nRST.
+ *              assert the warm reset pin (nRST). 0 <= \e nRST_pin_clk_assertion
+ * <= (2**20 - 1). A value of 0 prevents any assertion of nRST.
  *
  * \param       sdram_refresh
  *              Controls whether the contents of SDRAM survive a hardware
@@ -231,13 +230,13 @@ ALT_STATUS_CODE alt_reset_cold_reset(void);
  * \retval      ALT_E_SUCCESS   The operation was succesful.
  * \retval      ALT_E_ERROR     The operation failed.
  */
-ALT_STATUS_CODE alt_reset_warm_reset(uint32_t warm_reset_delay,
-                                     uint32_t nRST_pin_clk_assertion,
-                                     bool sdram_refresh,
-                                     bool fpga_mgr_handshake,
-                                     bool scan_mgr_handshake,
-                                     bool fpga_handshake,
-                                     bool etr_stall);
+ALT_STATUS_CODE alt_reset_warm_reset( uint32_t warm_reset_delay,
+                                      uint32_t nRST_pin_clk_assertion,
+                                      bool sdram_refresh,
+                                      bool fpga_mgr_handshake,
+                                      bool scan_mgr_handshake,
+                                      bool fpga_handshake,
+                                      bool etr_stall );
 
 #if 0
 /*! \addtogroup RST_MGR_MPU 
@@ -287,5 +286,5 @@ ALT_STATUS_CODE alt_reset_warm_reset(uint32_t warm_reset_delay,
 
 #ifdef __cplusplus
 }
-#endif  /* __cplusplus */
-#endif  /* __ALT_RESET_MGR_H__ */
+#endif /* __cplusplus */
+#endif /* __ALT_RESET_MGR_H__ */

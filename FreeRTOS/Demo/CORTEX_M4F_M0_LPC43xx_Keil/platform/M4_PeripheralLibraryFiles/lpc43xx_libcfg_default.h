@@ -1,6 +1,6 @@
 /**********************************************************************
-* $Id$		lpc43xx_libcfg_default.h		2011-06-02
-*//**
+ * $Id$		lpc43xx_libcfg_default.h		2011-06-02
+ *//**
 * @file		lpc43xx_libcfg_default.h
 * @brief	Default Library configuration header file
 * @version	1.0
@@ -23,155 +23,157 @@
 * use without further testing or modification.
 **********************************************************************/
 
-/* Library Configuration group ----------------------------------------------------------- */
+/* Library Configuration group
+ * ----------------------------------------------------------- */
 /** @defgroup LIBCFG_DEFAULT LIBCFG_DEFAULT
  * @ingroup LPC4300CMSIS_FwLib_Drivers
  * @{
  */
 
 #ifndef lpc43xx_LIBCFG_DEFAULT_H_
-#define lpc43xx_LIBCFG_DEFAULT_H_
+    #define lpc43xx_LIBCFG_DEFAULT_H_
 
-/* Includes ------------------------------------------------------------------- */
-#include "lpc_types.h"
+    /* Includes
+     * ------------------------------------------------------------------- */
+    #include "lpc_types.h"
 
+    /* Public Macros
+     * -------------------------------------------------------------- */
+    /** @defgroup LIBCFG_DEFAULT_Public_Macros LIBCFG_DEFAULT Public Macros
+     * @{
+     */
 
-/* Public Macros -------------------------------------------------------------- */
-/** @defgroup LIBCFG_DEFAULT_Public_Macros LIBCFG_DEFAULT Public Macros
- * @{
- */
+    /************************** DEBUG MODE DEFINITIONS
+     * *********************************/
+    /* Un-comment the line below to compile the library in DEBUG mode, this will
+       expanse the "CHECK_PARAM" macro in the FW library code */
 
-/************************** DEBUG MODE DEFINITIONS *********************************/
-/* Un-comment the line below to compile the library in DEBUG mode, this will expanse
-   the "CHECK_PARAM" macro in the FW library code */
+    // #define DEBUG
 
-//#define DEBUG
+    /******************* PERIPHERAL FW LIBRARY CONFIGURATION DEFINITIONS
+     * ***********************/
 
+    /* Comment the line below to disable the specific peripheral inclusion */
 
-/******************* PERIPHERAL FW LIBRARY CONFIGURATION DEFINITIONS ***********************/
+    /* GPIO ------------------------------- */
+    #define _GPIO
 
-/* Comment the line below to disable the specific peripheral inclusion */
+    /* EXTI ------------------------------- */
+    #define _EXTI
 
-/* GPIO ------------------------------- */
-#define _GPIO
+    /* UART ------------------------------- */
+    #define _UART
+    #define _UART0
+    #define _UART1
+    #define _UART2
+    #define _UART3
 
-/* EXTI ------------------------------- */
-#define _EXTI
+    /* SPI ------------------------------- */
+    #define _SPI
 
-/* UART ------------------------------- */
-#define _UART
-#define _UART0
-#define _UART1
-#define _UART2
-#define _UART3
+    /* SYSTICK --------------------------- */
+    #define _SYSTICK
 
-/* SPI ------------------------------- */
-#define _SPI
+    /* SSP ------------------------------- */
+    #define _SSP
+    #define _SSP0
+    #define _SSP1
 
-/* SYSTICK --------------------------- */
-#define _SYSTICK
+    /* I2C ------------------------------- */
+    #define _I2C
+    #define _I2C0
+    #define _I2C1
+    #define _I2C2
 
-/* SSP ------------------------------- */
-#define _SSP
-#define _SSP0
-#define _SSP1
+    /* TIMER ------------------------------- */
+    #define _TIM
 
+    /* WWDT ------------------------------- */
+    #define _WWDT
 
-/* I2C ------------------------------- */
-#define _I2C
-#define _I2C0
-#define _I2C1
-#define _I2C2
+    /* GPDMA ------------------------------- */
+    #define _GPDMA
 
-/* TIMER ------------------------------- */
-#define _TIM
+    /* DAC ------------------------------- */
+    #define _DAC
 
-/* WWDT ------------------------------- */
-#define _WWDT
+    /* DAC ------------------------------- */
+    #define _ADC
 
+    /* PWM ------------------------------- */
+    #define _PWM
+    #define _PWM1
 
-/* GPDMA ------------------------------- */
-#define _GPDMA
+    /* RTC ------------------------------- */
+    #define _RTC
 
+    /* I2S ------------------------------- */
+    #define _I2S
 
-/* DAC ------------------------------- */
-#define _DAC
+    /* USB device ------------------------------- */
+    #define _USBDEV
+    #define _USB_DMA
 
-/* DAC ------------------------------- */
-#define _ADC
+    /* QEI ------------------------------- */
+    #define _QEI
 
+    /* MCPWM ------------------------------- */
+    #define _MCPWM
 
-/* PWM ------------------------------- */
-#define _PWM
-#define _PWM1
+    /* CAN--------------------------------*/
+    #define _C_CAN
 
-/* RTC ------------------------------- */
-#define _RTC
+    /* RIT ------------------------------- */
+    #define _RIT
 
-/* I2S ------------------------------- */
-#define _I2S
+    /* EMAC ------------------------------ */
+    #define _EMAC
 
-/* USB device ------------------------------- */
-#define _USBDEV
-#define _USB_DMA
+    /* SCT ------------------------------ */
+    #define _SCT
 
-/* QEI ------------------------------- */
-#define _QEI
+    /* LCD ------------------------------ */
+    #define _LCD
 
-/* MCPWM ------------------------------- */
-#define _MCPWM
+    /* ATIMER ------------------------------ */
+    #define _ATIMER
 
-/* CAN--------------------------------*/
-#define _C_CAN
+    /* RGU ------------------------------ */
+    #define _RGU
 
-/* RIT ------------------------------- */
-#define _RIT
+/************************** GLOBAL/PUBLIC MACRO DEFINITIONS
+ * *********************************/
 
-/* EMAC ------------------------------ */
-#define _EMAC
-
-/* SCT ------------------------------ */
-#define _SCT
-
-/* LCD ------------------------------ */
-#define _LCD
-
-/* ATIMER ------------------------------ */
-#define _ATIMER
-
-/* RGU ------------------------------ */
-#define _RGU
-
-/************************** GLOBAL/PUBLIC MACRO DEFINITIONS *********************************/
-
-#ifdef  DEBUG
-/*******************************************************************************
-* @brief		The CHECK_PARAM macro is used for function's parameters check.
-* 				It is used only if the library is compiled in DEBUG mode.
-* @param[in]	expr - If expr is false, it calls check_failed() function
-*                    	which reports the name of the source file and the source
-*                    	line number of the call that failed.
-*                    - If expr is true, it returns no value.
-* @return		None
-*******************************************************************************/
-#define CHECK_PARAM(expr) ((expr) ? (void)0 : check_failed((uint8_t *)__FILE__, __LINE__))
-#else
-#define CHECK_PARAM(expr)
-#endif /* DEBUG */
+    #ifdef DEBUG
+        /*******************************************************************************
+         * @brief		The CHECK_PARAM macro is used for function's parameters
+         *check. It is used only if the library is compiled in DEBUG mode.
+         * @param[in]	expr - If expr is false, it calls check_failed()
+         *function which reports the name of the source file and the source line
+         *number of the call that failed.
+         *                    - If expr is true, it returns no value.
+         * @return		None
+         *******************************************************************************/
+        #define CHECK_PARAM( expr ) \
+            ( ( expr ) ? ( void ) 0 \
+                       : check_failed( ( uint8_t * ) __FILE__, __LINE__ ) )
+    #else
+        #define CHECK_PARAM( expr )
+    #endif /* DEBUG */
 
 /**
  * @}
  */
 
-
-/* Public Functions ----------------------------------------------------------- */
+/* Public Functions -----------------------------------------------------------
+ */
 /** @defgroup LIBCFG_DEFAULT_Public_Functions LIBCFG_DEFAULT Public Functions
  * @{
  */
 
-#ifdef  DEBUG
-void check_failed(uint8_t *file, uint32_t line);
-#endif
+    #ifdef DEBUG
+void check_failed( uint8_t * file, uint32_t line );
+    #endif
 
 /**
  * @}
@@ -183,4 +185,5 @@ void check_failed(uint8_t *file, uint32_t line);
  * @}
  */
 
-/* --------------------------------- End Of File ------------------------------ */
+/* --------------------------------- End Of File ------------------------------
+ */

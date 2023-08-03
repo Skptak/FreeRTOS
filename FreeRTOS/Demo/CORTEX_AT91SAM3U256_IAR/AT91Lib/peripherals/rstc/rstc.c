@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
- *         ATMEL Microcontroller Software Support 
+ *         ATMEL Microcontroller Software Support
  * ----------------------------------------------------------------------------
  * Copyright (c) 2008, Atmel Corporation
  *
@@ -38,7 +38,7 @@
 //-----------------------------------------------------------------------------
 
 /// Keywords to write to the reset registers
-#define RSTC_KEY_PASSWORD       (0xA5 << 24)
+#define RSTC_KEY_PASSWORD ( 0xA5 << 24 )
 
 //-----------------------------------------------------------------------------
 //         Exported functions
@@ -49,7 +49,7 @@
 /// The configuration is computed by the lib (AT91C_RSTC_*).
 /// \param rmr Desired mode configuration.
 //-----------------------------------------------------------------------------
-void RSTC_ConfigureMode(unsigned int rmr)
+void RSTC_ConfigureMode( unsigned int rmr )
 {
     rmr &= ~AT91C_RSTC_KEY;
     AT91C_BASE_RSTC->RSTC_RMR = rmr | RSTC_KEY_PASSWORD;
@@ -59,15 +59,15 @@ void RSTC_ConfigureMode(unsigned int rmr)
 /// Enable/Disable the detection of a low level on the pin NRST as User Reset
 /// \param enable 1 to enable & 0 to disable.
 //-----------------------------------------------------------------------------
-void RSTC_SetUserResetEnable(unsigned char enable)
+void RSTC_SetUserResetEnable( unsigned char enable )
 {
-    unsigned int rmr = AT91C_BASE_RSTC->RSTC_RMR & (~AT91C_RSTC_KEY);
-    if (enable) {
-
-        rmr |=  AT91C_RSTC_URSTEN;
+    unsigned int rmr = AT91C_BASE_RSTC->RSTC_RMR & ( ~AT91C_RSTC_KEY );
+    if( enable )
+    {
+        rmr |= AT91C_RSTC_URSTEN;
     }
-    else {
-
+    else
+    {
         rmr &= ~AT91C_RSTC_URSTEN;
     }
     AT91C_BASE_RSTC->RSTC_RMR = rmr | RSTC_KEY_PASSWORD;
@@ -77,15 +77,15 @@ void RSTC_SetUserResetEnable(unsigned char enable)
 /// Enable/Disable the interrupt of a User Reset (USRTS bit in RSTC_RST).
 /// \param enable 1 to enable & 0 to disable.
 //-----------------------------------------------------------------------------
-void RSTC_SetUserResetInterruptEnable(unsigned char enable)
+void RSTC_SetUserResetInterruptEnable( unsigned char enable )
 {
-    unsigned int rmr = AT91C_BASE_RSTC->RSTC_RMR & (~AT91C_RSTC_KEY);
-    if (enable) {
-
-        rmr |=  AT91C_RSTC_URSTIEN;
+    unsigned int rmr = AT91C_BASE_RSTC->RSTC_RMR & ( ~AT91C_RSTC_KEY );
+    if( enable )
+    {
+        rmr |= AT91C_RSTC_URSTIEN;
     }
-    else {
-
+    else
+    {
         rmr &= ~AT91C_RSTC_URSTIEN;
     }
     AT91C_BASE_RSTC->RSTC_RMR = rmr | RSTC_KEY_PASSWORD;
@@ -96,19 +96,18 @@ void RSTC_SetUserResetInterruptEnable(unsigned char enable)
 /// pow(2, powl+1) Slow Clock(32KHz). The duration is between 60us and 2s.
 /// \param powl   Power length defined.
 //-----------------------------------------------------------------------------
-void RSTC_SetExtResetLength(unsigned char powl)
+void RSTC_SetExtResetLength( unsigned char powl )
 {
     unsigned int rmr = AT91C_BASE_RSTC->RSTC_RMR;
-    rmr &= ~(AT91C_RSTC_KEY | AT91C_RSTC_ERSTL);
-    rmr |=  (powl << 8) & AT91C_RSTC_ERSTL;
+    rmr &= ~( AT91C_RSTC_KEY | AT91C_RSTC_ERSTL );
+    rmr |= ( powl << 8 ) & AT91C_RSTC_ERSTL;
     AT91C_BASE_RSTC->RSTC_RMR = rmr | RSTC_KEY_PASSWORD;
 }
-
 
 //-----------------------------------------------------------------------------
 /// Resets the processor.
 //-----------------------------------------------------------------------------
-void RSTC_ProcessorReset(void)
+void RSTC_ProcessorReset( void )
 {
     AT91C_BASE_RSTC->RSTC_RCR = AT91C_RSTC_PROCRST | RSTC_KEY_PASSWORD;
 }
@@ -116,7 +115,7 @@ void RSTC_ProcessorReset(void)
 //-----------------------------------------------------------------------------
 /// Resets the peripherals.
 //-----------------------------------------------------------------------------
-void RSTC_PeripheralReset(void)
+void RSTC_PeripheralReset( void )
 {
     AT91C_BASE_RSTC->RSTC_RCR = AT91C_RSTC_PERRST | RSTC_KEY_PASSWORD;
 }
@@ -124,7 +123,7 @@ void RSTC_PeripheralReset(void)
 //-----------------------------------------------------------------------------
 /// Asserts the NRST pin for external resets.
 //-----------------------------------------------------------------------------
-void RSTC_ExtReset(void)
+void RSTC_ExtReset( void )
 {
     AT91C_BASE_RSTC->RSTC_RCR = AT91C_RSTC_EXTRST | RSTC_KEY_PASSWORD;
 }
@@ -132,10 +131,10 @@ void RSTC_ExtReset(void)
 //-----------------------------------------------------------------------------
 /// Return NRST pin level ( 1 or 0 ).
 //-----------------------------------------------------------------------------
-unsigned char RSTC_GetNrstLevel(void)
+unsigned char RSTC_GetNrstLevel( void )
 {
-    if (AT91C_BASE_RSTC->RSTC_RSR & AT91C_RSTC_NRSTL) {
-
+    if( AT91C_BASE_RSTC->RSTC_RSR & AT91C_RSTC_NRSTL )
+    {
         return 1;
     }
     return 0;
@@ -145,10 +144,10 @@ unsigned char RSTC_GetNrstLevel(void)
 /// Returns 1 if at least one high-to-low transition of NRST (User Reset) has
 /// been detected since the last read of RSTC_RSR.
 //-----------------------------------------------------------------------------
-unsigned char RSTC_IsUserResetDetected(void)
+unsigned char RSTC_IsUserResetDetected( void )
 {
-    if (AT91C_BASE_RSTC->RSTC_RSR & AT91C_RSTC_URSTS) {
-
+    if( AT91C_BASE_RSTC->RSTC_RSR & AT91C_RSTC_URSTS )
+    {
         return 1;
     }
     return 0;
@@ -158,10 +157,10 @@ unsigned char RSTC_IsUserResetDetected(void)
 /// Return 1 if a software reset command is being performed by the reset
 /// controller. The reset controller is busy.
 //-----------------------------------------------------------------------------
-unsigned char RSTC_IsBusy(void)
+unsigned char RSTC_IsBusy( void )
 {
-    if (AT91C_BASE_RSTC->RSTC_RSR & AT91C_RSTC_SRCMP) {
-
+    if( AT91C_BASE_RSTC->RSTC_RSR & AT91C_RSTC_SRCMP )
+    {
         return 1;
     }
     return 0;
@@ -170,7 +169,7 @@ unsigned char RSTC_IsBusy(void)
 //-----------------------------------------------------------------------------
 /// Get the status
 //-----------------------------------------------------------------------------
-unsigned char RSTC_GetStatus(void)
+unsigned char RSTC_GetStatus( void )
 {
-    return (AT91C_BASE_RSTC->RSTC_RSR);
+    return ( AT91C_BASE_RSTC->RSTC_RSR );
 }

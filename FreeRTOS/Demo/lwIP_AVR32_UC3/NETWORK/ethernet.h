@@ -39,7 +39,6 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-
 #ifndef ETHERNET_H
 #define ETHERNET_H
 
@@ -50,8 +49,4 @@
  */
 void vStartEthernetTask( unsigned portBASE_TYPE uxPriority );
 
-
-
 #endif
-
-

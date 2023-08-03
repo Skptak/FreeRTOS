@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
- *         ATMEL Microcontroller Software Support 
+ *         ATMEL Microcontroller Software Support
  * ----------------------------------------------------------------------------
  * Copyright (c) 2008, Atmel Corporation
  *
@@ -28,7 +28,7 @@
  */
 
 #ifndef trace_LEVEL
-	#define trace_LEVEL trace_INFO
+    #define trace_LEVEL trace_INFO
 #endif
 
 //------------------------------------------------------------------------------
@@ -48,24 +48,24 @@
 /// Sets the RTC in either 12- or 24-hour mode.
 /// \param mode  Hour mode.
 //------------------------------------------------------------------------------
-void RTC_SetHourMode(unsigned int mode)
+void RTC_SetHourMode( unsigned int mode )
 {
-	SANITY_CHECK((mode & 0xFFFFFFFE) == 0);
+    SANITY_CHECK( ( mode & 0xFFFFFFFE ) == 0 );
 
-    trace_LOG(trace_DEBUG, "-D- RTC_SetHourMode()\n\r");
+    trace_LOG( trace_DEBUG, "-D- RTC_SetHourMode()\n\r" );
 
-	AT91C_BASE_RTC->RTC_MR = mode;
+    AT91C_BASE_RTC->RTC_MR = mode;
 }
 
 //------------------------------------------------------------------------------
 /// Enables the selected interrupt sources of the RTC.
 /// \param sources  Interrupt sources to enable.
 //------------------------------------------------------------------------------
-void RTC_EnableIt(unsigned int sources)
+void RTC_EnableIt( unsigned int sources )
 {
-    SANITY_CHECK((sources & ~0x1F) == 0);
+    SANITY_CHECK( ( sources & ~0x1F ) == 0 );
 
-    trace_LOG(trace_DEBUG, "-D- RTC_EnableIt()\n\r");
+    trace_LOG( trace_DEBUG, "-D- RTC_EnableIt()\n\r" );
 
     AT91C_BASE_RTC->RTC_IER = sources;
 }
@@ -74,11 +74,11 @@ void RTC_EnableIt(unsigned int sources)
 /// Disables the selected interrupt sources of the RTC.
 /// \param sources  Interrupt sources to disable.
 //------------------------------------------------------------------------------
-void RTC_DisableIt(unsigned int sources)
+void RTC_DisableIt( unsigned int sources )
 {
-    SANITY_CHECK((sources & ~0x1F) == 0);
+    SANITY_CHECK( ( sources & ~0x1F ) == 0 );
 
-    trace_LOG(trace_DEBUG, "-D- RTC_DisableIt()\n\r");
+    trace_LOG( trace_DEBUG, "-D- RTC_DisableIt()\n\r" );
 
     AT91C_BASE_RTC->RTC_IDR = sources;
 }
@@ -89,38 +89,46 @@ void RTC_DisableIt(unsigned int sources)
 /// \param minute  Current minute.
 /// \param second  Current second.
 //------------------------------------------------------------------------------
-void RTC_SetTime(unsigned char hour, unsigned char minute, unsigned char second)
+void RTC_SetTime( unsigned char hour,
+                  unsigned char minute,
+                  unsigned char second )
 {
-	unsigned int time;
+    unsigned int time;
 
-	SANITY_CHECK(hour < 24);
-	SANITY_CHECK(minute < 60);
-	SANITY_CHECK(second < 60);
+    SANITY_CHECK( hour < 24 );
+    SANITY_CHECK( minute < 60 );
+    SANITY_CHECK( second < 60 );
 
-    trace_LOG(trace_DEBUG, "-D- RTC_SetTime(%02d:%02d:%02d)\n\r", hour, minute, second);
+    trace_LOG( trace_DEBUG,
+               "-D- RTC_SetTime(%02d:%02d:%02d)\n\r",
+               hour,
+               minute,
+               second );
 
-	time = (second % 10) | ((second / 10) << 4)
-		   | ((minute % 10) << 8) | ((minute / 10) << 12);
+    time = ( second % 10 ) | ( ( second / 10 ) << 4 ) |
+           ( ( minute % 10 ) << 8 ) | ( ( minute / 10 ) << 12 );
 
-	// 12-hour mode
-	if ((AT91C_BASE_RTC->RTC_MR & AT91C_RTC_HRMOD) == AT91C_RTC_HRMOD) {
+    // 12-hour mode
+    if( ( AT91C_BASE_RTC->RTC_MR & AT91C_RTC_HRMOD ) == AT91C_RTC_HRMOD )
+    {
+        if( hour > 12 )
+        {
+            hour -= 12;
+            time |= AT91C_RTC_AMPM;
+        }
+    }
 
-		if (hour > 12) {
+    time |= ( ( hour % 10 ) << 16 ) | ( ( hour / 10 ) << 20 );
 
-			hour -= 12;
-			time |= AT91C_RTC_AMPM;
-		}
-	}
-
-	time |= ((hour % 10) << 16) | ((hour / 10) << 20);
-
-	// Set time
-	AT91C_BASE_RTC->RTC_CR |= AT91C_RTC_UPDTIM;
-	while ((AT91C_BASE_RTC->RTC_SR & AT91C_RTC_ACKUPD) != AT91C_RTC_ACKUPD);
-	AT91C_BASE_RTC->RTC_SCCR = AT91C_RTC_ACKUPD;
-	AT91C_BASE_RTC->RTC_TIMR = time;
-	AT91C_BASE_RTC->RTC_CR &= ~AT91C_RTC_UPDTIM;
-	SANITY_CHECK((AT91C_BASE_RTC->RTC_CR & AT91C_RTC_UPDTIM) != AT91C_RTC_UPDTIM);
+    // Set time
+    AT91C_BASE_RTC->RTC_CR |= AT91C_RTC_UPDTIM;
+    while( ( AT91C_BASE_RTC->RTC_SR & AT91C_RTC_ACKUPD ) != AT91C_RTC_ACKUPD )
+        ;
+    AT91C_BASE_RTC->RTC_SCCR = AT91C_RTC_ACKUPD;
+    AT91C_BASE_RTC->RTC_TIMR = time;
+    AT91C_BASE_RTC->RTC_CR &= ~AT91C_RTC_UPDTIM;
+    SANITY_CHECK( ( AT91C_BASE_RTC->RTC_CR & AT91C_RTC_UPDTIM ) !=
+                  AT91C_RTC_UPDTIM );
 }
 
 //------------------------------------------------------------------------------
@@ -129,48 +137,46 @@ void RTC_SetTime(unsigned char hour, unsigned char minute, unsigned char second)
 /// \param pMinute  If not null, current minute is stored in this variable.
 /// \param pSecond  If not null, current second is stored in this variable.
 //------------------------------------------------------------------------------
-void RTC_GetTime(
-	unsigned char *pHour,
-	unsigned char *pMinute,
-	unsigned char *pSecond)
+void RTC_GetTime( unsigned char * pHour,
+                  unsigned char * pMinute,
+                  unsigned char * pSecond )
 {
-	unsigned int time;
+    unsigned int time;
 
-	SANITY_CHECK(pHour || pMinute || pSecond);
+    SANITY_CHECK( pHour || pMinute || pSecond );
 
-    trace_LOG(trace_DEBUG, "-D- RTC_GetTime()\n\r");
+    trace_LOG( trace_DEBUG, "-D- RTC_GetTime()\n\r" );
 
-	// Get current RTC time
-	time = AT91C_BASE_RTC->RTC_TIMR;
-	while (time != AT91C_BASE_RTC->RTC_TIMR) {
+    // Get current RTC time
+    time = AT91C_BASE_RTC->RTC_TIMR;
+    while( time != AT91C_BASE_RTC->RTC_TIMR )
+    {
+        time = AT91C_BASE_RTC->RTC_TIMR;
+    }
 
-		time = AT91C_BASE_RTC->RTC_TIMR;
-	}
+    // Hour
+    if( pHour )
+    {
+        *pHour = ( ( time & 0x00300000 ) >> 20 ) * 10 +
+                 ( ( time & 0x000F0000 ) >> 16 );
+        if( ( time & AT91C_RTC_AMPM ) == AT91C_RTC_AMPM )
+        {
+            *pHour += 12;
+        }
+    }
 
-	// Hour
-	if (pHour) {
+    // Minute
+    if( pMinute )
+    {
+        *pMinute = ( ( time & 0x00007000 ) >> 12 ) * 10 +
+                   ( ( time & 0x00000F00 ) >> 8 );
+    }
 
-		*pHour = ((time & 0x00300000) >> 20) * 10
-				 + ((time & 0x000F0000) >> 16);
-		if ((time & AT91C_RTC_AMPM) == AT91C_RTC_AMPM) {
-
-			*pHour += 12;
-		}
-	}
-	
-	// Minute
-	if (pMinute) {
-
-		*pMinute = ((time & 0x00007000) >> 12) * 10
-				   + ((time & 0x00000F00) >> 8);
-	}
-
-	// Second
-	if (pSecond) {
-
-		*pSecond = ((time & 0x00000070) >> 4) * 10
-				   + (time & 0x0000000F);
-	}
+    // Second
+    if( pSecond )
+    {
+        *pSecond = ( ( time & 0x00000070 ) >> 4 ) * 10 + ( time & 0x0000000F );
+    }
 }
 
 //------------------------------------------------------------------------------
@@ -182,38 +188,40 @@ void RTC_GetTime(
 /// \param pMinute  If not null, the time alarm will minute-match this value.
 /// \param pSecond  If not null, the time alarm will second-match this value.
 //------------------------------------------------------------------------------
-void RTC_SetTimeAlarm(
-	unsigned char *pHour,
-	unsigned char *pMinute,
-	unsigned char *pSecond)
+void RTC_SetTimeAlarm( unsigned char * pHour,
+                       unsigned char * pMinute,
+                       unsigned char * pSecond )
 {
-	unsigned int alarm = 0;
+    unsigned int alarm = 0;
 
-    SANITY_CHECK(!pHour || ((*pHour & 0x80) == 0));
-    SANITY_CHECK(!pMinute || (*pMinute < 60));
-    SANITY_CHECK(!pSecond || (*pSecond < 60));
+    SANITY_CHECK( !pHour || ( ( *pHour & 0x80 ) == 0 ) );
+    SANITY_CHECK( !pMinute || ( *pMinute < 60 ) );
+    SANITY_CHECK( !pSecond || ( *pSecond < 60 ) );
 
-	trace_LOG(trace_DEBUG, "-D- RTC_SetTimeAlarm()\n\r");
+    trace_LOG( trace_DEBUG, "-D- RTC_SetTimeAlarm()\n\r" );
 
-	// Hour
-	if (pHour) {
+    // Hour
+    if( pHour )
+    {
+        alarm |= AT91C_RTC_HOUREN | ( ( *pHour / 10 ) << 20 ) |
+                 ( ( *pHour % 10 ) << 16 );
+    }
 
-		alarm |= AT91C_RTC_HOUREN | ((*pHour / 10) << 20) | ((*pHour % 10) << 16);
-	}
+    // Minute
+    if( pMinute )
+    {
+        alarm |= AT91C_RTC_MINEN | ( ( *pMinute / 10 ) << 12 ) |
+                 ( ( *pMinute % 10 ) << 8 );
+    }
 
-	// Minute
-	if (pMinute) {
+    // Second
+    if( pSecond )
+    {
+        alarm |= AT91C_RTC_SECEN | ( ( *pSecond / 10 ) << 4 ) |
+                 ( *pSecond % 10 );
+    }
 
-		alarm |= AT91C_RTC_MINEN | ((*pMinute / 10) << 12) | ((*pMinute % 10) << 8);
-	}
-
-	// Second
-	if (pSecond) {
-
-		alarm |= AT91C_RTC_SECEN | ((*pSecond / 10) << 4) | (*pSecond % 10);
-	}
-
-	AT91C_BASE_RTC->RTC_TIMALR = alarm;
+    AT91C_BASE_RTC->RTC_TIMALR = alarm;
 }
 
 //------------------------------------------------------------------------------
@@ -224,46 +232,42 @@ void RTC_SetTimeAlarm(
 /// \param pDay  Current day (optional).
 /// \param pWeek  Current day in current week (optional).
 //------------------------------------------------------------------------------
-void RTC_GetDate(
-    unsigned short *pYear,
-    unsigned char *pMonth,
-    unsigned char *pDay,
-    unsigned char *pWeek)
+void RTC_GetDate( unsigned short * pYear,
+                  unsigned char * pMonth,
+                  unsigned char * pDay,
+                  unsigned char * pWeek )
 {
     unsigned int date;
 
     // Get current date (multiple reads are necessary to insure a stable value)
-    do {
-
+    do
+    {
         date = AT91C_BASE_RTC->RTC_CALR;
-    }
-    while (date != AT91C_BASE_RTC->RTC_CALR);
+    } while( date != AT91C_BASE_RTC->RTC_CALR );
 
     // Retrieve year
-    if (pYear) {
-
-        *pYear = (((date  >> 4) & 0x7) * 1000)
-                 + ((date & 0xF) * 100)
-                 + (((date >> 12) & 0xF) * 10)
-                 + ((date >> 8) & 0xF);
+    if( pYear )
+    {
+        *pYear = ( ( ( date >> 4 ) & 0x7 ) * 1000 ) + ( ( date & 0xF ) * 100 ) +
+                 ( ( ( date >> 12 ) & 0xF ) * 10 ) + ( ( date >> 8 ) & 0xF );
     }
 
     // Retrieve month
-    if (pMonth) {
-
-        *pMonth = (((date >> 20) & 1) * 10) + ((date >> 16) & 0xF);
+    if( pMonth )
+    {
+        *pMonth = ( ( ( date >> 20 ) & 1 ) * 10 ) + ( ( date >> 16 ) & 0xF );
     }
 
     // Retrieve day
-    if (pDay) {
-
-        *pDay = (((date >> 28) & 0x3) * 10) + ((date >> 24) & 0xF);
+    if( pDay )
+    {
+        *pDay = ( ( ( date >> 28 ) & 0x3 ) * 10 ) + ( ( date >> 24 ) & 0xF );
     }
 
     // Retrieve week
-    if (pWeek) {
-
-        *pWeek = ((date >> 21) & 0x7);
+    if( pWeek )
+    {
+        *pWeek = ( ( date >> 21 ) & 0x7 );
     }
 }
 
@@ -275,33 +279,28 @@ void RTC_GetDate(
 /// \param day  Current day.
 /// \param week  Day number in current week.
 //------------------------------------------------------------------------------
-void RTC_SetDate(
-    unsigned short year,
-    unsigned char month,
-    unsigned char day,
-    unsigned char week)
+void RTC_SetDate( unsigned short year,
+                  unsigned char month,
+                  unsigned char day,
+                  unsigned char week )
 {
     unsigned int date;
 
-    SANITY_CHECK((year >= 1900) && (year <= 2099));
-    SANITY_CHECK((month >= 1) && (month <= 12));
-    SANITY_CHECK((day >= 1) && (day <= 31));
-    SANITY_CHECK((week >= 1) && (week <= 7));
+    SANITY_CHECK( ( year >= 1900 ) && ( year <= 2099 ) );
+    SANITY_CHECK( ( month >= 1 ) && ( month <= 12 ) );
+    SANITY_CHECK( ( day >= 1 ) && ( day <= 31 ) );
+    SANITY_CHECK( ( week >= 1 ) && ( week <= 7 ) );
 
     // Convert values to date register value
-    date = ((year / 100) % 10)
-           | ((year / 1000) << 4)
-           | ((year % 10) << 8)
-           | (((year / 10) % 10) << 12)
-           | ((month % 10) << 16)
-           | ((month / 10) << 20)
-           | (week << 21)
-           | ((day % 10) << 24)
-           | ((day / 10) << 28);
+    date = ( ( year / 100 ) % 10 ) | ( ( year / 1000 ) << 4 ) |
+           ( ( year % 10 ) << 8 ) | ( ( ( year / 10 ) % 10 ) << 12 ) |
+           ( ( month % 10 ) << 16 ) | ( ( month / 10 ) << 20 ) |
+           ( week << 21 ) | ( ( day % 10 ) << 24 ) | ( ( day / 10 ) << 28 );
 
     // Update calendar register
     AT91C_BASE_RTC->RTC_CR |= AT91C_RTC_UPDCAL;
-    while ((AT91C_BASE_RTC->RTC_SR & AT91C_RTC_ACKUPD) != AT91C_RTC_ACKUPD);
+    while( ( AT91C_BASE_RTC->RTC_SR & AT91C_RTC_ACKUPD ) != AT91C_RTC_ACKUPD )
+        ;
     AT91C_BASE_RTC->RTC_SCCR = AT91C_RTC_ACKUPD;
     AT91C_BASE_RTC->RTC_CALR = date;
     AT91C_BASE_RTC->RTC_CR &= ~AT91C_RTC_UPDCAL;
@@ -313,26 +312,27 @@ void RTC_SetDate(
 /// \param pMonth  If not null, the RTC alarm will month-match this value.
 /// \param pDay  If not null, the RTC alarm will day-match this value.
 //------------------------------------------------------------------------------
-void RTC_SetDateAlarm(unsigned char *pMonth, unsigned char *pDay)
+void RTC_SetDateAlarm( unsigned char * pMonth, unsigned char * pDay )
 {
     unsigned int alarm = 0;
 
-    SANITY_CHECK(!pMonth || ((*pMonth >= 1) && (*pMonth <= 12)));
-    SANITY_CHECK(!pDay || ((*pDay >= 1) && (*pDay <= 31)));
+    SANITY_CHECK( !pMonth || ( ( *pMonth >= 1 ) && ( *pMonth <= 12 ) ) );
+    SANITY_CHECK( !pDay || ( ( *pDay >= 1 ) && ( *pDay <= 31 ) ) );
 
-    trace_LOG(trace_DEBUG, "-D- RTC_SetDateAlarm()\n\r");
+    trace_LOG( trace_DEBUG, "-D- RTC_SetDateAlarm()\n\r" );
 
     // Compute alarm field value
-    if (pMonth) {
-
-        alarm |= AT91C_RTC_MONTHEN | ((*pMonth / 10) << 20) | ((*pMonth % 10) << 16);
+    if( pMonth )
+    {
+        alarm |= AT91C_RTC_MONTHEN | ( ( *pMonth / 10 ) << 20 ) |
+                 ( ( *pMonth % 10 ) << 16 );
     }
-    if (pDay) {
-
-        alarm |= AT91C_RTC_DATEEN | ((*pDay / 10) << 28) | ((*pDay % 10) << 24);
+    if( pDay )
+    {
+        alarm |= AT91C_RTC_DATEEN | ( ( *pDay / 10 ) << 28 ) |
+                 ( ( *pDay % 10 ) << 24 );
     }
 
     // Set alarm
     AT91C_BASE_RTC->RTC_CALALR = alarm;
 }
-

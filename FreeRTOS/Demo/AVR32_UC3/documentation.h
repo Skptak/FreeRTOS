@@ -27,20 +27,25 @@
  * source development tools (where available). See the FreeRTOS.org features
  * summary.
  * Highlights include:
- * - Free RTOS kernel - preemptive, cooperative and hybrid configuration options.
+ * - Free RTOS kernel - preemptive, cooperative and hybrid configuration
+ * options.
  * - Designed to be small, simple and easy to use.
  * - Very portable code structure predominantly written in C.
  * - Supports both tasks and co-routines.
  * - No software restriction on the number of tasks that can be created.
  * - No software restriction on the number of priorities that can be used.
- * - No restrictions imposed on priority assignment - more than one task can be assigned the same priority.
- * - Queues and semaphores for communication and synchronisation between tasks, or between tasks and interrupts.
+ * - No restrictions imposed on priority assignment - more than one task can be
+ * assigned the same priority.
+ * - Queues and semaphores for communication and synchronisation between tasks,
+ * or between tasks and interrupts.
  * - Free embedded software source code.
  * - Royalty free.
  * - Cross development from a standard Windows host.
- * - Pre-configured demo applications for selected single board computers allowing 'out of the box' operation and fast learning curve.
+ * - Pre-configured demo applications for selected single board computers
+ * allowing 'out of the box' operation and fast learning curve.
  * - Compile time configuration allows small FLASH footprint
- * - The SafeRTOS derivative product provides a high level of confidence in the code integrity.
+ * - The SafeRTOS derivative product provides a high level of confidence in the
+ * code integrity.
  *
  * \section files Main Files
  * - main.c : FreeRTOS example

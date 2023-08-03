@@ -28,7 +28,7 @@
  * in advertising or otherwise to promote the sale, use or other dealings in
  * this Software without prior written authorization from Xilinx.
  *
-*******************************************************************************/
+ *******************************************************************************/
 /******************************************************************************/
 /**
  *
@@ -69,25 +69,26 @@
  *       vyc  04/04/18 Added BGR8 memory format
  * </pre>
  *
-*******************************************************************************/
+ *******************************************************************************/
 
 /******************************* Include Files ********************************/
 
+#include "xvidc.h"
 #include "xil_assert.h"
 #include "xstatus.h"
-#include "xvidc.h"
 
 /*************************** Variable Declarations ****************************/
-extern const XVidC_VideoTimingMode XVidC_VideoTimingModes[XVIDC_VM_NUM_SUPPORTED];
+extern const XVidC_VideoTimingMode
+    XVidC_VideoTimingModes[ XVIDC_VM_NUM_SUPPORTED ];
 
-const XVidC_VideoTimingMode *XVidC_CustomTimingModes = NULL;
+const XVidC_VideoTimingMode * XVidC_CustomTimingModes = NULL;
 int XVidC_NumCustomModes = 0;
 
 /**************************** Function Prototypes *****************************/
 
-static const XVidC_VideoTimingMode *XVidC_GetCustomVideoModeData(
-		XVidC_VideoMode VmId);
-static u8 XVidC_IsVtmRb(const char *VideoModeStr, u8 RbN);
+static const XVidC_VideoTimingMode * XVidC_GetCustomVideoModeData(
+    XVidC_VideoMode VmId );
+static u8 XVidC_IsVtmRb( const char * VideoModeStr, u8 RbN );
 
 /*************************** Function Definitions *****************************/
 
@@ -109,29 +110,31 @@ static u8 XVidC_IsVtmRb(const char *VideoModeStr, u8 RbN);
  * @note	IDs in the custom table may not conflict with IDs reserved by
  *		the XVidC_VideoMode enum.
  *
-*******************************************************************************/
-u32 XVidC_RegisterCustomTimingModes(const XVidC_VideoTimingMode *CustomTable,
-		                            u16 NumElems)
+ *******************************************************************************/
+u32 XVidC_RegisterCustomTimingModes( const XVidC_VideoTimingMode * CustomTable,
+                                     u16 NumElems )
 {
-	u16 Index;
+    u16 Index;
 
-	/* Verify arguments. */
-	Xil_AssertNonvoid(CustomTable != NULL);
-	for (Index = 0; Index < NumElems; Index++) {
-		Xil_AssertNonvoid((CustomTable[Index].VmId > XVIDC_VM_CUSTOM));
-		/* The IDs of each video mode in the custom table must not
-		 * conflict with IDs reserved by video_common. */
-	}
+    /* Verify arguments. */
+    Xil_AssertNonvoid( CustomTable != NULL );
+    for( Index = 0; Index < NumElems; Index++ )
+    {
+        Xil_AssertNonvoid( ( CustomTable[ Index ].VmId > XVIDC_VM_CUSTOM ) );
+        /* The IDs of each video mode in the custom table must not
+         * conflict with IDs reserved by video_common. */
+    }
 
-	/* Fail if a custom table is currently already registered. */
-	if (XVidC_CustomTimingModes) {
-		return XST_FAILURE;
-	}
+    /* Fail if a custom table is currently already registered. */
+    if( XVidC_CustomTimingModes )
+    {
+        return XST_FAILURE;
+    }
 
-	XVidC_CustomTimingModes = CustomTable;
-	XVidC_NumCustomModes    = NumElems;
+    XVidC_CustomTimingModes = CustomTable;
+    XVidC_NumCustomModes = NumElems;
 
-	return XST_SUCCESS;
+    return XST_SUCCESS;
 }
 
 /******************************************************************************/
@@ -143,11 +146,11 @@ u32 XVidC_RegisterCustomTimingModes(const XVidC_VideoTimingMode *CustomTable,
  *
  * @note	None.
  *
-*******************************************************************************/
-void XVidC_UnregisterCustomTimingModes(void)
+ *******************************************************************************/
+void XVidC_UnregisterCustomTimingModes( void )
 {
-	XVidC_CustomTimingModes = NULL;
-	XVidC_NumCustomModes    = 0;
+    XVidC_CustomTimingModes = NULL;
+    XVidC_NumCustomModes = 0;
 }
 
 /******************************************************************************/
@@ -162,10 +165,10 @@ void XVidC_UnregisterCustomTimingModes(void)
  *
  * @note	None.
  *
-*******************************************************************************/
-u32 XVidC_GetPixelClockHzByHVFr(u32 HTotal, u32 VTotal, u8 FrameRate)
+ *******************************************************************************/
+u32 XVidC_GetPixelClockHzByHVFr( u32 HTotal, u32 VTotal, u8 FrameRate )
 {
-	return (HTotal * VTotal * FrameRate);
+    return ( HTotal * VTotal * FrameRate );
 }
 
 /******************************************************************************/
@@ -178,39 +181,42 @@ u32 XVidC_GetPixelClockHzByHVFr(u32 HTotal, u32 VTotal, u8 FrameRate)
  *
  * @note	None.
  *
-*******************************************************************************/
-u32 XVidC_GetPixelClockHzByVmId(XVidC_VideoMode VmId)
+ *******************************************************************************/
+u32 XVidC_GetPixelClockHzByVmId( XVidC_VideoMode VmId )
 {
-	u32 ClkHz;
-	const XVidC_VideoTimingMode *VmPtr;
+    u32 ClkHz;
+    const XVidC_VideoTimingMode * VmPtr;
 
-	VmPtr = XVidC_GetVideoModeData(VmId);
-	if (!VmPtr) {
-		return 0;
-	}
+    VmPtr = XVidC_GetVideoModeData( VmId );
+    if( !VmPtr )
+    {
+        return 0;
+    }
 
-	if (XVidC_IsInterlaced(VmId)) {
-		/* For interlaced mode, use both frame 0 and frame 1 vertical
-		 * totals. */
-		ClkHz = VmPtr->Timing.F0PVTotal + VmPtr->Timing.F1VTotal;
+    if( XVidC_IsInterlaced( VmId ) )
+    {
+        /* For interlaced mode, use both frame 0 and frame 1 vertical
+         * totals. */
+        ClkHz = VmPtr->Timing.F0PVTotal + VmPtr->Timing.F1VTotal;
 
-		/* Multiply the number of pixels by the frame rate of each
-		 * individual frame (half of the total frame rate). */
-		ClkHz *= VmPtr->FrameRate / 2;
-	}
-	else {
-		/* For progressive mode, use only frame 0 vertical total. */
-		ClkHz = VmPtr->Timing.F0PVTotal;
+        /* Multiply the number of pixels by the frame rate of each
+         * individual frame (half of the total frame rate). */
+        ClkHz *= VmPtr->FrameRate / 2;
+    }
+    else
+    {
+        /* For progressive mode, use only frame 0 vertical total. */
+        ClkHz = VmPtr->Timing.F0PVTotal;
 
-		/* Multiply the number of pixels by the frame rate. */
-		ClkHz *= VmPtr->FrameRate;
-	}
+        /* Multiply the number of pixels by the frame rate. */
+        ClkHz *= VmPtr->FrameRate;
+    }
 
-	/* Multiply the vertical total by the horizontal total for number of
-	 * pixels. */
-	ClkHz *= VmPtr->Timing.HTotal;
+    /* Multiply the vertical total by the horizontal total for number of
+     * pixels. */
+    ClkHz *= VmPtr->Timing.HTotal;
 
-	return ClkHz;
+    return ClkHz;
 }
 
 /******************************************************************************/
@@ -226,21 +232,23 @@ u32 XVidC_GetPixelClockHzByVmId(XVidC_VideoMode VmId)
  *
  * @note	None.
  *
-*******************************************************************************/
-XVidC_VideoFormat XVidC_GetVideoFormat(XVidC_VideoMode VmId)
+ *******************************************************************************/
+XVidC_VideoFormat XVidC_GetVideoFormat( XVidC_VideoMode VmId )
 {
-	const XVidC_VideoTimingMode *VmPtr;
+    const XVidC_VideoTimingMode * VmPtr;
 
-	VmPtr = XVidC_GetVideoModeData(VmId);
-	if (!VmPtr) {
-		return XVIDC_VF_UNKNOWN;
-	}
+    VmPtr = XVidC_GetVideoModeData( VmId );
+    if( !VmPtr )
+    {
+        return XVIDC_VF_UNKNOWN;
+    }
 
-	if (VmPtr->Timing.F1VTotal == 0) {
-		return (XVIDC_VF_PROGRESSIVE);
-	}
+    if( VmPtr->Timing.F1VTotal == 0 )
+    {
+        return ( XVIDC_VF_PROGRESSIVE );
+    }
 
-	return (XVIDC_VF_INTERLACED);
+    return ( XVIDC_VF_INTERLACED );
 }
 
 /******************************************************************************/
@@ -257,14 +265,15 @@ XVidC_VideoFormat XVidC_GetVideoFormat(XVidC_VideoMode VmId)
  *
  * @note	None.
  *
-*******************************************************************************/
-u8 XVidC_IsInterlaced(XVidC_VideoMode VmId)
+ *******************************************************************************/
+u8 XVidC_IsInterlaced( XVidC_VideoMode VmId )
 {
-	if (XVidC_GetVideoFormat(VmId) == XVIDC_VF_INTERLACED) {
-		return 1;
-	}
+    if( XVidC_GetVideoFormat( VmId ) == XVIDC_VF_INTERLACED )
+    {
+        return 1;
+    }
 
-	return 0;
+    return 0;
 }
 
 /******************************************************************************/
@@ -284,40 +293,48 @@ u8 XVidC_IsInterlaced(XVidC_VideoMode VmId)
  *          blanking information in match process. No attempt is made to
  *          search for reduced blanking entries, if any.
  *
-*******************************************************************************/
-XVidC_VideoMode XVidC_GetVideoModeIdWBlanking(const XVidC_VideoTiming *Timing,
-		                                      u32 FrameRate, u8 IsInterlaced)
+ *******************************************************************************/
+XVidC_VideoMode XVidC_GetVideoModeIdWBlanking( const XVidC_VideoTiming * Timing,
+                                               u32 FrameRate,
+                                               u8 IsInterlaced )
 {
-  XVidC_VideoMode VmId;
-  XVidC_VideoTiming const *StdTiming = NULL;
+    XVidC_VideoMode VmId;
+    XVidC_VideoTiming const * StdTiming = NULL;
 
-  /* First search for ID with matching Width & Height */
-  VmId = XVidC_GetVideoModeId(Timing->HActive, Timing->VActive, FrameRate,
-		                      IsInterlaced);
+    /* First search for ID with matching Width & Height */
+    VmId = XVidC_GetVideoModeId( Timing->HActive,
+                                 Timing->VActive,
+                                 FrameRate,
+                                 IsInterlaced );
 
-  if(VmId == XVIDC_VM_NOT_SUPPORTED) {
-	return(VmId);
-  } else {
+    if( VmId == XVIDC_VM_NOT_SUPPORTED )
+    {
+        return ( VmId );
+    }
+    else
+    {
+        /* Get standard timing info from default timing table */
+        StdTiming = XVidC_GetTimingInfo( VmId );
 
-	/* Get standard timing info from default timing table */
-	StdTiming = XVidC_GetTimingInfo(VmId);
-
-	/* Match against detected timing parameters */
-	if((Timing->HActive        == StdTiming->HActive) &&
-	   (Timing->VActive        == StdTiming->VActive) &&
-	   (Timing->HTotal         == StdTiming->HTotal) &&
-	   (Timing->F0PVTotal      == StdTiming->F0PVTotal) &&
-	   (Timing->HFrontPorch    == StdTiming->HFrontPorch) &&
-	   (Timing->HSyncWidth     == StdTiming->HSyncWidth) &&
-	   (Timing->HBackPorch     == StdTiming->HBackPorch) &&
-	   (Timing->F0PVFrontPorch == StdTiming->F0PVFrontPorch) &&
-	   (Timing->F0PVSyncWidth  == StdTiming->F0PVSyncWidth) &&
-	   (Timing->F0PVBackPorch  == StdTiming->F0PVBackPorch)) {
-       return(VmId);
-	 } else {
-	   return(XVIDC_VM_NOT_SUPPORTED);
-	 }
-  }
+        /* Match against detected timing parameters */
+        if( ( Timing->HActive == StdTiming->HActive ) &&
+            ( Timing->VActive == StdTiming->VActive ) &&
+            ( Timing->HTotal == StdTiming->HTotal ) &&
+            ( Timing->F0PVTotal == StdTiming->F0PVTotal ) &&
+            ( Timing->HFrontPorch == StdTiming->HFrontPorch ) &&
+            ( Timing->HSyncWidth == StdTiming->HSyncWidth ) &&
+            ( Timing->HBackPorch == StdTiming->HBackPorch ) &&
+            ( Timing->F0PVFrontPorch == StdTiming->F0PVFrontPorch ) &&
+            ( Timing->F0PVSyncWidth == StdTiming->F0PVSyncWidth ) &&
+            ( Timing->F0PVBackPorch == StdTiming->F0PVBackPorch ) )
+        {
+            return ( VmId );
+        }
+        else
+        {
+            return ( XVIDC_VM_NOT_SUPPORTED );
+        }
+    }
 }
 
 /******************************************************************************/
@@ -336,110 +353,125 @@ XVidC_VideoMode XVidC_GetVideoModeIdWBlanking(const XVidC_VideoTiming *Timing,
  *
  * @note	None.
  *
-*******************************************************************************/
-XVidC_VideoMode XVidC_GetVideoModeId(u32 Width, u32 Height, u32 FrameRate,
-					u8 IsInterlaced)
+ *******************************************************************************/
+XVidC_VideoMode XVidC_GetVideoModeId( u32 Width,
+                                      u32 Height,
+                                      u32 FrameRate,
+                                      u8 IsInterlaced )
 {
-	u32 Low;
-	u32 High;
-	u32 Mid;
-	u32 HActive;
-	u32 VActive;
-	u32 Rate;
-	u32 ResFound = (FALSE);
-	XVidC_VideoMode Mode;
-	u16 Index;
+    u32 Low;
+    u32 High;
+    u32 Mid;
+    u32 HActive;
+    u32 VActive;
+    u32 Rate;
+    u32 ResFound = ( FALSE );
+    XVidC_VideoMode Mode;
+    u16 Index;
 
-	/* First, attempt a linear search on the custom video timing table. */
-	if(XVidC_CustomTimingModes) {
-	  for (Index = 0; Index < XVidC_NumCustomModes; Index++) {
-		HActive = XVidC_CustomTimingModes[Index].Timing.HActive;
-		VActive = XVidC_CustomTimingModes[Index].Timing.VActive;
-		Rate = XVidC_CustomTimingModes[Index].FrameRate;
-		if ((Width  == HActive) &&
-			(Height == VActive) &&
-			(FrameRate == Rate)) {
-			   return XVidC_CustomTimingModes[Index].VmId;
-		}
-	  }
-	}
+    /* First, attempt a linear search on the custom video timing table. */
+    if( XVidC_CustomTimingModes )
+    {
+        for( Index = 0; Index < XVidC_NumCustomModes; Index++ )
+        {
+            HActive = XVidC_CustomTimingModes[ Index ].Timing.HActive;
+            VActive = XVidC_CustomTimingModes[ Index ].Timing.VActive;
+            Rate = XVidC_CustomTimingModes[ Index ].FrameRate;
+            if( ( Width == HActive ) && ( Height == VActive ) &&
+                ( FrameRate == Rate ) )
+            {
+                return XVidC_CustomTimingModes[ Index ].VmId;
+            }
+        }
+    }
 
-	if (IsInterlaced) {
-		Low = (XVIDC_VM_INTL_START);
-		High = (XVIDC_VM_INTL_END);
-	}
-	else {
-		Low = (XVIDC_VM_PROG_START);
-		High = (XVIDC_VM_PROG_END);
-	}
+    if( IsInterlaced )
+    {
+        Low = ( XVIDC_VM_INTL_START );
+        High = ( XVIDC_VM_INTL_END );
+    }
+    else
+    {
+        Low = ( XVIDC_VM_PROG_START );
+        High = ( XVIDC_VM_PROG_END );
+    }
 
-	HActive = VActive = Rate = 0;
+    HActive = VActive = Rate = 0;
 
-	/* Binary search finds item in sorted array.
-	 * And returns index (zero based) of item
-	 * If item is not found returns flag remains
-	 * FALSE. Search key is "width or HActive"
-	 */
-	while (Low <= High) {
-		Mid = (Low + High) / 2;
-		HActive = XVidC_VideoTimingModes[Mid].Timing.HActive;
-		if (Width == HActive) {
-			ResFound = (TRUE);
-			break;
-		}
-		else if (Width < HActive) {
-			if (Mid == 0) {
-				break;
-			}
-			else {
-				High = Mid - 1;
-			}
-		}
-		else {
-			Low = Mid + 1;
-		}
-	}
+    /* Binary search finds item in sorted array.
+     * And returns index (zero based) of item
+     * If item is not found returns flag remains
+     * FALSE. Search key is "width or HActive"
+     */
+    while( Low <= High )
+    {
+        Mid = ( Low + High ) / 2;
+        HActive = XVidC_VideoTimingModes[ Mid ].Timing.HActive;
+        if( Width == HActive )
+        {
+            ResFound = ( TRUE );
+            break;
+        }
+        else if( Width < HActive )
+        {
+            if( Mid == 0 )
+            {
+                break;
+            }
+            else
+            {
+                High = Mid - 1;
+            }
+        }
+        else
+        {
+            Low = Mid + 1;
+        }
+    }
 
-	 /* HActive matched at middle */
-	if (ResFound) {
-		/* Rewind to start index of mode with matching width */
-		while ((Mid > 0) &&
-			(XVidC_VideoTimingModes[Mid - 1].Timing.HActive ==
-								Width)) {
-			--Mid;
-		}
+    /* HActive matched at middle */
+    if( ResFound )
+    {
+        /* Rewind to start index of mode with matching width */
+        while( ( Mid > 0 ) &&
+               ( XVidC_VideoTimingModes[ Mid - 1 ].Timing.HActive == Width ) )
+        {
+            --Mid;
+        }
 
-		ResFound = (FALSE);
-		VActive = XVidC_VideoTimingModes[Mid].Timing.VActive;
-		Rate = XVidC_VideoTimingModes[Mid].FrameRate;
+        ResFound = ( FALSE );
+        VActive = XVidC_VideoTimingModes[ Mid ].Timing.VActive;
+        Rate = XVidC_VideoTimingModes[ Mid ].FrameRate;
 
-		/* Now do a linear search for matching VActive and Frame
-		 * Rate
-		 */
-		while (HActive == Width) {
-			/* check current entry */
-			if ((VActive == Height) && (Rate == FrameRate)) {
-				ResFound = (TRUE);
-				break;
-			}
-			/* Check next entry */
-			else {
-				Mid = Mid + 1;
-				HActive =
-				XVidC_VideoTimingModes[Mid].Timing.HActive;
-				VActive =
-				XVidC_VideoTimingModes[Mid].Timing.VActive;
-				Rate = XVidC_VideoTimingModes[Mid].FrameRate;
-			}
-		}
-		Mode =
-		(ResFound) ? (XVidC_VideoMode)Mid : (XVIDC_VM_NOT_SUPPORTED);
-	}
-	else {
-		Mode = (XVIDC_VM_NOT_SUPPORTED);
-	}
+        /* Now do a linear search for matching VActive and Frame
+         * Rate
+         */
+        while( HActive == Width )
+        {
+            /* check current entry */
+            if( ( VActive == Height ) && ( Rate == FrameRate ) )
+            {
+                ResFound = ( TRUE );
+                break;
+            }
+            /* Check next entry */
+            else
+            {
+                Mid = Mid + 1;
+                HActive = XVidC_VideoTimingModes[ Mid ].Timing.HActive;
+                VActive = XVidC_VideoTimingModes[ Mid ].Timing.VActive;
+                Rate = XVidC_VideoTimingModes[ Mid ].FrameRate;
+            }
+        }
+        Mode = ( ResFound ) ? ( XVidC_VideoMode ) Mid
+                            : ( XVIDC_VM_NOT_SUPPORTED );
+    }
+    else
+    {
+        Mode = ( XVIDC_VM_NOT_SUPPORTED );
+    }
 
-	return (Mode);
+    return ( Mode );
 }
 
 /******************************************************************************/
@@ -461,155 +493,174 @@ XVidC_VideoMode XVidC_GetVideoModeId(u32 Width, u32 Height, u32 FrameRate,
  * @note	This function attempts to search for reduced blanking entries, if
  *          any.
  *
-*******************************************************************************/
-XVidC_VideoMode XVidC_GetVideoModeIdExtensive(XVidC_VideoTiming *Timing,
-											  u32 FrameRate,
-											  u8 IsInterlaced,
-											  u8 IsExtensive)
+ *******************************************************************************/
+XVidC_VideoMode XVidC_GetVideoModeIdExtensive( XVidC_VideoTiming * Timing,
+                                               u32 FrameRate,
+                                               u8 IsInterlaced,
+                                               u8 IsExtensive )
 {
-	u32 Low;
-	u32 High;
-	u32 Mid;
-	u32 HActive;
-	u32 VActive;
-	u32 Rate;
-	u32 ResFound = (FALSE);
-	XVidC_VideoMode Mode;
-	u16 Index;
+    u32 Low;
+    u32 High;
+    u32 Mid;
+    u32 HActive;
+    u32 VActive;
+    u32 Rate;
+    u32 ResFound = ( FALSE );
+    XVidC_VideoMode Mode;
+    u16 Index;
 
-	/* First, attempt a linear search on the custom video timing table. */
-	if(XVidC_CustomTimingModes) {
-	  for (Index = 0; Index < XVidC_NumCustomModes; Index++) {
-		HActive = XVidC_CustomTimingModes[Index].Timing.HActive;
-		VActive = XVidC_CustomTimingModes[Index].Timing.VActive;
-		Rate = XVidC_CustomTimingModes[Index].FrameRate;
-		if ((HActive == Timing->HActive) && (VActive == Timing->VActive) &&
-				(Rate == FrameRate) && (IsExtensive == 0 || (
-			XVidC_CustomTimingModes[Index].Timing.HTotal == Timing->HTotal &&
-			XVidC_CustomTimingModes[Index].Timing.F0PVTotal ==
-					Timing->F0PVTotal &&
-			XVidC_CustomTimingModes[Index].Timing.HFrontPorch ==
-					Timing->HFrontPorch &&
-			XVidC_CustomTimingModes[Index].Timing.F0PVFrontPorch ==
-					Timing->F0PVFrontPorch &&
-			XVidC_CustomTimingModes[Index].Timing.HSyncWidth ==
-					Timing->HSyncWidth &&
-			XVidC_CustomTimingModes[Index].Timing.F0PVSyncWidth ==
-					Timing->F0PVSyncWidth &&
-			XVidC_CustomTimingModes[Index].Timing.VSyncPolarity ==
-					Timing->VSyncPolarity))) {
-				if (!IsInterlaced || IsExtensive == 0 || (
-						XVidC_CustomTimingModes[Index].Timing.F1VTotal ==
-						Timing->F1VTotal &&
-						XVidC_CustomTimingModes[Index].Timing.F1VFrontPorch ==
-								Timing->F1VFrontPorch &&
-						XVidC_CustomTimingModes[Index].Timing.F1VSyncWidth ==
-								Timing->F1VSyncWidth)) {
-					return XVidC_CustomTimingModes[Index].VmId;
-				}
-		}
-	  }
-	}
+    /* First, attempt a linear search on the custom video timing table. */
+    if( XVidC_CustomTimingModes )
+    {
+        for( Index = 0; Index < XVidC_NumCustomModes; Index++ )
+        {
+            HActive = XVidC_CustomTimingModes[ Index ].Timing.HActive;
+            VActive = XVidC_CustomTimingModes[ Index ].Timing.VActive;
+            Rate = XVidC_CustomTimingModes[ Index ].FrameRate;
+            if( ( HActive == Timing->HActive ) &&
+                ( VActive == Timing->VActive ) && ( Rate == FrameRate ) &&
+                ( IsExtensive == 0 ||
+                  ( XVidC_CustomTimingModes[ Index ].Timing.HTotal ==
+                        Timing->HTotal &&
+                    XVidC_CustomTimingModes[ Index ].Timing.F0PVTotal ==
+                        Timing->F0PVTotal &&
+                    XVidC_CustomTimingModes[ Index ].Timing.HFrontPorch ==
+                        Timing->HFrontPorch &&
+                    XVidC_CustomTimingModes[ Index ].Timing.F0PVFrontPorch ==
+                        Timing->F0PVFrontPorch &&
+                    XVidC_CustomTimingModes[ Index ].Timing.HSyncWidth ==
+                        Timing->HSyncWidth &&
+                    XVidC_CustomTimingModes[ Index ].Timing.F0PVSyncWidth ==
+                        Timing->F0PVSyncWidth &&
+                    XVidC_CustomTimingModes[ Index ].Timing.VSyncPolarity ==
+                        Timing->VSyncPolarity ) ) )
+            {
+                if( !IsInterlaced || IsExtensive == 0 ||
+                    ( XVidC_CustomTimingModes[ Index ].Timing.F1VTotal ==
+                          Timing->F1VTotal &&
+                      XVidC_CustomTimingModes[ Index ].Timing.F1VFrontPorch ==
+                          Timing->F1VFrontPorch &&
+                      XVidC_CustomTimingModes[ Index ].Timing.F1VSyncWidth ==
+                          Timing->F1VSyncWidth ) )
+                {
+                    return XVidC_CustomTimingModes[ Index ].VmId;
+                }
+            }
+        }
+    }
 
-	if (IsInterlaced) {
-		Low = (XVIDC_VM_INTL_START);
-		High = (XVIDC_VM_INTL_END);
-	}
-	else {
-		Low = (XVIDC_VM_PROG_START);
-		High = (XVIDC_VM_PROG_END);
-	}
+    if( IsInterlaced )
+    {
+        Low = ( XVIDC_VM_INTL_START );
+        High = ( XVIDC_VM_INTL_END );
+    }
+    else
+    {
+        Low = ( XVIDC_VM_PROG_START );
+        High = ( XVIDC_VM_PROG_END );
+    }
 
-	HActive = VActive = Rate = 0;
+    HActive = VActive = Rate = 0;
 
-	/* Binary search finds item in sorted array.
-	 * And returns index (zero based) of item
-	 * If item is not found returns flag remains
-	 * FALSE. Search key is "Timing->HActive or HActive"
-	 */
-	while (Low <= High) {
-		Mid = (Low + High) / 2;
-		HActive = XVidC_VideoTimingModes[Mid].Timing.HActive;
-		if (Timing->HActive == HActive) {
-			ResFound = (TRUE);
-			break;
-		}
-		else if (Timing->HActive < HActive) {
-			if (Mid == 0) {
-				break;
-			}
-			else {
-				High = Mid - 1;
-			}
-		}
-		else {
-			Low = Mid + 1;
-		}
-	}
+    /* Binary search finds item in sorted array.
+     * And returns index (zero based) of item
+     * If item is not found returns flag remains
+     * FALSE. Search key is "Timing->HActive or HActive"
+     */
+    while( Low <= High )
+    {
+        Mid = ( Low + High ) / 2;
+        HActive = XVidC_VideoTimingModes[ Mid ].Timing.HActive;
+        if( Timing->HActive == HActive )
+        {
+            ResFound = ( TRUE );
+            break;
+        }
+        else if( Timing->HActive < HActive )
+        {
+            if( Mid == 0 )
+            {
+                break;
+            }
+            else
+            {
+                High = Mid - 1;
+            }
+        }
+        else
+        {
+            Low = Mid + 1;
+        }
+    }
 
-	 /* HActive matched at middle */
-	if (ResFound) {
-		/* Rewind to start index of mode with matching Timing->HActive */
-		while ((Mid > 0) &&
-			(XVidC_VideoTimingModes[Mid - 1].Timing.HActive ==
-								Timing->HActive)) {
-			--Mid;
-		}
+    /* HActive matched at middle */
+    if( ResFound )
+    {
+        /* Rewind to start index of mode with matching Timing->HActive */
+        while( ( Mid > 0 ) &&
+               ( XVidC_VideoTimingModes[ Mid - 1 ].Timing.HActive ==
+                 Timing->HActive ) )
+        {
+            --Mid;
+        }
 
-		ResFound = (FALSE);
-		VActive = XVidC_VideoTimingModes[Mid].Timing.VActive;
-		Rate = XVidC_VideoTimingModes[Mid].FrameRate;
+        ResFound = ( FALSE );
+        VActive = XVidC_VideoTimingModes[ Mid ].Timing.VActive;
+        Rate = XVidC_VideoTimingModes[ Mid ].FrameRate;
 
-		/* Now do a linear search for matching VActive and Frame
-		 * Rate
-		 */
-		while (HActive == Timing->HActive) {
-			/* check current entry */
-			if ((VActive == Timing->VActive) && (Rate == FrameRate) &&
-					(IsExtensive == 0 ||
-					(XVidC_VideoTimingModes[Mid].Timing.HTotal ==
-							Timing->HTotal &&
-					XVidC_VideoTimingModes[Mid].Timing.F0PVTotal ==
-							Timing->F0PVTotal &&
-					XVidC_VideoTimingModes[Mid].Timing.HFrontPorch ==
-							Timing->HFrontPorch &&
-					XVidC_VideoTimingModes[Mid].Timing.F0PVFrontPorch ==
-							Timing->F0PVFrontPorch &&
-					XVidC_VideoTimingModes[Mid].Timing.HSyncWidth ==
-							Timing->HSyncWidth &&
-					XVidC_VideoTimingModes[Mid].Timing.F0PVSyncWidth ==
-							Timing->F0PVSyncWidth &&
-					XVidC_VideoTimingModes[Mid].Timing.VSyncPolarity ==
-							Timing->VSyncPolarity))) {
-				if (!IsInterlaced || IsExtensive == 0 || (
-						XVidC_VideoTimingModes[Mid].Timing.F1VTotal ==
-								Timing->F1VTotal &&
-						XVidC_VideoTimingModes[Mid].Timing.F1VFrontPorch ==
-								Timing->F1VFrontPorch &&
-						XVidC_VideoTimingModes[Mid].Timing.F1VSyncWidth ==
-								Timing->F1VSyncWidth)) {
-					ResFound = (TRUE);
-					break;
-				}
-			}
-			/* Check next entry */
-			else {
-				Mid = Mid + 1;
-				HActive =
-				XVidC_VideoTimingModes[Mid].Timing.HActive;
-				VActive =
-				XVidC_VideoTimingModes[Mid].Timing.VActive;
-				Rate = XVidC_VideoTimingModes[Mid].FrameRate;
-			}
-		}
-		Mode =
-		(ResFound) ? (XVidC_VideoMode)Mid : (XVIDC_VM_NOT_SUPPORTED);
-	}
-	else {
-		Mode = (XVIDC_VM_NOT_SUPPORTED);
-	}
+        /* Now do a linear search for matching VActive and Frame
+         * Rate
+         */
+        while( HActive == Timing->HActive )
+        {
+            /* check current entry */
+            if( ( VActive == Timing->VActive ) && ( Rate == FrameRate ) &&
+                ( IsExtensive == 0 ||
+                  ( XVidC_VideoTimingModes[ Mid ].Timing.HTotal ==
+                        Timing->HTotal &&
+                    XVidC_VideoTimingModes[ Mid ].Timing.F0PVTotal ==
+                        Timing->F0PVTotal &&
+                    XVidC_VideoTimingModes[ Mid ].Timing.HFrontPorch ==
+                        Timing->HFrontPorch &&
+                    XVidC_VideoTimingModes[ Mid ].Timing.F0PVFrontPorch ==
+                        Timing->F0PVFrontPorch &&
+                    XVidC_VideoTimingModes[ Mid ].Timing.HSyncWidth ==
+                        Timing->HSyncWidth &&
+                    XVidC_VideoTimingModes[ Mid ].Timing.F0PVSyncWidth ==
+                        Timing->F0PVSyncWidth &&
+                    XVidC_VideoTimingModes[ Mid ].Timing.VSyncPolarity ==
+                        Timing->VSyncPolarity ) ) )
+            {
+                if( !IsInterlaced || IsExtensive == 0 ||
+                    ( XVidC_VideoTimingModes[ Mid ].Timing.F1VTotal ==
+                          Timing->F1VTotal &&
+                      XVidC_VideoTimingModes[ Mid ].Timing.F1VFrontPorch ==
+                          Timing->F1VFrontPorch &&
+                      XVidC_VideoTimingModes[ Mid ].Timing.F1VSyncWidth ==
+                          Timing->F1VSyncWidth ) )
+                {
+                    ResFound = ( TRUE );
+                    break;
+                }
+            }
+            /* Check next entry */
+            else
+            {
+                Mid = Mid + 1;
+                HActive = XVidC_VideoTimingModes[ Mid ].Timing.HActive;
+                VActive = XVidC_VideoTimingModes[ Mid ].Timing.VActive;
+                Rate = XVidC_VideoTimingModes[ Mid ].FrameRate;
+            }
+        }
+        Mode = ( ResFound ) ? ( XVidC_VideoMode ) Mid
+                            : ( XVIDC_VM_NOT_SUPPORTED );
+    }
+    else
+    {
+        Mode = ( XVIDC_VM_NOT_SUPPORTED );
+    }
 
-	return (Mode);
+    return ( Mode );
 }
 
 /******************************************************************************/
@@ -632,39 +683,45 @@ XVidC_VideoMode XVidC_GetVideoModeIdExtensive(XVidC_VideoTiming *Timing,
  *
  * @note	None.
  *
-*******************************************************************************/
-XVidC_VideoMode XVidC_GetVideoModeIdRb(u32 Width, u32 Height,
-		u32 FrameRate, u8 IsInterlaced, u8 RbN)
+ *******************************************************************************/
+XVidC_VideoMode XVidC_GetVideoModeIdRb( u32 Width,
+                                        u32 Height,
+                                        u32 FrameRate,
+                                        u8 IsInterlaced,
+                                        u8 RbN )
 {
-	XVidC_VideoMode VmId;
-	const XVidC_VideoTimingMode *VtmPtr;
-	u8 Found = 0;
+    XVidC_VideoMode VmId;
+    const XVidC_VideoTimingMode * VtmPtr;
+    u8 Found = 0;
 
-	VmId = XVidC_GetVideoModeId(Width, Height, FrameRate,
-				IsInterlaced);
+    VmId = XVidC_GetVideoModeId( Width, Height, FrameRate, IsInterlaced );
 
-	VtmPtr = XVidC_GetVideoModeData(VmId);
-	if (!VtmPtr) {
-		return XVIDC_VM_NOT_SUPPORTED;
-	}
+    VtmPtr = XVidC_GetVideoModeData( VmId );
+    if( !VtmPtr )
+    {
+        return XVIDC_VM_NOT_SUPPORTED;
+    }
 
-	while (!Found) {
-		VtmPtr = XVidC_GetVideoModeData(VmId);
-		if ((Height != VtmPtr->Timing.VActive) ||
-		    (Width != VtmPtr->Timing.HActive) ||
-		    (FrameRate != VtmPtr->FrameRate) ||
-		    (IsInterlaced && !XVidC_IsInterlaced(VmId))) {
-			VmId = XVIDC_VM_NOT_SUPPORTED;
-			break;
-		}
-		Found = XVidC_IsVtmRb(XVidC_GetVideoModeStr(VmId), RbN);
-		if (Found) {
-			break;
-		}
-		VmId = (XVidC_VideoMode)((int)VmId + 1);
-	}
+    while( !Found )
+    {
+        VtmPtr = XVidC_GetVideoModeData( VmId );
+        if( ( Height != VtmPtr->Timing.VActive ) ||
+            ( Width != VtmPtr->Timing.HActive ) ||
+            ( FrameRate != VtmPtr->FrameRate ) ||
+            ( IsInterlaced && !XVidC_IsInterlaced( VmId ) ) )
+        {
+            VmId = XVIDC_VM_NOT_SUPPORTED;
+            break;
+        }
+        Found = XVidC_IsVtmRb( XVidC_GetVideoModeStr( VmId ), RbN );
+        if( Found )
+        {
+            break;
+        }
+        VmId = ( XVidC_VideoMode ) ( ( int ) VmId + 1 );
+    }
 
-	return VmId;
+    return VmId;
 }
 
 /******************************************************************************/
@@ -678,14 +735,15 @@ XVidC_VideoMode XVidC_GetVideoModeIdRb(u32 Width, u32 Height,
  *
  * @note	None.
  *
-*******************************************************************************/
-const XVidC_VideoTimingMode *XVidC_GetVideoModeData(XVidC_VideoMode VmId)
+ *******************************************************************************/
+const XVidC_VideoTimingMode * XVidC_GetVideoModeData( XVidC_VideoMode VmId )
 {
-	if (VmId < XVIDC_VM_NUM_SUPPORTED) {
-		return &XVidC_VideoTimingModes[VmId];
-	}
+    if( VmId < XVIDC_VM_NUM_SUPPORTED )
+    {
+        return &XVidC_VideoTimingModes[ VmId ];
+    }
 
-	return XVidC_GetCustomVideoModeData(VmId);
+    return XVidC_GetCustomVideoModeData( VmId );
 }
 
 /******************************************************************************/
@@ -699,21 +757,23 @@ const XVidC_VideoTimingMode *XVidC_GetVideoModeData(XVidC_VideoMode VmId)
  *
  * @note	None.
  *
-*******************************************************************************/
-const char *XVidC_GetVideoModeStr(XVidC_VideoMode VmId)
+ *******************************************************************************/
+const char * XVidC_GetVideoModeStr( XVidC_VideoMode VmId )
 {
-	const XVidC_VideoTimingMode *VmPtr;
+    const XVidC_VideoTimingMode * VmPtr;
 
-	if (VmId == XVIDC_VM_CUSTOM) {
-		return ("Custom video mode");
-	}
+    if( VmId == XVIDC_VM_CUSTOM )
+    {
+        return ( "Custom video mode" );
+    }
 
-	VmPtr = XVidC_GetVideoModeData(VmId);
-	if (!VmPtr) {
-		return ("Video mode not supported");
-	}
+    VmPtr = XVidC_GetVideoModeData( VmId );
+    if( !VmPtr )
+    {
+        return ( "Video mode not supported" );
+    }
 
-	return VmPtr->Name;
+    return VmPtr->Name;
 }
 
 /******************************************************************************/
@@ -726,39 +786,59 @@ const char *XVidC_GetVideoModeStr(XVidC_VideoMode VmId)
  *
  * @note	None.
  *
-*******************************************************************************/
-const char *XVidC_GetFrameRateStr(XVidC_VideoMode VmId)
+ *******************************************************************************/
+const char * XVidC_GetFrameRateStr( XVidC_VideoMode VmId )
 {
-	const XVidC_VideoTimingMode *VmPtr;
+    const XVidC_VideoTimingMode * VmPtr;
 
-	VmPtr = XVidC_GetVideoModeData(VmId);
-	if (!VmPtr) {
-		return ("Video mode not supported");
-	}
+    VmPtr = XVidC_GetVideoModeData( VmId );
+    if( !VmPtr )
+    {
+        return ( "Video mode not supported" );
+    }
 
-	switch (VmPtr->FrameRate) {
-		case (XVIDC_FR_24HZ):   return ("24Hz");
-		case (XVIDC_FR_25HZ):   return ("25Hz");
-		case (XVIDC_FR_30HZ):   return ("30Hz");
-		case (XVIDC_FR_48HZ):   return ("48Hz");
-		case (XVIDC_FR_50HZ):   return ("50Hz");
-		case (XVIDC_FR_56HZ):   return ("56Hz");
-		case (XVIDC_FR_60HZ):   return ("60Hz");
-		case (XVIDC_FR_65HZ):   return ("65Hz");
-		case (XVIDC_FR_67HZ):   return ("67Hz");
-		case (XVIDC_FR_70HZ):   return ("70Hz");
-		case (XVIDC_FR_72HZ):   return ("72Hz");
-		case (XVIDC_FR_75HZ):   return ("75Hz");
-		case (XVIDC_FR_85HZ):   return ("85Hz");
-		case (XVIDC_FR_87HZ):   return ("87Hz");
-		case (XVIDC_FR_88HZ):   return ("88Hz");
-		case (XVIDC_FR_96HZ):   return ("96Hz");
-		case (XVIDC_FR_100HZ):  return ("100Hz");
-		case (XVIDC_FR_120HZ):  return ("120Hz");
+    switch( VmPtr->FrameRate )
+    {
+        case( XVIDC_FR_24HZ ):
+            return ( "24Hz" );
+        case( XVIDC_FR_25HZ ):
+            return ( "25Hz" );
+        case( XVIDC_FR_30HZ ):
+            return ( "30Hz" );
+        case( XVIDC_FR_48HZ ):
+            return ( "48Hz" );
+        case( XVIDC_FR_50HZ ):
+            return ( "50Hz" );
+        case( XVIDC_FR_56HZ ):
+            return ( "56Hz" );
+        case( XVIDC_FR_60HZ ):
+            return ( "60Hz" );
+        case( XVIDC_FR_65HZ ):
+            return ( "65Hz" );
+        case( XVIDC_FR_67HZ ):
+            return ( "67Hz" );
+        case( XVIDC_FR_70HZ ):
+            return ( "70Hz" );
+        case( XVIDC_FR_72HZ ):
+            return ( "72Hz" );
+        case( XVIDC_FR_75HZ ):
+            return ( "75Hz" );
+        case( XVIDC_FR_85HZ ):
+            return ( "85Hz" );
+        case( XVIDC_FR_87HZ ):
+            return ( "87Hz" );
+        case( XVIDC_FR_88HZ ):
+            return ( "88Hz" );
+        case( XVIDC_FR_96HZ ):
+            return ( "96Hz" );
+        case( XVIDC_FR_100HZ ):
+            return ( "100Hz" );
+        case( XVIDC_FR_120HZ ):
+            return ( "120Hz" );
 
-		default:
-		     return ("Frame rate not supported");
-	}
+        default:
+            return ( "Frame rate not supported" );
+    }
 }
 
 /******************************************************************************/
@@ -772,31 +852,32 @@ const char *XVidC_GetFrameRateStr(XVidC_VideoMode VmId)
  *
  * @note	None.
  *
-*******************************************************************************/
-const char *XVidC_Get3DFormatStr(XVidC_3DFormat Format)
+ *******************************************************************************/
+const char * XVidC_Get3DFormatStr( XVidC_3DFormat Format )
 {
-	switch (Format) {
-		case XVIDC_3D_FRAME_PACKING:
-			return ("Frame Packing");
+    switch( Format )
+    {
+        case XVIDC_3D_FRAME_PACKING:
+            return ( "Frame Packing" );
 
-		case XVIDC_3D_FIELD_ALTERNATIVE:
-			return ("Field Alternative");
+        case XVIDC_3D_FIELD_ALTERNATIVE:
+            return ( "Field Alternative" );
 
-		case XVIDC_3D_LINE_ALTERNATIVE:
-			return ("Line Alternative");
+        case XVIDC_3D_LINE_ALTERNATIVE:
+            return ( "Line Alternative" );
 
-		case XVIDC_3D_SIDE_BY_SIDE_FULL:
-			return ("Side-by-Side(full)");
+        case XVIDC_3D_SIDE_BY_SIDE_FULL:
+            return ( "Side-by-Side(full)" );
 
-		case XVIDC_3D_TOP_AND_BOTTOM_HALF:
-			return ("Top-and-Bottom(half)");
+        case XVIDC_3D_TOP_AND_BOTTOM_HALF:
+            return ( "Top-and-Bottom(half)" );
 
-		case XVIDC_3D_SIDE_BY_SIDE_HALF:
-			return ("Side-by-Side(half)");
+        case XVIDC_3D_SIDE_BY_SIDE_HALF:
+            return ( "Side-by-Side(half)" );
 
-		default:
-			return ("Unknown");
-	}
+        default:
+            return ( "Unknown" );
+    }
 }
 
 /******************************************************************************/
@@ -809,42 +890,72 @@ const char *XVidC_Get3DFormatStr(XVidC_3DFormat Format)
  *
  * @note	None.
  *
-*******************************************************************************/
-const char *XVidC_GetColorFormatStr(XVidC_ColorFormat ColorFormatId)
+ *******************************************************************************/
+const char * XVidC_GetColorFormatStr( XVidC_ColorFormat ColorFormatId )
 {
-	switch (ColorFormatId) {
-		case XVIDC_CSF_RGB:            return ("RGB");
-		case XVIDC_CSF_YCRCB_444:      return ("YUV_444");
-		case XVIDC_CSF_YCRCB_422:      return ("YUV_422");
-		case XVIDC_CSF_YCRCB_420:      return ("YUV_420");
-		case XVIDC_CSF_YONLY:          return ("Y_ONLY");
-		case XVIDC_CSF_RGBA:           return ("RGBA");
-		case XVIDC_CSF_YCRCBA_444:     return ("YUVA_444");
-		case XVIDC_CSF_MEM_RGBX8:      return ("RGBX8");
-		case XVIDC_CSF_MEM_YUVX8:      return ("YUVX8");
-		case XVIDC_CSF_MEM_YUYV8:      return ("YUYV8");
-		case XVIDC_CSF_MEM_RGBA8:      return ("RGBA8");
-		case XVIDC_CSF_MEM_YUVA8:      return ("YUVA8");
-		case XVIDC_CSF_MEM_RGBX10:     return ("RGBX10");
-		case XVIDC_CSF_MEM_YUVX10:     return ("YUVX10");
-		case XVIDC_CSF_MEM_RGB565:     return ("RGB565");
-		case XVIDC_CSF_MEM_Y_UV8:      return ("Y_UV8");
-		case XVIDC_CSF_MEM_Y_UV8_420:  return ("Y_UV8_420");
-		case XVIDC_CSF_MEM_RGB8:       return ("RGB8");
-		case XVIDC_CSF_MEM_YUV8:       return ("YUV8");
-		case XVIDC_CSF_MEM_Y_UV10:     return ("Y_UV10");
-		case XVIDC_CSF_MEM_Y_UV10_420: return ("Y_UV10_420");
-		case XVIDC_CSF_MEM_Y8:         return ("Y8");
-		case XVIDC_CSF_MEM_Y10:        return ("Y10");
-		case XVIDC_CSF_MEM_BGRA8:      return ("BGRA8");
-		case XVIDC_CSF_MEM_BGRX8:      return ("BGRX8");
-		case XVIDC_CSF_MEM_UYVY8:      return ("UYVY8");
-		case XVIDC_CSF_MEM_BGR8:       return ("BGR8");
-		case XVIDC_CSF_YCBCR_422:      return ("YCBCR_422");
-		case XVIDC_CSF_YCBCR_420:      return ("YCBCR_420");
-		default:
-					       return ("Color space format not supported");
-	}
+    switch( ColorFormatId )
+    {
+        case XVIDC_CSF_RGB:
+            return ( "RGB" );
+        case XVIDC_CSF_YCRCB_444:
+            return ( "YUV_444" );
+        case XVIDC_CSF_YCRCB_422:
+            return ( "YUV_422" );
+        case XVIDC_CSF_YCRCB_420:
+            return ( "YUV_420" );
+        case XVIDC_CSF_YONLY:
+            return ( "Y_ONLY" );
+        case XVIDC_CSF_RGBA:
+            return ( "RGBA" );
+        case XVIDC_CSF_YCRCBA_444:
+            return ( "YUVA_444" );
+        case XVIDC_CSF_MEM_RGBX8:
+            return ( "RGBX8" );
+        case XVIDC_CSF_MEM_YUVX8:
+            return ( "YUVX8" );
+        case XVIDC_CSF_MEM_YUYV8:
+            return ( "YUYV8" );
+        case XVIDC_CSF_MEM_RGBA8:
+            return ( "RGBA8" );
+        case XVIDC_CSF_MEM_YUVA8:
+            return ( "YUVA8" );
+        case XVIDC_CSF_MEM_RGBX10:
+            return ( "RGBX10" );
+        case XVIDC_CSF_MEM_YUVX10:
+            return ( "YUVX10" );
+        case XVIDC_CSF_MEM_RGB565:
+            return ( "RGB565" );
+        case XVIDC_CSF_MEM_Y_UV8:
+            return ( "Y_UV8" );
+        case XVIDC_CSF_MEM_Y_UV8_420:
+            return ( "Y_UV8_420" );
+        case XVIDC_CSF_MEM_RGB8:
+            return ( "RGB8" );
+        case XVIDC_CSF_MEM_YUV8:
+            return ( "YUV8" );
+        case XVIDC_CSF_MEM_Y_UV10:
+            return ( "Y_UV10" );
+        case XVIDC_CSF_MEM_Y_UV10_420:
+            return ( "Y_UV10_420" );
+        case XVIDC_CSF_MEM_Y8:
+            return ( "Y8" );
+        case XVIDC_CSF_MEM_Y10:
+            return ( "Y10" );
+        case XVIDC_CSF_MEM_BGRA8:
+            return ( "BGRA8" );
+        case XVIDC_CSF_MEM_BGRX8:
+            return ( "BGRX8" );
+        case XVIDC_CSF_MEM_UYVY8:
+            return ( "UYVY8" );
+        case XVIDC_CSF_MEM_BGR8:
+            return ( "BGR8" );
+        case XVIDC_CSF_YCBCR_422:
+            return ( "YCBCR_422" );
+        case XVIDC_CSF_YCBCR_420:
+            return ( "YCBCR_420" );
+        default:
+            return ( "Color space format not supported" );
+    }
 }
 
 /******************************************************************************/
@@ -857,17 +968,18 @@ const char *XVidC_GetColorFormatStr(XVidC_ColorFormat ColorFormatId)
  *
  * @note	None.
  *
-*******************************************************************************/
-XVidC_FrameRate XVidC_GetFrameRate(XVidC_VideoMode VmId)
+ *******************************************************************************/
+XVidC_FrameRate XVidC_GetFrameRate( XVidC_VideoMode VmId )
 {
-	const XVidC_VideoTimingMode *VmPtr;
+    const XVidC_VideoTimingMode * VmPtr;
 
-	VmPtr = XVidC_GetVideoModeData(VmId);
-	if (!VmPtr) {
-		return XVIDC_FR_NUM_SUPPORTED;
-	}
+    VmPtr = XVidC_GetVideoModeData( VmId );
+    if( !VmPtr )
+    {
+        return XVIDC_FR_NUM_SUPPORTED;
+    }
 
-	return VmPtr->FrameRate;
+    return VmPtr->FrameRate;
 }
 
 /******************************************************************************/
@@ -880,17 +992,18 @@ XVidC_FrameRate XVidC_GetFrameRate(XVidC_VideoMode VmId)
  *
  * @note	None.
  *
-*******************************************************************************/
-const XVidC_VideoTiming *XVidC_GetTimingInfo(XVidC_VideoMode VmId)
+ *******************************************************************************/
+const XVidC_VideoTiming * XVidC_GetTimingInfo( XVidC_VideoMode VmId )
 {
-	const XVidC_VideoTimingMode *VmPtr;
+    const XVidC_VideoTimingMode * VmPtr;
 
-	VmPtr = XVidC_GetVideoModeData(VmId);
-	if (!VmPtr) {
-		return NULL;
-	}
+    VmPtr = XVidC_GetVideoModeData( VmId );
+    if( !VmPtr )
+    {
+        return NULL;
+    }
 
-	return &VmPtr->Timing;
+    return &VmPtr->Timing;
 }
 
 /******************************************************************************/
@@ -910,47 +1023,46 @@ const XVidC_VideoTiming *XVidC_GetTimingInfo(XVidC_VideoMode VmId)
  *
  * @note	None.
  *
-*******************************************************************************/
-u32 XVidC_SetVideoStream(XVidC_VideoStream *VidStrmPtr, XVidC_VideoMode VmId,
-			 XVidC_ColorFormat ColorFormat, XVidC_ColorDepth Bpc,
-			 XVidC_PixelsPerClock Ppc)
+ *******************************************************************************/
+u32 XVidC_SetVideoStream( XVidC_VideoStream * VidStrmPtr,
+                          XVidC_VideoMode VmId,
+                          XVidC_ColorFormat ColorFormat,
+                          XVidC_ColorDepth Bpc,
+                          XVidC_PixelsPerClock Ppc )
 {
-	const XVidC_VideoTiming *TimingPtr;
+    const XVidC_VideoTiming * TimingPtr;
 
-	/* Verify arguments. */
-	Xil_AssertNonvoid(VidStrmPtr != NULL);
-	Xil_AssertNonvoid(ColorFormat < XVIDC_CSF_NUM_SUPPORTED);
-	Xil_AssertNonvoid((Bpc == XVIDC_BPC_6)  ||
-			  (Bpc == XVIDC_BPC_8)  ||
-			  (Bpc == XVIDC_BPC_10) ||
-			  (Bpc == XVIDC_BPC_12) ||
-			  (Bpc == XVIDC_BPC_14) ||
-			  (Bpc == XVIDC_BPC_16) ||
-			  (Bpc == XVIDC_BPC_UNKNOWN));
-	Xil_AssertNonvoid((Ppc == XVIDC_PPC_1) ||
-			  (Ppc == XVIDC_PPC_2) ||
-			  (Ppc == XVIDC_PPC_4));
+    /* Verify arguments. */
+    Xil_AssertNonvoid( VidStrmPtr != NULL );
+    Xil_AssertNonvoid( ColorFormat < XVIDC_CSF_NUM_SUPPORTED );
+    Xil_AssertNonvoid( ( Bpc == XVIDC_BPC_6 ) || ( Bpc == XVIDC_BPC_8 ) ||
+                       ( Bpc == XVIDC_BPC_10 ) || ( Bpc == XVIDC_BPC_12 ) ||
+                       ( Bpc == XVIDC_BPC_14 ) || ( Bpc == XVIDC_BPC_16 ) ||
+                       ( Bpc == XVIDC_BPC_UNKNOWN ) );
+    Xil_AssertNonvoid( ( Ppc == XVIDC_PPC_1 ) || ( Ppc == XVIDC_PPC_2 ) ||
+                       ( Ppc == XVIDC_PPC_4 ) );
 
-	/* Get the timing from the video timing table. */
-	TimingPtr = XVidC_GetTimingInfo(VmId);
-	if (!TimingPtr) {
-		return XST_FAILURE;
-	}
-	VidStrmPtr->VmId		= VmId;
-	VidStrmPtr->Timing		= *TimingPtr;
-	VidStrmPtr->FrameRate		= XVidC_GetFrameRate(VmId);
-	VidStrmPtr->IsInterlaced	= XVidC_IsInterlaced(VmId);
-	VidStrmPtr->ColorFormatId	= ColorFormat;
-	VidStrmPtr->ColorDepth		= Bpc;
-	VidStrmPtr->PixPerClk		= Ppc;
+    /* Get the timing from the video timing table. */
+    TimingPtr = XVidC_GetTimingInfo( VmId );
+    if( !TimingPtr )
+    {
+        return XST_FAILURE;
+    }
+    VidStrmPtr->VmId = VmId;
+    VidStrmPtr->Timing = *TimingPtr;
+    VidStrmPtr->FrameRate = XVidC_GetFrameRate( VmId );
+    VidStrmPtr->IsInterlaced = XVidC_IsInterlaced( VmId );
+    VidStrmPtr->ColorFormatId = ColorFormat;
+    VidStrmPtr->ColorDepth = Bpc;
+    VidStrmPtr->PixPerClk = Ppc;
 
-	/* Set stream to 2D. */
-	VidStrmPtr->Is3D			= FALSE;
-	VidStrmPtr->Info_3D.Format		= XVIDC_3D_UNKNOWN;
-	VidStrmPtr->Info_3D.Sampling.Method	= XVIDC_3D_SAMPLING_UNKNOWN;
-	VidStrmPtr->Info_3D.Sampling.Position	= XVIDC_3D_SAMPPOS_UNKNOWN;
+    /* Set stream to 2D. */
+    VidStrmPtr->Is3D = FALSE;
+    VidStrmPtr->Info_3D.Format = XVIDC_3D_UNKNOWN;
+    VidStrmPtr->Info_3D.Sampling.Method = XVIDC_3D_SAMPLING_UNKNOWN;
+    VidStrmPtr->Info_3D.Sampling.Position = XVIDC_3D_SAMPPOS_UNKNOWN;
 
-	return XST_SUCCESS;
+    return XST_SUCCESS;
 }
 
 /******************************************************************************/
@@ -976,72 +1088,76 @@ u32 XVidC_SetVideoStream(XVidC_VideoStream *VidStrmPtr, XVidC_VideoMode VmId,
  *
  * @note	None.
  *
-*******************************************************************************/
-u32 XVidC_Set3DVideoStream(XVidC_VideoStream *VidStrmPtr, XVidC_VideoMode VmId,
-			   XVidC_ColorFormat ColorFormat, XVidC_ColorDepth Bpc,
-			   XVidC_PixelsPerClock Ppc, XVidC_3DInfo *Info3DPtr)
+ *******************************************************************************/
+u32 XVidC_Set3DVideoStream( XVidC_VideoStream * VidStrmPtr,
+                            XVidC_VideoMode VmId,
+                            XVidC_ColorFormat ColorFormat,
+                            XVidC_ColorDepth Bpc,
+                            XVidC_PixelsPerClock Ppc,
+                            XVidC_3DInfo * Info3DPtr )
 {
-	u32 Status;
-	u16 Vblank0;
-	u16 Vblank1;
+    u32 Status;
+    u16 Vblank0;
+    u16 Vblank1;
 
-	/* Verify arguments */
-	Xil_AssertNonvoid(Info3DPtr != NULL);
+    /* Verify arguments */
+    Xil_AssertNonvoid( Info3DPtr != NULL );
 
-	/* Initialize with info for 2D frame. */
-	Status = XVidC_SetVideoStream(VidStrmPtr, VmId, ColorFormat, Bpc, Ppc);
-	if (Status != XST_SUCCESS) {
-		return XST_FAILURE;
-	}
+    /* Initialize with info for 2D frame. */
+    Status = XVidC_SetVideoStream( VidStrmPtr, VmId, ColorFormat, Bpc, Ppc );
+    if( Status != XST_SUCCESS )
+    {
+        return XST_FAILURE;
+    }
 
-	/* Set stream to 3D. */
-	VidStrmPtr->Is3D	= TRUE;
-	VidStrmPtr->Info_3D	= *Info3DPtr;
+    /* Set stream to 3D. */
+    VidStrmPtr->Is3D = TRUE;
+    VidStrmPtr->Info_3D = *Info3DPtr;
 
-	/* Only 3D format supported is frame packing. */
-	if (Info3DPtr->Format != XVIDC_3D_FRAME_PACKING) {
-		return XST_FAILURE;
-	}
+    /* Only 3D format supported is frame packing. */
+    if( Info3DPtr->Format != XVIDC_3D_FRAME_PACKING )
+    {
+        return XST_FAILURE;
+    }
 
-	/* Update the timing based on the 3D format. */
+    /* Update the timing based on the 3D format. */
 
-	/* An interlaced format is converted to a progressive frame: */
-	/*	3D VActive = (2D VActive * 4) + (2D VBlank field0) +
-						(2D Vblank field1 * 2) */
-	if (VidStrmPtr->IsInterlaced) {
-		Vblank0 = VidStrmPtr->Timing.F0PVTotal -
-						VidStrmPtr->Timing.VActive;
-		Vblank1 = VidStrmPtr->Timing.F1VTotal -
-						VidStrmPtr->Timing.VActive;
-		VidStrmPtr->Timing.VActive = (VidStrmPtr->Timing.VActive * 4) +
-						Vblank0 + (Vblank1 * 2);
+    /* An interlaced format is converted to a progressive frame: */
+    /*	3D VActive = (2D VActive * 4) + (2D VBlank field0) +
+                        (2D Vblank field1 * 2) */
+    if( VidStrmPtr->IsInterlaced )
+    {
+        Vblank0 = VidStrmPtr->Timing.F0PVTotal - VidStrmPtr->Timing.VActive;
+        Vblank1 = VidStrmPtr->Timing.F1VTotal - VidStrmPtr->Timing.VActive;
+        VidStrmPtr->Timing.VActive = ( VidStrmPtr->Timing.VActive * 4 ) +
+                                     Vblank0 + ( Vblank1 * 2 );
 
-		/* Set VTotal */
-		VidStrmPtr->Timing.F0PVTotal *= 2;
-		VidStrmPtr->Timing.F0PVTotal += VidStrmPtr->Timing.F1VTotal * 2;
+        /* Set VTotal */
+        VidStrmPtr->Timing.F0PVTotal *= 2;
+        VidStrmPtr->Timing.F0PVTotal += VidStrmPtr->Timing.F1VTotal * 2;
 
-		/* Clear field 1 values. */
-		VidStrmPtr->Timing.F1VFrontPorch = 0;
-		VidStrmPtr->Timing.F1VSyncWidth  = 0;
-		VidStrmPtr->Timing.F1VBackPorch  = 0;
-		VidStrmPtr->Timing.F1VTotal      = 0;
+        /* Clear field 1 values. */
+        VidStrmPtr->Timing.F1VFrontPorch = 0;
+        VidStrmPtr->Timing.F1VSyncWidth = 0;
+        VidStrmPtr->Timing.F1VBackPorch = 0;
+        VidStrmPtr->Timing.F1VTotal = 0;
 
-		/* Set format to progressive */
-		VidStrmPtr->IsInterlaced = FALSE;
-	}
-	/* Progressive */
-	else {
-		/* 3D Vactive = (2D VActive * 2) + (2D VBlank) */
-		Vblank0 = VidStrmPtr->Timing.F0PVTotal -
-						VidStrmPtr->Timing.VActive;
-		VidStrmPtr->Timing.VActive = (VidStrmPtr->Timing.VActive * 2) +
-						Vblank0;
+        /* Set format to progressive */
+        VidStrmPtr->IsInterlaced = FALSE;
+    }
+    /* Progressive */
+    else
+    {
+        /* 3D Vactive = (2D VActive * 2) + (2D VBlank) */
+        Vblank0 = VidStrmPtr->Timing.F0PVTotal - VidStrmPtr->Timing.VActive;
+        VidStrmPtr->Timing.VActive = ( VidStrmPtr->Timing.VActive * 2 ) +
+                                     Vblank0;
 
-		/* Set VTotal. */
-		VidStrmPtr->Timing.F0PVTotal = VidStrmPtr->Timing.F0PVTotal * 2;
-	}
+        /* Set VTotal. */
+        VidStrmPtr->Timing.F0PVTotal = VidStrmPtr->Timing.F0PVTotal * 2;
+    }
 
-	return XST_SUCCESS;
+    return XST_SUCCESS;
 }
 
 /******************************************************************************/
@@ -1054,47 +1170,50 @@ u32 XVidC_Set3DVideoStream(XVidC_VideoStream *VidStrmPtr, XVidC_VideoMode VmId,
  *
  * @note	None.
  *
-*******************************************************************************/
-void XVidC_ReportStreamInfo(const XVidC_VideoStream *Stream)
+ *******************************************************************************/
+void XVidC_ReportStreamInfo( const XVidC_VideoStream * Stream )
 {
-	if (!XVidC_GetVideoModeData(Stream->VmId) &&
-			(Stream->VmId != XVIDC_VM_CUSTOM)) {
-		xil_printf("\tThe stream ID (%d) is not supported.\r\n",
-				Stream->VmId);
-		return;
-	}
+    if( !XVidC_GetVideoModeData( Stream->VmId ) &&
+        ( Stream->VmId != XVIDC_VM_CUSTOM ) )
+    {
+        xil_printf( "\tThe stream ID (%d) is not supported.\r\n",
+                    Stream->VmId );
+        return;
+    }
 
-	xil_printf("\tColor Format:     %s\r\n",
-			XVidC_GetColorFormatStr(Stream->ColorFormatId));
-	xil_printf("\tColor Depth:      %d\r\n", Stream->ColorDepth);
-	xil_printf("\tPixels Per Clock: %d\r\n", Stream->PixPerClk);
-	xil_printf("\tMode:             %s\r\n",
-			Stream->IsInterlaced ? "Interlaced" : "Progressive");
+    xil_printf( "\tColor Format:     %s\r\n",
+                XVidC_GetColorFormatStr( Stream->ColorFormatId ) );
+    xil_printf( "\tColor Depth:      %d\r\n", Stream->ColorDepth );
+    xil_printf( "\tPixels Per Clock: %d\r\n", Stream->PixPerClk );
+    xil_printf( "\tMode:             %s\r\n",
+                Stream->IsInterlaced ? "Interlaced" : "Progressive" );
 
-	if (Stream->Is3D) {
-		xil_printf("\t3D Format:        %s\r\n",
-		XVidC_Get3DFormatStr(Stream->Info_3D.Format));
-	}
+    if( Stream->Is3D )
+    {
+        xil_printf( "\t3D Format:        %s\r\n",
+                    XVidC_Get3DFormatStr( Stream->Info_3D.Format ) );
+    }
 
-	if (Stream->VmId == XVIDC_VM_CUSTOM) {
-		xil_printf("\tFrame Rate:       %dHz\r\n",
-				Stream->FrameRate);
-		xil_printf("\tResolution:       %dx%d [Custom Mode]\r\n",
-				Stream->Timing.HActive, Stream->Timing.VActive);
-		xil_printf("\tPixel Clock:      %d\r\n",
-				XVidC_GetPixelClockHzByHVFr(
-					Stream->Timing.HTotal,
-					Stream->Timing.F0PVTotal,
-					Stream->FrameRate));
-	}
-	else {
-		xil_printf("\tFrame Rate:       %s\r\n",
-				XVidC_GetFrameRateStr(Stream->VmId));
-		xil_printf("\tResolution:       %s\r\n",
-				XVidC_GetVideoModeStr(Stream->VmId));
-		xil_printf("\tPixel Clock:      %d\r\n",
-				XVidC_GetPixelClockHzByVmId(Stream->VmId));
-	}
+    if( Stream->VmId == XVIDC_VM_CUSTOM )
+    {
+        xil_printf( "\tFrame Rate:       %dHz\r\n", Stream->FrameRate );
+        xil_printf( "\tResolution:       %dx%d [Custom Mode]\r\n",
+                    Stream->Timing.HActive,
+                    Stream->Timing.VActive );
+        xil_printf( "\tPixel Clock:      %d\r\n",
+                    XVidC_GetPixelClockHzByHVFr( Stream->Timing.HTotal,
+                                                 Stream->Timing.F0PVTotal,
+                                                 Stream->FrameRate ) );
+    }
+    else
+    {
+        xil_printf( "\tFrame Rate:       %s\r\n",
+                    XVidC_GetFrameRateStr( Stream->VmId ) );
+        xil_printf( "\tResolution:       %s\r\n",
+                    XVidC_GetVideoModeStr( Stream->VmId ) );
+        xil_printf( "\tPixel Clock:      %d\r\n",
+                    XVidC_GetPixelClockHzByVmId( Stream->VmId ) );
+    }
 }
 
 /******************************************************************************/
@@ -1109,36 +1228,50 @@ void XVidC_ReportStreamInfo(const XVidC_VideoStream *Stream)
  *
  * @note	None.
  *
-*******************************************************************************/
-void XVidC_ReportTiming(const XVidC_VideoTiming *Timing, u8 IsInterlaced)
+ *******************************************************************************/
+void XVidC_ReportTiming( const XVidC_VideoTiming * Timing, u8 IsInterlaced )
 {
-	xil_printf("\r\n\tHSYNC Timing: hav=%04d, hfp=%02d, hsw=%02d(hsp=%d), "
-			"hbp=%03d, htot=%04d \n\r", Timing->HActive,
-			Timing->HFrontPorch, Timing->HSyncWidth,
-			Timing->HSyncPolarity,
-			Timing->HBackPorch, Timing->HTotal);
+    xil_printf( "\r\n\tHSYNC Timing: hav=%04d, hfp=%02d, hsw=%02d(hsp=%d), "
+                "hbp=%03d, htot=%04d \n\r",
+                Timing->HActive,
+                Timing->HFrontPorch,
+                Timing->HSyncWidth,
+                Timing->HSyncPolarity,
+                Timing->HBackPorch,
+                Timing->HTotal );
 
-	/* Interlaced */
-	if (IsInterlaced) {
-		xil_printf("\tVSYNC Timing (Field 0): vav=%04d, vfp=%02d, "
-			"vsw=%02d(vsp=%d), vbp=%03d, vtot=%04d\n\r",
-			Timing->VActive, Timing->F0PVFrontPorch,
-			Timing->F0PVSyncWidth, Timing->VSyncPolarity,
-			Timing->F0PVBackPorch, Timing->F0PVTotal);
-	xil_printf("\tVSYNC Timing (Field 1): vav=%04d, vfp=%02d, "
-			"vsw=%02d(vsp=%d), vbp=%03d, vtot=%04d\n\r",
-			Timing->VActive, Timing->F1VFrontPorch,
-			Timing->F1VSyncWidth, Timing->VSyncPolarity,
-			Timing->F1VBackPorch, Timing->F1VTotal);
-	}
-	/* Progressive */
-	else {
-		xil_printf("\tVSYNC Timing: vav=%04d, vfp=%02d, "
-			"vsw=%02d(vsp=%d), vbp=%03d, vtot=%04d\n\r",
-			Timing->VActive, Timing->F0PVFrontPorch,
-			Timing->F0PVSyncWidth, Timing->VSyncPolarity,
-			Timing->F0PVBackPorch, Timing->F0PVTotal);
-	}
+    /* Interlaced */
+    if( IsInterlaced )
+    {
+        xil_printf( "\tVSYNC Timing (Field 0): vav=%04d, vfp=%02d, "
+                    "vsw=%02d(vsp=%d), vbp=%03d, vtot=%04d\n\r",
+                    Timing->VActive,
+                    Timing->F0PVFrontPorch,
+                    Timing->F0PVSyncWidth,
+                    Timing->VSyncPolarity,
+                    Timing->F0PVBackPorch,
+                    Timing->F0PVTotal );
+        xil_printf( "\tVSYNC Timing (Field 1): vav=%04d, vfp=%02d, "
+                    "vsw=%02d(vsp=%d), vbp=%03d, vtot=%04d\n\r",
+                    Timing->VActive,
+                    Timing->F1VFrontPorch,
+                    Timing->F1VSyncWidth,
+                    Timing->VSyncPolarity,
+                    Timing->F1VBackPorch,
+                    Timing->F1VTotal );
+    }
+    /* Progressive */
+    else
+    {
+        xil_printf( "\tVSYNC Timing: vav=%04d, vfp=%02d, "
+                    "vsw=%02d(vsp=%d), vbp=%03d, vtot=%04d\n\r",
+                    Timing->VActive,
+                    Timing->F0PVFrontPorch,
+                    Timing->F0PVSyncWidth,
+                    Timing->VSyncPolarity,
+                    Timing->F0PVBackPorch,
+                    Timing->F0PVTotal );
+    }
 }
 
 /******************************************************************************/
@@ -1153,20 +1286,22 @@ void XVidC_ReportTiming(const XVidC_VideoTiming *Timing, u8 IsInterlaced)
  *
  * @note	None.
  *
-*******************************************************************************/
-static const XVidC_VideoTimingMode *XVidC_GetCustomVideoModeData(
-		XVidC_VideoMode VmId)
+ *******************************************************************************/
+static const XVidC_VideoTimingMode * XVidC_GetCustomVideoModeData(
+    XVidC_VideoMode VmId )
 {
-	u16 Index;
+    u16 Index;
 
-	for (Index = 0; Index < XVidC_NumCustomModes; Index++) {
-		if (VmId == (XVidC_CustomTimingModes[Index].VmId)) {
-			return &(XVidC_CustomTimingModes[Index]);
-		}
-	}
+    for( Index = 0; Index < XVidC_NumCustomModes; Index++ )
+    {
+        if( VmId == ( XVidC_CustomTimingModes[ Index ].VmId ) )
+        {
+            return &( XVidC_CustomTimingModes[ Index ] );
+        }
+    }
 
-	/* ID not found within the custom video mode table. */
-	return NULL;
+    /* ID not found within the custom video mode table. */
+    return NULL;
 }
 
 /******************************************************************************/
@@ -1186,19 +1321,22 @@ static const XVidC_VideoTimingMode *XVidC_GetCustomVideoModeData(
  *
  * @note	None.
  *
-*******************************************************************************/
-static u8 XVidC_IsVtmRb(const char *VideoModeStr, u8 RbN)
+ *******************************************************************************/
+static u8 XVidC_IsVtmRb( const char * VideoModeStr, u8 RbN )
 {
-	while ((*VideoModeStr !='\0') && (*VideoModeStr != 'R')) {
-		VideoModeStr++;
-	}
+    while( ( *VideoModeStr != '\0' ) && ( *VideoModeStr != 'R' ) )
+    {
+        VideoModeStr++;
+    }
 
-	if (*(VideoModeStr + 2) == ')') {
-		return RbN == 1;
-	}
-	if (*(VideoModeStr + 2) == '2') {
-		return RbN == 2;
-	}
-	return 0;
+    if( *( VideoModeStr + 2 ) == ')' )
+    {
+        return RbN == 1;
+    }
+    if( *( VideoModeStr + 2 ) == '2' )
+    {
+        return RbN == 2;
+    }
+    return 0;
 }
 /** @} */

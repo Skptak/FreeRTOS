@@ -1,44 +1,44 @@
 /***********************************************************************************************************************
-* DISCLAIMER
-* This software is supplied by Renesas Electronics Corporation and is only intended for use with Renesas products.
-* No other uses are authorized. This software is owned by Renesas Electronics Corporation and is protected under all
-* applicable laws, including copyright laws. 
-* THIS SOFTWARE IS PROVIDED "AS IS" AND RENESAS MAKES NO WARRANTIESREGARDING THIS SOFTWARE, WHETHER EXPRESS, IMPLIED
-* OR STATUTORY, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-* NON-INFRINGEMENT.  ALL SUCH WARRANTIES ARE EXPRESSLY DISCLAIMED.TO THE MAXIMUM EXTENT PERMITTED NOT PROHIBITED BY
-* LAW, NEITHER RENESAS ELECTRONICS CORPORATION NOR ANY OF ITS AFFILIATED COMPANIES SHALL BE LIABLE FOR ANY DIRECT,
-* INDIRECT, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES FOR ANY REASON RELATED TO THIS SOFTWARE, EVEN IF RENESAS OR
-* ITS AFFILIATES HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
-* Renesas reserves the right, without notice, to make changes to this software and to discontinue the availability 
-* of this software. By using this software, you agree to the additional terms and conditions found by accessing the 
-* following link:
-* http://www.renesas.com/disclaimer
-*
-* Copyright (C) 2015 Renesas Electronics Corporation. All rights reserved.
-***********************************************************************************************************************/
+ * DISCLAIMER
+ * This software is supplied by Renesas Electronics Corporation and is only
+ *intended for use with Renesas products. No other uses are authorized. This
+ *software is owned by Renesas Electronics Corporation and is protected under
+ *all applicable laws, including copyright laws. THIS SOFTWARE IS PROVIDED "AS
+ *IS" AND RENESAS MAKES NO WARRANTIESREGARDING THIS SOFTWARE, WHETHER EXPRESS,
+ *IMPLIED OR STATUTORY, INCLUDING BUT NOT LIMITED TO WARRANTIES OF
+ *MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT.  ALL
+ *SUCH WARRANTIES ARE EXPRESSLY DISCLAIMED.TO THE MAXIMUM EXTENT PERMITTED NOT
+ *PROHIBITED BY LAW, NEITHER RENESAS ELECTRONICS CORPORATION NOR ANY OF ITS
+ *AFFILIATED COMPANIES SHALL BE LIABLE FOR ANY DIRECT, INDIRECT, SPECIAL,
+ *INCIDENTAL OR CONSEQUENTIAL DAMAGES FOR ANY REASON RELATED TO THIS SOFTWARE,
+ *EVEN IF RENESAS OR ITS AFFILIATES HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH
+ *DAMAGES. Renesas reserves the right, without notice, to make changes to this
+ *software and to discontinue the availability of this software. By using this
+ *software, you agree to the additional terms and conditions found by accessing
+ *the following link: http://www.renesas.com/disclaimer
+ *
+ * Copyright (C) 2015 Renesas Electronics Corporation. All rights reserved.
+ ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-* File Name    : r_cg_sci_user.c
-* Version      : Code Generator for RX71M V1.00.02.02 [28 May 2015]
-* Device(s)    : R5F571MLCxFC
-* Tool-Chain   : CCRX
-* Description  : This file implements device driver for SCI module.
-* Creation Date: 20/09/2015
-***********************************************************************************************************************/
+ * File Name    : r_cg_sci_user.c
+ * Version      : Code Generator for RX71M V1.00.02.02 [28 May 2015]
+ * Device(s)    : R5F571MLCxFC
+ * Tool-Chain   : CCRX
+ * Description  : This file implements device driver for SCI module.
+ * Creation Date: 20/09/2015
+ ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
 Pragma directive
 ***********************************************************************************************************************/
 /* Start user code for pragma. Do not edit comment generated here */
 
-
 /*
  * This file originated from an example project for the RSK - it has been
  * adapted to allow it to be used in the FreeRTOS demo.  Functions required by
  * UARTCommandConsole.c have been added.
  */
-
-
 
 /* End user code. Do not edit comment generated here */
 
@@ -48,22 +48,22 @@ Includes
 #include "r_cg_macrodriver.h"
 #include "r_cg_sci.h"
 /* Start user code for include. Do not edit comment generated here */
-#include "rskrx71mdef.h"
 #include "FreeRTOS.h"
-#include "task.h"
 #include "queue.h"
+#include "rskrx71mdef.h"
 #include "serial.h"
+#include "task.h"
 /* End user code. Do not edit comment generated here */
 #include "r_cg_userdefine.h"
 
 /***********************************************************************************************************************
 Global variables and functions
 ***********************************************************************************************************************/
-extern uint8_t * gp_sci7_tx_address;                /* SCI7 send buffer address */
-extern uint16_t  g_sci7_tx_count;                   /* SCI7 send data number */
-extern uint8_t * gp_sci7_rx_address;                /* SCI7 receive buffer address */
-extern uint16_t  g_sci7_rx_count;                   /* SCI7 receive data number */
-extern uint16_t  g_sci7_rx_length;                  /* SCI7 receive data length */
+extern uint8_t * gp_sci7_tx_address; /* SCI7 send buffer address */
+extern uint16_t g_sci7_tx_count;     /* SCI7 send data number */
+extern uint8_t * gp_sci7_rx_address; /* SCI7 receive buffer address */
+extern uint16_t g_sci7_rx_count;     /* SCI7 receive data number */
+extern uint16_t g_sci7_rx_length;    /* SCI7 receive data length */
 /* Start user code for global. Do not edit comment generated here */
 
 /* Global used to receive a character from the PC terminal */
@@ -92,19 +92,20 @@ static volatile uint8_t sci7_txdone;
 /* End user code. Do not edit comment generated here */
 
 /***********************************************************************************************************************
-* Function Name: r_sci7_transmit_interrupt
-* Description  : None
-* Arguments    : None
-* Return Value : None
-***********************************************************************************************************************/
+ * Function Name: r_sci7_transmit_interrupt
+ * Description  : None
+ * Arguments    : None
+ * Return Value : None
+ ***********************************************************************************************************************/
 #if FAST_INTERRUPT_VECTOR == VECT_SCI7_TXI7
-#pragma interrupt r_sci7_transmit_interrupt(vect=VECT(SCI7,TXI7),fint)
+    #pragma interrupt r_sci7_transmit_interrupt( vect = VECT( SCI7, TXI7 ), \
+                                                     fint )
 #else
-#pragma interrupt r_sci7_transmit_interrupt(vect=VECT(SCI7,TXI7))
+    #pragma interrupt r_sci7_transmit_interrupt( vect = VECT( SCI7, TXI7 ) )
 #endif
-static void r_sci7_transmit_interrupt(void)
+static void r_sci7_transmit_interrupt( void )
 {
-    if (0U < g_sci7_tx_count)
+    if( 0U < g_sci7_tx_count )
     {
         SCI7.TDR = *gp_sci7_tx_address;
         gp_sci7_tx_address++;
@@ -118,12 +119,12 @@ static void r_sci7_transmit_interrupt(void)
 }
 
 /***********************************************************************************************************************
-* Function Name: r_sci7_transmitend_interrupt
-* Description  : This function is TEI7 interrupt service routine.
-* Arguments    : None
-* Return Value : None
-***********************************************************************************************************************/
-void r_sci7_transmitend_interrupt(void)
+ * Function Name: r_sci7_transmitend_interrupt
+ * Description  : This function is TEI7 interrupt service routine.
+ * Arguments    : None
+ * Return Value : None
+ ***********************************************************************************************************************/
+void r_sci7_transmitend_interrupt( void )
 {
     MPC.P90PFS.BYTE = 0x00U;
     PORT9.PMR.BYTE &= 0xFEU;
@@ -134,37 +135,38 @@ void r_sci7_transmitend_interrupt(void)
     r_sci7_callback_transmitend();
 }
 /***********************************************************************************************************************
-* Function Name: r_sci7_receive_interrupt
-* Description  : None
-* Arguments    : None
-* Return Value : None
-***********************************************************************************************************************/
+ * Function Name: r_sci7_receive_interrupt
+ * Description  : None
+ * Arguments    : None
+ * Return Value : None
+ ***********************************************************************************************************************/
 #if FAST_INTERRUPT_VECTOR == VECT_SCI7_RXI7
-#pragma interrupt r_sci7_receive_interrupt(vect=VECT(SCI7,RXI7),fint)
+    #pragma interrupt r_sci7_receive_interrupt( vect = VECT( SCI7, RXI7 ), \
+                                                    fint )
 #else
-#pragma interrupt r_sci7_receive_interrupt(vect=VECT(SCI7,RXI7))
+    #pragma interrupt r_sci7_receive_interrupt( vect = VECT( SCI7, RXI7 ) )
 #endif
-static void r_sci7_receive_interrupt(void)
+static void r_sci7_receive_interrupt( void )
 {
-    if (g_sci7_rx_length > g_sci7_rx_count)
+    if( g_sci7_rx_length > g_sci7_rx_count )
     {
         *gp_sci7_rx_address = SCI7.RDR;
         gp_sci7_rx_address++;
         g_sci7_rx_count++;
 
-        if (g_sci7_rx_length <= g_sci7_rx_count)
+        if( g_sci7_rx_length <= g_sci7_rx_count )
         {
             r_sci7_callback_receiveend();
         }
     }
 }
 /***********************************************************************************************************************
-* Function Name: r_sci7_receiveerror_interrupt
-* Description  : This function is ERI7 interrupt service routine.
-* Arguments    : None
-* Return Value : None
-***********************************************************************************************************************/
-void r_sci7_receiveerror_interrupt(void)
+ * Function Name: r_sci7_receiveerror_interrupt
+ * Description  : This function is ERI7 interrupt service routine.
+ * Arguments    : None
+ * Return Value : None
+ ***********************************************************************************************************************/
+void r_sci7_receiveerror_interrupt( void )
 {
     uint8_t err_type;
 
@@ -177,12 +179,11 @@ void r_sci7_receiveerror_interrupt(void)
     SCI7.SSR.BYTE = err_type;
 }
 /***********************************************************************************************************************
-* Function Name: r_sci7_callback_transmitend
-* Description  : This function is a callback function when SCI7 finishes transmission.
-* Arguments    : None
-* Return Value : None
-***********************************************************************************************************************/
-static void r_sci7_callback_transmitend(void)
+ * Function Name: r_sci7_callback_transmitend
+ * Description  : This function is a callback function when SCI7 finishes
+ *transmission. Arguments    : None Return Value : None
+ ***********************************************************************************************************************/
+static void r_sci7_callback_transmitend( void )
 {
     /* Start user code. Do not edit comment generated here */
     BaseType_t xHigherPriorityTaskWoken = pdFALSE;
@@ -202,12 +203,11 @@ static void r_sci7_callback_transmitend(void)
     /* End user code. Do not edit comment generated here */
 }
 /***********************************************************************************************************************
-* Function Name: r_sci7_callback_receiveend
-* Description  : This function is a callback function when SCI7 finishes reception.
-* Arguments    : None
-* Return Value : None
-***********************************************************************************************************************/
-static void r_sci7_callback_receiveend(void)
+ * Function Name: r_sci7_callback_receiveend
+ * Description  : This function is a callback function when SCI7 finishes
+ *reception. Arguments    : None Return Value : None
+ ***********************************************************************************************************************/
+static void r_sci7_callback_receiveend( void )
 {
     /* Start user code. Do not edit comment generated here */
     BaseType_t xHigherPriorityTaskWoken = pdFALSE;
@@ -220,16 +220,16 @@ static void r_sci7_callback_receiveend(void)
     transmit is not already in progress. */
     if( sci7_txdone == TRUE )
     {
-        /* Characters received from the UART are stored in this queue, ready to be
-        received by the application.  ***NOTE*** Using a queue in this way is very
-        convenient, but also very inefficient.  It can be used here because
-        characters will only arrive slowly.  In a higher bandwidth system a circular
-        RAM buffer or DMA should be used in place of this queue. */
+        /* Characters received from the UART are stored in this queue, ready to
+        be received by the application.  ***NOTE*** Using a queue in this way is
+        very convenient, but also very inefficient.  It can be used here because
+        characters will only arrive slowly.  In a higher bandwidth system a
+        circular RAM buffer or DMA should be used in place of this queue. */
         xQueueSendFromISR( xRxQueue, &g_rx_char, &xHigherPriorityTaskWoken );
     }
 
     /* Set up SCI7 receive buffer again */
-    R_SCI7_Serial_Receive((uint8_t *)&g_rx_char, 1);
+    R_SCI7_Serial_Receive( ( uint8_t * ) &g_rx_char, 1 );
 
     /* See http://www.freertos.org/xQueueOverwriteFromISR.html for information
     on the semantics of this ISR. */
@@ -237,12 +237,11 @@ static void r_sci7_callback_receiveend(void)
     /* End user code. Do not edit comment generated here */
 }
 /***********************************************************************************************************************
-* Function Name: r_sci7_callback_receiveerror
-* Description  : This function is a callback function when SCI7 reception encounters error.
-* Arguments    : None
-* Return Value : None
-***********************************************************************************************************************/
-static void r_sci7_callback_receiveerror(void)
+ * Function Name: r_sci7_callback_receiveerror
+ * Description  : This function is a callback function when SCI7 reception
+ *encounters error. Arguments    : None Return Value : None
+ ***********************************************************************************************************************/
+static void r_sci7_callback_receiveerror( void )
 {
     /* Start user code. Do not edit comment generated here */
     /* End user code. Do not edit comment generated here */
@@ -251,40 +250,38 @@ static void r_sci7_callback_receiveerror(void)
 /* Start user code for adding. Do not edit comment generated here */
 
 /*******************************************************************************
-* Function Name: R_SCI7_AsyncTransmit
-* Description  : This function sends SCI7 data and waits for the transmit end flag.
-* Arguments    : tx_buf -
-*                    transfer buffer pointer
-*                tx_num -
-*                    buffer size
-* Return Value : status -
-*                    MD_OK or MD_ARGERROR
-*******************************************************************************/
-MD_STATUS R_SCI7_AsyncTransmit (uint8_t * const tx_buf, const uint16_t tx_num)
+ * Function Name: R_SCI7_AsyncTransmit
+ * Description  : This function sends SCI7 data and waits for the transmit end
+ *flag. Arguments    : tx_buf - transfer buffer pointer tx_num - buffer size
+ * Return Value : status -
+ *                    MD_OK or MD_ARGERROR
+ *******************************************************************************/
+MD_STATUS R_SCI7_AsyncTransmit( uint8_t * const tx_buf, const uint16_t tx_num )
 {
     MD_STATUS status = MD_OK;
-    
+
     /* clear the flag before initiating a new transmission */
     sci7_txdone = FALSE;
 
     /* Send the data using the API */
-    status = R_SCI7_Serial_Send(tx_buf, tx_num);
+    status = R_SCI7_Serial_Send( tx_buf, tx_num );
 
     /* Wait for the transmit end flag */
-    while (FALSE == sci7_txdone)
+    while( FALSE == sci7_txdone )
     {
         /* Wait */
     }
-    return (status);
+    return ( status );
 }
 
 /*******************************************************************************
-* End of function R_SCI7_AsyncTransmit
-*******************************************************************************/
+ * End of function R_SCI7_AsyncTransmit
+ *******************************************************************************/
 
 /* Function required in order to link UARTCommandConsole.c - which is used by
 multiple different demo application. */
-xComPortHandle xSerialPortInitMinimal( unsigned long ulWantedBaud, unsigned portBASE_TYPE uxQueueLength )
+xComPortHandle xSerialPortInitMinimal( unsigned long ulWantedBaud,
+                                       unsigned portBASE_TYPE uxQueueLength )
 {
     ( void ) ulWantedBaud;
     ( void ) uxQueueLength;
@@ -298,13 +295,13 @@ xComPortHandle xSerialPortInitMinimal( unsigned long ulWantedBaud, unsigned port
     configASSERT( xRxQueue );
 
     /* Set up SCI1 receive buffer */
-    R_SCI7_Serial_Receive((uint8_t *) &g_rx_char, 1);
+    R_SCI7_Serial_Receive( ( uint8_t * ) &g_rx_char, 1 );
 
     /* Ensure the interrupt priority is at or below
     configMAX_SYSCALL_INTERRUPT_PRIORITY. */
-    IPR(SCI7, RXI7) = configMAX_SYSCALL_INTERRUPT_PRIORITY - 1;
-    IPR(SCI7, TXI7) = configMAX_SYSCALL_INTERRUPT_PRIORITY - 1;
-    IPR(ICU,GROUPBL0) = configMAX_SYSCALL_INTERRUPT_PRIORITY - 1;
+    IPR( SCI7, RXI7 ) = configMAX_SYSCALL_INTERRUPT_PRIORITY - 1;
+    IPR( SCI7, TXI7 ) = configMAX_SYSCALL_INTERRUPT_PRIORITY - 1;
+    IPR( ICU, GROUPBL0 ) = configMAX_SYSCALL_INTERRUPT_PRIORITY - 1;
 
     /* Enable SCI1 operations */
     R_SCI7_Start();
@@ -316,9 +313,11 @@ xComPortHandle xSerialPortInitMinimal( unsigned long ulWantedBaud, unsigned port
 
 /* Function required in order to link UARTCommandConsole.c - which is used by
 multiple different demo application. */
-void vSerialPutString( xComPortHandle pxPort, const signed char * const pcString, unsigned short usStringLength )
+void vSerialPutString( xComPortHandle pxPort,
+                       const signed char * const pcString,
+                       unsigned short usStringLength )
 {
-const TickType_t xMaxBlockTime = pdMS_TO_TICKS( 5000 );
+    const TickType_t xMaxBlockTime = pdMS_TO_TICKS( 5000 );
 
     /* Only one port is supported. */
     ( void ) pxPort;
@@ -348,7 +347,9 @@ const TickType_t xMaxBlockTime = pdMS_TO_TICKS( 5000 );
 
 /* Function required in order to link UARTCommandConsole.c - which is used by
 multiple different demo application. */
-signed portBASE_TYPE xSerialGetChar( xComPortHandle pxPort, signed char *pcRxedChar, TickType_t xBlockTime )
+signed portBASE_TYPE xSerialGetChar( xComPortHandle pxPort,
+                                     signed char * pcRxedChar,
+                                     TickType_t xBlockTime )
 {
     /* Only one UART is supported. */
     ( void ) pxPort;
@@ -360,7 +361,9 @@ signed portBASE_TYPE xSerialGetChar( xComPortHandle pxPort, signed char *pcRxedC
 
 /* Function required in order to link UARTCommandConsole.c - which is used by
 multiple different demo application. */
-signed portBASE_TYPE xSerialPutChar( xComPortHandle pxPort, signed char cOutChar, TickType_t xBlockTime )
+signed portBASE_TYPE xSerialPutChar( xComPortHandle pxPort,
+                                     signed char cOutChar,
+                                     TickType_t xBlockTime )
 {
     /* Just mapped to vSerialPutString() so the block time is not used. */
     ( void ) xBlockTime;

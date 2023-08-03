@@ -1,6 +1,6 @@
 /*
  * -------------------------------------------
- *    MSP432 DriverLib - v3_10_00_09 
+ *    MSP432 DriverLib - v3_10_00_09
  * -------------------------------------------
  *
  * --COPYRIGHT--,BSD,BSD
@@ -51,40 +51,39 @@
 //
 //*****************************************************************************
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
+#include "eusci.h"
+#include <msp.h>
 #include <stdbool.h>
 #include <stdint.h>
-#include <msp.h>
-#include "eusci.h"
 
 /* Configuration Defines */
-#define EUSCI_SPI_CLOCKSOURCE_ACLK    EUSCI_B_CTLW0_SSEL__ACLK
-#define EUSCI_SPI_CLOCKSOURCE_SMCLK   EUSCI_B_CTLW0_SSEL__SMCLK
+#define EUSCI_SPI_CLOCKSOURCE_ACLK                            EUSCI_B_CTLW0_SSEL__ACLK
+#define EUSCI_SPI_CLOCKSOURCE_SMCLK                           EUSCI_B_CTLW0_SSEL__SMCLK
 
-#define EUSCI_SPI_MSB_FIRST    EUSCI_B_CTLW0_MSB
-#define EUSCI_SPI_LSB_FIRST    0x00
+#define EUSCI_SPI_MSB_FIRST                                   EUSCI_B_CTLW0_MSB
+#define EUSCI_SPI_LSB_FIRST                                   0x00
 
-#define EUSCI_SPI_BUSY        EUSCI_A_STATW_BUSY
-#define EUSCI_SPI_NOT_BUSY    0x00
+#define EUSCI_SPI_BUSY                                        EUSCI_A_STATW_BUSY
+#define EUSCI_SPI_NOT_BUSY                                    0x00
 
-#define EUSCI_SPI_PHASE_DATA_CHANGED_ONFIRST_CAPTURED_ON_NEXT    0x00
-#define EUSCI_SPI_PHASE_DATA_CAPTURED_ONFIRST_CHANGED_ON_NEXT    EUSCI_B_CTLW0_CKPH
+#define EUSCI_SPI_PHASE_DATA_CHANGED_ONFIRST_CAPTURED_ON_NEXT 0x00
+#define EUSCI_SPI_PHASE_DATA_CAPTURED_ONFIRST_CHANGED_ON_NEXT EUSCI_B_CTLW0_CKPH
 
-#define EUSCI_SPI_3PIN                      EUSCI_B_CTLW0_MODE_0
-#define EUSCI_SPI_4PIN_UCxSTE_ACTIVE_HIGH   EUSCI_B_CTLW0_MODE_1
-#define EUSCI_SPI_4PIN_UCxSTE_ACTIVE_LOW    EUSCI_B_CTLW0_MODE_2
+#define EUSCI_SPI_3PIN                                        EUSCI_B_CTLW0_MODE_0
+#define EUSCI_SPI_4PIN_UCxSTE_ACTIVE_HIGH                     EUSCI_B_CTLW0_MODE_1
+#define EUSCI_SPI_4PIN_UCxSTE_ACTIVE_LOW                      EUSCI_B_CTLW0_MODE_2
 
-#define EUSCI_SPI_CLOCKPOLARITY_INACTIVITY_HIGH    EUSCI_B_CTLW0_CKPL
-#define EUSCI_SPI_CLOCKPOLARITY_INACTIVITY_LOW     0x00
+#define EUSCI_SPI_CLOCKPOLARITY_INACTIVITY_HIGH               EUSCI_B_CTLW0_CKPL
+#define EUSCI_SPI_CLOCKPOLARITY_INACTIVITY_LOW                0x00
 
-#define EUSCI_SPI_TRANSMIT_INTERRUPT    EUSCI_B__TXIE
-#define EUSCI_SPI_RECEIVE_INTERRUPT     EUSCI_B__RXIE
+#define EUSCI_SPI_TRANSMIT_INTERRUPT                          EUSCI_B__TXIE
+#define EUSCI_SPI_RECEIVE_INTERRUPT                           EUSCI_B__RXIE
 
-#define EUSCI_SPI_ENABLE_SIGNAL_FOR_4WIRE_SLAVE           EUSCI_B_CTLW0_STEM
-#define EUSCI_SPI_PREVENT_CONFLICTS_WITH_OTHER_MASTERS    0x00
+#define EUSCI_SPI_ENABLE_SIGNAL_FOR_4WIRE_SLAVE               EUSCI_B_CTLW0_STEM
+#define EUSCI_SPI_PREVENT_CONFLICTS_WITH_OTHER_MASTERS        0x00
 
 //*****************************************************************************
 //
@@ -142,8 +141,8 @@ typedef struct _eUSCI_SPI_SlaveConfig
 //! \param config Configuration structure for SPI master mode
 //!
 //! <hr>
-//! <b>Configuration options for \link eUSCI_SPI_MasterConfig \endlink structure.</b>
-//! <hr>
+//! <b>Configuration options for \link eUSCI_SPI_MasterConfig \endlink
+//! structure.</b> <hr>
 //!
 //! \param selectClockSource selects clock source. Valid values are
 //!         - \b  EUSCI_SPI_CLOCKSOURCE_ACLK
@@ -178,8 +177,8 @@ typedef struct _eUSCI_SPI_SlaveConfig
 //! \return true
 //
 //*****************************************************************************
-extern bool SPI_initMaster(uint32_t moduleInstance,
-        const eUSCI_SPI_MasterConfig *config);
+extern bool SPI_initMaster( uint32_t moduleInstance,
+                            const eUSCI_SPI_MasterConfig * config );
 
 //*****************************************************************************
 //
@@ -207,8 +206,9 @@ extern bool SPI_initMaster(uint32_t moduleInstance,
 //! \return true
 //
 //*****************************************************************************
-extern void SPI_selectFourPinFunctionality(uint32_t moduleInstance,
-        uint_fast8_t select4PinFunctionality);
+extern void SPI_selectFourPinFunctionality(
+    uint32_t moduleInstance,
+    uint_fast8_t select4PinFunctionality );
 
 //*****************************************************************************
 //
@@ -235,8 +235,9 @@ extern void SPI_selectFourPinFunctionality(uint32_t moduleInstance,
 //! \return None
 //
 //*****************************************************************************
-extern void SPI_changeMasterClock(uint32_t moduleInstance,
-        uint32_t clockSourceFrequency, uint32_t desiredSpiClock);
+extern void SPI_changeMasterClock( uint32_t moduleInstance,
+                                   uint32_t clockSourceFrequency,
+                                   uint32_t desiredSpiClock );
 
 //*****************************************************************************
 //
@@ -255,8 +256,8 @@ extern void SPI_changeMasterClock(uint32_t moduleInstance,
 //! \param config Configuration structure for SPI slave mode
 //!
 //! <hr>
-//! <b>Configuration options for \link eUSCI_SPI_SlaveConfig \endlink structure.</b>
-//! <hr>
+//! <b>Configuration options for \link eUSCI_SPI_SlaveConfig \endlink
+//! structure.</b> <hr>
 //!
 //! \param msbFirst controls the direction of the receive and transmit shift
 //!      register. Valid values are
@@ -285,8 +286,8 @@ extern void SPI_changeMasterClock(uint32_t moduleInstance,
 //!
 //! \return true
 //*****************************************************************************
-extern bool SPI_initSlave(uint32_t moduleInstance,
-        const eUSCI_SPI_SlaveConfig *config);
+extern bool SPI_initSlave( uint32_t moduleInstance,
+                           const eUSCI_SPI_SlaveConfig * config );
 
 //*****************************************************************************
 //
@@ -320,8 +321,9 @@ extern bool SPI_initSlave(uint32_t moduleInstance,
 //! \return None
 //
 //*****************************************************************************
-extern void SPI_changeClockPhasePolarity(uint32_t moduleInstance,
-        uint_fast16_t clockPhase, uint_fast16_t clockPolarity);
+extern void SPI_changeClockPhasePolarity( uint32_t moduleInstance,
+                                          uint_fast16_t clockPhase,
+                                          uint_fast16_t clockPolarity );
 
 //*****************************************************************************
 //
@@ -348,8 +350,8 @@ extern void SPI_changeClockPhasePolarity(uint32_t moduleInstance,
 //! \return None.
 //
 //*****************************************************************************
-extern void SPI_transmitData(uint32_t moduleInstance,
-        uint_fast8_t transmitData);
+extern void SPI_transmitData( uint32_t moduleInstance,
+                              uint_fast8_t transmitData );
 
 //*****************************************************************************
 //
@@ -373,7 +375,7 @@ extern void SPI_transmitData(uint32_t moduleInstance,
 //! uint8_t.
 //
 //*****************************************************************************
-extern uint8_t SPI_receiveData(uint32_t moduleInstance);
+extern uint8_t SPI_receiveData( uint32_t moduleInstance );
 
 //*****************************************************************************
 //
@@ -397,7 +399,7 @@ extern uint8_t SPI_receiveData(uint32_t moduleInstance);
 //! \return None.
 //
 //*****************************************************************************
-extern void SPI_enableModule(uint32_t moduleInstance);
+extern void SPI_enableModule( uint32_t moduleInstance );
 
 //*****************************************************************************
 //
@@ -422,7 +424,7 @@ extern void SPI_enableModule(uint32_t moduleInstance);
 //! \return None.
 //
 //*****************************************************************************
-extern void SPI_disableModule(uint32_t moduleInstance);
+extern void SPI_disableModule( uint32_t moduleInstance );
 
 //*****************************************************************************
 //
@@ -446,7 +448,7 @@ extern void SPI_disableModule(uint32_t moduleInstance);
 //! \return NONE
 //
 //*****************************************************************************
-extern uint32_t SPI_getReceiveBufferAddressForDMA(uint32_t moduleInstance);
+extern uint32_t SPI_getReceiveBufferAddressForDMA( uint32_t moduleInstance );
 
 //*****************************************************************************
 //
@@ -470,7 +472,7 @@ extern uint32_t SPI_getReceiveBufferAddressForDMA(uint32_t moduleInstance);
 //! \return NONE
 //
 //*****************************************************************************
-extern uint32_t SPI_getTransmitBufferAddressForDMA(uint32_t moduleInstance);
+extern uint32_t SPI_getTransmitBufferAddressForDMA( uint32_t moduleInstance );
 
 //*****************************************************************************
 //
@@ -495,7 +497,7 @@ extern uint32_t SPI_getTransmitBufferAddressForDMA(uint32_t moduleInstance);
 //! is busy; otherwise, returns EUSCI_SPI_NOT_BUSY.
 //
 //*****************************************************************************
-extern uint_fast8_t SPI_isBusy(uint32_t moduleInstance);
+extern uint_fast8_t SPI_isBusy( uint32_t moduleInstance );
 
 //*****************************************************************************
 //
@@ -527,7 +529,7 @@ extern uint_fast8_t SPI_isBusy(uint32_t moduleInstance);
 //! \return None.
 //
 //*****************************************************************************
-extern void SPI_enableInterrupt(uint32_t moduleInstance, uint_fast8_t mask);
+extern void SPI_enableInterrupt( uint32_t moduleInstance, uint_fast8_t mask );
 
 //*****************************************************************************
 //
@@ -560,7 +562,7 @@ extern void SPI_enableInterrupt(uint32_t moduleInstance, uint_fast8_t mask);
 //! \return None.
 //
 //*****************************************************************************
-extern void SPI_disableInterrupt(uint32_t moduleInstance, uint_fast8_t mask);
+extern void SPI_disableInterrupt( uint32_t moduleInstance, uint_fast8_t mask );
 
 //*****************************************************************************
 //
@@ -588,8 +590,8 @@ extern void SPI_disableInterrupt(uint32_t moduleInstance, uint_fast8_t mask);
 //! - \b EUSCI_SPI_TRANSMIT_INTERRUPT - Transmit interrupt
 //
 //*****************************************************************************
-extern uint_fast8_t SPI_getInterruptStatus(uint32_t moduleInstance,
-        uint16_t mask);
+extern uint_fast8_t SPI_getInterruptStatus( uint32_t moduleInstance,
+                                            uint16_t mask );
 
 //*****************************************************************************
 //
@@ -617,7 +619,7 @@ extern uint_fast8_t SPI_getInterruptStatus(uint32_t moduleInstance,
 //! - \b EUSCI_SPI_TRANSMIT_INTERRUPT - Transmit interrupt
 //
 //*****************************************************************************
-extern uint_fast8_t SPI_getEnabledInterruptStatus(uint32_t moduleInstance);
+extern uint_fast8_t SPI_getEnabledInterruptStatus( uint32_t moduleInstance );
 
 //*****************************************************************************
 //
@@ -644,7 +646,8 @@ extern uint_fast8_t SPI_getEnabledInterruptStatus(uint32_t moduleInstance);
 //! \return None
 //
 //*****************************************************************************
-extern void SPI_clearInterruptFlag(uint32_t moduleInstance, uint_fast8_t mask);
+extern void SPI_clearInterruptFlag( uint32_t moduleInstance,
+                                    uint_fast8_t mask );
 
 //*****************************************************************************
 //
@@ -676,8 +679,8 @@ extern void SPI_clearInterruptFlag(uint32_t moduleInstance, uint_fast8_t mask);
 //! \return None.
 //
 //*****************************************************************************
-extern void SPI_registerInterrupt(uint32_t moduleInstance,
-        void (*intHandler)(void));
+extern void SPI_registerInterrupt( uint32_t moduleInstance,
+                                   void ( *intHandler )( void ) );
 
 //*****************************************************************************
 //
@@ -704,103 +707,119 @@ extern void SPI_registerInterrupt(uint32_t moduleInstance,
 //! \return None.
 //
 //*****************************************************************************
-extern void SPI_unregisterInterrupt(uint32_t moduleInstance);
+extern void SPI_unregisterInterrupt( uint32_t moduleInstance );
 
 /* Backwards Compatibility Layer */
-#define EUSCI_B_SPI_PHASE_DATA_CHANGED_ONFIRST_CAPTURED_ON_NEXT            0x00
-#define EUSCI_B_SPI_PHASE_DATA_CAPTURED_ONFIRST_CHANGED_ON_NEXT          UCCKPH
+#define EUSCI_B_SPI_PHASE_DATA_CHANGED_ONFIRST_CAPTURED_ON_NEXT 0x00
+#define EUSCI_B_SPI_PHASE_DATA_CAPTURED_ONFIRST_CHANGED_ON_NEXT UCCKPH
 
-#define EUSCI_B_SPI_MSB_FIRST                                             UCMSB
-#define EUSCI_B_SPI_LSB_FIRST                                              0x00
+#define EUSCI_B_SPI_MSB_FIRST                                   UCMSB
+#define EUSCI_B_SPI_LSB_FIRST                                   0x00
 
-#define EUSCI_B_SPI_CLOCKPOLARITY_INACTIVITY_HIGH                        UCCKPL
-#define EUSCI_B_SPI_CLOCKPOLARITY_INACTIVITY_LOW                           0x00
+#define EUSCI_B_SPI_CLOCKPOLARITY_INACTIVITY_HIGH               UCCKPL
+#define EUSCI_B_SPI_CLOCKPOLARITY_INACTIVITY_LOW                0x00
 
-#define EUSCI_B_SPI_CLOCKSOURCE_ACLK                               UCSSEL__ACLK
-#define EUSCI_B_SPI_CLOCKSOURCE_SMCLK                             UCSSEL__SMCLK
+#define EUSCI_B_SPI_CLOCKSOURCE_ACLK                            UCSSEL__ACLK
+#define EUSCI_B_SPI_CLOCKSOURCE_SMCLK                           UCSSEL__SMCLK
 
-#define EUSCI_B_SPI_3PIN                                               UCMODE_0
-#define EUSCI_B_SPI_4PIN_UCxSTE_ACTIVE_HIGH                            UCMODE_1
-#define EUSCI_B_SPI_4PIN_UCxSTE_ACTIVE_LOW                             UCMODE_2
+#define EUSCI_B_SPI_3PIN                                        UCMODE_0
+#define EUSCI_B_SPI_4PIN_UCxSTE_ACTIVE_HIGH                     UCMODE_1
+#define EUSCI_B_SPI_4PIN_UCxSTE_ACTIVE_LOW                      UCMODE_2
 
-#define EUSCI_B_SPI_PREVENT_CONFLICTS_WITH_OTHER_MASTERS                   0x00
-#define EUSCI_B_SPI_ENABLE_SIGNAL_FOR_4WIRE_SLAVE                        UCSTEM
+#define EUSCI_B_SPI_PREVENT_CONFLICTS_WITH_OTHER_MASTERS        0x00
+#define EUSCI_B_SPI_ENABLE_SIGNAL_FOR_4WIRE_SLAVE               UCSTEM
 
-#define EUSCI_B_SPI_TRANSMIT_INTERRUPT                                   UCTXIE
-#define EUSCI_B_SPI_RECEIVE_INTERRUPT                                    UCRXIE
+#define EUSCI_B_SPI_TRANSMIT_INTERRUPT                          UCTXIE
+#define EUSCI_B_SPI_RECEIVE_INTERRUPT                           UCRXIE
 
-#define EUSCI_B_SPI_BUSY                                                 UCBUSY
-#define EUSCI_B_SPI_NOT_BUSY                                               0x00
+#define EUSCI_B_SPI_BUSY                                        UCBUSY
+#define EUSCI_B_SPI_NOT_BUSY                                    0x00
 
-#define EUSCI_A_SPI_PHASE_DATA_CHANGED_ONFIRST_CAPTURED_ON_NEXT            0x00
-#define EUSCI_A_SPI_PHASE_DATA_CAPTURED_ONFIRST_CHANGED_ON_NEXT          UCCKPH
+#define EUSCI_A_SPI_PHASE_DATA_CHANGED_ONFIRST_CAPTURED_ON_NEXT 0x00
+#define EUSCI_A_SPI_PHASE_DATA_CAPTURED_ONFIRST_CHANGED_ON_NEXT UCCKPH
 
-#define EUSCI_A_SPI_MSB_FIRST                                             UCMSB
-#define EUSCI_A_SPI_LSB_FIRST                                              0x00
+#define EUSCI_A_SPI_MSB_FIRST                                   UCMSB
+#define EUSCI_A_SPI_LSB_FIRST                                   0x00
 
-#define EUSCI_A_SPI_CLOCKPOLARITY_INACTIVITY_HIGH                        UCCKPL
-#define EUSCI_A_SPI_CLOCKPOLARITY_INACTIVITY_LOW                           0x00
+#define EUSCI_A_SPI_CLOCKPOLARITY_INACTIVITY_HIGH               UCCKPL
+#define EUSCI_A_SPI_CLOCKPOLARITY_INACTIVITY_LOW                0x00
 
-#define EUSCI_A_SPI_CLOCKSOURCE_ACLK                               UCSSEL__ACLK
-#define EUSCI_A_SPI_CLOCKSOURCE_SMCLK                             UCSSEL__SMCLK
+#define EUSCI_A_SPI_CLOCKSOURCE_ACLK                            UCSSEL__ACLK
+#define EUSCI_A_SPI_CLOCKSOURCE_SMCLK                           UCSSEL__SMCLK
 
-#define EUSCI_A_SPI_3PIN                                               UCMODE_0
-#define EUSCI_A_SPI_4PIN_UCxSTE_ACTIVE_HIGH                            UCMODE_1
-#define EUSCI_A_SPI_4PIN_UCxSTE_ACTIVE_LOW                             UCMODE_2
+#define EUSCI_A_SPI_3PIN                                        UCMODE_0
+#define EUSCI_A_SPI_4PIN_UCxSTE_ACTIVE_HIGH                     UCMODE_1
+#define EUSCI_A_SPI_4PIN_UCxSTE_ACTIVE_LOW                      UCMODE_2
 
-#define EUSCI_A_SPI_PREVENT_CONFLICTS_WITH_OTHER_MASTERS                   0x00
-#define EUSCI_A_SPI_ENABLE_SIGNAL_FOR_4WIRE_SLAVE                        UCSTEM
+#define EUSCI_A_SPI_PREVENT_CONFLICTS_WITH_OTHER_MASTERS        0x00
+#define EUSCI_A_SPI_ENABLE_SIGNAL_FOR_4WIRE_SLAVE               UCSTEM
 
-#define EUSCI_A_SPI_TRANSMIT_INTERRUPT                                   UCTXIE
-#define EUSCI_A_SPI_RECEIVE_INTERRUPT                                    UCRXIE
+#define EUSCI_A_SPI_TRANSMIT_INTERRUPT                          UCTXIE
+#define EUSCI_A_SPI_RECEIVE_INTERRUPT                           UCRXIE
 
-#define EUSCI_A_SPI_BUSY                                                 UCBUSY
-#define EUSCI_A_SPI_NOT_BUSY                                               0x00
+#define EUSCI_A_SPI_BUSY                                        UCBUSY
+#define EUSCI_A_SPI_NOT_BUSY                                    0x00
 
-extern void EUSCI_A_SPI_select4PinFunctionality(uint32_t baseAddress,
-        uint8_t select4PinFunctionality);
-extern void EUSCI_A_SPI_masterChangeClock(uint32_t baseAddress,
-        uint32_t clockSourceFrequency, uint32_t desiredSpiClock);
-extern bool EUSCI_A_SPI_slaveInit(uint32_t baseAddress, uint16_t msbFirst,
-        uint16_t clockPhase, uint16_t clockPolarity, uint16_t spiMode);
-extern void EUSCI_A_SPI_changeClockPhasePolarity(uint32_t baseAddress,
-        uint16_t clockPhase, uint16_t clockPolarity);
-extern void EUSCI_A_SPI_transmitData(uint32_t baseAddress,
-        uint8_t transmitData);
-extern uint8_t EUSCI_A_SPI_receiveData(uint32_t baseAddress);
-extern void EUSCI_A_SPI_enableInterrupt(uint32_t baseAddress, uint8_t mask);
-extern void EUSCI_A_SPI_disableInterrupt(uint32_t baseAddress, uint8_t mask);
-extern uint8_t EUSCI_A_SPI_getInterruptStatus(uint32_t baseAddress,
-        uint8_t mask);
-extern void EUSCI_A_SPI_clearInterruptFlag(uint32_t baseAddress, uint8_t mask);
-extern void EUSCI_A_SPI_enable(uint32_t baseAddress);
-extern void EUSCI_A_SPI_disable(uint32_t baseAddress);
-extern uint32_t EUSCI_A_SPI_getReceiveBufferAddressForDMA(uint32_t baseAddress);
+extern void EUSCI_A_SPI_select4PinFunctionality(
+    uint32_t baseAddress,
+    uint8_t select4PinFunctionality );
+extern void EUSCI_A_SPI_masterChangeClock( uint32_t baseAddress,
+                                           uint32_t clockSourceFrequency,
+                                           uint32_t desiredSpiClock );
+extern bool EUSCI_A_SPI_slaveInit( uint32_t baseAddress,
+                                   uint16_t msbFirst,
+                                   uint16_t clockPhase,
+                                   uint16_t clockPolarity,
+                                   uint16_t spiMode );
+extern void EUSCI_A_SPI_changeClockPhasePolarity( uint32_t baseAddress,
+                                                  uint16_t clockPhase,
+                                                  uint16_t clockPolarity );
+extern void EUSCI_A_SPI_transmitData( uint32_t baseAddress,
+                                      uint8_t transmitData );
+extern uint8_t EUSCI_A_SPI_receiveData( uint32_t baseAddress );
+extern void EUSCI_A_SPI_enableInterrupt( uint32_t baseAddress, uint8_t mask );
+extern void EUSCI_A_SPI_disableInterrupt( uint32_t baseAddress, uint8_t mask );
+extern uint8_t EUSCI_A_SPI_getInterruptStatus( uint32_t baseAddress,
+                                               uint8_t mask );
+extern void EUSCI_A_SPI_clearInterruptFlag( uint32_t baseAddress,
+                                            uint8_t mask );
+extern void EUSCI_A_SPI_enable( uint32_t baseAddress );
+extern void EUSCI_A_SPI_disable( uint32_t baseAddress );
+extern uint32_t EUSCI_A_SPI_getReceiveBufferAddressForDMA(
+    uint32_t baseAddress );
 extern uint32_t EUSCI_A_SPI_getTransmitBufferAddressForDMA(
-        uint32_t baseAddress);
-extern bool EUSCI_A_SPI_isBusy(uint32_t baseAddress);
-extern void EUSCI_B_SPI_select4PinFunctionality(uint32_t baseAddress,
-        uint8_t select4PinFunctionality);
-extern void EUSCI_B_SPI_masterChangeClock(uint32_t baseAddress,
-        uint32_t clockSourceFrequency, uint32_t desiredSpiClock);
-extern bool EUSCI_B_SPI_slaveInit(uint32_t baseAddress, uint16_t msbFirst,
-        uint16_t clockPhase, uint16_t clockPolarity, uint16_t spiMode);
-extern void EUSCI_B_SPI_changeClockPhasePolarity(uint32_t baseAddress,
-        uint16_t clockPhase, uint16_t clockPolarity);
-extern void EUSCI_B_SPI_transmitData(uint32_t baseAddress,
-        uint8_t transmitData);
-extern uint8_t EUSCI_B_SPI_receiveData(uint32_t baseAddress);
-extern void EUSCI_B_SPI_enableInterrupt(uint32_t baseAddress, uint8_t mask);
-extern void EUSCI_B_SPI_disableInterrupt(uint32_t baseAddress, uint8_t mask);
-extern uint8_t EUSCI_B_SPI_getInterruptStatus(uint32_t baseAddress,
-        uint8_t mask);
-extern void EUSCI_B_SPI_clearInterruptFlag(uint32_t baseAddress, uint8_t mask);
-extern void EUSCI_B_SPI_enable(uint32_t baseAddress);
-extern void EUSCI_B_SPI_disable(uint32_t baseAddress);
-extern uint32_t EUSCI_B_SPI_getReceiveBufferAddressForDMA(uint32_t baseAddress);
+    uint32_t baseAddress );
+extern bool EUSCI_A_SPI_isBusy( uint32_t baseAddress );
+extern void EUSCI_B_SPI_select4PinFunctionality(
+    uint32_t baseAddress,
+    uint8_t select4PinFunctionality );
+extern void EUSCI_B_SPI_masterChangeClock( uint32_t baseAddress,
+                                           uint32_t clockSourceFrequency,
+                                           uint32_t desiredSpiClock );
+extern bool EUSCI_B_SPI_slaveInit( uint32_t baseAddress,
+                                   uint16_t msbFirst,
+                                   uint16_t clockPhase,
+                                   uint16_t clockPolarity,
+                                   uint16_t spiMode );
+extern void EUSCI_B_SPI_changeClockPhasePolarity( uint32_t baseAddress,
+                                                  uint16_t clockPhase,
+                                                  uint16_t clockPolarity );
+extern void EUSCI_B_SPI_transmitData( uint32_t baseAddress,
+                                      uint8_t transmitData );
+extern uint8_t EUSCI_B_SPI_receiveData( uint32_t baseAddress );
+extern void EUSCI_B_SPI_enableInterrupt( uint32_t baseAddress, uint8_t mask );
+extern void EUSCI_B_SPI_disableInterrupt( uint32_t baseAddress, uint8_t mask );
+extern uint8_t EUSCI_B_SPI_getInterruptStatus( uint32_t baseAddress,
+                                               uint8_t mask );
+extern void EUSCI_B_SPI_clearInterruptFlag( uint32_t baseAddress,
+                                            uint8_t mask );
+extern void EUSCI_B_SPI_enable( uint32_t baseAddress );
+extern void EUSCI_B_SPI_disable( uint32_t baseAddress );
+extern uint32_t EUSCI_B_SPI_getReceiveBufferAddressForDMA(
+    uint32_t baseAddress );
 extern uint32_t EUSCI_B_SPI_getTransmitBufferAddressForDMA(
-        uint32_t baseAddress);
-extern bool EUSCI_B_SPI_isBusy(uint32_t baseAddress);
+    uint32_t baseAddress );
+extern bool EUSCI_B_SPI_isBusy( uint32_t baseAddress );
 
 //*****************************************************************************
 //
@@ -819,4 +838,3 @@ extern bool EUSCI_B_SPI_isBusy(uint32_t baseAddress);
 //*****************************************************************************
 
 #endif /* SPI_H_ */
-

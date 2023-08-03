@@ -43,16 +43,15 @@
 #define __SYS_RTXC_H__
 
 #include "FreeRTOS.h"
-#include "task.h"
 #include "queue.h"
 #include "semphr.h"
+#include "task.h"
 
-#define SYS_MBOX_NULL (QueueHandle_t)0
-#define SYS_SEM_NULL  (SemaphoreHandle_t)0
+#define SYS_MBOX_NULL ( QueueHandle_t ) 0
+#define SYS_SEM_NULL  ( SemaphoreHandle_t ) 0
 
 typedef SemaphoreHandle_t sys_sem_t;
 typedef QueueHandle_t sys_mbox_t;
 typedef TaskHandle_t sys_thread_t;
 
 #endif /* __SYS_RTXC_H__ */
-

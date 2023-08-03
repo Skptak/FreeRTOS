@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
- *         SAM Software Package License 
+ *         SAM Software Package License
  * ----------------------------------------------------------------------------
  * Copyright (c) 2011, Atmel Corporation
  *
@@ -28,7 +28,7 @@
  */
 
 /** \file */
- 
+
 /*------------------------------------------------------------------------------
  *         Headers
  *------------------------------------------------------------------------------*/
@@ -47,13 +47,13 @@
  */
 extern uint32_t min( uint32_t dwA, uint32_t dwB )
 {
-    if ( dwA < dwB )
+    if( dwA < dwB )
     {
-        return dwA ;
+        return dwA;
     }
     else
     {
-        return dwB ;
+        return dwB;
     }
 }
 
@@ -66,13 +66,13 @@ extern uint32_t min( uint32_t dwA, uint32_t dwB )
  */
 extern uint32_t absv( int32_t lValue )
 {
-    if ( lValue < 0 )
+    if( lValue < 0 )
     {
-        return -lValue ;
+        return -lValue;
     }
     else
     {
-        return lValue ;
+        return lValue;
     }
 }
 
@@ -84,14 +84,13 @@ extern uint32_t absv( int32_t lValue )
  */
 extern uint32_t power( uint32_t dwX, uint32_t dwY )
 {
-    uint32_t dwResult = 1 ;
+    uint32_t dwResult = 1;
 
-    while ( dwY > 0 )
+    while( dwY > 0 )
     {
-        dwResult *= dwX ;
-        dwY-- ;
+        dwResult *= dwX;
+        dwY--;
     }
 
-    return dwResult ;
+    return dwResult;
 }
-

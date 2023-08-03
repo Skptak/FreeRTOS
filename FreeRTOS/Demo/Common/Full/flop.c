@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -32,35 +33,35 @@
  */
 
 /**
- * Creates eight tasks, each of which loops continuously performing an (emulated)
- * floating point calculation.
+ * Creates eight tasks, each of which loops continuously performing an
+ * (emulated) floating point calculation.
  *
  * All the tasks run at the idle priority and never block or yield.  This causes
- * all eight tasks to time slice with the idle task.  Running at the idle priority
- * means that these tasks will get pre-empted any time another task is ready to run
- * or a time slice occurs.  More often than not the pre-emption will occur mid
- * calculation, creating a good test of the schedulers context switch mechanism - a
- * calculation producing an unexpected result could be a symptom of a corruption in
- * the context of a task.
+ * all eight tasks to time slice with the idle task.  Running at the idle
+ * priority means that these tasks will get pre-empted any time another task is
+ * ready to run or a time slice occurs.  More often than not the pre-emption
+ * will occur mid calculation, creating a good test of the schedulers context
+ * switch mechanism - a calculation producing an unexpected result could be a
+ * symptom of a corruption in the context of a task.
  *
  * \page FlopC flop.c
  * \ingroup DemoFiles
  * <HR>
  */
 
-#include <stdlib.h>
 #include <math.h>
+#include <stdlib.h>
 
 /* Scheduler include files. */
 #include "FreeRTOS.h"
-#include "task.h"
 #include "print.h"
+#include "task.h"
 
 /* Demo program include files. */
 #include "flop.h"
 
-#define mathSTACK_SIZE         ( ( unsigned short ) 512 )
-#define mathNUMBER_OF_TASKS    ( 8 )
+#define mathSTACK_SIZE      ( ( unsigned short ) 512 )
+#define mathNUMBER_OF_TASKS ( 8 )
 
 /* Four tasks, each of which performs a different floating point calculation.
  * Each of the four is created twice. */
@@ -72,20 +73,61 @@ static void vCompetingMathTask4( void * pvParameters );
 /* These variables are used to check that all the tasks are still running.  If a
  * task gets a calculation wrong it will
  * stop incrementing its check variable. */
-static volatile unsigned short usTaskCheck[ mathNUMBER_OF_TASKS ] = { ( unsigned short ) 0 };
+static volatile unsigned short usTaskCheck[ mathNUMBER_OF_TASKS ] = { (
+    unsigned short ) 0 };
 
 /*-----------------------------------------------------------*/
 
 void vStartMathTasks( unsigned portBASE_TYPE uxPriority )
 {
-    xTaskCreate( vCompetingMathTask1, "Math1", mathSTACK_SIZE, ( void * ) &( usTaskCheck[ 0 ] ), uxPriority, NULL );
-    xTaskCreate( vCompetingMathTask2, "Math2", mathSTACK_SIZE, ( void * ) &( usTaskCheck[ 1 ] ), uxPriority, NULL );
-    xTaskCreate( vCompetingMathTask3, "Math3", mathSTACK_SIZE, ( void * ) &( usTaskCheck[ 2 ] ), uxPriority, NULL );
-    xTaskCreate( vCompetingMathTask4, "Math4", mathSTACK_SIZE, ( void * ) &( usTaskCheck[ 3 ] ), uxPriority, NULL );
-    xTaskCreate( vCompetingMathTask1, "Math5", mathSTACK_SIZE, ( void * ) &( usTaskCheck[ 4 ] ), uxPriority, NULL );
-    xTaskCreate( vCompetingMathTask2, "Math6", mathSTACK_SIZE, ( void * ) &( usTaskCheck[ 5 ] ), uxPriority, NULL );
-    xTaskCreate( vCompetingMathTask3, "Math7", mathSTACK_SIZE, ( void * ) &( usTaskCheck[ 6 ] ), uxPriority, NULL );
-    xTaskCreate( vCompetingMathTask4, "Math8", mathSTACK_SIZE, ( void * ) &( usTaskCheck[ 7 ] ), uxPriority, NULL );
+    xTaskCreate( vCompetingMathTask1,
+                 "Math1",
+                 mathSTACK_SIZE,
+                 ( void * ) &( usTaskCheck[ 0 ] ),
+                 uxPriority,
+                 NULL );
+    xTaskCreate( vCompetingMathTask2,
+                 "Math2",
+                 mathSTACK_SIZE,
+                 ( void * ) &( usTaskCheck[ 1 ] ),
+                 uxPriority,
+                 NULL );
+    xTaskCreate( vCompetingMathTask3,
+                 "Math3",
+                 mathSTACK_SIZE,
+                 ( void * ) &( usTaskCheck[ 2 ] ),
+                 uxPriority,
+                 NULL );
+    xTaskCreate( vCompetingMathTask4,
+                 "Math4",
+                 mathSTACK_SIZE,
+                 ( void * ) &( usTaskCheck[ 3 ] ),
+                 uxPriority,
+                 NULL );
+    xTaskCreate( vCompetingMathTask1,
+                 "Math5",
+                 mathSTACK_SIZE,
+                 ( void * ) &( usTaskCheck[ 4 ] ),
+                 uxPriority,
+                 NULL );
+    xTaskCreate( vCompetingMathTask2,
+                 "Math6",
+                 mathSTACK_SIZE,
+                 ( void * ) &( usTaskCheck[ 5 ] ),
+                 uxPriority,
+                 NULL );
+    xTaskCreate( vCompetingMathTask3,
+                 "Math7",
+                 mathSTACK_SIZE,
+                 ( void * ) &( usTaskCheck[ 6 ] ),
+                 uxPriority,
+                 NULL );
+    xTaskCreate( vCompetingMathTask4,
+                 "Math8",
+                 mathSTACK_SIZE,
+                 ( void * ) &( usTaskCheck[ 7 ] ),
+                 uxPriority,
+                 NULL );
 }
 /*-----------------------------------------------------------*/
 
@@ -101,12 +143,13 @@ static void vCompetingMathTask1( void * pvParameters )
     /* Queue a message for printing to say the task has started. */
     vPrintDisplayMessage( &pcTaskStartMsg );
 
-    /* The variable this task increments to show it is still running is passed in
-     * as the parameter. */
+    /* The variable this task increments to show it is still running is passed
+     * in as the parameter. */
     pusTaskCheckVariable = ( unsigned short * ) pvParameters;
 
-    /* Keep performing a calculation and checking the result against a constant. */
-    for( ; ; )
+    /* Keep performing a calculation and checking the result against a constant.
+     */
+    for( ;; )
     {
         d1 = 123.4567;
         d2 = 2345.6789;
@@ -148,12 +191,13 @@ static void vCompetingMathTask2( void * pvParameters )
     /* Queue a message for printing to say the task has started. */
     vPrintDisplayMessage( &pcTaskStartMsg );
 
-    /* The variable this task increments to show it is still running is passed in
-     * as the parameter. */
+    /* The variable this task increments to show it is still running is passed
+     * in as the parameter. */
     pusTaskCheckVariable = ( unsigned short * ) pvParameters;
 
-    /* Keep performing a calculation and checking the result against a constant. */
-    for( ; ; )
+    /* Keep performing a calculation and checking the result against a constant.
+     */
+    for( ;; )
     {
         d1 = -389.38;
         d2 = 32498.2;
@@ -186,7 +230,7 @@ static void vCompetingMathTask2( void * pvParameters )
 
 static void vCompetingMathTask3( void * pvParameters )
 {
-    portDOUBLE * pdArray, dTotal1, dTotal2, dDifference;
+    portDOUBLE *pdArray, dTotal1, dTotal2, dDifference;
     volatile unsigned short * pusTaskCheckVariable;
     const unsigned short usArraySize = 250;
     unsigned short usPosition;
@@ -197,16 +241,17 @@ static void vCompetingMathTask3( void * pvParameters )
     /* Queue a message for printing to say the task has started. */
     vPrintDisplayMessage( &pcTaskStartMsg );
 
-    /* The variable this task increments to show it is still running is passed in
-     * as the parameter. */
+    /* The variable this task increments to show it is still running is passed
+     * in as the parameter. */
     pusTaskCheckVariable = ( unsigned short * ) pvParameters;
 
-    pdArray = ( portDOUBLE * ) pvPortMalloc( ( size_t ) 250 * sizeof( portDOUBLE ) );
+    pdArray = ( portDOUBLE * ) pvPortMalloc( ( size_t ) 250 *
+                                             sizeof( portDOUBLE ) );
 
-    /* Keep filling an array, keeping a running total of the values placed in the
-     * array.  Then run through the array adding up all the values.  If the two totals
-     * do not match, stop the check variable from incrementing. */
-    for( ; ; )
+    /* Keep filling an array, keeping a running total of the values placed in
+     * the array.  Then run through the array adding up all the values.  If the
+     * two totals do not match, stop the check variable from incrementing. */
+    for( ;; )
     {
         dTotal1 = 0.0;
         dTotal2 = 0.0;
@@ -246,7 +291,7 @@ static void vCompetingMathTask3( void * pvParameters )
 
 static void vCompetingMathTask4( void * pvParameters )
 {
-    portDOUBLE * pdArray, dTotal1, dTotal2, dDifference;
+    portDOUBLE *pdArray, dTotal1, dTotal2, dDifference;
     volatile unsigned short * pusTaskCheckVariable;
     const unsigned short usArraySize = 250;
     unsigned short usPosition;
@@ -257,16 +302,17 @@ static void vCompetingMathTask4( void * pvParameters )
     /* Queue a message for printing to say the task has started. */
     vPrintDisplayMessage( &pcTaskStartMsg );
 
-    /* The variable this task increments to show it is still running is passed in
-     * as the parameter. */
+    /* The variable this task increments to show it is still running is passed
+     * in as the parameter. */
     pusTaskCheckVariable = ( unsigned short * ) pvParameters;
 
-    pdArray = ( portDOUBLE * ) pvPortMalloc( ( size_t ) 250 * sizeof( portDOUBLE ) );
+    pdArray = ( portDOUBLE * ) pvPortMalloc( ( size_t ) 250 *
+                                             sizeof( portDOUBLE ) );
 
-    /* Keep filling an array, keeping a running total of the values placed in the
-     * array.  Then run through the array adding up all the values.  If the two totals
-     * do not match, stop the check variable from incrementing. */
-    for( ; ; )
+    /* Keep filling an array, keeping a running total of the values placed in
+     * the array.  Then run through the array adding up all the values.  If the
+     * two totals do not match, stop the check variable from incrementing. */
+    for( ;; )
     {
         dTotal1 = 0.0;
         dTotal2 = 0.0;
@@ -307,9 +353,10 @@ static void vCompetingMathTask4( void * pvParameters )
 /* This is called to check that all the created tasks are still running. */
 portBASE_TYPE xAreMathsTaskStillRunning( void )
 {
-/* Keep a history of the check variables so we know if they have been incremented
- * since the last call. */
-    static unsigned short usLastTaskCheck[ mathNUMBER_OF_TASKS ] = { ( unsigned short ) 0 };
+    /* Keep a history of the check variables so we know if they have been
+     * incremented since the last call. */
+    static unsigned short usLastTaskCheck[ mathNUMBER_OF_TASKS ] = { (
+        unsigned short ) 0 };
     portBASE_TYPE xReturn = pdTRUE, xTask;
 
     /* Check the maths tasks are still running by ensuring their check variables

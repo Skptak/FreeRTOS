@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -53,10 +54,10 @@
  */
 
 /* Standard includes. */
+#include <stdint.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdio.h>
-#include <stdint.h>
 
 /* Kernel includes. */
 #include "FreeRTOS.h"
@@ -81,33 +82,37 @@
 #include "report_builder.h"
 
 /**
- * democonfigTHING_NAME is required. Throw compilation error if it is not defined.
+ * democonfigTHING_NAME is required. Throw compilation error if it is not
+ * defined.
  */
 #ifndef democonfigTHING_NAME
-    #error "Please define democonfigTHING_NAME to the thing name registered with AWS IoT Core in demo_config.h."
+    #error \
+        "Please define democonfigTHING_NAME to the thing name registered with AWS IoT Core in demo_config.h."
 #endif
 
 /**
  * @brief The length of #democonfigTHING_NAME.
  */
-#define THING_NAME_LENGTH                           ( ( uint16_t ) ( sizeof( democonfigTHING_NAME ) - 1 ) )
+#define THING_NAME_LENGTH \
+    ( ( uint16_t ) ( sizeof( democonfigTHING_NAME ) - 1 ) )
 
 /**
  * @brief Number of seconds to wait for the response from AWS IoT Device
  * Defender service.
  */
-#define DEFENDER_RESPONSE_WAIT_SECONDS              ( 2 )
+#define DEFENDER_RESPONSE_WAIT_SECONDS    ( 2 )
 
 /**
  * @brief Name of the report ID field in the response from the AWS IoT Device
  * Defender service.
  */
-#define DEFENDER_RESPONSE_REPORT_ID_FIELD           "reportId"
+#define DEFENDER_RESPONSE_REPORT_ID_FIELD "reportId"
 
 /**
  * @brief The length of #DEFENDER_RESPONSE_REPORT_ID_FIELD.
  */
-#define DEFENDER_RESPONSE_REPORT_ID_FIELD_LENGTH    ( sizeof( DEFENDER_RESPONSE_REPORT_ID_FIELD ) - 1 )
+#define DEFENDER_RESPONSE_REPORT_ID_FIELD_LENGTH \
+    ( sizeof( DEFENDER_RESPONSE_REPORT_ID_FIELD ) - 1 )
 
 /**
  * @brief The maximum number of times to run the loop in this demo.
@@ -116,14 +121,14 @@
  * Once the demo loop succeeds in an iteration, the demo exits successfully.
  */
 #ifndef DEFENDER_MAX_DEMO_LOOP_COUNT
-    #define DEFENDER_MAX_DEMO_LOOP_COUNT    ( 3 )
+    #define DEFENDER_MAX_DEMO_LOOP_COUNT ( 3 )
 #endif
 
 /**
  * @brief Time in ticks to wait between retries of the demo loop if
  * demo loop fails.
  */
-#define DELAY_BETWEEN_DEMO_RETRY_ITERATIONS_TICKS    ( pdMS_TO_TICKS( 5000U ) )
+#define DELAY_BETWEEN_DEMO_RETRY_ITERATIONS_TICKS ( pdMS_TO_TICKS( 5000U ) )
 
 /**
  * @brief Status values of the Device Defender report.
@@ -138,9 +143,11 @@ typedef enum
 /**
  * @brief Each compilation unit that consumes the NetworkContext must define it.
  * It should contain a single pointer to the type of your desired transport.
- * When using multiple transports in the same compilation unit, define this pointer as void *.
+ * When using multiple transports in the same compilation unit, define this
+ * pointer as void *.
  *
- * @note Transport stacks are defined in FreeRTOS-Plus/Source/Application-Protocols/network_transport.
+ * @note Transport stacks are defined in
+ * FreeRTOS-Plus/Source/Application-Protocols/network_transport.
  */
 struct NetworkContext
 {
@@ -171,11 +178,8 @@ static uint8_t ucSharedBuffer[ democonfigNETWORK_BUFFER_SIZE ];
 /**
  * @brief Static buffer used to hold MQTT messages being sent and received.
  */
-static MQTTFixedBuffer_t xBuffer =
-{
-    ucSharedBuffer,
-    democonfigNETWORK_BUFFER_SIZE
-};
+static MQTTFixedBuffer_t xBuffer = { ucSharedBuffer,
+                                     democonfigNETWORK_BUFFER_SIZE };
 
 /**
  * @brief Network Stats.
@@ -195,7 +199,8 @@ static uint16_t pusOpenUdpPorts[ democonfigOPEN_UDP_PORTS_ARRAY_SIZE ];
 /**
  * @brief Established connections array.
  */
-static Connection_t pxEstablishedConnections[ democonfigESTABLISHED_CONNECTIONS_ARRAY_SIZE ];
+static Connection_t
+    pxEstablishedConnections[ democonfigESTABLISHED_CONNECTIONS_ARRAY_SIZE ];
 
 /**
  * @brief All the metrics sent in the Device Defender report.
@@ -210,7 +215,8 @@ static ReportStatus_t xReportStatus;
 /**
  * @brief Buffer for generating the Device Defender report.
  */
-static char pcDeviceMetricsJsonReport[ democonfigDEVICE_METRICS_REPORT_BUFFER_SIZE ];
+static char
+    pcDeviceMetricsJsonReport[ democonfigDEVICE_METRICS_REPORT_BUFFER_SIZE ];
 
 /**
  * @brief Report ID sent in the defender report.
@@ -220,11 +226,13 @@ static uint32_t ulReportId = 0UL;
 /*-----------------------------------------------------------*/
 
 /**
- * @brief Callback to receive the incoming publish messages from the MQTT broker.
+ * @brief Callback to receive the incoming publish messages from the MQTT
+ * broker.
  *
  * @param[in] pxMqttContext The MQTT context for the MQTT connection.
  * @param[in] pxPacketInfo Pointer to publish info of the incoming publish.
- * @param[in] pxDeserializedInfo Deserialized information from the incoming publish.
+ * @param[in] pxDeserializedInfo Deserialized information from the incoming
+ * publish.
  */
 static void prvPublishCallback( MQTTContext_t * pxMqttContext,
                                 MQTTPacketInfo_t * pxPacketInfo,
@@ -233,7 +241,8 @@ static void prvPublishCallback( MQTTContext_t * pxMqttContext,
 /**
  * @brief Collect all the metrics to be sent in the Device Defender report.
  *
- * On success, caller is responsible for freeing xDeviceMetrics.pxTaskStatusArray.
+ * On success, caller is responsible for freeing
+ * xDeviceMetrics.pxTaskStatusArray.
  *
  * @return true if all the metrics are successfully collected;
  * false otherwise.
@@ -277,7 +286,8 @@ static bool prvUnsubscribeFromDefenderTopics( void );
 static bool prvPublishDeviceMetricsReport( size_t xReportLength );
 
 /**
- * @brief Validate the response received from the AWS IoT Device Defender Service.
+ * @brief Validate the response received from the AWS IoT Device Defender
+ * Service.
  *
  * This functions checks that a valid JSON is received and the report ID
  * is same as was sent in the published report.
@@ -309,9 +319,10 @@ static bool prvValidateDefenderResponse( const char * pcDefenderResponse,
 
     if( eJsonResult != JSONSuccess )
     {
-        LogError( ( "Invalid response from AWS IoT Device Defender Service: %.*s.",
-                    ( int ) xDefenderResponseLength,
-                    pcDefenderResponse ) );
+        LogError(
+            ( "Invalid response from AWS IoT Device Defender Service: %.*s.",
+              ( int ) xDefenderResponseLength,
+              pcDefenderResponse ) );
     }
 
     if( eJsonResult == JSONSuccess )
@@ -336,14 +347,17 @@ static bool prvValidateDefenderResponse( const char * pcDefenderResponse,
 
     if( eJsonResult == JSONSuccess )
     {
-        ulReportIdInResponse = ( uint32_t ) strtoul( ucReportIdString, NULL, 10 );
+        ulReportIdInResponse = ( uint32_t ) strtoul( ucReportIdString,
+                                                     NULL,
+                                                     10 );
 
         /* Is the report ID present in the response same as was sent in the
          * published report? */
         if( ulReportIdInResponse == ulReportId )
         {
             LogInfo( ( "A valid response with report ID %u received from the "
-                       "AWS IoT Device Defender Service.", ulReportId ) );
+                       "AWS IoT Device Defender Service.",
+                       ulReportId ) );
             xStatus = true;
         }
         else
@@ -403,12 +417,14 @@ static void prvPublishCallback( MQTTContext_t * pxMqttContext,
             {
                 /* Check if the response is valid and is for the report we
                  * published. If so, report was accepted. */
-                xValidationResult = prvValidateDefenderResponse( pxPublishInfo->pPayload,
-                                                                 pxPublishInfo->payloadLength );
+                xValidationResult = prvValidateDefenderResponse(
+                    pxPublishInfo->pPayload,
+                    pxPublishInfo->payloadLength );
 
                 if( xValidationResult == true )
                 {
-                    LogInfo( ( "The defender report was accepted by the service. Response: %.*s.",
+                    LogInfo( ( "The defender report was accepted by the "
+                               "service. Response: %.*s.",
                                ( int ) pxPublishInfo->payloadLength,
                                ( const char * ) pxPublishInfo->pPayload ) );
                     xReportStatus = ReportStatusAccepted;
@@ -418,12 +434,14 @@ static void prvPublishCallback( MQTTContext_t * pxMqttContext,
             {
                 /* Check if the response is valid and is for the report we
                  * published. If so, report was rejected. */
-                xValidationResult = prvValidateDefenderResponse( pxPublishInfo->pPayload,
-                                                                 pxPublishInfo->payloadLength );
+                xValidationResult = prvValidateDefenderResponse(
+                    pxPublishInfo->pPayload,
+                    pxPublishInfo->payloadLength );
 
                 if( xValidationResult == true )
                 {
-                    LogError( ( "The defender report was rejected by the service. Response: %.*s.",
+                    LogError( ( "The defender report was rejected by the "
+                                "service. Response: %.*s.",
                                 ( int ) pxPublishInfo->payloadLength,
                                 ( const char * ) pxPublishInfo->pPayload ) );
                     xReportStatus = ReportStatusRejected;
@@ -436,7 +454,8 @@ static void prvPublishCallback( MQTTContext_t * pxMqttContext,
         }
         else
         {
-            LogError( ( "Unexpected publish message received. Topic: %.*s, Payload: %.*s.",
+            LogError( ( "Unexpected publish message received. Topic: %.*s, "
+                        "Payload: %.*s.",
                         ( int ) pxPublishInfo->topicNameLength,
                         ( const char * ) pxPublishInfo->pTopicName,
                         ( int ) pxPublishInfo->payloadLength,
@@ -445,7 +464,8 @@ static void prvPublishCallback( MQTTContext_t * pxMqttContext,
     }
     else
     {
-        vHandleOtherIncomingPacket( pxPacketInfo, pxDeserializedInfo->packetIdentifier );
+        vHandleOtherIncomingPacket( pxPacketInfo,
+                                    pxDeserializedInfo->packetIdentifier );
     }
 }
 /*-----------------------------------------------------------*/
@@ -467,8 +487,7 @@ static bool prvCollectDeviceMetrics( void )
 
     if( eStatus != eMetricsCollectorSuccess )
     {
-        LogError( ( "xGetNetworkStats failed. Status: %d.",
-                    eStatus ) );
+        LogError( ( "xGetNetworkStats failed. Status: %d.", eStatus ) );
     }
 
     /* Collect a list of open TCP ports. */
@@ -480,8 +499,7 @@ static bool prvCollectDeviceMetrics( void )
 
         if( eStatus != eMetricsCollectorSuccess )
         {
-            LogError( ( "xGetOpenTcpPorts failed. Status: %d.",
-                        eStatus ) );
+            LogError( ( "xGetOpenTcpPorts failed. Status: %d.", eStatus ) );
         }
     }
 
@@ -494,22 +512,22 @@ static bool prvCollectDeviceMetrics( void )
 
         if( eStatus != eMetricsCollectorSuccess )
         {
-            LogError( ( "xGetOpenUdpPorts failed. Status: %d.",
-                        eStatus ) );
+            LogError( ( "xGetOpenUdpPorts failed. Status: %d.", eStatus ) );
         }
     }
 
     /* Collect a list of established connections. */
     if( eStatus == eMetricsCollectorSuccess )
     {
-        eStatus = eGetEstablishedConnections( &( pxEstablishedConnections[ 0 ] ),
-                                              democonfigESTABLISHED_CONNECTIONS_ARRAY_SIZE,
-                                              &( uxNumEstablishedConnections ) );
+        eStatus = eGetEstablishedConnections(
+            &( pxEstablishedConnections[ 0 ] ),
+            democonfigESTABLISHED_CONNECTIONS_ARRAY_SIZE,
+            &( uxNumEstablishedConnections ) );
 
         if( eStatus != eMetricsCollectorSuccess )
         {
-            LogError( ( "GetEstablishedConnections failed. Status: %d.",
-                        eStatus ) );
+            LogError(
+                ( "GetEstablishedConnections failed. Status: %d.", eStatus ) );
         }
     }
 
@@ -519,11 +537,13 @@ static bool prvCollectDeviceMetrics( void )
         uxNumTasksRunning = uxTaskGetNumberOfTasks();
 
         /* Allocate pxTaskStatusArray */
-        pxTaskStatusArray = pvPortMalloc( uxNumTasksRunning * sizeof( TaskStatus_t ) );
+        pxTaskStatusArray = pvPortMalloc( uxNumTasksRunning *
+                                          sizeof( TaskStatus_t ) );
 
         if( pxTaskStatusArray == NULL )
         {
-            LogError( ( "Cannot allocate memory for pxTaskStatusArray: pvPortMalloc() failed." ) );
+            LogError( ( "Cannot allocate memory for pxTaskStatusArray: "
+                        "pvPortMalloc() failed." ) );
             eStatus = eMetricsCollectorCollectionFailed;
         }
     }
@@ -548,7 +568,9 @@ static bool prvCollectDeviceMetrics( void )
         /* Get the task status information for all running tasks. The task IDs
          * of each task is then extracted to include in the report as a "list of
          * numbers" custom metric */
-        uxTasksWritten = uxTaskGetSystemState( pxTaskStatusArray, uxNumTasksRunning, NULL );
+        uxTasksWritten = uxTaskGetSystemState( pxTaskStatusArray,
+                                               uxNumTasksRunning,
+                                               NULL );
 
         if( uxTasksWritten == 0 )
         {
@@ -556,8 +578,10 @@ static bool prvCollectDeviceMetrics( void )
              * when we hit the race condition where tasks have been added since
              * we got the result of uxTaskGetNumberOfTasks() */
             eStatus = eMetricsCollectorCollectionFailed;
-            LogError( ( "Failed to collect system state. uxTaskGetSystemState() failed due to insufficient buffer space.",
-                        eStatus ) );
+            LogError(
+                ( "Failed to collect system state. uxTaskGetSystemState() "
+                  "failed due to insufficient buffer space.",
+                  eStatus ) );
         }
     }
 
@@ -570,8 +594,10 @@ static bool prvCollectDeviceMetrics( void )
         xDeviceMetrics.xOpenTcpPortsArrayLength = uxNumOpenTcpPorts;
         xDeviceMetrics.pusOpenUdpPortsArray = &( pusOpenUdpPorts[ 0 ] );
         xDeviceMetrics.xOpenUdpPortsArrayLength = uxNumOpenUdpPorts;
-        xDeviceMetrics.pxEstablishedConnectionsArray = &( pxEstablishedConnections[ 0 ] );
-        xDeviceMetrics.xEstablishedConnectionsArrayLength = uxNumEstablishedConnections;
+        xDeviceMetrics.pxEstablishedConnectionsArray = &(
+            pxEstablishedConnections[ 0 ] );
+        xDeviceMetrics
+            .xEstablishedConnectionsArrayLength = uxNumEstablishedConnections;
         xDeviceMetrics.ulStackHighWaterMark = pxTaskStatus.usStackHighWaterMark;
         xDeviceMetrics.pxTaskStatusArray = pxTaskStatusArray;
         xDeviceMetrics.xTaskStatusArrayLength = uxTasksWritten;
@@ -597,13 +623,14 @@ static bool prvGenerateDeviceMetricsReport( size_t * pxOutReportLength )
 
     /* Generate the metrics report in the format expected by the AWS IoT Device
      * Defender Service. */
-    eReportBuilderStatus = eGenerateJsonReport( &( pcDeviceMetricsJsonReport[ 0 ] ),
-                                                democonfigDEVICE_METRICS_REPORT_BUFFER_SIZE,
-                                                &( xDeviceMetrics ),
-                                                democonfigDEVICE_METRICS_REPORT_MAJOR_VERSION,
-                                                democonfigDEVICE_METRICS_REPORT_MINOR_VERSION,
-                                                ulReportId,
-                                                pxOutReportLength );
+    eReportBuilderStatus = eGenerateJsonReport(
+        &( pcDeviceMetricsJsonReport[ 0 ] ),
+        democonfigDEVICE_METRICS_REPORT_BUFFER_SIZE,
+        &( xDeviceMetrics ),
+        democonfigDEVICE_METRICS_REPORT_MAJOR_VERSION,
+        democonfigDEVICE_METRICS_REPORT_MINOR_VERSION,
+        ulReportId,
+        pxOutReportLength );
 
     if( eReportBuilderStatus != eReportBuilderSuccess )
     {
@@ -628,8 +655,10 @@ static bool prvSubscribeToDefenderTopics( void )
 
     /* Subscribe to defender topic for responses for accepted reports. */
     xStatus = xSubscribeToTopic( &xMqttContext,
-                                 DEFENDER_API_JSON_ACCEPTED( democonfigTHING_NAME ),
-                                 DEFENDER_API_LENGTH_JSON_ACCEPTED( THING_NAME_LENGTH ) );
+                                 DEFENDER_API_JSON_ACCEPTED(
+                                     democonfigTHING_NAME ),
+                                 DEFENDER_API_LENGTH_JSON_ACCEPTED(
+                                     THING_NAME_LENGTH ) );
 
     if( xStatus == false )
     {
@@ -642,8 +671,10 @@ static bool prvSubscribeToDefenderTopics( void )
     {
         /* Subscribe to defender topic for responses for rejected reports. */
         xStatus = xSubscribeToTopic( &xMqttContext,
-                                     DEFENDER_API_JSON_REJECTED( democonfigTHING_NAME ),
-                                     DEFENDER_API_LENGTH_JSON_REJECTED( THING_NAME_LENGTH ) );
+                                     DEFENDER_API_JSON_REJECTED(
+                                         democonfigTHING_NAME ),
+                                     DEFENDER_API_LENGTH_JSON_REJECTED(
+                                         THING_NAME_LENGTH ) );
 
         if( xStatus == false )
         {
@@ -663,15 +694,19 @@ static bool prvUnsubscribeFromDefenderTopics( void )
 
     /* Unsubscribe from defender accepted topic. */
     xStatus = xUnsubscribeFromTopic( &xMqttContext,
-                                     DEFENDER_API_JSON_ACCEPTED( democonfigTHING_NAME ),
-                                     DEFENDER_API_LENGTH_JSON_ACCEPTED( THING_NAME_LENGTH ) );
+                                     DEFENDER_API_JSON_ACCEPTED(
+                                         democonfigTHING_NAME ),
+                                     DEFENDER_API_LENGTH_JSON_ACCEPTED(
+                                         THING_NAME_LENGTH ) );
 
     if( xStatus == true )
     {
         /* Unsubscribe from defender rejected topic. */
         xStatus = xUnsubscribeFromTopic( &xMqttContext,
-                                         DEFENDER_API_JSON_REJECTED( democonfigTHING_NAME ),
-                                         DEFENDER_API_LENGTH_JSON_REJECTED( THING_NAME_LENGTH ) );
+                                         DEFENDER_API_JSON_REJECTED(
+                                             democonfigTHING_NAME ),
+                                         DEFENDER_API_LENGTH_JSON_REJECTED(
+                                             THING_NAME_LENGTH ) );
     }
 
     return xStatus;
@@ -682,7 +717,8 @@ static bool prvPublishDeviceMetricsReport( size_t xReportLength )
 {
     return xPublishToTopic( &xMqttContext,
                             DEFENDER_API_JSON_PUBLISH( democonfigTHING_NAME ),
-                            DEFENDER_API_LENGTH_JSON_PUBLISH( THING_NAME_LENGTH ),
+                            DEFENDER_API_LENGTH_JSON_PUBLISH(
+                                THING_NAME_LENGTH ),
                             &( pcDeviceMetricsJsonReport[ 0 ] ),
                             xReportLength );
 }
@@ -706,9 +742,9 @@ void prvDefenderDemoTask( void * pvParameters )
     /* Start with report not received. */
     xReportStatus = ReportStatusNotReceived;
 
-    /* This demo runs a single loop unless there are failures in the demo execution.
-     * In case of failures in the demo execution, demo loop will be retried for up to
-     * DEFENDER_MAX_DEMO_LOOP_COUNT times. */
+    /* This demo runs a single loop unless there are failures in the demo
+     * execution. In case of failures in the demo execution, demo loop will be
+     * retried for up to DEFENDER_MAX_DEMO_LOOP_COUNT times. */
     do
     {
         LogInfo( ( "---------STARTING DEMO---------\r\n" ) );
@@ -726,12 +762,12 @@ void prvDefenderDemoTask( void * pvParameters )
         /* Set a report ID to be used.
          *
          * !!!NOTE!!!
-         * This demo sets the report ID to xTaskGetTickCount(), which may collide
-         * if the device is reset. Reports for a Thing with a previously used
-         * report ID will be assumed to be duplicates and discarded by the Device
-         * Defender service. The report ID needs to be unique per report sent with
-         * a given Thing. We recommend using an increasing unique ID such as the
-         * current timestamp. */
+         * This demo sets the report ID to xTaskGetTickCount(), which may
+         * collide if the device is reset. Reports for a Thing with a previously
+         * used report ID will be assumed to be duplicates and discarded by the
+         * Device Defender service. The report ID needs to be unique per report
+         * sent with a given Thing. We recommend using an increasing unique ID
+         * such as the current timestamp. */
         ulReportId = ( uint32_t ) xTaskGetTickCount();
 
         /****************************** Connect. ******************************/
@@ -770,8 +806,10 @@ void prvDefenderDemoTask( void * pvParameters )
          *
          * #define TOPIC_BUFFER_LENGTH      ( 256U )
          *
-         * // Every device should have a unique thing name registered with AWS IoT Core.
-         * // This example assumes that the device has a unique serial number which is
+         * // Every device should have a unique thing name registered with AWS
+         * IoT Core.
+         * // This example assumes that the device has a unique serial number
+         * which is
          * // registered as the thing name with AWS IoT Core.
          * const char * pThingName = GetDeviceSerialNumber();
          * uint16_t thingNameLength = ( uint16_t )strlen( pThingname );
@@ -842,11 +880,11 @@ void prvDefenderDemoTask( void * pvParameters )
 
         /********************** Publish defender report. **********************/
 
-        /* The report is then published to the Device Defender service. This report
-         * is published to the MQTT topic for publishing JSON reports. As before,
-         * we use the defender library macros to create the topic string, though
-         * #Defender_GetTopic could be used if the Thing name is acquired at
-         * run time */
+        /* The report is then published to the Device Defender service. This
+         * report is published to the MQTT topic for publishing JSON reports. As
+         * before, we use the defender library macros to create the topic
+         * string, though #Defender_GetTopic could be used if the Thing name is
+         * acquired at run time */
         if( xStatus == true )
         {
             LogInfo( ( "Publishing Device Defender report..." ) );
@@ -879,16 +917,18 @@ void prvDefenderDemoTask( void * pvParameters )
 
         if( xReportStatus == ReportStatusNotReceived )
         {
-            LogError( ( "Failed to receive response from AWS IoT Device Defender Service." ) );
+            LogError( ( "Failed to receive response from AWS IoT Device "
+                        "Defender Service." ) );
             xStatus = false;
         }
 
         /**************************** Disconnect. *****************************/
 
-        /* Unsubscribe and disconnect if MQTT session was established. Per the MQTT
-         * protocol spec, it is okay to send UNSUBSCRIBE even if no corresponding
-         * subscription exists on the broker. Therefore, it is okay to attempt
-         * unsubscribe even if one more subscribe failed earlier. */
+        /* Unsubscribe and disconnect if MQTT session was established. Per the
+         * MQTT protocol spec, it is okay to send UNSUBSCRIBE even if no
+         * corresponding subscription exists on the broker. Therefore, it is
+         * okay to attempt unsubscribe even if one more subscribe failed
+         * earlier. */
         if( xMqttSessionEstablished )
         {
             LogInfo( ( "Unsubscribing from defender topics..." ) );
@@ -900,8 +940,7 @@ void prvDefenderDemoTask( void * pvParameters )
             }
 
             LogInfo( ( "Closing MQTT session..." ) );
-            ( void ) xDisconnectMqttSession( &xMqttContext,
-                                             &xNetworkContext );
+            ( void ) xDisconnectMqttSession( &xMqttContext, &xNetworkContext );
         }
 
         if( ( xStatus == true ) && ( xReportStatus == ReportStatusAccepted ) )
@@ -909,7 +948,8 @@ void prvDefenderDemoTask( void * pvParameters )
             xExitStatus = EXIT_SUCCESS;
         }
 
-        /*********************** Retry in case of failure. ************************/
+        /*********************** Retry in case of failure.
+         * ************************/
 
         /* Increment the demo run count. */
         uxDemoRunCount++;
@@ -918,16 +958,19 @@ void prvDefenderDemoTask( void * pvParameters )
         {
             LogInfo( ( "Demo iteration %lu is successful.", uxDemoRunCount ) );
         }
-        /* Attempt to retry a failed iteration of demo for up to #DEFENDER_MAX_DEMO_LOOP_COUNT times. */
+        /* Attempt to retry a failed iteration of demo for up to
+         * #DEFENDER_MAX_DEMO_LOOP_COUNT times. */
         else if( uxDemoRunCount < DEFENDER_MAX_DEMO_LOOP_COUNT )
         {
-            LogWarn( ( "Demo iteration %lu failed. Retrying...", uxDemoRunCount ) );
+            LogWarn(
+                ( "Demo iteration %lu failed. Retrying...", uxDemoRunCount ) );
             vTaskDelay( DELAY_BETWEEN_DEMO_RETRY_ITERATIONS_TICKS );
         }
         /* Failed all #DEFENDER_MAX_DEMO_LOOP_COUNT demo iterations. */
         else
         {
-            LogError( ( "All %d demo iterations failed.", DEFENDER_MAX_DEMO_LOOP_COUNT ) );
+            LogError( ( "All %d demo iterations failed.",
+                        DEFENDER_MAX_DEMO_LOOP_COUNT ) );
             break;
         }
     } while( xExitStatus != EXIT_SUCCESS );

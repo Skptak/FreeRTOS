@@ -23,14 +23,13 @@ Boston, MA 02111-1307, USA.  */
 #define _SYS_PORTS_DEF_H
 
 #ifdef mc6811
-//# include <asm-m68hc11/ports_def.h>
+// # include <asm-m68hc11/ports_def.h>
 #endif
 
 #ifdef mc68hcs12
-# include <asm-m68hcs12/ports_def.h>
-#elif defined(mc6812)
-//# include <asm-m68hc12/ports_def.h>
+    #include <asm-m68hcs12/ports_def.h>
+#elif defined( mc6812 )
+// # include <asm-m68hc12/ports_def.h>
 #endif
 
 #endif /* _SYS_PORTS_DEF_H */
-

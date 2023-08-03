@@ -4,25 +4,25 @@
 //           library.
 //
 // Copyright (c) 2007-2008 Luminary Micro, Inc.  All rights reserved.
-// 
+//
 // Software License Agreement
-// 
+//
 // Luminary Micro, Inc. (LMI) is supplying this software for use solely and
 // exclusively on LMI's microcontroller products.
-// 
+//
 // The software is owned by LMI and/or its suppliers, and is protected under
 // applicable copyright laws.  All rights are reserved.  You may not combine
 // this software with "viral" open-source software in order to form a larger
 // program.  Any use in violation of the foregoing restrictions may subject
 // the user to criminal sanctions under applicable laws, as well as to civil
 // liability for the breach of the terms and conditions of this license.
-// 
+//
 // THIS SOFTWARE IS PROVIDED "AS IS".  NO WARRANTIES, WHETHER EXPRESS, IMPLIED
 // OR STATUTORY, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF
 // MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE APPLY TO THIS SOFTWARE.
 // LMI SHALL NOT, IN ANY CIRCUMSTANCES, BE LIABLE FOR SPECIAL, INCIDENTAL, OR
 // CONSEQUENTIAL DAMAGES, FOR ANY REASON WHATSOEVER.
-// 
+//
 // This is part of revision 2523 of the Stellaris Graphics Library.
 //
 //*****************************************************************************
@@ -44,8 +44,7 @@
 //
 //*****************************************************************************
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 //*****************************************************************************
@@ -76,8 +75,7 @@ typedef struct
     //! The maximum Y coordinate of the rectangle.
     //
     short sYMax;
-}
-tRectangle;
+} tRectangle;
 
 //*****************************************************************************
 //
@@ -94,7 +92,7 @@ typedef struct
     //
     //! A pointer to display driver-specific data.
     //
-    void *pvDisplayData;
+    void * pvDisplayData;
 
     //
     //! The width of this display.
@@ -109,49 +107,61 @@ typedef struct
     //
     //! A pointer to the function to draw a pixel on this display.
     //
-    void (*pfnPixelDraw)(void *pvDisplayData, long lX, long lY,
-                         unsigned long ulValue);
+    void ( *pfnPixelDraw )( void * pvDisplayData,
+                            long lX,
+                            long lY,
+                            unsigned long ulValue );
 
     //
     //! A pointer to the function to draw multiple pixels on this display.
     //
-    void (*pfnPixelDrawMultiple)(void *pvDisplayData, long lX, long lY,
-                                 long lX0, long lCount, long lBPP,
-                                 const unsigned char *pucData,
-                                 const unsigned char *pucPalette);
+    void ( *pfnPixelDrawMultiple )( void * pvDisplayData,
+                                    long lX,
+                                    long lY,
+                                    long lX0,
+                                    long lCount,
+                                    long lBPP,
+                                    const unsigned char * pucData,
+                                    const unsigned char * pucPalette );
 
     //
     //! A pointer to the function to draw a horizontal line on this display.
     //
-    void (*pfnLineDrawH)(void *pvDisplayData, long lX1, long lX2, long lY,
-                         unsigned long ulValue);
+    void ( *pfnLineDrawH )( void * pvDisplayData,
+                            long lX1,
+                            long lX2,
+                            long lY,
+                            unsigned long ulValue );
 
     //
     //! A pointer to the function to draw a vertical line on this display.
     //
-    void (*pfnLineDrawV)(void *pvDisplayData, long lX, long lY1, long lY2,
-                         unsigned long ulValue);
+    void ( *pfnLineDrawV )( void * pvDisplayData,
+                            long lX,
+                            long lY1,
+                            long lY2,
+                            unsigned long ulValue );
 
     //
     //! A pointer to the function to draw a filled rectangle on this display.
     //
-    void (*pfnRectFill)(void *pvDisplayData, const tRectangle *pRect,
-                        unsigned long ulValue);
+    void ( *pfnRectFill )( void * pvDisplayData,
+                           const tRectangle * pRect,
+                           unsigned long ulValue );
 
     //
     //! A pointer to the function to translate 24-bit RGB colors to
     //! display-specific colors.
     //
-    unsigned long (*pfnColorTranslate)(void *pvDisplayData,
-                                       unsigned long ulValue);
+    unsigned long ( *pfnColorTranslate )( void * pvDisplayData,
+                                          unsigned long ulValue );
 
     //
     //! A pointer to the function to flush any cached drawing operations on
     //! this display.
     //
-    void (*pfnFlush)(void *pvDisplayData);
-}
-tDisplay;
+    void ( *pfnFlush )( void * pvDisplayData );
+} tDisplay;
 
 //*****************************************************************************
 //
@@ -189,28 +199,27 @@ typedef struct
     //
     //! The offset within pucData to the data for each character in the font.
     //
-    unsigned short pusOffset[96];
+    unsigned short pusOffset[ 96 ];
 
     //
     //! A pointer to the data for the font.
     //
-    const unsigned char *pucData;
-}
-tFont;
+    const unsigned char * pucData;
+} tFont;
 
 //*****************************************************************************
 //
 //! Indicates that the font data is stored in an uncompressed format.
 //
 //*****************************************************************************
-#define FONT_FMT_UNCOMPRESSED   0x00
+#define FONT_FMT_UNCOMPRESSED 0x00
 
 //*****************************************************************************
 //
 //! Indicates that the font data is stored using a pixel-based RLE format.
 //
 //*****************************************************************************
-#define FONT_FMT_PIXEL_RLE      0x01
+#define FONT_FMT_PIXEL_RLE    0x01
 
 //*****************************************************************************
 //
@@ -218,7 +227,7 @@ tFont;
 //! with a single bit.
 //
 //*****************************************************************************
-#define IMAGE_FMT_1BPP_UNCOMP   0x01
+#define IMAGE_FMT_1BPP_UNCOMP 0x01
 
 //*****************************************************************************
 //
@@ -226,7 +235,7 @@ tFont;
 //! with four bits.
 //
 //*****************************************************************************
-#define IMAGE_FMT_4BPP_UNCOMP   0x04
+#define IMAGE_FMT_4BPP_UNCOMP 0x04
 
 //*****************************************************************************
 //
@@ -234,7 +243,7 @@ tFont;
 //! with eight bits.
 //
 //*****************************************************************************
-#define IMAGE_FMT_8BPP_UNCOMP   0x08
+#define IMAGE_FMT_8BPP_UNCOMP 0x08
 
 //*****************************************************************************
 //
@@ -242,7 +251,7 @@ tFont;
 //! a single bit.
 //
 //*****************************************************************************
-#define IMAGE_FMT_1BPP_COMP     0x81
+#define IMAGE_FMT_1BPP_COMP   0x81
 
 //*****************************************************************************
 //
@@ -250,7 +259,7 @@ tFont;
 //! four bits.
 //
 //*****************************************************************************
-#define IMAGE_FMT_4BPP_COMP     0x84
+#define IMAGE_FMT_4BPP_COMP   0x84
 
 //*****************************************************************************
 //
@@ -258,7 +267,7 @@ tFont;
 //! eight bits.
 //
 //*****************************************************************************
-#define IMAGE_FMT_8BPP_COMP     0x88
+#define IMAGE_FMT_8BPP_COMP   0x88
 
 //*****************************************************************************
 //
@@ -276,7 +285,7 @@ typedef struct
     //
     //! The screen onto which drawing operations are performed.
     //
-    const tDisplay *pDisplay;
+    const tDisplay * pDisplay;
 
     //
     //! The clipping region to be used when drawing onto the screen.
@@ -296,9 +305,8 @@ typedef struct
     //
     //! The font used to render text onto the screen.
     //
-    const tFont *pFont;
-}
-tContext;
+    const tFont * pFont;
+} tContext;
 
 //*****************************************************************************
 //
@@ -313,13 +321,12 @@ tContext;
 //! \return None.
 //
 //*****************************************************************************
-#define GrContextBackgroundSet(pContext, ulValue)                        \
-        do                                                               \
-        {                                                                \
-            tContext *pC = pContext;                                     \
-            pC->ulBackground = DpyColorTranslate(pC->pDisplay, ulValue); \
-        }                                                                \
-        while(0)
+#define GrContextBackgroundSet( pContext, ulValue )                    \
+    do                                                                 \
+    {                                                                  \
+        tContext * pC = pContext;                                      \
+        pC->ulBackground = DpyColorTranslate( pC->pDisplay, ulValue ); \
+    } while( 0 )
 
 //*****************************************************************************
 //
@@ -336,13 +343,12 @@ tContext;
 //! \return None.
 //
 //*****************************************************************************
-#define GrContextBackgroundSetTranslated(pContext, ulValue) \
-        do                                                  \
-        {                                                   \
-            tContext *pC = pContext;                        \
-            pC->ulBackground = ulValue;                     \
-        }                                                   \
-        while(0)
+#define GrContextBackgroundSetTranslated( pContext, ulValue ) \
+    do                                                        \
+    {                                                         \
+        tContext * pC = pContext;                             \
+        pC->ulBackground = ulValue;                           \
+    } while( 0 )
 
 //*****************************************************************************
 //
@@ -356,8 +362,8 @@ tContext;
 //! \return Returns the width of the display in pixels.
 //
 //*****************************************************************************
-#define GrContextDpyWidthGet(pContext)      \
-        (DpyWidthGet((pContext)->pDisplay))
+#define GrContextDpyWidthGet( pContext ) \
+    ( DpyWidthGet( ( pContext )->pDisplay ) )
 
 //*****************************************************************************
 //
@@ -371,8 +377,8 @@ tContext;
 //! \return Returns the height of the display in pixels.
 //
 //*****************************************************************************
-#define GrContextDpyHeightGet(pContext)      \
-        (DpyHeightGet((pContext)->pDisplay))
+#define GrContextDpyHeightGet( pContext ) \
+    ( DpyHeightGet( ( pContext )->pDisplay ) )
 
 //*****************************************************************************
 //
@@ -387,14 +393,13 @@ tContext;
 //! \return None.
 //
 //*****************************************************************************
-#define GrContextFontSet(pContext, pFnt) \
-        do                               \
-        {                                \
-            tContext *pC = pContext;     \
-            const tFont *pF = pFnt;      \
-            pC->pFont = pF;              \
-        }                                \
-        while(0)
+#define GrContextFontSet( pContext, pFnt ) \
+    do                                     \
+    {                                      \
+        tContext * pC = pContext;          \
+        const tFont * pF = pFnt;           \
+        pC->pFont = pF;                    \
+    } while( 0 )
 
 //*****************************************************************************
 //
@@ -409,13 +414,12 @@ tContext;
 //! \return None.
 //
 //*****************************************************************************
-#define GrContextForegroundSet(pContext, ulValue)                        \
-        do                                                               \
-        {                                                                \
-            tContext *pC = pContext;                                     \
-            pC->ulForeground = DpyColorTranslate(pC->pDisplay, ulValue); \
-        }                                                                \
-        while(0)
+#define GrContextForegroundSet( pContext, ulValue )                    \
+    do                                                                 \
+    {                                                                  \
+        tContext * pC = pContext;                                      \
+        pC->ulForeground = DpyColorTranslate( pC->pDisplay, ulValue ); \
+    } while( 0 )
 
 //*****************************************************************************
 //
@@ -432,13 +436,12 @@ tContext;
 //! \return None.
 //
 //*****************************************************************************
-#define GrContextForegroundSetTranslated(pContext, ulValue) \
-        do                                                  \
-        {                                                   \
-            tContext *pC = pContext;                        \
-            pC->ulForeground = ulValue;                     \
-        }                                                   \
-        while(0)
+#define GrContextForegroundSetTranslated( pContext, ulValue ) \
+    do                                                        \
+    {                                                         \
+        tContext * pC = pContext;                             \
+        pC->ulForeground = ulValue;                           \
+    } while( 0 )
 
 //*****************************************************************************
 //
@@ -454,13 +457,12 @@ tContext;
 //! \return None.
 //
 //*****************************************************************************
-#define GrFlush(pContext)                  \
-        do                                 \
-        {                                  \
-            const tContext *pC = pContext; \
-            DpyFlush(pC->pDisplay);        \
-        }                                  \
-        while(0)
+#define GrFlush( pContext )             \
+    do                                  \
+    {                                   \
+        const tContext * pC = pContext; \
+        DpyFlush( pC->pDisplay );       \
+    } while( 0 )
 
 //*****************************************************************************
 //
@@ -476,8 +478,7 @@ tContext;
 //! \return Returns the baseline of the font, in pixels.
 //
 //*****************************************************************************
-#define GrFontBaselineGet(pFont) \
-        ((pFont)->ucBaseline)
+#define GrFontBaselineGet( pFont ) ( ( pFont )->ucBaseline )
 
 //*****************************************************************************
 //
@@ -492,8 +493,7 @@ tContext;
 //! \return Returns the height of the font, in pixels.
 //
 //*****************************************************************************
-#define GrFontHeightGet(pFont) \
-        ((pFont)->ucHeight)
+#define GrFontHeightGet( pFont )   ( ( pFont )->ucHeight )
 
 //*****************************************************************************
 //
@@ -507,8 +507,7 @@ tContext;
 //! \return Returns the maximum width of the font, in pixels.
 //
 //*****************************************************************************
-#define GrFontMaxWidthGet(pFont) \
-        ((pFont)->ucMaxWidth)
+#define GrFontMaxWidthGet( pFont ) ( ( pFont )->ucMaxWidth )
 
 //*****************************************************************************
 //
@@ -523,8 +522,8 @@ tContext;
 //! \return Returns the number of colors in the image.
 //
 //*****************************************************************************
-#define GrImageColorsGet(pucImage)           \
-        (((unsigned char *)pucImage)[5] + 1)
+#define GrImageColorsGet( pucImage ) \
+    ( ( ( unsigned char * ) pucImage )[ 5 ] + 1 )
 
 //*****************************************************************************
 //
@@ -537,8 +536,7 @@ tContext;
 //! \return Returns the height of the image in pixels.
 //
 //*****************************************************************************
-#define GrImageHeightGet(pucImage)          \
-        (*(unsigned short *)(pucImage + 3))
+#define GrImageHeightGet( pucImage ) ( *( unsigned short * ) ( pucImage + 3 ) )
 
 //*****************************************************************************
 //
@@ -551,8 +549,7 @@ tContext;
 //! \return Returns the width of the image in pixels.
 //
 //*****************************************************************************
-#define GrImageWidthGet(pucImage)           \
-        (*(unsigned short *)(pucImage + 1))
+#define GrImageWidthGet( pucImage )  ( *( unsigned short * ) ( pucImage + 1 ) )
 
 //*****************************************************************************
 //
@@ -567,8 +564,8 @@ tContext;
 //! \return Returns the number of bytes required by the image.
 //
 //*****************************************************************************
-#define GrOffScreen1BPPSize(lWidth, lHeight) \
-        (5 + (((lWidth + 7) / 8) * lHeight))
+#define GrOffScreen1BPPSize( lWidth, lHeight ) \
+    ( 5 + ( ( ( lWidth + 7 ) / 8 ) * lHeight ) )
 
 //*****************************************************************************
 //
@@ -583,8 +580,8 @@ tContext;
 //! \return Returns the number of bytes required by the image.
 //
 //*****************************************************************************
-#define GrOffScreen4BPPSize(lWidth, lHeight)            \
-        (6 + (16 * 3) + (((lWidth + 1) / 2) * lHeight))
+#define GrOffScreen4BPPSize( lWidth, lHeight ) \
+    ( 6 + ( 16 * 3 ) + ( ( ( lWidth + 1 ) / 2 ) * lHeight ) )
 
 //*****************************************************************************
 //
@@ -599,8 +596,8 @@ tContext;
 //! \return Returns the number of bytes required by the image.
 //
 //*****************************************************************************
-#define GrOffScreen8BPPSize(lWidth, lHeight) \
-        (6 + (256 * 3) + (lWidth * lHeight))
+#define GrOffScreen8BPPSize( lWidth, lHeight ) \
+    ( 6 + ( 256 * 3 ) + ( lWidth * lHeight ) )
 
 //*****************************************************************************
 //
@@ -615,19 +612,18 @@ tContext;
 //! \return None.
 //
 //*****************************************************************************
-#define GrPixelDraw(pContext, lX, lY)                                 \
-        do                                                            \
-        {                                                             \
-            const tContext *pC = pContext;                            \
-            if((lX >= pC->sClipRegion.sXMin) &&                       \
-               (lX <= pC->sClipRegion.sXMax) &&                       \
-               (lY >= pC->sClipRegion.sYMin) &&                       \
-               (lY <= pC->sClipRegion.sYMax))                         \
-            {                                                         \
-                DpyPixelDraw(pC->pDisplay, lX, lY, pC->ulForeground); \
-            }                                                         \
-        }                                                             \
-        while(0)
+#define GrPixelDraw( pContext, lX, lY )                             \
+    do                                                              \
+    {                                                               \
+        const tContext * pC = pContext;                             \
+        if( ( lX >= pC->sClipRegion.sXMin ) &&                      \
+            ( lX <= pC->sClipRegion.sXMax ) &&                      \
+            ( lY >= pC->sClipRegion.sYMin ) &&                      \
+            ( lY <= pC->sClipRegion.sYMax ) )                       \
+        {                                                           \
+            DpyPixelDraw( pC->pDisplay, lX, lY, pC->ulForeground ); \
+        }                                                           \
+    } while( 0 )
 
 //*****************************************************************************
 //
@@ -643,8 +639,7 @@ tContext;
 //! \return Returns the baseline of the string, in pixels.
 //
 //*****************************************************************************
-#define GrStringBaselineGet(pContext)   \
-        ((pContext)->pFont->ucBaseline)
+#define GrStringBaselineGet( pContext ) ( ( pContext )->pFont->ucBaseline )
 
 //*****************************************************************************
 //
@@ -671,17 +666,19 @@ tContext;
 //! \return None.
 //
 //*****************************************************************************
-#define GrStringDrawCentered(pContext, pcString, lLength, lX, lY, bOpaque)  \
-        do                                                                  \
-        {                                                                   \
-            const tContext *pC = pContext;                                  \
-            const char *pcStr = pcString;                                   \
-                                                                            \
-            GrStringDraw(pC, pcStr, lLength,                                \
-                         (lX) - (GrStringWidthGet(pC, pcStr, lLength) / 2), \
-                         (lY) - (pC->pFont->ucBaseline / 2), bOpaque);      \
-        }                                                                   \
-        while(0)
+#define GrStringDrawCentered( pContext, pcString, lLength, lX, lY, bOpaque )   \
+    do                                                                         \
+    {                                                                          \
+        const tContext * pC = pContext;                                        \
+        const char * pcStr = pcString;                                         \
+                                                                               \
+        GrStringDraw( pC,                                                      \
+                      pcStr,                                                   \
+                      lLength,                                                 \
+                      ( lX ) - ( GrStringWidthGet( pC, pcStr, lLength ) / 2 ), \
+                      ( lY ) - ( pC->pFont->ucBaseline / 2 ),                  \
+                      bOpaque );                                               \
+    } while( 0 )
 
 //*****************************************************************************
 //
@@ -699,8 +696,7 @@ tContext;
 //! \return Returns the height of the string, in pixels.
 //
 //*****************************************************************************
-#define GrStringHeightGet(pContext)   \
-        ((pContext)->pFont->ucHeight)
+#define GrStringHeightGet( pContext )   ( ( pContext )->pFont->ucHeight )
 
 //*****************************************************************************
 //
@@ -716,8 +712,7 @@ tContext;
 //! \return Returns the maximum width of a character in a string, in pixels.
 //
 //*****************************************************************************
-#define GrStringMaxWidthGet(pContext)   \
-        ((pContext)->pFont->ucMaxWidth)
+#define GrStringMaxWidthGet( pContext ) ( ( pContext )->pFont->ucMaxWidth )
 
 //*****************************************************************************
 //
@@ -725,158 +720,158 @@ tContext;
 // rgb.txt) that are supported by typical web browsers.
 //
 //*****************************************************************************
-#define ClrAliceBlue            0x00F0F8FF
-#define ClrAntiqueWhite         0x00FAEBD7
-#define ClrAqua                 0x0000FFFF
-#define ClrAquamarine           0x007FFFD4
-#define ClrAzure                0x00F0FFFF
-#define ClrBeige                0x00F5F5DC
-#define ClrBisque               0x00FFE4C4
-#define ClrBlack                0x00000000
-#define ClrBlanchedAlmond       0x00FFEBCD
-#define ClrBlue                 0x000000FF
-#define ClrBlueViolet           0x008A2BE2
-#define ClrBrown                0x00A52A2A
-#define ClrBurlyWood            0x00DEB887
-#define ClrCadetBlue            0x005F9EA0
-#define ClrChartreuse           0x007FFF00
-#define ClrChocolate            0x00D2691E
-#define ClrCoral                0x00FF7F50
-#define ClrCornflowerBlue       0x006495ED
-#define ClrCornsilk             0x00FFF8DC
-#define ClrCrimson              0x00DC143C
-#define ClrCyan                 0x0000FFFF
-#define ClrDarkBlue             0x0000008B
-#define ClrDarkCyan             0x00008B8B
-#define ClrDarkGoldenrod        0x00B8860B
-#define ClrDarkGray             0x00A9A9A9
-#define ClrDarkGreen            0x00006400
-#define ClrDarkKhaki            0x00BDB76B
-#define ClrDarkMagenta          0x008B008B
-#define ClrDarkOliveGreen       0x00556B2F
-#define ClrDarkOrange           0x00FF8C00
-#define ClrDarkOrchid           0x009932CC
-#define ClrDarkRed              0x008B0000
-#define ClrDarkSalmon           0x00E9967A
-#define ClrDarkSeaGreen         0x008FBC8F
-#define ClrDarkSlateBlue        0x00483D8B
-#define ClrDarkSlateGray        0x002F4F4F
-#define ClrDarkTurquoise        0x0000CED1
-#define ClrDarkViolet           0x009400D3
-#define ClrDeepPink             0x00FF1493
-#define ClrDeepSkyBlue          0x0000BFFF
-#define ClrDimGray              0x00696969
-#define ClrDodgerBlue           0x001E90FF
-#define ClrFireBrick            0x00B22222
-#define ClrFloralWhite          0x00FFFAF0
-#define ClrForestGreen          0x00228B22
-#define ClrFuchsia              0x00FF00FF
-#define ClrGainsboro            0x00DCDCDC
-#define ClrGhostWhite           0x00F8F8FF
-#define ClrGold                 0x00FFD700
-#define ClrGoldenrod            0x00DAA520
-#define ClrGray                 0x00808080
-#define ClrGreen                0x00008000
-#define ClrGreenYellow          0x00ADFF2F
-#define ClrHoneydew             0x00F0FFF0
-#define ClrHotPink              0x00FF69B4
-#define ClrIndianRed            0x00CD5C5C
-#define ClrIndigo               0x004B0082
-#define ClrIvory                0x00FFFFF0
-#define ClrKhaki                0x00F0E68C
-#define ClrLavender             0x00E6E6FA
-#define ClrLavenderBlush        0x00FFF0F5
-#define ClrLawnGreen            0x007CFC00
-#define ClrLemonChiffon         0x00FFFACD
-#define ClrLightBlue            0x00ADD8E6
-#define ClrLightCoral           0x00F08080
-#define ClrLightCyan            0x00E0FFFF
-#define ClrLightGoldenrodYellow 0x00FAFAD2
-#define ClrLightGreen           0x0090EE90
-#define ClrLightGrey            0x00D3D3D3
-#define ClrLightPink            0x00FFB6C1
-#define ClrLightSalmon          0x00FFA07A
-#define ClrLightSeaGreen        0x0020B2AA
-#define ClrLightSkyBlue         0x0087CEFA
-#define ClrLightSlateGray       0x00778899
-#define ClrLightSteelBlue       0x00B0C4DE
-#define ClrLightYellow          0x00FFFFE0
-#define ClrLime                 0x0000FF00
-#define ClrLimeGreen            0x0032CD32
-#define ClrLinen                0x00FAF0E6
-#define ClrMagenta              0x00FF00FF
-#define ClrMaroon               0x00800000
-#define ClrMediumAquamarine     0x0066CDAA
-#define ClrMediumBlue           0x000000CD
-#define ClrMediumOrchid         0x00BA55D3
-#define ClrMediumPurple         0x009370DB
-#define ClrMediumSeaGreen       0x003CB371
-#define ClrMediumSlateBlue      0x007B68EE
-#define ClrMediumSpringGreen    0x0000FA9A
-#define ClrMediumTurquoise      0x0048D1CC
-#define ClrMediumVioletRed      0x00C71585
-#define ClrMidnightBlue         0x00191970
-#define ClrMintCream            0x00F5FFFA
-#define ClrMistyRose            0x00FFE4E1
-#define ClrMoccasin             0x00FFE4B5
-#define ClrNavajoWhite          0x00FFDEAD
-#define ClrNavy                 0x00000080
-#define ClrOldLace              0x00FDF5E6
-#define ClrOlive                0x00808000
-#define ClrOliveDrab            0x006B8E23
-#define ClrOrange               0x00FFA500
-#define ClrOrangeRed            0x00FF4500
-#define ClrOrchid               0x00DA70D6
-#define ClrPaleGoldenrod        0x00EEE8AA
-#define ClrPaleGreen            0x0098FB98
-#define ClrPaleTurquoise        0x00AFEEEE
-#define ClrPaleVioletRed        0x00DB7093
-#define ClrPapayaWhip           0x00FFEFD5
-#define ClrPeachPuff            0x00FFDAB9
-#define ClrPeru                 0x00CD853F
-#define ClrPink                 0x00FFC0CB
-#define ClrPlum                 0x00DDA0DD
-#define ClrPowderBlue           0x00B0E0E6
-#define ClrPurple               0x00800080
-#define ClrRed                  0x00FF0000
-#define ClrRosyBrown            0x00BC8F8F
-#define ClrRoyalBlue            0x004169E1
-#define ClrSaddleBrown          0x008B4513
-#define ClrSalmon               0x00FA8072
-#define ClrSandyBrown           0x00F4A460
-#define ClrSeaGreen             0x002E8B57
-#define ClrSeashell             0x00FFF5EE
-#define ClrSienna               0x00A0522D
-#define ClrSilver               0x00C0C0C0
-#define ClrSkyBlue              0x0087CEEB
-#define ClrSlateBlue            0x006A5ACD
-#define ClrSlateGray            0x00708090
-#define ClrSnow                 0x00FFFAFA
-#define ClrSpringGreen          0x0000FF7F
-#define ClrSteelBlue            0x004682B4
-#define ClrTan                  0x00D2B48C
-#define ClrTeal                 0x00008080
-#define ClrThistle              0x00D8BFD8
-#define ClrTomato               0x00FF6347
-#define ClrTurquoise            0x0040E0D0
-#define ClrViolet               0x00EE82EE
-#define ClrWheat                0x00F5DEB3
-#define ClrWhite                0x00FFFFFF
-#define ClrWhiteSmoke           0x00F5F5F5
-#define ClrYellow               0x00FFFF00
-#define ClrYellowGreen          0x009ACD32
+#define ClrAliceBlue                    0x00F0F8FF
+#define ClrAntiqueWhite                 0x00FAEBD7
+#define ClrAqua                         0x0000FFFF
+#define ClrAquamarine                   0x007FFFD4
+#define ClrAzure                        0x00F0FFFF
+#define ClrBeige                        0x00F5F5DC
+#define ClrBisque                       0x00FFE4C4
+#define ClrBlack                        0x00000000
+#define ClrBlanchedAlmond               0x00FFEBCD
+#define ClrBlue                         0x000000FF
+#define ClrBlueViolet                   0x008A2BE2
+#define ClrBrown                        0x00A52A2A
+#define ClrBurlyWood                    0x00DEB887
+#define ClrCadetBlue                    0x005F9EA0
+#define ClrChartreuse                   0x007FFF00
+#define ClrChocolate                    0x00D2691E
+#define ClrCoral                        0x00FF7F50
+#define ClrCornflowerBlue               0x006495ED
+#define ClrCornsilk                     0x00FFF8DC
+#define ClrCrimson                      0x00DC143C
+#define ClrCyan                         0x0000FFFF
+#define ClrDarkBlue                     0x0000008B
+#define ClrDarkCyan                     0x00008B8B
+#define ClrDarkGoldenrod                0x00B8860B
+#define ClrDarkGray                     0x00A9A9A9
+#define ClrDarkGreen                    0x00006400
+#define ClrDarkKhaki                    0x00BDB76B
+#define ClrDarkMagenta                  0x008B008B
+#define ClrDarkOliveGreen               0x00556B2F
+#define ClrDarkOrange                   0x00FF8C00
+#define ClrDarkOrchid                   0x009932CC
+#define ClrDarkRed                      0x008B0000
+#define ClrDarkSalmon                   0x00E9967A
+#define ClrDarkSeaGreen                 0x008FBC8F
+#define ClrDarkSlateBlue                0x00483D8B
+#define ClrDarkSlateGray                0x002F4F4F
+#define ClrDarkTurquoise                0x0000CED1
+#define ClrDarkViolet                   0x009400D3
+#define ClrDeepPink                     0x00FF1493
+#define ClrDeepSkyBlue                  0x0000BFFF
+#define ClrDimGray                      0x00696969
+#define ClrDodgerBlue                   0x001E90FF
+#define ClrFireBrick                    0x00B22222
+#define ClrFloralWhite                  0x00FFFAF0
+#define ClrForestGreen                  0x00228B22
+#define ClrFuchsia                      0x00FF00FF
+#define ClrGainsboro                    0x00DCDCDC
+#define ClrGhostWhite                   0x00F8F8FF
+#define ClrGold                         0x00FFD700
+#define ClrGoldenrod                    0x00DAA520
+#define ClrGray                         0x00808080
+#define ClrGreen                        0x00008000
+#define ClrGreenYellow                  0x00ADFF2F
+#define ClrHoneydew                     0x00F0FFF0
+#define ClrHotPink                      0x00FF69B4
+#define ClrIndianRed                    0x00CD5C5C
+#define ClrIndigo                       0x004B0082
+#define ClrIvory                        0x00FFFFF0
+#define ClrKhaki                        0x00F0E68C
+#define ClrLavender                     0x00E6E6FA
+#define ClrLavenderBlush                0x00FFF0F5
+#define ClrLawnGreen                    0x007CFC00
+#define ClrLemonChiffon                 0x00FFFACD
+#define ClrLightBlue                    0x00ADD8E6
+#define ClrLightCoral                   0x00F08080
+#define ClrLightCyan                    0x00E0FFFF
+#define ClrLightGoldenrodYellow         0x00FAFAD2
+#define ClrLightGreen                   0x0090EE90
+#define ClrLightGrey                    0x00D3D3D3
+#define ClrLightPink                    0x00FFB6C1
+#define ClrLightSalmon                  0x00FFA07A
+#define ClrLightSeaGreen                0x0020B2AA
+#define ClrLightSkyBlue                 0x0087CEFA
+#define ClrLightSlateGray               0x00778899
+#define ClrLightSteelBlue               0x00B0C4DE
+#define ClrLightYellow                  0x00FFFFE0
+#define ClrLime                         0x0000FF00
+#define ClrLimeGreen                    0x0032CD32
+#define ClrLinen                        0x00FAF0E6
+#define ClrMagenta                      0x00FF00FF
+#define ClrMaroon                       0x00800000
+#define ClrMediumAquamarine             0x0066CDAA
+#define ClrMediumBlue                   0x000000CD
+#define ClrMediumOrchid                 0x00BA55D3
+#define ClrMediumPurple                 0x009370DB
+#define ClrMediumSeaGreen               0x003CB371
+#define ClrMediumSlateBlue              0x007B68EE
+#define ClrMediumSpringGreen            0x0000FA9A
+#define ClrMediumTurquoise              0x0048D1CC
+#define ClrMediumVioletRed              0x00C71585
+#define ClrMidnightBlue                 0x00191970
+#define ClrMintCream                    0x00F5FFFA
+#define ClrMistyRose                    0x00FFE4E1
+#define ClrMoccasin                     0x00FFE4B5
+#define ClrNavajoWhite                  0x00FFDEAD
+#define ClrNavy                         0x00000080
+#define ClrOldLace                      0x00FDF5E6
+#define ClrOlive                        0x00808000
+#define ClrOliveDrab                    0x006B8E23
+#define ClrOrange                       0x00FFA500
+#define ClrOrangeRed                    0x00FF4500
+#define ClrOrchid                       0x00DA70D6
+#define ClrPaleGoldenrod                0x00EEE8AA
+#define ClrPaleGreen                    0x0098FB98
+#define ClrPaleTurquoise                0x00AFEEEE
+#define ClrPaleVioletRed                0x00DB7093
+#define ClrPapayaWhip                   0x00FFEFD5
+#define ClrPeachPuff                    0x00FFDAB9
+#define ClrPeru                         0x00CD853F
+#define ClrPink                         0x00FFC0CB
+#define ClrPlum                         0x00DDA0DD
+#define ClrPowderBlue                   0x00B0E0E6
+#define ClrPurple                       0x00800080
+#define ClrRed                          0x00FF0000
+#define ClrRosyBrown                    0x00BC8F8F
+#define ClrRoyalBlue                    0x004169E1
+#define ClrSaddleBrown                  0x008B4513
+#define ClrSalmon                       0x00FA8072
+#define ClrSandyBrown                   0x00F4A460
+#define ClrSeaGreen                     0x002E8B57
+#define ClrSeashell                     0x00FFF5EE
+#define ClrSienna                       0x00A0522D
+#define ClrSilver                       0x00C0C0C0
+#define ClrSkyBlue                      0x0087CEEB
+#define ClrSlateBlue                    0x006A5ACD
+#define ClrSlateGray                    0x00708090
+#define ClrSnow                         0x00FFFAFA
+#define ClrSpringGreen                  0x0000FF7F
+#define ClrSteelBlue                    0x004682B4
+#define ClrTan                          0x00D2B48C
+#define ClrTeal                         0x00008080
+#define ClrThistle                      0x00D8BFD8
+#define ClrTomato                       0x00FF6347
+#define ClrTurquoise                    0x0040E0D0
+#define ClrViolet                       0x00EE82EE
+#define ClrWheat                        0x00F5DEB3
+#define ClrWhite                        0x00FFFFFF
+#define ClrWhiteSmoke                   0x00F5F5F5
+#define ClrYellow                       0x00FFFF00
+#define ClrYellowGreen                  0x009ACD32
 
 //*****************************************************************************
 //
 // Masks and shifts to aid in color format translation by drivers.
 //
 //*****************************************************************************
-#define ClrRedMask              0x00FF0000
-#define ClrRedShift             16
-#define ClrGreenMask            0x0000FF00
-#define ClrGreenShift           8
-#define ClrBlueMask             0x000000FF
-#define ClrBlueShift            0
+#define ClrRedMask                      0x00FF0000
+#define ClrRedShift                     16
+#define ClrGreenMask                    0x0000FF00
+#define ClrGreenShift                   8
+#define ClrBlueMask                     0x000000FF
+#define ClrBlueShift                    0
 
 //*****************************************************************************
 //
@@ -1038,8 +1033,8 @@ extern const tFont g_sFontFixed6x8;
 //! \return Returns the display-driver specific color.
 //
 //*****************************************************************************
-#define DpyColorTranslate(pDisplay, ulValue)                                \
-        ((pDisplay)->pfnColorTranslate((pDisplay)->pvDisplayData, ulValue))
+#define DpyColorTranslate( pDisplay, ulValue ) \
+    ( ( pDisplay )->pfnColorTranslate( ( pDisplay )->pvDisplayData, ulValue ) )
 
 //*****************************************************************************
 //
@@ -1053,13 +1048,12 @@ extern const tFont g_sFontFixed6x8;
 //! \return None.
 //
 //*****************************************************************************
-#define DpyFlush(pDisplay)                   \
-        do                                   \
-        {                                    \
-            const tDisplay *pD = pDisplay;   \
-            pD->pfnFlush(pD->pvDisplayData); \
-        }                                    \
-        while(0)
+#define DpyFlush( pDisplay )               \
+    do                                     \
+    {                                      \
+        const tDisplay * pD = pDisplay;    \
+        pD->pfnFlush( pD->pvDisplayData ); \
+    } while( 0 )
 
 //*****************************************************************************
 //
@@ -1073,8 +1067,7 @@ extern const tFont g_sFontFixed6x8;
 //! \return Returns the height of the display in pixels.
 //
 //*****************************************************************************
-#define DpyHeightGet(pDisplay) \
-        ((pDisplay)->usHeight)
+#define DpyHeightGet( pDisplay ) ( ( pDisplay )->usHeight )
 
 //*****************************************************************************
 //
@@ -1094,13 +1087,12 @@ extern const tFont g_sFontFixed6x8;
 //! \return None.
 //
 //*****************************************************************************
-#define DpyLineDrawH(pDisplay, lX1, lX2, lY, ulValue)                   \
-        do                                                              \
-        {                                                               \
-            const tDisplay *pD = pDisplay;                              \
-            pD->pfnLineDrawH(pD->pvDisplayData, lX1, lX2, lY, ulValue); \
-        }                                                               \
-        while(0)
+#define DpyLineDrawH( pDisplay, lX1, lX2, lY, ulValue )               \
+    do                                                                \
+    {                                                                 \
+        const tDisplay * pD = pDisplay;                               \
+        pD->pfnLineDrawH( pD->pvDisplayData, lX1, lX2, lY, ulValue ); \
+    } while( 0 )
 
 //*****************************************************************************
 //
@@ -1120,13 +1112,12 @@ extern const tFont g_sFontFixed6x8;
 //! \return None.
 //
 //*****************************************************************************
-#define DpyLineDrawV(pDisplay, lX, lY1, lY2, ulValue)                   \
-        do                                                              \
-        {                                                               \
-            const tDisplay *pD = pDisplay;                              \
-            pD->pfnLineDrawV(pD->pvDisplayData, lX, lY1, lY2, ulValue); \
-        }                                                               \
-        while(0)
+#define DpyLineDrawV( pDisplay, lX, lY1, lY2, ulValue )               \
+    do                                                                \
+    {                                                                 \
+        const tDisplay * pD = pDisplay;                               \
+        pD->pfnLineDrawV( pD->pvDisplayData, lX, lY1, lY2, ulValue ); \
+    } while( 0 )
 
 //*****************************************************************************
 //
@@ -1144,13 +1135,12 @@ extern const tFont g_sFontFixed6x8;
 //! \return None.
 //
 //*****************************************************************************
-#define DpyPixelDraw(pDisplay, lX, lY, ulValue)                   \
-        do                                                        \
-        {                                                         \
-            const tDisplay *pD = pDisplay;                        \
-            pD->pfnPixelDraw(pD->pvDisplayData, lX, lY, ulValue); \
-        }                                                         \
-        while(0)
+#define DpyPixelDraw( pDisplay, lX, lY, ulValue )               \
+    do                                                          \
+    {                                                           \
+        const tDisplay * pD = pDisplay;                         \
+        pD->pfnPixelDraw( pD->pvDisplayData, lX, lY, ulValue ); \
+    } while( 0 )
 
 //*****************************************************************************
 //
@@ -1177,15 +1167,26 @@ extern const tFont g_sFontFixed6x8;
 //! \return None.
 //
 //*****************************************************************************
-#define DpyPixelDrawMultiple(pDisplay, lX, lY, lX0, lCount, lBPP, pucData,   \
-                             pucPalette)                                     \
-        do                                                                   \
-        {                                                                    \
-            const tDisplay *pD = pDisplay;                                   \
-            pD->pfnPixelDrawMultiple(pD->pvDisplayData, lX, lY, lX0, lCount, \
-                                     lBPP, pucData, pucPalette);             \
-        }                                                                    \
-        while(0)
+#define DpyPixelDrawMultiple( pDisplay,              \
+                              lX,                    \
+                              lY,                    \
+                              lX0,                   \
+                              lCount,                \
+                              lBPP,                  \
+                              pucData,               \
+                              pucPalette )           \
+    do                                               \
+    {                                                \
+        const tDisplay * pD = pDisplay;              \
+        pD->pfnPixelDrawMultiple( pD->pvDisplayData, \
+                                  lX,                \
+                                  lY,                \
+                                  lX0,               \
+                                  lCount,            \
+                                  lBPP,              \
+                                  pucData,           \
+                                  pucPalette );      \
+    } while( 0 )
 
 //*****************************************************************************
 //
@@ -1204,13 +1205,12 @@ extern const tFont g_sFontFixed6x8;
 //! \return None.
 //
 //*****************************************************************************
-#define DpyRectFill(pDisplay, pRect, ulValue)                   \
-        do                                                      \
-        {                                                       \
-            const tDisplay *pD = pDisplay;                      \
-            pD->pfnRectFill(pD->pvDisplayData, pRect, ulValue); \
-        }                                                       \
-        while(0)
+#define DpyRectFill( pDisplay, pRect, ulValue )               \
+    do                                                        \
+    {                                                         \
+        const tDisplay * pD = pDisplay;                       \
+        pD->pfnRectFill( pD->pvDisplayData, pRect, ulValue ); \
+    } while( 0 )
 
 //*****************************************************************************
 //
@@ -1224,47 +1224,71 @@ extern const tFont g_sFontFixed6x8;
 //! \return Returns the width of the display in pixels.
 //
 //*****************************************************************************
-#define DpyWidthGet(pDisplay) \
-        ((pDisplay)->usWidth)
+#define DpyWidthGet( pDisplay ) ( ( pDisplay )->usWidth )
 
 //*****************************************************************************
 //
 // Prototypes for the graphics library functions.
 //
 //*****************************************************************************
-extern void GrCircleDraw(const tContext *pContext, long lX, long lY,
-                         long lRadius);
-extern void GrCircleFill(const tContext *pContext, long lX, long lY,
-                         long lRadius);
-extern void GrContextClipRegionSet(tContext *pContext, tRectangle *pRect);
-extern void GrContextInit(tContext *pContext, const tDisplay *pDisplay);
-extern void GrImageDraw(const tContext *pContext,
-                        const unsigned char *pucImage, long lX, long lY);
-extern void GrLineDraw(const tContext *pContext, long lX1, long lY1, long lX2,
-                       long lY2);
-extern void GrLineDrawH(const tContext *pContext, long lX1, long lX2, long lY);
-extern void GrLineDrawV(const tContext *pContext, long lX, long lY1, long lY2);
-extern void GrOffScreen1BPPInit(tDisplay *pDisplay, unsigned char *pucImage,
-                                long lWidth, long lHeight);
-extern void GrOffScreen4BPPInit(tDisplay *pDisplay, unsigned char *pucImage,
-                                long lWidth, long lHeight);
-extern void GrOffScreen4BPPPaletteSet(tDisplay *pDisplay,
-                                      unsigned long *pulPalette,
-                                      unsigned long ulOffset,
-                                      unsigned long ulCount);
-extern void GrOffScreen8BPPInit(tDisplay *pDisplay, unsigned char *pucImage,
-                                long lWidth, long lHeight);
-extern void GrOffScreen8BPPPaletteSet(tDisplay *pDisplay,
-                                      unsigned long *pulPalette,
-                                      unsigned long ulOffset,
-                                      unsigned long ulCount);
-extern void GrRectDraw(const tContext *pContext, const tRectangle *pRect);
-extern void GrRectFill(const tContext *pContext, const tRectangle *pRect);
-extern void GrStringDraw(const tContext *pContext, const char *pcString,
-                         long lLength, long lX, long lY,
-                         unsigned long bOpaque);
-extern long GrStringWidthGet(const tContext *pContext, const char *pcString,
-                             long lLength);
+extern void GrCircleDraw( const tContext * pContext,
+                          long lX,
+                          long lY,
+                          long lRadius );
+extern void GrCircleFill( const tContext * pContext,
+                          long lX,
+                          long lY,
+                          long lRadius );
+extern void GrContextClipRegionSet( tContext * pContext, tRectangle * pRect );
+extern void GrContextInit( tContext * pContext, const tDisplay * pDisplay );
+extern void GrImageDraw( const tContext * pContext,
+                         const unsigned char * pucImage,
+                         long lX,
+                         long lY );
+extern void GrLineDraw( const tContext * pContext,
+                        long lX1,
+                        long lY1,
+                        long lX2,
+                        long lY2 );
+extern void GrLineDrawH( const tContext * pContext,
+                         long lX1,
+                         long lX2,
+                         long lY );
+extern void GrLineDrawV( const tContext * pContext,
+                         long lX,
+                         long lY1,
+                         long lY2 );
+extern void GrOffScreen1BPPInit( tDisplay * pDisplay,
+                                 unsigned char * pucImage,
+                                 long lWidth,
+                                 long lHeight );
+extern void GrOffScreen4BPPInit( tDisplay * pDisplay,
+                                 unsigned char * pucImage,
+                                 long lWidth,
+                                 long lHeight );
+extern void GrOffScreen4BPPPaletteSet( tDisplay * pDisplay,
+                                       unsigned long * pulPalette,
+                                       unsigned long ulOffset,
+                                       unsigned long ulCount );
+extern void GrOffScreen8BPPInit( tDisplay * pDisplay,
+                                 unsigned char * pucImage,
+                                 long lWidth,
+                                 long lHeight );
+extern void GrOffScreen8BPPPaletteSet( tDisplay * pDisplay,
+                                       unsigned long * pulPalette,
+                                       unsigned long ulOffset,
+                                       unsigned long ulCount );
+extern void GrRectDraw( const tContext * pContext, const tRectangle * pRect );
+extern void GrRectFill( const tContext * pContext, const tRectangle * pRect );
+extern void GrStringDraw( const tContext * pContext,
+                          const char * pcString,
+                          long lLength,
+                          long lX,
+                          long lY,
+                          unsigned long bOpaque );
+extern long GrStringWidthGet( const tContext * pContext,
+                              const char * pcString,
+                              long lLength );
 
 //*****************************************************************************
 //

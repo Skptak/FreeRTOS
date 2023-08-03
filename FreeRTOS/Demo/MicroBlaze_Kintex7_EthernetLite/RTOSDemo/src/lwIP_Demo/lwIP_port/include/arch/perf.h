@@ -52,14 +52,14 @@
 #ifndef __ARCH_PERF_H__
 #define __ARCH_PERF_H__
 
-#define PERF_START    /* null definition */
-#define PERF_STOP(x)  /* null definition */
+#define PERF_START     /* null definition */
+#define PERF_STOP( x ) /* null definition */
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-void perf_init(char *fname);
+void perf_init( char * fname );
 
 #ifdef __cplusplus
 }

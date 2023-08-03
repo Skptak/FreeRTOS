@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
- *         ATMEL Microcontroller Software Support 
+ *         ATMEL Microcontroller Software Support
  * ----------------------------------------------------------------------------
  * Copyright (c) 2008, Atmel Corporation
  *
@@ -40,7 +40,7 @@
 /// Enables a SPI peripheral
 /// \param spi  Pointer to an AT91S_SPI instance.
 //------------------------------------------------------------------------------
-void SPI_Enable(AT91S_SPI *spi)
+void SPI_Enable( AT91S_SPI * spi )
 {
     spi->SPI_CR = AT91C_SPI_SPIEN;
 }
@@ -49,7 +49,7 @@ void SPI_Enable(AT91S_SPI *spi)
 /// Disables a SPI peripheral.
 /// \param spi  Pointer to an AT91S_SPI instance.
 //------------------------------------------------------------------------------
-void SPI_Disable(AT91S_SPI *spi)
+void SPI_Disable( AT91S_SPI * spi )
 {
     spi->SPI_CR = AT91C_SPI_SPIDIS;
 }
@@ -62,9 +62,9 @@ void SPI_Disable(AT91S_SPI *spi)
 /// \param id  Peripheral ID of the SPI.
 /// \param configuration  Value of the SPI configuration register.
 //------------------------------------------------------------------------------
-void SPI_Configure(AT91S_SPI *spi,
-                          unsigned int id,
-                          unsigned int configuration)
+void SPI_Configure( AT91S_SPI * spi,
+                    unsigned int id,
+                    unsigned int configuration )
 {
     AT91C_BASE_PMC->PMC_PCER = 1 << id;
     spi->SPI_CR = AT91C_SPI_SPIDIS;
@@ -81,11 +81,11 @@ void SPI_Configure(AT91S_SPI *spi,
 /// \param npcs  Chip select to configure (1, 2, 3 or 4).
 /// \param configuration  Desired chip select configuration.
 //------------------------------------------------------------------------------
-void SPI_ConfigureNPCS(AT91S_SPI *spi,
-                              unsigned int npcs,
-                              unsigned int configuration)
+void SPI_ConfigureNPCS( AT91S_SPI * spi,
+                        unsigned int npcs,
+                        unsigned int configuration )
 {
-    spi->SPI_CSR[npcs] = configuration;
+    spi->SPI_CSR[ npcs ] = configuration;
 }
 
 //------------------------------------------------------------------------------
@@ -96,15 +96,17 @@ void SPI_ConfigureNPCS(AT91S_SPI *spi,
 /// \param npcs  Chip select of the component to address (1, 2, 3 or 4).
 /// \param data  Word of data to send.
 //------------------------------------------------------------------------------
-void SPI_Write(AT91S_SPI *spi, unsigned int npcs, unsigned short data)
+void SPI_Write( AT91S_SPI * spi, unsigned int npcs, unsigned short data )
 {
     // Discard contents of RDR register
-    //volatile unsigned int discard = spi->SPI_RDR;
+    // volatile unsigned int discard = spi->SPI_RDR;
 
     // Send data
-    while ((spi->SPI_SR & AT91C_SPI_TXEMPTY) == 0);
-    spi->SPI_TDR = data | SPI_PCS(npcs);
-    while ((spi->SPI_SR & AT91C_SPI_TDRE) == 0);
+    while( ( spi->SPI_SR & AT91C_SPI_TXEMPTY ) == 0 )
+        ;
+    spi->SPI_TDR = data | SPI_PCS( npcs );
+    while( ( spi->SPI_SR & AT91C_SPI_TDRE ) == 0 )
+        ;
 }
 
 //------------------------------------------------------------------------------
@@ -114,26 +116,26 @@ void SPI_Write(AT91S_SPI *spi, unsigned int npcs, unsigned short data)
 /// \param buffer  Data buffer to send.
 /// \param length  Length of the data buffer.
 //------------------------------------------------------------------------------
-unsigned char SPI_WriteBuffer(AT91S_SPI *spi,
-                                     void *buffer,
-                                     unsigned int length)
+unsigned char SPI_WriteBuffer( AT91S_SPI * spi,
+                               void * buffer,
+                               unsigned int length )
 {
     // Check if first bank is free
-    if (spi->SPI_TCR == 0) {
-
-        spi->SPI_TPR = (unsigned int) buffer;
+    if( spi->SPI_TCR == 0 )
+    {
+        spi->SPI_TPR = ( unsigned int ) buffer;
         spi->SPI_TCR = length;
         spi->SPI_PTCR = AT91C_PDC_TXTEN;
         return 1;
     }
     // Check if second bank is free
-    else if (spi->SPI_TNCR == 0) {
-
-        spi->SPI_TNPR = (unsigned int) buffer;
+    else if( spi->SPI_TNCR == 0 )
+    {
+        spi->SPI_TNPR = ( unsigned int ) buffer;
         spi->SPI_TNCR = length;
         return 1;
     }
-      
+
     // No free banks
     return 0;
 }
@@ -143,9 +145,9 @@ unsigned char SPI_WriteBuffer(AT91S_SPI *spi,
 /// returns 0.
 /// \param pSpi  Pointer to an AT91S_SPI instance.
 //------------------------------------------------------------------------------
-unsigned char SPI_IsFinished(AT91S_SPI *pSpi)
+unsigned char SPI_IsFinished( AT91S_SPI * pSpi )
 {
-    return ((pSpi->SPI_SR & AT91C_SPI_TXEMPTY) != 0);
+    return ( ( pSpi->SPI_SR & AT91C_SPI_TXEMPTY ) != 0 );
 }
 
 //------------------------------------------------------------------------------
@@ -153,9 +155,10 @@ unsigned char SPI_IsFinished(AT91S_SPI *pSpi)
 /// method must be called after a successful SPI_Write call.
 /// \param spi  Pointer to an AT91S_SPI instance.
 //------------------------------------------------------------------------------
-unsigned short SPI_Read(AT91S_SPI *spi)
+unsigned short SPI_Read( AT91S_SPI * spi )
 {
-    while ((spi->SPI_SR & AT91C_SPI_RDRF) == 0);
+    while( ( spi->SPI_SR & AT91C_SPI_RDRF ) == 0 )
+        ;
     return spi->SPI_RDR & 0xFFFF;
 }
 
@@ -166,22 +169,22 @@ unsigned short SPI_Read(AT91S_SPI *spi)
 /// \param buffer  Data buffer to store incoming bytes.
 /// \param length  Length in bytes of the data buffer.
 //------------------------------------------------------------------------------
-unsigned char SPI_ReadBuffer(AT91S_SPI *spi,
-                                    void *buffer,
-                                    unsigned int length)
+unsigned char SPI_ReadBuffer( AT91S_SPI * spi,
+                              void * buffer,
+                              unsigned int length )
 {
     // Check if the first bank is free
-    if (spi->SPI_RCR == 0) {
-
-        spi->SPI_RPR = (unsigned int) buffer;
+    if( spi->SPI_RCR == 0 )
+    {
+        spi->SPI_RPR = ( unsigned int ) buffer;
         spi->SPI_RCR = length;
         spi->SPI_PTCR = AT91C_PDC_RXTEN;
         return 1;
     }
     // Check if second bank is free
-    else if (spi->SPI_RNCR == 0) {
-
-        spi->SPI_RNPR = (unsigned int) buffer;
+    else if( spi->SPI_RNCR == 0 )
+    {
+        spi->SPI_RNPR = ( unsigned int ) buffer;
         spi->SPI_RNCR = length;
         return 1;
     }
@@ -189,4 +192,3 @@ unsigned char SPI_ReadBuffer(AT91S_SPI *spi,
     // No free bank
     return 0;
 }
-

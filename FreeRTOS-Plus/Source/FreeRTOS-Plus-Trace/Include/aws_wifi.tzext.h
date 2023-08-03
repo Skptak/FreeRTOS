@@ -42,7 +42,7 @@
  * in the EventGroup element (e.g. <EventGroup name="SOCKETS">)
  *
  *****************************************************************************/
-#define TRC_EXT_WIFI_NAME "aws_wifi"
+#define TRC_EXT_WIFI_NAME          "aws_wifi"
 
 /******************************************************************************
  * <EXTENSIONPREFIX>_VERSION_MAJOR
@@ -75,19 +75,18 @@
  * The event codes used in the trace wrapper functions. Important that these
  * are relative to <PREFIX>_FIRST.
  *****************************************************************************/
-#define EVENTCODE_WIFI_On (TRC_EXT_BASECODE + 0)
+#define EVENTCODE_WIFI_On          ( TRC_EXT_BASECODE + 0 )
 
-#define EVENTCODE_WIFI_Off (TRC_EXT_BASECODE + 1)
+#define EVENTCODE_WIFI_Off         ( TRC_EXT_BASECODE + 1 )
 
-#define EVENTCODE_WIFI_ConnectAP (TRC_EXT_BASECODE + 2)
+#define EVENTCODE_WIFI_ConnectAP   ( TRC_EXT_BASECODE + 2 )
 
 /******************************************************************************
  * <EXTENSIONPREFIX>_COUNT
  * The number of event codes used by this extension. Should be at least 1.
  * Tracealyzer allows for events codes up to 4095.
  *****************************************************************************/
-#define TRC_EXT_WIFI_COUNT 3
-
+#define TRC_EXT_WIFI_COUNT         3
 
 /***** Trace Wrappers *****/
 
@@ -95,40 +94,48 @@
 
 static inline WIFIReturnCode_t WIFI_On__trace( void )
 {
-	 WIFIReturnCode_t ret = WIFI_On();
+    WIFIReturnCode_t ret = WIFI_On();
 
-	// Note: The host-side xml file assumes that ret == 0 means OK, otherwise timeout/error.
-	prvTraceStoreEvent1(EVENTCODE_WIFI_On, (uint32_t)ret);
+    // Note: The host-side xml file assumes that ret == 0 means OK, otherwise
+    // timeout/error.
+    prvTraceStoreEvent1( EVENTCODE_WIFI_On, ( uint32_t ) ret );
 
-	return ret;
+    return ret;
 }
 
- static inline WIFIReturnCode_t WIFI_Off__trace( void )
- {
- 	 WIFIReturnCode_t ret = WIFI_Off();
+static inline WIFIReturnCode_t WIFI_Off__trace( void )
+{
+    WIFIReturnCode_t ret = WIFI_Off();
 
- 	// Note: The host-side xml file assumes that ret == 0 means OK, otherwise timeout/error.
- 	prvTraceStoreEvent1(EVENTCODE_WIFI_Off, (uint32_t)ret);
+    // Note: The host-side xml file assumes that ret == 0 means OK, otherwise
+    // timeout/error.
+    prvTraceStoreEvent1( EVENTCODE_WIFI_Off, ( uint32_t ) ret );
 
- 	return ret;
- }
+    return ret;
+}
 
- static inline WIFIReturnCode_t WIFI_ConnectAP__trace( const WIFINetworkParams_t * const pxNetworkParams )
- {
-	 WIFIReturnCode_t ret = WIFI_ConnectAP(pxNetworkParams);
+static inline WIFIReturnCode_t WIFI_ConnectAP__trace(
+    const WIFINetworkParams_t * const pxNetworkParams )
+{
+    WIFIReturnCode_t ret = WIFI_ConnectAP( pxNetworkParams );
 
-	 // Note: The host-side xml file assumes that ret == 0 means OK, otherwise timeout/error.
+    // Note: The host-side xml file assumes that ret == 0 means OK, otherwise
+    // timeout/error.
 
-	 prvTraceStoreStringEvent(2, EVENTCODE_WIFI_ConnectAP, pxNetworkParams->pcSSID, pxNetworkParams->xSecurity, ret);
+    prvTraceStoreStringEvent( 2,
+                              EVENTCODE_WIFI_ConnectAP,
+                              pxNetworkParams->pcSSID,
+                              pxNetworkParams->xSecurity,
+                              ret );
 
-	 return ret;
- }
+    return ret;
+}
 
 /***** Function Redefinitions *****/
 
-#define WIFI_On WIFI_On__trace
+#define WIFI_On        WIFI_On__trace
 
-#define WIFI_Off WIFI_Off__trace
+#define WIFI_Off       WIFI_Off__trace
 
 #define WIFI_ConnectAP WIFI_ConnectAP__trace
 

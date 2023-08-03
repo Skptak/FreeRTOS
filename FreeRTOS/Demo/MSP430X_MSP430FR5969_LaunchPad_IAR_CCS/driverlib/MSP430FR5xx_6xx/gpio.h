@@ -40,111 +40,112 @@
 
 #include "inc/hw_memmap.h"
 
-#if defined(__MSP430_HAS_PORT1_R__) || defined(__MSP430_HAS_PORT2_R__) || \
-    defined(__MSP430_HAS_PORTA_R__)
+#if defined( __MSP430_HAS_PORT1_R__ ) || defined( __MSP430_HAS_PORT2_R__ ) || \
+    defined( __MSP430_HAS_PORTA_R__ )
 
-//*****************************************************************************
-//
-// If building with a C++ compiler, make all of the definitions in this header
-// have a C binding.
-//
-//*****************************************************************************
-#ifdef __cplusplus
-extern "C"
-{
-#endif
+    //*****************************************************************************
+    //
+    // If building with a C++ compiler, make all of the definitions in this
+    // header have a C binding.
+    //
+    //*****************************************************************************
+    #ifdef __cplusplus
+extern "C" {
+    #endif
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the selectedPort parameter
-// for functions: GPIO_setAsOutputPin(), GPIO_setAsInputPin(),
-// GPIO_setAsPeripheralModuleFunctionOutputPin(),
-// GPIO_setAsPeripheralModuleFunctionInputPin(), GPIO_setOutputHighOnPin(),
-// GPIO_setOutputLowOnPin(), GPIO_toggleOutputOnPin(),
-// GPIO_setAsInputPinWithPullDownResistor(),
-// GPIO_setAsInputPinWithPullUpResistor(), GPIO_getInputPinValue(),
-// GPIO_selectInterruptEdge(), GPIO_enableInterrupt(), GPIO_disableInterrupt(),
-// GPIO_getInterruptStatus(), and GPIO_clearInterrupt().
-//
-//*****************************************************************************
-#define GPIO_PORT_P1                                                          1
-#define GPIO_PORT_P2                                                          2
-#define GPIO_PORT_P3                                                          3
-#define GPIO_PORT_P4                                                          4
-#define GPIO_PORT_P5                                                          5
-#define GPIO_PORT_P6                                                          6
-#define GPIO_PORT_P7                                                          7
-#define GPIO_PORT_P8                                                          8
-#define GPIO_PORT_P9                                                          9
-#define GPIO_PORT_P10                                                        10
-#define GPIO_PORT_P11                                                        11
-#define GPIO_PORT_PA                                                          1
-#define GPIO_PORT_PB                                                          3
-#define GPIO_PORT_PC                                                          5
-#define GPIO_PORT_PD                                                          7
-#define GPIO_PORT_PE                                                          9
-#define GPIO_PORT_PF                                                         11
-#define GPIO_PORT_PJ                                                         13
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the selectedPort parameter
+    // for functions: GPIO_setAsOutputPin(), GPIO_setAsInputPin(),
+    // GPIO_setAsPeripheralModuleFunctionOutputPin(),
+    // GPIO_setAsPeripheralModuleFunctionInputPin(), GPIO_setOutputHighOnPin(),
+    // GPIO_setOutputLowOnPin(), GPIO_toggleOutputOnPin(),
+    // GPIO_setAsInputPinWithPullDownResistor(),
+    // GPIO_setAsInputPinWithPullUpResistor(), GPIO_getInputPinValue(),
+    // GPIO_selectInterruptEdge(), GPIO_enableInterrupt(),
+    // GPIO_disableInterrupt(), GPIO_getInterruptStatus(), and
+    // GPIO_clearInterrupt().
+    //
+    //*****************************************************************************
+    #define GPIO_PORT_P1                   1
+    #define GPIO_PORT_P2                   2
+    #define GPIO_PORT_P3                   3
+    #define GPIO_PORT_P4                   4
+    #define GPIO_PORT_P5                   5
+    #define GPIO_PORT_P6                   6
+    #define GPIO_PORT_P7                   7
+    #define GPIO_PORT_P8                   8
+    #define GPIO_PORT_P9                   9
+    #define GPIO_PORT_P10                  10
+    #define GPIO_PORT_P11                  11
+    #define GPIO_PORT_PA                   1
+    #define GPIO_PORT_PB                   3
+    #define GPIO_PORT_PC                   5
+    #define GPIO_PORT_PD                   7
+    #define GPIO_PORT_PE                   9
+    #define GPIO_PORT_PF                   11
+    #define GPIO_PORT_PJ                   13
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the selectedPins parameter
-// for functions: GPIO_setAsOutputPin(), GPIO_setAsInputPin(),
-// GPIO_setAsPeripheralModuleFunctionOutputPin(),
-// GPIO_setAsPeripheralModuleFunctionInputPin(), GPIO_setOutputHighOnPin(),
-// GPIO_setOutputLowOnPin(), GPIO_toggleOutputOnPin(),
-// GPIO_setAsInputPinWithPullDownResistor(),
-// GPIO_setAsInputPinWithPullUpResistor(), GPIO_getInputPinValue(),
-// GPIO_enableInterrupt(), GPIO_disableInterrupt(), GPIO_getInterruptStatus(),
-// GPIO_clearInterrupt(), and GPIO_selectInterruptEdge() as well as returned by
-// the GPIO_getInterruptStatus() function.
-//
-//*****************************************************************************
-#define GPIO_PIN0                                                      (0x0001)
-#define GPIO_PIN1                                                      (0x0002)
-#define GPIO_PIN2                                                      (0x0004)
-#define GPIO_PIN3                                                      (0x0008)
-#define GPIO_PIN4                                                      (0x0010)
-#define GPIO_PIN5                                                      (0x0020)
-#define GPIO_PIN6                                                      (0x0040)
-#define GPIO_PIN7                                                      (0x0080)
-#define GPIO_PIN8                                                      (0x0100)
-#define GPIO_PIN9                                                      (0x0200)
-#define GPIO_PIN10                                                     (0x0400)
-#define GPIO_PIN11                                                     (0x0800)
-#define GPIO_PIN12                                                     (0x1000)
-#define GPIO_PIN13                                                     (0x2000)
-#define GPIO_PIN14                                                     (0x4000)
-#define GPIO_PIN15                                                     (0x8000)
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the selectedPins parameter
+    // for functions: GPIO_setAsOutputPin(), GPIO_setAsInputPin(),
+    // GPIO_setAsPeripheralModuleFunctionOutputPin(),
+    // GPIO_setAsPeripheralModuleFunctionInputPin(), GPIO_setOutputHighOnPin(),
+    // GPIO_setOutputLowOnPin(), GPIO_toggleOutputOnPin(),
+    // GPIO_setAsInputPinWithPullDownResistor(),
+    // GPIO_setAsInputPinWithPullUpResistor(), GPIO_getInputPinValue(),
+    // GPIO_enableInterrupt(), GPIO_disableInterrupt(),
+    // GPIO_getInterruptStatus(), GPIO_clearInterrupt(), and
+    // GPIO_selectInterruptEdge() as well as returned by the
+    // GPIO_getInterruptStatus() function.
+    //
+    //*****************************************************************************
+    #define GPIO_PIN0                      ( 0x0001 )
+    #define GPIO_PIN1                      ( 0x0002 )
+    #define GPIO_PIN2                      ( 0x0004 )
+    #define GPIO_PIN3                      ( 0x0008 )
+    #define GPIO_PIN4                      ( 0x0010 )
+    #define GPIO_PIN5                      ( 0x0020 )
+    #define GPIO_PIN6                      ( 0x0040 )
+    #define GPIO_PIN7                      ( 0x0080 )
+    #define GPIO_PIN8                      ( 0x0100 )
+    #define GPIO_PIN9                      ( 0x0200 )
+    #define GPIO_PIN10                     ( 0x0400 )
+    #define GPIO_PIN11                     ( 0x0800 )
+    #define GPIO_PIN12                     ( 0x1000 )
+    #define GPIO_PIN13                     ( 0x2000 )
+    #define GPIO_PIN14                     ( 0x4000 )
+    #define GPIO_PIN15                     ( 0x8000 )
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the mode parameter for
-// functions: GPIO_setAsPeripheralModuleFunctionOutputPin(), and
-// GPIO_setAsPeripheralModuleFunctionInputPin().
-//
-//*****************************************************************************
-#define GPIO_PRIMARY_MODULE_FUNCTION                                     (0x01)
-#define GPIO_SECONDARY_MODULE_FUNCTION                                   (0x02)
-#define GPIO_TERNARY_MODULE_FUNCTION                                     (0x03)
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the mode parameter for
+    // functions: GPIO_setAsPeripheralModuleFunctionOutputPin(), and
+    // GPIO_setAsPeripheralModuleFunctionInputPin().
+    //
+    //*****************************************************************************
+    #define GPIO_PRIMARY_MODULE_FUNCTION   ( 0x01 )
+    #define GPIO_SECONDARY_MODULE_FUNCTION ( 0x02 )
+    #define GPIO_TERNARY_MODULE_FUNCTION   ( 0x03 )
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the edgeSelect parameter for
-// functions: GPIO_selectInterruptEdge().
-//
-//*****************************************************************************
-#define GPIO_HIGH_TO_LOW_TRANSITION                                      (0x01)
-#define GPIO_LOW_TO_HIGH_TRANSITION                                      (0x00)
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the edgeSelect parameter
+    // for functions: GPIO_selectInterruptEdge().
+    //
+    //*****************************************************************************
+    #define GPIO_HIGH_TO_LOW_TRANSITION    ( 0x01 )
+    #define GPIO_LOW_TO_HIGH_TRANSITION    ( 0x00 )
 
-//*****************************************************************************
-//
-// The following are values that can be passed toThe following are values that
-// can be returned by the GPIO_getInputPinValue() function.
-//
-//*****************************************************************************
-#define GPIO_INPUT_PIN_HIGH                                              (0x01)
-#define GPIO_INPUT_PIN_LOW                                               (0x00)
+    //*****************************************************************************
+    //
+    // The following are values that can be passed toThe following are values
+    // that can be returned by the GPIO_getInputPinValue() function.
+    //
+    //*****************************************************************************
+    #define GPIO_INPUT_PIN_HIGH            ( 0x01 )
+    #define GPIO_INPUT_PIN_LOW             ( 0x00 )
 
 //*****************************************************************************
 //
@@ -202,8 +203,7 @@ extern "C"
 //! \return None
 //
 //*****************************************************************************
-extern void GPIO_setAsOutputPin(uint8_t selectedPort,
-                                uint16_t selectedPins);
+extern void GPIO_setAsOutputPin( uint8_t selectedPort, uint16_t selectedPins );
 
 //*****************************************************************************
 //
@@ -256,8 +256,7 @@ extern void GPIO_setAsOutputPin(uint8_t selectedPort,
 //! \return None
 //
 //*****************************************************************************
-extern void GPIO_setAsInputPin(uint8_t selectedPort,
-                               uint16_t selectedPins);
+extern void GPIO_setAsInputPin( uint8_t selectedPort, uint16_t selectedPins );
 
 //*****************************************************************************
 //
@@ -319,9 +318,9 @@ extern void GPIO_setAsInputPin(uint8_t selectedPort,
 //! \return None
 //
 //*****************************************************************************
-extern void GPIO_setAsPeripheralModuleFunctionOutputPin(uint8_t selectedPort,
-                                                        uint16_t selectedPins,
-                                                        uint8_t mode);
+extern void GPIO_setAsPeripheralModuleFunctionOutputPin( uint8_t selectedPort,
+                                                         uint16_t selectedPins,
+                                                         uint8_t mode );
 
 //*****************************************************************************
 //
@@ -383,9 +382,9 @@ extern void GPIO_setAsPeripheralModuleFunctionOutputPin(uint8_t selectedPort,
 //! \return None
 //
 //*****************************************************************************
-extern void GPIO_setAsPeripheralModuleFunctionInputPin(uint8_t selectedPort,
-                                                       uint16_t selectedPins,
-                                                       uint8_t mode);
+extern void GPIO_setAsPeripheralModuleFunctionInputPin( uint8_t selectedPort,
+                                                        uint16_t selectedPins,
+                                                        uint8_t mode );
 
 //*****************************************************************************
 //
@@ -437,8 +436,8 @@ extern void GPIO_setAsPeripheralModuleFunctionInputPin(uint8_t selectedPort,
 //! \return None
 //
 //*****************************************************************************
-extern void GPIO_setOutputHighOnPin(uint8_t selectedPort,
-                                    uint16_t selectedPins);
+extern void GPIO_setOutputHighOnPin( uint8_t selectedPort,
+                                     uint16_t selectedPins );
 
 //*****************************************************************************
 //
@@ -490,8 +489,8 @@ extern void GPIO_setOutputHighOnPin(uint8_t selectedPort,
 //! \return None
 //
 //*****************************************************************************
-extern void GPIO_setOutputLowOnPin(uint8_t selectedPort,
-                                   uint16_t selectedPins);
+extern void GPIO_setOutputLowOnPin( uint8_t selectedPort,
+                                    uint16_t selectedPins );
 
 //*****************************************************************************
 //
@@ -543,8 +542,8 @@ extern void GPIO_setOutputLowOnPin(uint8_t selectedPort,
 //! \return None
 //
 //*****************************************************************************
-extern void GPIO_toggleOutputOnPin(uint8_t selectedPort,
-                                   uint16_t selectedPins);
+extern void GPIO_toggleOutputOnPin( uint8_t selectedPort,
+                                    uint16_t selectedPins );
 
 //*****************************************************************************
 //
@@ -598,8 +597,8 @@ extern void GPIO_toggleOutputOnPin(uint8_t selectedPort,
 //! \return None
 //
 //*****************************************************************************
-extern void GPIO_setAsInputPinWithPullDownResistor(uint8_t selectedPort,
-                                                   uint16_t selectedPins);
+extern void GPIO_setAsInputPinWithPullDownResistor( uint8_t selectedPort,
+                                                    uint16_t selectedPins );
 
 //*****************************************************************************
 //
@@ -653,8 +652,8 @@ extern void GPIO_setAsInputPinWithPullDownResistor(uint8_t selectedPort,
 //! \return None
 //
 //*****************************************************************************
-extern void GPIO_setAsInputPinWithPullUpResistor(uint8_t selectedPort,
-                                                 uint16_t selectedPins);
+extern void GPIO_setAsInputPinWithPullUpResistor( uint8_t selectedPort,
+                                                  uint16_t selectedPins );
 
 //*****************************************************************************
 //
@@ -707,8 +706,8 @@ extern void GPIO_setAsInputPinWithPullUpResistor(uint8_t selectedPort,
 //!         \n indicating the status of the pin
 //
 //*****************************************************************************
-extern uint8_t GPIO_getInputPinValue(uint8_t selectedPort,
-                                     uint16_t selectedPins);
+extern uint8_t GPIO_getInputPinValue( uint8_t selectedPort,
+                                      uint16_t selectedPins );
 
 //*****************************************************************************
 //
@@ -761,8 +760,7 @@ extern uint8_t GPIO_getInputPinValue(uint8_t selectedPort,
 //! \return None
 //
 //*****************************************************************************
-extern void GPIO_enableInterrupt(uint8_t selectedPort,
-                                 uint16_t selectedPins);
+extern void GPIO_enableInterrupt( uint8_t selectedPort, uint16_t selectedPins );
 
 //*****************************************************************************
 //
@@ -815,8 +813,8 @@ extern void GPIO_enableInterrupt(uint8_t selectedPort,
 //! \return None
 //
 //*****************************************************************************
-extern void GPIO_disableInterrupt(uint8_t selectedPort,
-                                  uint16_t selectedPins);
+extern void GPIO_disableInterrupt( uint8_t selectedPort,
+                                   uint16_t selectedPins );
 
 //*****************************************************************************
 //
@@ -885,8 +883,8 @@ extern void GPIO_disableInterrupt(uint8_t selectedPort,
 //!         0]
 //
 //*****************************************************************************
-extern uint16_t GPIO_getInterruptStatus(uint8_t selectedPort,
-                                        uint16_t selectedPins);
+extern uint16_t GPIO_getInterruptStatus( uint8_t selectedPort,
+                                         uint16_t selectedPins );
 
 //*****************************************************************************
 //
@@ -939,8 +937,7 @@ extern uint16_t GPIO_getInterruptStatus(uint8_t selectedPort,
 //! \return None
 //
 //*****************************************************************************
-extern void GPIO_clearInterrupt(uint8_t selectedPort,
-                                uint16_t selectedPins);
+extern void GPIO_clearInterrupt( uint8_t selectedPort, uint16_t selectedPins );
 
 //*****************************************************************************
 //
@@ -1000,18 +997,18 @@ extern void GPIO_clearInterrupt(uint8_t selectedPort,
 //! \return None
 //
 //*****************************************************************************
-extern void GPIO_selectInterruptEdge(uint8_t selectedPort,
-                                     uint16_t selectedPins,
-                                     uint8_t edgeSelect);
+extern void GPIO_selectInterruptEdge( uint8_t selectedPort,
+                                      uint16_t selectedPins,
+                                      uint8_t edgeSelect );
 
-//*****************************************************************************
-//
-// Mark the end of the C bindings section for C++ compilers.
-//
-//*****************************************************************************
-#ifdef __cplusplus
+    //*****************************************************************************
+    //
+    // Mark the end of the C bindings section for C++ compilers.
+    //
+    //*****************************************************************************
+    #ifdef __cplusplus
 }
-#endif
+    #endif
 
 #endif
 #endif // __MSP430WARE_GPIO_H__

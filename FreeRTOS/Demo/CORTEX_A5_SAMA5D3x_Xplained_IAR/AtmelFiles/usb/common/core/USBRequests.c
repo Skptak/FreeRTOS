@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
- *         ATMEL Microcontroller Software Support 
+ *         ATMEL Microcontroller Software Support
  * ----------------------------------------------------------------------------
  * Copyright (c) 2010, Atmel Corporation
  *
@@ -29,7 +29,7 @@
 
 /** \file
  *  \section Purpose
- * 
+ *
  *    Implements for USB requests described by the USB specification.
  */
 
@@ -40,7 +40,7 @@
 /*------------------------------------------------------------------------------
  *         Headers
  *------------------------------------------------------------------------------*/
-     
+
 #include <USBRequests.h>
 
 /*------------------------------------------------------------------------------
@@ -52,9 +52,9 @@
  * \param request Pointer to a USBGenericRequest instance.
  * \return "USB Request Types"
  */
-extern uint8_t USBGenericRequest_GetType(const USBGenericRequest *request)
+extern uint8_t USBGenericRequest_GetType( const USBGenericRequest * request )
 {
-    return ((request->bmRequestType >> 5) & 0x3);
+    return ( ( request->bmRequestType >> 5 ) & 0x3 );
 }
 
 /**
@@ -63,7 +63,7 @@ extern uint8_t USBGenericRequest_GetType(const USBGenericRequest *request)
  * \return Request code.
  * \sa "USB Request Codes"
  */
-uint8_t USBGenericRequest_GetRequest(const USBGenericRequest *request)
+uint8_t USBGenericRequest_GetRequest( const USBGenericRequest * request )
 {
     return request->bRequest;
 }
@@ -73,7 +73,7 @@ uint8_t USBGenericRequest_GetRequest(const USBGenericRequest *request)
  * \param request - Pointer to a USBGenericRequest instance.
  * \return Request value.
  */
-uint16_t USBGenericRequest_GetValue(const USBGenericRequest *request)
+uint16_t USBGenericRequest_GetValue( const USBGenericRequest * request )
 {
     return request->wValue;
 }
@@ -83,7 +83,7 @@ uint16_t USBGenericRequest_GetValue(const USBGenericRequest *request)
  * \param request Pointer to a USBGenericRequest instance.
  * \return Request index;
  */
-uint16_t USBGenericRequest_GetIndex(const USBGenericRequest *request)
+uint16_t USBGenericRequest_GetIndex( const USBGenericRequest * request )
 {
     return request->wIndex;
 }
@@ -93,7 +93,7 @@ uint16_t USBGenericRequest_GetIndex(const USBGenericRequest *request)
  * \param request Pointer to a USBGenericRequest instance.
  * \return Length of data phase.
  */
-uint16_t USBGenericRequest_GetLength(const USBGenericRequest *request)
+uint16_t USBGenericRequest_GetLength( const USBGenericRequest * request )
 {
     return request->wLength;
 }
@@ -103,10 +103,9 @@ uint16_t USBGenericRequest_GetLength(const USBGenericRequest *request)
  * \param request Pointer to a USBGenericRequest instance.
  * \return Endpoint number.
  */
-uint8_t USBGenericRequest_GetEndpointNumber(
-    const USBGenericRequest *request)
+uint8_t USBGenericRequest_GetEndpointNumber( const USBGenericRequest * request )
 {
-    return USBGenericRequest_GetIndex(request) & 0xF;
+    return USBGenericRequest_GetIndex( request ) & 0xF;
 }
 
 /**
@@ -115,7 +114,7 @@ uint8_t USBGenericRequest_GetEndpointNumber(
  * \return Request recipient.
  * \sa "USB Request Recipients"
  */
-uint8_t USBGenericRequest_GetRecipient(const USBGenericRequest *request)
+uint8_t USBGenericRequest_GetRecipient( const USBGenericRequest * request )
 {
     /* Recipient is in bits [0..4] of the bmRequestType field */
     return request->bmRequestType & 0xF;
@@ -127,19 +126,18 @@ uint8_t USBGenericRequest_GetRecipient(const USBGenericRequest *request)
  * \return Transfer direction.
  * \sa "USB Request Directions"
  */
-uint8_t USBGenericRequest_GetDirection(const USBGenericRequest *request)
+uint8_t USBGenericRequest_GetDirection( const USBGenericRequest * request )
 {
     /* Transfer direction is located in bit D7 of the bmRequestType field */
-    if ((request->bmRequestType & 0x80) != 0) {
-
+    if( ( request->bmRequestType & 0x80 ) != 0 )
+    {
         return USBGenericRequest_IN;
     }
-    else {
-
+    else
+    {
         return USBGenericRequest_OUT;
     }
 }
-
 
 /**
  * Returns the type of the descriptor requested by the host given the
@@ -148,10 +146,10 @@ uint8_t USBGenericRequest_GetDirection(const USBGenericRequest *request)
  * \return Type of the requested descriptor.
  */
 uint8_t USBGetDescriptorRequest_GetDescriptorType(
-    const USBGenericRequest *request)
+    const USBGenericRequest * request )
 {
     /* Requested descriptor type is in the high-byte of the wValue field */
-    return (USBGenericRequest_GetValue(request) >> 8) & 0xFF;
+    return ( USBGenericRequest_GetValue( request ) >> 8 ) & 0xFF;
 }
 
 /**
@@ -161,12 +159,11 @@ uint8_t USBGetDescriptorRequest_GetDescriptorType(
  * \return Index of the requested descriptor.
  */
 uint8_t USBGetDescriptorRequest_GetDescriptorIndex(
-    const USBGenericRequest *request)
+    const USBGenericRequest * request )
 {
     /* Requested descriptor index if in the low byte of the wValue field */
-    return USBGenericRequest_GetValue(request) & 0xFF;
+    return USBGenericRequest_GetValue( request ) & 0xFF;
 }
-
 
 /**
  * Returns the address that the device must take in response to a
@@ -174,11 +171,10 @@ uint8_t USBGetDescriptorRequest_GetDescriptorIndex(
  * \param request Pointer to a USBGenericRequest instance.
  * \return New device address.
  */
-uint8_t USBSetAddressRequest_GetAddress(const USBGenericRequest *request)
+uint8_t USBSetAddressRequest_GetAddress( const USBGenericRequest * request )
 {
-    return USBGenericRequest_GetValue(request) & 0x7F;
+    return USBGenericRequest_GetValue( request ) & 0x7F;
 }
-
 
 /**
  * Returns the number of the configuration that should be set in response
@@ -187,11 +183,10 @@ uint8_t USBSetAddressRequest_GetAddress(const USBGenericRequest *request)
  * \return Number of the requested configuration.
  */
 uint8_t USBSetConfigurationRequest_GetConfiguration(
-    const USBGenericRequest *request)
+    const USBGenericRequest * request )
 {
-    return USBGenericRequest_GetValue(request);
+    return USBGenericRequest_GetValue( request );
 }
-
 
 /**
  * Indicates which interface is targetted by a GET_INTERFACE or
@@ -199,9 +194,9 @@ uint8_t USBSetConfigurationRequest_GetConfiguration(
  * \param request Pointer to a USBGenericRequest instance.
  * \return Interface number.
  */
-uint8_t USBInterfaceRequest_GetInterface(const USBGenericRequest *request)
+uint8_t USBInterfaceRequest_GetInterface( const USBGenericRequest * request )
 {
-    return (USBGenericRequest_GetIndex(request) & 0xFF);
+    return ( USBGenericRequest_GetIndex( request ) & 0xFF );
 }
 
 /**
@@ -211,11 +206,10 @@ uint8_t USBInterfaceRequest_GetInterface(const USBGenericRequest *request)
  * \return New active setting for the interface.
  */
 uint8_t USBInterfaceRequest_GetAlternateSetting(
-    const USBGenericRequest *request)
+    const USBGenericRequest * request )
 {
-    return (USBGenericRequest_GetValue(request) & 0xFF);
+    return ( USBGenericRequest_GetValue( request ) & 0xFF );
 }
-
 
 /**
  *  Returns the feature selector of a given CLEAR_FEATURE or SET_FEATURE
@@ -223,10 +217,9 @@ uint8_t USBInterfaceRequest_GetAlternateSetting(
  *  \param request Pointer to a USBGenericRequest instance.
  *  \return Feature selector.
  */
-uint8_t USBFeatureRequest_GetFeatureSelector(
-    const USBGenericRequest *request)
+uint8_t USBFeatureRequest_GetFeatureSelector( const USBGenericRequest * request )
 {
-    return USBGenericRequest_GetValue(request);
+    return USBGenericRequest_GetValue( request );
 }
 
 /**
@@ -235,10 +228,9 @@ uint8_t USBFeatureRequest_GetFeatureSelector(
  *  \param request Pointer to a USBGenericRequest instance.
  *  \return Test selector.
  */
-uint8_t USBFeatureRequest_GetTestSelector(
-    const USBGenericRequest *request)
+uint8_t USBFeatureRequest_GetTestSelector( const USBGenericRequest * request )
 {
-    return (USBGenericRequest_GetIndex(request) >> 8) & 0xFF;
+    return ( USBGenericRequest_GetIndex( request ) >> 8 ) & 0xFF;
 }
 
 /**@}*/

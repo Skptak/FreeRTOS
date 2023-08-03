@@ -33,8 +33,8 @@
 // Prototypes.
 //
 //*****************************************************************************
-extern void CPUcpsid(void);
-extern void CPUcpsie(void);
-extern void CPUwfi(void);
+extern void CPUcpsid( void );
+extern void CPUcpsie( void );
+extern void CPUwfi( void );
 
 #endif // __CPU_H__

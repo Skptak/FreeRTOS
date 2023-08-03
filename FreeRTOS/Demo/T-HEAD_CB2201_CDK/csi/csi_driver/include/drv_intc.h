@@ -27,8 +27,8 @@
 extern "C" {
 #endif
 
-#include <stdint.h>
 #include <drv_common.h>
+#include <stdint.h>
 
 typedef enum int_trigger_mode_t
 {
@@ -43,77 +43,78 @@ typedef enum int_trigger_mode_t
   \brief   initialize the INTC interrupt controller
   \param [in]      prio_bits  the priority bits of INTC interrupt controller.
  */
-void csi_intc_init(void);
+void csi_intc_init( void );
 
 /**
   \brief   Enable External Interrupt
   \details Enables a device-specific interrupt in the INTC interrupt controller.
   \param [in]      IRQn  External interrupt number. Value cannot be negative.
  */
-void csi_intc_enable_irq(int32_t IRQn);
+void csi_intc_enable_irq( int32_t IRQn );
 
 /**
   \brief   Disable External Interrupt
-  \details Disables a device-specific interrupt in the INTC interrupt controller.
-  \param [in]      IRQn  External interrupt number. Value cannot be negative.
+  \details Disables a device-specific interrupt in the INTC interrupt
+  controller. \param [in]      IRQn  External interrupt number. Value cannot be
+  negative.
  */
-void csi_intc_disable_irq(int32_t IRQn);
+void csi_intc_disable_irq( int32_t IRQn );
 
 /**
   \brief   Get Pending Interrupt
-  \details Reads the pending register in the INTC and returns the pending bit for the specified interrupt.
-  \param [in]      IRQn  Interrupt number.
-  \return             0  Interrupt status is not pending.
-  \return             1  Interrupt status is pending.
+  \details Reads the pending register in the INTC and returns the pending bit
+  for the specified interrupt. \param [in]      IRQn  Interrupt number. \return
+  0  Interrupt status is not pending. \return             1  Interrupt status is
+  pending.
  */
-uint32_t csi_intc_get_pending_irq(int32_t IRQn);
+uint32_t csi_intc_get_pending_irq( int32_t IRQn );
 
 /**
   \brief   Set Pending Interrupt
   \details Sets the pending bit of an external interrupt.
   \param [in]      IRQn  Interrupt number. Value cannot be negative.
  */
-void csi_intc_set_pending_irq(int32_t IRQn);
+void csi_intc_set_pending_irq( int32_t IRQn );
 
 /**
   \brief   Clear Pending Interrupt
   \details Clears the pending bit of an external interrupt.
   \param [in]      IRQn  External interrupt number. Value cannot be negative.
  */
-void csi_intc_clear_pending_irq(int32_t IRQn);
+void csi_intc_clear_pending_irq( int32_t IRQn );
 
 /**
   \brief   Get Wake up Interrupt
-  \details Reads the wake up register in the INTC and returns the pending bit for the specified interrupt.
-  \param [in]      IRQn  Interrupt number.
-  \return             0  Interrupt is not set as wake up interrupt.
-  \return             1  Interrupt is set as wake up interrupt.
+  \details Reads the wake up register in the INTC and returns the pending bit
+  for the specified interrupt. \param [in]      IRQn  Interrupt number. \return
+  0  Interrupt is not set as wake up interrupt. \return             1  Interrupt
+  is set as wake up interrupt.
  */
-uint32_t csi_intc_get_wakeup_irq(int32_t IRQn);
+uint32_t csi_intc_get_wakeup_irq( int32_t IRQn );
 
 /**
   \brief   Set Wake up Interrupt
   \details Sets the wake up bit of an external interrupt.
   \param [in]      IRQn  Interrupt number. Value cannot be negative.
  */
-void csi_intc_set_wakeup_irq(int32_t IRQn);
+void csi_intc_set_wakeup_irq( int32_t IRQn );
 
 /**
   \brief   Clear Wake up Interrupt
   \details Clears the wake up bit of an external interrupt.
   \param [in]      IRQn  External interrupt number. Value cannot be negative.
  */
-void csi_intc_clear_wakeup_irq(int32_t IRQn);
+void csi_intc_clear_wakeup_irq( int32_t IRQn );
 
 /**
   \brief   Get Active Interrupt
-  \details Reads the active register in the INTC and returns the active bit for the device specific interrupt.
-  \param [in]      IRQn  Device specific interrupt number.
-  \return             0  Interrupt status is not active.
+  \details Reads the active register in the INTC and returns the active bit for
+  the device specific interrupt. \param [in]      IRQn  Device specific
+  interrupt number. \return             0  Interrupt status is not active.
   \return             1  Interrupt status is active.
   \note    IRQn must not be negative.
  */
-uint32_t csi_intc_get_active(int32_t IRQn);
+uint32_t csi_intc_get_active( int32_t IRQn );
 
 /**
   \brief   Set Threshold register
@@ -121,7 +122,7 @@ uint32_t csi_intc_get_active(int32_t IRQn);
   \param [in]      VectThreshold  specific vecter threshold.
   \param [in]      PrioThreshold  specific priority threshold.
  */
-void csi_intc_set_threshold(uint32_t VectThreshold, uint32_t PrioThreshold);
+void csi_intc_set_threshold( uint32_t VectThreshold, uint32_t PrioThreshold );
 
 /**
   \brief   Set Interrupt Priority
@@ -130,25 +131,26 @@ void csi_intc_set_threshold(uint32_t VectThreshold, uint32_t PrioThreshold);
   \param [in]      IRQn  Interrupt number.
   \param [in]  priority  Priority to set.
  */
-void csi_intc_set_prio(int32_t IRQn, uint32_t priority);
+void csi_intc_set_prio( int32_t IRQn, uint32_t priority );
 
 /**
   \brief   Get Interrupt Priority
   \details Reads the priority of an interrupt.
-           The interrupt number can be positive to specify an external (device specific) interrupt,
-           or negative to specify an internal (core) interrupt.
+           The interrupt number can be positive to specify an external (device
+  specific) interrupt, or negative to specify an internal (core) interrupt.
   \param [in]   IRQn  Interrupt number.
   \return             Interrupt Priority.
-                      Value is aligned automatically to the implemented priority bits of the microcontroller.
+                      Value is aligned automatically to the implemented priority
+  bits of the microcontroller.
  */
-uint32_t csi_intc_get_prio(int32_t IRQn);
+uint32_t csi_intc_get_prio( int32_t IRQn );
 
 /**
-  \brief  funciton is acknowledge the IRQ. this interface is internally used by irq system
-  \param[in]       irq         irq number to operate
-  \return          0 on success; -1 on failure
+  \brief  funciton is acknowledge the IRQ. this interface is internally used by
+  irq system \param[in]       irq         irq number to operate \return 0 on
+  success; -1 on failure
  */
-int csi_intc_ack_irq(int32_t IRQn);
+int csi_intc_ack_irq( int32_t IRQn );
 
 /**
   \briefThis function is set the attributes of an IRQ.
@@ -157,7 +159,8 @@ int csi_intc_ack_irq(int32_t IRQn);
   \param[in]	 trigger_mode	 interrupt trigger_mode
   \return 	 0 on success; -1 on failure
 */
-int csi_intc_set_attribute(int32_t IRQn, uint32_t priority,int_trigger_mode_t trigger_mode);
+int csi_intc_set_attribute( int32_t IRQn,
+                            uint32_t priority,
+                            int_trigger_mode_t trigger_mode );
 
 #endif /* _CSI_INTC_H_ */
-

@@ -42,14 +42,16 @@
  */
 
 /**
- * \page asfdoc_samd20_sercom_usart_basic_use_case Quick Start Guide for SERCOM USART - Basic
+ * \page asfdoc_samd20_sercom_usart_basic_use_case Quick Start Guide for SERCOM
+ * USART - Basic
  *
  * This quick start will echo back characters typed into the terminal. In this
  * use case the USART will be configured with the following settings:
  * - Asynchronous mode
  * - 9600 Baudrate
  * - 8-bits, No Parity and 1 Stop Bit
- * - TX and RX enabled and connected to the Xplained PRO Embedded Debugger virtual COM port
+ * - TX and RX enabled and connected to the Xplained PRO Embedded Debugger
+ * virtual COM port
  *
  * \section asfdoc_samd20_sercom_usart_basic_use_case_setup Setup
  *
@@ -77,8 +79,8 @@
  *  -# Create a USART module configuration struct, which can be filled out to
  *     adjust the configuration of a physical USART peripheral.
  *     \snippet qs_usart_basic_use.c setup_config
- *  -# Initialize the USART configuration struct with the module's default values.
- *     \note This should always be performed before using the configuration
+ *  -# Initialize the USART configuration struct with the module's default
+ * values. \note This should always be performed before using the configuration
  *           struct to ensure that all values are initialized to known default
  *           settings.
  *

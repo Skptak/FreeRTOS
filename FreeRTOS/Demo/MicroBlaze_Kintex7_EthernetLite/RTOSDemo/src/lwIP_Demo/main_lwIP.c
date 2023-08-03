@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -76,13 +77,13 @@
 
 /* The rate at which data is sent to the queue.  The 200ms value is converted
 to ticks using the portTICK_PERIOD_MS constant. */
-#define mainTIMER_PERIOD_MS			( pdMS_TO_TICKS( 200 ) )
+#define mainTIMER_PERIOD_MS ( pdMS_TO_TICKS( 200 ) )
 
 /* The LED toggled by the Rx task. */
-#define mainTIMER_LED				( 0 )
+#define mainTIMER_LED       ( 0 )
 
 /* A block time of zero just means "don't block". */
-#define mainDONT_BLOCK				( 0 )
+#define mainDONT_BLOCK      ( 0 )
 
 /*-----------------------------------------------------------*/
 
@@ -95,55 +96,56 @@ static void prvLEDToggleTimer( TimerHandle_t pxTimer );
 /*
  * Defined in lwIPApps.c.
  */
-extern void lwIPAppsInit( void *pvArguments );
+extern void lwIPAppsInit( void * pvArguments );
 
 /*-----------------------------------------------------------*/
 
 void main_lwIP( void )
 {
-TimerHandle_t xTimer;
+    TimerHandle_t xTimer;
 
-	/* Init lwIP and start lwIP tasks. */
-	tcpip_init( lwIPAppsInit, NULL );
+    /* Init lwIP and start lwIP tasks. */
+    tcpip_init( lwIPAppsInit, NULL );
 
-	/* A timer is used to toggle an LED just to show the application is
-	executing. */
-	xTimer = xTimerCreate( 	"LED", 					/* Text name to make debugging easier. */
-							mainTIMER_PERIOD_MS, 	/* The timer's period. */
-							pdTRUE,					/* This is an auto reload timer. */
-							NULL,					/* ID is not used. */
-							prvLEDToggleTimer );	/* The callback function. */
+    /* A timer is used to toggle an LED just to show the application is
+    executing. */
+    xTimer = xTimerCreate( "LED", /* Text name to make debugging easier. */
+                           mainTIMER_PERIOD_MS, /* The timer's period. */
+                           pdTRUE, /* This is an auto reload timer. */
+                           NULL,   /* ID is not used. */
+                           prvLEDToggleTimer ); /* The callback function. */
 
-	/* Start the timer. */
-	configASSERT( xTimer );
-	xTimerStart( xTimer, mainDONT_BLOCK );
+    /* Start the timer. */
+    configASSERT( xTimer );
+    xTimerStart( xTimer, mainDONT_BLOCK );
 
-	/* Start the tasks and timer running. */
-	vTaskStartScheduler();
+    /* Start the tasks and timer running. */
+    vTaskStartScheduler();
 
-	/* If all is well, the scheduler will now be running, and the following
-	line will never be reached.  If the following line does execute, then
-	there was insufficient FreeRTOS heap memory available for the Idle and/or
-	timer tasks to be created.  See the memory management section on the
-	FreeRTOS web site for more details on the FreeRTOS heap
-	http://www.freertos.org/a00111.html. */
-	for( ;; );
+    /* If all is well, the scheduler will now be running, and the following
+    line will never be reached.  If the following line does execute, then
+    there was insufficient FreeRTOS heap memory available for the Idle and/or
+    timer tasks to be created.  See the memory management section on the
+    FreeRTOS web site for more details on the FreeRTOS heap
+    http://www.freertos.org/a00111.html. */
+    for( ;; )
+        ;
 }
 /*-----------------------------------------------------------*/
 
 static void prvLEDToggleTimer( TimerHandle_t pxTimer )
 {
-	/* Prevent compiler warnings. */
-	( void ) pxTimer;
+    /* Prevent compiler warnings. */
+    ( void ) pxTimer;
 
-	/* Just toggle an LED to show the application is running. */
-	vParTestToggleLED( mainTIMER_LED );
+    /* Just toggle an LED to show the application is running. */
+    vParTestToggleLED( mainTIMER_LED );
 }
 
 /*-----------------------------------------------------------*/
 
-char *pcMainGetTaskStatusMessage( void )
+char * pcMainGetTaskStatusMessage( void )
 {
-	return "Running lwIP demo";
+    return "Running lwIP demo";
 }
 /*-----------------------------------------------------------*/

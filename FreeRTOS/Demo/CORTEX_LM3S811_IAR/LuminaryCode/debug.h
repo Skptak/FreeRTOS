@@ -34,7 +34,7 @@
 // to an API.  This is only used when doing a DEBUG build.
 //
 //*****************************************************************************
-extern void __error__(char *pcFilename, unsigned long ulLine);
+extern void __error__( char * pcFilename, unsigned long ulLine );
 
 //*****************************************************************************
 //
@@ -43,14 +43,15 @@ extern void __error__(char *pcFilename, unsigned long ulLine);
 //
 //*****************************************************************************
 #ifdef DEBUG
-#define ASSERT(expr) {                                      \
-                         if(!(expr))                        \
-                         {                                  \
-                             __error__(__FILE__, __LINE__); \
-                         }                                  \
-                     }
+    #define ASSERT( expr )                       \
+        {                                        \
+            if( !( expr ) )                      \
+            {                                    \
+                __error__( __FILE__, __LINE__ ); \
+            }                                    \
+        }
 #else
-#define ASSERT(expr)
+    #define ASSERT( expr )
 #endif
 
 #endif // __DEBUG_H__

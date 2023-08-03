@@ -39,19 +39,27 @@
  *
  */
 /*
- * Support and FAQ: visit <a href="http://www.atmel.com/design-support/">Atmel Support</a>
+ * Support and FAQ: visit <a href="http://www.atmel.com/design-support/">Atmel
+ * Support</a>
  */
 
 #ifndef _SAME70_UTMI_INSTANCE_
 #define _SAME70_UTMI_INSTANCE_
 
 /* ========== Register definition for UTMI peripheral ========== */
-#if (defined(__ASSEMBLY__) || defined(__IAR_SYSTEMS_ASM__))
-  #define REG_UTMI_OHCIICR                  (0x400E0410U) /**< \brief (UTMI) OHCI Interrupt Configuration Register */
-  #define REG_UTMI_CKTRIM                   (0x400E0430U) /**< \brief (UTMI) UTMI Clock Trimming Register */
+#if( defined( __ASSEMBLY__ ) || defined( __IAR_SYSTEMS_ASM__ ) )
+    #define REG_UTMI_OHCIICR                                            \
+        ( 0x400E0410U ) /**< \brief (UTMI) OHCI Interrupt Configuration \
+                           Register */
+    #define REG_UTMI_CKTRIM \
+        ( 0x400E0430U ) /**< \brief (UTMI) UTMI Clock Trimming Register */
 #else
-  #define REG_UTMI_OHCIICR (*(__IO uint32_t*)0x400E0410U) /**< \brief (UTMI) OHCI Interrupt Configuration Register */
-  #define REG_UTMI_CKTRIM  (*(__IO uint32_t*)0x400E0430U) /**< \brief (UTMI) UTMI Clock Trimming Register */
+    #define REG_UTMI_OHCIICR                                                   \
+        ( *( __IO uint32_t * ) 0x400E0410U ) /**< \brief (UTMI) OHCI Interrupt \
+                                                Configuration Register */
+    #define REG_UTMI_CKTRIM                                                \
+        ( *( __IO uint32_t * ) 0x400E0430U ) /**< \brief (UTMI) UTMI Clock \
+                                                Trimming Register */
 #endif /* (defined(__ASSEMBLY__) || defined(__IAR_SYSTEMS_ASM__)) */
 
 #endif /* _SAME70_UTMI_INSTANCE_ */

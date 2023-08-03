@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
- *         ATMEL Microcontroller Software Support 
+ *         ATMEL Microcontroller Software Support
  * ----------------------------------------------------------------------------
  * Copyright (c) 2008, Atmel Corporation
  *
@@ -32,9 +32,9 @@
 //------------------------------------------------------------------------------
 
 #include "dbgu.h"
-#include <stdarg.h>
 #include <board.h>
-            
+#include <stdarg.h>
+
 //------------------------------------------------------------------------------
 //      Exported functions
 //------------------------------------------------------------------------------
@@ -45,20 +45,20 @@
 /// \param baudrate  Desired baudrate.
 /// \param mck  Frequency of the system master clock.
 //------------------------------------------------------------------------------
-void DBGU_Configure(unsigned int mode,
-                           unsigned int baudrate,
-                           unsigned int mck)
-{   
+void DBGU_Configure( unsigned int mode,
+                     unsigned int baudrate,
+                     unsigned int mck )
+{
     // Reset & disable receiver and transmitter, disable interrupts
     AT91C_BASE_DBGU->DBGU_CR = AT91C_US_RSTRX | AT91C_US_RSTTX;
     AT91C_BASE_DBGU->DBGU_IDR = 0xFFFFFFFF;
-    
+
     // Configure baud rate
-    AT91C_BASE_DBGU->DBGU_BRGR = mck / (baudrate * 16);
-    
+    AT91C_BASE_DBGU->DBGU_BRGR = mck / ( baudrate * 16 );
+
     // Configure mode register
     AT91C_BASE_DBGU->DBGU_MR = mode;
-    
+
     // Disable DMA channel
     AT91C_BASE_DBGU->DBGU_PTCR = AT91C_PDC_RXTDIS | AT91C_PDC_TXTDIS;
 
@@ -70,16 +70,18 @@ void DBGU_Configure(unsigned int mode,
 /// Outputs a character on the DBGU line.
 /// \param c  Character to send.
 //------------------------------------------------------------------------------
-static void DBGU_PutChar(unsigned char c)
+static void DBGU_PutChar( unsigned char c )
 {
     // Wait for the transmitter to be ready
-    while ((AT91C_BASE_DBGU->DBGU_CSR & AT91C_US_TXEMPTY) == 0);
-    
+    while( ( AT91C_BASE_DBGU->DBGU_CSR & AT91C_US_TXEMPTY ) == 0 )
+        ;
+
     // Send character
     AT91C_BASE_DBGU->DBGU_THR = c;
-    
+
     // Wait for the transfer to complete
-    while ((AT91C_BASE_DBGU->DBGU_CSR & AT91C_US_TXEMPTY) == 0);
+    while( ( AT91C_BASE_DBGU->DBGU_CSR & AT91C_US_TXEMPTY ) == 0 )
+        ;
 }
 
 //------------------------------------------------------------------------------
@@ -87,13 +89,14 @@ static void DBGU_PutChar(unsigned char c)
 //------------------------------------------------------------------------------
 unsigned char DBGU_GetChar()
 {
-    while ((AT91C_BASE_DBGU->DBGU_CSR & AT91C_US_RXRDY) == 0);
+    while( ( AT91C_BASE_DBGU->DBGU_CSR & AT91C_US_RXRDY ) == 0 )
+        ;
     return AT91C_BASE_DBGU->DBGU_RHR;
 }
 
 #ifndef NOFPUT
 
-#include <stdio.h>
+    #include <stdio.h>
 
 //------------------------------------------------------------------------------
 /// Implementation of fputc using the DBGU as the standard output. Required
@@ -103,15 +106,15 @@ unsigned char DBGU_GetChar()
 /// \param c  Character to write.
 /// \param pStream  Output stream.
 //------------------------------------------------------------------------------
-signed int fputc(signed int c, FILE *pStream)
+signed int fputc( signed int c, FILE * pStream )
 {
-    if ((pStream == stdout) || (pStream == stderr)) {
-    
-        DBGU_PutChar(c);
+    if( ( pStream == stdout ) || ( pStream == stderr ) )
+    {
+        DBGU_PutChar( c );
         return c;
     }
-    else {
-
+    else
+    {
         return EOF;
     }
 }
@@ -124,14 +127,14 @@ signed int fputc(signed int c, FILE *pStream)
 /// \param pStr  String to write.
 /// \param pStream  Output stream.
 //------------------------------------------------------------------------------
-signed int fputs(const char *pStr, FILE *pStream)
+signed int fputs( const char * pStr, FILE * pStream )
 {
     signed int num = 0;
 
-    while (*pStr != 0) {
-
-        if (fputc(*pStr, pStream) == -1) {
-
+    while( *pStr != 0 )
+    {
+        if( fputc( *pStr, pStream ) == -1 )
+        {
             return -1;
         }
         num++;
@@ -141,16 +144,15 @@ signed int fputs(const char *pStr, FILE *pStream)
     return num;
 }
 
-#undef putchar
+    #undef putchar
 
 //------------------------------------------------------------------------------
 /// Outputs a character on the DBGU. Returns the character itself.
 /// \param c  Character to output.
 //------------------------------------------------------------------------------
-signed int putchar(signed int c)
+signed int putchar( signed int c )
 {
-    return fputc(c, stdout);
+    return fputc( c, stdout );
 }
 
-#endif //#ifndef NOFPUT
-
+#endif // #ifndef NOFPUT

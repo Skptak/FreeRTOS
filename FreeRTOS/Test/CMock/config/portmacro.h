@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -52,7 +53,7 @@
 
 /* *INDENT-OFF* */
 #ifdef __cplusplus
-    extern "C" {
+extern "C" {
 #endif
 /* *INDENT-ON* */
 
@@ -69,35 +70,35 @@
 #include <stdint.h>
 
 /* Type definitions. */
-#define portCHAR          char
-#define portFLOAT         float
-#define portDOUBLE        double
-#define portLONG          long
-#define portSHORT         short
-#define portSTACK_TYPE    uint32_t
-#define portBASE_TYPE     long
+#define portCHAR       char
+#define portFLOAT      float
+#define portDOUBLE     double
+#define portLONG       long
+#define portSHORT      short
+#define portSTACK_TYPE uint32_t
+#define portBASE_TYPE  long
 
-typedef portSTACK_TYPE   StackType_t;
-typedef long             BaseType_t;
-typedef unsigned long    UBaseType_t;
+typedef portSTACK_TYPE StackType_t;
+typedef long BaseType_t;
+typedef unsigned long UBaseType_t;
 
-#if ( configUSE_16_BIT_TICKS == 1 )
-    typedef uint16_t     TickType_t;
-    #define portMAX_DELAY        ( TickType_t ) 0xffff
+#if( configUSE_16_BIT_TICKS == 1 )
+typedef uint16_t TickType_t;
+    #define portMAX_DELAY ( TickType_t ) 0xffff
 #else
-    typedef uint32_t     TickType_t;
-    #define portMAX_DELAY        ( TickType_t ) 0xffffffffUL
+typedef uint32_t TickType_t;
+    #define portMAX_DELAY ( TickType_t ) 0xffffffffUL
 #endif
-#define portPOINTER_SIZE_TYPE    uint64_t
+#define portPOINTER_SIZE_TYPE uint64_t
 /*-----------------------------------------------------------*/
 
 /* Requires definition of UBaseType_t */
 #include "fake_port.h"
 
 /* Hardware specifics. */
-#define portTICK_PERIOD_MS    ( ( TickType_t ) 1000 / configTICK_RATE_HZ )
-#define portBYTE_ALIGNMENT    8
-#define portNOP()    __asm volatile ( "NOP" )
+#define portTICK_PERIOD_MS ( ( TickType_t ) 1000 / configTICK_RATE_HZ )
+#define portBYTE_ALIGNMENT 8
+#define portNOP()          __asm volatile( "NOP" )
 
 /*
  * These define the timer to use for generating the tick interrupt.
@@ -123,46 +124,47 @@ typedef unsigned long    UBaseType_t;
 /*-----------------------------------------------------------*/
 
 #define portSAVE_CONTEXT()
-#define portYIELD()                            vFakePortYield()
-#define portYIELD_WITHIN_API()                 vFakePortYieldWithinAPI()
-#define portYIELD_FROM_ISR()                   vFakePortYieldFromISR()
+#define portYIELD()              vFakePortYield()
+#define portYIELD_WITHIN_API()   vFakePortYieldWithinAPI()
+#define portYIELD_FROM_ISR()     vFakePortYieldFromISR()
 
 /* Critical section handling. */
-#define portDISABLE_INTERRUPTS()               vFakePortDisableInterrupts()
-#define portENABLE_INTERRUPTS()                vFakePortEnableInterrupts()
+#define portDISABLE_INTERRUPTS() vFakePortDisableInterrupts()
+#define portENABLE_INTERRUPTS()  vFakePortEnableInterrupts()
 #define portCLEAR_INTERRUPT_MASK_FROM_ISR( x ) \
     vFakePortClearInterruptMaskFromISR( x )
-#define portSET_INTERRUPT_MASK_FROM_ISR() \
-    ulFakePortSetInterruptMaskFromISR()
-#define portSET_INTERRUPT_MASK()               ulFakePortSetInterruptMask()
-#define portCLEAR_INTERRUPT_MASK( x )          vFakePortClearInterruptMask( x )
+#define portSET_INTERRUPT_MASK_FROM_ISR() ulFakePortSetInterruptMaskFromISR()
+#define portSET_INTERRUPT_MASK()          ulFakePortSetInterruptMask()
+#define portCLEAR_INTERRUPT_MASK( x )     vFakePortClearInterruptMask( x )
 #define portASSERT_IF_INTERRUPT_PRIORITY_INVALID() \
     vFakePortAssertIfInterruptPriorityInvalid()
-#define portENTER_CRITICAL()                   vFakePortEnterCriticalSection()
-#define portEXIT_CRITICAL()                    vFakePortExitCriticalSection()
+#define portENTER_CRITICAL() vFakePortEnterCriticalSection()
+#define portEXIT_CRITICAL()  vFakePortExitCriticalSection()
 
 #define portPRE_TASK_DELETE_HOOK( pvTaskToDelete, pxPendYield ) \
     vPortCurrentTaskDying( ( pvTaskToDelete ), ( pxPendYield ) )
-#define portSETUP_TCB( pxTCB )                 portSetupTCB_CB( pxTCB );
-#define  portASSERT_IF_IN_ISR()                vFakePortAssertIfISR();
+#define portSETUP_TCB( pxTCB ) portSetupTCB_CB( pxTCB );
+#define portASSERT_IF_IN_ISR() vFakePortAssertIfISR();
 
-#define ucPortCountLeadingZeros( ulBitmap )    ( ( uint8_t ) __builtin_clz( ulBitmap ) )
+#define ucPortCountLeadingZeros( ulBitmap ) \
+    ( ( uint8_t ) __builtin_clz( ulBitmap ) )
 
 #define portRECORD_READY_PRIORITY( uxPriority, uxReadyPriorities ) \
     ( uxReadyPriorities ) |= ( 1UL << ( uxPriority ) )
 #define portRESET_READY_PRIORITY( uxPriority, uxReadyPriorities ) \
     ( uxReadyPriorities ) &= ~( 1UL << ( uxPriority ) )
 #define portGET_HIGHEST_PRIORITY( uxTopPriority, uxReadyPriorities ) \
-    uxTopPriority = ( 31UL - ( uint32_t ) ucPortCountLeadingZeros( ( uxReadyPriorities ) ) )
+    uxTopPriority = ( 31UL - ( uint32_t ) ucPortCountLeadingZeros(   \
+                                 ( uxReadyPriorities ) ) )
 
 /* Task function macros as described on the FreeRTOS.org WEB site. */
 #define portTASK_FUNCTION_PROTO( vFunction, pvParameters ) \
     volatile int fool_static = 0;                          \
-    void vFunction( void * ( pvParameters ) )
+    void vFunction( void *( pvParameters ) )
 
 #define portTASK_FUNCTION( vFunction, pvParameters ) \
     volatile int fool_static2 = 0;                   \
-    void vFunction( void * ( pvParameters ) )
+    void vFunction( void *( pvParameters ) )
 
 /* We need to define it here because CMock does not recognize the
  * #if ( portUSING_MPU_WRAPPERS == 1 ) guard around xTaskGetMPUSettings
@@ -177,7 +179,7 @@ typedef struct MPU_SETTINGS
 
 /* *INDENT-OFF* */
 #ifdef __cplusplus
-    }
+}
 #endif
 /* *INDENT-ON* */
 #endif /* PORTMACRO_H */

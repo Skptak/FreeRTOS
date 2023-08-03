@@ -18,37 +18,37 @@ SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY, THAT YOU HAVE PAID DIRECTLY
 TO MICROCHIP FOR THIS SOFTWARE.
 */
 
-#include <ioavr.h>
 #include "FreeRTOS.h"
 #include "clk_config.h"
+#include <ioavr.h>
 
-#define mainSELECTED_APPLICATION    0
+#define mainSELECTED_APPLICATION 0
 
 /* Configure the hardware as necessary to run this demo. */
 static void prvSetupHardware( void );
 
-#if ( mainSELECTED_APPLICATION == 0 )
+#if( mainSELECTED_APPLICATION == 0 )
 extern void main_blinky( void );
 extern void init_blinky( void );
-#elif ( mainSELECTED_APPLICATION == 1 )
+#elif( mainSELECTED_APPLICATION == 1 )
 extern void main_minimal( void );
 extern void init_minimal( void );
-#elif ( mainSELECTED_APPLICATION == 2 )
+#elif( mainSELECTED_APPLICATION == 2 )
 extern void main_full( void );
 extern void init_full( void );
 #else
-#error Invalid mainSELECTED_APPLICATION setting. See the comments at the top of this file and above the mainSELECTED_APPLICATION definition.
+    #error Invalid mainSELECTED_APPLICATION setting. See the comments at the top of this file and above the mainSELECTED_APPLICATION definition.
 #endif
 
 int main( void )
 {
     prvSetupHardware();
 
-#if ( mainSELECTED_APPLICATION == 0 )
+#if( mainSELECTED_APPLICATION == 0 )
     main_blinky();
-#elif ( mainSELECTED_APPLICATION == 1 )
+#elif( mainSELECTED_APPLICATION == 1 )
     main_minimal();
-#elif ( mainSELECTED_APPLICATION == 2 )
+#elif( mainSELECTED_APPLICATION == 2 )
     main_full();
 #endif
 
@@ -64,11 +64,11 @@ static void prvSetupHardware( void )
 
     CLK_init();
 
-#if ( mainSELECTED_APPLICATION == 0 )
+#if( mainSELECTED_APPLICATION == 0 )
     init_blinky();
-#elif ( mainSELECTED_APPLICATION == 1 )
+#elif( mainSELECTED_APPLICATION == 1 )
     init_minimal();
-#elif ( mainSELECTED_APPLICATION == 2 )
+#elif( mainSELECTED_APPLICATION == 2 )
     init_full();
 #endif
 }

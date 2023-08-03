@@ -29,8 +29,7 @@
 #define __DIAG_H__
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 //*****************************************************************************
@@ -39,26 +38,28 @@ extern "C"
 // DiagWrite.
 //
 //*****************************************************************************
-#define OPEN_R                  0           // read access
-#define OPEN_W                  4           // write access
-#define OPEN_A                  8           // append to file
-#define OPEN_B                  1           // binary access
-#define OPEN_PLUS               2           // read and write access
+#define OPEN_R    0 // read access
+#define OPEN_W    4 // write access
+#define OPEN_A    8 // append to file
+#define OPEN_B    1 // binary access
+#define OPEN_PLUS 2 // read and write access
 
 //*****************************************************************************
 //
 // Prototypes for the APIs.
 //
 //*****************************************************************************
-extern int DiagOpenStdio(void);
-extern int DiagOpen(const char *pcName, int iMode);
-extern int DiagClose(int iHandle);
-extern int DiagWrite(int iHandle, const char *pcBuf, unsigned long ulLen,
-                     int iMode);
-extern int DiagRead(int iHandle, char *pcBuf, unsigned long ulLen, int iMode);
-extern long DiagFlen(int iHandle);
-extern void DiagExit(int iRet);
-extern char *DiagCommandString(char *pcBuf, unsigned long ulLen);
+extern int DiagOpenStdio( void );
+extern int DiagOpen( const char * pcName, int iMode );
+extern int DiagClose( int iHandle );
+extern int DiagWrite( int iHandle,
+                      const char * pcBuf,
+                      unsigned long ulLen,
+                      int iMode );
+extern int DiagRead( int iHandle, char * pcBuf, unsigned long ulLen, int iMode );
+extern long DiagFlen( int iHandle );
+extern void DiagExit( int iRet );
+extern char * DiagCommandString( char * pcBuf, unsigned long ulLen );
 
 #ifdef __cplusplus
 }

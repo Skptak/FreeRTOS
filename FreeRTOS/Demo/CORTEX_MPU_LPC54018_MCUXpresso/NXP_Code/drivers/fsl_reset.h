@@ -10,11 +10,11 @@
 #ifndef _FSL_RESET_H_
 #define _FSL_RESET_H_
 
+#include "fsl_device_registers.h"
 #include <assert.h>
 #include <stdbool.h>
 #include <stdint.h>
 #include <string.h>
-#include "fsl_device_registers.h"
 
 /*! @addtogroup reset */
 /*! @{ */
@@ -28,69 +28,85 @@
 /*! @name Driver version */
 /*@{*/
 /*! @brief reset driver version 2.0.1. */
-#define FSL_RESET_DRIVER_VERSION (MAKE_VERSION(2, 0, 1))
+#define FSL_RESET_DRIVER_VERSION ( MAKE_VERSION( 2, 0, 1 ) )
 /*@}*/
 
 /*!
  * @brief Enumeration for peripheral reset control bits
  *
- * Defines the enumeration for peripheral reset control bits in PRESETCTRL/ASYNCPRESETCTRL registers
+ * Defines the enumeration for peripheral reset control bits in
+ * PRESETCTRL/ASYNCPRESETCTRL registers
  */
 typedef enum _SYSCON_RSTn
 {
-    kSPIFI_RST_SHIFT_RSTn = 0 | 10U,         /**< SPIFI reset control */
-    kMUX_RST_SHIFT_RSTn = 0 | 11U,           /**< Input mux reset control */
-    kIOCON_RST_SHIFT_RSTn = 0 | 13U,         /**< IOCON reset control */
-    kGPIO0_RST_SHIFT_RSTn = 0 | 14U,         /**< GPIO0 reset control */
-    kGPIO1_RST_SHIFT_RSTn = 0 | 15U,         /**< GPIO1 reset control */
-    kGPIO2_RST_SHIFT_RSTn = 0 | 16U,         /**< GPIO2 reset control */
-    kGPIO3_RST_SHIFT_RSTn = 0 | 17U,         /**< GPIO3 reset control */
-    kPINT_RST_SHIFT_RSTn = 0 | 18U,          /**< Pin interrupt (PINT) reset control */
-    kGINT_RST_SHIFT_RSTn = 0 | 19U,          /**< Grouped interrupt (PINT) reset control. */
-    kDMA_RST_SHIFT_RSTn = 0 | 20U,           /**< DMA reset control */
-    kCRC_RST_SHIFT_RSTn = 0 | 21U,           /**< CRC reset control */
-    kWWDT_RST_SHIFT_RSTn = 0 | 22U,          /**< Watchdog timer reset control */
-    kADC0_RST_SHIFT_RSTn = 0 | 27U,          /**< ADC0 reset control */
+    kSPIFI_RST_SHIFT_RSTn = 0 | 10U, /**< SPIFI reset control */
+    kMUX_RST_SHIFT_RSTn = 0 | 11U,   /**< Input mux reset control */
+    kIOCON_RST_SHIFT_RSTn = 0 | 13U, /**< IOCON reset control */
+    kGPIO0_RST_SHIFT_RSTn = 0 | 14U, /**< GPIO0 reset control */
+    kGPIO1_RST_SHIFT_RSTn = 0 | 15U, /**< GPIO1 reset control */
+    kGPIO2_RST_SHIFT_RSTn = 0 | 16U, /**< GPIO2 reset control */
+    kGPIO3_RST_SHIFT_RSTn = 0 | 17U, /**< GPIO3 reset control */
+    kPINT_RST_SHIFT_RSTn = 0 | 18U,  /**< Pin interrupt (PINT) reset control */
+    kGINT_RST_SHIFT_RSTn = 0 |
+                           19U, /**< Grouped interrupt (PINT) reset control. */
+    kDMA_RST_SHIFT_RSTn = 0 | 20U,  /**< DMA reset control */
+    kCRC_RST_SHIFT_RSTn = 0 | 21U,  /**< CRC reset control */
+    kWWDT_RST_SHIFT_RSTn = 0 | 22U, /**< Watchdog timer reset control */
+    kADC0_RST_SHIFT_RSTn = 0 | 27U, /**< ADC0 reset control */
 
-    kMRT_RST_SHIFT_RSTn = 65536 | 0U,        /**< Multi-rate timer (MRT) reset control */
-    kSCT0_RST_SHIFT_RSTn = 65536 | 2U,       /**< SCTimer/PWM 0 (SCT0) reset control */
-    kMCAN0_RST_SHIFT_RSTn = 65536 | 7U,      /**< MCAN0 reset control */
-    kMCAN1_RST_SHIFT_RSTn = 65536 | 8U,      /**< MCAN1 reset control */
-    kUTICK_RST_SHIFT_RSTn = 65536 | 10U,     /**< Micro-tick timer reset control */
-    kFC0_RST_SHIFT_RSTn = 65536 | 11U,       /**< Flexcomm Interface 0 reset control */
-    kFC1_RST_SHIFT_RSTn = 65536 | 12U,       /**< Flexcomm Interface 1 reset control */
-    kFC2_RST_SHIFT_RSTn = 65536 | 13U,       /**< Flexcomm Interface 2 reset control */
-    kFC3_RST_SHIFT_RSTn = 65536 | 14U,       /**< Flexcomm Interface 3 reset control */
-    kFC4_RST_SHIFT_RSTn = 65536 | 15U,       /**< Flexcomm Interface 4 reset control */
-    kFC5_RST_SHIFT_RSTn = 65536 | 16U,       /**< Flexcomm Interface 5 reset control */
-    kFC6_RST_SHIFT_RSTn = 65536 | 17U,       /**< Flexcomm Interface 6 reset control */
-    kFC7_RST_SHIFT_RSTn = 65536 | 18U,       /**< Flexcomm Interface 7 reset control */
-    kDMIC_RST_SHIFT_RSTn = 65536 | 19U,      /**< Digital microphone interface reset control */
-    kCT32B2_RST_SHIFT_RSTn = 65536 | 22U,    /**< CT32B2 reset control */
-    kUSB0D_RST_SHIFT_RSTn = 65536 | 25U,     /**< USB0D reset control */
-    kCT32B0_RST_SHIFT_RSTn = 65536 | 26U,    /**< CT32B0 reset control */
-    kCT32B1_RST_SHIFT_RSTn = 65536 | 27U,    /**< CT32B1 reset control */
+    kMRT_RST_SHIFT_RSTn = 65536 |
+                          0U, /**< Multi-rate timer (MRT) reset control */
+    kSCT0_RST_SHIFT_RSTn = 65536 |
+                           2U, /**< SCTimer/PWM 0 (SCT0) reset control */
+    kMCAN0_RST_SHIFT_RSTn = 65536 | 7U,  /**< MCAN0 reset control */
+    kMCAN1_RST_SHIFT_RSTn = 65536 | 8U,  /**< MCAN1 reset control */
+    kUTICK_RST_SHIFT_RSTn = 65536 | 10U, /**< Micro-tick timer reset control */
+    kFC0_RST_SHIFT_RSTn = 65536 |
+                          11U, /**< Flexcomm Interface 0 reset control */
+    kFC1_RST_SHIFT_RSTn = 65536 |
+                          12U, /**< Flexcomm Interface 1 reset control */
+    kFC2_RST_SHIFT_RSTn = 65536 |
+                          13U, /**< Flexcomm Interface 2 reset control */
+    kFC3_RST_SHIFT_RSTn = 65536 |
+                          14U, /**< Flexcomm Interface 3 reset control */
+    kFC4_RST_SHIFT_RSTn = 65536 |
+                          15U, /**< Flexcomm Interface 4 reset control */
+    kFC5_RST_SHIFT_RSTn = 65536 |
+                          16U, /**< Flexcomm Interface 5 reset control */
+    kFC6_RST_SHIFT_RSTn = 65536 |
+                          17U, /**< Flexcomm Interface 6 reset control */
+    kFC7_RST_SHIFT_RSTn = 65536 |
+                          18U, /**< Flexcomm Interface 7 reset control */
+    kDMIC_RST_SHIFT_RSTn = 65536 | 19U, /**< Digital microphone interface reset
+                                           control */
+    kCT32B2_RST_SHIFT_RSTn = 65536 | 22U, /**< CT32B2 reset control */
+    kUSB0D_RST_SHIFT_RSTn = 65536 | 25U,  /**< USB0D reset control */
+    kCT32B0_RST_SHIFT_RSTn = 65536 | 26U, /**< CT32B0 reset control */
+    kCT32B1_RST_SHIFT_RSTn = 65536 | 27U, /**< CT32B1 reset control */
 
-    kLCD_RST_SHIFT_RSTn = 131072 | 2U,       /**< LCD reset control */
-    kSDIO_RST_SHIFT_RSTn = 131072 | 3U,      /**< SDIO reset control */
-    kUSB1H_RST_SHIFT_RSTn = 131072 | 4U,     /**< USB1H reset control */
-    kUSB1D_RST_SHIFT_RSTn = 131072 | 5U,     /**< USB1D reset control */
-    kUSB1RAM_RST_SHIFT_RSTn = 131072 | 6U,   /**< USB1RAM reset control */
-    kEMC_RST_SHIFT_RSTn = 131072 | 7U,       /**< EMC reset control */
-    kETH_RST_SHIFT_RSTn = 131072 | 8U,       /**< ETH reset control */
-    kGPIO4_RST_SHIFT_RSTn = 131072 | 9U,     /**< GPIO4 reset control */
-    kGPIO5_RST_SHIFT_RSTn = 131072 | 10U,    /**< GPIO5 reset control */
-    kAES_RST_SHIFT_RSTn = 131072 | 11U,      /**< AES reset control */
-    kOTP_RST_SHIFT_RSTn = 131072 | 12U,      /**< OTP reset control */
-    kRNG_RST_SHIFT_RSTn = 131072 | 13U,      /**< RNG  reset control */
-    kFC8_RST_SHIFT_RSTn = 131072 | 14U,      /**< Flexcomm Interface 8 reset control */
-    kFC9_RST_SHIFT_RSTn = 131072 | 15U,      /**< Flexcomm Interface 9 reset control */
-    kUSB0HMR_RST_SHIFT_RSTn = 131072 | 16U,  /**< USB0HMR reset control */
-    kUSB0HSL_RST_SHIFT_RSTn = 131072 | 17U,  /**< USB0HSL reset control */
-    kSHA_RST_SHIFT_RSTn = 131072 | 18U,      /**< SHA reset control */
-    kSC0_RST_SHIFT_RSTn = 131072 | 19U,      /**< SC0 reset control */
-    kSC1_RST_SHIFT_RSTn = 131072 | 20U,      /**< SC1 reset control */
-    kFC10_RST_SHIFT_RSTn = 131072 | 21U,     /**< Flexcomm Interface 10 reset control */
+    kLCD_RST_SHIFT_RSTn = 131072 | 2U,     /**< LCD reset control */
+    kSDIO_RST_SHIFT_RSTn = 131072 | 3U,    /**< SDIO reset control */
+    kUSB1H_RST_SHIFT_RSTn = 131072 | 4U,   /**< USB1H reset control */
+    kUSB1D_RST_SHIFT_RSTn = 131072 | 5U,   /**< USB1D reset control */
+    kUSB1RAM_RST_SHIFT_RSTn = 131072 | 6U, /**< USB1RAM reset control */
+    kEMC_RST_SHIFT_RSTn = 131072 | 7U,     /**< EMC reset control */
+    kETH_RST_SHIFT_RSTn = 131072 | 8U,     /**< ETH reset control */
+    kGPIO4_RST_SHIFT_RSTn = 131072 | 9U,   /**< GPIO4 reset control */
+    kGPIO5_RST_SHIFT_RSTn = 131072 | 10U,  /**< GPIO5 reset control */
+    kAES_RST_SHIFT_RSTn = 131072 | 11U,    /**< AES reset control */
+    kOTP_RST_SHIFT_RSTn = 131072 | 12U,    /**< OTP reset control */
+    kRNG_RST_SHIFT_RSTn = 131072 | 13U,    /**< RNG  reset control */
+    kFC8_RST_SHIFT_RSTn = 131072 |
+                          14U, /**< Flexcomm Interface 8 reset control */
+    kFC9_RST_SHIFT_RSTn = 131072 |
+                          15U, /**< Flexcomm Interface 9 reset control */
+    kUSB0HMR_RST_SHIFT_RSTn = 131072 | 16U, /**< USB0HMR reset control */
+    kUSB0HSL_RST_SHIFT_RSTn = 131072 | 17U, /**< USB0HSL reset control */
+    kSHA_RST_SHIFT_RSTn = 131072 | 18U,     /**< SHA reset control */
+    kSC0_RST_SHIFT_RSTn = 131072 | 19U,     /**< SC0 reset control */
+    kSC1_RST_SHIFT_RSTn = 131072 | 20U,     /**< SC1 reset control */
+    kFC10_RST_SHIFT_RSTn = 131072 |
+                           21U, /**< Flexcomm Interface 10 reset control */
 
     kCT32B3_RST_SHIFT_RSTn = 67108864 | 13U, /**< CT32B3 reset control */
     kCT32B4_RST_SHIFT_RSTn = 67108864 | 14U, /**< CT32B4 reset control */
@@ -101,20 +117,21 @@ typedef enum _SYSCON_RSTn
     {                        \
         kADC0_RST_SHIFT_RSTn \
     } /* Reset bits for ADC peripheral */
-#define AES_RSTS             \
-    {                        \
-        kAES_RST_SHIFT_RSTn  \
+#define AES_RSTS            \
+    {                       \
+        kAES_RST_SHIFT_RSTn \
     } /* Reset bits for AES peripheral */
 #define CRC_RSTS            \
     {                       \
         kCRC_RST_SHIFT_RSTn \
     } /* Reset bits for CRC peripheral */
-#define CTIMER_RSTS                                                                                     \
-    {                                                                                                   \
-        kCT32B0_RST_SHIFT_RSTn, kCT32B1_RST_SHIFT_RSTn, kCT32B2_RST_SHIFT_RSTn, kCT32B3_RST_SHIFT_RSTn, \
-            kCT32B4_RST_SHIFT_RSTn                                                                      \
+#define CTIMER_RSTS                                         \
+    {                                                       \
+        kCT32B0_RST_SHIFT_RSTn, kCT32B1_RST_SHIFT_RSTn,     \
+            kCT32B2_RST_SHIFT_RSTn, kCT32B3_RST_SHIFT_RSTn, \
+            kCT32B4_RST_SHIFT_RSTn                          \
     } /* Reset bits for CTIMER peripheral */
-#define DMA_RSTS_N            \
+#define DMA_RSTS_N          \
     {                       \
         kDMA_RST_SHIFT_RSTn \
     } /* Reset bits for DMA peripheral */
@@ -122,27 +139,30 @@ typedef enum _SYSCON_RSTn
     {                        \
         kDMIC_RST_SHIFT_RSTn \
     } /* Reset bits for DMIC peripheral */
-#define EMC_RSTS             \
-    {                        \
-        kEMC_RST_SHIFT_RSTn  \
+#define EMC_RSTS            \
+    {                       \
+        kEMC_RST_SHIFT_RSTn \
     } /* Reset bits for EMC peripheral */
-#define ETH_RST              \
-    {                        \
-        kETH_RST_SHIFT_RSTn  \
+#define ETH_RST             \
+    {                       \
+        kETH_RST_SHIFT_RSTn \
     } /* Reset bits for EMC peripheral */
-#define FLEXCOMM_RSTS                                                                                            \
-    {                                                                                                            \
-        kFC0_RST_SHIFT_RSTn, kFC1_RST_SHIFT_RSTn, kFC2_RST_SHIFT_RSTn, kFC3_RST_SHIFT_RSTn, kFC4_RST_SHIFT_RSTn, \
-            kFC5_RST_SHIFT_RSTn, kFC6_RST_SHIFT_RSTn, kFC7_RST_SHIFT_RSTn, kFC8_RST_SHIFT_RSTn, kFC9_RST_SHIFT_RSTn, kFC9_RST_SHIFT_RSTn   \
+#define FLEXCOMM_RSTS                                                      \
+    {                                                                      \
+        kFC0_RST_SHIFT_RSTn, kFC1_RST_SHIFT_RSTn, kFC2_RST_SHIFT_RSTn,     \
+            kFC3_RST_SHIFT_RSTn, kFC4_RST_SHIFT_RSTn, kFC5_RST_SHIFT_RSTn, \
+            kFC6_RST_SHIFT_RSTn, kFC7_RST_SHIFT_RSTn, kFC8_RST_SHIFT_RSTn, \
+            kFC9_RST_SHIFT_RSTn, kFC9_RST_SHIFT_RSTn                       \
     } /* Reset bits for FLEXCOMM peripheral */
 #define GINT_RSTS                                  \
     {                                              \
         kGINT_RST_SHIFT_RSTn, kGINT_RST_SHIFT_RSTn \
     } /* Reset bits for GINT peripheral. GINT0 & GINT1 share same slot */
-#define GPIO_RSTS_N                                    \
-    {                                                \
-        kGPIO0_RST_SHIFT_RSTn, kGPIO1_RST_SHIFT_RSTn, kGPIO2_RST_SHIFT_RSTn, kGPIO3_RST_SHIFT_RSTn,  \
-        kGPIO4_RST_SHIFT_RSTn, kGPIO5_RST_SHIFT_RSTn                                                 \
+#define GPIO_RSTS_N                                                          \
+    {                                                                        \
+        kGPIO0_RST_SHIFT_RSTn, kGPIO1_RST_SHIFT_RSTn, kGPIO2_RST_SHIFT_RSTn, \
+            kGPIO3_RST_SHIFT_RSTn, kGPIO4_RST_SHIFT_RSTn,                    \
+            kGPIO5_RST_SHIFT_RSTn                                            \
     } /* Reset bits for GPIO peripheral */
 #define INPUTMUX_RSTS       \
     {                       \
@@ -156,17 +176,17 @@ typedef enum _SYSCON_RSTn
     {                                              \
         kFLASH_RST_SHIFT_RSTn, kFMC_RST_SHIFT_RSTn \
     } /* Reset bits for Flash peripheral */
-#define LCD_RSTS                                 \
-    {                                            \
-        kLCD_RST_SHIFT_RSTn                      \
+#define LCD_RSTS            \
+    {                       \
+        kLCD_RST_SHIFT_RSTn \
     } /* Reset bits for LCD peripheral */
 #define MRT_RSTS            \
     {                       \
         kMRT_RST_SHIFT_RSTn \
     } /* Reset bits for MRT peripheral */
-#define MCAN_RSTS                                   \
-    {                                               \
-        kMCAN0_RST_SHIFT_RSTn,kMCAN1_RST_SHIFT_RSTn \
+#define MCAN_RSTS                                    \
+    {                                                \
+        kMCAN0_RST_SHIFT_RSTn, kMCAN1_RST_SHIFT_RSTn \
     } /* Reset bits for MCAN0&MACN1 peripheral */
 #define OTP_RSTS            \
     {                       \
@@ -176,9 +196,9 @@ typedef enum _SYSCON_RSTn
     {                        \
         kPINT_RST_SHIFT_RSTn \
     } /* Reset bits for PINT peripheral */
-#define RNG_RSTS             \
-    {                        \
-        kRNG_RST_SHIFT_RSTn  \
+#define RNG_RSTS            \
+    {                       \
+        kRNG_RST_SHIFT_RSTn \
     } /* Reset bits for RNG peripheral */
 #define SDIO_RST             \
     {                        \
@@ -188,9 +208,9 @@ typedef enum _SYSCON_RSTn
     {                        \
         kSCT0_RST_SHIFT_RSTn \
     } /* Reset bits for SCT peripheral */
-#define SHA_RST              \
-    {                        \
-        kSHA_RST_SHIFT_RSTn  \
+#define SHA_RST             \
+    {                       \
+        kSHA_RST_SHIFT_RSTn \
     } /* Reset bits for SHA peripheral */
 #define SPIFI_RSTS            \
     {                         \
@@ -234,7 +254,7 @@ typedef SYSCON_RSTn_t reset_ip_name_t;
 /*******************************************************************************
  * API
  ******************************************************************************/
-#if defined(__cplusplus)
+#if defined( __cplusplus )
 extern "C" {
 #endif
 
@@ -243,32 +263,32 @@ extern "C" {
  *
  * Asserts reset signal to specified peripheral module.
  *
- * @param peripheral Assert reset to this peripheral. The enum argument contains encoding of reset register
- *                   and reset bit position in the reset register.
+ * @param peripheral Assert reset to this peripheral. The enum argument contains
+ * encoding of reset register and reset bit position in the reset register.
  */
-void RESET_SetPeripheralReset(reset_ip_name_t peripheral);
+void RESET_SetPeripheralReset( reset_ip_name_t peripheral );
 
 /*!
  * @brief Clear reset to peripheral.
  *
  * Clears reset signal to specified peripheral module, allows it to operate.
  *
- * @param peripheral Clear reset to this peripheral. The enum argument contains encoding of reset register
- *                   and reset bit position in the reset register.
+ * @param peripheral Clear reset to this peripheral. The enum argument contains
+ * encoding of reset register and reset bit position in the reset register.
  */
-void RESET_ClearPeripheralReset(reset_ip_name_t peripheral);
+void RESET_ClearPeripheralReset( reset_ip_name_t peripheral );
 
 /*!
  * @brief Reset peripheral module.
  *
  * Reset peripheral module.
  *
- * @param peripheral Peripheral to reset. The enum argument contains encoding of reset register
- *                   and reset bit position in the reset register.
+ * @param peripheral Peripheral to reset. The enum argument contains encoding of
+ * reset register and reset bit position in the reset register.
  */
-void RESET_PeripheralReset(reset_ip_name_t peripheral);
+void RESET_PeripheralReset( reset_ip_name_t peripheral );
 
-#if defined(__cplusplus)
+#if defined( __cplusplus )
 }
 #endif
 

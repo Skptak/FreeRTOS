@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -43,12 +44,13 @@
 /**
  * @brief Size of the shared memory region.
  */
-#define SHARED_MEMORY_SIZE    32
+#define SHARED_MEMORY_SIZE 32
 
 /**
  * @brief Memory region shared between two tasks.
  */
-static uint8_t ucSharedMemory[ SHARED_MEMORY_SIZE ] __attribute__( ( aligned( SHARED_MEMORY_SIZE ) ) );
+static uint8_t ucSharedMemory[ SHARED_MEMORY_SIZE ]
+    __attribute__( ( aligned( SHARED_MEMORY_SIZE ) ) );
 
 /**
  * @brief Memory region used to track Memory Fault intentionally caused by the
@@ -62,7 +64,8 @@ static uint8_t ucSharedMemory[ SHARED_MEMORY_SIZE ] __attribute__( ( aligned( SH
  * @note We are declaring a region of 32 bytes even though we need only one.
  * The reason is that the smallest supported MPU region size is 32 bytes.
  */
-static volatile uint8_t ucROTaskFaultTracker[ SHARED_MEMORY_SIZE ] __attribute__( ( aligned( SHARED_MEMORY_SIZE ) ) ) = { 0 };
+static volatile uint8_t ucROTaskFaultTracker[ SHARED_MEMORY_SIZE ]
+    __attribute__( ( aligned( SHARED_MEMORY_SIZE ) ) ) = { 0 };
 /*-----------------------------------------------------------*/
 
 /**
@@ -92,7 +95,7 @@ static void prvROAccessTask( void * pvParameters )
 
     portRAISE_PRIVILEGE();
 
-    for( ; ; )
+    for( ;; )
     {
         /* This task has RO access to ucSharedMemory and therefore it can read
          * it but cannot modify it. */
@@ -115,7 +118,7 @@ static void prvROAccessTask( void * pvParameters )
          * handler did clear the  ucROTaskFaultTracker[ 0 ]. */
         /*configASSERT( ucROTaskFaultTracker[ 0 ] == 0 ); */
 
-        #if ( configENFORCE_SYSTEM_CALLS_FROM_KERNEL_ONLY == 1 )
+#if( configENFORCE_SYSTEM_CALLS_FROM_KERNEL_ONLY == 1 )
         {
             /* Generate an SVC to raise the privilege. Since privilege
              * escalation is only allowed from kernel code, this request must
@@ -138,7 +141,7 @@ static void prvROAccessTask( void * pvParameters )
              * handler did clear the  ucROTaskFaultTracker[ 0 ]. */
             /*configASSERT( ucROTaskFaultTracker[ 0 ] == 0 ); */
         }
-        #else /* if ( configENFORCE_SYSTEM_CALLS_FROM_KERNEL_ONLY == 1 ) */
+#else  /* if ( configENFORCE_SYSTEM_CALLS_FROM_KERNEL_ONLY == 1 ) */
         {
             /* Generate an SVC to raise the privilege. Since
              * configENFORCE_SYSTEM_CALLS_FROM_KERNEL_ONLY is not enabled, the
@@ -171,7 +174,7 @@ static void prvROAccessTask( void * pvParameters )
              * handler did clear the  ucROTaskFaultTracker[ 0 ]. */
             configASSERT( ucROTaskFaultTracker[ 0 ] == 0 );
         }
-        #endif /* #if( configENFORCE_SYSTEM_CALLS_FROM_KERNEL_ONLY == 1 ) */
+#endif /* #if( configENFORCE_SYSTEM_CALLS_FROM_KERNEL_ONLY == 1 ) */
 
         /* Wait for a second. */
         vTaskDelay( pdMS_TO_TICKS( 1000 ) );
@@ -185,7 +188,7 @@ static void prvRWAccessTask( void * pvParameters )
     /* Unused parameters. */
     ( void ) pvParameters;
 
-    for( ; ; )
+    for( ;; )
     {
         /* This task has RW access to ucSharedMemory and therefore can write to
          * it. */
@@ -200,50 +203,49 @@ static void prvRWAccessTask( void * pvParameters )
 
 void vStartMPUDemo( void )
 {
-/**
- * Since stack of a task is protected using MPU, it must satisfy MPU
- * requirements as mentioned at the top of this file.
- */
+    /**
+     * Since stack of a task is protected using MPU, it must satisfy MPU
+     * requirements as mentioned at the top of this file.
+     */
     static StackType_t xROAccessTaskStack[ configMINIMAL_STACK_SIZE ]
-    __attribute__( ( aligned( 1024 * sizeof( StackType_t ) ) ) );
+        __attribute__( ( aligned( 1024 * sizeof( StackType_t ) ) ) );
     static StackType_t xRWAccessTaskStack[ configMINIMAL_STACK_SIZE ]
-    __attribute__( ( aligned( 1024 * sizeof( StackType_t ) ) ) );
+        __attribute__( ( aligned( 1024 * sizeof( StackType_t ) ) ) );
 
-    TaskParameters_t xROAccessTaskParameters =
-    {
-        .pvTaskCode     = prvROAccessTask,
-        .pcName         = "ROAccess",
-        .usStackDepth   = configMINIMAL_STACK_SIZE,
-        .pvParameters   = NULL,
-        .uxPriority     = tskIDLE_PRIORITY,
-        .puxStackBuffer = xROAccessTaskStack,
-        .xRegions       =
-        {
-            { ucSharedMemory,                  SHARED_MEMORY_SIZE,
-              portMPU_REGION_PRIVILEGED_READ_WRITE_UNPRIV_READ_ONLY |
-              portMPU_REGION_EXECUTE_NEVER },
-            { ( void * ) ucROTaskFaultTracker, SHARED_MEMORY_SIZE,
-              portMPU_REGION_READ_WRITE | portMPU_REGION_EXECUTE_NEVER },
-            { 0,                               0,                 0},
-        }
-    };
+    TaskParameters_t
+        xROAccessTaskParameters = { .pvTaskCode = prvROAccessTask,
+                                    .pcName = "ROAccess",
+                                    .usStackDepth = configMINIMAL_STACK_SIZE,
+                                    .pvParameters = NULL,
+                                    .uxPriority = tskIDLE_PRIORITY,
+                                    .puxStackBuffer = xROAccessTaskStack,
+                                    .xRegions = {
+                                        { ucSharedMemory,
+                                          SHARED_MEMORY_SIZE,
+                                          portMPU_REGION_PRIVILEGED_READ_WRITE_UNPRIV_READ_ONLY |
+                                              portMPU_REGION_EXECUTE_NEVER },
+                                        { ( void * ) ucROTaskFaultTracker,
+                                          SHARED_MEMORY_SIZE,
+                                          portMPU_REGION_READ_WRITE |
+                                              portMPU_REGION_EXECUTE_NEVER },
+                                        { 0, 0, 0 },
+                                    } };
 
-    TaskParameters_t xRWAccessTaskParameters =
-    {
-        .pvTaskCode     = prvRWAccessTask,
-        .pcName         = "RWAccess",
-        .usStackDepth   = configMINIMAL_STACK_SIZE,
-        .pvParameters   = NULL,
-        .uxPriority     = tskIDLE_PRIORITY,
-        .puxStackBuffer = xRWAccessTaskStack,
-        .xRegions       =
-        {
-            { ucSharedMemory, SHARED_MEMORY_SIZE,
-              portMPU_REGION_READ_WRITE | portMPU_REGION_EXECUTE_NEVER },
-            { 0,              0,                 0  },
-            { 0,              0,                 0  },
-        }
-    };
+    TaskParameters_t
+        xRWAccessTaskParameters = { .pvTaskCode = prvRWAccessTask,
+                                    .pcName = "RWAccess",
+                                    .usStackDepth = configMINIMAL_STACK_SIZE,
+                                    .pvParameters = NULL,
+                                    .uxPriority = tskIDLE_PRIORITY,
+                                    .puxStackBuffer = xRWAccessTaskStack,
+                                    .xRegions = {
+                                        { ucSharedMemory,
+                                          SHARED_MEMORY_SIZE,
+                                          portMPU_REGION_READ_WRITE |
+                                              portMPU_REGION_EXECUTE_NEVER },
+                                        { 0, 0, 0 },
+                                        { 0, 0, 0 },
+                                    } };
 
     /* Create an unprivileged task with RO access to ucSharedMemory. */
     xTaskCreateRestricted( &( xROAccessTaskParameters ), NULL );
@@ -309,7 +311,7 @@ portDONT_DISCARD void vHandleMemoryFault( uint32_t * pulFaultStackAddress )
     else
     {
         /* This is an unexpected fault - loop forever. */
-        for( ; ; )
+        for( ;; )
         {
         }
     }

@@ -6,9 +6,10 @@
  (c) 2018 Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms,you may use this software and
-    any derivatives exclusively with Microchip products.It is your responsibility
-    to comply with third party license terms applicable to your use of third party
-    software (including open source software) that may accompany Microchip software.
+    any derivatives exclusively with Microchip products.It is your
+ responsibility to comply with third party license terms applicable to your use
+ of third party software (including open source software) that may accompany
+ Microchip software.
 
     THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES, WHETHER
     EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE, INCLUDING ANY IMPLIED
@@ -36,10 +37,10 @@
 #ifndef DRIVER_INIT_H_INCLUDED
 #define DRIVER_INIT_H_INCLUDED
 
-#include <compiler.h>
-#include <clock_config.h>
-#include <port.h>
 #include <atmel_start_pins.h>
+#include <clock_config.h>
+#include <compiler.h>
+#include <port.h>
 
 #include <sysctrl.h>
 
@@ -47,7 +48,7 @@
 extern "C" {
 #endif
 
-void system_init(void);
+void system_init( void );
 
 #ifdef __cplusplus
 }

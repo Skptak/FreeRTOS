@@ -1,6 +1,6 @@
 /*
  * -------------------------------------------
- *    MSP432 DriverLib - v3_10_00_09 
+ *    MSP432 DriverLib - v3_10_00_09
  * -------------------------------------------
  *
  * --COPYRIGHT--,BSD,BSD
@@ -51,8 +51,7 @@
 //
 //*****************************************************************************
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 #include <msp.h>
@@ -60,36 +59,36 @@ extern "C"
 
 //*****************************************************************************
 //
-// Control specific variables 
+// Control specific variables
 //
 //*****************************************************************************
-#define RESET_KEY   0x6900
+#define RESET_KEY        0x6900
 #define RESET_HARD_RESET RSTCTL_RESET_REQ_HARD_REQ
 #define RESET_SOFT_RESET RSTCTL_RESET_REQ_SOFT_REQ
 
-#define RESET_SRC_0 RSTCTL_HARDRESET_CLR_SRC0
-#define RESET_SRC_1 RSTCTL_HARDRESET_CLR_SRC1
-#define RESET_SRC_2 RSTCTL_HARDRESET_CLR_SRC2
-#define RESET_SRC_3 RSTCTL_HARDRESET_CLR_SRC3
-#define RESET_SRC_4 RSTCTL_HARDRESET_CLR_SRC4
-#define RESET_SRC_5 RSTCTL_HARDRESET_CLR_SRC5
-#define RESET_SRC_6 RSTCTL_HARDRESET_CLR_SRC6
-#define RESET_SRC_7 RSTCTL_HARDRESET_CLR_SRC7
-#define RESET_SRC_8 RSTCTL_HARDRESET_CLR_SRC8
-#define RESET_SRC_9 RSTCTL_HARDRESET_CLR_SRC9
-#define RESET_SRC_10 RSTCTL_HARDRESET_CLR_SRC10
-#define RESET_SRC_11 RSTCTL_HARDRESET_CLR_SRC11
-#define RESET_SRC_12 RSTCTL_HARDRESET_CLR_SRC12
-#define RESET_SRC_13 RSTCTL_HARDRESET_CLR_SRC13
-#define RESET_SRC_14 RSTCTL_HARDRESET_CLR_SRC14
-#define RESET_SRC_15 RSTCTL_HARDRESET_CLR_SRC15
+#define RESET_SRC_0      RSTCTL_HARDRESET_CLR_SRC0
+#define RESET_SRC_1      RSTCTL_HARDRESET_CLR_SRC1
+#define RESET_SRC_2      RSTCTL_HARDRESET_CLR_SRC2
+#define RESET_SRC_3      RSTCTL_HARDRESET_CLR_SRC3
+#define RESET_SRC_4      RSTCTL_HARDRESET_CLR_SRC4
+#define RESET_SRC_5      RSTCTL_HARDRESET_CLR_SRC5
+#define RESET_SRC_6      RSTCTL_HARDRESET_CLR_SRC6
+#define RESET_SRC_7      RSTCTL_HARDRESET_CLR_SRC7
+#define RESET_SRC_8      RSTCTL_HARDRESET_CLR_SRC8
+#define RESET_SRC_9      RSTCTL_HARDRESET_CLR_SRC9
+#define RESET_SRC_10     RSTCTL_HARDRESET_CLR_SRC10
+#define RESET_SRC_11     RSTCTL_HARDRESET_CLR_SRC11
+#define RESET_SRC_12     RSTCTL_HARDRESET_CLR_SRC12
+#define RESET_SRC_13     RSTCTL_HARDRESET_CLR_SRC13
+#define RESET_SRC_14     RSTCTL_HARDRESET_CLR_SRC14
+#define RESET_SRC_15     RSTCTL_HARDRESET_CLR_SRC15
 
-#define RESET_VCCDET    RSTCTL_PSSRESET_CLR_BGREF
-#define RESET_SVSH_TRIP RSTCTL_PSSRESET_CLR_SVSMH
-#define RESET_BGREF_BAD RSTCTL_PSSRESET_CLR_BGREF
+#define RESET_VCCDET     RSTCTL_PSSRESET_CLR_BGREF
+#define RESET_SVSH_TRIP  RSTCTL_PSSRESET_CLR_SVSMH
+#define RESET_BGREF_BAD  RSTCTL_PSSRESET_CLR_BGREF
 
-#define RESET_LPM35   RSTCTL_PCMRESET_CLR_LPM35
-#define RESET_LPM45   RSTCTL_PCMRESET_CLR_LPM45
+#define RESET_LPM35      RSTCTL_PCMRESET_CLR_LPM35
+#define RESET_LPM45      RSTCTL_PCMRESET_CLR_LPM45
 
 //*****************************************************************************
 //
@@ -104,7 +103,7 @@ extern "C"
 //! \return none
 //
 //*****************************************************************************
-extern void ResetCtl_initiateSoftReset(void);
+extern void ResetCtl_initiateSoftReset( void );
 
 //*****************************************************************************
 //
@@ -132,7 +131,7 @@ extern void ResetCtl_initiateSoftReset(void);
 //! \return none
 //
 //*****************************************************************************
-extern void ResetCtl_initiateSoftResetWithSource(uint32_t source);
+extern void ResetCtl_initiateSoftResetWithSource( uint32_t source );
 
 //*****************************************************************************
 //
@@ -160,7 +159,7 @@ extern void ResetCtl_initiateSoftResetWithSource(uint32_t source);
 //!             - \b RESET_SRC_15
 //
 //*****************************************************************************
-extern uint32_t ResetCtl_getSoftResetSource(void);
+extern uint32_t ResetCtl_getSoftResetSource( void );
 
 //*****************************************************************************
 //
@@ -187,7 +186,7 @@ extern uint32_t ResetCtl_getSoftResetSource(void);
 //! \return none
 //
 //*****************************************************************************
-extern void ResetCtl_clearSoftResetSource(uint32_t mask);
+extern void ResetCtl_clearSoftResetSource( uint32_t mask );
 
 //*****************************************************************************
 //
@@ -196,7 +195,7 @@ extern void ResetCtl_clearSoftResetSource(uint32_t mask);
 //! \return none
 //
 //*****************************************************************************
-extern void ResetCtl_initiateHardReset(void);
+extern void ResetCtl_initiateHardReset( void );
 
 //*****************************************************************************
 //
@@ -223,7 +222,7 @@ extern void ResetCtl_initiateHardReset(void);
 //! \return none
 //
 //*****************************************************************************
-extern void ResetCtl_initiateHardResetWithSource(uint32_t source);
+extern void ResetCtl_initiateHardResetWithSource( uint32_t source );
 
 //*****************************************************************************
 //
@@ -251,7 +250,7 @@ extern void ResetCtl_initiateHardResetWithSource(uint32_t source);
 //!             - \b RESET_SRC_15
 //
 //*****************************************************************************
-extern uint32_t ResetCtl_getHardResetSource(void);
+extern uint32_t ResetCtl_getHardResetSource( void );
 
 //*****************************************************************************
 //
@@ -278,7 +277,7 @@ extern uint32_t ResetCtl_getHardResetSource(void);
 //! \return none
 //
 //*****************************************************************************
-extern void ResetCtl_clearHardResetSource(uint32_t mask);
+extern void ResetCtl_clearHardResetSource( uint32_t mask );
 
 //*****************************************************************************
 //
@@ -293,7 +292,7 @@ extern void ResetCtl_clearHardResetSource(uint32_t mask);
 //!                 - RESET_BGREF_BAD
 //
 //*****************************************************************************
-extern uint32_t ResetCtl_getPSSSource(void);
+extern uint32_t ResetCtl_getPSSSource( void );
 
 //*****************************************************************************
 //
@@ -302,7 +301,7 @@ extern uint32_t ResetCtl_getPSSSource(void);
 //! \return none
 //
 //*****************************************************************************
-extern void ResetCtl_clearPSSFlags(void);
+extern void ResetCtl_clearPSSFlags( void );
 
 //*****************************************************************************
 //
@@ -313,7 +312,7 @@ extern void ResetCtl_clearPSSFlags(void);
 //!                 - RESET_LPM45
 //
 //*****************************************************************************
-extern uint32_t ResetCtl_getPCMSource(void);
+extern uint32_t ResetCtl_getPCMSource( void );
 
 //*****************************************************************************
 //
@@ -322,7 +321,7 @@ extern uint32_t ResetCtl_getPCMSource(void);
 //! \return none
 //
 //*****************************************************************************
-extern void ResetCtl_clearPCMFlags(void);
+extern void ResetCtl_clearPCMFlags( void );
 
 //*****************************************************************************
 //

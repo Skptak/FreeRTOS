@@ -29,8 +29,7 @@
 #define __INTERRUPT_H__
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 //*****************************************************************************
@@ -38,17 +37,18 @@ extern "C"
 // Prototypes for the APIs.
 //
 //*****************************************************************************
-extern void IntMasterEnable(void);
-extern void IntMasterDisable(void);
-extern void IntRegister(unsigned long ulInterrupt, void (*pfnHandler)(void));
-extern void IntUnregister(unsigned long ulInterrupt);
-extern void IntPriorityGroupingSet(unsigned long ulBits);
-extern unsigned long IntPriorityGroupingGet(void);
-extern void IntPrioritySet(unsigned long ulInterrupt,
-                           unsigned char ucPriority);
-extern long IntPriorityGet(unsigned long ulInterrupt);
-extern void IntEnable(unsigned long ulInterrupt);
-extern void IntDisable(unsigned long ulInterrupt);
+extern void IntMasterEnable( void );
+extern void IntMasterDisable( void );
+extern void IntRegister( unsigned long ulInterrupt,
+                         void ( *pfnHandler )( void ) );
+extern void IntUnregister( unsigned long ulInterrupt );
+extern void IntPriorityGroupingSet( unsigned long ulBits );
+extern unsigned long IntPriorityGroupingGet( void );
+extern void IntPrioritySet( unsigned long ulInterrupt,
+                            unsigned char ucPriority );
+extern long IntPriorityGet( unsigned long ulInterrupt );
+extern void IntEnable( unsigned long ulInterrupt );
+extern void IntDisable( unsigned long ulInterrupt );
 
 #ifdef __cplusplus
 }

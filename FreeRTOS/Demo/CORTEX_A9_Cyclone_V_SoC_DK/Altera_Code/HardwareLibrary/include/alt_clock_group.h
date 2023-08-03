@@ -18,13 +18,13 @@
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDER "AS IS" AND ANY EXPRESS OR
  * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
  * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED. IN NO
- * EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
- * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
- * OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
- * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING
- * IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
- * OF SUCH DAMAGE.
+ * EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ *SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ *PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+ *BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
+ *IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ *ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ *POSSIBILITY OF SUCH DAMAGE.
  *
  ******************************************************************************/
 
@@ -42,20 +42,19 @@
 #include "socal/alt_clkmgr.h"
 
 #ifdef __cplusplus
-extern "C"
-{
-#endif  /* __cplusplus */
+extern "C" {
+#endif /* __cplusplus */
 
 /*!
  * This type definition enumerates the clock groups
  */
 typedef enum ALT_CLK_GRP_e
 {
-    ALT_MAIN_PLL_CLK_GRP,        /*!< Main PLL clock group */
+    ALT_MAIN_PLL_CLK_GRP, /*!< Main PLL clock group */
 
-    ALT_PERIPH_PLL_CLK_GRP,      /*!< Peripheral PLL clock group */
+    ALT_PERIPH_PLL_CLK_GRP, /*!< Peripheral PLL clock group */
 
-    ALT_SDRAM_PLL_CLK_GRP        /*!< SDRAM PLL clock group */
+    ALT_SDRAM_PLL_CLK_GRP /*!< SDRAM PLL clock group */
 
 } ALT_CLK_GRP_t;
 
@@ -65,15 +64,15 @@ typedef enum ALT_CLK_GRP_e
  */
 typedef struct ALT_CLK_GROUP_RAW_CFG_s
 {
-    uint32_t      verid;     /*!< SoC FPGA version identifier. This field
-                              *   encapsulates the silicon identifier and
-                              *   version information associated with this
-                              *   clock group configuration. It is used to
-                              *   assert that this clock group configuration
-                              *   is valid for this device. */
+    uint32_t verid; /*!< SoC FPGA version identifier. This field
+                     *   encapsulates the silicon identifier and
+                     *   version information associated with this
+                     *   clock group configuration. It is used to
+                     *   assert that this clock group configuration
+                     *   is valid for this device. */
 
-    uint32_t      siliid2;   /*!< Reserved register - reserved for future
-                              *   device IDs or capability flags. */
+    uint32_t siliid2; /*!< Reserved register - reserved for future
+                       *   device IDs or capability flags. */
 
     ALT_CLK_GRP_t clkgrpsel; /*!< Clock group union discriminator. */
 
@@ -87,21 +86,21 @@ typedef struct ALT_CLK_GROUP_RAW_CFG_s
         /*! Clock group configuration for Main PLL group. */
         union
         {
-            ALT_CLKMGR_MAINPLL_t     fld; /*!< Field access. */
+            ALT_CLKMGR_MAINPLL_t fld;     /*!< Field access. */
             ALT_CLKMGR_MAINPLL_raw_t raw; /*!< Raw access. */
         } mainpllgrp;
 
         /*! Clock group configuration for Peripheral PLL group. */
         union
         {
-            ALT_CLKMGR_PERPLL_t     fld; /*!< Field access. */
+            ALT_CLKMGR_PERPLL_t fld;     /*!< Field access. */
             ALT_CLKMGR_PERPLL_raw_t raw; /*!< Raw access. */
         } perpllgrp;
 
         /*! Clock group configuration for SDRAM PLL group. */
         union
         {
-            ALT_CLKMGR_SDRPLL_t     fld; /*!< Field access. */
+            ALT_CLKMGR_SDRPLL_t fld;     /*!< Field access. */
             ALT_CLKMGR_SDRPLL_raw_t raw; /*!< Raw access. */
         } sdrpllgrp;
 
@@ -110,5 +109,5 @@ typedef struct ALT_CLK_GROUP_RAW_CFG_s
 
 #ifdef __cplusplus
 }
-#endif  /* __cplusplus */
-#endif  /* __ALT_CLK_GRP_H__ */
+#endif /* __cplusplus */
+#endif /* __ALT_CLK_GRP_H__ */

@@ -2,7 +2,7 @@
  * Copyright 2017 NXP
  * All rights reserved.
  *
- * 
+ *
  * SPDX-License-Identifier: BSD-3-Clause
  *
  */
@@ -15,16 +15,16 @@
  * Definitions
  ******************************************************************************/
 /*! @brief define a notify callback for IO
-* @param size , transfer data size.
-* @param rx, indicate a rx transfer is success.
-* @param tx, indicate a tx transfer is success.
-*/
-typedef void (*notify)(size_t *size, bool rx, bool tx);
+ * @param size , transfer data size.
+ * @param rx, indicate a rx transfer is success.
+ * @param tx, indicate a tx transfer is success.
+ */
+typedef void ( *notify )( size_t * size, bool rx, bool tx );
 
 /*! @brief State structure storing io. */
 typedef struct io_State
 {
-    void *ioBase;   /*!< Base of the IP register. */
+    void * ioBase;  /*!< Base of the IP register. */
     uint8_t ioType; /*!< device type */
 #ifdef DEBUG_CONSOLE_TRANSFER_NON_BLOCKING
     notify callBack; /*!< define the callback function for buffer */
@@ -35,7 +35,7 @@ typedef struct io_State
 /*******************************************************************************
  * Prototypes
  ******************************************************************************/
-#if defined(__cplusplus)
+#if defined( __cplusplus )
 extern "C" {
 #endif /* __cplusplus */
 
@@ -49,7 +49,10 @@ extern "C" {
  * @param clkSrcFreq clock freq
  * @param ringbuffer used to receive character
  */
-void IO_Init(io_state_t *io, uint32_t baudRate, uint32_t clkSrcFreq, uint8_t *ringBuffer);
+void IO_Init( io_state_t * io,
+              uint32_t baudRate,
+              uint32_t clkSrcFreq,
+              uint8_t * ringBuffer );
 
 /*!
  * @brief Deinit IO.
@@ -58,7 +61,7 @@ void IO_Init(io_state_t *io, uint32_t baudRate, uint32_t clkSrcFreq, uint8_t *ri
  *
  * @return deinit status
  */
-status_t IO_Deinit(void);
+status_t IO_Deinit( void );
 
 /*!
  * @brief io transfer function.
@@ -77,7 +80,7 @@ status_t IO_Deinit(void);
  * @param	size transfer size
  * @param   tx indicate the transfer is TX or RX
  */
-status_t IO_Transfer(uint8_t *ch, size_t size, bool tx);
+status_t IO_Transfer( uint8_t * ch, size_t size, bool tx );
 
 /*!
  * @brief io wait idle.
@@ -86,9 +89,9 @@ status_t IO_Transfer(uint8_t *ch, size_t size, bool tx);
  *
  * @return Indicates whether wait idle was successful or not.
  */
-status_t IO_WaitIdle(void);
+status_t IO_WaitIdle( void );
 
-#if defined(__cplusplus)
+#if defined( __cplusplus )
 }
 #endif /* __cplusplus */
 

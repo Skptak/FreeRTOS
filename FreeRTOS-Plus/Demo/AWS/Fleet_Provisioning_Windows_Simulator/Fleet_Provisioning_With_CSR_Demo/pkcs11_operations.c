@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -31,8 +32,8 @@
  */
 
 /* Standard includes. */
-#include <errno.h>
 #include <assert.h>
+#include <errno.h>
 
 /* Config include. */
 #include "demo_config.h"
@@ -43,8 +44,8 @@
 /* PKCS #11 include. */
 #include "core_pkcs11_config.h"
 #include "core_pki_utils.h"
-#include "mbedtls_utils.h"
 #include "mbedtls_pkcs11.h"
+#include "mbedtls_utils.h"
 
 /* MbedTLS include. */
 #include "mbedtls/error.h"
@@ -109,23 +110,33 @@ static CK_RV prvDestroyProvidedObjects( CK_SESSION_HANDLE xSession,
         {
             pxLabelPtr = pxPkcsLabelsPtr[ xIndex ];
 
-            xResult = xFindObjectWithLabelAndClass( xSession, ( char * ) pxLabelPtr,
-                                                    strnlen( ( char * ) pxLabelPtr, pkcs11configMAX_LABEL_LENGTH ),
-                                                    pxClass[ xIndex ], &xObjectHandle );
+            xResult = xFindObjectWithLabelAndClass(
+                xSession,
+                ( char * ) pxLabelPtr,
+                strnlen( ( char * ) pxLabelPtr, pkcs11configMAX_LABEL_LENGTH ),
+                pxClass[ xIndex ],
+                &xObjectHandle );
 
-            while( ( xResult == CKR_OK ) && ( xObjectHandle != CK_INVALID_HANDLE ) )
+            while( ( xResult == CKR_OK ) &&
+                   ( xObjectHandle != CK_INVALID_HANDLE ) )
             {
-                xResult = xFunctionList->C_DestroyObject( xSession, xObjectHandle );
+                xResult = xFunctionList->C_DestroyObject( xSession,
+                                                          xObjectHandle );
 
-                /* PKCS #11 allows a module to maintain multiple objects with the same
-                 * label and type. The intent of this loop is to try to delete all of
-                 * them. However, to avoid getting stuck, we won't try to find another
-                 * object of the same label/type if the previous delete failed. */
+                /* PKCS #11 allows a module to maintain multiple objects with
+                 * the same label and type. The intent of this loop is to try to
+                 * delete all of them. However, to avoid getting stuck, we won't
+                 * try to find another object of the same label/type if the
+                 * previous delete failed. */
                 if( xResult == CKR_OK )
                 {
-                    xResult = xFindObjectWithLabelAndClass( xSession, ( char * ) pxLabelPtr,
-                                                            strnlen( ( char * ) pxLabelPtr, pkcs11configMAX_LABEL_LENGTH ),
-                                                            pxClass[ xIndex ], &xObjectHandle );
+                    xResult = xFindObjectWithLabelAndClass(
+                        xSession,
+                        ( char * ) pxLabelPtr,
+                        strnlen( ( char * ) pxLabelPtr,
+                                 pkcs11configMAX_LABEL_LENGTH ),
+                        pxClass[ xIndex ],
+                        &xObjectHandle );
                 }
                 else
                 {
@@ -153,29 +164,33 @@ static CK_RV prvGenerateKeyPairEC( CK_SESSION_HANDLE xSession,
     CK_KEY_TYPE xKeyType = CKK_EC;
 
     CK_BBOOL xTrueObject = CK_TRUE;
-    CK_ATTRIBUTE pxPublicKeyTemplate[] =
-    {
-        { CKA_KEY_TYPE,  NULL /* &keyType */,         sizeof( xKeyType )             },
-        { CKA_VERIFY,    NULL /* &trueObject */,      sizeof( xTrueObject )          },
-        { CKA_EC_PARAMS, NULL /* ecParams */,         sizeof( pxEcParams )           },
-        { CKA_LABEL,     ( void * ) pcPublicKeyLabel, strnlen( pcPublicKeyLabel, pkcs11configMAX_LABEL_LENGTH )}
+    CK_ATTRIBUTE pxPublicKeyTemplate[] = {
+        { CKA_KEY_TYPE, NULL /* &keyType */, sizeof( xKeyType ) },
+        { CKA_VERIFY, NULL /* &trueObject */, sizeof( xTrueObject ) },
+        { CKA_EC_PARAMS, NULL /* ecParams */, sizeof( pxEcParams ) },
+        { CKA_LABEL,
+          ( void * ) pcPublicKeyLabel,
+          strnlen( pcPublicKeyLabel, pkcs11configMAX_LABEL_LENGTH ) }
     };
 
-    /* Aggregate initializers must not use the address of an automatic variable. */
+    /* Aggregate initializers must not use the address of an automatic variable.
+     */
     pxPublicKeyTemplate[ 0 ].pValue = &xKeyType;
     pxPublicKeyTemplate[ 1 ].pValue = &xTrueObject;
     pxPublicKeyTemplate[ 2 ].pValue = &pxEcParams;
 
-    CK_ATTRIBUTE privateKeyTemplate[] =
-    {
-        { CKA_KEY_TYPE, NULL /* &keyType */,          sizeof( xKeyType )             },
-        { CKA_TOKEN,    NULL /* &trueObject */,       sizeof( xTrueObject )          },
-        { CKA_PRIVATE,  NULL /* &trueObject */,       sizeof( xTrueObject )          },
-        { CKA_SIGN,     NULL /* &trueObject */,       sizeof( xTrueObject )          },
-        { CKA_LABEL,    ( void * ) pcPrivateKeyLabel, strnlen( pcPrivateKeyLabel, pkcs11configMAX_LABEL_LENGTH )}
+    CK_ATTRIBUTE privateKeyTemplate[] = {
+        { CKA_KEY_TYPE, NULL /* &keyType */, sizeof( xKeyType ) },
+        { CKA_TOKEN, NULL /* &trueObject */, sizeof( xTrueObject ) },
+        { CKA_PRIVATE, NULL /* &trueObject */, sizeof( xTrueObject ) },
+        { CKA_SIGN, NULL /* &trueObject */, sizeof( xTrueObject ) },
+        { CKA_LABEL,
+          ( void * ) pcPrivateKeyLabel,
+          strnlen( pcPrivateKeyLabel, pkcs11configMAX_LABEL_LENGTH ) }
     };
 
-    /* Aggregate initializers must not use the address of an automatic variable. */
+    /* Aggregate initializers must not use the address of an automatic variable.
+     */
     privateKeyTemplate[ 0 ].pValue = &xKeyType;
     privateKeyTemplate[ 1 ].pValue = &xTrueObject;
     privateKeyTemplate[ 2 ].pValue = &xTrueObject;
@@ -189,13 +204,15 @@ static CK_RV prvGenerateKeyPairEC( CK_SESSION_HANDLE xSession,
     }
     else
     {
-        xResult = xFunctionList->C_GenerateKeyPair( xSession,
-                                                    &xMechanism,
-                                                    pxPublicKeyTemplate,
-                                                    sizeof( pxPublicKeyTemplate ) / sizeof( CK_ATTRIBUTE ),
-                                                    privateKeyTemplate, sizeof( privateKeyTemplate ) / sizeof( CK_ATTRIBUTE ),
-                                                    xPublicKeyHandlePtr,
-                                                    xPrivateKeyHandlePtr );
+        xResult = xFunctionList->C_GenerateKeyPair(
+            xSession,
+            &xMechanism,
+            pxPublicKeyTemplate,
+            sizeof( pxPublicKeyTemplate ) / sizeof( CK_ATTRIBUTE ),
+            privateKeyTemplate,
+            sizeof( privateKeyTemplate ) / sizeof( CK_ATTRIBUTE ),
+            xPublicKeyHandlePtr,
+            xPrivateKeyHandlePtr );
     }
 
     return xResult;
@@ -217,7 +234,8 @@ bool xGenerateKeyAndCsr( CK_SESSION_HANDLE xP11Session,
     mbedtls_ecdsa_context xEcdsaContext;
     mbedtls_x509write_csr xReq;
     int32_t ulMbedtlsRet = -1;
-    const mbedtls_pk_info_t * pxHeader = mbedtls_pk_info_from_type( MBEDTLS_PK_ECKEY );
+    const mbedtls_pk_info_t * pxHeader = mbedtls_pk_info_from_type(
+        MBEDTLS_PK_ECKEY );
 
     configASSERT( pcPrivKeyLabel != NULL );
     configASSERT( pcPubKeyLabel != NULL );
@@ -232,7 +250,9 @@ bool xGenerateKeyAndCsr( CK_SESSION_HANDLE xP11Session,
 
     if( xPkcs11Ret == CKR_OK )
     {
-        xPkcs11Ret = xPKCS11_initMbedtlsPkContext( &xPrivKey, xP11Session, xPrivKeyHandle );
+        xPkcs11Ret = xPKCS11_initMbedtlsPkContext( &xPrivKey,
+                                                   xP11Session,
+                                                   xPrivKeyHandle );
     }
 
     if( xPkcs11Ret == CKR_OK )
@@ -240,25 +260,34 @@ bool xGenerateKeyAndCsr( CK_SESSION_HANDLE xP11Session,
         mbedtls_x509write_csr_init( &xReq );
         mbedtls_x509write_csr_set_md_alg( &xReq, MBEDTLS_MD_SHA256 );
 
-        ulMbedtlsRet = mbedtls_x509write_csr_set_key_usage( &xReq, MBEDTLS_X509_KU_DIGITAL_SIGNATURE );
+        ulMbedtlsRet = mbedtls_x509write_csr_set_key_usage(
+            &xReq,
+            MBEDTLS_X509_KU_DIGITAL_SIGNATURE );
 
         if( ulMbedtlsRet == 0 )
         {
-            ulMbedtlsRet = mbedtls_x509write_csr_set_ns_cert_type( &xReq, MBEDTLS_X509_NS_CERT_TYPE_SSL_CLIENT );
+            ulMbedtlsRet = mbedtls_x509write_csr_set_ns_cert_type(
+                &xReq,
+                MBEDTLS_X509_NS_CERT_TYPE_SSL_CLIENT );
         }
 
         if( ulMbedtlsRet == 0 )
         {
-            ulMbedtlsRet = mbedtls_x509write_csr_set_subject_name( &xReq, democonfigCSR_SUBJECT_NAME );
+            ulMbedtlsRet = mbedtls_x509write_csr_set_subject_name(
+                &xReq,
+                democonfigCSR_SUBJECT_NAME );
         }
 
         if( ulMbedtlsRet == 0 )
         {
             mbedtls_x509write_csr_set_key( &xReq, &xPrivKey );
 
-            ulMbedtlsRet = mbedtls_x509write_csr_pem( &xReq, ( unsigned char * ) pcCsrBuffer,
-                                                      xCsrBufferLength, &lMbedCryptoRngCallbackPKCS11,
-                                                      &xP11Session );
+            ulMbedtlsRet = mbedtls_x509write_csr_pem(
+                &xReq,
+                ( unsigned char * ) pcCsrBuffer,
+                xCsrBufferLength,
+                &lMbedCryptoRngCallbackPKCS11,
+                &xP11Session );
         }
 
         mbedtls_x509write_csr_free( &xReq );
@@ -268,7 +297,7 @@ bool xGenerateKeyAndCsr( CK_SESSION_HANDLE xP11Session,
 
     *pxOutCsrLength = strlen( pcCsrBuffer );
 
-    return( ulMbedtlsRet == 0 );
+    return ( ulMbedtlsRet == 0 );
 }
 
 /*-----------------------------------------------------------*/
@@ -310,7 +339,8 @@ bool xLoadCertificate( CK_SESSION_HANDLE xP11Session,
         {
             ulConversion = convert_pem_to_der( ( unsigned char * ) pcCertificate,
                                                xCertificateLength + 1,
-                                               pucDerObject, &xDerLen );
+                                               pucDerObject,
+                                               &xDerLen );
 
             if( 0 != ulConversion )
             {
@@ -320,7 +350,8 @@ bool xLoadCertificate( CK_SESSION_HANDLE xP11Session,
         }
         else
         {
-            LogError( ( "Failed to allocate buffer for converting certificate to DER." ) );
+            LogError( ( "Failed to allocate buffer for converting certificate "
+                        "to DER." ) );
             xResult = CKR_HOST_MEMORY;
         }
     }
@@ -340,33 +371,41 @@ bool xLoadCertificate( CK_SESSION_HANDLE xP11Session,
         /* Initialize the client certificate template. */
         xCertificateTemplate.xObjectClass.type = CKA_CLASS;
         xCertificateTemplate.xObjectClass.pValue = &xCertificateClass;
-        xCertificateTemplate.xObjectClass.ulValueLen = sizeof( xCertificateClass );
+        xCertificateTemplate.xObjectClass.ulValueLen = sizeof(
+            xCertificateClass );
         xCertificateTemplate.xSubject.type = CKA_SUBJECT;
         xCertificateTemplate.xSubject.pValue = pxSubject;
-        xCertificateTemplate.xSubject.ulValueLen = strlen( ( const char * ) pxSubject );
+        xCertificateTemplate.xSubject.ulValueLen = strlen(
+            ( const char * ) pxSubject );
         xCertificateTemplate.xValue.type = CKA_VALUE;
         xCertificateTemplate.xValue.pValue = pucDerObject;
         xCertificateTemplate.xValue.ulValueLen = xDerLen;
         xCertificateTemplate.xLabel.type = CKA_LABEL;
         xCertificateTemplate.xLabel.pValue = ( CK_VOID_PTR ) pcLabel;
-        xCertificateTemplate.xLabel.ulValueLen = strnlen( pcLabel, pkcs11configMAX_LABEL_LENGTH );
+        xCertificateTemplate.xLabel
+            .ulValueLen = strnlen( pcLabel, pkcs11configMAX_LABEL_LENGTH );
         xCertificateTemplate.xCertificateType.type = CKA_CERTIFICATE_TYPE;
         xCertificateTemplate.xCertificateType.pValue = &xCertificateType;
-        xCertificateTemplate.xCertificateType.ulValueLen = sizeof( CK_CERTIFICATE_TYPE );
+        xCertificateTemplate.xCertificateType.ulValueLen = sizeof(
+            CK_CERTIFICATE_TYPE );
         xCertificateTemplate.xTokenObject.type = CKA_TOKEN;
         xCertificateTemplate.xTokenObject.pValue = &xTokenStorage;
         xCertificateTemplate.xTokenObject.ulValueLen = sizeof( xTokenStorage );
 
         /* Best effort clean-up of the existing object, if it exists. */
-        prvDestroyProvidedObjects( xP11Session, ( CK_BYTE_PTR * ) &pcLabel, &xCertificateClass, 1 );
+        prvDestroyProvidedObjects( xP11Session,
+                                   ( CK_BYTE_PTR * ) &pcLabel,
+                                   &xCertificateClass,
+                                   1 );
 
         /* Create an object using the encoded client certificate. */
         LogInfo( ( "Writing certificate into label \"%s\".", pcLabel ) );
 
-        xResult = xFunctionList->C_CreateObject( xP11Session,
-                                                 ( CK_ATTRIBUTE_PTR ) &xCertificateTemplate,
-                                                 sizeof( xCertificateTemplate ) / sizeof( CK_ATTRIBUTE ),
-                                                 &xObjectHandle );
+        xResult = xFunctionList->C_CreateObject(
+            xP11Session,
+            ( CK_ATTRIBUTE_PTR ) &xCertificateTemplate,
+            sizeof( xCertificateTemplate ) / sizeof( CK_ATTRIBUTE ),
+            &xObjectHandle );
     }
 
     if( pucDerObject != NULL )
@@ -374,7 +413,7 @@ bool xLoadCertificate( CK_SESSION_HANDLE xP11Session,
         free( pucDerObject );
     }
 
-    return( xResult == CKR_OK );
+    return ( xResult == CKR_OK );
 }
 
 /*-----------------------------------------------------------*/
@@ -396,7 +435,7 @@ bool xPkcs11CloseSession( CK_SESSION_HANDLE xP11Session )
         xResult = xFunctionList->C_Finalize( NULL );
     }
 
-    return( xResult == CKR_OK );
+    return ( xResult == CKR_OK );
 }
 
 /*-----------------------------------------------------------*/

@@ -19,8 +19,6 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1335, USA
  */
 
-
-
 #ifndef WOLF_CRYPT_TI_CCM_H
 #define WOLF_CRYPT_TI_CCM_H
 
@@ -30,19 +28,18 @@
 
 #include <wolfssl/wolfcrypt/settings.h>
 
-#if defined(WOLFSSL_TI_CRYPT) ||  defined(WOLFSSL_TI_HASH)
+#if defined( WOLFSSL_TI_CRYPT ) || defined( WOLFSSL_TI_HASH )
 
-int wolfSSL_TI_CCMInit(void) ;
+int wolfSSL_TI_CCMInit( void );
 
-#ifndef SINGLE_THREADED
-void wolfSSL_TI_lockCCM(void) ;
-void wolfSSL_TI_unlockCCM(void) ;
-#else
-#define wolfSSL_TI_lockCCM()
-#define wolfSSL_TI_unlockCCM()
-#endif
-
-#endif
+    #ifndef SINGLE_THREADED
+void wolfSSL_TI_lockCCM( void );
+void wolfSSL_TI_unlockCCM( void );
+    #else
+        #define wolfSSL_TI_lockCCM()
+        #define wolfSSL_TI_unlockCCM()
+    #endif
 
 #endif
 
+#endif

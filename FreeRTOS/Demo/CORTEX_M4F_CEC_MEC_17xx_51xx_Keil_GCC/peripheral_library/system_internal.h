@@ -1,13 +1,13 @@
-/**************************************************************************//**
- * @file     system_internal.h
- * @brief    CMSIS Device System Header File for
- *           Microchip ARMCM4F  Device Series
- * @version  V1.08
- * @date     23. November 2012
- *
- * @note
- *
- ******************************************************************************/
+/**************************************************************************/ /**
+                                                                              * @file     system_internal.h
+                                                                              * @brief    CMSIS Device System Header File for
+                                                                              *           Microchip ARMCM4F  Device Series
+                                                                              * @version  V1.08
+                                                                              * @date     23. November 2012
+                                                                              *
+                                                                              * @note
+                                                                              *
+                                                                              ******************************************************************************/
 /* Copyright (c) 2011 - 2012 ARM LIMITED
 
    All rights reserved.
@@ -35,7 +35,6 @@
    POSSIBILITY OF SUCH DAMAGE.
    ---------------------------------------------------------------------------*/
 
-
 #ifndef SYSTEM_INTERNAL_H
 #define SYSTEM_INTERNAL_H
 
@@ -43,8 +42,7 @@
 extern "C" {
 #endif
 
-extern uint32_t SystemCoreClock;     /*!< System Clock Frequency (Core Clock)  */
-
+extern uint32_t SystemCoreClock; /*!< System Clock Frequency (Core Clock)  */
 
 /**
  * Initialize the system
@@ -55,7 +53,7 @@ extern uint32_t SystemCoreClock;     /*!< System Clock Frequency (Core Clock)  *
  * @brief  Setup the microcontroller system.
  *         Initialize the System and update the SystemCoreClock variable.
  */
-extern void SystemInit (void);
+extern void SystemInit( void );
 
 /**
  * Update SystemCoreClock variable
@@ -66,7 +64,7 @@ extern void SystemInit (void);
  * @brief  Updates the SystemCoreClock with current core Clock
  *         retrieved from cpu registers.
  */
-extern void SystemCoreClockUpdate (void);
+extern void SystemCoreClockUpdate( void );
 
 #define PCR MEC2016_PCR
 #ifdef __cplusplus

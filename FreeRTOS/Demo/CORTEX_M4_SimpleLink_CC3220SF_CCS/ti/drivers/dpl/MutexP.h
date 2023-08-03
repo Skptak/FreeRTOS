@@ -59,14 +59,15 @@
 extern "C" {
 #endif
 
-#include <stdint.h>
 #include <stdbool.h>
 #include <stddef.h>
+#include <stdint.h>
 
 /*!
  *  @brief    Status codes for MutexP APIs
  */
-typedef enum MutexP_Status {
+typedef enum MutexP_Status
+{
     /*! API completed successfully */
     MutexP_OK = 0,
     /*! API failed */
@@ -80,7 +81,7 @@ typedef enum MutexP_Status {
  *  and then is used in the other instance based functions (e.g. ::MutexP_lock,
  *  ::MutexP_unlock, etc.).
  */
-typedef void *MutexP_Handle;
+typedef void * MutexP_Handle;
 
 /*!
  *  @brief    Basic MutexP Parameters
@@ -91,12 +92,12 @@ typedef void *MutexP_Handle;
  *  sets the fields manually. The MutexP default parameters are noted in
  *  ::MutexP_Params_init.
  */
-typedef struct MutexP_Params {
-    char *name;           /*!< Name of the mutex instance. Memory must persist
-                               for the life of the mutex instance */
-    void (*callback)(void); /*!< Callback while waiting for mutex unlock */
+typedef struct MutexP_Params
+{
+    char * name; /*!< Name of the mutex instance. Memory must persist
+                      for the life of the mutex instance */
+    void ( *callback )( void ); /*!< Callback while waiting for mutex unlock */
 } MutexP_Params;
-
 
 /*!
  *  @brief  Function to create a mutex.
@@ -107,7 +108,7 @@ typedef struct MutexP_Params {
  *
  *  @return A MutexP_Handle on success or a NULL on an error
  */
-extern MutexP_Handle MutexP_create(MutexP_Params *params);
+extern MutexP_Handle MutexP_create( MutexP_Params * params );
 
 /*!
  *  @brief  Function to delete a mutex.
@@ -118,7 +119,7 @@ extern MutexP_Handle MutexP_create(MutexP_Params *params);
  *    - MutexP_OK: Deleted the mutex instance
  *    - MutexP_FAILED: Failed to delete the mutex instance
  */
-extern MutexP_Status MutexP_delete(MutexP_Handle handle);
+extern MutexP_Status MutexP_delete( MutexP_Handle handle );
 
 /*!
  *  @brief  Initialize params structure to default values.
@@ -128,7 +129,7 @@ extern MutexP_Status MutexP_delete(MutexP_Handle handle);
  *
  *  @param params  Pointer to the instance configuration parameters.
  */
-extern void MutexP_Params_init(MutexP_Params *params);
+extern void MutexP_Params_init( MutexP_Params * params );
 
 /*!
  *  @brief  Function to lock a mutex.
@@ -147,7 +148,7 @@ extern void MutexP_Params_init(MutexP_Params *params);
  *
  *  @return A key is returned. This key must be passed into ::MutexP_unlock.
  */
-extern uintptr_t MutexP_lock(MutexP_Handle handle);
+extern uintptr_t MutexP_lock( MutexP_Handle handle );
 
 /*!
  *  @brief  Function to unlock a mutex
@@ -167,7 +168,7 @@ extern uintptr_t MutexP_lock(MutexP_Handle handle);
  *
  *  @param  key  Return from ::MutexP_lock.
  */
-extern void MutexP_unlock(MutexP_Handle handle, uintptr_t key);
+extern void MutexP_unlock( MutexP_Handle handle, uintptr_t key );
 
 #ifdef __cplusplus
 }

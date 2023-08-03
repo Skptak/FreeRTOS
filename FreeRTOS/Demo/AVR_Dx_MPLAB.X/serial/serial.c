@@ -2,68 +2,77 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
  *
  */
 
-
 /* BASIC INTERRUPT DRIVEN SERIAL PORT DRIVER FOR IAR AVR PORT. */
 
-#include <stdlib.h>
+#include "serial.h"
 #include "FreeRTOS.h"
 #include "queue.h"
 #include "task.h"
-#include "serial.h"
 #include <avr/interrupt.h>
+#include <stdlib.h>
 
-#define USART_BAUD_RATE(BAUD_RATE) ((float)(configCPU_CLOCK_HZ * 64 / (16 * (float)BAUD_RATE)) + 0.5)
- 
+#define USART_BAUD_RATE( BAUD_RATE )                                         \
+    ( ( float ) ( configCPU_CLOCK_HZ * 64 / ( 16 * ( float ) BAUD_RATE ) ) + \
+      0.5 )
+
 static QueueHandle_t xRxedChars;
 static QueueHandle_t xCharsForTx;
 
-#define vInterruptOn() USART1.CTRLA |= (1 << USART_DREIE_bp)
+#define vInterruptOn()  USART1.CTRLA |= ( 1 << USART_DREIE_bp )
 
-#define vInterruptOff() USART1.CTRLA &= ~(1 << USART_DREIE_bp)
+#define vInterruptOff() USART1.CTRLA &= ~( 1 << USART_DREIE_bp )
 
-xComPortHandle xSerialPortInitMinimal( unsigned long ulWantedBaud, unsigned portBASE_TYPE uxQueueLength )
+xComPortHandle xSerialPortInitMinimal( unsigned long ulWantedBaud,
+                                       unsigned portBASE_TYPE uxQueueLength )
 {
     portENTER_CRITICAL();
     {
         /* Create the queues used by the com test task. */
-        xRxedChars = xQueueCreate( uxQueueLength, ( unsigned portBASE_TYPE ) sizeof( signed char ) );
-        xCharsForTx = xQueueCreate( uxQueueLength, ( unsigned portBASE_TYPE ) sizeof( signed char ) );
+        xRxedChars = xQueueCreate( uxQueueLength,
+                                   ( unsigned portBASE_TYPE ) sizeof(
+                                       signed char ) );
+        xCharsForTx = xQueueCreate( uxQueueLength,
+                                    ( unsigned portBASE_TYPE ) sizeof(
+                                        signed char ) );
 
-        USART1.BAUD = (uint16_t)USART_BAUD_RATE(ulWantedBaud); /* set baud rate register */
+        USART1.BAUD = ( uint16_t ) USART_BAUD_RATE(
+            ulWantedBaud ); /* set baud rate register */
 
-        USART1.CTRLA = 1 << USART_LBME_bp       /* Loop-back Mode Enable: enabled */
-                     | USART_RS485_DISABLE_gc       /* RS485 Mode disabled */
-                     | 1 << USART_RXCIE_bp;     /* Receive Complete Interrupt Enable: enabled */
+        USART1.CTRLA = 1 << USART_LBME_bp /* Loop-back Mode Enable: enabled */
+                       | USART_RS485_DISABLE_gc /* RS485 Mode disabled */
+                       | 1 << USART_RXCIE_bp;   /* Receive Complete Interrupt
+                                                   Enable: enabled */
 
         USART1.CTRLB = 1 << USART_RXEN_bp       /* Receiver enable: enabled */
-                     | USART_RXMODE_NORMAL_gc   /* Normal mode */
-                     | 1 << USART_TXEN_bp;      /* Transmitter Enable: enabled */
+                       | USART_RXMODE_NORMAL_gc /* Normal mode */
+                       | 1 << USART_TXEN_bp; /* Transmitter Enable: enabled */
     }
-    
+
     portEXIT_CRITICAL();
-    
+
     /* Unlike other ports, this serial code does not allow for more than one
     com port.  We therefore don't return a pointer to a port structure and can
     instead just return NULL. */
@@ -71,7 +80,9 @@ xComPortHandle xSerialPortInitMinimal( unsigned long ulWantedBaud, unsigned port
 }
 /*-----------------------------------------------------------*/
 
-signed portBASE_TYPE xSerialGetChar( xComPortHandle pxPort, signed char *pcRxedChar, TickType_t xBlockTime )
+signed portBASE_TYPE xSerialGetChar( xComPortHandle pxPort,
+                                     signed char * pcRxedChar,
+                                     TickType_t xBlockTime )
 {
     /* Get the next character from the buffer.  Return false if no characters
     are available, or arrive before xBlockTime expires. */
@@ -86,16 +97,18 @@ signed portBASE_TYPE xSerialGetChar( xComPortHandle pxPort, signed char *pcRxedC
 }
 /*-----------------------------------------------------------*/
 
-signed portBASE_TYPE xSerialPutChar( xComPortHandle pxPort, signed char cOutChar, TickType_t xBlockTime )
+signed portBASE_TYPE xSerialPutChar( xComPortHandle pxPort,
+                                     signed char cOutChar,
+                                     TickType_t xBlockTime )
 {
     /* Return false if after the block time there is no room on the Tx queue. */
     if( xQueueSend( xCharsForTx, &cOutChar, xBlockTime ) != pdPASS )
     {
         return pdFAIL;
     }
-    
+
     vInterruptOn();
-    
+
     return pdPASS;
 }
 /*-----------------------------------------------------------*/
@@ -108,15 +121,15 @@ void vSerialClose( xComPortHandle xPort )
     portENTER_CRITICAL();
     {
         vInterruptOff();
-        USART1.CTRLB &= (1 << USART_RXEN_bp);
+        USART1.CTRLB &= ( 1 << USART_RXEN_bp );
     }
     portEXIT_CRITICAL();
 }
 /*-----------------------------------------------------------*/
 
-ISR(USART1_RXC_vect)
+ISR( USART1_RXC_vect )
 {
-signed char ucChar, xHigherPriorityTaskWoken = pdFALSE;
+    signed char ucChar, xHigherPriorityTaskWoken = pdFALSE;
 
     /* Get the character and post it on the queue of Rxed characters.
     If the post causes a task to wake force a context switch as the woken task
@@ -129,12 +142,11 @@ signed char ucChar, xHigherPriorityTaskWoken = pdFALSE;
     {
         portYIELD_FROM_ISR();
     }
-        
 }
 
-ISR(USART1_DRE_vect)
+ISR( USART1_DRE_vect )
 {
-signed char cChar, cTaskWoken = pdFALSE;
+    signed char cChar, cTaskWoken = pdFALSE;
 
     if( xQueueReceiveFromISR( xCharsForTx, &cChar, &cTaskWoken ) == pdTRUE )
     {

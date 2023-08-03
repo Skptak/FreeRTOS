@@ -8,11 +8,11 @@
  *
  *
  * Note 1: This file should not be edited. If you need to modify a parameter
- * without going through regenerating using the MSS Configurator Libero flow 
+ * without going through regenerating using the MSS Configurator Libero flow
  * or editing the associated xml file
- * the following method is recommended: 
+ * the following method is recommended:
 
- * 1. edit the following file 
+ * 1. edit the following file
  * boards/your_board/platform_config/mpfs_hal_config/mss_sw_config.h
 
  * 2. define the value you want to override there.
@@ -27,35 +27,34 @@
 #ifndef HW_MPU_MMC_H_
 #define HW_MPU_MMC_H_
 
-
 #ifdef __cplusplus
-extern  "C" {
+extern "C" {
 #endif
 
-#if !defined (LIBERO_SETTING_MMC_MPU_CFG_PMP0)
-/*mpu setup register, 64 bits */
-#define LIBERO_SETTING_MMC_MPU_CFG_PMP0    0x1F00000FFFFFFFFFULL
+#if !defined( LIBERO_SETTING_MMC_MPU_CFG_PMP0 )
+    /*mpu setup register, 64 bits */
+    #define LIBERO_SETTING_MMC_MPU_CFG_PMP0 0x1F00000FFFFFFFFFULL
     /* PMP                               [0:38]  RW value= 0xFFFFFFFFF */
     /* RESERVED                          [38:18] RW value= 0x0 */
     /* MODE                              [56:8]  RW value= 0x1F */
 #endif
-#if !defined (LIBERO_SETTING_MMC_MPU_CFG_PMP1)
-/*mpu setup register, 64 bits */
-#define LIBERO_SETTING_MMC_MPU_CFG_PMP1    0x1F00000FFFFFFFFFULL
+#if !defined( LIBERO_SETTING_MMC_MPU_CFG_PMP1 )
+    /*mpu setup register, 64 bits */
+    #define LIBERO_SETTING_MMC_MPU_CFG_PMP1 0x1F00000FFFFFFFFFULL
     /* PMP                               [0:38]  RW value= 0xFFFFFFFFF */
     /* RESERVED                          [38:18] RW value= 0x0 */
     /* MODE                              [56:8]  RW value= 0x1F */
 #endif
-#if !defined (LIBERO_SETTING_MMC_MPU_CFG_PMP2)
-/*pmp setup register, 64 bits */
-#define LIBERO_SETTING_MMC_MPU_CFG_PMP2    0x1F00000FFFFFFFFFULL
+#if !defined( LIBERO_SETTING_MMC_MPU_CFG_PMP2 )
+    /*pmp setup register, 64 bits */
+    #define LIBERO_SETTING_MMC_MPU_CFG_PMP2 0x1F00000FFFFFFFFFULL
     /* PMP                               [0:38]  RW value= 0xFFFFFFFFF */
     /* RESERVED                          [38:18] RW value= 0x0 */
     /* MODE                              [56:8]  RW value= 0x1F */
 #endif
-#if !defined (LIBERO_SETTING_MMC_MPU_CFG_PMP3)
-/*pmp setup register, 64 bits */
-#define LIBERO_SETTING_MMC_MPU_CFG_PMP3    0x1F00000FFFFFFFFFULL
+#if !defined( LIBERO_SETTING_MMC_MPU_CFG_PMP3 )
+    /*pmp setup register, 64 bits */
+    #define LIBERO_SETTING_MMC_MPU_CFG_PMP3 0x1F00000FFFFFFFFFULL
     /* PMP                               [0:38]  RW value= 0xFFFFFFFFF */
     /* RESERVED                          [38:18] RW value= 0x0 */
     /* MODE                              [56:8]  RW value= 0x1F */
@@ -65,6 +64,4 @@ extern  "C" {
 }
 #endif
 
-
 #endif /* #ifdef HW_MPU_MMC_H_ */
-

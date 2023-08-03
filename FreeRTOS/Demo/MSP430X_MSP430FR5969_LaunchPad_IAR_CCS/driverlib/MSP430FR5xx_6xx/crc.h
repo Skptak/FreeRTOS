@@ -42,16 +42,15 @@
 
 #ifdef __MSP430_HAS_CRC__
 
-//*****************************************************************************
-//
-// If building with a C++ compiler, make all of the definitions in this header
-// have a C binding.
-//
-//*****************************************************************************
-#ifdef __cplusplus
-extern "C"
-{
-#endif
+    //*****************************************************************************
+    //
+    // If building with a C++ compiler, make all of the definitions in this
+    // header have a C binding.
+    //
+    //*****************************************************************************
+    #ifdef __cplusplus
+extern "C" {
+    #endif
 
 //*****************************************************************************
 //
@@ -74,8 +73,7 @@ extern "C"
 //! \return None
 //
 //*****************************************************************************
-extern void CRC_setSeed(uint16_t baseAddress,
-                        uint16_t seed);
+extern void CRC_setSeed( uint16_t baseAddress, uint16_t seed );
 
 //*****************************************************************************
 //
@@ -93,8 +91,7 @@ extern void CRC_setSeed(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void CRC_set16BitData(uint16_t baseAddress,
-                             uint16_t dataIn);
+extern void CRC_set16BitData( uint16_t baseAddress, uint16_t dataIn );
 
 //*****************************************************************************
 //
@@ -112,8 +109,7 @@ extern void CRC_set16BitData(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void CRC_set8BitData(uint16_t baseAddress,
-                            uint8_t dataIn);
+extern void CRC_set8BitData( uint16_t baseAddress, uint8_t dataIn );
 
 //*****************************************************************************
 //
@@ -132,8 +128,7 @@ extern void CRC_set8BitData(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void CRC_set16BitDataReversed(uint16_t baseAddress,
-                                     uint16_t dataIn);
+extern void CRC_set16BitDataReversed( uint16_t baseAddress, uint16_t dataIn );
 
 //*****************************************************************************
 //
@@ -152,8 +147,7 @@ extern void CRC_set16BitDataReversed(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void CRC_set8BitDataReversed(uint16_t baseAddress,
-                                    uint8_t dataIn);
+extern void CRC_set8BitDataReversed( uint16_t baseAddress, uint8_t dataIn );
 
 //*****************************************************************************
 //
@@ -167,7 +161,7 @@ extern void CRC_set8BitDataReversed(uint16_t baseAddress,
 //! \return The value currently in the data register
 //
 //*****************************************************************************
-extern uint16_t CRC_getData(uint16_t baseAddress);
+extern uint16_t CRC_getData( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -181,7 +175,7 @@ extern uint16_t CRC_getData(uint16_t baseAddress);
 //! \return The value currently in the data register
 //
 //*****************************************************************************
-extern uint16_t CRC_getResult(uint16_t baseAddress);
+extern uint16_t CRC_getResult( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -194,16 +188,16 @@ extern uint16_t CRC_getResult(uint16_t baseAddress);
 //! \return The bit-wise reversed format of the Signature Result
 //
 //*****************************************************************************
-extern uint16_t CRC_getResultBitsReversed(uint16_t baseAddress);
+extern uint16_t CRC_getResultBitsReversed( uint16_t baseAddress );
 
-//*****************************************************************************
-//
-// Mark the end of the C bindings section for C++ compilers.
-//
-//*****************************************************************************
-#ifdef __cplusplus
+    //*****************************************************************************
+    //
+    // Mark the end of the C bindings section for C++ compilers.
+    //
+    //*****************************************************************************
+    #ifdef __cplusplus
 }
-#endif
+    #endif
 
 #endif
 #endif // __MSP430WARE_CRC_H__

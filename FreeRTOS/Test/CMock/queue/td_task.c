@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -31,9 +32,8 @@
 #include "unity.h"
 
 /* Mock includes. */
-#include "mock_task.h"
 #include "mock_fake_port.h"
-
+#include "mock_task.h"
 
 /* ============================  GLOBAL VARIABLES =========================== */
 static BaseType_t xSchedulerState = taskSCHEDULER_RUNNING;
@@ -57,7 +57,10 @@ static BaseType_t xTaskGetSchedulerStateStub( int num_calls )
 
 static void vTaskSuspendAllStub( int cmock_num_calls )
 {
-    TEST_ASSERT_EQUAL_MESSAGE( taskSCHEDULER_RUNNING, xSchedulerState, "vTaskSuspendAll called with scheduler suspended." );
+    TEST_ASSERT_EQUAL_MESSAGE( taskSCHEDULER_RUNNING,
+                               xSchedulerState,
+                               "vTaskSuspendAll called with scheduler "
+                               "suspended." );
     xSchedulerState = taskSCHEDULER_SUSPENDED;
 }
 
@@ -68,7 +71,10 @@ void td_task_vTaskSuspendAllStubNoCheck( int cmock_num_calls )
 
 static void vTaskMissedYieldStub( int cmock_num_calls )
 {
-    TEST_ASSERT_TRUE_MESSAGE( ( td_task_getFakeTaskPriority() >= DEFAULT_PRIORITY ), "A Missed Yield should only occur when a higher priority task is pending." );
+    TEST_ASSERT_TRUE_MESSAGE( ( td_task_getFakeTaskPriority() >=
+                                DEFAULT_PRIORITY ),
+                              "A Missed Yield should only occur when a higher "
+                              "priority task is pending." );
     xTaskMissedYieldCount++;
     xYieldPending = pdTRUE;
 }
@@ -77,7 +83,10 @@ BaseType_t td_task_xTaskResumeAllStub( int cmock_num_calls )
 {
     BaseType_t xDidYield = pdFALSE;
 
-    TEST_ASSERT_EQUAL_MESSAGE( taskSCHEDULER_SUSPENDED, xSchedulerState, "xTaskResumeAll called with scheduler running." );
+    TEST_ASSERT_EQUAL_MESSAGE( taskSCHEDULER_SUSPENDED,
+                               xSchedulerState,
+                               "xTaskResumeAll called with scheduler "
+                               "running." );
 
     xSchedulerState = taskSCHEDULER_RUNNING;
 
@@ -89,12 +98,12 @@ BaseType_t td_task_xTaskResumeAllStub( int cmock_num_calls )
 
     if( xYieldPending )
     {
-        #if ( configUSE_PREEMPTION == 1 )
-            xDidYield = pdTRUE;
-            xYieldCount++;
-            xYieldFromTaskResumeAllCount++;
-            xYieldPending = pdFALSE;
-        #endif
+#if( configUSE_PREEMPTION == 1 )
+        xDidYield = pdTRUE;
+        xYieldCount++;
+        xYieldFromTaskResumeAllCount++;
+        xYieldPending = pdFALSE;
+#endif
     }
 
     /* Remove task from blocked list */
@@ -157,12 +166,16 @@ static BaseType_t xTaskRemoveFromEventListStub( const List_t * const pxEventList
 {
     BaseType_t xReturnValue = pdFALSE;
 
-    /* check that xTaskRemoveFromEventList was called from within a critical section */
-    TEST_ASSERT_TRUE_MESSAGE( td_port_isInCriticalSection(), "xTaskRemoveFromEventList was called outside of a critical section." );
+    /* check that xTaskRemoveFromEventList was called from within a critical
+     * section */
+    TEST_ASSERT_TRUE_MESSAGE( td_port_isInCriticalSection(),
+                              "xTaskRemoveFromEventList was called outside of "
+                              "a critical section." );
 
     ListItem_t * pxItem = listGET_HEAD_ENTRY( pxEventList );
 
-    TickType_t xItemPriority = ( configMAX_PRIORITIES - listGET_LIST_ITEM_VALUE( pxItem ) );
+    TickType_t xItemPriority = ( configMAX_PRIORITIES -
+                                 listGET_LIST_ITEM_VALUE( pxItem ) );
 
     ( void ) uxListRemove( pxItem );
 
@@ -170,10 +183,8 @@ static BaseType_t xTaskRemoveFromEventListStub( const List_t * const pxEventList
 
     xYieldPending |= xReturnValue;
 
-    return( xReturnValue );
+    return ( xReturnValue );
 }
-
-
 
 static void vTaskPlaceOnEventListStub( List_t * const pxEventList,
                                        const TickType_t xTicksToWait,
@@ -184,16 +195,15 @@ static void vTaskPlaceOnEventListStub( List_t * const pxEventList,
         uxListRemove( &taskListItem );
     }
 
-    listSET_LIST_ITEM_VALUE( &taskListItem, ( configMAX_PRIORITIES - DEFAULT_PRIORITY ) );
+    listSET_LIST_ITEM_VALUE( &taskListItem,
+                             ( configMAX_PRIORITIES - DEFAULT_PRIORITY ) );
 
     vListInsert( pxEventList, &taskListItem );
 }
 
 /* ============================= Unity Fixtures ============================= */
 
-
 /* ==========================  Helper functions ============================= */
-
 
 void td_task_register_stubs( void )
 {
@@ -201,9 +211,11 @@ void td_task_register_stubs( void )
     xSchedulerState = taskSCHEDULER_RUNNING;
     xTickCount = 0;
     vListInitialiseItem( &taskListItem );
-    listSET_LIST_ITEM_VALUE( &taskListItem, configMAX_PRIORITIES - DEFAULT_PRIORITY );
+    listSET_LIST_ITEM_VALUE( &taskListItem,
+                             configMAX_PRIORITIES - DEFAULT_PRIORITY );
     vListInitialiseItem( &fakeTaskListItem );
-    listSET_LIST_ITEM_VALUE( &fakeTaskListItem, configMAX_PRIORITIES - DEFAULT_PRIORITY );
+    listSET_LIST_ITEM_VALUE( &fakeTaskListItem,
+                             configMAX_PRIORITIES - DEFAULT_PRIORITY );
     xYieldPending = pdFALSE;
     xYieldCount = 0;
     xPortYieldCount = 0;
@@ -237,15 +249,37 @@ void td_task_setSchedulerState( BaseType_t state )
 void td_task_teardown_check( void )
 {
     /* Assertions to run at the end of the test case */
-    TEST_ASSERT_EQUAL_MESSAGE( taskSCHEDULER_RUNNING, xSchedulerState, "Test case ended with the scheduler suspended." );
+    TEST_ASSERT_EQUAL_MESSAGE( taskSCHEDULER_RUNNING,
+                               xSchedulerState,
+                               "Test case ended with the scheduler "
+                               "suspended." );
 
-    TEST_ASSERT_EQUAL_MESSAGE( 0, xYieldCount, "Test case ended with xYieldCount > 0" );
-    TEST_ASSERT_EQUAL_MESSAGE( 0, xPortYieldCount, "Test case ended with xPortYieldCount > 0" );
-    TEST_ASSERT_EQUAL_MESSAGE( 0, xPortYieldFromISRCount, "Test case ended with xPortYieldFromISRCount > 0" );
-    TEST_ASSERT_EQUAL_MESSAGE( 0, xPortYieldWithinAPICount, "Test case ended with xPortYieldWithinAPICount > 0" );
-    TEST_ASSERT_EQUAL_MESSAGE( 0, xYieldFromTaskResumeAllCount, "Test case ended with xYieldFromTaskResumeAllCount > 0" );
-    TEST_ASSERT_EQUAL_MESSAGE( 0, xTaskMissedYieldCount, "Test case ended with xTaskMissedYieldCount > 0" );
-    TEST_ASSERT_EQUAL_MESSAGE( pdFALSE, xYieldPending, "Test case ended with xYieldPending != pdFALSE" );
+    TEST_ASSERT_EQUAL_MESSAGE( 0,
+                               xYieldCount,
+                               "Test case ended with xYieldCount > 0" );
+    TEST_ASSERT_EQUAL_MESSAGE( 0,
+                               xPortYieldCount,
+                               "Test case ended with xPortYieldCount > 0" );
+    TEST_ASSERT_EQUAL_MESSAGE( 0,
+                               xPortYieldFromISRCount,
+                               "Test case ended with xPortYieldFromISRCount > "
+                               "0" );
+    TEST_ASSERT_EQUAL_MESSAGE( 0,
+                               xPortYieldWithinAPICount,
+                               "Test case ended with xPortYieldWithinAPICount "
+                               "> 0" );
+    TEST_ASSERT_EQUAL_MESSAGE( 0,
+                               xYieldFromTaskResumeAllCount,
+                               "Test case ended with "
+                               "xYieldFromTaskResumeAllCount > 0" );
+    TEST_ASSERT_EQUAL_MESSAGE( 0,
+                               xTaskMissedYieldCount,
+                               "Test case ended with xTaskMissedYieldCount > "
+                               "0" );
+    TEST_ASSERT_EQUAL_MESSAGE( pdFALSE,
+                               xYieldPending,
+                               "Test case ended with xYieldPending != "
+                               "pdFALSE" );
 }
 
 void td_task_setFakeTaskPriority( TickType_t priority )
@@ -292,7 +326,7 @@ void td_task_addFakeTaskWaitingToReceiveFromQueue( QueueHandle_t xQueue )
 
 TickType_t td_task_getFakeTaskPriority( void )
 {
-    return( configMAX_PRIORITIES - fakeTaskListItem.xItemValue );
+    return ( configMAX_PRIORITIES - fakeTaskListItem.xItemValue );
 }
 
 BaseType_t td_task_getYieldCount( void )

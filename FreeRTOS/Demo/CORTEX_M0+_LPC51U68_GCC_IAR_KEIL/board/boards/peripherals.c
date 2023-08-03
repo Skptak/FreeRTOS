@@ -18,6 +18,6 @@ product: Peripherals v1.0
 /*******************************************************************************
  * BOARD_InitBootPeripherals function
  ******************************************************************************/
-void BOARD_InitBootPeripherals(void)
+void BOARD_InitBootPeripherals( void )
 {
 }

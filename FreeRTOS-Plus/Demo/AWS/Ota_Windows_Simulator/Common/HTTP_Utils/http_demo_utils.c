@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -37,38 +38,40 @@
 /**
  * @brief The maximum number of retries for network operation with server.
  */
-#define RETRY_MAX_ATTEMPTS            ( 5U )
+#define RETRY_MAX_ATTEMPTS         ( 5U )
 
 /**
  * @brief The maximum back-off delay (in milliseconds) for retrying failed
  * operation with server.
  */
-#define RETRY_MAX_BACKOFF_DELAY_MS    ( 5000U )
+#define RETRY_MAX_BACKOFF_DELAY_MS ( 5000U )
 
 /**
  * @brief The base back-off delay (in milliseconds) to use for network operation
  * retry attempts.
  */
-#define RETRY_BACKOFF_BASE_MS         ( 500U )
+#define RETRY_BACKOFF_BASE_MS      ( 500U )
 
 /**
  * @brief The separator between the "https" scheme and the host in a URL.
  */
-#define SCHEME_SEPARATOR              "://"
+#define SCHEME_SEPARATOR           "://"
 
 /**
  * @brief The length of the "://" separator.
  */
-#define SCHEME_SEPARATOR_LEN          ( sizeof( SCHEME_SEPARATOR ) - 1 )
+#define SCHEME_SEPARATOR_LEN       ( sizeof( SCHEME_SEPARATOR ) - 1 )
 
 /*-----------------------------------------------------------*/
 
-/** 
- * @brief Each compilation unit that consumes the NetworkContext must define it. 
+/**
+ * @brief Each compilation unit that consumes the NetworkContext must define it.
  * It should contain a single pointer to the type of your desired transport.
- * This utility is used by both TLS and plaintext HTTP demos, so define this pointer as void *.
+ * This utility is used by both TLS and plaintext HTTP demos, so define this
+ * pointer as void *.
  *
- * @note Transport stacks are defined in FreeRTOS-Plus/Source/Application-Protocols/network_transport.
+ * @note Transport stacks are defined in
+ * FreeRTOS-Plus/Source/Application-Protocols/network_transport.
  */
 struct NetworkContext
 {
@@ -80,8 +83,9 @@ struct NetworkContext
 extern UBaseType_t uxRand();
 
 /*-----------------------------------------------------------*/
-BaseType_t connectToServerWithBackoffRetries( TransportConnect_t connectFunction,
-                                              NetworkContext_t * pxNetworkContext )
+BaseType_t connectToServerWithBackoffRetries(
+    TransportConnect_t connectFunction,
+    NetworkContext_t * pxNetworkContext )
 {
     BaseType_t xReturn = pdFAIL;
     /* Status returned by the retry utilities. */
@@ -108,27 +112,34 @@ BaseType_t connectToServerWithBackoffRetries( TransportConnect_t connectFunction
 
         if( xReturn != pdPASS )
         {
-            /* Generate a random number and calculate backoff value (in milliseconds) for
-             * the next connection retry.
-             * Note: It is recommended to seed the random number generator with a device-specific
-             * entropy source so that possibility of multiple devices retrying failed network operations
-             * at similar intervals can be avoided. */
-            xBackoffAlgStatus = BackoffAlgorithm_GetNextBackoff( &xReconnectParams, uxRand(), &usNextBackoff );
+            /* Generate a random number and calculate backoff value (in
+             * milliseconds) for the next connection retry. Note: It is
+             * recommended to seed the random number generator with a
+             * device-specific entropy source so that possibility of multiple
+             * devices retrying failed network operations at similar intervals
+             * can be avoided. */
+            xBackoffAlgStatus = BackoffAlgorithm_GetNextBackoff(
+                &xReconnectParams,
+                uxRand(),
+                &usNextBackoff );
 
             if( xBackoffAlgStatus == BackoffAlgorithmSuccess )
             {
                 LogWarn( ( "Connection to the HTTP server failed. "
                            "Retrying connection with backoff and jitter." ) );
-                LogInfo( ( "Retry attempt %lu out of maximum retry attempts %lu.",
-                           xReconnectParams.attemptsDone,
-                           RETRY_MAX_ATTEMPTS ) );
+                LogInfo(
+                    ( "Retry attempt %lu out of maximum retry attempts %lu.",
+                      xReconnectParams.attemptsDone,
+                      RETRY_MAX_ATTEMPTS ) );
             }
         }
-    } while( ( xReturn == pdFAIL ) && ( xBackoffAlgStatus == BackoffAlgorithmSuccess ) );
+    } while( ( xReturn == pdFAIL ) &&
+             ( xBackoffAlgStatus == BackoffAlgorithmSuccess ) );
 
     if( xReturn == pdFAIL )
     {
-        LogError( ( "Connection to the server failed, all attempts exhausted." ) );
+        LogError(
+            ( "Connection to the server failed, all attempts exhausted." ) );
     }
 
     return xReturn;
@@ -234,7 +245,9 @@ HTTPStatus_t getUrlAddress( const char * pcUrl,
         /* Search for the start of the hostname using the "://" separator. */
         for( i = 0; i < ( xUrlLen - SCHEME_SEPARATOR_LEN ); i++ )
         {
-            if( strncmp( &( pcUrl[ i ] ), SCHEME_SEPARATOR, SCHEME_SEPARATOR_LEN ) == 0 )
+            if( strncmp( &( pcUrl[ i ] ),
+                         SCHEME_SEPARATOR,
+                         SCHEME_SEPARATOR_LEN ) == 0 )
             {
                 pcHostStart = pcUrl + i + SCHEME_SEPARATOR_LEN;
                 break;
@@ -243,9 +256,10 @@ HTTPStatus_t getUrlAddress( const char * pcUrl,
 
         if( pcHostStart == NULL )
         {
-            LogError( ( "Could not find \"://\" scheme separator in input URL %.*s",
-                        ( int32_t ) xUrlLen,
-                        pcUrl ) );
+            LogError(
+                ( "Could not find \"://\" scheme separator in input URL %.*s",
+                  ( int32_t ) xUrlLen,
+                  pcUrl ) );
             xHttpStatus = HTTPParserInternalError;
         }
         else
@@ -253,7 +267,8 @@ HTTPStatus_t getUrlAddress( const char * pcUrl,
             /* Search for the end of the hostname assuming that the object path
              * is next. Assume that there is no port number as this is used for
              * S3 presigned URLs. */
-            for( pcHostEnd = pcHostStart; pcHostEnd < ( pcUrl + xUrlLen ); pcHostEnd++ )
+            for( pcHostEnd = pcHostStart; pcHostEnd < ( pcUrl + xUrlLen );
+                 pcHostEnd++ )
             {
                 if( *pcHostEnd == '/' )
                 {

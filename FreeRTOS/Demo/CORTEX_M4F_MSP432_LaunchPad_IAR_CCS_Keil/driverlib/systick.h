@@ -1,6 +1,6 @@
 /*
  * -------------------------------------------
- *    MSP432 DriverLib - v3_10_00_09 
+ *    MSP432 DriverLib - v3_10_00_09
  * -------------------------------------------
  *
  * --COPYRIGHT--,BSD,BSD
@@ -51,8 +51,7 @@
 //
 //*****************************************************************************
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 #include <stdint.h>
 
@@ -80,7 +79,7 @@ extern "C"
 //! \return None.
 //
 //*****************************************************************************
-extern void SysTick_enableModule(void);
+extern void SysTick_enableModule( void );
 
 //*****************************************************************************
 //
@@ -92,7 +91,7 @@ extern void SysTick_enableModule(void);
 //! \return None.
 //
 //*****************************************************************************
-extern void SysTick_disableModule(void);
+extern void SysTick_disableModule( void );
 
 //*****************************************************************************
 //
@@ -110,7 +109,7 @@ extern void SysTick_disableModule(void);
 //! \return None.
 //
 //*****************************************************************************
-extern void SysTick_registerInterrupt(void (*intHandler)(void));
+extern void SysTick_registerInterrupt( void ( *intHandler )( void ) );
 
 //*****************************************************************************
 //
@@ -125,7 +124,7 @@ extern void SysTick_registerInterrupt(void (*intHandler)(void));
 //! \return None.
 //
 //*****************************************************************************
-extern void SysTick_unregisterInterrupt(void);
+extern void SysTick_unregisterInterrupt( void );
 
 //*****************************************************************************
 //
@@ -141,7 +140,7 @@ extern void SysTick_unregisterInterrupt(void);
 //! \return None.
 //
 //*****************************************************************************
-extern void SysTick_enableInterrupt(void);
+extern void SysTick_enableInterrupt( void );
 
 //*****************************************************************************
 //
@@ -153,7 +152,7 @@ extern void SysTick_enableInterrupt(void);
 //! \return None.
 //
 //*****************************************************************************
-extern void SysTick_disableInterrupt(void);
+extern void SysTick_disableInterrupt( void );
 
 //*****************************************************************************
 //
@@ -174,7 +173,7 @@ extern void SysTick_disableInterrupt(void);
 //! \return None.
 //
 //*****************************************************************************
-extern void SysTick_setPeriod(uint32_t period);
+extern void SysTick_setPeriod( uint32_t period );
 
 //*****************************************************************************
 //
@@ -186,7 +185,7 @@ extern void SysTick_setPeriod(uint32_t period);
 //! \return Returns the period of the SysTick counter.
 //
 //*****************************************************************************
-extern uint32_t SysTick_getPeriod(void);
+extern uint32_t SysTick_getPeriod( void );
 
 //*****************************************************************************
 //
@@ -198,7 +197,7 @@ extern uint32_t SysTick_getPeriod(void);
 //! \return Returns the current value of the SysTick counter.
 //
 //*****************************************************************************
-extern uint32_t SysTick_getValue(void);
+extern uint32_t SysTick_getValue( void );
 
 //*****************************************************************************
 //

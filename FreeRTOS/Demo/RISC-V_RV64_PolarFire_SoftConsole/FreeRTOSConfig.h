@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2021 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -28,8 +29,8 @@
 #define FREERTOS_CONFIG_H
 
 /* PolarFire HAL includes. */
-#include "mpfs_hal/mss_hal.h"
 #include "drivers/mss/mss_mmuart/mss_uart.h"
+#include "mpfs_hal/mss_hal.h"
 
 /*-----------------------------------------------------------
  * Application specific definitions.
@@ -81,31 +82,34 @@
 
 /* Task priorities.  Allow these to be overridden. */
 #ifndef uartPRIMARY_PRIORITY
-    #define uartPRIMARY_PRIORITY                ( configMAX_PRIORITIES - 3 )
+    #define uartPRIMARY_PRIORITY ( configMAX_PRIORITIES - 3 )
 #endif
 
 /* Set the following definitions to 1 to include the API function, or zero
  * to exclude the API function. */
-#define INCLUDE_vTaskPrioritySet                1
-#define INCLUDE_uxTaskPriorityGet               1
-#define INCLUDE_vTaskDelete                     1
-#define INCLUDE_vTaskCleanUpResources           1
-#define INCLUDE_vTaskSuspend                    1
-#define INCLUDE_vTaskDelayUntil                 1
-#define INCLUDE_vTaskDelay                      1
-#define INCLUDE_eTaskGetState                   1
-#define INCLUDE_xTimerPendFunctionCall          1
-#define INCLUDE_xTaskAbortDelay                 1
-#define INCLUDE_xTaskGetHandle                  1
-#define INCLUDE_xSemaphoreGetMutexHolder        1
+#define INCLUDE_vTaskPrioritySet         1
+#define INCLUDE_uxTaskPriorityGet        1
+#define INCLUDE_vTaskDelete              1
+#define INCLUDE_vTaskCleanUpResources    1
+#define INCLUDE_vTaskSuspend             1
+#define INCLUDE_vTaskDelayUntil          1
+#define INCLUDE_vTaskDelay               1
+#define INCLUDE_eTaskGetState            1
+#define INCLUDE_xTimerPendFunctionCall   1
+#define INCLUDE_xTaskAbortDelay          1
+#define INCLUDE_xTaskGetHandle           1
+#define INCLUDE_xSemaphoreGetMutexHolder 1
 
 /* Normal assert() semantics without relying on the provision of an assert.h
  * header file. */
 void vAssertCalled( void );
-#define configASSERT( x ) if( ( x ) == 0 ) vAssertCalled()
+#define configASSERT( x ) \
+    if( ( x ) == 0 )      \
+    vAssertCalled()
 
 /* Map to the platform write function. */
-#define configPRINT_STRING( pcString )          MSS_UART_polled_tx_string( &( g_mss_uart0_lo ), pcString )
+#define configPRINT_STRING( pcString ) \
+    MSS_UART_polled_tx_string( &( g_mss_uart0_lo ), pcString )
 
 /* Test configurations. */
 #define configSTART_TASK_NOTIFY_TESTS             1

@@ -42,27 +42,26 @@
 
 #ifdef __MSP430_HAS_CRC32__
 
-//*****************************************************************************
-//
-// If building with a C++ compiler, make all of the definitions in this header
-// have a C binding.
-//
-//*****************************************************************************
-#ifdef __cplusplus
-extern "C"
-{
-#endif
+    //*****************************************************************************
+    //
+    // If building with a C++ compiler, make all of the definitions in this
+    // header have a C binding.
+    //
+    //*****************************************************************************
+    #ifdef __cplusplus
+extern "C" {
+    #endif
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the crcMode parameter for
-// functions: CRC32_setSeed(), CRC32_getResult(), CRC32_getResultReversed(),
-// CRC32_set8BitDataReversed(), CRC32_set16BitDataReversed(),
-// CRC32_set8BitData(), and CRC32_set16BitData().
-//
-//*****************************************************************************
-#define CRC32_MODE                                                       (0x01)
-#define CRC16_MODE                                                       (0x00)
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the crcMode parameter for
+    // functions: CRC32_setSeed(), CRC32_getResult(), CRC32_getResultReversed(),
+    // CRC32_set8BitDataReversed(), CRC32_set16BitDataReversed(),
+    // CRC32_set8BitData(), and CRC32_set16BitData().
+    //
+    //*****************************************************************************
+    #define CRC32_MODE ( 0x01 )
+    #define CRC16_MODE ( 0x00 )
 
 //*****************************************************************************
 //
@@ -88,8 +87,7 @@ extern "C"
 //! \return None
 //
 //*****************************************************************************
-extern void CRC32_setSeed(uint32_t seed,
-                          uint8_t crcMode);
+extern void CRC32_setSeed( uint32_t seed, uint8_t crcMode );
 
 //*****************************************************************************
 //
@@ -110,8 +108,7 @@ extern void CRC32_setSeed(uint32_t seed,
 //! \return None
 //
 //*****************************************************************************
-extern void CRC32_set8BitData(uint8_t dataIn,
-                              uint8_t crcMode);
+extern void CRC32_set8BitData( uint8_t dataIn, uint8_t crcMode );
 
 //*****************************************************************************
 //
@@ -132,8 +129,7 @@ extern void CRC32_set8BitData(uint8_t dataIn,
 //! \return None
 //
 //*****************************************************************************
-extern void CRC32_set16BitData(uint16_t dataIn,
-                               uint8_t crcMode);
+extern void CRC32_set16BitData( uint16_t dataIn, uint8_t crcMode );
 
 //*****************************************************************************
 //
@@ -150,7 +146,7 @@ extern void CRC32_set16BitData(uint16_t dataIn,
 //! \return None
 //
 //*****************************************************************************
-extern void CRC32_set32BitData(uint32_t dataIn);
+extern void CRC32_set32BitData( uint32_t dataIn );
 
 //*****************************************************************************
 //
@@ -172,8 +168,7 @@ extern void CRC32_set32BitData(uint32_t dataIn);
 //! \return None
 //
 //*****************************************************************************
-extern void CRC32_set8BitDataReversed(uint8_t dataIn,
-                                      uint8_t crcMode);
+extern void CRC32_set8BitDataReversed( uint8_t dataIn, uint8_t crcMode );
 
 //*****************************************************************************
 //
@@ -195,8 +190,7 @@ extern void CRC32_set8BitDataReversed(uint8_t dataIn,
 //! \return None
 //
 //*****************************************************************************
-extern void CRC32_set16BitDataReversed(uint16_t dataIn,
-                                       uint8_t crcMode);
+extern void CRC32_set16BitDataReversed( uint16_t dataIn, uint8_t crcMode );
 
 //*****************************************************************************
 //
@@ -214,7 +208,7 @@ extern void CRC32_set16BitDataReversed(uint16_t dataIn,
 //! \return None
 //
 //*****************************************************************************
-extern void CRC32_set32BitDataReversed(uint32_t dataIn);
+extern void CRC32_set32BitDataReversed( uint32_t dataIn );
 
 //*****************************************************************************
 //
@@ -231,7 +225,7 @@ extern void CRC32_set32BitDataReversed(uint32_t dataIn);
 //! \return The signature result
 //
 //*****************************************************************************
-extern uint32_t CRC32_getResult(uint8_t crcMode);
+extern uint32_t CRC32_getResult( uint8_t crcMode );
 
 //*****************************************************************************
 //
@@ -248,16 +242,16 @@ extern uint32_t CRC32_getResult(uint8_t crcMode);
 //! \return The bit-wise reversed format of the signature result
 //
 //*****************************************************************************
-extern uint32_t CRC32_getResultReversed(uint8_t crcMode);
+extern uint32_t CRC32_getResultReversed( uint8_t crcMode );
 
-//*****************************************************************************
-//
-// Mark the end of the C bindings section for C++ compilers.
-//
-//*****************************************************************************
-#ifdef __cplusplus
+    //*****************************************************************************
+    //
+    // Mark the end of the C bindings section for C++ compilers.
+    //
+    //*****************************************************************************
+    #ifdef __cplusplus
 }
-#endif
+    #endif
 
 #endif
 #endif // __MSP430WARE_CRC32_H__

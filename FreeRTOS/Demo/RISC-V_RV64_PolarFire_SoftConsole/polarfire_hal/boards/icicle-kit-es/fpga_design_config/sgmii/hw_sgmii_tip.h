@@ -8,11 +8,11 @@
  *
  *
  * Note 1: This file should not be edited. If you need to modify a parameter
- * without going through regenerating using the MSS Configurator Libero flow 
+ * without going through regenerating using the MSS Configurator Libero flow
  * or editing the associated xml file
- * the following method is recommended: 
+ * the following method is recommended:
 
- * 1. edit the following file 
+ * 1. edit the following file
  * boards/your_board/platform_config/mpfs_hal_config/mss_sw_config.h
 
  * 2. define the value you want to override there.
@@ -27,14 +27,13 @@
 #ifndef HW_SGMII_TIP_H_
 #define HW_SGMII_TIP_H_
 
-
 #ifdef __cplusplus
-extern  "C" {
+extern "C" {
 #endif
 
-#if !defined (LIBERO_SETTING_SGMII_MODE)
-/*SGMII mode control (SEU) */
-#define LIBERO_SETTING_SGMII_MODE    0x08C0E6FFUL
+#if !defined( LIBERO_SETTING_SGMII_MODE )
+    /*SGMII mode control (SEU) */
+    #define LIBERO_SETTING_SGMII_MODE 0x08C0E6FFUL
     /* REG_PLL_EN                        [0:1]   RW value= 0x1 */
     /* REG_DLL_EN                        [1:1]   RW value= 0x1 */
     /* REG_PVT_EN                        [2:1]   RW value= 0x1 */
@@ -56,9 +55,9 @@ extern  "C" {
     /* REG_REFCLK_EN_UDRIVE_N            [30:1]  RW value= 0x0 */
     /* REG_REFCLK_EN_INS_HYST_N          [31:1]  RW value= 0x0 */
 #endif
-#if !defined (LIBERO_SETTING_PLL_CNTL)
-/*PLL control register (SEU) */
-#define LIBERO_SETTING_PLL_CNTL    0x80140101UL
+#if !defined( LIBERO_SETTING_PLL_CNTL )
+    /*PLL control register (SEU) */
+    #define LIBERO_SETTING_PLL_CNTL 0x80140101UL
     /* REG_PLL_POSTDIV                   [0:7]   RW value= 0x1 */
     /* ARO_PLL0_LOCK                     [7:1]   RO */
     /* REG_PLL_RFDIV                     [8:6]   RW value= 0x1 */
@@ -68,9 +67,9 @@ extern  "C" {
     /* REG_PLL_BWI                       [28:2]  RW value= 0x0 */
     /* REG_PLL_BWP                       [30:2]  RW value= 0x2 */
 #endif
-#if !defined (LIBERO_SETTING_CH0_CNTL)
-/*Channel0 control register */
-#define LIBERO_SETTING_CH0_CNTL    0x37F07770UL
+#if !defined( LIBERO_SETTING_CH0_CNTL )
+    /*Channel0 control register */
+    #define LIBERO_SETTING_CH0_CNTL 0x37F07770UL
     /* REG_TX0_WPU_P                     [0:1]   RW value= 0x0 */
     /* REG_TX0_WPD_P                     [1:1]   RW value= 0x0 */
     /* REG_TX0_SLEW_P                    [2:2]   RW value= 0x0 */
@@ -86,9 +85,9 @@ extern  "C" {
     /* REG_RX0_ODT_STATIC_P              [28:3]  RW value= 0x3 */
     /* REG_RX0_EN_FLAG_N                 [31:1]  RW value= 0x0 */
 #endif
-#if !defined (LIBERO_SETTING_CH1_CNTL)
-/*Channel1 control register */
-#define LIBERO_SETTING_CH1_CNTL    0x37F07770UL
+#if !defined( LIBERO_SETTING_CH1_CNTL )
+    /*Channel1 control register */
+    #define LIBERO_SETTING_CH1_CNTL 0x37F07770UL
     /* REG_TX1_WPU_P                     [0:1]   RW value= 0x0 */
     /* REG_TX1_WPD_P                     [1:1]   RW value= 0x0 */
     /* REG_TX1_SLEW_P                    [2:2]   RW value= 0x0 */
@@ -104,9 +103,9 @@ extern  "C" {
     /* REG_RX1_ODT_STATIC_P              [28:3]  RW value= 0x3 */
     /* REG_RX1_EN_FLAG_N                 [31:1]  RW value= 0x0 */
 #endif
-#if !defined (LIBERO_SETTING_RECAL_CNTL)
-/*Recalibration control register */
-#define LIBERO_SETTING_RECAL_CNTL    0x000020C8UL
+#if !defined( LIBERO_SETTING_RECAL_CNTL )
+    /*Recalibration control register */
+    #define LIBERO_SETTING_RECAL_CNTL 0x000020C8UL
     /* REG_RECAL_DIFF_RANGE              [0:5]   RW value= 0x8 */
     /* REG_RECAL_START_EN                [5:1]   RW value= 0x0 */
     /* REG_PVT_CALIB_START               [6:1]   RW value= 0x1 */
@@ -122,9 +121,9 @@ extern  "C" {
     /* SRO_DLL_ST_CODE                   [24:7]  RO */
     /* SRO_RECAL_START                   [31:1]  RO */
 #endif
-#if !defined (LIBERO_SETTING_CLK_CNTL)
-/*Clock input and routing control registers */
-#define LIBERO_SETTING_CLK_CNTL    0xF00050CCUL
+#if !defined( LIBERO_SETTING_CLK_CNTL )
+    /*Clock input and routing control registers */
+    #define LIBERO_SETTING_CLK_CNTL 0xF00050CCUL
     /* REG_REFCLK_EN_TERM_P              [0:2]   RW value= 0x0 */
     /* REG_REFCLK_EN_RXMODE_P            [2:2]   RW value= 0x3 */
     /* REG_REFCLK_EN_TERM_N              [4:2]   RW value= 0x0 */
@@ -135,9 +134,9 @@ extern  "C" {
     /* REG_CLKMUX_PLL0_RFCLK1_SEL        [14:2]  RW value= 0x1 */
     /* REG_CLKMUX_SPARE0                 [16:16] RW value= 0xf000 */
 #endif
-#if !defined (LIBERO_SETTING_DYN_CNTL)
-/*Dynamic control registers */
-#define LIBERO_SETTING_DYN_CNTL    0x00000000UL
+#if !defined( LIBERO_SETTING_DYN_CNTL )
+    /*Dynamic control registers */
+    #define LIBERO_SETTING_DYN_CNTL 0x00000000UL
     /* REG_PLL_DYNEN                     [0:1]   RW value= 0x0 */
     /* REG_DLL_DYNEN                     [1:1]   RW value= 0x0 */
     /* REG_PVT_DYNEN                     [2:1]   RW value= 0x0 */
@@ -160,9 +159,9 @@ extern  "C" {
     /* ARO_PLL0_VCO3PH_SEL               [25:3]  RO */
     /* ARO_REF_DIFFR                     [28:4]  RO */
 #endif
-#if !defined (LIBERO_SETTING_PVT_STAT)
-/*PVT calibrator status registers */
-#define LIBERO_SETTING_PVT_STAT    0x00000000UL
+#if !defined( LIBERO_SETTING_PVT_STAT )
+    /*PVT calibrator status registers */
+    #define LIBERO_SETTING_PVT_STAT 0x00000000UL
     /* ARO_REF_PCODE                     [0:6]   RO */
     /* ARO_IOEN_BNK                      [6:1]   RO */
     /* ARO_IOEN_BNK_B                    [7:1]   RO */
@@ -176,14 +175,14 @@ extern  "C" {
     /* PVT_CALIB_LOCK                    [30:1]  RW value= 0x0 */
     /* PVT_CALIB_START                   [31:1]  RW value= 0x0 */
 #endif
-#if !defined (LIBERO_SETTING_SPARE_CNTL)
-/*Spare control register */
-#define LIBERO_SETTING_SPARE_CNTL    0xFF000000UL
+#if !defined( LIBERO_SETTING_SPARE_CNTL )
+    /*Spare control register */
+    #define LIBERO_SETTING_SPARE_CNTL 0xFF000000UL
     /* REG_SPARE                         [0:32]  RW value= 0xFF000000 */
 #endif
-#if !defined (LIBERO_SETTING_SPARE_STAT)
-/*Spare status register */
-#define LIBERO_SETTING_SPARE_STAT    0x00000000UL
+#if !defined( LIBERO_SETTING_SPARE_STAT )
+    /*Spare status register */
+    #define LIBERO_SETTING_SPARE_STAT 0x00000000UL
     /* SRO_SPARE                         [0:32]  RO */
 #endif
 
@@ -191,6 +190,4 @@ extern  "C" {
 }
 #endif
 
-
 #endif /* #ifdef HW_SGMII_TIP_H_ */
-

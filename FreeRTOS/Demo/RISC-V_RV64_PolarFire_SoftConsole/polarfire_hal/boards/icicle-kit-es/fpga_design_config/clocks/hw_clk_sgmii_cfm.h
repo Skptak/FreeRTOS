@@ -8,11 +8,11 @@
  *
  *
  * Note 1: This file should not be edited. If you need to modify a parameter
- * without going through regenerating using the MSS Configurator Libero flow 
+ * without going through regenerating using the MSS Configurator Libero flow
  * or editing the associated xml file
- * the following method is recommended: 
+ * the following method is recommended:
 
- * 1. edit the following file 
+ * 1. edit the following file
  * boards/your_board/platform_config/mpfs_hal_config/mss_sw_config.h
 
  * 2. define the value you want to override there.
@@ -27,31 +27,30 @@
 #ifndef HW_CLK_SGMII_CFM_H_
 #define HW_CLK_SGMII_CFM_H_
 
-
 #ifdef __cplusplus
-extern  "C" {
+extern "C" {
 #endif
 
-#if !defined (LIBERO_SETTING_SGMII_REFCLKMUX)
-/*Input mux selections */
-#define LIBERO_SETTING_SGMII_REFCLKMUX    0x00000005UL
+#if !defined( LIBERO_SETTING_SGMII_REFCLKMUX )
+    /*Input mux selections */
+    #define LIBERO_SETTING_SGMII_REFCLKMUX 0x00000005UL
     /* PLL0_RFCLK0_SEL                   [0:2]   RW value= 0x1 */
     /* PLL0_RFCLK1_SEL                   [2:2]   RW value= 0x1 */
     /* RESERVED                          [4:28]  RW value= 0x0 */
 #endif
-#if !defined (LIBERO_SETTING_SGMII_SGMII_CLKMUX)
-/*sgmii clk mux */
-#define LIBERO_SETTING_SGMII_SGMII_CLKMUX    0x00000005UL
+#if !defined( LIBERO_SETTING_SGMII_SGMII_CLKMUX )
+    /*sgmii clk mux */
+    #define LIBERO_SETTING_SGMII_SGMII_CLKMUX 0x00000005UL
     /* SGMII_CLKMUX                      [0:32]  RW value= 0x5 */
 #endif
-#if !defined (LIBERO_SETTING_SGMII_SPARE0)
-/*spare logic */
-#define LIBERO_SETTING_SGMII_SPARE0    0x00000000UL
+#if !defined( LIBERO_SETTING_SGMII_SPARE0 )
+    /*spare logic */
+    #define LIBERO_SETTING_SGMII_SPARE0 0x00000000UL
     /* RESERVED                          [0:32]  RW value= 0x0 */
 #endif
-#if !defined (LIBERO_SETTING_SGMII_CLK_XCVR)
-/*Clock_Receiver */
-#define LIBERO_SETTING_SGMII_CLK_XCVR    0x00002C30UL
+#if !defined( LIBERO_SETTING_SGMII_CLK_XCVR )
+    /*Clock_Receiver */
+    #define LIBERO_SETTING_SGMII_CLK_XCVR 0x00002C30UL
     /* EN_UDRIVE_P                       [0:1]   RW value= 0x0 */
     /* EN_INS_HYST_P                     [1:1]   RW value= 0x0 */
     /* EN_TERM_P                         [2:2]   RW value= 0x0 */
@@ -64,9 +63,9 @@ extern  "C" {
     /* EN_RDIFF                          [13:1]  RW value= 0x1 */
     /* RESERVED                          [14:18] RW value= 0x0 */
 #endif
-#if !defined (LIBERO_SETTING_SGMII_TEST_CTRL)
-/*Test MUX Controls */
-#define LIBERO_SETTING_SGMII_TEST_CTRL    0x00000000UL
+#if !defined( LIBERO_SETTING_SGMII_TEST_CTRL )
+    /*Test MUX Controls */
+    #define LIBERO_SETTING_SGMII_TEST_CTRL 0x00000000UL
     /* OSC_ENABLE                        [0:4]   RW value= 0x0 */
     /* ATEST_EN                          [4:1]   RW value= 0x0 */
     /* ATEST_SEL                         [5:5]   RW value= 0x0 */
@@ -79,6 +78,4 @@ extern  "C" {
 }
 #endif
 
-
 #endif /* #ifdef HW_CLK_SGMII_CFM_H_ */
-

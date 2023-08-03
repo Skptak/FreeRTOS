@@ -29,39 +29,46 @@ extern "C" {
 
 #include <stdint.h>
 
-
 /// definition for trng handle.
-typedef void *trng_handle_t;
+typedef void * trng_handle_t;
 /****** TRNG specific error codes *****/
-typedef enum {
-    TRNG_ERROR_MODE = 0,                   ///< Specified Mode not supported
+typedef enum
+{
+    TRNG_ERROR_MODE = 0, ///< Specified Mode not supported
 } drv_trng_error_e;
 
 /*----- TRNG Control Codes: Mode -----*/
-typedef enum {
-    TRNG_MODE_LOWPOWER              = 0,   ///< TRNG Low power Mode
-    TRNG_MODE_NORMAL                       ///< TRNG Normal Mode
+typedef enum
+{
+    TRNG_MODE_LOWPOWER = 0, ///< TRNG Low power Mode
+    TRNG_MODE_NORMAL        ///< TRNG Normal Mode
 } trng_mode_e;
 
 /**
 \brief TRNG Status
 */
-typedef struct {
-    uint32_t busy                : 1;
-    uint32_t data_valid          : 1;        ///< Data is valid flag
+typedef struct
+{
+    uint32_t busy       : 1;
+    uint32_t data_valid : 1; ///< Data is valid flag
 } trng_status_t;
 
 /****** TRNG Event *****/
-typedef enum {
-    TRNG_EVENT_DATA_GENERATE_COMPLETE       = 0        ///< Get data from TRNG success
+typedef enum
+{
+    TRNG_EVENT_DATA_GENERATE_COMPLETE = 0 ///< Get data from TRNG success
 } trng_event_e;
-typedef void (*trng_event_cb_t)(trng_event_e event);   ///< Pointer to \ref trng_event_cb_t : TRNG Event call back.
+typedef void ( *trng_event_cb_t )( trng_event_e event ); ///< Pointer to \ref
+                                                         ///< trng_event_cb_t :
+                                                         ///< TRNG Event call
+                                                         ///< back.
 
 /**
 \brief TRNG Device Driver Capabilities.
 */
-typedef struct {
-    uint32_t lowper_mode         : 1;        ///< supports low power mode
+typedef struct
+{
+    uint32_t lowper_mode : 1; ///< supports low power mode
 } trng_capabilities_t;
 
 // Function documentation
@@ -70,29 +77,29 @@ typedef struct {
   \brief       get trng handle count.
   \return      trng handle count
 */
-int32_t csi_trng_get_instance_count(void);
+int32_t csi_trng_get_instance_count( void );
 
 /**
-  \brief       Initialize TRNG Interface. 1. Initializes the resources needed for the TRNG interface 2.registers event callback function
-  \param[in]   idx  must not exceed return value of csi_trng_get_instance_count()
-  \param[in]   cb_event  Pointer to \ref trng_event_cb_t
-  \return      pointer to trng handle
+  \brief       Initialize TRNG Interface. 1. Initializes the resources needed
+  for the TRNG interface 2.registers event callback function \param[in]   idx
+  must not exceed return value of csi_trng_get_instance_count() \param[in]
+  cb_event  Pointer to \ref trng_event_cb_t \return      pointer to trng handle
 */
-trng_handle_t csi_trng_initialize(int32_t idx, trng_event_cb_t cb_event);
+trng_handle_t csi_trng_initialize( int32_t idx, trng_event_cb_t cb_event );
 
 /**
-  \brief       De-initialize TRNG Interface. stops operation and releases the software resources used by the interface
-  \param[in]   handle  trng handle to operate.
-  \return      error code
+  \brief       De-initialize TRNG Interface. stops operation and releases the
+  software resources used by the interface \param[in]   handle  trng handle to
+  operate. \return      error code
 */
-int32_t csi_trng_uninitialize(trng_handle_t handle);
+int32_t csi_trng_uninitialize( trng_handle_t handle );
 
 /**
   \brief       Get driver capabilities.
   \param[in]   handle trng handle to operate.
   \return      \ref trng_capabilities_t
 */
-trng_capabilities_t csi_trng_get_capabilities(trng_handle_t handle);
+trng_capabilities_t csi_trng_get_capabilities( trng_handle_t handle );
 
 /**
   \brief       Get data from the TRNG.
@@ -101,15 +108,14 @@ trng_capabilities_t csi_trng_get_capabilities(trng_handle_t handle);
   \param[in]   num   Number of data items to obtain
   \return      error code
 */
-int32_t csi_trng_get_data(trng_handle_t handle, void *data, uint32_t num);
+int32_t csi_trng_get_data( trng_handle_t handle, void * data, uint32_t num );
 
 /**
   \brief       Get TRNG status.
   \param[in]   handle  trng handle to operate.
   \return      TRNG status \ref trng_status_t
 */
-trng_status_t csi_trng_get_status(trng_handle_t handle);
-
+trng_status_t csi_trng_get_status( trng_handle_t handle );
 
 #ifdef __cplusplus
 }

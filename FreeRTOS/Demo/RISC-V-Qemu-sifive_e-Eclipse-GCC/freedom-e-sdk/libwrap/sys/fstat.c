@@ -1,18 +1,19 @@
 /* See LICENSE of license details. */
 
-#include <errno.h>
-#include <unistd.h>
-#include <sys/stat.h>
 #include "stub.h"
 #include "weak_under_alias.h"
+#include <errno.h>
+#include <sys/stat.h>
+#include <unistd.h>
 
-int __wrap_fstat(int fd, struct stat* st)
+int __wrap_fstat( int fd, struct stat * st )
 {
-  if (isatty(fd)) {
-    st->st_mode = S_IFCHR;
-    return 0;
-  }
+    if( isatty( fd ) )
+    {
+        st->st_mode = S_IFCHR;
+        return 0;
+    }
 
-  return _stub(EBADF);
+    return _stub( EBADF );
 }
-weak_under_alias(fstat);
+weak_under_alias( fstat );

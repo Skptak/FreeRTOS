@@ -13,7 +13,7 @@
 #define TRC_SNAPSHOT_CONFIG_H
 
 #ifdef __cplusplus
-    extern "C" {
+extern "C" {
 #endif
 
 /**
@@ -33,7 +33,7 @@
  * recording is stopped when the buffer becomes full. This is useful for
  * recording events following a specific state, e.g., the startup sequence.
  */
-#define TRC_CFG_SNAPSHOT_MODE            TRC_SNAPSHOT_MODE_RING_BUFFER
+#define TRC_CFG_SNAPSHOT_MODE         TRC_SNAPSHOT_MODE_RING_BUFFER
 
 /**
  * @def TRC_CFG_EVENT_BUFFER_SIZE
@@ -47,7 +47,7 @@
  * Default value is 1000, which means that 4000 bytes is allocated for the
  * event buffer.
  */
-#define TRC_CFG_EVENT_BUFFER_SIZE        250000
+#define TRC_CFG_EVENT_BUFFER_SIZE     250000
 
 /**
  * @def TRC_CFG_INCLUDE_FLOAT_SUPPORT
@@ -64,7 +64,7 @@
  *
  * Default value is 0.
  */
-#define TRC_CFG_INCLUDE_FLOAT_SUPPORT    0
+#define TRC_CFG_INCLUDE_FLOAT_SUPPORT 0
 
 /**
  * @def TRC_CFG_SYMBOL_TABLE_SIZE
@@ -79,9 +79,9 @@
  *
  * Default value is 800.
  */
-#define TRC_CFG_SYMBOL_TABLE_SIZE        8000
+#define TRC_CFG_SYMBOL_TABLE_SIZE     8000
 
-#if ( TRC_CFG_SYMBOL_TABLE_SIZE == 0 )
+#if( TRC_CFG_SYMBOL_TABLE_SIZE == 0 )
     #error "TRC_CFG_SYMBOL_TABLE_SIZE may not be zero!"
 #endif
 
@@ -95,14 +95,14 @@
 
 /**
  * @def TRC_CFG_HEAP_SIZE_BELOW_16M
- * @brief An integer constant that can be used to reduce the buffer usage of memory
- * allocation events (malloc/free). This value should be 1 if the heap size is
- * below 16 MB (2^24 byte), and you can live with reported addresses showing the
- * lower 24 bits only. If 0, you get the full 32-bit addresses.
+ * @brief An integer constant that can be used to reduce the buffer usage of
+ * memory allocation events (malloc/free). This value should be 1 if the heap
+ * size is below 16 MB (2^24 byte), and you can live with reported addresses
+ * showing the lower 24 bits only. If 0, you get the full 32-bit addresses.
  *
  * Default value is 0.
  */
-#define TRC_CFG_HEAP_SIZE_BELOW_16M                0
+#define TRC_CFG_HEAP_SIZE_BELOW_16M             0
 
 /**
  * @def TRC_CFG_USE_IMPLICIT_IFE_RULES
@@ -130,7 +130,7 @@
  * - Blocking on "input" operations, i.e., when the task is waiting for the
  *   next a message/signal/event. But only if this event is blocking.
  */
-#define TRC_CFG_USE_IMPLICIT_IFE_RULES             1
+#define TRC_CFG_USE_IMPLICIT_IFE_RULES          1
 
 /**
  * @def TRC_CFG_USE_16BIT_OBJECT_HANDLES
@@ -153,7 +153,7 @@
  * the event buffer whenever the object is referenced. Moreover, some internal
  * tables in the recorder gets slightly larger when using 16-bit handles.
  */
-#define TRC_CFG_USE_16BIT_OBJECT_HANDLES           0
+#define TRC_CFG_USE_16BIT_OBJECT_HANDLES        0
 
 /**
  * @def TRC_CFG_USE_SEPARATE_USER_EVENT_BUFFER
@@ -212,7 +212,7 @@
  *  // Finds the existing UB channel
  *  xTracePrintF(chn2, "%Z: %d", value2);
  */
-#define TRC_CFG_USE_SEPARATE_USER_EVENT_BUFFER     0
+#define TRC_CFG_USE_SEPARATE_USER_EVENT_BUFFER  0
 
 /**
  * @def TRC_CFG_SEPARATE_USER_EVENT_BUFFER_SIZE
@@ -223,7 +223,7 @@
  *
  * Only applicable if TRC_CFG_USE_SEPARATE_USER_EVENT_BUFFER is 1.
  */
-#define TRC_CFG_SEPARATE_USER_EVENT_BUFFER_SIZE    200
+#define TRC_CFG_SEPARATE_USER_EVENT_BUFFER_SIZE 200
 
 /**
  * @def TRC_CFG_UB_CHANNELS
@@ -236,7 +236,7 @@
  *
  * Only applicable if TRC_CFG_USE_SEPARATE_USER_EVENT_BUFFER is 1.
  */
-#define TRC_CFG_UB_CHANNELS                        32
+#define TRC_CFG_UB_CHANNELS                     32
 
 #ifdef __cplusplus
 }

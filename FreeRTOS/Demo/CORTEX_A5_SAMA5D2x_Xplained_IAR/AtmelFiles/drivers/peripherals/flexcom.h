@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
- *         SAM Software Package License 
+ *         SAM Software Package License
  * ----------------------------------------------------------------------------
  * Copyright (c) 2015, Atmel Corporation
  *
@@ -43,8 +43,8 @@
  * -# Enable the transmitter and/or the receiver of the USART using
  *    usart_set_transmitter_enabled and usart_set_receiver_enabled.
  * -# Send data through the USART using the usart_write methods.
- * -# Receive data from the USART using the usart_read functions; the availability of data can be polled
- *    with usart_is_data_available.
+ * -# Receive data from the USART using the usart_read functions; the
+ * availability of data can be polled with usart_is_data_available.
  * -# Disable the transmitter and/or the receiver of the USART with
  *    usart_set_transmitter_enabled and usart_set_receiver_enabled.
  */
@@ -64,10 +64,10 @@ extern "C" {
 #endif
 
 /*------------------------------------------------------------------------------*/
-/*         Exported functions                                                   */
+/*         Exported functions */
 /*------------------------------------------------------------------------------*/
 
-extern void flexcom_select(Flexcom * flexcom, uint32_t protocol);
+extern void flexcom_select( Flexcom * flexcom, uint32_t protocol );
 
 #ifdef __cplusplus
 }

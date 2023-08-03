@@ -23,16 +23,16 @@
 ** ###################################################################*/
 
 #ifndef __Events_H
-#define __Events_H
+    #define __Events_H
 /* MODULE Events */
 
-#include "PE_Types.h"
-#include "PE_Error.h"
-#include "PE_Const.h"
-#include "IO_Map.h"
-#include "PE_Timer.h"
+    #include "IO_Map.h"
+    #include "PE_Const.h"
+    #include "PE_Error.h"
+    #include "PE_Timer.h"
+    #include "PE_Types.h"
 
-void TickTimer_OnInterrupt(void);
+void TickTimer_OnInterrupt( void );
 /*
 ** ===================================================================
 **     Event       :  TickTimer_OnInterrupt (module Events)
@@ -47,8 +47,7 @@ void TickTimer_OnInterrupt(void);
 ** ===================================================================
 */
 
-
-void COM0_OnError(void);
+void COM0_OnError( void );
 /*
 ** ===================================================================
 **     Event       :  COM0_OnError (module Events)
@@ -63,7 +62,7 @@ void COM0_OnError(void);
 ** ===================================================================
 */
 
-void COM0_OnRxChar(void);
+void COM0_OnRxChar( void );
 /*
 ** ===================================================================
 **     Event       :  COM0_OnRxChar (module Events)
@@ -77,7 +76,7 @@ void COM0_OnRxChar(void);
 ** ===================================================================
 */
 
-void COM0_OnTxChar(void);
+void COM0_OnTxChar( void );
 /*
 ** ===================================================================
 **     Event       :  COM0_OnTxChar (module Events)
@@ -90,7 +89,7 @@ void COM0_OnTxChar(void);
 ** ===================================================================
 */
 
-void COM0_OnFullRxBuf(void);
+void COM0_OnFullRxBuf( void );
 /*
 ** ===================================================================
 **     Event       :  COM0_OnFullRxBuf (module Events)
@@ -103,7 +102,7 @@ void COM0_OnFullRxBuf(void);
 ** ===================================================================
 */
 
-void COM0_OnFreeTxBuf(void);
+void COM0_OnFreeTxBuf( void );
 /*
 ** ===================================================================
 **     Event       :  COM0_OnFreeTxBuf (module Events)
@@ -123,7 +122,7 @@ void COM0_OnFreeTxBuf(void);
 /*
 ** ###################################################################
 **
-**     This file was created by UNIS Processor Expert 03.33 for 
+**     This file was created by UNIS Processor Expert 03.33 for
 **     the Motorola HCS12 series of microcontrollers.
 **
 ** ###################################################################

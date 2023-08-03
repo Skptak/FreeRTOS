@@ -12,7 +12,6 @@
 #ifndef __MSS_AXISW_H_
 #define __MSS_AXISW_H_ 1
 
-
 #include <stddef.h>
 #include <stdint.h>
 
@@ -20,12 +19,13 @@
 extern "C" {
 #endif
 
-/***************************************************************************//**
+/***************************************************************************/ /**
 
- */
+  */
 
-typedef enum {
-    MSS_AXISW_FIC0_RD_CHAN    = 0x000,
+typedef enum
+{
+    MSS_AXISW_FIC0_RD_CHAN = 0x000,
     MSS_AXISW_FIC0_WR_CHAN,
     MSS_AXISW_FIC1_RD_CHAN,
     MSS_AXISW_FIC1_WR_CHAN,
@@ -57,17 +57,18 @@ typedef enum {
     MSS_AXISW_TRACE_WR_CHAN,
 } mss_axisw_mport_t;
 
-
-typedef enum {
-    MSS_AXISW_BURSTINESS_EN    = 0x00,
+typedef enum
+{
+    MSS_AXISW_BURSTINESS_EN = 0x00,
     MSS_AXISW_PEAKRT_XCTRT,
     MSS_AXISW_QOS_VAL,
     MSS_AXISW_SLV_RDY,
 } mss_axisw_cmd_t;
 
-typedef enum {
-    MSS_AXISW_MASTER_RD_CHAN    = 0x00,
-    MSS_AXISW_MASTER_WR_CHAN    = 0x01,
+typedef enum
+{
+    MSS_AXISW_MASTER_RD_CHAN = 0x00,
+    MSS_AXISW_MASTER_WR_CHAN = 0x01,
 } mss_axisw_mchan_t;
 
 /*
@@ -88,96 +89,93 @@ The Peak rate and transaction rates are encoded as follows.
 Programming the transaction rate as 0000_0000_0000 disables token generation and
 traffic is not regulated based on the tokens.
 
-Programming the peak rate as 0000_0000_0000 disables the peak rate control logic and
-traffic is not regulated by the peak rate logic.
+Programming the peak rate as 0000_0000_0000 disables the peak rate control logic
+and traffic is not regulated by the peak rate logic.
 */
-typedef enum {
-    MSS_AXISW_TXNRATE_BY4096    = 0x001,
-    MSS_AXISW_TXNRATE_BY2098    = 0x002,
-    MSS_AXISW_TXNRATE_BY1024    = 0x004,
-    MSS_AXISW_TXNRATE_BY512     = 0x008,
-    MSS_AXISW_TXNRATE_BY256     = 0x010,
-    MSS_AXISW_TXNRATE_BY128     = 0x020,
-    MSS_AXISW_TXNRATE_BY64      = 0x040,
-    MSS_AXISW_TXNRATE_BY32      = 0x080,
-    MSS_AXISW_TXNRATE_BY16      = 0x100,
-    MSS_AXISW_TXNRATE_BY8       = 0x200,
-    MSS_AXISW_TXNRATE_BY4       = 0x400,
-    MSS_AXISW_TXNRATE_BY2       = 0x800,
-    MSS_AXISW_TXNRATE_DISABLE      = 0x0,
+typedef enum
+{
+    MSS_AXISW_TXNRATE_BY4096 = 0x001,
+    MSS_AXISW_TXNRATE_BY2098 = 0x002,
+    MSS_AXISW_TXNRATE_BY1024 = 0x004,
+    MSS_AXISW_TXNRATE_BY512 = 0x008,
+    MSS_AXISW_TXNRATE_BY256 = 0x010,
+    MSS_AXISW_TXNRATE_BY128 = 0x020,
+    MSS_AXISW_TXNRATE_BY64 = 0x040,
+    MSS_AXISW_TXNRATE_BY32 = 0x080,
+    MSS_AXISW_TXNRATE_BY16 = 0x100,
+    MSS_AXISW_TXNRATE_BY8 = 0x200,
+    MSS_AXISW_TXNRATE_BY4 = 0x400,
+    MSS_AXISW_TXNRATE_BY2 = 0x800,
+    MSS_AXISW_TXNRATE_DISABLE = 0x0,
 } mss_axisw_rate_t;
 
-#define AXISW_CMD_EN                        31U
-#define AXISW_CMD_EN_MASK                   (uint32_t)(0x01U << AXISW_CMD_EN)
+#define AXISW_CMD_EN           31U
+#define AXISW_CMD_EN_MASK      ( uint32_t )( 0x01U << AXISW_CMD_EN )
 
-#define AXISW_CMD_RW                        30U
-#define AXISW_CMD_RW_MASK                   (uint32_t)(0x01U << AXISW_CMD_RW)
+#define AXISW_CMD_RW           30U
+#define AXISW_CMD_RW_MASK      ( uint32_t )( 0x01U << AXISW_CMD_RW )
 
-#define AXISW_CMD_SWRST                     29U
-#define AXISW_CMD_SWRST_MASK                (uint32_t)(0x01U << AXISW_CMD_SWRST)
+#define AXISW_CMD_SWRST        29U
+#define AXISW_CMD_SWRST_MASK   ( uint32_t )( 0x01U << AXISW_CMD_SWRST )
 
-#define AXISW_CMD_ERR                       28U
-#define AXISW_CMD_ERR_MASK                  (uint32_t)(0x01U << AXISW_CMD_ERR)
+#define AXISW_CMD_ERR          28U
+#define AXISW_CMD_ERR_MASK     ( uint32_t )( 0x01U << AXISW_CMD_ERR )
 
-//#define AXISW_CMD_MPORT                   8U
-//#define AXISW_CMD_MPORT_MASK              (0x0F << AXISW_CMD_MPORT)
+// #define AXISW_CMD_MPORT                   8U
+// #define AXISW_CMD_MPORT_MASK              (0x0F << AXISW_CMD_MPORT)
 
-#define AXISW_CMD_RWCHAN                    7U
-#define AXISW_CMD_RWCHAN_MASK               (uint32_t)(0x1F << AXISW_CMD_RWCHAN)
+#define AXISW_CMD_RWCHAN       7U
+#define AXISW_CMD_RWCHAN_MASK  ( uint32_t )( 0x1F << AXISW_CMD_RWCHAN )
 
-#define AXISW_CMD_CMD                       0U
-#define AXISW_CMD_CMD_MASK                  (0x01U << AXISW_CMD_CMD)
+#define AXISW_CMD_CMD          0U
+#define AXISW_CMD_CMD_MASK     ( 0x01U << AXISW_CMD_CMD )
 
-#define AXISW_DATA_PEAKRT                   20U
-#define AXISW_DATA_PEAKRT_MASK              (0xFFFU << AXISW_DATA_PEAKRT)
+#define AXISW_DATA_PEAKRT      20U
+#define AXISW_DATA_PEAKRT_MASK ( 0xFFFU << AXISW_DATA_PEAKRT )
 
-#define AXISW_DATA_XCTRT                    4U
-#define AXISW_DATA_XCTRT_MASK               (0xFFFU << AXISW_DATA_XCTRT)
+#define AXISW_DATA_XCTRT       4U
+#define AXISW_DATA_XCTRT_MASK  ( 0xFFFU << AXISW_DATA_XCTRT )
 
-#define AXISW_DATA_BURSTI                   16U
-#define AXISW_DATA_BURSTI_MASK              (0xFFU << AXISW_DATA_BURSTI)
+#define AXISW_DATA_BURSTI      16U
+#define AXISW_DATA_BURSTI_MASK ( 0xFFU << AXISW_DATA_BURSTI )
 
-#define AXISW_DATA_QOSVAL                   0U
-#define AXISW_DATA_QOSVAL_MASK              (0xFU << AXISW_DATA_QOSVAL)
+#define AXISW_DATA_QOSVAL      0U
+#define AXISW_DATA_QOSVAL_MASK ( 0xFU << AXISW_DATA_QOSVAL )
 
 typedef struct
 {
-    __IO uint32_t  VID;
-    __IO uint32_t  HWCFG;
-    __IO uint32_t  CMD;
-    __IO uint32_t  DATA;
+    __IO uint32_t VID;
+    __IO uint32_t HWCFG;
+    __IO uint32_t CMD;
+    __IO uint32_t DATA;
 } AXISW_TypeDef;
 
+#define AXISW ( ( AXISW_TypeDef * ) 0x20004000UL )
 
-#define AXISW                               ((AXISW_TypeDef*)0x20004000UL)
-
-
-uint32_t MSS_AXISW_get_hwcfg(void);
-uint32_t MSS_AXISW_get_vid(void);
-uint32_t MSS_AXISW_write_qos_val(mss_axisw_mport_t master_port_num,
-                                               uint32_t data);
-uint32_t MSS_AXISW_read_qos_val(mss_axisw_mport_t master_port_num,
-                                              uint32_t* rd_data);
-uint32_t MSS_AXISW_write_rate(mss_axisw_mport_t master_port_num,
-                                            mss_axisw_rate_t peak_rate,
-                                            mss_axisw_rate_t xct_rate);
-uint32_t MSS_AXISW_read_rate(mss_axisw_mport_t master_port_num,
-                                          mss_axisw_rate_t* peak_rate,
-                                          mss_axisw_rate_t* xct_rate);
-int32_t MSS_AXISW_write_burstiness(mss_axisw_mport_t master_port_num,
-                                                  uint32_t burstiness_val,
-                                                  uint32_t regulator_en);
-uint32_t MSS_AXISW_read_burstiness(mss_axisw_mport_t master_port_num,
-                                                uint32_t* burstiness_val);
-uint32_t MSS_AXISW_write_slave_ready(mss_axisw_mport_t master_port_num,
-                                                   uint8_t slave_ready_en);
-uint32_t MSS_AXISW_read_slave_ready(mss_axisw_mport_t master_port_num,
-                                                  uint8_t* slave_ready_en);
-
+uint32_t MSS_AXISW_get_hwcfg( void );
+uint32_t MSS_AXISW_get_vid( void );
+uint32_t MSS_AXISW_write_qos_val( mss_axisw_mport_t master_port_num,
+                                  uint32_t data );
+uint32_t MSS_AXISW_read_qos_val( mss_axisw_mport_t master_port_num,
+                                 uint32_t * rd_data );
+uint32_t MSS_AXISW_write_rate( mss_axisw_mport_t master_port_num,
+                               mss_axisw_rate_t peak_rate,
+                               mss_axisw_rate_t xct_rate );
+uint32_t MSS_AXISW_read_rate( mss_axisw_mport_t master_port_num,
+                              mss_axisw_rate_t * peak_rate,
+                              mss_axisw_rate_t * xct_rate );
+int32_t MSS_AXISW_write_burstiness( mss_axisw_mport_t master_port_num,
+                                    uint32_t burstiness_val,
+                                    uint32_t regulator_en );
+uint32_t MSS_AXISW_read_burstiness( mss_axisw_mport_t master_port_num,
+                                    uint32_t * burstiness_val );
+uint32_t MSS_AXISW_write_slave_ready( mss_axisw_mport_t master_port_num,
+                                      uint8_t slave_ready_en );
+uint32_t MSS_AXISW_read_slave_ready( mss_axisw_mport_t master_port_num,
+                                     uint8_t * slave_ready_en );
 
 #ifdef __cplusplus
 }
 #endif
 
 #endif /* __MSS_AXISW_H_ */
-

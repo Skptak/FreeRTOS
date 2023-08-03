@@ -1,9 +1,9 @@
 /* See LICENSE of license details. */
 
-#include <errno.h>
 #include "stub.h"
+#include <errno.h>
 
-int wait(int* status)
+int wait( int * status )
 {
-  return _stub(ECHILD);
+    return _stub( ECHILD );
 }

@@ -42,7 +42,8 @@
  */
 
 /**
- * \page asfdoc_samd20_system_pinmux_basic_use_case Quick Start Guide for SYSTEM PINMUX - Basic
+ * \page asfdoc_samd20_system_pinmux_basic_use_case Quick Start Guide for SYSTEM
+ * PINMUX - Basic
  *
  * In this use case, the PINMUX module is configured for:
  *  \li One pin in input mode, with pull-up enabled, connected to the GPIO
@@ -56,8 +57,8 @@
  *
  * \section asfdoc_samd20_system_pinmux_basic_use_case_setup Setup
  *
- * \subsection asfdoc_samd20_system_pinmux_basic_use_case_setup_prereq Prerequisites
- * There are no special setup requirements for this use-case.
+ * \subsection asfdoc_samd20_system_pinmux_basic_use_case_setup_prereq
+ * Prerequisites There are no special setup requirements for this use-case.
  *
  * \section asfdoc_samd20_system_pinmux_basic_use_case_use_main Use Case
  *

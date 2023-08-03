@@ -61,22 +61,21 @@
  *----------------------------------------------------------------------------*/
 
 #ifdef __cplusplus
- extern "C" {
+extern "C" {
 #endif
 
-extern void RTT_SetPrescaler( Rtt* pRtt, uint16_t wPrescaler ) ;
+extern void RTT_SetPrescaler( Rtt * pRtt, uint16_t wPrescaler );
 
-extern uint32_t RTT_GetTime( Rtt* pRtt ) ;
+extern uint32_t RTT_GetTime( Rtt * pRtt );
 
-extern void RTT_EnableIT( Rtt* pRtt, uint32_t dwSources ) ;
+extern void RTT_EnableIT( Rtt * pRtt, uint32_t dwSources );
 
-extern uint32_t RTT_GetStatus( Rtt *pRtt ) ;
+extern uint32_t RTT_GetStatus( Rtt * pRtt );
 
-extern void RTT_SetAlarm( Rtt *pRtt, uint32_t dwTime ) ;
+extern void RTT_SetAlarm( Rtt * pRtt, uint32_t dwTime );
 
 #ifdef __cplusplus
 }
 #endif
 
 #endif /* #ifndef RTT_H */
-

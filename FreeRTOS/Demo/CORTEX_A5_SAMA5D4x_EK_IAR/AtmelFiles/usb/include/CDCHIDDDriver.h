@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
- *         ATMEL Microcontroller Software Support 
+ *         ATMEL Microcontroller Software Support
  * ----------------------------------------------------------------------------
  * Copyright (c) 2008, Atmel Corporation
  *
@@ -33,9 +33,9 @@
  * \section Purpose
  *
  *   Definitions and methods for USB composite device implement.
- * 
+ *
  * \section Usage
- * 
+ *
  * -# Initialize USB function specified driver ( for MSD currently )
  *  - MSDDFunctionDriver_Initialize()
  *
@@ -59,11 +59,11 @@
  *         Headers
  *---------------------------------------------------------------------------*/
 
-#include <USBRequests.h>
+#include "USBD.h"
 #include <CDCDescriptors.h>
 #include <HIDDescriptors.h>
-#include "USBD.h"
 #include <USBDDriver.h>
+#include <USBRequests.h>
 
 /*---------------------------------------------------------------------------
  *         Definitions
@@ -73,31 +73,31 @@
  *      @{
  */
 /** Number of interfaces of the device */
-#define CDCHIDDDriverDescriptors_NUMINTERFACE       3
+#define CDCHIDDDriverDescriptors_NUMINTERFACE  3
 /** Number of the CDC interface. */
-#define CDCHIDDDriverDescriptors_CDC_INTERFACE      0
+#define CDCHIDDDriverDescriptors_CDC_INTERFACE 0
 /** Number of the HID interface. */
-#define CDCHIDDDriverDescriptors_HID_INTERFACE      2
+#define CDCHIDDDriverDescriptors_HID_INTERFACE 2
 /**     @}*/
 
 /*---------------------------------------------------------------------------
  *         Types
  *---------------------------------------------------------------------------*/
-#pragma pack(1)
-#if defined   ( __CC_ARM   ) /* Keil ¦ÌVision 4 */
-#elif defined ( __ICCARM__ ) /* IAR Ewarm */
-#define __attribute__(...)
-#define __packed__  packed
-#elif defined (  __GNUC__  ) /* GCC CS3 */
-#define __packed__  aligned(1)
+#pragma pack( 1 )
+#if defined( __CC_ARM )     /* Keil ¦ÌVision 4 */
+#elif defined( __ICCARM__ ) /* IAR Ewarm */
+    #define __attribute__( ... )
+    #define __packed__ packed
+#elif defined( __GNUC__ ) /* GCC CS3 */
+    #define __packed__ aligned( 1 )
 #endif
 /**
  * \typedef CdcHidDriverConfigurationDescriptors
  * \brief Configuration descriptor list for a device implementing a
  *        composite driver.
  */
-typedef struct _CdcHidDriverConfigurationDescriptors {
-
+typedef struct _CdcHidDriverConfigurationDescriptors
+{
     /** Standard configuration descriptor. */
     USBConfigurationDescriptor configuration;
 
@@ -129,7 +129,7 @@ typedef struct _CdcHidDriverConfigurationDescriptors {
     USBEndpointDescriptor hidInterruptIn;
     USBEndpointDescriptor hidInterruptOut;
 
-} __attribute__ ((__packed__)) CdcHidDriverConfigurationDescriptors;
+} __attribute__( ( __packed__ ) ) CdcHidDriverConfigurationDescriptors;
 
 #pragma pack()
 
@@ -139,14 +139,13 @@ typedef struct _CdcHidDriverConfigurationDescriptors {
 
 /* -CDCHID */
 extern void CDCHIDDDriver_Initialize(
-    const USBDDriverDescriptors * pDescriptors);
+    const USBDDriverDescriptors * pDescriptors );
 
-extern void CDCHIDDDriver_ConfigurationChangedHandler(uint8_t cfgnum);
+extern void CDCHIDDDriver_ConfigurationChangedHandler( uint8_t cfgnum );
 
-extern void CDCHIDDDriver_RequestHandler(const USBGenericRequest *request);
+extern void CDCHIDDDriver_RequestHandler( const USBGenericRequest * request );
 
-extern void CDCHIDDDriver_RemoteWakeUp(void);
+extern void CDCHIDDDriver_RemoteWakeUp( void );
 
 /**@}*/
-#endif //#ifndef CDCHIDDDRIVER_H
-
+#endif // #ifndef CDCHIDDDRIVER_H

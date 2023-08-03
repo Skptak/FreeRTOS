@@ -28,16 +28,16 @@ Boston, MA 02111-1307, USA.  */
 #ifndef _M68HC12_ARCH_DRAGON12_EXIT_H
 #define _M68HC12_ARCH_DRAGON12_EXIT_H
 
-extern void _exit (short status) __attribute__((noreturn));
+extern void _exit( short status ) __attribute__( ( noreturn ) );
 
 /* For Dbug monitor, use swi to enter in the monitor upon exit.  */
-extern inline void
-_exit (short status)
+extern inline void _exit( short status )
 {
-  while (1) {
-    __asm__ __volatile__ ("bgnd" : : );
-    __asm__ __volatile__ ("swi" : : "d"(status));
-  }
+    while( 1 )
+    {
+        __asm__ __volatile__( "bgnd" : : );
+        __asm__ __volatile__( "swi" : : "d"( status ) );
+    }
 }
 
 #endif

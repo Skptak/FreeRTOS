@@ -27,10 +27,10 @@
  */
 
 #include "FreeRTOS.h"
-#include "queue.h"
-#include "tasksStubs.h"
-#include "queue_datastructure.h"
 #include "cbmc.h"
+#include "queue.h"
+#include "queue_datastructure.h"
+#include "tasksStubs.h"
 
 QueueHandle_t xMutex;
 

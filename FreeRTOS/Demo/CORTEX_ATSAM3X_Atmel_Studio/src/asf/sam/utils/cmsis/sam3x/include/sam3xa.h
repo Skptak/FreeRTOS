@@ -43,21 +43,21 @@
 #define _SAM3XA_
 
 #if defined __SAM3A4C__
-  #include "sam3a4c.h"
+    #include "sam3a4c.h"
 #elif defined __SAM3A8C__
-  #include "sam3a8c.h"
+    #include "sam3a8c.h"
 #elif defined __SAM3X4C__
-  #include "sam3x4c.h"
+    #include "sam3x4c.h"
 #elif defined __SAM3X4E__
-  #include "sam3x4e.h"
+    #include "sam3x4e.h"
 #elif defined __SAM3X8C__
-  #include "sam3x8c.h"
+    #include "sam3x8c.h"
 #elif defined __SAM3X8E__
-  #include "sam3x8e.h"
+    #include "sam3x8e.h"
 #elif defined __SAM3X8H__
-  #include "sam3x8h.h"
+    #include "sam3x8h.h"
 #else
-  #error Library does not support the specified device.
+    #error Library does not support the specified device.
 #endif
 
 #endif /* _SAM3XA_ */

@@ -29,7 +29,8 @@
 
 /** \addtogroup mediaLB Working with MediaLB
  * \ingroup peripherals_module
- * The mediaLB driver provides the interface to configure and use the peripheral.
+ * The mediaLB driver provides the interface to configure and use the
+ * peripheral.
  *
  */
 /*@{*/
@@ -53,6 +54,3 @@
 /*----------------------------------------------------------------------------
  *        Exported functions
  *----------------------------------------------------------------------------*/
-
-
-

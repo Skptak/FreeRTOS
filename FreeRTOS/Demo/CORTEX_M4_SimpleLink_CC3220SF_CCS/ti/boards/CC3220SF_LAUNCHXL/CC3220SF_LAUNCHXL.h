@@ -49,14 +49,15 @@
 extern "C" {
 #endif
 
-#define CC3220SF_LAUNCHXL_GPIO_LED_OFF (0)
-#define CC3220SF_LAUNCHXL_GPIO_LED_ON  (1)
+#define CC3220SF_LAUNCHXL_GPIO_LED_OFF ( 0 )
+#define CC3220SF_LAUNCHXL_GPIO_LED_ON  ( 1 )
 
 /*!
  *  @def    CC3220SF_LAUNCHXL_ADCName
  *  @brief  Enum of ADC names on the CC3220SF_LAUNCHXL dev board
  */
-typedef enum CC3220SF_LAUNCHXL_ADCName {
+typedef enum CC3220SF_LAUNCHXL_ADCName
+{
     CC3220SF_LAUNCHXL_ADC0 = 0,
     CC3220SF_LAUNCHXL_ADC1,
 
@@ -67,7 +68,8 @@ typedef enum CC3220SF_LAUNCHXL_ADCName {
  *  @def    CC3220SF_LAUNCHXL_CryptoName
  *  @brief  Enum of Crypto names on the CC3220SF_LAUNCHXL dev board
  */
-typedef enum CC3220SF_LAUNCHXL_CryptoName {
+typedef enum CC3220SF_LAUNCHXL_CryptoName
+{
     CC3220SF_LAUNCHXL_CRYPTO0 = 0,
 
     CC3220SF_LAUNCHXL_CRYPTOCOUNT
@@ -77,18 +79,19 @@ typedef enum CC3220SF_LAUNCHXL_CryptoName {
  *  @def    CC3220SF_LAUNCHXL_GPIOName
  *  @brief  Enum of GPIO names on the CC3220SF_LAUNCHXL dev board
  */
-typedef enum CC3220SF_LAUNCHXL_GPIOName {
+typedef enum CC3220SF_LAUNCHXL_GPIOName
+{
     CC3220SF_LAUNCHXL_GPIO_SW2 = 0,
     CC3220SF_LAUNCHXL_GPIO_SW3,
     CC3220SF_LAUNCHXL_GPIO_LED_D7,
 
     /*
-     *  CC3220SF_LAUNCHXL_GPIO_LED_D5 and CC3220SF_LAUNCHXL_GPIO_LED_D6 are shared with the
-     *  I2C and PWM peripherals. In order for those examples to work, these
-     *  LEDs are  taken out of gpioPinCOnfig[]
+     *  CC3220SF_LAUNCHXL_GPIO_LED_D5 and CC3220SF_LAUNCHXL_GPIO_LED_D6 are
+     * shared with the I2C and PWM peripherals. In order for those examples to
+     * work, these LEDs are  taken out of gpioPinCOnfig[]
      */
-    //CC3220SF_LAUNCHXL_GPIO_LED_D6,
-    //CC3220SF_LAUNCHXL_GPIO_LED_D5,
+    // CC3220SF_LAUNCHXL_GPIO_LED_D6,
+    // CC3220SF_LAUNCHXL_GPIO_LED_D5,
 
     CC3220SF_LAUNCHXL_GPIOCOUNT
 } CC3220SF_LAUNCHXL_GPIOName;
@@ -97,7 +100,8 @@ typedef enum CC3220SF_LAUNCHXL_GPIOName {
  *  @def    CC3220SF_LAUNCHXL_I2CName
  *  @brief  Enum of I2C names on the CC3220SF_LAUNCHXL dev board
  */
-typedef enum CC3220SF_LAUNCHXL_I2CName {
+typedef enum CC3220SF_LAUNCHXL_I2CName
+{
     CC3220SF_LAUNCHXL_I2C0 = 0,
 
     CC3220SF_LAUNCHXL_I2CCOUNT
@@ -107,7 +111,8 @@ typedef enum CC3220SF_LAUNCHXL_I2CName {
  *  @def    CC3220SF_LAUNCHXL_I2SName
  *  @brief  Enum of I2S names on the CC3220SF_LAUNCHXL dev board
  */
-typedef enum CC3220SF_LAUNCHXL_I2SName {
+typedef enum CC3220SF_LAUNCHXL_I2SName
+{
     CC3220SF_LAUNCHXL_I2S0 = 0,
 
     CC3220SF_LAUNCHXL_I2SCOUNT
@@ -117,7 +122,8 @@ typedef enum CC3220SF_LAUNCHXL_I2SName {
  *  @def    CC3220SF_LAUNCHXL_PWMName
  *  @brief  Enum of PWM names on the CC3220SF_LAUNCHXL dev board
  */
-typedef enum CC3220SF_LAUNCHXL_PWMName {
+typedef enum CC3220SF_LAUNCHXL_PWMName
+{
     CC3220SF_LAUNCHXL_PWM6 = 0,
     CC3220SF_LAUNCHXL_PWM7,
 
@@ -128,7 +134,8 @@ typedef enum CC3220SF_LAUNCHXL_PWMName {
  *  @def    CC3220SF_LAUNCHXL_SDFatFSName
  *  @brief  Enum of SDFatFS names on the CC3220SF_LAUNCHXL dev board
  */
-typedef enum CC3220SF_LAUNCHXL_SDFatFSName {
+typedef enum CC3220SF_LAUNCHXL_SDFatFSName
+{
     CC3220SF_LAUNCHXL_SDFatFS0 = 0,
 
     CC3220SF_LAUNCHXL_SDFatFSCOUNT
@@ -138,7 +145,8 @@ typedef enum CC3220SF_LAUNCHXL_SDFatFSName {
  *  @def    CC3220SF_LAUNCHXL_SDName
  *  @brief  Enum of SD names on the CC3220SF_LAUNCHXL dev board
  */
-typedef enum CC3220SF_LAUNCHXL_SDName {
+typedef enum CC3220SF_LAUNCHXL_SDName
+{
     CC3220SF_LAUNCHXL_SD0 = 0,
 
     CC3220SF_LAUNCHXL_SDCOUNT
@@ -147,7 +155,8 @@ typedef enum CC3220SF_LAUNCHXL_SDName {
  *  @def    CC3220SF_LAUNCHXL_SDSPIName
  *  @brief  Enum of SDSPI names on the CC3220SF_LAUNCHXL dev board
  */
-typedef enum CC3220SF_LAUNCHXL_SDSPIName {
+typedef enum CC3220SF_LAUNCHXL_SDSPIName
+{
     CC3220SF_LAUNCHXL_SDSPI0 = 0,
 
     CC3220SF_LAUNCHXL_SDSPICOUNT
@@ -157,7 +166,8 @@ typedef enum CC3220SF_LAUNCHXL_SDSPIName {
  *  @def    CC3220SF_LAUNCHXL_SPIName
  *  @brief  Enum of SPI names on the CC3220SF_LAUNCHXL dev board
  */
-typedef enum CC3220SF_LAUNCHXL_SPIName {
+typedef enum CC3220SF_LAUNCHXL_SPIName
+{
     CC3220SF_LAUNCHXL_SPI0 = 0,
     CC3220SF_LAUNCHXL_SPI1,
 
@@ -168,7 +178,8 @@ typedef enum CC3220SF_LAUNCHXL_SPIName {
  *  @def    CC3220SF_LAUNCHXL_UARTName
  *  @brief  Enum of UARTs on the CC3220SF_LAUNCHXL dev board
  */
-typedef enum CC3220SF_LAUNCHXL_UARTName {
+typedef enum CC3220SF_LAUNCHXL_UARTName
+{
     CC3220SF_LAUNCHXL_UART0 = 0,
     CC3220SF_LAUNCHXL_UART1,
 
@@ -179,7 +190,8 @@ typedef enum CC3220SF_LAUNCHXL_UARTName {
  *  @def    CC3220SF_LAUNCHXL_WatchdogName
  *  @brief  Enum of Watchdogs on the CC3220SF_LAUNCHXL dev board
  */
-typedef enum CC3220SF_LAUNCHXL_WatchdogName {
+typedef enum CC3220SF_LAUNCHXL_WatchdogName
+{
     CC3220SF_LAUNCHXL_WATCHDOG0 = 0,
 
     CC3220SF_LAUNCHXL_WATCHDOGCOUNT
@@ -190,7 +202,7 @@ typedef enum CC3220SF_LAUNCHXL_WatchdogName {
  *
  *  This function initializes the general board specific settings.
  */
-extern void CC3220SF_LAUNCHXL_initGeneral(void);
+extern void CC3220SF_LAUNCHXL_initGeneral( void );
 
 #ifdef __cplusplus
 }

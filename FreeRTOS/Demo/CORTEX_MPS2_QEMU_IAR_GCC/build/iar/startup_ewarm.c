@@ -33,16 +33,16 @@
 // Enable the IAR extensions for this source file.
 //
 //*****************************************************************************
-#pragma language=extended
+#pragma language = extended
 
 //*****************************************************************************
 //
 // Forward declaration of the default fault handlers.
 //
 //*****************************************************************************
-static void NmiSR(void);
-static void FaultISR(void);
-static void IntDefaultHandler(void);
+static void NmiSR( void );
+static void FaultISR( void );
+static void IntDefaultHandler( void );
 
 //*****************************************************************************
 //
@@ -50,16 +50,15 @@ static void IntDefaultHandler(void);
 //
 //*****************************************************************************
 
-
 //*****************************************************************************
 //
 // The entry point for the application.
 //
 //*****************************************************************************
-extern void __iar_program_start(void);
-extern void xPortPendSVHandler(void);
-extern void xPortSysTickHandler(void);
-extern void vPortSVCHandler(void);
+extern void __iar_program_start( void );
+extern void xPortPendSVHandler( void );
+extern void xPortSysTickHandler( void );
+extern void vPortSVCHandler( void );
 extern void TIMER0_Handler( void );
 extern void TIMER1_Handler( void );
 
@@ -69,9 +68,9 @@ extern void TIMER1_Handler( void );
 //
 //*****************************************************************************
 #ifndef STACK_SIZE
-#define STACK_SIZE                              120
+    #define STACK_SIZE 120
 #endif
-static unsigned long pulStack[STACK_SIZE] @ ".noinit";
+static unsigned long pulStack[ STACK_SIZE ] @ ".noinit";
 
 //*****************************************************************************
 //
@@ -82,10 +81,9 @@ static unsigned long pulStack[STACK_SIZE] @ ".noinit";
 //*****************************************************************************
 typedef union
 {
-    void (*pfnHandler)(void);
+    void ( *pfnHandler )( void );
     unsigned long ulPtr;
-}
-uVectorEntry;
+} uVectorEntry;
 
 //*****************************************************************************
 //
@@ -94,41 +92,39 @@ uVectorEntry;
 // 0x0000.0000.
 //
 //*****************************************************************************
-__root const uVectorEntry __vector_table[] @ ".intvec" =
-{
-    { .ulPtr = (unsigned long)pulStack + sizeof(pulStack) },
-                                            // The initial stack pointer
-    __iar_program_start,                    // The reset handler
-    NmiSR,                                  // The NMI handler
-    FaultISR,                               // The hard fault handler
-    IntDefaultHandler,                      // The MPU fault handler
-    IntDefaultHandler,                      // The bus fault handler
-    IntDefaultHandler,                      // The usage fault handler
-    0,                                      // Reserved
-    0,                                      // Reserved
-    0,                                      // Reserved
-    0,                                      // Reserved
-    vPortSVCHandler,                        // SVCall handler
-    IntDefaultHandler,                      // Debug monitor handler
-    0,                                      // Reserved
-    xPortPendSVHandler,                     // The PendSV handler
-    xPortSysTickHandler,                    // The SysTick handler
-    0,                                      // uart0 receive 0
-    0,                                      // uart0 transmit
-    0,                                      // uart1 receive
-    0,                                      // uart1 transmit
-    0,                                      // uart 2 receive
-    0,                                      // uart 2 transmit
-    0,                                      // GPIO 0 combined interrupt
-    0,                                      // GPIO 2 combined interrupt
-    TIMER0_Handler,                         // Timer 0
-    TIMER1_Handler,                         // Timer 1
-    0,                                      // Dual Timer
-    0,                                      // SPI0 SPI1
-    0,                                      // uart overflow 1, 2,3
-    0                                       // Ethernet   13
+__root const uVectorEntry __vector_table[] @ ".intvec" = {
+    { .ulPtr = ( unsigned long ) pulStack + sizeof( pulStack ) },
+    // The initial stack pointer
+    __iar_program_start, // The reset handler
+    NmiSR,               // The NMI handler
+    FaultISR,            // The hard fault handler
+    IntDefaultHandler,   // The MPU fault handler
+    IntDefaultHandler,   // The bus fault handler
+    IntDefaultHandler,   // The usage fault handler
+    0,                   // Reserved
+    0,                   // Reserved
+    0,                   // Reserved
+    0,                   // Reserved
+    vPortSVCHandler,     // SVCall handler
+    IntDefaultHandler,   // Debug monitor handler
+    0,                   // Reserved
+    xPortPendSVHandler,  // The PendSV handler
+    xPortSysTickHandler, // The SysTick handler
+    0,                   // uart0 receive 0
+    0,                   // uart0 transmit
+    0,                   // uart1 receive
+    0,                   // uart1 transmit
+    0,                   // uart 2 receive
+    0,                   // uart 2 transmit
+    0,                   // GPIO 0 combined interrupt
+    0,                   // GPIO 2 combined interrupt
+    TIMER0_Handler,      // Timer 0
+    TIMER1_Handler,      // Timer 1
+    0,                   // Dual Timer
+    0,                   // SPI0 SPI1
+    0,                   // uart overflow 1, 2,3
+    0                    // Ethernet   13
 };
-
 
 //*****************************************************************************
 //
@@ -137,13 +133,12 @@ __root const uVectorEntry __vector_table[] @ ".intvec" =
 // by a debugger.
 //
 //*****************************************************************************
-static void
-NmiSR(void)
+static void NmiSR( void )
 {
     //
     // Enter an infinite loop.
     //
-    while(1)
+    while( 1 )
     {
     }
 }
@@ -155,13 +150,12 @@ NmiSR(void)
 // for examination by a debugger.
 //
 //*****************************************************************************
-static void
-FaultISR(void)
+static void FaultISR( void )
 {
     //
     // Enter an infinite loop.
     //
-    while(1)
+    while( 1 )
     {
     }
 }
@@ -173,14 +167,12 @@ FaultISR(void)
 // for examination by a debugger.
 //
 //*****************************************************************************
-static void
-IntDefaultHandler(void)
+static void IntDefaultHandler( void )
 {
     //
     // Go into an infinite loop.
     //
-    while(1)
+    while( 1 )
     {
     }
 }
-

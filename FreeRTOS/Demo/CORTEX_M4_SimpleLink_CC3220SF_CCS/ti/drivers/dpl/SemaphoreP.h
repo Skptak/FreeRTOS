@@ -60,14 +60,15 @@
 extern "C" {
 #endif
 
-#include <stdint.h>
 #include <stdbool.h>
 #include <stddef.h>
+#include <stdint.h>
 
 /*!
  *  @brief    Status codes for SemaphoreP APIs
  */
-typedef enum SemaphoreP_Status {
+typedef enum SemaphoreP_Status
+{
     /*! API completed successfully */
     SemaphoreP_OK = 0,
     /*! API failed */
@@ -79,12 +80,12 @@ typedef enum SemaphoreP_Status {
 /*!
  *  @brief    Wait forever define
  */
-#define SemaphoreP_WAIT_FOREVER ~(0)
+#define SemaphoreP_WAIT_FOREVER ~( 0 )
 
 /*!
  *  @brief    No wait define
  */
-#define SemaphoreP_NO_WAIT       (0)
+#define SemaphoreP_NO_WAIT      ( 0 )
 
 /*!
  *  @brief    Opaque client reference to an instance of a SemaphoreP
@@ -93,14 +94,15 @@ typedef enum SemaphoreP_Status {
  *  instance and  is used in the other instance based functions (e.g.
  *  ::SemaphoreP_post or ::SemaphoreP_pend, etc.).
  */
-typedef  void *SemaphoreP_Handle;
+typedef void * SemaphoreP_Handle;
 
 /*!
  *  @brief    Mode of the semaphore
  */
-typedef enum SemaphoreP_Mode {
+typedef enum SemaphoreP_Mode
+{
     SemaphoreP_Mode_COUNTING = 0x0,
-    SemaphoreP_Mode_BINARY   = 0x1
+    SemaphoreP_Mode_BINARY = 0x1
 } SemaphoreP_Mode;
 
 /*!
@@ -112,12 +114,14 @@ typedef enum SemaphoreP_Mode {
  *  application sets the fields manually. The SemaphoreP default parameters are
  *  noted in SemaphoreP_Params_init.
  */
-typedef struct SemaphoreP_Params {
-    char *name;           /*!< Name of the semaphore instance. Memory must
+typedef struct SemaphoreP_Params
+{
+    char * name;          /*!< Name of the semaphore instance. Memory must
                                persist for the life of the semaphore instance */
     SemaphoreP_Mode mode; /*!< Mode for the semaphore */
     uint32_t maxCount;    /*!< The max count allowed for counting semaphore */
-    void (*callback)(void); /*!< Callback while pending for semaphore post */
+    void ( *callback )( void ); /*!< Callback while pending for semaphore post
+                                 */
 } SemaphoreP_Params;
 
 /*!
@@ -132,8 +136,8 @@ typedef struct SemaphoreP_Params {
  *
  *  @return A SemaphoreP_Handle on success or a NULL on an error
  */
-extern SemaphoreP_Handle SemaphoreP_create(unsigned int count,
-                                           SemaphoreP_Params *params);
+extern SemaphoreP_Handle SemaphoreP_create( unsigned int count,
+                                            SemaphoreP_Params * params );
 
 /*!
  *  @brief  Function to delete a semaphore.
@@ -144,7 +148,7 @@ extern SemaphoreP_Handle SemaphoreP_create(unsigned int count,
  *    - SemaphoreP_OK: Deleted the semaphore instance
  *    - SemaphoreP_FAILED: Failed to delete the semaphore instance
  */
-extern SemaphoreP_Status SemaphoreP_delete(SemaphoreP_Handle handle);
+extern SemaphoreP_Status SemaphoreP_delete( SemaphoreP_Handle handle );
 
 /*!
  *  @brief  Initialize params structure to default values.
@@ -155,7 +159,7 @@ extern SemaphoreP_Status SemaphoreP_delete(SemaphoreP_Handle handle);
  *
  *  @param params  Pointer to the instance configuration parameters.
  */
-extern void SemaphoreP_Params_init(SemaphoreP_Params *params);
+extern void SemaphoreP_Params_init( SemaphoreP_Params * params );
 
 /*!
  *  @brief  Function to pend (wait) on a semaphore.
@@ -170,8 +174,8 @@ extern void SemaphoreP_Params_init(SemaphoreP_Params *params);
  *    - SemaphoreP_TIMEOUT: Timed out. Semaphore was not obtained.
  *    - SemaphoreP_FAILED: Non-time out failure.
  */
-extern SemaphoreP_Status SemaphoreP_pend(SemaphoreP_Handle handle,
-                                         uint32_t timeout);
+extern SemaphoreP_Status SemaphoreP_pend( SemaphoreP_Handle handle,
+                                          uint32_t timeout );
 
 /*!
  *  @brief  Function to post (signal) a semaphore from task of ISR context.
@@ -182,7 +186,7 @@ extern SemaphoreP_Status SemaphoreP_pend(SemaphoreP_Handle handle,
  *    - SemaphoreP_OK: Released the semaphore
  *    - SemaphoreP_FAILED: Failed to post the semaphore
  */
-extern SemaphoreP_Status SemaphoreP_post(SemaphoreP_Handle handle);
+extern SemaphoreP_Status SemaphoreP_post( SemaphoreP_Handle handle );
 
 /*!
  *  @brief  Function to post (signal) a semaphore from an ClockP function.
@@ -193,7 +197,7 @@ extern SemaphoreP_Status SemaphoreP_post(SemaphoreP_Handle handle);
  *    - SemaphoreP_OK: Released the semaphore
  *    - SemaphoreP_FAILED: Failed to post the semaphore
  */
-extern SemaphoreP_Status SemaphoreP_postFromClock(SemaphoreP_Handle handle);
+extern SemaphoreP_Status SemaphoreP_postFromClock( SemaphoreP_Handle handle );
 
 #ifdef __cplusplus
 }

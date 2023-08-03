@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -26,8 +27,8 @@
 /*! @file queue_send_nonblocking_utest.c */
 
 /* C runtime includes. */
-#include <stdlib.h>
 #include <stdbool.h>
+#include <stdlib.h>
 #include <string.h>
 
 #include "../queue_utest_common.h"
@@ -35,8 +36,8 @@
 /* Queue includes */
 #include "FreeRTOS.h"
 #include "FreeRTOSConfig.h"
-#include "queue.h"
 #include "mock_fake_port.h"
+#include "queue.h"
 
 /* ===============================  CONSTANTS =============================== */
 
@@ -106,7 +107,8 @@ void test_macro_xQueueSend_success( void )
 
 /*!
  * @brief xQueueSend with a full queue
- * @details verify that the correct value is returned after a failed send operation.
+ * @details verify that the correct value is returned after a failed send
+ * operation.
  * @coverage xQueueGenericSend
  */
 void test_macro_xQueueSend_fail_full( void )
@@ -369,7 +371,8 @@ void test_macro_xQueueSendFromISR_success( void )
 
 /*!
  * @brief xQueueSendFromISR with a full queue
- * @details verify that the correct value is returned after a failed send operation.
+ * @details verify that the correct value is returned after a failed send
+ * operation.
  * @coverage xQueueGenericSendFromISR
  */
 void test_macro_xQueueSendFromISR_fail( void )
@@ -389,7 +392,8 @@ void test_macro_xQueueSendFromISR_fail( void )
     uint32_t testVal2 = getNextMonotonicTestValue();
 
     vFakePortAssertIfInterruptPriorityInvalid_Expect();
-    TEST_ASSERT_EQUAL( errQUEUE_FULL, xQueueSendFromISR( xQueue, &testVal2, NULL ) );
+    TEST_ASSERT_EQUAL( errQUEUE_FULL,
+                       xQueueSendFromISR( xQueue, &testVal2, NULL ) );
 
     TEST_ASSERT_EQUAL( 1, uxQueueMessagesWaiting( xQueue ) );
 
@@ -424,7 +428,8 @@ void test_macro_xQueueSendFromISR_oneQueueLength_zeroItemSize( void )
 }
 
 /**
- * @brief Test xQueueSendFromISR with uxQueueLength=1, uxItemSize=0 and null item.
+ * @brief Test xQueueSendFromISR with uxQueueLength=1, uxItemSize=0 and null
+ * item.
  * @details xQueueSendFromISR should return pdTRUE because the queue is empty.
  *  This queue is eqivalent to a binary semaphore.
  * @coverage xQueueGenericSendFromISR
@@ -467,8 +472,10 @@ void test_macro_xQueueSendFromISR_oneQueueLength_oneItemSize( void )
 }
 
 /**
- * @brief Test xQueueSendFromISR with uxQueueLength=1, uxItemSize=1 and null item.
- * @details xQueueSendFromISR should configASSERT because of the null item pointer.
+ * @brief Test xQueueSendFromISR with uxQueueLength=1, uxItemSize=1 and null
+ * item.
+ * @details xQueueSendFromISR should configASSERT because of the null item
+ * pointer.
  * @coverage xQueueGenericSendFromISR
  */
 void test_macro_xQueueSendFromISR_oneQueueLength_oneItemSize_null( void )
@@ -487,7 +494,8 @@ void test_macro_xQueueSendFromISR_oneQueueLength_oneItemSize_null( void )
  * and cause a null pointer dereference.
  * @coverage xQueueGenericSendFromISR
  */
-void test_macro_xQueueSendFromISR_task_waiting_higher_priority_null_pxHigherPriorityTaskWoken( void )
+void test_macro_xQueueSendFromISR_task_waiting_higher_priority_null_pxHigherPriorityTaskWoken(
+    void )
 {
     QueueHandle_t xQueue = xQueueCreate( 1, sizeof( uint32_t ) );
 
@@ -539,7 +547,10 @@ void test_macro_xQueueSendFromISR_task_waiting_higher_priority_success( void )
     TEST_ASSERT_EQUAL( 0, uxQueueMessagesWaiting( xQueue ) );
 
     /* Add item to queue*/
-    TEST_ASSERT_EQUAL( pdTRUE, xQueueSendFromISR( xQueue, &testVal, &xHigherPriorityTaskWoken ) );
+    TEST_ASSERT_EQUAL( pdTRUE,
+                       xQueueSendFromISR( xQueue,
+                                          &testVal,
+                                          &xHigherPriorityTaskWoken ) );
 
     TEST_ASSERT_EQUAL( 1, uxQueueMessagesWaiting( xQueue ) );
 
@@ -578,7 +589,10 @@ void test_macro_xQueueSendFromISR_task_waiting_lower_priority_success( void )
     TEST_ASSERT_EQUAL( 0, uxQueueMessagesWaiting( xQueue ) );
 
     /* Add item to queue*/
-    TEST_ASSERT_EQUAL( pdTRUE, xQueueSendFromISR( xQueue, &testVal, &xHigherPriorityTaskWoken ) );
+    TEST_ASSERT_EQUAL( pdTRUE,
+                       xQueueSendFromISR( xQueue,
+                                          &testVal,
+                                          &xHigherPriorityTaskWoken ) );
     TEST_ASSERT_EQUAL( pdFALSE, xHigherPriorityTaskWoken );
 
     TEST_ASSERT_EQUAL( 1, uxQueueMessagesWaiting( xQueue ) );
@@ -636,7 +650,8 @@ void test_macro_xQueueSendFromISR_locked( void )
 }
 
 /**
- * @brief Test xQueueSendFromISR on a queue that is locked and cRxLock overflows.
+ * @brief Test xQueueSendFromISR on a queue that is locked and cRxLock
+ * overflows.
  * @coverage xQueueGenericSendFromISR
  */
 void test_macro_xQueueSendFromISR_locked_overflow( void )
@@ -763,7 +778,8 @@ void test_macro_xQueueSendToFrontFromISR( void )
 
     TEST_ASSERT_EQUAL( 5, uxQueueMessagesWaiting( xQueue ) );
 
-    TEST_ASSERT_EQUAL( pdTRUE, xQueueSendToFrontFromISR( xQueue, &testVal, 0 ) );
+    TEST_ASSERT_EQUAL( pdTRUE,
+                       xQueueSendToFrontFromISR( xQueue, &testVal, 0 ) );
 
     TEST_ASSERT_EQUAL( 6, uxQueueMessagesWaiting( xQueue ) );
 
@@ -945,7 +961,8 @@ void test_macro_xQueueOverwrite_overwrite_success( void )
     /* Check that the queue now has a single message waiting */
     TEST_ASSERT_EQUAL( 1, uxQueueMessagesWaiting( xQueue ) );
 
-    /* Peek from the queue and verify that the returned value matches testVal1 */
+    /* Peek from the queue and verify that the returned value matches testVal1
+     */
     uint32_t checkVal1 = 0;
 
     TEST_ASSERT_EQUAL( pdTRUE, xQueuePeek( xQueue, &checkVal1, 0 ) );
@@ -973,8 +990,8 @@ void test_macro_xQueueOverwrite_overwrite_success( void )
 /**
  * @brief Test xQueueOverwrite on a full queue of size (2,4)
  * @details Test xQueueOverwrite with a full queue containing one item.
- * @note Operation of xQueueOverwrite on queues larger than 1 in length is undefined.
- * The behavior in this test is undefined.
+ * @note Operation of xQueueOverwrite on queues larger than 1 in length is
+ * undefined. The behavior in this test is undefined.
  * @coverage xQueueGenericSend
  */
 void test_macro_xQueueOverwrite_full_assert_undefined( void )
@@ -1031,7 +1048,8 @@ void test_macro_xQueueOverwriteFromISR_invalid_handle( void )
 
 /**
  * @brief Test xQueueOverwriteFromISR on an empty queue of length 1
- * @details Test xQueueOverwriteFromISR with an empty queue, equivalent to xQueueSend.
+ * @details Test xQueueOverwriteFromISR with an empty queue, equivalent to
+ * xQueueSend.
  * @coverage xQueueGenericSendFromISR
  */
 void test_macro_xQueueOverwriteFromISR_empty_queue_1_add_success( void )
@@ -1045,7 +1063,8 @@ void test_macro_xQueueOverwriteFromISR_empty_queue_1_add_success( void )
     /* Send a new value to the queue using xQueueOverwriteFromISR */
     uint32_t testVal1 = getNextMonotonicTestValue();
 
-    TEST_ASSERT_EQUAL( pdTRUE, xQueueOverwriteFromISR( xQueue, &testVal1, NULL ) );
+    TEST_ASSERT_EQUAL( pdTRUE,
+                       xQueueOverwriteFromISR( xQueue, &testVal1, NULL ) );
 
     /* Check that the queue is now full */
     TEST_ASSERT_EQUAL( 1, uxQueueMessagesWaiting( xQueue ) );
@@ -1076,7 +1095,8 @@ void test_macro_xQueueOverwriteFromISR_overwrite_success( void )
     /* Check that the queue now has a single message waiting */
     TEST_ASSERT_EQUAL( 1, uxQueueMessagesWaiting( xQueue ) );
 
-    /* Peek from the queue and verify that the returned value matches testVal1 */
+    /* Peek from the queue and verify that the returned value matches testVal1
+     */
     uint32_t checkVal1 = 0;
 
     TEST_ASSERT_EQUAL( pdTRUE, xQueuePeek( xQueue, &checkVal1, 0 ) );
@@ -1088,7 +1108,8 @@ void test_macro_xQueueOverwriteFromISR_overwrite_success( void )
     /* Overwrite testVal1 with testVal2 in the queue */
     uint32_t testVal2 = getNextMonotonicTestValue();
 
-    TEST_ASSERT_EQUAL( pdTRUE, xQueueOverwriteFromISR( xQueue, &testVal2, NULL ) );
+    TEST_ASSERT_EQUAL( pdTRUE,
+                       xQueueOverwriteFromISR( xQueue, &testVal2, NULL ) );
 
     TEST_ASSERT_EQUAL( 1, uxQueueMessagesWaiting( xQueue ) );
 
@@ -1111,8 +1132,8 @@ void test_macro_xQueueOverwriteFromISR_overwrite_success( void )
 /**
  * @brief Test xQueueOverwriteFromISR on a full queue of size (2,4)
  * @details Test xQueueOverwriteFromISR with a full queue containing one item.
- * @note Operation of xQueueOverwriteFromISR on queues larger than 1 in length is undefined.
- * The behavior in this test is undefined.
+ * @note Operation of xQueueOverwriteFromISR on queues larger than 1 in length
+ * is undefined. The behavior in this test is undefined.
  * @coverage xQueueGenericSendFromISR
  */
 void test_macro_xQueueOverwriteFromISR_full_assert_undefined( void )
@@ -1125,9 +1146,11 @@ void test_macro_xQueueOverwriteFromISR_full_assert_undefined( void )
 
     TEST_ASSERT_EQUAL( 0, uxQueueMessagesWaiting( xQueue ) );
 
-    /* Expect that xQueueOverwriteFromISR will assert due to uxQueueLength > 1 */
+    /* Expect that xQueueOverwriteFromISR will assert due to uxQueueLength > 1
+     */
     fakeAssertExpectFail();
-    TEST_ASSERT_EQUAL( pdTRUE, xQueueOverwriteFromISR( xQueue, &testVal1, NULL ) );
+    TEST_ASSERT_EQUAL( pdTRUE,
+                       xQueueOverwriteFromISR( xQueue, &testVal1, NULL ) );
 
     /* Check that xQueueOverwriteFromISR called configASSERT */
     TEST_ASSERT_EQUAL( true, fakeAssertGetFlagAndClear() );
@@ -1140,9 +1163,11 @@ void test_macro_xQueueOverwriteFromISR_full_assert_undefined( void )
     /* Overwrite testVal1 with testVal2 in the queue */
     uint32_t testVal2 = getNextMonotonicTestValue();
 
-    /* Expect that xQueueOverwriteFromISR will assert due to uxQueueLength > 1 */
+    /* Expect that xQueueOverwriteFromISR will assert due to uxQueueLength > 1
+     */
     fakeAssertExpectFail();
-    TEST_ASSERT_EQUAL( pdTRUE, xQueueOverwriteFromISR( xQueue, &testVal2, NULL ) );
+    TEST_ASSERT_EQUAL( pdTRUE,
+                       xQueueOverwriteFromISR( xQueue, &testVal2, NULL ) );
     /* Check that xQueueOverwriteFromISR called configASSERT */
     TEST_ASSERT_EQUAL( true, fakeAssertGetFlagAndClear() );
 

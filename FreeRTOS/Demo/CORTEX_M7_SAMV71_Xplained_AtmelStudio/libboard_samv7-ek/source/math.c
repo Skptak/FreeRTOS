@@ -45,11 +45,14 @@
  */
 extern uint32_t min( uint32_t dwA, uint32_t dwB )
 {
-	if ( dwA < dwB ) {
-		return dwA ;
-	} else {
-		return dwB ;
-	}
+    if( dwA < dwB )
+    {
+        return dwA;
+    }
+    else
+    {
+        return dwB;
+    }
 }
 
 /*------------------------------------------------------------------------------
@@ -61,11 +64,14 @@ extern uint32_t min( uint32_t dwA, uint32_t dwB )
  */
 extern uint32_t absv( int32_t lValue )
 {
-	if ( lValue < 0 ) {
-		return -lValue ;
-	} else {
-		return lValue ;
-	}
+    if( lValue < 0 )
+    {
+        return -lValue;
+    }
+    else
+    {
+        return lValue;
+    }
 }
 
 /*------------------------------------------------------------------------------
@@ -76,12 +82,12 @@ extern uint32_t absv( int32_t lValue )
  */
 extern uint32_t power( uint32_t dwX, uint32_t dwY )
 {
-	uint32_t dwResult = 1 ;
+    uint32_t dwResult = 1;
 
-	while ( dwY > 0 ) {
-		dwResult *= dwX ;
-		dwY-- ;
-	}
-	return dwResult ;
+    while( dwY > 0 )
+    {
+        dwResult *= dwX;
+        dwY--;
+    }
+    return dwResult;
 }
-

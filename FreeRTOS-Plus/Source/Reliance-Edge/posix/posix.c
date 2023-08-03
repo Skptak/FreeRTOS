@@ -34,121 +34,134 @@
     @{
 */
 
-#include <redvolume.h>
-#include <redcoreapi.h>
-#include <redposix.h>
-#include <redpath.h>
-
+    #include <redcoreapi.h>
+    #include <redpath.h>
+    #include <redposix.h>
+    #include <redvolume.h>
 
 /*-------------------------------------------------------------------
     File Descriptors
 -------------------------------------------------------------------*/
 
-#define FD_GEN_BITS 11U /* File descriptor bits for mount generation. */
-#define FD_VOL_BITS 8U  /* File descriptor bits for volume number. */
-#define FD_IDX_BITS 12U /* File descriptor bits for handle index. */
+    #define FD_GEN_BITS 11U /* File descriptor bits for mount generation. */
+    #define FD_VOL_BITS 8U  /* File descriptor bits for volume number. */
+    #define FD_IDX_BITS 12U /* File descriptor bits for handle index. */
 
-/*  31 bits available: file descriptors are int32_t, but the sign bit must
-    always be zero.
-*/
-#if (FD_GEN_BITS + FD_VOL_BITS + FD_IDX_BITS) > 31U
-  #error "Internal error: too many file descriptor bits!"
-#endif
+    /*  31 bits available: file descriptors are int32_t, but the sign bit must
+        always be zero.
+    */
+    #if( FD_GEN_BITS + FD_VOL_BITS + FD_IDX_BITS ) > 31U
+        #error "Internal error: too many file descriptor bits!"
+    #endif
 
-/*  Maximum values for file descriptor components.
-*/
-#define FD_GEN_MAX  ((1UL << FD_GEN_BITS) - 1U)
-#define FD_VOL_MAX  ((1UL << FD_VOL_BITS) - 1U)
-#define FD_IDX_MAX  ((1UL << FD_IDX_BITS) - 1U)
+    /*  Maximum values for file descriptor components.
+     */
+    #define FD_GEN_MAX ( ( 1UL << FD_GEN_BITS ) - 1U )
+    #define FD_VOL_MAX ( ( 1UL << FD_VOL_BITS ) - 1U )
+    #define FD_IDX_MAX ( ( 1UL << FD_IDX_BITS ) - 1U )
 
-#if REDCONF_VOLUME_COUNT > FD_VOL_MAX
-  #error "Error: Too many file system volumes!"
-#endif
-#if REDCONF_HANDLE_COUNT > (FD_IDX_MAX + 1U)
-  #error "Error: Too many file system handles!"
-#endif
+    #if REDCONF_VOLUME_COUNT > FD_VOL_MAX
+        #error "Error: Too many file system volumes!"
+    #endif
+    #if REDCONF_HANDLE_COUNT > ( FD_IDX_MAX + 1U )
+        #error "Error: Too many file system handles!"
+    #endif
 
-/*  File descriptors must never be negative; and must never be zero, one, or
-    two, to avoid confusion with STDIN, STDOUT, and STDERR.
-*/
-#define FD_MIN  (3)
+    /*  File descriptors must never be negative; and must never be zero, one, or
+        two, to avoid confusion with STDIN, STDOUT, and STDERR.
+    */
+    #define FD_MIN ( 3 )
 
-/*-------------------------------------------------------------------
-    Handles
--------------------------------------------------------------------*/
+    /*-------------------------------------------------------------------
+        Handles
+    -------------------------------------------------------------------*/
 
-/*  Mask of all RED_O_* values.
-*/
-#define RED_O_MASK  (RED_O_RDONLY|RED_O_WRONLY|RED_O_RDWR|RED_O_APPEND|RED_O_CREAT|RED_O_EXCL|RED_O_TRUNC)
+    /*  Mask of all RED_O_* values.
+     */
+    #define RED_O_MASK                                              \
+        ( RED_O_RDONLY | RED_O_WRONLY | RED_O_RDWR | RED_O_APPEND | \
+          RED_O_CREAT | RED_O_EXCL | RED_O_TRUNC )
 
-#define HFLAG_DIRECTORY 0x01U   /* Handle is for a directory. */
-#define HFLAG_READABLE  0x02U   /* Handle is readable. */
-#define HFLAG_WRITEABLE 0x04U   /* Handle is writeable. */
-#define HFLAG_APPENDING 0x08U   /* Handle was opened in append mode. */
+    #define HFLAG_DIRECTORY 0x01U /* Handle is for a directory. */
+    #define HFLAG_READABLE  0x02U /* Handle is readable. */
+    #define HFLAG_WRITEABLE 0x04U /* Handle is writeable. */
+    #define HFLAG_APPENDING 0x08U /* Handle was opened in append mode. */
 
 /*  @brief Handle structure, used to implement file descriptors and directory
            streams.
 */
 typedef struct sREDHANDLE
 {
-    uint32_t        ulInode;    /**< Inode number; 0 if handle is available. */
-    uint8_t         bVolNum;    /**< Volume containing the inode. */
-    uint8_t         bFlags;     /**< Handle flags (type and mode). */
-    uint64_t        ullOffset;  /**< File or directory offset. */
-  #if REDCONF_API_POSIX_READDIR == 1
-    REDDIRENT       dirent;     /**< Dirent structure returned by red_readdir(). */
-  #endif
+    uint32_t ulInode;   /**< Inode number; 0 if handle is available. */
+    uint8_t bVolNum;    /**< Volume containing the inode. */
+    uint8_t bFlags;     /**< Handle flags (type and mode). */
+    uint64_t ullOffset; /**< File or directory offset. */
+    #if REDCONF_API_POSIX_READDIR == 1
+    REDDIRENT dirent; /**< Dirent structure returned by red_readdir(). */
+    #endif
 } REDHANDLE;
 
 /*-------------------------------------------------------------------
     Tasks
 -------------------------------------------------------------------*/
 
-#if REDCONF_TASK_COUNT > 1U
+    #if REDCONF_TASK_COUNT > 1U
 /*  @brief Per-task information.
-*/
+ */
 typedef struct
 {
-    uint32_t    ulTaskId;   /**< ID of the task which owns this slot; 0 if free. */
-    REDSTATUS   iErrno;     /**< Last error value. */
+    uint32_t ulTaskId; /**< ID of the task which owns this slot; 0 if free. */
+    REDSTATUS iErrno;  /**< Last error value. */
 } TASKSLOT;
-#endif
+    #endif
 
 /*-------------------------------------------------------------------
     Local Prototypes
 -------------------------------------------------------------------*/
 
-#if (REDCONF_READ_ONLY == 0) && ((REDCONF_API_POSIX_UNLINK == 1) || (REDCONF_API_POSIX_RMDIR == 1))
-static REDSTATUS UnlinkSub(const char *pszPath, FTYPE type);
-#endif
-static REDSTATUS FildesOpen(const char *pszPath, uint32_t ulOpenMode, FTYPE type, int32_t *piFildes);
-static REDSTATUS FildesClose(int32_t iFildes);
-static REDSTATUS FildesToHandle(int32_t iFildes, FTYPE expectedType, REDHANDLE **ppHandle);
-static int32_t FildesPack(uint16_t uHandleIdx, uint8_t bVolNum);
-static void FildesUnpack(int32_t iFildes, uint16_t *puHandleIdx, uint8_t *pbVolNum, uint16_t *puGeneration);
-#if REDCONF_API_POSIX_READDIR == 1
-static bool DirStreamIsValid(const REDDIR *pDirStream);
-#endif
-static REDSTATUS PosixEnter(void);
-static void PosixLeave(void);
-static REDSTATUS ModeTypeCheck(uint16_t uMode, FTYPE expectedType);
-#if (REDCONF_READ_ONLY == 0) && ((REDCONF_API_POSIX_UNLINK == 1) || (REDCONF_API_POSIX_RMDIR == 1) || ((REDCONF_API_POSIX_RENAME == 1) && (REDCONF_RENAME_ATOMIC == 1)))
-static REDSTATUS InodeUnlinkCheck(uint32_t ulInode);
-#endif
-#if REDCONF_TASK_COUNT > 1U
-static REDSTATUS TaskRegister(uint32_t *pulTaskIdx);
-#endif
-static int32_t PosixReturn(REDSTATUS iError);
+    #if( REDCONF_READ_ONLY == 0 ) && ( ( REDCONF_API_POSIX_UNLINK == 1 ) || \
+                                       ( REDCONF_API_POSIX_RMDIR == 1 ) )
+static REDSTATUS UnlinkSub( const char * pszPath, FTYPE type );
+    #endif
+static REDSTATUS FildesOpen( const char * pszPath,
+                             uint32_t ulOpenMode,
+                             FTYPE type,
+                             int32_t * piFildes );
+static REDSTATUS FildesClose( int32_t iFildes );
+static REDSTATUS FildesToHandle( int32_t iFildes,
+                                 FTYPE expectedType,
+                                 REDHANDLE ** ppHandle );
+static int32_t FildesPack( uint16_t uHandleIdx, uint8_t bVolNum );
+static void FildesUnpack( int32_t iFildes,
+                          uint16_t * puHandleIdx,
+                          uint8_t * pbVolNum,
+                          uint16_t * puGeneration );
+    #if REDCONF_API_POSIX_READDIR == 1
+static bool DirStreamIsValid( const REDDIR * pDirStream );
+    #endif
+static REDSTATUS PosixEnter( void );
+static void PosixLeave( void );
+static REDSTATUS ModeTypeCheck( uint16_t uMode, FTYPE expectedType );
+    #if( REDCONF_READ_ONLY == 0 ) && ( ( REDCONF_API_POSIX_UNLINK == 1 ) ||   \
+                                       ( REDCONF_API_POSIX_RMDIR == 1 ) ||    \
+                                       ( ( REDCONF_API_POSIX_RENAME == 1 ) && \
+                                         ( REDCONF_RENAME_ATOMIC == 1 ) ) )
+static REDSTATUS InodeUnlinkCheck( uint32_t ulInode );
+    #endif
+    #if REDCONF_TASK_COUNT > 1U
+static REDSTATUS TaskRegister( uint32_t * pulTaskIdx );
+    #endif
+static int32_t PosixReturn( REDSTATUS iError );
 
 /*-------------------------------------------------------------------
     Globals
 -------------------------------------------------------------------*/
 
-static bool gfPosixInited;                              /* Whether driver is initialized. */
-static REDHANDLE gaHandle[REDCONF_HANDLE_COUNT];        /* Array of all handles. */
-#if REDCONF_TASK_COUNT > 1U
-static TASKSLOT gaTask[REDCONF_TASK_COUNT];             /* Array of task slots. */
-#endif
+static bool gfPosixInited; /* Whether driver is initialized. */
+static REDHANDLE gaHandle[ REDCONF_HANDLE_COUNT ]; /* Array of all handles. */
+    #if REDCONF_TASK_COUNT > 1U
+static TASKSLOT gaTask[ REDCONF_TASK_COUNT ]; /* Array of task slots. */
+    #endif
 
 /*  Array of volume mount "generations".  These are incremented for a volume
     each time that volume is mounted.  The generation number (along with the
@@ -156,8 +169,7 @@ static TASKSLOT gaTask[REDCONF_TASK_COUNT];             /* Array of task slots. 
     descriptor from a previous mount can be detected since it will include a
     stale generation number.
 */
-static uint16_t gauGeneration[REDCONF_VOLUME_COUNT];
-
+static uint16_t gauGeneration[ REDCONF_VOLUME_COUNT ];
 
 /*-------------------------------------------------------------------
     Public API
@@ -181,32 +193,31 @@ static uint16_t gauGeneration[REDCONF_VOLUME_COUNT];
     <b>Errno values</b>
     - #RED_EINVAL: The volume path prefix configuration is invalid.
 */
-int32_t red_init(void)
+int32_t red_init( void )
 {
     REDSTATUS ret;
 
-    if(gfPosixInited)
+    if( gfPosixInited )
     {
         ret = 0;
     }
     else
     {
         ret = RedCoreInit();
-        if(ret == 0)
+        if( ret == 0 )
         {
-            RedMemSet(gaHandle, 0U, sizeof(gaHandle));
+            RedMemSet( gaHandle, 0U, sizeof( gaHandle ) );
 
-          #if REDCONF_TASK_COUNT > 1U
-            RedMemSet(gaTask, 0U, sizeof(gaTask));
-          #endif
+    #if REDCONF_TASK_COUNT > 1U
+            RedMemSet( gaTask, 0U, sizeof( gaTask ) );
+    #endif
 
             gfPosixInited = true;
         }
     }
 
-    return PosixReturn(ret);
+    return PosixReturn( ret );
 }
-
 
 /** @brief Uninitialize the Reliance Edge file system driver.
 
@@ -226,28 +237,28 @@ int32_t red_init(void)
     <b>Errno values</b>
     - #RED_EBUSY: At least one volume is still mounted.
 */
-int32_t red_uninit(void)
+int32_t red_uninit( void )
 {
     REDSTATUS ret;
 
-    if(gfPosixInited)
+    if( gfPosixInited )
     {
         ret = PosixEnter();
 
-        if(ret == 0)
+        if( ret == 0 )
         {
             uint8_t bVolNum;
 
-            for(bVolNum = 0U; bVolNum < REDCONF_VOLUME_COUNT; bVolNum++)
+            for( bVolNum = 0U; bVolNum < REDCONF_VOLUME_COUNT; bVolNum++ )
             {
-                if(gaRedVolume[bVolNum].fMounted)
+                if( gaRedVolume[ bVolNum ].fMounted )
                 {
                     ret = -RED_EBUSY;
                     break;
                 }
             }
 
-            if(ret == 0)
+            if( ret == 0 )
             {
                 /*  All volumes are unmounted.  Mark the driver as
                     uninitialized before releasing the FS mutex, to avoid any
@@ -263,12 +274,12 @@ int32_t red_uninit(void)
 
                 Don't use PosixLeave(), since it asserts gfPosixInited is true.
             */
-          #if REDCONF_TASK_COUNT > 1U
+    #if REDCONF_TASK_COUNT > 1U
             RedOsMutexRelease();
-          #endif
+    #endif
         }
 
-        if(ret == 0)
+        if( ret == 0 )
         {
             ret = RedCoreUninit();
 
@@ -276,7 +287,7 @@ int32_t red_uninit(void)
                 not entirely, torn down, and there might not be a way back to
                 a valid driver state.
             */
-            REDASSERT(ret == 0);
+            REDASSERT( ret == 0 );
         }
     }
     else
@@ -284,9 +295,8 @@ int32_t red_uninit(void)
         ret = 0;
     }
 
-    return PosixReturn(ret);
+    return PosixReturn( ret );
 }
-
 
 /** @brief Mount a file system volume.
 
@@ -308,40 +318,39 @@ int32_t red_uninit(void)
     - #RED_ENOENT: @p pszVolume is not a valid volume path prefix.
     - #RED_EUSERS: Cannot become a file system user: too many users.
 */
-int32_t red_mount(
-    const char *pszVolume)
+int32_t red_mount( const char * pszVolume )
 {
-    REDSTATUS   ret;
+    REDSTATUS ret;
 
     ret = PosixEnter();
 
-    if(ret == 0)
+    if( ret == 0 )
     {
         uint8_t bVolNum;
 
-        ret = RedPathSplit(pszVolume, &bVolNum, NULL);
+        ret = RedPathSplit( pszVolume, &bVolNum, NULL );
 
         /*  The core will return success if the volume is already mounted, so
             check for that condition here to propagate the error.
         */
-        if((ret == 0) && gaRedVolume[bVolNum].fMounted)
+        if( ( ret == 0 ) && gaRedVolume[ bVolNum ].fMounted )
         {
             ret = -RED_EBUSY;
         }
 
-      #if REDCONF_VOLUME_COUNT > 1U
-        if(ret == 0)
+    #if REDCONF_VOLUME_COUNT > 1U
+        if( ret == 0 )
         {
-            ret = RedCoreVolSetCurrent(bVolNum);
+            ret = RedCoreVolSetCurrent( bVolNum );
         }
-      #endif
+    #endif
 
-        if(ret == 0)
+        if( ret == 0 )
         {
             ret = RedCoreVolMount();
         }
 
-        if(ret == 0)
+        if( ret == 0 )
         {
             /*  Increment the mount generation, invalidating file descriptors
                 from previous mounts.  Note that while the generation numbers
@@ -349,8 +358,8 @@ int32_t red_mount(
                 generations in the file descriptors, so we must wrap-around
                 manually.
             */
-            gauGeneration[bVolNum]++;
-            if(gauGeneration[bVolNum] > FD_GEN_MAX)
+            gauGeneration[ bVolNum ]++;
+            if( gauGeneration[ bVolNum ] > FD_GEN_MAX )
             {
                 /*  Wrap-around to one, rather than zero.  The generation is
                     stored in the top bits of the file descriptor, and doing
@@ -359,16 +368,15 @@ int32_t red_mount(
                     and 2 are never valid file descriptors, thereby avoiding
                     confusion with STDIN, STDOUT, and STDERR.
                 */
-                gauGeneration[bVolNum] = 1U;
+                gauGeneration[ bVolNum ] = 1U;
             }
         }
 
         PosixLeave();
     }
 
-    return PosixReturn(ret);
+    return PosixReturn( ret );
 }
-
 
 /** @brief Unmount a file system volume.
 
@@ -403,37 +411,38 @@ int32_t red_mount(
     - #RED_ENOENT: @p pszVolume is not a valid volume path prefix.
     - #RED_EUSERS: Cannot become a file system user: too many users.
 */
-int32_t red_umount(
-    const char *pszVolume)
+int32_t red_umount( const char * pszVolume )
 {
-    REDSTATUS   ret;
+    REDSTATUS ret;
 
     ret = PosixEnter();
-    if(ret == 0)
+    if( ret == 0 )
     {
         uint8_t bVolNum;
 
-        ret = RedPathSplit(pszVolume, &bVolNum, NULL);
+        ret = RedPathSplit( pszVolume, &bVolNum, NULL );
 
         /*  The core will return success if the volume is already unmounted, so
             check for that condition here to propagate the error.
         */
-        if((ret == 0) && !gaRedVolume[bVolNum].fMounted)
+        if( ( ret == 0 ) && !gaRedVolume[ bVolNum ].fMounted )
         {
             ret = -RED_EINVAL;
         }
 
-        if(ret == 0)
+        if( ret == 0 )
         {
-            uint16_t    uHandleIdx;
+            uint16_t uHandleIdx;
 
             /*  Do not unmount the volume if it still has open handles.
-            */
-            for(uHandleIdx = 0U; uHandleIdx < REDCONF_HANDLE_COUNT; uHandleIdx++)
+             */
+            for( uHandleIdx = 0U; uHandleIdx < REDCONF_HANDLE_COUNT;
+                 uHandleIdx++ )
             {
-                const REDHANDLE *pHandle = &gaHandle[uHandleIdx];
+                const REDHANDLE * pHandle = &gaHandle[ uHandleIdx ];
 
-                if((pHandle->ulInode != INODE_INVALID) && (pHandle->bVolNum == bVolNum))
+                if( ( pHandle->ulInode != INODE_INVALID ) &&
+                    ( pHandle->bVolNum == bVolNum ) )
                 {
                     ret = -RED_EBUSY;
                     break;
@@ -441,14 +450,14 @@ int32_t red_umount(
             }
         }
 
-      #if REDCONF_VOLUME_COUNT > 1U
-        if(ret == 0)
+    #if REDCONF_VOLUME_COUNT > 1U
+        if( ret == 0 )
         {
-            ret = RedCoreVolSetCurrent(bVolNum);
+            ret = RedCoreVolSetCurrent( bVolNum );
         }
-      #endif
+    #endif
 
-        if(ret == 0)
+        if( ret == 0 )
         {
             ret = RedCoreVolUnmount();
         }
@@ -456,11 +465,10 @@ int32_t red_umount(
         PosixLeave();
     }
 
-    return PosixReturn(ret);
+    return PosixReturn( ret );
 }
 
-
-#if (REDCONF_READ_ONLY == 0) && (REDCONF_API_POSIX_FORMAT == 1)
+    #if( REDCONF_READ_ONLY == 0 ) && ( REDCONF_API_POSIX_FORMAT == 1 )
 /** @brief Format a file system volume.
 
     Uses the statically defined volume configuration.  After calling this
@@ -480,26 +488,25 @@ int32_t red_umount(
     - #RED_ENOENT: @p pszVolume is not a valid volume path prefix.
     - #RED_EUSERS: Cannot become a file system user: too many users.
 */
-int32_t red_format(
-    const char *pszVolume)
+int32_t red_format( const char * pszVolume )
 {
-    REDSTATUS   ret;
+    REDSTATUS ret;
 
     ret = PosixEnter();
-    if(ret == 0)
+    if( ret == 0 )
     {
         uint8_t bVolNum;
 
-        ret = RedPathSplit(pszVolume, &bVolNum, NULL);
+        ret = RedPathSplit( pszVolume, &bVolNum, NULL );
 
-      #if REDCONF_VOLUME_COUNT > 1U
-        if(ret == 0)
+        #if REDCONF_VOLUME_COUNT > 1U
+        if( ret == 0 )
         {
-            ret = RedCoreVolSetCurrent(bVolNum);
+            ret = RedCoreVolSetCurrent( bVolNum );
         }
-      #endif
+        #endif
 
-        if(ret == 0)
+        if( ret == 0 )
         {
             ret = RedCoreVolFormat();
         }
@@ -507,12 +514,11 @@ int32_t red_format(
         PosixLeave();
     }
 
-    return PosixReturn(ret);
+    return PosixReturn( ret );
 }
-#endif
+    #endif
 
-
-#if REDCONF_READ_ONLY == 0
+    #if REDCONF_READ_ONLY == 0
 /** @brief Commit a transaction point.
 
     Reliance Edge is a transactional file system.  All modifications, of both
@@ -534,26 +540,25 @@ int32_t red_format(
     - #RED_ENOENT: @p pszVolume is not a valid volume path prefix.
     - #RED_EUSERS: Cannot become a file system user: too many users.
 */
-int32_t red_transact(
-    const char *pszVolume)
+int32_t red_transact( const char * pszVolume )
 {
-    REDSTATUS   ret;
+    REDSTATUS ret;
 
     ret = PosixEnter();
-    if(ret == 0)
+    if( ret == 0 )
     {
         uint8_t bVolNum;
 
-        ret = RedPathSplit(pszVolume, &bVolNum, NULL);
+        ret = RedPathSplit( pszVolume, &bVolNum, NULL );
 
-      #if REDCONF_VOLUME_COUNT > 1U
-        if(ret == 0)
+        #if REDCONF_VOLUME_COUNT > 1U
+        if( ret == 0 )
         {
-            ret = RedCoreVolSetCurrent(bVolNum);
+            ret = RedCoreVolSetCurrent( bVolNum );
         }
-      #endif
+        #endif
 
-        if(ret == 0)
+        if( ret == 0 )
         {
             ret = RedCoreVolTransact();
         }
@@ -561,12 +566,11 @@ int32_t red_transact(
         PosixLeave();
     }
 
-    return PosixReturn(ret);
+    return PosixReturn( ret );
 }
-#endif
+    #endif
 
-
-#if REDCONF_READ_ONLY == 0
+    #if REDCONF_READ_ONLY == 0
 /** @brief Update the transaction mask.
 
     The following events are available:
@@ -605,38 +609,35 @@ int32_t red_transact(
     - #RED_ENOENT: @p pszVolume is not a valid volume path prefix.
     - #RED_EUSERS: Cannot become a file system user: too many users.
 */
-int32_t red_settransmask(
-    const char *pszVolume,
-    uint32_t    ulEventMask)
+int32_t red_settransmask( const char * pszVolume, uint32_t ulEventMask )
 {
-    REDSTATUS   ret;
+    REDSTATUS ret;
 
     ret = PosixEnter();
-    if(ret == 0)
+    if( ret == 0 )
     {
         uint8_t bVolNum;
 
-        ret = RedPathSplit(pszVolume, &bVolNum, NULL);
+        ret = RedPathSplit( pszVolume, &bVolNum, NULL );
 
-      #if REDCONF_VOLUME_COUNT > 1U
-        if(ret == 0)
+        #if REDCONF_VOLUME_COUNT > 1U
+        if( ret == 0 )
         {
-            ret = RedCoreVolSetCurrent(bVolNum);
+            ret = RedCoreVolSetCurrent( bVolNum );
         }
-      #endif
+        #endif
 
-        if(ret == 0)
+        if( ret == 0 )
         {
-            ret = RedCoreTransMaskSet(ulEventMask);
+            ret = RedCoreTransMaskSet( ulEventMask );
         }
 
         PosixLeave();
     }
 
-    return PosixReturn(ret);
+    return PosixReturn( ret );
 }
-#endif
-
+    #endif
 
 /** @brief Read the transaction mask.
 
@@ -657,37 +658,34 @@ int32_t red_settransmask(
     - #RED_ENOENT: @p pszVolume is not a valid volume path prefix.
     - #RED_EUSERS: Cannot become a file system user: too many users.
 */
-int32_t red_gettransmask(
-    const char *pszVolume,
-    uint32_t   *pulEventMask)
+int32_t red_gettransmask( const char * pszVolume, uint32_t * pulEventMask )
 {
-    REDSTATUS   ret;
+    REDSTATUS ret;
 
     ret = PosixEnter();
-    if(ret == 0)
+    if( ret == 0 )
     {
         uint8_t bVolNum;
 
-        ret = RedPathSplit(pszVolume, &bVolNum, NULL);
+        ret = RedPathSplit( pszVolume, &bVolNum, NULL );
 
-      #if REDCONF_VOLUME_COUNT > 1U
-        if(ret == 0)
+    #if REDCONF_VOLUME_COUNT > 1U
+        if( ret == 0 )
         {
-            ret = RedCoreVolSetCurrent(bVolNum);
+            ret = RedCoreVolSetCurrent( bVolNum );
         }
-      #endif
+    #endif
 
-        if(ret == 0)
+        if( ret == 0 )
         {
-            ret = RedCoreTransMaskGet(pulEventMask);
+            ret = RedCoreTransMaskGet( pulEventMask );
         }
 
         PosixLeave();
     }
 
-    return PosixReturn(ret);
+    return PosixReturn( ret );
 }
-
 
 /** @brief Query file system status information.
 
@@ -707,37 +705,34 @@ int32_t red_gettransmask(
     - #RED_ENOENT: @p pszVolume is not a valid volume path prefix.
     - #RED_EUSERS: Cannot become a file system user: too many users.
 */
-int32_t red_statvfs(
-    const char *pszVolume,
-    REDSTATFS  *pStatvfs)
+int32_t red_statvfs( const char * pszVolume, REDSTATFS * pStatvfs )
 {
-    REDSTATUS   ret;
+    REDSTATUS ret;
 
     ret = PosixEnter();
-    if(ret == 0)
+    if( ret == 0 )
     {
         uint8_t bVolNum;
 
-        ret = RedPathSplit(pszVolume, &bVolNum, NULL);
+        ret = RedPathSplit( pszVolume, &bVolNum, NULL );
 
-      #if REDCONF_VOLUME_COUNT > 1U
-        if(ret == 0)
+    #if REDCONF_VOLUME_COUNT > 1U
+        if( ret == 0 )
         {
-            ret = RedCoreVolSetCurrent(bVolNum);
+            ret = RedCoreVolSetCurrent( bVolNum );
         }
-      #endif
+    #endif
 
-        if(ret == 0)
+        if( ret == 0 )
         {
-            ret = RedCoreVolStat(pStatvfs);
+            ret = RedCoreVolStat( pStatvfs );
         }
 
         PosixLeave();
     }
 
-    return PosixReturn(ret);
+    return PosixReturn( ret );
 }
-
 
 /** @brief Open a file or directory.
 
@@ -806,58 +801,62 @@ int32_t red_statvfs(
       operation was requested.
     - #RED_EUSERS: Cannot become a file system user: too many users.
 */
-int32_t red_open(
-    const char *pszPath,
-    uint32_t    ulOpenMode)
+int32_t red_open( const char * pszPath, uint32_t ulOpenMode )
 {
-    int32_t     iFildes = -1;   /* Init'd to quiet warnings. */
-    REDSTATUS   ret;
+    int32_t iFildes = -1; /* Init'd to quiet warnings. */
+    REDSTATUS ret;
 
-  #if REDCONF_READ_ONLY == 1
-    if(ulOpenMode != RED_O_RDONLY)
+    #if REDCONF_READ_ONLY == 1
+    if( ulOpenMode != RED_O_RDONLY )
     {
         ret = -RED_EROFS;
     }
-  #else
-    if(    (ulOpenMode != (ulOpenMode & RED_O_MASK))
-        || ((ulOpenMode & (RED_O_RDONLY|RED_O_WRONLY|RED_O_RDWR)) == 0U)
-        || (((ulOpenMode & RED_O_RDONLY) != 0U) && ((ulOpenMode & (RED_O_WRONLY|RED_O_RDWR)) != 0U))
-        || (((ulOpenMode & RED_O_WRONLY) != 0U) && ((ulOpenMode & (RED_O_RDONLY|RED_O_RDWR)) != 0U))
-        || (((ulOpenMode & RED_O_RDWR) != 0U) && ((ulOpenMode & (RED_O_RDONLY|RED_O_WRONLY)) != 0U))
-        || (((ulOpenMode & (RED_O_TRUNC|RED_O_CREAT|RED_O_EXCL)) != 0U) && ((ulOpenMode & RED_O_RDONLY) != 0U))
-        || (((ulOpenMode & RED_O_EXCL) != 0U) && ((ulOpenMode & RED_O_CREAT) == 0U)))
+    #else
+    if( ( ulOpenMode != ( ulOpenMode & RED_O_MASK ) ) ||
+        ( ( ulOpenMode & ( RED_O_RDONLY | RED_O_WRONLY | RED_O_RDWR ) ) ==
+          0U ) ||
+        ( ( ( ulOpenMode & RED_O_RDONLY ) != 0U ) &&
+          ( ( ulOpenMode & ( RED_O_WRONLY | RED_O_RDWR ) ) != 0U ) ) ||
+        ( ( ( ulOpenMode & RED_O_WRONLY ) != 0U ) &&
+          ( ( ulOpenMode & ( RED_O_RDONLY | RED_O_RDWR ) ) != 0U ) ) ||
+        ( ( ( ulOpenMode & RED_O_RDWR ) != 0U ) &&
+          ( ( ulOpenMode & ( RED_O_RDONLY | RED_O_WRONLY ) ) != 0U ) ) ||
+        ( ( ( ulOpenMode & ( RED_O_TRUNC | RED_O_CREAT | RED_O_EXCL ) ) !=
+            0U ) &&
+          ( ( ulOpenMode & RED_O_RDONLY ) != 0U ) ) ||
+        ( ( ( ulOpenMode & RED_O_EXCL ) != 0U ) &&
+          ( ( ulOpenMode & RED_O_CREAT ) == 0U ) ) )
     {
         ret = -RED_EINVAL;
     }
-  #if REDCONF_API_POSIX_FTRUNCATE == 0
-    else if((ulOpenMode & RED_O_TRUNC) != 0U)
+        #if REDCONF_API_POSIX_FTRUNCATE == 0
+    else if( ( ulOpenMode & RED_O_TRUNC ) != 0U )
     {
         ret = -RED_EINVAL;
     }
-  #endif
-  #endif
+        #endif
+    #endif
     else
     {
         ret = PosixEnter();
     }
 
-    if(ret == 0)
+    if( ret == 0 )
     {
-        ret = FildesOpen(pszPath, ulOpenMode, FTYPE_EITHER, &iFildes);
+        ret = FildesOpen( pszPath, ulOpenMode, FTYPE_EITHER, &iFildes );
 
         PosixLeave();
     }
 
-    if(ret != 0)
+    if( ret != 0 )
     {
-        iFildes = PosixReturn(ret);
+        iFildes = PosixReturn( ret );
     }
 
     return iFildes;
 }
 
-
-#if (REDCONF_READ_ONLY == 0) && (REDCONF_API_POSIX_UNLINK == 1)
+    #if( REDCONF_READ_ONLY == 0 ) && ( REDCONF_API_POSIX_UNLINK == 1 )
 /** @brief Delete a file or directory.
 
     The given name is deleted and the link count of the corresponding inode is
@@ -901,25 +900,23 @@ int32_t red_open(
       parent directory to perform the deletion.
     - #RED_EUSERS: Cannot become a file system user: too many users.
 */
-int32_t red_unlink(
-    const char *pszPath)
+int32_t red_unlink( const char * pszPath )
 {
-    REDSTATUS   ret;
+    REDSTATUS ret;
 
     ret = PosixEnter();
-    if(ret == 0)
+    if( ret == 0 )
     {
-        ret = UnlinkSub(pszPath, FTYPE_EITHER);
+        ret = UnlinkSub( pszPath, FTYPE_EITHER );
 
         PosixLeave();
     }
 
-    return PosixReturn(ret);
+    return PosixReturn( ret );
 }
-#endif
+    #endif
 
-
-#if (REDCONF_READ_ONLY == 0) && (REDCONF_API_POSIX_MKDIR == 1)
+    #if( REDCONF_READ_ONLY == 0 ) && ( REDCONF_API_POSIX_MKDIR == 1 )
 /** @brief Create a new directory.
 
     Unlike POSIX mkdir, this function has no second argument for the
@@ -946,50 +943,48 @@ int32_t red_unlink(
     - #RED_EROFS: The parent directory resides on a read-only file system.
     - #RED_EUSERS: Cannot become a file system user: too many users.
 */
-int32_t red_mkdir(
-    const char *pszPath)
+int32_t red_mkdir( const char * pszPath )
 {
-    REDSTATUS   ret;
+    REDSTATUS ret;
 
     ret = PosixEnter();
-    if(ret == 0)
+    if( ret == 0 )
     {
-        const char *pszLocalPath;
-        uint8_t     bVolNum;
+        const char * pszLocalPath;
+        uint8_t bVolNum;
 
-        ret = RedPathSplit(pszPath, &bVolNum, &pszLocalPath);
+        ret = RedPathSplit( pszPath, &bVolNum, &pszLocalPath );
 
-      #if REDCONF_VOLUME_COUNT > 1U
-        if(ret == 0)
+        #if REDCONF_VOLUME_COUNT > 1U
+        if( ret == 0 )
         {
-            ret = RedCoreVolSetCurrent(bVolNum);
+            ret = RedCoreVolSetCurrent( bVolNum );
         }
-      #endif
+        #endif
 
-        if(ret == 0)
+        if( ret == 0 )
         {
-            const char *pszName;
-            uint32_t    ulPInode;
+            const char * pszName;
+            uint32_t ulPInode;
 
-            ret = RedPathToName(pszLocalPath, &ulPInode, &pszName);
+            ret = RedPathToName( pszLocalPath, &ulPInode, &pszName );
 
-            if(ret == 0)
+            if( ret == 0 )
             {
                 uint32_t ulInode;
 
-                ret = RedCoreCreate(ulPInode, pszName, true, &ulInode);
+                ret = RedCoreCreate( ulPInode, pszName, true, &ulInode );
             }
         }
 
         PosixLeave();
     }
 
-    return PosixReturn(ret);
+    return PosixReturn( ret );
 }
-#endif
+    #endif
 
-
-#if (REDCONF_READ_ONLY == 0) && (REDCONF_API_POSIX_RMDIR == 1)
+    #if( REDCONF_READ_ONLY == 0 ) && ( REDCONF_API_POSIX_RMDIR == 1 )
 /** @brief Delete a directory.
 
     The given directory name is deleted and the corresponding directory inode
@@ -1037,25 +1032,23 @@ int32_t red_mkdir(
       system.
     - #RED_EUSERS: Cannot become a file system user: too many users.
 */
-int32_t red_rmdir(
-    const char *pszPath)
+int32_t red_rmdir( const char * pszPath )
 {
-    REDSTATUS   ret;
+    REDSTATUS ret;
 
     ret = PosixEnter();
-    if(ret == 0)
+    if( ret == 0 )
     {
-        ret = UnlinkSub(pszPath, FTYPE_DIR);
+        ret = UnlinkSub( pszPath, FTYPE_DIR );
 
         PosixLeave();
     }
 
-    return PosixReturn(ret);
+    return PosixReturn( ret );
 }
-#endif
+    #endif
 
-
-#if (REDCONF_READ_ONLY == 0) && (REDCONF_API_POSIX_RENAME == 1)
+    #if( REDCONF_READ_ONLY == 0 ) && ( REDCONF_API_POSIX_RENAME == 1 )
 /** @brief Rename a file or directory.
 
     Both paths must reside on the same file system volume.  Attempting to use
@@ -1115,78 +1108,85 @@ int32_t red_rmdir(
     - #RED_EXDEV: @p pszOldPath and @p pszNewPath are on different file system
       volumes.
 */
-int32_t red_rename(
-    const char *pszOldPath,
-    const char *pszNewPath)
+int32_t red_rename( const char * pszOldPath, const char * pszNewPath )
 {
-    REDSTATUS   ret;
+    REDSTATUS ret;
 
     ret = PosixEnter();
-    if(ret == 0)
+    if( ret == 0 )
     {
-        const char *pszOldLocalPath;
-        uint8_t     bOldVolNum;
+        const char * pszOldLocalPath;
+        uint8_t bOldVolNum;
 
-        ret = RedPathSplit(pszOldPath, &bOldVolNum, &pszOldLocalPath);
+        ret = RedPathSplit( pszOldPath, &bOldVolNum, &pszOldLocalPath );
 
-        if(ret == 0)
+        if( ret == 0 )
         {
-            const char *pszNewLocalPath;
-            uint8_t     bNewVolNum;
+            const char * pszNewLocalPath;
+            uint8_t bNewVolNum;
 
-            ret = RedPathSplit(pszNewPath, &bNewVolNum, &pszNewLocalPath);
+            ret = RedPathSplit( pszNewPath, &bNewVolNum, &pszNewLocalPath );
 
-            if((ret == 0) && (bOldVolNum != bNewVolNum))
+            if( ( ret == 0 ) && ( bOldVolNum != bNewVolNum ) )
             {
                 ret = -RED_EXDEV;
             }
 
-          #if REDCONF_VOLUME_COUNT > 1U
-            if(ret == 0)
+        #if REDCONF_VOLUME_COUNT > 1U
+            if( ret == 0 )
             {
-                ret = RedCoreVolSetCurrent(bOldVolNum);
+                ret = RedCoreVolSetCurrent( bOldVolNum );
             }
-          #endif
+        #endif
 
-            if(ret == 0)
+            if( ret == 0 )
             {
-                const char *pszOldName;
-                uint32_t    ulOldPInode;
+                const char * pszOldName;
+                uint32_t ulOldPInode;
 
-                ret = RedPathToName(pszOldLocalPath, &ulOldPInode, &pszOldName);
+                ret = RedPathToName( pszOldLocalPath,
+                                     &ulOldPInode,
+                                     &pszOldName );
 
-                if(ret == 0)
+                if( ret == 0 )
                 {
-                    const char *pszNewName;
-                    uint32_t    ulNewPInode;
+                    const char * pszNewName;
+                    uint32_t ulNewPInode;
 
-                    ret = RedPathToName(pszNewLocalPath, &ulNewPInode, &pszNewName);
+                    ret = RedPathToName( pszNewLocalPath,
+                                         &ulNewPInode,
+                                         &pszNewName );
 
-                  #if REDCONF_RENAME_ATOMIC == 1
-                    if(ret == 0)
+        #if REDCONF_RENAME_ATOMIC == 1
+                    if( ret == 0 )
                     {
                         uint32_t ulDestInode;
 
-                        ret = RedCoreLookup(ulNewPInode, pszNewName, &ulDestInode);
-                        if(ret == 0)
+                        ret = RedCoreLookup( ulNewPInode,
+                                             pszNewName,
+                                             &ulDestInode );
+                        if( ret == 0 )
                         {
-                            ret = InodeUnlinkCheck(ulDestInode);
+                            ret = InodeUnlinkCheck( ulDestInode );
                         }
-                        else if(ret == -RED_ENOENT)
+                        else if( ret == -RED_ENOENT )
                         {
                             ret = 0;
                         }
                         else
                         {
                             /*  Unexpected error, nothing to do.
-                            */
+                             */
                         }
                     }
-                  #endif
+        #endif
 
-                    if(ret == 0)
+                    if( ret == 0 )
                     {
-                        ret = RedCoreRename(ulOldPInode, pszOldName, ulNewPInode, pszNewName);
+                        ret = RedCoreRename( ulOldPInode,
+                                             pszOldName,
+                                             ulNewPInode,
+                                             pszNewName );
                     }
                 }
             }
@@ -1195,12 +1195,11 @@ int32_t red_rename(
         PosixLeave();
     }
 
-    return PosixReturn(ret);
+    return PosixReturn( ret );
 }
-#endif
+    #endif
 
-
-#if (REDCONF_READ_ONLY == 0) && (REDCONF_API_POSIX_LINK == 1)
+    #if( REDCONF_READ_ONLY == 0 ) && ( REDCONF_API_POSIX_LINK == 1 )
 /** @brief Create a hard link.
 
     This creates an additional name (link) for the file named by @p pszPath.
@@ -1241,55 +1240,55 @@ int32_t red_rename(
     - #RED_EXDEV: @p pszPath and @p pszHardLink are on different file system
       volumes.
 */
-int32_t red_link(
-    const char *pszPath,
-    const char *pszHardLink)
+int32_t red_link( const char * pszPath, const char * pszHardLink )
 {
-    REDSTATUS   ret;
+    REDSTATUS ret;
 
     ret = PosixEnter();
-    if(ret == 0)
+    if( ret == 0 )
     {
-        const char *pszLocalPath;
-        uint8_t     bVolNum;
+        const char * pszLocalPath;
+        uint8_t bVolNum;
 
-        ret = RedPathSplit(pszPath, &bVolNum, &pszLocalPath);
+        ret = RedPathSplit( pszPath, &bVolNum, &pszLocalPath );
 
-        if(ret == 0)
+        if( ret == 0 )
         {
-            const char *pszLinkLocalPath;
-            uint8_t     bLinkVolNum;
+            const char * pszLinkLocalPath;
+            uint8_t bLinkVolNum;
 
-            ret = RedPathSplit(pszHardLink, &bLinkVolNum, &pszLinkLocalPath);
+            ret = RedPathSplit( pszHardLink, &bLinkVolNum, &pszLinkLocalPath );
 
-            if((ret == 0) && (bVolNum != bLinkVolNum))
+            if( ( ret == 0 ) && ( bVolNum != bLinkVolNum ) )
             {
                 ret = -RED_EXDEV;
             }
 
-          #if REDCONF_VOLUME_COUNT > 1U
-            if(ret == 0)
+        #if REDCONF_VOLUME_COUNT > 1U
+            if( ret == 0 )
             {
-                ret = RedCoreVolSetCurrent(bVolNum);
+                ret = RedCoreVolSetCurrent( bVolNum );
             }
-          #endif
+        #endif
 
-            if(ret == 0)
+            if( ret == 0 )
             {
-                uint32_t    ulInode;
+                uint32_t ulInode;
 
-                ret = RedPathLookup(pszLocalPath, &ulInode);
+                ret = RedPathLookup( pszLocalPath, &ulInode );
 
-                if(ret == 0)
+                if( ret == 0 )
                 {
-                    const char *pszLinkName;
-                    uint32_t    ulLinkPInode;
+                    const char * pszLinkName;
+                    uint32_t ulLinkPInode;
 
-                    ret = RedPathToName(pszLinkLocalPath, &ulLinkPInode, &pszLinkName);
+                    ret = RedPathToName( pszLinkLocalPath,
+                                         &ulLinkPInode,
+                                         &pszLinkName );
 
-                    if(ret == 0)
+                    if( ret == 0 )
                     {
-                        ret = RedCoreLink(ulLinkPInode, pszLinkName, ulInode);
+                        ret = RedCoreLink( ulLinkPInode, pszLinkName, ulInode );
                     }
                 }
             }
@@ -1298,10 +1297,9 @@ int32_t red_link(
         PosixLeave();
     }
 
-    return PosixReturn(ret);
+    return PosixReturn( ret );
 }
-#endif
-
+    #endif
 
 /** @brief Close a file descriptor.
 
@@ -1315,22 +1313,20 @@ int32_t red_link(
     - #RED_EIO: A disk I/O error occurred.
     - #RED_EUSERS: Cannot become a file system user: too many users.
 */
-int32_t red_close(
-    int32_t     iFildes)
+int32_t red_close( int32_t iFildes )
 {
-    REDSTATUS   ret;
+    REDSTATUS ret;
 
     ret = PosixEnter();
-    if(ret == 0)
+    if( ret == 0 )
     {
-        ret = FildesClose(iFildes);
+        ret = FildesClose( iFildes );
 
         PosixLeave();
     }
 
-    return PosixReturn(ret);
+    return PosixReturn( ret );
 }
-
 
 /** @brief Read from an open file.
 
@@ -1360,16 +1356,13 @@ int32_t red_close(
     - #RED_EISDIR: The @p iFildes is a file descriptor for a directory.
     - #RED_EUSERS: Cannot become a file system user: too many users.
 */
-int32_t red_read(
-    int32_t     iFildes,
-    void       *pBuffer,
-    uint32_t    ulLength)
+int32_t red_read( int32_t iFildes, void * pBuffer, uint32_t ulLength )
 {
-    uint32_t    ulLenRead = 0U;
-    REDSTATUS   ret;
-    int32_t     iReturn;
+    uint32_t ulLenRead = 0U;
+    REDSTATUS ret;
+    int32_t iReturn;
 
-    if(ulLength > (uint32_t)INT32_MAX)
+    if( ulLength > ( uint32_t ) INT32_MAX )
     {
         ret = -RED_EINVAL;
     }
@@ -1378,33 +1371,36 @@ int32_t red_read(
         ret = PosixEnter();
     }
 
-    if(ret == 0)
+    if( ret == 0 )
     {
-        REDHANDLE  *pHandle;
+        REDHANDLE * pHandle;
 
-        ret = FildesToHandle(iFildes, FTYPE_FILE, &pHandle);
+        ret = FildesToHandle( iFildes, FTYPE_FILE, &pHandle );
 
-        if((ret == 0) && ((pHandle->bFlags & HFLAG_READABLE) == 0U))
+        if( ( ret == 0 ) && ( ( pHandle->bFlags & HFLAG_READABLE ) == 0U ) )
         {
             ret = -RED_EBADF;
         }
 
-      #if REDCONF_VOLUME_COUNT > 1U
-        if(ret == 0)
+    #if REDCONF_VOLUME_COUNT > 1U
+        if( ret == 0 )
         {
-            ret = RedCoreVolSetCurrent(pHandle->bVolNum);
+            ret = RedCoreVolSetCurrent( pHandle->bVolNum );
         }
-      #endif
+    #endif
 
-        if(ret == 0)
+        if( ret == 0 )
         {
             ulLenRead = ulLength;
-            ret = RedCoreFileRead(pHandle->ulInode, pHandle->ullOffset, &ulLenRead, pBuffer);
+            ret = RedCoreFileRead( pHandle->ulInode,
+                                   pHandle->ullOffset,
+                                   &ulLenRead,
+                                   pBuffer );
         }
 
-        if(ret == 0)
+        if( ret == 0 )
         {
-            REDASSERT(ulLenRead <= ulLength);
+            REDASSERT( ulLenRead <= ulLength );
 
             pHandle->ullOffset += ulLenRead;
         }
@@ -1412,20 +1408,19 @@ int32_t red_read(
         PosixLeave();
     }
 
-    if(ret == 0)
+    if( ret == 0 )
     {
-        iReturn = (int32_t)ulLenRead;
+        iReturn = ( int32_t ) ulLenRead;
     }
     else
     {
-        iReturn = PosixReturn(ret);
+        iReturn = PosixReturn( ret );
     }
 
     return iReturn;
 }
 
-
-#if REDCONF_READ_ONLY == 0
+    #if REDCONF_READ_ONLY == 0
 /** @brief Write to an open file.
 
     The write takes place at the file offset associated with @p iFildes and
@@ -1466,16 +1461,13 @@ int32_t red_read(
       space.
     - #RED_EUSERS: Cannot become a file system user: too many users.
 */
-int32_t red_write(
-    int32_t     iFildes,
-    const void *pBuffer,
-    uint32_t    ulLength)
+int32_t red_write( int32_t iFildes, const void * pBuffer, uint32_t ulLength )
 {
-    uint32_t    ulLenWrote = 0U;
-    REDSTATUS   ret;
-    int32_t     iReturn;
+    uint32_t ulLenWrote = 0U;
+    REDSTATUS ret;
+    int32_t iReturn;
 
-    if(ulLength > (uint32_t)INT32_MAX)
+    if( ulLength > ( uint32_t ) INT32_MAX )
     {
         ret = -RED_EINVAL;
     }
@@ -1484,12 +1476,12 @@ int32_t red_write(
         ret = PosixEnter();
     }
 
-    if(ret == 0)
+    if( ret == 0 )
     {
-        REDHANDLE *pHandle;
+        REDHANDLE * pHandle;
 
-        ret = FildesToHandle(iFildes, FTYPE_FILE, &pHandle);
-        if(ret == -RED_EISDIR)
+        ret = FildesToHandle( iFildes, FTYPE_FILE, &pHandle );
+        if( ret == -RED_EISDIR )
         {
             /*  POSIX says that if a file descriptor is not writable, the
                 errno should be -RED_EBADF.  Directory file descriptors are
@@ -1500,38 +1492,41 @@ int32_t red_write(
             ret = -RED_EBADF;
         }
 
-        if((ret == 0) && ((pHandle->bFlags & HFLAG_WRITEABLE) == 0U))
+        if( ( ret == 0 ) && ( ( pHandle->bFlags & HFLAG_WRITEABLE ) == 0U ) )
         {
             ret = -RED_EBADF;
         }
 
-      #if REDCONF_VOLUME_COUNT > 1U
-        if(ret == 0)
+        #if REDCONF_VOLUME_COUNT > 1U
+        if( ret == 0 )
         {
-            ret = RedCoreVolSetCurrent(pHandle->bVolNum);
+            ret = RedCoreVolSetCurrent( pHandle->bVolNum );
         }
-      #endif
+        #endif
 
-        if((ret == 0) && ((pHandle->bFlags & HFLAG_APPENDING) != 0U))
+        if( ( ret == 0 ) && ( ( pHandle->bFlags & HFLAG_APPENDING ) != 0U ) )
         {
             REDSTAT s;
 
-            ret = RedCoreStat(pHandle->ulInode, &s);
-            if(ret == 0)
+            ret = RedCoreStat( pHandle->ulInode, &s );
+            if( ret == 0 )
             {
                 pHandle->ullOffset = s.st_size;
             }
         }
 
-        if(ret == 0)
+        if( ret == 0 )
         {
             ulLenWrote = ulLength;
-            ret = RedCoreFileWrite(pHandle->ulInode, pHandle->ullOffset, &ulLenWrote, pBuffer);
+            ret = RedCoreFileWrite( pHandle->ulInode,
+                                    pHandle->ullOffset,
+                                    &ulLenWrote,
+                                    pBuffer );
         }
 
-        if(ret == 0)
+        if( ret == 0 )
         {
-            REDASSERT(ulLenWrote <= ulLength);
+            REDASSERT( ulLenWrote <= ulLength );
 
             pHandle->ullOffset += ulLenWrote;
         }
@@ -1539,21 +1534,20 @@ int32_t red_write(
         PosixLeave();
     }
 
-    if(ret == 0)
+    if( ret == 0 )
     {
-        iReturn = (int32_t)ulLenWrote;
+        iReturn = ( int32_t ) ulLenWrote;
     }
     else
     {
-        iReturn = PosixReturn(ret);
+        iReturn = PosixReturn( ret );
     }
 
     return iReturn;
 }
-#endif
+    #endif
 
-
-#if REDCONF_READ_ONLY == 0
+    #if REDCONF_READ_ONLY == 0
 /** @brief Synchronizes changes to a file.
 
     Commits all changes associated with a file or directory (including file
@@ -1586,35 +1580,34 @@ int32_t red_write(
     - #RED_EIO: A disk I/O error occurred.
     - #RED_EUSERS: Cannot become a file system user: too many users.
 */
-int32_t red_fsync(
-    int32_t     iFildes)
+int32_t red_fsync( int32_t iFildes )
 {
-    REDSTATUS   ret;
+    REDSTATUS ret;
 
     ret = PosixEnter();
-    if(ret == 0)
+    if( ret == 0 )
     {
-        REDHANDLE *pHandle;
+        REDHANDLE * pHandle;
 
-        ret = FildesToHandle(iFildes, FTYPE_EITHER, &pHandle);
+        ret = FildesToHandle( iFildes, FTYPE_EITHER, &pHandle );
 
-      #if REDCONF_VOLUME_COUNT > 1U
-        if(ret == 0)
+        #if REDCONF_VOLUME_COUNT > 1U
+        if( ret == 0 )
         {
-            ret = RedCoreVolSetCurrent(pHandle->bVolNum);
+            ret = RedCoreVolSetCurrent( pHandle->bVolNum );
         }
-      #endif
+        #endif
 
         /*  No core event for fsync, so this transaction flag needs to be
             implemented here.
         */
-        if(ret == 0)
+        if( ret == 0 )
         {
-            uint32_t    ulTransMask;
+            uint32_t ulTransMask;
 
-            ret = RedCoreTransMaskGet(&ulTransMask);
+            ret = RedCoreTransMaskGet( &ulTransMask );
 
-            if((ret == 0) && ((ulTransMask & RED_TRANSACT_FSYNC) != 0U))
+            if( ( ret == 0 ) && ( ( ulTransMask & RED_TRANSACT_FSYNC ) != 0U ) )
             {
                 ret = RedCoreVolTransact();
             }
@@ -1623,10 +1616,9 @@ int32_t red_fsync(
         PosixLeave();
     }
 
-    return PosixReturn(ret);
+    return PosixReturn( ret );
 }
-#endif
-
+    #endif
 
 /** @brief Move the read/write file offset.
 
@@ -1665,59 +1657,56 @@ int32_t red_fsync(
     - #RED_EISDIR: The @p iFildes argument is a file descriptor for a directory.
     - #RED_EUSERS: Cannot become a file system user: too many users.
 */
-int64_t red_lseek(
-    int32_t     iFildes,
-    int64_t     llOffset,
-    REDWHENCE   whence)
+int64_t red_lseek( int32_t iFildes, int64_t llOffset, REDWHENCE whence )
 {
-    REDSTATUS   ret;
-    int64_t     llReturn = -1;  /* Init'd to quiet warnings. */
+    REDSTATUS ret;
+    int64_t llReturn = -1; /* Init'd to quiet warnings. */
 
     ret = PosixEnter();
-    if(ret == 0)
+    if( ret == 0 )
     {
-        int64_t     llFrom = 0; /* Init'd to quiet warnings. */
-        REDHANDLE  *pHandle;
+        int64_t llFrom = 0; /* Init'd to quiet warnings. */
+        REDHANDLE * pHandle;
 
         /*  Unlike POSIX, we disallow lseek() on directory handles.
-        */
-        ret = FildesToHandle(iFildes, FTYPE_FILE, &pHandle);
+         */
+        ret = FildesToHandle( iFildes, FTYPE_FILE, &pHandle );
 
-      #if REDCONF_VOLUME_COUNT > 1U
-        if(ret == 0)
+    #if REDCONF_VOLUME_COUNT > 1U
+        if( ret == 0 )
         {
-            ret = RedCoreVolSetCurrent(pHandle->bVolNum);
+            ret = RedCoreVolSetCurrent( pHandle->bVolNum );
         }
-      #endif
+    #endif
 
-        if(ret == 0)
+        if( ret == 0 )
         {
-            switch(whence)
+            switch( whence )
             {
                 /*  Seek from the beginning of the file.
-                */
+                 */
                 case RED_SEEK_SET:
                     llFrom = 0;
                     break;
 
                 /*  Seek from the current file offset.
-                */
+                 */
                 case RED_SEEK_CUR:
-                    REDASSERT(pHandle->ullOffset <= (uint64_t)INT64_MAX);
-                    llFrom = (int64_t)pHandle->ullOffset;
+                    REDASSERT( pHandle->ullOffset <= ( uint64_t ) INT64_MAX );
+                    llFrom = ( int64_t ) pHandle->ullOffset;
                     break;
 
                 /*  Seek from the end of the file.
-                */
+                 */
                 case RED_SEEK_END:
                 {
                     REDSTAT s;
 
-                    ret = RedCoreStat(pHandle->ulInode, &s);
-                    if(ret == 0)
+                    ret = RedCoreStat( pHandle->ulInode, &s );
+                    if( ret == 0 )
                     {
-                        REDASSERT(s.st_size <= (uint64_t)INT64_MAX);
-                        llFrom = (int64_t)s.st_size;
+                        REDASSERT( s.st_size <= ( uint64_t ) INT64_MAX );
+                        llFrom = ( int64_t ) s.st_size;
                     }
 
                     break;
@@ -1729,15 +1718,17 @@ int64_t red_lseek(
             }
         }
 
-        if(ret == 0)
+        if( ret == 0 )
         {
-            REDASSERT(llFrom >= 0);
+            REDASSERT( llFrom >= 0 );
 
             /*  Avoid signed integer overflow from llFrom + llOffset with large
                 values of llOffset and nonzero llFrom values.  Underflow isn't
                 possible since llFrom is nonnegative.
             */
-            if((llOffset > 0) && (((uint64_t)llFrom + (uint64_t)llOffset) > (uint64_t)INT64_MAX))
+            if( ( llOffset > 0 ) &&
+                ( ( ( uint64_t ) llFrom + ( uint64_t ) llOffset ) >
+                  ( uint64_t ) INT64_MAX ) )
             {
                 ret = -RED_EINVAL;
             }
@@ -1745,15 +1736,16 @@ int64_t red_lseek(
             {
                 int64_t llNewOffset = llFrom + llOffset;
 
-                if((llNewOffset < 0) || ((uint64_t)llNewOffset > gpRedVolume->ullMaxInodeSize))
+                if( ( llNewOffset < 0 ) || ( ( uint64_t ) llNewOffset >
+                                             gpRedVolume->ullMaxInodeSize ) )
                 {
                     /*  Invalid file offset.
-                    */
+                     */
                     ret = -RED_EINVAL;
                 }
                 else
                 {
-                    pHandle->ullOffset = (uint64_t)llNewOffset;
+                    pHandle->ullOffset = ( uint64_t ) llNewOffset;
                     llReturn = llNewOffset;
                 }
             }
@@ -1762,16 +1754,15 @@ int64_t red_lseek(
         PosixLeave();
     }
 
-    if(ret != 0)
+    if( ret != 0 )
     {
-        llReturn = PosixReturn(ret);
+        llReturn = PosixReturn( ret );
     }
 
     return llReturn;
 }
 
-
-#if (REDCONF_READ_ONLY == 0) && (REDCONF_API_POSIX_FTRUNCATE == 1)
+    #if( REDCONF_READ_ONLY == 0 ) && ( REDCONF_API_POSIX_FTRUNCATE == 1 )
 /** @brief Truncate a file to a specified length.
 
     Allows the file size to be increased, decreased, or to remain the same.  If
@@ -1804,19 +1795,17 @@ int64_t red_lseek(
     - #RED_ENOSPC: Insufficient free space to perform the truncate.
     - #RED_EUSERS: Cannot become a file system user: too many users.
 */
-int32_t red_ftruncate(
-    int32_t     iFildes,
-    uint64_t    ullSize)
+int32_t red_ftruncate( int32_t iFildes, uint64_t ullSize )
 {
-    REDSTATUS   ret;
+    REDSTATUS ret;
 
     ret = PosixEnter();
-    if(ret == 0)
+    if( ret == 0 )
     {
-        REDHANDLE *pHandle;
+        REDHANDLE * pHandle;
 
-        ret = FildesToHandle(iFildes, FTYPE_FILE, &pHandle);
-        if(ret == -RED_EISDIR)
+        ret = FildesToHandle( iFildes, FTYPE_FILE, &pHandle );
+        if( ret == -RED_EISDIR )
         {
             /*  Similar to red_write() (see comment there), the RED_EBADF error
                 for a non-writable file descriptor takes precedence.
@@ -1824,30 +1813,29 @@ int32_t red_ftruncate(
             ret = -RED_EBADF;
         }
 
-        if((ret == 0) && ((pHandle->bFlags & HFLAG_WRITEABLE) == 0U))
+        if( ( ret == 0 ) && ( ( pHandle->bFlags & HFLAG_WRITEABLE ) == 0U ) )
         {
             ret = -RED_EBADF;
         }
 
-      #if REDCONF_VOLUME_COUNT > 1U
-        if(ret == 0)
+        #if REDCONF_VOLUME_COUNT > 1U
+        if( ret == 0 )
         {
-            ret = RedCoreVolSetCurrent(pHandle->bVolNum);
+            ret = RedCoreVolSetCurrent( pHandle->bVolNum );
         }
-      #endif
+        #endif
 
-        if(ret == 0)
+        if( ret == 0 )
         {
-            ret = RedCoreFileTruncate(pHandle->ulInode, ullSize);
+            ret = RedCoreFileTruncate( pHandle->ulInode, ullSize );
         }
 
         PosixLeave();
     }
 
-    return PosixReturn(ret);
+    return PosixReturn( ret );
 }
-#endif
-
+    #endif
 
 /** @brief Get the status of a file or directory.
 
@@ -1866,39 +1854,36 @@ int32_t red_ftruncate(
     - #RED_EIO: A disk I/O error occurred.
     - #RED_EUSERS: Cannot become a file system user: too many users.
 */
-int32_t red_fstat(
-    int32_t     iFildes,
-    REDSTAT    *pStat)
+int32_t red_fstat( int32_t iFildes, REDSTAT * pStat )
 {
-    REDSTATUS   ret;
+    REDSTATUS ret;
 
     ret = PosixEnter();
-    if(ret == 0)
+    if( ret == 0 )
     {
-        REDHANDLE *pHandle;
+        REDHANDLE * pHandle;
 
-        ret = FildesToHandle(iFildes, FTYPE_EITHER, &pHandle);
+        ret = FildesToHandle( iFildes, FTYPE_EITHER, &pHandle );
 
-      #if REDCONF_VOLUME_COUNT > 1U
-        if(ret == 0)
+    #if REDCONF_VOLUME_COUNT > 1U
+        if( ret == 0 )
         {
-            ret = RedCoreVolSetCurrent(pHandle->bVolNum);
+            ret = RedCoreVolSetCurrent( pHandle->bVolNum );
         }
-      #endif
+    #endif
 
-        if(ret == 0)
+        if( ret == 0 )
         {
-            ret = RedCoreStat(pHandle->ulInode, pStat);
+            ret = RedCoreStat( pHandle->ulInode, pStat );
         }
 
         PosixLeave();
     }
 
-    return PosixReturn(ret);
+    return PosixReturn( ret );
 }
 
-
-#if REDCONF_API_POSIX_READDIR == 1
+    #if REDCONF_API_POSIX_READDIR == 1
 /** @brief Open a directory stream for reading.
 
     @param pszPath  The path of the directory to open.
@@ -1917,38 +1902,36 @@ int32_t red_fstat(
     - #RED_EMFILE: There are no available file descriptors.
     - #RED_EUSERS: Cannot become a file system user: too many users.
 */
-REDDIR *red_opendir(
-    const char *pszPath)
+REDDIR * red_opendir( const char * pszPath )
 {
-    int32_t     iFildes;
-    REDSTATUS   ret;
-    REDDIR     *pDir = NULL;
+    int32_t iFildes;
+    REDSTATUS ret;
+    REDDIR * pDir = NULL;
 
     ret = PosixEnter();
-    if(ret == 0)
+    if( ret == 0 )
     {
-        ret = FildesOpen(pszPath, RED_O_RDONLY, FTYPE_DIR, &iFildes);
-        if(ret == 0)
+        ret = FildesOpen( pszPath, RED_O_RDONLY, FTYPE_DIR, &iFildes );
+        if( ret == 0 )
         {
             uint16_t uHandleIdx;
 
-            FildesUnpack(iFildes, &uHandleIdx, NULL, NULL);
-            pDir = &gaHandle[uHandleIdx];
+            FildesUnpack( iFildes, &uHandleIdx, NULL, NULL );
+            pDir = &gaHandle[ uHandleIdx ];
         }
 
         PosixLeave();
     }
 
-    REDASSERT((pDir == NULL) == (ret != 0));
+    REDASSERT( ( pDir == NULL ) == ( ret != 0 ) );
 
-    if(pDir == NULL)
+    if( pDir == NULL )
     {
         red_errno = -ret;
     }
 
     return pDir;
 }
-
 
 /** @brief Read from a directory stream.
 
@@ -1980,27 +1963,26 @@ REDDIR *red_opendir(
     - #RED_EIO: A disk I/O error occurred.
     - #RED_EUSERS: Cannot become a file system user: too many users.
 */
-REDDIRENT *red_readdir(
-    REDDIR     *pDirStream)
+REDDIRENT * red_readdir( REDDIR * pDirStream )
 {
-    REDSTATUS   ret;
-    REDDIRENT  *pDirEnt = NULL;
+    REDSTATUS ret;
+    REDDIRENT * pDirEnt = NULL;
 
     ret = PosixEnter();
-    if(ret == 0)
+    if( ret == 0 )
     {
-        if(!DirStreamIsValid(pDirStream))
+        if( !DirStreamIsValid( pDirStream ) )
         {
             ret = -RED_EBADF;
         }
-      #if REDCONF_VOLUME_COUNT > 1U
+        #if REDCONF_VOLUME_COUNT > 1U
         else
         {
-            ret = RedCoreVolSetCurrent(pDirStream->bVolNum);
+            ret = RedCoreVolSetCurrent( pDirStream->bVolNum );
         }
-      #endif
+        #endif
 
-        if(ret == 0)
+        if( ret == 0 )
         {
             uint32_t ulDirPosition;
 
@@ -2008,24 +1990,28 @@ REDDIRENT *red_readdir(
                 location as the file offset.  This would be a bit cleaner using
                 a union, but MISRA-C:2012 Rule 19.2 disallows unions.
             */
-            REDASSERT(pDirStream->ullOffset <= UINT32_MAX);
-            ulDirPosition = (uint32_t)pDirStream->ullOffset;
+            REDASSERT( pDirStream->ullOffset <= UINT32_MAX );
+            ulDirPosition = ( uint32_t ) pDirStream->ullOffset;
 
-            ret = RedCoreDirRead(pDirStream->ulInode, &ulDirPosition, pDirStream->dirent.d_name, &pDirStream->dirent.d_ino);
+            ret = RedCoreDirRead( pDirStream->ulInode,
+                                  &ulDirPosition,
+                                  pDirStream->dirent.d_name,
+                                  &pDirStream->dirent.d_ino );
 
             pDirStream->ullOffset = ulDirPosition;
 
-            if(ret == 0)
+            if( ret == 0 )
             {
                 /*  POSIX extension: return stat information with the dirent.
-                */
-                ret = RedCoreStat(pDirStream->dirent.d_ino, &pDirStream->dirent.d_stat);
-                if(ret == 0)
+                 */
+                ret = RedCoreStat( pDirStream->dirent.d_ino,
+                                   &pDirStream->dirent.d_stat );
+                if( ret == 0 )
                 {
                     pDirEnt = &pDirStream->dirent;
                 }
             }
-            else if(ret == -RED_ENOENT)
+            else if( ret == -RED_ENOENT )
             {
                 /*  Reached the end of the directory; return NULL but do not set
                     errno.
@@ -2035,23 +2021,22 @@ REDDIRENT *red_readdir(
             else
             {
                 /*  Miscellaneous error; return NULL and set errno (done below).
-                */
+                 */
             }
         }
 
         PosixLeave();
     }
 
-    if(ret != 0)
+    if( ret != 0 )
     {
-        REDASSERT(pDirEnt == NULL);
+        REDASSERT( pDirEnt == NULL );
 
         red_errno = -ret;
     }
 
     return pDirEnt;
 }
-
 
 /** @brief Rewind a directory stream to read it from the beginning.
 
@@ -2064,12 +2049,11 @@ REDDIRENT *red_readdir(
 
     @param pDirStream   The directory stream to rewind.
 */
-void red_rewinddir(
-    REDDIR *pDirStream)
+void red_rewinddir( REDDIR * pDirStream )
 {
-    if(PosixEnter() == 0)
+    if( PosixEnter() == 0 )
     {
-        if(DirStreamIsValid(pDirStream))
+        if( DirStreamIsValid( pDirStream ) )
         {
             pDirStream->ullOffset = 0U;
         }
@@ -2077,7 +2061,6 @@ void red_rewinddir(
         PosixLeave();
     }
 }
-
 
 /** @brief Close a directory stream.
 
@@ -2092,18 +2075,17 @@ void red_rewinddir(
     - #RED_EBADF: @p pDirStream is not an open directory stream.
     - #RED_EUSERS: Cannot become a file system user: too many users.
 */
-int32_t red_closedir(
-    REDDIR     *pDirStream)
+int32_t red_closedir( REDDIR * pDirStream )
 {
-    REDSTATUS   ret;
+    REDSTATUS ret;
 
     ret = PosixEnter();
-    if(ret == 0)
+    if( ret == 0 )
     {
-        if(DirStreamIsValid(pDirStream))
+        if( DirStreamIsValid( pDirStream ) )
         {
             /*  Mark this handle as unused.
-            */
+             */
             pDirStream->ulInode = INODE_INVALID;
         }
         else
@@ -2114,10 +2096,9 @@ int32_t red_closedir(
         PosixLeave();
     }
 
-    return PosixReturn(ret);
+    return PosixReturn( ret );
 }
-#endif /* REDCONF_API_POSIX_READDIR */
-
+    #endif /* REDCONF_API_POSIX_READDIR */
 
 /** @brief Pointer to where the last file system error (errno) is stored.
 
@@ -2147,7 +2128,7 @@ int32_t red_closedir(
 
     @return Pointer to where the errno value is stored for this task.
 */
-REDSTATUS *red_errnoptr(void)
+REDSTATUS * red_errnoptr( void )
 {
     /*  The global errno value, used in single-task configurations and when the
         caller is not (and cannot become) a file system user (which includes
@@ -2155,29 +2136,29 @@ REDSTATUS *red_errnoptr(void)
     */
     static REDSTATUS iGlobalErrno = 0;
 
-  #if REDCONF_TASK_COUNT == 1U
+    #if REDCONF_TASK_COUNT == 1U
 
     return &iGlobalErrno;
 
-  #else
+    #else
 
-    REDSTATUS *piErrno;
+    REDSTATUS * piErrno;
 
-    if(gfPosixInited)
+    if( gfPosixInited )
     {
         uint32_t ulTaskId = RedOsTaskId();
         uint32_t ulIdx;
 
-        REDASSERT(ulTaskId != 0U);
+        REDASSERT( ulTaskId != 0U );
 
         /*  If this task has used the file system before, it will already have
             a task slot, which includes the task-specific errno.
         */
         RedOsMutexAcquire();
 
-        for(ulIdx = 0U; ulIdx < REDCONF_TASK_COUNT; ulIdx++)
+        for( ulIdx = 0U; ulIdx < REDCONF_TASK_COUNT; ulIdx++ )
         {
-            if(gaTask[ulIdx].ulTaskId == ulTaskId)
+            if( gaTask[ ulIdx ].ulTaskId == ulTaskId )
             {
                 break;
             }
@@ -2185,7 +2166,7 @@ REDSTATUS *red_errnoptr(void)
 
         RedOsMutexRelease();
 
-        if(ulIdx == REDCONF_TASK_COUNT)
+        if( ulIdx == REDCONF_TASK_COUNT )
         {
             REDSTATUS ret;
 
@@ -2194,27 +2175,27 @@ REDSTATUS *red_errnoptr(void)
             */
             RedOsMutexAcquire();
 
-            ret = TaskRegister(&ulIdx);
+            ret = TaskRegister( &ulIdx );
 
             RedOsMutexRelease();
 
-            if(ret == 0)
+            if( ret == 0 )
             {
-                REDASSERT(gaTask[ulIdx].ulTaskId == RedOsTaskId());
-                REDASSERT(gaTask[ulIdx].iErrno == 0);
+                REDASSERT( gaTask[ ulIdx ].ulTaskId == RedOsTaskId() );
+                REDASSERT( gaTask[ ulIdx ].iErrno == 0 );
 
-                piErrno = &gaTask[ulIdx].iErrno;
+                piErrno = &gaTask[ ulIdx ].iErrno;
             }
             else
             {
                 /*  Unable to register; use the global errno.
-                */
+                 */
                 piErrno = &iGlobalErrno;
             }
         }
         else
         {
-            piErrno = &gaTask[ulIdx].iErrno;
+            piErrno = &gaTask[ ulIdx ].iErrno;
         }
     }
     else
@@ -2226,11 +2207,11 @@ REDSTATUS *red_errnoptr(void)
     }
 
     /*  This function is not allowed to return NULL.
-    */
-    REDASSERT(piErrno != NULL);
+     */
+    REDASSERT( piErrno != NULL );
     return piErrno;
 
-  #endif
+    #endif
 }
 /** @} */
 
@@ -2238,7 +2219,8 @@ REDSTATUS *red_errnoptr(void)
     Helper Functions
 -------------------------------------------------------------------*/
 
-#if (REDCONF_READ_ONLY == 0) && ((REDCONF_API_POSIX_UNLINK == 1) || (REDCONF_API_POSIX_RMDIR == 1))
+    #if( REDCONF_READ_ONLY == 0 ) && ( ( REDCONF_API_POSIX_UNLINK == 1 ) || \
+                                       ( REDCONF_API_POSIX_RMDIR == 1 ) )
 
 /** @brief Remove a link to a file or directory.
 
@@ -2269,66 +2251,64 @@ REDSTATUS *red_errnoptr(void)
                                 modify the parent directory to perform the
                                 deletion.
 */
-static REDSTATUS UnlinkSub(
-    const char *pszPath,
-    FTYPE       type)
+static REDSTATUS UnlinkSub( const char * pszPath, FTYPE type )
 {
-    uint8_t     bVolNum;
-    const char *pszLocalPath;
-    REDSTATUS   ret;
+    uint8_t bVolNum;
+    const char * pszLocalPath;
+    REDSTATUS ret;
 
-    ret = RedPathSplit(pszPath, &bVolNum, &pszLocalPath);
+    ret = RedPathSplit( pszPath, &bVolNum, &pszLocalPath );
 
-  #if REDCONF_VOLUME_COUNT > 1U
-    if(ret == 0)
+        #if REDCONF_VOLUME_COUNT > 1U
+    if( ret == 0 )
     {
-        ret = RedCoreVolSetCurrent(bVolNum);
+        ret = RedCoreVolSetCurrent( bVolNum );
     }
-  #endif
+        #endif
 
-    if(ret == 0)
+    if( ret == 0 )
     {
-        const char *pszName;
-        uint32_t    ulPInode;
+        const char * pszName;
+        uint32_t ulPInode;
 
-        ret = RedPathToName(pszLocalPath, &ulPInode, &pszName);
+        ret = RedPathToName( pszLocalPath, &ulPInode, &pszName );
 
-        if(ret == 0)
+        if( ret == 0 )
         {
             uint32_t ulInode;
 
-            ret = RedCoreLookup(ulPInode, pszName, &ulInode);
+            ret = RedCoreLookup( ulPInode, pszName, &ulInode );
 
             /*  ModeTypeCheck() always passes when the type is FTYPE_EITHER, so
                 skip stat'ing the inode in that case.
             */
-            if((ret == 0) && (type != FTYPE_EITHER))
+            if( ( ret == 0 ) && ( type != FTYPE_EITHER ) )
             {
                 REDSTAT InodeStat;
 
-                ret = RedCoreStat(ulInode, &InodeStat);
-                if(ret == 0)
+                ret = RedCoreStat( ulInode, &InodeStat );
+                if( ret == 0 )
                 {
-                    ret = ModeTypeCheck(InodeStat.st_mode, type);
+                    ret = ModeTypeCheck( InodeStat.st_mode, type );
                 }
             }
 
-            if(ret == 0)
+            if( ret == 0 )
             {
-                ret = InodeUnlinkCheck(ulInode);
+                ret = InodeUnlinkCheck( ulInode );
             }
 
-            if(ret == 0)
+            if( ret == 0 )
             {
-                ret = RedCoreUnlink(ulPInode, pszName);
+                ret = RedCoreUnlink( ulPInode, pszName );
             }
         }
     }
 
     return ret;
 }
-#endif /* (REDCONF_API_POSIX_UNLINK == 1) || (REDCONF_API_POSIX_RMDIR == 1) */
-
+    #endif /* (REDCONF_API_POSIX_UNLINK == 1) || (REDCONF_API_POSIX_RMDIR == \
+              1) */
 
 /** @brief Get a file descriptor for a path.
 
@@ -2369,95 +2349,104 @@ static REDSTATUS UnlinkSub(
     @retval -RED_EROFS          The path resides on a read-only file system and
                                 a write operation was requested.
 */
-static REDSTATUS FildesOpen(
-    const char *pszPath,
-    uint32_t    ulOpenMode,
-    FTYPE       type,
-    int32_t    *piFildes)
+static REDSTATUS FildesOpen( const char * pszPath,
+                             uint32_t ulOpenMode,
+                             FTYPE type,
+                             int32_t * piFildes )
 {
-    uint8_t     bVolNum;
-    const char *pszLocalPath;
-    REDSTATUS   ret;
+    uint8_t bVolNum;
+    const char * pszLocalPath;
+    REDSTATUS ret;
 
-    ret = RedPathSplit(pszPath, &bVolNum, &pszLocalPath);
+    ret = RedPathSplit( pszPath, &bVolNum, &pszLocalPath );
 
-    if(ret == 0)
+    if( ret == 0 )
     {
-        if(piFildes == NULL)
+        if( piFildes == NULL )
         {
             ret = -RED_EINVAL;
         }
-      #if REDCONF_READ_ONLY == 0
-        else if(gaRedVolume[bVolNum].fReadOnly && (ulOpenMode != RED_O_RDONLY))
+    #if REDCONF_READ_ONLY == 0
+        else if( gaRedVolume[ bVolNum ].fReadOnly &&
+                 ( ulOpenMode != RED_O_RDONLY ) )
         {
             ret = -RED_EROFS;
         }
-      #endif
+    #endif
         else
         {
-            uint16_t    uHandleIdx;
-            REDHANDLE  *pHandle = NULL;
+            uint16_t uHandleIdx;
+            REDHANDLE * pHandle = NULL;
 
             /*  Search for an unused handle.
-            */
-            for(uHandleIdx = 0U; uHandleIdx < REDCONF_HANDLE_COUNT; uHandleIdx++)
+             */
+            for( uHandleIdx = 0U; uHandleIdx < REDCONF_HANDLE_COUNT;
+                 uHandleIdx++ )
             {
-                if(gaHandle[uHandleIdx].ulInode == INODE_INVALID)
+                if( gaHandle[ uHandleIdx ].ulInode == INODE_INVALID )
                 {
-                    pHandle = &gaHandle[uHandleIdx];
+                    pHandle = &gaHandle[ uHandleIdx ];
                     break;
                 }
             }
 
             /*  Error if all the handles are in use.
-            */
-            if(pHandle == NULL)
+             */
+            if( pHandle == NULL )
             {
                 ret = -RED_EMFILE;
             }
             else
             {
-                bool        fCreated = false;
-                uint16_t    uMode = 0U;
-                uint32_t    ulInode = 0U;       /* Init'd to quiet warnings. */
+                bool fCreated = false;
+                uint16_t uMode = 0U;
+                uint32_t ulInode = 0U; /* Init'd to quiet warnings. */
 
-              #if REDCONF_VOLUME_COUNT > 1U
-                ret = RedCoreVolSetCurrent(bVolNum);
-                if(ret == 0)
-              #endif
+    #if REDCONF_VOLUME_COUNT > 1U
+                ret = RedCoreVolSetCurrent( bVolNum );
+                if( ret == 0 )
+    #endif
                 {
-                  #if REDCONF_READ_ONLY == 0
-                    if((ulOpenMode & RED_O_CREAT) != 0U)
+    #if REDCONF_READ_ONLY == 0
+                    if( ( ulOpenMode & RED_O_CREAT ) != 0U )
                     {
-                        uint32_t    ulPInode;
-                        const char *pszName;
+                        uint32_t ulPInode;
+                        const char * pszName;
 
-                        ret = RedPathToName(pszLocalPath, &ulPInode, &pszName);
-                        if(ret == 0)
+                        ret = RedPathToName( pszLocalPath,
+                                             &ulPInode,
+                                             &pszName );
+                        if( ret == 0 )
                         {
-                            ret = RedCoreCreate(ulPInode, pszName, false, &ulInode);
-                            if(ret == 0)
+                            ret = RedCoreCreate( ulPInode,
+                                                 pszName,
+                                                 false,
+                                                 &ulInode );
+                            if( ret == 0 )
                             {
                                 fCreated = true;
                             }
-                            else if((ret == -RED_EEXIST) && ((ulOpenMode & RED_O_EXCL) == 0U))
+                            else if( ( ret == -RED_EEXIST ) &&
+                                     ( ( ulOpenMode & RED_O_EXCL ) == 0U ) )
                             {
                                 /*  If the path already exists and that's OK,
                                     lookup its inode number.
                                 */
-                                ret = RedCoreLookup(ulPInode, pszName, &ulInode);
+                                ret = RedCoreLookup( ulPInode,
+                                                     pszName,
+                                                     &ulInode );
                             }
                             else
                             {
                                 /*  No action, just propagate the error.
-                                */
+                                 */
                             }
                         }
                     }
                     else
-                  #endif
+    #endif
                     {
-                        ret = RedPathLookup(pszLocalPath, &ulInode);
+                        ret = RedPathLookup( pszLocalPath, &ulInode );
                     }
                 }
 
@@ -2466,76 +2455,80 @@ static REDSTATUS FildesOpen(
                     perspective -- we do not need code to delete the created
                     inode on error.
                 */
-                if(!fCreated)
+                if( !fCreated )
                 {
-                    if(ret == 0)
+                    if( ret == 0 )
                     {
                         REDSTAT s;
 
-                        ret = RedCoreStat(ulInode, &s);
-                        if(ret == 0)
+                        ret = RedCoreStat( ulInode, &s );
+                        if( ret == 0 )
                         {
                             uMode = s.st_mode;
                         }
                     }
 
                     /*  Error if the inode is not of the expected type.
-                    */
-                    if(ret == 0)
+                     */
+                    if( ret == 0 )
                     {
-                        ret = ModeTypeCheck(uMode, type);
+                        ret = ModeTypeCheck( uMode, type );
                     }
 
                     /*  Directories must always be opened with O_RDONLY.
-                    */
-                    if((ret == 0) && RED_S_ISDIR(uMode) && ((ulOpenMode & RED_O_RDONLY) == 0U))
+                     */
+                    if( ( ret == 0 ) && RED_S_ISDIR( uMode ) &&
+                        ( ( ulOpenMode & RED_O_RDONLY ) == 0U ) )
                     {
                         ret = -RED_EISDIR;
                     }
 
-                  #if (REDCONF_READ_ONLY == 0) && (REDCONF_API_POSIX_FTRUNCATE == 1)
-                    if((ret == 0) && ((ulOpenMode & RED_O_TRUNC) != 0U))
+    #if( REDCONF_READ_ONLY == 0 ) && ( REDCONF_API_POSIX_FTRUNCATE == 1 )
+                    if( ( ret == 0 ) && ( ( ulOpenMode & RED_O_TRUNC ) != 0U ) )
                     {
-                        ret = RedCoreFileTruncate(ulInode, UINT64_SUFFIX(0));
+                        ret = RedCoreFileTruncate( ulInode,
+                                                   UINT64_SUFFIX( 0 ) );
                     }
-                  #endif
+    #endif
                 }
 
-                if(ret == 0)
+                if( ret == 0 )
                 {
                     int32_t iFildes;
 
-                    RedMemSet(pHandle, 0U, sizeof(*pHandle));
+                    RedMemSet( pHandle, 0U, sizeof( *pHandle ) );
 
                     /*  Populate this handle, marking it as in use.
-                    */
+                     */
                     pHandle->ulInode = ulInode;
                     pHandle->bVolNum = bVolNum;
 
-                    if(RED_S_ISDIR(uMode))
+                    if( RED_S_ISDIR( uMode ) )
                     {
                         pHandle->bFlags |= HFLAG_DIRECTORY;
                     }
 
-                    if(((ulOpenMode & RED_O_RDONLY) != 0U) || ((ulOpenMode & RED_O_RDWR) != 0U))
+                    if( ( ( ulOpenMode & RED_O_RDONLY ) != 0U ) ||
+                        ( ( ulOpenMode & RED_O_RDWR ) != 0U ) )
                     {
                         pHandle->bFlags |= HFLAG_READABLE;
                     }
 
-                  #if REDCONF_READ_ONLY == 0
-                    if(((ulOpenMode & RED_O_WRONLY) != 0U) || ((ulOpenMode & RED_O_RDWR) != 0U))
+    #if REDCONF_READ_ONLY == 0
+                    if( ( ( ulOpenMode & RED_O_WRONLY ) != 0U ) ||
+                        ( ( ulOpenMode & RED_O_RDWR ) != 0U ) )
                     {
                         pHandle->bFlags |= HFLAG_WRITEABLE;
                     }
 
-                    if((ulOpenMode & RED_O_APPEND) != 0U)
+                    if( ( ulOpenMode & RED_O_APPEND ) != 0U )
                     {
                         pHandle->bFlags |= HFLAG_APPENDING;
                     }
-                  #endif
+    #endif
 
-                    iFildes = FildesPack(uHandleIdx, bVolNum);
-                    if(iFildes == -1)
+                    iFildes = FildesPack( uHandleIdx, bVolNum );
+                    if( iFildes == -1 )
                     {
                         /*  It should be impossible to get here, unless there
                             is memory corruption.
@@ -2555,7 +2548,6 @@ static REDSTATUS FildesOpen(
     return ret;
 }
 
-
 /** @brief Close a file descriptor.
 
     @param iFildes  The file descriptor to close.
@@ -2566,48 +2558,46 @@ static REDSTATUS FildesOpen(
     @retval -RED_EBADF  @p iFildes is not a valid file descriptor.
     @retval -RED_EIO    A disk I/O error occurred.
 */
-static REDSTATUS FildesClose(
-    int32_t     iFildes)
+static REDSTATUS FildesClose( int32_t iFildes )
 {
-    REDHANDLE  *pHandle;
-    REDSTATUS   ret;
+    REDHANDLE * pHandle;
+    REDSTATUS ret;
 
-    ret = FildesToHandle(iFildes, FTYPE_EITHER, &pHandle);
+    ret = FildesToHandle( iFildes, FTYPE_EITHER, &pHandle );
 
-  #if REDCONF_READ_ONLY == 0
-  #if REDCONF_VOLUME_COUNT > 1U
-    if(ret == 0)
+    #if REDCONF_READ_ONLY == 0
+        #if REDCONF_VOLUME_COUNT > 1U
+    if( ret == 0 )
     {
-        ret = RedCoreVolSetCurrent(pHandle->bVolNum);
+        ret = RedCoreVolSetCurrent( pHandle->bVolNum );
     }
-  #endif
+        #endif
 
     /*  No core event for close, so this transaction flag needs to be
         implemented here.
     */
-    if(ret == 0)
+    if( ret == 0 )
     {
-        uint32_t    ulTransMask;
+        uint32_t ulTransMask;
 
-        ret = RedCoreTransMaskGet(&ulTransMask);
+        ret = RedCoreTransMaskGet( &ulTransMask );
 
-        if((ret == 0) && ((ulTransMask & RED_TRANSACT_CLOSE) != 0U))
+        if( ( ret == 0 ) && ( ( ulTransMask & RED_TRANSACT_CLOSE ) != 0U ) )
         {
             ret = RedCoreVolTransact();
         }
     }
-  #endif
+    #endif
 
-    if(ret == 0)
+    if( ret == 0 )
     {
         /*  Mark this handle as unused.
-        */
+         */
         pHandle->ulInode = INODE_INVALID;
     }
 
     return ret;
 }
-
 
 /** @brief Convert a file descriptor into a handle pointer.
 
@@ -2629,56 +2619,56 @@ static REDSTATUS FildesClose(
     @retval -RED_ENOTDIR    Expected a directory, but the file descriptor is for
                             a file.
 */
-static REDSTATUS FildesToHandle(
-    int32_t     iFildes,
-    FTYPE       expectedType,
-    REDHANDLE **ppHandle)
+static REDSTATUS FildesToHandle( int32_t iFildes,
+                                 FTYPE expectedType,
+                                 REDHANDLE ** ppHandle )
 {
-    REDSTATUS   ret;
+    REDSTATUS ret;
 
-    if(ppHandle == NULL)
+    if( ppHandle == NULL )
     {
         REDERROR();
         ret = -RED_EINVAL;
     }
-    else if(iFildes < FD_MIN)
+    else if( iFildes < FD_MIN )
     {
         ret = -RED_EBADF;
     }
     else
     {
         uint16_t uHandleIdx;
-        uint8_t  bVolNum;
+        uint8_t bVolNum;
         uint16_t uGeneration;
 
-        FildesUnpack(iFildes, &uHandleIdx, &bVolNum, &uGeneration);
+        FildesUnpack( iFildes, &uHandleIdx, &bVolNum, &uGeneration );
 
-        if(    (uHandleIdx >= REDCONF_HANDLE_COUNT)
-            || (bVolNum >= REDCONF_VOLUME_COUNT)
-            || (gaHandle[uHandleIdx].ulInode == INODE_INVALID)
-            || (gaHandle[uHandleIdx].bVolNum != bVolNum)
-            || (gauGeneration[bVolNum] != uGeneration))
+        if( ( uHandleIdx >= REDCONF_HANDLE_COUNT ) ||
+            ( bVolNum >= REDCONF_VOLUME_COUNT ) ||
+            ( gaHandle[ uHandleIdx ].ulInode == INODE_INVALID ) ||
+            ( gaHandle[ uHandleIdx ].bVolNum != bVolNum ) ||
+            ( gauGeneration[ bVolNum ] != uGeneration ) )
         {
             ret = -RED_EBADF;
         }
-        else if((expectedType == FTYPE_FILE) && ((gaHandle[uHandleIdx].bFlags & HFLAG_DIRECTORY) != 0U))
+        else if( ( expectedType == FTYPE_FILE ) &&
+                 ( ( gaHandle[ uHandleIdx ].bFlags & HFLAG_DIRECTORY ) != 0U ) )
         {
             ret = -RED_EISDIR;
         }
-        else if((expectedType == FTYPE_DIR) && ((gaHandle[uHandleIdx].bFlags & HFLAG_DIRECTORY) == 0U))
+        else if( ( expectedType == FTYPE_DIR ) &&
+                 ( ( gaHandle[ uHandleIdx ].bFlags & HFLAG_DIRECTORY ) == 0U ) )
         {
             ret = -RED_ENOTDIR;
         }
         else
         {
-            *ppHandle = &gaHandle[uHandleIdx];
+            *ppHandle = &gaHandle[ uHandleIdx ];
             ret = 0;
         }
     }
 
     return ret;
 }
-
 
 /** @brief Pack a file descriptor.
 
@@ -2689,33 +2679,32 @@ static REDSTATUS FildesToHandle(
 
     @return The packed file descriptor.
 */
-static int32_t FildesPack(
-    uint16_t    uHandleIdx,
-    uint8_t     bVolNum)
+static int32_t FildesPack( uint16_t uHandleIdx, uint8_t bVolNum )
 {
-    int32_t     iFildes;
+    int32_t iFildes;
 
-    if((uHandleIdx >= REDCONF_HANDLE_COUNT) || (bVolNum >= REDCONF_VOLUME_COUNT))
+    if( ( uHandleIdx >= REDCONF_HANDLE_COUNT ) ||
+        ( bVolNum >= REDCONF_VOLUME_COUNT ) )
     {
         REDERROR();
         iFildes = -1;
     }
     else
     {
-        uint32_t    ulFdBits;
+        uint32_t ulFdBits;
 
-        REDASSERT(gauGeneration[bVolNum] <= FD_GEN_MAX);
-        REDASSERT(gauGeneration[bVolNum] != 0U);
+        REDASSERT( gauGeneration[ bVolNum ] <= FD_GEN_MAX );
+        REDASSERT( gauGeneration[ bVolNum ] != 0U );
 
-        ulFdBits = gauGeneration[bVolNum];
+        ulFdBits = gauGeneration[ bVolNum ];
         ulFdBits <<= FD_VOL_BITS;
         ulFdBits |= bVolNum;
         ulFdBits <<= FD_IDX_BITS;
         ulFdBits |= uHandleIdx;
 
-        iFildes = (int32_t)ulFdBits;
+        iFildes = ( int32_t ) ulFdBits;
 
-        if(iFildes < FD_MIN)
+        if( iFildes < FD_MIN )
         {
             REDERROR();
             iFildes = -1;
@@ -2724,7 +2713,6 @@ static int32_t FildesPack(
 
     return iFildes;
 }
-
 
 /** @brief Unpack a file descriptor.
 
@@ -2736,38 +2724,36 @@ static int32_t FildesPack(
     @param puGeneration If non-NULL, populated with the generation number
                         extracted from the file descriptor.
 */
-static void FildesUnpack(
-    int32_t     iFildes,
-    uint16_t   *puHandleIdx,
-    uint8_t    *pbVolNum,
-    uint16_t   *puGeneration)
+static void FildesUnpack( int32_t iFildes,
+                          uint16_t * puHandleIdx,
+                          uint8_t * pbVolNum,
+                          uint16_t * puGeneration )
 {
-    uint32_t ulFdBits = (uint32_t)iFildes;
+    uint32_t ulFdBits = ( uint32_t ) iFildes;
 
-    REDASSERT(iFildes >= FD_MIN);
+    REDASSERT( iFildes >= FD_MIN );
 
-    if(puHandleIdx != NULL)
+    if( puHandleIdx != NULL )
     {
-        *puHandleIdx = (uint16_t)(ulFdBits & FD_IDX_MAX);
+        *puHandleIdx = ( uint16_t ) ( ulFdBits & FD_IDX_MAX );
     }
 
     ulFdBits >>= FD_IDX_BITS;
 
-    if(pbVolNum != NULL)
+    if( pbVolNum != NULL )
     {
-        *pbVolNum = (uint8_t)(ulFdBits & FD_VOL_MAX);
+        *pbVolNum = ( uint8_t ) ( ulFdBits & FD_VOL_MAX );
     }
 
     ulFdBits >>= FD_VOL_BITS;
 
-    if(puGeneration != NULL)
+    if( puGeneration != NULL )
     {
-        *puGeneration = (uint16_t)(ulFdBits & FD_GEN_MAX);
+        *puGeneration = ( uint16_t ) ( ulFdBits & FD_GEN_MAX );
     }
 }
 
-
-#if REDCONF_API_POSIX_READDIR == 1
+    #if REDCONF_API_POSIX_READDIR == 1
 /** @brief Validate a directory stream object.
 
     @param pDirStream   The directory stream to validate.
@@ -2777,12 +2763,11 @@ static void FildesUnpack(
     @retval true    The directory stream object appears valid.
     @retval false   The directory stream object is invalid.
 */
-static bool DirStreamIsValid(
-    const REDDIR   *pDirStream)
+static bool DirStreamIsValid( const REDDIR * pDirStream )
 {
-    bool            fRet = true;
+    bool fRet = true;
 
-    if(pDirStream == NULL)
+    if( pDirStream == NULL )
     {
         fRet = false;
     }
@@ -2795,22 +2780,22 @@ static bool DirStreamIsValid(
             A good compiler will optimize this loop into a bounds check and an
             alignment check.
         */
-        for(uHandleIdx = 0U; uHandleIdx < REDCONF_HANDLE_COUNT; uHandleIdx++)
+        for( uHandleIdx = 0U; uHandleIdx < REDCONF_HANDLE_COUNT; uHandleIdx++ )
         {
-            if(pDirStream == &gaHandle[uHandleIdx])
+            if( pDirStream == &gaHandle[ uHandleIdx ] )
             {
                 break;
             }
         }
 
-        if(uHandleIdx < REDCONF_HANDLE_COUNT)
+        if( uHandleIdx < REDCONF_HANDLE_COUNT )
         {
             /*  The handle must be in use, have a valid volume number, and be a
                 directory handle.
             */
-            if(    (pDirStream->ulInode == INODE_INVALID)
-                || (pDirStream->bVolNum >= REDCONF_VOLUME_COUNT)
-                || ((pDirStream->bFlags & HFLAG_DIRECTORY) == 0U))
+            if( ( pDirStream->ulInode == INODE_INVALID ) ||
+                ( pDirStream->bVolNum >= REDCONF_VOLUME_COUNT ) ||
+                ( ( pDirStream->bFlags & HFLAG_DIRECTORY ) == 0U ) )
             {
                 fRet = false;
             }
@@ -2826,8 +2811,7 @@ static bool DirStreamIsValid(
 
     return fRet;
 }
-#endif
-
+    #endif
 
 /** @brief Enter the file system driver.
 
@@ -2837,23 +2821,23 @@ static bool DirStreamIsValid(
     @retval -RED_EINVAL The file system driver is uninitialized.
     @retval -RED_EUSERS Cannot become a file system user: too many users.
 */
-static REDSTATUS PosixEnter(void)
+static REDSTATUS PosixEnter( void )
 {
     REDSTATUS ret;
 
-    if(gfPosixInited)
+    if( gfPosixInited )
     {
-      #if REDCONF_TASK_COUNT > 1U
+    #if REDCONF_TASK_COUNT > 1U
         RedOsMutexAcquire();
 
-        ret = TaskRegister(NULL);
-        if(ret != 0)
+        ret = TaskRegister( NULL );
+        if( ret != 0 )
         {
             RedOsMutexRelease();
         }
-      #else
+    #else
         ret = 0;
-      #endif
+    #endif
     }
     else
     {
@@ -2863,21 +2847,19 @@ static REDSTATUS PosixEnter(void)
     return ret;
 }
 
-
 /** @brief Leave the file system driver.
-*/
-static void PosixLeave(void)
+ */
+static void PosixLeave( void )
 {
     /*  If the driver was uninitialized, PosixEnter() should have failed and we
         should not be calling PosixLeave().
     */
-    REDASSERT(gfPosixInited);
+    REDASSERT( gfPosixInited );
 
-  #if REDCONF_TASK_COUNT > 1U
+    #if REDCONF_TASK_COUNT > 1U
     RedOsMutexRelease();
-  #endif
+    #endif
 }
-
 
 /** @brief Check that a mode is consistent with the given expected type.
 
@@ -2892,36 +2874,36 @@ static void PosixLeave(void)
     @retval -RED_EISDIR     Expected type is file, actual type is directory.
     @retval -RED_ENOTDIR    Expected type is directory, actual type is file.
 */
-static REDSTATUS ModeTypeCheck(
-    uint16_t    uMode,
-    FTYPE       expectedType)
+static REDSTATUS ModeTypeCheck( uint16_t uMode, FTYPE expectedType )
 {
-    REDSTATUS   ret;
+    REDSTATUS ret;
 
-    if((expectedType == FTYPE_FILE) && RED_S_ISDIR(uMode))
+    if( ( expectedType == FTYPE_FILE ) && RED_S_ISDIR( uMode ) )
     {
         /*  Expected file, found directory.
-        */
+         */
         ret = -RED_EISDIR;
     }
-    else if((expectedType == FTYPE_DIR) && RED_S_ISREG(uMode))
+    else if( ( expectedType == FTYPE_DIR ) && RED_S_ISREG( uMode ) )
     {
         /*  Expected directory, found file.
-        */
+         */
         ret = -RED_ENOTDIR;
     }
     else
     {
         /*  No expected type or found what we expected.
-        */
+         */
         ret = 0;
     }
 
     return ret;
 }
 
-
-#if (REDCONF_READ_ONLY == 0) && ((REDCONF_API_POSIX_UNLINK == 1) || (REDCONF_API_POSIX_RMDIR == 1) || ((REDCONF_API_POSIX_RENAME == 1) && (REDCONF_RENAME_ATOMIC == 1)))
+    #if( REDCONF_READ_ONLY == 0 ) && ( ( REDCONF_API_POSIX_UNLINK == 1 ) ||   \
+                                       ( REDCONF_API_POSIX_RMDIR == 1 ) ||    \
+                                       ( ( REDCONF_API_POSIX_RENAME == 1 ) && \
+                                         ( REDCONF_RENAME_ATOMIC == 1 ) ) )
 /** @brief Check whether an inode can be unlinked.
 
     If an inode has a link count of 1 (meaning unlinking another name would
@@ -2937,29 +2919,29 @@ static REDSTATUS ModeTypeCheck(
     @retval -RED_EBUSY  The inode has a link count of one and open handles.
     @retval -RED_EIO    A disk I/O error occurred.
 */
-static REDSTATUS InodeUnlinkCheck(
-    uint32_t    ulInode)
+static REDSTATUS InodeUnlinkCheck( uint32_t ulInode )
 {
-    uint16_t    uHandleIdx;
-    REDSTATUS   ret;
+    uint16_t uHandleIdx;
+    REDSTATUS ret;
 
-  #if REDCONF_API_POSIX_LINK == 0
+        #if REDCONF_API_POSIX_LINK == 0
     ret = 0;
-  #else
-    REDSTAT     InodeStat;
+        #else
+    REDSTAT InodeStat;
 
-    ret = RedCoreStat(ulInode, &InodeStat);
+    ret = RedCoreStat( ulInode, &InodeStat );
 
     /*  We only need to check for open handles if the inode is down to its last
         link.  If it has multiple links, the inode will continue to exist, so
         deleting the name will not break the open handles.
     */
-    if((ret == 0) && (InodeStat.st_nlink == 1U))
-  #endif
+    if( ( ret == 0 ) && ( InodeStat.st_nlink == 1U ) )
+        #endif
     {
-        for(uHandleIdx = 0U; uHandleIdx < REDCONF_HANDLE_COUNT; uHandleIdx++)
+        for( uHandleIdx = 0U; uHandleIdx < REDCONF_HANDLE_COUNT; uHandleIdx++ )
         {
-            if((gaHandle[uHandleIdx].ulInode == ulInode) && (gaHandle[uHandleIdx].bVolNum == gbRedVolNum))
+            if( ( gaHandle[ uHandleIdx ].ulInode == ulInode ) &&
+                ( gaHandle[ uHandleIdx ].bVolNum == gbRedVolNum ) )
             {
                 ret = -RED_EBUSY;
                 break;
@@ -2969,10 +2951,9 @@ static REDSTATUS InodeUnlinkCheck(
 
     return ret;
 }
-#endif
+    #endif
 
-
-#if REDCONF_TASK_COUNT > 1U
+    #if REDCONF_TASK_COUNT > 1U
 /** @brief Register a task as a file system user, if it is not already
            registered as one.
 
@@ -2988,67 +2969,66 @@ static REDSTATUS InodeUnlinkCheck(
     @retval 0           Operation was successful.
     @retval -RED_EUSERS Cannot become a file system user: too many users.
 */
-static REDSTATUS TaskRegister(
-    uint32_t   *pulTaskIdx)
+static REDSTATUS TaskRegister( uint32_t * pulTaskIdx )
 {
-    uint32_t    ulTaskId = RedOsTaskId();
-    uint32_t    ulFirstFreeIdx = REDCONF_TASK_COUNT;
-    uint32_t    ulIdx;
-    REDSTATUS   ret;
+    uint32_t ulTaskId = RedOsTaskId();
+    uint32_t ulFirstFreeIdx = REDCONF_TASK_COUNT;
+    uint32_t ulIdx;
+    REDSTATUS ret;
 
-    REDASSERT(ulTaskId != 0U);
+    REDASSERT( ulTaskId != 0U );
 
     /*  Scan the task slots to determine if the task is registered as a file
         system task.
     */
-    for(ulIdx = 0U; ulIdx < REDCONF_TASK_COUNT; ulIdx++)
+    for( ulIdx = 0U; ulIdx < REDCONF_TASK_COUNT; ulIdx++ )
     {
-        if(gaTask[ulIdx].ulTaskId == ulTaskId)
+        if( gaTask[ ulIdx ].ulTaskId == ulTaskId )
         {
             break;
         }
 
-        if((ulFirstFreeIdx == REDCONF_TASK_COUNT) && (gaTask[ulIdx].ulTaskId == 0U))
+        if( ( ulFirstFreeIdx == REDCONF_TASK_COUNT ) &&
+            ( gaTask[ ulIdx ].ulTaskId == 0U ) )
         {
             ulFirstFreeIdx = ulIdx;
         }
     }
 
-    if(ulIdx == REDCONF_TASK_COUNT)
+    if( ulIdx == REDCONF_TASK_COUNT )
     {
         /*  Task not already registered.
-        */
-        if(ulFirstFreeIdx == REDCONF_TASK_COUNT)
+         */
+        if( ulFirstFreeIdx == REDCONF_TASK_COUNT )
         {
             /*  Cannot register task, no more slots.
-            */
+             */
             ret = -RED_EUSERS;
         }
         else
         {
             /*  Registering task.
-            */
+             */
             ulIdx = ulFirstFreeIdx;
-            gaTask[ulIdx].ulTaskId = ulTaskId;
+            gaTask[ ulIdx ].ulTaskId = ulTaskId;
             ret = 0;
         }
     }
     else
     {
         /*  Task already registered.
-        */
+         */
         ret = 0;
     }
 
-    if((ret == 0) && (pulTaskIdx != NULL))
+    if( ( ret == 0 ) && ( pulTaskIdx != NULL ) )
     {
         *pulTaskIdx = ulIdx;
     }
 
     return ret;
 }
-#endif /* REDCONF_TASK_COUNT > 1U */
-
+    #endif /* REDCONF_TASK_COUNT > 1U */
 
 /** @brief Convert an error value into a simple 0 or -1 return.
 
@@ -3061,12 +3041,11 @@ static REDSTATUS TaskRegister(
 
     @return Returns 0 if @p iError is 0; otherwise, returns -1.
 */
-static int32_t PosixReturn(
-    REDSTATUS   iError)
+static int32_t PosixReturn( REDSTATUS iError )
 {
-    int32_t     iReturn;
+    int32_t iReturn;
 
-    if(iError == 0)
+    if( iError == 0 )
     {
         iReturn = 0;
     }
@@ -3075,14 +3054,12 @@ static int32_t PosixReturn(
         iReturn = -1;
 
         /*  The errors should be negative, and errno positive.
-        */
-        REDASSERT(iError < 0);
+         */
+        REDASSERT( iError < 0 );
         red_errno = -iError;
     }
 
     return iReturn;
 }
 
-
 #endif /* REDCONF_API_POSIX == 1 */
-

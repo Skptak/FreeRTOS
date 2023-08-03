@@ -1,6 +1,6 @@
 /*
  * -------------------------------------------
- *    MSP432 DriverLib - v3_10_00_09 
+ *    MSP432 DriverLib - v3_10_00_09
  * -------------------------------------------
  *
  * --COPYRIGHT--,BSD,BSD
@@ -51,88 +51,89 @@
 //
 //*****************************************************************************
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
-#include <stdint.h>
 #include <msp.h>
+#include <stdint.h>
 
 //*****************************************************************************
 //
-// Control specific variables 
+// Control specific variables
 //
 //*****************************************************************************
-#define SYSCTL_SRAM_BANK7 SYSCTL_SRAM_BANKEN_BNK7_EN
-#define SYSCTL_SRAM_BANK6 SYSCTL_SRAM_BANKEN_BNK6_EN
-#define SYSCTL_SRAM_BANK5 SYSCTL_SRAM_BANKEN_BNK5_EN
-#define SYSCTL_SRAM_BANK4 SYSCTL_SRAM_BANKEN_BNK4_EN
-#define SYSCTL_SRAM_BANK3 SYSCTL_SRAM_BANKEN_BNK3_EN
-#define SYSCTL_SRAM_BANK2 SYSCTL_SRAM_BANKEN_BNK2_EN
-#define SYSCTL_SRAM_BANK1 SYSCTL_SRAM_BANKEN_BNK1_EN
+#define SYSCTL_SRAM_BANK7              SYSCTL_SRAM_BANKEN_BNK7_EN
+#define SYSCTL_SRAM_BANK6              SYSCTL_SRAM_BANKEN_BNK6_EN
+#define SYSCTL_SRAM_BANK5              SYSCTL_SRAM_BANKEN_BNK5_EN
+#define SYSCTL_SRAM_BANK4              SYSCTL_SRAM_BANKEN_BNK4_EN
+#define SYSCTL_SRAM_BANK3              SYSCTL_SRAM_BANKEN_BNK3_EN
+#define SYSCTL_SRAM_BANK2              SYSCTL_SRAM_BANKEN_BNK2_EN
+#define SYSCTL_SRAM_BANK1              SYSCTL_SRAM_BANKEN_BNK1_EN
 
-#define SYSCTL_HARD_RESET 1
-#define SYSCTL_SOFT_RESET 0
+#define SYSCTL_HARD_RESET              1
+#define SYSCTL_SOFT_RESET              0
 
-#define SYSCTL_PERIPH_DMA SYSCTL_PERIHALT_CTL_HALT_DMA
-#define SYSCTL_PERIPH_WDT SYSCTL_PERIHALT_CTL_HALT_WDT
-#define SYSCTL_PERIPH_ADC SYSCTL_PERIHALT_CTL_HALT_ADC
-#define SYSCTL_PERIPH_EUSCIB3 SYSCTL_PERIHALT_CTL_HALT_EUB3
-#define SYSCTL_PERIPH_EUSCIB2 SYSCTL_PERIHALT_CTL_HALT_EUB2
-#define SYSCTL_PERIPH_EUSCIB1 SYSCTL_PERIHALT_CTL_HALT_EUB1
-#define SYSCTL_PERIPH_EUSCIB0 SYSCTL_PERIHALT_CTL_HALT_EUB0
-#define SYSCTL_PERIPH_EUSCIA3 SYSCTL_PERIHALT_CTL_HALT_EUA3
-#define SYSCTL_PERIPH_EUSCIA2 SYSCTL_PERIHALT_CTL_HALT_EUA2
-#define SYSCTL_PERIPH_EUSCIA1 SYSCTL_PERIHALT_CTL_HALT_EUA1
-#define SYSCTL_PERIPH_EUSCIA0 SYSCTL_PERIHALT_CTL_HALT_EUA0
+#define SYSCTL_PERIPH_DMA              SYSCTL_PERIHALT_CTL_HALT_DMA
+#define SYSCTL_PERIPH_WDT              SYSCTL_PERIHALT_CTL_HALT_WDT
+#define SYSCTL_PERIPH_ADC              SYSCTL_PERIHALT_CTL_HALT_ADC
+#define SYSCTL_PERIPH_EUSCIB3          SYSCTL_PERIHALT_CTL_HALT_EUB3
+#define SYSCTL_PERIPH_EUSCIB2          SYSCTL_PERIHALT_CTL_HALT_EUB2
+#define SYSCTL_PERIPH_EUSCIB1          SYSCTL_PERIHALT_CTL_HALT_EUB1
+#define SYSCTL_PERIPH_EUSCIB0          SYSCTL_PERIHALT_CTL_HALT_EUB0
+#define SYSCTL_PERIPH_EUSCIA3          SYSCTL_PERIHALT_CTL_HALT_EUA3
+#define SYSCTL_PERIPH_EUSCIA2          SYSCTL_PERIHALT_CTL_HALT_EUA2
+#define SYSCTL_PERIPH_EUSCIA1          SYSCTL_PERIHALT_CTL_HALT_EUA1
+#define SYSCTL_PERIPH_EUSCIA0          SYSCTL_PERIHALT_CTL_HALT_EUA0
 #define SYSCTL_PERIPH_TIMER32_0_MODULE SYSCTL_PERIHALT_CTL_HALT_T32_0
-#define SYSCTL_PERIPH_TIMER16_3 SYSCTL_PERIHALT_CTL_HALT_T16_3
-#define SYSCTL_PERIPH_TIMER16_2 SYSCTL_PERIHALT_CTL_HALT_T16_2
-#define SYSCTL_PERIPH_TIMER16_1 SYSCTL_PERIHALT_CTL_HALT_T16_1
-#define SYSCTL_PERIPH_TIMER16_0 SYSCTL_PERIHALT_CTL_HALT_T16_0
+#define SYSCTL_PERIPH_TIMER16_3        SYSCTL_PERIHALT_CTL_HALT_T16_3
+#define SYSCTL_PERIPH_TIMER16_2        SYSCTL_PERIHALT_CTL_HALT_T16_2
+#define SYSCTL_PERIPH_TIMER16_1        SYSCTL_PERIHALT_CTL_HALT_T16_1
+#define SYSCTL_PERIPH_TIMER16_0        SYSCTL_PERIHALT_CTL_HALT_T16_0
 
-#define SYSCTL_NMIPIN_SRC SYSCTL_NMI_CTLSTAT_PIN_SRC
-#define SYSCTL_PCM_SRC SYSCTL_NMI_CTLSTAT_PCM_SRC
-#define SYSCTL_PSS_SRC SYSCTL_NMI_CTLSTAT_PSS_SRC
-#define SYSCTL_CS_SRC SYSCTL_NMI_CTLSTAT_CS_SRC
+#define SYSCTL_NMIPIN_SRC              SYSCTL_NMI_CTLSTAT_PIN_SRC
+#define SYSCTL_PCM_SRC                 SYSCTL_NMI_CTLSTAT_PCM_SRC
+#define SYSCTL_PSS_SRC                 SYSCTL_NMI_CTLSTAT_PSS_SRC
+#define SYSCTL_CS_SRC                  SYSCTL_NMI_CTLSTAT_CS_SRC
 
-#define SYSCTL_REBOOT_KEY   0x6900
+#define SYSCTL_REBOOT_KEY              0x6900
 
-#define SYSCTL_1_2V_REF        (uint32_t)&TLV->ADC14_REF1P2V_TS30C - (uint32_t)TLV_BASE
-#define SYSCTL_1_45V_REF       (uint32_t)&TLV->ADC14_REF1P45V_TS30C - (uint32_t)TLV_BASE
-#define SYSCTL_2_5V_REF        (uint32_t)&TLV->ADC14_REF2P5V_TS30C - (uint32_t)TLV_BASE
+#define SYSCTL_1_2V_REF \
+    ( uint32_t ) & TLV->ADC14_REF1P2V_TS30C - ( uint32_t ) TLV_BASE
+#define SYSCTL_1_45V_REF \
+    ( uint32_t ) & TLV->ADC14_REF1P45V_TS30C - ( uint32_t ) TLV_BASE
+#define SYSCTL_2_5V_REF \
+    ( uint32_t ) & TLV->ADC14_REF2P5V_TS30C - ( uint32_t ) TLV_BASE
 
-#define SYSCTL_85_DEGREES_C    4
-#define SYSCTL_30_DEGREES_C    0
+#define SYSCTL_85_DEGREES_C 4
+#define SYSCTL_30_DEGREES_C 0
 
-
-#define TLV_START               0x00201004
-#define TLV_TAG_RESERVED1      1
-#define TLV_TAG_RESERVED2      2
-#define TLV_TAG_CS             3
-#define TLV_TAG_FLASHCTL       4
-#define TLV_TAG_ADC14          5
-#define TLV_TAG_RESERVED6      6
-#define TLV_TAG_RESERVED7      7
-#define TLV_TAG_REF            8
-#define TLV_TAG_RESERVED9      9
-#define TLV_TAG_RESERVED10     10
-#define TLV_TAG_DEVINFO        11
-#define TLV_TAG_DIEREC         12
-#define TLV_TAG_RANDNUM        13
-#define TLV_TAG_RESERVED14     14
-#define TLV_TAG_BSL            15
-#define TLV_TAGEND             0x0BD0E11D
+#define TLV_START           0x00201004
+#define TLV_TAG_RESERVED1   1
+#define TLV_TAG_RESERVED2   2
+#define TLV_TAG_CS          3
+#define TLV_TAG_FLASHCTL    4
+#define TLV_TAG_ADC14       5
+#define TLV_TAG_RESERVED6   6
+#define TLV_TAG_RESERVED7   7
+#define TLV_TAG_REF         8
+#define TLV_TAG_RESERVED9   9
+#define TLV_TAG_RESERVED10  10
+#define TLV_TAG_DEVINFO     11
+#define TLV_TAG_DIEREC      12
+#define TLV_TAG_RANDNUM     13
+#define TLV_TAG_RESERVED14  14
+#define TLV_TAG_BSL         15
+#define TLV_TAGEND          0x0BD0E11D
 
 //*****************************************************************************
 //
 // Structures for TLV definitions
-// 
+//
 //*****************************************************************************
 typedef struct
 {
-    uint32_t    maxProgramPulses;
-    uint32_t    maxErasePulses;
+    uint32_t maxProgramPulses;
+    uint32_t maxErasePulses;
 } SysCtl_FlashTLV_Info;
 
 typedef struct
@@ -169,7 +170,7 @@ typedef struct
 //! \return The total number of bytes of SRAM.
 //
 //*****************************************************************************
-extern uint_least32_t SysCtl_getSRAMSize(void);
+extern uint_least32_t SysCtl_getSRAMSize( void );
 
 //*****************************************************************************
 //
@@ -178,7 +179,7 @@ extern uint_least32_t SysCtl_getSRAMSize(void);
 //! \return The total number of bytes of flash.
 //
 //*****************************************************************************
-extern uint_least32_t SysCtl_getFlashSize(void);
+extern uint_least32_t SysCtl_getFlashSize( void );
 
 //*****************************************************************************
 //
@@ -187,7 +188,7 @@ extern uint_least32_t SysCtl_getFlashSize(void);
 //! \return This function does not return.
 //
 //*****************************************************************************
-extern void SysCtl_rebootDevice(void);
+extern void SysCtl_rebootDevice( void );
 
 //*****************************************************************************
 //
@@ -231,8 +232,10 @@ extern void SysCtl_rebootDevice(void);
 //! \return None
 //
 //*****************************************************************************
-extern void SysCtl_getTLVInfo(uint_fast8_t tag, uint_fast8_t instance,
-        uint_fast8_t *length, uint32_t **data_address);
+extern void SysCtl_getTLVInfo( uint_fast8_t tag,
+                               uint_fast8_t instance,
+                               uint_fast8_t * length,
+                               uint32_t ** data_address );
 
 //*****************************************************************************
 //
@@ -258,7 +261,7 @@ extern void SysCtl_getTLVInfo(uint_fast8_t tag, uint_fast8_t instance,
 //! \return None.
 //
 //*****************************************************************************
-extern void SysCtl_enableSRAMBank(uint_fast8_t sramBank);
+extern void SysCtl_enableSRAMBank( uint_fast8_t sramBank );
 
 //*****************************************************************************
 //
@@ -283,7 +286,7 @@ extern void SysCtl_enableSRAMBank(uint_fast8_t sramBank);
 //! \return None.
 //
 //*****************************************************************************
-extern void SysCtl_disableSRAMBank(uint_fast8_t sramBank);
+extern void SysCtl_disableSRAMBank( uint_fast8_t sramBank );
 
 //*****************************************************************************
 //
@@ -309,7 +312,7 @@ extern void SysCtl_disableSRAMBank(uint_fast8_t sramBank);
 //! \return None.
 //
 //*****************************************************************************
-extern void SysCtl_enableSRAMBankRetention(uint_fast8_t sramBank);
+extern void SysCtl_enableSRAMBankRetention( uint_fast8_t sramBank );
 
 //*****************************************************************************
 //
@@ -335,7 +338,7 @@ extern void SysCtl_enableSRAMBankRetention(uint_fast8_t sramBank);
 //
 //
 //*****************************************************************************
-extern void SysCtl_disableSRAMBankRetention(uint_fast8_t sramBank);
+extern void SysCtl_disableSRAMBankRetention( uint_fast8_t sramBank );
 
 //*****************************************************************************
 //
@@ -367,7 +370,7 @@ extern void SysCtl_disableSRAMBankRetention(uint_fast8_t sramBank);
 //
 //
 //*****************************************************************************
-extern void SysCtl_enablePeripheralAtCPUHalt(uint_fast16_t devices);
+extern void SysCtl_enablePeripheralAtCPUHalt( uint_fast16_t devices );
 
 //*****************************************************************************
 //
@@ -401,7 +404,7 @@ extern void SysCtl_enablePeripheralAtCPUHalt(uint_fast16_t devices);
 //
 //
 //*****************************************************************************
-extern void SysCtl_disablePeripheralAtCPUHalt(uint_fast16_t devices);
+extern void SysCtl_disablePeripheralAtCPUHalt( uint_fast16_t devices );
 
 //*****************************************************************************
 //
@@ -417,7 +420,7 @@ extern void SysCtl_disablePeripheralAtCPUHalt(uint_fast16_t devices);
 //
 //
 //*****************************************************************************
-extern void SysCtl_setWDTTimeoutResetType(uint_fast8_t resetType);
+extern void SysCtl_setWDTTimeoutResetType( uint_fast8_t resetType );
 
 //*****************************************************************************
 //
@@ -434,7 +437,7 @@ extern void SysCtl_setWDTTimeoutResetType(uint_fast8_t resetType);
 //
 //
 //*****************************************************************************
-extern void SysCtl_setWDTPasswordViolationResetType(uint_fast8_t resetType);
+extern void SysCtl_setWDTPasswordViolationResetType( uint_fast8_t resetType );
 
 //*****************************************************************************
 //
@@ -450,7 +453,7 @@ extern void SysCtl_setWDTPasswordViolationResetType(uint_fast8_t resetType);
 //!
 //
 //*****************************************************************************
-extern void SysCtl_disableNMISource(uint_fast8_t flags);
+extern void SysCtl_disableNMISource( uint_fast8_t flags );
 
 //*****************************************************************************
 //
@@ -466,7 +469,7 @@ extern void SysCtl_disableNMISource(uint_fast8_t flags);
 //!
 //
 //*****************************************************************************
-extern void SysCtl_enableNMISource(uint_fast8_t flags);
+extern void SysCtl_enableNMISource( uint_fast8_t flags );
 
 //*****************************************************************************
 //
@@ -475,7 +478,7 @@ extern void SysCtl_enableNMISource(uint_fast8_t flags);
 //! \return Bitwise OR of NMI flags that are enabled
 //
 //*****************************************************************************
-extern uint_fast8_t SysCtl_getNMISourceStatus(void);
+extern uint_fast8_t SysCtl_getNMISourceStatus( void );
 
 //*****************************************************************************
 //
@@ -486,7 +489,7 @@ extern uint_fast8_t SysCtl_getNMISourceStatus(void);
 //
 //
 //*****************************************************************************
-extern void SysCtl_enableGlitchFilter(void);
+extern void SysCtl_enableGlitchFilter( void );
 
 //*****************************************************************************
 //
@@ -497,7 +500,7 @@ extern void SysCtl_enableGlitchFilter(void);
 //
 //
 //*****************************************************************************
-extern void SysCtl_disableGlitchFilter(void);
+extern void SysCtl_disableGlitchFilter( void );
 
 //*****************************************************************************
 //
@@ -522,8 +525,8 @@ extern void SysCtl_disableGlitchFilter(void);
 //
 //
 //*****************************************************************************
-extern uint_fast16_t SysCtl_getTempCalibrationConstant(uint32_t refVoltage,
-        uint32_t temperature);
+extern uint_fast16_t SysCtl_getTempCalibrationConstant( uint32_t refVoltage,
+                                                        uint32_t temperature );
 
 //*****************************************************************************
 //

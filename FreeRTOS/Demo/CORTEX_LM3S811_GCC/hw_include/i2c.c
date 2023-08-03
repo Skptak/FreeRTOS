@@ -32,12 +32,12 @@
 //
 //*****************************************************************************
 
+#include "i2c.h"
 #include "../hw_i2c.h"
 #include "../hw_ints.h"
 #include "../hw_memmap.h"
 #include "../hw_types.h"
 #include "debug.h"
-#include "i2c.h"
 #include "interrupt.h"
 #include "sysctl.h"
 
@@ -64,9 +64,8 @@
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_masterinit) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-I2CMasterInit(unsigned long ulBase, tBoolean bFast)
+#if defined( GROUP_masterinit ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void I2CMasterInit( unsigned long ulBase, tBoolean bFast )
 {
     unsigned long ulSysClk;
     unsigned long ulSCLFreq;
@@ -75,12 +74,12 @@ I2CMasterInit(unsigned long ulBase, tBoolean bFast)
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == I2C_MASTER_BASE);
+    ASSERT( ulBase == I2C_MASTER_BASE );
 
     //
     // Must enable the device before doing anything else.
     //
-    I2CMasterEnable(ulBase);
+    I2CMasterEnable( ulBase );
 
     //
     // Get the system clock speed.
@@ -90,7 +89,7 @@ I2CMasterInit(unsigned long ulBase, tBoolean bFast)
     //
     // Get the desired SCL speed.
     //
-    if(bFast == true)
+    if( bFast == true )
     {
         ulSCLFreq = I2C_SCL_FAST;
     }
@@ -105,9 +104,10 @@ I2CMasterInit(unsigned long ulBase, tBoolean bFast)
     // clock divider so that the resulting clock is always less than or equal
     // to the desired clock, never greater.
     //
-    ulTPR = (((ulSysClk + (2 * I2C_MASTER_TPR_SCL * ulSCLFreq) - 1) /
-              (2 * I2C_MASTER_TPR_SCL * ulSCLFreq)) - 1);
-    HWREG(ulBase + I2C_MASTER_O_TPR) = ulTPR;
+    ulTPR = ( ( ( ulSysClk + ( 2 * I2C_MASTER_TPR_SCL * ulSCLFreq ) - 1 ) /
+                ( 2 * I2C_MASTER_TPR_SCL * ulSCLFreq ) ) -
+              1 );
+    HWREG( ulBase + I2C_MASTER_O_TPR ) = ulTPR;
 }
 #endif
 
@@ -128,25 +128,24 @@ I2CMasterInit(unsigned long ulBase, tBoolean bFast)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_slaveinit) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-I2CSlaveInit(unsigned long ulBase, unsigned char ucSlaveAddr)
+#if defined( GROUP_slaveinit ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void I2CSlaveInit( unsigned long ulBase, unsigned char ucSlaveAddr )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == I2C_SLAVE_BASE);
-    ASSERT(!(ucSlaveAddr & 0x80));
+    ASSERT( ulBase == I2C_SLAVE_BASE );
+    ASSERT( !( ucSlaveAddr & 0x80 ) );
 
     //
     // Must enable the device before doing anything else.
     //
-    I2CSlaveEnable(ulBase);
+    I2CSlaveEnable( ulBase );
 
     //
     // Set up the slave address.
     //
-    HWREG(ulBase + I2C_SLAVE_O_OAR) = ucSlaveAddr;
+    HWREG( ulBase + I2C_SLAVE_O_OAR ) = ucSlaveAddr;
 }
 #endif
 
@@ -161,19 +160,18 @@ I2CSlaveInit(unsigned long ulBase, unsigned char ucSlaveAddr)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_masterenable) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-I2CMasterEnable(unsigned long ulBase)
+#if defined( GROUP_masterenable ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void I2CMasterEnable( unsigned long ulBase )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == I2C_MASTER_BASE);
+    ASSERT( ulBase == I2C_MASTER_BASE );
 
     //
     // Enable the master block.
     //
-    HWREG(ulBase + I2C_MASTER_O_CR) |= I2C_MASTER_CR_MFE;
+    HWREG( ulBase + I2C_MASTER_O_CR ) |= I2C_MASTER_CR_MFE;
 }
 #endif
 
@@ -188,24 +186,23 @@ I2CMasterEnable(unsigned long ulBase)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_slaveenable) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-I2CSlaveEnable(unsigned long ulBase)
+#if defined( GROUP_slaveenable ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void I2CSlaveEnable( unsigned long ulBase )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == I2C_SLAVE_BASE);
+    ASSERT( ulBase == I2C_SLAVE_BASE );
 
     //
     // Enable the clock to the slave block.
     //
-    HWREG(ulBase - I2C_O_SLAVE + I2C_MASTER_O_CR) |= I2C_MASTER_CR_SFE;
+    HWREG( ulBase - I2C_O_SLAVE + I2C_MASTER_O_CR ) |= I2C_MASTER_CR_SFE;
 
     //
     // Enable the slave.
     //
-    HWREG(ulBase + I2C_SLAVE_O_CSR) = I2C_SLAVE_CSR_DA;
+    HWREG( ulBase + I2C_SLAVE_O_CSR ) = I2C_SLAVE_CSR_DA;
 }
 #endif
 
@@ -220,19 +217,18 @@ I2CSlaveEnable(unsigned long ulBase)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_masterdisable) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-I2CMasterDisable(unsigned long ulBase)
+#if defined( GROUP_masterdisable ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void I2CMasterDisable( unsigned long ulBase )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == I2C_MASTER_BASE);
+    ASSERT( ulBase == I2C_MASTER_BASE );
 
     //
     // Disable the master block.
     //
-    HWREG(ulBase + I2C_MASTER_O_CR) &= ~(I2C_MASTER_CR_MFE);
+    HWREG( ulBase + I2C_MASTER_O_CR ) &= ~( I2C_MASTER_CR_MFE );
 }
 #endif
 
@@ -247,24 +243,23 @@ I2CMasterDisable(unsigned long ulBase)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_slavedisable) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-I2CSlaveDisable(unsigned long ulBase)
+#if defined( GROUP_slavedisable ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void I2CSlaveDisable( unsigned long ulBase )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == I2C_SLAVE_BASE);
+    ASSERT( ulBase == I2C_SLAVE_BASE );
 
     //
     // Disable the slave.
     //
-    HWREG(ulBase + I2C_SLAVE_O_CSR) = 0;
+    HWREG( ulBase + I2C_SLAVE_O_CSR ) = 0;
 
     //
     // Disable the clock to the slave block.
     //
-    HWREG(ulBase - I2C_O_SLAVE + I2C_MASTER_O_CR) &= ~(I2C_MASTER_CR_SFE);
+    HWREG( ulBase - I2C_O_SLAVE + I2C_MASTER_O_CR ) &= ~( I2C_MASTER_CR_SFE );
 }
 #endif
 
@@ -289,24 +284,23 @@ I2CSlaveDisable(unsigned long ulBase)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_intregister) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-I2CIntRegister(unsigned long ulBase, void (*pfnHandler)(void))
+#if defined( GROUP_intregister ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void I2CIntRegister( unsigned long ulBase, void ( *pfnHandler )( void ) )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == I2C_MASTER_BASE);
+    ASSERT( ulBase == I2C_MASTER_BASE );
 
     //
     // Register the interrupt handler, returning an error if an error occurs.
     //
-    IntRegister(INT_I2C, pfnHandler);
+    IntRegister( INT_I2C, pfnHandler );
 
     //
     // Enable the I2C interrupt.
     //
-    IntEnable(INT_I2C);
+    IntEnable( INT_I2C );
 }
 #endif
 
@@ -326,24 +320,23 @@ I2CIntRegister(unsigned long ulBase, void (*pfnHandler)(void))
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_intunregister) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-I2CIntUnregister(unsigned long ulBase)
+#if defined( GROUP_intunregister ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void I2CIntUnregister( unsigned long ulBase )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == I2C_MASTER_BASE);
+    ASSERT( ulBase == I2C_MASTER_BASE );
 
     //
     // Disable the interrupt.
     //
-    IntDisable(INT_I2C);
+    IntDisable( INT_I2C );
 
     //
     // Unregister the interrupt handler.
     //
-    IntUnregister(INT_I2C);
+    IntUnregister( INT_I2C );
 }
 #endif
 
@@ -358,19 +351,19 @@ I2CIntUnregister(unsigned long ulBase)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_masterintenable) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-I2CMasterIntEnable(unsigned long ulBase)
+#if defined( GROUP_masterintenable ) || defined( BUILD_ALL ) || \
+    defined( DOXYGEN )
+void I2CMasterIntEnable( unsigned long ulBase )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == I2C_MASTER_BASE);
+    ASSERT( ulBase == I2C_MASTER_BASE );
 
     //
     // Enable the master interrupt.
     //
-    HWREG(ulBase + I2C_MASTER_O_IMR) = 1;
+    HWREG( ulBase + I2C_MASTER_O_IMR ) = 1;
 }
 #endif
 
@@ -385,19 +378,19 @@ I2CMasterIntEnable(unsigned long ulBase)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_slaveintenable) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-I2CSlaveIntEnable(unsigned long ulBase)
+#if defined( GROUP_slaveintenable ) || defined( BUILD_ALL ) || \
+    defined( DOXYGEN )
+void I2CSlaveIntEnable( unsigned long ulBase )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == I2C_SLAVE_BASE);
+    ASSERT( ulBase == I2C_SLAVE_BASE );
 
     //
     // Enable the slave interrupt.
     //
-    HWREG(ulBase + I2C_SLAVE_O_IM) = 1;
+    HWREG( ulBase + I2C_SLAVE_O_IM ) = 1;
 }
 #endif
 
@@ -412,19 +405,19 @@ I2CSlaveIntEnable(unsigned long ulBase)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_masterintdisable) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-I2CMasterIntDisable(unsigned long ulBase)
+#if defined( GROUP_masterintdisable ) || defined( BUILD_ALL ) || \
+    defined( DOXYGEN )
+void I2CMasterIntDisable( unsigned long ulBase )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == I2C_MASTER_BASE);
+    ASSERT( ulBase == I2C_MASTER_BASE );
 
     //
     // Disable the master interrupt.
     //
-    HWREG(ulBase + I2C_MASTER_O_IMR) = 0;
+    HWREG( ulBase + I2C_MASTER_O_IMR ) = 0;
 }
 #endif
 
@@ -439,19 +432,19 @@ I2CMasterIntDisable(unsigned long ulBase)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_slaveintdisable) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-I2CSlaveIntDisable(unsigned long ulBase)
+#if defined( GROUP_slaveintdisable ) || defined( BUILD_ALL ) || \
+    defined( DOXYGEN )
+void I2CSlaveIntDisable( unsigned long ulBase )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == I2C_SLAVE_BASE);
+    ASSERT( ulBase == I2C_SLAVE_BASE );
 
     //
     // Disable the slave interrupt.
     //
-    HWREG(ulBase + I2C_SLAVE_O_IM) = 0;
+    HWREG( ulBase + I2C_SLAVE_O_IM ) = 0;
 }
 #endif
 
@@ -471,26 +464,26 @@ I2CSlaveIntDisable(unsigned long ulBase)
 //! or \b false if not active.
 //
 //*****************************************************************************
-#if defined(GROUP_masterintstatus) || defined(BUILD_ALL) || defined(DOXYGEN)
-tBoolean
-I2CMasterIntStatus(unsigned long ulBase, tBoolean bMasked)
+#if defined( GROUP_masterintstatus ) || defined( BUILD_ALL ) || \
+    defined( DOXYGEN )
+tBoolean I2CMasterIntStatus( unsigned long ulBase, tBoolean bMasked )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == I2C_MASTER_BASE);
+    ASSERT( ulBase == I2C_MASTER_BASE );
 
     //
     // Return either the interrupt status or the raw interrupt status as
     // requested.
     //
-    if(bMasked)
+    if( bMasked )
     {
-        return((HWREG(ulBase + I2C_MASTER_O_MIS)) ? true : false);
+        return ( ( HWREG( ulBase + I2C_MASTER_O_MIS ) ) ? true : false );
     }
     else
     {
-        return((HWREG(ulBase + I2C_MASTER_O_RIS)) ? true : false);
+        return ( ( HWREG( ulBase + I2C_MASTER_O_RIS ) ) ? true : false );
     }
 }
 #endif
@@ -511,26 +504,26 @@ I2CMasterIntStatus(unsigned long ulBase, tBoolean bMasked)
 //! or \b false if not active.
 //
 //*****************************************************************************
-#if defined(GROUP_slaveintstatus) || defined(BUILD_ALL) || defined(DOXYGEN)
-tBoolean
-I2CSlaveIntStatus(unsigned long ulBase, tBoolean bMasked)
+#if defined( GROUP_slaveintstatus ) || defined( BUILD_ALL ) || \
+    defined( DOXYGEN )
+tBoolean I2CSlaveIntStatus( unsigned long ulBase, tBoolean bMasked )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == I2C_SLAVE_BASE);
+    ASSERT( ulBase == I2C_SLAVE_BASE );
 
     //
     // Return either the interrupt status or the raw interrupt status as
     // requested.
     //
-    if(bMasked)
+    if( bMasked )
     {
-        return((HWREG(ulBase + I2C_SLAVE_O_MIS)) ? true : false);
+        return ( ( HWREG( ulBase + I2C_SLAVE_O_MIS ) ) ? true : false );
     }
     else
     {
-        return((HWREG(ulBase + I2C_SLAVE_O_RIS)) ? true : false);
+        return ( ( HWREG( ulBase + I2C_SLAVE_O_RIS ) ) ? true : false );
     }
 }
 #endif
@@ -548,26 +541,26 @@ I2CSlaveIntStatus(unsigned long ulBase, tBoolean bMasked)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_masterintclear) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-I2CMasterIntClear(unsigned long ulBase)
+#if defined( GROUP_masterintclear ) || defined( BUILD_ALL ) || \
+    defined( DOXYGEN )
+void I2CMasterIntClear( unsigned long ulBase )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == I2C_MASTER_BASE);
+    ASSERT( ulBase == I2C_MASTER_BASE );
 
     //
     // Clear the I2C master interrupt source.
     //
-    HWREG(ulBase + I2C_MASTER_O_MICR) = I2C_MASTER_MICR_IC;
+    HWREG( ulBase + I2C_MASTER_O_MICR ) = I2C_MASTER_MICR_IC;
 
     //
     // Workaround for I2C master interrupt clear errata for rev B Stellaris
     // devices.  For later devices, this write is ignored and therefore
     // harmless (other than the slight performance hit).
     //
-    HWREG(ulBase + I2C_MASTER_O_MIS) = I2C_MASTER_MICR_IC;
+    HWREG( ulBase + I2C_MASTER_O_MIS ) = I2C_MASTER_MICR_IC;
 }
 #endif
 
@@ -584,19 +577,18 @@ I2CMasterIntClear(unsigned long ulBase)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_slaveintclear) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-I2CSlaveIntClear(unsigned long ulBase)
+#if defined( GROUP_slaveintclear ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void I2CSlaveIntClear( unsigned long ulBase )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == I2C_SLAVE_BASE);
+    ASSERT( ulBase == I2C_SLAVE_BASE );
 
     //
     // Clear the I2C slave interrupt source.
     //
-    HWREG(ulBase + I2C_SLAVE_O_SICR) = I2C_SLAVE_SICR_IC;
+    HWREG( ulBase + I2C_SLAVE_O_SICR ) = I2C_SLAVE_SICR_IC;
 }
 #endif
 
@@ -617,21 +609,22 @@ I2CSlaveIntClear(unsigned long ulBase)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_masterslaveaddrset) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-I2CMasterSlaveAddrSet(unsigned long ulBase, unsigned char ucSlaveAddr,
-                      tBoolean bReceive)
+#if defined( GROUP_masterslaveaddrset ) || defined( BUILD_ALL ) || \
+    defined( DOXYGEN )
+void I2CMasterSlaveAddrSet( unsigned long ulBase,
+                            unsigned char ucSlaveAddr,
+                            tBoolean bReceive )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == I2C_MASTER_BASE);
-    ASSERT(!(ucSlaveAddr & 0x80));
+    ASSERT( ulBase == I2C_MASTER_BASE );
+    ASSERT( !( ucSlaveAddr & 0x80 ) );
 
     //
     // Set the address of the slave with which the master will communicate.
     //
-    HWREG(ulBase + I2C_MASTER_O_SA) = (ucSlaveAddr << 1) | bReceive;
+    HWREG( ulBase + I2C_MASTER_O_SA ) = ( ucSlaveAddr << 1 ) | bReceive;
 }
 #endif
 
@@ -648,25 +641,24 @@ I2CMasterSlaveAddrSet(unsigned long ulBase, unsigned char ucSlaveAddr,
 //! \b false.
 //
 //*****************************************************************************
-#if defined(GROUP_masterbusy) || defined(BUILD_ALL) || defined(DOXYGEN)
-tBoolean
-I2CMasterBusy(unsigned long ulBase)
+#if defined( GROUP_masterbusy ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+tBoolean I2CMasterBusy( unsigned long ulBase )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == I2C_MASTER_BASE);
+    ASSERT( ulBase == I2C_MASTER_BASE );
 
     //
     // Return the busy status.
     //
-    if(HWREG(ulBase + I2C_MASTER_O_CS) & I2C_MASTER_CS_BUSY)
+    if( HWREG( ulBase + I2C_MASTER_O_CS ) & I2C_MASTER_CS_BUSY )
     {
-        return(true);
+        return ( true );
     }
     else
     {
-        return(false);
+        return ( false );
     }
 }
 #endif
@@ -685,25 +677,24 @@ I2CMasterBusy(unsigned long ulBase)
 //! \b false.
 //
 //*****************************************************************************
-#if defined(GROUP_masterbusbusy) || defined(BUILD_ALL) || defined(DOXYGEN)
-tBoolean
-I2CMasterBusBusy(unsigned long ulBase)
+#if defined( GROUP_masterbusbusy ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+tBoolean I2CMasterBusBusy( unsigned long ulBase )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == I2C_MASTER_BASE);
+    ASSERT( ulBase == I2C_MASTER_BASE );
 
     //
     // Return the bus busy status.
     //
-    if(HWREG(ulBase + I2C_MASTER_O_CS) & I2C_MASTER_CS_BUS_BUSY)
+    if( HWREG( ulBase + I2C_MASTER_O_CS ) & I2C_MASTER_CS_BUS_BUSY )
     {
-        return(true);
+        return ( true );
     }
     else
     {
-        return(false);
+        return ( false );
     }
 }
 #endif
@@ -733,29 +724,28 @@ I2CMasterBusBusy(unsigned long ulBase)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_mastercontrol) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-I2CMasterControl(unsigned long ulBase, unsigned long ulCmd)
+#if defined( GROUP_mastercontrol ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void I2CMasterControl( unsigned long ulBase, unsigned long ulCmd )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == I2C_MASTER_BASE);
-    ASSERT((ulCmd == I2C_MASTER_CMD_SINGLE_SEND) ||
-           (ulCmd == I2C_MASTER_CMD_SINGLE_RECEIVE) ||
-           (ulCmd == I2C_MASTER_CMD_BURST_SEND_START) ||
-           (ulCmd == I2C_MASTER_CMD_BURST_SEND_CONT) ||
-           (ulCmd == I2C_MASTER_CMD_BURST_SEND_FINISH) ||
-           (ulCmd == I2C_MASTER_CMD_BURST_SEND_ERROR_STOP) ||
-           (ulCmd == I2C_MASTER_CMD_BURST_RECEIVE_START) ||
-           (ulCmd == I2C_MASTER_CMD_BURST_RECEIVE_CONT) ||
-           (ulCmd == I2C_MASTER_CMD_BURST_RECEIVE_FINISH) ||
-           (ulCmd == I2C_MASTER_CMD_BURST_RECEIVE_ERROR_STOP));
+    ASSERT( ulBase == I2C_MASTER_BASE );
+    ASSERT( ( ulCmd == I2C_MASTER_CMD_SINGLE_SEND ) ||
+            ( ulCmd == I2C_MASTER_CMD_SINGLE_RECEIVE ) ||
+            ( ulCmd == I2C_MASTER_CMD_BURST_SEND_START ) ||
+            ( ulCmd == I2C_MASTER_CMD_BURST_SEND_CONT ) ||
+            ( ulCmd == I2C_MASTER_CMD_BURST_SEND_FINISH ) ||
+            ( ulCmd == I2C_MASTER_CMD_BURST_SEND_ERROR_STOP ) ||
+            ( ulCmd == I2C_MASTER_CMD_BURST_RECEIVE_START ) ||
+            ( ulCmd == I2C_MASTER_CMD_BURST_RECEIVE_CONT ) ||
+            ( ulCmd == I2C_MASTER_CMD_BURST_RECEIVE_FINISH ) ||
+            ( ulCmd == I2C_MASTER_CMD_BURST_RECEIVE_ERROR_STOP ) );
 
     //
     // Send the command.
     //
-    HWREG(ulBase + I2C_MASTER_O_CS) = ulCmd;
+    HWREG( ulBase + I2C_MASTER_O_CS ) = ulCmd;
 }
 #endif
 
@@ -776,41 +766,40 @@ I2CMasterControl(unsigned long ulBase, unsigned long ulCmd)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_mastererr) || defined(BUILD_ALL) || defined(DOXYGEN)
-unsigned long
-I2CMasterErr(unsigned long ulBase)
+#if defined( GROUP_mastererr ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+unsigned long I2CMasterErr( unsigned long ulBase )
 {
     unsigned long ulErr;
 
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == I2C_MASTER_BASE);
+    ASSERT( ulBase == I2C_MASTER_BASE );
 
     //
     // Get the raw error state
     //
-    ulErr = HWREG(ulBase + I2C_MASTER_O_CS);
+    ulErr = HWREG( ulBase + I2C_MASTER_O_CS );
 
     //
     // If the I2C master is busy, then all the other bit are invalid, and
     // don't have an error to report.
     //
-    if(ulErr & I2C_MASTER_CS_BUSY)
+    if( ulErr & I2C_MASTER_CS_BUSY )
     {
-        return(I2C_MASTER_ERR_NONE);
+        return ( I2C_MASTER_ERR_NONE );
     }
 
     //
     // Check for errors.
     //
-    if(ulErr & I2C_MASTER_CS_ERROR)
+    if( ulErr & I2C_MASTER_CS_ERROR )
     {
-        return(ulErr & (I2C_MASTER_CS_ERR_MASK));
+        return ( ulErr & ( I2C_MASTER_CS_ERR_MASK ) );
     }
     else
     {
-        return(I2C_MASTER_ERR_NONE);
+        return ( I2C_MASTER_ERR_NONE );
     }
 }
 #endif
@@ -827,19 +816,18 @@ I2CMasterErr(unsigned long ulBase)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_masterdataput) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-I2CMasterDataPut(unsigned long ulBase, unsigned char ucData)
+#if defined( GROUP_masterdataput ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void I2CMasterDataPut( unsigned long ulBase, unsigned char ucData )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == I2C_MASTER_BASE);
+    ASSERT( ulBase == I2C_MASTER_BASE );
 
     //
     // Write the byte.
     //
-    HWREG(ulBase + I2C_MASTER_O_DR) = ucData;
+    HWREG( ulBase + I2C_MASTER_O_DR ) = ucData;
 }
 #endif
 
@@ -855,19 +843,18 @@ I2CMasterDataPut(unsigned long ulBase, unsigned char ucData)
 //! unsigned long.
 //
 //*****************************************************************************
-#if defined(GROUP_masterdataget) || defined(BUILD_ALL) || defined(DOXYGEN)
-unsigned long
-I2CMasterDataGet(unsigned long ulBase)
+#if defined( GROUP_masterdataget ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+unsigned long I2CMasterDataGet( unsigned long ulBase )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == I2C_MASTER_BASE);
+    ASSERT( ulBase == I2C_MASTER_BASE );
 
     //
     // Read a byte.
     //
-    return(HWREG(ulBase + I2C_MASTER_O_DR));
+    return ( HWREG( ulBase + I2C_MASTER_O_DR ) );
 }
 #endif
 
@@ -892,19 +879,18 @@ I2CMasterDataGet(unsigned long ulBase)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_slavestatus) || defined(BUILD_ALL) || defined(DOXYGEN)
-unsigned long
-I2CSlaveStatus(unsigned long ulBase)
+#if defined( GROUP_slavestatus ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+unsigned long I2CSlaveStatus( unsigned long ulBase )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == I2C_SLAVE_BASE);
+    ASSERT( ulBase == I2C_SLAVE_BASE );
 
     //
     // Return the slave status.
     //
-    return(HWREG(ulBase + I2C_SLAVE_O_CSR));
+    return ( HWREG( ulBase + I2C_SLAVE_O_CSR ) );
 }
 #endif
 
@@ -920,19 +906,18 @@ I2CSlaveStatus(unsigned long ulBase)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_slavedataput) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-I2CSlaveDataPut(unsigned long ulBase, unsigned char ucData)
+#if defined( GROUP_slavedataput ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void I2CSlaveDataPut( unsigned long ulBase, unsigned char ucData )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == I2C_SLAVE_BASE);
+    ASSERT( ulBase == I2C_SLAVE_BASE );
 
     //
     // Write the byte.
     //
-    HWREG(ulBase + I2C_SLAVE_O_DR) = ucData;
+    HWREG( ulBase + I2C_SLAVE_O_DR ) = ucData;
 }
 #endif
 
@@ -948,19 +933,18 @@ I2CSlaveDataPut(unsigned long ulBase, unsigned char ucData)
 //! unsigned long.
 //
 //*****************************************************************************
-#if defined(GROUP_slavedataget) || defined(BUILD_ALL) || defined(DOXYGEN)
-unsigned long
-I2CSlaveDataGet(unsigned long ulBase)
+#if defined( GROUP_slavedataget ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+unsigned long I2CSlaveDataGet( unsigned long ulBase )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == I2C_SLAVE_BASE);
+    ASSERT( ulBase == I2C_SLAVE_BASE );
 
     //
     // Read a byte.
     //
-    return(HWREG(ulBase + I2C_SLAVE_O_DR));
+    return ( HWREG( ulBase + I2C_SLAVE_O_DR ) );
 }
 #endif
 

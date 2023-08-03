@@ -42,28 +42,28 @@
 //
 //*****************************************************************************
 
-#include "inc/hw_regaccess.h"
 #include "inc/hw_memmap.h"
+#include "inc/hw_regaccess.h"
 
 #ifdef __MSP430_HAS_ESI__
-#include "esi.h"
+    #include "esi.h"
 
-#include <assert.h>
+    #include <assert.h>
 
-// Uncomment for finding lower peak of the lower half cycle.
-// This required to set ESI comparator output as inverted
-#define INVERTED
+    // Uncomment for finding lower peak of the lower half cycle.
+    // This required to set ESI comparator output as inverted
+    #define INVERTED
 
-static uint16_t measureESIOSC(void);
-static void FindDAC(uint8_t selected_channel,
-                    uint8_t software_trigger);
+static uint16_t measureESIOSC( void );
+static void FindDAC( uint8_t selected_channel, uint8_t software_trigger );
 
-const ESI_AFE1_InitParams ESI_AFE1_INITPARAMS_DEFAULT =
-{ESI_EXCITATION_CIRCUIT_DISABLED,
- ESI_SAMPLE_HOLD_DISABLED,
- ESI_MID_VOLTAGE_GENERATOR_DISABLED,
- ESI_SAMPLE_HOLD_VSS_TO_ESIVSS,
- ESI_INVERTER_FOR_AFE1_DISABLE};
+const ESI_AFE1_InitParams ESI_AFE1_INITPARAMS_DEFAULT = {
+    ESI_EXCITATION_CIRCUIT_DISABLED,
+    ESI_SAMPLE_HOLD_DISABLED,
+    ESI_MID_VOLTAGE_GENERATOR_DISABLED,
+    ESI_SAMPLE_HOLD_VSS_TO_ESIVSS,
+    ESI_INVERTER_FOR_AFE1_DISABLE
+};
 
 const ESI_AFE2_InitParams ESI_AFE2_INITPARAMS_DEFAULT = {
     ESI_AFE2_INPUT_SELECT_CHx,
@@ -72,23 +72,18 @@ const ESI_AFE2_InitParams ESI_AFE2_INITPARAMS_DEFAULT = {
     ESI_TSM_DAC_CONTROL_AFE2_DISABLE
 };
 
-const ESI_TSM_InitParams ESI_TSM_INITPARAMS_DEFAULT = { ESI_TSM_SMCLK_DIV_1,
-                                                        ESI_TSM_ACLK_DIV_1,
-                                                        ESI_TSM_START_TRIGGER_DIV_2,
-                                                        ESI_TSM_REPEAT_NEW_TRIGGER,
-                                                        ESI_TSM_STOP_SEQUENCE,
-                                                        ESI_TSM_HIGH_FREQ_CLK_FUNCTION_ON};
+const ESI_TSM_InitParams ESI_TSM_INITPARAMS_DEFAULT = {
+    ESI_TSM_SMCLK_DIV_1,         ESI_TSM_ACLK_DIV_1,
+    ESI_TSM_START_TRIGGER_DIV_2, ESI_TSM_REPEAT_NEW_TRIGGER,
+    ESI_TSM_STOP_SEQUENCE,       ESI_TSM_HIGH_FREQ_CLK_FUNCTION_ON
+};
 
-const ESI_PSM_InitParams ESI_PSM_INITPARAMS_DEFAULT = { ESI_PSM_Q6_DISABLE,
-                                                        ESI_PSM_Q7_TRIGGER_DISABLE,
-                                                        ESI_PSM_CNT0_DISABLE,
-                                                        ESI_PSM_CNT0_RESET,
-                                                        ESI_PSM_CNT1_DISABLE,
-                                                        ESI_PSM_CNT1_RESET,
-                                                        ESI_PSM_CNT2_DISABLE,
-                                                        ESI_PSM_CNT2_RESET,
-                                                        ESI_PSM_S3_SELECT,
-                                                        ESI_PSM_TEST4_IS_Q2,};
+const ESI_PSM_InitParams ESI_PSM_INITPARAMS_DEFAULT = {
+    ESI_PSM_Q6_DISABLE,   ESI_PSM_Q7_TRIGGER_DISABLE, ESI_PSM_CNT0_DISABLE,
+    ESI_PSM_CNT0_RESET,   ESI_PSM_CNT1_DISABLE,       ESI_PSM_CNT1_RESET,
+    ESI_PSM_CNT2_DISABLE, ESI_PSM_CNT2_RESET,         ESI_PSM_S3_SELECT,
+    ESI_PSM_TEST4_IS_Q2,
+};
 
 //*****************************************************************************
 //
@@ -99,9 +94,9 @@ const ESI_PSM_InitParams ESI_PSM_INITPARAMS_DEFAULT = { ESI_PSM_Q6_DISABLE,
 //! \return  Counter value
 //
 //*****************************************************************************
-uint16_t ESI_getCounter0(void)
+uint16_t ESI_getCounter0( void )
 {
-    return (ESICNT0);
+    return ( ESICNT0 );
 }
 
 //*****************************************************************************
@@ -113,9 +108,9 @@ uint16_t ESI_getCounter0(void)
 //! \return Counter value
 //
 //*****************************************************************************
-uint16_t ESI_getCounter1(void)
+uint16_t ESI_getCounter1( void )
 {
-    return (ESICNT1);
+    return ( ESICNT1 );
 }
 
 //*****************************************************************************
@@ -127,9 +122,9 @@ uint16_t ESI_getCounter1(void)
 //! \return Counter value
 //
 //*****************************************************************************
-uint16_t ESI_getCounter2(void)
+uint16_t ESI_getCounter2( void )
 {
-    return (ESICNT2);
+    return ( ESICNT2 );
 }
 
 //*****************************************************************************
@@ -141,9 +136,9 @@ uint16_t ESI_getCounter2(void)
 //! \return Counter value
 //
 //*****************************************************************************
-uint16_t ESI_getOscCounter(void)
+uint16_t ESI_getOscCounter( void )
 {
-    return (ESICNT3);
+    return ( ESICNT3 );
 }
 
 //*****************************************************************************
@@ -158,37 +153,34 @@ uint16_t ESI_getOscCounter(void)
 //
 //*****************************************************************************
 
-void ESI_AFE1_init(ESI_AFE1_InitParams *params)
+void ESI_AFE1_init( ESI_AFE1_InitParams * params )
 {
     // Unset the AFE1 bits
-    ESIAFE &= ~(ESITEN + ESISH + ESIVCC2 + ESIVSS + ESICACI3 + ESICISEL +
-                ESICA1X + ESICA1INV);
-    ESIAFE |=
-        params->excitationCircuitSelect +
-        params->sampleAndHoldSelect +
-        params->midVoltageGeneratorSelect +
-        params->sampleAndHoldVSSConnect +
-        params->inverterSelectOutputAFE1
-    ;
+    ESIAFE &= ~( ESITEN + ESISH + ESIVCC2 + ESIVSS + ESICACI3 + ESICISEL +
+                 ESICA1X + ESICA1INV );
+    ESIAFE |= params->excitationCircuitSelect + params->sampleAndHoldSelect +
+              params->midVoltageGeneratorSelect +
+              params->sampleAndHoldVSSConnect +
+              params->inverterSelectOutputAFE1;
 
-    switch(params->inputSelectAFE1)
+    switch( params->inputSelectAFE1 )
     {
-    case ESI_AFE1_INPUT_SELECT_CHx:
-        break;
-    case ESI_AFE1_INPUT_SELECT_CIx:
-        ESIAFE |= ESICA1X;
-        break;
-    case ESI_AFE1_INPUT_SELECT_CI3:
-        ESIAFE |= ESICA1X;
-        ESIAFE &= ~ESICISEL;
-        ESIAFE |= ESICACI3;
-        break;
-    case ESI_AFE1_INPUT_SELECT_CI:
-        ESIAFE |= ESICA1X;
-        ESIAFE |= ESICISEL;
-        break;
-    default:
-        break;
+        case ESI_AFE1_INPUT_SELECT_CHx:
+            break;
+        case ESI_AFE1_INPUT_SELECT_CIx:
+            ESIAFE |= ESICA1X;
+            break;
+        case ESI_AFE1_INPUT_SELECT_CI3:
+            ESIAFE |= ESICA1X;
+            ESIAFE &= ~ESICISEL;
+            ESIAFE |= ESICACI3;
+            break;
+        case ESI_AFE1_INPUT_SELECT_CI:
+            ESIAFE |= ESICA1X;
+            ESIAFE |= ESICISEL;
+            break;
+        default:
+            break;
     }
 }
 
@@ -204,17 +196,13 @@ void ESI_AFE1_init(ESI_AFE1_InitParams *params)
 //
 //*****************************************************************************
 
-void ESI_AFE2_init(ESI_AFE2_InitParams *params)
+void ESI_AFE2_init( ESI_AFE2_InitParams * params )
 {
     // Unset the AFE2 bits
-    ESIAFE &= ~(ESICA2X + ESICA2INV + ESICA2EN + ESIDAC2EN);
+    ESIAFE &= ~( ESICA2X + ESICA2INV + ESICA2EN + ESIDAC2EN );
 
-    ESIAFE |=
-        params->inputSelectAFE2 +
-        params->inverterSelectOutputAFE2 +
-        params->tsmControlComparatorAFE2 +
-        params->tsmControlDacAFE2
-    ;
+    ESIAFE |= params->inputSelectAFE2 + params->inverterSelectOutputAFE2 +
+              params->tsmControlComparatorAFE2 + params->tsmControlDacAFE2;
 }
 
 //*****************************************************************************
@@ -241,13 +229,13 @@ void ESI_AFE2_init(ESI_AFE2_InitParams *params)
 //!                 ESI_AFE_OUTPUT_HIGH
 //
 //*****************************************************************************
-uint16_t ESI_getLatchedComparatorOutput(uint16_t channelSelect)
+uint16_t ESI_getLatchedComparatorOutput( uint16_t channelSelect )
 {
     uint16_t result;
 
     result = ESIPPU;
 
-    return (result &= channelSelect);
+    return ( result &= channelSelect );
 }
 
 //*****************************************************************************
@@ -262,16 +250,11 @@ uint16_t ESI_getLatchedComparatorOutput(uint16_t channelSelect)
 //
 //*****************************************************************************
 
-void ESI_TSM_init(ESI_TSM_InitParams *params)
+void ESI_TSM_init( ESI_TSM_InitParams * params )
 {
-    ESITSM =
-        params->smclkDivider +
-        params->aclkDivider +
-        params->startTriggerAclkDivider +
-        params->repeatMode +
-        params->startTriggerSelection +
-        params->tsmFunctionSelection
-    ;
+    ESITSM = params->smclkDivider + params->aclkDivider +
+             params->startTriggerAclkDivider + params->repeatMode +
+             params->startTriggerSelection + params->tsmFunctionSelection;
 }
 
 //*****************************************************************************
@@ -283,13 +266,13 @@ void ESI_TSM_init(ESI_TSM_InitParams *params)
 //! \return None
 //
 //*****************************************************************************
-void ESI_TSM_clearTable(void)
+void ESI_TSM_clearTable( void )
 {
     uint16_t *pTsm, i;
 
     // Clear TSM Table (for testing only. not neccessary in real application)
-    pTsm = (uint16_t *)&ESITSM0;
-    for(i = 0; i < 32; i++)
+    pTsm = ( uint16_t * ) &ESITSM0;
+    for( i = 0; i < 32; i++ )
     {
         *pTsm++ = 0x0200;
     }
@@ -304,23 +287,21 @@ void ESI_TSM_clearTable(void)
 //! \return None
 //
 //*****************************************************************************
-void ESI_TSM_copyTable(uint16_t* tsmTable,
-                       uint16_t size)
+void ESI_TSM_copyTable( uint16_t * tsmTable, uint16_t size )
 {
-    uint16_t *pt_tsmTable;
+    uint16_t * pt_tsmTable;
     uint16_t i;
 
     // Copy the TSM_Table into ESI TSM registers
     // Destination pointer
-    pt_tsmTable = (uint16_t *)&ESITSM0;
+    pt_tsmTable = ( uint16_t * ) &ESITSM0;
     // Divided by 2 because of unsigned integer (2bytes)
     i = size / 2;
 
     do
     {
         *pt_tsmTable++ = *tsmTable++;
-    }
-    while(--i);
+    } while( --i );
 }
 
 //*****************************************************************************
@@ -332,7 +313,7 @@ void ESI_TSM_copyTable(uint16_t* tsmTable,
 //! \return None
 //
 //*****************************************************************************
-void ESI_TSM_softwareTrigger(void)
+void ESI_TSM_softwareTrigger( void )
 {
     ESITSM |= ESISTART;
 }
@@ -346,11 +327,11 @@ void ESI_TSM_softwareTrigger(void)
 //! \return ESIREATx bits from selected stateRegNum
 //
 //*****************************************************************************
-uint8_t ESI_TSM_getTSMStateDuration(uint8_t stateRegNum)
+uint8_t ESI_TSM_getTSMStateDuration( uint8_t stateRegNum )
 {
-    volatile uint16_t* stateRegBase = (volatile uint16_t*)&ESITSM0;
+    volatile uint16_t * stateRegBase = ( volatile uint16_t * ) &ESITSM0;
 
-    return((*(stateRegBase + stateRegNum) & 0xf800) >> 11);
+    return ( ( *( stateRegBase + stateRegNum ) & 0xf800 ) >> 11 );
 }
 
 //*****************************************************************************
@@ -362,17 +343,16 @@ uint8_t ESI_TSM_getTSMStateDuration(uint8_t stateRegNum)
 //! \return ESIREATx bits from selected stateRegNum
 //
 //*****************************************************************************
-void ESI_TSM_setTSMStateDuration(uint8_t stateRegNum,
-                                 uint8_t duration)
+void ESI_TSM_setTSMStateDuration( uint8_t stateRegNum, uint8_t duration )
 {
-    assert(stateRegNum <= ESI_TSM_STATE_REG_31);
-    assert(duration <= ESI_TSM_STATE_DURATION_MAX);
+    assert( stateRegNum <= ESI_TSM_STATE_REG_31 );
+    assert( duration <= ESI_TSM_STATE_DURATION_MAX );
 
-    volatile uint16_t* stateRegBase = (volatile uint16_t*)&ESITSM0;
+    volatile uint16_t * stateRegBase = ( volatile uint16_t * ) &ESITSM0;
 
-    *(stateRegBase + stateRegNum) &= ~0xF800;
+    *( stateRegBase + stateRegNum ) &= ~0xF800;
 
-    *(stateRegBase + stateRegNum) |= (duration << 11);
+    *( stateRegBase + stateRegNum ) |= ( duration << 11 );
 }
 
 //*****************************************************************************
@@ -386,20 +366,12 @@ void ESI_TSM_setTSMStateDuration(uint8_t stateRegNum,
 //! \return None
 //
 //*****************************************************************************
-void ESI_PSM_init(ESI_PSM_InitParams *params)
+void ESI_PSM_init( ESI_PSM_InitParams * params )
 {
-    ESIPSM =
-        params->Q6Select +
-        params->Q7TriggerSelect +
-        params->count0Select +
-        params->count0Reset +
-        params->count1Select +
-        params->count1Reset +
-        params->count2Select +
-        params->count2Reset +
-        params->V2Select +
-        params->TEST4Select
-    ;
+    ESIPSM = params->Q6Select + params->Q7TriggerSelect + params->count0Select +
+             params->count0Reset + params->count1Select + params->count1Reset +
+             params->count2Select + params->count2Reset + params->V2Select +
+             params->TEST4Select;
 }
 
 //*****************************************************************************
@@ -411,13 +383,13 @@ void ESI_PSM_init(ESI_PSM_InitParams *params)
 //! \return None
 //
 //*****************************************************************************
-void ESI_PSM_clearTable(void)
+void ESI_PSM_clearTable( void )
 {
     uint8_t *pPsm, i;
 
     // Clear TSM Table (for testing only. not neccessary in real application)
-    pPsm = (uint8_t *)&ESIRAM0;
-    for(i = 0; i < 128; i++)
+    pPsm = ( uint8_t * ) &ESIRAM0;
+    for( i = 0; i < 128; i++ )
     {
         *pPsm++ = 0x0;
     }
@@ -432,23 +404,21 @@ void ESI_PSM_clearTable(void)
 //! \return None
 //
 //*****************************************************************************
-void ESI_PSM_copyTable(uint8_t* psmTable,
-                       uint8_t size)
+void ESI_PSM_copyTable( uint8_t * psmTable, uint8_t size )
 {
-    uint8_t *pt_psmTable;
+    uint8_t * pt_psmTable;
     uint8_t i;
 
-    assert(size <= 128);
+    assert( size <= 128 );
 
     // Copy the TSM_Table into ESI TSM registers
-    pt_psmTable = (uint8_t *)&ESIRAM0;                                  // Destination pointer
+    pt_psmTable = ( uint8_t * ) &ESIRAM0; // Destination pointer
     i = size;
 
     do
     {
         *pt_psmTable++ = *psmTable++;
-    }
-    while(--i);
+    } while( --i );
 }
 
 //*****************************************************************************
@@ -462,7 +432,7 @@ void ESI_PSM_copyTable(uint8_t* psmTable,
 //! \return None
 //
 //*****************************************************************************
-void ESI_PSM_resetCounter(uint16_t counterToReset)
+void ESI_PSM_resetCounter( uint16_t counterToReset )
 {
     ESIPSM |= counterToReset;
 }
@@ -477,7 +447,7 @@ void ESI_PSM_resetCounter(uint16_t counterToReset)
 //! \return None
 //
 //*****************************************************************************
-void ESI_enableInternalOscillator(void)
+void ESI_enableInternalOscillator( void )
 {
     ESIOSC |= ESIHFSEL;
 }
@@ -492,7 +462,7 @@ void ESI_enableInternalOscillator(void)
 //! \return None
 //
 //*****************************************************************************
-void ESI_disableInternalOscillator(void)
+void ESI_disableInternalOscillator( void )
 {
     ESIOSC &= ~ESIHFSEL;
 }
@@ -509,7 +479,7 @@ void ESI_disableInternalOscillator(void)
 //! \return None
 //
 //*****************************************************************************
-void ESI_timerAInputSelect(uint16_t select)
+void ESI_timerAInputSelect( uint16_t select )
 {
     ESICTL |= select;
 }
@@ -534,25 +504,24 @@ void ESI_timerAInputSelect(uint16_t select)
 //! \return None
 //
 //*****************************************************************************
-void ESI_psmSourceSelect(uint16_t sourceNum,
-                         uint16_t sourceSelect)
+void ESI_psmSourceSelect( uint16_t sourceNum, uint16_t sourceSelect )
 {
-    switch(sourceNum)
+    switch( sourceNum )
     {
-    case PSM_S1_SOURCE:
-        ESICTL &= ~(ESIS1SEL0 | ESIS1SEL1 | ESIS1SEL2);
-        ESICTL |= (sourceSelect << 7);
-        break;
-    case PSM_S2_SOURCE:
-        ESICTL &= ~(ESIS2SEL0 | ESIS2SEL1 | ESIS2SEL2);
-        ESICTL |= (sourceSelect << 10);
-        break;
-    case PSM_S3_SOURCE:
-        ESICTL &= ~(ESIS3SEL0 | ESIS3SEL1 | ESIS3SEL2);
-        ESICTL |= (sourceSelect << 13);
-        break;
-    default:
-        break;
+        case PSM_S1_SOURCE:
+            ESICTL &= ~( ESIS1SEL0 | ESIS1SEL1 | ESIS1SEL2 );
+            ESICTL |= ( sourceSelect << 7 );
+            break;
+        case PSM_S2_SOURCE:
+            ESICTL &= ~( ESIS2SEL0 | ESIS2SEL1 | ESIS2SEL2 );
+            ESICTL |= ( sourceSelect << 10 );
+            break;
+        case PSM_S3_SOURCE:
+            ESICTL &= ~( ESIS3SEL0 | ESIS3SEL1 | ESIS3SEL2 );
+            ESICTL |= ( sourceSelect << 13 );
+            break;
+        default:
+            break;
     }
 }
 
@@ -571,9 +540,9 @@ void ESI_psmSourceSelect(uint16_t sourceNum,
 //! \return None
 //
 //*****************************************************************************
-void ESI_testChannel0SourceSelect(uint16_t sourceSelect)
+void ESI_testChannel0SourceSelect( uint16_t sourceSelect )
 {
-    ESICTL &= ~(ESI_TEST_CHANNEL0_SOURCE_IS_CH3_CI3);
+    ESICTL &= ~( ESI_TEST_CHANNEL0_SOURCE_IS_CH3_CI3 );
     ESICTL |= sourceSelect;
 }
 
@@ -592,9 +561,9 @@ void ESI_testChannel0SourceSelect(uint16_t sourceSelect)
 //! \return None
 //
 //*****************************************************************************
-void ESI_testChannel1SourceSelect(uint16_t sourceSelect)
+void ESI_testChannel1SourceSelect( uint16_t sourceSelect )
 {
-    ESICTL &= ~(ESI_TEST_CHANNEL1_SOURCE_IS_CH3_CI3);
+    ESICTL &= ~( ESI_TEST_CHANNEL1_SOURCE_IS_CH3_CI3 );
     ESICTL |= sourceSelect;
 }
 
@@ -605,7 +574,7 @@ void ESI_testChannel1SourceSelect(uint16_t sourceSelect)
 //! \return None
 //
 //*****************************************************************************
-void ESI_enable(void)
+void ESI_enable( void )
 {
     ESICTL |= ESIEN;
 }
@@ -617,7 +586,7 @@ void ESI_enable(void)
 //! \return None
 //
 //*****************************************************************************
-void ESI_disable(void)
+void ESI_disable( void )
 {
     ESICTL &= ~ESIEN;
 }
@@ -633,9 +602,9 @@ void ESI_disable(void)
 //! \return None
 //
 //*****************************************************************************
-void ESI_startInternalOscCal(void)
+void ESI_startInternalOscCal( void )
 {
-    assert(ESIOSC | ESIHFSEL);
+    assert( ESIOSC | ESIHFSEL );
     ESIOSC |= ESICLKGON;
 }
 
@@ -649,15 +618,15 @@ void ESI_startInternalOscCal(void)
 //! \return None
 //
 //*****************************************************************************
-void ESI_adjustInternalOscFreq(uint16_t incOrDec)
+void ESI_adjustInternalOscFreq( uint16_t incOrDec )
 {
     uint16_t adjustValue;
 
-    assert(ESIOSC | ESIHFSEL);
+    assert( ESIOSC | ESIHFSEL );
 
     adjustValue = ESIOSC >> 8;
 
-    if(incOrDec == ESI_INTERNAL_OSC_FREQ_INCREASE)
+    if( incOrDec == ESI_INTERNAL_OSC_FREQ_INCREASE )
     {
         adjustValue = adjustValue + 1;
         adjustValue = adjustValue << 8;
@@ -679,7 +648,7 @@ void ESI_adjustInternalOscFreq(uint16_t incOrDec)
 //! \return None
 //
 //*****************************************************************************
-void ESI_setNominalInternalOscFreq(void)
+void ESI_setNominalInternalOscFreq( void )
 {
     ESIOSC = ESICLKFQ5 + ESICLKGON + ESIHFSEL;
 }
@@ -693,23 +662,24 @@ void ESI_setNominalInternalOscFreq(void)
 //! \return None
 //
 //*****************************************************************************
-static uint16_t measureESIOSC(void){
+static uint16_t measureESIOSC( void )
+{
     // This and next instruction realizes a clear->set ESICLKGON bit.
-    ESIOSC &= ~(ESICLKGON);
+    ESIOSC &= ~( ESICLKGON );
 
     // This starts measurement.
     ESIOSC |= ESICLKGON + ESIHFSEL;
 
     // Reading ESICNT3 while counting always result in reading a 0x01.
-    while(ESICNT3 == 1)
+    while( ESICNT3 == 1 )
     {
         ;
     }
 
     // Stop ESIOSC oscillator
-    ESIOSC &= ~(ESICLKGON);
+    ESIOSC &= ~( ESICLKGON );
 
-    return (ESICNT3);
+    return ( ESICNT3 );
 }
 
 //******************************************************************************
@@ -720,15 +690,16 @@ static uint16_t measureESIOSC(void){
 //! \return ESICLKFQ bits only
 //******************************************************************************
 
-uint8_t ESI_getESICLKFQ(void){
+uint8_t ESI_getESICLKFQ( void )
+{
     uint16_t temp;
 
     // Store ESIOSC content
     temp = ESIOSC;
     // Get ESICLKFQx bits
-    temp = (temp >> 8) & 0x3F;
+    temp = ( temp >> 8 ) & 0x3F;
 
-    return(temp);
+    return ( temp );
 }
 
 //******************************************************************************
@@ -741,15 +712,15 @@ uint8_t ESI_getESICLKFQ(void){
 //
 //! \return none
 //******************************************************************************
-void ESI_setESICLKFQ(uint8_t setting)
+void ESI_setESICLKFQ( uint8_t setting )
 {
     uint16_t temp;
 
-    assert(setting < 0x40);
+    assert( setting < 0x40 );
 
-    temp = ESIOSC;                         // get actual ESIOSC register content
-    temp &= ~(0x3F00);
-    temp = ((uint16_t) setting << 8) + temp;     // and update ESICLKFQ bits
+    temp = ESIOSC; // get actual ESIOSC register content
+    temp &= ~( 0x3F00 );
+    temp = ( ( uint16_t ) setting << 8 ) + temp; // and update ESICLKFQ bits
     ESIOSC = temp;
 }
 
@@ -761,30 +732,30 @@ void ESI_setESICLKFQ(uint8_t setting)
 //! \return None
 //
 //*****************************************************************************
-void ESI_calibrateInternalOscFreq(uint16_t targetAclkCounts)
+void ESI_calibrateInternalOscFreq( uint16_t targetAclkCounts )
 {
     ESI_setNominalInternalOscFreq();
 
-    ESI_measureESIOSC(ESI_ESIOSC_OVERSAMPLE_4);
+    ESI_measureESIOSC( ESI_ESIOSC_OVERSAMPLE_4 );
 
-    if(ESICNT3 > targetAclkCounts)
+    if( ESICNT3 > targetAclkCounts )
     {
-        //freq is too high
+        // freq is too high
         do
         {
-            ESI_adjustInternalOscFreq(ESI_INTERNAL_OSC_FREQ_DECREASE);
-        }
-        while(ESI_measureESIOSC(ESI_ESIOSC_OVERSAMPLE_4) > targetAclkCounts);
+            ESI_adjustInternalOscFreq( ESI_INTERNAL_OSC_FREQ_DECREASE );
+        } while( ESI_measureESIOSC( ESI_ESIOSC_OVERSAMPLE_4 ) >
+                 targetAclkCounts );
     }
     else
     {
-        //freq is too low
+        // freq is too low
         do
         {
-            ESI_adjustInternalOscFreq(ESI_INTERNAL_OSC_FREQ_INCREASE);
-        }
-        while(ESI_measureESIOSC(ESI_ESIOSC_OVERSAMPLE_4) > targetAclkCounts);
-        ESI_adjustInternalOscFreq(ESI_INTERNAL_OSC_FREQ_DECREASE);
+            ESI_adjustInternalOscFreq( ESI_INTERNAL_OSC_FREQ_INCREASE );
+        } while( ESI_measureESIOSC( ESI_ESIOSC_OVERSAMPLE_4 ) >
+                 targetAclkCounts );
+        ESI_adjustInternalOscFreq( ESI_INTERNAL_OSC_FREQ_DECREASE );
     }
 }
 
@@ -797,19 +768,20 @@ void ESI_calibrateInternalOscFreq(uint16_t targetAclkCounts)
 //! \return averaged ESIOSC measurement.
 //
 //*****************************************************************************
-uint16_t ESI_measureESIOSC(uint8_t oversample){
+uint16_t ESI_measureESIOSC( uint8_t oversample )
+{
     uint8_t i;
     uint16_t temp = 0;
 
-    assert(oversample < 9);
+    assert( oversample < 9 );
 
-    for(i = oversample; i > 0; i--)
+    for( i = oversample; i > 0; i-- )
     {
         temp += measureESIOSC();
     }
 
     temp /= oversample;
-    return(temp);
+    return ( temp );
 }
 
 //*****************************************************************************
@@ -824,7 +796,7 @@ uint16_t ESI_measureESIOSC(uint8_t oversample){
 //! \return None
 //
 //*****************************************************************************
-void ESI_setPSMCounter1UpperThreshold(uint16_t threshold)
+void ESI_setPSMCounter1UpperThreshold( uint16_t threshold )
 {
     ESITHR1 = threshold;
 }
@@ -841,7 +813,7 @@ void ESI_setPSMCounter1UpperThreshold(uint16_t threshold)
 //! \return None
 //
 //*****************************************************************************
-void ESI_setPSMCounter1LowerThreshold(uint16_t threshold)
+void ESI_setPSMCounter1LowerThreshold( uint16_t threshold )
 {
     ESITHR2 = threshold;
 }
@@ -858,11 +830,10 @@ void ESI_setPSMCounter1LowerThreshold(uint16_t threshold)
 //! \return None
 //
 //*****************************************************************************
-void ESI_setAFE1DACValue(uint16_t dacValue,
-                         uint8_t dacRegNum)
+void ESI_setAFE1DACValue( uint16_t dacValue, uint8_t dacRegNum )
 {
-    volatile uint16_t* dacRegBase = (volatile uint16_t*) &ESIDAC1R0;
-    *(dacRegBase + dacRegNum) = dacValue;
+    volatile uint16_t * dacRegBase = ( volatile uint16_t * ) &ESIDAC1R0;
+    *( dacRegBase + dacRegNum ) = dacValue;
 }
 
 //*****************************************************************************
@@ -877,10 +848,10 @@ void ESI_setAFE1DACValue(uint16_t dacValue,
 //! \return DAC value from selected DAC register.
 //
 //*****************************************************************************
-uint16_t ESI_getAFE1DACValue(uint8_t dacRegNum)
+uint16_t ESI_getAFE1DACValue( uint8_t dacRegNum )
 {
-    volatile uint16_t* dacRegBase = (volatile uint16_t*) &ESIDAC1R0;
-    return(*(dacRegBase + dacRegNum));
+    volatile uint16_t * dacRegBase = ( volatile uint16_t * ) &ESIDAC1R0;
+    return ( *( dacRegBase + dacRegNum ) );
 }
 
 //*****************************************************************************
@@ -895,11 +866,10 @@ uint16_t ESI_getAFE1DACValue(uint8_t dacRegNum)
 //! \return None
 //
 //*****************************************************************************
-void ESI_setAFE2DACValue(uint16_t dacValue,
-                         uint8_t dacRegNum)
+void ESI_setAFE2DACValue( uint16_t dacValue, uint8_t dacRegNum )
 {
-    volatile uint16_t* dacRegBase = (volatile uint16_t*) &ESIDAC2R0;
-    *(dacRegBase + dacRegNum) = dacValue;
+    volatile uint16_t * dacRegBase = ( volatile uint16_t * ) &ESIDAC2R0;
+    *( dacRegBase + dacRegNum ) = dacValue;
 }
 
 //*****************************************************************************
@@ -914,10 +884,10 @@ void ESI_setAFE2DACValue(uint16_t dacValue,
 //! \return DAC value from selected DAC register.
 //
 //*****************************************************************************
-uint16_t ESI_getAFE2DACValue(uint8_t dacRegNum)
+uint16_t ESI_getAFE2DACValue( uint8_t dacRegNum )
 {
-    volatile uint16_t* dacRegBase = (volatile uint16_t*) &ESIDAC2R0;
-    return(*(dacRegBase + dacRegNum));
+    volatile uint16_t * dacRegBase = ( volatile uint16_t * ) &ESIDAC2R0;
+    return ( *( dacRegBase + dacRegNum ) );
 }
 
 //*****************************************************************************
@@ -932,22 +902,17 @@ uint16_t ESI_getAFE2DACValue(uint8_t dacRegNum)
 //! \return None
 //
 //*****************************************************************************
-void ESI_setTSMstateReg(ESI_TSM_StateParams *params,
-                        uint8_t stateRegNum)
+void ESI_setTSMstateReg( ESI_TSM_StateParams * params, uint8_t stateRegNum )
 {
-    volatile uint16_t* stateRegBase = (volatile uint16_t*) &ESITSM0;
-    *(stateRegBase + stateRegNum) =
-        (params->inputChannelSelect +
-         params->LCDampingSelect +
-         params->excitationSelect +
-         params->comparatorSelect +
-         params->highFreqClkOn_or_compAutoZeroCycle +
-         params->outputLatchSelect +
-         params->testCycleSelect +
-         params->dacSelect +
-         params->tsmStop +
-         params->tsmClkSrc) |
-        (params->duration << 11);
+    volatile uint16_t * stateRegBase = ( volatile uint16_t * ) &ESITSM0;
+    *( stateRegBase +
+       stateRegNum ) = ( params->inputChannelSelect + params->LCDampingSelect +
+                         params->excitationSelect + params->comparatorSelect +
+                         params->highFreqClkOn_or_compAutoZeroCycle +
+                         params->outputLatchSelect + params->testCycleSelect +
+                         params->dacSelect + params->tsmStop +
+                         params->tsmClkSrc ) |
+                       ( params->duration << 11 );
 }
 
 //*****************************************************************************
@@ -957,9 +922,9 @@ void ESI_setTSMstateReg(ESI_TSM_StateParams *params,
 //! \return None
 //
 //*****************************************************************************
-uint16_t ESI_getInterruptVectorRegister(void)
+uint16_t ESI_getInterruptVectorRegister( void )
 {
-    return (ESIIV);
+    return ( ESIIV );
 }
 
 //*****************************************************************************
@@ -983,9 +948,9 @@ uint16_t ESI_getInterruptVectorRegister(void)
 //! \return None
 //
 //*****************************************************************************
-void ESI_enableInterrupt(uint16_t interruptMask)
+void ESI_enableInterrupt( uint16_t interruptMask )
 {
-    ESIINT1 |= (interruptMask);
+    ESIINT1 |= ( interruptMask );
 }
 
 //*****************************************************************************
@@ -1009,9 +974,9 @@ void ESI_enableInterrupt(uint16_t interruptMask)
 //! \return None
 //
 //*****************************************************************************
-void ESI_disableInterrupt(uint16_t interruptMask)
+void ESI_disableInterrupt( uint16_t interruptMask )
 {
-    ESIINT1 &= ~(interruptMask);
+    ESIINT1 &= ~( interruptMask );
 }
 
 //*****************************************************************************
@@ -1043,9 +1008,9 @@ void ESI_disableInterrupt(uint16_t interruptMask)
 //!         \n indicating the status of the masked flags
 //
 //*****************************************************************************
-uint16_t ESI_getInterruptStatus(uint16_t interruptMask)
+uint16_t ESI_getInterruptStatus( uint16_t interruptMask )
 {
-    return (ESIINT2 & interruptMask);
+    return ( ESIINT2 & interruptMask );
 }
 
 //*****************************************************************************
@@ -1067,9 +1032,9 @@ uint16_t ESI_getInterruptStatus(uint16_t interruptMask)
 //! \return None
 //
 //*****************************************************************************
-void ESI_clearInterrupt(uint16_t interruptMask)
+void ESI_clearInterrupt( uint16_t interruptMask )
 {
-    ESIINT2 &= ~(interruptMask);
+    ESIINT2 &= ~( interruptMask );
 }
 
 //*****************************************************************************
@@ -1089,7 +1054,7 @@ void ESI_clearInterrupt(uint16_t interruptMask)
 //! \return None
 //
 //*****************************************************************************
-void ESI_setIFG0Source(uint16_t ifg0Src)
+void ESI_setIFG0Source( uint16_t ifg0Src )
 {
     ESIINT1 &= ~ESI_IFG0_SET_WHEN_ESIOUT3_RESET;
     ESIINT1 |= ifg0Src;
@@ -1112,7 +1077,7 @@ void ESI_setIFG0Source(uint16_t ifg0Src)
 //! \return None
 //
 //*****************************************************************************
-void ESI_setIFG8Source(uint16_t ifg8Src)
+void ESI_setIFG8Source( uint16_t ifg8Src )
 {
     ESIINT1 &= ~ESI_IFG8_SET_WHEN_ESIOUT7_RESET;
     ESIINT1 |= ifg8Src;
@@ -1131,7 +1096,7 @@ void ESI_setIFG8Source(uint16_t ifg8Src)
 //! \return None
 //
 //*****************************************************************************
-void ESI_setIFG7Source(uint16_t ifg7Src)
+void ESI_setIFG7Source( uint16_t ifg7Src )
 {
     ESIINT2 &= ~ESI_IFG7_SOURCE_CNT0_ROLLOVER;
     ESIINT2 |= ifg7Src;
@@ -1150,7 +1115,7 @@ void ESI_setIFG7Source(uint16_t ifg7Src)
 //! \return None
 //
 //*****************************************************************************
-void ESI_setIFG4Source(uint16_t ifg4Src)
+void ESI_setIFG4Source( uint16_t ifg4Src )
 {
     ESIINT2 &= ~ESI_IFG4_SOURCE_CNT2_ROLLOVER;
     ESIINT2 |= ifg4Src;
@@ -1170,126 +1135,122 @@ void ESI_setIFG4Source(uint16_t ifg4Src)
 //! \return None
 //
 //*****************************************************************************
-void ESI_LC_DAC_calibration(uint8_t selected_channel)
+void ESI_LC_DAC_calibration( uint8_t selected_channel )
 {
-#define NUM_SENSOR_CAL  4
-#define MIN_HYSTERESIS  30
-#define STEP_TO_FINISH  4
+    #define NUM_SENSOR_CAL 4
+    #define MIN_HYSTERESIS 30
+    #define STEP_TO_FINISH 4
 
     unsigned int i;
     unsigned char test_bit, done;
-    unsigned int hysteresis[NUM_SENSOR_CAL],
-                 hysteresis_hi[NUM_SENSOR_CAL],
-                 hysteresis_lo[NUM_SENSOR_CAL],
-                 current[NUM_SENSOR_CAL],
-                 average[NUM_SENSOR_CAL],
-                 max[NUM_SENSOR_CAL],
-                 min[NUM_SENSOR_CAL];
+    unsigned int hysteresis[ NUM_SENSOR_CAL ], hysteresis_hi[ NUM_SENSOR_CAL ],
+        hysteresis_lo[ NUM_SENSOR_CAL ], current[ NUM_SENSOR_CAL ],
+        average[ NUM_SENSOR_CAL ], max[ NUM_SENSOR_CAL ], min[ NUM_SENSOR_CAL ];
 
     // State:	0 = output low
     //			1 = output high
     //			2 = undetermined (between 2 hysteresis level)
-    unsigned char previous_state[NUM_SENSOR_CAL],
-                  current_state[NUM_SENSOR_CAL],
-                  step[NUM_SENSOR_CAL];
+    unsigned char previous_state[ NUM_SENSOR_CAL ],
+        current_state[ NUM_SENSOR_CAL ], step[ NUM_SENSOR_CAL ];
 
     // Reset values
-    for(i = 0; i < NUM_SENSOR_CAL; i++)
+    for( i = 0; i < NUM_SENSOR_CAL; i++ )
     {
-        max[i] = 0;
-        min[i] = 0xffff;
-        previous_state[i] = 2;
-        step[i] = 0;
+        max[ i ] = 0;
+        min[ i ] = 0xffff;
+        previous_state[ i ] = 2;
+        step[ i ] = 0;
     }
 
     do
     {
         // Find the current oscillating level, using software mode
-        FindDAC(selected_channel, 1);
+        FindDAC( selected_channel, 1 );
 
         test_bit = 1;
         done = 1;
 
-        for(i = 0; i < NUM_SENSOR_CAL; i++)
+        for( i = 0; i < NUM_SENSOR_CAL; i++ )
         {
             // skip if the channel is not selected
-            if(test_bit & selected_channel)
+            if( test_bit & selected_channel )
             {
-                current[i] = ESI_getAFE1DACValue(i * 2);
+                current[ i ] = ESI_getAFE1DACValue( i * 2 );
 
                 // Record max and min value
-                if(current[i] > max[i])
+                if( current[ i ] > max[ i ] )
                 {
-                    max[i] = current[i];
+                    max[ i ] = current[ i ];
                 }
-                if(current[i] < min[i])
+                if( current[ i ] < min[ i ] )
                 {
-                    min[i] = current[i];
+                    min[ i ] = current[ i ];
                 }
 
                 // Update average and hysteresis level
-                average[i] = (max[i] + min[i]) >> 1;
-                hysteresis[i] = (max[i] - min[i]) >> 3;
+                average[ i ] = ( max[ i ] + min[ i ] ) >> 1;
+                hysteresis[ i ] = ( max[ i ] - min[ i ] ) >> 3;
 
-                if(hysteresis[i] < MIN_HYSTERESIS)
+                if( hysteresis[ i ] < MIN_HYSTERESIS )
                 {
-                    hysteresis[i] = MIN_HYSTERESIS;
+                    hysteresis[ i ] = MIN_HYSTERESIS;
                 }
 
-                hysteresis[i] >>= 1;
-                hysteresis_hi[i] = average[i] + hysteresis[i];
-                hysteresis_lo[i] = average[i] - hysteresis[i];
+                hysteresis[ i ] >>= 1;
+                hysteresis_hi[ i ] = average[ i ] + hysteresis[ i ];
+                hysteresis_lo[ i ] = average[ i ] - hysteresis[ i ];
 
-                // Determine output state based on hysteresis_hi and hysteresis_lo
-                if(current[i] < hysteresis_lo[i])
+                // Determine output state based on hysteresis_hi and
+                // hysteresis_lo
+                if( current[ i ] < hysteresis_lo[ i ] )
                 {
-                    current_state[i] = 0;
+                    current_state[ i ] = 0;
                 }
-                else if(current[i] > hysteresis_hi[i])
+                else if( current[ i ] > hysteresis_hi[ i ] )
                 {
-                    current_state[i] = 1;
+                    current_state[ i ] = 1;
                 }
                 else
                 {
-                    current_state[i] = 2;
+                    current_state[ i ] = 2;
                 }
 
                 // If there is state change, proceed to next step
-                switch(current_state[i])
+                switch( current_state[ i ] )
                 {
-                case 0:
-                case 1:
-                    if(previous_state[i] != current_state[i])
-                    {
-                        step[i]++;
-                        previous_state[i] = current_state[i];
-                    }
-                    break;
+                    case 0:
+                    case 1:
+                        if( previous_state[ i ] != current_state[ i ] )
+                        {
+                            step[ i ]++;
+                            previous_state[ i ] = current_state[ i ];
+                        }
+                        break;
 
-                default:
-                    break;
+                    default:
+                        break;
                 }
 
-                // Any selected sensor which has not finished calibration will set done to zero
-                if(step[i] < STEP_TO_FINISH)
+                // Any selected sensor which has not finished calibration will
+                // set done to zero
+                if( step[ i ] < STEP_TO_FINISH )
                 {
                     done = 0;
                 }
             }
             test_bit <<= 1;
         }
-    }
-    while(!done);
+    } while( !done );
 
     // Record DAC Values
     test_bit = 1;
-    done = ESI_DAC1_REG0;               // Temp value for recording DAC
-    for(i = 0; i < NUM_SENSOR_CAL; i++)
+    done = ESI_DAC1_REG0; // Temp value for recording DAC
+    for( i = 0; i < NUM_SENSOR_CAL; i++ )
     {
-        if(test_bit & selected_channel)
+        if( test_bit & selected_channel )
         {
-            ESI_setAFE1DACValue(hysteresis_hi[i], done++);
-            ESI_setAFE1DACValue(hysteresis_lo[i], done++);
+            ESI_setAFE1DACValue( hysteresis_hi[ i ], done++ );
+            ESI_setAFE1DACValue( hysteresis_lo[ i ], done++ );
         }
         test_bit <<= 1;
     }
@@ -1304,8 +1265,8 @@ void ESI_LC_DAC_calibration(uint8_t selected_channel)
 //
 //*****************************************************************************
 
-static void FindDAC(unsigned char selected_channel,
-                    unsigned char software_trigger)
+static void FindDAC( unsigned char selected_channel,
+                     unsigned char software_trigger )
 {
     // DAC Level tester, using successive approximation approach
     unsigned int DAC_BIT = 0x0800, Prev_DAC_BIT = 0x0C00;
@@ -1316,16 +1277,16 @@ static void FindDAC(unsigned char selected_channel,
     // Set initial DAC value for each selected channel
 
     // AFE 1
-    if(selected_channel & 0x0f)
+    if( selected_channel & 0x0f )
     {
         test_bit = 0x01;
         DAC_index = ESI_DAC1_REG0;
-        for(i = 0; i < 4; i++)
+        for( i = 0; i < 4; i++ )
         {
-            if(selected_channel & test_bit)
+            if( selected_channel & test_bit )
             {
-                ESI_setAFE1DACValue(DAC_BIT, DAC_index++);
-                ESI_setAFE1DACValue(DAC_BIT, DAC_index++);
+                ESI_setAFE1DACValue( DAC_BIT, DAC_index++ );
+                ESI_setAFE1DACValue( DAC_BIT, DAC_index++ );
             }
             else
             {
@@ -1336,16 +1297,16 @@ static void FindDAC(unsigned char selected_channel,
     }
 
     // AFE 2
-    if(selected_channel & 0xf0)
+    if( selected_channel & 0xf0 )
     {
         test_bit = 0x10;
         DAC_index = ESI_DAC2_REG0;
-        for(i = 0; i < 4; i++)
+        for( i = 0; i < 4; i++ )
         {
-            if(selected_channel & test_bit)
+            if( selected_channel & test_bit )
             {
-                ESI_setAFE2DACValue(DAC_BIT, DAC_index++);
-                ESI_setAFE2DACValue(DAC_BIT, DAC_index++);
+                ESI_setAFE2DACValue( DAC_BIT, DAC_index++ );
+                ESI_setAFE2DACValue( DAC_BIT, DAC_index++ );
             }
             else
             {
@@ -1355,56 +1316,56 @@ static void FindDAC(unsigned char selected_channel,
         }
     }
 
-    ESI_enableInterrupt(ESI_INTERRUPT_ESISTOP);                 // enable ESISTOP INT
+    ESI_enableInterrupt( ESI_INTERRUPT_ESISTOP ); // enable ESISTOP INT
 
     // Find the DAC value for each selected channel
     do
     {
-        ESI_clearInterrupt (ESI_INTERRUPT_FLAG_ESISTOP);
+        ESI_clearInterrupt( ESI_INTERRUPT_FLAG_ESISTOP );
 
-        if(software_trigger)
+        if( software_trigger )
         {
             ESI_TSM_softwareTrigger();
         }
 
-        __bis_SR_register(LPM3_bits + GIE);                     // wait for the ESISTOP flag
-        DAC_BIT >>= 1;                                                          // right shift one bit
+        __bis_SR_register( LPM3_bits + GIE ); // wait for the ESISTOP flag
+        DAC_BIT >>= 1;                        // right shift one bit
 
         // AFE 1
-        if(selected_channel & 0x0f)
+        if( selected_channel & 0x0f )
         {
             test_bit = 0x01;
             DAC_index = ESI_DAC1_REG0;
-            for(i = 0; i < 4; i++)
+            for( i = 0; i < 4; i++ )
             {
-                if(selected_channel & test_bit)
+                if( selected_channel & test_bit )
                 {
-#ifndef INVERTED
-                    if(ESI_getLatchedComparatorOutput(test_bit) ==
-                       ESI_AFE_OUTPUT_HIGH)
-#else
-                    if(ESI_getLatchedComparatorOutput(test_bit) ==
-                       ESI_AFE_OUTPUT_LOW)
-#endif
+    #ifndef INVERTED
+                    if( ESI_getLatchedComparatorOutput( test_bit ) ==
+                        ESI_AFE_OUTPUT_HIGH )
+    #else
+                    if( ESI_getLatchedComparatorOutput( test_bit ) ==
+                        ESI_AFE_OUTPUT_LOW )
+    #endif
                     {
-                        ESI_setAFE1DACValue(ESI_getAFE1DACValue(
-                                                DAC_index) | DAC_BIT,
-                                            DAC_index);
+                        ESI_setAFE1DACValue( ESI_getAFE1DACValue( DAC_index ) |
+                                                 DAC_BIT,
+                                             DAC_index );
                         DAC_index++;
-                        ESI_setAFE1DACValue(ESI_getAFE1DACValue(
-                                                DAC_index) | DAC_BIT,
-                                            DAC_index);
+                        ESI_setAFE1DACValue( ESI_getAFE1DACValue( DAC_index ) |
+                                                 DAC_BIT,
+                                             DAC_index );
                         DAC_index++;
                     }
                     else
                     {
-                        ESI_setAFE1DACValue(ESI_getAFE1DACValue(
-                                                DAC_index) ^ Prev_DAC_BIT,
-                                            DAC_index);
+                        ESI_setAFE1DACValue( ESI_getAFE1DACValue( DAC_index ) ^
+                                                 Prev_DAC_BIT,
+                                             DAC_index );
                         DAC_index++;
-                        ESI_setAFE1DACValue(ESI_getAFE1DACValue(
-                                                DAC_index) ^ Prev_DAC_BIT,
-                                            DAC_index);
+                        ESI_setAFE1DACValue( ESI_getAFE1DACValue( DAC_index ) ^
+                                                 Prev_DAC_BIT,
+                                             DAC_index );
                         DAC_index++;
                     }
                 }
@@ -1417,40 +1378,40 @@ static void FindDAC(unsigned char selected_channel,
         }
 
         // AFE 2
-        if(selected_channel & 0xf0)
+        if( selected_channel & 0xf0 )
         {
             test_bit = 0x10;
             DAC_index = ESI_DAC2_REG0;
-            for(i = 0; i < 4; i++)
+            for( i = 0; i < 4; i++ )
             {
-                if(selected_channel & test_bit)
+                if( selected_channel & test_bit )
                 {
-#ifndef INVERTED
-                    if(ESI_getLatchedComparatorOutput(test_bit) ==
-                       ESI_AFE_OUTPUT_HIGH)
-#else
-                    if(ESI_getLatchedComparatorOutput(test_bit) ==
-                       ESI_AFE_OUTPUT_LOW)
-#endif
+    #ifndef INVERTED
+                    if( ESI_getLatchedComparatorOutput( test_bit ) ==
+                        ESI_AFE_OUTPUT_HIGH )
+    #else
+                    if( ESI_getLatchedComparatorOutput( test_bit ) ==
+                        ESI_AFE_OUTPUT_LOW )
+    #endif
                     {
-                        ESI_setAFE1DACValue(ESI_getAFE2DACValue(
-                                                DAC_index) | DAC_BIT,
-                                            DAC_index);
+                        ESI_setAFE1DACValue( ESI_getAFE2DACValue( DAC_index ) |
+                                                 DAC_BIT,
+                                             DAC_index );
                         DAC_index++;
-                        ESI_setAFE1DACValue(ESI_getAFE2DACValue(
-                                                DAC_index) | DAC_BIT,
-                                            DAC_index);
+                        ESI_setAFE1DACValue( ESI_getAFE2DACValue( DAC_index ) |
+                                                 DAC_BIT,
+                                             DAC_index );
                         DAC_index++;
                     }
                     else
                     {
-                        ESI_setAFE1DACValue(ESI_getAFE2DACValue(
-                                                DAC_index) ^ Prev_DAC_BIT,
-                                            DAC_index);
+                        ESI_setAFE1DACValue( ESI_getAFE2DACValue( DAC_index ) ^
+                                                 Prev_DAC_BIT,
+                                             DAC_index );
                         DAC_index++;
-                        ESI_setAFE1DACValue(ESI_getAFE2DACValue(
-                                                DAC_index) ^ Prev_DAC_BIT,
-                                            DAC_index);
+                        ESI_setAFE1DACValue( ESI_getAFE2DACValue( DAC_index ) ^
+                                                 Prev_DAC_BIT,
+                                             DAC_index );
                         DAC_index++;
                     }
                 }
@@ -1461,11 +1422,10 @@ static void FindDAC(unsigned char selected_channel,
                 test_bit <<= 1;
             }
         }
-        Prev_DAC_BIT >>= 1;                                             // right shift one bit
-    }
-    while(DAC_BIT);
+        Prev_DAC_BIT >>= 1; // right shift one bit
+    } while( DAC_BIT );
 
-    ESI_disableInterrupt(ESI_INTERRUPT_ESISTOP);
+    ESI_disableInterrupt( ESI_INTERRUPT_ESISTOP );
     __no_operation();
 }
 

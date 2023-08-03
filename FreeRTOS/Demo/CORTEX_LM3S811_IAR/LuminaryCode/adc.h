@@ -29,8 +29,7 @@
 #define __ADC_H__
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 //*****************************************************************************
@@ -39,16 +38,16 @@ extern "C"
 // parameter.
 //
 //*****************************************************************************
-#define ADC_TRIGGER_PROCESSOR   0x00000000  // Processor event
-#define ADC_TRIGGER_COMP0       0x00000001  // Analog comparator 0 event
-#define ADC_TRIGGER_COMP1       0x00000002  // Analog comparator 1 event
-#define ADC_TRIGGER_COMP2       0x00000003  // Analog comparator 2 event
-#define ADC_TRIGGER_EXTERNAL    0x00000004  // External event
-#define ADC_TRIGGER_TIMER       0x00000005  // Timer event
-#define ADC_TRIGGER_PWM0        0x00000006  // PWM0 event
-#define ADC_TRIGGER_PWM1        0x00000007  // PWM1 event
-#define ADC_TRIGGER_PWM2        0x00000008  // PWM2 event
-#define ADC_TRIGGER_ALWAYS      0x0000000F  // Always event
+#define ADC_TRIGGER_PROCESSOR 0x00000000 // Processor event
+#define ADC_TRIGGER_COMP0     0x00000001 // Analog comparator 0 event
+#define ADC_TRIGGER_COMP1     0x00000002 // Analog comparator 1 event
+#define ADC_TRIGGER_COMP2     0x00000003 // Analog comparator 2 event
+#define ADC_TRIGGER_EXTERNAL  0x00000004 // External event
+#define ADC_TRIGGER_TIMER     0x00000005 // Timer event
+#define ADC_TRIGGER_PWM0      0x00000006 // PWM0 event
+#define ADC_TRIGGER_PWM1      0x00000007 // PWM1 event
+#define ADC_TRIGGER_PWM2      0x00000008 // PWM2 event
+#define ADC_TRIGGER_ALWAYS    0x0000000F // Always event
 
 //*****************************************************************************
 //
@@ -56,68 +55,69 @@ extern "C"
 // parameter.
 //
 //*****************************************************************************
-#define ADC_CTL_TS              0x00000080  // Temperature sensor select
-#define ADC_CTL_IE              0x00000040  // Interrupt enable
-#define ADC_CTL_END             0x00000020  // Sequence end select
-#define ADC_CTL_D               0x00000010  // Differential select
-#define ADC_CTL_CH0             0x00000000  // Input channel 0
-#define ADC_CTL_CH1             0x00000001  // Input channel 1
-#define ADC_CTL_CH2             0x00000002  // Input channel 2
-#define ADC_CTL_CH3             0x00000003  // Input channel 3
-#define ADC_CTL_CH4             0x00000004  // Input channel 4
-#define ADC_CTL_CH5             0x00000005  // Input channel 5
-#define ADC_CTL_CH6             0x00000006  // Input channel 6
-#define ADC_CTL_CH7             0x00000007  // Input channel 7
+#define ADC_CTL_TS            0x00000080 // Temperature sensor select
+#define ADC_CTL_IE            0x00000040 // Interrupt enable
+#define ADC_CTL_END           0x00000020 // Sequence end select
+#define ADC_CTL_D             0x00000010 // Differential select
+#define ADC_CTL_CH0           0x00000000 // Input channel 0
+#define ADC_CTL_CH1           0x00000001 // Input channel 1
+#define ADC_CTL_CH2           0x00000002 // Input channel 2
+#define ADC_CTL_CH3           0x00000003 // Input channel 3
+#define ADC_CTL_CH4           0x00000004 // Input channel 4
+#define ADC_CTL_CH5           0x00000005 // Input channel 5
+#define ADC_CTL_CH6           0x00000006 // Input channel 6
+#define ADC_CTL_CH7           0x00000007 // Input channel 7
 
 //*****************************************************************************
 //
 // Prototypes for the APIs.
 //
 //*****************************************************************************
-extern void ADCIntRegister(unsigned long ulBase, unsigned long ulSequenceNum,
-                           void (*pfnHandler)(void));
-extern void ADCIntUnregister(unsigned long ulBase,
-                             unsigned long ulSequenceNum);
-extern void ADCIntDisable(unsigned long ulBase, unsigned long ulSequenceNum);
-extern void ADCIntEnable(unsigned long ulBase, unsigned long ulSequenceNum);
-extern unsigned long ADCIntStatus(unsigned long ulBase,
+extern void ADCIntRegister( unsigned long ulBase,
+                            unsigned long ulSequenceNum,
+                            void ( *pfnHandler )( void ) );
+extern void ADCIntUnregister( unsigned long ulBase,
+                              unsigned long ulSequenceNum );
+extern void ADCIntDisable( unsigned long ulBase, unsigned long ulSequenceNum );
+extern void ADCIntEnable( unsigned long ulBase, unsigned long ulSequenceNum );
+extern unsigned long ADCIntStatus( unsigned long ulBase,
+                                   unsigned long ulSequenceNum,
+                                   tBoolean bMasked );
+extern void ADCIntClear( unsigned long ulBase, unsigned long ulSequenceNum );
+extern void ADCSequenceEnable( unsigned long ulBase,
+                               unsigned long ulSequenceNum );
+extern void ADCSequenceDisable( unsigned long ulBase,
+                                unsigned long ulSequenceNum );
+extern void ADCSequenceConfigure( unsigned long ulBase,
                                   unsigned long ulSequenceNum,
-                                  tBoolean bMasked);
-extern void ADCIntClear(unsigned long ulBase, unsigned long ulSequenceNum);
-extern void ADCSequenceEnable(unsigned long ulBase,
-                              unsigned long ulSequenceNum);
-extern void ADCSequenceDisable(unsigned long ulBase,
-                               unsigned long ulSequenceNum);
-extern void ADCSequenceConfigure(unsigned long ulBase,
-                                 unsigned long ulSequenceNum,
-                                 unsigned long ulTrigger,
-                                 unsigned long ulPriority);
-extern void ADCSequenceStepConfigure(unsigned long ulBase,
-                                     unsigned long ulSequenceNum,
-                                     unsigned long ulStep,
-                                     unsigned long ulConfig);
-extern long ADCSequenceOverflow(unsigned long ulBase,
-                                unsigned long ulSequenceNum);
-extern long ADCSequenceUnderflow(unsigned long ulBase,
-                                 unsigned long ulSequenceNum);
-extern long ADCSequenceDataGet(unsigned long ulBase,
-                               unsigned long ulSequenceNum,
-                               unsigned long *pulBuffer);
-extern void ADCProcessorTrigger(unsigned long ulBase,
-                                unsigned long ulSequenceNum);
-extern void ADCSoftwareOversampleConfigure(unsigned long ulBase,
-                                           unsigned long ulSequenceNum,
-                                           unsigned long ulFactor);
-extern void ADCSoftwareOversampleStepConfigure(unsigned long ulBase,
-                                               unsigned long ulSequenceNum,
-                                               unsigned long ulStep,
-                                               unsigned long ulConfig);
-extern void ADCSoftwareOversampleDataGet(unsigned long ulBase,
-                                         unsigned long ulSequenceNum,
-                                         unsigned long *pulBuffer,
-                                         unsigned long ulCount);
-extern void ADCHardwareOversampleConfigure(unsigned long ulBase,
-                                           unsigned long ulFactor);
+                                  unsigned long ulTrigger,
+                                  unsigned long ulPriority );
+extern void ADCSequenceStepConfigure( unsigned long ulBase,
+                                      unsigned long ulSequenceNum,
+                                      unsigned long ulStep,
+                                      unsigned long ulConfig );
+extern long ADCSequenceOverflow( unsigned long ulBase,
+                                 unsigned long ulSequenceNum );
+extern long ADCSequenceUnderflow( unsigned long ulBase,
+                                  unsigned long ulSequenceNum );
+extern long ADCSequenceDataGet( unsigned long ulBase,
+                                unsigned long ulSequenceNum,
+                                unsigned long * pulBuffer );
+extern void ADCProcessorTrigger( unsigned long ulBase,
+                                 unsigned long ulSequenceNum );
+extern void ADCSoftwareOversampleConfigure( unsigned long ulBase,
+                                            unsigned long ulSequenceNum,
+                                            unsigned long ulFactor );
+extern void ADCSoftwareOversampleStepConfigure( unsigned long ulBase,
+                                                unsigned long ulSequenceNum,
+                                                unsigned long ulStep,
+                                                unsigned long ulConfig );
+extern void ADCSoftwareOversampleDataGet( unsigned long ulBase,
+                                          unsigned long ulSequenceNum,
+                                          unsigned long * pulBuffer,
+                                          unsigned long ulCount );
+extern void ADCHardwareOversampleConfigure( unsigned long ulBase,
+                                            unsigned long ulFactor );
 
 #ifdef __cplusplus
 }

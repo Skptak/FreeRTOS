@@ -28,7 +28,7 @@
  * in advertising or otherwise to promote the sale, use or other dealings in
  * this Software without prior written authorization from Xilinx.
  *
-*******************************************************************************/
+ *******************************************************************************/
 /******************************************************************************/
 /**
  *
@@ -48,7 +48,7 @@
  * 1.0   aad  01/20/15 Initial release.
  * </pre>
  *
-*******************************************************************************/
+ *******************************************************************************/
 
 /******************************* Include Files ********************************/
 
@@ -61,7 +61,7 @@
  * A table of configuration structures containing the configuration information
  * for each DisplayPort TX core in the system.
  */
-extern XDpDma_Config XDpDma_ConfigTable[XPAR_XDPDMA_NUM_INSTANCES];
+extern XDpDma_Config XDpDma_ConfigTable[ XPAR_XDPDMA_NUM_INSTANCES ];
 
 /**************************** Function Definitions ****************************/
 
@@ -78,19 +78,21 @@ extern XDpDma_Config XDpDma_ConfigTable[XPAR_XDPDMA_NUM_INSTANCES];
  *
  * @note	None.
  *
-*******************************************************************************/
-XDpDma_Config *XDpDma_LookupConfig(u16 DeviceId)
+ *******************************************************************************/
+XDpDma_Config * XDpDma_LookupConfig( u16 DeviceId )
 {
-	XDpDma_Config *CfgPtr;
-	u32 Index;
+    XDpDma_Config * CfgPtr;
+    u32 Index;
 
-	for (Index = 0; Index < XPAR_XDPDMA_NUM_INSTANCES; Index++) {
-		if (XDpDma_ConfigTable[Index].DeviceId == DeviceId) {
-			CfgPtr = &XDpDma_ConfigTable[Index];
-			break;
-		}
-	}
+    for( Index = 0; Index < XPAR_XDPDMA_NUM_INSTANCES; Index++ )
+    {
+        if( XDpDma_ConfigTable[ Index ].DeviceId == DeviceId )
+        {
+            CfgPtr = &XDpDma_ConfigTable[ Index ];
+            break;
+        }
+    }
 
-	return CfgPtr;
+    return CfgPtr;
 }
 /** @} */

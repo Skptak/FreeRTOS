@@ -1,6 +1,6 @@
 /*
  * -------------------------------------------
- *    MSP432 DriverLib - v3_10_00_09 
+ *    MSP432 DriverLib - v3_10_00_09
  * -------------------------------------------
  *
  * --COPYRIGHT--,BSD,BSD
@@ -46,8 +46,7 @@
 //
 //*****************************************************************************
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 //*****************************************************************************
@@ -55,13 +54,12 @@ extern "C"
 // Prototypes.
 //
 //*****************************************************************************
-extern uint32_t CPU_cpsid(void);
-extern uint32_t CPU_cpsie(void);
-extern uint32_t CPU_primask(void);
-extern void CPU_wfi(void);
-extern uint32_t CPU_basepriGet(void);
-extern void CPU_basepriSet(uint32_t newBasepri);
-
+extern uint32_t CPU_cpsid( void );
+extern uint32_t CPU_cpsie( void );
+extern uint32_t CPU_primask( void );
+extern void CPU_wfi( void );
+extern uint32_t CPU_basepriGet( void );
+extern void CPU_basepriSet( uint32_t newBasepri );
 
 //*****************************************************************************
 //
@@ -73,4 +71,3 @@ extern void CPU_basepriSet(uint32_t newBasepri);
 #endif
 
 #endif // __CPU_H__
-

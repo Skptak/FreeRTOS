@@ -22,49 +22,71 @@
 /*! @name Driver version */
 /*@{*/
 /*! @brief USART driver version. */
-#define FSL_USART_DRIVER_VERSION (MAKE_VERSION(2, 5, 1))
+#define FSL_USART_DRIVER_VERSION ( MAKE_VERSION( 2, 5, 1 ) )
 /*@}*/
 
-#define USART_FIFOTRIG_TXLVL_GET(base) (((base)->FIFOTRIG & USART_FIFOTRIG_TXLVL_MASK) >> USART_FIFOTRIG_TXLVL_SHIFT)
-#define USART_FIFOTRIG_RXLVL_GET(base) (((base)->FIFOTRIG & USART_FIFOTRIG_RXLVL_MASK) >> USART_FIFOTRIG_RXLVL_SHIFT)
+#define USART_FIFOTRIG_TXLVL_GET( base )                    \
+    ( ( ( base )->FIFOTRIG & USART_FIFOTRIG_TXLVL_MASK ) >> \
+      USART_FIFOTRIG_TXLVL_SHIFT )
+#define USART_FIFOTRIG_RXLVL_GET( base )                    \
+    ( ( ( base )->FIFOTRIG & USART_FIFOTRIG_RXLVL_MASK ) >> \
+      USART_FIFOTRIG_RXLVL_SHIFT )
 
 /*! @brief Retry times for waiting flag. */
 #ifndef UART_RETRY_TIMES
-#define UART_RETRY_TIMES 0U /* Defining to zero means to keep waiting for the flag until it is assert/deassert. */
+    #define UART_RETRY_TIMES                                                  \
+        0U /* Defining to zero means to keep waiting for the flag until it is \
+              assert/deassert. */
 #endif
 
 /*! @brief Error codes for the USART driver. */
 enum
 {
-    kStatus_USART_TxBusy              = MAKE_STATUS(kStatusGroup_LPC_USART, 0),  /*!< Transmitter is busy. */
-    kStatus_USART_RxBusy              = MAKE_STATUS(kStatusGroup_LPC_USART, 1),  /*!< Receiver is busy. */
-    kStatus_USART_TxIdle              = MAKE_STATUS(kStatusGroup_LPC_USART, 2),  /*!< USART transmitter is idle. */
-    kStatus_USART_RxIdle              = MAKE_STATUS(kStatusGroup_LPC_USART, 3),  /*!< USART receiver is idle. */
-    kStatus_USART_TxError             = MAKE_STATUS(kStatusGroup_LPC_USART, 7),  /*!< Error happens on txFIFO. */
-    kStatus_USART_RxError             = MAKE_STATUS(kStatusGroup_LPC_USART, 9),  /*!< Error happens on rxFIFO. */
-    kStatus_USART_RxRingBufferOverrun = MAKE_STATUS(kStatusGroup_LPC_USART, 8),  /*!< Error happens on rx ring buffer */
-    kStatus_USART_NoiseError          = MAKE_STATUS(kStatusGroup_LPC_USART, 10), /*!< USART noise error. */
-    kStatus_USART_FramingError        = MAKE_STATUS(kStatusGroup_LPC_USART, 11), /*!< USART framing error. */
-    kStatus_USART_ParityError         = MAKE_STATUS(kStatusGroup_LPC_USART, 12), /*!< USART parity error. */
-    kStatus_USART_BaudrateNotSupport =
-        MAKE_STATUS(kStatusGroup_LPC_USART, 13), /*!< Baudrate is not support in current clock source */
-    kStatus_USART_Timeout = MAKE_STATUS(kStatusGroup_LPC_USART, 14), /*!< USART time out. */
+    kStatus_USART_TxBusy = MAKE_STATUS( kStatusGroup_LPC_USART,
+                                        0 ), /*!< Transmitter is busy. */
+    kStatus_USART_RxBusy = MAKE_STATUS( kStatusGroup_LPC_USART,
+                                        1 ), /*!< Receiver is busy. */
+    kStatus_USART_TxIdle = MAKE_STATUS( kStatusGroup_LPC_USART,
+                                        2 ), /*!< USART transmitter is idle. */
+    kStatus_USART_RxIdle = MAKE_STATUS( kStatusGroup_LPC_USART,
+                                        3 ), /*!< USART receiver is idle. */
+    kStatus_USART_TxError = MAKE_STATUS( kStatusGroup_LPC_USART,
+                                         7 ), /*!< Error happens on txFIFO. */
+    kStatus_USART_RxError = MAKE_STATUS( kStatusGroup_LPC_USART,
+                                         9 ), /*!< Error happens on rxFIFO. */
+    kStatus_USART_RxRingBufferOverrun = MAKE_STATUS( kStatusGroup_LPC_USART,
+                                                     8 ), /*!< Error happens on
+                                                             rx ring buffer */
+    kStatus_USART_NoiseError = MAKE_STATUS( kStatusGroup_LPC_USART,
+                                            10 ), /*!< USART noise error. */
+    kStatus_USART_FramingError = MAKE_STATUS( kStatusGroup_LPC_USART,
+                                              11 ), /*!< USART framing error. */
+    kStatus_USART_ParityError = MAKE_STATUS( kStatusGroup_LPC_USART,
+                                             12 ), /*!< USART parity error. */
+    kStatus_USART_BaudrateNotSupport = MAKE_STATUS( kStatusGroup_LPC_USART,
+                                                    13 ), /*!< Baudrate is not
+                                                             support in current
+                                                             clock source */
+    kStatus_USART_Timeout = MAKE_STATUS( kStatusGroup_LPC_USART,
+                                         14 ), /*!< USART time out. */
 };
 
 /*! @brief USART synchronous mode. */
 typedef enum _usart_sync_mode
 {
     kUSART_SyncModeDisabled = 0x0U, /*!< Asynchronous mode.       */
-    kUSART_SyncModeSlave    = 0x2U, /*!< Synchronous slave mode.  */
-    kUSART_SyncModeMaster   = 0x3U, /*!< Synchronous master mode. */
+    kUSART_SyncModeSlave = 0x2U,    /*!< Synchronous slave mode.  */
+    kUSART_SyncModeMaster = 0x3U,   /*!< Synchronous master mode. */
 } usart_sync_mode_t;
 
 /*! @brief USART parity mode. */
 typedef enum _usart_parity_mode
 {
     kUSART_ParityDisabled = 0x0U, /*!< Parity disabled */
-    kUSART_ParityEven     = 0x2U, /*!< Parity enabled, type even, bit setting: PE|PT = 10 */
-    kUSART_ParityOdd      = 0x3U, /*!< Parity enabled, type odd,  bit setting: PE|PT = 11 */
+    kUSART_ParityEven = 0x2U, /*!< Parity enabled, type even, bit setting: PE|PT
+                                 = 10 */
+    kUSART_ParityOdd = 0x3U,  /*!< Parity enabled, type odd,  bit setting: PE|PT
+                                 = 11 */
 } usart_parity_mode_t;
 
 /*! @brief USART stop bit count. */
@@ -84,8 +106,10 @@ typedef enum _usart_data_len
 /*! @brief USART clock polarity configuration, used in sync mode.*/
 typedef enum _usart_clock_polarity
 {
-    kUSART_RxSampleOnFallingEdge = 0x0U, /*!< Un_RXD is sampled on the falling edge of SCLK. */
-    kUSART_RxSampleOnRisingEdge  = 0x1U, /*!< Un_RXD is sampled on the rising edge of SCLK. */
+    kUSART_RxSampleOnFallingEdge = 0x0U, /*!< Un_RXD is sampled on the falling
+                                            edge of SCLK. */
+    kUSART_RxSampleOnRisingEdge = 0x1U,  /*!< Un_RXD is sampled on the rising
+                                            edge of SCLK. */
 } usart_clock_polarity_t;
 
 /*! @brief txFIFO watermark values */
@@ -115,48 +139,74 @@ typedef enum _usart_rxfifo_watermark
 } usart_rxfifo_watermark_t;
 
 /*!
- * @brief USART interrupt configuration structure, default settings all disabled.
+ * @brief USART interrupt configuration structure, default settings all
+ * disabled.
  */
 enum _usart_interrupt_enable
 {
-    kUSART_TxErrorInterruptEnable = (USART_FIFOINTENSET_TXERR_MASK),
-    kUSART_RxErrorInterruptEnable = (USART_FIFOINTENSET_RXERR_MASK),
-    kUSART_TxLevelInterruptEnable = (USART_FIFOINTENSET_TXLVL_MASK),
-    kUSART_RxLevelInterruptEnable = (USART_FIFOINTENSET_RXLVL_MASK),
+    kUSART_TxErrorInterruptEnable = ( USART_FIFOINTENSET_TXERR_MASK ),
+    kUSART_RxErrorInterruptEnable = ( USART_FIFOINTENSET_RXERR_MASK ),
+    kUSART_TxLevelInterruptEnable = ( USART_FIFOINTENSET_TXLVL_MASK ),
+    kUSART_RxLevelInterruptEnable = ( USART_FIFOINTENSET_RXLVL_MASK ),
 };
 
 /*!
  * @brief USART status flags.
  *
- * This provides constants for the USART status flags for use in the USART functions.
+ * This provides constants for the USART status flags for use in the USART
+ * functions.
  */
 enum _usart_flags
 {
-    kUSART_TxError            = (USART_FIFOSTAT_TXERR_MASK),      /*!< TEERR bit, sets if TX buffer is error */
-    kUSART_RxError            = (USART_FIFOSTAT_RXERR_MASK),      /*!< RXERR bit, sets if RX buffer is error */
-    kUSART_TxFifoEmptyFlag    = (USART_FIFOSTAT_TXEMPTY_MASK),    /*!< TXEMPTY bit, sets if TX buffer is empty */
-    kUSART_TxFifoNotFullFlag  = (USART_FIFOSTAT_TXNOTFULL_MASK),  /*!< TXNOTFULL bit, sets if TX buffer is not full */
-    kUSART_RxFifoNotEmptyFlag = (USART_FIFOSTAT_RXNOTEMPTY_MASK), /*!< RXNOEMPTY bit, sets if RX buffer is not empty */
-    kUSART_RxFifoFullFlag     = (USART_FIFOSTAT_RXFULL_MASK),     /*!< RXFULL bit, sets if RX buffer is full */
+    kUSART_TxError = ( USART_FIFOSTAT_TXERR_MASK ), /*!< TEERR bit, sets if TX
+                                                       buffer is error */
+    kUSART_RxError = ( USART_FIFOSTAT_RXERR_MASK ), /*!< RXERR bit, sets if RX
+                                                       buffer is error */
+    kUSART_TxFifoEmptyFlag = ( USART_FIFOSTAT_TXEMPTY_MASK ), /*!< TXEMPTY bit,
+                                                                 sets if TX
+                                                                 buffer is empty
+                                                               */
+    kUSART_TxFifoNotFullFlag = ( USART_FIFOSTAT_TXNOTFULL_MASK ), /*!< TXNOTFULL
+                                                                     bit, sets
+                                                                     if TX
+                                                                     buffer is
+                                                                     not full */
+    kUSART_RxFifoNotEmptyFlag = ( USART_FIFOSTAT_RXNOTEMPTY_MASK ), /*!<
+                                                                       RXNOEMPTY
+                                                                       bit, sets
+                                                                       if RX
+                                                                       buffer is
+                                                                       not empty
+                                                                     */
+    kUSART_RxFifoFullFlag = ( USART_FIFOSTAT_RXFULL_MASK ), /*!< RXFULL bit,
+                                                               sets if RX buffer
+                                                               is full */
 };
 
 /*! @brief USART configuration structure. */
 typedef struct _usart_config
 {
-    uint32_t baudRate_Bps;                /*!< USART baud rate  */
-    usart_parity_mode_t parityMode;       /*!< Parity mode, disabled (default), even, odd */
-    usart_stop_bit_count_t stopBitCount;  /*!< Number of stop bits, 1 stop bit (default) or 2 stop bits  */
-    usart_data_len_t bitCountPerChar;     /*!< Data length - 7 bit, 8 bit  */
-    bool loopback;                        /*!< Enable peripheral loopback */
-    bool enableRx;                        /*!< Enable RX */
-    bool enableTx;                        /*!< Enable TX */
-    bool enableContinuousSCLK;            /*!< USART continuous Clock generation enable in synchronous master mode. */
-    bool enableMode32k;                   /*!< USART uses 32 kHz clock from the RTC oscillator as the clock source. */
-    bool enableHardwareFlowControl;       /*!< Enable hardware control RTS/CTS */
+    uint32_t baudRate_Bps;          /*!< USART baud rate  */
+    usart_parity_mode_t parityMode; /*!< Parity mode, disabled (default), even,
+                                       odd */
+    usart_stop_bit_count_t stopBitCount; /*!< Number of stop bits, 1 stop bit
+                                            (default) or 2 stop bits  */
+    usart_data_len_t bitCountPerChar;    /*!< Data length - 7 bit, 8 bit  */
+    bool loopback;                       /*!< Enable peripheral loopback */
+    bool enableRx;                       /*!< Enable RX */
+    bool enableTx;                       /*!< Enable TX */
+    bool enableContinuousSCLK; /*!< USART continuous Clock generation enable in
+                                  synchronous master mode. */
+    bool enableMode32k; /*!< USART uses 32 kHz clock from the RTC oscillator as
+                           the clock source. */
+    bool enableHardwareFlowControl; /*!< Enable hardware control RTS/CTS */
     usart_txfifo_watermark_t txWatermark; /*!< txFIFO watermark */
     usart_rxfifo_watermark_t rxWatermark; /*!< rxFIFO watermark */
-    usart_sync_mode_t syncMode; /*!< Transfer mode select - asynchronous, synchronous master, synchronous slave. */
-    usart_clock_polarity_t clockPolarity; /*!< Selects the clock polarity and sampling edge in synchronous mode. */
+    usart_sync_mode_t syncMode; /*!< Transfer mode select - asynchronous,
+                                   synchronous master, synchronous slave. */
+    usart_clock_polarity_t clockPolarity; /*!< Selects the clock polarity and
+                                             sampling edge in synchronous mode.
+                                           */
 } usart_config_t;
 
 /*! @brief USART transfer structure. */
@@ -168,9 +218,9 @@ typedef struct _usart_transfer
      */
     union
     {
-        uint8_t *data;         /*!< The buffer of data to be transfer.*/
-        uint8_t *rxData;       /*!< The buffer to receive data. */
-        const uint8_t *txData; /*!< The buffer of data to be sent. */
+        uint8_t * data;         /*!< The buffer of data to be transfer.*/
+        uint8_t * rxData;       /*!< The buffer to receive data. */
+        const uint8_t * txData; /*!< The buffer of data to be sent. */
     };
     size_t dataSize; /*!< The byte count to be transfer. */
 } usart_transfer_t;
@@ -179,25 +229,30 @@ typedef struct _usart_transfer
 typedef struct _usart_handle usart_handle_t;
 
 /*! @brief USART transfer callback function. */
-typedef void (*usart_transfer_callback_t)(USART_Type *base, usart_handle_t *handle, status_t status, void *userData);
+typedef void ( *usart_transfer_callback_t )( USART_Type * base,
+                                             usart_handle_t * handle,
+                                             status_t status,
+                                             void * userData );
 
 /*! @brief USART handle structure. */
 struct _usart_handle
 {
-    const uint8_t *volatile txData; /*!< Address of remaining data to send. */
-    volatile size_t txDataSize;     /*!< Size of the remaining data to send. */
-    size_t txDataSizeAll;           /*!< Size of the data to send out. */
-    uint8_t *volatile rxData;       /*!< Address of remaining data to receive. */
-    volatile size_t rxDataSize;     /*!< Size of the remaining data to receive. */
-    size_t rxDataSizeAll;           /*!< Size of the data to receive. */
+    const uint8_t * volatile txData; /*!< Address of remaining data to send. */
+    volatile size_t txDataSize;      /*!< Size of the remaining data to send. */
+    size_t txDataSizeAll;            /*!< Size of the data to send out. */
+    uint8_t * volatile rxData;  /*!< Address of remaining data to receive. */
+    volatile size_t rxDataSize; /*!< Size of the remaining data to receive. */
+    size_t rxDataSizeAll;       /*!< Size of the data to receive. */
 
-    uint8_t *rxRingBuffer;              /*!< Start address of the receiver ring buffer. */
-    size_t rxRingBufferSize;            /*!< Size of the ring buffer. */
-    volatile uint16_t rxRingBufferHead; /*!< Index for the driver to store received data into ring buffer. */
-    volatile uint16_t rxRingBufferTail; /*!< Index for the user to get data from the ring buffer. */
+    uint8_t * rxRingBuffer;  /*!< Start address of the receiver ring buffer. */
+    size_t rxRingBufferSize; /*!< Size of the ring buffer. */
+    volatile uint16_t rxRingBufferHead; /*!< Index for the driver to store
+                                           received data into ring buffer. */
+    volatile uint16_t rxRingBufferTail; /*!< Index for the user to get data from
+                                           the ring buffer. */
 
     usart_transfer_callback_t callback; /*!< Callback function. */
-    void *userData;                     /*!< USART callback function parameter.*/
+    void * userData; /*!< USART callback function parameter.*/
 
     volatile uint8_t txState; /*!< TX transfer state. */
     volatile uint8_t rxState; /*!< RX transfer state */
@@ -207,18 +262,19 @@ struct _usart_handle
 };
 
 /*! @brief Typedef for usart interrupt handler. */
-typedef void (*flexcomm_usart_irq_handler_t)(USART_Type *base, usart_handle_t *handle);
+typedef void ( *flexcomm_usart_irq_handler_t )( USART_Type * base,
+                                                usart_handle_t * handle );
 
 /*******************************************************************************
  * API
  ******************************************************************************/
 
-#if defined(__cplusplus)
+#if defined( __cplusplus )
 extern "C" {
 #endif /* _cplusplus */
 
 /*! @brief Returns instance number for USART peripheral base address. */
-uint32_t USART_GetInstance(USART_Type *base);
+uint32_t USART_GetInstance( USART_Type * base );
 
 /*!
  * @name Initialization and deinitialization
@@ -226,11 +282,13 @@ uint32_t USART_GetInstance(USART_Type *base);
  */
 
 /*!
- * @brief Initializes a USART instance with user configuration structure and peripheral clock.
+ * @brief Initializes a USART instance with user configuration structure and
+ * peripheral clock.
  *
- * This function configures the USART module with the user-defined settings. The user can configure the configuration
- * structure and also get the default configuration by using the USART_GetDefaultConfig() function.
- * Example below shows how to use this API to configure USART.
+ * This function configures the USART module with the user-defined settings. The
+ * user can configure the configuration structure and also get the default
+ * configuration by using the USART_GetDefaultConfig() function. Example below
+ * shows how to use this API to configure USART.
  * @code
  *  usart_config_t usartConfig;
  *  usartConfig.baudRate_Bps = 115200U;
@@ -242,27 +300,30 @@ uint32_t USART_GetInstance(USART_Type *base);
  * @param base USART peripheral base address.
  * @param config Pointer to user-defined configuration structure.
  * @param srcClock_Hz USART clock source frequency in HZ.
- * @retval kStatus_USART_BaudrateNotSupport Baudrate is not support in current clock source.
+ * @retval kStatus_USART_BaudrateNotSupport Baudrate is not support in current
+ * clock source.
  * @retval kStatus_InvalidArgument USART base address is not valid
  * @retval kStatus_Success Status USART initialize succeed
  */
-status_t USART_Init(USART_Type *base, const usart_config_t *config, uint32_t srcClock_Hz);
+status_t USART_Init( USART_Type * base,
+                     const usart_config_t * config,
+                     uint32_t srcClock_Hz );
 
 /*!
  * @brief Deinitializes a USART instance.
  *
- * This function waits for TX complete, disables TX and RX, and disables the USART clock.
+ * This function waits for TX complete, disables TX and RX, and disables the
+ * USART clock.
  *
  * @param base USART peripheral base address.
  */
-void USART_Deinit(USART_Type *base);
+void USART_Deinit( USART_Type * base );
 
 /*!
  * @brief Gets the default configuration structure.
  *
- * This function initializes the USART configuration structure to a default value. The default
- * values are:
- *   usartConfig->baudRate_Bps = 115200U;
+ * This function initializes the USART configuration structure to a default
+ * value. The default values are: usartConfig->baudRate_Bps = 115200U;
  *   usartConfig->parityMode = kUSART_ParityDisabled;
  *   usartConfig->stopBitCount = kUSART_OneStopBit;
  *   usartConfig->bitCountPerChar = kUSART_8BitsPerChar;
@@ -272,13 +333,14 @@ void USART_Deinit(USART_Type *base);
  *
  * @param config Pointer to configuration structure.
  */
-void USART_GetDefaultConfig(usart_config_t *config);
+void USART_GetDefaultConfig( usart_config_t * config );
 
 /*!
  * @brief Sets the USART instance baud rate.
  *
- * This function configures the USART module baud rate. This function is used to update
- * the USART module baud rate after the USART module is initialized by the USART_Init.
+ * This function configures the USART module baud rate. This function is used to
+ * update the USART module baud rate after the USART module is initialized by
+ * the USART_Init.
  * @code
  *  USART_SetBaudRate(USART1, 115200U, 20000000U);
  * @endcode
@@ -286,60 +348,73 @@ void USART_GetDefaultConfig(usart_config_t *config);
  * @param base USART peripheral base address.
  * @param baudrate_Bps USART baudrate to be set.
  * @param srcClock_Hz USART clock source frequency in HZ.
- * @retval kStatus_USART_BaudrateNotSupport Baudrate is not support in current clock source.
+ * @retval kStatus_USART_BaudrateNotSupport Baudrate is not support in current
+ * clock source.
  * @retval kStatus_Success Set baudrate succeed.
  * @retval kStatus_InvalidArgument One or more arguments are invalid.
  */
-status_t USART_SetBaudRate(USART_Type *base, uint32_t baudrate_Bps, uint32_t srcClock_Hz);
+status_t USART_SetBaudRate( USART_Type * base,
+                            uint32_t baudrate_Bps,
+                            uint32_t srcClock_Hz );
 
 /*!
- * @brief Enable 32 kHz mode which USART uses clock from the RTC oscillator as the clock source
+ * @brief Enable 32 kHz mode which USART uses clock from the RTC oscillator as
+ * the clock source
  *
- * Please note that in order to use a 32 kHz clock to operate USART properly, the RTC oscillator
- * and its 32 kHz output must be manully enabled by user, by calling RTC_Init and setting
- * SYSCON_RTCOSCCTRL_EN bit to 1.
- * And in 32kHz clocking mode the USART can only work at 9600 baudrate or at the baudrate that
- * 9600 can evenly divide, eg: 4800, 3200.
+ * Please note that in order to use a 32 kHz clock to operate USART properly,
+ * the RTC oscillator and its 32 kHz output must be manully enabled by user, by
+ * calling RTC_Init and setting SYSCON_RTCOSCCTRL_EN bit to 1. And in 32kHz
+ * clocking mode the USART can only work at 9600 baudrate or at the baudrate
+ * that 9600 can evenly divide, eg: 4800, 3200.
  *
  * @param base USART peripheral base address.
  * @param baudRate_Bps USART baudrate to be set..
  * @param enableMode32k true is 32k mode, false is normal mode.
  * @param srcClock_Hz USART clock source frequency in HZ.
- * @retval kStatus_USART_BaudrateNotSupport Baudrate is not support in current clock source.
+ * @retval kStatus_USART_BaudrateNotSupport Baudrate is not support in current
+ * clock source.
  * @retval kStatus_Success Set baudrate succeed.
  * @retval kStatus_InvalidArgument One or more arguments are invalid.
  */
-status_t USART_Enable32kMode(USART_Type *base, uint32_t baudRate_Bps, bool enableMode32k, uint32_t srcClock_Hz);
+status_t USART_Enable32kMode( USART_Type * base,
+                              uint32_t baudRate_Bps,
+                              bool enableMode32k,
+                              uint32_t srcClock_Hz );
 
 /*!
  * @brief Enable 9-bit data mode for USART.
  *
- * This function set the 9-bit mode for USART module. The 9th bit is not used for parity thus can be modified by user.
+ * This function set the 9-bit mode for USART module. The 9th bit is not used
+ * for parity thus can be modified by user.
  *
  * @param base USART peripheral base address.
  * @param enable true to enable, false to disable.
  */
-void USART_Enable9bitMode(USART_Type *base, bool enable);
+void USART_Enable9bitMode( USART_Type * base, bool enable );
 
 /*!
  * @brief Set the USART slave address.
  *
- * This function configures the address for USART module that works as slave in 9-bit data mode. When the address
- * detection is enabled, the frame it receices with MSB being 1 is considered as an address frame, otherwise it is
- * considered as data frame. Once the address frame matches slave's own addresses, this slave is addressed. This
- * address frame and its following data frames are stored in the receive buffer, otherwise the frames will be discarded.
- * To un-address a slave, just send an address frame with unmatched address.
+ * This function configures the address for USART module that works as slave in
+ * 9-bit data mode. When the address detection is enabled, the frame it receices
+ * with MSB being 1 is considered as an address frame, otherwise it is
+ * considered as data frame. Once the address frame matches slave's own
+ * addresses, this slave is addressed. This address frame and its following data
+ * frames are stored in the receive buffer, otherwise the frames will be
+ * discarded. To un-address a slave, just send an address frame with unmatched
+ * address.
  *
- * @note Any USART instance joined in the multi-slave system can work as slave. The position of the address mark is the
- * same as the parity bit when parity is enabled for 8 bit and 9 bit data formats.
+ * @note Any USART instance joined in the multi-slave system can work as slave.
+ * The position of the address mark is the same as the parity bit when parity is
+ * enabled for 8 bit and 9 bit data formats.
  *
  * @param base USART peripheral base address.
  * @param address USART slave address.
  */
-static inline void USART_SetMatchAddress(USART_Type *base, uint8_t address)
+static inline void USART_SetMatchAddress( USART_Type * base, uint8_t address )
 {
     /* Configure match address. */
-    base->ADDR = (uint32_t)address;
+    base->ADDR = ( uint32_t ) address;
 }
 
 /*!
@@ -348,18 +423,18 @@ static inline void USART_SetMatchAddress(USART_Type *base, uint8_t address)
  * @param base USART peripheral base address.
  * @param match true to enable match address, false to disable.
  */
-static inline void USART_EnableMatchAddress(USART_Type *base, bool match)
+static inline void USART_EnableMatchAddress( USART_Type * base, bool match )
 {
     /* Configure match address enable bit. */
-    if (match)
+    if( match )
     {
-        base->CFG |= (uint32_t)USART_CFG_AUTOADDR_MASK;
-        base->CTL |= (uint32_t)USART_CTL_ADDRDET_MASK;
+        base->CFG |= ( uint32_t ) USART_CFG_AUTOADDR_MASK;
+        base->CTL |= ( uint32_t ) USART_CTL_ADDRDET_MASK;
     }
     else
     {
-        base->CFG &= ~(uint32_t)USART_CFG_AUTOADDR_MASK;
-        base->CTL &= ~(uint32_t)USART_CTL_ADDRDET_MASK;
+        base->CFG &= ~( uint32_t ) USART_CFG_AUTOADDR_MASK;
+        base->CTL &= ~( uint32_t ) USART_CTL_ADDRDET_MASK;
     }
 }
 
@@ -373,10 +448,10 @@ static inline void USART_EnableMatchAddress(USART_Type *base, bool match)
 /*!
  * @brief Get USART status flags.
  *
- * This function get all USART status flags, the flags are returned as the logical
- * OR value of the enumerators @ref _usart_flags. To check a specific status,
- * compare the return value with enumerators in @ref _usart_flags.
- * For example, to check whether the TX is empty:
+ * This function get all USART status flags, the flags are returned as the
+ * logical OR value of the enumerators @ref _usart_flags. To check a specific
+ * status, compare the return value with enumerators in @ref _usart_flags. For
+ * example, to check whether the TX is empty:
  * @code
  *     if (kUSART_TxFifoNotFullFlag & USART_GetStatusFlags(USART1))
  *     {
@@ -385,9 +460,10 @@ static inline void USART_EnableMatchAddress(USART_Type *base, bool match)
  * @endcode
  *
  * @param base USART peripheral base address.
- * @return USART status flags which are ORed by the enumerators in the _usart_flags.
+ * @return USART status flags which are ORed by the enumerators in the
+ * _usart_flags.
  */
-static inline uint32_t USART_GetStatusFlags(USART_Type *base)
+static inline uint32_t USART_GetStatusFlags( USART_Type * base )
 {
     return base->FIFOSTAT;
 }
@@ -407,10 +483,12 @@ static inline uint32_t USART_GetStatusFlags(USART_Type *base)
  * @param base USART peripheral base address.
  * @param mask status flags to be cleared.
  */
-static inline void USART_ClearStatusFlags(USART_Type *base, uint32_t mask)
+static inline void USART_ClearStatusFlags( USART_Type * base, uint32_t mask )
 {
-    /* Only TXERR, RXERR fields support write. Remaining fields should be set to zero */
-    base->FIFOSTAT = mask & (USART_FIFOSTAT_TXERR_MASK | USART_FIFOSTAT_RXERR_MASK);
+    /* Only TXERR, RXERR fields support write. Remaining fields should be set to
+     * zero */
+    base->FIFOSTAT = mask &
+                     ( USART_FIFOSTAT_TXERR_MASK | USART_FIFOSTAT_RXERR_MASK );
 }
 
 /* @} */
@@ -423,17 +501,20 @@ static inline void USART_ClearStatusFlags(USART_Type *base, uint32_t mask)
 /*!
  * @brief Enables USART interrupts according to the provided mask.
  *
- * This function enables the USART interrupts according to the provided mask. The mask
- * is a logical OR of enumeration members. See @ref _usart_interrupt_enable.
- * For example, to enable TX empty interrupt and RX full interrupt:
+ * This function enables the USART interrupts according to the provided mask.
+ * The mask is a logical OR of enumeration members. See @ref
+ * _usart_interrupt_enable. For example, to enable TX empty interrupt and RX
+ * full interrupt:
  * @code
- *     USART_EnableInterrupts(USART1, kUSART_TxLevelInterruptEnable | kUSART_RxLevelInterruptEnable);
+ *     USART_EnableInterrupts(USART1, kUSART_TxLevelInterruptEnable |
+ * kUSART_RxLevelInterruptEnable);
  * @endcode
  *
  * @param base USART peripheral base address.
- * @param mask The interrupts to enable. Logical OR of @ref _usart_interrupt_enable.
+ * @param mask The interrupts to enable. Logical OR of @ref
+ * _usart_interrupt_enable.
  */
-static inline void USART_EnableInterrupts(USART_Type *base, uint32_t mask)
+static inline void USART_EnableInterrupts( USART_Type * base, uint32_t mask )
 {
     base->FIFOINTENSET = mask & 0xFUL;
 }
@@ -441,17 +522,20 @@ static inline void USART_EnableInterrupts(USART_Type *base, uint32_t mask)
 /*!
  * @brief Disables USART interrupts according to a provided mask.
  *
- * This function disables the USART interrupts according to a provided mask. The mask
- * is a logical OR of enumeration members. See @ref _usart_interrupt_enable.
- * This example shows how to disable the TX empty interrupt and RX full interrupt:
+ * This function disables the USART interrupts according to a provided mask. The
+ * mask is a logical OR of enumeration members. See @ref
+ * _usart_interrupt_enable. This example shows how to disable the TX empty
+ * interrupt and RX full interrupt:
  * @code
- *     USART_DisableInterrupts(USART1, kUSART_TxLevelInterruptEnable | kUSART_RxLevelInterruptEnable);
+ *     USART_DisableInterrupts(USART1, kUSART_TxLevelInterruptEnable |
+ * kUSART_RxLevelInterruptEnable);
  * @endcode
  *
  * @param base USART peripheral base address.
- * @param mask The interrupts to disable. Logical OR of @ref _usart_interrupt_enable.
+ * @param mask The interrupts to disable. Logical OR of @ref
+ * _usart_interrupt_enable.
  */
-static inline void USART_DisableInterrupts(USART_Type *base, uint32_t mask)
+static inline void USART_DisableInterrupts( USART_Type * base, uint32_t mask )
 {
     base->FIFOINTENCLR = mask & 0xFUL;
 }
@@ -463,7 +547,7 @@ static inline void USART_DisableInterrupts(USART_Type *base, uint32_t mask)
  *
  * @param base USART peripheral base address.
  */
-static inline uint32_t USART_GetEnabledInterrupts(USART_Type *base)
+static inline uint32_t USART_GetEnabledInterrupts( USART_Type * base )
 {
     return base->FIFOINTENSET;
 }
@@ -471,30 +555,30 @@ static inline uint32_t USART_GetEnabledInterrupts(USART_Type *base)
 /*!
  * @brief Enable DMA for Tx
  */
-static inline void USART_EnableTxDMA(USART_Type *base, bool enable)
+static inline void USART_EnableTxDMA( USART_Type * base, bool enable )
 {
-    if (enable)
+    if( enable )
     {
         base->FIFOCFG |= USART_FIFOCFG_DMATX_MASK;
     }
     else
     {
-        base->FIFOCFG &= ~(USART_FIFOCFG_DMATX_MASK);
+        base->FIFOCFG &= ~( USART_FIFOCFG_DMATX_MASK );
     }
 }
 
 /*!
  * @brief Enable DMA for Rx
  */
-static inline void USART_EnableRxDMA(USART_Type *base, bool enable)
+static inline void USART_EnableRxDMA( USART_Type * base, bool enable )
 {
-    if (enable)
+    if( enable )
     {
         base->FIFOCFG |= USART_FIFOCFG_DMARX_MASK;
     }
     else
     {
-        base->FIFOCFG &= ~(USART_FIFOCFG_DMARX_MASK);
+        base->FIFOCFG &= ~( USART_FIFOCFG_DMARX_MASK );
     }
 }
 
@@ -505,9 +589,9 @@ static inline void USART_EnableRxDMA(USART_Type *base, bool enable)
  * @param base    USART peripheral base address.
  * @param enable  Enable CTS or not, true for enable and false for disable.
  */
-static inline void USART_EnableCTS(USART_Type *base, bool enable)
+static inline void USART_EnableCTS( USART_Type * base, bool enable )
 {
-    if (enable)
+    if( enable )
     {
         base->CFG |= USART_CFG_CTSEN_MASK;
     }
@@ -519,16 +603,18 @@ static inline void USART_EnableCTS(USART_Type *base, bool enable)
 
 /*!
  * @brief Continuous Clock generation.
- * By default, SCLK is only output while data is being transmitted in synchronous mode.
- * Enable this funciton, SCLK will run continuously in synchronous mode, allowing
- * characters to be received on Un_RxD independently from transmission on Un_TXD).
+ * By default, SCLK is only output while data is being transmitted in
+ * synchronous mode. Enable this funciton, SCLK will run continuously in
+ * synchronous mode, allowing characters to be received on Un_RxD independently
+ * from transmission on Un_TXD).
  *
  * @param base    USART peripheral base address.
- * @param enable  Enable Continuous Clock generation mode or not, true for enable and false for disable.
+ * @param enable  Enable Continuous Clock generation mode or not, true for
+ * enable and false for disable.
  */
-static inline void USART_EnableContinuousSCLK(USART_Type *base, bool enable)
+static inline void USART_EnableContinuousSCLK( USART_Type * base, bool enable )
 {
-    if (enable)
+    if( enable )
     {
         base->CTL |= USART_CTL_CC_MASK;
     }
@@ -540,15 +626,17 @@ static inline void USART_EnableContinuousSCLK(USART_Type *base, bool enable)
 
 /*!
  * @brief Enable Continuous Clock generation bit auto clear.
- * While enable this cuntion, the Continuous Clock bit is automatically cleared when a complete
- * character has been received. This bit is cleared at the same time.
+ * While enable this cuntion, the Continuous Clock bit is automatically cleared
+ * when a complete character has been received. This bit is cleared at the same
+ * time.
  *
  * @param base    USART peripheral base address.
- * @param enable  Enable auto clear or not, true for enable and false for disable.
+ * @param enable  Enable auto clear or not, true for enable and false for
+ * disable.
  */
-static inline void USART_EnableAutoClearSCLK(USART_Type *base, bool enable)
+static inline void USART_EnableAutoClearSCLK( USART_Type * base, bool enable )
 {
-    if (enable)
+    if( enable )
     {
         base->CTL |= USART_CTL_CLRCCONRX_MASK;
     }
@@ -564,10 +652,12 @@ static inline void USART_EnableAutoClearSCLK(USART_Type *base, bool enable)
  * @param base USART peripheral base address.
  * @param water Rx FIFO watermark.
  */
-static inline void USART_SetRxFifoWatermark(USART_Type *base, uint8_t water)
+static inline void USART_SetRxFifoWatermark( USART_Type * base, uint8_t water )
 {
-    assert(water <= (USART_FIFOTRIG_RXLVL_MASK >> USART_FIFOTRIG_RXLVL_SHIFT));
-    base->FIFOTRIG = (base->FIFOTRIG & ~USART_FIFOTRIG_RXLVL_MASK) | USART_FIFOTRIG_RXLVL(water);
+    assert( water <=
+            ( USART_FIFOTRIG_RXLVL_MASK >> USART_FIFOTRIG_RXLVL_SHIFT ) );
+    base->FIFOTRIG = ( base->FIFOTRIG & ~USART_FIFOTRIG_RXLVL_MASK ) |
+                     USART_FIFOTRIG_RXLVL( water );
 }
 
 /*!
@@ -576,10 +666,12 @@ static inline void USART_SetRxFifoWatermark(USART_Type *base, uint8_t water)
  * @param base USART peripheral base address.
  * @param water Tx FIFO watermark.
  */
-static inline void USART_SetTxFifoWatermark(USART_Type *base, uint8_t water)
+static inline void USART_SetTxFifoWatermark( USART_Type * base, uint8_t water )
 {
-    assert(water <= (USART_FIFOTRIG_TXLVL_MASK >> USART_FIFOTRIG_TXLVL_SHIFT));
-    base->FIFOTRIG = (base->FIFOTRIG & ~USART_FIFOTRIG_TXLVL_MASK) | USART_FIFOTRIG_TXLVL(water);
+    assert( water <=
+            ( USART_FIFOTRIG_TXLVL_MASK >> USART_FIFOTRIG_TXLVL_SHIFT ) );
+    base->FIFOTRIG = ( base->FIFOTRIG & ~USART_FIFOTRIG_TXLVL_MASK ) |
+                     USART_FIFOTRIG_TXLVL( water );
 }
 /* @} */
 
@@ -597,7 +689,7 @@ static inline void USART_SetTxFifoWatermark(USART_Type *base, uint8_t water)
  * @param base USART peripheral base address.
  * @param data The byte to write.
  */
-static inline void USART_WriteByte(USART_Type *base, uint8_t data)
+static inline void USART_WriteByte( USART_Type * base, uint8_t data )
 {
     base->FIFOWR = data;
 }
@@ -611,9 +703,9 @@ static inline void USART_WriteByte(USART_Type *base, uint8_t data)
  * @param base USART peripheral base address.
  * @return The byte read from USART data register.
  */
-static inline uint8_t USART_ReadByte(USART_Type *base)
+static inline uint8_t USART_ReadByte( USART_Type * base )
 {
-    return (uint8_t)base->FIFORD;
+    return ( uint8_t ) base->FIFORD;
 }
 
 /*!
@@ -622,9 +714,10 @@ static inline uint8_t USART_ReadByte(USART_Type *base)
  * @param base USART peripheral base address.
  * @return rx FIFO data count.
  */
-static inline uint8_t USART_GetRxFifoCount(USART_Type *base)
+static inline uint8_t USART_GetRxFifoCount( USART_Type * base )
 {
-    return (uint8_t)((base->FIFOSTAT & USART_FIFOSTAT_RXLVL_MASK) >> USART_FIFOSTAT_RXLVL_SHIFT);
+    return ( uint8_t ) ( ( base->FIFOSTAT & USART_FIFOSTAT_RXLVL_MASK ) >>
+                         USART_FIFOSTAT_RXLVL_SHIFT );
 }
 
 /*!
@@ -633,9 +726,10 @@ static inline uint8_t USART_GetRxFifoCount(USART_Type *base)
  * @param base USART peripheral base address.
  * @return tx FIFO data count.
  */
-static inline uint8_t USART_GetTxFifoCount(USART_Type *base)
+static inline uint8_t USART_GetTxFifoCount( USART_Type * base )
 {
-    return (uint8_t)((base->FIFOSTAT & USART_FIFOSTAT_TXLVL_MASK) >> USART_FIFOSTAT_TXLVL_SHIFT);
+    return ( uint8_t ) ( ( base->FIFOSTAT & USART_FIFOSTAT_TXLVL_MASK ) >>
+                         USART_FIFOSTAT_TXLVL_SHIFT );
 }
 
 /*!
@@ -644,13 +738,13 @@ static inline uint8_t USART_GetTxFifoCount(USART_Type *base)
  * @param base USART peripheral base address.
  * @param address USART slave address.
  */
-void USART_SendAddress(USART_Type *base, uint8_t address);
+void USART_SendAddress( USART_Type * base, uint8_t address );
 
 /*!
  * @brief Writes to the TX register using a blocking method.
  *
- * This function polls the TX register, waits for the TX register to be empty or for the TX FIFO
- * to have room and writes data to the TX buffer.
+ * This function polls the TX register, waits for the TX register to be empty or
+ * for the TX FIFO to have room and writes data to the TX buffer.
  *
  * @param base USART peripheral base address.
  * @param data Start address of the data to write.
@@ -659,25 +753,28 @@ void USART_SendAddress(USART_Type *base, uint8_t address);
  * @retval kStatus_InvalidArgument Invalid argument.
  * @retval kStatus_Success Successfully wrote all data.
  */
-status_t USART_WriteBlocking(USART_Type *base, const uint8_t *data, size_t length);
+status_t USART_WriteBlocking( USART_Type * base,
+                              const uint8_t * data,
+                              size_t length );
 
 /*!
  * @brief Read RX data register using a blocking method.
  *
- * This function polls the RX register, waits for the RX register to be full or for RX FIFO to
- * have data and read data from the TX register.
+ * This function polls the RX register, waits for the RX register to be full or
+ * for RX FIFO to have data and read data from the TX register.
  *
  * @param base USART peripheral base address.
  * @param data Start address of the buffer to store the received data.
  * @param length Size of the buffer.
- * @retval kStatus_USART_FramingError Receiver overrun happened while receiving data.
+ * @retval kStatus_USART_FramingError Receiver overrun happened while receiving
+ * data.
  * @retval kStatus_USART_ParityError Noise error happened while receiving data.
  * @retval kStatus_USART_NoiseError Framing error happened while receiving data.
  * @retval kStatus_USART_RxError Overflow or underflow rxFIFO happened.
  * @retval kStatus_USART_Timeout Transmission timed out and was aborted.
  * @retval kStatus_Success Successfully received all data.
  */
-status_t USART_ReadBlocking(USART_Type *base, uint8_t *data, size_t length);
+status_t USART_ReadBlocking( USART_Type * base, uint8_t * data, size_t length );
 
 /* @} */
 
@@ -698,53 +795,61 @@ status_t USART_ReadBlocking(USART_Type *base, uint8_t *data, size_t length);
  * @param callback The callback function.
  * @param userData The parameter of the callback function.
  */
-status_t USART_TransferCreateHandle(USART_Type *base,
-                                    usart_handle_t *handle,
-                                    usart_transfer_callback_t callback,
-                                    void *userData);
+status_t USART_TransferCreateHandle( USART_Type * base,
+                                     usart_handle_t * handle,
+                                     usart_transfer_callback_t callback,
+                                     void * userData );
 
 /*!
  * @brief Transmits a buffer of data using the interrupt method.
  *
- * This function sends data using an interrupt method. This is a non-blocking function, which
- * returns directly without waiting for all data to be written to the TX register. When
- * all data is written to the TX register in the IRQ handler, the USART driver calls the callback
- * function and passes the @ref kStatus_USART_TxIdle as status parameter.
+ * This function sends data using an interrupt method. This is a non-blocking
+ * function, which returns directly without waiting for all data to be written
+ * to the TX register. When all data is written to the TX register in the IRQ
+ * handler, the USART driver calls the callback function and passes the @ref
+ * kStatus_USART_TxIdle as status parameter.
  *
- * @note The kStatus_USART_TxIdle is passed to the upper layer when all data is written
- * to the TX register. However it does not ensure that all data are sent out. Before disabling the TX,
- * check the kUSART_TransmissionCompleteFlag to ensure that the TX is finished.
+ * @note The kStatus_USART_TxIdle is passed to the upper layer when all data is
+ * written to the TX register. However it does not ensure that all data are sent
+ * out. Before disabling the TX, check the kUSART_TransmissionCompleteFlag to
+ * ensure that the TX is finished.
  *
  * @param base USART peripheral base address.
  * @param handle USART handle pointer.
  * @param xfer USART transfer structure. See  #usart_transfer_t.
  * @retval kStatus_Success Successfully start the data transmission.
- * @retval kStatus_USART_TxBusy Previous transmission still not finished, data not all written to TX register yet.
+ * @retval kStatus_USART_TxBusy Previous transmission still not finished, data
+ * not all written to TX register yet.
  * @retval kStatus_InvalidArgument Invalid argument.
  */
-status_t USART_TransferSendNonBlocking(USART_Type *base, usart_handle_t *handle, usart_transfer_t *xfer);
+status_t USART_TransferSendNonBlocking( USART_Type * base,
+                                        usart_handle_t * handle,
+                                        usart_transfer_t * xfer );
 
 /*!
  * @brief Sets up the RX ring buffer.
  *
  * This function sets up the RX ring buffer to a specific USART handle.
  *
- * When the RX ring buffer is used, data received are stored into the ring buffer even when the
- * user doesn't call the USART_TransferReceiveNonBlocking() API. If there is already data received
- * in the ring buffer, the user can get the received data from the ring buffer directly.
+ * When the RX ring buffer is used, data received are stored into the ring
+ * buffer even when the user doesn't call the USART_TransferReceiveNonBlocking()
+ * API. If there is already data received in the ring buffer, the user can get
+ * the received data from the ring buffer directly.
  *
- * @note When using the RX ring buffer, one byte is reserved for internal use. In other
- * words, if @p ringBufferSize is 32, then only 31 bytes are used for saving data.
+ * @note When using the RX ring buffer, one byte is reserved for internal use.
+ * In other words, if @p ringBufferSize is 32, then only 31 bytes are used for
+ * saving data.
  *
  * @param base USART peripheral base address.
  * @param handle USART handle pointer.
- * @param ringBuffer Start address of the ring buffer for background receiving. Pass NULL to disable the ring buffer.
+ * @param ringBuffer Start address of the ring buffer for background receiving.
+ * Pass NULL to disable the ring buffer.
  * @param ringBufferSize size of the ring buffer.
  */
-void USART_TransferStartRingBuffer(USART_Type *base,
-                                   usart_handle_t *handle,
-                                   uint8_t *ringBuffer,
-                                   size_t ringBufferSize);
+void USART_TransferStartRingBuffer( USART_Type * base,
+                                    usart_handle_t * handle,
+                                    uint8_t * ringBuffer,
+                                    size_t ringBufferSize );
 
 /*!
  * @brief Aborts the background transfer and uninstalls the ring buffer.
@@ -754,7 +859,7 @@ void USART_TransferStartRingBuffer(USART_Type *base,
  * @param base USART peripheral base address.
  * @param handle USART handle pointer.
  */
-void USART_TransferStopRingBuffer(USART_Type *base, usart_handle_t *handle);
+void USART_TransferStopRingBuffer( USART_Type * base, usart_handle_t * handle );
 
 /*!
  * @brief Get the length of received data in RX ring buffer.
@@ -762,23 +867,24 @@ void USART_TransferStopRingBuffer(USART_Type *base, usart_handle_t *handle);
  * @param handle USART handle pointer.
  * @return Length of received data in RX ring buffer.
  */
-size_t USART_TransferGetRxRingBufferLength(usart_handle_t *handle);
+size_t USART_TransferGetRxRingBufferLength( usart_handle_t * handle );
 
 /*!
  * @brief Aborts the interrupt-driven data transmit.
  *
- * This function aborts the interrupt driven data sending. The user can get the remainBtyes to find out
- * how many bytes are still not sent out.
+ * This function aborts the interrupt driven data sending. The user can get the
+ * remainBtyes to find out how many bytes are still not sent out.
  *
  * @param base USART peripheral base address.
  * @param handle USART handle pointer.
  */
-void USART_TransferAbortSend(USART_Type *base, usart_handle_t *handle);
+void USART_TransferAbortSend( USART_Type * base, usart_handle_t * handle );
 
 /*!
  * @brief Get the number of bytes that have been sent out to bus.
  *
- * This function gets the number of bytes that have been sent out to bus by interrupt method.
+ * This function gets the number of bytes that have been sent out to bus by
+ * interrupt method.
  *
  * @param base USART peripheral base address.
  * @param handle USART handle pointer.
@@ -787,25 +893,29 @@ void USART_TransferAbortSend(USART_Type *base, usart_handle_t *handle);
  * @retval kStatus_InvalidArgument Parameter is invalid.
  * @retval kStatus_Success Get successfully through the parameter \p count;
  */
-status_t USART_TransferGetSendCount(USART_Type *base, usart_handle_t *handle, uint32_t *count);
+status_t USART_TransferGetSendCount( USART_Type * base,
+                                     usart_handle_t * handle,
+                                     uint32_t * count );
 
 /*!
  * @brief Receives a buffer of data using an interrupt method.
  *
- * This function receives data using an interrupt method. This is a non-blocking function, which
- *  returns without waiting for all data to be received.
- * If the RX ring buffer is used and not empty, the data in the ring buffer is copied and
- * the parameter @p receivedBytes shows how many bytes are copied from the ring buffer.
- * After copying, if the data in the ring buffer is not enough to read, the receive
- * request is saved by the USART driver. When the new data arrives, the receive request
- * is serviced first. When all data is received, the USART driver notifies the upper layer
- * through a callback function and passes the status parameter @ref kStatus_USART_RxIdle.
- * For example, the upper layer needs 10 bytes but there are only 5 bytes in the ring buffer.
- * The 5 bytes are copied to the xfer->data and this function returns with the
- * parameter @p receivedBytes set to 5. For the left 5 bytes, newly arrived data is
- * saved from the xfer->data[5]. When 5 bytes are received, the USART driver notifies the upper layer.
- * If the RX ring buffer is not enabled, this function enables the RX and RX interrupt
- * to receive data to the xfer->data. When all data is received, the upper layer is notified.
+ * This function receives data using an interrupt method. This is a non-blocking
+ * function, which returns without waiting for all data to be received. If the
+ * RX ring buffer is used and not empty, the data in the ring buffer is copied
+ * and the parameter @p receivedBytes shows how many bytes are copied from the
+ * ring buffer. After copying, if the data in the ring buffer is not enough to
+ * read, the receive request is saved by the USART driver. When the new data
+ * arrives, the receive request is serviced first. When all data is received,
+ * the USART driver notifies the upper layer through a callback function and
+ * passes the status parameter @ref kStatus_USART_RxIdle. For example, the upper
+ * layer needs 10 bytes but there are only 5 bytes in the ring buffer. The 5
+ * bytes are copied to the xfer->data and this function returns with the
+ * parameter @p receivedBytes set to 5. For the left 5 bytes, newly arrived data
+ * is saved from the xfer->data[5]. When 5 bytes are received, the USART driver
+ * notifies the upper layer. If the RX ring buffer is not enabled, this function
+ * enables the RX and RX interrupt to receive data to the xfer->data. When all
+ * data is received, the upper layer is notified.
  *
  * @param base USART peripheral base address.
  * @param handle USART handle pointer.
@@ -815,21 +925,21 @@ status_t USART_TransferGetSendCount(USART_Type *base, usart_handle_t *handle, ui
  * @retval kStatus_USART_RxBusy Previous receive request is not finished.
  * @retval kStatus_InvalidArgument Invalid argument.
  */
-status_t USART_TransferReceiveNonBlocking(USART_Type *base,
-                                          usart_handle_t *handle,
-                                          usart_transfer_t *xfer,
-                                          size_t *receivedBytes);
+status_t USART_TransferReceiveNonBlocking( USART_Type * base,
+                                           usart_handle_t * handle,
+                                           usart_transfer_t * xfer,
+                                           size_t * receivedBytes );
 
 /*!
  * @brief Aborts the interrupt-driven data receiving.
  *
- * This function aborts the interrupt-driven data receiving. The user can get the remainBytes to find out
- * how many bytes not received yet.
+ * This function aborts the interrupt-driven data receiving. The user can get
+ * the remainBytes to find out how many bytes not received yet.
  *
  * @param base USART peripheral base address.
  * @param handle USART handle pointer.
  */
-void USART_TransferAbortReceive(USART_Type *base, usart_handle_t *handle);
+void USART_TransferAbortReceive( USART_Type * base, usart_handle_t * handle );
 
 /*!
  * @brief Get the number of bytes that have been received.
@@ -843,7 +953,9 @@ void USART_TransferAbortReceive(USART_Type *base, usart_handle_t *handle);
  * @retval kStatus_InvalidArgument Parameter is invalid.
  * @retval kStatus_Success Get successfully through the parameter \p count;
  */
-status_t USART_TransferGetReceiveCount(USART_Type *base, usart_handle_t *handle, uint32_t *count);
+status_t USART_TransferGetReceiveCount( USART_Type * base,
+                                        usart_handle_t * handle,
+                                        uint32_t * count );
 
 /*!
  * @brief USART IRQ handle function.
@@ -853,11 +965,11 @@ status_t USART_TransferGetReceiveCount(USART_Type *base, usart_handle_t *handle,
  * @param base USART peripheral base address.
  * @param handle USART handle pointer.
  */
-void USART_TransferHandleIRQ(USART_Type *base, usart_handle_t *handle);
+void USART_TransferHandleIRQ( USART_Type * base, usart_handle_t * handle );
 
 /* @} */
 
-#if defined(__cplusplus)
+#if defined( __cplusplus )
 }
 #endif
 

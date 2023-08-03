@@ -6,9 +6,10 @@
  (c) 2018 Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms,you may use this software and
-    any derivatives exclusively with Microchip products.It is your responsibility
-    to comply with third party license terms applicable to your use of third party
-    software (including open source software) that may accompany Microchip software.
+    any derivatives exclusively with Microchip products.It is your
+ responsibility to comply with third party license terms applicable to your use
+ of third party software (including open source software) that may accompany
+ Microchip software.
 
     THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES, WHETHER
     EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE, INCLUDING ANY IMPLIED
@@ -42,11 +43,12 @@ extern "C" {
  *
  * \note Using IAR Embedded workbench, the choice of memory model has an impact
  *       on calling convention. The memory model is not visible to the
- *       preprocessor, so it must be defined in the Assembler preprocessor directives.
+ *       preprocessor, so it must be defined in the Assembler preprocessor
+ * directives.
  */
-static inline void ccp_write_io(void *addr, uint8_t value)
+static inline void ccp_write_io( void * addr, uint8_t value )
 {
-    protected_write_io(addr, CCP_IOREG_gc, value);
+    protected_write_io( addr, CCP_IOREG_gc, value );
 }
 
 /** @} */
@@ -59,14 +61,15 @@ static inline void ccp_write_io(void *addr, uint8_t value)
  *
  * \note Using IAR Embedded workbench, the choice of memory model has an impact
  *       on calling convention. The memory model is not visible to the
- *       preprocessor, so it must be defined in the Assembler preprocessor directives.
+ *       preprocessor, so it must be defined in the Assembler preprocessor
+ * directives.
  */
-static inline void ccp_write_spm(void *addr, uint8_t value)
+static inline void ccp_write_spm( void * addr, uint8_t value )
 {
-    protected_write_io(addr, CCP_SPM_gc, value);
+    protected_write_io( addr, CCP_SPM_gc, value );
 }
 
-    /** @} */
+/** @} */
 
 #ifdef __cplusplus
 }

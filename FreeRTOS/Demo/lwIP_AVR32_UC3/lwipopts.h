@@ -39,8 +39,6 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-
-
 #ifndef __LWIPOPTS_H__
 #define __LWIPOPTS_H__
 
@@ -48,26 +46,25 @@
 #include "conf_eth.h"
 // #include "lwip/debug.h"
 
-#define LWIP_PLATFORM_DIAG(x)   
-#define LWIP_PLATFORM_ASSERT(x)   
+#define LWIP_PLATFORM_DIAG( x )
+#define LWIP_PLATFORM_ASSERT( x )
 
 /* Define default values for unconfigured parameters. */
-#define LWIP_NOASSERT 1 // To suppress some errors for now (no debug output)
+#define LWIP_NOASSERT        1 // To suppress some errors for now (no debug output)
 
 /* These two control is reclaimer functions should be compiled
    in. Should always be turned on (1). */
-#define MEM_RECLAIM             1
-#define MEMP_RECLAIM            1
-
+#define MEM_RECLAIM          1
+#define MEMP_RECLAIM         1
 
 /* Platform specific locking */
 
 /*
  * enable SYS_LIGHTWEIGHT_PROT in lwipopts.h if you want inter-task protection
- * for certain critical regions during buffer allocation, deallocation and memory
- * allocation and deallocation.
+ * for certain critical regions during buffer allocation, deallocation and
+ * memory allocation and deallocation.
  */
-#define SYS_LIGHTWEIGHT_PROT            1
+#define SYS_LIGHTWEIGHT_PROT 1
 
 /* ---------- Memory options ---------- */
 // #define MEM_LIBC_MALLOC                 0
@@ -75,38 +72,38 @@
 /* MEM_ALIGNMENT: should be set to the alignment of the CPU for which
    lwIP is compiled. 4 byte alignment -> define MEM_ALIGNMENT to 4, 2
    byte alignment -> define MEM_ALIGNMENT to 2. */
-#define MEM_ALIGNMENT           4
+#define MEM_ALIGNMENT        4
 
 /* MEM_SIZE: the size of the heap memory. If the application will send
 a lot of data that needs to be copied, this should be set high. */
-#define MEM_SIZE                3 * 1024
+#define MEM_SIZE             3 * 1024
 
 // #define MEMP_SANITY_CHECK       1
 
 /* MEMP_NUM_PBUF: the number of memp struct pbufs. If the application
    sends a lot of data out of ROM (or other static memory), this
    should be set high. */
-#define MEMP_NUM_PBUF           6
+#define MEMP_NUM_PBUF        6
 
 /* Number of raw connection PCBs */
-#define MEMP_NUM_RAW_PCB                1
+#define MEMP_NUM_RAW_PCB     1
 
-#if (TFTP_USED == 1)
-  /* ---------- UDP options ---------- */
-  #define LWIP_UDP                1
-  #define UDP_TTL                 255
-  /* MEMP_NUM_UDP_PCB: the number of UDP protocol control blocks. One
-     per active UDP "connection". */
+#if( TFTP_USED == 1 )
+    /* ---------- UDP options ---------- */
+    #define LWIP_UDP         1
+    #define UDP_TTL          255
+    /* MEMP_NUM_UDP_PCB: the number of UDP protocol control blocks. One
+       per active UDP "connection". */
 
-  #define MEMP_NUM_UDP_PCB        1
+    #define MEMP_NUM_UDP_PCB 1
 #else
-  /* ---------- UDP options ---------- */
-  #define LWIP_UDP                0
-  #define UDP_TTL                 0
-  /* MEMP_NUM_UDP_PCB: the number of UDP protocol control blocks. One
-     per active UDP "connection". */
+    /* ---------- UDP options ---------- */
+    #define LWIP_UDP         0
+    #define UDP_TTL          0
+    /* MEMP_NUM_UDP_PCB: the number of UDP protocol control blocks. One
+       per active UDP "connection". */
 
-  #define MEMP_NUM_UDP_PCB        0
+    #define MEMP_NUM_UDP_PCB 0
 #endif
 
 /* MEMP_NUM_TCP_PCB: the number of simulatenously active TCP
@@ -136,7 +133,6 @@ a lot of data that needs to be copied, this should be set high. */
    for sequential API communication and incoming packets. Used in
    src/api/tcpip.c. */
 #define MEMP_NUM_TCPIP_MSG      4
-
 
 /* ---------- Pbuf options ---------- */
 /* PBUF_POOL_SIZE: the number of buffers in the pbuf pool. */
@@ -168,9 +164,7 @@ a lot of data that needs to be copied, this should be set high. */
 
 /* TCP sender buffer space (pbufs). This must be at least = 2 *
    TCP_SND_BUF/TCP_MSS for things to work. */
-#define TCP_SND_QUEUELEN        6 * TCP_SND_BUF/TCP_MSS
-
-
+#define TCP_SND_QUEUELEN        6 * TCP_SND_BUF / TCP_MSS
 
 /* Maximum number of retransmissions of data segments. */
 #define TCP_MAXRTX              12
@@ -179,8 +173,8 @@ a lot of data that needs to be copied, this should be set high. */
 #define TCP_SYNMAXRTX           4
 
 /* ---------- ARP options ---------- */
-#define ARP_TABLE_SIZE 10
-#define ARP_QUEUEING 0
+#define ARP_TABLE_SIZE          10
+#define ARP_QUEUEING            0
 
 /* ---------- IP options ---------- */
 /* Define IP_FORWARD to 1 if you wish to have the ability to forward
@@ -195,7 +189,6 @@ a lot of data that needs to be copied, this should be set high. */
 /* ---------- ICMP options ---------- */
 #define ICMP_TTL                255
 
-
 /* ---------- DHCP options ---------- */
 /* Define LWIP_DHCP to 1 if you want DHCP configuration of
    interfaces. DHCP is not implemented in lwIP 0.5.1, however, so
@@ -206,24 +199,23 @@ a lot of data that needs to be copied, this should be set high. */
    (recommended). */
 #define DHCP_DOES_ARP_CHECK     1
 
-#define TCPIP_THREAD_PRIO               lwipINTERFACE_TASK_PRIORITY
+#define TCPIP_THREAD_PRIO       lwipINTERFACE_TASK_PRIORITY
 
 /* ---------- Statistics options ---------- */
-#define LWIP_STATS 1
+#define LWIP_STATS              1
 
-#define LWIP_STATS_DISPLAY 1
+#define LWIP_STATS_DISPLAY      1
 
 #if LWIP_STATS
-#define LINK_STATS 1
-#define IP_STATS   1
-#define ICMP_STATS 1
-#define UDP_STATS  1
-#define TCP_STATS  1
-#define MEM_STATS  1
-#define MEMP_STATS 1
-#define PBUF_STATS 1
-#define SYS_STATS  1
+    #define LINK_STATS 1
+    #define IP_STATS   1
+    #define ICMP_STATS 1
+    #define UDP_STATS  1
+    #define TCP_STATS  1
+    #define MEM_STATS  1
+    #define MEMP_STATS 1
+    #define PBUF_STATS 1
+    #define SYS_STATS  1
 #endif /* STATS */
-
 
 #endif /* __LWIPOPTS_H__ */

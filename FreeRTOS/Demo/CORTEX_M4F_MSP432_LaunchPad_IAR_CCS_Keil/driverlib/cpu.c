@@ -1,6 +1,6 @@
 /*
  * -------------------------------------------
- *    MSP432 DriverLib - v3_10_00_09 
+ *    MSP432 DriverLib - v3_10_00_09
  * -------------------------------------------
  *
  * --COPYRIGHT--,BSD,BSD
@@ -44,18 +44,18 @@
 // on entry.
 //
 //*****************************************************************************
-#if defined(__GNUC__)
-uint32_t __attribute__((naked)) CPU_cpsid(void)
+#if defined( __GNUC__ )
+uint32_t __attribute__( ( naked ) ) CPU_cpsid( void )
 {
     uint32_t ret;
 
     //
     // Read PRIMASK and disable interrupts.
     //
-    __asm("    mrs     r0, PRIMASK\n"
-            "    cpsid   i\n"
-            "    bx      lr\n"
-            : "=r" (ret));
+    __asm( "    mrs     r0, PRIMASK\n"
+           "    cpsid   i\n"
+           "    bx      lr\n"
+           : "=r"( ret ) );
 
     //
     // The return is handled in the inline assembly, but the compiler will
@@ -63,29 +63,29 @@ uint32_t __attribute__((naked)) CPU_cpsid(void)
     // that this does not result in any code being produced because of the
     // naked attribute).
     //
-    return(ret);
+    return ( ret );
 }
 #endif
-#if defined(__ICCARM__)
-uint32_t CPU_cpsid(void)
+#if defined( __ICCARM__ )
+uint32_t CPU_cpsid( void )
 {
     //
     // Read PRIMASK and disable interrupts.
     //
-    __asm("    mrs     r0, PRIMASK\n"
-            "    cpsid   i\n");
+    __asm( "    mrs     r0, PRIMASK\n"
+           "    cpsid   i\n" );
 
     //
     // "Warning[Pe940]: missing return statement at end of non-void function"
     // is suppressed here to avoid putting a "bx lr" in the inline assembly
     // above and a superfluous return statement here.
     //
-#pragma diag_suppress=Pe940
+    #pragma diag_suppress = Pe940
 }
-#pragma diag_default=Pe940
+    #pragma diag_default = Pe940
 #endif
-#if defined(__CC_ARM)
-__asm uint32_t CPU_cpsid(void)
+#if defined( __CC_ARM )
+__asm uint32_t CPU_cpsid( void )
 {
     //
     // Read PRIMASK and disable interrupts.
@@ -95,15 +95,15 @@ __asm uint32_t CPU_cpsid(void)
     bx lr
 }
 #endif
-#if defined(__TI_ARM__)
-uint32_t CPU_cpsid(void)
+#if defined( __TI_ARM__ )
+uint32_t CPU_cpsid( void )
 {
     //
     // Read PRIMASK and disable interrupts.
     //
-    __asm("    mrs     r0, PRIMASK\n"
-            "    cpsid   i\n"
-            "    bx      lr\n");
+    __asm( "    mrs     r0, PRIMASK\n"
+           "    cpsid   i\n"
+           "    bx      lr\n" );
 
     //
     // The following keeps the compiler happy, because it wants to see a
@@ -112,7 +112,7 @@ uint32_t CPU_cpsid(void)
     // return(0) is never executed and the function returns with the value
     // you expect in R0.
     //
-    return(0);
+    return ( 0 );
 }
 #endif
 
@@ -122,17 +122,17 @@ uint32_t CPU_cpsid(void)
 // interrupts are enabled or disabled).
 //
 //*****************************************************************************
-#if defined(__GNUC__)
-uint32_t __attribute__((naked)) CPU_primask(void)
+#if defined( __GNUC__ )
+uint32_t __attribute__( ( naked ) ) CPU_primask( void )
 {
     uint32_t ret;
 
     //
     // Read PRIMASK and disable interrupts.
     //
-    __asm("    mrs     r0, PRIMASK\n"
-            "    bx      lr\n"
-            : "=r" (ret));
+    __asm( "    mrs     r0, PRIMASK\n"
+           "    bx      lr\n"
+           : "=r"( ret ) );
 
     //
     // The return is handled in the inline assembly, but the compiler will
@@ -140,28 +140,28 @@ uint32_t __attribute__((naked)) CPU_primask(void)
     // that this does not result in any code being produced because of the
     // naked attribute).
     //
-    return(ret);
+    return ( ret );
 }
 #endif
-#if defined(__ICCARM__)
-uint32_t CPU_primask(void)
+#if defined( __ICCARM__ )
+uint32_t CPU_primask( void )
 {
     //
     // Read PRIMASK and disable interrupts.
     //
-    __asm("    mrs     r0, PRIMASK\n");
+    __asm( "    mrs     r0, PRIMASK\n" );
 
     //
     // "Warning[Pe940]: missing return statement at end of non-void function"
     // is suppressed here to avoid putting a "bx lr" in the inline assembly
     // above and a superfluous return statement here.
     //
-#pragma diag_suppress=Pe940
+    #pragma diag_suppress = Pe940
 }
-#pragma diag_default=Pe940
+    #pragma diag_default = Pe940
 #endif
-#if defined(__CC_ARM)
-__asm uint32_t CPU_primask(void)
+#if defined( __CC_ARM )
+__asm uint32_t CPU_primask( void )
 {
     //
     // Read PRIMASK and disable interrupts.
@@ -170,14 +170,14 @@ __asm uint32_t CPU_primask(void)
     bx lr
 }
 #endif
-#if defined(__TI_ARM__)
-uint32_t CPU_primask(void)
+#if defined( __TI_ARM__ )
+uint32_t CPU_primask( void )
 {
     //
     // Read PRIMASK and disable interrupts.
     //
-    __asm("    mrs     r0, PRIMASK\n"
-            "    bx      lr\n");
+    __asm( "    mrs     r0, PRIMASK\n"
+           "    bx      lr\n" );
 
     //
     // The following keeps the compiler happy, because it wants to see a
@@ -186,7 +186,7 @@ uint32_t CPU_primask(void)
     // return(0) is never executed and the function returns with the value
     // you expect in R0.
     //
-    return(0);
+    return ( 0 );
 }
 #endif
 
@@ -196,18 +196,18 @@ uint32_t CPU_primask(void)
 // on entry.
 //
 //*****************************************************************************
-#if defined(__GNUC__)
-uint32_t __attribute__((naked)) CPU_cpsie(void)
+#if defined( __GNUC__ )
+uint32_t __attribute__( ( naked ) ) CPU_cpsie( void )
 {
     uint32_t ret;
 
     //
     // Read PRIMASK and enable interrupts.
     //
-    __asm("    mrs     r0, PRIMASK\n"
-            "    cpsie   i\n"
-            "    bx      lr\n"
-            : "=r" (ret));
+    __asm( "    mrs     r0, PRIMASK\n"
+           "    cpsie   i\n"
+           "    bx      lr\n"
+           : "=r"( ret ) );
 
     //
     // The return is handled in the inline assembly, but the compiler will
@@ -215,29 +215,29 @@ uint32_t __attribute__((naked)) CPU_cpsie(void)
     // that this does not result in any code being produced because of the
     // naked attribute).
     //
-    return(ret);
+    return ( ret );
 }
 #endif
-#if defined(__ICCARM__)
-uint32_t CPU_cpsie(void)
+#if defined( __ICCARM__ )
+uint32_t CPU_cpsie( void )
 {
     //
     // Read PRIMASK and enable interrupts.
     //
-    __asm("    mrs     r0, PRIMASK\n"
-            "    cpsie   i\n");
+    __asm( "    mrs     r0, PRIMASK\n"
+           "    cpsie   i\n" );
 
     //
     // "Warning[Pe940]: missing return statement at end of non-void function"
     // is suppressed here to avoid putting a "bx lr" in the inline assembly
     // above and a superfluous return statement here.
     //
-#pragma diag_suppress=Pe940
+    #pragma diag_suppress = Pe940
 }
-#pragma diag_default=Pe940
+    #pragma diag_default = Pe940
 #endif
-#if defined(__CC_ARM)
-__asm uint32_t CPU_cpsie(void)
+#if defined( __CC_ARM )
+__asm uint32_t CPU_cpsie( void )
 {
     //
     // Read PRIMASK and enable interrupts.
@@ -247,15 +247,15 @@ __asm uint32_t CPU_cpsie(void)
     bx lr
 }
 #endif
-#if defined(__TI_ARM__)
-uint32_t CPU_cpsie(void)
+#if defined( __TI_ARM__ )
+uint32_t CPU_cpsie( void )
 {
     //
     // Read PRIMASK and enable interrupts.
     //
-    __asm("    mrs     r0, PRIMASK\n"
-            "    cpsie   i\n"
-            "    bx      lr\n");
+    __asm( "    mrs     r0, PRIMASK\n"
+           "    cpsie   i\n"
+           "    bx      lr\n" );
 
     //
     // The following keeps the compiler happy, because it wants to see a
@@ -264,7 +264,7 @@ uint32_t CPU_cpsie(void)
     // return(0) is never executed and the function returns with the value
     // you expect in R0.
     //
-    return(0);
+    return ( 0 );
 }
 #endif
 
@@ -273,27 +273,27 @@ uint32_t CPU_cpsie(void)
 // Wrapper function for the CPUWFI instruction.
 //
 //*****************************************************************************
-#if defined(__GNUC__)
-void __attribute__((naked)) CPU_wfi(void)
+#if defined( __GNUC__ )
+void __attribute__( ( naked ) ) CPU_wfi( void )
 {
     //
     // Wait for the next interrupt.
     //
-    __asm("    wfi\n"
-            "    bx      lr\n");
+    __asm( "    wfi\n"
+           "    bx      lr\n" );
 }
 #endif
-#if defined(__ICCARM__)
-void CPU_wfi(void)
+#if defined( __ICCARM__ )
+void CPU_wfi( void )
 {
     //
     // Wait for the next interrupt.
     //
-    __asm("    wfi\n");
+    __asm( "    wfi\n" );
 }
 #endif
-#if defined(__CC_ARM)
-__asm void CPU_wfi(void)
+#if defined( __CC_ARM )
+__asm void CPU_wfi( void )
 {
     //
     // Wait for the next interrupt.
@@ -302,13 +302,13 @@ __asm void CPU_wfi(void)
     bx lr
 }
 #endif
-#if defined(__TI_ARM__)
-void CPU_wfi(void)
+#if defined( __TI_ARM__ )
+void CPU_wfi( void )
 {
     //
     // Wait for the next interrupt.
     //
-    __asm("    wfi\n");
+    __asm( "    wfi\n" );
 }
 #endif
 
@@ -317,27 +317,27 @@ void CPU_wfi(void)
 // Wrapper function for writing the BASEPRI register.
 //
 //*****************************************************************************
-#if defined(__GNUC__)
-void __attribute__((naked)) CPU_basepriSet(uint32_t newBasepri)
+#if defined( __GNUC__ )
+void __attribute__( ( naked ) ) CPU_basepriSet( uint32_t newBasepri )
 {
     //
     // Set the BASEPRI register
     //
-    __asm("    msr     BASEPRI, r0\n"
-            "    bx      lr\n");
+    __asm( "    msr     BASEPRI, r0\n"
+           "    bx      lr\n" );
 }
 #endif
-#if defined(__ICCARM__)
-void CPU_basepriSet(uint32_t newBasepri)
+#if defined( __ICCARM__ )
+void CPU_basepriSet( uint32_t newBasepri )
 {
     //
     // Set the BASEPRI register
     //
-    __asm("    msr     BASEPRI, r0\n");
+    __asm( "    msr     BASEPRI, r0\n" );
 }
 #endif
-#if defined(__CC_ARM)
-__asm void CPU_basepriSet(uint32_t newBasepri)
+#if defined( __CC_ARM )
+__asm void CPU_basepriSet( uint32_t newBasepri )
 {
     //
     // Set the BASEPRI register
@@ -346,13 +346,13 @@ __asm void CPU_basepriSet(uint32_t newBasepri)
     bx lr
 }
 #endif
-#if defined(__TI_ARM__)
-void CPU_basepriSet(uint32_t newBasepri)
+#if defined( __TI_ARM__ )
+void CPU_basepriSet( uint32_t newBasepri )
 {
     //
     // Set the BASEPRI register
     //
-    __asm("    msr     BASEPRI, r0\n");
+    __asm( "    msr     BASEPRI, r0\n" );
 }
 #endif
 
@@ -361,17 +361,17 @@ void CPU_basepriSet(uint32_t newBasepri)
 // Wrapper function for reading the BASEPRI register.
 //
 //*****************************************************************************
-#if defined(__GNUC__)
-uint32_t __attribute__((naked)) CPU_basepriGet(void)
+#if defined( __GNUC__ )
+uint32_t __attribute__( ( naked ) ) CPU_basepriGet( void )
 {
     uint32_t ret;
 
     //
     // Read BASEPRI
     //
-    __asm("    mrs     r0, BASEPRI\n"
-            "    bx      lr\n"
-            : "=r" (ret));
+    __asm( "    mrs     r0, BASEPRI\n"
+           "    bx      lr\n"
+           : "=r"( ret ) );
 
     //
     // The return is handled in the inline assembly, but the compiler will
@@ -379,28 +379,28 @@ uint32_t __attribute__((naked)) CPU_basepriGet(void)
     // that this does not result in any code being produced because of the
     // naked attribute).
     //
-    return(ret);
+    return ( ret );
 }
 #endif
-#if defined(__ICCARM__)
-uint32_t CPU_basepriGet(void)
+#if defined( __ICCARM__ )
+uint32_t CPU_basepriGet( void )
 {
     //
     // Read BASEPRI
     //
-    __asm("    mrs     r0, BASEPRI\n");
+    __asm( "    mrs     r0, BASEPRI\n" );
 
     //
     // "Warning[Pe940]: missing return statement at end of non-void function"
     // is suppressed here to avoid putting a "bx lr" in the inline assembly
     // above and a superfluous return statement here.
     //
-#pragma diag_suppress=Pe940
+    #pragma diag_suppress = Pe940
 }
-#pragma diag_default=Pe940
+    #pragma diag_default = Pe940
 #endif
-#if defined(__CC_ARM)
-__asm uint32_t CPU_basepriGet(void)
+#if defined( __CC_ARM )
+__asm uint32_t CPU_basepriGet( void )
 {
     //
     // Read BASEPRI
@@ -409,14 +409,14 @@ __asm uint32_t CPU_basepriGet(void)
     bx lr
 }
 #endif
-#if defined(__TI_ARM__)
-uint32_t CPU_basepriGet(void)
+#if defined( __TI_ARM__ )
+uint32_t CPU_basepriGet( void )
 {
     //
     // Read BASEPRI
     //
-    __asm("    mrs     r0, BASEPRI\n"
-            "    bx      lr\n");
+    __asm( "    mrs     r0, BASEPRI\n"
+           "    bx      lr\n" );
 
     //
     // The following keeps the compiler happy, because it wants to see a
@@ -425,6 +425,6 @@ uint32_t CPU_basepriGet(void)
     // return(0) is never executed and the function returns with the value
     // you expect in R0.
     //
-    return(0);
+    return ( 0 );
 }
 #endif

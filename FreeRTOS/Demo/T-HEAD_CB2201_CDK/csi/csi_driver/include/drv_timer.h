@@ -27,70 +27,79 @@
 extern "C" {
 #endif
 
-#include <stdint.h>
 #include <drv_common.h>
+#include <stdint.h>
 
 /// definition for timer handle.
-typedef void *timer_handle_t;
+typedef void * timer_handle_t;
 
 /*----- TIMER Control Codes: Mode -----*/
-typedef enum {
-    TIMER_MODE_FREE_RUNNING                 = 0,   ///< free running mode
-    TIMER_MODE_RELOAD                              ///< reload mode
+typedef enum
+{
+    TIMER_MODE_FREE_RUNNING = 0, ///< free running mode
+    TIMER_MODE_RELOAD            ///< reload mode
 } timer_mode_e;
 
 /**
 \brief TIMER Status
 */
-typedef struct {
-    uint32_t active   : 1;                        ///< timer active flag
-    uint32_t timeout  : 1;                        ///< timeout flag
+typedef struct
+{
+    uint32_t active  : 1; ///< timer active flag
+    uint32_t timeout : 1; ///< timeout flag
 } timer_status_t;
 
 /**
 \brief TIMER Event
 */
-typedef enum {
-    TIMER_EVENT_TIMEOUT  = 0   ///< time out event
+typedef enum
+{
+    TIMER_EVENT_TIMEOUT = 0 ///< time out event
 } timer_event_e;
 
-typedef void (*timer_event_cb_t)(timer_event_e event, void *arg);   ///< Pointer to \ref timer_event_cb_t : TIMER Event call back.
+typedef void ( *timer_event_cb_t )( timer_event_e event,
+                                    void * arg ); ///< Pointer to \ref
+                                                  ///< timer_event_cb_t : TIMER
+                                                  ///< Event call back.
 
 /**
 \brief TIMER Device Driver Capabilities.
 */
-typedef struct {
-    uint32_t interrupt_mode          : 1;      ///< supports Interrupt mode
+typedef struct
+{
+    uint32_t interrupt_mode : 1; ///< supports Interrupt mode
 } timer_capabilities_t;
 
 /**
   \brief       get timer instance count.
   \return      timer instance count
 */
-int32_t csi_timer_get_instance_count(void);
+int32_t csi_timer_get_instance_count( void );
 
 /**
-  \brief       Initialize TIMER Interface. 1. Initializes the resources needed for the TIMER interface 2.registers event callback function
-  \param[in]   idx  instance timer index
-  \param[in]   cb_event  Pointer to \ref timer_event_cb_t
+  \brief       Initialize TIMER Interface. 1. Initializes the resources needed
+  for the TIMER interface 2.registers event callback function \param[in]   idx
+  instance timer index \param[in]   cb_event  Pointer to \ref timer_event_cb_t
   \param[in]   cb_arg    arguments of cb_event
   \return      pointer to timer instance
 */
-timer_handle_t csi_timer_initialize(int32_t idx, timer_event_cb_t cb_event, void *cb_arg);
+timer_handle_t csi_timer_initialize( int32_t idx,
+                                     timer_event_cb_t cb_event,
+                                     void * cb_arg );
 
 /**
-  \brief       De-initialize TIMER Interface. stops operation and releases the software resources used by the interface
-  \param[in]   handle timer handle to operate.
-  \return      error code
+  \brief       De-initialize TIMER Interface. stops operation and releases the
+  software resources used by the interface \param[in]   handle timer handle to
+  operate. \return      error code
 */
-int32_t csi_timer_uninitialize(timer_handle_t handle);
+int32_t csi_timer_uninitialize( timer_handle_t handle );
 
 /**
   \brief       Get driver capabilities.
   \param[in]   handle timer handle to operate.
   \return      \ref timer_capabilities_t
 */
-timer_capabilities_t csi_timer_get_capabilities(timer_handle_t handle);
+timer_capabilities_t csi_timer_get_capabilities( timer_handle_t handle );
 
 /**
   \brief       config timer mode.
@@ -98,7 +107,7 @@ timer_capabilities_t csi_timer_get_capabilities(timer_handle_t handle);
   \param[in]   mode      \ref timer_mode_e
   \return      error code
 */
-int32_t csi_timer_config(timer_handle_t handle, timer_mode_e mode);
+int32_t csi_timer_config( timer_handle_t handle, timer_mode_e mode );
 
 /**
   \brief       Set timer.
@@ -106,7 +115,7 @@ int32_t csi_timer_config(timer_handle_t handle, timer_mode_e mode);
   \param[in]   timeout the timeout value in microseconds(us).
   \return      error code
 */
-int32_t csi_timer_set_timeout(timer_handle_t handle, uint32_t timeout);
+int32_t csi_timer_set_timeout( timer_handle_t handle, uint32_t timeout );
 
 /**
   \brief       Start timer.
@@ -114,28 +123,28 @@ int32_t csi_timer_set_timeout(timer_handle_t handle, uint32_t timeout);
   \param[in]   apbfreq APB frequency
   \return      error code
 */
-int32_t csi_timer_start(timer_handle_t handle, uint32_t apbfreq);
+int32_t csi_timer_start( timer_handle_t handle, uint32_t apbfreq );
 
 /**
   \brief       Stop timer.
   \param[in]   handle timer handle to operate.
   \return      error code
 */
-int32_t csi_timer_stop(timer_handle_t handle);
+int32_t csi_timer_stop( timer_handle_t handle );
 
 /**
   \brief       suspend timer.
   \param[in]   handle timer handle to operate.
   \return      error code
 */
-int32_t csi_timer_suspend(timer_handle_t handle);
+int32_t csi_timer_suspend( timer_handle_t handle );
 
 /**
   \brief       resume timer.
   \param[in]   handle timer handle to operate.
   \return      error code
 */
-int32_t csi_timer_resume(timer_handle_t handle);
+int32_t csi_timer_resume( timer_handle_t handle );
 
 /**
   \brief       get timer current value
@@ -143,14 +152,14 @@ int32_t csi_timer_resume(timer_handle_t handle);
   \param[in]   value     timer current value
   \return      error code
 */
-int32_t csi_timer_get_current_value(timer_handle_t handle, uint32_t *value);
+int32_t csi_timer_get_current_value( timer_handle_t handle, uint32_t * value );
 
 /**
   \brief       Get TIMER status.
   \param[in]   handle timer handle to operate.
   \return      TIMER status \ref timer_status_t
 */
-timer_status_t csi_timer_get_status(timer_handle_t handle);
+timer_status_t csi_timer_get_status( timer_handle_t handle );
 
 /**
   \brief       get timer reload value
@@ -158,11 +167,10 @@ timer_status_t csi_timer_get_status(timer_handle_t handle);
   \param[in]   value    timer reload value
   \return      error code
 */
-int32_t csi_timer_get_load_value(timer_handle_t handle, uint32_t *value);
+int32_t csi_timer_get_load_value( timer_handle_t handle, uint32_t * value );
 
 #ifdef __cplusplus
 }
 #endif
 
 #endif /* _CSI_TIMER_H_ */
-

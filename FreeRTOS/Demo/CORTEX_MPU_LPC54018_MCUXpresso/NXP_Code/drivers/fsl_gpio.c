@@ -10,24 +10,27 @@
 
 /* Component ID definition, used by tools. */
 #ifndef FSL_COMPONENT_ID
-#define FSL_COMPONENT_ID "platform.drivers.lpc_gpio"
+    #define FSL_COMPONENT_ID "platform.drivers.lpc_gpio"
 #endif
 
 /*******************************************************************************
  * Variables
  ******************************************************************************/
-#if !(defined(FSL_SDK_DISABLE_DRIVER_CLOCK_CONTROL) && FSL_SDK_DISABLE_DRIVER_CLOCK_CONTROL)
+#if !( defined( FSL_SDK_DISABLE_DRIVER_CLOCK_CONTROL ) && \
+       FSL_SDK_DISABLE_DRIVER_CLOCK_CONTROL )
 /*! @brief Array to map FGPIO instance number to clock name. */
 static const clock_ip_name_t s_gpioClockName[] = GPIO_CLOCKS;
 #endif /* FSL_SDK_DISABLE_DRIVER_CLOCK_CONTROL */
 
-#if !(defined(FSL_FEATURE_GPIO_HAS_NO_RESET) && FSL_FEATURE_GPIO_HAS_NO_RESET)
+#if !( defined( FSL_FEATURE_GPIO_HAS_NO_RESET ) && \
+       FSL_FEATURE_GPIO_HAS_NO_RESET )
 /*! @brief Pointers to GPIO resets for each instance. */
 static const reset_ip_name_t s_gpioResets[] = GPIO_RSTS_N;
 #endif
 /*******************************************************************************
  * Prototypes
- ************ ******************************************************************/
+ ************
+ *******************************************************************/
 
 /*******************************************************************************
  * Code
@@ -40,25 +43,27 @@ static const reset_ip_name_t s_gpioResets[] = GPIO_RSTS_N;
  * param base   GPIO peripheral base pointer.
  * param port   GPIO port number.
  */
-void GPIO_PortInit(GPIO_Type *base, uint32_t port)
+void GPIO_PortInit( GPIO_Type * base, uint32_t port )
 {
-#if !(defined(FSL_SDK_DISABLE_DRIVER_CLOCK_CONTROL) && FSL_SDK_DISABLE_DRIVER_CLOCK_CONTROL)
-    assert(port < ARRAY_SIZE(s_gpioClockName));
+#if !( defined( FSL_SDK_DISABLE_DRIVER_CLOCK_CONTROL ) && \
+       FSL_SDK_DISABLE_DRIVER_CLOCK_CONTROL )
+    assert( port < ARRAY_SIZE( s_gpioClockName ) );
 
     /* Upgate the GPIO clock */
-    CLOCK_EnableClock(s_gpioClockName[port]);
+    CLOCK_EnableClock( s_gpioClockName[ port ] );
 #endif /* FSL_SDK_DISABLE_DRIVER_CLOCK_CONTROL */
-#if !(defined(FSL_FEATURE_GPIO_HAS_NO_RESET) && FSL_FEATURE_GPIO_HAS_NO_RESET)
+#if !( defined( FSL_FEATURE_GPIO_HAS_NO_RESET ) && \
+       FSL_FEATURE_GPIO_HAS_NO_RESET )
     /* Reset the GPIO module */
-    RESET_PeripheralReset(s_gpioResets[port]);
+    RESET_PeripheralReset( s_gpioResets[ port ] );
 #endif
 }
 
 /*!
  * brief Initializes a GPIO pin used by the board.
  *
- * To initialize the GPIO, define a pin configuration, either input or output, in the user file.
- * Then, call the GPIO_PinInit() function.
+ * To initialize the GPIO, define a pin configuration, either input or output,
+ * in the user file. Then, call the GPIO_PinInit() function.
  *
  * This is an example to define an input pin or output pin configuration:
  * code
@@ -81,37 +86,42 @@ void GPIO_PortInit(GPIO_Type *base, uint32_t port)
  * param pin    GPIO pin number
  * param config GPIO pin configuration pointer
  */
-void GPIO_PinInit(GPIO_Type *base, uint32_t port, uint32_t pin, const gpio_pin_config_t *config)
+void GPIO_PinInit( GPIO_Type * base,
+                   uint32_t port,
+                   uint32_t pin,
+                   const gpio_pin_config_t * config )
 {
-    if (config->pinDirection == kGPIO_DigitalInput)
+    if( config->pinDirection == kGPIO_DigitalInput )
     {
-#if defined(FSL_FEATURE_GPIO_DIRSET_AND_DIRCLR) && (FSL_FEATURE_GPIO_DIRSET_AND_DIRCLR)
-        base->DIRCLR[port] = 1UL << pin;
+#if defined( FSL_FEATURE_GPIO_DIRSET_AND_DIRCLR ) && \
+    ( FSL_FEATURE_GPIO_DIRSET_AND_DIRCLR )
+        base->DIRCLR[ port ] = 1UL << pin;
 #else
-        base->DIR[port] &= ~(1UL << pin);
+        base->DIR[ port ] &= ~( 1UL << pin );
 #endif /*FSL_FEATURE_GPIO_DIRSET_AND_DIRCLR*/
     }
     else
     {
         /* Set default output value */
-        if (config->outputLogic == 0U)
+        if( config->outputLogic == 0U )
         {
-            base->CLR[port] = (1UL << pin);
+            base->CLR[ port ] = ( 1UL << pin );
         }
         else
         {
-            base->SET[port] = (1UL << pin);
+            base->SET[ port ] = ( 1UL << pin );
         }
 /* Set pin direction */
-#if defined(FSL_FEATURE_GPIO_DIRSET_AND_DIRCLR) && (FSL_FEATURE_GPIO_DIRSET_AND_DIRCLR)
-        base->DIRSET[port] = 1UL << pin;
+#if defined( FSL_FEATURE_GPIO_DIRSET_AND_DIRCLR ) && \
+    ( FSL_FEATURE_GPIO_DIRSET_AND_DIRCLR )
+        base->DIRSET[ port ] = 1UL << pin;
 #else
-        base->DIR[port] |= 1UL << pin;
+        base->DIR[ port ] |= 1UL << pin;
 #endif /*FSL_FEATURE_GPIO_DIRSET_AND_DIRCLR*/
     }
 }
 
-#if defined(FSL_FEATURE_GPIO_HAS_INTERRUPT) && FSL_FEATURE_GPIO_HAS_INTERRUPT
+#if defined( FSL_FEATURE_GPIO_HAS_INTERRUPT ) && FSL_FEATURE_GPIO_HAS_INTERRUPT
 /*!
  * @brief Configures the gpio pin interrupt.
  *
@@ -120,11 +130,16 @@ void GPIO_PinInit(GPIO_Type *base, uint32_t port, uint32_t pin, const gpio_pin_c
  * @param pin GPIO pin number.
  * @param config GPIO pin interrupt configuration..
  */
-void GPIO_SetPinInterruptConfig(GPIO_Type *base, uint32_t port, uint32_t pin, gpio_interrupt_config_t *config)
+void GPIO_SetPinInterruptConfig( GPIO_Type * base,
+                                 uint32_t port,
+                                 uint32_t pin,
+                                 gpio_interrupt_config_t * config )
 {
-    base->INTEDG[port] = base->INTEDG[port] | ((uint32_t)config->mode << pin);
+    base->INTEDG[ port ] = base->INTEDG[ port ] |
+                           ( ( uint32_t ) config->mode << pin );
 
-    base->INTPOL[port] = base->INTPOL[port] | ((uint32_t)config->polarity << pin);
+    base->INTPOL[ port ] = base->INTPOL[ port ] |
+                           ( ( uint32_t ) config->polarity << pin );
 }
 
 /*!
@@ -135,15 +150,18 @@ void GPIO_SetPinInterruptConfig(GPIO_Type *base, uint32_t port, uint32_t pin, gp
  * @param index GPIO interrupt number.
  * @param mask GPIO pin number macro.
  */
-void GPIO_PortEnableInterrupts(GPIO_Type *base, uint32_t port, uint32_t index, uint32_t mask)
+void GPIO_PortEnableInterrupts( GPIO_Type * base,
+                                uint32_t port,
+                                uint32_t index,
+                                uint32_t mask )
 {
-    if ((uint32_t)kGPIO_InterruptA == index)
+    if( ( uint32_t ) kGPIO_InterruptA == index )
     {
-        base->INTENA[port] = base->INTENA[port] | mask;
+        base->INTENA[ port ] = base->INTENA[ port ] | mask;
     }
-    else if ((uint32_t)kGPIO_InterruptB == index)
+    else if( ( uint32_t ) kGPIO_InterruptB == index )
     {
-        base->INTENB[port] = base->INTENB[port] | mask;
+        base->INTENB[ port ] = base->INTENB[ port ] | mask;
     }
     else
     {
@@ -159,15 +177,18 @@ void GPIO_PortEnableInterrupts(GPIO_Type *base, uint32_t port, uint32_t index, u
  * @param index GPIO interrupt number.
  * @param mask GPIO pin number macro.
  */
-void GPIO_PortDisableInterrupts(GPIO_Type *base, uint32_t port, uint32_t index, uint32_t mask)
+void GPIO_PortDisableInterrupts( GPIO_Type * base,
+                                 uint32_t port,
+                                 uint32_t index,
+                                 uint32_t mask )
 {
-    if ((uint32_t)kGPIO_InterruptA == index)
+    if( ( uint32_t ) kGPIO_InterruptA == index )
     {
-        base->INTENA[port] = base->INTENA[port] & ~mask;
+        base->INTENA[ port ] = base->INTENA[ port ] & ~mask;
     }
-    else if ((uint32_t)kGPIO_InterruptB == index)
+    else if( ( uint32_t ) kGPIO_InterruptB == index )
     {
-        base->INTENB[port] = base->INTENB[port] & ~mask;
+        base->INTENB[ port ] = base->INTENB[ port ] & ~mask;
     }
     else
     {
@@ -184,15 +205,18 @@ void GPIO_PortDisableInterrupts(GPIO_Type *base, uint32_t port, uint32_t index, 
  * @param index GPIO interrupt number.
  * @param mask GPIO pin number macro.
  */
-void GPIO_PortClearInterruptFlags(GPIO_Type *base, uint32_t port, uint32_t index, uint32_t mask)
+void GPIO_PortClearInterruptFlags( GPIO_Type * base,
+                                   uint32_t port,
+                                   uint32_t index,
+                                   uint32_t mask )
 {
-    if ((uint32_t)kGPIO_InterruptA == index)
+    if( ( uint32_t ) kGPIO_InterruptA == index )
     {
-        base->INTSTATA[port] = mask;
+        base->INTSTATA[ port ] = mask;
     }
-    else if ((uint32_t)kGPIO_InterruptB == index)
+    else if( ( uint32_t ) kGPIO_InterruptB == index )
     {
-        base->INTSTATB[port] = mask;
+        base->INTSTATB[ port ] = mask;
     }
     else
     {
@@ -208,17 +232,19 @@ void GPIO_PortClearInterruptFlags(GPIO_Type *base, uint32_t port, uint32_t index
  * @param index GPIO interrupt number.
  * @retval masked GPIO status value
  */
-uint32_t GPIO_PortGetInterruptStatus(GPIO_Type *base, uint32_t port, uint32_t index)
+uint32_t GPIO_PortGetInterruptStatus( GPIO_Type * base,
+                                      uint32_t port,
+                                      uint32_t index )
 {
     uint32_t status = 0U;
 
-    if ((uint32_t)kGPIO_InterruptA == index)
+    if( ( uint32_t ) kGPIO_InterruptA == index )
     {
-        status = base->INTSTATA[port];
+        status = base->INTSTATA[ port ];
     }
-    else if ((uint32_t)kGPIO_InterruptB == index)
+    else if( ( uint32_t ) kGPIO_InterruptB == index )
     {
-        status = base->INTSTATB[port];
+        status = base->INTSTATB[ port ];
     }
     else
     {
@@ -235,15 +261,18 @@ uint32_t GPIO_PortGetInterruptStatus(GPIO_Type *base, uint32_t port, uint32_t in
  * @param pin GPIO pin number.
  * @param index GPIO interrupt number.
  */
-void GPIO_PinEnableInterrupt(GPIO_Type *base, uint32_t port, uint32_t pin, uint32_t index)
+void GPIO_PinEnableInterrupt( GPIO_Type * base,
+                              uint32_t port,
+                              uint32_t pin,
+                              uint32_t index )
 {
-    if ((uint32_t)kGPIO_InterruptA == index)
+    if( ( uint32_t ) kGPIO_InterruptA == index )
     {
-        base->INTENA[port] = base->INTENA[port] | (1UL << pin);
+        base->INTENA[ port ] = base->INTENA[ port ] | ( 1UL << pin );
     }
-    else if ((uint32_t)kGPIO_InterruptB == index)
+    else if( ( uint32_t ) kGPIO_InterruptB == index )
     {
-        base->INTENB[port] = base->INTENB[port] | (1UL << pin);
+        base->INTENB[ port ] = base->INTENB[ port ] | ( 1UL << pin );
     }
     else
     {
@@ -259,15 +288,18 @@ void GPIO_PinEnableInterrupt(GPIO_Type *base, uint32_t port, uint32_t pin, uint3
  * @param pin GPIO pin number.
  * @param index GPIO interrupt number.
  */
-void GPIO_PinDisableInterrupt(GPIO_Type *base, uint32_t port, uint32_t pin, uint32_t index)
+void GPIO_PinDisableInterrupt( GPIO_Type * base,
+                               uint32_t port,
+                               uint32_t pin,
+                               uint32_t index )
 {
-    if ((uint32_t)kGPIO_InterruptA == index)
+    if( ( uint32_t ) kGPIO_InterruptA == index )
     {
-        base->INTENA[port] = base->INTENA[port] & ~(1UL << pin);
+        base->INTENA[ port ] = base->INTENA[ port ] & ~( 1UL << pin );
     }
-    else if ((uint32_t)kGPIO_InterruptB == index)
+    else if( ( uint32_t ) kGPIO_InterruptB == index )
     {
-        base->INTENB[port] = base->INTENB[port] & ~(1UL << pin);
+        base->INTENB[ port ] = base->INTENB[ port ] & ~( 1UL << pin );
     }
     else
     {
@@ -284,15 +316,18 @@ void GPIO_PinDisableInterrupt(GPIO_Type *base, uint32_t port, uint32_t pin, uint
  * @param index GPIO interrupt number.
  * @param mask GPIO pin number macro.
  */
-void GPIO_PinClearInterruptFlag(GPIO_Type *base, uint32_t port, uint32_t pin, uint32_t index)
+void GPIO_PinClearInterruptFlag( GPIO_Type * base,
+                                 uint32_t port,
+                                 uint32_t pin,
+                                 uint32_t index )
 {
-    if ((uint32_t)kGPIO_InterruptA == index)
+    if( ( uint32_t ) kGPIO_InterruptA == index )
     {
-        base->INTSTATA[port] = 1UL << pin;
+        base->INTSTATA[ port ] = 1UL << pin;
     }
-    else if ((uint32_t)kGPIO_InterruptB == index)
+    else if( ( uint32_t ) kGPIO_InterruptB == index )
     {
-        base->INTSTATB[port] = 1UL << pin;
+        base->INTSTATB[ port ] = 1UL << pin;
     }
     else
     {

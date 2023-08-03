@@ -19,7 +19,6 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1335, USA
  */
 
-
 #ifndef WOLF_CRYPT_GE_448_H
 #define WOLF_CRYPT_GE_448_H
 
@@ -27,59 +26,62 @@
 
 #ifdef HAVE_ED448
 
-#include <wolfssl/wolfcrypt/fe_448.h>
+    #include <wolfssl/wolfcrypt/fe_448.h>
 
-/*
-ge448 means group element.
+    /*
+    ge448 means group element.
 
-Here the group is the set of pairs (x,y) of field elements (see fe.h)
-satisfying -x^2 + y^2 = 1 + d x^2y^2
-where d = -39081.
+    Here the group is the set of pairs (x,y) of field elements (see fe.h)
+    satisfying -x^2 + y^2 = 1 + d x^2y^2
+    where d = -39081.
 
-Representations:
-  ge448_p2 (projective) : (X:Y:Z) satisfying x=X/Z, y=Y/Z
-  ge448_precomp (affine): (x,y)
-*/
+    Representations:
+      ge448_p2 (projective) : (X:Y:Z) satisfying x=X/Z, y=Y/Z
+      ge448_precomp (affine): (x,y)
+    */
 
-#ifdef ED448_SMALL
-    typedef byte     ge448;
-    #define GE448_WORDS    56
-#elif defined(CURVED448_128BIT)
-    typedef int64_t  ge448;
-    #define GE448_WORDS    8
-#else
-    typedef int32_t  ge448;
-    #define GE448_WORDS    16
-#endif
+    #ifdef ED448_SMALL
+typedef byte ge448;
+        #define GE448_WORDS 56
+    #elif defined( CURVED448_128BIT )
+typedef int64_t ge448;
+        #define GE448_WORDS 8
+    #else
+typedef int32_t ge448;
+        #define GE448_WORDS 16
+    #endif
 
-typedef struct {
-  ge448 X[GE448_WORDS];
-  ge448 Y[GE448_WORDS];
-  ge448 Z[GE448_WORDS];
+typedef struct
+{
+    ge448 X[ GE448_WORDS ];
+    ge448 Y[ GE448_WORDS ];
+    ge448 Z[ GE448_WORDS ];
 } ge448_p2;
 
+WOLFSSL_LOCAL int ge448_compress_key( byte *, const byte *, const byte * );
+WOLFSSL_LOCAL int ge448_from_bytes_negate_vartime( ge448_p2 *,
+                                                   const unsigned char * );
 
-WOLFSSL_LOCAL int  ge448_compress_key(byte*, const byte*, const byte*);
-WOLFSSL_LOCAL int  ge448_from_bytes_negate_vartime(ge448_p2 *,
-                                                   const unsigned char *);
-
-WOLFSSL_LOCAL int  ge448_double_scalarmult_vartime(ge448_p2 *,
+WOLFSSL_LOCAL int ge448_double_scalarmult_vartime( ge448_p2 *,
                                                    const unsigned char *,
                                                    const ge448_p2 *,
-                                                   const unsigned char *);
-WOLFSSL_LOCAL void ge448_scalarmult_base(ge448_p2 *, const unsigned char *);
-WOLFSSL_LOCAL void sc448_reduce(byte*);
-WOLFSSL_LOCAL void sc448_muladd(byte*, const byte*, const byte*, const byte*);
-WOLFSSL_LOCAL void ge448_to_bytes(unsigned char *, const ge448_p2 *);
+                                                   const unsigned char * );
+WOLFSSL_LOCAL void ge448_scalarmult_base( ge448_p2 *, const unsigned char * );
+WOLFSSL_LOCAL void sc448_reduce( byte * );
+WOLFSSL_LOCAL void sc448_muladd( byte *,
+                                 const byte *,
+                                 const byte *,
+                                 const byte * );
+WOLFSSL_LOCAL void ge448_to_bytes( unsigned char *, const ge448_p2 * );
 
-
-#ifndef ED448_SMALL
-typedef struct {
-  ge448 x[GE448_WORDS];
-  ge448 y[GE448_WORDS];
+    #ifndef ED448_SMALL
+typedef struct
+{
+    ge448 x[ GE448_WORDS ];
+    ge448 y[ GE448_WORDS ];
 } ge448_precomp;
 
-#endif /* !ED448_SMALL */
+    #endif /* !ED448_SMALL */
 
 #endif /* HAVE_ED448 */
 

@@ -29,9 +29,8 @@
     tracks which blocks are allocated or free.  Some of the functionality is
     delegated to imapinline.c and imapextern.c.
 */
-#include <redfs.h>
 #include <redcore.h>
-
+#include <redfs.h>
 
 /** @brief Get the allocation bit of a block from either metaroot.
 
@@ -50,42 +49,36 @@
                         or @p pfAllocated is `NULL`.
     @retval -RED_EIO    A disk I/O error occurred.
 */
-REDSTATUS RedImapBlockGet(
-    uint8_t     bMR,
-    uint32_t    ulBlock,
-    bool       *pfAllocated)
+REDSTATUS RedImapBlockGet( uint8_t bMR, uint32_t ulBlock, bool * pfAllocated )
 {
-    REDSTATUS   ret;
+    REDSTATUS ret;
 
-    if(    (bMR > 1U)
-        || (ulBlock < gpRedCoreVol->ulInodeTableStartBN)
-        || (ulBlock >= gpRedVolume->ulBlockCount)
-        || (pfAllocated == NULL))
+    if( ( bMR > 1U ) || ( ulBlock < gpRedCoreVol->ulInodeTableStartBN ) ||
+        ( ulBlock >= gpRedVolume->ulBlockCount ) || ( pfAllocated == NULL ) )
     {
         REDERROR();
         ret = -RED_EINVAL;
     }
     else
     {
-      #if (REDCONF_IMAP_INLINE == 1) && (REDCONF_IMAP_EXTERNAL == 1)
-        if(gpRedCoreVol->fImapInline)
+#if( REDCONF_IMAP_INLINE == 1 ) && ( REDCONF_IMAP_EXTERNAL == 1 )
+        if( gpRedCoreVol->fImapInline )
         {
-            ret = RedImapIBlockGet(bMR, ulBlock, pfAllocated);
+            ret = RedImapIBlockGet( bMR, ulBlock, pfAllocated );
         }
         else
         {
-            ret = RedImapEBlockGet(bMR, ulBlock, pfAllocated);
+            ret = RedImapEBlockGet( bMR, ulBlock, pfAllocated );
         }
-      #elif REDCONF_IMAP_INLINE == 1
-        ret = RedImapIBlockGet(bMR, ulBlock, pfAllocated);
-      #else
-        ret = RedImapEBlockGet(bMR, ulBlock, pfAllocated);
-      #endif
+#elif REDCONF_IMAP_INLINE == 1
+        ret = RedImapIBlockGet( bMR, ulBlock, pfAllocated );
+#else
+        ret = RedImapEBlockGet( bMR, ulBlock, pfAllocated );
+#endif
     }
 
     return ret;
 }
-
 
 #if REDCONF_READ_ONLY == 0
 /** @brief Set the allocation bit of a block in the working metaroot.
@@ -103,21 +96,20 @@ REDSTATUS RedImapBlockGet(
                         and @p fAllocated is 1.
     @retval -RED_EIO    A disk I/O error occurred.
 */
-REDSTATUS RedImapBlockSet(
-    uint32_t    ulBlock,
-    bool        fAllocated)
+REDSTATUS RedImapBlockSet( uint32_t ulBlock, bool fAllocated )
 {
-    REDSTATUS   ret;
+    REDSTATUS ret;
 
-    if(    (ulBlock < gpRedCoreVol->ulInodeTableStartBN)
-        || (ulBlock >= gpRedVolume->ulBlockCount))
+    if( ( ulBlock < gpRedCoreVol->ulInodeTableStartBN ) ||
+        ( ulBlock >= gpRedVolume->ulBlockCount ) )
     {
         REDERROR();
         ret = -RED_EINVAL;
     }
-    else if(    (ulBlock >= gpRedCoreVol->ulFirstAllocableBN)
-             && (    (fAllocated && (gpRedMR->ulFreeBlocks == 0U))
-                  || ((!fAllocated) && (gpRedMR->ulFreeBlocks >= gpRedVolume->ulBlocksAllocable))))
+    else if( ( ulBlock >= gpRedCoreVol->ulFirstAllocableBN ) &&
+             ( ( fAllocated && ( gpRedMR->ulFreeBlocks == 0U ) ) ||
+               ( ( !fAllocated ) && ( gpRedMR->ulFreeBlocks >=
+                                      gpRedVolume->ulBlocksAllocable ) ) ) )
     {
         /*  Attempting either to free more blocks than are allocable, or
             allocate a block when there are none available.  This could indicate
@@ -128,20 +120,20 @@ REDSTATUS RedImapBlockSet(
     }
     else
     {
-      #if (REDCONF_IMAP_INLINE == 1) && (REDCONF_IMAP_EXTERNAL == 1)
-        if(gpRedCoreVol->fImapInline)
+    #if( REDCONF_IMAP_INLINE == 1 ) && ( REDCONF_IMAP_EXTERNAL == 1 )
+        if( gpRedCoreVol->fImapInline )
         {
-            ret = RedImapIBlockSet(ulBlock, fAllocated);
+            ret = RedImapIBlockSet( ulBlock, fAllocated );
         }
         else
         {
-            ret = RedImapEBlockSet(ulBlock, fAllocated);
+            ret = RedImapEBlockSet( ulBlock, fAllocated );
         }
-      #elif REDCONF_IMAP_INLINE == 1
-        ret = RedImapIBlockSet(ulBlock, fAllocated);
-      #else
-        ret = RedImapEBlockSet(ulBlock, fAllocated);
-      #endif
+    #elif REDCONF_IMAP_INLINE == 1
+        ret = RedImapIBlockSet( ulBlock, fAllocated );
+    #else
+        ret = RedImapEBlockSet( ulBlock, fAllocated );
+    #endif
 
         /*  Any change to the allocation state of a block indicates that the
             volume is now branched.
@@ -150,19 +142,19 @@ REDSTATUS RedImapBlockSet(
     }
 
     /*  If a block was marked as no longer in use, discard it from the buffers.
-    */
-    if((ret == 0) && (!fAllocated))
+     */
+    if( ( ret == 0 ) && ( !fAllocated ) )
     {
-        ret = RedBufferDiscardRange(ulBlock, 1U);
-        CRITICAL_ASSERT(ret == 0);
+        ret = RedBufferDiscardRange( ulBlock, 1U );
+        CRITICAL_ASSERT( ret == 0 );
     }
 
     /*  Adjust the free/almost free block count if the block was allocable.
         Discard the block if required.
     */
-    if((ret == 0) && (ulBlock >= gpRedCoreVol->ulFirstAllocableBN))
+    if( ( ret == 0 ) && ( ulBlock >= gpRedCoreVol->ulFirstAllocableBN ) )
     {
-        if(fAllocated)
+        if( fAllocated )
         {
             gpRedMR->ulFreeBlocks--;
         }
@@ -174,12 +166,14 @@ REDSTATUS RedImapBlockSet(
                 previous allocation state.  If it was used, then it is now
                 almost free.  Otherwise, it was new and is now free.
             */
-            ret = RedImapBlockGet(1U - gpRedCoreVol->bCurMR, ulBlock, &fWasAllocated);
-            CRITICAL_ASSERT(ret == 0);
+            ret = RedImapBlockGet( 1U - gpRedCoreVol->bCurMR,
+                                   ulBlock,
+                                   &fWasAllocated );
+            CRITICAL_ASSERT( ret == 0 );
 
-            if(ret == 0)
+            if( ret == 0 )
             {
-                if(fWasAllocated)
+                if( fWasAllocated )
                 {
                     gpRedCoreVol->ulAlmostFreeBlocks++;
                 }
@@ -194,7 +188,6 @@ REDSTATUS RedImapBlockSet(
     return ret;
 }
 
-
 /** @brief Allocate one block.
 
     @param pulBlock On successful return, populated with the allocated block
@@ -207,38 +200,37 @@ REDSTATUS RedImapBlockSet(
     @retval -RED_EIO    A disk I/O error occurred.
     @retval -RED_ENOSPC Insufficient free space to perform the allocation.
 */
-REDSTATUS RedImapAllocBlock(
-    uint32_t   *pulBlock)
+REDSTATUS RedImapAllocBlock( uint32_t * pulBlock )
 {
-    REDSTATUS   ret;
+    REDSTATUS ret;
 
-    if(pulBlock == NULL)
+    if( pulBlock == NULL )
     {
         REDERROR();
         ret = -RED_EINVAL;
     }
-    else if(gpRedMR->ulFreeBlocks == 0U)
+    else if( gpRedMR->ulFreeBlocks == 0U )
     {
         ret = -RED_ENOSPC;
     }
     else
     {
         uint32_t ulStopBlock = gpRedMR->ulAllocNextBlock;
-        bool     fAllocated = false;
+        bool fAllocated = false;
 
         do
         {
             ALLOCSTATE state;
 
-            ret = RedImapBlockState(gpRedMR->ulAllocNextBlock, &state);
-            CRITICAL_ASSERT(ret == 0);
+            ret = RedImapBlockState( gpRedMR->ulAllocNextBlock, &state );
+            CRITICAL_ASSERT( ret == 0 );
 
-            if(ret == 0)
+            if( ret == 0 )
             {
-                if(state == ALLOCSTATE_FREE)
+                if( state == ALLOCSTATE_FREE )
                 {
-                    ret = RedImapBlockSet(gpRedMR->ulAllocNextBlock, true);
-                    CRITICAL_ASSERT(ret == 0);
+                    ret = RedImapBlockSet( gpRedMR->ulAllocNextBlock, true );
+                    CRITICAL_ASSERT( ret == 0 );
 
                     *pulBlock = gpRedMR->ulAllocNextBlock;
                     fAllocated = true;
@@ -248,15 +240,15 @@ REDSTATUS RedImapAllocBlock(
                     the volume is reached.
                 */
                 gpRedMR->ulAllocNextBlock++;
-                if(gpRedMR->ulAllocNextBlock == gpRedVolume->ulBlockCount)
+                if( gpRedMR->ulAllocNextBlock == gpRedVolume->ulBlockCount )
                 {
                     gpRedMR->ulAllocNextBlock = gpRedCoreVol->ulFirstAllocableBN;
                 }
             }
-        }
-        while((ret == 0) && !fAllocated && (gpRedMR->ulAllocNextBlock != ulStopBlock));
+        } while( ( ret == 0 ) && !fAllocated &&
+                 ( gpRedMR->ulAllocNextBlock != ulStopBlock ) );
 
-        if((ret == 0) && !fAllocated)
+        if( ( ret == 0 ) && !fAllocated )
         {
             /*  The free block count was already determined to be non-zero, no
                 error occurred while looking for free blocks, but no free blocks
@@ -270,7 +262,6 @@ REDSTATUS RedImapAllocBlock(
     return ret;
 }
 #endif /* REDCONF_READ_ONLY == 0 */
-
 
 /** @brief Get the allocation state of a block.
 
@@ -291,15 +282,12 @@ REDSTATUS RedImapAllocBlock(
     @retval -RED_EINVAL @p ulBlock is out of range; or @p pState is `NULL`.
     @retval -RED_EIO    A disk I/O error occurred.
 */
-REDSTATUS RedImapBlockState(
-    uint32_t    ulBlock,
-    ALLOCSTATE *pState)
+REDSTATUS RedImapBlockState( uint32_t ulBlock, ALLOCSTATE * pState )
 {
-    REDSTATUS   ret;
+    REDSTATUS ret;
 
-    if(    (ulBlock < gpRedCoreVol->ulInodeTableStartBN)
-        || (ulBlock >= gpRedVolume->ulBlockCount)
-        || (pState == NULL))
+    if( ( ulBlock < gpRedCoreVol->ulInodeTableStartBN ) ||
+        ( ulBlock >= gpRedVolume->ulBlockCount ) || ( pState == NULL ) )
     {
         REDERROR();
         ret = -RED_EINVAL;
@@ -308,19 +296,21 @@ REDSTATUS RedImapBlockState(
     {
         bool fBitCurrent;
 
-        ret = RedImapBlockGet(gpRedCoreVol->bCurMR, ulBlock, &fBitCurrent);
+        ret = RedImapBlockGet( gpRedCoreVol->bCurMR, ulBlock, &fBitCurrent );
 
-        if(ret == 0)
+        if( ret == 0 )
         {
             bool fBitOld;
 
-            ret = RedImapBlockGet(1U - gpRedCoreVol->bCurMR, ulBlock, &fBitOld);
+            ret = RedImapBlockGet( 1U - gpRedCoreVol->bCurMR,
+                                   ulBlock,
+                                   &fBitOld );
 
-            if(ret == 0)
+            if( ret == 0 )
             {
-                if(fBitCurrent)
+                if( fBitCurrent )
                 {
-                    if(fBitOld)
+                    if( fBitOld )
                     {
                         *pState = ALLOCSTATE_USED;
                     }
@@ -331,7 +321,7 @@ REDSTATUS RedImapBlockState(
                 }
                 else
                 {
-                    if(fBitOld)
+                    if( fBitOld )
                     {
                         *pState = ALLOCSTATE_AFREE;
                     }
@@ -346,4 +336,3 @@ REDSTATUS RedImapBlockState(
 
     return ret;
 }
-

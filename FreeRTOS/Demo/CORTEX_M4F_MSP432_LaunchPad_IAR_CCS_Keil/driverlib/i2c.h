@@ -1,6 +1,6 @@
 /*
  * -------------------------------------------
- *    MSP432 DriverLib - v3_10_00_09 
+ *    MSP432 DriverLib - v3_10_00_09
  * -------------------------------------------
  *
  * --COPYRIGHT--,BSD,BSD
@@ -51,62 +51,61 @@
 //
 //*****************************************************************************
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
-#include <stdint.h>
-#include <stdbool.h>
-#include <msp.h>
 #include "eusci.h"
+#include <msp.h>
+#include <stdbool.h>
+#include <stdint.h>
 
-#define EUSCI_B_I2C_NO_AUTO_STOP                           EUSCI_B_CTLW1_ASTP_0
-#define EUSCI_B_I2C_SET_BYTECOUNT_THRESHOLD_FLAG           EUSCI_B_CTLW1_ASTP_1
-#define EUSCI_B_I2C_SEND_STOP_AUTOMATICALLY_ON_BYTECOUNT_THRESHOLD  \
-	                                                       EUSCI_B_CTLW1_ASTP_2
+#define EUSCI_B_I2C_NO_AUTO_STOP                 EUSCI_B_CTLW1_ASTP_0
+#define EUSCI_B_I2C_SET_BYTECOUNT_THRESHOLD_FLAG EUSCI_B_CTLW1_ASTP_1
+#define EUSCI_B_I2C_SEND_STOP_AUTOMATICALLY_ON_BYTECOUNT_THRESHOLD \
+    EUSCI_B_CTLW1_ASTP_2
 
-#define EUSCI_B_I2C_SET_DATA_RATE_1MBPS                                 1000000
-#define EUSCI_B_I2C_SET_DATA_RATE_400KBPS                                400000
-#define EUSCI_B_I2C_SET_DATA_RATE_100KBPS                                100000
+#define EUSCI_B_I2C_SET_DATA_RATE_1MBPS         1000000
+#define EUSCI_B_I2C_SET_DATA_RATE_400KBPS       400000
+#define EUSCI_B_I2C_SET_DATA_RATE_100KBPS       100000
 
-#define EUSCI_B_I2C_CLOCKSOURCE_ACLK                   EUSCI_B_CTLW0_SSEL__ACLK
-#define EUSCI_B_I2C_CLOCKSOURCE_SMCLK                 EUSCI_B_CTLW0_SSEL__SMCLK
+#define EUSCI_B_I2C_CLOCKSOURCE_ACLK            EUSCI_B_CTLW0_SSEL__ACLK
+#define EUSCI_B_I2C_CLOCKSOURCE_SMCLK           EUSCI_B_CTLW0_SSEL__SMCLK
 
-#define EUSCI_B_I2C_OWN_ADDRESS_OFFSET0                                    0x00
-#define EUSCI_B_I2C_OWN_ADDRESS_OFFSET1                                    0x02
-#define EUSCI_B_I2C_OWN_ADDRESS_OFFSET2                                    0x04
-#define EUSCI_B_I2C_OWN_ADDRESS_OFFSET3                                    0x06
+#define EUSCI_B_I2C_OWN_ADDRESS_OFFSET0         0x00
+#define EUSCI_B_I2C_OWN_ADDRESS_OFFSET1         0x02
+#define EUSCI_B_I2C_OWN_ADDRESS_OFFSET2         0x04
+#define EUSCI_B_I2C_OWN_ADDRESS_OFFSET3         0x06
 
-#define EUSCI_B_I2C_OWN_ADDRESS_DISABLE                                    0x00
-#define EUSCI_B_I2C_OWN_ADDRESS_ENABLE                      EUSCI_B_I2COA0_OAEN
+#define EUSCI_B_I2C_OWN_ADDRESS_DISABLE         0x00
+#define EUSCI_B_I2C_OWN_ADDRESS_ENABLE          EUSCI_B_I2COA0_OAEN
 
-#define EUSCI_B_I2C_TRANSMIT_MODE                              EUSCI_B_CTLW0_TR
-#define EUSCI_B_I2C_RECEIVE_MODE                                           0x00
+#define EUSCI_B_I2C_TRANSMIT_MODE               EUSCI_B_CTLW0_TR
+#define EUSCI_B_I2C_RECEIVE_MODE                0x00
 
-#define EUSCI_B_I2C_NAK_INTERRUPT                             EUSCI_B_IE_NACKIE
-#define EUSCI_B_I2C_ARBITRATIONLOST_INTERRUPT                   EUSCI_B_IE_ALIE
-#define EUSCI_B_I2C_STOP_INTERRUPT                             EUSCI_B_IE_STPIE
-#define EUSCI_B_I2C_START_INTERRUPT                            EUSCI_B_IE_STTIE
-#define EUSCI_B_I2C_TRANSMIT_INTERRUPT0                        EUSCI_B_IE_TXIE0
-#define EUSCI_B_I2C_TRANSMIT_INTERRUPT1                        EUSCI_B_IE_TXIE1
-#define EUSCI_B_I2C_TRANSMIT_INTERRUPT2                        EUSCI_B_IE_TXIE2
-#define EUSCI_B_I2C_TRANSMIT_INTERRUPT3                        EUSCI_B_IE_TXIE3
-#define EUSCI_B_I2C_RECEIVE_INTERRUPT0                         EUSCI_B_IE_RXIE0
-#define EUSCI_B_I2C_RECEIVE_INTERRUPT1                         EUSCI_B_IE_RXIE1
-#define EUSCI_B_I2C_RECEIVE_INTERRUPT2                         EUSCI_B_IE_RXIE2
-#define EUSCI_B_I2C_RECEIVE_INTERRUPT3                         EUSCI_B_IE_RXIE3
-#define EUSCI_B_I2C_BIT9_POSITION_INTERRUPT                   EUSCI_B_IE_BIT9IE
-#define EUSCI_B_I2C_CLOCK_LOW_TIMEOUT_INTERRUPT               EUSCI_B_IE_CLTOIE
-#define EUSCI_B_I2C_BYTE_COUNTER_INTERRUPT                    EUSCI_B_IE_BCNTIE
+#define EUSCI_B_I2C_NAK_INTERRUPT               EUSCI_B_IE_NACKIE
+#define EUSCI_B_I2C_ARBITRATIONLOST_INTERRUPT   EUSCI_B_IE_ALIE
+#define EUSCI_B_I2C_STOP_INTERRUPT              EUSCI_B_IE_STPIE
+#define EUSCI_B_I2C_START_INTERRUPT             EUSCI_B_IE_STTIE
+#define EUSCI_B_I2C_TRANSMIT_INTERRUPT0         EUSCI_B_IE_TXIE0
+#define EUSCI_B_I2C_TRANSMIT_INTERRUPT1         EUSCI_B_IE_TXIE1
+#define EUSCI_B_I2C_TRANSMIT_INTERRUPT2         EUSCI_B_IE_TXIE2
+#define EUSCI_B_I2C_TRANSMIT_INTERRUPT3         EUSCI_B_IE_TXIE3
+#define EUSCI_B_I2C_RECEIVE_INTERRUPT0          EUSCI_B_IE_RXIE0
+#define EUSCI_B_I2C_RECEIVE_INTERRUPT1          EUSCI_B_IE_RXIE1
+#define EUSCI_B_I2C_RECEIVE_INTERRUPT2          EUSCI_B_IE_RXIE2
+#define EUSCI_B_I2C_RECEIVE_INTERRUPT3          EUSCI_B_IE_RXIE3
+#define EUSCI_B_I2C_BIT9_POSITION_INTERRUPT     EUSCI_B_IE_BIT9IE
+#define EUSCI_B_I2C_CLOCK_LOW_TIMEOUT_INTERRUPT EUSCI_B_IE_CLTOIE
+#define EUSCI_B_I2C_BYTE_COUNTER_INTERRUPT      EUSCI_B_IE_BCNTIE
 
-#define EUSCI_B_I2C_BUS_BUSY                                EUSCI_B_STATW_BBUSY
-#define EUSCI_B_I2C_BUS_NOT_BUSY                                           0x00
+#define EUSCI_B_I2C_BUS_BUSY                    EUSCI_B_STATW_BBUSY
+#define EUSCI_B_I2C_BUS_NOT_BUSY                0x00
 
-#define EUSCI_B_I2C_STOP_SEND_COMPLETE                                     0x00
-#define EUSCI_B_I2C_SENDING_STOP                            EUSCI_B_CTLW0_TXSTP
+#define EUSCI_B_I2C_STOP_SEND_COMPLETE          0x00
+#define EUSCI_B_I2C_SENDING_STOP                EUSCI_B_CTLW0_TXSTP
 
-#define EUSCI_B_I2C_START_SEND_COMPLETE                                    0x00
-#define EUSCI_B_I2C_SENDING_START                           EUSCI_B_CTLW0_TXSTT
+#define EUSCI_B_I2C_START_SEND_COMPLETE         0x00
+#define EUSCI_B_I2C_SENDING_START               EUSCI_B_CTLW0_TXSTT
 
 //*****************************************************************************
 //
@@ -127,7 +126,6 @@ typedef struct
     uint_fast8_t autoSTOPGeneration;
 } eUSCI_I2C_MasterConfig;
 
-
 //*****************************************************************************
 //
 //! Initializes the I2C Master block.
@@ -138,14 +136,14 @@ typedef struct
 //!         - \b EUSCI_B1_BASE
 //!         - \b EUSCI_B2_BASE
 //!         - \b EUSCI_B3_BASE
-//!  <br>It is important to note that for eUSCI modules, only "B" modules such as
-//!  EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
+//!  <br>It is important to note that for eUSCI modules, only "B" modules such
+//!  as EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
 //!  I2C mode.
 //! \param config Configuration structure for I2C master mode
 //!
 //! <hr>
-//! <b>Configuration options for \link eUSCI_I2C_MasterConfig \endlink structure.</b>
-//! <hr>
+//! <b>Configuration options for \link eUSCI_I2C_MasterConfig \endlink
+//! structure.</b> <hr>
 //!
 //! \param selectClockSource is the clock source.
 //!         Valid values are
@@ -177,8 +175,8 @@ typedef struct
 //! \return None.
 //
 //*****************************************************************************
-extern void I2C_initMaster(uint32_t moduleInstance,
-        const eUSCI_I2C_MasterConfig *config);
+extern void I2C_initMaster( uint32_t moduleInstance,
+                            const eUSCI_I2C_MasterConfig * config );
 
 //*****************************************************************************
 //
@@ -190,11 +188,11 @@ extern void I2C_initMaster(uint32_t moduleInstance,
 //!         - \b EUSCI_B1_BASE
 //!         - \b EUSCI_B2_BASE
 //!         - \b EUSCI_B3_BASE
-//!  <br>It is important to note that for eUSCI modules, only "B" modules such as
-//!  EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
+//!  <br>It is important to note that for eUSCI modules, only "B" modules such
+//!  as EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
 //!  I2C mode.
 //!
-//! \param slaveAddress 7-bit or 10-bit slave address 
+//! \param slaveAddress 7-bit or 10-bit slave address
 //! \param slaveAddressOffset Own address Offset referred to- 'x' value of
 //!     UCBxI2COAx. Valid values are:
 //!                  - \b EUSCI_B_I2C_OWN_ADDRESS_OFFSET0,
@@ -221,8 +219,10 @@ extern void I2C_initMaster(uint32_t moduleInstance,
 //! \return None.
 //
 //*****************************************************************************
-extern void I2C_initSlave(uint32_t moduleInstance, uint_fast16_t slaveAddress,
-        uint_fast8_t slaveAddressOffset, uint32_t slaveOwnAddressEnable);
+extern void I2C_initSlave( uint32_t moduleInstance,
+                           uint_fast16_t slaveAddress,
+                           uint_fast8_t slaveAddressOffset,
+                           uint32_t slaveOwnAddressEnable );
 
 //*****************************************************************************
 //
@@ -234,8 +234,8 @@ extern void I2C_initSlave(uint32_t moduleInstance, uint_fast16_t slaveAddress,
 //!         - \b EUSCI_B1_BASE
 //!         - \b EUSCI_B2_BASE
 //!         - \b EUSCI_B3_BASE
-//!  <br>It is important to note that for eUSCI modules, only "B" modules such as
-//!  EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
+//!  <br>It is important to note that for eUSCI modules, only "B" modules such
+//!  as EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
 //!  I2C mode.
 //!
 //! This will enable operation of the I2C block.
@@ -244,7 +244,7 @@ extern void I2C_initSlave(uint32_t moduleInstance, uint_fast16_t slaveAddress,
 //! \return None.
 //
 //*****************************************************************************
-extern void I2C_enableModule(uint32_t moduleInstance);
+extern void I2C_enableModule( uint32_t moduleInstance );
 
 //*****************************************************************************
 //
@@ -256,8 +256,8 @@ extern void I2C_enableModule(uint32_t moduleInstance);
 //!         - \b EUSCI_B1_BASE
 //!         - \b EUSCI_B2_BASE
 //!         - \b EUSCI_B3_BASE
-//!  <br>It is important to note that for eUSCI modules, only "B" modules such as
-//!  EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
+//!  <br>It is important to note that for eUSCI modules, only "B" modules such
+//!  as EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
 //!  I2C mode.
 //!
 //! This will disable operation of the I2C block.
@@ -266,7 +266,7 @@ extern void I2C_enableModule(uint32_t moduleInstance);
 //! \return None.
 //
 //*****************************************************************************
-extern void I2C_disableModule(uint32_t moduleInstance);
+extern void I2C_disableModule( uint32_t moduleInstance );
 
 //*****************************************************************************
 //
@@ -278,8 +278,8 @@ extern void I2C_disableModule(uint32_t moduleInstance);
 //!         - \b EUSCI_B1_BASE
 //!         - \b EUSCI_B2_BASE
 //!         - \b EUSCI_B3_BASE
-//!  <br>It is important to note that for eUSCI modules, only "B" modules such as
-//!  EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
+//!  <br>It is important to note that for eUSCI modules, only "B" modules such
+//!  as EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
 //!  I2C mode.
 //!
 //! \param slaveAddress 7-bit or 10-bit slave address
@@ -291,8 +291,8 @@ extern void I2C_disableModule(uint32_t moduleInstance);
 //! \return None.
 //
 //*****************************************************************************
-extern void I2C_setSlaveAddress(uint32_t moduleInstance,
-        uint_fast16_t slaveAddress);
+extern void I2C_setSlaveAddress( uint32_t moduleInstance,
+                                 uint_fast16_t slaveAddress );
 
 //*****************************************************************************
 //
@@ -304,8 +304,8 @@ extern void I2C_setSlaveAddress(uint32_t moduleInstance,
 //!         - \b EUSCI_B1_BASE
 //!         - \b EUSCI_B2_BASE
 //!         - \b EUSCI_B3_BASE
-//!  <br>It is important to note that for eUSCI modules, only "B" modules such as
-//!  EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
+//!  <br>It is important to note that for eUSCI modules, only "B" modules such
+//!  as EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
 //!  I2C mode.
 //!
 //! \param mode indicates whether module is in transmit/receive mode
@@ -317,7 +317,7 @@ extern void I2C_setSlaveAddress(uint32_t moduleInstance,
 //! \return None.
 //
 //*****************************************************************************
-extern void I2C_setMode(uint32_t moduleInstance, uint_fast8_t mode);
+extern void I2C_setMode( uint32_t moduleInstance, uint_fast8_t mode );
 
 //*****************************************************************************
 //
@@ -331,8 +331,8 @@ extern void I2C_setMode(uint32_t moduleInstance, uint_fast8_t mode);
 //!         - \b EUSCI_B1_BASE
 //!         - \b EUSCI_B2_BASE
 //!         - \b EUSCI_B3_BASE
-//!  <br>It is important to note that for eUSCI modules, only "B" modules such as
-//!  EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
+//!  <br>It is important to note that for eUSCI modules, only "B" modules such
+//!  as EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
 //!  I2C mode.
 //!
 //! Modified bits are \b UCTR of \b UCBxCTL1 register.
@@ -344,7 +344,7 @@ extern void I2C_setMode(uint32_t moduleInstance, uint_fast8_t mode);
 //!         \n indicating the current mode
 //
 //*****************************************************************************
-extern uint_fast8_t I2C_getMode(uint32_t moduleInstance);
+extern uint_fast8_t I2C_getMode( uint32_t moduleInstance );
 
 //*****************************************************************************
 //
@@ -356,8 +356,8 @@ extern uint_fast8_t I2C_getMode(uint32_t moduleInstance);
 //!         - \b EUSCI_B1_BASE
 //!         - \b EUSCI_B2_BASE
 //!         - \b EUSCI_B3_BASE
-//!  <br>It is important to note that for eUSCI modules, only "B" modules such as
-//!  EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
+//!  <br>It is important to note that for eUSCI modules, only "B" modules such
+//!  as EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
 //!  I2C mode.
 //!
 //! \param transmitData data to be transmitted from the I2C module
@@ -369,7 +369,7 @@ extern uint_fast8_t I2C_getMode(uint32_t moduleInstance);
 //! \return None.
 //
 //*****************************************************************************
-extern void I2C_slavePutData(uint32_t moduleInstance, uint8_t transmitData);
+extern void I2C_slavePutData( uint32_t moduleInstance, uint8_t transmitData );
 
 //*****************************************************************************
 //
@@ -381,8 +381,8 @@ extern void I2C_slavePutData(uint32_t moduleInstance, uint8_t transmitData);
 //!         - \b EUSCI_B1_BASE
 //!         - \b EUSCI_B2_BASE
 //!         - \b EUSCI_B3_BASE
-//!  <br>It is important to note that for eUSCI modules, only "B" modules such as
-//!  EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
+//!  <br>It is important to note that for eUSCI modules, only "B" modules such
+//!  as EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
 //!  I2C mode.
 //!
 //! This function reads a byte of data from the I2C receive data Register.
@@ -392,7 +392,7 @@ extern void I2C_slavePutData(uint32_t moduleInstance, uint8_t transmitData);
 //! Modified bit is \b UCBxRXBUF register
 //
 //*****************************************************************************
-extern uint8_t I2C_slaveGetData(uint32_t moduleInstance);
+extern uint8_t I2C_slaveGetData( uint32_t moduleInstance );
 
 //*****************************************************************************
 //
@@ -404,8 +404,8 @@ extern uint8_t I2C_slaveGetData(uint32_t moduleInstance);
 //!         - \b EUSCI_B1_BASE
 //!         - \b EUSCI_B2_BASE
 //!         - \b EUSCI_B3_BASE
-//!  <br>It is important to note that for eUSCI modules, only "B" modules such as
-//!  EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
+//!  <br>It is important to note that for eUSCI modules, only "B" modules such
+//!  as EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
 //!  I2C mode.
 //!
 //!
@@ -417,7 +417,7 @@ extern uint8_t I2C_slaveGetData(uint32_t moduleInstance);
 //! returns EUSCI_B_I2C_BUS_NOT_BUSY.
 //
 //*****************************************************************************
-extern uint8_t I2C_isBusBusy(uint32_t moduleInstance);
+extern uint8_t I2C_isBusBusy( uint32_t moduleInstance );
 
 //*****************************************************************************
 //
@@ -429,8 +429,8 @@ extern uint8_t I2C_isBusBusy(uint32_t moduleInstance);
 //!         - \b EUSCI_B1_BASE
 //!         - \b EUSCI_B2_BASE
 //!         - \b EUSCI_B3_BASE
-//!  <br>It is important to note that for eUSCI modules, only "B" modules such as
-//!  EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
+//!  <br>It is important to note that for eUSCI modules, only "B" modules such
+//!  as EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
 //!  I2C mode.
 //!
 //! \param txData is the data byte to be transmitted
@@ -447,7 +447,7 @@ extern uint8_t I2C_isBusBusy(uint32_t moduleInstance);
 //! \return none
 //
 //*****************************************************************************
-extern void I2C_masterSendSingleByte(uint32_t moduleInstance, uint8_t txData);
+extern void I2C_masterSendSingleByte( uint32_t moduleInstance, uint8_t txData );
 
 //*****************************************************************************
 //
@@ -459,8 +459,8 @@ extern void I2C_masterSendSingleByte(uint32_t moduleInstance, uint8_t txData);
 //!         - \b EUSCI_B1_BASE
 //!         - \b EUSCI_B2_BASE
 //!         - \b EUSCI_B3_BASE
-//!  <br>It is important to note that for eUSCI modules, only "B" modules such as
-//!  EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
+//!  <br>It is important to note that for eUSCI modules, only "B" modules such
+//!  as EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
 //!  I2C mode.
 //!
 //! \param txData is the data byte to be transmitted
@@ -478,8 +478,9 @@ extern void I2C_masterSendSingleByte(uint32_t moduleInstance, uint8_t txData);
 //! \return 0x01 or 0x00URE of the transmission process.
 //
 //*****************************************************************************
-extern bool I2C_masterSendSingleByteWithTimeout(uint32_t moduleInstance,
-        uint8_t txData, uint32_t timeout);
+extern bool I2C_masterSendSingleByteWithTimeout( uint32_t moduleInstance,
+                                                 uint8_t txData,
+                                                 uint32_t timeout );
 
 //*****************************************************************************
 //
@@ -491,8 +492,8 @@ extern bool I2C_masterSendSingleByteWithTimeout(uint32_t moduleInstance,
 //!         - \b EUSCI_B1_BASE
 //!         - \b EUSCI_B2_BASE
 //!         - \b EUSCI_B3_BASE
-//!  <br>It is important to note that for eUSCI modules, only "B" modules such as
-//!  EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
+//!  <br>It is important to note that for eUSCI modules, only "B" modules such
+//!  as EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
 //!  I2C mode.
 //!
 //! \param txData is the first data byte to be transmitted
@@ -508,8 +509,8 @@ extern bool I2C_masterSendSingleByteWithTimeout(uint32_t moduleInstance,
 //! \return None.
 //
 //*****************************************************************************
-extern void I2C_masterSendMultiByteStart(uint32_t moduleInstance,
-        uint8_t txData);
+extern void I2C_masterSendMultiByteStart( uint32_t moduleInstance,
+                                          uint8_t txData );
 
 //*****************************************************************************
 //
@@ -521,8 +522,8 @@ extern void I2C_masterSendMultiByteStart(uint32_t moduleInstance,
 //!         - \b EUSCI_B1_BASE
 //!         - \b EUSCI_B2_BASE
 //!         - \b EUSCI_B3_BASE
-//!  <br>It is important to note that for eUSCI modules, only "B" modules such as
-//!  EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
+//!  <br>It is important to note that for eUSCI modules, only "B" modules such
+//!  as EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
 //!  I2C mode.
 //!
 //! \param txData is the first data byte to be transmitted
@@ -539,8 +540,9 @@ extern void I2C_masterSendMultiByteStart(uint32_t moduleInstance,
 //! \return 0x01 or 0x00URE of the transmission process.
 //
 //*****************************************************************************
-extern bool I2C_masterSendMultiByteStartWithTimeout(uint32_t moduleInstance,
-        uint8_t txData, uint32_t timeout);
+extern bool I2C_masterSendMultiByteStartWithTimeout( uint32_t moduleInstance,
+                                                     uint8_t txData,
+                                                     uint32_t timeout );
 
 //*****************************************************************************
 //
@@ -552,8 +554,8 @@ extern bool I2C_masterSendMultiByteStartWithTimeout(uint32_t moduleInstance,
 //!         - \b EUSCI_B1_BASE
 //!         - \b EUSCI_B2_BASE
 //!         - \b EUSCI_B3_BASE
-//!  <br>It is important to note that for eUSCI modules, only "B" modules such as
-//!  EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
+//!  <br>It is important to note that for eUSCI modules, only "B" modules such
+//!  as EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
 //!  I2C mode.
 //!
 //! \param txData is the next data byte to be transmitted
@@ -567,8 +569,8 @@ extern bool I2C_masterSendMultiByteStartWithTimeout(uint32_t moduleInstance,
 //! \return None.
 //
 //*****************************************************************************
-extern void I2C_masterSendMultiByteNext(uint32_t moduleInstance,
-        uint8_t txData);
+extern void I2C_masterSendMultiByteNext( uint32_t moduleInstance,
+                                         uint8_t txData );
 
 //*****************************************************************************
 //
@@ -580,8 +582,8 @@ extern void I2C_masterSendMultiByteNext(uint32_t moduleInstance,
 //!         - \b EUSCI_B1_BASE
 //!         - \b EUSCI_B2_BASE
 //!         - \b EUSCI_B3_BASE
-//!  <br>It is important to note that for eUSCI modules, only "B" modules such as
-//!  EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
+//!  <br>It is important to note that for eUSCI modules, only "B" modules such
+//!  as EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
 //!  I2C mode.
 //!
 //! \param txData is the next data byte to be transmitted
@@ -597,8 +599,9 @@ extern void I2C_masterSendMultiByteNext(uint32_t moduleInstance,
 //! \return 0x01 or 0x00URE of the transmission process.
 //
 //*****************************************************************************
-extern bool I2C_masterSendMultiByteNextWithTimeout(uint32_t moduleInstance,
-        uint8_t txData, uint32_t timeout);
+extern bool I2C_masterSendMultiByteNextWithTimeout( uint32_t moduleInstance,
+                                                    uint8_t txData,
+                                                    uint32_t timeout );
 
 //*****************************************************************************
 //
@@ -610,8 +613,8 @@ extern bool I2C_masterSendMultiByteNextWithTimeout(uint32_t moduleInstance,
 //!         - \b EUSCI_B1_BASE
 //!         - \b EUSCI_B2_BASE
 //!         - \b EUSCI_B3_BASE
-//!  <br>It is important to note that for eUSCI modules, only "B" modules such as
-//!  EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
+//!  <br>It is important to note that for eUSCI modules, only "B" modules such
+//!  as EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
 //!  I2C mode.
 //!
 //! \param txData is the last data byte to be transmitted in a multi-byte
@@ -627,8 +630,8 @@ extern bool I2C_masterSendMultiByteNextWithTimeout(uint32_t moduleInstance,
 //! \return None.
 //
 //*****************************************************************************
-extern void I2C_masterSendMultiByteFinish(uint32_t moduleInstance,
-        uint8_t txData);
+extern void I2C_masterSendMultiByteFinish( uint32_t moduleInstance,
+                                           uint8_t txData );
 
 //*****************************************************************************
 //
@@ -640,8 +643,8 @@ extern void I2C_masterSendMultiByteFinish(uint32_t moduleInstance,
 //!         - \b EUSCI_B1_BASE
 //!         - \b EUSCI_B2_BASE
 //!         - \b EUSCI_B3_BASE
-//!  <br>It is important to note that for eUSCI modules, only "B" modules such as
-//!  EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
+//!  <br>It is important to note that for eUSCI modules, only "B" modules such
+//!  as EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
 //!  I2C mode.
 //!
 //! \param txData is the last data byte to be transmitted in a multi-byte
@@ -658,8 +661,9 @@ extern void I2C_masterSendMultiByteFinish(uint32_t moduleInstance,
 //! \return 0x01 or 0x00URE of the transmission process.
 //
 //*****************************************************************************
-extern bool I2C_masterSendMultiByteFinishWithTimeout(uint32_t moduleInstance,
-        uint8_t txData, uint32_t timeout);
+extern bool I2C_masterSendMultiByteFinishWithTimeout( uint32_t moduleInstance,
+                                                      uint8_t txData,
+                                                      uint32_t timeout );
 
 //*****************************************************************************
 //
@@ -671,8 +675,8 @@ extern bool I2C_masterSendMultiByteFinishWithTimeout(uint32_t moduleInstance,
 //!         - \b EUSCI_B1_BASE
 //!         - \b EUSCI_B2_BASE
 //!         - \b EUSCI_B3_BASE
-//!  <br>It is important to note that for eUSCI modules, only "B" modules such as
-//!  EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
+//!  <br>It is important to note that for eUSCI modules, only "B" modules such
+//!  as EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
 //!  I2C mode.
 //!
 //!
@@ -686,7 +690,7 @@ extern bool I2C_masterSendMultiByteFinishWithTimeout(uint32_t moduleInstance,
 //! \return None.
 //
 //*****************************************************************************
-extern void I2C_masterSendMultiByteStop(uint32_t moduleInstance);
+extern void I2C_masterSendMultiByteStop( uint32_t moduleInstance );
 
 //*****************************************************************************
 //
@@ -699,8 +703,8 @@ extern void I2C_masterSendMultiByteStop(uint32_t moduleInstance);
 //!         - \b EUSCI_B1_BASE
 //!         - \b EUSCI_B2_BASE
 //!         - \b EUSCI_B3_BASE
-//!  <br>It is important to note that for eUSCI modules, only "B" modules such as
-//!  EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
+//!  <br>It is important to note that for eUSCI modules, only "B" modules such
+//!  as EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
 //!  I2C mode.
 //!
 //! \param timeout is the amount of time to wait until giving up
@@ -715,8 +719,8 @@ extern void I2C_masterSendMultiByteStop(uint32_t moduleInstance);
 //! \return 0x01 or 0x00URE of the transmission process.
 //
 //*****************************************************************************
-extern bool I2C_masterSendMultiByteStopWithTimeout(uint32_t moduleInstance,
-        uint32_t timeout);
+extern bool I2C_masterSendMultiByteStopWithTimeout( uint32_t moduleInstance,
+                                                    uint32_t timeout );
 
 //*****************************************************************************
 //
@@ -728,8 +732,8 @@ extern bool I2C_masterSendMultiByteStopWithTimeout(uint32_t moduleInstance,
 //!         - \b EUSCI_B1_BASE
 //!         - \b EUSCI_B2_BASE
 //!         - \b EUSCI_B3_BASE
-//!  <br>It is important to note that for eUSCI modules, only "B" modules such as
-//!  EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
+//!  <br>It is important to note that for eUSCI modules, only "B" modules such
+//!  as EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
 //!  I2C mode.
 //!
 //!
@@ -741,7 +745,7 @@ extern bool I2C_masterSendMultiByteStopWithTimeout(uint32_t moduleInstance,
 //! \return None.
 //
 //*****************************************************************************
-extern void I2C_masterReceiveStart(uint32_t moduleInstance);
+extern void I2C_masterReceiveStart( uint32_t moduleInstance );
 
 //*****************************************************************************
 //
@@ -753,8 +757,8 @@ extern void I2C_masterReceiveStart(uint32_t moduleInstance);
 //!         - \b EUSCI_B1_BASE
 //!         - \b EUSCI_B2_BASE
 //!         - \b EUSCI_B3_BASE
-//!  <br>It is important to note that for eUSCI modules, only "B" modules such as
-//!  EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
+//!  <br>It is important to note that for eUSCI modules, only "B" modules such
+//!  as EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
 //!  I2C mode.
 //!
 //!
@@ -766,7 +770,7 @@ extern void I2C_masterReceiveStart(uint32_t moduleInstance);
 //! \return Received byte at Master end.
 //
 //*****************************************************************************
-extern uint8_t I2C_masterReceiveMultiByteNext(uint32_t moduleInstance);
+extern uint8_t I2C_masterReceiveMultiByteNext( uint32_t moduleInstance );
 
 //*****************************************************************************
 //
@@ -778,8 +782,8 @@ extern uint8_t I2C_masterReceiveMultiByteNext(uint32_t moduleInstance);
 //!         - \b EUSCI_B1_BASE
 //!         - \b EUSCI_B2_BASE
 //!         - \b EUSCI_B3_BASE
-//!  <br>It is important to note that for eUSCI modules, only "B" modules such as
-//!  EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
+//!  <br>It is important to note that for eUSCI modules, only "B" modules such
+//!  as EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
 //!  I2C mode.
 //!
 //!
@@ -793,7 +797,7 @@ extern uint8_t I2C_masterReceiveMultiByteNext(uint32_t moduleInstance);
 //! \return Received byte at Master end.
 //
 //*****************************************************************************
-extern uint8_t I2C_masterReceiveMultiByteFinish(uint32_t moduleInstance);
+extern uint8_t I2C_masterReceiveMultiByteFinish( uint32_t moduleInstance );
 
 //*****************************************************************************
 //
@@ -805,8 +809,8 @@ extern uint8_t I2C_masterReceiveMultiByteFinish(uint32_t moduleInstance);
 //!         - \b EUSCI_B1_BASE
 //!         - \b EUSCI_B2_BASE
 //!         - \b EUSCI_B3_BASE
-//!  <br>It is important to note that for eUSCI modules, only "B" modules such as
-//!  EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
+//!  <br>It is important to note that for eUSCI modules, only "B" modules such
+//!  as EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
 //!  I2C mode.
 //!
 //! \param txData is a pointer to the location to store the received byte at
@@ -823,8 +827,9 @@ extern uint8_t I2C_masterReceiveMultiByteFinish(uint32_t moduleInstance);
 //! \return 0x01 or 0x00URE of the transmission process.
 //
 //*****************************************************************************
-extern bool I2C_masterReceiveMultiByteFinishWithTimeout(uint32_t moduleInstance,
-        uint8_t *txData, uint32_t timeout);
+extern bool I2C_masterReceiveMultiByteFinishWithTimeout( uint32_t moduleInstance,
+                                                         uint8_t * txData,
+                                                         uint32_t timeout );
 
 //*****************************************************************************
 //
@@ -836,8 +841,8 @@ extern bool I2C_masterReceiveMultiByteFinishWithTimeout(uint32_t moduleInstance,
 //!         - \b EUSCI_B1_BASE
 //!         - \b EUSCI_B2_BASE
 //!         - \b EUSCI_B3_BASE
-//!  <br>It is important to note that for eUSCI modules, only "B" modules such as
-//!  EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
+//!  <br>It is important to note that for eUSCI modules, only "B" modules such
+//!  as EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
 //!  I2C mode.
 //!
 //!
@@ -848,7 +853,7 @@ extern bool I2C_masterReceiveMultiByteFinishWithTimeout(uint32_t moduleInstance,
 //! \return None.
 //
 //*****************************************************************************
-extern void I2C_masterReceiveMultiByteStop(uint32_t moduleInstance);
+extern void I2C_masterReceiveMultiByteStop( uint32_t moduleInstance );
 
 //*****************************************************************************
 //
@@ -860,8 +865,8 @@ extern void I2C_masterReceiveMultiByteStop(uint32_t moduleInstance);
 //!         - \b EUSCI_B1_BASE
 //!         - \b EUSCI_B2_BASE
 //!         - \b EUSCI_B3_BASE
-//!  <br>It is important to note that for eUSCI modules, only "B" modules such as
-//!  EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
+//!  <br>It is important to note that for eUSCI modules, only "B" modules such
+//!  as EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
 //!  I2C mode.
 //!
 //! This function is used by the Master module to receive a single byte.
@@ -876,7 +881,7 @@ extern void I2C_masterReceiveMultiByteStop(uint32_t moduleInstance);
 //! \return The byte that has been received from the slave
 //
 //*****************************************************************************
-extern uint8_t I2C_masterReceiveSingleByte(uint32_t moduleInstance);
+extern uint8_t I2C_masterReceiveSingleByte( uint32_t moduleInstance );
 
 //*****************************************************************************
 //
@@ -888,8 +893,8 @@ extern uint8_t I2C_masterReceiveSingleByte(uint32_t moduleInstance);
 //!         - \b EUSCI_B1_BASE
 //!         - \b EUSCI_B2_BASE
 //!         - \b EUSCI_B3_BASE
-//!  <br>It is important to note that for eUSCI modules, only "B" modules such as
-//!  EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
+//!  <br>It is important to note that for eUSCI modules, only "B" modules such
+//!  as EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
 //!  I2C mode.
 //!
 //!
@@ -899,7 +904,7 @@ extern uint8_t I2C_masterReceiveSingleByte(uint32_t moduleInstance);
 //! uint8_t.
 //
 //*****************************************************************************
-extern uint8_t I2C_masterReceiveSingle(uint32_t moduleInstance);
+extern uint8_t I2C_masterReceiveSingle( uint32_t moduleInstance );
 
 //*****************************************************************************
 //
@@ -911,8 +916,8 @@ extern uint8_t I2C_masterReceiveSingle(uint32_t moduleInstance);
 //!         - \b EUSCI_B1_BASE
 //!         - \b EUSCI_B2_BASE
 //!         - \b EUSCI_B3_BASE
-//!  <br>It is important to note that for eUSCI modules, only "B" modules such as
-//!  EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
+//!  <br>It is important to note that for eUSCI modules, only "B" modules such
+//!  as EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
 //!  I2C mode.
 //!
 //!
@@ -922,7 +927,7 @@ extern uint8_t I2C_masterReceiveSingle(uint32_t moduleInstance);
 //! \return NONE
 //
 //*****************************************************************************
-extern uint32_t I2C_getReceiveBufferAddressForDMA(uint32_t moduleInstance);
+extern uint32_t I2C_getReceiveBufferAddressForDMA( uint32_t moduleInstance );
 
 //*****************************************************************************
 //
@@ -934,8 +939,8 @@ extern uint32_t I2C_getReceiveBufferAddressForDMA(uint32_t moduleInstance);
 //!         - \b EUSCI_B1_BASE
 //!         - \b EUSCI_B2_BASE
 //!         - \b EUSCI_B3_BASE
-//!  <br>It is important to note that for eUSCI modules, only "B" modules such as
-//!  EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
+//!  <br>It is important to note that for eUSCI modules, only "B" modules such
+//!  as EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
 //!  I2C mode.
 //!
 //!
@@ -945,7 +950,7 @@ extern uint32_t I2C_getReceiveBufferAddressForDMA(uint32_t moduleInstance);
 //! \return NONE
 //
 //*****************************************************************************
-extern uint32_t I2C_getTransmitBufferAddressForDMA(uint32_t moduleInstance);
+extern uint32_t I2C_getTransmitBufferAddressForDMA( uint32_t moduleInstance );
 
 //*****************************************************************************
 //
@@ -957,8 +962,8 @@ extern uint32_t I2C_getTransmitBufferAddressForDMA(uint32_t moduleInstance);
 //!         - \b EUSCI_B1_BASE
 //!         - \b EUSCI_B2_BASE
 //!         - \b EUSCI_B3_BASE
-//!  <br>It is important to note that for eUSCI modules, only "B" modules such as
-//!  EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
+//!  <br>It is important to note that for eUSCI modules, only "B" modules such
+//!  as EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
 //!  I2C mode.
 //!
 //!
@@ -970,7 +975,7 @@ extern uint32_t I2C_getTransmitBufferAddressForDMA(uint32_t moduleInstance);
 //!         finished sending STOP; otherwise, returns EUSCI_B_I2C_SENDING_STOP.
 //
 //*****************************************************************************
-extern uint8_t I2C_masterIsStopSent(uint32_t moduleInstance);
+extern uint8_t I2C_masterIsStopSent( uint32_t moduleInstance );
 
 //*****************************************************************************
 //
@@ -982,8 +987,8 @@ extern uint8_t I2C_masterIsStopSent(uint32_t moduleInstance);
 //!         - \b EUSCI_B1_BASE
 //!         - \b EUSCI_B2_BASE
 //!         - \b EUSCI_B3_BASE
-//!  <br>It is important to note that for eUSCI modules, only "B" modules such as
-//!  EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
+//!  <br>It is important to note that for eUSCI modules, only "B" modules such
+//!  as EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
 //!  I2C mode.
 //!
 //!
@@ -994,7 +999,7 @@ extern uint8_t I2C_masterIsStopSent(uint32_t moduleInstance);
 //! \return Returns true if the START has been sent, false if it is sending
 //
 //*****************************************************************************
-extern bool I2C_masterIsStartSent(uint32_t moduleInstance);
+extern bool I2C_masterIsStartSent( uint32_t moduleInstance );
 
 //*****************************************************************************
 //
@@ -1006,8 +1011,8 @@ extern bool I2C_masterIsStartSent(uint32_t moduleInstance);
 //!         - \b EUSCI_B1_BASE
 //!         - \b EUSCI_B2_BASE
 //!         - \b EUSCI_B3_BASE
-//!  <br>It is important to note that for eUSCI modules, only "B" modules such as
-//!  EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
+//!  <br>It is important to note that for eUSCI modules, only "B" modules such
+//!  as EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
 //!  I2C mode.
 //!
 //!
@@ -1018,7 +1023,7 @@ extern bool I2C_masterIsStartSent(uint32_t moduleInstance);
 //! \return None.
 //
 //*****************************************************************************
-extern void I2C_masterSendStart(uint32_t moduleInstance);
+extern void I2C_masterSendStart( uint32_t moduleInstance );
 
 //*****************************************************************************
 //
@@ -1030,8 +1035,8 @@ extern void I2C_masterSendStart(uint32_t moduleInstance);
 //!         - \b EUSCI_B1_BASE
 //!         - \b EUSCI_B2_BASE
 //!         - \b EUSCI_B3_BASE
-//!  <br>It is important to note that for eUSCI modules, only "B" modules such as
-//!  EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
+//!  <br>It is important to note that for eUSCI modules, only "B" modules such
+//!  as EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
 //!  I2C mode.
 //!
 //!
@@ -1044,7 +1049,7 @@ extern void I2C_masterSendStart(uint32_t moduleInstance);
 //! \return None.
 //
 //*****************************************************************************
-extern void I2C_enableMultiMasterMode(uint32_t moduleInstance);
+extern void I2C_enableMultiMasterMode( uint32_t moduleInstance );
 
 //*****************************************************************************
 //
@@ -1056,8 +1061,8 @@ extern void I2C_enableMultiMasterMode(uint32_t moduleInstance);
 //!         - \b EUSCI_B1_BASE
 //!         - \b EUSCI_B2_BASE
 //!         - \b EUSCI_B3_BASE
-//!  <br>It is important to note that for eUSCI modules, only "B" modules such as
-//!  EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
+//!  <br>It is important to note that for eUSCI modules, only "B" modules such
+//!  as EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
 //!  I2C mode.
 //!
 //!
@@ -1070,7 +1075,7 @@ extern void I2C_enableMultiMasterMode(uint32_t moduleInstance);
 //! \return None.
 //
 //*****************************************************************************
-extern void I2C_disableMultiMasterMode(uint32_t moduleInstance);
+extern void I2C_disableMultiMasterMode( uint32_t moduleInstance );
 
 //*****************************************************************************
 //
@@ -1082,8 +1087,8 @@ extern void I2C_disableMultiMasterMode(uint32_t moduleInstance);
 //!         - \b EUSCI_B1_BASE
 //!         - \b EUSCI_B2_BASE
 //!         - \b EUSCI_B3_BASE
-//!  <br>It is important to note that for eUSCI modules, only "B" modules such as
-//!  EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
+//!  <br>It is important to note that for eUSCI modules, only "B" modules such
+//!  as EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
 //!  I2C mode.
 //!
 //! \param mask is the bit mask of the interrupt sources to
@@ -1117,7 +1122,7 @@ extern void I2C_disableMultiMasterMode(uint32_t moduleInstance);
 //! \return None.
 //
 //*****************************************************************************
-extern void I2C_enableInterrupt(uint32_t moduleInstance, uint_fast16_t mask);
+extern void I2C_enableInterrupt( uint32_t moduleInstance, uint_fast16_t mask );
 
 //*****************************************************************************
 //
@@ -1129,8 +1134,8 @@ extern void I2C_enableInterrupt(uint32_t moduleInstance, uint_fast16_t mask);
 //!         - \b EUSCI_B1_BASE
 //!         - \b EUSCI_B2_BASE
 //!         - \b EUSCI_B3_BASE
-//!  <br>It is important to note that for eUSCI modules, only "B" modules such as
-//!  EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
+//!  <br>It is important to note that for eUSCI modules, only "B" modules such
+//!  as EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
 //!  I2C mode.
 //!
 //! \param mask is the bit mask of the interrupt sources to be
@@ -1164,7 +1169,7 @@ extern void I2C_enableInterrupt(uint32_t moduleInstance, uint_fast16_t mask);
 //! \return None.
 //
 //*****************************************************************************
-extern void I2C_disableInterrupt(uint32_t moduleInstance, uint_fast16_t mask);
+extern void I2C_disableInterrupt( uint32_t moduleInstance, uint_fast16_t mask );
 
 //*****************************************************************************
 //
@@ -1176,8 +1181,8 @@ extern void I2C_disableInterrupt(uint32_t moduleInstance, uint_fast16_t mask);
 //!         - \b EUSCI_B1_BASE
 //!         - \b EUSCI_B2_BASE
 //!         - \b EUSCI_B3_BASE
-//!  <br>It is important to note that for eUSCI modules, only "B" modules such as
-//!  EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
+//!  <br>It is important to note that for eUSCI modules, only "B" modules such
+//!  as EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
 //!  I2C mode.
 //!
 //! \param mask is a bit mask of the interrupt sources to be cleared.
@@ -1194,7 +1199,8 @@ extern void I2C_disableInterrupt(uint32_t moduleInstance, uint_fast16_t mask);
 //! \return None.
 //
 //*****************************************************************************
-extern void I2C_clearInterruptFlag(uint32_t moduleInstance, uint_fast16_t mask);
+extern void I2C_clearInterruptFlag( uint32_t moduleInstance,
+                                    uint_fast16_t mask );
 
 //*****************************************************************************
 //
@@ -1206,8 +1212,8 @@ extern void I2C_clearInterruptFlag(uint32_t moduleInstance, uint_fast16_t mask);
 //!         - \b EUSCI_B1_BASE
 //!         - \b EUSCI_B2_BASE
 //!         - \b EUSCI_B3_BASE
-//!  <br>It is important to note that for eUSCI modules, only "B" modules such as
-//!  EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
+//!  <br>It is important to note that for eUSCI modules, only "B" modules such
+//!  as EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
 //!  I2C mode.
 //! \param mask is the masked interrupt flag status to be returned.
 //!        Mask value is the logical OR of any of the following:
@@ -1249,7 +1255,8 @@ extern void I2C_clearInterruptFlag(uint32_t moduleInstance, uint_fast16_t mask);
 //! - \b EUSCI_B_I2C_BYTE_COUNTER_INTERRUPT - Byte counter interrupt enable
 //
 //*****************************************************************************
-extern uint_fast16_t I2C_getInterruptStatus(uint32_t moduleInstance, uint16_t mask);
+extern uint_fast16_t I2C_getInterruptStatus( uint32_t moduleInstance,
+                                             uint16_t mask );
 
 //*****************************************************************************
 //
@@ -1263,8 +1270,8 @@ extern uint_fast16_t I2C_getInterruptStatus(uint32_t moduleInstance, uint16_t ma
 //!         - \b EUSCI_B1_BASE
 //!         - \b EUSCI_B2_BASE
 //!         - \b EUSCI_B3_BASE
-//!  <br>It is important to note that for eUSCI modules, only "B" modules such as
-//!  EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
+//!  <br>It is important to note that for eUSCI modules, only "B" modules such
+//!  as EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
 //!  I2C mode.
 //!
 //! \return the masked status of the interrupt flag
@@ -1286,7 +1293,7 @@ extern uint_fast16_t I2C_getInterruptStatus(uint32_t moduleInstance, uint16_t ma
 //! - \b EUSCI_B_I2C_BYTE_COUNTER_INTERRUPT - Byte counter interrupt enable
 //
 //*****************************************************************************
-extern uint_fast16_t I2C_getEnabledInterruptStatus(uint32_t moduleInstance);
+extern uint_fast16_t I2C_getEnabledInterruptStatus( uint32_t moduleInstance );
 
 //*****************************************************************************
 //
@@ -1298,8 +1305,8 @@ extern uint_fast16_t I2C_getEnabledInterruptStatus(uint32_t moduleInstance);
 //!         - \b EUSCI_B1_BASE
 //!         - \b EUSCI_B2_BASE
 //!         - \b EUSCI_B3_BASE
-//!  <br>It is important to note that for eUSCI modules, only "B" modules such as
-//!  EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
+//!  <br>It is important to note that for eUSCI modules, only "B" modules such
+//!  as EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
 //!  I2C mode.
 //!
 //! \param intHandler is a pointer to the function to be called when the
@@ -1317,8 +1324,8 @@ extern uint_fast16_t I2C_getEnabledInterruptStatus(uint32_t moduleInstance);
 //! \return None.
 //
 //*****************************************************************************
-extern void I2C_registerInterrupt(uint32_t moduleInstance,
-        void (*intHandler)(void));
+extern void I2C_registerInterrupt( uint32_t moduleInstance,
+                                   void ( *intHandler )( void ) );
 
 //*****************************************************************************
 //
@@ -1330,8 +1337,8 @@ extern void I2C_registerInterrupt(uint32_t moduleInstance,
 //!         - \b EUSCI_B1_BASE
 //!         - \b EUSCI_B2_BASE
 //!         - \b EUSCI_B3_BASE
-//!  <br>It is important to note that for eUSCI modules, only "B" modules such as
-//!  EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
+//!  <br>It is important to note that for eUSCI modules, only "B" modules such
+//!  as EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
 //!  I2C mode.
 //!
 //! This function unregisters the handler to be called when timer
@@ -1344,8 +1351,7 @@ extern void I2C_registerInterrupt(uint32_t moduleInstance,
 //! \return None.
 //
 //*****************************************************************************
-extern void I2C_unregisterInterrupt(uint32_t moduleInstance);
-
+extern void I2C_unregisterInterrupt( uint32_t moduleInstance );
 
 //*****************************************************************************
 //
@@ -1357,54 +1363,62 @@ extern void I2C_unregisterInterrupt(uint32_t moduleInstance);
 //!         - \b EUSCI_B1_BASE
 //!         - \b EUSCI_B2_BASE
 //!         - \b EUSCI_B3_BASE
-//!  <br>It is important to note that for eUSCI modules, only "B" modules such as
-//!  EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
+//!  <br>It is important to note that for eUSCI modules, only "B" modules such
+//!  as EUSCI_B0 can be used. "A" modules such as EUSCI_A0 do not support the
 //!  I2C mode.
 //!
 //! \return None.
 //
 //*****************************************************************************
-extern void I2C_slaveSendNAK(uint32_t moduleInstance);
+extern void I2C_slaveSendNAK( uint32_t moduleInstance );
 
 /* Backwards Compatibility Layer */
-#define EUSCI_B_I2C_slaveInit I2C_initSlave
-#define EUSCI_B_I2C_enable I2C_enableModule
-#define EUSCI_B_I2C_disable I2C_disableModule
-#define EUSCI_B_I2C_setSlaveAddress I2C_setSlaveAddress
-#define EUSCI_B_I2C_setMode I2C_setMode
-#define EUSCI_B_I2C_getMode I2C_getMode
-#define EUSCI_B_I2C_slaveDataPut I2C_slavePutData
-#define EUSCI_B_I2C_slaveDataGet I2C_slaveGetData
-#define EUSCI_B_I2C_isBusBusy I2C_isBusBusy
-#define EUSCI_B_I2C_masterIsStopSent I2C_masterIsStopSent
-#define EUSCI_B_I2C_masterIsStartSent I2C_masterIsStartSent
-#define EUSCI_B_I2C_enableInterrupt I2C_enableInterrupt
-#define EUSCI_B_I2C_disableInterrupt I2C_disableInterrupt
-#define EUSCI_B_I2C_clearInterruptFlag I2C_clearInterruptFlag
-#define EUSCI_B_I2C_getInterruptStatus  I2C_getEnabledInterruptStatus
-#define EUSCI_B_I2C_masterSendSingleByte I2C_masterSendSingleByte
+#define EUSCI_B_I2C_slaveInit               I2C_initSlave
+#define EUSCI_B_I2C_enable                  I2C_enableModule
+#define EUSCI_B_I2C_disable                 I2C_disableModule
+#define EUSCI_B_I2C_setSlaveAddress         I2C_setSlaveAddress
+#define EUSCI_B_I2C_setMode                 I2C_setMode
+#define EUSCI_B_I2C_getMode                 I2C_getMode
+#define EUSCI_B_I2C_slaveDataPut            I2C_slavePutData
+#define EUSCI_B_I2C_slaveDataGet            I2C_slaveGetData
+#define EUSCI_B_I2C_isBusBusy               I2C_isBusBusy
+#define EUSCI_B_I2C_masterIsStopSent        I2C_masterIsStopSent
+#define EUSCI_B_I2C_masterIsStartSent       I2C_masterIsStartSent
+#define EUSCI_B_I2C_enableInterrupt         I2C_enableInterrupt
+#define EUSCI_B_I2C_disableInterrupt        I2C_disableInterrupt
+#define EUSCI_B_I2C_clearInterruptFlag      I2C_clearInterruptFlag
+#define EUSCI_B_I2C_getInterruptStatus      I2C_getEnabledInterruptStatus
+#define EUSCI_B_I2C_masterSendSingleByte    I2C_masterSendSingleByte
 #define EUSCI_B_I2C_masterReceiveSingleByte I2C_masterReceiveSingleByte
-#define EUSCI_B_I2C_masterSendSingleByteWithTimeout I2C_masterSendSingleByteWithTimeout
+#define EUSCI_B_I2C_masterSendSingleByteWithTimeout \
+    I2C_masterSendSingleByteWithTimeout
 #define EUSCI_B_I2C_masterMultiByteSendStart I2C_masterSendMultiByteStart
-#define EUSCI_B_I2C_masterMultiByteSendStartWithTimeout I2C_masterSendMultiByteStartWithTimeout
+#define EUSCI_B_I2C_masterMultiByteSendStartWithTimeout \
+    I2C_masterSendMultiByteStartWithTimeout
 #define EUSCI_B_I2C_masterMultiByteSendNext I2C_masterSendMultiByteNext
-#define EUSCI_B_I2C_masterMultiByteSendNextWithTimeout I2C_masterSendMultiByteNextWithTimeout
+#define EUSCI_B_I2C_masterMultiByteSendNextWithTimeout \
+    I2C_masterSendMultiByteNextWithTimeout
 #define EUSCI_B_I2C_masterMultiByteSendFinish I2C_masterSendMultiByteFinish
-#define EUSCI_B_I2C_masterMultiByteSendFinishWithTimeout I2C_masterSendMultiByteFinishWithTimeout
-#define EUSCI_B_I2C_masterSendStart I2C_masterSendStart
+#define EUSCI_B_I2C_masterMultiByteSendFinishWithTimeout \
+    I2C_masterSendMultiByteFinishWithTimeout
+#define EUSCI_B_I2C_masterSendStart         I2C_masterSendStart
 #define EUSCI_B_I2C_masterMultiByteSendStop I2C_masterSendMultiByteStop
-#define EUSCI_B_I2C_masterMultiByteSendStopWithTimeout I2C_masterSendMultiByteStopWithTimeout
-#define EUSCI_B_I2C_masterReceiveStart I2C_masterReceiveStart
+#define EUSCI_B_I2C_masterMultiByteSendStopWithTimeout \
+    I2C_masterSendMultiByteStopWithTimeout
+#define EUSCI_B_I2C_masterReceiveStart         I2C_masterReceiveStart
 #define EUSCI_B_I2C_masterMultiByteReceiveNext I2C_masterReceiveMultiByteNext
-#define EUSCI_B_I2C_masterMultiByteReceiveFinish I2C_masterReceiveMultiByteFinish
-#define EUSCI_B_I2C_masterMultiByteReceiveFinishWithTimeout I2C_masterReceiveMultiByteFinishWithTimeout
+#define EUSCI_B_I2C_masterMultiByteReceiveFinish \
+    I2C_masterReceiveMultiByteFinish
+#define EUSCI_B_I2C_masterMultiByteReceiveFinishWithTimeout \
+    I2C_masterReceiveMultiByteFinishWithTimeout
 #define EUSCI_B_I2C_masterMultiByteReceiveStop I2C_masterReceiveMultiByteStop
-#define EUSCI_B_I2C_enableMultiMasterMode I2C_enableMultiMasterMode
-#define EUSCI_B_I2C_disableMultiMasterMode I2C_disableMultiMasterMode
-#define EUSCI_B_I2C_masterSingleReceive I2C_masterReceiveSingle
-#define EUSCI_B_I2C_getReceiveBufferAddressForDMA I2C_getReceiveBufferAddressForDMA
-#define EUSCI_B_I2C_getTransmitBufferAddressForDMA I2C_getTransmitBufferAddressForDMA
-
+#define EUSCI_B_I2C_enableMultiMasterMode      I2C_enableMultiMasterMode
+#define EUSCI_B_I2C_disableMultiMasterMode     I2C_disableMultiMasterMode
+#define EUSCI_B_I2C_masterSingleReceive        I2C_masterReceiveSingle
+#define EUSCI_B_I2C_getReceiveBufferAddressForDMA \
+    I2C_getReceiveBufferAddressForDMA
+#define EUSCI_B_I2C_getTransmitBufferAddressForDMA \
+    I2C_getTransmitBufferAddressForDMA
 
 //*****************************************************************************
 //
@@ -1423,4 +1437,3 @@ extern void I2C_slaveSendNAK(uint32_t moduleInstance);
 //*****************************************************************************
 
 #endif /* I2C_H_ */
-

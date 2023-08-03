@@ -42,30 +42,29 @@
 
 #ifdef __MSP430_HAS_PMM_FRAM__
 
-//*****************************************************************************
-//
-// If building with a C++ compiler, make all of the definitions in this header
-// have a C binding.
-//
-//*****************************************************************************
-#ifdef __cplusplus
-extern "C"
-{
-#endif
+    //*****************************************************************************
+    //
+    // If building with a C++ compiler, make all of the definitions in this
+    // header have a C binding.
+    //
+    //*****************************************************************************
+    #ifdef __cplusplus
+extern "C" {
+    #endif
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the mask parameter for
-// functions: PMM_clearInterrupt(), and PMM_getInterruptStatus() as well as
-// returned by the PMM_getInterruptStatus() function.
-//
-//*****************************************************************************
-#define PMM_BOR_INTERRUPT                                             PMMBORIFG
-#define PMM_RST_INTERRUPT                                             PMMRSTIFG
-#define PMM_POR_INTERRUPT                                             PMMPORIFG
-#define PMM_SVSH_INTERRUPT                                              SVSHIFG
-#define PMM_LPM5_INTERRUPT                                           PMMLPM5IFG
-#define PMM_ALL                                                          (0xA7)
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the mask parameter for
+    // functions: PMM_clearInterrupt(), and PMM_getInterruptStatus() as well as
+    // returned by the PMM_getInterruptStatus() function.
+    //
+    //*****************************************************************************
+    #define PMM_BOR_INTERRUPT  PMMBORIFG
+    #define PMM_RST_INTERRUPT  PMMRSTIFG
+    #define PMM_POR_INTERRUPT  PMMPORIFG
+    #define PMM_SVSH_INTERRUPT SVSHIFG
+    #define PMM_LPM5_INTERRUPT PMMLPM5IFG
+    #define PMM_ALL            ( 0xA7 )
 
 //*****************************************************************************
 //
@@ -84,7 +83,7 @@ extern "C"
 //! \return None
 //
 //*****************************************************************************
-extern void PMM_enableLowPowerReset(void);
+extern void PMM_enableLowPowerReset( void );
 
 //*****************************************************************************
 //
@@ -96,7 +95,7 @@ extern void PMM_enableLowPowerReset(void);
 //! \return None
 //
 //*****************************************************************************
-extern void PMM_disableLowPowerReset(void);
+extern void PMM_disableLowPowerReset( void );
 
 //*****************************************************************************
 //
@@ -108,7 +107,7 @@ extern void PMM_disableLowPowerReset(void);
 //! \return None
 //
 //*****************************************************************************
-extern void PMM_enableSVSH(void);
+extern void PMM_enableSVSH( void );
 
 //*****************************************************************************
 //
@@ -120,7 +119,7 @@ extern void PMM_enableSVSH(void);
 //! \return None
 //
 //*****************************************************************************
-extern void PMM_disableSVSH(void);
+extern void PMM_disableSVSH( void );
 
 //*****************************************************************************
 //
@@ -133,7 +132,7 @@ extern void PMM_disableSVSH(void);
 //! \return None
 //
 //*****************************************************************************
-extern void PMM_turnOnRegulator(void);
+extern void PMM_turnOnRegulator( void );
 
 //*****************************************************************************
 //
@@ -146,7 +145,7 @@ extern void PMM_turnOnRegulator(void);
 //! \return None
 //
 //*****************************************************************************
-extern void PMM_turnOffRegulator(void);
+extern void PMM_turnOffRegulator( void );
 
 //*****************************************************************************
 //
@@ -158,7 +157,7 @@ extern void PMM_turnOffRegulator(void);
 //! \return None
 //
 //*****************************************************************************
-extern void PMM_trigPOR(void);
+extern void PMM_trigPOR( void );
 
 //*****************************************************************************
 //
@@ -170,7 +169,7 @@ extern void PMM_trigPOR(void);
 //! \return None
 //
 //*****************************************************************************
-extern void PMM_trigBOR(void);
+extern void PMM_trigBOR( void );
 
 //*****************************************************************************
 //
@@ -190,7 +189,7 @@ extern void PMM_trigBOR(void);
 //! \return None
 //
 //*****************************************************************************
-extern void PMM_clearInterrupt(uint16_t mask);
+extern void PMM_clearInterrupt( uint16_t mask );
 
 //*****************************************************************************
 //
@@ -215,7 +214,7 @@ extern void PMM_clearInterrupt(uint16_t mask);
 //!         \n indicating  the status of the selected  interrupt flags
 //
 //*****************************************************************************
-extern uint16_t PMM_getInterruptStatus(uint16_t mask);
+extern uint16_t PMM_getInterruptStatus( uint16_t mask );
 
 //*****************************************************************************
 //
@@ -229,16 +228,16 @@ extern uint16_t PMM_getInterruptStatus(uint16_t mask);
 //! \return None
 //
 //*****************************************************************************
-extern void PMM_unlockLPM5(void);
+extern void PMM_unlockLPM5( void );
 
-//*****************************************************************************
-//
-// Mark the end of the C bindings section for C++ compilers.
-//
-//*****************************************************************************
-#ifdef __cplusplus
+    //*****************************************************************************
+    //
+    // Mark the end of the C bindings section for C++ compilers.
+    //
+    //*****************************************************************************
+    #ifdef __cplusplus
 }
-#endif
+    #endif
 
 #endif
 #endif // __MSP430WARE_PMM_H__

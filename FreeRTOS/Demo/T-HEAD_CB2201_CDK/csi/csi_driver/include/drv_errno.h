@@ -25,26 +25,28 @@
  * @details     Error code field difination
  *              Error number is devided into 4 field:
  *              0x8******* : 8  : means < 0
- *              0x*A****** : A  : means type number: bsp(1), driver(2), hal(3), app(4)...
- *              0x**AB**** : AB : means module number: timer(1), rtc(2), ....
+ *              0x*A****** : A  : means type number: bsp(1), driver(2), hal(3),
+ *app(4)... 0x**AB**** : AB : means module number: timer(1), rtc(2), ....
  *              0x****AB** : AB : means API number: module API's definition
  *              0x******AB : AB : means sub error number
- *                                  0 ~ 0x80 is common error such as EPERM, refer to errno.h
- *                                  0x80 ~ 0xFF is specific error, can difine in module
+ *                                  0 ~ 0x80 is common error such as EPERM,
+ *refer to errno.h 0x80 ~ 0xFF is specific error, can difine in module
  *
  *              For example 0x81020113 means:
  *                  1. 0x8*******: value < 0, means error happened
  *                  2. 0x*1******: type number is 1, means bsp error
  *                  3. 0x**02****: module number is 02, means RTC error
  *                  4. 0x****01**: module API is 01, means RTC's init
- *                  5. 0x******13: specific error is 0x13=19=ENODEV, means no such device
+ *                  5. 0x******13: specific error is 0x13=19=ENODEV, means no
+ *such device
  *
  *              For special bsp module example, you can return:
- *                  (BSP_ERRNO_TIMER_BASE | BSP_API_RTC_INIT | EPERM)    for rtc init error
- *                  (BSP_ERRNO_TIMER_BASE | BSP_API_RTC_SETTIME | ENXIO) for rtc settime error
+ *                  (BSP_ERRNO_TIMER_BASE | BSP_API_RTC_INIT | EPERM)    for rtc
+ *init error (BSP_ERRNO_TIMER_BASE | BSP_API_RTC_SETTIME | ENXIO) for rtc
+ *settime error
  *
- *              Here list the common sub error number (0x******AB) below(0~127 defined in errno.h as standard err code):
- *              Code          Hex    Deci   Meaning
+ *              Here list the common sub error number (0x******AB) below(0~127
+ *defined in errno.h as standard err code): Code          Hex    Deci   Meaning
  *              -------------------------------------------------------
  *              EPERM         0x01    1   Operation not permitted
  *              EIO           0x05    5   I/O error
@@ -61,38 +63,33 @@
 #ifndef _DRV_ERRNO_H_
 #define _DRV_ERRNO_H_
 
-
 #include <errno.h>
 
 #define ERRNO_DRV_START 0X80
 
 /* drvier General return codes */
-typedef enum {
-    EDRV = ERRNO_DRV_START,   ///< Unspecified error
-    EDRV_BUSY,                ///< Driver is busy
-    EDRV_TIMEOUT,             ///< Timeout occurred
-    EDRV_UNSUPPORTED,         ///< Operation not supported
-    EDRV_PARAMETER,           ///< Parameter error
-    EDRV_SPECIFIC             ///< Start of driver specific errors
+typedef enum
+{
+    EDRV = ERRNO_DRV_START, ///< Unspecified error
+    EDRV_BUSY,              ///< Driver is busy
+    EDRV_TIMEOUT,           ///< Timeout occurred
+    EDRV_UNSUPPORTED,       ///< Operation not supported
+    EDRV_PARAMETER,         ///< Parameter error
+    EDRV_SPECIFIC           ///< Start of driver specific errors
 } drv_common_err_e;
 
-
 /** Get error type */
-#define GET_ERROR_TYPE(errno) \
-    (error & 0xFF000000 >> 24)
+#define GET_ERROR_TYPE( errno )   ( error & 0xFF000000 >> 24 )
 /** Get error module */
-#define GET_ERROR_MODULE(error) \
-    (error & 0x00FF0000 >> 16)
+#define GET_ERROR_MODULE( error ) ( error & 0x00FF0000 >> 16 )
 /** Get error API */
-#define GET_ERROR_API(error) \
-    (error & 0x0000FF00 >> 8)
+#define GET_ERROR_API( error )    ( error & 0x0000FF00 >> 8 )
 /** Get errno */
-#define GET_ERROR_NUM(error) \
-    (error & 0x000000FF)
+#define GET_ERROR_NUM( error )    ( error & 0x000000FF )
 
 #ifndef CSI_DRV_ERRNO_BASE
-/** means bsp errors */
-#define CSI_DRV_ERRNO_BASE          0x81000000
+    /** means bsp errors */
+    #define CSI_DRV_ERRNO_BASE 0x81000000
 #endif
 
 /** driver module id definition*/

@@ -8,9 +8,10 @@
  (c) 2018 Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms,you may use this software and
-    any derivatives exclusively with Microchip products.It is your responsibility
-    to comply with third party license terms applicable to your use of third party
-    software (including open source software) that may accompany Microchip software.
+    any derivatives exclusively with Microchip products.It is your
+ responsibility to comply with third party license terms applicable to your use
+ of third party software (including open source software) that may accompany
+ Microchip software.
 
     THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES, WHETHER
     EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE, INCLUDING ANY IMPLIED
@@ -35,19 +36,20 @@ extern "C" {
 #endif
 
 #include <compiler.h>
-#include <stdint.h>
 #include <stdbool.h>
-#include <compiler.h>
+#include <stdint.h>
 
-enum port_pull_mode {
-	PORT_PULL_OFF,
-	PORT_PULL_UP,
+enum port_pull_mode
+{
+    PORT_PULL_OFF,
+    PORT_PULL_UP,
 };
 
-enum port_dir {
-	PORT_DIR_IN,
-	PORT_DIR_OUT,
-	PORT_DIR_OFF,
+enum port_dir
+{
+    PORT_DIR_IN,
+    PORT_DIR_OUT,
+    PORT_DIR_OFF,
 };
 
 /**
@@ -59,18 +61,19 @@ enum port_dir {
  * \param[in] pin       The pin number in PORTB
  * \param[in] pull_mode Pin pull mode
  */
-static inline void PORTB_set_pin_pull_mode(const uint8_t pin, const enum port_pull_mode pull_mode)
+static inline void PORTB_set_pin_pull_mode( const uint8_t pin,
+                                            const enum port_pull_mode pull_mode )
 {
+    if( pull_mode == PORT_PULL_UP )
+    {
+        DDRB &= ~( 1 << pin );
 
-	if (pull_mode == PORT_PULL_UP) {
-
-		DDRB &= ~(1 << pin);
-
-		PORTB |= 1 << pin;
-	} else if (pull_mode == PORT_PULL_OFF) {
-
-		PORTB &= ~(1 << pin);
-	}
+        PORTB |= 1 << pin;
+    }
+    else if( pull_mode == PORT_PULL_OFF )
+    {
+        PORTB &= ~( 1 << pin );
+    }
 }
 
 /**
@@ -86,23 +89,25 @@ static inline void PORTB_set_pin_pull_mode(const uint8_t pin, const enum port_pu
  *                      PORT_DIR_OFF = Disables the pin
  *                      (low power state)
  */
-static inline void PORTB_set_port_dir(const uint8_t mask, const enum port_dir direction)
+static inline void PORTB_set_port_dir( const uint8_t mask,
+                                       const enum port_dir direction )
 {
-	switch (direction) {
-	case PORT_DIR_IN:
-		DDRB &= ~mask;
-		break;
-	case PORT_DIR_OUT:
-		DDRB |= mask;
-		break;
-	case PORT_DIR_OFF:
-		DDRB &= ~mask;
+    switch( direction )
+    {
+        case PORT_DIR_IN:
+            DDRB &= ~mask;
+            break;
+        case PORT_DIR_OUT:
+            DDRB |= mask;
+            break;
+        case PORT_DIR_OFF:
+            DDRB &= ~mask;
 
-		PORTB |= mask;
-		break;
-	default:
-		break;
-	}
+            PORTB |= mask;
+            break;
+        default:
+            break;
+    }
 }
 
 /**
@@ -117,23 +122,25 @@ static inline void PORTB_set_port_dir(const uint8_t mask, const enum port_dir di
  *                      PORT_DIR_OFF = Disables the pin
  *                      (low power state)
  */
-static inline void PORTB_set_pin_dir(const uint8_t pin, const enum port_dir direction)
+static inline void PORTB_set_pin_dir( const uint8_t pin,
+                                      const enum port_dir direction )
 {
-	switch (direction) {
-	case PORT_DIR_IN:
-		DDRB &= ~(1 << pin);
-		break;
-	case PORT_DIR_OUT:
-		DDRB |= 1 << pin;
-		break;
-	case PORT_DIR_OFF:
-		DDRB &= ~(1 << pin);
+    switch( direction )
+    {
+        case PORT_DIR_IN:
+            DDRB &= ~( 1 << pin );
+            break;
+        case PORT_DIR_OUT:
+            DDRB |= 1 << pin;
+            break;
+        case PORT_DIR_OFF:
+            DDRB &= ~( 1 << pin );
 
-		PORTB |= 1 << pin;
-		break;
-	default:
-		break;
-	}
+            PORTB |= 1 << pin;
+            break;
+        default:
+            break;
+    }
 }
 
 /**
@@ -146,13 +153,16 @@ static inline void PORTB_set_pin_dir(const uint8_t pin, const enum port_dir dire
  * \param[in] level true  = Pin levels set to "high" state
  *                  false = Pin levels set to "low" state
  */
-static inline void PORTB_set_port_level(const uint8_t mask, const bool level)
+static inline void PORTB_set_port_level( const uint8_t mask, const bool level )
 {
-	if (level) {
-		PORTB |= mask;
-	} else {
-		PORTB &= ~mask;
-	}
+    if( level )
+    {
+        PORTB |= mask;
+    }
+    else
+    {
+        PORTB &= ~mask;
+    }
 }
 
 /**
@@ -164,13 +174,16 @@ static inline void PORTB_set_port_level(const uint8_t mask, const bool level)
  * \param[in] level true  = Pin level set to "high" state
  *                  false = Pin level set to "low" state
  */
-static inline void PORTB_set_pin_level(const uint8_t pin, const bool level)
+static inline void PORTB_set_pin_level( const uint8_t pin, const bool level )
 {
-	if (level) {
-		PORTB |= 1 << pin;
-	} else {
-		PORTB &= ~(1 << pin);
-	}
+    if( level )
+    {
+        PORTB |= 1 << pin;
+    }
+    else
+    {
+        PORTB &= ~( 1 << pin );
+    }
 }
 
 /**
@@ -183,9 +196,9 @@ static inline void PORTB_set_pin_level(const uint8_t pin, const bool level)
  * \param[in] mask  Bit mask where 1 means toggle pin level to the corresponding
  *                  pin
  */
-static inline void PORTB_toggle_port_level(const uint8_t mask)
+static inline void PORTB_toggle_port_level( const uint8_t mask )
 {
-	PINB = mask;
+    PINB = mask;
 }
 
 /**
@@ -195,9 +208,9 @@ static inline void PORTB_toggle_port_level(const uint8_t mask)
  *
  * \param[in] pin       The pin number for device
  */
-static inline void PORTB_toggle_pin_level(const uint8_t pin)
+static inline void PORTB_toggle_pin_level( const uint8_t pin )
 {
-	PINB = 1 << pin;
+    PINB = 1 << pin;
 }
 
 /**
@@ -208,9 +221,9 @@ static inline void PORTB_toggle_pin_level(const uint8_t pin)
  * \param[in] port  Ports are grouped into groups of maximum 32 pins,
  *                  PORT_PORTA = group 0, PORT_PORTB = group 1, etc
  */
-static inline uint8_t PORTB_get_port_level(volatile uint8_t *port)
+static inline uint8_t PORTB_get_port_level( volatile uint8_t * port )
 {
-	return PINB;
+    return PINB;
 }
 
 /**
@@ -220,9 +233,9 @@ static inline uint8_t PORTB_get_port_level(volatile uint8_t *port)
  *
  * \param[in] pin       The pin number for device
  */
-static inline bool PORTB_get_pin_level(const uint8_t pin)
+static inline bool PORTB_get_pin_level( const uint8_t pin )
 {
-	return PINB & (1 << pin);
+    return PINB & ( 1 << pin );
 }
 
 /**
@@ -232,9 +245,9 @@ static inline bool PORTB_get_pin_level(const uint8_t pin)
  *
  * \param[in] value   Value to write
  */
-static inline void PORTB_write_port(const uint8_t value)
+static inline void PORTB_write_port( const uint8_t value )
 {
-	PORTB = value;
+    PORTB = value;
 }
 
 /**
@@ -246,18 +259,19 @@ static inline void PORTB_write_port(const uint8_t value)
  * \param[in] pin       The pin number in PORTC
  * \param[in] pull_mode Pin pull mode
  */
-static inline void PORTC_set_pin_pull_mode(const uint8_t pin, const enum port_pull_mode pull_mode)
+static inline void PORTC_set_pin_pull_mode( const uint8_t pin,
+                                            const enum port_pull_mode pull_mode )
 {
+    if( pull_mode == PORT_PULL_UP )
+    {
+        DDRC &= ~( 1 << pin );
 
-	if (pull_mode == PORT_PULL_UP) {
-
-		DDRC &= ~(1 << pin);
-
-		PORTC |= 1 << pin;
-	} else if (pull_mode == PORT_PULL_OFF) {
-
-		PORTC &= ~(1 << pin);
-	}
+        PORTC |= 1 << pin;
+    }
+    else if( pull_mode == PORT_PULL_OFF )
+    {
+        PORTC &= ~( 1 << pin );
+    }
 }
 
 /**
@@ -273,23 +287,25 @@ static inline void PORTC_set_pin_pull_mode(const uint8_t pin, const enum port_pu
  *                      PORT_DIR_OFF = Disables the pin
  *                      (low power state)
  */
-static inline void PORTC_set_port_dir(const uint8_t mask, const enum port_dir direction)
+static inline void PORTC_set_port_dir( const uint8_t mask,
+                                       const enum port_dir direction )
 {
-	switch (direction) {
-	case PORT_DIR_IN:
-		DDRC &= ~mask;
-		break;
-	case PORT_DIR_OUT:
-		DDRC |= mask;
-		break;
-	case PORT_DIR_OFF:
-		DDRC &= ~mask;
+    switch( direction )
+    {
+        case PORT_DIR_IN:
+            DDRC &= ~mask;
+            break;
+        case PORT_DIR_OUT:
+            DDRC |= mask;
+            break;
+        case PORT_DIR_OFF:
+            DDRC &= ~mask;
 
-		PORTC |= mask;
-		break;
-	default:
-		break;
-	}
+            PORTC |= mask;
+            break;
+        default:
+            break;
+    }
 }
 
 /**
@@ -304,23 +320,25 @@ static inline void PORTC_set_port_dir(const uint8_t mask, const enum port_dir di
  *                      PORT_DIR_OFF = Disables the pin
  *                      (low power state)
  */
-static inline void PORTC_set_pin_dir(const uint8_t pin, const enum port_dir direction)
+static inline void PORTC_set_pin_dir( const uint8_t pin,
+                                      const enum port_dir direction )
 {
-	switch (direction) {
-	case PORT_DIR_IN:
-		DDRC &= ~(1 << pin);
-		break;
-	case PORT_DIR_OUT:
-		DDRC |= 1 << pin;
-		break;
-	case PORT_DIR_OFF:
-		DDRC &= ~(1 << pin);
+    switch( direction )
+    {
+        case PORT_DIR_IN:
+            DDRC &= ~( 1 << pin );
+            break;
+        case PORT_DIR_OUT:
+            DDRC |= 1 << pin;
+            break;
+        case PORT_DIR_OFF:
+            DDRC &= ~( 1 << pin );
 
-		PORTC |= 1 << pin;
-		break;
-	default:
-		break;
-	}
+            PORTC |= 1 << pin;
+            break;
+        default:
+            break;
+    }
 }
 
 /**
@@ -333,13 +351,16 @@ static inline void PORTC_set_pin_dir(const uint8_t pin, const enum port_dir dire
  * \param[in] level true  = Pin levels set to "high" state
  *                  false = Pin levels set to "low" state
  */
-static inline void PORTC_set_port_level(const uint8_t mask, const bool level)
+static inline void PORTC_set_port_level( const uint8_t mask, const bool level )
 {
-	if (level) {
-		PORTC |= mask;
-	} else {
-		PORTC &= ~mask;
-	}
+    if( level )
+    {
+        PORTC |= mask;
+    }
+    else
+    {
+        PORTC &= ~mask;
+    }
 }
 
 /**
@@ -351,13 +372,16 @@ static inline void PORTC_set_port_level(const uint8_t mask, const bool level)
  * \param[in] level true  = Pin level set to "high" state
  *                  false = Pin level set to "low" state
  */
-static inline void PORTC_set_pin_level(const uint8_t pin, const bool level)
+static inline void PORTC_set_pin_level( const uint8_t pin, const bool level )
 {
-	if (level) {
-		PORTC |= 1 << pin;
-	} else {
-		PORTC &= ~(1 << pin);
-	}
+    if( level )
+    {
+        PORTC |= 1 << pin;
+    }
+    else
+    {
+        PORTC &= ~( 1 << pin );
+    }
 }
 
 /**
@@ -370,9 +394,9 @@ static inline void PORTC_set_pin_level(const uint8_t pin, const bool level)
  * \param[in] mask  Bit mask where 1 means toggle pin level to the corresponding
  *                  pin
  */
-static inline void PORTC_toggle_port_level(const uint8_t mask)
+static inline void PORTC_toggle_port_level( const uint8_t mask )
 {
-	PINC = mask;
+    PINC = mask;
 }
 
 /**
@@ -382,9 +406,9 @@ static inline void PORTC_toggle_port_level(const uint8_t mask)
  *
  * \param[in] pin       The pin number for device
  */
-static inline void PORTC_toggle_pin_level(const uint8_t pin)
+static inline void PORTC_toggle_pin_level( const uint8_t pin )
 {
-	PINC = 1 << pin;
+    PINC = 1 << pin;
 }
 
 /**
@@ -395,9 +419,9 @@ static inline void PORTC_toggle_pin_level(const uint8_t pin)
  * \param[in] port  Ports are grouped into groups of maximum 32 pins,
  *                  PORT_PORTA = group 0, PORT_PORTB = group 1, etc
  */
-static inline uint8_t PORTC_get_port_level(volatile uint8_t *port)
+static inline uint8_t PORTC_get_port_level( volatile uint8_t * port )
 {
-	return PINC;
+    return PINC;
 }
 
 /**
@@ -407,9 +431,9 @@ static inline uint8_t PORTC_get_port_level(volatile uint8_t *port)
  *
  * \param[in] pin       The pin number for device
  */
-static inline bool PORTC_get_pin_level(const uint8_t pin)
+static inline bool PORTC_get_pin_level( const uint8_t pin )
 {
-	return PINC & (1 << pin);
+    return PINC & ( 1 << pin );
 }
 
 /**
@@ -419,9 +443,9 @@ static inline bool PORTC_get_pin_level(const uint8_t pin)
  *
  * \param[in] value   Value to write
  */
-static inline void PORTC_write_port(const uint8_t value)
+static inline void PORTC_write_port( const uint8_t value )
 {
-	PORTC = value;
+    PORTC = value;
 }
 
 /**
@@ -433,18 +457,19 @@ static inline void PORTC_write_port(const uint8_t value)
  * \param[in] pin       The pin number in PORTD
  * \param[in] pull_mode Pin pull mode
  */
-static inline void PORTD_set_pin_pull_mode(const uint8_t pin, const enum port_pull_mode pull_mode)
+static inline void PORTD_set_pin_pull_mode( const uint8_t pin,
+                                            const enum port_pull_mode pull_mode )
 {
+    if( pull_mode == PORT_PULL_UP )
+    {
+        DDRD &= ~( 1 << pin );
 
-	if (pull_mode == PORT_PULL_UP) {
-
-		DDRD &= ~(1 << pin);
-
-		PORTD |= 1 << pin;
-	} else if (pull_mode == PORT_PULL_OFF) {
-
-		PORTD &= ~(1 << pin);
-	}
+        PORTD |= 1 << pin;
+    }
+    else if( pull_mode == PORT_PULL_OFF )
+    {
+        PORTD &= ~( 1 << pin );
+    }
 }
 
 /**
@@ -460,23 +485,25 @@ static inline void PORTD_set_pin_pull_mode(const uint8_t pin, const enum port_pu
  *                      PORT_DIR_OFF = Disables the pin
  *                      (low power state)
  */
-static inline void PORTD_set_port_dir(const uint8_t mask, const enum port_dir direction)
+static inline void PORTD_set_port_dir( const uint8_t mask,
+                                       const enum port_dir direction )
 {
-	switch (direction) {
-	case PORT_DIR_IN:
-		DDRD &= ~mask;
-		break;
-	case PORT_DIR_OUT:
-		DDRD |= mask;
-		break;
-	case PORT_DIR_OFF:
-		DDRD &= ~mask;
+    switch( direction )
+    {
+        case PORT_DIR_IN:
+            DDRD &= ~mask;
+            break;
+        case PORT_DIR_OUT:
+            DDRD |= mask;
+            break;
+        case PORT_DIR_OFF:
+            DDRD &= ~mask;
 
-		PORTD |= mask;
-		break;
-	default:
-		break;
-	}
+            PORTD |= mask;
+            break;
+        default:
+            break;
+    }
 }
 
 /**
@@ -491,23 +518,25 @@ static inline void PORTD_set_port_dir(const uint8_t mask, const enum port_dir di
  *                      PORT_DIR_OFF = Disables the pin
  *                      (low power state)
  */
-static inline void PORTD_set_pin_dir(const uint8_t pin, const enum port_dir direction)
+static inline void PORTD_set_pin_dir( const uint8_t pin,
+                                      const enum port_dir direction )
 {
-	switch (direction) {
-	case PORT_DIR_IN:
-		DDRD &= ~(1 << pin);
-		break;
-	case PORT_DIR_OUT:
-		DDRD |= 1 << pin;
-		break;
-	case PORT_DIR_OFF:
-		DDRD &= ~(1 << pin);
+    switch( direction )
+    {
+        case PORT_DIR_IN:
+            DDRD &= ~( 1 << pin );
+            break;
+        case PORT_DIR_OUT:
+            DDRD |= 1 << pin;
+            break;
+        case PORT_DIR_OFF:
+            DDRD &= ~( 1 << pin );
 
-		PORTD |= 1 << pin;
-		break;
-	default:
-		break;
-	}
+            PORTD |= 1 << pin;
+            break;
+        default:
+            break;
+    }
 }
 
 /**
@@ -520,13 +549,16 @@ static inline void PORTD_set_pin_dir(const uint8_t pin, const enum port_dir dire
  * \param[in] level true  = Pin levels set to "high" state
  *                  false = Pin levels set to "low" state
  */
-static inline void PORTD_set_port_level(const uint8_t mask, const bool level)
+static inline void PORTD_set_port_level( const uint8_t mask, const bool level )
 {
-	if (level) {
-		PORTD |= mask;
-	} else {
-		PORTD &= ~mask;
-	}
+    if( level )
+    {
+        PORTD |= mask;
+    }
+    else
+    {
+        PORTD &= ~mask;
+    }
 }
 
 /**
@@ -538,13 +570,16 @@ static inline void PORTD_set_port_level(const uint8_t mask, const bool level)
  * \param[in] level true  = Pin level set to "high" state
  *                  false = Pin level set to "low" state
  */
-static inline void PORTD_set_pin_level(const uint8_t pin, const bool level)
+static inline void PORTD_set_pin_level( const uint8_t pin, const bool level )
 {
-	if (level) {
-		PORTD |= 1 << pin;
-	} else {
-		PORTD &= ~(1 << pin);
-	}
+    if( level )
+    {
+        PORTD |= 1 << pin;
+    }
+    else
+    {
+        PORTD &= ~( 1 << pin );
+    }
 }
 
 /**
@@ -557,9 +592,9 @@ static inline void PORTD_set_pin_level(const uint8_t pin, const bool level)
  * \param[in] mask  Bit mask where 1 means toggle pin level to the corresponding
  *                  pin
  */
-static inline void PORTD_toggle_port_level(const uint8_t mask)
+static inline void PORTD_toggle_port_level( const uint8_t mask )
 {
-	PIND = mask;
+    PIND = mask;
 }
 
 /**
@@ -569,9 +604,9 @@ static inline void PORTD_toggle_port_level(const uint8_t mask)
  *
  * \param[in] pin       The pin number for device
  */
-static inline void PORTD_toggle_pin_level(const uint8_t pin)
+static inline void PORTD_toggle_pin_level( const uint8_t pin )
 {
-	PIND = 1 << pin;
+    PIND = 1 << pin;
 }
 
 /**
@@ -582,9 +617,9 @@ static inline void PORTD_toggle_pin_level(const uint8_t pin)
  * \param[in] port  Ports are grouped into groups of maximum 32 pins,
  *                  PORT_PORTA = group 0, PORT_PORTB = group 1, etc
  */
-static inline uint8_t PORTD_get_port_level(volatile uint8_t *port)
+static inline uint8_t PORTD_get_port_level( volatile uint8_t * port )
 {
-	return PIND;
+    return PIND;
 }
 
 /**
@@ -594,9 +629,9 @@ static inline uint8_t PORTD_get_port_level(volatile uint8_t *port)
  *
  * \param[in] pin       The pin number for device
  */
-static inline bool PORTD_get_pin_level(const uint8_t pin)
+static inline bool PORTD_get_pin_level( const uint8_t pin )
 {
-	return PIND & (1 << pin);
+    return PIND & ( 1 << pin );
 }
 
 /**
@@ -606,9 +641,9 @@ static inline bool PORTD_get_pin_level(const uint8_t pin)
  *
  * \param[in] value   Value to write
  */
-static inline void PORTD_write_port(const uint8_t value)
+static inline void PORTD_write_port( const uint8_t value )
 {
-	PORTD = value;
+    PORTD = value;
 }
 
 /**
@@ -620,18 +655,19 @@ static inline void PORTD_write_port(const uint8_t value)
  * \param[in] pin       The pin number in PORTE
  * \param[in] pull_mode Pin pull mode
  */
-static inline void PORTE_set_pin_pull_mode(const uint8_t pin, const enum port_pull_mode pull_mode)
+static inline void PORTE_set_pin_pull_mode( const uint8_t pin,
+                                            const enum port_pull_mode pull_mode )
 {
+    if( pull_mode == PORT_PULL_UP )
+    {
+        DDRE &= ~( 1 << pin );
 
-	if (pull_mode == PORT_PULL_UP) {
-
-		DDRE &= ~(1 << pin);
-
-		PORTE |= 1 << pin;
-	} else if (pull_mode == PORT_PULL_OFF) {
-
-		PORTE &= ~(1 << pin);
-	}
+        PORTE |= 1 << pin;
+    }
+    else if( pull_mode == PORT_PULL_OFF )
+    {
+        PORTE &= ~( 1 << pin );
+    }
 }
 
 /**
@@ -647,23 +683,25 @@ static inline void PORTE_set_pin_pull_mode(const uint8_t pin, const enum port_pu
  *                      PORT_DIR_OFF = Disables the pin
  *                      (low power state)
  */
-static inline void PORTE_set_port_dir(const uint8_t mask, const enum port_dir direction)
+static inline void PORTE_set_port_dir( const uint8_t mask,
+                                       const enum port_dir direction )
 {
-	switch (direction) {
-	case PORT_DIR_IN:
-		DDRE &= ~mask;
-		break;
-	case PORT_DIR_OUT:
-		DDRE |= mask;
-		break;
-	case PORT_DIR_OFF:
-		DDRE &= ~mask;
+    switch( direction )
+    {
+        case PORT_DIR_IN:
+            DDRE &= ~mask;
+            break;
+        case PORT_DIR_OUT:
+            DDRE |= mask;
+            break;
+        case PORT_DIR_OFF:
+            DDRE &= ~mask;
 
-		PORTE |= mask;
-		break;
-	default:
-		break;
-	}
+            PORTE |= mask;
+            break;
+        default:
+            break;
+    }
 }
 
 /**
@@ -678,23 +716,25 @@ static inline void PORTE_set_port_dir(const uint8_t mask, const enum port_dir di
  *                      PORT_DIR_OFF = Disables the pin
  *                      (low power state)
  */
-static inline void PORTE_set_pin_dir(const uint8_t pin, const enum port_dir direction)
+static inline void PORTE_set_pin_dir( const uint8_t pin,
+                                      const enum port_dir direction )
 {
-	switch (direction) {
-	case PORT_DIR_IN:
-		DDRE &= ~(1 << pin);
-		break;
-	case PORT_DIR_OUT:
-		DDRE |= 1 << pin;
-		break;
-	case PORT_DIR_OFF:
-		DDRE &= ~(1 << pin);
+    switch( direction )
+    {
+        case PORT_DIR_IN:
+            DDRE &= ~( 1 << pin );
+            break;
+        case PORT_DIR_OUT:
+            DDRE |= 1 << pin;
+            break;
+        case PORT_DIR_OFF:
+            DDRE &= ~( 1 << pin );
 
-		PORTE |= 1 << pin;
-		break;
-	default:
-		break;
-	}
+            PORTE |= 1 << pin;
+            break;
+        default:
+            break;
+    }
 }
 
 /**
@@ -707,13 +747,16 @@ static inline void PORTE_set_pin_dir(const uint8_t pin, const enum port_dir dire
  * \param[in] level true  = Pin levels set to "high" state
  *                  false = Pin levels set to "low" state
  */
-static inline void PORTE_set_port_level(const uint8_t mask, const bool level)
+static inline void PORTE_set_port_level( const uint8_t mask, const bool level )
 {
-	if (level) {
-		PORTE |= mask;
-	} else {
-		PORTE &= ~mask;
-	}
+    if( level )
+    {
+        PORTE |= mask;
+    }
+    else
+    {
+        PORTE &= ~mask;
+    }
 }
 
 /**
@@ -725,13 +768,16 @@ static inline void PORTE_set_port_level(const uint8_t mask, const bool level)
  * \param[in] level true  = Pin level set to "high" state
  *                  false = Pin level set to "low" state
  */
-static inline void PORTE_set_pin_level(const uint8_t pin, const bool level)
+static inline void PORTE_set_pin_level( const uint8_t pin, const bool level )
 {
-	if (level) {
-		PORTE |= 1 << pin;
-	} else {
-		PORTE &= ~(1 << pin);
-	}
+    if( level )
+    {
+        PORTE |= 1 << pin;
+    }
+    else
+    {
+        PORTE &= ~( 1 << pin );
+    }
 }
 
 /**
@@ -744,9 +790,9 @@ static inline void PORTE_set_pin_level(const uint8_t pin, const bool level)
  * \param[in] mask  Bit mask where 1 means toggle pin level to the corresponding
  *                  pin
  */
-static inline void PORTE_toggle_port_level(const uint8_t mask)
+static inline void PORTE_toggle_port_level( const uint8_t mask )
 {
-	PINE = mask;
+    PINE = mask;
 }
 
 /**
@@ -756,9 +802,9 @@ static inline void PORTE_toggle_port_level(const uint8_t mask)
  *
  * \param[in] pin       The pin number for device
  */
-static inline void PORTE_toggle_pin_level(const uint8_t pin)
+static inline void PORTE_toggle_pin_level( const uint8_t pin )
 {
-	PINE = 1 << pin;
+    PINE = 1 << pin;
 }
 
 /**
@@ -769,9 +815,9 @@ static inline void PORTE_toggle_pin_level(const uint8_t pin)
  * \param[in] port  Ports are grouped into groups of maximum 32 pins,
  *                  PORT_PORTA = group 0, PORT_PORTB = group 1, etc
  */
-static inline uint8_t PORTE_get_port_level(volatile uint8_t *port)
+static inline uint8_t PORTE_get_port_level( volatile uint8_t * port )
 {
-	return PINE;
+    return PINE;
 }
 
 /**
@@ -781,9 +827,9 @@ static inline uint8_t PORTE_get_port_level(volatile uint8_t *port)
  *
  * \param[in] pin       The pin number for device
  */
-static inline bool PORTE_get_pin_level(const uint8_t pin)
+static inline bool PORTE_get_pin_level( const uint8_t pin )
 {
-	return PINE & (1 << pin);
+    return PINE & ( 1 << pin );
 }
 
 /**
@@ -793,9 +839,9 @@ static inline bool PORTE_get_pin_level(const uint8_t pin)
  *
  * \param[in] value   Value to write
  */
-static inline void PORTE_write_port(const uint8_t value)
+static inline void PORTE_write_port( const uint8_t value )
 {
-	PORTE = value;
+    PORTE = value;
 }
 
 #ifdef __cplusplus

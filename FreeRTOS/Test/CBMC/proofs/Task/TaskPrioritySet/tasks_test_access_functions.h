@@ -51,7 +51,8 @@ TaskHandle_t xUnconstrainedTCB( void )
 
     if( nondet_bool() )
     {
-        listSET_LIST_ITEM_VALUE( &( pxTCB->xStateListItem ), pxTCB->uxPriority );
+        listSET_LIST_ITEM_VALUE( &( pxTCB->xStateListItem ),
+                                 pxTCB->uxPriority );
     }
     else
     {
@@ -60,7 +61,9 @@ TaskHandle_t xUnconstrainedTCB( void )
 
     if( nondet_bool() )
     {
-        listSET_LIST_ITEM_VALUE( &( pxTCB->xEventListItem ), ( TickType_t ) configMAX_PRIORITIES - ( TickType_t ) pxTCB->uxPriority );
+        listSET_LIST_ITEM_VALUE( &( pxTCB->xEventListItem ),
+                                 ( TickType_t ) configMAX_PRIORITIES -
+                                     ( TickType_t ) pxTCB->uxPriority );
     }
     else
     {
@@ -93,7 +96,8 @@ BaseType_t xPrepareTaskLists( TaskHandle_t * xTask )
 
         if( pxOtherTCB != NULL )
         {
-            vListInsert( &pxReadyTasksLists[ pxOtherTCB->uxPriority ], &( pxOtherTCB->xStateListItem ) );
+            vListInsert( &pxReadyTasksLists[ pxOtherTCB->uxPriority ],
+                         &( pxOtherTCB->xStateListItem ) );
         }
     }
 
@@ -102,11 +106,13 @@ BaseType_t xPrepareTaskLists( TaskHandle_t * xTask )
         /* Needed for coverage: nondeterministic insertion of task */
         if( nondet_bool() )
         {
-            vListInsert( &pxReadyTasksLists[ pxTCB->uxPriority ], &( pxTCB->xStateListItem ) );
+            vListInsert( &pxReadyTasksLists[ pxTCB->uxPriority ],
+                         &( pxTCB->xStateListItem ) );
         }
     }
 
-    /* Note that `*xTask = NULL` can happen here, but this is fine -- `pxCurrentTCB` will be used instead */
+    /* Note that `*xTask = NULL` can happen here, but this is fine --
+     * `pxCurrentTCB` will be used instead */
     *xTask = pxTCB;
 
     pxCurrentTCB = xUnconstrainedTCB();
@@ -119,10 +125,13 @@ BaseType_t xPrepareTaskLists( TaskHandle_t * xTask )
     /* Needed for coverage: nondeterministic insertion of task */
     if( nondet_bool() )
     {
-        vListInsert( &pxReadyTasksLists[ pxCurrentTCB->uxPriority ], &( pxCurrentTCB->xStateListItem ) );
+        vListInsert( &pxReadyTasksLists[ pxCurrentTCB->uxPriority ],
+                     &( pxCurrentTCB->xStateListItem ) );
 
         /* Needed for coverage. */
-        listGET_OWNER_OF_NEXT_ENTRY( pxCurrentTCB, &pxReadyTasksLists[ pxCurrentTCB->uxPriority ] );
+        listGET_OWNER_OF_NEXT_ENTRY(
+            pxCurrentTCB,
+            &pxReadyTasksLists[ pxCurrentTCB->uxPriority ] );
     }
 
     return pdPASS;

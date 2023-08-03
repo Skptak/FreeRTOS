@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -35,7 +36,8 @@
 /******* DO NOT CHANGE the following order ********/
 /**************************************************/
 
-/* Logging related header files are required to be included in the following order:
+/* Logging related header files are required to be included in the following
+ * order:
  * 1. Include the header file "logging_levels.h".
  * 2. Define LIBRARY_LOG_NAME and  LIBRARY_LOG_LEVEL.
  * 3. Include the header file "logging_stack.h".
@@ -46,14 +48,13 @@
 
 /* Logging configuration for the Subscription Manager module. */
 #ifndef LIBRARY_LOG_NAME
-    #define LIBRARY_LOG_NAME     "Subscription Manager"
+    #define LIBRARY_LOG_NAME "Subscription Manager"
 #endif
 #ifndef LIBRARY_LOG_LEVEL
-    #define LIBRARY_LOG_LEVEL    LOG_ERROR
+    #define LIBRARY_LOG_LEVEL LOG_ERROR
 #endif
 
 #include "logging_stack.h"
-
 
 /* Demo config include. */
 #include "demo_config.h"
@@ -61,22 +62,22 @@
 /* core MQTT include. */
 #include "core_mqtt.h"
 
-
 /**
  * @brief Maximum number of subscriptions maintained by the subscription manager
  * simultaneously in a list.
  */
 #ifndef SUBSCRIPTION_MANAGER_MAX_SUBSCRIPTIONS
-    #define SUBSCRIPTION_MANAGER_MAX_SUBSCRIPTIONS    10U
+    #define SUBSCRIPTION_MANAGER_MAX_SUBSCRIPTIONS 10U
 #endif
 
 /**
  * @brief Callback function called when receiving a publish.
  *
- * @param[in] pvIncomingPublishCallbackContext The incoming publish callback context.
+ * @param[in] pvIncomingPublishCallbackContext The incoming publish callback
+ * context.
  * @param[in] pxPublishInfo Deserialized publish information.
  */
-typedef void (* IncomingPubCallback_t )( void * pvIncomingPublishCallbackContext,
+typedef void ( *IncomingPubCallback_t )( void * pvIncomingPublishCallbackContext,
                                          MQTTPublishInfo_t * pxPublishInfo );
 
 /**
@@ -85,11 +86,11 @@ typedef void (* IncomingPubCallback_t )( void * pvIncomingPublishCallbackContext
  * This subscription manager implementation expects that the array of the
  * subscription elements used for storing subscriptions to be initialized to 0.
  *
- * @note This implementation allows multiple tasks to subscribe to the same topic.
- * In this case, another element is added to the subscription list, differing
- * in the intended publish callback. Also note that the topic filters are not
- * copied in the subscription manager and hence the topic filter strings need to
- * stay in scope until unsubscribed.
+ * @note This implementation allows multiple tasks to subscribe to the same
+ * topic. In this case, another element is added to the subscription list,
+ * differing in the intended publish callback. Also note that the topic filters
+ * are not copied in the subscription manager and hence the topic filter strings
+ * need to stay in scope until unsubscribed.
  */
 typedef struct subscriptionElement
 {
@@ -110,9 +111,11 @@ typedef struct subscriptionElement
  * @param[in] pcTopicFilterString Topic filter string of subscription.
  * @param[in] usTopicFilterLength Length of topic filter string.
  * @param[in] pxIncomingPublishCallback Callback function for the subscription.
- * @param[in] pvIncomingPublishCallbackContext Context for the subscription callback.
+ * @param[in] pvIncomingPublishCallbackContext Context for the subscription
+ * callback.
  *
- * @return `true` if subscription added or exists, `false` if insufficient memory.
+ * @return `true` if subscription added or exists, `false` if insufficient
+ * memory.
  */
 bool addSubscription( SubscriptionElement_t * pxSubscriptionList,
                       const char * pcTopicFilterString,

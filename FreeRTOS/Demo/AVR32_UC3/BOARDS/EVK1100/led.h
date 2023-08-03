@@ -42,26 +42,23 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-
 #ifndef _LED_H_
 #define _LED_H_
 
 #include "compiler.h"
 
-
 /*! \name Identifiers of LEDs to Use with LED Functions
  */
 //! @{
-#define LED0  0x01
-#define LED1  0x02
-#define LED2  0x04
-#define LED3  0x08
-#define LED4  0x10
-#define LED5  0x20
-#define LED6  0x40
-#define LED7  0x80
+#define LED0 0x01
+#define LED1 0x02
+#define LED2 0x04
+#define LED3 0x08
+#define LED4 0x10
+#define LED5 0x20
+#define LED6 0x40
+#define LED7 0x80
 //! @}
-
 
 /*! \brief Gets the last state of all LEDs set through the LED API.
  *
@@ -69,7 +66,7 @@
  *
  * \note The GPIO pin configuration of all LEDs is left unchanged.
  */
-extern U32 LED_Read_Display(void);
+extern U32 LED_Read_Display( void );
 
 /*! \brief Sets the state of all LEDs.
  *
@@ -77,7 +74,7 @@ extern U32 LED_Read_Display(void);
  *
  * \note The pins of all LEDs are set to GPIO output mode.
  */
-extern void LED_Display(U32 leds);
+extern void LED_Display( U32 leds );
 
 /*! \brief Gets the last state of the specified LEDs set through the LED API.
  *
@@ -87,7 +84,7 @@ extern void LED_Display(U32 leds);
  *
  * \note The GPIO pin configuration of all LEDs is left unchanged.
  */
-extern U32 LED_Read_Display_Mask(U32 mask);
+extern U32 LED_Read_Display_Mask( U32 mask );
 
 /*! \brief Sets the state of the specified LEDs.
  *
@@ -97,7 +94,7 @@ extern U32 LED_Read_Display_Mask(U32 mask);
  *
  * \note The pins of the specified LEDs are set to GPIO output mode.
  */
-extern void LED_Display_Mask(U32 mask, U32 leds);
+extern void LED_Display_Mask( U32 mask, U32 leds );
 
 /*! \brief Tests the last state of the specified LEDs set through the LED API.
  *
@@ -108,7 +105,7 @@ extern void LED_Display_Mask(U32 mask, U32 leds);
  *
  * \note The GPIO pin configuration of all LEDs is left unchanged.
  */
-extern Bool LED_Test(U32 leds);
+extern Bool LED_Test( U32 leds );
 
 /*! \brief Turns off the specified LEDs.
  *
@@ -116,7 +113,7 @@ extern Bool LED_Test(U32 leds);
  *
  * \note The pins of the specified LEDs are set to GPIO output mode.
  */
-extern void LED_Off(U32 leds);
+extern void LED_Off( U32 leds );
 
 /*! \brief Turns on the specified LEDs.
  *
@@ -124,7 +121,7 @@ extern void LED_Off(U32 leds);
  *
  * \note The pins of the specified LEDs are set to GPIO output mode.
  */
-extern void LED_On(U32 leds);
+extern void LED_On( U32 leds );
 
 /*! \brief Toggles the specified LEDs.
  *
@@ -132,7 +129,7 @@ extern void LED_On(U32 leds);
  *
  * \note The pins of the specified LEDs are set to GPIO output mode.
  */
-extern void LED_Toggle(U32 leds);
+extern void LED_Toggle( U32 leds );
 
 /*! \brief Gets as a bit-field the last state of the specified LEDs set through
  *         the LED API.
@@ -144,7 +141,7 @@ extern void LED_Toggle(U32 leds);
  *
  * \note The GPIO pin configuration of all LEDs is left unchanged.
  */
-extern U32 LED_Read_Display_Field(U32 field);
+extern U32 LED_Read_Display_Field( U32 field );
 
 /*! \brief Sets as a bit-field the state of the specified LEDs.
  *
@@ -154,7 +151,7 @@ extern U32 LED_Read_Display_Field(U32 field);
  *
  * \note The pins of the specified LEDs are set to GPIO output mode.
  */
-extern void LED_Display_Field(U32 field, U32 leds);
+extern void LED_Display_Field( U32 field, U32 leds );
 
 /*! \brief Gets the intensity of the specified LED.
  *
@@ -168,7 +165,7 @@ extern void LED_Display_Field(U32 field, U32 leds);
  *
  * \note The GPIO pin configuration of all LEDs is left unchanged.
  */
-extern U8 LED_Get_Intensity(U32 led);
+extern U8 LED_Get_Intensity( U32 led );
 
 /*! \brief Sets the intensity of the specified LEDs.
  *
@@ -180,7 +177,6 @@ extern U8 LED_Get_Intensity(U32 led);
  *
  * \note The pins of the specified LEDs are set to PWM output mode.
  */
-extern void LED_Set_Intensity(U32 leds, U8 intensity);
+extern void LED_Set_Intensity( U32 leds, U8 intensity );
 
-
-#endif  // _LED_H_
+#endif // _LED_H_

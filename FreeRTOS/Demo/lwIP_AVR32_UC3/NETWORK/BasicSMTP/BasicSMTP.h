@@ -39,17 +39,12 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-
 #ifndef BASIC_SMTP_SERVER_H
 #define BASIC_SMTP_SERVER_H
 
 #include "portmacro.h"
 
-
 /* The function that implements the SMTP client task. */
 portTASK_FUNCTION_PROTO( vBasicSMTPClient, pvParameters );
 
-
-
 #endif
-

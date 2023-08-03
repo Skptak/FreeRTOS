@@ -11,7 +11,7 @@
 **         This bean "ByteIO" implements an one-byte input/output.
 **         It uses one 8-bit port.
 **         Note: This bean is set to work in Output direction only.
-**         Methods of this bean are mostly implemented as a macros 
+**         Methods of this bean are mostly implemented as a macros
 **         (if supported by target langauage and compiler).
 **     Settings  :
 **         Port name                   : B
@@ -49,20 +49,20 @@
 ** ###################################################################*/
 
 #ifndef __Byte1_H
-#define __Byte1_H
+    #define __Byte1_H
 
-/* MODULE Byte1. */
+    /* MODULE Byte1. */
 
-/*Including shared modules, which are used in the whole project*/
-#include "PE_Types.h"
-#include "PE_Error.h"
-#include "PE_Const.h"
-#include "IO_Map.h"
-#include "PE_Timer.h"
+    /*Including shared modules, which are used in the whole project*/
+    #include "IO_Map.h"
+    #include "PE_Const.h"
+    #include "PE_Error.h"
+    #include "PE_Timer.h"
+    #include "PE_Types.h"
 
-#include "Cpu.h"
+    #include "Cpu.h"
 
-#pragma CODE_SEG Byte1_CODE            /* Code section for this module. */
+    #pragma CODE_SEG Byte1_CODE /* Code section for this module. */
 
 /*
 ** ===================================================================
@@ -79,7 +79,7 @@
 **     Returns     : Nothing
 ** ===================================================================
 */
-void Byte1_PutBit(byte BitNum, byte Value);
+void Byte1_PutBit( byte BitNum, byte Value );
 
 /*
 ** ===================================================================
@@ -94,9 +94,9 @@ void Byte1_PutBit(byte BitNum, byte Value);
 **     Returns     : Nothing
 ** ===================================================================
 */
-void Byte1_NegBit(byte BitNum);
+void Byte1_NegBit( byte BitNum );
 
-#pragma CODE_SEG DEFAULT               /* Change code section to DEFAULT. */
+    #pragma CODE_SEG DEFAULT /* Change code section to DEFAULT. */
 
 /* END Byte1. */
 
@@ -104,7 +104,7 @@ void Byte1_NegBit(byte BitNum);
 /*
 ** ###################################################################
 **
-**     This file was created by UNIS Processor Expert 03.33 for 
+**     This file was created by UNIS Processor Expert 03.33 for
 **     the Motorola HCS12 series of microcontrollers.
 **
 ** ###################################################################

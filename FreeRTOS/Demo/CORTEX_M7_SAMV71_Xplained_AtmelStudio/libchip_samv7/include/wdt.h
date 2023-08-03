@@ -49,26 +49,25 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
- extern "C" {
+extern "C" {
 #endif
 
 /*----------------------------------------------------------------------------
  *        Exported functions
  *----------------------------------------------------------------------------*/
 
-extern void WDT_Enable( Wdt* pWDT, uint32_t dwMode ) ;
+extern void WDT_Enable( Wdt * pWDT, uint32_t dwMode );
 
-extern void WDT_Disable( Wdt* pWDT ) ;
+extern void WDT_Disable( Wdt * pWDT );
 
-extern void WDT_Restart( Wdt* pWDT ) ;
+extern void WDT_Restart( Wdt * pWDT );
 
-extern uint32_t WDT_GetStatus( Wdt* pWDT ) ;
+extern uint32_t WDT_GetStatus( Wdt * pWDT );
 
-extern uint32_t WDT_GetPeriod( uint32_t dwMs ) ;
+extern uint32_t WDT_GetPeriod( uint32_t dwMs );
 
 #ifdef __cplusplus
 }
 #endif
 
 #endif /* #ifndef _WDT_ */
-

@@ -37,42 +37,41 @@
 #include <stdint.h>
 
 /* driverlib header files */
-#include <ti/devices/cc32xx/inc/hw_types.h>
-#include <ti/devices/cc32xx/driverlib/prcm.h>
 #include <ti/devices/cc32xx/driverlib/cpu.h>
+#include <ti/devices/cc32xx/driverlib/prcm.h>
 #include <ti/devices/cc32xx/driverlib/rom.h>
 #include <ti/devices/cc32xx/driverlib/rom_map.h>
 #include <ti/devices/cc32xx/driverlib/systick.h>
+#include <ti/devices/cc32xx/inc/hw_types.h>
 
 #include <ti/drivers/Power.h>
-#include <ti/drivers/power/PowerCC32XX.h>
 #include <ti/drivers/dpl/ClockP.h>
+#include <ti/drivers/power/PowerCC32XX.h>
 
 #include <FreeRTOS.h>
-#include <task.h>
 #include <portmacro.h>
+#include <task.h>
 
 /* bitmask of constraints that disallow LPDS */
-#define LPDS_DISALLOWED (1 << PowerCC32XX_DISALLOW_LPDS)
+#define LPDS_DISALLOWED ( 1 << PowerCC32XX_DISALLOW_LPDS )
 
 /* macro to pick two matching count values */
-#define COUNT_WITHIN_TRESHOLD(a, b, c, th) \
-        ((((b) - (a)) <= (th)) ? (b) : (c))
+#define COUNT_WITHIN_TRESHOLD( a, b, c, th ) \
+    ( ( ( ( b ) - ( a ) ) <= ( th ) ) ? ( b ) : ( c ) )
 
-#define TRUE    1
-#define FALSE   0
-
+#define TRUE  1
+#define FALSE 0
 
 static volatile uint32_t idleTime = 0;
 
 void PowerCC32XX_sleepPolicy()
 {
-#if (configUSE_TICKLESS_IDLE != 0)
+#if( configUSE_TICKLESS_IDLE != 0 )
     int i = 0;
     bool returnFromSleep = FALSE;
     unsigned long constraintMask;
     unsigned long long ullLowPowerTimeBeforeSleep, ullLowPowerTimeAfterSleep;
-    unsigned long long count[3];
+    unsigned long long count[ 3 ];
     unsigned long long ullSleepTime;
     unsigned long long time;
     unsigned long long remain;
@@ -88,7 +87,8 @@ void PowerCC32XX_sleepPolicy()
     constraintMask = Power_getConstraintMask();
 
     /* check if we are allowed to go to LPDS */
-    if ((constraintMask & LPDS_DISALLOWED) == 0) {
+    if( ( constraintMask & LPDS_DISALLOWED ) == 0 )
+    {
         /*
          *  Read the current time from a time source that will remain
          *  operational while the microcontroller is in a low power state.
@@ -98,11 +98,14 @@ void PowerCC32XX_sleepPolicy()
          *  fast interface the count must be read three times, and then
          *  the value that matches on at least two of the reads is chosen
          */
-        for (i = 0; i < 3; i++) {
-            count[i] = MAP_PRCMSlowClkCtrFastGet();
+        for( i = 0; i < 3; i++ )
+        {
+            count[ i ] = MAP_PRCMSlowClkCtrFastGet();
         }
-        ullLowPowerTimeBeforeSleep =
-            COUNT_WITHIN_TRESHOLD(count[0], count[1], count[2], 1);
+        ullLowPowerTimeBeforeSleep = COUNT_WITHIN_TRESHOLD( count[ 0 ],
+                                                            count[ 1 ],
+                                                            count[ 2 ],
+                                                            1 );
 
         /* Stop the timer that is generating the tick interrupt. */
         MAP_SysTickDisable();
@@ -110,7 +113,8 @@ void PowerCC32XX_sleepPolicy()
         /* Ensure it is still ok to enter the sleep mode. */
         eSleepStatus = eTaskConfirmSleepModeStatus();
 
-        if (eSleepStatus == eAbortSleep ) {
+        if( eSleepStatus == eAbortSleep )
+        {
             /*
              *  A task has been moved out of the Blocked state since this
              *  macro was executed, or a context siwth is being held pending.
@@ -122,28 +126,32 @@ void PowerCC32XX_sleepPolicy()
 
             returnFromSleep = FALSE;
         }
-        else {
+        else
+        {
             /* convert ticks to microseconds */
             time = idleTime * ClockP_getSystemTickPeriod();
 
             /* check if can go to LPDS */
-            if (time > Power_getTransitionLatency(PowerCC32XX_LPDS,
-                        Power_TOTAL)) {
-                remain = ((time - PowerCC32XX_TOTALTIMELPDS) * 32768) / 1000000;
+            if( time >
+                Power_getTransitionLatency( PowerCC32XX_LPDS, Power_TOTAL ) )
+            {
+                remain = ( ( time - PowerCC32XX_TOTALTIMELPDS ) * 32768 ) /
+                         1000000;
 
                 /* set the LPDS wakeup time interval */
-                MAP_PRCMLPDSIntervalSet(remain);
+                MAP_PRCMLPDSIntervalSet( remain );
 
                 /* enable the wake source to be timer */
-                MAP_PRCMLPDSWakeupSourceEnable(PRCM_LPDS_TIMER);
+                MAP_PRCMLPDSWakeupSourceEnable( PRCM_LPDS_TIMER );
 
                 /* go to LPDS mode */
-                Power_sleep(PowerCC32XX_LPDS);
+                Power_sleep( PowerCC32XX_LPDS );
 
                 /* set 'returnFromSleep' to TRUE*/
                 returnFromSleep = TRUE;
             }
-            else {
+            else
+            {
                 MAP_SysTickEnable();
                 vPortExitCritical();
 
@@ -151,12 +159,14 @@ void PowerCC32XX_sleepPolicy()
             }
         }
     }
-    else {
+    else
+    {
         /* A constraint was set */
         vPortExitCritical();
     }
 
-    if (returnFromSleep) {
+    if( returnFromSleep )
+    {
         /*
          *  Determine how long the microcontroller was actually in a low
          *  power state for, which will be less than xExpectedIdleTime if the
@@ -167,22 +177,25 @@ void PowerCC32XX_sleepPolicy()
          *  portSUPPRESS_TICKS_AND_SLEEP() returns.  Therefore no other
          *  tasks will execute until this function completes.
          */
-        for (i = 0; i < 3; i++) {
-            count[i] = MAP_PRCMSlowClkCtrFastGet();
+        for( i = 0; i < 3; i++ )
+        {
+            count[ i ] = MAP_PRCMSlowClkCtrFastGet();
         }
-        ullLowPowerTimeAfterSleep =
-            COUNT_WITHIN_TRESHOLD(count[0], count[1], count[2], 1);
+        ullLowPowerTimeAfterSleep = COUNT_WITHIN_TRESHOLD( count[ 0 ],
+                                                           count[ 1 ],
+                                                           count[ 2 ],
+                                                           1 );
 
         ullSleepTime = ullLowPowerTimeAfterSleep - ullLowPowerTimeBeforeSleep;
 
-        ullSleepTime = ullSleepTime*1000;
-        ullSleepTime = ullSleepTime/32768;
+        ullSleepTime = ullSleepTime * 1000;
+        ullSleepTime = ullSleepTime / 32768;
 
         /*
          *  Correct the kernels tick count to account for the time the
          *  microcontroller spent in its low power state.
          */
-        vTaskStepTick((unsigned long)ullSleepTime);
+        vTaskStepTick( ( unsigned long ) ullSleepTime );
 
         /* Restart the timer that is generating the tick interrupt. */
         MAP_SysTickEnable();
@@ -193,7 +206,8 @@ void PowerCC32XX_sleepPolicy()
          */
         vPortExitCritical();
     }
-    else {
+    else
+    {
         MAP_PRCMSleepEnter();
     }
 #endif
@@ -207,9 +221,9 @@ void PowerCC32XX_initPolicy()
 }
 
 /* Tickless Hook */
-void vPortSuppressTicksAndSleep(TickType_t xExpectedIdleTime)
+void vPortSuppressTicksAndSleep( TickType_t xExpectedIdleTime )
 {
-#if (configUSE_TICKLESS_IDLE != 0)
+#if( configUSE_TICKLESS_IDLE != 0 )
     idleTime = xExpectedIdleTime;
     Power_idleFunc();
 #endif

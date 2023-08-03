@@ -24,24 +24,25 @@
 #ifndef _DRV_COMMON_H_
 #define _DRV_COMMON_H_
 
-#include <stdint.h>
-#include <drv_errno.h>
 #include "config.h"
+#include <drv_errno.h>
+#include <stdint.h>
 
 /** pin definition */
 typedef int32_t pin_t;
 
 /// \details driver handle
-typedef void *drv_handle_t;
+typedef void * drv_handle_t;
 
 /**
 \brief General power states
 */
-typedef enum  {
-    DRV_POWER_OFF,                        ///< Power off: no operation possible
-    DRV_POWER_LOW,                        ///< Low Power mode: retain state, detect and signal wake-up events
-    DRV_POWER_FULL                        ///< Power on: full operation at maximum performance
+typedef enum
+{
+    DRV_POWER_OFF, ///< Power off: no operation possible
+    DRV_POWER_LOW, ///< Low Power mode: retain state, detect and signal wake-up
+                   ///< events
+    DRV_POWER_FULL ///< Power on: full operation at maximum performance
 } csi_power_stat_e;
 
 #endif /* _DRV_COMMON_H */
-

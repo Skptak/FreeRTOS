@@ -77,17 +77,17 @@
 // Enable the IAR extensions for this source file.
 //
 //*****************************************************************************
-#pragma language=extended
+#pragma language = extended
 
 //*****************************************************************************
 //
 // Forward declaration of the default fault handlers.
 //
 //*****************************************************************************
-void ResetISR(void);
-static void NmiSR(void);
-static void FaultISR(void);
-static void IntDefaultHandler(void);
+void ResetISR( void );
+static void NmiSR( void );
+static void FaultISR( void );
+static void IntDefaultHandler( void );
 
 //*****************************************************************************
 //
@@ -106,14 +106,14 @@ extern void PORT1_IRQHandler( void );
 // The entry point for the application startup code.
 //
 //*****************************************************************************
-extern void __iar_program_start(void);
+extern void __iar_program_start( void );
 
 //*****************************************************************************
 //
 // Reserve space for the system stack.
 //
 //*****************************************************************************
-static uint32_t systemStack[128] @ ".noinit";
+static uint32_t systemStack[ 128 ] @ ".noinit";
 
 //*****************************************************************************
 //
@@ -124,10 +124,9 @@ static uint32_t systemStack[128] @ ".noinit";
 //*****************************************************************************
 typedef union
 {
-    void (*handler)(void);
+    void ( *handler )( void );
     uint32_t ptr;
-}
-uVectorEntry;
+} uVectorEntry;
 
 //*****************************************************************************
 //
@@ -135,90 +134,89 @@ uVectorEntry;
 // ensure that it ends up at physical address 0x0000.0000.
 //
 //*****************************************************************************
-__root const uVectorEntry __vector_table[] @ ".intvec" =
-{
-    { .ptr = (uint32_t)systemStack + sizeof(systemStack) },
-                                            // The initial stack pointer
-    ResetISR,                               // The reset handler
-    NmiSR,                                  // The NMI handler
-    FaultISR,                               // The hard fault handler
-    IntDefaultHandler,                      // The MPU fault handler
-    IntDefaultHandler,                      // The bus fault handler
-    IntDefaultHandler,                      // The usage fault handler
-    0,                                      // Reserved
-    0,                                      // Reserved
-    0,                                      // Reserved
-    0,                                      // Reserved
-    SVC_Handler,                             // SVCall handler
-    IntDefaultHandler,                      // Debug monitor handler
-    0,                                      // Reserved
-    PendSV_Handler,                             // The PendSV handler
-    SysTick_Handler,                            // The SysTick handler
-    IntDefaultHandler,                      // PSS ISR
-    IntDefaultHandler,                      // CS ISR
-    IntDefaultHandler,                      // PCM ISR
-    IntDefaultHandler,                      // WDT ISR
-    IntDefaultHandler,                      // FPU ISR
-    IntDefaultHandler,                      // FLCTL ISR
-    IntDefaultHandler,                      // COMP_E0_MODULE ISR
-    IntDefaultHandler,                      // COMP_E1_MODULE ISR
-    IntDefaultHandler,                      // TA0_0 ISR
-    IntDefaultHandler,                      // TA0_N ISR
-    IntDefaultHandler,                      // TA1_0 ISR
-    IntDefaultHandler,                      // TA1_N ISR
-    IntDefaultHandler,                      // TA2_0 ISR
-    IntDefaultHandler,                      // TA2_N ISR
-    IntDefaultHandler,                      // TA3_0 ISR
-    IntDefaultHandler,                      // TA3_N ISR
-    vUART_Handler,                            // EUSCIA0 ISR
-    IntDefaultHandler,                      // EUSCIA1 ISR
-    IntDefaultHandler,                      // EUSCIA2 ISR
-    IntDefaultHandler,                      // EUSCIA3 ISR
-    IntDefaultHandler,                      // EUSCIB0 ISR
-    IntDefaultHandler,                      // EUSCIB1 ISR
-    IntDefaultHandler,                      // EUSCIB2 ISR
-    IntDefaultHandler,                      // EUSCIB3 ISR
-    IntDefaultHandler,                      // ADC12 ISR
-    vT32_0_Handler,                                // T32_INT1 ISR
-    vT32_1_Handler,                                // T32_INT2 ISR
-    IntDefaultHandler,                      // T32_INTC ISR
-    IntDefaultHandler,                      // AES ISR
-    IntDefaultHandler,                      // RTC ISR
-    IntDefaultHandler,                      // DMA_ERR ISR
-    IntDefaultHandler,                      // DMA_INT3 ISR
-    IntDefaultHandler,                      // DMA_INT2 ISR
-    IntDefaultHandler,                       // DMA_INT1 ISR
-    IntDefaultHandler,                      // DMA_INT0 ISR
-    PORT1_IRQHandler,                      // PORT1 ISR
-    IntDefaultHandler,                      // PORT2 ISR
-    IntDefaultHandler,                      // PORT3 ISR
-    IntDefaultHandler,                      // PORT4 ISR
-    IntDefaultHandler,                      // PORT5 ISR
-    IntDefaultHandler,                      // PORT6 ISR
-    IntDefaultHandler,                      // Reserved 41
-    IntDefaultHandler,                      // Reserved 42
-    IntDefaultHandler,                      // Reserved 43
-    IntDefaultHandler,                      // Reserved 44
-    IntDefaultHandler,                      // Reserved 45
-    IntDefaultHandler,                      // Reserved 46
-    IntDefaultHandler,                      // Reserved 47
-    IntDefaultHandler,                      // Reserved 48
-    IntDefaultHandler,                      // Reserved 49
-    IntDefaultHandler,                      // Reserved 50
-    IntDefaultHandler,                      // Reserved 51
-    IntDefaultHandler,                      // Reserved 52
-    IntDefaultHandler,                      // Reserved 53
-    IntDefaultHandler,                      // Reserved 54
-    IntDefaultHandler,                      // Reserved 55
-    IntDefaultHandler,                      // Reserved 56
-    IntDefaultHandler,                      // Reserved 57
-    IntDefaultHandler,                      // Reserved 58
-    IntDefaultHandler,                      // Reserved 59
-    IntDefaultHandler,                      // Reserved 60
-    IntDefaultHandler,                      // Reserved 61
-    IntDefaultHandler,                      // Reserved 62
-    IntDefaultHandler,                      // Reserved 63
-    IntDefaultHandler                       // Reserved 64
+__root const uVectorEntry __vector_table[] @ ".intvec" = {
+    { .ptr = ( uint32_t ) systemStack + sizeof( systemStack ) },
+    // The initial stack pointer
+    ResetISR,          // The reset handler
+    NmiSR,             // The NMI handler
+    FaultISR,          // The hard fault handler
+    IntDefaultHandler, // The MPU fault handler
+    IntDefaultHandler, // The bus fault handler
+    IntDefaultHandler, // The usage fault handler
+    0,                 // Reserved
+    0,                 // Reserved
+    0,                 // Reserved
+    0,                 // Reserved
+    SVC_Handler,       // SVCall handler
+    IntDefaultHandler, // Debug monitor handler
+    0,                 // Reserved
+    PendSV_Handler,    // The PendSV handler
+    SysTick_Handler,   // The SysTick handler
+    IntDefaultHandler, // PSS ISR
+    IntDefaultHandler, // CS ISR
+    IntDefaultHandler, // PCM ISR
+    IntDefaultHandler, // WDT ISR
+    IntDefaultHandler, // FPU ISR
+    IntDefaultHandler, // FLCTL ISR
+    IntDefaultHandler, // COMP_E0_MODULE ISR
+    IntDefaultHandler, // COMP_E1_MODULE ISR
+    IntDefaultHandler, // TA0_0 ISR
+    IntDefaultHandler, // TA0_N ISR
+    IntDefaultHandler, // TA1_0 ISR
+    IntDefaultHandler, // TA1_N ISR
+    IntDefaultHandler, // TA2_0 ISR
+    IntDefaultHandler, // TA2_N ISR
+    IntDefaultHandler, // TA3_0 ISR
+    IntDefaultHandler, // TA3_N ISR
+    vUART_Handler,     // EUSCIA0 ISR
+    IntDefaultHandler, // EUSCIA1 ISR
+    IntDefaultHandler, // EUSCIA2 ISR
+    IntDefaultHandler, // EUSCIA3 ISR
+    IntDefaultHandler, // EUSCIB0 ISR
+    IntDefaultHandler, // EUSCIB1 ISR
+    IntDefaultHandler, // EUSCIB2 ISR
+    IntDefaultHandler, // EUSCIB3 ISR
+    IntDefaultHandler, // ADC12 ISR
+    vT32_0_Handler,    // T32_INT1 ISR
+    vT32_1_Handler,    // T32_INT2 ISR
+    IntDefaultHandler, // T32_INTC ISR
+    IntDefaultHandler, // AES ISR
+    IntDefaultHandler, // RTC ISR
+    IntDefaultHandler, // DMA_ERR ISR
+    IntDefaultHandler, // DMA_INT3 ISR
+    IntDefaultHandler, // DMA_INT2 ISR
+    IntDefaultHandler, // DMA_INT1 ISR
+    IntDefaultHandler, // DMA_INT0 ISR
+    PORT1_IRQHandler,  // PORT1 ISR
+    IntDefaultHandler, // PORT2 ISR
+    IntDefaultHandler, // PORT3 ISR
+    IntDefaultHandler, // PORT4 ISR
+    IntDefaultHandler, // PORT5 ISR
+    IntDefaultHandler, // PORT6 ISR
+    IntDefaultHandler, // Reserved 41
+    IntDefaultHandler, // Reserved 42
+    IntDefaultHandler, // Reserved 43
+    IntDefaultHandler, // Reserved 44
+    IntDefaultHandler, // Reserved 45
+    IntDefaultHandler, // Reserved 46
+    IntDefaultHandler, // Reserved 47
+    IntDefaultHandler, // Reserved 48
+    IntDefaultHandler, // Reserved 49
+    IntDefaultHandler, // Reserved 50
+    IntDefaultHandler, // Reserved 51
+    IntDefaultHandler, // Reserved 52
+    IntDefaultHandler, // Reserved 53
+    IntDefaultHandler, // Reserved 54
+    IntDefaultHandler, // Reserved 55
+    IntDefaultHandler, // Reserved 56
+    IntDefaultHandler, // Reserved 57
+    IntDefaultHandler, // Reserved 58
+    IntDefaultHandler, // Reserved 59
+    IntDefaultHandler, // Reserved 60
+    IntDefaultHandler, // Reserved 61
+    IntDefaultHandler, // Reserved 62
+    IntDefaultHandler, // Reserved 63
+    IntDefaultHandler  // Reserved 64
 };
 
 //*****************************************************************************
@@ -231,13 +229,12 @@ __root const uVectorEntry __vector_table[] @ ".intvec" =
 // application.
 //
 //*****************************************************************************
-void
-ResetISR(void)
+void ResetISR( void )
 {
-void SystemInit(void);
+    void SystemInit( void );
 
-	// Initialize the device
-	SystemInit();
+    // Initialize the device
+    SystemInit();
 
     //
     // Call the application's entry point.
@@ -252,13 +249,12 @@ void SystemInit(void);
 // by a debugger.
 //
 //*****************************************************************************
-static void
-NmiSR(void)
+static void NmiSR( void )
 {
     //
     // Enter an infinite loop.
     //
-    while(1)
+    while( 1 )
     {
     }
 }
@@ -270,13 +266,12 @@ NmiSR(void)
 // for examination by a debugger.
 //
 //*****************************************************************************
-static void
-FaultISR(void)
+static void FaultISR( void )
 {
     //
     // Enter an infinite loop.
     //
-    while(1)
+    while( 1 )
     {
     }
 }
@@ -288,13 +283,12 @@ FaultISR(void)
 // for examination by a debugger.
 //
 //*****************************************************************************
-static void
-IntDefaultHandler(void)
+static void IntDefaultHandler( void )
 {
     //
     // Go into an infinite loop.
     //
-    while(1)
+    while( 1 )
     {
     }
 }

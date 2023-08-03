@@ -1,6 +1,6 @@
 /* param.h - Board specific parameters
    Copyright (C) 2000, 2002, 2003 Free Software Foundation, Inc.
-   Written by Stephane Carrez (stcarrez@nerim.fr)	
+   Written by Stephane Carrez (stcarrez@nerim.fr)
 
 This file is free software; you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by the
@@ -32,25 +32,26 @@ Boston, MA 02111-1307, USA.  */
     Use this attribute to indicate that a parameter, a variable or a
     static function is not used.  The compiler will not warn about the
     unused variable.  */
-#define ATTRIBUTE_UNUSED __attribute__((unused))
+#define ATTRIBUTE_UNUSED __attribute__( ( unused ) )
 
 /*! Attribute page0.
     Use this attribute to put a global or static variable in page0. */
-#define PAGE0_ATTRIBUTE __attribute__((section(".page0")))
+#define PAGE0_ATTRIBUTE  __attribute__( ( section( ".page0" ) ) )
 
 #ifdef mc6811
-//# include <asm-m68hc11/param.h>
+// # include <asm-m68hc11/param.h>
 #endif
 
 #ifdef mc68hcs12
-# include <asm-m68hcs12/param.h>
-#elif defined(mc6812)
-//# include <asm-m68hc12/param.h>
+    #include <asm-m68hcs12/param.h>
+#elif defined( mc6812 )
+// # include <asm-m68hc12/param.h>
 #endif
 
 #include <arch/param.h>
 
-#define GNU_LINKER_WARNING(SYMBOL, MSG) \
-  asm (".section .gnu.warning." SYMBOL "\n\t.string \"" MSG "\"\n\t.previous");
+#define GNU_LINKER_WARNING( SYMBOL, MSG )                     \
+    asm( ".section .gnu.warning." SYMBOL "\n\t.string \"" MSG \
+         "\"\n\t.previous" );
 
 #endif

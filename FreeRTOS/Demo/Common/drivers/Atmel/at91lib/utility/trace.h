@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
- *         ATMEL Microcontroller Software Support 
+ *         ATMEL Microcontroller Software Support
  * ----------------------------------------------------------------------------
  * Copyright (c) 2008, Atmel Corporation
  *
@@ -51,7 +51,7 @@
 //         Headers
 //------------------------------------------------------------------------------
 
-#if !defined(NOTRACE)
+#if !defined( NOTRACE )
     #include <board.h>
     #include <dbgu/dbgu.h>
     #include <pio/pio.h>
@@ -74,11 +74,11 @@
         trace_DEBUG - Traces whose only purpose is for debugging the program,
             and which do not produce meaningful information otherwise.
 */
-#define trace_DEBUG                     0
-#define trace_INFO                      1
-#define trace_WARNING                   2
-#define trace_ERROR                     3
-#define trace_FATAL                     4
+#define trace_DEBUG   0
+#define trace_INFO    1
+#define trace_WARNING 2
+#define trace_ERROR   3
+#define trace_FATAL   4
 
 /*
     Constant: trace_LEVEL
@@ -86,8 +86,8 @@
         output; change the value of this symbol during compilation for a more
         restrictive behavior.
 */
-#if !defined(trace_LEVEL)
-    #define trace_LEVEL                     0
+#if !defined( trace_LEVEL )
+    #define trace_LEVEL 0
 #endif
 
 /*
@@ -99,14 +99,15 @@
         baudrate - DBGU baudrate.
         mck - Master clock frequency.
 */
-#if !defined(NOTRACE)
-    #define trace_CONFIGURE(mode, baudrate, mck) { \
-        const Pin pinsDbgu[] = {PINS_DBGU}; \
-        PIO_Configure(pinsDbgu, PIO_LISTSIZE(pinsDbgu)); \
-        DBGU_Configure(mode, baudrate, mck); \
-    }
+#if !defined( NOTRACE )
+    #define trace_CONFIGURE( mode, baudrate, mck )               \
+        {                                                        \
+            const Pin pinsDbgu[] = { PINS_DBGU };                \
+            PIO_Configure( pinsDbgu, PIO_LISTSIZE( pinsDbgu ) ); \
+            DBGU_Configure( mode, baudrate, mck );               \
+        }
 #else
-    #define trace_CONFIGURE(...)
+    #define trace_CONFIGURE( ... )
 #endif
 
 /*
@@ -120,15 +121,16 @@
         format - Formatted string to output.
         ... - Additional parameters, depending on the formatted string.
 */
-#if !defined(NOTRACE)
-    #define trace_LOG(level, ...) { \
-        if (level >= trace_LEVEL) { \
-            printf(__VA_ARGS__); \
-        } \
-    }
+#if !defined( NOTRACE )
+    #define trace_LOG( level, ... )    \
+        {                              \
+            if( level >= trace_LEVEL ) \
+            {                          \
+                printf( __VA_ARGS__ ); \
+            }                          \
+        }
 #else
-    #define trace_LOG(...)
+    #define trace_LOG( ... )
 #endif
 
-#endif //#ifndef TRACE_H
-
+#endif // #ifndef TRACE_H

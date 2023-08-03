@@ -42,38 +42,37 @@
 
 #ifdef __MSP430_HAS_RC_FRAM__
 
-//*****************************************************************************
-//
-// If building with a C++ compiler, make all of the definitions in this header
-// have a C binding.
-//
-//*****************************************************************************
-#ifdef __cplusplus
-extern "C"
-{
-#endif
+    //*****************************************************************************
+    //
+    // If building with a C++ compiler, make all of the definitions in this
+    // header have a C binding.
+    //
+    //*****************************************************************************
+    #ifdef __cplusplus
+extern "C" {
+    #endif
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the sector parameter for
-// functions: RAM_setSectorOff(), and RAM_getSectorState().
-//
-//*****************************************************************************
-#define RAM_SECTOR0                                                      (0x00)
-#define RAM_SECTOR1                                                      (0x01)
-#define RAM_SECTOR2                                                      (0x02)
-#define RAM_SECTOR3                                                      (0x03)
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the sector parameter for
+    // functions: RAM_setSectorOff(), and RAM_getSectorState().
+    //
+    //*****************************************************************************
+    #define RAM_SECTOR0             ( 0x00 )
+    #define RAM_SECTOR1             ( 0x01 )
+    #define RAM_SECTOR2             ( 0x02 )
+    #define RAM_SECTOR3             ( 0x03 )
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the mode parameter for
-// functions: RAM_setSectorOff() as well as returned by the
-// RAM_getSectorState() function.
-//
-//*****************************************************************************
-#define RAM_RETENTION_MODE                                               (0x00)
-#define RAM_OFF_WAKEUP_MODE                                         (RCRS0OFF0)
-#define RAM_OFF_NON_WAKEUP_MODE                                     (RCRS0OFF1)
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the mode parameter for
+    // functions: RAM_setSectorOff() as well as returned by the
+    // RAM_getSectorState() function.
+    //
+    //*****************************************************************************
+    #define RAM_RETENTION_MODE      ( 0x00 )
+    #define RAM_OFF_WAKEUP_MODE     ( RCRS0OFF0 )
+    #define RAM_OFF_NON_WAKEUP_MODE ( RCRS0OFF1 )
 
 //*****************************************************************************
 //
@@ -102,8 +101,7 @@ extern "C"
 //! \return None
 //
 //*****************************************************************************
-extern void RAM_setSectorOff(uint8_t sector,
-                             uint8_t mode);
+extern void RAM_setSectorOff( uint8_t sector, uint8_t mode );
 
 //*****************************************************************************
 //
@@ -123,16 +121,16 @@ extern void RAM_setSectorOff(uint8_t sector,
 //!         \n indicating the status of the masked sectors
 //
 //*****************************************************************************
-extern uint8_t RAM_getSectorState(uint8_t sector);
+extern uint8_t RAM_getSectorState( uint8_t sector );
 
-//*****************************************************************************
-//
-// Mark the end of the C bindings section for C++ compilers.
-//
-//*****************************************************************************
-#ifdef __cplusplus
+    //*****************************************************************************
+    //
+    // Mark the end of the C bindings section for C++ compilers.
+    //
+    //*****************************************************************************
+    #ifdef __cplusplus
 }
-#endif
+    #endif
 
 #endif
 #endif // __MSP430WARE_RAM_H__

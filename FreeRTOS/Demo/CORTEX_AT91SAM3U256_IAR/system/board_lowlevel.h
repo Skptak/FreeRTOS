@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
- *         ATMEL Microcontroller Software Support 
+ *         ATMEL Microcontroller Software Support
  * ----------------------------------------------------------------------------
  * Copyright (c) 2008, Atmel Corporation
  *
@@ -31,9 +31,9 @@
 /// \unit
 ///
 /// !!!Purpose
-/// 
+///
 /// Collection of methods for lowlevel.
-/// 
+///
 //------------------------------------------------------------------------------
 
 #ifndef BOARD_LOWLEVEL_H
@@ -42,8 +42,7 @@
 //------------------------------------------------------------------------------
 //         Exported functions
 //------------------------------------------------------------------------------
-extern void LowLevelInit(void);
-extern void OptimizeCpuSpeed(void);
+extern void LowLevelInit( void );
+extern void OptimizeCpuSpeed( void );
 
 #endif // BOARD_LOWLEVEL_H
-

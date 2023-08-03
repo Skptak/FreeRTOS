@@ -1,9 +1,9 @@
 /* See LICENSE of license details. */
 
-#include <errno.h>
 #include "stub.h"
+#include <errno.h>
 
-int fork(void)
+int fork( void )
 {
-  return _stub(EAGAIN);
+    return _stub( EAGAIN );
 }

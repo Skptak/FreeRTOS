@@ -32,13 +32,13 @@
 //
 //*****************************************************************************
 
+#include "qei.h"
 #include "../hw_ints.h"
 #include "../hw_memmap.h"
 #include "../hw_qei.h"
 #include "../hw_types.h"
 #include "debug.h"
 #include "interrupt.h"
-#include "qei.h"
 
 //*****************************************************************************
 //
@@ -54,19 +54,18 @@
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_enable) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-QEIEnable(unsigned long ulBase)
+#if defined( GROUP_enable ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void QEIEnable( unsigned long ulBase )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == QEI_BASE);
+    ASSERT( ulBase == QEI_BASE );
 
     //
     // Enable the QEI module.
     //
-    HWREG(ulBase + QEI_O_CTL) |= QEI_CTL_ENABLE;
+    HWREG( ulBase + QEI_O_CTL ) |= QEI_CTL_ENABLE;
 }
 #endif
 
@@ -81,19 +80,18 @@ QEIEnable(unsigned long ulBase)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_disable) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-QEIDisable(unsigned long ulBase)
+#if defined( GROUP_disable ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void QEIDisable( unsigned long ulBase )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == QEI_BASE);
+    ASSERT( ulBase == QEI_BASE );
 
     //
     // Disable the QEI module.
     //
-    HWREG(ulBase + QEI_O_CTL) &= ~(QEI_CTL_ENABLE);
+    HWREG( ulBase + QEI_O_CTL ) &= ~( QEI_CTL_ENABLE );
 }
 #endif
 
@@ -128,28 +126,28 @@ QEIDisable(unsigned long ulBase)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_configure) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-QEIConfigure(unsigned long ulBase, unsigned long ulConfig,
-             unsigned long ulMaxPosition)
+#if defined( GROUP_configure ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void QEIConfigure( unsigned long ulBase,
+                   unsigned long ulConfig,
+                   unsigned long ulMaxPosition )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == QEI_BASE);
+    ASSERT( ulBase == QEI_BASE );
 
     //
     // Write the new configuration to the hardware.
     //
-    HWREG(ulBase + QEI_O_CTL) = ((HWREG(ulBase + QEI_O_CTL) &
-                                  ~(QEI_CTL_CAPMODE | QEI_CTL_RESMODE |
-                                    QEI_CTL_SIGMODE | QEI_CTL_SWAP)) |
-                                 ulConfig);
+    HWREG( ulBase + QEI_O_CTL ) = ( ( HWREG( ulBase + QEI_O_CTL ) &
+                                      ~( QEI_CTL_CAPMODE | QEI_CTL_RESMODE |
+                                         QEI_CTL_SIGMODE | QEI_CTL_SWAP ) ) |
+                                    ulConfig );
 
     //
     // Set the maximum position.
     //
-    HWREG(ulBase + QEI_O_MAXPOS) = ulMaxPosition;
+    HWREG( ulBase + QEI_O_MAXPOS ) = ulMaxPosition;
 }
 #endif
 
@@ -168,19 +166,18 @@ QEIConfigure(unsigned long ulBase, unsigned long ulConfig,
 //! \return The current position of the encoder.
 //
 //*****************************************************************************
-#if defined(GROUP_positionget) || defined(BUILD_ALL) || defined(DOXYGEN)
-unsigned long
-QEIPositionGet(unsigned long ulBase)
+#if defined( GROUP_positionget ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+unsigned long QEIPositionGet( unsigned long ulBase )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == QEI_BASE);
+    ASSERT( ulBase == QEI_BASE );
 
     //
     // Return the current position counter.
     //
-    return(HWREG(ulBase + QEI_O_POS));
+    return ( HWREG( ulBase + QEI_O_POS ) );
 }
 #endif
 
@@ -197,19 +194,18 @@ QEIPositionGet(unsigned long ulBase)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_positionset) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-QEIPositionSet(unsigned long ulBase, unsigned long ulPosition)
+#if defined( GROUP_positionset ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void QEIPositionSet( unsigned long ulBase, unsigned long ulPosition )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == QEI_BASE);
+    ASSERT( ulBase == QEI_BASE );
 
     //
     // Set the position counter.
     //
-    HWREG(ulBase + QEI_O_POS) = ulPosition;
+    HWREG( ulBase + QEI_O_POS ) = ulPosition;
 }
 #endif
 
@@ -227,19 +223,18 @@ QEIPositionSet(unsigned long ulBase, unsigned long ulPosition)
 //! direction.
 //
 //*****************************************************************************
-#if defined(GROUP_directionget) || defined(BUILD_ALL) || defined(DOXYGEN)
-long
-QEIDirectionGet(unsigned long ulBase)
+#if defined( GROUP_directionget ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+long QEIDirectionGet( unsigned long ulBase )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == QEI_BASE);
+    ASSERT( ulBase == QEI_BASE );
 
     //
     // Return the direction of rotation.
     //
-    return((HWREG(ulBase + QEI_O_STAT) & QEI_STAT_DIRECTION) ? -1 : 1);
+    return ( ( HWREG( ulBase + QEI_O_STAT ) & QEI_STAT_DIRECTION ) ? -1 : 1 );
 }
 #endif
 
@@ -256,19 +251,18 @@ QEIDirectionGet(unsigned long ulBase)
 //! \return true if an error has occurred and false otherwise.
 //
 //*****************************************************************************
-#if defined(GROUP_errorget) || defined(BUILD_ALL) || defined(DOXYGEN)
-tBoolean
-QEIErrorGet(unsigned long ulBase)
+#if defined( GROUP_errorget ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+tBoolean QEIErrorGet( unsigned long ulBase )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == QEI_BASE);
+    ASSERT( ulBase == QEI_BASE );
 
     //
     // Return the error indicator.
     //
-    return((HWREG(ulBase + QEI_O_STAT) & QEI_STAT_ERROR) ? true : false);
+    return ( ( HWREG( ulBase + QEI_O_STAT ) & QEI_STAT_ERROR ) ? true : false );
 }
 #endif
 
@@ -287,19 +281,19 @@ QEIErrorGet(unsigned long ulBase)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_velocityenable) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-QEIVelocityEnable(unsigned long ulBase)
+#if defined( GROUP_velocityenable ) || defined( BUILD_ALL ) || \
+    defined( DOXYGEN )
+void QEIVelocityEnable( unsigned long ulBase )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == QEI_BASE);
+    ASSERT( ulBase == QEI_BASE );
 
     //
     // Enable the velocity capture.
     //
-    HWREG(ulBase + QEI_O_CTL) |= QEI_CTL_VELEN;
+    HWREG( ulBase + QEI_O_CTL ) |= QEI_CTL_VELEN;
 }
 #endif
 
@@ -315,19 +309,19 @@ QEIVelocityEnable(unsigned long ulBase)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_velocitydisable) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-QEIVelocityDisable(unsigned long ulBase)
+#if defined( GROUP_velocitydisable ) || defined( BUILD_ALL ) || \
+    defined( DOXYGEN )
+void QEIVelocityDisable( unsigned long ulBase )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == QEI_BASE);
+    ASSERT( ulBase == QEI_BASE );
 
     //
     // Disable the velocity capture.
     //
-    HWREG(ulBase + QEI_O_CTL) &= ~(QEI_CTL_VELEN);
+    HWREG( ulBase + QEI_O_CTL ) &= ~( QEI_CTL_VELEN );
 }
 #endif
 
@@ -352,28 +346,30 @@ QEIVelocityDisable(unsigned long ulBase)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_velocityconfigure) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-QEIVelocityConfigure(unsigned long ulBase, unsigned long ulPreDiv,
-                     unsigned long ulPeriod)
+#if defined( GROUP_velocityconfigure ) || defined( BUILD_ALL ) || \
+    defined( DOXYGEN )
+void QEIVelocityConfigure( unsigned long ulBase,
+                           unsigned long ulPreDiv,
+                           unsigned long ulPeriod )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == QEI_BASE);
-    ASSERT(!(ulPreDiv & ~(QEI_CTL_VELDIV_M)));
-    ASSERT(ulPeriod != 0);
+    ASSERT( ulBase == QEI_BASE );
+    ASSERT( !( ulPreDiv & ~( QEI_CTL_VELDIV_M ) ) );
+    ASSERT( ulPeriod != 0 );
 
     //
     // Set the velocity predivider.
     //
-    HWREG(ulBase + QEI_O_CTL) = ((HWREG(ulBase + QEI_O_CTL) &
-                                  ~(QEI_CTL_VELDIV_M)) | ulPreDiv);
+    HWREG( ulBase + QEI_O_CTL ) = ( ( HWREG( ulBase + QEI_O_CTL ) &
+                                      ~( QEI_CTL_VELDIV_M ) ) |
+                                    ulPreDiv );
 
     //
     // Set the timer period.
     //
-    HWREG(ulBase + QEI_O_LOAD) = ulPeriod - 1;
+    HWREG( ulBase + QEI_O_LOAD ) = ulPeriod - 1;
 }
 #endif
 
@@ -392,19 +388,18 @@ QEIVelocityConfigure(unsigned long ulBase, unsigned long ulPreDiv,
 //! \return The number of pulses captured in the given time period.
 //
 //*****************************************************************************
-#if defined(GROUP_velocityget) || defined(BUILD_ALL) || defined(DOXYGEN)
-unsigned long
-QEIVelocityGet(unsigned long ulBase)
+#if defined( GROUP_velocityget ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+unsigned long QEIVelocityGet( unsigned long ulBase )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == QEI_BASE);
+    ASSERT( ulBase == QEI_BASE );
 
     //
     // Return the speed capture value.
     //
-    return(HWREG(ulBase + QEI_O_SPEED));
+    return ( HWREG( ulBase + QEI_O_SPEED ) );
 }
 #endif
 
@@ -428,24 +423,23 @@ QEIVelocityGet(unsigned long ulBase)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_intregister) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-QEIIntRegister(unsigned long ulBase, void (*pfnHandler)(void))
+#if defined( GROUP_intregister ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void QEIIntRegister( unsigned long ulBase, void ( *pfnHandler )( void ) )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == QEI_BASE);
+    ASSERT( ulBase == QEI_BASE );
 
     //
     // Register the interrupt handler, returning an error if an error occurs.
     //
-    IntRegister(INT_QEI, pfnHandler);
+    IntRegister( INT_QEI, pfnHandler );
 
     //
     // Enable the quadrature encoder interrupt.
     //
-    IntEnable(INT_QEI);
+    IntEnable( INT_QEI );
 }
 #endif
 
@@ -465,24 +459,23 @@ QEIIntRegister(unsigned long ulBase, void (*pfnHandler)(void))
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_intunregister) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-QEIIntUnregister(unsigned long ulBase)
+#if defined( GROUP_intunregister ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void QEIIntUnregister( unsigned long ulBase )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == QEI_BASE);
+    ASSERT( ulBase == QEI_BASE );
 
     //
     // Disable the interrupt.
     //
-    IntDisable(INT_QEI);
+    IntDisable( INT_QEI );
 
     //
     // Unregister the interrupt handler.
     //
-    IntUnregister(INT_QEI);
+    IntUnregister( INT_QEI );
 }
 #endif
 
@@ -502,19 +495,18 @@ QEIIntUnregister(unsigned long ulBase)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_intenable) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-QEIIntEnable(unsigned long ulBase, unsigned long ulIntFlags)
+#if defined( GROUP_intenable ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void QEIIntEnable( unsigned long ulBase, unsigned long ulIntFlags )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == QEI_BASE);
+    ASSERT( ulBase == QEI_BASE );
 
     //
     // Enable the specified interrupts.
     //
-    HWREG(ulBase + QEI_O_INTEN) |= ulIntFlags;
+    HWREG( ulBase + QEI_O_INTEN ) |= ulIntFlags;
 }
 #endif
 
@@ -534,19 +526,18 @@ QEIIntEnable(unsigned long ulBase, unsigned long ulIntFlags)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_intdisable) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-QEIIntDisable(unsigned long ulBase, unsigned long ulIntFlags)
+#if defined( GROUP_intdisable ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void QEIIntDisable( unsigned long ulBase, unsigned long ulIntFlags )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == QEI_BASE);
+    ASSERT( ulBase == QEI_BASE );
 
     //
     // Disable the specified interrupts.
     //
-    HWREG(ulBase + QEI_O_INTEN) &= ~(ulIntFlags);
+    HWREG( ulBase + QEI_O_INTEN ) &= ~( ulIntFlags );
 }
 #endif
 
@@ -566,26 +557,25 @@ QEIIntDisable(unsigned long ulBase, unsigned long ulIntFlags)
 //! QEI_INTERROR, QEI_INTDIR, QEI_INTTIMER, and QEI_INTINDEX.
 //
 //*****************************************************************************
-#if defined(GROUP_intstatus) || defined(BUILD_ALL) || defined(DOXYGEN)
-unsigned long
-QEIIntStatus(unsigned long ulBase, tBoolean bMasked)
+#if defined( GROUP_intstatus ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+unsigned long QEIIntStatus( unsigned long ulBase, tBoolean bMasked )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == QEI_BASE);
+    ASSERT( ulBase == QEI_BASE );
 
     //
     // Return either the interrupt status or the raw interrupt status as
     // requested.
     //
-    if(bMasked)
+    if( bMasked )
     {
-        return(HWREG(ulBase + QEI_O_ISC));
+        return ( HWREG( ulBase + QEI_O_ISC ) );
     }
     else
     {
-        return(HWREG(ulBase + QEI_O_RIS));
+        return ( HWREG( ulBase + QEI_O_RIS ) );
     }
 }
 #endif
@@ -606,19 +596,18 @@ QEIIntStatus(unsigned long ulBase, tBoolean bMasked)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_intclear) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-QEIIntClear(unsigned long ulBase, unsigned long ulIntFlags)
+#if defined( GROUP_intclear ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void QEIIntClear( unsigned long ulBase, unsigned long ulIntFlags )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == QEI_BASE);
+    ASSERT( ulBase == QEI_BASE );
 
     //
     // Clear the requested interrupt sources.
     //
-    HWREG(ulBase + QEI_O_ISC) = ulIntFlags;
+    HWREG( ulBase + QEI_O_ISC ) = ulIntFlags;
 }
 #endif
 

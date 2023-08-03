@@ -30,60 +30,70 @@ extern "C" {
 #include <drv_common.h>
 
 /// definition for pmu handle.
-typedef void *pmu_handle_t;
+typedef void * pmu_handle_t;
 
 /****** PMU specific error codes *****/
-typedef enum {
-    EDRV_PMU_MODE  = (EDRV_SPECIFIC + 1),      ///< Specified Mode not supported
+typedef enum
+{
+    EDRV_PMU_MODE = ( EDRV_SPECIFIC + 1 ), ///< Specified Mode not supported
 } pmu_error_e;
 
 /*----- PMU Control Codes: Mode -----*/
-typedef enum {
-    PMU_MODE_RUN                  = 0,   ///< Running mode
-    PMU_MODE_SLEEP                   ,   ///< Sleep mode
-    PMU_MODE_DORMANT                 ,   ///< Dormant mode
-    PMU_MODE_STDBY                   ,   ///< Standby mode
-    PMU_MODE_SHUTDOWN                    ///< Shutdown mode
+typedef enum
+{
+    PMU_MODE_RUN = 0, ///< Running mode
+    PMU_MODE_SLEEP,   ///< Sleep mode
+    PMU_MODE_DORMANT, ///< Dormant mode
+    PMU_MODE_STDBY,   ///< Standby mode
+    PMU_MODE_SHUTDOWN ///< Shutdown mode
 } pmu_mode_e;
 
 /*----- PMU Control Codes: Wakeup type -----*/
-typedef enum {
-    PMU_WAKEUP_TYPE_PULSE   = 0,    ///< Pulse interrupt
-    PMU_WAKEUP_TYPE_LEVEL           ///< Level interrupt
+typedef enum
+{
+    PMU_WAKEUP_TYPE_PULSE = 0, ///< Pulse interrupt
+    PMU_WAKEUP_TYPE_LEVEL      ///< Level interrupt
 } pmu_wakeup_type_e;
 
 /*----- PMU Control Codes: Wakeup polarity -----*/
-typedef enum {
-    PMU_WAKEUP_POL_LOW      = 0,       ///< Low or negedge
-    PMU_WAKEUP_POL_HIGH                ///< High or posedge
+typedef enum
+{
+    PMU_WAKEUP_POL_LOW = 0, ///< Low or negedge
+    PMU_WAKEUP_POL_HIGH     ///< High or posedge
 } pmu_wakeup_pol_e;
 
 /****** PMU Event *****/
-typedef enum {
-    PMU_EVENT_SLEEP_DONE        = 0,  ///< Send completed; however PMU may still transmit data
-    PMU_EVENT_BEFORE_SLEEP      = 1
+typedef enum
+{
+    PMU_EVENT_SLEEP_DONE = 0, ///< Send completed; however PMU may still
+                              ///< transmit data
+    PMU_EVENT_BEFORE_SLEEP = 1
 } pmu_event_e;
 
-typedef void (*pmu_event_cb_t)(int32_t idx, pmu_event_e event, pmu_mode_e mode);   ///< Pointer to \ref pmu_event_cb_t : PMU Event call back.
+typedef void ( *pmu_event_cb_t )( int32_t idx,
+                                  pmu_event_e event,
+                                  pmu_mode_e mode ); ///< Pointer to \ref
+                                                     ///< pmu_event_cb_t : PMU
+                                                     ///< Event call back.
 
-typedef int32_t (*pmu_action_cb_t)(pmu_event_e event);
-
-/**
-  \brief       Initialize PMU Interface. 1. Initializes the resources needed for the PMU interface 2.registers event callback function
-  \param[in]   idx the id of the pmu
-  \param[in]   cb_event  Pointer to \ref pmu_event_cb_t
-  \return      return pmu handle if success
-*/
-pmu_handle_t drv_pmu_initialize(int32_t idx, pmu_event_cb_t cb_event);
+typedef int32_t ( *pmu_action_cb_t )( pmu_event_e event );
 
 /**
-  \brief       De-initialize PMU Interface. stops operation and releases the software resources used by the interface
-  \param[in]   handle  pmu handle to operate.
-  \return      error code
+  \brief       Initialize PMU Interface. 1. Initializes the resources needed for
+  the PMU interface 2.registers event callback function \param[in]   idx the id
+  of the pmu \param[in]   cb_event  Pointer to \ref pmu_event_cb_t \return
+  return pmu handle if success
 */
-int32_t drv_pmu_uninitialize(pmu_handle_t handle);
+pmu_handle_t drv_pmu_initialize( int32_t idx, pmu_event_cb_t cb_event );
 
-int32_t drv_pmu_power_control(int32_t idx, csi_power_stat_e state);
+/**
+  \brief       De-initialize PMU Interface. stops operation and releases the
+  software resources used by the interface \param[in]   handle  pmu handle to
+  operate. \return      error code
+*/
+int32_t drv_pmu_uninitialize( pmu_handle_t handle );
+
+int32_t drv_pmu_power_control( int32_t idx, csi_power_stat_e state );
 
 /**
   \brief       choose the pmu mode to enter
@@ -91,7 +101,7 @@ int32_t drv_pmu_power_control(int32_t idx, csi_power_stat_e state);
   \param[in]   mode    \ref pmu_mode_e
   \return      error code
 */
-int32_t drv_pmu_enter_sleep(pmu_handle_t handle, pmu_mode_e mode);
+int32_t drv_pmu_enter_sleep( pmu_handle_t handle, pmu_mode_e mode );
 
 /**
   \brief       choose the pmu mode to enter
@@ -99,14 +109,14 @@ int32_t drv_pmu_enter_sleep(pmu_handle_t handle, pmu_mode_e mode);
   \param[in]   callback Pointer to \ref pmu_action_cb_t
   \return      error code
 */
-int32_t drv_pmu_register_module(pmu_action_cb_t callback);
+int32_t drv_pmu_register_module( pmu_action_cb_t callback );
 
 /**
   \brief       exit the pmu mode
   \param[in]   handle  pmu handle to operate.
   \return      error code
 */
-int32_t drv_pmu_exit_sleep(pmu_handle_t handle);
+int32_t drv_pmu_exit_sleep( pmu_handle_t handle );
 
 /**
   \brief       Config the wakeup source.
@@ -116,7 +126,11 @@ int32_t drv_pmu_exit_sleep(pmu_handle_t handle);
   \param[in]   enable  flag control the wakeup source is enable or not
   \return      error code
 */
-int32_t drv_pmu_config_wakeup_source(pmu_handle_t handle, uint32_t irq_num, pmu_wakeup_type_e type, pmu_wakeup_pol_e pol, uint8_t enable);
+int32_t drv_pmu_config_wakeup_source( pmu_handle_t handle,
+                                      uint32_t irq_num,
+                                      pmu_wakeup_type_e type,
+                                      pmu_wakeup_pol_e pol,
+                                      uint8_t enable );
 
 #ifdef __cplusplus
 }

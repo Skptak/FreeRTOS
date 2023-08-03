@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -26,8 +27,8 @@
 /*! @file queue_set_utest.c */
 
 /* C runtime includes. */
-#include <stdlib.h>
 #include <stdbool.h>
+#include <stdlib.h>
 #include <string.h>
 
 #include "../queue_utest_common.h"
@@ -35,8 +36,8 @@
 /* Queue includes */
 #include "FreeRTOS.h"
 #include "FreeRTOSConfig.h"
-#include "queue.h"
 #include "mock_fake_port.h"
+#include "queue.h"
 
 /* ============================  GLOBAL VARIABLES =========================== */
 
@@ -89,7 +90,8 @@ void test_xQueueCreateSet_malloc_fail( void )
  */
 void test_xQueueCreateSet_zeroLength( void )
 {
-    /* Expect that xQueueCreateSet will assert because a length of 0 is invalid */
+    /* Expect that xQueueCreateSet will assert because a length of 0 is invalid
+     */
     fakeAssertExpectFail();
 
     QueueSetHandle_t xQueueSet = xQueueCreateSet( 0 );
@@ -144,7 +146,8 @@ void test_xQueueAddToSet_AlreadyInSameSet( void )
 }
 
 /**
- * @brief Test xQueueAddToSet with a queue that is already a member of a different QueueSet.
+ * @brief Test xQueueAddToSet with a queue that is already a member of a
+ * different QueueSet.
  * @coverage xQueueAddToSet
  */
 void test_xQueueAddToSet_AlreadyInDifferentSet( void )
@@ -166,7 +169,8 @@ void test_xQueueAddToSet_AlreadyInDifferentSet( void )
 }
 
 /**
- * @brief Test xQueueAddToSet with a queue that was previously a member of a different QueueSet, which was deleted.
+ * @brief Test xQueueAddToSet with a queue that was previously a member of a
+ * different QueueSet, which was deleted.
  * @coverage xQueueAddToSet
  */
 void test_xQueueAddToSet_PreviouslyInDifferentSet( void )
@@ -307,7 +311,8 @@ void test_xQueueSelectFromSetFromISR( void )
     vFakePortAssertIfInterruptPriorityInvalid_Expect();
     uint32_t checkVal1 = 0;
 
-    TEST_ASSERT_EQUAL( pdTRUE, xQueueReceiveFromISR( xQueueTemp, &checkVal1, 0 ) );
+    TEST_ASSERT_EQUAL( pdTRUE,
+                       xQueueReceiveFromISR( xQueueTemp, &checkVal1, 0 ) );
     TEST_ASSERT_EQUAL( testVal1, checkVal1 );
 
     vFakePortAssertIfInterruptPriorityInvalid_Expect();
@@ -318,7 +323,8 @@ void test_xQueueSelectFromSetFromISR( void )
     vFakePortAssertIfInterruptPriorityInvalid_Expect();
     uint32_t checkVal2 = 0;
 
-    TEST_ASSERT_EQUAL( pdTRUE, xQueueReceiveFromISR( xQueueTemp, &checkVal2, 0 ) );
+    TEST_ASSERT_EQUAL( pdTRUE,
+                       xQueueReceiveFromISR( xQueueTemp, &checkVal2, 0 ) );
     TEST_ASSERT_EQUAL( testVal2, checkVal2 );
 
     vFakePortAssertIfInterruptPriorityInvalid_Expect();
@@ -329,7 +335,8 @@ void test_xQueueSelectFromSetFromISR( void )
     vFakePortAssertIfInterruptPriorityInvalid_Expect();
     uint32_t checkVal3 = 0;
 
-    TEST_ASSERT_EQUAL( pdTRUE, xQueueReceiveFromISR( xQueueTemp, &checkVal3, 0 ) );
+    TEST_ASSERT_EQUAL( pdTRUE,
+                       xQueueReceiveFromISR( xQueueTemp, &checkVal3, 0 ) );
     TEST_ASSERT_EQUAL( testVal3, checkVal3 );
 
     ( void ) xQueueRemoveFromSet( xQueue1, xQueueSet );

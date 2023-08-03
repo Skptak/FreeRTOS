@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -28,32 +29,34 @@
 #include "secure_port_macros.h"
 
 /* Device includes. */
-#include "fsl_device_registers.h"
-#include "fsl_debug_console.h"
 #include "arm_cmse.h"
 #include "board.h"
-#include "tzm_config.h"
-#include "pin_mux.h"
 #include "clock_config.h"
+#include "fsl_debug_console.h"
+#include "fsl_device_registers.h"
 #include "fsl_power.h"
+#include "pin_mux.h"
+#include "tzm_config.h"
 
-#if ( __ARM_FEATURE_CMSE & 1 ) == 0
+#if( __ARM_FEATURE_CMSE & 1 ) == 0
     #error "Need ARMv8-M security extensions"
-#elif ( __ARM_FEATURE_CMSE & 2 ) == 0
+#elif( __ARM_FEATURE_CMSE & 2 ) == 0
     #error "Compile with --cmse"
 #endif
 
 /* Start address of non-secure application. */
-#define mainNONSECURE_APP_START_ADDRESS     ( 0x00010000UL )
+#define mainNONSECURE_APP_START_ADDRESS ( 0x00010000UL )
 
 /* typedef for non-secure Reset Handler. */
-typedef void ( *NonSecureResetHandler_t ) ( void ) __attribute__( ( cmse_nonsecure_call ) );
+typedef void ( *NonSecureResetHandler_t )( void )
+    __attribute__( ( cmse_nonsecure_call ) );
 /*-----------------------------------------------------------*/
 
 /**
  * @brief Boots into the non-secure code.
  *
- * @param[in] ulNonSecureStartAddress Start address of the non-secure application.
+ * @param[in] ulNonSecureStartAddress Start address of the non-secure
+ * application.
  */
 static void prvBootNonSecure( uint32_t ulNonSecureStartAddress );
 
@@ -69,10 +72,12 @@ void SystemInitHook( void );
  */
 
 /* Secure main(). */
-int main(void)
+int main( void )
 {
     /* Set BOD VBAT level to 1.65V. */
-    POWER_SetBodVbatLevel( kPOWER_BodVbatLevel1650mv, kPOWER_BodHystLevel50mv, false );
+    POWER_SetBodVbatLevel( kPOWER_BodVbatLevel1650mv,
+                           kPOWER_BodHystLevel50mv,
+                           false );
 
     /* Attach main clock divide to FLEXCOMM0 (debug console). */
     CLOCK_AttachClk( BOARD_DEBUG_UART_CLK_ATTACH );
@@ -87,7 +92,7 @@ int main(void)
     prvBootNonSecure( mainNONSECURE_APP_START_ADDRESS );
 
     /* Non-secure software does not return, this code is not executed. */
-    for( ; ; )
+    for( ;; )
     {
         /* Should not reach here. */
     }
@@ -104,12 +109,13 @@ static void prvBootNonSecure( uint32_t ulNonSecureStartAddress )
     /* Main Stack Pointer value for the non-secure side is the first entry in
      * the non-secure vector table. Read the first entry and assign the same to
      * the non-secure main stack pointer(MSP_NS). */
-    secureportSET_MSP_NS( *( ( uint32_t * )( ulNonSecureStartAddress ) ) );
+    secureportSET_MSP_NS( *( ( uint32_t * ) ( ulNonSecureStartAddress ) ) );
 
     /* Reset Handler for the non-secure side is the second entry in the
      * non-secure vector table. Read the second entry to get the non-secure
      * Reset Handler. */
-    pxNonSecureResetHandler = ( NonSecureResetHandler_t )( * ( ( uint32_t * ) ( ( ulNonSecureStartAddress ) + 4U ) ) );
+    pxNonSecureResetHandler = ( NonSecureResetHandler_t ) ( *(
+        ( uint32_t * ) ( ( ulNonSecureStartAddress ) + 4U ) ) );
 
     /* Start non-secure state software application by jumping to the non-secure
      * Reset Handler. */

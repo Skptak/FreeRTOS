@@ -1,10 +1,10 @@
 /********************* (C) COPYRIGHT 2007 RAISONANCE S.A.S. ********************
-* File Name          : stm32f10x_it.c
-* Author             : IB/FL
-* Date First Issued  : 07/2007
-* Description        : Interrupt handler for the CircleOS project.
-* Revision           :
-*******************************************************************************/
+ * File Name          : stm32f10x_it.c
+ * Author             : IB/FL
+ * Date First Issued  : 07/2007
+ * Description        : Interrupt handler for the CircleOS project.
+ * Revision           :
+ *******************************************************************************/
 
 /* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef __STM32F10x_IT_H
@@ -66,5 +66,5 @@ void USART3_IRQHandler( void );
 void EXTI15_10_IRQHandler( void );
 void RTCAlarm_IRQHandler( void );
 void USBWakeUp_IRQHandler( void );
-					 
+
 #endif /* __STM32F10x_IT_H */

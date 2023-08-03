@@ -28,16 +28,14 @@
 #include <redfs.h>
 #include <redtestutils.h>
 
-
 /*  This is the global seed used by the random number generator when the caller
     has not provided a seed to either the RedRand32() or RedRand64() functions.
 */
 static uint64_t ullGlobalRandomNumberSeed;
 
 /*  Whether the above seed has been initialized.
-*/
+ */
 static bool fGlobalSeedInited;
-
 
 /** @brief Set the global seed used by the random number generator.
 
@@ -46,13 +44,11 @@ static bool fGlobalSeedInited;
 
     @param ullSeed  The value to use as the global RNG seed.
 */
-void RedRandSeed(
-    uint64_t ullSeed)
+void RedRandSeed( uint64_t ullSeed )
 {
     ullGlobalRandomNumberSeed = ullSeed;
     fGlobalSeedInited = true;
 }
-
 
 /** @brief Generate a 64-bit pseudo-random number.
 
@@ -68,24 +64,23 @@ void RedRandSeed(
 
     @return A pseudo-random number in the range [0, UINT64_MAX].
 */
-uint64_t RedRand64(
-    uint64_t       *pullSeed)
+uint64_t RedRand64( uint64_t * pullSeed )
 {
-    const uint64_t  ullA = UINT64_SUFFIX(2862933555777941757);
-    const uint64_t  ullC = UINT64_SUFFIX(3037000493);
-    const uint64_t  ullT = UINT64_SUFFIX(4921441182957829599);
-    uint64_t        ullN;
-    uint64_t       *pullSeedPtr;
-    uint64_t        ullLocalSeed;
+    const uint64_t ullA = UINT64_SUFFIX( 2862933555777941757 );
+    const uint64_t ullC = UINT64_SUFFIX( 3037000493 );
+    const uint64_t ullT = UINT64_SUFFIX( 4921441182957829599 );
+    uint64_t ullN;
+    uint64_t * pullSeedPtr;
+    uint64_t ullLocalSeed;
 
-    if(pullSeed != NULL)
+    if( pullSeed != NULL )
     {
         ullLocalSeed = *pullSeed;
         pullSeedPtr = pullSeed;
     }
     else
     {
-        if(!fGlobalSeedInited)
+        if( !fGlobalSeedInited )
         {
             /*  Unfortunately, the Reliance Edge OS services don't give us much
                 to work with to initialize the global seed.  There is no entropy
@@ -96,14 +91,14 @@ uint64_t RedRand64(
                 Tests using the RNG should be supplying a seed anyway, for
                 reproducibility.
             */
-            RedRandSeed((uint64_t)RedOsClockGetTime());
+            RedRandSeed( ( uint64_t ) RedOsClockGetTime() );
         }
 
         ullLocalSeed = ullGlobalRandomNumberSeed;
         pullSeedPtr = &ullGlobalRandomNumberSeed;
     }
 
-    ullN = (ullLocalSeed * ullA) + ullC;
+    ullN = ( ullLocalSeed * ullA ) + ullC;
 
     *pullSeedPtr = ullN;
 
@@ -116,14 +111,13 @@ uint64_t RedRand64(
         shift operations to produce a more acceptable equidistribution of bits
         throughout the 64-bit range.
     */
-    ullN ^= (ullN >> 21U) & ullT;
-    ullN ^= (ullN >> 43U) & ullT;
-    ullN ^= (ullN << 23U) & ~ullT;
-    ullN ^= (ullN << 31U) & ~ullT;
+    ullN ^= ( ullN >> 21U ) & ullT;
+    ullN ^= ( ullN >> 43U ) & ullT;
+    ullN ^= ( ullN << 23U ) & ~ullT;
+    ullN ^= ( ullN << 31U ) & ~ullT;
 
     return ullN;
 }
-
 
 /** @brief Generate a 32-bit pseudo-random number.
 
@@ -136,24 +130,22 @@ uint64_t RedRand64(
 
     @return A pseudo-random number in the range [0, UINT32_MAX].
 */
-uint32_t RedRand32(
-    uint32_t   *pulSeed)
+uint32_t RedRand32( uint32_t * pulSeed )
 {
-    uint64_t    ullN;
+    uint64_t ullN;
 
-    if(pulSeed != NULL)
+    if( pulSeed != NULL )
     {
         uint64_t ullLocalSeed;
 
         ullLocalSeed = *pulSeed;
-        ullN = RedRand64(&ullLocalSeed);
-        *pulSeed = (uint32_t)ullLocalSeed;
+        ullN = RedRand64( &ullLocalSeed );
+        *pulSeed = ( uint32_t ) ullLocalSeed;
     }
     else
     {
-        ullN = RedRand64(NULL);
+        ullN = RedRand64( NULL );
     }
 
-    return (uint32_t)ullN;
+    return ( uint32_t ) ullN;
 }
-

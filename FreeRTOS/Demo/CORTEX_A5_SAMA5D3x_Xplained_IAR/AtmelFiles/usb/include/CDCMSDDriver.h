@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
- *         ATMEL Microcontroller Software Support 
+ *         ATMEL Microcontroller Software Support
  * ----------------------------------------------------------------------------
  * Copyright (c) 2008, Atmel Corporation
  *
@@ -33,9 +33,9 @@
  * \section Purpose
  *
  *   Definitions and methods for USB CDCMSD device implement.
- * 
+ *
  * \section Usage
- * 
+ *
  * -# Initialize USB function specified driver ( for MSD currently )
  *  - MSDDFunctionDriver_Initialize
  *
@@ -59,12 +59,12 @@
  *         Headers
  *---------------------------------------------------------------------------*/
 
-#include <USBRequests.h>
-#include <CDCDescriptors.h>
-#include <MSDescriptors.h>
-#include <MSDLun.h>
 #include "USBD.h"
+#include <CDCDescriptors.h>
+#include <MSDLun.h>
+#include <MSDescriptors.h>
 #include <USBDDriver.h>
+#include <USBRequests.h>
 
 /*---------------------------------------------------------------------------
  *         Consts
@@ -74,32 +74,31 @@
  *      @{
  */
 /** Number of interfaces of the device */
-#define CDCMSDDriverDescriptors_NUMINTERFACE       3
+#define CDCMSDDriverDescriptors_NUMINTERFACE  3
 /** Number of the CDC interface. */
-#define CDCMSDDriverDescriptors_CDC_INTERFACE      0
+#define CDCMSDDriverDescriptors_CDC_INTERFACE 0
 /** Number of the HID interface. */
-#define CDCMSDDriverDescriptors_MSD_INTERFACE      2
+#define CDCMSDDriverDescriptors_MSD_INTERFACE 2
 /**     @}*/
-
 
 /*---------------------------------------------------------------------------
  *         Types
  *---------------------------------------------------------------------------*/
-#pragma pack(1)
-#if defined   ( __CC_ARM   ) /* Keil ¦ÌVision 4 */
-#elif defined ( __ICCARM__ ) /* IAR Ewarm */
-#define __attribute__(...)
-#define __packed__  packed
-#elif defined (  __GNUC__  ) /* GCC CS3 */
-#define __packed__  aligned(1)
+#pragma pack( 1 )
+#if defined( __CC_ARM )     /* Keil ¦ÌVision 4 */
+#elif defined( __ICCARM__ ) /* IAR Ewarm */
+    #define __attribute__( ... )
+    #define __packed__ packed
+#elif defined( __GNUC__ ) /* GCC CS3 */
+    #define __packed__ aligned( 1 )
 #endif
 /**
  * \typedef CDCMSDDriverConfigurationDescriptors
  * \brief Configuration descriptor list for a device implementing
  *        a CDCMSD driver.
  */
-typedef struct _CDCMSDDriverConfigurationDescriptors {
-
+typedef struct _CDCMSDDriverConfigurationDescriptors
+{
     /**  Standard configuration descriptor. */
     USBConfigurationDescriptor configuration;
 
@@ -133,7 +132,7 @@ typedef struct _CDCMSDDriverConfigurationDescriptors {
     /**  Bulk-in endpoint descriptor. */
     USBEndpointDescriptor msdBulkIn;
 
-} __attribute__ ((__packed__)) CDCMSDDriverConfigurationDescriptors;
+} __attribute__( ( __packed__ ) ) CDCMSDDriverConfigurationDescriptors;
 
 #pragma pack()
 
@@ -142,14 +141,13 @@ typedef struct _CDCMSDDriverConfigurationDescriptors {
  *---------------------------------------------------------------------------*/
 
 /* -CDCMSD */
-extern void CDCMSDDriver_Initialize(
-    const USBDDriverDescriptors *pDescriptors,
-    MSDLun *pLuns, unsigned char numLuns);
+extern void CDCMSDDriver_Initialize( const USBDDriverDescriptors * pDescriptors,
+                                     MSDLun * pLuns,
+                                     unsigned char numLuns );
 
-extern void CDCMSDDriver_ConfigurationChangedHandler(unsigned char cfgnum);
+extern void CDCMSDDriver_ConfigurationChangedHandler( unsigned char cfgnum );
 
-extern void CDCMSDDriver_RequestHandler(const USBGenericRequest *request);
+extern void CDCMSDDriver_RequestHandler( const USBGenericRequest * request );
 
 /**@}*/
 #endif /* #ifndef CDCMSDDDRIVER_H */
-

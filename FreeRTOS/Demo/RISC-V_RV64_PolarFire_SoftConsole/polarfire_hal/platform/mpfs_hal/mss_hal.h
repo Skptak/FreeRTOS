@@ -19,12 +19,12 @@
 #define MSS_HAL_H
 
 #ifndef CONFIG_OPENSBI
-#  include <stddef.h>  // for size_t
-#  include <stdbool.h> // for bool, true, false
-#  include <stdint.h>
-#ifndef ssize_t
-typedef long            ssize_t;
-#endif
+    #include <stdbool.h> // for bool, true, false
+    #include <stddef.h>  // for size_t
+    #include <stdint.h>
+    #ifndef ssize_t
+typedef long ssize_t;
+    #endif
 #endif
 
 #include "common/mss_assert.h"
@@ -32,7 +32,6 @@ typedef long            ssize_t;
 #include "common/nwc/mss_ddr_sgmii_regs.h"
 #include "common/nwc/mss_io_config.h"
 #include "common/nwc/mss_pll.h"
-#include "common/nwc/mss_scb_nwc_regs.h"
 #include "common/nwc/mss_scb_nwc_regs.h"
 /*
  * mss_sw_config.h may be edited as required and should be located outside the
@@ -47,28 +46,27 @@ typedef long            ssize_t;
 #include "common/atomic.h"
 #include "common/bits.h"
 #include "common/encoding.h"
-#include "fpga_design_config/fpga_design_config.h"
-#include "common/nwc/mss_ddr.h"
+#include "common/mss_axiswitch.h"
 #include "common/mss_clint.h"
 #include "common/mss_h2f.h"
 #include "common/mss_hart_ints.h"
+#include "common/mss_l2_cache.h"
 #include "common/mss_mpu.h"
-#include "common/mss_pmp.h"
+#include "common/mss_mtrap.h"
+#include "common/mss_peripherals.h"
 #include "common/mss_plic.h"
+#include "common/mss_pmp.h"
 #include "common/mss_seg.h"
 #include "common/mss_sysreg.h"
 #include "common/mss_util.h"
-#include "common/mss_mtrap.h"
-#include "common/mss_l2_cache.h"
-#include "common/mss_axiswitch.h"
-#include "common/mss_peripherals.h"
 #include "common/nwc/mss_cfm.h"
 #include "common/nwc/mss_ddr.h"
-#include "common/nwc/mss_sgmii.h"
-#include "startup_gcc/system_startup.h"
 #include "common/nwc/mss_ddr_debug.h"
+#include "common/nwc/mss_sgmii.h"
+#include "fpga_design_config/fpga_design_config.h"
+#include "startup_gcc/system_startup.h"
 #ifdef SIMULATION_TEST_FEEDBACK
-#include "nwc/simulation.h"
+    #include "nwc/simulation.h"
 #endif
 
 #ifdef __cplusplus

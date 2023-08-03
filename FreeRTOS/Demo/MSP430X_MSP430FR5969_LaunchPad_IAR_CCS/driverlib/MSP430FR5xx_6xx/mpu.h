@@ -42,18 +42,17 @@
 
 #ifdef __MSP430_HAS_MPU__
 
-//*****************************************************************************
-//
-// If building with a C++ compiler, make all of the definitions in this header
-// have a C binding.
-//
-//*****************************************************************************
-#ifdef __cplusplus
-extern "C"
-{
-#endif
+    //*****************************************************************************
+    //
+    // If building with a C++ compiler, make all of the definitions in this
+    // header have a C binding.
+    //
+    //*****************************************************************************
+    #ifdef __cplusplus
+extern "C" {
+    #endif
 
-#include "inc/hw_regaccess.h"
+    #include "inc/hw_regaccess.h"
 //*****************************************************************************
 //
 //! \brief Used in the MPU_initThreeSegments() function as the param parameter.
@@ -88,44 +87,44 @@ typedef struct MPU_initThreeSegmentsParam
     uint8_t seg3accmask;
 } MPU_initThreeSegmentsParam;
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the accmask parameter for
-// functions: MPU_initInfoSegment(); the seg2accmask parameter for functions:
-// MPU_initTwoSegments(); the seg1accmask parameter for functions:
-// MPU_initTwoSegments(); the param parameter for functions:
-// MPU_initThreeSegments(), MPU_initThreeSegments(), and
-// MPU_initThreeSegments().
-//
-//*****************************************************************************
-#define MPU_READ                                                      MPUSEG1RE
-#define MPU_WRITE                                                     MPUSEG1WE
-#define MPU_EXEC                                                      MPUSEG1XE
-#define MPU_NO_READ_WRITE_EXEC                                         (0x0000)
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the accmask parameter for
+    // functions: MPU_initInfoSegment(); the seg2accmask parameter for
+    // functions: MPU_initTwoSegments(); the seg1accmask parameter for
+    // functions: MPU_initTwoSegments(); the param parameter for functions:
+    // MPU_initThreeSegments(), MPU_initThreeSegments(), and
+    // MPU_initThreeSegments().
+    //
+    //*****************************************************************************
+    #define MPU_READ                      MPUSEG1RE
+    #define MPU_WRITE                     MPUSEG1WE
+    #define MPU_EXEC                      MPUSEG1XE
+    #define MPU_NO_READ_WRITE_EXEC        ( 0x0000 )
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the segment parameter for
-// functions: MPU_enablePUCOnViolation(), and MPU_disablePUCOnViolation().
-//
-//*****************************************************************************
-#define MPU_FIRST_SEG                                                 MPUSEG1VS
-#define MPU_SECOND_SEG                                                MPUSEG2VS
-#define MPU_THIRD_SEG                                                 MPUSEG3VS
-#define MPU_INFO_SEG                                                  MPUSEGIVS
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the segment parameter for
+    // functions: MPU_enablePUCOnViolation(), and MPU_disablePUCOnViolation().
+    //
+    //*****************************************************************************
+    #define MPU_FIRST_SEG                 MPUSEG1VS
+    #define MPU_SECOND_SEG                MPUSEG2VS
+    #define MPU_THIRD_SEG                 MPUSEG3VS
+    #define MPU_INFO_SEG                  MPUSEGIVS
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the memAccFlag parameter for
-// functions: MPU_getInterruptStatus(), and MPU_clearInterrupt() as well as
-// returned by the MPU_getInterruptStatus() function, the
-// MPU_clearAllInterrupts() function and the MPU_clearInterrupt() function.
-//
-//*****************************************************************************
-#define MPU_SEG_1_ACCESS_VIOLATION                                   MPUSEG1IFG
-#define MPU_SEG_2_ACCESS_VIOLATION                                   MPUSEG2IFG
-#define MPU_SEG_3_ACCESS_VIOLATION                                   MPUSEG3IFG
-#define MPU_SEG_INFO_ACCESS_VIOLATION                                MPUSEGIIFG
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the memAccFlag parameter
+    // for functions: MPU_getInterruptStatus(), and MPU_clearInterrupt() as well
+    // as returned by the MPU_getInterruptStatus() function, the
+    // MPU_clearAllInterrupts() function and the MPU_clearInterrupt() function.
+    //
+    //*****************************************************************************
+    #define MPU_SEG_1_ACCESS_VIOLATION    MPUSEG1IFG
+    #define MPU_SEG_2_ACCESS_VIOLATION    MPUSEG2IFG
+    #define MPU_SEG_3_ACCESS_VIOLATION    MPUSEG3IFG
+    #define MPU_SEG_INFO_ACCESS_VIOLATION MPUSEGIIFG
 
 //*****************************************************************************
 //
@@ -165,10 +164,10 @@ typedef struct MPU_initThreeSegmentsParam
 //! \return None
 //
 //*****************************************************************************
-extern void MPU_initTwoSegments(uint16_t baseAddress,
-                                uint16_t seg1boundary,
-                                uint8_t seg1accmask,
-                                uint8_t seg2accmask);
+extern void MPU_initTwoSegments( uint16_t baseAddress,
+                                 uint16_t seg1boundary,
+                                 uint8_t seg1accmask,
+                                 uint8_t seg2accmask );
 
 //*****************************************************************************
 //
@@ -190,8 +189,8 @@ extern void MPU_initTwoSegments(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void MPU_initThreeSegments(uint16_t baseAddress,
-                                  MPU_initThreeSegmentsParam *param);
+extern void MPU_initThreeSegments( uint16_t baseAddress,
+                                   MPU_initThreeSegmentsParam * param );
 
 //*****************************************************************************
 //
@@ -214,8 +213,7 @@ extern void MPU_initThreeSegments(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void MPU_initInfoSegment(uint16_t baseAddress,
-                                uint8_t accmask);
+extern void MPU_initInfoSegment( uint16_t baseAddress, uint8_t accmask );
 
 //*****************************************************************************
 //
@@ -229,7 +227,7 @@ extern void MPU_initInfoSegment(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void MPU_enableNMIevent(uint16_t baseAddress);
+extern void MPU_enableNMIevent( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -245,7 +243,7 @@ extern void MPU_enableNMIevent(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void MPU_start(uint16_t baseAddress);
+extern void MPU_start( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -272,8 +270,7 @@ extern void MPU_start(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void MPU_enablePUCOnViolation(uint16_t baseAddress,
-                                     uint16_t segment);
+extern void MPU_enablePUCOnViolation( uint16_t baseAddress, uint16_t segment );
 
 //*****************************************************************************
 //
@@ -300,8 +297,7 @@ extern void MPU_enablePUCOnViolation(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void MPU_disablePUCOnViolation(uint16_t baseAddress,
-                                      uint16_t segment);
+extern void MPU_disablePUCOnViolation( uint16_t baseAddress, uint16_t segment );
 
 //*****************************************************************************
 //
@@ -332,8 +328,8 @@ extern void MPU_disablePUCOnViolation(uint16_t baseAddress,
 //!         \n indicating the status of the masked flags.
 //
 //*****************************************************************************
-extern uint16_t MPU_getInterruptStatus(uint16_t baseAddress,
-                                       uint16_t memAccFlag);
+extern uint16_t MPU_getInterruptStatus( uint16_t baseAddress,
+                                        uint16_t memAccFlag );
 
 //*****************************************************************************
 //
@@ -367,8 +363,7 @@ extern uint16_t MPU_getInterruptStatus(uint16_t baseAddress,
 //!         \n indicating the status of the masked flags.
 //
 //*****************************************************************************
-extern uint16_t MPU_clearInterrupt(uint16_t baseAddress,
-                                   uint16_t memAccFlag);
+extern uint16_t MPU_clearInterrupt( uint16_t baseAddress, uint16_t memAccFlag );
 
 //*****************************************************************************
 //
@@ -390,7 +385,7 @@ extern uint16_t MPU_clearInterrupt(uint16_t baseAddress,
 //!         \n indicating the status of the interrupt flags.
 //
 //*****************************************************************************
-extern uint16_t MPU_clearAllInterrupts(uint16_t baseAddress);
+extern uint16_t MPU_clearAllInterrupts( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -408,16 +403,16 @@ extern uint16_t MPU_clearAllInterrupts(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void MPU_lockMPU(uint16_t baseAddress);
+extern void MPU_lockMPU( uint16_t baseAddress );
 
-//*****************************************************************************
-//
-// Mark the end of the C bindings section for C++ compilers.
-//
-//*****************************************************************************
-#ifdef __cplusplus
+    //*****************************************************************************
+    //
+    // Mark the end of the C bindings section for C++ compilers.
+    //
+    //*****************************************************************************
+    #ifdef __cplusplus
 }
-#endif
+    #endif
 
 #endif
 #endif // __MSP430WARE_MPU_H__

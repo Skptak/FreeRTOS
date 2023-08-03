@@ -15,93 +15,93 @@
 extern "C" {
 #endif
 
-#define MSTATUS_UIE         0x00000001
-#define MSTATUS_SIE         0x00000002
-#define MSTATUS_HIE         0x00000004
-#define MSTATUS_MIE         0x00000008
-#define MSTATUS_UPIE        0x00000010
-#define MSTATUS_SPIE        0x00000020
-#define MSTATUS_HPIE        0x00000040
-#define MSTATUS_MPIE        0x00000080
-#define MSTATUS_SPP         0x00000100
-#define MSTATUS_HPP         0x00000600
-#define MSTATUS_MPP         0x00001800
-#define MSTATUS_FS          0x00006000
-#define MSTATUS_XS          0x00018000
-#define MSTATUS_MPRV        0x00020000
-#define MSTATUS_SUM         0x00040000      /*changed in v1.10*/
-#define MSTATUS_MXR         0x00080000      /*changed in v1.10*/
-#define MSTATUS_TVM         0x00100000      /*changed in v1.10*/
-#define MSTATUS_TW          0x00200000      /*changed in v1.10*/
-#define MSTATUS_TSR         0x00400000      /*changed in v1.10*/
-#define MSTATUS_RES         0x7F800000      /*changed in v1.10*/
-#define MSTATUS32_SD        0x80000000
-#define MSTATUS64_SD        0x8000000000000000
+#define MSTATUS_UIE           0x00000001
+#define MSTATUS_SIE           0x00000002
+#define MSTATUS_HIE           0x00000004
+#define MSTATUS_MIE           0x00000008
+#define MSTATUS_UPIE          0x00000010
+#define MSTATUS_SPIE          0x00000020
+#define MSTATUS_HPIE          0x00000040
+#define MSTATUS_MPIE          0x00000080
+#define MSTATUS_SPP           0x00000100
+#define MSTATUS_HPP           0x00000600
+#define MSTATUS_MPP           0x00001800
+#define MSTATUS_FS            0x00006000
+#define MSTATUS_XS            0x00018000
+#define MSTATUS_MPRV          0x00020000
+#define MSTATUS_SUM           0x00040000 /*changed in v1.10*/
+#define MSTATUS_MXR           0x00080000 /*changed in v1.10*/
+#define MSTATUS_TVM           0x00100000 /*changed in v1.10*/
+#define MSTATUS_TW            0x00200000 /*changed in v1.10*/
+#define MSTATUS_TSR           0x00400000 /*changed in v1.10*/
+#define MSTATUS_RES           0x7F800000 /*changed in v1.10*/
+#define MSTATUS32_SD          0x80000000
+#define MSTATUS64_SD          0x8000000000000000
 
-#define MCAUSE32_CAUSE       0x7FFFFFFF
-#define MCAUSE64_CAUSE       0x7FFFFFFFFFFFFFFF
-#define MCAUSE32_INT         0x80000000
-#define MCAUSE64_INT         0x8000000000000000
+#define MCAUSE32_CAUSE        0x7FFFFFFF
+#define MCAUSE64_CAUSE        0x7FFFFFFFFFFFFFFF
+#define MCAUSE32_INT          0x80000000
+#define MCAUSE64_INT          0x8000000000000000
 
-#define SSTATUS_UIE         0x00000001
-#define SSTATUS_SIE         0x00000002
-#define SSTATUS_UPIE        0x00000010
-#define SSTATUS_SPIE        0x00000020
-#define SSTATUS_SPP         0x00000100
-#define SSTATUS_FS          0x00006000
-#define SSTATUS_XS          0x00018000
-#define SSTATUS_PUM         0x00040000
-#define SSTATUS32_SD        0x80000000
-#define SSTATUS64_SD        0x8000000000000000
+#define SSTATUS_UIE           0x00000001
+#define SSTATUS_SIE           0x00000002
+#define SSTATUS_UPIE          0x00000010
+#define SSTATUS_SPIE          0x00000020
+#define SSTATUS_SPP           0x00000100
+#define SSTATUS_FS            0x00006000
+#define SSTATUS_XS            0x00018000
+#define SSTATUS_PUM           0x00040000
+#define SSTATUS32_SD          0x80000000
+#define SSTATUS64_SD          0x8000000000000000
 
-#define MIP_SSIP            (1u << IRQ_S_SOFT)
-#define MIP_HSIP            (1u << IRQ_H_SOFT)
-#define MIP_MSIP            (1u << IRQ_M_SOFT)
-#define MIP_STIP            (1u << IRQ_S_TIMER)
-#define MIP_HTIP            (1u << IRQ_H_TIMER)
-#define MIP_MTIP            (1u << IRQ_M_TIMER)
-#define MIP_SEIP            (1u << IRQ_S_EXT)
-#define MIP_HEIP            (1u << IRQ_H_EXT)
-#define MIP_MEIP            (1u << IRQ_M_EXT)
+#define MIP_SSIP              ( 1u << IRQ_S_SOFT )
+#define MIP_HSIP              ( 1u << IRQ_H_SOFT )
+#define MIP_MSIP              ( 1u << IRQ_M_SOFT )
+#define MIP_STIP              ( 1u << IRQ_S_TIMER )
+#define MIP_HTIP              ( 1u << IRQ_H_TIMER )
+#define MIP_MTIP              ( 1u << IRQ_M_TIMER )
+#define MIP_SEIP              ( 1u << IRQ_S_EXT )
+#define MIP_HEIP              ( 1u << IRQ_H_EXT )
+#define MIP_MEIP              ( 1u << IRQ_M_EXT )
 
-#define SIP_SSIP            MIP_SSIP
-#define SIP_STIP            MIP_STIP
+#define SIP_SSIP              MIP_SSIP
+#define SIP_STIP              MIP_STIP
 
-#define PRV_U               0
-#define PRV_S               1
-#define PRV_H               2
-#define PRV_M               3
+#define PRV_U                 0
+#define PRV_S                 1
+#define PRV_H                 2
+#define PRV_M                 3
 
-#define VM_MBARE            0
-#define VM_MBB              1
-#define VM_MBBID            2
-#define VM_SV32             8
-#define VM_SV39             9
-#define VM_SV48             10
+#define VM_MBARE              0
+#define VM_MBB                1
+#define VM_MBBID              2
+#define VM_SV32               8
+#define VM_SV39               9
+#define VM_SV48               10
 
-#define IRQ_S_SOFT          1
-#define IRQ_H_SOFT          2
-#define IRQ_M_SOFT          3
-#define IRQ_S_TIMER         5
-#define IRQ_H_TIMER         6
-#define IRQ_M_TIMER         7
-#define IRQ_S_EXT           9
-#define IRQ_H_EXT           10
-#define IRQ_M_EXT           11
+#define IRQ_S_SOFT            1
+#define IRQ_H_SOFT            2
+#define IRQ_M_SOFT            3
+#define IRQ_S_TIMER           5
+#define IRQ_H_TIMER           6
+#define IRQ_M_TIMER           7
+#define IRQ_S_EXT             9
+#define IRQ_H_EXT             10
+#define IRQ_M_EXT             11
 
-#define DEFAULT_RSTVEC      0x00001000
-#define DEFAULT_NMIVEC      0x00001004
-#define DEFAULT_MTVEC       0x00001010
-#define CONFIG_STRING_ADDR  0x0000100C
-#define EXT_IO_BASE         0x40000000
-#define DRAM_BASE           0x80000000
+#define DEFAULT_RSTVEC        0x00001000
+#define DEFAULT_NMIVEC        0x00001004
+#define DEFAULT_MTVEC         0x00001010
+#define CONFIG_STRING_ADDR    0x0000100C
+#define EXT_IO_BASE           0x40000000
+#define DRAM_BASE             0x80000000
 
 /* page table entry (PTE) fields */
-#define PTE_V               0x001       /* Valid */
-#define PTE_TYPE            0x01E       /* Type  */
-#define PTE_R               0x020       /* Referenced */
-#define PTE_D               0x040       /* Dirty */
-#define PTE_SOFT            0x380       /* Reserved for Software */
+#define PTE_V                 0x001 /* Valid */
+#define PTE_TYPE              0x01E /* Type  */
+#define PTE_R                 0x020 /* Referenced */
+#define PTE_D                 0x040 /* Dirty */
+#define PTE_SOFT              0x380 /* Reserved for Software */
 
 #define PTE_TYPE_TABLE        0x00
 #define PTE_TYPE_TABLE_GLOBAL 0x02
@@ -120,83 +120,113 @@ extern "C" {
 #define PTE_TYPE_SRX_GLOBAL   0x1C
 #define PTE_TYPE_SRWX_GLOBAL  0x1E
 
-#define PTE_PPN_SHIFT 10
+#define PTE_PPN_SHIFT         10
 
-#define PTE_TABLE(PTE) ((0x0000000AU >> ((PTE) & 0x1F)) & 1)
-#define PTE_UR(PTE)    ((0x0000AAA0U >> ((PTE) & 0x1F)) & 1)
-#define PTE_UW(PTE)    ((0x00008880U >> ((PTE) & 0x1F)) & 1)
-#define PTE_UX(PTE)    ((0x0000A0A0U >> ((PTE) & 0x1F)) & 1)
-#define PTE_SR(PTE)    ((0xAAAAAAA0U >> ((PTE) & 0x1F)) & 1)
-#define PTE_SW(PTE)    ((0x88888880U >> ((PTE) & 0x1F)) & 1)
-#define PTE_SX(PTE)    ((0xA0A0A000U >> ((PTE) & 0x1F)) & 1)
+#define PTE_TABLE( PTE )      ( ( 0x0000000AU >> ( ( PTE ) &0x1F ) ) & 1 )
+#define PTE_UR( PTE )         ( ( 0x0000AAA0U >> ( ( PTE ) &0x1F ) ) & 1 )
+#define PTE_UW( PTE )         ( ( 0x00008880U >> ( ( PTE ) &0x1F ) ) & 1 )
+#define PTE_UX( PTE )         ( ( 0x0000A0A0U >> ( ( PTE ) &0x1F ) ) & 1 )
+#define PTE_SR( PTE )         ( ( 0xAAAAAAA0U >> ( ( PTE ) &0x1F ) ) & 1 )
+#define PTE_SW( PTE )         ( ( 0x88888880U >> ( ( PTE ) &0x1F ) ) & 1 )
+#define PTE_SX( PTE )         ( ( 0xA0A0A000U >> ( ( PTE ) &0x1F ) ) & 1 )
 
-#define PTE_CHECK_PERM(PTE, SUPERVISOR, STORE, FETCH) \
-  ((STORE) ? ((SUPERVISOR) ? PTE_SW(PTE) : PTE_UW(PTE)) : \
-   (FETCH) ? ((SUPERVISOR) ? PTE_SX(PTE) : PTE_UX(PTE)) : \
-             ((SUPERVISOR) ? PTE_SR(PTE) : PTE_UR(PTE)))
+#define PTE_CHECK_PERM( PTE, SUPERVISOR, STORE, FETCH )                \
+    ( ( STORE )   ? ( ( SUPERVISOR ) ? PTE_SW( PTE ) : PTE_UW( PTE ) ) \
+      : ( FETCH ) ? ( ( SUPERVISOR ) ? PTE_SX( PTE ) : PTE_UX( PTE ) ) \
+                  : ( ( SUPERVISOR ) ? PTE_SR( PTE ) : PTE_UR( PTE ) ) )
 
 #ifdef __riscv
 
-#if __riscv_xlen == 64
-# define MSTATUS_SD             MSTATUS64_SD
-# define SSTATUS_SD             SSTATUS64_SD
-# define MCAUSE_INT             MCAUSE64_INT
-# define MCAUSE_CAUSE           MCAUSE64_CAUSE
-# define RISCV_PGLEVEL_BITS     9
-#else
-# define MSTATUS_SD             MSTATUS32_SD
-# define SSTATUS_SD             SSTATUS32_SD
-# define RISCV_PGLEVEL_BITS     10
-# define MCAUSE_INT             MCAUSE32_INT
-# define MCAUSE_CAUSE           MCAUSE32_CAUSE
-#endif
+    #if __riscv_xlen == 64
+        #define MSTATUS_SD         MSTATUS64_SD
+        #define SSTATUS_SD         SSTATUS64_SD
+        #define MCAUSE_INT         MCAUSE64_INT
+        #define MCAUSE_CAUSE       MCAUSE64_CAUSE
+        #define RISCV_PGLEVEL_BITS 9
+    #else
+        #define MSTATUS_SD         MSTATUS32_SD
+        #define SSTATUS_SD         SSTATUS32_SD
+        #define RISCV_PGLEVEL_BITS 10
+        #define MCAUSE_INT         MCAUSE32_INT
+        #define MCAUSE_CAUSE       MCAUSE32_CAUSE
+    #endif
 
-#define RISCV_PGSHIFT           12
-#define RISCV_PGSIZE            (1 << RISCV_PGSHIFT)
+    #define RISCV_PGSHIFT 12
+    #define RISCV_PGSIZE  ( 1 << RISCV_PGSHIFT )
 
-#ifndef __ASSEMBLER__
+    #ifndef __ASSEMBLER__
 
-#ifdef __GNUC__
+        #ifdef __GNUC__
 
-#define read_csr(reg) ({ unsigned long __tmp; \
-  asm volatile ("csrr %0, " #reg : "=r"(__tmp)); \
-  __tmp; })
+            #define read_csr( reg )                                   \
+                ( {                                                   \
+                    unsigned long __tmp;                              \
+                    asm volatile( "csrr %0, " #reg : "=r"( __tmp ) ); \
+                    __tmp;                                            \
+                } )
 
-#define write_csr(reg, val) ({ \
-  if (__builtin_constant_p(val) && (unsigned long)(val) < 32) \
-    asm volatile ("csrw " #reg ", %0" :: "i"(val)); \
-  else \
-    asm volatile ("csrw " #reg ", %0" :: "r"(val)); })
+            #define write_csr( reg, val )                                 \
+                ( {                                                       \
+                    if( __builtin_constant_p( val ) &&                    \
+                        ( unsigned long ) ( val ) < 32 )                  \
+                        asm volatile( "csrw " #reg ", %0" ::"i"( val ) ); \
+                    else                                                  \
+                        asm volatile( "csrw " #reg ", %0" ::"r"( val ) ); \
+                } )
 
-#define swap_csr(reg, val) ({ unsigned long __tmp; \
-  if (__builtin_constant_p(val) && (unsigned long)(val) < 32) \
-    asm volatile ("csrrw %0, " #reg ", %1" : "=r"(__tmp) : "i"(val)); \
-  else \
-    asm volatile ("csrrw %0, " #reg ", %1" : "=r"(__tmp) : "r"(val)); \
-  __tmp; })
+            #define swap_csr( reg, val )                       \
+                ( {                                            \
+                    unsigned long __tmp;                       \
+                    if( __builtin_constant_p( val ) &&         \
+                        ( unsigned long ) ( val ) < 32 )       \
+                        asm volatile( "csrrw %0, " #reg ", %1" \
+                                      : "=r"( __tmp )          \
+                                      : "i"( val ) );          \
+                    else                                       \
+                        asm volatile( "csrrw %0, " #reg ", %1" \
+                                      : "=r"( __tmp )          \
+                                      : "r"( val ) );          \
+                    __tmp;                                     \
+                } )
 
-#define set_csr(reg, bit) ({ unsigned long __tmp; \
-  if (__builtin_constant_p(bit) && (unsigned long)(bit) < 32) \
-    asm volatile ("csrrs %0, " #reg ", %1" : "=r"(__tmp) : "i"(bit)); \
-  else \
-    asm volatile ("csrrs %0, " #reg ", %1" : "=r"(__tmp) : "r"(bit)); \
-  __tmp; })
+            #define set_csr( reg, bit )                        \
+                ( {                                            \
+                    unsigned long __tmp;                       \
+                    if( __builtin_constant_p( bit ) &&         \
+                        ( unsigned long ) ( bit ) < 32 )       \
+                        asm volatile( "csrrs %0, " #reg ", %1" \
+                                      : "=r"( __tmp )          \
+                                      : "i"( bit ) );          \
+                    else                                       \
+                        asm volatile( "csrrs %0, " #reg ", %1" \
+                                      : "=r"( __tmp )          \
+                                      : "r"( bit ) );          \
+                    __tmp;                                     \
+                } )
 
-#define clear_csr(reg, bit) ({ unsigned long __tmp; \
-  if (__builtin_constant_p(bit) && (unsigned long)(bit) < 32) \
-    asm volatile ("csrrc %0, " #reg ", %1" : "=r"(__tmp) : "i"(bit)); \
-  else \
-    asm volatile ("csrrc %0, " #reg ", %1" : "=r"(__tmp) : "r"(bit)); \
-  __tmp; })
+            #define clear_csr( reg, bit )                      \
+                ( {                                            \
+                    unsigned long __tmp;                       \
+                    if( __builtin_constant_p( bit ) &&         \
+                        ( unsigned long ) ( bit ) < 32 )       \
+                        asm volatile( "csrrc %0, " #reg ", %1" \
+                                      : "=r"( __tmp )          \
+                                      : "i"( bit ) );          \
+                    else                                       \
+                        asm volatile( "csrrc %0, " #reg ", %1" \
+                                      : "=r"( __tmp )          \
+                                      : "r"( bit ) );          \
+                    __tmp;                                     \
+                } )
 
-#define rdtime() read_csr(time)
-#define rdcycle() read_csr(cycle)
-#define rdinstret() read_csr(instret)
+            #define rdtime()    read_csr( time )
+            #define rdcycle()   read_csr( cycle )
+            #define rdinstret() read_csr( instret )
 
-#ifdef __riscv_atomic
+            #ifdef __riscv_atomic
 
-#define MASK(nr)                    (1UL << nr)
-#define MASK_NOT(nr)                (~(1UL << nr))
+                #define MASK( nr )     ( 1UL << nr )
+                #define MASK_NOT( nr ) ( ~( 1UL << nr ) )
 
 /**
  * atomic_read - read atomic variable
@@ -204,9 +234,9 @@ extern "C" {
  *
  * Atomically reads the value of @v.
  */
-static inline int atomic_read(const int *v)
+static inline int atomic_read( const int * v )
 {
-    return *((volatile int *)(v));
+    return *( ( volatile int * ) ( v ) );
 }
 
 /**
@@ -216,7 +246,7 @@ static inline int atomic_read(const int *v)
  *
  * Atomically sets the value of @v to @i.
  */
-static inline void atomic_set(int *v, int i)
+static inline void atomic_set( int * v, int i )
 {
     *v = i;
 }
@@ -228,22 +258,18 @@ static inline void atomic_set(int *v, int i)
  *
  * Atomically adds @i to @v.
  */
-static inline void atomic_add(int i, int *v)
+static inline void atomic_add( int i, int * v )
 {
-    __asm__ __volatile__ (
-        "amoadd.w zero, %1, %0"
-        : "+A" (*v)
-        : "r" (i));
+    __asm__ __volatile__( "amoadd.w zero, %1, %0" : "+A"( *v ) : "r"( i ) );
 }
 
-static inline int atomic_fetch_add(unsigned int mask, int *v)
+static inline int atomic_fetch_add( unsigned int mask, int * v )
 {
     int out;
 
-    __asm__ __volatile__ (
-        "amoadd.w %2, %1, %0"
-        : "+A" (*v), "=r" (out)
-        : "r" (mask));
+    __asm__ __volatile__( "amoadd.w %2, %1, %0"
+                          : "+A"( *v ), "=r"( out )
+                          : "r"( mask ) );
     return out;
 }
 
@@ -254,19 +280,18 @@ static inline int atomic_fetch_add(unsigned int mask, int *v)
  *
  * Atomically subtracts @i from @v.
  */
-static inline void atomic_sub(int i, int *v)
+static inline void atomic_sub( int i, int * v )
 {
-    atomic_add(-i, v);
+    atomic_add( -i, v );
 }
 
-static inline int atomic_fetch_sub(unsigned int mask, int *v)
+static inline int atomic_fetch_sub( unsigned int mask, int * v )
 {
     int out;
 
-    __asm__ __volatile__ (
-        "amosub.w %2, %1, %0"
-        : "+A" (*v), "=r" (out)
-        : "r" (mask));
+    __asm__ __volatile__( "amosub.w %2, %1, %0"
+                          : "+A"( *v ), "=r"( out )
+                          : "r"( mask ) );
     return out;
 }
 
@@ -277,14 +302,13 @@ static inline int atomic_fetch_sub(unsigned int mask, int *v)
  *
  * Atomically adds @i to @v and returns the result
  */
-static inline int atomic_add_return(int i, int *v)
+static inline int atomic_add_return( int i, int * v )
 {
     register int c;
-    __asm__ __volatile__ (
-        "amoadd.w %0, %2, %1"
-        : "=r" (c), "+A" (*v)
-        : "r" (i));
-    return (c + i);
+    __asm__ __volatile__( "amoadd.w %0, %2, %1"
+                          : "=r"( c ), "+A"( *v )
+                          : "r"( i ) );
+    return ( c + i );
 }
 
 /**
@@ -294,9 +318,9 @@ static inline int atomic_add_return(int i, int *v)
  *
  * Atomically subtracts @i from @v and returns the result
  */
-static inline int atomic_sub_return(int i, int *v)
+static inline int atomic_sub_return( int i, int * v )
 {
-    return atomic_add_return(-i, v);
+    return atomic_add_return( -i, v );
 }
 
 /**
@@ -305,9 +329,9 @@ static inline int atomic_sub_return(int i, int *v)
  *
  * Atomically increments @v by 1.
  */
-static inline void atomic_inc(int *v)
+static inline void atomic_inc( int * v )
 {
-    atomic_add(1, v);
+    atomic_add( 1, v );
 }
 
 /**
@@ -316,19 +340,19 @@ static inline void atomic_inc(int *v)
  *
  * Atomically decrements @v by 1.
  */
-static inline void atomic_dec(int *v)
+static inline void atomic_dec( int * v )
 {
-    atomic_add(-1, v);
+    atomic_add( -1, v );
 }
 
-static inline int atomic_inc_return(int *v)
+static inline int atomic_inc_return( int * v )
 {
-    return atomic_add_return(1, v);
+    return atomic_add_return( 1, v );
 }
 
-static inline int atomic_dec_return(int *v)
+static inline int atomic_dec_return( int * v )
 {
-    return atomic_sub_return(1, v);
+    return atomic_sub_return( 1, v );
 }
 
 /**
@@ -340,9 +364,9 @@ static inline int atomic_dec_return(int *v)
  * true if the result is zero, or false for all
  * other cases.
  */
-static inline int atomic_sub_and_test(int i, int *v)
+static inline int atomic_sub_and_test( int i, int * v )
 {
-    return (atomic_sub_return(i, v) == 0);
+    return ( atomic_sub_return( i, v ) == 0 );
 }
 
 /**
@@ -353,9 +377,9 @@ static inline int atomic_sub_and_test(int i, int *v)
  * and returns true if the result is zero, or false for all
  * other cases.
  */
-static inline int atomic_inc_and_test(int *v)
+static inline int atomic_inc_and_test( int * v )
 {
-    return (atomic_inc_return(v) == 0);
+    return ( atomic_inc_return( v ) == 0 );
 }
 
 /**
@@ -366,9 +390,9 @@ static inline int atomic_inc_and_test(int *v)
  * returns true if the result is 0, or false for all other
  * cases.
  */
-static inline int atomic_dec_and_test(int *v)
+static inline int atomic_dec_and_test( int * v )
 {
-    return (atomic_dec_return(v) == 0);
+    return ( atomic_dec_return( v ) == 0 );
 }
 
 /**
@@ -380,18 +404,17 @@ static inline int atomic_dec_and_test(int *v)
  * if the result is negative, or false when
  * result is greater than or equal to zero.
  */
-static inline int atomic_add_negative(int i, int *v)
+static inline int atomic_add_negative( int i, int * v )
 {
-    return (atomic_add_return(i, v) < 0);
+    return ( atomic_add_return( i, v ) < 0 );
 }
 
-static inline int atomic_xchg(int *v, int n)
+static inline int atomic_xchg( int * v, int n )
 {
     register int c;
-    __asm__ __volatile__ (
-        "amoswap.w %0, %2, %1"
-        : "=r" (c), "+A" (*v)
-        : "r" (n));
+    __asm__ __volatile__( "amoswap.w %0, %2, %1"
+                          : "=r"( c ), "+A"( *v )
+                          : "r"( n ) );
     return c;
 }
 
@@ -402,21 +425,17 @@ static inline int atomic_xchg(int *v, int n)
  *
  * Atomically retains the bits set in @mask from @v
  */
-static inline void atomic_and(unsigned int mask, int *v)
+static inline void atomic_and( unsigned int mask, int * v )
 {
-    __asm__ __volatile__ (
-        "amoand.w zero, %1, %0"
-        : "+A" (*v)
-        : "r" (mask));
+    __asm__ __volatile__( "amoand.w zero, %1, %0" : "+A"( *v ) : "r"( mask ) );
 }
 
-static inline int atomic_fetch_and(unsigned int mask, int *v)
+static inline int atomic_fetch_and( unsigned int mask, int * v )
 {
     int out;
-    __asm__ __volatile__ (
-        "amoand.w %2, %1, %0"
-        : "+A" (*v), "=r" (out)
-        : "r" (mask));
+    __asm__ __volatile__( "amoand.w %2, %1, %0"
+                          : "+A"( *v ), "=r"( out )
+                          : "r"( mask ) );
     return out;
 }
 
@@ -427,21 +446,17 @@ static inline int atomic_fetch_and(unsigned int mask, int *v)
  *
  * Atomically sets the bits set in @mask in @v
  */
-static inline void atomic_or(unsigned int mask, int *v)
+static inline void atomic_or( unsigned int mask, int * v )
 {
-    __asm__ __volatile__ (
-        "amoor.w zero, %1, %0"
-        : "+A" (*v)
-        : "r" (mask));
+    __asm__ __volatile__( "amoor.w zero, %1, %0" : "+A"( *v ) : "r"( mask ) );
 }
 
-static inline int atomic_fetch_or(unsigned int mask, int *v)
+static inline int atomic_fetch_or( unsigned int mask, int * v )
 {
     int out;
-    __asm__ __volatile__ (
-        "amoor.w %2, %1, %0"
-        : "+A" (*v), "=r" (out)
-        : "r" (mask));
+    __asm__ __volatile__( "amoor.w %2, %1, %0"
+                          : "+A"( *v ), "=r"( out )
+                          : "r"( mask ) );
     return out;
 }
 
@@ -452,21 +467,17 @@ static inline int atomic_fetch_or(unsigned int mask, int *v)
  *
  * Atomically flips the bits set in @mask in @v
  */
-static inline void atomic_xor(unsigned int mask, int *v)
+static inline void atomic_xor( unsigned int mask, int * v )
 {
-    __asm__ __volatile__ (
-        "amoxor.w zero, %1, %0"
-        : "+A" (*v)
-        : "r" (mask));
+    __asm__ __volatile__( "amoxor.w zero, %1, %0" : "+A"( *v ) : "r"( mask ) );
 }
 
-static inline int atomic_fetch_xor(unsigned int mask, int *v)
+static inline int atomic_fetch_xor( unsigned int mask, int * v )
 {
     int out;
-    __asm__ __volatile__ (
-        "amoxor.w %2, %1, %0"
-        : "+A" (*v), "=r" (out)
-        : "r" (mask));
+    __asm__ __volatile__( "amoxor.w %2, %1, %0"
+                          : "+A"( *v ), "=r"( out )
+                          : "r"( mask ) );
     return out;
 }
 
@@ -480,18 +491,16 @@ static inline int atomic_fetch_xor(unsigned int mask, int *v)
  * This operation is atomic and cannot be reordered.
  * It also implies a memory barrier.
  */
-static inline int test_and_set_bit(int nr, volatile unsigned long *addr)
+static inline int test_and_set_bit( int nr, volatile unsigned long * addr )
 {
     unsigned long __res, __mask;
-    __mask = MASK(nr);
-    __asm__ __volatile__ (                \
-        "amoor.w %0, %2, %1"            \
-        : "=r" (__res), "+A" (*addr)    \
-        : "r" (__mask));                \
+    __mask = MASK( nr );
+    __asm__ __volatile__( "amoor.w %0, %2, %1"
+                          : "=r"( __res ), "+A"( *addr )
+                          : "r"( __mask ) );
 
-        return ((__res & __mask) != 0);
+    return ( ( __res & __mask ) != 0 );
 }
-
 
 /**
  * test_and_clear_bit - Clear a bit and return its old value
@@ -501,16 +510,15 @@ static inline int test_and_set_bit(int nr, volatile unsigned long *addr)
  * This operation is atomic and cannot be reordered.
  * It also implies a memory barrier.
  */
-static inline int test_and_clear_bit(int nr, volatile unsigned long *addr)
+static inline int test_and_clear_bit( int nr, volatile unsigned long * addr )
 {
     unsigned long __res, __mask;
-    __mask = MASK_NOT(nr);
-    __asm__ __volatile__ (                \
-        "amoand.w %0, %2, %1"            \
-        : "=r" (__res), "+A" (*addr)    \
-        : "r" (__mask));                \
+    __mask = MASK_NOT( nr );
+    __asm__ __volatile__( "amoand.w %0, %2, %1"
+                          : "=r"( __res ), "+A"( *addr )
+                          : "r"( __mask ) );
 
-        return ((__res & __mask) != 0);
+    return ( ( __res & __mask ) != 0 );
 }
 
 /**
@@ -521,17 +529,15 @@ static inline int test_and_clear_bit(int nr, volatile unsigned long *addr)
  * This operation is atomic and cannot be reordered.
  * It also implies a memory barrier.
  */
-static inline int test_and_change_bit(int nr, volatile unsigned long *addr)
+static inline int test_and_change_bit( int nr, volatile unsigned long * addr )
 {
-
     unsigned long __res, __mask;
-    __mask = MASK(nr);
-    __asm__ __volatile__ (                \
-        "amoxor.w %0, %2, %1"            \
-        : "=r" (__res), "+A" (*addr)    \
-        : "r" (__mask));                \
+    __mask = MASK( nr );
+    __asm__ __volatile__( "amoxor.w %0, %2, %1"
+                          : "=r"( __res ), "+A"( *addr )
+                          : "r"( __mask ) );
 
-        return ((__res & __mask) != 0);
+    return ( ( __res & __mask ) != 0 );
 }
 
 /**
@@ -539,15 +545,14 @@ static inline int test_and_change_bit(int nr, volatile unsigned long *addr)
  * @nr: the bit to set
  * @addr: the address to start counting from
  *
- * This function is atomic and may not be reordered. 
+ * This function is atomic and may not be reordered.
  */
 
-static inline void set_bit(int nr, volatile unsigned long *addr)
+static inline void set_bit( int nr, volatile unsigned long * addr )
 {
-    __asm__ __volatile__ (                    \
-        "AMOOR.w zero, %1, %0"            \
-        : "+A" (*addr)            \
-        : "r" (MASK(nr)));
+    __asm__ __volatile__( "AMOOR.w zero, %1, %0"
+                          : "+A"( *addr )
+                          : "r"( MASK( nr ) ) );
 }
 
 /**
@@ -555,14 +560,13 @@ static inline void set_bit(int nr, volatile unsigned long *addr)
  * @nr: Bit to clear
  * @addr: Address to start counting from
  *
- * clear_bit() is atomic and may not be reordered.  
+ * clear_bit() is atomic and may not be reordered.
  */
-static inline void clear_bit(int nr, volatile unsigned long *addr)
+static inline void clear_bit( int nr, volatile unsigned long * addr )
 {
-    __asm__ __volatile__ (                    \
-        "AMOAND.w zero, %1, %0"            \
-        : "+A" (*addr)            \
-        : "r" (MASK_NOT(nr)));
+    __asm__ __volatile__( "AMOAND.w zero, %1, %0"
+                          : "+A"( *addr )
+                          : "r"( MASK_NOT( nr ) ) );
 }
 
 /**
@@ -572,25 +576,23 @@ static inline void clear_bit(int nr, volatile unsigned long *addr)
  *
  * change_bit() is atomic and may not be reordered.
  */
-static inline void change_bit(int nr, volatile unsigned long *addr)
+static inline void change_bit( int nr, volatile unsigned long * addr )
 {
-    __asm__ __volatile__ (                    \
-            "AMOXOR.w zero, %1, %0"            \
-            : "+A" (*addr)            \
-            : "r" (MASK(nr)));
+    __asm__ __volatile__( "AMOXOR.w zero, %1, %0"
+                          : "+A"( *addr )
+                          : "r"( MASK( nr ) ) );
 }
 
-#endif /* __riscv_atomic */
+            #endif /* __riscv_atomic */
 
-#endif  /*__GNUC__*/
+        #endif /*__GNUC__*/
 
-#endif  /*__ASSEMBLER__*/
+    #endif /*__ASSEMBLER__*/
 
-#endif  /*__riscv*/
+#endif /*__riscv*/
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif    /*RISCV_CSR_ENCODING_H*/
-
+#endif /*RISCV_CSR_ENCODING_H*/

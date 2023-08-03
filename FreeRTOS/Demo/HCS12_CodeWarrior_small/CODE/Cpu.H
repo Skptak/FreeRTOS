@@ -28,82 +28,80 @@
 ** ###################################################################*/
 
 #ifndef __Cpu
-#define __Cpu
+    #define __Cpu
 
-/* Active configuration define symbol */
-#define PEcfg_80pin 1
+    /* Active configuration define symbol */
+    #define PEcfg_80pin 1
 
-/*Include shared modules, which are used for whole project*/
-#include "PE_Types.h"
-#include "PE_Error.h"
-#include "PE_Const.h"
-#include "IO_Map.h"
-#include "PE_Timer.h"
+    /*Include shared modules, which are used for whole project*/
+    #include "IO_Map.h"
+    #include "PE_Const.h"
+    #include "PE_Error.h"
+    #include "PE_Timer.h"
+    #include "PE_Types.h"
 
 /* MODULE Cpu. */
 
-
 /* Global variables */
-extern volatile byte CCR_reg;          /* Current CCR reegister */
-extern byte CpuMode;                   /* Current speed mode */
+extern volatile byte CCR_reg; /* Current CCR reegister */
+extern byte CpuMode;          /* Current speed mode */
 
+    #define Cpu_SetStopMode() __asm( "STOP" ) /* Set STOP mode */
+                                              /*
+                                              ** ===================================================================
+                                              **     Method      :  Cpu_SetStopMode (bean MC9S12C32_80)
+                                              **
+                                              **     Description :
+                                              **         Set low power mode - Stop mode. For more information
+                                              **         about the stop mode see documentation of this CPU.
+                                              **     Parameters  : None
+                                              **     Returns     : Nothing
+                                              ** ===================================================================
+                                              */
 
-#define   Cpu_SetStopMode()  __asm("STOP") /* Set STOP mode */
-/*
-** ===================================================================
-**     Method      :  Cpu_SetStopMode (bean MC9S12C32_80)
-**
-**     Description :
-**         Set low power mode - Stop mode. For more information
-**         about the stop mode see documentation of this CPU.
-**     Parameters  : None
-**     Returns     : Nothing
-** ===================================================================
-*/
+    #define Cpu_SetWaitMode() __asm( "WAIT" ) /* Set WAIT mode */
+                                              /*
+                                              ** ===================================================================
+                                              **     Method      :  Cpu_SetWaitMode (bean MC9S12C32_80)
+                                              **
+                                              **     Description :
+                                              **         Set low power mode - Wait mode. For more information
+                                              **         about the wait mode see documentation of this CPU.
+                                              **         Release from Watch mode: Reset or interrupt
+                                              **     Parameters  : None
+                                              **     Returns     : Nothing
+                                              ** ===================================================================
+                                              */
 
-#define   Cpu_SetWaitMode()  __asm("WAIT") /* Set WAIT mode */
-/*
-** ===================================================================
-**     Method      :  Cpu_SetWaitMode (bean MC9S12C32_80)
-**
-**     Description :
-**         Set low power mode - Wait mode. For more information
-**         about the wait mode see documentation of this CPU.
-**         Release from Watch mode: Reset or interrupt
-**     Parameters  : None
-**     Returns     : Nothing
-** ===================================================================
-*/
+    #define Cpu_DisableInt()  __DI() /* Disable interrupts */
+                                     /*
+                                     ** ===================================================================
+                                     **     Method      :  Cpu_DisableInt (bean MC9S12C32_80)
+                                     **
+                                     **     Description :
+                                     **         Disable maskable interrupts
+                                     **     Parameters  : None
+                                     **     Returns     : Nothing
+                                     ** ===================================================================
+                                     */
 
+    #define Cpu_EnableInt()   __EI() /* Enable interrupts */
+                                     /*
+                                     ** ===================================================================
+                                     **     Method      :  Cpu_EnableInt (bean MC9S12C32_80)
+                                     **
+                                     **     Description :
+                                     **         Enable maskable interrupts
+                                     **     Parameters  : None
+                                     **     Returns     : Nothing
+                                     ** ===================================================================
+                                     */
 
+    #pragma CODE_SEG __NEAR_SEG NON_BANKED /* Interrupt section for this   \
+                                              module. Placement will be in \
+                                              NON_BANKED area. */
 
-#define   Cpu_DisableInt()  __DI()     /* Disable interrupts */
-/*
-** ===================================================================
-**     Method      :  Cpu_DisableInt (bean MC9S12C32_80)
-**
-**     Description :
-**         Disable maskable interrupts
-**     Parameters  : None
-**     Returns     : Nothing
-** ===================================================================
-*/
-
-#define   Cpu_EnableInt()  __EI()      /* Enable interrupts */
-/*
-** ===================================================================
-**     Method      :  Cpu_EnableInt (bean MC9S12C32_80)
-**
-**     Description :
-**         Enable maskable interrupts
-**     Parameters  : None
-**     Returns     : Nothing
-** ===================================================================
-*/
-
-#pragma CODE_SEG __NEAR_SEG NON_BANKED /* Interrupt section for this module. Placement will be in NON_BANKED area. */
-
-__interrupt void Cpu_Interrupt(void);
+__interrupt void Cpu_Interrupt( void );
 /*
 ** ===================================================================
 **     Method      :  Cpu_Interrupt (bean MC9S12C32_80)
@@ -114,9 +112,9 @@ __interrupt void Cpu_Interrupt(void);
 ** ===================================================================
 */
 
-#pragma CODE_SEG DEFAULT               /* Change code section to DEFAULT. */
+    #pragma CODE_SEG DEFAULT /* Change code section to DEFAULT. */
 
-void PE_low_level_init(void);
+void PE_low_level_init( void );
 /*
 ** ===================================================================
 **     Method      :  PE_low_level_init (bean MC9S12C32_80)
@@ -133,7 +131,7 @@ void PE_low_level_init(void);
 /*
 ** ###################################################################
 **
-**     This file was created by UNIS Processor Expert 03.33 for 
+**     This file was created by UNIS Processor Expert 03.33 for
 **     the Motorola HCS12 series of microcontrollers.
 **
 ** ###################################################################

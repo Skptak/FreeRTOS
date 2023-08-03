@@ -27,7 +27,6 @@
  * ----------------------------------------------------------------------------
  */
 
-
 #ifndef CPSR_HEARDER_
 #define CPSR_HEARDER_
 
@@ -36,8 +35,8 @@
 #define CPSR_MASK_IRQ 0x00000080
 #define CPSR_MASK_FIQ 0x00000040
 
-extern void v_arm_clr_cpsr_bits(uint32_t mask);
+extern void v_arm_clr_cpsr_bits( uint32_t mask );
 
-extern void v_arm_set_cpsr_bits(uint32_t mask);
+extern void v_arm_set_cpsr_bits( uint32_t mask );
 
 #endif

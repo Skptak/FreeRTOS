@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -64,7 +65,6 @@ int suiteTearDown( int numFailures )
 /* ==========================  Helper functions =========================== */
 
 /* =============================  Test Cases ============================== */
-
 
 /**
  * @brief Test xSemaphoreCreateBinary where the call to malloc fails
@@ -223,7 +223,8 @@ void test_macro_xSemaphoreCreateCounting_one_two( void )
 }
 
 /**
- * @brief Test xSemaphoreCreateCounting with uxMaxCount=UINT64_MAX - 1 and uxInitialCount=UINT64_MAX
+ * @brief Test xSemaphoreCreateCounting with uxMaxCount=UINT64_MAX - 1 and
+ * uxInitialCount=UINT64_MAX
  * @details This is an invalid initial condition for a counting semaphore since
  *  uxMaxCount >= uxInitialCount.
  * @coverage xQueueCreateCountingSemaphore
@@ -234,7 +235,8 @@ void test_macro_xSemaphoreCreateCounting_over_upper_bound( void )
      *  uxInitialCount > xMaxCount is invalid */
     fakeAssertExpectFail();
 
-    SemaphoreHandle_t xSemaphore = xSemaphoreCreateCounting( UINT64_MAX - 1, UINT64_MAX );
+    SemaphoreHandle_t xSemaphore = xSemaphoreCreateCounting( UINT64_MAX - 1,
+                                                             UINT64_MAX );
 
     /* verify that configASSERT was called */
     TEST_ASSERT_EQUAL( true, fakeAssertGetFlagAndClear() );
@@ -274,7 +276,8 @@ void test_macro_xSemaphoreCreateCounting_one_zero( void )
  */
 void test_macro_xSemaphoreCreateCounting_zero_zero( void )
 {
-    /* Expect that xSemaphoreCreateCounting will assert because uxMaxCount=0 is invalid */
+    /* Expect that xSemaphoreCreateCounting will assert because uxMaxCount=0 is
+     * invalid */
     fakeAssertExpectFail();
 
     SemaphoreHandle_t xSemaphore = xSemaphoreCreateCounting( 0, 0 );
@@ -291,7 +294,8 @@ void test_macro_xSemaphoreCreateCounting_zero_zero( void )
 
 /**
  * @brief Test xSemaphoreCreateCounting( 100, 50 )
- * @details Test xSemaphoreCreateCounting with uxMaxCount=100 and uxInitialCount=50
+ * @details Test xSemaphoreCreateCounting with uxMaxCount=100 and
+ * uxInitialCount=50
  * @coverage xQueueCreateCountingSemaphore
  */
 void test_macro_xSemaphoreCreateCounting_100_50_success( void )
@@ -315,7 +319,8 @@ void test_macro_xSemaphoreCreateCounting_100_50_success( void )
  */
 void test_macro_xSemaphoreCreateCounting_upper_bound_1( void )
 {
-    SemaphoreHandle_t xSemaphore = xSemaphoreCreateCounting( UINT64_MAX, UINT64_MAX - 1 );
+    SemaphoreHandle_t xSemaphore = xSemaphoreCreateCounting( UINT64_MAX,
+                                                             UINT64_MAX - 1 );
 
     /* validate returned semaphore handle */
     TEST_ASSERT_NOT_EQUAL( NULL, xSemaphore );
@@ -333,7 +338,8 @@ void test_macro_xSemaphoreCreateCounting_upper_bound_1( void )
  */
 void test_macro_xSemaphoreCreateCounting_upper_bound_2( void )
 {
-    SemaphoreHandle_t xSemaphore = xSemaphoreCreateCounting( UINT64_MAX, UINT64_MAX );
+    SemaphoreHandle_t xSemaphore = xSemaphoreCreateCounting( UINT64_MAX,
+                                                             UINT64_MAX );
 
     /* validate returned semaphore handle */
     TEST_ASSERT_NOT_EQUAL( NULL, xSemaphore );
@@ -371,7 +377,8 @@ void test_macro_xSemaphoreCreateCountingStatic_null_fail( void )
 }
 
 /**
- * @brief Test xSemaphoreCreateCountingStatic with uxMaxCount=0 and uxInitialCount=0
+ * @brief Test xSemaphoreCreateCountingStatic with uxMaxCount=0 and
+ * uxInitialCount=0
  * @details This is an invalid counting semaphore since uxMaxCount > 0
  * @coverage xQueueCreateCountingSemaphoreStatic
  */
@@ -396,7 +403,8 @@ void test_macro_xSemaphoreCreateCountingStatic_zero_zero_fail( void )
 }
 
 /**
- * @brief Test xSemaphoreCreateCountingStatic with uxMaxCount=1 and uxInitialCount=2
+ * @brief Test xSemaphoreCreateCountingStatic with uxMaxCount=1 and
+ * uxInitialCount=2
  * @details This is an invalid initial condition for a counting semaphore since
  *  uxMaxCount >= uxInitialCount.
  * @coverage xQueueCreateCountingSemaphoreStatic
@@ -422,7 +430,8 @@ void test_macro_xSemaphoreCreateCountingStatic_one_two( void )
 }
 
 /**
- * @brief Test xSemaphoreCreateCountingStatic with uxMaxCount=1 and uxInitialCount=0
+ * @brief Test xSemaphoreCreateCountingStatic with uxMaxCount=1 and
+ * uxInitialCount=0
  * @details Create a binary semaphore using xSemaphoreCreateCountingStatic
  * @coverage xQueueCreateCountingSemaphoreStatic
  */

@@ -15,7 +15,8 @@
 
 #include <stdint.h>
 
-enum metal_privilege_mode {
+enum metal_privilege_mode
+{
     METAL_PRIVILEGE_USER = 0,
     METAL_PRIVILEGE_SUPERVISOR = 1,
     METAL_PRIVILEGE_MACHINE = 3,
@@ -33,7 +34,8 @@ typedef uint32_t metal_freg_t;
 typedef uint64_t metal_freg_t;
 #endif
 
-struct metal_register_file {
+struct metal_register_file
+{
     metal_xreg_t ra;
     metal_xreg_t sp;
     metal_xreg_t gp;
@@ -113,10 +115,10 @@ struct metal_register_file {
 #endif /* __riscv_flen */
 };
 
-typedef void (*metal_privilege_entry_point_t)(void);
+typedef void ( *metal_privilege_entry_point_t )( void );
 
-void metal_privilege_drop_to_mode(enum metal_privilege_mode mode,
-                                  struct metal_register_file regfile,
-                                  metal_privilege_entry_point_t entry_point);
+void metal_privilege_drop_to_mode( enum metal_privilege_mode mode,
+                                   struct metal_register_file regfile,
+                                   metal_privilege_entry_point_t entry_point );
 
 #endif

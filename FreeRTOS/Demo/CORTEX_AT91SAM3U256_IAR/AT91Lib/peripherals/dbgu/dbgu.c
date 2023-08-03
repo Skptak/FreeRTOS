@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
- *         ATMEL Microcontroller Software Support 
+ *         ATMEL Microcontroller Software Support
  * ----------------------------------------------------------------------------
  * Copyright (c) 2008, Atmel Corporation
  *
@@ -32,8 +32,8 @@
 //------------------------------------------------------------------------------
 
 #include "dbgu.h"
-#include <stdarg.h>
 #include <board.h>
+#include <stdarg.h>
 
 //------------------------------------------------------------------------------
 //         Global functions
@@ -42,27 +42,26 @@
 /// Initializes the DBGU with the given parameters, and enables both the
 /// transmitter and the receiver. The mode parameter contains the value of the
 /// DBGU_MR register.
-/// Value DBGU_STANDARD can be used for mode to get the most common configuration
-/// (i.e. aysnchronous, 8bits, no parity, 1 stop bit, no flow control).
-/// \param mode  Operating mode to configure.
-/// \param baudrate  Desired baudrate (e.g. 115200).
-/// \param mck  Frequency of the system master clock in Hz.
+/// Value DBGU_STANDARD can be used for mode to get the most common
+/// configuration (i.e. aysnchronous, 8bits, no parity, 1 stop bit, no flow
+/// control). \param mode  Operating mode to configure. \param baudrate  Desired
+/// baudrate (e.g. 115200). \param mck  Frequency of the system master clock in
+/// Hz.
 //------------------------------------------------------------------------------
-void DBGU_Configure(
-    unsigned int mode,
-    unsigned int baudrate,
-    unsigned int mck)
-{   
+void DBGU_Configure( unsigned int mode,
+                     unsigned int baudrate,
+                     unsigned int mck )
+{
     // Reset & disable receiver and transmitter, disable interrupts
     AT91C_BASE_DBGU->DBGU_CR = AT91C_US_RSTRX | AT91C_US_RSTTX;
     AT91C_BASE_DBGU->DBGU_IDR = 0xFFFFFFFF;
-    
+
     // Configure baud rate
-    AT91C_BASE_DBGU->DBGU_BRGR = mck / (baudrate * 16);
-    
+    AT91C_BASE_DBGU->DBGU_BRGR = mck / ( baudrate * 16 );
+
     // Configure mode register
     AT91C_BASE_DBGU->DBGU_MR = mode;
-    
+
     // Disable DMA channel
     AT91C_BASE_DBGU->DBGU_PTCR = AT91C_PDC_RXTDIS | AT91C_PDC_TXTDIS;
 
@@ -75,16 +74,18 @@ void DBGU_Configure(
 /// \note This function is synchronous (i.e. uses polling).
 /// \param c  Character to send.
 //------------------------------------------------------------------------------
-void DBGU_PutChar(unsigned char c)
+void DBGU_PutChar( unsigned char c )
 {
     // Wait for the transmitter to be ready
-    while ((AT91C_BASE_DBGU->DBGU_CSR & AT91C_US_TXEMPTY) == 0);
-    
+    while( ( AT91C_BASE_DBGU->DBGU_CSR & AT91C_US_TXEMPTY ) == 0 )
+        ;
+
     // Send character
     AT91C_BASE_DBGU->DBGU_THR = c;
-    
+
     // Wait for the transfer to complete
-    while ((AT91C_BASE_DBGU->DBGU_CSR & AT91C_US_TXEMPTY) == 0);
+    while( ( AT91C_BASE_DBGU->DBGU_CSR & AT91C_US_TXEMPTY ) == 0 )
+        ;
 }
 
 //------------------------------------------------------------------------------
@@ -92,7 +93,7 @@ void DBGU_PutChar(unsigned char c)
 //------------------------------------------------------------------------------
 unsigned int DBGU_IsRxReady()
 {
-    return (AT91C_BASE_DBGU->DBGU_CSR & AT91C_US_RXRDY);
+    return ( AT91C_BASE_DBGU->DBGU_CSR & AT91C_US_RXRDY );
 }
 
 //------------------------------------------------------------------------------
@@ -100,14 +101,15 @@ unsigned int DBGU_IsRxReady()
 /// \note This function is synchronous (i.e. uses polling).
 /// \return Character received.
 //------------------------------------------------------------------------------
-unsigned char DBGU_GetChar(void)
+unsigned char DBGU_GetChar( void )
 {
-    while ((AT91C_BASE_DBGU->DBGU_CSR & AT91C_US_RXRDY) == 0);
+    while( ( AT91C_BASE_DBGU->DBGU_CSR & AT91C_US_RXRDY ) == 0 )
+        ;
     return AT91C_BASE_DBGU->DBGU_RHR;
 }
 
 #ifndef NOFPUT
-#include <stdio.h>
+    #include <stdio.h>
 
 //------------------------------------------------------------------------------
 /// \exclude
@@ -118,15 +120,15 @@ unsigned char DBGU_GetChar(void)
 /// \param The character written if successful, or -1 if the output stream is
 /// not stdout or stderr.
 //------------------------------------------------------------------------------
-signed int fputc(signed int c, FILE *pStream)
+signed int fputc( signed int c, FILE * pStream )
 {
-    if ((pStream == stdout) || (pStream == stderr)) {
-    
-        DBGU_PutChar(c);
+    if( ( pStream == stdout ) || ( pStream == stderr ) )
+    {
+        DBGU_PutChar( c );
         return c;
     }
-    else {
-
+    else
+    {
         return EOF;
     }
 }
@@ -140,14 +142,14 @@ signed int fputc(signed int c, FILE *pStream)
 /// \return Number of characters written if successful, or -1 if the output
 /// stream is not stdout or stderr.
 //------------------------------------------------------------------------------
-signed int fputs(const char *pStr, FILE *pStream)
+signed int fputs( const char * pStr, FILE * pStream )
 {
     signed int num = 0;
 
-    while (*pStr != 0) {
-
-        if (fputc(*pStr, pStream) == -1) {
-
+    while( *pStr != 0 )
+    {
+        if( fputc( *pStr, pStream ) == -1 )
+        {
             return -1;
         }
         num++;
@@ -157,7 +159,7 @@ signed int fputs(const char *pStr, FILE *pStream)
     return num;
 }
 
-#undef putchar
+    #undef putchar
 
 //------------------------------------------------------------------------------
 /// \exclude
@@ -165,10 +167,9 @@ signed int fputs(const char *pStr, FILE *pStream)
 /// \param c  Character to output.
 /// \return The character that was output.
 //------------------------------------------------------------------------------
-signed int putchar(signed int c)
+signed int putchar( signed int c )
 {
-    return fputc(c, stdout);
+    return fputc( c, stdout );
 }
 
-#endif //#ifndef NOFPUT
-
+#endif // #ifndef NOFPUT

@@ -23,16 +23,16 @@
 ** ###################################################################*/
 
 #ifndef __Events_H
-#define __Events_H
+    #define __Events_H
 /* MODULE Events */
 
-#include "PE_Types.h"
-#include "PE_Error.h"
-#include "PE_Const.h"
-#include "IO_Map.h"
-#include "PE_Timer.h"
+    #include "IO_Map.h"
+    #include "PE_Const.h"
+    #include "PE_Error.h"
+    #include "PE_Timer.h"
+    #include "PE_Types.h"
 
-void vTaskTickInterrupt(void);
+void vTaskTickInterrupt( void );
 /*
 ** ===================================================================
 **     Event       :  vTaskTickInterrupt (module Events)
@@ -47,8 +47,7 @@ void vTaskTickInterrupt(void);
 ** ===================================================================
 */
 
-
-void ButtonInterrupt_OnInterrupt(void);
+void ButtonInterrupt_OnInterrupt( void );
 /*
 ** ===================================================================
 **     Event       :  ButtonInterrupt_OnInterrupt (module Events)
@@ -67,7 +66,7 @@ void ButtonInterrupt_OnInterrupt(void);
 /*
 ** ###################################################################
 **
-**     This file was created by UNIS Processor Expert 03.33 for 
+**     This file was created by UNIS Processor Expert 03.33 for
 **     the Motorola HCS12 series of microcontrollers.
 **
 ** ###################################################################

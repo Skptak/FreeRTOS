@@ -27,14 +27,14 @@
  */
 
 #include "FreeRTOS.h"
-#include "queue.h"
 #include "cbmc.h"
-
+#include "queue.h"
 
 void harness()
 {
     uint8_t ucQueueType;
-    StaticQueue_t * pxStaticQueue = ( StaticQueue_t * ) pvPortMalloc( sizeof( StaticQueue_t ) );
+    StaticQueue_t * pxStaticQueue = ( StaticQueue_t * ) pvPortMalloc(
+        sizeof( StaticQueue_t ) );
 
     xQueueCreateMutexStatic( ucQueueType, pxStaticQueue );
 }

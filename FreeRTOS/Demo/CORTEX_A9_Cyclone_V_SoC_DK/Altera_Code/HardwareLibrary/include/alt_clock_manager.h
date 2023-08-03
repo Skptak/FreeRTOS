@@ -4,45 +4,44 @@
  */
 
 /******************************************************************************
-*
-* Copyright 2013 Altera Corporation. All Rights Reserved.
-*
-* Redistribution and use in source and binary forms, with or without
-* modification, are permitted provided that the following conditions are met:
-*
-* 1. Redistributions of source code must retain the above copyright notice,
-* this list of conditions and the following disclaimer.
-*
-* 2. Redistributions in binary form must reproduce the above copyright notice,
-* this list of conditions and the following disclaimer in the documentation
-* and/or other materials provided with the distribution.
-*
-* 3. The name of the author may not be used to endorse or promote products
-* derived from this software without specific prior written permission.
-*
-* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDER "AS IS" AND ANY EXPRESS OR
-* IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
-* MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED. IN NO
-* EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
-* EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
-* OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-* INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-* CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING
-* IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
-* OF SUCH DAMAGE.
-*
-******************************************************************************/
+ *
+ * Copyright 2013 Altera Corporation. All Rights Reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright notice,
+ * this list of conditions and the following disclaimer.
+ *
+ * 2. Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation
+ * and/or other materials provided with the distribution.
+ *
+ * 3. The name of the author may not be used to endorse or promote products
+ * derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDER "AS IS" AND ANY EXPRESS OR
+ * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED. IN NO
+ * EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ *SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ *PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+ *BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
+ *IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ *ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ *POSSIBILITY OF SUCH DAMAGE.
+ *
+ ******************************************************************************/
 
 #ifndef __ALT_CLK_MGR_H__
 #define __ALT_CLK_MGR_H__
 
-#include "hwlib.h"
 #include "alt_clock_group.h"
+#include "hwlib.h"
 
 #ifdef __cplusplus
-extern "C"
-{
-#endif  /* __cplusplus */
+extern "C" {
+#endif /* __cplusplus */
 
 /*! \addtogroup CLK_MGR The Clock Manager API
  *
@@ -57,7 +56,7 @@ extern "C"
  * This type definition is an opaque type definition for clock frequency values
  * in Hz.
  */
-typedef uint32_t    alt_freq_t;
+typedef uint32_t alt_freq_t;
 
 /******************************************************************************/
 /*!
@@ -68,431 +67,428 @@ typedef enum ALT_CLK_e
 {
     /* Clock Input Pins */
     ALT_CLK_IN_PIN_OSC1,
-                                        /*!< \b OSC_CLK_1_HPS
-                                         *   External oscillator input:
-                                         *   * Input Pin
-                                         *   * Clock source to Main PLL
-                                         *   * Clock source to SDRAM PLL
-                                         *     and Peripheral PLL if selected via
-                                         *     register write
-                                         *   * Clock source for clock in safe mode
-                                         */
+    /*!< \b OSC_CLK_1_HPS
+     *   External oscillator input:
+     *   * Input Pin
+     *   * Clock source to Main PLL
+     *   * Clock source to SDRAM PLL
+     *     and Peripheral PLL if selected via
+     *     register write
+     *   * Clock source for clock in safe mode
+     */
 
     ALT_CLK_IN_PIN_OSC2,
-                                        /*!< \b OSC_CLK_2_HPS
-                                         *   External Oscillator input:
-                                         *   * Input Pin
-                                         *   * Optional clock source to SDRAM PLL
-                                         *     and Peripheral PLL if selected
-                                         *   * Typically used for Ethernet
-                                         *     reference clock
-                                         */
-
+    /*!< \b OSC_CLK_2_HPS
+     *   External Oscillator input:
+     *   * Input Pin
+     *   * Optional clock source to SDRAM PLL
+     *     and Peripheral PLL if selected
+     *   * Typically used for Ethernet
+     *     reference clock
+     */
 
     /* FPGA Clock Sources External to HPS */
     ALT_CLK_F2H_PERIPH_REF,
-                                        /*<! Alternate clock source from FPGA
-                                         * for HPS Peripheral PLL. */
+    /*<! Alternate clock source from FPGA
+     * for HPS Peripheral PLL. */
 
     ALT_CLK_F2H_SDRAM_REF,
-                                        /*<! Alternate clock source from FPGA
-                                         * for HPS SDRAM PLL. */
-
+    /*<! Alternate clock source from FPGA
+     * for HPS SDRAM PLL. */
 
     /* Other Clock Sources External to HPS */
     ALT_CLK_IN_PIN_JTAG,
-                                        /*!< \b JTAG_TCK_HPS
-                                         *   * Input Pin
-                                         *   * External HPS JTAG clock input.
-                                         */
+    /*!< \b JTAG_TCK_HPS
+     *   * Input Pin
+     *   * External HPS JTAG clock input.
+     */
 
     ALT_CLK_IN_PIN_ULPI0,
-                                        /*!< \b ULPI0_CLK
-                                         *   ULPI Clock provided by external USB0
-                                         *   PHY
-                                         *   * Input Pin
-                                         */
+    /*!< \b ULPI0_CLK
+     *   ULPI Clock provided by external USB0
+     *   PHY
+     *   * Input Pin
+     */
 
     ALT_CLK_IN_PIN_ULPI1,
-                                        /*!< \b ULPI1_CLK
-                                         *   ULPI Clock provided by external USB1
-                                         *   PHY
-                                         *   * Input Pin
-                                         */
+    /*!< \b ULPI1_CLK
+     *   ULPI Clock provided by external USB1
+     *   PHY
+     *   * Input Pin
+     */
 
     ALT_CLK_IN_PIN_EMAC0_RX,
-                                        /*!< \b EMAC0:RX_CLK
-                                         *   Rx Reference Clock for EMAC0
-                                         *   * Input Pin
-                                         */
+    /*!< \b EMAC0:RX_CLK
+     *   Rx Reference Clock for EMAC0
+     *   * Input Pin
+     */
 
     ALT_CLK_IN_PIN_EMAC1_RX,
-                                        /*!< \b EMAC1:RX_CLK
-                                         *   Rx Reference Clock for EMAC1
-                                         *   * Input Pin
-                                         */
-
+    /*!< \b EMAC1:RX_CLK
+     *   Rx Reference Clock for EMAC1
+     *   * Input Pin
+     */
 
     /* PLLs */
     ALT_CLK_MAIN_PLL,
-                                        /*!< \b main_pll_ref_clkin
-                                         *   Main PLL input reference clock,
-                                         *   used to designate the Main PLL in
-                                         *   PLL clock selections.
-                                         */
+    /*!< \b main_pll_ref_clkin
+     *   Main PLL input reference clock,
+     *   used to designate the Main PLL in
+     *   PLL clock selections.
+     */
 
     ALT_CLK_PERIPHERAL_PLL,
-                                        /*!< \b periph_pll_ref_clkin
-                                         *   Peripheral PLL input reference
-                                         *   clock, used to designate the
-                                         *   Peripheral PLL in PLL clock
-                                         *   selections.
-                                         */
+    /*!< \b periph_pll_ref_clkin
+     *   Peripheral PLL input reference
+     *   clock, used to designate the
+     *   Peripheral PLL in PLL clock
+     *   selections.
+     */
 
     ALT_CLK_SDRAM_PLL,
-                                        /*!< \b sdram_pll_ref_clkin
-                                         *   SDRAM PLL input reference clock,
-                                         *   used to designate the SDRAM PLL in
-                                         *   PLL clock selections.
-                                         */
+    /*!< \b sdram_pll_ref_clkin
+     *   SDRAM PLL input reference clock,
+     *   used to designate the SDRAM PLL in
+     *   PLL clock selections.
+     */
 
-    /* OSC1 Clock Group - The OSC1 clock group contains those clocks which are derived
-     * directly from the osc_clk_1_HPS pin */
+    /* OSC1 Clock Group - The OSC1 clock group contains those clocks which are
+     * derived directly from the osc_clk_1_HPS pin */
     ALT_CLK_OSC1,
-                                        /*!< \b osc1_clk
-                                         *   OSC1 Clock Group - The
-                                         *   OSC1 clock group contains
-                                         *   those clocks which are
-                                         *   derived directly from the
-                                         *   osc_clk_1_HPS pin.
-                                         *   * alias for ALT_CLK_IN_PIN_OSC1
-                                         */
+    /*!< \b osc1_clk
+     *   OSC1 Clock Group - The
+     *   OSC1 clock group contains
+     *   those clocks which are
+     *   derived directly from the
+     *   osc_clk_1_HPS pin.
+     *   * alias for ALT_CLK_IN_PIN_OSC1
+     */
 
     /* Main Clock Group - The following clocks are derived from the Main PLL. */
     ALT_CLK_MAIN_PLL_C0,
-                                        /*!< \b Main PLL C0 Output */
+    /*!< \b Main PLL C0 Output */
 
     ALT_CLK_MAIN_PLL_C1,
-                                        /*!< \b Main PLL C1 Output */
+    /*!< \b Main PLL C1 Output */
 
     ALT_CLK_MAIN_PLL_C2,
-                                        /*!< \b Main PLL C2 Output */
+    /*!< \b Main PLL C2 Output */
 
     ALT_CLK_MAIN_PLL_C3,
-                                        /*!< \b Main PLL C3 Output */
+    /*!< \b Main PLL C3 Output */
 
     ALT_CLK_MAIN_PLL_C4,
-                                        /*!< \b Main PLL C4 Output */
+    /*!< \b Main PLL C4 Output */
 
     ALT_CLK_MAIN_PLL_C5,
-                                        /*!< \b Main PLL C5 Output */
+    /*!< \b Main PLL C5 Output */
 
     ALT_CLK_MPU,
-                                        /*!< \b mpu_clk
-                                         *   Main PLL C0 Output. Clock for MPU
-                                         *   subsystem, including CPU0 and CPU1.
-                                         *   * Alias for \e ALT_CLK_MAIN_PLL_C0
-                                         */
+    /*!< \b mpu_clk
+     *   Main PLL C0 Output. Clock for MPU
+     *   subsystem, including CPU0 and CPU1.
+     *   * Alias for \e ALT_CLK_MAIN_PLL_C0
+     */
 
     ALT_CLK_MPU_L2_RAM,
-                                        /*!< \b mpu_l2_ram_clk
-                                         *   Clock for MPU level 2 (L2) RAM
-                                         */
+    /*!< \b mpu_l2_ram_clk
+     *   Clock for MPU level 2 (L2) RAM
+     */
 
     ALT_CLK_MPU_PERIPH,
-                                        /*!< \b mpu_periph_clk
-                                         *   Clock for MPU snoop control unit
-                                         *   (SCU) peripherals, such as the
-                                         *   general interrupt controller (GIC)
-                                         */
+    /*!< \b mpu_periph_clk
+     *   Clock for MPU snoop control unit
+     *   (SCU) peripherals, such as the
+     *   general interrupt controller (GIC)
+     */
 
     ALT_CLK_L3_MAIN,
-                                        /*!< \b main_clk
-                                         *   Main PLL C1 Output
-                                         *   * Alias for \e ALT_CLK_MAIN_PLL_C1
-                                         */
+    /*!< \b main_clk
+     *   Main PLL C1 Output
+     *   * Alias for \e ALT_CLK_MAIN_PLL_C1
+     */
 
     ALT_CLK_L3_MP,
-                                        /*!< \b l3_mp_clk
-                                         *   Clock for L3 Master Peripheral Switch
-                                         */
+    /*!< \b l3_mp_clk
+     *   Clock for L3 Master Peripheral Switch
+     */
 
     ALT_CLK_L3_SP,
-                                        /*!< \b l3_sp_clk
-                                         *   Clock for L3 Slave Peripheral Switch
-                                         */
+    /*!< \b l3_sp_clk
+     *   Clock for L3 Slave Peripheral Switch
+     */
 
     ALT_CLK_L4_MAIN,
-                                        /*!< \b l4_main_clk
-                                         *   Clock for L4 main bus
-                                         *   * Clock for DMA
-                                         *   * Clock for SPI masters
-                                         */
+    /*!< \b l4_main_clk
+     *   Clock for L4 main bus
+     *   * Clock for DMA
+     *   * Clock for SPI masters
+     */
 
     ALT_CLK_L4_MP,
-                                        /*!< \b l4_mp_clk
-                                         *   Clock for L4 master peripherals (MP) bus
-                                         */
+    /*!< \b l4_mp_clk
+     *   Clock for L4 master peripherals (MP) bus
+     */
 
     ALT_CLK_L4_SP,
-                                        /*!< \b l4_sp_clk
-                                         *   Clock for L4 slave peripherals (SP) bus
-                                         */
+    /*!< \b l4_sp_clk
+     *   Clock for L4 slave peripherals (SP) bus
+     */
 
     ALT_CLK_DBG_BASE,
-                                        /*!< \b dbg_base_clk
-                                         *   Main PLL C2 Output
-                                         *   * Alias for \e ALT_CLK_MAIN_PLL_C2
-                                         */
+    /*!< \b dbg_base_clk
+     *   Main PLL C2 Output
+     *   * Alias for \e ALT_CLK_MAIN_PLL_C2
+     */
 
     ALT_CLK_DBG_AT,
-                                        /*!< \b dbg_at_clk
-                                         *   Clock for CoreSight debug Advanced
-                                         *   Microcontroller Bus Architecture
-                                         *   (AMBA) Trace Bus (ATB)
-                                         */
+    /*!< \b dbg_at_clk
+     *   Clock for CoreSight debug Advanced
+     *   Microcontroller Bus Architecture
+     *   (AMBA) Trace Bus (ATB)
+     */
 
     ALT_CLK_DBG_TRACE,
-                                        /*!< \b dbg_trace_clk
-                                         *   Clock for CoreSight debug Trace
-                                         *   Port Interface Unit (TPIU)
-                                         */
+    /*!< \b dbg_trace_clk
+     *   Clock for CoreSight debug Trace
+     *   Port Interface Unit (TPIU)
+     */
 
     ALT_CLK_DBG_TIMER,
-                                        /*!< \b dbg_timer_clk
-                                         *   Clock for the trace timestamp
-                                         *   generator
-                                         */
+    /*!< \b dbg_timer_clk
+     *   Clock for the trace timestamp
+     *   generator
+     */
 
     ALT_CLK_DBG,
-                                        /*!< \b dbg_clk
-                                         *   Clock for Debug Access Port (DAP)
-                                         *   and debug Advanced Peripheral Bus
-                                         *   (APB)
-                                         */
+    /*!< \b dbg_clk
+     *   Clock for Debug Access Port (DAP)
+     *   and debug Advanced Peripheral Bus
+     *   (APB)
+     */
 
     ALT_CLK_MAIN_QSPI,
-                                        /*!< \b main_qspi_clk
-                                         *   Main PLL C3 Output. Quad SPI flash
-                                         *   internal logic clock.
-                                         *   * Alias for \e ALT_CLK_MAIN_PLL_C3
-                                         */
+    /*!< \b main_qspi_clk
+     *   Main PLL C3 Output. Quad SPI flash
+     *   internal logic clock.
+     *   * Alias for \e ALT_CLK_MAIN_PLL_C3
+     */
 
     ALT_CLK_MAIN_NAND_SDMMC,
-                                        /*!< \b main_nand_sdmmc_clk
-                                         *   Main PLL C4 Output. Input clock to
-                                         *   flash controller clocks block.
-                                         *   * Alias for \e ALT_CLK_MAIN_PLL_C4
-                                         */
+    /*!< \b main_nand_sdmmc_clk
+     *   Main PLL C4 Output. Input clock to
+     *   flash controller clocks block.
+     *   * Alias for \e ALT_CLK_MAIN_PLL_C4
+     */
 
     ALT_CLK_CFG,
-                                        /*!< \b cfg_clk
-                                         *   FPGA manager configuration clock.
-                                         */
+    /*!< \b cfg_clk
+     *   FPGA manager configuration clock.
+     */
 
     ALT_CLK_H2F_USER0,
-                                        /*!< \b h2f_user0_clock
-                                         *   Clock to FPGA fabric
-                                         */
+    /*!< \b h2f_user0_clock
+     *   Clock to FPGA fabric
+     */
 
-
-    /* Peripherals Clock Group - The following clocks are derived from the Peripheral PLL */
+    /* Peripherals Clock Group - The following clocks are derived from the
+     * Peripheral PLL */
     ALT_CLK_PERIPHERAL_PLL_C0,
-                                        /*!< \b Peripheral PLL C0 Output */
+    /*!< \b Peripheral PLL C0 Output */
 
     ALT_CLK_PERIPHERAL_PLL_C1,
-                                        /*!< \b Peripheral PLL C1 Output */
+    /*!< \b Peripheral PLL C1 Output */
 
     ALT_CLK_PERIPHERAL_PLL_C2,
-                                        /*!< \b Peripheral PLL C2 Output */
+    /*!< \b Peripheral PLL C2 Output */
 
     ALT_CLK_PERIPHERAL_PLL_C3,
-                                        /*!< \b Peripheral PLL C3 Output */
+    /*!< \b Peripheral PLL C3 Output */
 
     ALT_CLK_PERIPHERAL_PLL_C4,
-                                        /*!< \b Peripheral PLL C4 Output */
+    /*!< \b Peripheral PLL C4 Output */
 
     ALT_CLK_PERIPHERAL_PLL_C5,
-                                        /*!< \b Peripheral PLL C5 Output */
+    /*!< \b Peripheral PLL C5 Output */
 
     ALT_CLK_USB_MP,
-                                        /*!< \b usb_mp_clk
-                                         *   Clock for USB
-                                         */
+    /*!< \b usb_mp_clk
+     *   Clock for USB
+     */
 
     ALT_CLK_SPI_M,
-                                        /*!< \b spi_m_clk
-                                         *   Clock for L4 SPI master bus
-                                         */
+    /*!< \b spi_m_clk
+     *   Clock for L4 SPI master bus
+     */
 
     ALT_CLK_QSPI,
-                                        /*!< \b qspi_clk
-                                         *   Clock for Quad SPI
-                                         */
+    /*!< \b qspi_clk
+     *   Clock for Quad SPI
+     */
 
     ALT_CLK_NAND_X,
-                                        /*!< \b nand_x_clk
-                                         *   NAND flash controller master and
-                                         *   slave clock
-                                         */
+    /*!< \b nand_x_clk
+     *   NAND flash controller master and
+     *   slave clock
+     */
 
     ALT_CLK_NAND,
-                                        /*!< \b nand_clk
-                                         *   Main clock for NAND flash
-                                         *   controller
-                                         */
+    /*!< \b nand_clk
+     *   Main clock for NAND flash
+     *   controller
+     */
 
     ALT_CLK_SDMMC,
-                                        /*!< \b sdmmc_clk
-                                         *   Clock for SD/MMC logic input clock
-                                         */
+    /*!< \b sdmmc_clk
+     *   Clock for SD/MMC logic input clock
+     */
 
     ALT_CLK_EMAC0,
-                                        /*!< \b emac0_clk
-                                         *   EMAC 0 clock - Peripheral PLL C0
-                                         *   Output
-                                         *   * Alias for \e ALT_CLK_PERIPHERAL_PLL_C0
-                                         */
+    /*!< \b emac0_clk
+     *   EMAC 0 clock - Peripheral PLL C0
+     *   Output
+     *   * Alias for \e ALT_CLK_PERIPHERAL_PLL_C0
+     */
 
     ALT_CLK_EMAC1,
-                                        /*!< \b emac1_clk
-                                         *   EMAC 1 clock - Peripheral PLL C1
-                                         *   Output
-                                         *   * Alias for \e ALT_CLK_PERIPHERAL_PLL_C1
-                                         */
+    /*!< \b emac1_clk
+     *   EMAC 1 clock - Peripheral PLL C1
+     *   Output
+     *   * Alias for \e ALT_CLK_PERIPHERAL_PLL_C1
+     */
 
     ALT_CLK_CAN0,
-                                        /*!< \b can0_clk
-                                         *   Controller area network (CAN)
-                                         *   controller 0 clock
-                                         */
+    /*!< \b can0_clk
+     *   Controller area network (CAN)
+     *   controller 0 clock
+     */
 
     ALT_CLK_CAN1,
-                                        /*!< \b can1_clk
-                                         *   Controller area network (CAN)
-                                         *   controller 1 clock
-                                         */
+    /*!< \b can1_clk
+     *   Controller area network (CAN)
+     *   controller 1 clock
+     */
 
     ALT_CLK_GPIO_DB,
-                                        /*!< \b gpio_db_clk
-                                         *   Debounce clock for GPIO0, GPIO1,
-                                         *   and GPIO2
-                                         */
+    /*!< \b gpio_db_clk
+     *   Debounce clock for GPIO0, GPIO1,
+     *   and GPIO2
+     */
 
     ALT_CLK_H2F_USER1,
-                                        /*!< \b h2f_user1_clock
-                                         *   Clock to FPGA fabric - Peripheral
-                                         *   PLL C5 Output
-                                         *   * Alias for \e ALT_CLK_PERIPHERAL_PLL_C5
-                                         */
+    /*!< \b h2f_user1_clock
+     *   Clock to FPGA fabric - Peripheral
+     *   PLL C5 Output
+     *   * Alias for \e ALT_CLK_PERIPHERAL_PLL_C5
+     */
 
-
-    /* SDRAM Clock Group - The following clocks are derived from the SDRAM PLL */
+    /* SDRAM Clock Group - The following clocks are derived from the SDRAM PLL
+     */
     ALT_CLK_SDRAM_PLL_C0,
-                                        /*!< \b SDRAM PLL C0 Output */
+    /*!< \b SDRAM PLL C0 Output */
 
     ALT_CLK_SDRAM_PLL_C1,
-                                        /*!< \b SDRAM PLL C1 Output */
+    /*!< \b SDRAM PLL C1 Output */
 
     ALT_CLK_SDRAM_PLL_C2,
-                                        /*!< \b SDRAM PLL C2 Output */
+    /*!< \b SDRAM PLL C2 Output */
 
     ALT_CLK_SDRAM_PLL_C3,
-                                        /*!< \b SDRAM PLL C3 Output */
+    /*!< \b SDRAM PLL C3 Output */
 
     ALT_CLK_SDRAM_PLL_C4,
-                                        /*!< \b SDRAM PLL C4 Output */
+    /*!< \b SDRAM PLL C4 Output */
 
     ALT_CLK_SDRAM_PLL_C5,
-                                        /*!< \b SDRAM PLL C5 Output */
+    /*!< \b SDRAM PLL C5 Output */
 
     ALT_CLK_DDR_DQS,
-                                        /*!< \b ddr_dqs_clk
-                                         *   Clock for MPFE, single-port
-                                         *   controller, CSR access, and PHY -
-                                         *   SDRAM PLL C0 Output
-                                         *   * Alias for \e ALT_CLK_SDRAM_PLL_C0
-                                         */
+    /*!< \b ddr_dqs_clk
+     *   Clock for MPFE, single-port
+     *   controller, CSR access, and PHY -
+     *   SDRAM PLL C0 Output
+     *   * Alias for \e ALT_CLK_SDRAM_PLL_C0
+     */
 
     ALT_CLK_DDR_2X_DQS,
-                                        /*!< \b ddr_2x_dqs_clk
-                                         *    Clock for PHY - SDRAM PLL C1 Output
-                                         *   * Alias for \e ALT_CLK_SDRAM_PLL_C1
-                                         */
+    /*!< \b ddr_2x_dqs_clk
+     *    Clock for PHY - SDRAM PLL C1 Output
+     *   * Alias for \e ALT_CLK_SDRAM_PLL_C1
+     */
 
     ALT_CLK_DDR_DQ,
-                                        /*!< \b ddr_dq_clk
-                                         *   Clock for PHY - SDRAM PLL C2 Output
-                                         *   * Alias for \e ALT_CLK_SDRAM_PLL_C2
-                                         */
+    /*!< \b ddr_dq_clk
+     *   Clock for PHY - SDRAM PLL C2 Output
+     *   * Alias for \e ALT_CLK_SDRAM_PLL_C2
+     */
 
     ALT_CLK_H2F_USER2,
-                                        /*!< \b h2f_user2_clock
-                                         *   Clock to FPGA fabric - SDRAM PLL C5
-                                         *   Output
-                                         *   * Alias for \e ALT_CLK_SDRAM_PLL_C5
-                                         */
+    /*!< \b h2f_user2_clock
+     *   Clock to FPGA fabric - SDRAM PLL C5
+     *   Output
+     *   * Alias for \e ALT_CLK_SDRAM_PLL_C5
+     */
 
     /* Clock Output Pins */
     ALT_CLK_OUT_PIN_EMAC0_TX,
-                                       /*!< \b EMAC0:TX_CLK
-                                        *   Tx Reference Clock for EMAC0
-                                        *   * Output Pin
-                                        */
+    /*!< \b EMAC0:TX_CLK
+     *   Tx Reference Clock for EMAC0
+     *   * Output Pin
+     */
 
     ALT_CLK_OUT_PIN_EMAC1_TX,
-                                       /*!< \b EMAC1:TX_CLK
-                                        *   Tx Reference Clock for EMAC1
-                                        *   * Output Pin
-                                        */
+    /*!< \b EMAC1:TX_CLK
+     *   Tx Reference Clock for EMAC1
+     *   * Output Pin
+     */
 
     ALT_CLK_OUT_PIN_SDMMC,
-                                       /*!< \b SDMMC:CLK
-                                        *   SD/MMC Card Clock
-                                        *   * Output Pin
-                                        */
+    /*!< \b SDMMC:CLK
+     *   SD/MMC Card Clock
+     *   * Output Pin
+     */
 
     ALT_CLK_OUT_PIN_I2C0_SCL,
-                                       /*!< \b I2C0:SCL
-                                        *   I2C Clock for I2C0
-                                        *   * Output Pin
-                                        */
+    /*!< \b I2C0:SCL
+     *   I2C Clock for I2C0
+     *   * Output Pin
+     */
 
     ALT_CLK_OUT_PIN_I2C1_SCL,
-                                       /*!< \b I2C1:SCL
-                                        *   I2C Clock for I2C1
-                                        *   * Output Pin
-                                        */
+    /*!< \b I2C1:SCL
+     *   I2C Clock for I2C1
+     *   * Output Pin
+     */
 
     ALT_CLK_OUT_PIN_I2C2_SCL,
-                                       /*!< \b I2C2:SCL
-                                        *   I2C Clock for I2C2/2 wire
-                                        *   * Output Pin
-                                        */
+    /*!< \b I2C2:SCL
+     *   I2C Clock for I2C2/2 wire
+     *   * Output Pin
+     */
 
     ALT_CLK_OUT_PIN_I2C3_SCL,
-                                       /*!< \b I2C3:SCL
-                                        *   I2C Clock for I2C1/2 wire
-                                        *   * Output Pin
-                                        */
+    /*!< \b I2C3:SCL
+     *   I2C Clock for I2C1/2 wire
+     *   * Output Pin
+     */
 
     ALT_CLK_OUT_PIN_SPIM0,
-                                       /*!< \b SPIM0:CLK
-                                        *   SPI Clock
-                                        *   * Output Pin
-                                        */
+    /*!< \b SPIM0:CLK
+     *   SPI Clock
+     *   * Output Pin
+     */
 
     ALT_CLK_OUT_PIN_SPIM1,
-                                       /*!< \b SPIM1:CLK
-                                        *   SPI Clock
-                                        *   * Output Pin
-                                        */
+    /*!< \b SPIM1:CLK
+     *   SPI Clock
+     *   * Output Pin
+     */
 
     ALT_CLK_OUT_PIN_QSPI,
-                                       /*!< \b QSPI:CLK
-                                        *   QSPI Flash Clock
-                                        *   * Output Pin
-                                        */
+    /*!< \b QSPI:CLK
+     *   QSPI Flash Clock
+     *   * Output Pin
+     */
 
     ALT_CLK_UNKNOWN
 } ALT_CLK_t;
@@ -513,36 +509,36 @@ typedef enum ALT_CLK_e
  */
 typedef enum ALT_CLK_PLL_LOCK_STATUS_e
 {
-    ALT_MAIN_PLL_LOCK_ACHV    = 0x00000001, /*!< This condition is set if the Main
-                                             *   PLL has achieved lock at least once
-                                             *   since this condition was last
-                                             *   cleared.
-                                             */
-    ALT_PERIPH_PLL_LOCK_ACHV  = 0x00000002, /*!< This condition is set if the Peripheral
-                                             *   PLL has achieved lock at least once
-                                             *   since this condition was last
-                                             *   cleared.
-                                             */
-    ALT_SDR_PLL_LOCK_ACHV     = 0x00000004, /*!< This condition is set if the SDRAM
-                                             *   PLL has achieved lock at least once
-                                             *   since this condition was last
-                                             *   cleared.
-                                             */
-    ALT_MAIN_PLL_LOCK_LOST    = 0x00000008, /*!< This condition is set if the Main
-                                             *   PLL has lost lock at least once
-                                             *   since this condition was last
-                                             *   cleared.
-                                             */
-    ALT_PERIPH_PLL_LOCK_LOST  = 0x00000010, /*!< This condition is set if the Peripheral
-                                             *   PLL has lost lock at least once
-                                             *   since this condition was last
-                                             *   cleared.
-                                             */
-    ALT_SDR_PLL_LOCK_LOST     = 0x00000020  /*!< This condition is set if the SDRAM
-                                             *   PLL has lost lock at least once
-                                             *   since this condition was last
-                                             *   cleared.
-                                             */
+    ALT_MAIN_PLL_LOCK_ACHV = 0x00000001, /*!< This condition is set if the Main
+                                          *   PLL has achieved lock at least
+                                          * once since this condition was last
+                                          *   cleared.
+                                          */
+    ALT_PERIPH_PLL_LOCK_ACHV = 0x00000002, /*!< This condition is set if the
+                                            * Peripheral PLL has achieved lock
+                                            * at least once since this condition
+                                            * was last cleared.
+                                            */
+    ALT_SDR_PLL_LOCK_ACHV = 0x00000004,  /*!< This condition is set if the SDRAM
+                                          *   PLL has achieved lock at least once
+                                          *   since this condition was last
+                                          *   cleared.
+                                          */
+    ALT_MAIN_PLL_LOCK_LOST = 0x00000008, /*!< This condition is set if the Main
+                                          *   PLL has lost lock at least once
+                                          *   since this condition was last
+                                          *   cleared.
+                                          */
+    ALT_PERIPH_PLL_LOCK_LOST = 0x00000010, /*!< This condition is set if the
+                                            * Peripheral PLL has lost lock at
+                                            * least once since this condition
+                                            * was last cleared.
+                                            */
+    ALT_SDR_PLL_LOCK_LOST = 0x00000020 /*!< This condition is set if the SDRAM
+                                        *   PLL has lost lock at least once
+                                        *   since this condition was last
+                                        *   cleared.
+                                        */
 } ALT_CLK_PLL_LOCK_STATUS_t;
 
 /******************************************************************************/
@@ -556,15 +552,16 @@ typedef enum ALT_CLK_PLL_LOCK_STATUS_e
  * assertion conditions.
  *
  * \param       lock_stat_mask
- *              Specifies the PLL lock status conditions to clear. \e lock_stat_mask
- *              is a mask of logically OR'ed \ref ALT_CLK_PLL_LOCK_STATUS_t
+ *              Specifies the PLL lock status conditions to clear. \e
+ * lock_stat_mask is a mask of logically OR'ed \ref ALT_CLK_PLL_LOCK_STATUS_t
  *              values designating the PLL lock conditions to clear.
  *
  * \retval      ALT_E_SUCCESS   Successful status.
  * \retval      ALT_E_BAD_ARG   The \e lock_stat_mask argument contains an
  *                              unknown condition value.
  */
-ALT_STATUS_CODE alt_clk_lock_status_clear(ALT_CLK_PLL_LOCK_STATUS_t lock_stat_mask);
+ALT_STATUS_CODE alt_clk_lock_status_clear(
+    ALT_CLK_PLL_LOCK_STATUS_t lock_stat_mask );
 
 /******************************************************************************/
 /*!
@@ -576,7 +573,7 @@ ALT_STATUS_CODE alt_clk_lock_status_clear(ALT_CLK_PLL_LOCK_STATUS_t lock_stat_ma
  * the \ref ALT_CLK_PLL_LOCK_STATUS_t mask bits. If the corresponding bit is set
  * then the condition is asserted.
  */
-uint32_t alt_clk_lock_status_get(void);
+uint32_t alt_clk_lock_status_get( void );
 
 /******************************************************************************/
 /*!
@@ -599,7 +596,7 @@ uint32_t alt_clk_lock_status_get(void);
  *       bits to determine if the PLL is locked or not.
  * \endinternal
  */
-ALT_STATUS_CODE alt_clk_pll_is_locked(ALT_CLK_t pll);
+ALT_STATUS_CODE alt_clk_pll_is_locked( ALT_CLK_t pll );
 
 /*! @} */
 
@@ -670,7 +667,7 @@ typedef enum ALT_CLK_SAFE_DOMAIN_e
  * \retval      ALT_E_SUCCESS   The operation was succesful.
  * \retval      ALT_E_ERROR     The operation failed.
  */
-ALT_STATUS_CODE alt_clk_safe_mode_clear(void);
+ALT_STATUS_CODE alt_clk_safe_mode_clear( void );
 
 /******************************************************************************/
 /*!
@@ -682,7 +679,7 @@ ALT_STATUS_CODE alt_clk_safe_mode_clear(void);
  * \retval      TRUE            The safe mode clock domain is in safe mode.
  * \retval      FALSE           The safe mode clock domain is not in safe mode.
  */
-bool alt_clk_is_in_safe_mode(ALT_CLK_SAFE_DOMAIN_t clk_domain);
+bool alt_clk_is_in_safe_mode( ALT_CLK_SAFE_DOMAIN_t clk_domain );
 
 /*! @} */
 
@@ -723,7 +720,7 @@ bool alt_clk_is_in_safe_mode(ALT_CLK_SAFE_DOMAIN_t clk_domain);
  * \retval      ALT_E_BAD_ARG   The \e pll argument specified a non PLL clock
  *                              value.
  */
-ALT_STATUS_CODE alt_clk_pll_bypass_disable(ALT_CLK_t pll);
+ALT_STATUS_CODE alt_clk_pll_bypass_disable( ALT_CLK_t pll );
 
 /******************************************************************************/
 /*!
@@ -744,8 +741,7 @@ ALT_STATUS_CODE alt_clk_pll_bypass_disable(ALT_CLK_t pll);
  * \retval      ALT_E_INV_OPTION    TRUE is an invalid option for
  *                                  \e use_input_mux with the \e pll selection.
  */
-ALT_STATUS_CODE alt_clk_pll_bypass_enable(ALT_CLK_t pll,
-                                          bool use_input_mux);
+ALT_STATUS_CODE alt_clk_pll_bypass_enable( ALT_CLK_t pll, bool use_input_mux );
 
 /******************************************************************************/
 /*!
@@ -765,7 +761,7 @@ ALT_STATUS_CODE alt_clk_pll_bypass_enable(ALT_CLK_t pll,
  * \retval      ALT_E_BAD_ARG   The \e pll argument designates a non PLL clock
  *                              value.
  */
-ALT_STATUS_CODE alt_clk_pll_is_bypassed(ALT_CLK_t pll);
+ALT_STATUS_CODE alt_clk_pll_is_bypassed( ALT_CLK_t pll );
 
 /*! @} */
 
@@ -816,8 +812,8 @@ ALT_STATUS_CODE alt_clk_pll_is_bypassed(ALT_CLK_t pll);
  */
 /******************************************************************************/
 /*!
- * Disable the specified clock. Once the clock is disabled, its clock signal does
- * not propogate to its clocked elements.
+ * Disable the specified clock. Once the clock is disabled, its clock signal
+ * does not propogate to its clocked elements.
  *
  * \param       clk
  *              The clock to disable.
@@ -827,7 +823,7 @@ ALT_STATUS_CODE alt_clk_pll_is_bypassed(ALT_CLK_t pll);
  * \retval      ALT_E_BAD_ARG   The \e clk argument designates a non gated clock
  *                              value.
  */
-ALT_STATUS_CODE alt_clk_clock_disable(ALT_CLK_t clk);
+ALT_STATUS_CODE alt_clk_clock_disable( ALT_CLK_t clk );
 
 /******************************************************************************/
 /*!
@@ -842,7 +838,7 @@ ALT_STATUS_CODE alt_clk_clock_disable(ALT_CLK_t clk);
  * \retval      ALT_E_BAD_ARG   The \e clk argument designates a non gated clock
  *                              value.
  */
-ALT_STATUS_CODE alt_clk_clock_enable(ALT_CLK_t clk);
+ALT_STATUS_CODE alt_clk_clock_enable( ALT_CLK_t clk );
 
 /******************************************************************************/
 /*!
@@ -856,7 +852,7 @@ ALT_STATUS_CODE alt_clk_clock_enable(ALT_CLK_t clk);
  * \retval      ALT_E_BAD_ARG   The \e clk argument designates a non gated clock
  *                              value.
  */
-ALT_STATUS_CODE alt_clk_is_enabled(ALT_CLK_t clk);
+ALT_STATUS_CODE alt_clk_is_enabled( ALT_CLK_t clk );
 
 /*! @} */
 
@@ -924,7 +920,7 @@ ALT_STATUS_CODE alt_clk_is_enabled(ALT_CLK_t clk);
  *
  * \returns     The clock's currently selected input reference clock source.
  */
-ALT_CLK_t alt_clk_source_get(ALT_CLK_t clk);
+ALT_CLK_t alt_clk_source_get( ALT_CLK_t clk );
 
 /******************************************************************************/
 /*!
@@ -942,12 +938,10 @@ ALT_CLK_t alt_clk_source_get(ALT_CLK_t clk);
  * \retval      ALT_E_BAD_ARG       The \e clk argument designates a clock that
  *                                  does not have a selectable input reference
  *                                  clock source.
- * \retval      ALT_E_INV_OPTION    The \e ref_clk argument designates a clock that
- *                                  is an invalid reference clock source for the
- *                                  specified clock.
+ * \retval      ALT_E_INV_OPTION    The \e ref_clk argument designates a clock
+ * that is an invalid reference clock source for the specified clock.
  */
-ALT_STATUS_CODE alt_clk_source_set(ALT_CLK_t clk,
-                                   ALT_CLK_t ref_clk);
+ALT_STATUS_CODE alt_clk_source_set( ALT_CLK_t clk, ALT_CLK_t ref_clk );
 
 /*! @} */
 
@@ -980,15 +974,16 @@ ALT_STATUS_CODE alt_clk_source_set(ALT_CLK_t clk,
  *
  * \retval      ALT_E_SUCCESS   The operation was succesful.
  * \retval      ALT_E_ERROR     The operation failed.
- * \retval      ALT_E_BAD_ARG   A bad argument value was passed. Either the \e clk
+ * \retval      ALT_E_BAD_ARG   A bad argument value was passed. Either the \e
+ clk
  *                              argument is bad or not a valid external clock
  *                              source
- * \retval      ALT_E_ARG_RANGE The frequency value violates the range constraints
+ * \retval      ALT_E_ARG_RANGE The frequency value violates the range
+ constraints
  *                              for the specified clock.
 
  */
-ALT_STATUS_CODE alt_clk_ext_clk_freq_set(ALT_CLK_t clk,
-                                         alt_freq_t freq);
+ALT_STATUS_CODE alt_clk_ext_clk_freq_set( ALT_CLK_t clk, alt_freq_t freq );
 
 /******************************************************************************/
 /*!
@@ -1008,7 +1003,7 @@ ALT_STATUS_CODE alt_clk_ext_clk_freq_set(ALT_CLK_t clk,
  *              The frequency of the external clock in Hz.
  *
  */
-alt_freq_t alt_clk_ext_clk_freq_get(ALT_CLK_t clk);
+alt_freq_t alt_clk_ext_clk_freq_get( ALT_CLK_t clk );
 
 /******************************************************************************/
 /*!
@@ -1017,20 +1012,20 @@ alt_freq_t alt_clk_ext_clk_freq_get(ALT_CLK_t clk);
  */
 typedef struct ALT_CLK_PLL_CFG_s
 {
-    ALT_CLK_t           ref_clk;        /*!< PLL Reference Clock Source */
-    uint32_t            mult;           /*!< VCO Frequency Configuration -
-                                         *   Multiplier (M) value, range 1 to 4096
-                                         */
-    uint32_t            div;            /*!< VCO Frequency Configuration -
-                                         *   Divider (N) value, range 1 to 64
-                                         */
-    uint32_t            cntrs[6];       /*!< Post-Scale Counters (C0 - C5) -
-                                         *   range 1 to 512
-                                         */
-    uint32_t            pshift[6];      /*!< Phase Shift - 1/8 (45 degrees) of
-                                         *   negative phase shift per increment,
-                                         *   range 0 to 4096
-                                         */
+    ALT_CLK_t ref_clk;    /*!< PLL Reference Clock Source */
+    uint32_t mult;        /*!< VCO Frequency Configuration -
+                           *   Multiplier (M) value, range 1 to 4096
+                           */
+    uint32_t div;         /*!< VCO Frequency Configuration -
+                           *   Divider (N) value, range 1 to 64
+                           */
+    uint32_t cntrs[ 6 ];  /*!< Post-Scale Counters (C0 - C5) -
+                           *   range 1 to 512
+                           */
+    uint32_t pshift[ 6 ]; /*!< Phase Shift - 1/8 (45 degrees) of
+                           *   negative phase shift per increment,
+                           *   range 0 to 4096
+                           */
 } ALT_CLK_PLL_CFG_t;
 
 /******************************************************************************/
@@ -1047,8 +1042,8 @@ typedef struct ALT_CLK_PLL_CFG_s
  * \retval      ALT_E_SUCCESS   The operation was succesful.
  * \retval      ALT_E_ERROR     The operation failed.
  */
-ALT_STATUS_CODE alt_clk_pll_cfg_get(ALT_CLK_t pll,
-                                    ALT_CLK_PLL_CFG_t* pll_cfg);
+ALT_STATUS_CODE alt_clk_pll_cfg_get( ALT_CLK_t pll,
+                                     ALT_CLK_PLL_CFG_t * pll_cfg );
 
 /******************************************************************************/
 /*!
@@ -1065,8 +1060,8 @@ ALT_STATUS_CODE alt_clk_pll_cfg_get(ALT_CLK_t pll,
  * \retval      ALT_E_SUCCESS   The operation was succesful.
  * \retval      ALT_E_ERROR     The operation failed.
  */
-ALT_STATUS_CODE alt_clk_pll_cfg_set(ALT_CLK_t pll,
-                                    const ALT_CLK_PLL_CFG_t* pll_cfg);
+ALT_STATUS_CODE alt_clk_pll_cfg_set( ALT_CLK_t pll,
+                                     const ALT_CLK_PLL_CFG_t * pll_cfg );
 
 /******************************************************************************/
 /*!
@@ -1086,9 +1081,9 @@ ALT_STATUS_CODE alt_clk_pll_cfg_set(ALT_CLK_t pll,
  * \retval      ALT_E_SUCCESS   The operation was succesful.
  * \retval      ALT_E_ERROR     The operation failed.
  */
-ALT_STATUS_CODE alt_clk_pll_vco_cfg_get(ALT_CLK_t pll,
-                                        uint32_t* mult,
-                                        uint32_t* div);
+ALT_STATUS_CODE alt_clk_pll_vco_cfg_get( ALT_CLK_t pll,
+                                         uint32_t * mult,
+                                         uint32_t * div );
 
 /******************************************************************************/
 /*!
@@ -1107,9 +1102,9 @@ ALT_STATUS_CODE alt_clk_pll_vco_cfg_get(ALT_CLK_t pll,
  * \retval      ALT_E_SUCCESS   The operation was succesful.
  * \retval      ALT_E_ERROR     The operation failed.
  */
-ALT_STATUS_CODE alt_clk_pll_vco_cfg_set(ALT_CLK_t pll,
-                                        uint32_t mult,
-                                        uint32_t div);
+ALT_STATUS_CODE alt_clk_pll_vco_cfg_set( ALT_CLK_t pll,
+                                         uint32_t mult,
+                                         uint32_t div );
 
 /******************************************************************************/
 /*!
@@ -1129,8 +1124,7 @@ ALT_STATUS_CODE alt_clk_pll_vco_cfg_set(ALT_CLK_t pll,
  *                              the \e pll argument is invalid or a bad
  *                              \e freq pointer value was passed.
  */
-ALT_STATUS_CODE alt_clk_pll_vco_freq_get(ALT_CLK_t pll,
-                                         alt_freq_t* freq);
+ALT_STATUS_CODE alt_clk_pll_vco_freq_get( ALT_CLK_t pll, alt_freq_t * freq );
 
 /******************************************************************************/
 /*!
@@ -1141,7 +1135,7 @@ ALT_STATUS_CODE alt_clk_pll_vco_freq_get(ALT_CLK_t pll,
  *
  * \returns     The current guard band range in effect for the PLL.
  */
-uint32_t alt_clk_pll_guard_band_get(ALT_CLK_t pll);
+uint32_t alt_clk_pll_guard_band_get( ALT_CLK_t pll );
 
 /******************************************************************************/
 /*!
@@ -1171,10 +1165,11 @@ uint32_t alt_clk_pll_guard_band_get(ALT_CLK_t pll);
  *
  * \retval      ALT_E_SUCCESS   The operation was succesful.
  * \retval      ALT_E_ERROR     The operation failed.
- * \retval      ALT_E_ARG_RANGE The guard band value violates its range constraint.
+ * \retval      ALT_E_ARG_RANGE The guard band value violates its range
+ * constraint.
  */
-ALT_STATUS_CODE alt_clk_pll_guard_band_set(ALT_CLK_t pll,
-                                           uint32_t guard_band);
+ALT_STATUS_CODE alt_clk_pll_guard_band_set( ALT_CLK_t pll,
+                                            uint32_t guard_band );
 
 /******************************************************************************/
 /*!
@@ -1199,8 +1194,7 @@ ALT_STATUS_CODE alt_clk_pll_guard_band_set(ALT_CLK_t pll,
  * \retval      ALT_E_BAD_ARG   An invalid clock argument was specified or a
  *                              clock that does not have a divider.
  */
-ALT_STATUS_CODE alt_clk_divider_get(ALT_CLK_t clk,
-                                    uint32_t* div);
+ALT_STATUS_CODE alt_clk_divider_get( ALT_CLK_t clk, uint32_t * div );
 
 /******************************************************************************/
 /*!
@@ -1227,8 +1221,7 @@ ALT_STATUS_CODE alt_clk_divider_get(ALT_CLK_t clk,
  * \retval      ALT_E_ARG_RANGE The divider value violates the range constraints
  *                              for the clock divider.
  */
-ALT_STATUS_CODE alt_clk_divider_set(ALT_CLK_t clk,
-                                    uint32_t div);
+ALT_STATUS_CODE alt_clk_divider_set( ALT_CLK_t clk, uint32_t div );
 
 /******************************************************************************/
 /*!
@@ -1248,8 +1241,7 @@ ALT_STATUS_CODE alt_clk_divider_set(ALT_CLK_t clk,
  *                              the \e clk argument is invalid or a bad
  *                              \e freq pointer value was passed.
  */
-ALT_STATUS_CODE alt_clk_freq_get(ALT_CLK_t clk,
-                                 alt_freq_t* freq);
+ALT_STATUS_CODE alt_clk_freq_get( ALT_CLK_t clk, alt_freq_t * freq );
 
 /*! @} */
 
@@ -1273,10 +1265,11 @@ ALT_STATUS_CODE alt_clk_freq_get(ALT_CLK_t clk,
  *                   - SDRAM PLL Achieved Lock
  *                   - SDRAM PLL Lost Lock
  *
- *                   They are enumeratated by the type \ref ALT_CLK_PLL_LOCK_STATUS_t.
+ *                   They are enumeratated by the type \ref
+ * ALT_CLK_PLL_LOCK_STATUS_t.
  *
- *                   Each PLL lock condition may be individually disabled/enabled
- *                   as a contributor to the determination of the \b clkmgr_IRQ
+ *                   Each PLL lock condition may be individually
+ * disabled/enabled as a contributor to the determination of the \b clkmgr_IRQ
  *                   assertion status.
  *
  *                   The alt_clk_lock_status_clear() function is used to clear
@@ -1313,14 +1306,14 @@ ALT_STATUS_CODE alt_clk_freq_get(ALT_CLK_t clk,
  * \param       lock_stat_mask
  *              Specifies the PLL lock status conditions to disable as interrupt
  *              source contributors. \e lock_stat_mask is a mask of logically
- *              OR'ed ALT_CLK_PLL_LOCK_STATUS_t values that designate the PLL lock
- *              conditions to disable.
+ *              OR'ed ALT_CLK_PLL_LOCK_STATUS_t values that designate the PLL
+ * lock conditions to disable.
  *
  * \retval      ALT_E_SUCCESS   Successful status.
  * \retval      ALT_E_BAD_ARG   The \e lock_stat_mask argument contains an
  *                              unknown condition value.
  */
-ALT_STATUS_CODE alt_clk_irq_disable(ALT_CLK_PLL_LOCK_STATUS_t lock_stat_mask);
+ALT_STATUS_CODE alt_clk_irq_disable( ALT_CLK_PLL_LOCK_STATUS_t lock_stat_mask );
 
 /******************************************************************************/
 /*!
@@ -1337,14 +1330,14 @@ ALT_STATUS_CODE alt_clk_irq_disable(ALT_CLK_PLL_LOCK_STATUS_t lock_stat_mask);
  * \param       lock_stat_mask
  *              Specifies the PLL lock status conditions to enable as interrupt
  *              source contributors. \e lock_stat_mask is a mask of logically
- *              OR'ed ALT_CLK_PLL_LOCK_STATUS_t values that designate the PLL lock
- *              conditions to enable.
+ *              OR'ed ALT_CLK_PLL_LOCK_STATUS_t values that designate the PLL
+ * lock conditions to enable.
  *
  * \retval      ALT_E_SUCCESS   Successful status.
  * \retval      ALT_E_BAD_ARG   The \e lock_stat_mask argument contains an
  *                              unknown condition value.
  */
-ALT_STATUS_CODE alt_clk_irq_enable(ALT_CLK_PLL_LOCK_STATUS_t lock_stat_mask);
+ALT_STATUS_CODE alt_clk_irq_enable( ALT_CLK_PLL_LOCK_STATUS_t lock_stat_mask );
 
 /*! @} */
 
@@ -1362,8 +1355,8 @@ ALT_STATUS_CODE alt_clk_irq_enable(ALT_CLK_PLL_LOCK_STATUS_t lock_stat_mask);
  * * Clock Dividers
  * * Clock Source Selection Options
  *
- * The use case for application of the Clock Group Configuration functions is the
- * ability to safely configure an entire clock group from a known good clock
+ * The use case for application of the Clock Group Configuration functions is
+ * the ability to safely configure an entire clock group from a known good clock
  * group configuration using the run-time function alt_clk_group_cfg_raw_set().
  *
  * A known good clock group configuration may be generated by one of the
@@ -1372,8 +1365,8 @@ ALT_STATUS_CODE alt_clk_irq_enable(ALT_CLK_PLL_LOCK_STATUS_t lock_stat_mask);
  * * As static design information generated by an ACDS clock configuration tool
  *   and passed to embedded software for dynamic loading.
  *
- * * By calling alt_clk_group_cfg_raw_get() at run-time from an SoC FPGA that has
- *   programmatically established a known good clock group configuration using
+ * * By calling alt_clk_group_cfg_raw_get() at run-time from an SoC FPGA that
+ * has programmatically established a known good clock group configuration using
  *   the clock manager API configuration functions.
  *
  * @{
@@ -1398,8 +1391,9 @@ ALT_STATUS_CODE alt_clk_irq_enable(ALT_CLK_PLL_LOCK_STATUS_t lock_stat_mask);
  * \retval      ALT_E_SUCCESS   Successful status.
  * \retval      ALT_E_ERROR     Details about error status code
  */
-ALT_STATUS_CODE alt_clk_group_cfg_raw_get(ALT_CLK_GRP_t clk_group,
-                                          ALT_CLK_GROUP_RAW_CFG_t* clk_group_raw_cfg);
+ALT_STATUS_CODE alt_clk_group_cfg_raw_get(
+    ALT_CLK_GRP_t clk_group,
+    ALT_CLK_GROUP_RAW_CFG_t * clk_group_raw_cfg );
 
 /******************************************************************************/
 /*!
@@ -1417,12 +1411,13 @@ ALT_STATUS_CODE alt_clk_group_cfg_raw_get(ALT_CLK_GRP_t clk_group,
  *
  * \retval      ALT_E_SUCCESS       Successful status.
  * \retval      ALT_E_ERROR         Details about error status code
- * \retval      ALT_E_BAD_VERSION   The clock group configuration specification is
- *                                  invalid for this device.
+ * \retval      ALT_E_BAD_VERSION   The clock group configuration specification
+ * is invalid for this device.
  */
-ALT_STATUS_CODE alt_clk_group_cfg_raw_set(const ALT_CLK_GROUP_RAW_CFG_t* clk_group_raw_cfg);
+ALT_STATUS_CODE alt_clk_group_cfg_raw_set(
+    const ALT_CLK_GROUP_RAW_CFG_t * clk_group_raw_cfg );
 
-ALT_STATUS_CODE alt_clk_clkmgr_init(void);
+ALT_STATUS_CODE alt_clk_clkmgr_init( void );
 
 /*! @} */
 
@@ -1430,5 +1425,5 @@ ALT_STATUS_CODE alt_clk_clkmgr_init(void);
 #ifdef __cplusplus
 }
 
-#endif  /* __cplusplus */
-#endif  /* __ALT_CLK_MGR_H__ */
+#endif /* __cplusplus */
+#endif /* __ALT_CLK_MGR_H__ */

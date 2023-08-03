@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -31,7 +32,6 @@
 #include "FreeRTOS.h"
 #include "FreeRTOSConfig.h"
 #include "semphr.h"
-
 
 /* ============================  GLOBAL VARIABLES =========================== */
 
@@ -84,7 +84,8 @@ void test_macro_xSemaphoreTake_queue_handle( void )
 
     xQueueSend( xQueue, &testVal, 0 );
 
-    /* Expect that xSemaphoreTake will assert because xQueue is not a semaphore */
+    /* Expect that xSemaphoreTake will assert because xQueue is not a semaphore
+     */
     fakeAssertExpectFail();
 
     TEST_ASSERT_EQUAL( pdTRUE, xSemaphoreTake( xQueue, 0 ) );
@@ -127,14 +128,16 @@ void test_macro_xSemaphoreTakeFromISR_invalid_handle( void )
 }
 
 /**
- * @brief Test xSemaphoreTakeFromISR with a QueueHandle rather than a SemaphoreHandle
+ * @brief Test xSemaphoreTakeFromISR with a QueueHandle rather than a
+ * SemaphoreHandle
  * @coverage xQueueReceiveFromISR
  */
 void test_macro_xSemaphoreTakeFromISR_queue_handle( void )
 {
     QueueHandle_t xQueue = xQueueCreate( 1, sizeof( uint32_t ) );
 
-    /* Expect that xSemaphoreTake will assert because xQueue is not a semaphore */
+    /* Expect that xSemaphoreTake will assert because xQueue is not a semaphore
+     */
     fakeAssertExpectFail();
 
     uint32_t testVal = getNextMonotonicTestValue();
@@ -156,7 +159,8 @@ void test_macro_xSemaphoreGiveFromISR_invalid_handle( void )
 }
 
 /**
- * @brief Test xSemaphoreGiveFromISR with a QueueHandle rather than a SemaphoreHandle
+ * @brief Test xSemaphoreGiveFromISR with a QueueHandle rather than a
+ * SemaphoreHandle
  * @coverage xQueueGiveFromISR
  */
 void test_macro_xSemaphoreGiveFromISR_queue_handle( void )

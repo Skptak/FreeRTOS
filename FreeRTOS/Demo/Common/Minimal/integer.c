@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -41,16 +42,17 @@
 #include "integer.h"
 
 /* The constants used in the calculation. */
-#define intgCONST1             ( ( long ) 123 )
-#define intgCONST2             ( ( long ) 234567 )
-#define intgCONST3             ( ( long ) -3 )
-#define intgCONST4             ( ( long ) 7 )
-#define intgEXPECTED_ANSWER    ( ( ( intgCONST1 + intgCONST2 ) * intgCONST3 ) / intgCONST4 )
+#define intgCONST1 ( ( long ) 123 )
+#define intgCONST2 ( ( long ) 234567 )
+#define intgCONST3 ( ( long ) -3 )
+#define intgCONST4 ( ( long ) 7 )
+#define intgEXPECTED_ANSWER \
+    ( ( ( intgCONST1 + intgCONST2 ) * intgCONST3 ) / intgCONST4 )
 
-#define intgSTACK_SIZE         configMINIMAL_STACK_SIZE
+#define intgSTACK_SIZE      configMINIMAL_STACK_SIZE
 
 /* As this is the minimal version, we will only create one task. */
-#define intgNUMBER_OF_TASKS    ( 1 )
+#define intgNUMBER_OF_TASKS ( 1 )
 
 /* The task function.  Repeatedly performs a 32 bit calculation, checking the
  * result against the expected result.  If the result is incorrect then the
@@ -61,7 +63,8 @@ static portTASK_FUNCTION_PROTO( vCompeteingIntMathTask, pvParameters );
  * that the task is still executing.  The check task sets the variable back to
  * false, flagging an error if the variable is still false the next time it
  * is called. */
-static BaseType_t xTaskCheck[ intgNUMBER_OF_TASKS ] = { ( BaseType_t ) pdFALSE };
+static BaseType_t xTaskCheck[ intgNUMBER_OF_TASKS ] = { (
+    BaseType_t ) pdFALSE };
 
 /*-----------------------------------------------------------*/
 
@@ -71,15 +74,20 @@ void vStartIntegerMathTasks( UBaseType_t uxPriority )
 
     for( sTask = 0; sTask < intgNUMBER_OF_TASKS; sTask++ )
     {
-        xTaskCreate( vCompeteingIntMathTask, "IntMath", intgSTACK_SIZE, ( void * ) &( xTaskCheck[ sTask ] ), uxPriority, ( TaskHandle_t * ) NULL );
+        xTaskCreate( vCompeteingIntMathTask,
+                     "IntMath",
+                     intgSTACK_SIZE,
+                     ( void * ) &( xTaskCheck[ sTask ] ),
+                     uxPriority,
+                     ( TaskHandle_t * ) NULL );
     }
 }
 /*-----------------------------------------------------------*/
 
 static portTASK_FUNCTION( vCompeteingIntMathTask, pvParameters )
 {
-/* These variables are all effectively set to constants so they are volatile to
- * ensure the compiler does not just get rid of them. */
+    /* These variables are all effectively set to constants so they are volatile
+     * to ensure the compiler does not just get rid of them. */
     volatile long lValue;
     short sError = pdFALSE;
     volatile BaseType_t * pxTaskHasExecuted;
@@ -89,20 +97,22 @@ static portTASK_FUNCTION( vCompeteingIntMathTask, pvParameters )
      * within each port. */
     pxTaskHasExecuted = ( volatile BaseType_t * ) pvParameters;
 
-    /* Keep performing a calculation and checking the result against a constant. */
-    for( ; ; )
+    /* Keep performing a calculation and checking the result against a constant.
+     */
+    for( ;; )
     {
         /* Perform the calculation.  This will store partial value in
-         * registers, resulting in a good test of the context switch mechanism. */
+         * registers, resulting in a good test of the context switch mechanism.
+         */
         lValue = intgCONST1;
         lValue += intgCONST2;
 
-        /* Yield in case cooperative scheduling is being used. */
-        #if configUSE_PREEMPTION == 0
+/* Yield in case cooperative scheduling is being used. */
+#if configUSE_PREEMPTION == 0
         {
             taskYIELD();
         }
-        #endif
+#endif
 
         /* Finish off the calculation. */
         lValue *= intgCONST3;
@@ -111,7 +121,9 @@ static portTASK_FUNCTION( vCompeteingIntMathTask, pvParameters )
         /* If the calculation is found to be incorrect we stop setting the
          * TaskHasExecuted variable so the check task can see an error has
          * occurred. */
-        if( lValue != intgEXPECTED_ANSWER ) /*lint !e774 volatile used to prevent this being optimised out. */
+        if( lValue != intgEXPECTED_ANSWER ) /*lint !e774 volatile used to
+                                               prevent this being optimised out.
+                                             */
         {
             sError = pdTRUE;
         }
@@ -126,12 +138,12 @@ static portTASK_FUNCTION( vCompeteingIntMathTask, pvParameters )
             portEXIT_CRITICAL();
         }
 
-        /* Yield in case cooperative scheduling is being used. */
-        #if configUSE_PREEMPTION == 0
+/* Yield in case cooperative scheduling is being used. */
+#if configUSE_PREEMPTION == 0
         {
             taskYIELD();
         }
-        #endif
+#endif
     }
 }
 /*-----------------------------------------------------------*/

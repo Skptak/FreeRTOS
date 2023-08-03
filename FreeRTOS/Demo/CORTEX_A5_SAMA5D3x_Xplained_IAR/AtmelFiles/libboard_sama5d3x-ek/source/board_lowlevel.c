@@ -47,7 +47,8 @@
  */
 void defaultSpuriousHandler( void )
 {
-    while (1);
+    while( 1 )
+        ;
 }
 
 /**
@@ -55,7 +56,8 @@ void defaultSpuriousHandler( void )
  */
 void defaultFiqHandler( void )
 {
-    while (1);
+    while( 1 )
+        ;
 }
 
 /**
@@ -63,7 +65,8 @@ void defaultFiqHandler( void )
  */
 void defaultIrqHandler( void )
 {
-    while (1);
+    while( 1 )
+        ;
 }
 
 /**
@@ -74,18 +77,17 @@ void defaultIrqHandler( void )
 extern WEAK void LowLevelInit( void )
 {
     uint32_t i;
-    if ((uint32_t)LowLevelInit < DDR_CS_ADDR) /* Code not in external mem */ {
+    if( ( uint32_t ) LowLevelInit < DDR_CS_ADDR ) /* Code not in external mem */
+    {
         PMC_SelectExt12M_Osc();
         PMC_SwitchMck2Main();
-        PMC_SetPllA( CKGR_PLLAR_STUCKTO1 |
-                     CKGR_PLLAR_PLLACOUNT(0x3F) |
-                     CKGR_PLLAR_OUTA(0x0) |
-                     CKGR_PLLAR_MULA(65) |
-                     CKGR_PLLAR_DIVA(1),
-                     0x3u << 8);
-        PMC_SetMckPllaDiv(PMC_MCKR_PLLADIV2_DIV2);
-        PMC_SetMckPrescaler(PMC_MCKR_PRES_CLOCK);
-        PMC_SetMckDivider(PMC_MCKR_MDIV_PCK_DIV3);
+        PMC_SetPllA( CKGR_PLLAR_STUCKTO1 | CKGR_PLLAR_PLLACOUNT( 0x3F ) |
+                         CKGR_PLLAR_OUTA( 0x0 ) | CKGR_PLLAR_MULA( 65 ) |
+                         CKGR_PLLAR_DIVA( 1 ),
+                     0x3u << 8 );
+        PMC_SetMckPllaDiv( PMC_MCKR_PLLADIV2_DIV2 );
+        PMC_SetMckPrescaler( PMC_MCKR_PRES_CLOCK );
+        PMC_SetMckDivider( PMC_MCKR_MDIV_PCK_DIV3 );
         PMC_SwitchMck2Pll();
     }
 
@@ -111,34 +113,33 @@ extern WEAK void LowLevelInit( void )
 
     /* select FIQ */
     AIC->AIC_SSR = 0;
-    AIC->AIC_SVR = (unsigned int) defaultFiqHandler;
+    AIC->AIC_SVR = ( unsigned int ) defaultFiqHandler;
 
-    for (i = 1; i < 31; i++)
+    for( i = 1; i < 31; i++ )
     {
         AIC->AIC_SSR = i;
-        AIC->AIC_SVR =  (unsigned int) defaultIrqHandler;
+        AIC->AIC_SVR = ( unsigned int ) defaultIrqHandler;
     }
 
-    AIC->AIC_SPU =  (unsigned int) defaultSpuriousHandler;
+    AIC->AIC_SPU = ( unsigned int ) defaultSpuriousHandler;
 
     /* Disable all interrupts */
-    for (i = 1; i < 31; i++)
+    for( i = 1; i < 31; i++ )
     {
-        AIC->AIC_SSR  = i;
-        AIC->AIC_IDCR = 1 ;
+        AIC->AIC_SSR = i;
+        AIC->AIC_IDCR = 1;
     }
     /* Clear All pending interrupts flags */
-    for (i = 1; i < 31; i++)
+    for( i = 1; i < 31; i++ )
     {
-        AIC->AIC_SSR  = i;
-        AIC->AIC_ICCR = 1 ;
+        AIC->AIC_SSR = i;
+        AIC->AIC_ICCR = 1;
     }
     /* Perform 8 IT acknoledge (write any value in EOICR) */
-    for (i = 0; i < 8 ; i++)
+    for( i = 0; i < 8; i++ )
     {
         AIC->AIC_EOICR = 0;
     }
     /* Remap */
     BOARD_RemapRam();
 }
-

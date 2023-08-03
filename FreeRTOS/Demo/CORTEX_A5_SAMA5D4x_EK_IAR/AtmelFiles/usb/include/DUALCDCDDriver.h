@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
- *         ATMEL Microcontroller Software Support 
+ *         ATMEL Microcontroller Software Support
  * ----------------------------------------------------------------------------
  * Copyright (c) 2008, Atmel Corporation
  *
@@ -33,7 +33,7 @@
  * \section Purpose
  *
  *   Definitions and methods for USB composite device implement.
- * 
+ *
  */
 
 #ifndef DUALCDCDDRIVER_H
@@ -46,12 +46,11 @@
  *         Headers
  *---------------------------------------------------------------------------*/
 
-#include <USBRequests.h>
 #include <CDCDescriptors.h>
+#include <USBRequests.h>
 
 #include "USBD.h"
 #include <CDCDSerialPort.h>
-
 
 /*---------------------------------------------------------------------------
  *         Defines
@@ -62,31 +61,31 @@
  *      @{
  */
 /** Number of interfaces of the device */
-#define DUALCDCDDriverDescriptors_NUMINTERFACE      4
+#define DUALCDCDDriverDescriptors_NUMINTERFACE  4
 /** Number of the CDC0 interface. */
-#define DUALCDCDDriverDescriptors_INTERFACENUM0     0
+#define DUALCDCDDriverDescriptors_INTERFACENUM0 0
 /** Number of the CDC1 interface. */
-#define DUALCDCDDriverDescriptors_INTERFACENUM1     2
+#define DUALCDCDDriverDescriptors_INTERFACENUM1 2
 /**     @}*/
 
 /*---------------------------------------------------------------------------
  *         Types
  *---------------------------------------------------------------------------*/
-#pragma pack(1)
-#if defined   ( __CC_ARM   ) /* Keil ¦ÌVision 4 */
-#elif defined ( __ICCARM__ ) /* IAR Ewarm */
-#define __attribute__(...)
-#define __packed__  packed
-#elif defined (  __GNUC__  ) /* GCC CS3 */
-#define __packed__  aligned(1)
+#pragma pack( 1 )
+#if defined( __CC_ARM )     /* Keil ¦ÌVision 4 */
+#elif defined( __ICCARM__ ) /* IAR Ewarm */
+    #define __attribute__( ... )
+    #define __packed__ packed
+#elif defined( __GNUC__ ) /* GCC CS3 */
+    #define __packed__ aligned( 1 )
 #endif
 /**
  * \typedef DualCdcDriverConfigurationDescriptors
  * \brief Configuration descriptor list for a device implementing a
  *        dual CDC serial composite driver.
  */
-typedef struct _DualCdcDriverConfigurationDescriptors {
-
+typedef struct _DualCdcDriverConfigurationDescriptors
+{
     /** Standard configuration descriptor. */
     USBConfigurationDescriptor configuration;
 
@@ -134,7 +133,7 @@ typedef struct _DualCdcDriverConfigurationDescriptors {
     /** Data IN endpoint descriptor. */
     USBEndpointDescriptor cdcDataIn1;
 
-} __attribute__ ((__packed__)) DualCdcDriverConfigurationDescriptors;
+} __attribute__( ( __packed__ ) ) DualCdcDriverConfigurationDescriptors;
 
 #pragma pack()
 
@@ -144,14 +143,13 @@ typedef struct _DualCdcDriverConfigurationDescriptors {
 
 /* -DUALCDC */
 extern void DUALCDCDDriver_Initialize(
-    const USBDDriverDescriptors* pDescriptors);
+    const USBDDriverDescriptors * pDescriptors );
 
-extern void DUALCDCDDriver_ConfigurationChangeHandler(uint8_t cfgnum);
+extern void DUALCDCDDriver_ConfigurationChangeHandler( uint8_t cfgnum );
 
-extern void DUALCDCDDriver_RequestHandler(const USBGenericRequest *request);
+extern void DUALCDCDDriver_RequestHandler( const USBGenericRequest * request );
 
-extern CDCDSerialPort* DUALCDCDDriver_GetSerialPort(uint32_t port);
+extern CDCDSerialPort * DUALCDCDDriver_GetSerialPort( uint32_t port );
 
 /**@}*/
 #endif /* #ifndef DUALCDCDDRIVER_H */
-

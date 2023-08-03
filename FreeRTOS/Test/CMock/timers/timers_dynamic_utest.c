@@ -2,29 +2,29 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
  *
  */
 /*! @file timers_utest.c */
-
 
 /* Test includes. */
 #include "FreeRTOS.h"
@@ -38,17 +38,17 @@
 #include "unity_memory.h"
 
 /* Mock includes. */
-#include "mock_queue.h"
+#include "mock_fake_assert.h"
 #include "mock_list.h"
 #include "mock_list_macros.h"
-#include "mock_fake_assert.h"
 #include "mock_portable.h"
+#include "mock_queue.h"
 #include "mock_task.h"
 
 /* C runtime includes. */
-#include <stdlib.h>
-#include <stdbool.h>
 #include <pthread.h>
+#include <stdbool.h>
+#include <stdlib.h>
 
 void stopTimers();
 
@@ -113,8 +113,7 @@ static void xCallback_Test_2_end( TimerHandle_t xTimer )
 }
 
 static int32_t end_4_timer = 0;
-static void pended_function_4_end( void * arg1,
-                                   uint32_t arg2 )
+static void pended_function_4_end( void * arg1, uint32_t arg2 )
 {
     HOOK_DIAG();
     static int i = 4;
@@ -156,8 +155,10 @@ void setUp( void )
 /*! called before each testcase */
 void tearDown( void )
 {
-    TEST_ASSERT_EQUAL_INT_MESSAGE( 0, usMallocFreeCalls,
-                                   "free is not called the same number of times as malloc,"
+    TEST_ASSERT_EQUAL_INT_MESSAGE( 0,
+                                   usMallocFreeCalls,
+                                   "free is not called the same number of "
+                                   "times as malloc,"
                                    "you might have a memory leak!!" );
     usMallocFreeCalls = 0;
 
@@ -174,7 +175,6 @@ int suiteTearDown( int numFailures )
 {
     return numFailures;
 }
-
 
 /* ==============================  TEST FUNCTIONS  ========================== */
 
@@ -199,7 +199,6 @@ void test_xTimerCreateTimerTask_success( void )
     /* Validations */
     TEST_ASSERT_TRUE( ret_xtimer );
 }
-
 
 /**
  * @brief xTimerCreate happy path
@@ -375,7 +374,8 @@ void test_timer_function_success3_command_delete_dynamic( void )
     xMessage.u.xTimerParameters.pxTimer = &xTimer;
     xMessage.u.xTimerParameters.xMessageValue = saved_last_time;
 
-    xMessage2.xMessageID = tmrCOMMAND_EXECUTE_CALLBACK; /* used to end the loop */
+    xMessage2.xMessageID = tmrCOMMAND_EXECUTE_CALLBACK; /* used to end the loop
+                                                         */
     xMessage2.u.xCallbackParameters = callback_param;
     /* Expectations */
     /* prvGetNextExpireTime */
@@ -384,7 +384,8 @@ void test_timer_function_success3_command_delete_dynamic( void )
     /* prvProcessTimerOrBlockTask */
     vTaskSuspendAll_Expect();
     /* prvSampleTimeNow */
-    xTaskGetTickCount_ExpectAndReturn( saved_last_time ); /* time now / static last_time = 0 */
+    xTaskGetTickCount_ExpectAndReturn( saved_last_time ); /* time now / static
+                                                             last_time = 0 */
     /* back to prvProcessTimerOrBlockTask */
     vQueueWaitForMessageRestricted_ExpectAnyArgs();
     xTaskResumeAll_ExpectAndReturn( pdTRUE );
@@ -392,17 +393,20 @@ void test_timer_function_success3_command_delete_dynamic( void )
     xQueueReceive_ExpectAndReturn( NULL, NULL, tmrNO_DELAY, pdPASS );
     xQueueReceive_IgnoreArg_xQueue();
     xQueueReceive_IgnoreArg_pvBuffer();
-    xQueueReceive_ReturnMemThruPtr_pvBuffer( &xMessage, sizeof( DaemonTaskMessage_t ) );
+    xQueueReceive_ReturnMemThruPtr_pvBuffer( &xMessage,
+                                             sizeof( DaemonTaskMessage_t ) );
     listIS_CONTAINED_WITHIN_ExpectAnyArgsAndReturn( pdFALSE );
     uxListRemove_ExpectAnyArgsAndReturn( pdTRUE );
     /* prvSampleTimeNow*/
-    xTaskGetTickCount_ExpectAndReturn( saved_last_time ); /* time now / static last_time = 0 */
-    vPortFree_Expect( &xTimer );                          /* testcase is testing this clause */
+    xTaskGetTickCount_ExpectAndReturn( saved_last_time ); /* time now / static
+                                                             last_time = 0 */
+    vPortFree_Expect( &xTimer ); /* testcase is testing this clause */
     /* back to prvProcessReceivedCommands */
     xQueueReceive_ExpectAndReturn( NULL, NULL, tmrNO_DELAY, pdPASS );
     xQueueReceive_IgnoreArg_xQueue();
     xQueueReceive_IgnoreArg_pvBuffer();
-    xQueueReceive_ReturnMemThruPtr_pvBuffer( &xMessage2, sizeof( DaemonTaskMessage_t ) );
+    xQueueReceive_ReturnMemThruPtr_pvBuffer( &xMessage2,
+                                             sizeof( DaemonTaskMessage_t ) );
     /* API Call */
     pthread_create( &thread_id, NULL, &timer_thread_function, NULL );
     pthread_join( thread_id, ( void ** ) &retVal );
@@ -444,7 +448,8 @@ void test_timer_function_success3_command_delete_static( void )
     xMessage.u.xTimerParameters.pxTimer = &xTimer;
     xMessage.u.xTimerParameters.xMessageValue = saved_last_time;
 
-    xMessage2.xMessageID = tmrCOMMAND_EXECUTE_CALLBACK; /* used to end the loop */
+    xMessage2.xMessageID = tmrCOMMAND_EXECUTE_CALLBACK; /* used to end the loop
+                                                         */
     xMessage2.u.xCallbackParameters = callback_param;
     /* Expectations */
     /* prvGetNextExpireTime */
@@ -453,7 +458,8 @@ void test_timer_function_success3_command_delete_static( void )
     /* prvProcessTimerOrBlockTask */
     vTaskSuspendAll_Expect();
     /* prvSampleTimeNow */
-    xTaskGetTickCount_ExpectAndReturn( saved_last_time ); /* time now / static last_time = 0 */
+    xTaskGetTickCount_ExpectAndReturn( saved_last_time ); /* time now / static
+                                                             last_time = 0 */
     /* back to prvProcessTimerOrBlockTask */
     vQueueWaitForMessageRestricted_ExpectAnyArgs();
     xTaskResumeAll_ExpectAndReturn( pdTRUE );
@@ -463,16 +469,19 @@ void test_timer_function_success3_command_delete_static( void )
     xQueueReceive_ExpectAndReturn( NULL, NULL, tmrNO_DELAY, pdPASS );
     xQueueReceive_IgnoreArg_xQueue();
     xQueueReceive_IgnoreArg_pvBuffer();
-    xQueueReceive_ReturnMemThruPtr_pvBuffer( &xMessage, sizeof( DaemonTaskMessage_t ) );
+    xQueueReceive_ReturnMemThruPtr_pvBuffer( &xMessage,
+                                             sizeof( DaemonTaskMessage_t ) );
     listIS_CONTAINED_WITHIN_ExpectAnyArgsAndReturn( pdFALSE );
     uxListRemove_ExpectAnyArgsAndReturn( pdTRUE );
     /* prvSampleTimeNow*/
-    xTaskGetTickCount_ExpectAndReturn( saved_last_time ); /* time now / static last_time = 0 */
+    xTaskGetTickCount_ExpectAndReturn( saved_last_time ); /* time now / static
+                                                             last_time = 0 */
     /* back to prvProcessReceivedCommands */
     xQueueReceive_ExpectAndReturn( NULL, NULL, tmrNO_DELAY, pdPASS );
     xQueueReceive_IgnoreArg_xQueue();
     xQueueReceive_IgnoreArg_pvBuffer();
-    xQueueReceive_ReturnMemThruPtr_pvBuffer( &xMessage2, sizeof( DaemonTaskMessage_t ) );
+    xQueueReceive_ReturnMemThruPtr_pvBuffer( &xMessage2,
+                                             sizeof( DaemonTaskMessage_t ) );
     /* API Call */
     pthread_create( &thread_id, NULL, &timer_thread_function, NULL );
     pthread_join( thread_id, ( void ** ) &retVal );

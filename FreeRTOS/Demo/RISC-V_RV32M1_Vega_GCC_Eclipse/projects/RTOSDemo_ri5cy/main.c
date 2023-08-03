@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -29,12 +30,11 @@
 #include <task.h>
 
 /* Vega includes. */
-#include "fsl_device_registers.h"
-#include "fsl_debug_console.h"
 #include "board.h"
-#include "pin_mux.h"
 #include "clock_config.h"
-
+#include "fsl_debug_console.h"
+#include "fsl_device_registers.h"
+#include "pin_mux.h"
 
 /******************************************************************************
  * This project provides two demo applications.  A simple blinky style project,
@@ -55,23 +55,23 @@
 
 /* Set mainCREATE_SIMPLE_BLINKY_DEMO_ONLY to one to run the simple blinky demo,
 or 0 to run the more comprehensive test and demo application. */
-#define mainCREATE_SIMPLE_BLINKY_DEMO_ONLY    0
+#define mainCREATE_SIMPLE_BLINKY_DEMO_ONLY 0
 
 /*
  * main_blinky() is used when mainCREATE_SIMPLE_BLINKY_DEMO_ONLY is set to 1.
  * main_full() is used when mainCREATE_SIMPLE_BLINKY_DEMO_ONLY is set to 0.
  */
 #if mainCREATE_SIMPLE_BLINKY_DEMO_ONLY == 1
-    extern void main_blinky( void );
+extern void main_blinky( void );
 #else
-    extern void main_full( void );
+extern void main_full( void );
 #endif /* #if mainCREATE_SIMPLE_BLINKY_DEMO_ONLY == 1 */
 
 /* Prototypes for the standard FreeRTOS callback/hook functions implemented
 within this file.  See https://www.freertos.org/a00016.html */
 void vApplicationMallocFailedHook( void );
 void vApplicationIdleHook( void );
-void vApplicationStackOverflowHook( TaskHandle_t pxTask, char *pcTaskName );
+void vApplicationStackOverflowHook( TaskHandle_t pxTask, char * pcTaskName );
 void vApplicationTickHook( void );
 
 /* Prepare hardware to run the demo. */
@@ -83,23 +83,23 @@ void main( void )
 {
     prvSetupHardware();
 
-    /* The mainCREATE_SIMPLE_BLINKY_DEMO_ONLY setting is described at the top
-    of this file. */
-    #if( mainCREATE_SIMPLE_BLINKY_DEMO_ONLY == 1 )
+/* The mainCREATE_SIMPLE_BLINKY_DEMO_ONLY setting is described at the top
+of this file. */
+#if( mainCREATE_SIMPLE_BLINKY_DEMO_ONLY == 1 )
     {
         main_blinky();
     }
-    #else
+#else
     {
         main_full();
     }
-    #endif
+#endif
 }
 /*-----------------------------------------------------------*/
 
 static void prvSetupHardware( void )
 {
-gpio_pin_config_t mGpioPinConfigStruct;
+    gpio_pin_config_t mGpioPinConfigStruct;
 
     /* Init board hardware. */
     BOARD_InitPins();
@@ -133,7 +133,8 @@ void vApplicationMallocFailedHook( void )
     provide information on how the remaining heap might be fragmented). */
     taskDISABLE_INTERRUPTS();
     __asm volatile( "ebreak" );
-    for( ;; );
+    for( ;; )
+        ;
 }
 /*-----------------------------------------------------------*/
 
@@ -151,7 +152,7 @@ void vApplicationIdleHook( void )
 }
 /*-----------------------------------------------------------*/
 
-void vApplicationStackOverflowHook( TaskHandle_t pxTask, char *pcTaskName )
+void vApplicationStackOverflowHook( TaskHandle_t pxTask, char * pcTaskName )
 {
     ( void ) pcTaskName;
     ( void ) pxTask;
@@ -161,37 +162,39 @@ void vApplicationStackOverflowHook( TaskHandle_t pxTask, char *pcTaskName )
     function is called if a stack overflow is detected. */
     taskDISABLE_INTERRUPTS();
     __asm volatile( "ebreak" );
-    for( ;; );
+    for( ;; )
+        ;
 }
 /*-----------------------------------------------------------*/
 
 void vApplicationTickHook( void )
 {
-    /* The tests in the full demo expect some interaction with interrupts. */
-    #if( mainCREATE_SIMPLE_BLINKY_DEMO_ONLY != 1 )
+/* The tests in the full demo expect some interaction with interrupts. */
+#if( mainCREATE_SIMPLE_BLINKY_DEMO_ONLY != 1 )
     {
         extern void vFullDemoTickHook( void );
         vFullDemoTickHook();
     }
-    #endif
+#endif
 }
 /*-----------------------------------------------------------*/
 
 void vPortSetupTimerInterrupt( void )
 {
-extern void SystemSetupSystick(uint32_t tickRateHz, uint32_t intPriority );
+    extern void SystemSetupSystick( uint32_t tickRateHz, uint32_t intPriority );
 
     /* No CLINT so use the LPIT (Low Power Interrupt Timer) to generate the tick
     interrupt. */
     CLOCK_SetIpSrc( kCLOCK_Lpit0, kCLOCK_IpSrcFircAsync );
-    SystemSetupSystick( configTICK_RATE_HZ, configKERNEL_INTERRUPT_PRIORITY - 1 );
+    SystemSetupSystick( configTICK_RATE_HZ,
+                        configKERNEL_INTERRUPT_PRIORITY - 1 );
 }
 /*-----------------------------------------------------------*/
 
 void LPIT0_IRQHandler( void )
 {
-BaseType_t xTaskIncrementTick( void );
-void vTaskSwitchContext( void );
+    BaseType_t xTaskIncrementTick( void );
+    void vTaskSwitchContext( void );
 
 #warning requires critical section if interrupt nesting is used.
 
@@ -212,9 +215,9 @@ version that does not enable interrupts is provided below.  THIS INTERRUPT
 HANDLER IS SPECIFIC TO THE VEGA BOARD WHICH DOES NOT INCLUDE A CLINT! */
 void freertos_risc_v_application_interrupt_handler( uint32_t mcause )
 {
-uint32_t ulInterruptNumber;
-typedef void ( * irq_handler_t )( void );
-extern const irq_handler_t isrTable[];
+    uint32_t ulInterruptNumber;
+    typedef void ( *irq_handler_t )( void );
+    extern const irq_handler_t isrTable[];
 
     ulInterruptNumber = mcause & 0x1FUL;
 
@@ -222,10 +225,9 @@ extern const irq_handler_t isrTable[];
     EVENT_UNIT->INTPTPENDCLEAR = ( 1U << ulInterruptNumber );
 
     /* Read back to make sure write finished. */
-    (void)(EVENT_UNIT->INTPTPENDCLEAR);
+    ( void ) ( EVENT_UNIT->INTPTPENDCLEAR );
 
     /* Now call the real irq handler for ulInterruptNumber */
     isrTable[ ulInterruptNumber ]();
 }
 /*-----------------------------------------------------------*/
-

@@ -27,7 +27,6 @@
  * ----------------------------------------------------------------------------
  */
 
-
 /**
  * \file
  *
@@ -43,57 +42,59 @@
  *----------------------------------------------------------------------------*/
 
 /** QSPI Command structure */
-struct _qspi_cmd {
-	/** Data Transfer Type (QSPI_IFR_TFRTYP_TRSFR_xxx) */
-	uint32_t ifr_type;
+struct _qspi_cmd
+{
+    /** Data Transfer Type (QSPI_IFR_TFRTYP_TRSFR_xxx) */
+    uint32_t ifr_type;
 
-	/** Width of Instruction Code, Address, Option Code and Data
-	 * (QSPI_IFR_WIDTH_xxx) */
-	uint32_t ifr_width;
+    /** Width of Instruction Code, Address, Option Code and Data
+     * (QSPI_IFR_WIDTH_xxx) */
+    uint32_t ifr_width;
 
-	/** Flags to select which information is included in the command */
-	struct {
-		/** 0: don't send instruction code, 1: send instuction code */
-		uint32_t instruction:1;
-		/** 0: don't send address, 3: send 3-byte address, 4: send
-		 * 4-byte address */
-		uint32_t address:3;
-		/** 0: don't send mode bits, 1: send mode bits */
-		uint32_t mode:1;
-		/** 0: don't send dummy bits, 1: send dummy bits */
-		uint32_t dummy:1;
-		/** 0: don't send/recieve data, 1: send/recieve data */
-		uint32_t data:1;
-		/** reserved, not used */
-		uint32_t reserved:25;
-	} enable;
+    /** Flags to select which information is included in the command */
+    struct
+    {
+        /** 0: don't send instruction code, 1: send instuction code */
+        uint32_t instruction : 1;
+        /** 0: don't send address, 3: send 3-byte address, 4: send
+         * 4-byte address */
+        uint32_t address     : 3;
+        /** 0: don't send mode bits, 1: send mode bits */
+        uint32_t mode        : 1;
+        /** 0: don't send dummy bits, 1: send dummy bits */
+        uint32_t dummy       : 1;
+        /** 0: don't send/recieve data, 1: send/recieve data */
+        uint32_t data        : 1;
+        /** reserved, not used */
+        uint32_t reserved    : 25;
+    } enable;
 
-	/** Instruction code */
-	uint8_t instruction;
+    /** Instruction code */
+    uint8_t instruction;
 
-	/** Mode bits */
-	uint8_t mode;
+    /** Mode bits */
+    uint8_t mode;
 
-	/** Number of mode cycles */
-	uint8_t num_mode_cycles;
+    /** Number of mode cycles */
+    uint8_t num_mode_cycles;
 
-	/** Number of dummy cycles */
-	uint8_t num_dummy_cycles;
+    /** Number of dummy cycles */
+    uint8_t num_dummy_cycles;
 
-	/** QSPI address */
-	uint32_t address;
+    /** QSPI address */
+    uint32_t address;
 
-	/** Address of the TX buffer */
-	const void *tx_buffer;
+    /** Address of the TX buffer */
+    const void * tx_buffer;
 
-	/** Address of the RX buffer */
-	void *rx_buffer;
+    /** Address of the RX buffer */
+    void * rx_buffer;
 
-	/** Size of the RX/TX buffer */
-	uint32_t buffer_len;
+    /** Size of the RX/TX buffer */
+    uint32_t buffer_len;
 
-	/** Timeout for the command execution, in timer ticks */
-	uint32_t timeout;
+    /** Timeout for the command execution, in timer ticks */
+    uint32_t timeout;
 };
 
 /*----------------------------------------------------------------------------
@@ -101,7 +102,7 @@ struct _qspi_cmd {
  *----------------------------------------------------------------------------*/
 
 #ifdef __cplusplus
- extern "C" {
+extern "C" {
 #endif
 
 /**
@@ -109,7 +110,7 @@ struct _qspi_cmd {
  *
  * \param qspi the QSPI instance
  */
-void qspi_initialize(Qspi *qspi);
+void qspi_initialize( Qspi * qspi );
 
 /**
  * \brief Configure the baudrate for a QSPI instance.
@@ -118,7 +119,7 @@ void qspi_initialize(Qspi *qspi);
  * \param baudrate the requested baudrate
  * \return the actual baudrate configured (can be lower than requested)
  */
-uint32_t qspi_set_baudrate(Qspi *qspi, uint32_t baudrate);
+uint32_t qspi_set_baudrate( Qspi * qspi, uint32_t baudrate );
 
 /**
  * \brief Perform a QSPI command.
@@ -134,7 +135,7 @@ uint32_t qspi_set_baudrate(Qspi *qspi, uint32_t baudrate);
  * \param cmd the QSPI command to perform
  * \return true if the command was succesfully issued, false otherwise
  */
-bool qspi_perform_command(Qspi *qspi, const struct _qspi_cmd *cmd);
+bool qspi_perform_command( Qspi * qspi, const struct _qspi_cmd * cmd );
 
 #ifdef __cplusplus
 }

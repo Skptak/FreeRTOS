@@ -42,42 +42,41 @@
 
 #ifdef __MSP430_HAS_WDT_A__
 
-//*****************************************************************************
-//
-// If building with a C++ compiler, make all of the definitions in this header
-// have a C binding.
-//
-//*****************************************************************************
-#ifdef __cplusplus
-extern "C"
-{
-#endif
+    //*****************************************************************************
+    //
+    // If building with a C++ compiler, make all of the definitions in this
+    // header have a C binding.
+    //
+    //*****************************************************************************
+    #ifdef __cplusplus
+extern "C" {
+    #endif
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the clockSelect parameter for
-// functions: WDT_A_initWatchdogTimer(), and WDT_A_initIntervalTimer().
-//
-//*****************************************************************************
-#define WDT_A_CLOCKSOURCE_SMCLK                                     (WDTSSEL_0)
-#define WDT_A_CLOCKSOURCE_ACLK                                      (WDTSSEL_1)
-#define WDT_A_CLOCKSOURCE_VLOCLK                                    (WDTSSEL_2)
-#define WDT_A_CLOCKSOURCE_XCLK                                      (WDTSSEL_3)
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the clockSelect parameter
+    // for functions: WDT_A_initWatchdogTimer(), and WDT_A_initIntervalTimer().
+    //
+    //*****************************************************************************
+    #define WDT_A_CLOCKSOURCE_SMCLK  ( WDTSSEL_0 )
+    #define WDT_A_CLOCKSOURCE_ACLK   ( WDTSSEL_1 )
+    #define WDT_A_CLOCKSOURCE_VLOCLK ( WDTSSEL_2 )
+    #define WDT_A_CLOCKSOURCE_XCLK   ( WDTSSEL_3 )
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the clockDivider parameter
-// for functions: WDT_A_initWatchdogTimer(), and WDT_A_initIntervalTimer().
-//
-//*****************************************************************************
-#define WDT_A_CLOCKDIVIDER_2G                                         (WDTIS_0)
-#define WDT_A_CLOCKDIVIDER_128M                                       (WDTIS_1)
-#define WDT_A_CLOCKDIVIDER_8192K                                      (WDTIS_2)
-#define WDT_A_CLOCKDIVIDER_512K                                       (WDTIS_3)
-#define WDT_A_CLOCKDIVIDER_32K                                        (WDTIS_4)
-#define WDT_A_CLOCKDIVIDER_8192                                       (WDTIS_5)
-#define WDT_A_CLOCKDIVIDER_512                                        (WDTIS_6)
-#define WDT_A_CLOCKDIVIDER_64                                         (WDTIS_7)
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the clockDivider parameter
+    // for functions: WDT_A_initWatchdogTimer(), and WDT_A_initIntervalTimer().
+    //
+    //*****************************************************************************
+    #define WDT_A_CLOCKDIVIDER_2G    ( WDTIS_0 )
+    #define WDT_A_CLOCKDIVIDER_128M  ( WDTIS_1 )
+    #define WDT_A_CLOCKDIVIDER_8192K ( WDTIS_2 )
+    #define WDT_A_CLOCKDIVIDER_512K  ( WDTIS_3 )
+    #define WDT_A_CLOCKDIVIDER_32K   ( WDTIS_4 )
+    #define WDT_A_CLOCKDIVIDER_8192  ( WDTIS_5 )
+    #define WDT_A_CLOCKDIVIDER_512   ( WDTIS_6 )
+    #define WDT_A_CLOCKDIVIDER_64    ( WDTIS_7 )
 
 //*****************************************************************************
 //
@@ -97,7 +96,7 @@ extern "C"
 //! \return None
 //
 //*****************************************************************************
-extern void WDT_A_hold(uint16_t baseAddress);
+extern void WDT_A_hold( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -111,7 +110,7 @@ extern void WDT_A_hold(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void WDT_A_start(uint16_t baseAddress);
+extern void WDT_A_start( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -124,7 +123,7 @@ extern void WDT_A_start(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void WDT_A_resetTimer(uint16_t baseAddress);
+extern void WDT_A_resetTimer( uint16_t baseAddress );
 
 //*****************************************************************************
 //
@@ -158,9 +157,9 @@ extern void WDT_A_resetTimer(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void WDT_A_initWatchdogTimer(uint16_t baseAddress,
-                                    uint8_t clockSelect,
-                                    uint8_t clockDivider);
+extern void WDT_A_initWatchdogTimer( uint16_t baseAddress,
+                                     uint8_t clockSelect,
+                                     uint8_t clockDivider );
 
 //*****************************************************************************
 //
@@ -193,18 +192,18 @@ extern void WDT_A_initWatchdogTimer(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void WDT_A_initIntervalTimer(uint16_t baseAddress,
-                                    uint8_t clockSelect,
-                                    uint8_t clockDivider);
+extern void WDT_A_initIntervalTimer( uint16_t baseAddress,
+                                     uint8_t clockSelect,
+                                     uint8_t clockDivider );
 
-//*****************************************************************************
-//
-// Mark the end of the C bindings section for C++ compilers.
-//
-//*****************************************************************************
-#ifdef __cplusplus
+    //*****************************************************************************
+    //
+    // Mark the end of the C bindings section for C++ compilers.
+    //
+    //*****************************************************************************
+    #ifdef __cplusplus
 }
-#endif
+    #endif
 
 #endif
 #endif // __MSP430WARE_WDT_A_H__

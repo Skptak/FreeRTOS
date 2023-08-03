@@ -1,6 +1,6 @@
 /*
  * -------------------------------------------
- *    MSP432 DriverLib - v3_10_00_09 
+ *    MSP432 DriverLib - v3_10_00_09
  * -------------------------------------------
  *
  * --COPYRIGHT--,BSD,BSD
@@ -51,53 +51,52 @@
 //
 //*****************************************************************************
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
-#include <stdint.h>
-#include <stdbool.h>
 #include <msp.h>
+#include <stdbool.h>
+#include <stdint.h>
 
 //*****************************************************************************
 //
-// Control specific variables 
+// Control specific variables
 //
 //*****************************************************************************
-#define PCM_KEY 0x695A0000
+#define PCM_KEY                  0x695A0000
 
 /* Power Modes */
-#define PCM_AM_LDO_VCORE0      0x00
-#define PCM_AM_LDO_VCORE1      0x01
-#define PCM_AM_DCDC_VCORE0     0x04
-#define PCM_AM_DCDC_VCORE1     0x05
-#define PCM_AM_LF_VCORE0      0x08
-#define PCM_AM_LF_VCORE1      0x09
-#define PCM_LPM0_LDO_VCORE0    0x10
-#define PCM_LPM0_LDO_VCORE1    0x11
-#define PCM_LPM0_DCDC_VCORE0   0x14
-#define PCM_LPM0_DCDC_VCORE1   0x15
-#define PCM_LPM0_LF_VCORE0    0x18
-#define PCM_LPM0_LF_VCORE1    0x19
-#define PCM_LPM3               0x20
-#define PCM_LPM4               0x21
-#define PCM_LPM35_VCORE0       0xC0
-#define PCM_LPM45              0xA0
+#define PCM_AM_LDO_VCORE0        0x00
+#define PCM_AM_LDO_VCORE1        0x01
+#define PCM_AM_DCDC_VCORE0       0x04
+#define PCM_AM_DCDC_VCORE1       0x05
+#define PCM_AM_LF_VCORE0         0x08
+#define PCM_AM_LF_VCORE1         0x09
+#define PCM_LPM0_LDO_VCORE0      0x10
+#define PCM_LPM0_LDO_VCORE1      0x11
+#define PCM_LPM0_DCDC_VCORE0     0x14
+#define PCM_LPM0_DCDC_VCORE1     0x15
+#define PCM_LPM0_LF_VCORE0       0x18
+#define PCM_LPM0_LF_VCORE1       0x19
+#define PCM_LPM3                 0x20
+#define PCM_LPM4                 0x21
+#define PCM_LPM35_VCORE0         0xC0
+#define PCM_LPM45                0xA0
 
-#define PCM_VCORE0     0x00
-#define PCM_VCORE1     0x01
-#define PCM_VCORELPM3   0x02
+#define PCM_VCORE0               0x00
+#define PCM_VCORE1               0x01
+#define PCM_VCORELPM3            0x02
 
-#define PCM_LDO_MODE   0x00
-#define PCM_DCDC_MODE  0x01
-#define PCM_LF_MODE   0x02
+#define PCM_LDO_MODE             0x00
+#define PCM_DCDC_MODE            0x01
+#define PCM_LF_MODE              0x02
 
-#define PCM_SHUTDOWN_PARTIAL PCM_LPM35_VCORE0
-#define PCM_SHUTDOWN_COMPLETE PCM_LPM45
+#define PCM_SHUTDOWN_PARTIAL     PCM_LPM35_VCORE0
+#define PCM_SHUTDOWN_COMPLETE    PCM_LPM45
 
-#define PCM_DCDCERROR PCM_IE_DCDC_ERROR_IE
+#define PCM_DCDCERROR            PCM_IE_DCDC_ERROR_IE
 #define PCM_AM_INVALIDTRANSITION PCM_IE_AM_INVALID_TR_IE
-#define PCM_SM_INVALIDCLOCK PCM_IE_LPM_INVALID_CLK_IE
+#define PCM_SM_INVALIDCLOCK      PCM_IE_LPM_INVALID_CLK_IE
 #define PCM_SM_INVALIDTRANSITION PCM_IE_LPM_INVALID_TR_IE
 
 //*****************************************************************************
@@ -125,7 +124,7 @@ extern "C"
 //! \return true if voltage level set, false otherwise.
 //
 //******************************************************************************
-extern bool PCM_setCoreVoltageLevel(uint_fast8_t voltageLevel);
+extern bool PCM_setCoreVoltageLevel( uint_fast8_t voltageLevel );
 
 //******************************************************************************
 //
@@ -141,7 +140,7 @@ extern bool PCM_setCoreVoltageLevel(uint_fast8_t voltageLevel);
 //!
 //
 //******************************************************************************
-extern uint8_t PCM_getCoreVoltageLevel(void);
+extern uint8_t PCM_getCoreVoltageLevel( void );
 
 //******************************************************************************
 //
@@ -170,8 +169,8 @@ extern uint8_t PCM_getCoreVoltageLevel(void);
 //! \return true if voltage level set, false otherwise.
 //
 //******************************************************************************
-extern bool PCM_setCoreVoltageLevelWithTimeout(uint_fast8_t voltageLevel,
-        uint32_t timeOut);
+extern bool PCM_setCoreVoltageLevelWithTimeout( uint_fast8_t voltageLevel,
+                                                uint32_t timeOut );
 
 //******************************************************************************
 //
@@ -194,7 +193,7 @@ extern bool PCM_setCoreVoltageLevelWithTimeout(uint_fast8_t voltageLevel,
 //! \return true if voltage level set, false otherwise.
 //
 //******************************************************************************
-extern bool PCM_setCoreVoltageLevelNonBlocking(uint_fast8_t voltageLevel);
+extern bool PCM_setCoreVoltageLevelNonBlocking( uint_fast8_t voltageLevel );
 
 //******************************************************************************
 //
@@ -212,7 +211,7 @@ extern bool PCM_setCoreVoltageLevelNonBlocking(uint_fast8_t voltageLevel);
 //! \return true if power mode is set, false otherwise.
 //
 //******************************************************************************
-extern bool PCM_setPowerMode(uint_fast8_t powerMode);
+extern bool PCM_setPowerMode( uint_fast8_t powerMode );
 
 //******************************************************************************
 //
@@ -238,8 +237,8 @@ extern bool PCM_setPowerMode(uint_fast8_t powerMode);
 //! \return true if power mode is set, false otherwise.
 //
 //******************************************************************************
-extern bool PCM_setPowerModeWithTimeout(uint_fast8_t powerMode,
-        uint32_t timeOut);
+extern bool PCM_setPowerModeWithTimeout( uint_fast8_t powerMode,
+                                         uint32_t timeOut );
 
 //******************************************************************************
 //
@@ -263,7 +262,7 @@ extern bool PCM_setPowerModeWithTimeout(uint_fast8_t powerMode,
 //! \return true if power mode change was initiated, false otherwise
 //
 //******************************************************************************
-extern bool PCM_setPowerModeNonBlocking(uint_fast8_t powerMode);
+extern bool PCM_setPowerModeNonBlocking( uint_fast8_t powerMode );
 
 //******************************************************************************
 //
@@ -274,7 +273,7 @@ extern bool PCM_setPowerModeNonBlocking(uint_fast8_t powerMode);
 //!
 //
 //******************************************************************************
-extern uint8_t PCM_getPowerMode(void);
+extern uint8_t PCM_getPowerMode( void );
 
 //******************************************************************************
 //
@@ -305,7 +304,7 @@ extern uint8_t PCM_getPowerMode(void);
 //! \return true if power state is set, false otherwise.
 //
 //******************************************************************************
-extern bool PCM_setPowerState(uint_fast8_t powerState);
+extern bool PCM_setPowerState( uint_fast8_t powerState );
 
 //******************************************************************************
 //
@@ -347,8 +346,8 @@ extern bool PCM_setPowerState(uint_fast8_t powerState);
 //!         state prior to the function call
 //
 //******************************************************************************
-extern bool PCM_setPowerStateWithTimeout(uint_fast8_t powerState,
-        uint32_t timeout);
+extern bool PCM_setPowerStateWithTimeout( uint_fast8_t powerState,
+                                          uint32_t timeout );
 
 //******************************************************************************
 //
@@ -360,7 +359,7 @@ extern bool PCM_setPowerStateWithTimeout(uint_fast8_t powerState,
 //! \return The current power state of the system
 //
 //******************************************************************************
-extern uint8_t PCM_getPowerState(void);
+extern uint8_t PCM_getPowerState( void );
 
 //******************************************************************************
 //
@@ -396,7 +395,7 @@ extern uint8_t PCM_getPowerState(void);
 //! \return true if power state change was initiated, false otherwise
 //
 //******************************************************************************
-extern bool PCM_setPowerStateNonBlocking(uint_fast8_t powerState);
+extern bool PCM_setPowerStateNonBlocking( uint_fast8_t powerState );
 
 //******************************************************************************
 //
@@ -422,7 +421,7 @@ extern bool PCM_setPowerStateNonBlocking(uint_fast8_t powerState);
 //! \return false if shutdown state cannot be entered, true otherwise.
 //
 //******************************************************************************
-extern bool PCM_shutdownDevice(uint32_t shutdownMode);
+extern bool PCM_shutdownDevice( uint32_t shutdownMode );
 
 //******************************************************************************
 //
@@ -433,7 +432,7 @@ extern bool PCM_shutdownDevice(uint32_t shutdownMode);
 //! \return false if sleep state cannot be entered, true otherwise.
 //
 //******************************************************************************
-extern bool PCM_gotoLPM0(void);
+extern bool PCM_gotoLPM0( void );
 
 //******************************************************************************
 //
@@ -447,7 +446,7 @@ extern bool PCM_gotoLPM0(void);
 //! \return false if sleep state cannot be entered, true otherwise.
 //
 //******************************************************************************
-extern bool PCM_gotoLPM3(void);
+extern bool PCM_gotoLPM3( void );
 
 //******************************************************************************
 //
@@ -463,7 +462,7 @@ extern bool PCM_gotoLPM3(void);
 //! \return false if sleep state cannot be entered, true otherwise.
 //
 //******************************************************************************
-extern bool PCM_gotoLPM0InterruptSafe(void);
+extern bool PCM_gotoLPM0InterruptSafe( void );
 
 //******************************************************************************
 //
@@ -482,7 +481,7 @@ extern bool PCM_gotoLPM0InterruptSafe(void);
 //! \return false if sleep state cannot be entered, true otherwise.
 //
 //******************************************************************************
-extern bool PCM_gotoLPM3InterruptSafe(void);
+extern bool PCM_gotoLPM3InterruptSafe( void );
 
 //******************************************************************************
 //
@@ -493,7 +492,7 @@ extern bool PCM_gotoLPM3InterruptSafe(void);
 //! \return false if sleep state cannot be entered, true otherwise.
 //
 //******************************************************************************
-extern bool PCM_gotoLPM4(void);
+extern bool PCM_gotoLPM4( void );
 
 //******************************************************************************
 //
@@ -512,7 +511,7 @@ extern bool PCM_gotoLPM4(void);
 //! \return false if sleep state cannot be entered, true otherwise.
 //
 //******************************************************************************
-extern bool PCM_gotoLPM4InterruptSafe(void);
+extern bool PCM_gotoLPM4InterruptSafe( void );
 
 //******************************************************************************
 //
@@ -524,7 +523,7 @@ extern bool PCM_gotoLPM4InterruptSafe(void);
 //! \return None
 //
 //******************************************************************************
-extern void PCM_enableRudeMode(void);
+extern void PCM_enableRudeMode( void );
 
 //******************************************************************************
 //
@@ -535,7 +534,7 @@ extern void PCM_enableRudeMode(void);
 //! \return None
 //
 //******************************************************************************
-extern void PCM_disableRudeMode(void);
+extern void PCM_disableRudeMode( void );
 
 //*****************************************************************************
 //
@@ -559,7 +558,7 @@ extern void PCM_disableRudeMode(void);
 //! \return None.
 //
 //*****************************************************************************
-extern void PCM_enableInterrupt(uint32_t flags);
+extern void PCM_enableInterrupt( uint32_t flags );
 
 //*****************************************************************************
 //
@@ -583,7 +582,7 @@ extern void PCM_enableInterrupt(uint32_t flags);
 //! \return None.
 //
 //*****************************************************************************
-extern void PCM_disableInterrupt(uint32_t flags);
+extern void PCM_disableInterrupt( uint32_t flags );
 
 //*****************************************************************************
 //
@@ -600,7 +599,7 @@ extern void PCM_disableInterrupt(uint32_t flags);
 //! which interrupt sources are available.
 //
 //*****************************************************************************
-extern uint32_t PCM_getInterruptStatus(void);
+extern uint32_t PCM_getInterruptStatus( void );
 
 //*****************************************************************************
 //
@@ -620,7 +619,7 @@ extern uint32_t PCM_getInterruptStatus(void);
 //! which interrupt sources are available.
 //
 //*****************************************************************************
-extern uint32_t PCM_getEnabledInterruptStatus(void);
+extern uint32_t PCM_getEnabledInterruptStatus( void );
 
 //*****************************************************************************
 //
@@ -653,7 +652,7 @@ extern uint32_t PCM_getEnabledInterruptStatus(void);
 //! \return None.
 //
 //*****************************************************************************
-extern void PCM_clearInterruptFlag(uint32_t flags);
+extern void PCM_clearInterruptFlag( uint32_t flags );
 
 //*****************************************************************************
 //
@@ -674,7 +673,7 @@ extern void PCM_clearInterruptFlag(uint32_t flags);
 //! \return None.
 //
 //*****************************************************************************
-extern void PCM_registerInterrupt(void (*intHandler)(void));
+extern void PCM_registerInterrupt( void ( *intHandler )( void ) );
 
 //*****************************************************************************
 //
@@ -690,7 +689,7 @@ extern void PCM_registerInterrupt(void (*intHandler)(void));
 //! \return None.
 //
 //*****************************************************************************
-extern void PCM_unregisterInterrupt(void);
+extern void PCM_unregisterInterrupt( void );
 
 //*****************************************************************************
 //

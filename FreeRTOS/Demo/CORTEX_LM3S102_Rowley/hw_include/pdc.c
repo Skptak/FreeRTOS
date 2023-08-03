@@ -33,12 +33,12 @@
 //
 //*****************************************************************************
 
+#include "pdc.h"
+#include "gpio.h"
 #include "hw_memmap.h"
 #include "hw_types.h"
-#include "gpio.h"
 #include "ssi.h"
 #include "sysctl.h"
-#include "pdc.h"
 
 //*****************************************************************************
 //
@@ -56,36 +56,38 @@
 //! \return None.
 //
 //*****************************************************************************
-void
-PDCInit(void)
+void PDCInit( void )
 {
     //
     // Enable the peripherals used to drive the PDC.
     //
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_SSI);
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);
+    SysCtlPeripheralEnable( SYSCTL_PERIPH_SSI );
+    SysCtlPeripheralEnable( SYSCTL_PERIPH_GPIOA );
 
     //
     // Configure the appropriate pins to be SSI instead of GPIO.
     //
-    GPIODirModeSet(GPIO_PORTA_BASE, SSI_CLK | SSI_TX | SSI_RX,
-                   GPIO_DIR_MODE_HW);
-    GPIODirModeSet(GPIO_PORTA_BASE, SSI_CS, GPIO_DIR_MODE_OUT);
-    GPIOPadConfigSet(GPIO_PORTA_BASE, SSI_CLK, GPIO_STRENGTH_4MA,
-                     GPIO_PIN_TYPE_STD_WPU);
+    GPIODirModeSet( GPIO_PORTA_BASE,
+                    SSI_CLK | SSI_TX | SSI_RX,
+                    GPIO_DIR_MODE_HW );
+    GPIODirModeSet( GPIO_PORTA_BASE, SSI_CS, GPIO_DIR_MODE_OUT );
+    GPIOPadConfigSet( GPIO_PORTA_BASE,
+                      SSI_CLK,
+                      GPIO_STRENGTH_4MA,
+                      GPIO_PIN_TYPE_STD_WPU );
 
     //
     // Configure the SSI port.
     //
-    SSIConfig(SSI_BASE, SSI_FRF_MOTO_MODE_0, SSI_MODE_MASTER, 1000000, 8);
-    SSIEnable(SSI_BASE);
+    SSIConfig( SSI_BASE, SSI_FRF_MOTO_MODE_0, SSI_MODE_MASTER, 1000000, 8 );
+    SSIEnable( SSI_BASE );
 
     //
     // Reset the PDC SSI state machine.  The chip select needs to be held low
     // for 100ns; the procedure call overhead more than accounts for this time.
     //
-    GPIOPinWrite(GPIO_PORTA_BASE, PDC_CS, 0);
-    GPIOPinWrite(GPIO_PORTA_BASE, PDC_CS, PDC_CS);
+    GPIOPinWrite( GPIO_PORTA_BASE, PDC_CS, 0 );
+    GPIOPinWrite( GPIO_PORTA_BASE, PDC_CS, PDC_CS );
 }
 
 //*****************************************************************************
@@ -104,29 +106,27 @@ PDCInit(void)
 //! \return None.
 //
 //*****************************************************************************
-void
-PDCWrite(unsigned char ucAddr, unsigned char ucData)
+void PDCWrite( unsigned char ucAddr, unsigned char ucData )
 {
     unsigned long ulTemp;
 
     //
     // Send address and write command.
     //
-    SSIDataPut(SSI_BASE, (ucAddr & 0x0F) | PDC_WR);
+    SSIDataPut( SSI_BASE, ( ucAddr & 0x0F ) | PDC_WR );
 
     //
     // Write the data.
     //
-    SSIDataPut(SSI_BASE, ucData);
+    SSIDataPut( SSI_BASE, ucData );
 
     //
     // Flush data read during address write.
     //
-    SSIDataGet(SSI_BASE, &ulTemp);
+    SSIDataGet( SSI_BASE, &ulTemp );
 
     //
     // Flush data read during data write.
     //
-    SSIDataGet(SSI_BASE, &ulTemp);
+    SSIDataGet( SSI_BASE, &ulTemp );
 }
-

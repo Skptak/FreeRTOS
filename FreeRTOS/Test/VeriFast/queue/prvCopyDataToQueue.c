@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -34,17 +35,16 @@ static BaseType_t prvCopyDataToQueue( Queue_t * const pxQueue,
 /*@requires queue(pxQueue, ?Storage, ?N, ?M, ?W, ?R, ?K, ?is_locked, ?abs) &*&
     (K < N || xPosition == queueOVERWRITE) &*&
     chars(pvItemToQueue, M, ?x) &*&
-    (xPosition == queueSEND_TO_BACK || xPosition == queueSEND_TO_FRONT || (xPosition == queueOVERWRITE && N == 1));@*/
+    (xPosition == queueSEND_TO_BACK || xPosition == queueSEND_TO_FRONT ||
+   (xPosition == queueOVERWRITE && N == 1));@*/
 /*@ensures
     (xPosition == queueSEND_TO_BACK
-        ? queue(pxQueue, Storage, N, M, (W+1)%N, R, (K+1), is_locked, append(abs, singleton(x)))
-        : (xPosition == queueSEND_TO_FRONT
-            ? (R == 0
-                ? queue(pxQueue, Storage, N, M, W, (N-1), (K+1), is_locked, cons(x, abs))
-                : queue(pxQueue, Storage, N, M, W, (R-1), (K+1), is_locked, cons(x, abs)))
-            : xPosition == queueOVERWRITE &*& queue(pxQueue, Storage, N, M, W, R, 1, is_locked, singleton(x)))
-    ) &*&
-    chars(pvItemToQueue, M, x);@*/
+        ? queue(pxQueue, Storage, N, M, (W+1)%N, R, (K+1), is_locked,
+   append(abs, singleton(x))) : (xPosition == queueSEND_TO_FRONT ? (R == 0 ?
+   queue(pxQueue, Storage, N, M, W, (N-1), (K+1), is_locked, cons(x, abs)) :
+   queue(pxQueue, Storage, N, M, W, (R-1), (K+1), is_locked, cons(x, abs))) :
+   xPosition == queueOVERWRITE &*& queue(pxQueue, Storage, N, M, W, R, 1,
+   is_locked, singleton(x))) ) &*& chars(pvItemToQueue, M, x);@*/
 {
     BaseType_t xReturn = pdFALSE;
     UBaseType_t uxMessagesWaiting;
@@ -57,14 +57,15 @@ static BaseType_t prvCopyDataToQueue( Queue_t * const pxQueue,
     /*@assert buffer(Storage, N, M, ?contents);@*/
     if( pxQueue->uxItemSize == ( UBaseType_t ) 0 )
     {
-        /* This case is unreachable for queues */
-        /*@assert false;@*/
-        #if ( configUSE_MUTEXES == 1 )
+/* This case is unreachable for queues */
+/*@assert false;@*/
+#if( configUSE_MUTEXES == 1 )
         {
             if( pxQueue->uxQueueType == queueQUEUE_IS_MUTEX )
             {
                 /* The mutex is no longer being held. */
-                xReturn = xTaskPriorityDisinherit( pxQueue->u.xSemaphore.xMutexHolder );
+                xReturn = xTaskPriorityDisinherit(
+                    pxQueue->u.xSemaphore.xMutexHolder );
                 pxQueue->u.xSemaphore.xMutexHolder = NULL;
             }
             else
@@ -72,7 +73,7 @@ static BaseType_t prvCopyDataToQueue( Queue_t * const pxQueue,
                 mtCOVERAGE_TEST_MARKER();
             }
         }
-        #endif /* configUSE_MUTEXES */
+#endif /* configUSE_MUTEXES */
     }
     else if( xPosition == queueSEND_TO_BACK )
     {
@@ -86,17 +87,40 @@ static BaseType_t prvCopyDataToQueue( Queue_t * const pxQueue,
             buffer(Storage, W, M, ?prefix) &*&
             chars(Storage + W * M, M, _) &*&
             buffer(Storage + (W + 1) * M, (N-1-W), M, ?suffix);@*/
-        memcpy( ( void * ) pxQueue->pcWriteTo, pvItemToQueue, ( size_t ) pxQueue->uxItemSize );
+        memcpy( ( void * ) pxQueue->pcWriteTo,
+                pvItemToQueue,
+                ( size_t ) pxQueue->uxItemSize );
         /* After the update we stitch the buffer back together */
         /*@join_element(Storage, N, M, W);@*/
         /*@combine_list_update(prefix, x, suffix, W, contents);@*/
 #else
-        ( void ) memcpy( ( void * ) pxQueue->pcWriteTo, pvItemToQueue, ( size_t ) pxQueue->uxItemSize ); /*lint !e961 !e418 !e9087 MISRA exception as the casts are only redundant for some ports, plus previous logic ensures a null pointer can only be passed to memcpy() if the copy size is 0.  Cast to void required by function signature and safe as no alignment requirement and copy length specified in bytes. */
+        ( void ) memcpy( ( void * ) pxQueue->pcWriteTo,
+                         pvItemToQueue,
+                         ( size_t ) pxQueue
+                             ->uxItemSize ); /*lint !e961 !e418 !e9087 MISRA
+                                                exception as the casts are only
+                                                redundant for some ports, plus
+                                                previous logic ensures a null
+                                                pointer can only be passed to
+                                                memcpy() if the copy size is 0.
+                                                Cast to void required by
+                                                function signature and safe as
+                                                no alignment requirement and
+                                                copy length specified in bytes.
+                                              */
 #endif
         /*@mul_mono_l(W, N-1, M);@*/
-        pxQueue->pcWriteTo += pxQueue->uxItemSize;                                                       /*lint !e9016 Pointer arithmetic on char types ok, especially in this use case where it is the clearest way of conveying intent. */
+        pxQueue->pcWriteTo += pxQueue->uxItemSize; /*lint !e9016 Pointer
+                                                      arithmetic on char types
+                                                      ok, especially in this use
+                                                      case where it is the
+                                                      clearest way of conveying
+                                                      intent. */
 
-        if( pxQueue->pcWriteTo >= pxQueue->u.xQueue.pcTail )                                             /*lint !e946 MISRA exception justified as comparison of pointers is the cleanest solution. */
+        if( pxQueue->pcWriteTo >=
+            pxQueue->u.xQueue.pcTail ) /*lint !e946 MISRA exception justified as
+                                          comparison of pointers is the cleanest
+                                          solution. */
         {
             /*@div_leq(N, W+1, M);@*/ /* now we know W == N-1 so (W+1)%N == 0 */
             pxQueue->pcWriteTo = pxQueue->pcHead;
@@ -107,7 +131,8 @@ static BaseType_t prvCopyDataToQueue( Queue_t * const pxQueue,
                 div_lt(W+1, N, M); // now we know W+1 < N
                 mod_lt(W+1, N);    // so, W+1 == (W+1)%N
                 note(pxQueue->pcWriteTo == Storage + ((W + 1) * M));
-                note(                      Storage + ((W + 1) * M) == Storage + (((W + 1) % N) * M));
+                note(                      Storage + ((W + 1) * M) == Storage +
+            (((W + 1) % N) * M));
             }@*/
             mtCOVERAGE_TEST_MARKER();
         }
@@ -120,17 +145,34 @@ static BaseType_t prvCopyDataToQueue( Queue_t * const pxQueue,
             buffer(Storage, R, M, ?prefix) &*&
             chars(Storage + R * M, M, _) &*&
             buffer(Storage + (R + 1) * M, (N-1-R), M, ?suffix);@*/
-        memcpy( ( void * ) pxQueue->u.xQueue.pcReadFrom, pvItemToQueue, ( size_t ) pxQueue->uxItemSize );
+        memcpy( ( void * ) pxQueue->u.xQueue.pcReadFrom,
+                pvItemToQueue,
+                ( size_t ) pxQueue->uxItemSize );
         /*@join_element(Storage, N, M, R);@*/
         /*@combine_list_update(prefix, x, suffix, R, contents);@*/
 #else
-        ( void ) memcpy( ( void * ) pxQueue->u.xQueue.pcReadFrom, pvItemToQueue, ( size_t ) pxQueue->uxItemSize ); /*lint !e961 !e9087 !e418 MISRA exception as the casts are only redundant for some ports.  Cast to void required by function signature and safe as no alignment requirement and copy length specified in bytes.  Assert checks null pointer only used when length is 0. */
+        ( void ) memcpy( ( void * ) pxQueue->u.xQueue.pcReadFrom,
+                         pvItemToQueue,
+                         ( size_t ) pxQueue
+                             ->uxItemSize ); /*lint !e961 !e9087 !e418 MISRA
+                                                exception as the casts are only
+                                                redundant for some ports.  Cast
+                                                to void required by function
+                                                signature and safe as no
+                                                alignment requirement and copy
+                                                length specified in bytes.
+                                                Assert checks null pointer only
+                                                used when length is 0. */
 #endif
         pxQueue->u.xQueue.pcReadFrom -= pxQueue->uxItemSize;
 
-        if( pxQueue->u.xQueue.pcReadFrom < pxQueue->pcHead ) /*lint !e946 MISRA exception justified as comparison of pointers is the cleanest solution. */
+        if( pxQueue->u.xQueue.pcReadFrom <
+            pxQueue->pcHead ) /*lint !e946 MISRA exception justified as
+                                 comparison of pointers is the cleanest
+                                 solution. */
         {
-            pxQueue->u.xQueue.pcReadFrom = ( pxQueue->u.xQueue.pcTail - pxQueue->uxItemSize );
+            pxQueue->u.xQueue.pcReadFrom = ( pxQueue->u.xQueue.pcTail -
+                                             pxQueue->uxItemSize );
             /*@{ div_leq(R-1, 0, M); leq_bound(R, 0); }@*/
             /*@assert R == 0;@*/
             /*@assert pxQueue->u.xQueue.pcReadFrom == Storage + (N-1) * M;@*/

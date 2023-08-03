@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
- *         SAM Software Package License 
+ *         SAM Software Package License
  * ----------------------------------------------------------------------------
  * Copyright (c) 2011, Atmel Corporation
  *
@@ -43,8 +43,7 @@
 
 #include <stdint.h>
 
-extern const uint8_t pCharset10x14[] ;
+extern const uint8_t pCharset10x14[];
 
 /** @}*/
 #endif /* #ifdef _LCD_FONT_10x14_ */
-

@@ -1,6 +1,6 @@
 /*
  * -------------------------------------------
- *    MSP432 DriverLib - v3_10_00_09 
+ *    MSP432 DriverLib - v3_10_00_09
  * -------------------------------------------
  *
  * --COPYRIGHT--,BSD,BSD
@@ -52,46 +52,45 @@
 //
 //*****************************************************************************
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
-#include <stdint.h>
 #include <msp.h>
+#include <stdint.h>
 
 //*****************************************************************************
 //
 // Values that can be passed to FPUHalfPrecisionSet as the mode parameter.
 //
 //*****************************************************************************
-#define FPU_HALF_IEEE           0x00000000
-#define FPU_HALF_ALTERNATE      0x04000000
+#define FPU_HALF_IEEE         0x00000000
+#define FPU_HALF_ALTERNATE    0x04000000
 
 //*****************************************************************************
 //
 // Values that can be passed to FPU_setNaNMode as the mode parameter.
 //
 //*****************************************************************************
-#define FPU_NAN_PROPAGATE       0x00000000
-#define FPU_NAN_DEFAULT         0x02000000
+#define FPU_NAN_PROPAGATE     0x00000000
+#define FPU_NAN_DEFAULT       0x02000000
 
 //*****************************************************************************
 //
 // Values that can be passed to FPU_setFlushToZeroMode as the mode parameter.
 //
 //*****************************************************************************
-#define FPU_FLUSH_TO_ZERO_DIS   0x00000000
-#define FPU_FLUSH_TO_ZERO_EN    0x01000000
+#define FPU_FLUSH_TO_ZERO_DIS 0x00000000
+#define FPU_FLUSH_TO_ZERO_EN  0x01000000
 
 //*****************************************************************************
 //
 // Values that can be passed to FPU_setRoundingMode as the mode parameter.
 //
 //*****************************************************************************
-#define FPU_ROUND_NEAREST       0x00000000
-#define FPU_ROUND_POS_INF       0x00400000
-#define FPU_ROUND_NEG_INF       0x00800000
-#define FPU_ROUND_ZERO          0x00c00000
+#define FPU_ROUND_NEAREST     0x00000000
+#define FPU_ROUND_POS_INF     0x00400000
+#define FPU_ROUND_NEG_INF     0x00800000
+#define FPU_ROUND_ZERO        0x00c00000
 
 //*****************************************************************************
 //
@@ -105,7 +104,7 @@ extern "C"
 //! \return None.
 //
 //*****************************************************************************
-extern void FPU_enableModule(void);
+extern void FPU_enableModule( void );
 
 //*****************************************************************************
 //
@@ -117,7 +116,7 @@ extern void FPU_enableModule(void);
 //! \return None.
 //
 //*****************************************************************************
-extern void FPU_disableModule(void);
+extern void FPU_disableModule( void );
 
 //*****************************************************************************
 //
@@ -139,7 +138,7 @@ extern void FPU_disableModule(void);
 //! \return None.
 //
 //*****************************************************************************
-extern void FPU_enableStacking(void);
+extern void FPU_enableStacking( void );
 
 //*****************************************************************************
 //
@@ -162,7 +161,7 @@ extern void FPU_enableStacking(void);
 //! \return None.
 //
 //*****************************************************************************
-extern void FPU_enableLazyStacking(void);
+extern void FPU_enableLazyStacking( void );
 
 //*****************************************************************************
 //
@@ -176,7 +175,7 @@ extern void FPU_enableLazyStacking(void);
 //! \return None.
 //
 //*****************************************************************************
-extern void FPU_disableStacking(void);
+extern void FPU_disableStacking( void );
 
 //*****************************************************************************
 //
@@ -197,13 +196,13 @@ extern void FPU_disableStacking(void);
 //! \return None.
 //
 //*****************************************************************************
-extern void FPU_setHalfPrecisionMode(uint32_t mode);
+extern void FPU_setHalfPrecisionMode( uint32_t mode );
 
 //*****************************************************************************
 //
 //! Selects the NaN mode.
 //!
-//! \param mode is the mode for NaN results; which is 
+//! \param mode is the mode for NaN results; which is
 //! either \b FPU_NAN_PROPAGATE or \b FPU_NAN_DEFAULT.
 //!
 //! This function selects the handling of NaN results during floating-point
@@ -216,7 +215,7 @@ extern void FPU_setHalfPrecisionMode(uint32_t mode);
 //! \return None.
 //
 //*****************************************************************************
-extern void FPU_setNaNMode(uint32_t mode);
+extern void FPU_setNaNMode( uint32_t mode );
 
 //*****************************************************************************
 //
@@ -237,7 +236,7 @@ extern void FPU_setNaNMode(uint32_t mode);
 //! \return None.
 //
 //*****************************************************************************
-extern void FPU_setFlushToZeroMode(uint32_t mode);
+extern void FPU_setFlushToZeroMode( uint32_t mode );
 
 //*****************************************************************************
 //
@@ -262,7 +261,7 @@ extern void FPU_setFlushToZeroMode(uint32_t mode);
 //! \return None.
 //
 //*****************************************************************************
-extern void FPU_setRoundingMode(uint32_t mode);
+extern void FPU_setRoundingMode( uint32_t mode );
 
 //*****************************************************************************
 //
@@ -273,13 +272,11 @@ extern void FPU_setRoundingMode(uint32_t mode);
 }
 #endif
 
-
 //*****************************************************************************
 //
 // Close the Doxygen group.
 //! @}
 //
 //*****************************************************************************
-
 
 #endif // __FPU_H__

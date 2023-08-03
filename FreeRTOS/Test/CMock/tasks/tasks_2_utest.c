@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -33,18 +34,17 @@
 
 #include "mock_list.h"
 #include "mock_list_macros.h"
-#include "mock_timers.h"
 #include "mock_portable.h"
+#include "mock_timers.h"
 
 /* Test includes. */
-#include "unity.h"
 #include "global_vars.h"
+#include "unity.h"
 
 /* C runtime includes. */
 #include <stdbool.h>
-#include <string.h>
 #include <stdlib.h>
-
+#include <string.h>
 
 /* ===========================  EXTERN VARIABLES  =========================== */
 extern TCB_t * volatile pxCurrentTCB;
@@ -65,14 +65,13 @@ extern volatile UBaseType_t uxTopReadyPriority;
 extern volatile BaseType_t xSchedulerRunning;
 extern volatile TickType_t xPendedTicks;
 extern volatile BaseType_t xYieldPendings[];
-#define xYieldPending    xYieldPendings[ 0 ]
+#define xYieldPending xYieldPendings[ 0 ]
 extern volatile BaseType_t xNumOfOverflows;
 extern UBaseType_t uxTaskNumber;
 extern volatile TickType_t xNextTaskUnblockTime;
 extern TaskHandle_t xIdleTaskHandles[];
-#define xIdleTaskHandle    xIdleTaskHandles[ 0 ]
+#define xIdleTaskHandle xIdleTaskHandles[ 0 ]
 extern volatile UBaseType_t uxSchedulerSuspended;
-
 
 /* ===========================  GLOBAL VARIABLES  =========================== */
 static StaticTask_t xIdleTaskTCB;
@@ -106,7 +105,6 @@ static bool port_allocate_secure_context_called = false;
 static bool port_assert_if_in_isr_called = false;
 static bool vApplicationMallocFailedHook_called = false;
 
-
 /* ===========================  Static Functions  =========================== */
 static void start_scheduler()
 {
@@ -122,7 +120,9 @@ static void start_scheduler()
     {
         is_first_task = false;
 
-        for( int i = ( UBaseType_t ) 0U; i < ( UBaseType_t ) configMAX_PRIORITIES; i++ )
+        for( int i = ( UBaseType_t ) 0U;
+             i < ( UBaseType_t ) configMAX_PRIORITIES;
+             i++ )
         {
             vListInitialise_ExpectAnyArgs();
         }
@@ -174,7 +174,9 @@ static TaskHandle_t create_task()
     if( is_first_task )
     {
         /* prvInitialiseTaskLists */
-        for( int i = ( UBaseType_t ) 0U; i < ( UBaseType_t ) configMAX_PRIORITIES; i++ )
+        for( int i = ( UBaseType_t ) 0U;
+             i < ( UBaseType_t ) configMAX_PRIORITIES;
+             i++ )
         {
             vListInitialise_ExpectAnyArgs();
         }
@@ -243,8 +245,8 @@ void vApplicationGetIdleTaskMemory( StaticTask_t ** ppxIdleTaskTCBBuffer,
 
     if( getIddleTaskMemoryValid == true )
     {
-        /* Pass out a pointer to the StaticTask_t structure in which the Idle task's
-         * state will be stored. */
+        /* Pass out a pointer to the StaticTask_t structure in which the Idle
+         * task's state will be stored. */
         *ppxIdleTaskTCBBuffer = &xIdleTaskTCB;
 
         /* Pass out the array that will be used as the Idle task's stack. */
@@ -370,8 +372,7 @@ void vFakePortAssertIfInterruptPriorityInvalid( void )
     port_invalid_interrupt_called = true;
 }
 
-void vApplicationStackOverflowHook( TaskHandle_t xTask,
-                                    char * stack )
+void vApplicationStackOverflowHook( TaskHandle_t xTask, char * stack )
 {
     HOOK_DIAG();
     vApplicationStackOverflowHook_called = true;
@@ -462,7 +463,8 @@ void test_xTaskCreateStatic_success( void )
     listSET_LIST_ITEM_VALUE_ExpectAnyArgs();
     pxPortInitialiseStack_ExpectAnyArgsAndReturn( puxStackBuffer );
 
-    for( int i = ( UBaseType_t ) 0U; i < ( UBaseType_t ) configMAX_PRIORITIES; i++ )
+    for( int i = ( UBaseType_t ) 0U; i < ( UBaseType_t ) configMAX_PRIORITIES;
+         i++ )
     {
         vListInitialise_ExpectAnyArgs();
     }
@@ -498,9 +500,11 @@ void test_xTaskCreateStatic_success( void )
                                puxStackBuffer,
                                ulStackDepth * sizeof( StackType_t ) ) );
 
-    TEST_ASSERT_EQUAL( ptcb->pxEndOfStack,
-                       ptcb->pxStack + ( 300 - 1 ) );
-    TEST_ASSERT_EQUAL( 0, memcmp( ptcb->pcTaskName, pcName, configMAX_TASK_NAME_LEN - 1 ) );
+    TEST_ASSERT_EQUAL( ptcb->pxEndOfStack, ptcb->pxStack + ( 300 - 1 ) );
+    TEST_ASSERT_EQUAL( 0,
+                       memcmp( ptcb->pcTaskName,
+                               pcName,
+                               configMAX_TASK_NAME_LEN - 1 ) );
 
     TEST_ASSERT_EQUAL( ptcb->uxPriority, uxPriority );
 
@@ -530,7 +534,8 @@ void test_xTaskCreate_success( void )
     listSET_LIST_ITEM_VALUE_ExpectAnyArgs();
     pxPortInitialiseStack_ExpectAnyArgsAndReturn( stack );
 
-    for( int i = ( UBaseType_t ) 0U; i < ( UBaseType_t ) configMAX_PRIORITIES; i++ )
+    for( int i = ( UBaseType_t ) 0U; i < ( UBaseType_t ) configMAX_PRIORITIES;
+         i++ )
     {
         vListInitialise_ExpectAnyArgs();
     }

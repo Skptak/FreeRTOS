@@ -1,6 +1,6 @@
 /*
  * -------------------------------------------
- *    MSP432 DriverLib - v3_10_00_09 
+ *    MSP432 DriverLib - v3_10_00_09
  * -------------------------------------------
  *
  * --COPYRIGHT--,BSD,BSD
@@ -51,16 +51,15 @@
 //
 //*****************************************************************************
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
-#include <stdint.h>
-#include <stdbool.h>
 #include <msp.h>
+#include <stdbool.h>
+#include <stdint.h>
 
 /* Module Defines and macro for easy access */
-#define AES256_CMSIS(x) ((AES256_Type *) x)
+#define AES256_CMSIS( x )         ( ( AES256_Type * ) x )
 
 //*****************************************************************************
 //
@@ -68,9 +67,9 @@ extern "C"
 // correct values to use.
 //
 //*****************************************************************************
-#define Key_128BIT                                                          128
-#define Key_192BIT                                                          192
-#define Key_256BIT                                                          256
+#define Key_128BIT                128
+#define Key_192BIT                192
+#define Key_256BIT                256
 
 //*****************************************************************************
 //
@@ -79,9 +78,9 @@ extern "C"
 // AES256_startSetDecipherKey().
 //
 //*****************************************************************************
-#define AES256_KEYLENGTH_128BIT                                             128
-#define AES256_KEYLENGTH_192BIT                                             192
-#define AES256_KEYLENGTH_256BIT                                             256
+#define AES256_KEYLENGTH_128BIT   128
+#define AES256_KEYLENGTH_192BIT   192
+#define AES256_KEYLENGTH_256BIT   256
 
 //*****************************************************************************
 //
@@ -89,8 +88,8 @@ extern "C"
 // can be returned by the AES256_getErrorFlagStatus() function.
 //
 //*****************************************************************************
-#define AES256_ERROR_OCCURRED                                 AES256_CTL0_ERRFG
-#define AES256_NO_ERROR                                                    0x00
+#define AES256_ERROR_OCCURRED     AES256_CTL0_ERRFG
+#define AES256_NO_ERROR           0x00
 
 //*****************************************************************************
 //
@@ -98,8 +97,8 @@ extern "C"
 // can be returned by the AES256_isBusy() function.
 //
 //*****************************************************************************
-#define AES256_BUSY                                            AES256_STAT_BUSY
-#define AES256_NOT_BUSY                                                    0x00
+#define AES256_BUSY               AES256_STAT_BUSY
+#define AES256_NOT_BUSY           0x00
 
 //*****************************************************************************
 //
@@ -107,8 +106,8 @@ extern "C"
 // can be returned by the AES256_getInterruptFlagStatus() function.
 //
 //*****************************************************************************
-#define AES256_READY_INTERRUPT                                             0x01
-#define AES256_NOTREADY_INTERRUPT                                          0x00
+#define AES256_READY_INTERRUPT    0x01
+#define AES256_NOTREADY_INTERRUPT 0x00
 
 //*****************************************************************************
 //
@@ -132,8 +131,9 @@ extern "C"
 //! \return true if set correctly, false otherwise
 //
 //*****************************************************************************
-extern bool AES256_setCipherKey(uint32_t moduleInstance,
-        const uint8_t *cipherKey, uint_fast16_t keyLength);
+extern bool AES256_setCipherKey( uint32_t moduleInstance,
+                                 const uint8_t * cipherKey,
+                                 uint_fast16_t keyLength );
 
 //*****************************************************************************
 //
@@ -151,8 +151,9 @@ extern bool AES256_setCipherKey(uint32_t moduleInstance,
 //! \return None
 //
 //*****************************************************************************
-extern void AES256_encryptData(uint32_t moduleInstance, const uint8_t *data,
-        uint8_t *encryptedData);
+extern void AES256_encryptData( uint32_t moduleInstance,
+                                const uint8_t * data,
+                                uint8_t * encryptedData );
 
 //*****************************************************************************
 //
@@ -171,8 +172,9 @@ extern void AES256_encryptData(uint32_t moduleInstance, const uint8_t *data,
 //! \return None
 //
 //*****************************************************************************
-extern void AES256_decryptData(uint32_t moduleInstance, const uint8_t *data,
-        uint8_t *decryptedData);
+extern void AES256_decryptData( uint32_t moduleInstance,
+                                const uint8_t * data,
+                                uint8_t * decryptedData );
 
 //*****************************************************************************
 //
@@ -193,8 +195,9 @@ extern void AES256_decryptData(uint32_t moduleInstance, const uint8_t *data,
 //! \return true if set, false otherwise
 //
 //*****************************************************************************
-extern bool AES256_setDecipherKey(uint32_t moduleInstance,
-        const uint8_t *cipherKey, uint_fast16_t keyLength);
+extern bool AES256_setDecipherKey( uint32_t moduleInstance,
+                                   const uint8_t * cipherKey,
+                                   uint_fast16_t keyLength );
 
 //*****************************************************************************
 //
@@ -207,7 +210,7 @@ extern bool AES256_setDecipherKey(uint32_t moduleInstance,
 //! \return None
 //
 //*****************************************************************************
-extern void AES256_clearInterruptFlag(uint32_t moduleInstance);
+extern void AES256_clearInterruptFlag( uint32_t moduleInstance );
 
 //*****************************************************************************
 //
@@ -221,7 +224,7 @@ extern void AES256_clearInterruptFlag(uint32_t moduleInstance);
 //!         \n indicating the status of the AES256 ready status
 //
 //*****************************************************************************
-extern uint32_t AES256_getInterruptFlagStatus(uint32_t moduleInstance);
+extern uint32_t AES256_getInterruptFlagStatus( uint32_t moduleInstance );
 
 //*****************************************************************************
 //
@@ -234,7 +237,7 @@ extern uint32_t AES256_getInterruptFlagStatus(uint32_t moduleInstance);
 //! \return None
 //
 //*****************************************************************************
-extern void AES256_enableInterrupt(uint32_t moduleInstance);
+extern void AES256_enableInterrupt( uint32_t moduleInstance );
 
 //*****************************************************************************
 //
@@ -247,7 +250,7 @@ extern void AES256_enableInterrupt(uint32_t moduleInstance);
 //! \return None
 //
 //*****************************************************************************
-extern void AES256_disableInterrupt(uint32_t moduleInstance);
+extern void AES256_disableInterrupt( uint32_t moduleInstance );
 
 //*****************************************************************************
 //
@@ -260,7 +263,7 @@ extern void AES256_disableInterrupt(uint32_t moduleInstance);
 //! \return None
 //
 //*****************************************************************************
-extern void AES256_reset(uint32_t moduleInstance);
+extern void AES256_reset( uint32_t moduleInstance );
 
 //*****************************************************************************
 //
@@ -279,8 +282,8 @@ extern void AES256_reset(uint32_t moduleInstance);
 //! \return None
 //
 //*****************************************************************************
-extern void AES256_startEncryptData(uint32_t moduleInstance,
-        const uint8_t *data);
+extern void AES256_startEncryptData( uint32_t moduleInstance,
+                                     const uint8_t * data );
 
 //*****************************************************************************
 //
@@ -300,8 +303,8 @@ extern void AES256_startEncryptData(uint32_t moduleInstance,
 //! \return None
 //
 //*****************************************************************************
-extern void AES256_startDecryptData(uint32_t moduleInstance,
-        const uint8_t *data);
+extern void AES256_startDecryptData( uint32_t moduleInstance,
+                                     const uint8_t * data );
 
 //*****************************************************************************
 //
@@ -322,8 +325,9 @@ extern void AES256_startDecryptData(uint32_t moduleInstance,
 //! \return true if set correctly, false otherwise
 //
 //*****************************************************************************
-extern bool AES256_startSetDecipherKey(uint32_t moduleInstance,
-        const uint8_t *cipherKey, uint_fast16_t keyLength);
+extern bool AES256_startSetDecipherKey( uint32_t moduleInstance,
+                                        const uint8_t * cipherKey,
+                                        uint_fast16_t keyLength );
 
 //*****************************************************************************
 //
@@ -340,8 +344,7 @@ extern bool AES256_startSetDecipherKey(uint32_t moduleInstance,
 //! \return true if data is valid, otherwise false
 //
 //*****************************************************************************
-extern bool AES256_getDataOut(uint32_t moduleInstance,
-        uint8_t *outputData);
+extern bool AES256_getDataOut( uint32_t moduleInstance, uint8_t * outputData );
 
 //*****************************************************************************
 //
@@ -352,7 +355,7 @@ extern bool AES256_getDataOut(uint32_t moduleInstance,
 //! \return true if busy, false otherwise
 //
 //*****************************************************************************
-extern bool AES256_isBusy(uint32_t moduleInstance);
+extern bool AES256_isBusy( uint32_t moduleInstance );
 
 //*****************************************************************************
 //
@@ -365,7 +368,7 @@ extern bool AES256_isBusy(uint32_t moduleInstance);
 //! \return None
 //
 //*****************************************************************************
-extern void AES256_clearErrorFlag(uint32_t moduleInstance);
+extern void AES256_clearErrorFlag( uint32_t moduleInstance );
 
 //*****************************************************************************
 //
@@ -379,7 +382,7 @@ extern void AES256_clearErrorFlag(uint32_t moduleInstance);
 //!         \n indicating the error flag status
 //
 //*****************************************************************************
-extern uint32_t AES256_getErrorFlagStatus(uint32_t moduleInstance);
+extern uint32_t AES256_getErrorFlagStatus( uint32_t moduleInstance );
 
 //*****************************************************************************
 //
@@ -399,8 +402,8 @@ extern uint32_t AES256_getErrorFlagStatus(uint32_t moduleInstance);
 //! \return None.
 //
 //*****************************************************************************
-extern void AES256_registerInterrupt(uint32_t moduleInstance,
-        void (*intHandler)(void));
+extern void AES256_registerInterrupt( uint32_t moduleInstance,
+                                      void ( *intHandler )( void ) );
 
 //*****************************************************************************
 //
@@ -418,7 +421,7 @@ extern void AES256_registerInterrupt(uint32_t moduleInstance,
 //! \return None.
 //
 //*****************************************************************************
-extern void AES256_unregisterInterrupt(uint32_t moduleInstance);
+extern void AES256_unregisterInterrupt( uint32_t moduleInstance );
 
 //*****************************************************************************
 //
@@ -429,7 +432,7 @@ extern void AES256_unregisterInterrupt(uint32_t moduleInstance);
 //! \return The currently triggered interrupt flag for the module.
 //
 //*****************************************************************************
-extern uint32_t AES256_getInterruptStatus(uint32_t moduleInstance);
+extern uint32_t AES256_getInterruptStatus( uint32_t moduleInstance );
 
 //*****************************************************************************
 //
@@ -448,4 +451,3 @@ extern uint32_t AES256_getInterruptStatus(uint32_t moduleInstance);
 //*****************************************************************************
 
 #endif /* AES256_H_ */
-

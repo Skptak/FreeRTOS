@@ -29,7 +29,8 @@
 
 #include "mutex.h"
 
-void mutex_lock(mutex_t* mutex)
+void mutex_lock( mutex_t * mutex )
 {
-	while(mutex_try_lock(mutex));
+    while( mutex_try_lock( mutex ) )
+        ;
 }

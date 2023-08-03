@@ -32,6 +32,7 @@
 //
 //*****************************************************************************
 
+#include "sysctl.h"
 #include "../hw_ints.h"
 #include "../hw_memmap.h"
 #include "../hw_nvic.h"
@@ -40,7 +41,6 @@
 #include "cpu.h"
 #include "debug.h"
 #include "interrupt.h"
-#include "sysctl.h"
 
 //*****************************************************************************
 //
@@ -49,14 +49,11 @@
 // contains the peripheral present bit for that peripheral.
 //
 //*****************************************************************************
-#if defined(GROUP_puldcregs) || defined(BUILD_ALL)
-const unsigned long g_pulDCRegs[] =
-{
-    SYSCTL_DC1,
-    SYSCTL_DC2,
-    SYSCTL_DC4,
-    SYSCTL_DC1
-};
+#if defined( GROUP_puldcregs ) || defined( BUILD_ALL )
+const unsigned long g_pulDCRegs[] = { SYSCTL_DC1,
+                                      SYSCTL_DC2,
+                                      SYSCTL_DC4,
+                                      SYSCTL_DC1 };
 #else
 extern const unsigned long g_pulDCRegs[];
 #endif
@@ -68,13 +65,10 @@ extern const unsigned long g_pulDCRegs[];
 // controls the software reset for that peripheral.
 //
 //*****************************************************************************
-#if defined(GROUP_pulsrcrregs) || defined(BUILD_ALL)
-const unsigned long g_pulSRCRRegs[] =
-{
-    SYSCTL_SRCR0,
-    SYSCTL_SRCR1,
-    SYSCTL_SRCR2
-};
+#if defined( GROUP_pulsrcrregs ) || defined( BUILD_ALL )
+const unsigned long g_pulSRCRRegs[] = { SYSCTL_SRCR0,
+                                        SYSCTL_SRCR1,
+                                        SYSCTL_SRCR2 };
 #else
 extern const unsigned long g_pulSRCRRegs[];
 #endif
@@ -86,13 +80,10 @@ extern const unsigned long g_pulSRCRRegs[];
 // controls the run-mode enable for that peripheral.
 //
 //*****************************************************************************
-#if defined(GROUP_pulrcgcregs) || defined(BUILD_ALL)
-const unsigned long g_pulRCGCRegs[] =
-{
-    SYSCTL_RCGC0,
-    SYSCTL_RCGC1,
-    SYSCTL_RCGC2
-};
+#if defined( GROUP_pulrcgcregs ) || defined( BUILD_ALL )
+const unsigned long g_pulRCGCRegs[] = { SYSCTL_RCGC0,
+                                        SYSCTL_RCGC1,
+                                        SYSCTL_RCGC2 };
 #else
 extern const unsigned long g_pulRCGCRegs[];
 #endif
@@ -104,13 +95,10 @@ extern const unsigned long g_pulRCGCRegs[];
 // controls the sleep-mode enable for that peripheral.
 //
 //*****************************************************************************
-#if defined(GROUP_pulscgcregs) || defined(BUILD_ALL)
-const unsigned long g_pulSCGCRegs[] =
-{
-    SYSCTL_SCGC0,
-    SYSCTL_SCGC1,
-    SYSCTL_SCGC2
-};
+#if defined( GROUP_pulscgcregs ) || defined( BUILD_ALL )
+const unsigned long g_pulSCGCRegs[] = { SYSCTL_SCGC0,
+                                        SYSCTL_SCGC1,
+                                        SYSCTL_SCGC2 };
 #else
 extern const unsigned long g_pulSCGCRegs[];
 #endif
@@ -122,13 +110,10 @@ extern const unsigned long g_pulSCGCRegs[];
 // controls the deep-sleep-mode enable for that peripheral.
 //
 //*****************************************************************************
-#if defined(GROUP_pulDCGCregs) || defined(BUILD_ALL)
-const unsigned long g_pulDCGCRegs[] =
-{
-    SYSCTL_DCGC0,
-    SYSCTL_DCGC1,
-    SYSCTL_DCGC2
-};
+#if defined( GROUP_pulDCGCregs ) || defined( BUILD_ALL )
+const unsigned long g_pulDCGCRegs[] = { SYSCTL_DCGC0,
+                                        SYSCTL_DCGC1,
+                                        SYSCTL_DCGC2 };
 #else
 extern const unsigned long g_pulDCGCRegs[];
 #endif
@@ -138,22 +123,10 @@ extern const unsigned long g_pulDCGCRegs[];
 // An array that maps the crystal number in RCC to a frequency.
 //
 //*****************************************************************************
-#if defined(GROUP_pulxtals) || defined(BUILD_ALL)
-const unsigned long g_pulXtals[] =
-{
-    3579545,
-    3686400,
-    4000000,
-    4096000,
-    4915200,
-    5000000,
-    5120000,
-    6000000,
-    6144000,
-    7372800,
-    8000000,
-    8192000
-};
+#if defined( GROUP_pulxtals ) || defined( BUILD_ALL )
+const unsigned long g_pulXtals[] = { 3579545, 3686400, 4000000, 4096000,
+                                     4915200, 5000000, 5120000, 6000000,
+                                     6144000, 7372800, 8000000, 8192000 };
 #else
 extern const unsigned long g_pulXtals[];
 #endif
@@ -167,14 +140,14 @@ extern const unsigned long g_pulXtals[];
 //! \return The total number of bytes of SRAM.
 //
 //*****************************************************************************
-#if defined(GROUP_sramsizeget) || defined(BUILD_ALL) || defined(DOXYGEN)
-unsigned long
-SysCtlSRAMSizeGet(void)
+#if defined( GROUP_sramsizeget ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+unsigned long SysCtlSRAMSizeGet( void )
 {
     //
     // Compute the size of the SRAM.
     //
-    return(((HWREG(SYSCTL_DC0) & SYSCTL_DC0_SRAMSZ_MASK) >> 8) + 0x100);
+    return ( ( ( HWREG( SYSCTL_DC0 ) & SYSCTL_DC0_SRAMSZ_MASK ) >> 8 ) +
+             0x100 );
 }
 #endif
 
@@ -187,14 +160,14 @@ SysCtlSRAMSizeGet(void)
 //! \return The total number of bytes of flash.
 //
 //*****************************************************************************
-#if defined(GROUP_flashsizeget) || defined(BUILD_ALL) || defined(DOXYGEN)
-unsigned long
-SysCtlFlashSizeGet(void)
+#if defined( GROUP_flashsizeget ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+unsigned long SysCtlFlashSizeGet( void )
 {
     //
     // Compute the size of the flash.
     //
-    return(((HWREG(SYSCTL_DC0) & SYSCTL_DC0_FLASHSZ_MASK) << 11) + 0x800);
+    return ( ( ( HWREG( SYSCTL_DC0 ) & SYSCTL_DC0_FLASHSZ_MASK ) << 11 ) +
+             0x800 );
 }
 #endif
 
@@ -225,54 +198,38 @@ SysCtlFlashSizeGet(void)
 //! is not.
 //
 //*****************************************************************************
-#if defined(GROUP_pinpresent) || defined(BUILD_ALL) || defined(DOXYGEN)
-tBoolean
-SysCtlPinPresent(unsigned long ulPin)
+#if defined( GROUP_pinpresent ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+tBoolean SysCtlPinPresent( unsigned long ulPin )
 {
     //
     // Check the arguments.
     //
-    ASSERT((ulPin == SYSCTL_PIN_PWM0) ||
-           (ulPin == SYSCTL_PIN_PWM1) ||
-           (ulPin == SYSCTL_PIN_PWM2) ||
-           (ulPin == SYSCTL_PIN_PWM3) ||
-           (ulPin == SYSCTL_PIN_PWM4) ||
-           (ulPin == SYSCTL_PIN_PWM5) ||
-           (ulPin == SYSCTL_PIN_C0MINUS) ||
-           (ulPin == SYSCTL_PIN_C0PLUS) ||
-           (ulPin == SYSCTL_PIN_C0O) ||
-           (ulPin == SYSCTL_PIN_C1MINUS) ||
-           (ulPin == SYSCTL_PIN_C1PLUS) ||
-           (ulPin == SYSCTL_PIN_C1O) ||
-           (ulPin == SYSCTL_PIN_C2MINUS) ||
-           (ulPin == SYSCTL_PIN_C2PLUS) ||
-           (ulPin == SYSCTL_PIN_C2O) ||
-           (ulPin == SYSCTL_PIN_ADC0) ||
-           (ulPin == SYSCTL_PIN_ADC1) ||
-           (ulPin == SYSCTL_PIN_ADC2) ||
-           (ulPin == SYSCTL_PIN_ADC3) ||
-           (ulPin == SYSCTL_PIN_ADC4) ||
-           (ulPin == SYSCTL_PIN_ADC5) ||
-           (ulPin == SYSCTL_PIN_ADC6) ||
-           (ulPin == SYSCTL_PIN_ADC7) ||
-           (ulPin == SYSCTL_PIN_CCP0) ||
-           (ulPin == SYSCTL_PIN_CCP1) ||
-           (ulPin == SYSCTL_PIN_CCP2) ||
-           (ulPin == SYSCTL_PIN_CCP3) ||
-           (ulPin == SYSCTL_PIN_CCP4) ||
-           (ulPin == SYSCTL_PIN_CCP5) ||
-           (ulPin == SYSCTL_PIN_32KHZ))
+    ASSERT( ( ulPin == SYSCTL_PIN_PWM0 ) || ( ulPin == SYSCTL_PIN_PWM1 ) ||
+            ( ulPin == SYSCTL_PIN_PWM2 ) || ( ulPin == SYSCTL_PIN_PWM3 ) ||
+            ( ulPin == SYSCTL_PIN_PWM4 ) || ( ulPin == SYSCTL_PIN_PWM5 ) ||
+            ( ulPin == SYSCTL_PIN_C0MINUS ) || ( ulPin == SYSCTL_PIN_C0PLUS ) ||
+            ( ulPin == SYSCTL_PIN_C0O ) || ( ulPin == SYSCTL_PIN_C1MINUS ) ||
+            ( ulPin == SYSCTL_PIN_C1PLUS ) || ( ulPin == SYSCTL_PIN_C1O ) ||
+            ( ulPin == SYSCTL_PIN_C2MINUS ) || ( ulPin == SYSCTL_PIN_C2PLUS ) ||
+            ( ulPin == SYSCTL_PIN_C2O ) || ( ulPin == SYSCTL_PIN_ADC0 ) ||
+            ( ulPin == SYSCTL_PIN_ADC1 ) || ( ulPin == SYSCTL_PIN_ADC2 ) ||
+            ( ulPin == SYSCTL_PIN_ADC3 ) || ( ulPin == SYSCTL_PIN_ADC4 ) ||
+            ( ulPin == SYSCTL_PIN_ADC5 ) || ( ulPin == SYSCTL_PIN_ADC6 ) ||
+            ( ulPin == SYSCTL_PIN_ADC7 ) || ( ulPin == SYSCTL_PIN_CCP0 ) ||
+            ( ulPin == SYSCTL_PIN_CCP1 ) || ( ulPin == SYSCTL_PIN_CCP2 ) ||
+            ( ulPin == SYSCTL_PIN_CCP3 ) || ( ulPin == SYSCTL_PIN_CCP4 ) ||
+            ( ulPin == SYSCTL_PIN_CCP5 ) || ( ulPin == SYSCTL_PIN_32KHZ ) )
 
     //
     // Determine if this pin is present.
     //
-    if(HWREG(SYSCTL_DC3) & ulPin)
+    if( HWREG( SYSCTL_DC3 ) & ulPin )
     {
-        return(true);
+        return ( true );
     }
     else
     {
-        return(false);
+        return ( false );
     }
 }
 #endif
@@ -301,46 +258,46 @@ SysCtlPinPresent(unsigned long ulPin)
 //! if it is not.
 //
 //*****************************************************************************
-#if defined(GROUP_peripheralpresent) || defined(BUILD_ALL) || defined(DOXYGEN)
-tBoolean
-SysCtlPeripheralPresent(unsigned long ulPeripheral)
+#if defined( GROUP_peripheralpresent ) || defined( BUILD_ALL ) || \
+    defined( DOXYGEN )
+tBoolean SysCtlPeripheralPresent( unsigned long ulPeripheral )
 {
     //
     // Check the arguments.
     //
-    ASSERT((ulPeripheral == SYSCTL_PERIPH_PWM) ||
-           (ulPeripheral == SYSCTL_PERIPH_ADC) ||
-           (ulPeripheral == SYSCTL_PERIPH_WDOG) ||
-           (ulPeripheral == SYSCTL_PERIPH_UART0) ||
-           (ulPeripheral == SYSCTL_PERIPH_UART1) ||
-           (ulPeripheral == SYSCTL_PERIPH_SSI) ||
-           (ulPeripheral == SYSCTL_PERIPH_QEI) ||
-           (ulPeripheral == SYSCTL_PERIPH_I2C) ||
-           (ulPeripheral == SYSCTL_PERIPH_TIMER0) ||
-           (ulPeripheral == SYSCTL_PERIPH_TIMER1) ||
-           (ulPeripheral == SYSCTL_PERIPH_TIMER2) ||
-           (ulPeripheral == SYSCTL_PERIPH_COMP0) ||
-           (ulPeripheral == SYSCTL_PERIPH_COMP1) ||
-           (ulPeripheral == SYSCTL_PERIPH_COMP2) ||
-           (ulPeripheral == SYSCTL_PERIPH_GPIOA) ||
-           (ulPeripheral == SYSCTL_PERIPH_GPIOB) ||
-           (ulPeripheral == SYSCTL_PERIPH_GPIOC) ||
-           (ulPeripheral == SYSCTL_PERIPH_GPIOD) ||
-           (ulPeripheral == SYSCTL_PERIPH_GPIOE) ||
-           (ulPeripheral == SYSCTL_PERIPH_MPU) ||
-           (ulPeripheral == SYSCTL_PERIPH_TEMP) ||
-           (ulPeripheral == SYSCTL_PERIPH_PLL));
+    ASSERT( ( ulPeripheral == SYSCTL_PERIPH_PWM ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_ADC ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_WDOG ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_UART0 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_UART1 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_SSI ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_QEI ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_I2C ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_TIMER0 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_TIMER1 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_TIMER2 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_COMP0 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_COMP1 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_COMP2 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_GPIOA ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_GPIOB ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_GPIOC ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_GPIOD ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_GPIOE ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_MPU ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_TEMP ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_PLL ) );
 
     //
     // Read the correct DC register and determine if this peripheral exists.
     //
-    if(HWREG(g_pulDCRegs[ulPeripheral >> 28]) & ulPeripheral & 0x0fffffff)
+    if( HWREG( g_pulDCRegs[ ulPeripheral >> 28 ] ) & ulPeripheral & 0x0fffffff )
     {
-        return(true);
+        return ( true );
     }
     else
     {
-        return(false);
+        return ( false );
     }
 }
 #endif
@@ -368,51 +325,51 @@ SysCtlPeripheralPresent(unsigned long ulPeripheral)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_peripheralreset) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-SysCtlPeripheralReset(unsigned long ulPeripheral)
+#if defined( GROUP_peripheralreset ) || defined( BUILD_ALL ) || \
+    defined( DOXYGEN )
+void SysCtlPeripheralReset( unsigned long ulPeripheral )
 {
     volatile unsigned long ulDelay;
 
     //
     // Check the arguments.
     //
-    ASSERT((ulPeripheral == SYSCTL_PERIPH_PWM) ||
-           (ulPeripheral == SYSCTL_PERIPH_ADC) ||
-           (ulPeripheral == SYSCTL_PERIPH_WDOG) ||
-           (ulPeripheral == SYSCTL_PERIPH_UART0) ||
-           (ulPeripheral == SYSCTL_PERIPH_UART1) ||
-           (ulPeripheral == SYSCTL_PERIPH_SSI) ||
-           (ulPeripheral == SYSCTL_PERIPH_QEI) ||
-           (ulPeripheral == SYSCTL_PERIPH_I2C) ||
-           (ulPeripheral == SYSCTL_PERIPH_TIMER0) ||
-           (ulPeripheral == SYSCTL_PERIPH_TIMER1) ||
-           (ulPeripheral == SYSCTL_PERIPH_TIMER2) ||
-           (ulPeripheral == SYSCTL_PERIPH_COMP0) ||
-           (ulPeripheral == SYSCTL_PERIPH_COMP1) ||
-           (ulPeripheral == SYSCTL_PERIPH_COMP2) ||
-           (ulPeripheral == SYSCTL_PERIPH_GPIOA) ||
-           (ulPeripheral == SYSCTL_PERIPH_GPIOB) ||
-           (ulPeripheral == SYSCTL_PERIPH_GPIOC) ||
-           (ulPeripheral == SYSCTL_PERIPH_GPIOD) ||
-           (ulPeripheral == SYSCTL_PERIPH_GPIOE));
+    ASSERT( ( ulPeripheral == SYSCTL_PERIPH_PWM ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_ADC ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_WDOG ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_UART0 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_UART1 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_SSI ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_QEI ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_I2C ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_TIMER0 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_TIMER1 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_TIMER2 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_COMP0 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_COMP1 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_COMP2 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_GPIOA ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_GPIOB ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_GPIOC ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_GPIOD ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_GPIOE ) );
 
     //
     // Put the peripheral into the reset state.
     //
-    HWREG(g_pulSRCRRegs[ulPeripheral >> 28]) |= ulPeripheral & 0x0fffffff;
-    
+    HWREG( g_pulSRCRRegs[ ulPeripheral >> 28 ] ) |= ulPeripheral & 0x0fffffff;
+
     //
     // Delay for a little bit.
     //
-    for(ulDelay = 0; ulDelay < 16; ulDelay++)
+    for( ulDelay = 0; ulDelay < 16; ulDelay++ )
     {
     }
 
     //
     // Take the peripheral out of the reset state.
     //
-    HWREG(g_pulSRCRRegs[ulPeripheral >> 28]) &= ~(ulPeripheral);
+    HWREG( g_pulSRCRRegs[ ulPeripheral >> 28 ] ) &= ~( ulPeripheral );
 }
 #endif
 
@@ -438,37 +395,37 @@ SysCtlPeripheralReset(unsigned long ulPeripheral)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_peripheralenable) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-SysCtlPeripheralEnable(unsigned long ulPeripheral)
+#if defined( GROUP_peripheralenable ) || defined( BUILD_ALL ) || \
+    defined( DOXYGEN )
+void SysCtlPeripheralEnable( unsigned long ulPeripheral )
 {
     //
     // Check the arguments.
     //
-    ASSERT((ulPeripheral == SYSCTL_PERIPH_PWM) ||
-           (ulPeripheral == SYSCTL_PERIPH_ADC) ||
-           (ulPeripheral == SYSCTL_PERIPH_WDOG) ||
-           (ulPeripheral == SYSCTL_PERIPH_UART0) ||
-           (ulPeripheral == SYSCTL_PERIPH_UART1) ||
-           (ulPeripheral == SYSCTL_PERIPH_SSI) ||
-           (ulPeripheral == SYSCTL_PERIPH_QEI) ||
-           (ulPeripheral == SYSCTL_PERIPH_I2C) ||
-           (ulPeripheral == SYSCTL_PERIPH_TIMER0) ||
-           (ulPeripheral == SYSCTL_PERIPH_TIMER1) ||
-           (ulPeripheral == SYSCTL_PERIPH_TIMER2) ||
-           (ulPeripheral == SYSCTL_PERIPH_COMP0) ||
-           (ulPeripheral == SYSCTL_PERIPH_COMP1) ||
-           (ulPeripheral == SYSCTL_PERIPH_COMP2) ||
-           (ulPeripheral == SYSCTL_PERIPH_GPIOA) ||
-           (ulPeripheral == SYSCTL_PERIPH_GPIOB) ||
-           (ulPeripheral == SYSCTL_PERIPH_GPIOC) ||
-           (ulPeripheral == SYSCTL_PERIPH_GPIOD) ||
-           (ulPeripheral == SYSCTL_PERIPH_GPIOE));
+    ASSERT( ( ulPeripheral == SYSCTL_PERIPH_PWM ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_ADC ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_WDOG ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_UART0 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_UART1 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_SSI ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_QEI ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_I2C ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_TIMER0 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_TIMER1 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_TIMER2 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_COMP0 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_COMP1 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_COMP2 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_GPIOA ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_GPIOB ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_GPIOC ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_GPIOD ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_GPIOE ) );
 
     //
     // Enable this peripheral.
     //
-    HWREG(g_pulRCGCRegs[ulPeripheral >> 28]) |= ulPeripheral & 0x0fffffff;
+    HWREG( g_pulRCGCRegs[ ulPeripheral >> 28 ] ) |= ulPeripheral & 0x0fffffff;
 }
 #endif
 
@@ -493,37 +450,38 @@ SysCtlPeripheralEnable(unsigned long ulPeripheral)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_peripheraldisable) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-SysCtlPeripheralDisable(unsigned long ulPeripheral)
+#if defined( GROUP_peripheraldisable ) || defined( BUILD_ALL ) || \
+    defined( DOXYGEN )
+void SysCtlPeripheralDisable( unsigned long ulPeripheral )
 {
     //
     // Check the arguments.
     //
-    ASSERT((ulPeripheral == SYSCTL_PERIPH_PWM) ||
-           (ulPeripheral == SYSCTL_PERIPH_ADC) ||
-           (ulPeripheral == SYSCTL_PERIPH_WDOG) ||
-           (ulPeripheral == SYSCTL_PERIPH_UART0) ||
-           (ulPeripheral == SYSCTL_PERIPH_UART1) ||
-           (ulPeripheral == SYSCTL_PERIPH_SSI) ||
-           (ulPeripheral == SYSCTL_PERIPH_QEI) ||
-           (ulPeripheral == SYSCTL_PERIPH_I2C) ||
-           (ulPeripheral == SYSCTL_PERIPH_TIMER0) ||
-           (ulPeripheral == SYSCTL_PERIPH_TIMER1) ||
-           (ulPeripheral == SYSCTL_PERIPH_TIMER2) ||
-           (ulPeripheral == SYSCTL_PERIPH_COMP0) ||
-           (ulPeripheral == SYSCTL_PERIPH_COMP1) ||
-           (ulPeripheral == SYSCTL_PERIPH_COMP2) ||
-           (ulPeripheral == SYSCTL_PERIPH_GPIOA) ||
-           (ulPeripheral == SYSCTL_PERIPH_GPIOB) ||
-           (ulPeripheral == SYSCTL_PERIPH_GPIOC) ||
-           (ulPeripheral == SYSCTL_PERIPH_GPIOD) ||
-           (ulPeripheral == SYSCTL_PERIPH_GPIOE));
+    ASSERT( ( ulPeripheral == SYSCTL_PERIPH_PWM ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_ADC ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_WDOG ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_UART0 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_UART1 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_SSI ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_QEI ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_I2C ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_TIMER0 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_TIMER1 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_TIMER2 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_COMP0 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_COMP1 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_COMP2 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_GPIOA ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_GPIOB ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_GPIOC ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_GPIOD ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_GPIOE ) );
 
     //
     // Disable this peripheral.
     //
-    HWREG(g_pulRCGCRegs[ulPeripheral >> 28]) &= ~(ulPeripheral & 0x0fffffff);
+    HWREG( g_pulRCGCRegs[ ulPeripheral >> 28 ] ) &= ~( ulPeripheral &
+                                                       0x0fffffff );
 }
 #endif
 
@@ -555,38 +513,37 @@ SysCtlPeripheralDisable(unsigned long ulPeripheral)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_peripheralsleepenable) || defined(BUILD_ALL) || \
-    defined(DOXYGEN)
-void
-SysCtlPeripheralSleepEnable(unsigned long ulPeripheral)
+#if defined( GROUP_peripheralsleepenable ) || defined( BUILD_ALL ) || \
+    defined( DOXYGEN )
+void SysCtlPeripheralSleepEnable( unsigned long ulPeripheral )
 {
     //
     // Check the arguments.
     //
-    ASSERT((ulPeripheral == SYSCTL_PERIPH_PWM) ||
-           (ulPeripheral == SYSCTL_PERIPH_ADC) ||
-           (ulPeripheral == SYSCTL_PERIPH_WDOG) ||
-           (ulPeripheral == SYSCTL_PERIPH_UART0) ||
-           (ulPeripheral == SYSCTL_PERIPH_UART1) ||
-           (ulPeripheral == SYSCTL_PERIPH_SSI) ||
-           (ulPeripheral == SYSCTL_PERIPH_QEI) ||
-           (ulPeripheral == SYSCTL_PERIPH_I2C) ||
-           (ulPeripheral == SYSCTL_PERIPH_TIMER0) ||
-           (ulPeripheral == SYSCTL_PERIPH_TIMER1) ||
-           (ulPeripheral == SYSCTL_PERIPH_TIMER2) ||
-           (ulPeripheral == SYSCTL_PERIPH_COMP0) ||
-           (ulPeripheral == SYSCTL_PERIPH_COMP1) ||
-           (ulPeripheral == SYSCTL_PERIPH_COMP2) ||
-           (ulPeripheral == SYSCTL_PERIPH_GPIOA) ||
-           (ulPeripheral == SYSCTL_PERIPH_GPIOB) ||
-           (ulPeripheral == SYSCTL_PERIPH_GPIOC) ||
-           (ulPeripheral == SYSCTL_PERIPH_GPIOD) ||
-           (ulPeripheral == SYSCTL_PERIPH_GPIOE));
+    ASSERT( ( ulPeripheral == SYSCTL_PERIPH_PWM ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_ADC ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_WDOG ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_UART0 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_UART1 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_SSI ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_QEI ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_I2C ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_TIMER0 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_TIMER1 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_TIMER2 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_COMP0 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_COMP1 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_COMP2 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_GPIOA ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_GPIOB ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_GPIOC ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_GPIOD ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_GPIOE ) );
 
     //
     // Enable this peripheral in sleep mode.
     //
-    HWREG(g_pulSCGCRegs[ulPeripheral >> 28]) |= ulPeripheral & 0x0fffffff;
+    HWREG( g_pulSCGCRegs[ ulPeripheral >> 28 ] ) |= ulPeripheral & 0x0fffffff;
 }
 #endif
 
@@ -619,38 +576,38 @@ SysCtlPeripheralSleepEnable(unsigned long ulPeripheral)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_peripheralsleepdisable) || defined(BUILD_ALL) || \
-    defined(DOXYGEN)
-void
-SysCtlPeripheralSleepDisable(unsigned long ulPeripheral)
+#if defined( GROUP_peripheralsleepdisable ) || defined( BUILD_ALL ) || \
+    defined( DOXYGEN )
+void SysCtlPeripheralSleepDisable( unsigned long ulPeripheral )
 {
     //
     // Check the arguments.
     //
-    ASSERT((ulPeripheral == SYSCTL_PERIPH_PWM) ||
-           (ulPeripheral == SYSCTL_PERIPH_ADC) ||
-           (ulPeripheral == SYSCTL_PERIPH_WDOG) ||
-           (ulPeripheral == SYSCTL_PERIPH_UART0) ||
-           (ulPeripheral == SYSCTL_PERIPH_UART1) ||
-           (ulPeripheral == SYSCTL_PERIPH_SSI) ||
-           (ulPeripheral == SYSCTL_PERIPH_QEI) ||
-           (ulPeripheral == SYSCTL_PERIPH_I2C) ||
-           (ulPeripheral == SYSCTL_PERIPH_TIMER0) ||
-           (ulPeripheral == SYSCTL_PERIPH_TIMER1) ||
-           (ulPeripheral == SYSCTL_PERIPH_TIMER2) ||
-           (ulPeripheral == SYSCTL_PERIPH_COMP0) ||
-           (ulPeripheral == SYSCTL_PERIPH_COMP1) ||
-           (ulPeripheral == SYSCTL_PERIPH_COMP2) ||
-           (ulPeripheral == SYSCTL_PERIPH_GPIOA) ||
-           (ulPeripheral == SYSCTL_PERIPH_GPIOB) ||
-           (ulPeripheral == SYSCTL_PERIPH_GPIOC) ||
-           (ulPeripheral == SYSCTL_PERIPH_GPIOD) ||
-           (ulPeripheral == SYSCTL_PERIPH_GPIOE));
+    ASSERT( ( ulPeripheral == SYSCTL_PERIPH_PWM ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_ADC ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_WDOG ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_UART0 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_UART1 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_SSI ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_QEI ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_I2C ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_TIMER0 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_TIMER1 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_TIMER2 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_COMP0 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_COMP1 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_COMP2 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_GPIOA ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_GPIOB ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_GPIOC ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_GPIOD ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_GPIOE ) );
 
     //
     // Disable this peripheral in sleep mode.
     //
-    HWREG(g_pulSCGCRegs[ulPeripheral >> 28]) &= ~(ulPeripheral & 0x0fffffff);
+    HWREG( g_pulSCGCRegs[ ulPeripheral >> 28 ] ) &= ~( ulPeripheral &
+                                                       0x0fffffff );
 }
 #endif
 
@@ -684,38 +641,37 @@ SysCtlPeripheralSleepDisable(unsigned long ulPeripheral)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_peripheraldeepsleepenable) || defined(BUILD_ALL) || \
-    defined(DOXYGEN)
-void
-SysCtlPeripheralDeepSleepEnable(unsigned long ulPeripheral)
+#if defined( GROUP_peripheraldeepsleepenable ) || defined( BUILD_ALL ) || \
+    defined( DOXYGEN )
+void SysCtlPeripheralDeepSleepEnable( unsigned long ulPeripheral )
 {
     //
     // Check the arguments.
     //
-    ASSERT((ulPeripheral == SYSCTL_PERIPH_PWM) ||
-           (ulPeripheral == SYSCTL_PERIPH_ADC) ||
-           (ulPeripheral == SYSCTL_PERIPH_WDOG) ||
-           (ulPeripheral == SYSCTL_PERIPH_UART0) ||
-           (ulPeripheral == SYSCTL_PERIPH_UART1) ||
-           (ulPeripheral == SYSCTL_PERIPH_SSI) ||
-           (ulPeripheral == SYSCTL_PERIPH_QEI) ||
-           (ulPeripheral == SYSCTL_PERIPH_I2C) ||
-           (ulPeripheral == SYSCTL_PERIPH_TIMER0) ||
-           (ulPeripheral == SYSCTL_PERIPH_TIMER1) ||
-           (ulPeripheral == SYSCTL_PERIPH_TIMER2) ||
-           (ulPeripheral == SYSCTL_PERIPH_COMP0) ||
-           (ulPeripheral == SYSCTL_PERIPH_COMP1) ||
-           (ulPeripheral == SYSCTL_PERIPH_COMP2) ||
-           (ulPeripheral == SYSCTL_PERIPH_GPIOA) ||
-           (ulPeripheral == SYSCTL_PERIPH_GPIOB) ||
-           (ulPeripheral == SYSCTL_PERIPH_GPIOC) ||
-           (ulPeripheral == SYSCTL_PERIPH_GPIOD) ||
-           (ulPeripheral == SYSCTL_PERIPH_GPIOE));
+    ASSERT( ( ulPeripheral == SYSCTL_PERIPH_PWM ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_ADC ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_WDOG ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_UART0 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_UART1 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_SSI ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_QEI ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_I2C ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_TIMER0 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_TIMER1 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_TIMER2 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_COMP0 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_COMP1 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_COMP2 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_GPIOA ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_GPIOB ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_GPIOC ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_GPIOD ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_GPIOE ) );
 
     //
     // Enable this peripheral in deep-sleep mode.
     //
-    HWREG(g_pulDCGCRegs[ulPeripheral >> 28]) |= ulPeripheral & 0x0fffffff;
+    HWREG( g_pulDCGCRegs[ ulPeripheral >> 28 ] ) |= ulPeripheral & 0x0fffffff;
 }
 #endif
 
@@ -751,38 +707,38 @@ SysCtlPeripheralDeepSleepEnable(unsigned long ulPeripheral)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_peripheraldeepsleepdisable) || defined(BUILD_ALL) || \
-    defined(DOXYGEN)
-void
-SysCtlPeripheralDeepSleepDisable(unsigned long ulPeripheral)
+#if defined( GROUP_peripheraldeepsleepdisable ) || defined( BUILD_ALL ) || \
+    defined( DOXYGEN )
+void SysCtlPeripheralDeepSleepDisable( unsigned long ulPeripheral )
 {
     //
     // Check the arguments.
     //
-    ASSERT((ulPeripheral == SYSCTL_PERIPH_PWM) ||
-           (ulPeripheral == SYSCTL_PERIPH_ADC) ||
-           (ulPeripheral == SYSCTL_PERIPH_WDOG) ||
-           (ulPeripheral == SYSCTL_PERIPH_UART0) ||
-           (ulPeripheral == SYSCTL_PERIPH_UART1) ||
-           (ulPeripheral == SYSCTL_PERIPH_SSI) ||
-           (ulPeripheral == SYSCTL_PERIPH_QEI) ||
-           (ulPeripheral == SYSCTL_PERIPH_I2C) ||
-           (ulPeripheral == SYSCTL_PERIPH_TIMER0) ||
-           (ulPeripheral == SYSCTL_PERIPH_TIMER1) ||
-           (ulPeripheral == SYSCTL_PERIPH_TIMER2) ||
-           (ulPeripheral == SYSCTL_PERIPH_COMP0) ||
-           (ulPeripheral == SYSCTL_PERIPH_COMP1) ||
-           (ulPeripheral == SYSCTL_PERIPH_COMP2) ||
-           (ulPeripheral == SYSCTL_PERIPH_GPIOA) ||
-           (ulPeripheral == SYSCTL_PERIPH_GPIOB) ||
-           (ulPeripheral == SYSCTL_PERIPH_GPIOC) ||
-           (ulPeripheral == SYSCTL_PERIPH_GPIOD) ||
-           (ulPeripheral == SYSCTL_PERIPH_GPIOE));
+    ASSERT( ( ulPeripheral == SYSCTL_PERIPH_PWM ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_ADC ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_WDOG ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_UART0 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_UART1 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_SSI ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_QEI ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_I2C ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_TIMER0 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_TIMER1 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_TIMER2 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_COMP0 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_COMP1 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_COMP2 ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_GPIOA ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_GPIOB ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_GPIOC ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_GPIOD ) ||
+            ( ulPeripheral == SYSCTL_PERIPH_GPIOE ) );
 
     //
     // Disable this peripheral in deep-sleep mode.
     //
-    HWREG(g_pulDCGCRegs[ulPeripheral >> 28]) &= ~(ulPeripheral & 0x0fffffff);
+    HWREG( g_pulDCGCRegs[ ulPeripheral >> 28 ] ) &= ~( ulPeripheral &
+                                                       0x0fffffff );
 }
 #endif
 
@@ -803,21 +759,20 @@ SysCtlPeripheralDeepSleepDisable(unsigned long ulPeripheral)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_peripheralclockgating) || defined(BUILD_ALL) || \
-    defined(DOXYGEN)
-void
-SysCtlPeripheralClockGating(tBoolean bEnable)
+#if defined( GROUP_peripheralclockgating ) || defined( BUILD_ALL ) || \
+    defined( DOXYGEN )
+void SysCtlPeripheralClockGating( tBoolean bEnable )
 {
     //
     // Enable peripheral clock gating as requested.
     //
-    if(bEnable)
+    if( bEnable )
     {
-        HWREG(SYSCTL_RCC) |= SYSCTL_RCC_ACG;
+        HWREG( SYSCTL_RCC ) |= SYSCTL_RCC_ACG;
     }
     else
     {
-        HWREG(SYSCTL_RCC) &= ~(SYSCTL_RCC_ACG);
+        HWREG( SYSCTL_RCC ) &= ~( SYSCTL_RCC_ACG );
     }
 }
 #endif
@@ -846,19 +801,18 @@ SysCtlPeripheralClockGating(tBoolean bEnable)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_intregister) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-SysCtlIntRegister(void (*pfnHandler)(void))
+#if defined( GROUP_intregister ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void SysCtlIntRegister( void ( *pfnHandler )( void ) )
 {
     //
     // Register the interrupt handler, returning an error if an error occurs.
     //
-    IntRegister(INT_SYSCTL, pfnHandler);
+    IntRegister( INT_SYSCTL, pfnHandler );
 
     //
     // Enable the system control interrupt.
     //
-    IntEnable(INT_SYSCTL);
+    IntEnable( INT_SYSCTL );
 }
 #endif
 
@@ -876,19 +830,18 @@ SysCtlIntRegister(void (*pfnHandler)(void))
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_intunregister) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-SysCtlIntUnregister(void)
+#if defined( GROUP_intunregister ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void SysCtlIntUnregister( void )
 {
     //
     // Disable the interrupt.
     //
-    IntDisable(INT_SYSCTL);
+    IntDisable( INT_SYSCTL );
 
     //
     // Unregister the interrupt handler.
     //
-    IntUnregister(INT_SYSCTL);
+    IntUnregister( INT_SYSCTL );
 }
 #endif
 
@@ -908,14 +861,13 @@ SysCtlIntUnregister(void)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_intenable) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-SysCtlIntEnable(unsigned long ulInts)
+#if defined( GROUP_intenable ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void SysCtlIntEnable( unsigned long ulInts )
 {
     //
     // Enable the specified interrupts.
     //
-    HWREG(SYSCTL_IMC) |= ulInts;
+    HWREG( SYSCTL_IMC ) |= ulInts;
 }
 #endif
 
@@ -935,14 +887,13 @@ SysCtlIntEnable(unsigned long ulInts)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_intdisable) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-SysCtlIntDisable(unsigned long ulInts)
+#if defined( GROUP_intdisable ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void SysCtlIntDisable( unsigned long ulInts )
 {
     //
     // Disable the specified interrupts.
     //
-    HWREG(SYSCTL_IMC) &= ~(ulInts);
+    HWREG( SYSCTL_IMC ) &= ~( ulInts );
 }
 #endif
 
@@ -962,14 +913,13 @@ SysCtlIntDisable(unsigned long ulInts)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_intclear) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-SysCtlIntClear(unsigned long ulInts)
+#if defined( GROUP_intclear ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void SysCtlIntClear( unsigned long ulInts )
 {
     //
     // Clear the requested interrupt sources.
     //
-    HWREG(SYSCTL_MISC) = ulInts;
+    HWREG( SYSCTL_MISC ) = ulInts;
 }
 #endif
 
@@ -990,21 +940,20 @@ SysCtlIntClear(unsigned long ulInts)
 //! \b SYSCTL_INT_PLL_FAIL.
 //
 //*****************************************************************************
-#if defined(GROUP_intstatus) || defined(BUILD_ALL) || defined(DOXYGEN)
-unsigned long
-SysCtlIntStatus(tBoolean bMasked)
+#if defined( GROUP_intstatus ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+unsigned long SysCtlIntStatus( tBoolean bMasked )
 {
     //
     // Return either the interrupt status or the raw interrupt status as
     // requested.
     //
-    if(bMasked)
+    if( bMasked )
     {
-        return(HWREG(SYSCTL_MISC));
+        return ( HWREG( SYSCTL_MISC ) );
     }
     else
     {
-        return(HWREG(SYSCTL_RIS));
+        return ( HWREG( SYSCTL_RIS ) );
     }
 }
 #endif
@@ -1025,29 +974,28 @@ SysCtlIntStatus(tBoolean bMasked)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_ldoset) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-SysCtlLDOSet(unsigned long ulVoltage)
+#if defined( GROUP_ldoset ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void SysCtlLDOSet( unsigned long ulVoltage )
 {
     //
     // Check the arguments.
     //
-    ASSERT((ulVoltage == SYSCTL_LDO_2_25V) ||
-           (ulVoltage == SYSCTL_LDO_2_30V) ||
-           (ulVoltage == SYSCTL_LDO_2_35V) ||
-           (ulVoltage == SYSCTL_LDO_2_40V) ||
-           (ulVoltage == SYSCTL_LDO_2_45V) ||
-           (ulVoltage == SYSCTL_LDO_2_50V) ||
-           (ulVoltage == SYSCTL_LDO_2_55V) ||
-           (ulVoltage == SYSCTL_LDO_2_60V) ||
-           (ulVoltage == SYSCTL_LDO_2_65V) ||
-           (ulVoltage == SYSCTL_LDO_2_70V) ||
-           (ulVoltage == SYSCTL_LDO_2_75V));
+    ASSERT( ( ulVoltage == SYSCTL_LDO_2_25V ) ||
+            ( ulVoltage == SYSCTL_LDO_2_30V ) ||
+            ( ulVoltage == SYSCTL_LDO_2_35V ) ||
+            ( ulVoltage == SYSCTL_LDO_2_40V ) ||
+            ( ulVoltage == SYSCTL_LDO_2_45V ) ||
+            ( ulVoltage == SYSCTL_LDO_2_50V ) ||
+            ( ulVoltage == SYSCTL_LDO_2_55V ) ||
+            ( ulVoltage == SYSCTL_LDO_2_60V ) ||
+            ( ulVoltage == SYSCTL_LDO_2_65V ) ||
+            ( ulVoltage == SYSCTL_LDO_2_70V ) ||
+            ( ulVoltage == SYSCTL_LDO_2_75V ) );
 
     //
     // Set the LDO voltage to the requested value.
     //
-    HWREG(SYSCTL_LDOPCTL) = ulVoltage;
+    HWREG( SYSCTL_LDOPCTL ) = ulVoltage;
 }
 #endif
 
@@ -1065,14 +1013,13 @@ SysCtlLDOSet(unsigned long ulVoltage)
 //! \b SYSCTL_LDO_2_70V, or \b SYSCTL_LDO_2_75V.
 //
 //*****************************************************************************
-#if defined(GROUP_ldoget) || defined(BUILD_ALL) || defined(DOXYGEN)
-unsigned long
-SysCtlLDOGet(void)
+#if defined( GROUP_ldoget ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+unsigned long SysCtlLDOGet( void )
 {
     //
     // Return the LDO voltage setting.
     //
-    return(HWREG(SYSCTL_LDOPCTL));
+    return ( HWREG( SYSCTL_LDOPCTL ) );
 }
 #endif
 
@@ -1089,20 +1036,19 @@ SysCtlLDOGet(void)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_ldoconfigset) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-SysCtlLDOConfigSet(unsigned long ulConfig)
+#if defined( GROUP_ldoconfigset ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void SysCtlLDOConfigSet( unsigned long ulConfig )
 {
     //
     // Check hte arguments.
     //
-    ASSERT((ulConfig == SYSCTL_LDOCFG_ARST) ||
-           (ulConfig == SYSCTL_LDOCFG_NORST));
+    ASSERT( ( ulConfig == SYSCTL_LDOCFG_ARST ) ||
+            ( ulConfig == SYSCTL_LDOCFG_NORST ) );
 
     //
     // Set the reset control as requested.
     //
-    HWREG(SYSCTL_LDOARST) = ulConfig;
+    HWREG( SYSCTL_LDOARST ) = ulConfig;
 }
 #endif
 
@@ -1119,21 +1065,20 @@ SysCtlLDOConfigSet(unsigned long ulConfig)
 //! \return This function does not return.
 //
 //*****************************************************************************
-#if defined(GROUP_reset) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-SysCtlReset(void)
+#if defined( GROUP_reset ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void SysCtlReset( void )
 {
     //
     // Perform a software reset request.  This will cause the device to reset,
     // no further code will be executed.
     //
-    HWREG(NVIC_APINT) = NVIC_APINT_VECTKEY | NVIC_APINT_SYSRESETREQ;
+    HWREG( NVIC_APINT ) = NVIC_APINT_VECTKEY | NVIC_APINT_SYSRESETREQ;
 
     //
     // The device should have reset, so this should never be reached.  Just in
     // case, loop forever.
     //
-    while(1)
+    while( 1 )
     {
     }
 }
@@ -1153,9 +1098,8 @@ SysCtlReset(void)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_sleep) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-SysCtlSleep(void)
+#if defined( GROUP_sleep ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void SysCtlSleep( void )
 {
     //
     // Wait for an interrupt.
@@ -1178,14 +1122,13 @@ SysCtlSleep(void)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_deepsleep) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-SysCtlDeepSleep(void)
+#if defined( GROUP_deepsleep ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void SysCtlDeepSleep( void )
 {
     //
     // Enable deep-sleep.
     //
-    HWREG(NVIC_SYS_CTRL) |= NVIC_SYS_CTRL_SLEEPDEEP;
+    HWREG( NVIC_SYS_CTRL ) |= NVIC_SYS_CTRL_SLEEPDEEP;
 
     //
     // Wait for an interrupt.
@@ -1195,7 +1138,7 @@ SysCtlDeepSleep(void)
     //
     // Disable deep-sleep so that a future sleep will work correctly.
     //
-    HWREG(NVIC_SYS_CTRL) &= ~(NVIC_SYS_CTRL_SLEEPDEEP);
+    HWREG( NVIC_SYS_CTRL ) &= ~( NVIC_SYS_CTRL_SLEEPDEEP );
 }
 #endif
 
@@ -1213,14 +1156,13 @@ SysCtlDeepSleep(void)
 //! \return The reason(s) for a reset.
 //
 //*****************************************************************************
-#if defined(GROUP_resetcauseget) || defined(BUILD_ALL) || defined(DOXYGEN)
-unsigned long
-SysCtlResetCauseGet(void)
+#if defined( GROUP_resetcauseget ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+unsigned long SysCtlResetCauseGet( void )
 {
     //
     // Return the reset reasons.
     //
-    return(HWREG(SYSCTL_RESC));
+    return ( HWREG( SYSCTL_RESC ) );
 }
 #endif
 
@@ -1241,14 +1183,14 @@ SysCtlResetCauseGet(void)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_resetcauseclear) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-SysCtlResetCauseClear(unsigned long ulCauses)
+#if defined( GROUP_resetcauseclear ) || defined( BUILD_ALL ) || \
+    defined( DOXYGEN )
+void SysCtlResetCauseClear( unsigned long ulCauses )
 {
     //
     // Clear the given reset reasons.
     //
-    HWREG(SYSCTL_RESC) &= ~(ulCauses);
+    HWREG( SYSCTL_RESC ) &= ~( ulCauses );
 }
 #endif
 
@@ -1272,20 +1214,20 @@ SysCtlResetCauseClear(unsigned long ulCauses)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_brownoutconfigset) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-SysCtlBrownOutConfigSet(unsigned long ulConfig, unsigned long ulDelay)
+#if defined( GROUP_brownoutconfigset ) || defined( BUILD_ALL ) || \
+    defined( DOXYGEN )
+void SysCtlBrownOutConfigSet( unsigned long ulConfig, unsigned long ulDelay )
 {
     //
     // Check the arguments.
     //
-    ASSERT(!(ulConfig & ~(SYSCTL_BOR_RESET | SYSCTL_BOR_RESAMPLE)));
-    ASSERT(ulDelay < 8192);
+    ASSERT( !( ulConfig & ~( SYSCTL_BOR_RESET | SYSCTL_BOR_RESAMPLE ) ) );
+    ASSERT( ulDelay < 8192 );
 
     //
     // Configure the brown-out reset control.
     //
-    HWREG(SYSCTL_PBORCTL) = (ulDelay << SYSCTL_PBORCTL_BOR_SH) | ulConfig;
+    HWREG( SYSCTL_PBORCTL ) = ( ulDelay << SYSCTL_PBORCTL_BOR_SH ) | ulConfig;
 }
 #endif
 
@@ -1345,9 +1287,8 @@ SysCtlBrownOutConfigSet(unsigned long ulConfig, unsigned long ulDelay)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_clockset) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-SysCtlClockSet(unsigned long ulConfig)
+#if defined( GROUP_clockset ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void SysCtlClockSet( unsigned long ulConfig )
 {
     volatile unsigned long ulDelay;
     unsigned long ulRCC;
@@ -1355,88 +1296,88 @@ SysCtlClockSet(unsigned long ulConfig)
     //
     // Get the current value of the RCC register.
     //
-    ulRCC = HWREG(SYSCTL_RCC);
+    ulRCC = HWREG( SYSCTL_RCC );
 
     //
     // Bypass the PLL and system clock dividers for now.
     //
     ulRCC |= SYSCTL_RCC_BYPASS;
-    ulRCC &= ~(SYSCTL_RCC_USE_SYSDIV);
+    ulRCC &= ~( SYSCTL_RCC_USE_SYSDIV );
 
     //
     // Write the new RCC value.
     //
-    HWREG(SYSCTL_RCC) = ulRCC;
+    HWREG( SYSCTL_RCC ) = ulRCC;
 
     //
     // Make sure that the PLL and system clock dividers are bypassed for now.
     //
     ulRCC |= SYSCTL_RCC_BYPASS;
-    ulRCC &= ~(SYSCTL_RCC_USE_SYSDIV);
+    ulRCC &= ~( SYSCTL_RCC_USE_SYSDIV );
 
     //
     // Make sure that the required oscillators are enabled.  For now, the
     // previously enabled oscillators must be enabled along with the newly
     // requested oscillators.
     //
-    ulRCC &= (~(SYSCTL_RCC_IOSCDIS | SYSCTL_RCC_MOSCDIS) |
-              (ulConfig & (SYSCTL_RCC_IOSCDIS | SYSCTL_RCC_MOSCDIS)));
+    ulRCC &= ( ~( SYSCTL_RCC_IOSCDIS | SYSCTL_RCC_MOSCDIS ) |
+               ( ulConfig & ( SYSCTL_RCC_IOSCDIS | SYSCTL_RCC_MOSCDIS ) ) );
 
     //
     // Set the new crystal value, oscillator source, and PLL configuration.
     //
-    ulRCC &= ~(SYSCTL_RCC_XTAL_MASK | SYSCTL_RCC_OSCSRC_MASK |
-               SYSCTL_RCC_PWRDN | SYSCTL_RCC_OE);
-    ulRCC |= ulConfig & (SYSCTL_RCC_XTAL_MASK | SYSCTL_RCC_OSCSRC_MASK |
-                         SYSCTL_RCC_PWRDN | SYSCTL_RCC_OE);
+    ulRCC &= ~( SYSCTL_RCC_XTAL_MASK | SYSCTL_RCC_OSCSRC_MASK |
+                SYSCTL_RCC_PWRDN | SYSCTL_RCC_OE );
+    ulRCC |= ulConfig & ( SYSCTL_RCC_XTAL_MASK | SYSCTL_RCC_OSCSRC_MASK |
+                          SYSCTL_RCC_PWRDN | SYSCTL_RCC_OE );
 
     //
     // Clear the PLL lock interrupt.
     //
-    HWREG(SYSCTL_MISC) = SYSCTL_INT_PLL_LOCK;
+    HWREG( SYSCTL_MISC ) = SYSCTL_INT_PLL_LOCK;
 
     //
     // Write the new RCC value.
     //
-    HWREG(SYSCTL_RCC) = ulRCC;
+    HWREG( SYSCTL_RCC ) = ulRCC;
 
     //
     // Wait for a bit so that new crystal value and oscillator source can take
     // effect.  One of the oscillators may need to be started as well.
     //
-    for(ulDelay = 0; ulDelay < 16; ulDelay++)
+    for( ulDelay = 0; ulDelay < 16; ulDelay++ )
     {
     }
 
     //
     // Disable the appropriate oscillators.
     //
-    ulRCC &= ~(SYSCTL_RCC_IOSCDIS | SYSCTL_RCC_MOSCDIS);
-    ulRCC |= ulConfig & (SYSCTL_RCC_IOSCDIS | SYSCTL_RCC_MOSCDIS);
+    ulRCC &= ~( SYSCTL_RCC_IOSCDIS | SYSCTL_RCC_MOSCDIS );
+    ulRCC |= ulConfig & ( SYSCTL_RCC_IOSCDIS | SYSCTL_RCC_MOSCDIS );
 
     //
     // Write the new RCC value.
     //
-    HWREG(SYSCTL_RCC) = ulRCC;
+    HWREG( SYSCTL_RCC ) = ulRCC;
 
     //
     // Set the requested system divider.  This will not get written
     // immediately.
     //
-    ulRCC &= ~(SYSCTL_RCC_SYSDIV_MASK | SYSCTL_RCC_USE_SYSDIV);
-    ulRCC |= ulConfig & (SYSCTL_RCC_SYSDIV_MASK | SYSCTL_RCC_USE_SYSDIV);
+    ulRCC &= ~( SYSCTL_RCC_SYSDIV_MASK | SYSCTL_RCC_USE_SYSDIV );
+    ulRCC |= ulConfig & ( SYSCTL_RCC_SYSDIV_MASK | SYSCTL_RCC_USE_SYSDIV );
 
     //
     // See if the PLL output is being used to clock the system.
     //
-    if(!(ulConfig & SYSCTL_RCC_BYPASS))
+    if( !( ulConfig & SYSCTL_RCC_BYPASS ) )
     {
         //
         // Wait until the PLL has locked.
         //
-        for(ulDelay = 32768; ulDelay > 0; ulDelay--)
+        for( ulDelay = 32768; ulDelay > 0; ulDelay-- )
         {
-            if(HWREG(SYSCTL_RIS) & SYSCTL_INT_PLL_LOCK)
+            if( HWREG( SYSCTL_RIS ) & SYSCTL_INT_PLL_LOCK )
             {
                 break;
             }
@@ -1445,18 +1386,18 @@ SysCtlClockSet(unsigned long ulConfig)
         //
         // Enable use of the PLL.
         //
-        ulRCC &= ~(SYSCTL_RCC_BYPASS);
+        ulRCC &= ~( SYSCTL_RCC_BYPASS );
     }
 
     //
     // Write the final RCC value.
     //
-    HWREG(SYSCTL_RCC) = ulRCC;
+    HWREG( SYSCTL_RCC ) = ulRCC;
 
     //
     // Delay for a little bit so that the system divider takes effect.
     //
-    for(ulDelay = 0; ulDelay < 16; ulDelay++)
+    for( ulDelay = 0; ulDelay < 16; ulDelay++ )
     {
     }
 }
@@ -1479,21 +1420,20 @@ SysCtlClockSet(unsigned long ulConfig)
 //! \return The processor clock rate.
 //
 //*****************************************************************************
-#if defined(GROUP_clockget) || defined(BUILD_ALL) || defined(DOXYGEN)
-unsigned long
-SysCtlClockGet(void)
+#if defined( GROUP_clockget ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+unsigned long SysCtlClockGet( void )
 {
     unsigned long ulRCC, ulPLL, ulClk;
 
     //
     // Read RCC.
     //
-    ulRCC = HWREG(SYSCTL_RCC);
+    ulRCC = HWREG( SYSCTL_RCC );
 
     //
     // Get the base clock rate.
     //
-    switch(ulRCC & SYSCTL_RCC_OSCSRC_MASK)
+    switch( ulRCC & SYSCTL_RCC_OSCSRC_MASK )
     {
         //
         // The main oscillator is the clock source.  Determine its rate from
@@ -1501,10 +1441,10 @@ SysCtlClockGet(void)
         //
         case SYSCTL_RCC_OSCSRC_MAIN:
         {
-            ulClk = g_pulXtals[((ulRCC & SYSCTL_RCC_XTAL_MASK) >>
-                                SYSCTL_RCC_XTAL_SHIFT) -
-                               (SYSCTL_RCC_XTAL_3_57MHZ >>
-                                SYSCTL_RCC_XTAL_SHIFT)];
+            ulClk = g_pulXtals[ ( ( ulRCC & SYSCTL_RCC_XTAL_MASK ) >>
+                                  SYSCTL_RCC_XTAL_SHIFT ) -
+                                ( SYSCTL_RCC_XTAL_3_57MHZ >>
+                                  SYSCTL_RCC_XTAL_SHIFT ) ];
             break;
         }
 
@@ -1535,32 +1475,34 @@ SysCtlClockGet(void)
         //
         default:
         {
-            return(0);
+            return ( 0 );
         }
     }
 
     //
     // See if the PLL is being used.
     //
-    if(!(ulRCC & SYSCTL_RCC_BYPASS))
+    if( !( ulRCC & SYSCTL_RCC_BYPASS ) )
     {
         //
         // Get the PLL configuration.
         //
-        ulPLL = HWREG(SYSCTL_PLLCFG);
+        ulPLL = HWREG( SYSCTL_PLLCFG );
 
         //
         // Compute the PLL output frequency based on its input frequency.
         //
-        ulClk = ((ulClk * (((ulPLL & SYSCTL_PLLCFG_F_MASK) >>
-                            SYSCTL_PLLCFG_F_SHIFT) + 2)) /
-                 (((ulPLL & SYSCTL_PLLCFG_R_MASK) >>
-                   SYSCTL_PLLCFG_R_SHIFT) + 2));
+        ulClk = ( ( ulClk * ( ( ( ulPLL & SYSCTL_PLLCFG_F_MASK ) >>
+                                SYSCTL_PLLCFG_F_SHIFT ) +
+                              2 ) ) /
+                  ( ( ( ulPLL & SYSCTL_PLLCFG_R_MASK ) >>
+                      SYSCTL_PLLCFG_R_SHIFT ) +
+                    2 ) );
 
         //
         // See if the optional output divide by 2 is being used.
         //
-        if(ulPLL & SYSCTL_PLLCFG_OD_2)
+        if( ulPLL & SYSCTL_PLLCFG_OD_2 )
         {
             ulClk /= 2;
         }
@@ -1568,7 +1510,7 @@ SysCtlClockGet(void)
         //
         // See if the optional output divide by 4 is being used.
         //
-        if(ulPLL & SYSCTL_PLLCFG_OD_4)
+        if( ulPLL & SYSCTL_PLLCFG_OD_4 )
         {
             ulClk /= 4;
         }
@@ -1577,19 +1519,20 @@ SysCtlClockGet(void)
     //
     // See if the system divider is being used.
     //
-    if(ulRCC & SYSCTL_RCC_USE_SYSDIV)
+    if( ulRCC & SYSCTL_RCC_USE_SYSDIV )
     {
         //
         // Adjust the clock rate by the system clock divider.
         //
-        ulClk /= ((ulRCC & SYSCTL_RCC_SYSDIV_MASK) >>
-                  SYSCTL_RCC_SYSDIV_SHIFT) + 1;
+        ulClk /= ( ( ulRCC & SYSCTL_RCC_SYSDIV_MASK ) >>
+                   SYSCTL_RCC_SYSDIV_SHIFT ) +
+                 1;
     }
 
     //
     // Return the computed clock rate.
     //
-    return(ulClk);
+    return ( ulClk );
 }
 #endif
 
@@ -1612,33 +1555,31 @@ SysCtlClockGet(void)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_pwmclockset) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-SysCtlPWMClockSet(unsigned long ulConfig)
+#if defined( GROUP_pwmclockset ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void SysCtlPWMClockSet( unsigned long ulConfig )
 {
     //
     // Check the arguments.
     //
-    ASSERT((ulConfig == SYSCTL_PWMDIV_1) ||
-           (ulConfig == SYSCTL_PWMDIV_2) ||
-           (ulConfig == SYSCTL_PWMDIV_4) ||
-           (ulConfig == SYSCTL_PWMDIV_8) ||
-           (ulConfig == SYSCTL_PWMDIV_16) ||
-           (ulConfig == SYSCTL_PWMDIV_32) ||
-           (ulConfig == SYSCTL_PWMDIV_64));
+    ASSERT(
+        ( ulConfig == SYSCTL_PWMDIV_1 ) || ( ulConfig == SYSCTL_PWMDIV_2 ) ||
+        ( ulConfig == SYSCTL_PWMDIV_4 ) || ( ulConfig == SYSCTL_PWMDIV_8 ) ||
+        ( ulConfig == SYSCTL_PWMDIV_16 ) || ( ulConfig == SYSCTL_PWMDIV_32 ) ||
+        ( ulConfig == SYSCTL_PWMDIV_64 ) );
 
     //
     // Check that there is a PWM block on this part.
     //
-    ASSERT(HWREG(SYSCTL_DC1) & SYSCTL_DC1_PWM);
+    ASSERT( HWREG( SYSCTL_DC1 ) & SYSCTL_DC1_PWM );
 
     //
     // Set the PWM clock configuration into the run-mode clock configuration
     // register.
     //
-    HWREG(SYSCTL_RCC) = ((HWREG(SYSCTL_RCC) &
-                          ~(SYSCTL_RCC_USE_PWMDIV | SYSCTL_RCC_PWMDIV_MASK)) |
-                         ulConfig);
+    HWREG(
+        SYSCTL_RCC ) = ( ( HWREG( SYSCTL_RCC ) & ~( SYSCTL_RCC_USE_PWMDIV |
+                                                    SYSCTL_RCC_PWMDIV_MASK ) ) |
+                         ulConfig );
 }
 #endif
 
@@ -1654,20 +1595,19 @@ SysCtlPWMClockSet(unsigned long ulConfig)
 //! \b SYSCTL_PWMDIV_64.
 //
 //*****************************************************************************
-#if defined(GROUP_pwmclockget) || defined(BUILD_ALL) || defined(DOXYGEN)
-unsigned long
-SysCtlPWMClockGet(void)
+#if defined( GROUP_pwmclockget ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+unsigned long SysCtlPWMClockGet( void )
 {
     //
     // Check that there is a PWM block on this part.
     //
-    ASSERT(HWREG(SYSCTL_DC1) & SYSCTL_DC1_PWM);
+    ASSERT( HWREG( SYSCTL_DC1 ) & SYSCTL_DC1_PWM );
 
     //
     // Return the current PWM clock configuration.
     //
-    return(HWREG(SYSCTL_RCC) &
-           (SYSCTL_RCC_USE_PWMDIV | SYSCTL_RCC_PWMDIV_MASK));
+    return ( HWREG( SYSCTL_RCC ) &
+             ( SYSCTL_RCC_USE_PWMDIV | SYSCTL_RCC_PWMDIV_MASK ) );
 }
 #endif
 
@@ -1687,32 +1627,34 @@ SysCtlPWMClockGet(void)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_adcspeedset) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-SysCtlADCSpeedSet(unsigned long ulSpeed)
+#if defined( GROUP_adcspeedset ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void SysCtlADCSpeedSet( unsigned long ulSpeed )
 {
     //
     // Check the arguments.
     //
-    ASSERT((ulSpeed == SYSCTL_ADCSPEED_1MSPS) ||
-           (ulSpeed == SYSCTL_ADCSPEED_500KSPS) ||
-           (ulSpeed == SYSCTL_ADCSPEED_250KSPS) ||
-           (ulSpeed == SYSCTL_ADCSPEED_125KSPS));
+    ASSERT( ( ulSpeed == SYSCTL_ADCSPEED_1MSPS ) ||
+            ( ulSpeed == SYSCTL_ADCSPEED_500KSPS ) ||
+            ( ulSpeed == SYSCTL_ADCSPEED_250KSPS ) ||
+            ( ulSpeed == SYSCTL_ADCSPEED_125KSPS ) );
 
     //
     // Check that there is an ADC block on this part.
     //
-    ASSERT(HWREG(SYSCTL_DC1) & SYSCTL_DC1_ADC);
+    ASSERT( HWREG( SYSCTL_DC1 ) & SYSCTL_DC1_ADC );
 
     //
     // Set the ADC speed in run, sleep, and deep-sleep mode.
     //
-    HWREG(SYSCTL_RCGC0) = ((HWREG(SYSCTL_RCGC0) & ~(SYSCTL_SET0_ADCSPD_MASK)) |
-                           ulSpeed);
-    HWREG(SYSCTL_SCGC0) = ((HWREG(SYSCTL_SCGC0) & ~(SYSCTL_SET0_ADCSPD_MASK)) |
-                           ulSpeed);
-    HWREG(SYSCTL_DCGC0) = ((HWREG(SYSCTL_DCGC0) & ~(SYSCTL_SET0_ADCSPD_MASK)) |
-                           ulSpeed);
+    HWREG( SYSCTL_RCGC0 ) = ( ( HWREG( SYSCTL_RCGC0 ) &
+                                ~( SYSCTL_SET0_ADCSPD_MASK ) ) |
+                              ulSpeed );
+    HWREG( SYSCTL_SCGC0 ) = ( ( HWREG( SYSCTL_SCGC0 ) &
+                                ~( SYSCTL_SET0_ADCSPD_MASK ) ) |
+                              ulSpeed );
+    HWREG( SYSCTL_DCGC0 ) = ( ( HWREG( SYSCTL_DCGC0 ) &
+                                ~( SYSCTL_SET0_ADCSPD_MASK ) ) |
+                              ulSpeed );
 }
 #endif
 
@@ -1727,19 +1669,18 @@ SysCtlADCSpeedSet(unsigned long ulSpeed)
 //! \b SYSCTL_ADCSPEED_250KSPS, or \b SYSCTL_ADCSPEED_125KSPS.
 //
 //*****************************************************************************
-#if defined(GROUP_adcspeedget) || defined(BUILD_ALL) || defined(DOXYGEN)
-unsigned long
-SysCtlADCSpeedGet(void)
+#if defined( GROUP_adcspeedget ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+unsigned long SysCtlADCSpeedGet( void )
 {
     //
     // Check that there is an ADC block on this part.
     //
-    ASSERT(HWREG(SYSCTL_DC1) & SYSCTL_DC1_ADC);
+    ASSERT( HWREG( SYSCTL_DC1 ) & SYSCTL_DC1_ADC );
 
     //
     // Return the current ADC speed.
     //
-    return(HWREG(SYSCTL_RCGC0) & SYSCTL_SET0_ADCSPD_MASK);
+    return ( HWREG( SYSCTL_RCGC0 ) & SYSCTL_SET0_ADCSPD_MASK );
 }
 #endif
 
@@ -1761,22 +1702,21 @@ SysCtlADCSpeedGet(void)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_boscverificationset) || defined(BUILD_ALL) || \
-    defined(DOXYGEN)
-void
-SysCtlIOSCVerificationSet(tBoolean bEnable)
+#if defined( GROUP_boscverificationset ) || defined( BUILD_ALL ) || \
+    defined( DOXYGEN )
+void SysCtlIOSCVerificationSet( tBoolean bEnable )
 {
     //
     // Enable or disable the internal oscillator verification timer as
     // requested.
     //
-    if(bEnable)
+    if( bEnable )
     {
-        HWREG(SYSCTL_RCC) |= SYSCTL_RCC_IOSCVER;
+        HWREG( SYSCTL_RCC ) |= SYSCTL_RCC_IOSCVER;
     }
     else
     {
-        HWREG(SYSCTL_RCC) &= ~(SYSCTL_RCC_IOSCVER);
+        HWREG( SYSCTL_RCC ) &= ~( SYSCTL_RCC_IOSCVER );
     }
 }
 #endif
@@ -1799,21 +1739,20 @@ SysCtlIOSCVerificationSet(tBoolean bEnable)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_moscverificationset) || defined(BUILD_ALL) || \
-    defined(DOXYGEN)
-void
-SysCtlMOSCVerificationSet(tBoolean bEnable)
+#if defined( GROUP_moscverificationset ) || defined( BUILD_ALL ) || \
+    defined( DOXYGEN )
+void SysCtlMOSCVerificationSet( tBoolean bEnable )
 {
     //
     // Enable or disable the main oscillator verification timer as requested.
     //
-    if(bEnable)
+    if( bEnable )
     {
-        HWREG(SYSCTL_RCC) |= SYSCTL_RCC_MOSCVER;
+        HWREG( SYSCTL_RCC ) |= SYSCTL_RCC_MOSCVER;
     }
     else
     {
-        HWREG(SYSCTL_RCC) &= ~(SYSCTL_RCC_MOSCVER);
+        HWREG( SYSCTL_RCC ) &= ~( SYSCTL_RCC_MOSCVER );
     }
 }
 #endif
@@ -1836,20 +1775,20 @@ SysCtlMOSCVerificationSet(tBoolean bEnable)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_pllverificationset) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-SysCtlPLLVerificationSet(tBoolean bEnable)
+#if defined( GROUP_pllverificationset ) || defined( BUILD_ALL ) || \
+    defined( DOXYGEN )
+void SysCtlPLLVerificationSet( tBoolean bEnable )
 {
     //
     // Enable or disable the PLL verification timer as requested.
     //
-    if(bEnable)
+    if( bEnable )
     {
-        HWREG(SYSCTL_RCC) |= SYSCTL_RCC_PLLVER;
+        HWREG( SYSCTL_RCC ) |= SYSCTL_RCC_PLLVER;
     }
     else
     {
-        HWREG(SYSCTL_RCC) &= ~(SYSCTL_RCC_PLLVER);
+        HWREG( SYSCTL_RCC ) &= ~( SYSCTL_RCC_PLLVER );
     }
 }
 #endif
@@ -1864,20 +1803,19 @@ SysCtlPLLVerificationSet(tBoolean bEnable)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_clkverificationclear) || defined(BUILD_ALL) || \
-    defined(DOXYGEN)
-void
-SysCtlClkVerificationClear(void)
+#if defined( GROUP_clkverificationclear ) || defined( BUILD_ALL ) || \
+    defined( DOXYGEN )
+void SysCtlClkVerificationClear( void )
 {
     //
     // Clear the clock verification.
     //
-    HWREG(SYSCTL_CLKVCLR) = SYSCTL_CLKVCLR_CLR;
+    HWREG( SYSCTL_CLKVCLR ) = SYSCTL_CLKVCLR_CLR;
 
     //
     // The bit does not self-reset, so clear it.
     //
-    HWREG(SYSCTL_CLKVCLR) = 0;
+    HWREG( SYSCTL_CLKVCLR ) = 0;
 }
 #endif
 

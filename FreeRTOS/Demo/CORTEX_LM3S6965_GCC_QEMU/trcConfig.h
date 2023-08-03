@@ -60,24 +60,24 @@ extern "C" {
  * Try that in case of build problems. Otherwise, remove the #error line below.
  *****************************************************************************/
 /* Definitions that would come from the processor header file. */
-#define __CORTEX_M					(0x03)
-#define __CM3_REV					0x0202
-#define __MPU_PRESENT				1
-#define __NVIC_PRIO_BITS			8 /* Silicon has three, QEMU has 8. */
+#define __CORTEX_M       ( 0x03 )
+#define __CM3_REV        0x0202
+#define __MPU_PRESENT    1
+#define __NVIC_PRIO_BITS 8 /* Silicon has three, QEMU has 8. */
 
-__attribute__( ( always_inline ) ) static inline uint32_t __get_PRIMASK(void)
+__attribute__( ( always_inline ) ) static inline uint32_t __get_PRIMASK( void )
 {
-  uint32_t result;
+    uint32_t result;
 
-  __asm volatile ("MRS %0, primask" : "=r" (result) );
-  return(result);
+    __asm volatile( "MRS %0, primask" : "=r"( result ) );
+    return ( result );
 }
 
-__attribute__( ( always_inline ) ) static inline void __set_PRIMASK(uint32_t priMask)
+__attribute__( ( always_inline ) ) static inline void __set_PRIMASK(
+    uint32_t priMask )
 {
-  __asm volatile ("MSR primask, %0" : : "r" (priMask) : "memory");
+    __asm volatile( "MSR primask, %0" : : "r"( priMask ) : "memory" );
 }
-
 
 /*******************************************************************************
  * Configuration Macro: TRC_CFG_HARDWARE_PORT
@@ -114,7 +114,7 @@ __attribute__( ( always_inline ) ) static inline void __set_PRIMASK(uint32_t pri
  * TRC_RECORDER_MODE_SNAPSHOT
  * TRC_RECORDER_MODE_STREAMING
  ******************************************************************************/
-#define TRC_CFG_RECORDER_MODE TRC_RECORDER_MODE_SNAPSHOT
+#define TRC_CFG_RECORDER_MODE                 TRC_RECORDER_MODE_SNAPSHOT
 
 /******************************************************************************
  * TRC_CFG_FREERTOS_VERSION
@@ -123,7 +123,7 @@ __attribute__( ( always_inline ) ) static inline void __set_PRIMASK(uint32_t pri
  * trace recorder library with an older version of FreeRTOS).
  *
  * TRC_FREERTOS_VERSION_7_3_X          If using FreeRTOS v7.3.X
- * TRC_FREERTOS_VERSION_7_4_X          If using FreeRTOS v7.4.X 
+ * TRC_FREERTOS_VERSION_7_4_X          If using FreeRTOS v7.4.X
  * TRC_FREERTOS_VERSION_7_5_X          If using FreeRTOS v7.5.X
  * TRC_FREERTOS_VERSION_7_6_X          If using FreeRTOS v7.6.X
  * TRC_FREERTOS_VERSION_8_X_X          If using FreeRTOS v8.X.X
@@ -140,7 +140,7 @@ __attribute__( ( always_inline ) ) static inline void __set_PRIMASK(uint32_t pri
  * TRC_FREERTOS_VERSION_10_3_1         If using FreeRTOS v10.3.1
  * TRC_FREERTOS_VERSION_10_4_0         If using FreeRTOS v10.4.0 or later
  *****************************************************************************/
-#define TRC_CFG_FREERTOS_VERSION TRC_FREERTOS_VERSION_10_4_0
+#define TRC_CFG_FREERTOS_VERSION              TRC_FREERTOS_VERSION_10_4_0
 
 /*******************************************************************************
  * TRC_CFG_SCHEDULING_ONLY
@@ -152,9 +152,9 @@ __attribute__( ( always_inline ) ) static inline void __set_PRIMASK(uint32_t pri
  *
  * Default value is 0 (= include additional events).
  ******************************************************************************/
-#define TRC_CFG_SCHEDULING_ONLY 0
+#define TRC_CFG_SCHEDULING_ONLY               0
 
- /******************************************************************************
+/******************************************************************************
  * TRC_CFG_INCLUDE_MEMMANG_EVENTS
  *
  * Macro which should be defined as either zero (0) or one (1).
@@ -164,9 +164,9 @@ __attribute__( ( always_inline ) ) static inline void __set_PRIMASK(uint32_t pri
  *
  * Default value is 1.
  *****************************************************************************/
-#define TRC_CFG_INCLUDE_MEMMANG_EVENTS 1
+#define TRC_CFG_INCLUDE_MEMMANG_EVENTS        1
 
- /******************************************************************************
+/******************************************************************************
  * TRC_CFG_INCLUDE_USER_EVENTS
  *
  * Macro which should be defined as either zero (0) or one (1).
@@ -189,9 +189,9 @@ __attribute__( ( always_inline ) ) static inline void __set_PRIMASK(uint32_t pri
  *
  * Default value is 1.
  *****************************************************************************/
-#define TRC_CFG_INCLUDE_USER_EVENTS 0
+#define TRC_CFG_INCLUDE_USER_EVENTS           0
 
- /*****************************************************************************
+/*****************************************************************************
  * TRC_CFG_INCLUDE_ISR_TRACING
  *
  * Macro which should be defined as either zero (0) or one (1).
@@ -204,9 +204,9 @@ __attribute__( ( always_inline ) ) static inline void __set_PRIMASK(uint32_t pri
  * Note: tracing ISRs requires that you insert calls to vTraceStoreISRBegin
  * and vTraceStoreISREnd in your interrupt handlers.
  *****************************************************************************/
-#define TRC_CFG_INCLUDE_ISR_TRACING 1
+#define TRC_CFG_INCLUDE_ISR_TRACING           1
 
- /*****************************************************************************
+/*****************************************************************************
  * TRC_CFG_INCLUDE_READY_EVENTS
  *
  * Macro which should be defined as either zero (0) or one (1).
@@ -219,9 +219,9 @@ __attribute__( ( always_inline ) ) static inline void __set_PRIMASK(uint32_t pri
  *
  * Default value is 1.
  *****************************************************************************/
-#define TRC_CFG_INCLUDE_READY_EVENTS 1
+#define TRC_CFG_INCLUDE_READY_EVENTS          1
 
- /*****************************************************************************
+/*****************************************************************************
  * TRC_CFG_INCLUDE_OSTICK_EVENTS
  *
  * Macro which should be defined as either zero (0) or one (1).
@@ -232,9 +232,9 @@ __attribute__( ( always_inline ) ) static inline void __set_PRIMASK(uint32_t pri
  *
  * Default value is 1.
  *****************************************************************************/
-#define TRC_CFG_INCLUDE_OSTICK_EVENTS 1
+#define TRC_CFG_INCLUDE_OSTICK_EVENTS         1
 
- /*****************************************************************************
+/*****************************************************************************
  * TRC_CFG_INCLUDE_EVENT_GROUP_EVENTS
  *
  * Macro which should be defined as either zero (0) or one (1).
@@ -243,9 +243,9 @@ __attribute__( ( always_inline ) ) static inline void __set_PRIMASK(uint32_t pri
  *
  * Default value is 0 (excluded) since dependent on event_groups.c
  *****************************************************************************/
-#define TRC_CFG_INCLUDE_EVENT_GROUP_EVENTS 1
+#define TRC_CFG_INCLUDE_EVENT_GROUP_EVENTS    1
 
- /*****************************************************************************
+/*****************************************************************************
  * TRC_CFG_INCLUDE_TIMER_EVENTS
  *
  * Macro which should be defined as either zero (0) or one (1).
@@ -254,9 +254,9 @@ __attribute__( ( always_inline ) ) static inline void __set_PRIMASK(uint32_t pri
  *
  * Default value is 0 since dependent on timers.c
  *****************************************************************************/
-#define TRC_CFG_INCLUDE_TIMER_EVENTS 1
+#define TRC_CFG_INCLUDE_TIMER_EVENTS          1
 
- /*****************************************************************************
+/*****************************************************************************
  * TRC_CFG_INCLUDE_PEND_FUNC_CALL_EVENTS
  *
  * Macro which should be defined as either zero (0) or one (1).
@@ -278,7 +278,7 @@ __attribute__( ( always_inline ) ) static inline void __set_PRIMASK(uint32_t pri
  *
  * Default value is 0 since dependent on stream_buffer.c (new in FreeRTOS v10)
  ******************************************************************************/
-#define TRC_CFG_INCLUDE_STREAM_BUFFER_EVENTS 1
+#define TRC_CFG_INCLUDE_STREAM_BUFFER_EVENTS  1
 
 /*******************************************************************************
  * Configuration Macro: TRC_CFG_RECORDER_BUFFER_ALLOCATION
@@ -296,7 +296,7 @@ __attribute__( ( always_inline ) ) static inline void __set_PRIMASK(uint32_t pri
  * The custom mode allows you to control how and where the allocation is made,
  * for details see TRC_ALLOC_CUSTOM_BUFFER and vTraceSetRecorderDataBuffer().
  ******************************************************************************/
-#define TRC_CFG_RECORDER_BUFFER_ALLOCATION TRC_RECORDER_BUFFER_ALLOCATION_STATIC
+#define TRC_CFG_RECORDER_BUFFER_ALLOCATION    TRC_RECORDER_BUFFER_ALLOCATION_STATIC
 
 /******************************************************************************
  * TRC_CFG_MAX_ISR_NESTING
@@ -311,13 +311,13 @@ __attribute__( ( always_inline ) ) static inline void __set_PRIMASK(uint32_t pri
  *
  * Default value: 8
  *****************************************************************************/
-#define TRC_CFG_MAX_ISR_NESTING 4
+#define TRC_CFG_MAX_ISR_NESTING               4
 
 /* Specific configuration, depending on Streaming/Snapshot mode */
-#if (TRC_CFG_RECORDER_MODE == TRC_RECORDER_MODE_SNAPSHOT)
-#include "trcSnapshotConfig.h"
-#elif (TRC_CFG_RECORDER_MODE == TRC_RECORDER_MODE_STREAMING)
-#include "trcStreamingConfig.h"
+#if( TRC_CFG_RECORDER_MODE == TRC_RECORDER_MODE_SNAPSHOT )
+    #include "trcSnapshotConfig.h"
+#elif( TRC_CFG_RECORDER_MODE == TRC_RECORDER_MODE_STREAMING )
+    #include "trcStreamingConfig.h"
 #endif
 
 #ifdef __cplusplus

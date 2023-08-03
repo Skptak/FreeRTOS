@@ -6,9 +6,10 @@
  (c) 2018 Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms,you may use this software and
-    any derivatives exclusively with Microchip products.It is your responsibility
-    to comply with third party license terms applicable to your use of third party
-    software (including open source software) that may accompany Microchip software.
+    any derivatives exclusively with Microchip products.It is your
+ responsibility to comply with third party license terms applicable to your use
+ of third party software (including open source software) that may accompany
+ Microchip software.
 
     THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES, WHETHER
     EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE, INCLUDING ANY IMPLIED
@@ -29,36 +30,36 @@
 #define PROTECTED_IO_H
 
 #include <stdint.h>
-   
+
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-#if defined(__DOXYGEN__)
-//! \name IAR Memory Model defines.
-//@{
+#if defined( __DOXYGEN__ )
+    //! \name IAR Memory Model defines.
+    //@{
 
-/**
- * \def CONFIG_MEMORY_MODEL_TINY
- * \brief Configuration symbol to enable 8 bit pointers.
- *
- */
-#define CONFIG_MEMORY_MODEL_TINY
+    /**
+     * \def CONFIG_MEMORY_MODEL_TINY
+     * \brief Configuration symbol to enable 8 bit pointers.
+     *
+     */
+    #define CONFIG_MEMORY_MODEL_TINY
 
-/**
- * \def CONFIG_MEMORY_MODEL_SMALL
- * \brief Configuration symbol to enable 16 bit pointers.
- * \note If no memory model is defined, SMALL is default.
- *
- */
-#define CONFIG_MEMORY_MODEL_SMALL
+    /**
+     * \def CONFIG_MEMORY_MODEL_SMALL
+     * \brief Configuration symbol to enable 16 bit pointers.
+     * \note If no memory model is defined, SMALL is default.
+     *
+     */
+    #define CONFIG_MEMORY_MODEL_SMALL
 
-/**
- * \def CONFIG_MEMORY_MODEL_LARGE
- * \brief Configuration symbol to enable 24 bit pointers.
- *
- */
-#define CONFIG_MEMORY_MODEL_LARGE
+    /**
+     * \def CONFIG_MEMORY_MODEL_LARGE
+     * \brief Configuration symbol to enable 24 bit pointers.
+     *
+     */
+    #define CONFIG_MEMORY_MODEL_LARGE
 
 //@}
 #endif
@@ -72,9 +73,10 @@ extern "C" {
  *
  * \note Using IAR Embedded workbench, the choice of memory model has an impact
  *       on calling convention. The memory model is not visible to the
- *       preprocessor, so it must be defined in the Assembler preprocessor directives.
+ *       preprocessor, so it must be defined in the Assembler preprocessor
+ * directives.
  */
-extern void protected_write_io(void *addr, uint8_t magic, uint8_t value);
+extern void protected_write_io( void * addr, uint8_t magic, uint8_t value );
 
 /** @} */
 

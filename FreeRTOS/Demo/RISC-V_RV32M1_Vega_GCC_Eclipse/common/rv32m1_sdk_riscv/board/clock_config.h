@@ -1,10 +1,10 @@
 /*
  * Copyright 2017 NXP
  * All rights reserved.
- * 
+ *
  * SPDX-License-Identifier: BSD-3-Clause
  */
- 
+
 #ifndef _CLOCK_CONFIG_H_
 #define _CLOCK_CONFIG_H_
 
@@ -18,7 +18,7 @@
  ************************ BOARD_InitBootClocks function ************************
  ******************************************************************************/
 
-#if defined(__cplusplus)
+#if defined( __cplusplus )
 extern "C" {
 #endif /* __cplusplus*/
 
@@ -26,9 +26,9 @@ extern "C" {
  * @brief This function executes default configuration of clocks.
  *
  */
-void BOARD_InitBootClocks(void);
+void BOARD_InitBootClocks( void );
 
-#if defined(__cplusplus)
+#if defined( __cplusplus )
 }
 #endif /* __cplusplus*/
 
@@ -38,7 +38,8 @@ void BOARD_InitBootClocks(void);
 /*******************************************************************************
  * Definitions for BOARD_BootClockRUN configuration
  ******************************************************************************/
-#define BOARD_BOOTCLOCKRUN_CORE_CLOCK              48000000U  /*!< Core clock frequency: 48000000Hz */
+#define BOARD_BOOTCLOCKRUN_CORE_CLOCK \
+    48000000U /*!< Core clock frequency: 48000000Hz */
 
 /*! @brief SCG set for BOARD_BootClockRUN configuration.
  */
@@ -59,7 +60,7 @@ extern const scg_lpfll_config_t g_scgLpFllConfigBOARD_BootClockRUN;
 /*******************************************************************************
  * API for BOARD_BootClockRUN configuration
  ******************************************************************************/
-#if defined(__cplusplus)
+#if defined( __cplusplus )
 extern "C" {
 #endif /* __cplusplus*/
 
@@ -67,9 +68,9 @@ extern "C" {
  * @brief This function executes configuration of clocks.
  *
  */
-void BOARD_BootClockRUN(void);
+void BOARD_BootClockRUN( void );
 
-#if defined(__cplusplus)
+#if defined( __cplusplus )
 }
 #endif /* __cplusplus*/
 
@@ -79,7 +80,8 @@ void BOARD_BootClockRUN(void);
 /*******************************************************************************
  * Definitions for BOARD_BootClockHSRUN configuration
  ******************************************************************************/
-#define BOARD_BOOTCLOCKHSRUN_CORE_CLOCK            72000000U  /*!< Core clock frequency: 72000000Hz */
+#define BOARD_BOOTCLOCKHSRUN_CORE_CLOCK \
+    72000000U /*!< Core clock frequency: 72000000Hz */
 
 /*! @brief SCG set for BOARD_BootClockHSRUN configuration.
  */
@@ -100,7 +102,7 @@ extern const scg_lpfll_config_t g_scgLpFllConfigBOARD_BootClockHSRUN;
 /*******************************************************************************
  * API for BOARD_BootClockHSRUN configuration
  ******************************************************************************/
-#if defined(__cplusplus)
+#if defined( __cplusplus )
 extern "C" {
 #endif /* __cplusplus*/
 
@@ -108,9 +110,9 @@ extern "C" {
  * @brief This function executes configuration of clocks.
  *
  */
-void BOARD_BootClockHSRUN(void);
+void BOARD_BootClockHSRUN( void );
 
-#if defined(__cplusplus)
+#if defined( __cplusplus )
 }
 #endif /* __cplusplus*/
 
@@ -120,7 +122,8 @@ void BOARD_BootClockHSRUN(void);
 /*******************************************************************************
  * Definitions for BOARD_BootClockVLPR configuration
  ******************************************************************************/
-#define BOARD_BOOTCLOCKVLPR_CORE_CLOCK              4000000U  /*!< Core clock frequency: 4000000Hz */
+#define BOARD_BOOTCLOCKVLPR_CORE_CLOCK \
+    4000000U /*!< Core clock frequency: 4000000Hz */
 
 /*! @brief SCG set for BOARD_BootClockVLPR configuration.
  */
@@ -141,7 +144,7 @@ extern const scg_lpfll_config_t g_scgLpFllConfigBOARD_BootClockVLPR;
 /*******************************************************************************
  * API for BOARD_BootClockVLPR configuration
  ******************************************************************************/
-#if defined(__cplusplus)
+#if defined( __cplusplus )
 extern "C" {
 #endif /* __cplusplus*/
 
@@ -149,11 +152,10 @@ extern "C" {
  * @brief This function executes configuration of clocks.
  *
  */
-void BOARD_BootClockVLPR(void);
+void BOARD_BootClockVLPR( void );
 
-#if defined(__cplusplus)
+#if defined( __cplusplus )
 }
 #endif /* __cplusplus*/
 
 #endif /* _CLOCK_CONFIG_H_ */
-

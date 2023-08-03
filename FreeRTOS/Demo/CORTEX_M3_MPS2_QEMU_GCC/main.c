@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -29,13 +30,12 @@
 
 #include <FreeRTOSConfig.h>
 
-#include <string.h>
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
-void vApplicationStackOverflowHook( TaskHandle_t pxTask,
-                                    char * pcTaskName );
+void vApplicationStackOverflowHook( TaskHandle_t pxTask, char * pcTaskName );
 void vApplicationMallocFailedHook( void );
 void vApplicationIdleHook( void );
 void vApplicationTickHook( void );
@@ -56,19 +56,20 @@ StackType_t uxTimerTaskStack[ configTIMER_TASK_STACK_DEPTH ];
 
 int main()
 {
-    #if ( mainCREATE_SIMPLE_BLINKY_DEMO_ONLY == 1 )
+#if( mainCREATE_SIMPLE_BLINKY_DEMO_ONLY == 1 )
     {
         main_blinky();
     }
-    #elif ( mainCREATE_FULL_DEMO_ONLY == 1 )
+#elif( mainCREATE_FULL_DEMO_ONLY == 1 )
     {
         main_full();
     }
-    #else
+#else
     {
-        #error "Invalid Selection...\nPlease Select a Demo application from the main command"
+    #error \
+        "Invalid Selection...\nPlease Select a Demo application from the main command"
     }
-    #endif /* if ( mainCREATE_SIMPLE_BLINKY_DEMO_ONLY == 1 ) */
+#endif /* if ( mainCREATE_SIMPLE_BLINKY_DEMO_ONLY == 1 ) */
     return 0;
 }
 
@@ -83,14 +84,13 @@ void vApplicationMallocFailedHook( void )
      * configTOTAL_HEAP_SIZE configuration constant in FreeRTOSConfig.h. */
     taskDISABLE_INTERRUPTS();
 
-    for( ; ; )
+    for( ;; )
     {
     }
 }
 /*-----------------------------------------------------------*/
 
-void vApplicationStackOverflowHook( TaskHandle_t pxTask,
-                                    char * pcTaskName )
+void vApplicationStackOverflowHook( TaskHandle_t pxTask, char * pcTaskName )
 {
     ( void ) pcTaskName;
     ( void ) pxTask;
@@ -100,7 +100,7 @@ void vApplicationStackOverflowHook( TaskHandle_t pxTask,
      * function is called if a stack overflow is detected. */
     taskDISABLE_INTERRUPTS();
 
-    for( ; ; )
+    for( ;; )
     {
     }
 }
@@ -108,44 +108,42 @@ void vApplicationStackOverflowHook( TaskHandle_t pxTask,
 
 void vApplicationIdleHook( void )
 {
-    #if ( mainCREATE_FULL_DEMO_ONLY == 1 )
+#if( mainCREATE_FULL_DEMO_ONLY == 1 )
     {
         /* Call the idle task processing used by the full demo.  The simple
          * blinky demo does not use the idle task hook. */
         vFullDemoIdleFunction();
     }
-    #endif
+#endif
 }
 /*-----------------------------------------------------------*/
 
 void vApplicationTickHook( void )
 {
-    #if ( mainCREATE_FULL_DEMO_ONLY == 1 )
+#if( mainCREATE_FULL_DEMO_ONLY == 1 )
     {
         vFullDemoTickHookFunction();
     }
-    #endif /* mainSELECTED_APPLICATION */
+#endif /* mainSELECTED_APPLICATION */
 }
 
 /*-----------------------------------------------------------*/
 
-void vAssertCalled( const char * pcFileName,
-                    int line )
+void vAssertCalled( const char * pcFileName, int line )
 {
     printf( "Assertion failed at %s: %d\n", pcFileName, line );
     fflush( NULL );
 
     while( 1 )
     {
-        asm ( "nop" );
+        asm( "nop" );
     }
 
     exit( 1 );
 }
 
 /*-----------------------------------------------------------*/
-void vLoggingPrintf( const char * pcFormat,
-                     ... )
+void vLoggingPrintf( const char * pcFormat, ... )
 {
     va_list arg;
 
@@ -155,15 +153,15 @@ void vLoggingPrintf( const char * pcFormat,
 }
 
 /* configUSE_STATIC_ALLOCATION is set to 1, so the application must provide an
- * implementation of vApplicationGetIdleTaskMemory() to provide the memory that is
- * used by the Idle task. */
+ * implementation of vApplicationGetIdleTaskMemory() to provide the memory that
+ * is used by the Idle task. */
 void vApplicationGetIdleTaskMemory( StaticTask_t ** ppxIdleTaskTCBBuffer,
                                     StackType_t ** ppxIdleTaskStackBuffer,
                                     uint32_t * pulIdleTaskStackSize )
 {
-/* If the buffers to be provided to the Idle task are declared inside this
- * function then they must be declared static - otherwise they will be allocated on
- * the stack and so not exists after this function exits. */
+    /* If the buffers to be provided to the Idle task are declared inside this
+     * function then they must be declared static - otherwise they will be
+     * allocated on the stack and so not exists after this function exits. */
     static StaticTask_t xIdleTaskTCB;
     static StackType_t uxIdleTaskStack[ configMINIMAL_STACK_SIZE ];
 
@@ -187,8 +185,8 @@ void vApplicationGetTimerTaskMemory( StaticTask_t ** ppxTimerTaskTCBBuffer,
                                      uint32_t * pulTimerTaskStackSize )
 {
     /* If the buffers to be provided to the Timer task are declared inside this
-     * function then they must be declared static - otherwise they will be allocated on
-     * the stack and so not exists after this function exits. */
+     * function then they must be declared static - otherwise they will be
+     * allocated on the stack and so not exists after this function exits. */
     static StaticTask_t xTimerTaskTCB;
 
     /* Pass out a pointer to the StaticTask_t structure in which the Timer

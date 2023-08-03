@@ -34,14 +34,17 @@
 // Prototypes for the driver APIs.
 //
 //*****************************************************************************
-extern void OSRAMClear(void);
-extern void OSRAMStringDraw(const char *pcStr, unsigned long ulX,
-                            unsigned long ulY);
-extern void OSRAMImageDraw(const unsigned char *pucImage, unsigned long ulX,
-                           unsigned long ulY, unsigned long ulWidth,
-                           unsigned long ulHeight);
-extern void OSRAMInit(tBoolean bFast);
-extern void OSRAMDisplayOn(void);
-extern void OSRAMDisplayOff(void);
+extern void OSRAMClear( void );
+extern void OSRAMStringDraw( const char * pcStr,
+                             unsigned long ulX,
+                             unsigned long ulY );
+extern void OSRAMImageDraw( const unsigned char * pucImage,
+                            unsigned long ulX,
+                            unsigned long ulY,
+                            unsigned long ulWidth,
+                            unsigned long ulHeight );
+extern void OSRAMInit( tBoolean bFast );
+extern void OSRAMDisplayOn( void );
+extern void OSRAMDisplayOff( void );
 
 #endif // __OSRAM96X16_H__

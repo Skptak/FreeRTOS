@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
- *         SAM Software Package License 
+ *         SAM Software Package License
  * ----------------------------------------------------------------------------
  * Copyright (c) 2011, Atmel Corporation
  *
@@ -77,10 +77,11 @@
  *        Types
  *----------------------------------------------------------------------------*/
 
-/** \brief Describes the font (width, height, supported characters, etc.) used by
- * the LCD driver draw API.
+/** \brief Describes the font (width, height, supported characters, etc.) used
+ * by the LCD driver draw API.
  */
-typedef struct _Font {
+typedef struct _Font
+{
     /* Font width in pixels. */
     uint8_t width;
     /* Font height in pixels. */
@@ -99,10 +100,13 @@ extern const Font gFont;
 /** \addtogroup lcdd_font_func Font Functions */
 /** @{*/
 
-extern void LCDD_DrawChar( uint32_t x, uint32_t y, uint8_t c, uint32_t color ) ;
+extern void LCDD_DrawChar( uint32_t x, uint32_t y, uint8_t c, uint32_t color );
 
-extern void LCDD_DrawCharWithBGColor( uint32_t x, uint32_t y, uint8_t c, uint32_t fontColor, uint32_t bgColor );
+extern void LCDD_DrawCharWithBGColor( uint32_t x,
+                                      uint32_t y,
+                                      uint8_t c,
+                                      uint32_t fontColor,
+                                      uint32_t bgColor );
 /** @}*/
 /**@}*/
 #endif /* #ifndef LCD_FONT_ */
-

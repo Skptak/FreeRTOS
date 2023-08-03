@@ -37,7 +37,6 @@
  * application supplies a handler function, this function will not be
  * referenced and thus not pulled in from the library.
  */
-void 
-_on_bootstrap (void)
+void _on_bootstrap( void )
 {
 }

@@ -23,14 +23,14 @@
 **     mail      : info@processorexpert.com
 ** ###################################################################*/
 #ifndef __PE_Timer
-#define __PE_Timer
-/*Include shared modules, which are used for whole project*/
-#include "PE_types.h"
-#include "PE_const.h"
+    #define __PE_Timer
+    /*Include shared modules, which are used for whole project*/
+    #include "PE_const.h"
+    #include "PE_types.h"
 
 /* MODULE PE_Timer. */
 
-bool PE_Timer_LngHi1(dword Low, dword High, word *Out);
+bool PE_Timer_LngHi1( dword Low, dword High, word * Out );
 /*
 ** ===================================================================
 **     Method      :  PE_Timer_LngHi1 (bean PE_Timer)
@@ -41,12 +41,11 @@ bool PE_Timer_LngHi1(dword Low, dword High, word *Out);
 ** ===================================================================
 */
 
-
 #endif /* END PE_Timer. */
 /*
 ** ###################################################################
 **
-**     This file was created by UNIS Processor Expert 03.33 for 
+**     This file was created by UNIS Processor Expert 03.33 for
 **     the Motorola HCS12 series of microcontrollers.
 **
 ** ###################################################################

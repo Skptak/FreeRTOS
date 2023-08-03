@@ -1,29 +1,32 @@
 /***********************************************************************************************************************
-* DISCLAIMER
-* This software is supplied by Renesas Electronics Corporation and is only intended for use with Renesas products. No
-* other uses are authorized. This software is owned by Renesas Electronics Corporation and is protected under all
-* applicable laws, including copyright laws.
-* THIS SOFTWARE IS PROVIDED "AS IS" AND RENESAS MAKES NO WARRANTIES REGARDING
-* THIS SOFTWARE, WHETHER EXPRESS, IMPLIED OR STATUTORY, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY,
-* FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. ALL SUCH WARRANTIES ARE EXPRESSLY DISCLAIMED. TO THE MAXIMUM
-* EXTENT PERMITTED NOT PROHIBITED BY LAW, NEITHER RENESAS ELECTRONICS CORPORATION NOR ANY OF ITS AFFILIATED COMPANIES
-* SHALL BE LIABLE FOR ANY DIRECT, INDIRECT, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES FOR ANY REASON RELATED TO THIS
-* SOFTWARE, EVEN IF RENESAS OR ITS AFFILIATES HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
-* Renesas reserves the right, without notice, to make changes to this software and to discontinue the availability of
-* this software. By using this software, you agree to the additional terms and conditions found by accessing the
-* following link:
-* http://www.renesas.com/disclaimer
-*
-* Copyright (C) 2019 Renesas Electronics Corporation. All rights reserved.
-***********************************************************************************************************************/
+ * DISCLAIMER
+ * This software is supplied by Renesas Electronics Corporation and is only
+ *intended for use with Renesas products. No other uses are authorized. This
+ *software is owned by Renesas Electronics Corporation and is protected under
+ *all applicable laws, including copyright laws. THIS SOFTWARE IS PROVIDED "AS
+ *IS" AND RENESAS MAKES NO WARRANTIES REGARDING THIS SOFTWARE, WHETHER EXPRESS,
+ *IMPLIED OR STATUTORY, INCLUDING BUT NOT LIMITED TO WARRANTIES OF
+ *MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. ALL
+ *SUCH WARRANTIES ARE EXPRESSLY DISCLAIMED. TO THE MAXIMUM EXTENT PERMITTED NOT
+ *PROHIBITED BY LAW, NEITHER RENESAS ELECTRONICS CORPORATION NOR ANY OF ITS
+ *AFFILIATED COMPANIES SHALL BE LIABLE FOR ANY DIRECT, INDIRECT, SPECIAL,
+ *INCIDENTAL OR CONSEQUENTIAL DAMAGES FOR ANY REASON RELATED TO THIS SOFTWARE,
+ *EVEN IF RENESAS OR ITS AFFILIATES HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH
+ *DAMAGES. Renesas reserves the right, without notice, to make changes to this
+ *software and to discontinue the availability of this software. By using this
+ *software, you agree to the additional terms and conditions found by accessing
+ *the following link: http://www.renesas.com/disclaimer
+ *
+ * Copyright (C) 2019 Renesas Electronics Corporation. All rights reserved.
+ ***********************************************************************************************************************/
 /***********************************************************************************************************************
-* File Name    : r_bsp_software_interrupt.h
-* Description  : This module implements software interrupt specific functions.
-***********************************************************************************************************************/
+ * File Name    : r_bsp_software_interrupt.h
+ * Description  : This module implements software interrupt specific functions.
+ ***********************************************************************************************************************/
 /**********************************************************************************************************************
-* History : DD.MM.YYYY Version  Description
-*         : 08.10.2019 1.00     First Release
-***********************************************************************************************************************/
+ * History : DD.MM.YYYY Version  Description
+ *         : 08.10.2019 1.00     First Release
+ ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
 Includes   <System Includes> , "Project Includes"
@@ -32,26 +35,32 @@ Includes   <System Includes> , "Project Includes"
 
 /* Multiple inclusion prevention macro */
 #ifndef SOFTWARE_INTERRUPT_H
-#define SOFTWARE_INTERRUPT_H
+    #define SOFTWARE_INTERRUPT_H
 
-/***********************************************************************************************************************
-Macro definitions
-***********************************************************************************************************************/
+    /***********************************************************************************************************************
+    Macro definitions
+    ***********************************************************************************************************************/
 
-/***********************************************************************************************************************
-Typedef definitions
-***********************************************************************************************************************/
-#if (defined(BSP_CFG_SWINT_UNIT1_ENABLE) && (BSP_CFG_SWINT_UNIT1_ENABLE == 1)) || \
-    (defined(BSP_CFG_SWINT_UNIT2_ENABLE) && (BSP_CFG_SWINT_UNIT2_ENABLE == 1))
+    /***********************************************************************************************************************
+    Typedef definitions
+    ***********************************************************************************************************************/
+    #if( defined( BSP_CFG_SWINT_UNIT1_ENABLE ) &&  \
+         ( BSP_CFG_SWINT_UNIT1_ENABLE == 1 ) ) ||  \
+        ( defined( BSP_CFG_SWINT_UNIT2_ENABLE ) && \
+          ( BSP_CFG_SWINT_UNIT2_ENABLE == 1 ) )
 
 typedef enum e_bsp_swint_unit
 {
-#if (defined(BSP_CFG_SWINT_UNIT1_ENABLE) && (BSP_CFG_SWINT_UNIT1_ENABLE == 1))
+        #if( defined( BSP_CFG_SWINT_UNIT1_ENABLE ) && \
+             ( BSP_CFG_SWINT_UNIT1_ENABLE == 1 ) )
     BSP_SWINT_UNIT1,
-#endif /* (defined(BSP_CFG_SWINT_UNIT1_ENABLE) && (BSP_CFG_SWINT_UNIT1_ENABLE == 1)) */
-#if (defined(BSP_CFG_SWINT_UNIT2_ENABLE) && (BSP_CFG_SWINT_UNIT2_ENABLE == 1))
+        #endif /* (defined(BSP_CFG_SWINT_UNIT1_ENABLE) && \
+                  (BSP_CFG_SWINT_UNIT1_ENABLE == 1)) */
+        #if( defined( BSP_CFG_SWINT_UNIT2_ENABLE ) && \
+             ( BSP_CFG_SWINT_UNIT2_ENABLE == 1 ) )
     BSP_SWINT_UNIT2,
-#endif /* (defined(BSP_CFG_SWINT_UNIT2_ENABLE) && (BSP_CFG_SWINT_UNIT2_ENABLE == 1)) */
+        #endif /* (defined(BSP_CFG_SWINT_UNIT2_ENABLE) && \
+                  (BSP_CFG_SWINT_UNIT2_ENABLE == 1)) */
     BSP_SWINT_UNIT_MAX
 } e_bsp_swint_unit_t;
 
@@ -106,8 +115,8 @@ typedef enum e_bsp_swint_task_status
 typedef struct st_bsp_swint_task
 {
     e_bsp_swint_task_status_t status;
-    void (*p_taskAddr)(void *p_task_args);
-    void *p_context;
+    void ( *p_taskAddr )( void * p_task_args );
+    void * p_context;
 } st_bsp_swint_task_t;
 
 typedef struct st_bsp_swint_task_buffer
@@ -127,12 +136,15 @@ Exported global variables
 /***********************************************************************************************************************
 Exported global functions (to be accessed by other files)
 ***********************************************************************************************************************/
-e_bsp_swint_err_t R_BSP_SoftwareInterruptOpen(e_bsp_swint_unit_t unit);
-e_bsp_swint_err_t R_BSP_SoftwareInterruptClose(e_bsp_swint_unit_t unit);
-e_bsp_swint_err_t R_BSP_SoftwareInterruptSetTask(e_bsp_swint_unit_t unit, st_bsp_swint_task_t set_task);
-e_bsp_swint_err_t R_BSP_SoftwareInterruptControl(e_bsp_swint_unit_t unit, e_bsp_swint_cmd_t const cmd, void * const p_args);
+e_bsp_swint_err_t R_BSP_SoftwareInterruptOpen( e_bsp_swint_unit_t unit );
+e_bsp_swint_err_t R_BSP_SoftwareInterruptClose( e_bsp_swint_unit_t unit );
+e_bsp_swint_err_t R_BSP_SoftwareInterruptSetTask( e_bsp_swint_unit_t unit,
+                                                  st_bsp_swint_task_t set_task );
+e_bsp_swint_err_t R_BSP_SoftwareInterruptControl( e_bsp_swint_unit_t unit,
+                                                  e_bsp_swint_cmd_t const cmd,
+                                                  void * const p_args );
 
-#endif /* (BSP_CFG_SWINT_UNIT1_ENABLE == 1) || (BSP_CFG_SWINT_UNIT2_ENABLE == 1) */
+    #endif /* (BSP_CFG_SWINT_UNIT1_ENABLE == 1) || (BSP_CFG_SWINT_UNIT2_ENABLE \
+              == 1) */
 
-#endif  /* End of multiple inclusion prevention macro */
-
+#endif /* End of multiple inclusion prevention macro */

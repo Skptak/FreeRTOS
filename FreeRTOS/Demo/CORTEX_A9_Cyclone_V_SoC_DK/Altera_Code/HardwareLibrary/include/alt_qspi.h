@@ -1,49 +1,49 @@
 /******************************************************************************
-*
-* Copyright 2013 Altera Corporation. All Rights Reserved.
-* 
-* Redistribution and use in source and binary forms, with or without
-* modification, are permitted provided that the following conditions are met:
-* 
-* 1. Redistributions of source code must retain the above copyright notice,
-* this list of conditions and the following disclaimer.
-* 
-* 2. Redistributions in binary form must reproduce the above copyright notice,
-* this list of conditions and the following disclaimer in the documentation
-* and/or other materials provided with the distribution.
-* 
-* 3. The name of the author may not be used to endorse or promote products
-* derived from this software without specific prior written permission.
-* 
-* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDER "AS IS" AND ANY EXPRESS OR
-* IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
-* MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED. IN NO
-* EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
-* EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
-* OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-* INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-* CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING
-* IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
-* OF SUCH DAMAGE.
-* 
-******************************************************************************/
+ *
+ * Copyright 2013 Altera Corporation. All Rights Reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright notice,
+ * this list of conditions and the following disclaimer.
+ *
+ * 2. Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation
+ * and/or other materials provided with the distribution.
+ *
+ * 3. The name of the author may not be used to endorse or promote products
+ * derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDER "AS IS" AND ANY EXPRESS OR
+ * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED. IN NO
+ * EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ *SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ *PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+ *BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
+ *IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ *ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ *POSSIBILITY OF SUCH DAMAGE.
+ *
+ ******************************************************************************/
 
 /******************************************************************************
-* 
-* !!!! Customer Be Aware, Exception!!!
-*
-* 1. Qspi Direct Access Mode is not working!
-*
-*    This is because the qspi flash memory installed on our DevKit board, Micro 
-*    part N25Q00xx, 8 Gb, is not completely compatible with our embedded Synopsis 
-*    QSPI controller IP. Therefore there is no viable direct access code offered
-*    in the lib.  All the memory rea/write functionality is offered with indirect
-*    access only.   
-*
-*    Should you install a different flash memory part in your custom board, and 
-*    wondering wether direct access mode works, please contact with us.
-* 
-******************************************************************************/
+ *
+ * !!!! Customer Be Aware, Exception!!!
+ *
+ * 1. Qspi Direct Access Mode is not working!
+ *
+ *    This is because the qspi flash memory installed on our DevKit board, Micro
+ *    part N25Q00xx, 8 Gb, is not completely compatible with our embedded
+ *Synopsis QSPI controller IP. Therefore there is no viable direct access code
+ *offered in the lib.  All the memory rea/write functionality is offered with
+ *indirect access only.
+ *
+ *    Should you install a different flash memory part in your custom board, and
+ *    wondering wether direct access mode works, please contact with us.
+ *
+ ******************************************************************************/
 
 /*! \file
  *  Altera - QSPI Flash Controller Module
@@ -55,9 +55,8 @@
 #include "hwlib.h"
 
 #ifdef __cplusplus
-extern "C"
-{
-#endif  /* __cplusplus */
+extern "C" {
+#endif /* __cplusplus */
 
 /******************************************************************************/
 /*! \addtogroup ALT_QSPI QSPI Flash Controller Module
@@ -98,7 +97,7 @@ extern "C"
  * \retval      ALT_E_SUCCESS   Indicates successful completion.
  * \retval      ALT_E_ERROR     Indicates an error occurred.
  */
-ALT_STATUS_CODE alt_qspi_init(void);
+ALT_STATUS_CODE alt_qspi_init( void );
 
 /******************************************************************************/
 /*!
@@ -110,20 +109,20 @@ ALT_STATUS_CODE alt_qspi_init(void);
  * \retval      ALT_E_SUCCESS   Indicates successful completion.
  * \retval      ALT_E_ERROR     Indicates an error occurred.
  */
-ALT_STATUS_CODE alt_qspi_uninit(void);
+ALT_STATUS_CODE alt_qspi_uninit( void );
 
 /******************************************************************************/
 /*!
  * Disable the QSPI Controller.
  *
  * Disable the QSPI once the current transfer of the data word (FF_W) is
- * complete. All output enables are inactive and all pins are set to input 
+ * complete. All output enables are inactive and all pins are set to input
  * mode.
  *
  * \retval      ALT_E_SUCCESS   Indicates successful completion.
  * \retval      ALT_E_ERROR     Indicates an error occurred.
  */
-ALT_STATUS_CODE alt_qspi_disable(void);
+ALT_STATUS_CODE alt_qspi_disable( void );
 
 /******************************************************************************/
 /*!
@@ -132,7 +131,7 @@ ALT_STATUS_CODE alt_qspi_disable(void);
  * \retval      ALT_E_SUCCESS   Indicates successful completion.
  * \retval      ALT_E_ERROR     Indicates an error occurred.
  */
-ALT_STATUS_CODE alt_qspi_enable(void);
+ALT_STATUS_CODE alt_qspi_enable( void );
 
 /******************************************************************************/
 /*!
@@ -158,7 +157,7 @@ typedef enum ALT_QSPI_INT_STATUS_e
      *  * 0 = no mode fault has been detected.
      *  * 1 = a mode fault has occurred.
      */
-    ALT_QSPI_INT_STATUS_MODE_FAIL         = (0x1 << 0),
+    ALT_QSPI_INT_STATUS_MODE_FAIL = ( 0x1 << 0 ),
 
     /*!
      * Underflow Detected.
@@ -168,34 +167,34 @@ typedef enum ALT_QSPI_INT_STATUS_e
      *        data is being supplied too slowly to keep up with the requested
      *        write operation.
      */
-    ALT_QSPI_INT_STATUS_UFL               = (0x1 << 1),
+    ALT_QSPI_INT_STATUS_UFL = ( 0x1 << 1 ),
 
     /*!
      * Controller has completed last triggered indirect operation.
      */
-    ALT_QSPI_INT_STATUS_IDAC_OP_COMPLETE  = (0x1 << 2),
+    ALT_QSPI_INT_STATUS_IDAC_OP_COMPLETE = ( 0x1 << 2 ),
 
     /*!
      * Indirect operation was requested but could not be accepted. Two indirect
      * operations already in storage.
      */
-    ALT_QSPI_INT_STATUS_IDAC_OP_REJECT    = (0x1 << 3),
+    ALT_QSPI_INT_STATUS_IDAC_OP_REJECT = ( 0x1 << 3 ),
 
     /*!
      * Write to protected area was attempted and rejected.
      */
-    ALT_QSPI_INT_STATUS_WR_PROT_VIOL      = (0x1 << 4),
+    ALT_QSPI_INT_STATUS_WR_PROT_VIOL = ( 0x1 << 4 ),
 
     /*!
      * Illegal AHB Access Detected. AHB write wrapping bursts and the use of
      * SPLIT/RETRY accesses will cause this interrupt to trigger.
      */
-    ALT_QSPI_INT_STATUS_ILL_AHB_ACCESS    = (0x1 << 5),
+    ALT_QSPI_INT_STATUS_ILL_AHB_ACCESS = ( 0x1 << 5 ),
 
     /*!
      * Indirect Transfer Watermark Level Breached.
      */
-    ALT_QSPI_INT_STATUS_IDAC_WTRMK_TRIG   = (0x1 << 6),
+    ALT_QSPI_INT_STATUS_IDAC_WTRMK_TRIG = ( 0x1 << 6 ),
 
     /*!
      * Receive Overflow. This should only occur in Legacy SPI mode.
@@ -207,7 +206,7 @@ typedef enum ALT_QSPI_INT_STATUS_e
      *  * 0 = no overflow has been detected.
      *  * 1 = an overflow has occurred.
      */
-    ALT_QSPI_INT_STATUS_RX_OVF            = (0x1 << 7),
+    ALT_QSPI_INT_STATUS_RX_OVF = ( 0x1 << 7 ),
 
     /*!
      * Small TX FIFO not full (current FIFO status). Can be ignored in non-SPI
@@ -215,7 +214,7 @@ typedef enum ALT_QSPI_INT_STATUS_e
      *  * 0 = FIFO has >= THRESHOLD entries.
      *  * 1 = FIFO has < THRESHOLD entries.
      */
-    ALT_QSPI_INT_STATUS_TX_FIFO_NOT_FULL  = (0x1 << 8),
+    ALT_QSPI_INT_STATUS_TX_FIFO_NOT_FULL = ( 0x1 << 8 ),
 
     /*!
      * Small TX FIFO full (current FIFO status). Can be ignored in non-SPI
@@ -223,7 +222,7 @@ typedef enum ALT_QSPI_INT_STATUS_e
      *  * 0 = FIFO is not full.
      *  * 1 = FIFO is full.
      */
-    ALT_QSPI_INT_STATUS_TX_FIFO_FULL      = (0x1 << 9),
+    ALT_QSPI_INT_STATUS_TX_FIFO_FULL = ( 0x1 << 9 ),
 
     /*!
      * Small RX FIFO not empty (current FIFO status). Can be ignored in non-SPI
@@ -231,7 +230,7 @@ typedef enum ALT_QSPI_INT_STATUS_e
      *  * 0 = FIFO has < RX THRESHOLD entries.
      *  * 1 = FIFO has >= THRESHOLD entries.
      */
-    ALT_QSPI_INT_STATUS_RX_FIFO_NOT_EMPTY = (0x1 << 10),
+    ALT_QSPI_INT_STATUS_RX_FIFO_NOT_EMPTY = ( 0x1 << 10 ),
 
     /*!
      * Small RX FIFO full (current FIFO status). Can be ignored in non-SPI
@@ -239,13 +238,13 @@ typedef enum ALT_QSPI_INT_STATUS_e
      *  * 0 = FIFO is not full.
      *  * 1 = FIFO is full.
      */
-    ALT_QSPI_INT_STATUS_RX_FIFO_FULL      = (0x1 << 11),
+    ALT_QSPI_INT_STATUS_RX_FIFO_FULL = ( 0x1 << 11 ),
 
     /*!
      * Indirect Read partition of SRAM is full and unable to immediately
      * complete indirect operation.
      */
-    ALT_QSPI_INT_STATUS_IDAC_RD_FULL      = (0x1 << 12)
+    ALT_QSPI_INT_STATUS_IDAC_RD_FULL = ( 0x1 << 12 )
 
 } ALT_QSPI_INT_STATUS_t;
 
@@ -262,7 +261,7 @@ typedef enum ALT_QSPI_INT_STATUS_e
  *              conditions as defined by the \ref ALT_QSPI_INT_STATUS_t mask.
  *              If the corresponding bit is set then the condition is asserted.
  */
-uint32_t alt_qspi_int_status_get(void);
+uint32_t alt_qspi_int_status_get( void );
 
 /******************************************************************************/
 /*!
@@ -280,7 +279,7 @@ uint32_t alt_qspi_int_status_get(void);
  * \retval      ALT_E_SUCCESS   Indicates successful completion.
  * \retval      ALT_E_ERROR     Indicates an error occurred.
  */
-ALT_STATUS_CODE alt_qspi_int_clear(const uint32_t mask);
+ALT_STATUS_CODE alt_qspi_int_clear( const uint32_t mask );
 
 /******************************************************************************/
 /*!
@@ -307,7 +306,7 @@ ALT_STATUS_CODE alt_qspi_int_clear(const uint32_t mask);
  * \retval      ALT_E_SUCCESS   Indicates successful completion.
  * \retval      ALT_E_ERROR     Indicates an error occurred.
  */
-ALT_STATUS_CODE alt_qspi_int_disable(const uint32_t mask);
+ALT_STATUS_CODE alt_qspi_int_disable( const uint32_t mask );
 
 /******************************************************************************/
 /*!
@@ -334,7 +333,7 @@ ALT_STATUS_CODE alt_qspi_int_disable(const uint32_t mask);
  * \retval      ALT_E_SUCCESS   Indicates successful completion.
  * \retval      ALT_E_ERROR     Indicates an error occurred.
  */
-ALT_STATUS_CODE alt_qspi_int_enable(const uint32_t mask);
+ALT_STATUS_CODE alt_qspi_int_enable( const uint32_t mask );
 
 /******************************************************************************/
 /*!
@@ -342,7 +341,7 @@ ALT_STATUS_CODE alt_qspi_int_enable(const uint32_t mask);
  *
  * \returns     Returns true the serial interface and QSPI pipeline is IDLE.
  */
-bool alt_qspi_is_idle(void);
+bool alt_qspi_is_idle( void );
 
 /*! @} */
 
@@ -357,13 +356,13 @@ bool alt_qspi_is_idle(void);
  * data to the flash device. An outline of the operational flow for these
  * operations can be found in:
  * //depot/soc/hhp_sw/baremetal_fw/drivers/qspi/qspi.c
- * 
+ *
  * The general flow for an indirect block read is to call
  * qspi_configure_mode_indirect_read_start() to initiate the read transfer from
  * the flash device into the SRAM buffer and follow with a call to either
  * qpsi_write_sram_fifo_poll() or qspi_read_sram_fifo_irq() to copy the data
  * from SRAM into the user's buffer.
- * 
+ *
  * The general flow for an indirect block write is to call
  * qspi_configure_mode_indirect_write_start() to initiate the write transfer
  * from the SRAM buffer to the flash device and follow with a call to either
@@ -390,12 +389,13 @@ bool alt_qspi_is_idle(void);
  *              The flash device address to start reading data from.
  *
  * \param       size
- *              The requested number of data bytes to read from the flash device.
+ *              The requested number of data bytes to read from the flash
+ * device.
  *
  * \retval      ALT_E_SUCCESS   Indicates successful completion.
  * \retval      ALT_E_ERROR     Indicates an error occurred.
  */
-ALT_STATUS_CODE alt_qspi_read(void * dest, uint32_t src, size_t size);
+ALT_STATUS_CODE alt_qspi_read( void * dest, uint32_t src, size_t size );
 
 /******************************************************************************/
 /*!
@@ -418,7 +418,7 @@ ALT_STATUS_CODE alt_qspi_read(void * dest, uint32_t src, size_t size);
  * \retval      ALT_E_SUCCESS   Indicates successful completion.
  * \retval      ALT_E_ERROR     Indicates an error occurred.
  */
-ALT_STATUS_CODE alt_qspi_write(uint32_t dest, const void * src, size_t size);
+ALT_STATUS_CODE alt_qspi_write( uint32_t dest, const void * src, size_t size );
 
 /*! @} */
 
@@ -460,16 +460,16 @@ ALT_STATUS_CODE alt_qspi_write(uint32_t dest, const void * src, size_t size);
  */
 typedef enum ALT_QSPI_MODE_e
 {
-  ALT_QSPI_MODE_SINGLE = 0,     /*!< Use Standard Single SPI (SIO-SPI) mode (bits 
-                                 *   always transferred into the device on DQ0 
-                                 *   only). Supported by all SPI flash devices.
-                                 */
-  ALT_QSPI_MODE_DUAL   = 1,     /*!< Use Dual SPI (DIO-SPI) SPI mode where bits are
-                                 *   transferred on DQ0 and DQ1.
-                                 */
-  ALT_QSPI_MODE_QUAD   = 2      /*!< Use Dual SPI (QIO-SPI) SPI mode where bits are
-                                 *   transferred on DQ0, DQ1, DQ3, and DQ3.
-                                 */
+    ALT_QSPI_MODE_SINGLE = 0, /*!< Use Standard Single SPI (SIO-SPI) mode (bits
+                               *   always transferred into the device on DQ0
+                               *   only). Supported by all SPI flash devices.
+                               */
+    ALT_QSPI_MODE_DUAL = 1, /*!< Use Dual SPI (DIO-SPI) SPI mode where bits are
+                             *   transferred on DQ0 and DQ1.
+                             */
+    ALT_QSPI_MODE_QUAD = 2  /*!< Use Dual SPI (QIO-SPI) SPI mode where bits are
+                             *   transferred on DQ0, DQ1, DQ3, and DQ3.
+                             */
 } ALT_QSPI_MODE_t;
 
 /******************************************************************************/
@@ -480,9 +480,9 @@ typedef enum ALT_QSPI_MODE_e
  */
 typedef enum ALT_QSPI_CS_MODE_e
 {
-  ALT_QSPI_CS_MODE_SINGLE_SELECT = 0,   /*!< Select 1 of 4 chip select ss_n[3:0]
+    ALT_QSPI_CS_MODE_SINGLE_SELECT = 0, /*!< Select 1 of 4 chip select ss_n[3:0]
                                          */
-  ALT_QSPI_CS_MODE_DECODE        = 1    /*!< Select external 4 to 16 decode of
+    ALT_QSPI_CS_MODE_DECODE = 1         /*!< Select external 4 to 16 decode of
                                          *   ss_n[3:0].
                                          */
 } ALT_QSPI_CS_MODE_t;
@@ -493,22 +493,22 @@ typedef enum ALT_QSPI_CS_MODE_e
  */
 typedef enum ALT_QSPI_BAUD_DIV_e
 {
-  ALT_QSPI_BAUD_DIV_2            = 0x0, /*!< Divide by 2 */
-  ALT_QSPI_BAUD_DIV_4            = 0x1, /*!< Divide by 4 */
-  ALT_QSPI_BAUD_DIV_6            = 0x2, /*!< Divide by 6 */
-  ALT_QSPI_BAUD_DIV_8            = 0x3, /*!< Divide by 8 */
-  ALT_QSPI_BAUD_DIV_10           = 0x4, /*!< Divide by 10 */
-  ALT_QSPI_BAUD_DIV_12           = 0x5, /*!< Divide by 12 */
-  ALT_QSPI_BAUD_DIV_14           = 0x6, /*!< Divide by 14 */
-  ALT_QSPI_BAUD_DIV_16           = 0x7, /*!< Divide by 16 */
-  ALT_QSPI_BAUD_DIV_18           = 0x8, /*!< Divide by 18 */
-  ALT_QSPI_BAUD_DIV_20           = 0x9, /*!< Divide by 20 */
-  ALT_QSPI_BAUD_DIV_22           = 0xA, /*!< Divide by 22 */
-  ALT_QSPI_BAUD_DIV_24           = 0xB, /*!< Divide by 24 */
-  ALT_QSPI_BAUD_DIV_26           = 0xC, /*!< Divide by 26 */
-  ALT_QSPI_BAUD_DIV_28           = 0xD, /*!< Divide by 28 */
-  ALT_QSPI_BAUD_DIV_30           = 0xE, /*!< Divide by 30 */
-  ALT_QSPI_BAUD_DIV_32           = 0xF  /*!< Divide by 32 */
+    ALT_QSPI_BAUD_DIV_2 = 0x0,  /*!< Divide by 2 */
+    ALT_QSPI_BAUD_DIV_4 = 0x1,  /*!< Divide by 4 */
+    ALT_QSPI_BAUD_DIV_6 = 0x2,  /*!< Divide by 6 */
+    ALT_QSPI_BAUD_DIV_8 = 0x3,  /*!< Divide by 8 */
+    ALT_QSPI_BAUD_DIV_10 = 0x4, /*!< Divide by 10 */
+    ALT_QSPI_BAUD_DIV_12 = 0x5, /*!< Divide by 12 */
+    ALT_QSPI_BAUD_DIV_14 = 0x6, /*!< Divide by 14 */
+    ALT_QSPI_BAUD_DIV_16 = 0x7, /*!< Divide by 16 */
+    ALT_QSPI_BAUD_DIV_18 = 0x8, /*!< Divide by 18 */
+    ALT_QSPI_BAUD_DIV_20 = 0x9, /*!< Divide by 20 */
+    ALT_QSPI_BAUD_DIV_22 = 0xA, /*!< Divide by 22 */
+    ALT_QSPI_BAUD_DIV_24 = 0xB, /*!< Divide by 24 */
+    ALT_QSPI_BAUD_DIV_26 = 0xC, /*!< Divide by 26 */
+    ALT_QSPI_BAUD_DIV_28 = 0xD, /*!< Divide by 28 */
+    ALT_QSPI_BAUD_DIV_30 = 0xE, /*!< Divide by 30 */
+    ALT_QSPI_BAUD_DIV_32 = 0xF  /*!< Divide by 32 */
 } ALT_QSPI_BAUD_DIV_t;
 
 /******************************************************************************/
@@ -520,39 +520,39 @@ typedef enum ALT_QSPI_BAUD_DIV_e
  */
 typedef struct ALT_QSPI_DEV_SIZE_CONFIG_s
 {
-  uint32_t      block_size;         /*!< Number of bytes per device block. The
-                                     *   number is specified as a power of 2.
-                                     *   That is 0 = 1 byte, 1 = 2 bytes, ...
-                                     *   16 = 65535 bytes, etc.
-                                     */
-  uint32_t      page_size;          /*!< Number of bytes per device page.  This
-                                     *   is required by the controller for
-                                     *   performing flash writes up to and
-                                     *   across page boundaries.
-                                     */
-  uint32_t      addr_size;          /*!< Number of bytes used for the flash
-                                     *   address. The value is \e n + 1
-                                     *   based. That is 0 = 1 byte, 1 = 2 bytes,
-                                     *   2 = 3 bytes, 3 = 4 bytes.
-                                     */
-  uint32_t      lower_wrprot_block; /*!< The block number that defines the lower
-                                     *   block in the range of blocks that is
-                                     *   protected from writing. This field
-                                     *   is ignored it write protection is 
-                                     *   disabled.
-                                     */
-  uint32_t      upper_wrprot_block; /*!< The block number that defines the upper
-                                     *   block in the range of blocks that is
-                                     *   protected from writing. This field
-                                     *   is ignored it write protection is 
-                                     *   disabled.
-                                     */
-  bool          wrprot_enable;      /*!< The write region enable value. A value
-                                     *   of \b true enables write protection
-                                     *   on the region specified by the
-                                     *   \e lower_wrprot_block and
-                                     *   \e upper_wrprot_block range.
-                                     */
+    uint32_t block_size;         /*!< Number of bytes per device block. The
+                                  *   number is specified as a power of 2.
+                                  *   That is 0 = 1 byte, 1 = 2 bytes, ...
+                                  *   16 = 65535 bytes, etc.
+                                  */
+    uint32_t page_size;          /*!< Number of bytes per device page.  This
+                                  *   is required by the controller for
+                                  *   performing flash writes up to and
+                                  *   across page boundaries.
+                                  */
+    uint32_t addr_size;          /*!< Number of bytes used for the flash
+                                  *   address. The value is \e n + 1
+                                  *   based. That is 0 = 1 byte, 1 = 2 bytes,
+                                  *   2 = 3 bytes, 3 = 4 bytes.
+                                  */
+    uint32_t lower_wrprot_block; /*!< The block number that defines the lower
+                                  *   block in the range of blocks that is
+                                  *   protected from writing. This field
+                                  *   is ignored it write protection is
+                                  *   disabled.
+                                  */
+    uint32_t upper_wrprot_block; /*!< The block number that defines the upper
+                                  *   block in the range of blocks that is
+                                  *   protected from writing. This field
+                                  *   is ignored it write protection is
+                                  *   disabled.
+                                  */
+    bool wrprot_enable;          /*!< The write region enable value. A value
+                                  *   of \b true enables write protection
+                                  *   on the region specified by the
+                                  *   \e lower_wrprot_block and
+                                  *   \e upper_wrprot_block range.
+                                  */
 } ALT_QSPI_DEV_SIZE_CONFIG_t;
 
 /******************************************************************************/
@@ -562,12 +562,12 @@ typedef struct ALT_QSPI_DEV_SIZE_CONFIG_s
  */
 typedef enum ALT_QSPI_CLK_PHASE_e
 {
-  ALT_QSPI_CLK_PHASE_ACTIVE     = 0,    /*!< The SPI clock is active outside the
-                                         *   word
-                                         */
-  ALT_QSPI_CLK_PHASE_INACTIVE   = 1     /*!< The SPI clock is inactive outside the
-                                         *   word
-                                         */
+    ALT_QSPI_CLK_PHASE_ACTIVE = 0,  /*!< The SPI clock is active outside the
+                                     *   word
+                                     */
+    ALT_QSPI_CLK_PHASE_INACTIVE = 1 /*!< The SPI clock is inactive outside the
+                                     *   word
+                                     */
 } ALT_QSPI_CLK_PHASE_t;
 
 /******************************************************************************/
@@ -576,12 +576,12 @@ typedef enum ALT_QSPI_CLK_PHASE_e
  */
 typedef enum ALT_QSPI_CLK_POLARITY_e
 {
-  ALT_QSPI_CLK_POLARITY_LOW     = 0,    /*!< SPI clock is quiescent low outside the
-                                         *   word.
-                                         */
-  ALT_QSPI_CLK_POLARITY_HIGH    = 1     /*!< SPI clock is quiescent high outside the
-                                         *   word.
-                                         */
+    ALT_QSPI_CLK_POLARITY_LOW = 0, /*!< SPI clock is quiescent low outside the
+                                    *   word.
+                                    */
+    ALT_QSPI_CLK_POLARITY_HIGH = 1 /*!< SPI clock is quiescent high outside the
+                                    *   word.
+                                    */
 } ALT_QSPI_CLK_POLARITY_t;
 
 /******************************************************************************/
@@ -595,75 +595,75 @@ typedef enum ALT_QSPI_CLK_POLARITY_e
  */
 typedef struct ALT_QSPI_TIMING_CONFIG_s
 {
-  ALT_QSPI_CLK_PHASE_t      clk_phase;  /*!< Selects whether the clock is in an
-                                         *   active or inactive phase outside the
-                                         *   SPI word.
-                                         */
+    ALT_QSPI_CLK_PHASE_t clk_phase; /*!< Selects whether the clock is in an
+                                     *   active or inactive phase outside the
+                                     *   SPI word.
+                                     */
 
-  ALT_QSPI_CLK_POLARITY_t   clk_pol;    /*!< Selects whether the clock is quiescent
-                                         *   low or high outside the SPI word.
-                                         */
+    ALT_QSPI_CLK_POLARITY_t clk_pol; /*!< Selects whether the clock is quiescent
+                                      *   low or high outside the SPI word.
+                                      */
 
-  uint32_t                  cs_da;      /*!< Chip Select De-Assert. Added delay in
-                                         *   master reference clocks for the length
-                                         *   that the master mode chip select
-                                         *   outputs are de-asserted between
-                                         *   transactions. If CSDA = \e X, then the
-                                         *   chip select de-assert time will be: 1
-                                         *   sclk_out + 1 ref_clk + \e X ref_clks.
-                                         */
-  uint32_t                  cs_dads;    /*!< Chip Select De-Assert Different
-                                         *   Slaves. Delay in master reference
-                                         *   clocks between one chip select being
-                                         *   de-activated and the activation of
-                                         *   another. This is used to ensure a quiet
-                                         *   period between the selection of two
-                                         *   different slaves.  CSDADS is only
-                                         *   relevant when switching between 2
-                                         *   different external flash devices. If
-                                         *   CSDADS = \e X, then the delay will be:
-                                         *   1 sclk_out + 3 ref_clks + \e X
-                                         *   ref_clks.
-                                         */
-  uint32_t                  cs_eot;     /*!< Chip Select End Of Transfer. Delay in
-                                         *   master reference clocks between last
-                                         *   bit of current transaction and
-                                         *   de-asserting the device chip select
-                                         *   (n_ss_out). By default (when CSEOT=0),
-                                         *   the chip select will be de-asserted on
-                                         *   the last falling edge of sclk_out at
-                                         *   the completion of the current
-                                         *   transaction. If CSEOT = \e X, then chip
-                                         *   selected will de-assert \e X ref_clks
-                                         *   after the last falling edge of
-                                         *   sclk_out.
-                                         */
-  uint32_t                  cs_sot;     /*!< Chip Select Start Of Transfer. Delay in
-                                         *   master reference clocks between setting
-                                         *   n_ss_out low and first bit transfer. By
-                                         *   default (CSSOT=0), chip select will be
-                                         *   asserted half a SCLK period before the
-                                         *   first rising edge of sclk_out. If CSSOT
-                                         *   = \e X, chip select will be asserted
-                                         *   half an sclk_out period before the
-                                         *   first rising edge of sclk_out + \e X
-                                         *   ref_clks.
-                                         */
+    uint32_t cs_da;   /*!< Chip Select De-Assert. Added delay in
+                       *   master reference clocks for the length
+                       *   that the master mode chip select
+                       *   outputs are de-asserted between
+                       *   transactions. If CSDA = \e X, then the
+                       *   chip select de-assert time will be: 1
+                       *   sclk_out + 1 ref_clk + \e X ref_clks.
+                       */
+    uint32_t cs_dads; /*!< Chip Select De-Assert Different
+                       *   Slaves. Delay in master reference
+                       *   clocks between one chip select being
+                       *   de-activated and the activation of
+                       *   another. This is used to ensure a quiet
+                       *   period between the selection of two
+                       *   different slaves.  CSDADS is only
+                       *   relevant when switching between 2
+                       *   different external flash devices. If
+                       *   CSDADS = \e X, then the delay will be:
+                       *   1 sclk_out + 3 ref_clks + \e X
+                       *   ref_clks.
+                       */
+    uint32_t cs_eot;  /*!< Chip Select End Of Transfer. Delay in
+                       *   master reference clocks between last
+                       *   bit of current transaction and
+                       *   de-asserting the device chip select
+                       *   (n_ss_out). By default (when CSEOT=0),
+                       *   the chip select will be de-asserted on
+                       *   the last falling edge of sclk_out at
+                       *   the completion of the current
+                       *   transaction. If CSEOT = \e X, then chip
+                       *   selected will de-assert \e X ref_clks
+                       *   after the last falling edge of
+                       *   sclk_out.
+                       */
+    uint32_t cs_sot;  /*!< Chip Select Start Of Transfer. Delay in
+                       *   master reference clocks between setting
+                       *   n_ss_out low and first bit transfer. By
+                       *   default (CSSOT=0), chip select will be
+                       *   asserted half a SCLK period before the
+                       *   first rising edge of sclk_out. If CSSOT
+                       *   = \e X, chip select will be asserted
+                       *   half an sclk_out period before the
+                       *   first rising edge of sclk_out + \e X
+                       *   ref_clks.
+                       */
 
-  uint32_t                  rd_datacap; /*!< The additional number of read data
-                                         *   capture cycles (ref_clk) that should be
-                                         *   applied to the internal read data
-                                         *   capture circuit.  The large
-                                         *   clock-to-out delay of the flash memory
-                                         *   together with trace delays as well as
-                                         *   other device delays may impose a
-                                         *   maximum flash clock frequency which is
-                                         *   less than the flash memory device
-                                         *   itself can operate at. To compensate,
-                                         *   software should set this register to a
-                                         *   value that guarantees robust data
-                                         *   captures.
-                                         */
+    uint32_t rd_datacap; /*!< The additional number of read data
+                          *   capture cycles (ref_clk) that should be
+                          *   applied to the internal read data
+                          *   capture circuit.  The large
+                          *   clock-to-out delay of the flash memory
+                          *   together with trace delays as well as
+                          *   other device delays may impose a
+                          *   maximum flash clock frequency which is
+                          *   less than the flash memory device
+                          *   itself can operate at. To compensate,
+                          *   software should set this register to a
+                          *   value that guarantees robust data
+                          *   captures.
+                          */
 } ALT_QSPI_TIMING_CONFIG_t;
 
 /******************************************************************************/
@@ -675,40 +675,40 @@ typedef struct ALT_QSPI_TIMING_CONFIG_s
  */
 typedef struct ALT_QSPI_DEV_INST_CONFIG_s
 {
-  uint32_t              op_code;            /*!< The read or write op code to use
-                                             *   for the device transaction.
-                                             */
-  ALT_QSPI_MODE_t       inst_type;          /*!< Instruction mode type for the
-                                             *   controller to use with the
-                                             *   device. The instruction type
-                                             *   applies to all instructions
-                                             *   (reads and writes) issued from
-                                             *   either the Direct Access
-                                             *   Controller or the Indirect
-                                             *   Acces Controller.
-                                             */
-  ALT_QSPI_MODE_t       addr_xfer_type;     /*!< Address transfer mode type. The
-                                             *   value of this field is ignored
-                                             *   if the \e inst_type data member
-                                             *   is set to anything other than
-                                             *   ALT_QSPI_MODE_SINGLE. In that
-                                             *   case, the addr_xfer_type
-                                             *   assumes the same mode as the \e
-                                             *   inst_type.
-                                             */
-  ALT_QSPI_MODE_t       data_xfer_type;     /*!< Data transfer mode type. The
-                                             *   value of this field is ignored
-                                             *   if the \e inst_type data member
-                                             *   is set to anything other than
-                                             *   ALT_QSPI_MODE_SINGLE. In that
-                                             *   case, the data_xfer_type
-                                             *   assumes the same mode as the \e
-                                             *   inst_type.
-                                             */
-  uint32_t              dummy_cycles;       /*!< Number of dummy clock cycles
-                                             *   required by device for a read
-                                             *   or write instruction.
-                                             */
+    uint32_t op_code;               /*!< The read or write op code to use
+                                     *   for the device transaction.
+                                     */
+    ALT_QSPI_MODE_t inst_type;      /*!< Instruction mode type for the
+                                     *   controller to use with the
+                                     *   device. The instruction type
+                                     *   applies to all instructions
+                                     *   (reads and writes) issued from
+                                     *   either the Direct Access
+                                     *   Controller or the Indirect
+                                     *   Acces Controller.
+                                     */
+    ALT_QSPI_MODE_t addr_xfer_type; /*!< Address transfer mode type. The
+                                     *   value of this field is ignored
+                                     *   if the \e inst_type data member
+                                     *   is set to anything other than
+                                     *   ALT_QSPI_MODE_SINGLE. In that
+                                     *   case, the addr_xfer_type
+                                     *   assumes the same mode as the \e
+                                     *   inst_type.
+                                     */
+    ALT_QSPI_MODE_t data_xfer_type; /*!< Data transfer mode type. The
+                                     *   value of this field is ignored
+                                     *   if the \e inst_type data member
+                                     *   is set to anything other than
+                                     *   ALT_QSPI_MODE_SINGLE. In that
+                                     *   case, the data_xfer_type
+                                     *   assumes the same mode as the \e
+                                     *   inst_type.
+                                     */
+    uint32_t dummy_cycles;          /*!< Number of dummy clock cycles
+                                     *   required by device for a read
+                                     *   or write instruction.
+                                     */
 
 } ALT_QSPI_DEV_INST_CONFIG_t;
 
@@ -718,7 +718,7 @@ typedef struct ALT_QSPI_DEV_INST_CONFIG_s
  *
  * \returns     The value of the QSPI master baud rate divisor.
  */
-ALT_QSPI_BAUD_DIV_t alt_qspi_baud_rate_div_get(void);
+ALT_QSPI_BAUD_DIV_t alt_qspi_baud_rate_div_get( void );
 
 /******************************************************************************/
 /*!
@@ -733,7 +733,8 @@ ALT_QSPI_BAUD_DIV_t alt_qspi_baud_rate_div_get(void);
  * \retval      ALT_E_SUCCESS   Indicates successful completion.
  * \retval      ALT_E_ERROR     Indicates an error occurred.
  */
-ALT_STATUS_CODE alt_qspi_baud_rate_div_set(const ALT_QSPI_BAUD_DIV_t baud_rate_div);
+ALT_STATUS_CODE alt_qspi_baud_rate_div_set(
+    const ALT_QSPI_BAUD_DIV_t baud_rate_div );
 
 /******************************************************************************/
 /*!
@@ -749,7 +750,8 @@ ALT_STATUS_CODE alt_qspi_baud_rate_div_set(const ALT_QSPI_BAUD_DIV_t baud_rate_d
  * \retval      ALT_E_SUCCESS   Indicates successful completion.
  * \retval      ALT_E_ERROR     Indicates an error occurred.
  */
-ALT_STATUS_CODE alt_qspi_chip_select_config_get(uint32_t* cs, ALT_QSPI_CS_MODE_t* cs_mode);
+ALT_STATUS_CODE alt_qspi_chip_select_config_get( uint32_t * cs,
+                                                 ALT_QSPI_CS_MODE_t * cs_mode );
 
 /******************************************************************************/
 /*!
@@ -780,8 +782,9 @@ ALT_STATUS_CODE alt_qspi_chip_select_config_get(uint32_t* cs, ALT_QSPI_CS_MODE_t
  * \retval      ALT_E_SUCCESS   Indicates successful completion.
  * \retval      ALT_E_ERROR     Indicates an error occurred.
  */
-ALT_STATUS_CODE alt_qspi_chip_select_config_set(const uint32_t cs,
-                                                const ALT_QSPI_CS_MODE_t cs_mode);
+ALT_STATUS_CODE alt_qspi_chip_select_config_set(
+    const uint32_t cs,
+    const ALT_QSPI_CS_MODE_t cs_mode );
 
 /******************************************************************************/
 /*!
@@ -793,7 +796,7 @@ ALT_STATUS_CODE alt_qspi_chip_select_config_set(const uint32_t cs,
  * \retval      ALT_E_SUCCESS   Indicates successful completion.
  * \retval      ALT_E_ERROR     Indicates an error occurred.
  */
-ALT_STATUS_CODE alt_qspi_mode_bit_disable(void);
+ALT_STATUS_CODE alt_qspi_mode_bit_disable( void );
 
 /******************************************************************************/
 /*!
@@ -805,16 +808,17 @@ ALT_STATUS_CODE alt_qspi_mode_bit_disable(void);
  * \retval      ALT_E_SUCCESS   Indicates successful completion.
  * \retval      ALT_E_ERROR     Indicates an error occurred.
  */
-ALT_STATUS_CODE alt_qspi_mode_bit_enable(void);
+ALT_STATUS_CODE alt_qspi_mode_bit_enable( void );
 
 /******************************************************************************/
 /*!
  * Get the current value of the Mode Bit Configuration register.
  *
  * \returns     The 8 bit value that is sent to the device following the address
- *              bytes when the mode bit is enabled (see: alt_qspi_mode_bit_enable())
+ *              bytes when the mode bit is enabled (see:
+ * alt_qspi_mode_bit_enable())
  */
-uint32_t alt_qspi_mode_bit_config_get(void);
+uint32_t alt_qspi_mode_bit_config_get( void );
 
 /******************************************************************************/
 /*!
@@ -832,7 +836,7 @@ uint32_t alt_qspi_mode_bit_config_get(void);
  * \retval      ALT_E_SUCCESS   Indicates successful completion.
  * \retval      ALT_E_ERROR     Indicates an error occurred.
  */
-ALT_STATUS_CODE alt_qspi_mode_bit_config_set(const uint32_t mode_bits);
+ALT_STATUS_CODE alt_qspi_mode_bit_config_set( const uint32_t mode_bits );
 
 /******************************************************************************/
 /*!
@@ -846,7 +850,8 @@ ALT_STATUS_CODE alt_qspi_mode_bit_config_set(const uint32_t mode_bits);
  * \retval      ALT_E_SUCCESS   Indicates successful completion.
  * \retval      ALT_E_ERROR     Indicates an error occurred.
  */
-ALT_STATUS_CODE alt_qspi_device_size_config_get(ALT_QSPI_DEV_SIZE_CONFIG_t * cfg);
+ALT_STATUS_CODE alt_qspi_device_size_config_get(
+    ALT_QSPI_DEV_SIZE_CONFIG_t * cfg );
 
 /******************************************************************************/
 /*!
@@ -859,7 +864,8 @@ ALT_STATUS_CODE alt_qspi_device_size_config_get(ALT_QSPI_DEV_SIZE_CONFIG_t * cfg
  * \retval      ALT_E_SUCCESS   Indicates successful completion.
  * \retval      ALT_E_ERROR     Indicates an error occurred.
  */
-ALT_STATUS_CODE alt_qspi_device_size_config_set(const ALT_QSPI_DEV_SIZE_CONFIG_t * cfg);
+ALT_STATUS_CODE alt_qspi_device_size_config_set(
+    const ALT_QSPI_DEV_SIZE_CONFIG_t * cfg );
 
 /******************************************************************************/
 /*!
@@ -873,7 +879,8 @@ ALT_STATUS_CODE alt_qspi_device_size_config_set(const ALT_QSPI_DEV_SIZE_CONFIG_t
  * \retval      ALT_E_SUCCESS   Indicates successful completion.
  * \retval      ALT_E_ERROR     Indicates an error occurred.
  */
-ALT_STATUS_CODE alt_qspi_device_read_config_get(ALT_QSPI_DEV_INST_CONFIG_t * cfg);
+ALT_STATUS_CODE alt_qspi_device_read_config_get(
+    ALT_QSPI_DEV_INST_CONFIG_t * cfg );
 
 /******************************************************************************/
 /*!
@@ -891,7 +898,8 @@ ALT_STATUS_CODE alt_qspi_device_read_config_get(ALT_QSPI_DEV_INST_CONFIG_t * cfg
  * \retval      ALT_E_SUCCESS   Indicates successful completion.
  * \retval      ALT_E_ERROR     Indicates an error occurred.
  */
-ALT_STATUS_CODE alt_qspi_device_read_config_set(const ALT_QSPI_DEV_INST_CONFIG_t * cfg);
+ALT_STATUS_CODE alt_qspi_device_read_config_set(
+    const ALT_QSPI_DEV_INST_CONFIG_t * cfg );
 
 /******************************************************************************/
 /*!
@@ -905,7 +913,8 @@ ALT_STATUS_CODE alt_qspi_device_read_config_set(const ALT_QSPI_DEV_INST_CONFIG_t
  * \retval      ALT_E_SUCCESS   Indicates successful completion.
  * \retval      ALT_E_ERROR     Indicates an error occurred.
  */
-ALT_STATUS_CODE alt_qspi_device_write_config_get(ALT_QSPI_DEV_INST_CONFIG_t * cfg);
+ALT_STATUS_CODE alt_qspi_device_write_config_get(
+    ALT_QSPI_DEV_INST_CONFIG_t * cfg );
 
 /******************************************************************************/
 /*!
@@ -923,7 +932,8 @@ ALT_STATUS_CODE alt_qspi_device_write_config_get(ALT_QSPI_DEV_INST_CONFIG_t * cf
  * \retval      ALT_E_SUCCESS   Indicates successful completion.
  * \retval      ALT_E_ERROR     Indicates an error occurred.
  */
-ALT_STATUS_CODE alt_qspi_device_write_config_set(const ALT_QSPI_DEV_INST_CONFIG_t * cfg);
+ALT_STATUS_CODE alt_qspi_device_write_config_set(
+    const ALT_QSPI_DEV_INST_CONFIG_t * cfg );
 
 /******************************************************************************/
 /*!
@@ -939,7 +949,7 @@ ALT_STATUS_CODE alt_qspi_device_write_config_set(const ALT_QSPI_DEV_INST_CONFIG_
  * \retval      ALT_E_SUCCESS   Indicates successful completion.
  * \retval      ALT_E_ERROR     Indicates an error occurred.
  */
-ALT_STATUS_CODE alt_qspi_timing_config_get(ALT_QSPI_TIMING_CONFIG_t * cfg);
+ALT_STATUS_CODE alt_qspi_timing_config_get( ALT_QSPI_TIMING_CONFIG_t * cfg );
 
 /******************************************************************************/
 /*!
@@ -962,7 +972,8 @@ ALT_STATUS_CODE alt_qspi_timing_config_get(ALT_QSPI_TIMING_CONFIG_t * cfg);
  * \retval      ALT_E_SUCCESS   Indicates successful completion.
  * \retval      ALT_E_ERROR     Indicates an error occurred.
  */
-ALT_STATUS_CODE alt_qspi_timing_config_set(const ALT_QSPI_TIMING_CONFIG_t * cfg);
+ALT_STATUS_CODE alt_qspi_timing_config_set(
+    const ALT_QSPI_TIMING_CONFIG_t * cfg );
 
 /*! @} */
 
@@ -998,7 +1009,7 @@ ALT_STATUS_CODE alt_qspi_timing_config_set(const ALT_QSPI_TIMING_CONFIG_t * cfg)
  * \retval      ALT_E_SUCCESS   Indicates successful completion.
  * \retval      ALT_E_ERROR     Indicates an error occurred.
  */
-ALT_STATUS_CODE alt_qspi_direct_disable(void);
+ALT_STATUS_CODE alt_qspi_direct_disable( void );
 
 /******************************************************************************/
 /*!
@@ -1007,7 +1018,7 @@ ALT_STATUS_CODE alt_qspi_direct_disable(void);
  * \retval      ALT_E_SUCCESS   Indicates successful completion.
  * \retval      ALT_E_ERROR     Indicates an error occurred.
  */
-ALT_STATUS_CODE alt_qspi_direct_enable(void);
+ALT_STATUS_CODE alt_qspi_direct_enable( void );
 
 /******************************************************************************/
 /*!
@@ -1018,7 +1029,7 @@ ALT_STATUS_CODE alt_qspi_direct_enable(void);
  * \returns     The value used to remap an incoming AHB address to a
  *              different address used by the flash device.
  */
-uint32_t alt_qspi_ahb_remap_address_get(void);
+uint32_t alt_qspi_ahb_remap_address_get( void );
 
 /******************************************************************************/
 /*!
@@ -1036,7 +1047,7 @@ uint32_t alt_qspi_ahb_remap_address_get(void);
  * \retval      ALT_E_SUCCESS   Indicates successful completion.
  * \retval      ALT_E_ERROR     Indicates an error occurred.
  */
-ALT_STATUS_CODE alt_qspi_ahb_remap_address_set(const uint32_t ahb_remap_addr);
+ALT_STATUS_CODE alt_qspi_ahb_remap_address_set( const uint32_t ahb_remap_addr );
 
 /******************************************************************************/
 /*!
@@ -1049,21 +1060,21 @@ ALT_STATUS_CODE alt_qspi_ahb_remap_address_set(const uint32_t ahb_remap_addr);
  * \retval      ALT_E_SUCCESS   Indicates successful completion.
  * \retval      ALT_E_ERROR     Indicates an error occurred.
  */
-ALT_STATUS_CODE alt_qspi_ahb_address_remap_disable(void);
+ALT_STATUS_CODE alt_qspi_ahb_address_remap_disable( void );
 
 /******************************************************************************/
 /*!
  * Enable AHB address remapping.
  *
- * Enables remapping of incoming AHB addresses so they are modified to 
- * \<address\> + \e N, where \e N is the configured remap address value. 
+ * Enables remapping of incoming AHB addresses so they are modified to
+ * \<address\> + \e N, where \e N is the configured remap address value.
  *
  * See: alt_qspi_ahb_remap_address_set().
  *
  * \retval      ALT_E_SUCCESS   Indicates successful completion.
  * \retval      ALT_E_ERROR     Indicates an error occurred.
  */
-ALT_STATUS_CODE alt_qspi_ahb_address_remap_enable(void);
+ALT_STATUS_CODE alt_qspi_ahb_address_remap_enable( void );
 
 /*! @} */
 
@@ -1117,8 +1128,8 @@ ALT_STATUS_CODE alt_qspi_ahb_address_remap_enable(void);
  * \retval      ALT_E_SUCCESS   Indicates successful completion.
  * \retval      ALT_E_ERROR     Indicates an error occurred.
  */
-ALT_STATUS_CODE alt_qspi_indirect_read_start(const uint32_t flash_addr,
-                                             const size_t num_bytes);
+ALT_STATUS_CODE alt_qspi_indirect_read_start( const uint32_t flash_addr,
+                                              const size_t num_bytes );
 
 /******************************************************************************/
 /*!
@@ -1128,7 +1139,7 @@ ALT_STATUS_CODE alt_qspi_indirect_read_start(const uint32_t flash_addr,
  * \retval      ALT_E_SUCCESS   Indicates successful completion.
  * \retval      ALT_E_ERROR     Indicates an error occurred.
  */
-ALT_STATUS_CODE alt_qspi_indirect_read_finish(void);
+ALT_STATUS_CODE alt_qspi_indirect_read_finish( void );
 
 /******************************************************************************/
 /*!
@@ -1137,7 +1148,7 @@ ALT_STATUS_CODE alt_qspi_indirect_read_finish(void);
  * \retval      ALT_E_SUCCESS   Indicates successful completion.
  * \retval      ALT_E_ERROR     Indicates an error occurred.
  */
-ALT_STATUS_CODE alt_qspi_indirect_read_cancel(void);
+ALT_STATUS_CODE alt_qspi_indirect_read_cancel( void );
 
 /******************************************************************************/
 /*!
@@ -1146,10 +1157,10 @@ ALT_STATUS_CODE alt_qspi_indirect_read_cancel(void);
  * Returns the SRAM fill level for the indirect read partition in units of SRAM
  * words (4 bytes).
  *
- * \returns     The SRAM fill level for the indirect read partition in units of 
+ * \returns     The SRAM fill level for the indirect read partition in units of
  *              SRAM words (4 bytes).
  */
-uint32_t alt_qspi_indirect_read_fill_level(void);
+uint32_t alt_qspi_indirect_read_fill_level( void );
 
 /******************************************************************************/
 /*!
@@ -1162,7 +1173,7 @@ uint32_t alt_qspi_indirect_read_fill_level(void);
  *
  * \returns     The current indirect read watermark value.
  */
-uint32_t alt_qspi_indirect_read_watermark_get(void);
+uint32_t alt_qspi_indirect_read_watermark_get( void );
 
 /******************************************************************************/
 /*!
@@ -1180,19 +1191,20 @@ uint32_t alt_qspi_indirect_read_watermark_get(void);
  * \retval      ALT_E_SUCCESS   Indicates successful completion.
  * \retval      ALT_E_ERROR     Indicates an error occurred.
  */
-ALT_STATUS_CODE alt_qspi_indirect_read_watermark_set(const uint32_t watermark);
+ALT_STATUS_CODE alt_qspi_indirect_read_watermark_set( const uint32_t watermark );
 
 /******************************************************************************/
 /*!
  * Returns true when an indirect read has completed otherwise false.
  *
  * \internal
- * Returns Indirect Read Transfer Control Register bit 5 "Indirect Completion Status".
- * \endinternal
+ * Returns Indirect Read Transfer Control Register bit 5 "Indirect Completion
+ * Status". \endinternal
  *
- * \returns     Returns true when an indirect read has completed otherwise false.
+ * \returns     Returns true when an indirect read has completed otherwise
+ * false.
  */
-bool alt_qspi_indirect_read_is_complete(void);
+bool alt_qspi_indirect_read_is_complete( void );
 
 /******************************************************************************/
 /*!
@@ -1229,8 +1241,8 @@ bool alt_qspi_indirect_read_is_complete(void);
  * \retval      ALT_E_SUCCESS   Indicates successful completion.
  * \retval      ALT_E_ERROR     Indicates an error occurred.
  */
-ALT_STATUS_CODE alt_qspi_indirect_write_start(const uint32_t flash_addr,
-                                              const size_t num_bytes);
+ALT_STATUS_CODE alt_qspi_indirect_write_start( const uint32_t flash_addr,
+                                               const size_t num_bytes );
 
 /******************************************************************************/
 /*!
@@ -1240,7 +1252,7 @@ ALT_STATUS_CODE alt_qspi_indirect_write_start(const uint32_t flash_addr,
  * \retval      ALT_E_SUCCESS   Indicates successful completion.
  * \retval      ALT_E_ERROR     Indicates an error occurred.
  */
-ALT_STATUS_CODE alt_qspi_indirect_write_finish(void);
+ALT_STATUS_CODE alt_qspi_indirect_write_finish( void );
 
 /******************************************************************************/
 /*!
@@ -1249,7 +1261,7 @@ ALT_STATUS_CODE alt_qspi_indirect_write_finish(void);
  * \retval      ALT_E_SUCCESS   Indicates successful completion.
  * \retval      ALT_E_ERROR     Indicates an error occurred.
  */
-ALT_STATUS_CODE alt_qspi_indirect_write_cancel(void);
+ALT_STATUS_CODE alt_qspi_indirect_write_cancel( void );
 
 /******************************************************************************/
 /*!
@@ -1258,10 +1270,10 @@ ALT_STATUS_CODE alt_qspi_indirect_write_cancel(void);
  * Returns the SRAM fill level for the indirect write partition in units of SRAM
  * words (4 bytes).
  *
- * \returns     The SRAM fill level for the indirect write partition in units of 
+ * \returns     The SRAM fill level for the indirect write partition in units of
  *              SRAM words (4 bytes).
  */
-uint32_t alt_qspi_indirect_write_fill_level(void);
+uint32_t alt_qspi_indirect_write_fill_level( void );
 
 /******************************************************************************/
 /*!
@@ -1274,7 +1286,7 @@ uint32_t alt_qspi_indirect_write_fill_level(void);
  *
  * \returns     The current indirect write watermark value.
  */
-uint32_t alt_qspi_indirect_write_watermark_get(void);
+uint32_t alt_qspi_indirect_write_watermark_get( void );
 
 /******************************************************************************/
 /*!
@@ -1292,7 +1304,8 @@ uint32_t alt_qspi_indirect_write_watermark_get(void);
  * \retval      ALT_E_SUCCESS   Indicates successful completion.
  * \retval      ALT_E_ERROR     Indicates an error occurred.
  */
-ALT_STATUS_CODE alt_qspi_indirect_write_watermark_set(const uint32_t watermark);
+ALT_STATUS_CODE alt_qspi_indirect_write_watermark_set(
+    const uint32_t watermark );
 
 /******************************************************************************/
 /*!
@@ -1306,7 +1319,7 @@ ALT_STATUS_CODE alt_qspi_indirect_write_watermark_set(const uint32_t watermark);
  * \returns     Returns true when an indirect write has completed otherwise
  *              false.
  */
-bool alt_qspi_indirect_write_is_complete(void);
+bool alt_qspi_indirect_write_is_complete( void );
 
 /******************************************************************************/
 /*! \addtogroup ALT_QSPI_CFG_SRAM SRAM Partition
@@ -1317,9 +1330,9 @@ bool alt_qspi_indirect_write_is_complete(void);
  * the partitions is specified in the SRAM partition register, based on 32-bit
  * word sizes. For example, to specify four bytes of storage, write the value 1.
  * The value written to the indirect read partition size field ( addr ) defines
- * the number of entries reserved for indirect read operations. For example, write
- * the value 32 (0x20) to partition the 128-entry SRAM to 32 entries (25%) for
- * read usage and 96 entries (75%) for write usage.
+ * the number of entries reserved for indirect read operations. For example,
+ * write the value 32 (0x20) to partition the 128-entry SRAM to 32 entries (25%)
+ * for read usage and 96 entries (75%) for write usage.
  *
  * The functions in this section provide accces to configure the SRAM read
  * partition allocation.
@@ -1330,12 +1343,12 @@ bool alt_qspi_indirect_write_is_complete(void);
 /*!
  * The size of the onboard SRAM in bytes.
  */
-#define ALT_QSPI_SRAM_FIFO_SIZE           (512)
+#define ALT_QSPI_SRAM_FIFO_SIZE        ( 512 )
 
 /*
  * The size of the onboard SRAM in entries. Each entry is word (32-bit) sized.
  */
-#define ALT_QSPI_SRAM_FIFO_ENTRY_COUNT    (512 / sizeof(uint32_t))
+#define ALT_QSPI_SRAM_FIFO_ENTRY_COUNT ( 512 / sizeof( uint32_t ) )
 
 /******************************************************************************/
 /*!
@@ -1358,7 +1371,7 @@ bool alt_qspi_indirect_write_is_complete(void);
  * value but documented as an additional entry.
  * \endinternal
  */
-uint32_t alt_qspi_sram_partition_get(void);
+uint32_t alt_qspi_sram_partition_get( void );
 
 /******************************************************************************/
 /*!
@@ -1375,7 +1388,7 @@ uint32_t alt_qspi_sram_partition_get(void);
  * \retval      ALT_E_SUCCESS   Indicates successful completion.
  * \retval      ALT_E_ERROR     Indicates an error occurred.
  */
-ALT_STATUS_CODE alt_qspi_sram_partition_set(const uint32_t read_part_size);
+ALT_STATUS_CODE alt_qspi_sram_partition_set( const uint32_t read_part_size );
 
 /*! @} */
 
@@ -1402,7 +1415,7 @@ ALT_STATUS_CODE alt_qspi_sram_partition_set(const uint32_t read_part_size);
  * \retval      ALT_E_SUCCESS   Indicates successful completion.
  * \retval      ALT_E_ERROR     Indicates an error occurred.
  */
-ALT_STATUS_CODE alt_qspi_erase_subsector(const uint32_t addr);
+ALT_STATUS_CODE alt_qspi_erase_subsector( const uint32_t addr );
 
 /******************************************************************************/
 /*!
@@ -1417,7 +1430,7 @@ ALT_STATUS_CODE alt_qspi_erase_subsector(const uint32_t addr);
  * \retval      ALT_E_SUCCESS   Indicates successful completion.
  * \retval      ALT_E_ERROR     Indicates an error occurred.
  */
-ALT_STATUS_CODE alt_qspi_erase_sector(const uint32_t addr);
+ALT_STATUS_CODE alt_qspi_erase_sector( const uint32_t addr );
 
 /******************************************************************************/
 /*!
@@ -1426,7 +1439,7 @@ ALT_STATUS_CODE alt_qspi_erase_sector(const uint32_t addr);
  * \retval      ALT_E_SUCCESS   Indicates successful completion.
  * \retval      ALT_E_ERROR     Indicates an error occurred.
  */
-ALT_STATUS_CODE alt_qspi_erase_chip(void);
+ALT_STATUS_CODE alt_qspi_erase_chip( void );
 
 /*! @} */
 
@@ -1462,7 +1475,7 @@ ALT_STATUS_CODE alt_qspi_erase_chip(void);
  * \retval      ALT_E_SUCCESS   Indicates successful completion.
  * \retval      ALT_E_ERROR     Indicates an error occurred.
  */
-ALT_STATUS_CODE alt_qspi_dma_disable(void);
+ALT_STATUS_CODE alt_qspi_dma_disable( void );
 
 /******************************************************************************/
 /*!
@@ -1474,7 +1487,7 @@ ALT_STATUS_CODE alt_qspi_dma_disable(void);
  * \retval      ALT_E_SUCCESS   Indicates successful completion.
  * \retval      ALT_E_ERROR     Indicates an error occurred.
  */
-ALT_STATUS_CODE alt_qspi_dma_enable(void);
+ALT_STATUS_CODE alt_qspi_dma_enable( void );
 
 /******************************************************************************/
 /*!
@@ -1494,8 +1507,8 @@ ALT_STATUS_CODE alt_qspi_dma_enable(void);
  * \retval      ALT_E_SUCCESS   Indicates successful completion.
  * \retval      ALT_E_ERROR     Indicates an error occurred.
  */
-ALT_STATUS_CODE alt_qspi_dma_config_get(uint32_t * single_type_sz,
-                                        uint32_t * burst_type_sz);
+ALT_STATUS_CODE alt_qspi_dma_config_get( uint32_t * single_type_sz,
+                                         uint32_t * burst_type_sz );
 
 /******************************************************************************/
 /*!
@@ -1504,7 +1517,7 @@ ALT_STATUS_CODE alt_qspi_dma_config_get(uint32_t * single_type_sz,
  * This function configures the QSPI DMA peripheral interface single and burst
  * type transfer sizes.  The DMA configruation should be setup while the
  * controller is idle. Because all transfers are required to be word aligned,
- * the smallest DMA request is 4 bytes. 
+ * the smallest DMA request is 4 bytes.
  *
  * This API requires that the QSPI controller be idle, as determined by
  * alt_qspi_is_idle().
@@ -1521,9 +1534,8 @@ ALT_STATUS_CODE alt_qspi_dma_config_get(uint32_t * single_type_sz,
  * \retval      ALT_E_SUCCESS   Indicates successful completion.
  * \retval      ALT_E_ERROR     Indicates an error occurred.
  */
-ALT_STATUS_CODE alt_qspi_dma_config_set(const uint32_t single_type_sz,
-                                        const uint32_t burst_type_sz);
-
+ALT_STATUS_CODE alt_qspi_dma_config_set( const uint32_t single_type_sz,
+                                         const uint32_t burst_type_sz );
 
 /*! @} */
 
@@ -1531,5 +1543,5 @@ ALT_STATUS_CODE alt_qspi_dma_config_set(const uint32_t single_type_sz,
 
 #ifdef __cplusplus
 }
-#endif  /* __cplusplus */
-#endif  /* __ALT_QSPI_H__ */
+#endif /* __cplusplus */
+#endif /* __ALT_QSPI_H__ */

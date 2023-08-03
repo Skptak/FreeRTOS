@@ -28,7 +28,8 @@
  */
 
 /*
- * This file Configures the target-dependent low level functions for character I/O.
+ * This file Configures the target-dependent low level functions for character
+ * I/O.
  */
 
 #include "board.h"
@@ -36,52 +37,54 @@
 #include <stdio.h>
 
 /* Disable semihosting */
-#pragma import(__use_no_semihosting_swi)
+#pragma import( __use_no_semihosting_swi )
 
-struct __FILE { int handle;} ;
+struct __FILE
+{
+    int handle;
+};
 FILE __stdout;
 FILE __stderr;
 
 /*------------------------------------------------------------------------------
  *  Outputs a character.
  *------------------------------------------------------------------------------*/
-int fputc(int ch, FILE *f)
+int fputc( int ch, FILE * f )
 {
-    if ((f == stdout) || (f == stderr))
+    if( ( f == stdout ) || ( f == stderr ) )
     {
-        DBG_PutChar(ch) ;
-        return ch ;
+        DBG_PutChar( ch );
+        return ch;
     }
     else
     {
-        return EOF ;
+        return EOF;
     }
 }
 
 /*------------------------------------------------------------------------------
  *  Returns the error status accumulated during file I/O.
  *------------------------------------------------------------------------------*/
-int ferror( FILE *f )
+int ferror( FILE * f )
 {
-    return EOF ;
+    return EOF;
 }
-
 
 void _ttywrch( int ch )
 {
-    DBG_PutChar( (uint8_t)ch ) ;
+    DBG_PutChar( ( uint8_t ) ch );
 }
 
-void _sys_exit(int return_code)
+void _sys_exit( int return_code )
 {
-    while ( 1 ) ;  /* endless loop */
+    while( 1 )
+        ; /* endless loop */
 }
 
 /*------------------------------------------------------------------------------
  *  Low level functions I/O for assert().
  *------------------------------------------------------------------------------*/
-void __assert_puts(const char *str)
+void __assert_puts( const char * str )
 {
-    printf("%s", str);
+    printf( "%s", str );
 }
-

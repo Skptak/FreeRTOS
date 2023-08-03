@@ -42,7 +42,8 @@
  *
  */
 /*
- * Support and FAQ: visit <a href="http://www.atmel.com/design-support/">Atmel Support</a>
+ * Support and FAQ: visit <a href="http://www.atmel.com/design-support/">Atmel
+ * Support</a>
  */
 #ifndef IOPORT_H
 #define IOPORT_H
@@ -51,8 +52,8 @@
 extern "C" {
 #endif
 
-#include <parts.h>
 #include <compiler.h>
+#include <parts.h>
 
 /**
  * \defgroup ioport_group Common IOPORT API
@@ -83,60 +84,64 @@ extern "C" {
  */
 
 /** \brief IOPORT pin directions */
-enum ioport_direction {
-	IOPORT_DIR_INPUT,  /*!< IOPORT input direction */
-	IOPORT_DIR_OUTPUT, /*!< IOPORT output direction */
+enum ioport_direction
+{
+    IOPORT_DIR_INPUT,  /*!< IOPORT input direction */
+    IOPORT_DIR_OUTPUT, /*!< IOPORT output direction */
 };
 
 /** \brief IOPORT levels */
-enum ioport_value {
-	IOPORT_PIN_LEVEL_LOW,  /*!< IOPORT pin value low */
-	IOPORT_PIN_LEVEL_HIGH, /*!< IOPORT pin value high */
+enum ioport_value
+{
+    IOPORT_PIN_LEVEL_LOW,  /*!< IOPORT pin value low */
+    IOPORT_PIN_LEVEL_HIGH, /*!< IOPORT pin value high */
 };
 
 #if MEGA_RF
 /** \brief IOPORT edge sense modes */
-enum ioport_sense {
-	IOPORT_SENSE_LEVEL,     /*!< IOPORT sense low level  */
-	IOPORT_SENSE_BOTHEDGES, /*!< IOPORT sense both rising and falling edges */
-	IOPORT_SENSE_FALLING,   /*!< IOPORT sense falling edges */
-	IOPORT_SENSE_RISING,    /*!< IOPORT sense rising edges */
+enum ioport_sense
+{
+    IOPORT_SENSE_LEVEL,     /*!< IOPORT sense low level  */
+    IOPORT_SENSE_BOTHEDGES, /*!< IOPORT sense both rising and falling edges */
+    IOPORT_SENSE_FALLING,   /*!< IOPORT sense falling edges */
+    IOPORT_SENSE_RISING,    /*!< IOPORT sense rising edges */
 };
 #elif SAM && !SAM4L
 /** \brief IOPORT edge sense modes */
-enum ioport_sense {
-	IOPORT_SENSE_BOTHEDGES, /*!< IOPORT sense both rising and falling edges */
-	IOPORT_SENSE_FALLING,   /*!< IOPORT sense falling edges */
-	IOPORT_SENSE_RISING,    /*!< IOPORT sense rising edges */
-	IOPORT_SENSE_LEVEL_LOW, /*!< IOPORT sense low level  */
-	IOPORT_SENSE_LEVEL_HIGH,/*!< IOPORT sense High level  */
+enum ioport_sense
+{
+    IOPORT_SENSE_BOTHEDGES,  /*!< IOPORT sense both rising and falling edges */
+    IOPORT_SENSE_FALLING,    /*!< IOPORT sense falling edges */
+    IOPORT_SENSE_RISING,     /*!< IOPORT sense rising edges */
+    IOPORT_SENSE_LEVEL_LOW,  /*!< IOPORT sense low level  */
+    IOPORT_SENSE_LEVEL_HIGH, /*!< IOPORT sense High level  */
 };
 #else
-enum ioport_sense {
-	IOPORT_SENSE_BOTHEDGES, /*!< IOPORT sense both rising and falling edges */
-	IOPORT_SENSE_RISING,    /*!< IOPORT sense rising edges */
-	IOPORT_SENSE_FALLING,   /*!< IOPORT sense falling edges */
+enum ioport_sense
+{
+    IOPORT_SENSE_BOTHEDGES, /*!< IOPORT sense both rising and falling edges */
+    IOPORT_SENSE_RISING,    /*!< IOPORT sense rising edges */
+    IOPORT_SENSE_FALLING,   /*!< IOPORT sense falling edges */
 };
 #endif
 
-
 #if XMEGA
-# include "xmega/ioport.h"
-# if defined(IOPORT_XMEGA_COMPAT)
-#  include "xmega/ioport_compat.h"
-# endif
+    #include "xmega/ioport.h"
+    #if defined( IOPORT_XMEGA_COMPAT )
+        #include "xmega/ioport_compat.h"
+    #endif
 #elif MEGA
-#  include "mega/ioport.h"
+    #include "mega/ioport.h"
 #elif UC3
-# include "uc3/ioport.h"
+    #include "uc3/ioport.h"
 #elif SAM
-# if SAM4L
-#  include "sam/ioport_gpio.h"
-# elif (SAMD20 | SAMD21)
-#  include "sam0/ioport.h"
-# else
-#  include "sam/ioport_pio.h"
-# endif
+    #if SAM4L
+        #include "sam/ioport_gpio.h"
+    #elif( SAMD20 | SAMD21 )
+        #include "sam0/ioport.h"
+    #else
+        #include "sam/ioport_pio.h"
+    #endif
 #endif
 
 /**
@@ -145,9 +150,9 @@ enum ioport_sense {
  * This function must be called before using any other functions in the IOPORT
  * service.
  */
-static inline void ioport_init(void)
+static inline void ioport_init( void )
 {
-	arch_ioport_init();
+    arch_ioport_init();
 }
 
 /**
@@ -156,9 +161,9 @@ static inline void ioport_init(void)
  *
  * \param pin  IOPORT pin to enable
  */
-static inline void ioport_enable_pin(ioport_pin_t pin)
+static inline void ioport_enable_pin( ioport_pin_t pin )
 {
-	arch_ioport_enable_pin(pin);
+    arch_ioport_enable_pin( pin );
 }
 
 /**
@@ -167,10 +172,10 @@ static inline void ioport_enable_pin(ioport_pin_t pin)
  * \param port IOPORT port to enable
  * \param mask Mask of pins within the port to enable
  */
-static inline void ioport_enable_port(ioport_port_t port,
-		ioport_port_mask_t mask)
+static inline void ioport_enable_port( ioport_port_t port,
+                                       ioport_port_mask_t mask )
 {
-	arch_ioport_enable_port(port, mask);
+    arch_ioport_enable_port( port, mask );
 }
 
 /**
@@ -179,9 +184,9 @@ static inline void ioport_enable_port(ioport_port_t port,
  *
  * \param pin IOPORT pin to disable
  */
-static inline void ioport_disable_pin(ioport_pin_t pin)
+static inline void ioport_disable_pin( ioport_pin_t pin )
 {
-	arch_ioport_disable_pin(pin);
+    arch_ioport_disable_pin( pin );
 }
 
 /**
@@ -190,10 +195,10 @@ static inline void ioport_disable_pin(ioport_pin_t pin)
  * \param port IOPORT port to disable
  * \param mask Pin mask of pins to disable
  */
-static inline void ioport_disable_port(ioport_port_t port,
-		ioport_port_mask_t mask)
+static inline void ioport_disable_port( ioport_port_t port,
+                                        ioport_port_mask_t mask )
 {
-	arch_ioport_disable_port(port, mask);
+    arch_ioport_disable_port( port, mask );
 }
 
 /**
@@ -205,10 +210,11 @@ static inline void ioport_disable_port(ioport_port_t port,
  * \param mode Mode masks to configure for the specified pins (\ref
  * ioport_modes)
  */
-static inline void ioport_set_port_mode(ioport_port_t port,
-		ioport_port_mask_t mask, ioport_mode_t mode)
+static inline void ioport_set_port_mode( ioport_port_t port,
+                                         ioport_port_mask_t mask,
+                                         ioport_mode_t mode )
 {
-	arch_ioport_set_port_mode(port, mask, mode);
+    arch_ioport_set_port_mode( port, mask, mode );
 }
 
 /**
@@ -217,9 +223,9 @@ static inline void ioport_set_port_mode(ioport_port_t port,
  * \param pin IOPORT pin to configure
  * \param mode Mode masks to configure for the specified pin (\ref ioport_modes)
  */
-static inline void ioport_set_pin_mode(ioport_pin_t pin, ioport_mode_t mode)
+static inline void ioport_set_pin_mode( ioport_pin_t pin, ioport_mode_t mode )
 {
-	arch_ioport_set_pin_mode(pin, mode);
+    arch_ioport_set_pin_mode( pin, mode );
 }
 
 /**
@@ -228,10 +234,10 @@ static inline void ioport_set_pin_mode(ioport_pin_t pin, ioport_mode_t mode)
  * \param port IOPORT port to configure
  * \param mask Mask of pins whose mode configuration is to be reset
  */
-static inline void ioport_reset_port_mode(ioport_port_t port,
-		ioport_port_mask_t mask)
+static inline void ioport_reset_port_mode( ioport_port_t port,
+                                           ioport_port_mask_t mask )
 {
-	arch_ioport_set_port_mode(port, mask, 0);
+    arch_ioport_set_port_mode( port, mask, 0 );
 }
 
 /**
@@ -239,9 +245,9 @@ static inline void ioport_reset_port_mode(ioport_port_t port,
  *
  * \param pin IOPORT pin to configure
  */
-static inline void ioport_reset_pin_mode(ioport_pin_t pin)
+static inline void ioport_reset_pin_mode( ioport_pin_t pin )
 {
-	arch_ioport_set_pin_mode(pin, 0);
+    arch_ioport_set_pin_mode( pin, 0 );
 }
 
 /**
@@ -251,10 +257,11 @@ static inline void ioport_reset_pin_mode(ioport_pin_t pin)
  * \param mask Pin mask of pins to configure
  * \param dir Direction to set for the specified pins (\ref ioport_direction)
  */
-static inline void ioport_set_port_dir(ioport_port_t port,
-		ioport_port_mask_t mask, enum ioport_direction dir)
+static inline void ioport_set_port_dir( ioport_port_t port,
+                                        ioport_port_mask_t mask,
+                                        enum ioport_direction dir )
 {
-	arch_ioport_set_port_dir(port, mask, dir);
+    arch_ioport_set_port_dir( port, mask, dir );
 }
 
 /**
@@ -263,10 +270,10 @@ static inline void ioport_set_port_dir(ioport_port_t port,
  * \param pin IOPORT pin to configure
  * \param dir Direction to set for the specified pin (\ref ioport_direction)
  */
-static inline void ioport_set_pin_dir(ioport_pin_t pin,
-		enum ioport_direction dir)
+static inline void ioport_set_pin_dir( ioport_pin_t pin,
+                                       enum ioport_direction dir )
 {
-	arch_ioport_set_pin_dir(pin, dir);
+    arch_ioport_set_pin_dir( pin, dir );
 }
 
 /**
@@ -275,9 +282,9 @@ static inline void ioport_set_pin_dir(ioport_pin_t pin,
  * \param pin IOPORT pin to configure
  * \param level Logical value of the pin
  */
-static inline void ioport_set_pin_level(ioport_pin_t pin, bool level)
+static inline void ioport_set_pin_level( ioport_pin_t pin, bool level )
 {
-	arch_ioport_set_pin_level(pin, level);
+    arch_ioport_set_pin_level( pin, level );
 }
 
 /**
@@ -288,10 +295,11 @@ static inline void ioport_set_pin_level(ioport_pin_t pin, bool level)
  * \param mask Pin mask of pins to modify
  * \param level Level of the pins to be modified
  */
-static inline void ioport_set_port_level(ioport_port_t port,
-		ioport_port_mask_t mask, ioport_port_mask_t level)
+static inline void ioport_set_port_level( ioport_port_t port,
+                                          ioport_port_mask_t mask,
+                                          ioport_port_mask_t level )
 {
-	arch_ioport_set_port_level(port, mask, level);
+    arch_ioport_set_port_level( port, mask, level );
 }
 
 /**
@@ -301,9 +309,9 @@ static inline void ioport_set_port_level(ioport_port_t port,
  * \param pin IOPORT pin to read
  * \return Current logical value of the specified pin
  */
-static inline bool ioport_get_pin_level(ioport_pin_t pin)
+static inline bool ioport_get_pin_level( ioport_pin_t pin )
 {
-	return arch_ioport_get_pin_level(pin);
+    return arch_ioport_get_pin_level( pin );
 }
 
 /**
@@ -315,10 +323,10 @@ static inline bool ioport_get_pin_level(ioport_pin_t pin)
  * \return Logical levels of the specified pins from the read port, returned as
  * a mask.
  */
-static inline ioport_port_mask_t ioport_get_port_level(ioport_pin_t port,
-		ioport_port_mask_t mask)
+static inline ioport_port_mask_t ioport_get_port_level( ioport_pin_t port,
+                                                        ioport_port_mask_t mask )
 {
-	return arch_ioport_get_port_level(port, mask);
+    return arch_ioport_get_port_level( port, mask );
 }
 
 /**
@@ -327,9 +335,9 @@ static inline ioport_port_mask_t ioport_get_port_level(ioport_pin_t port,
  *
  * \param pin IOPORT pin to toggle
  */
-static inline void ioport_toggle_pin_level(ioport_pin_t pin)
+static inline void ioport_toggle_pin_level( ioport_pin_t pin )
 {
-	arch_ioport_toggle_pin_level(pin);
+    arch_ioport_toggle_pin_level( pin );
 }
 
 /**
@@ -338,10 +346,10 @@ static inline void ioport_toggle_pin_level(ioport_pin_t pin)
  * \param port IOPORT port to modify
  * \param mask Pin mask of pins to toggle
  */
-static inline void ioport_toggle_port_level(ioport_port_t port,
-		ioport_port_mask_t mask)
+static inline void ioport_toggle_port_level( ioport_port_t port,
+                                             ioport_port_mask_t mask )
 {
-	arch_ioport_toggle_port_level(port, mask);
+    arch_ioport_toggle_port_level( port, mask );
 }
 
 /**
@@ -350,10 +358,10 @@ static inline void ioport_toggle_port_level(ioport_port_t port,
  * \param pin IOPORT pin to configure
  * \param pin_sense Edge to sense for the pin (\ref ioport_sense)
  */
-static inline void ioport_set_pin_sense_mode(ioport_pin_t pin,
-		enum ioport_sense pin_sense)
+static inline void ioport_set_pin_sense_mode( ioport_pin_t pin,
+                                              enum ioport_sense pin_sense )
 {
-	arch_ioport_set_pin_sense_mode(pin, pin_sense);
+    arch_ioport_set_pin_sense_mode( pin, pin_sense );
 }
 
 /**
@@ -363,11 +371,11 @@ static inline void ioport_set_pin_sense_mode(ioport_pin_t pin,
  * \param mask Bitmask if pins whose edge sense is to be configured
  * \param pin_sense Edge to sense for the pins (\ref ioport_sense)
  */
-static inline void ioport_set_port_sense_mode(ioport_port_t port,
-		ioport_port_mask_t mask,
-		enum ioport_sense pin_sense)
+static inline void ioport_set_port_sense_mode( ioport_port_t port,
+                                               ioport_port_mask_t mask,
+                                               enum ioport_sense pin_sense )
 {
-	arch_ioport_set_port_sense_mode(port, mask, pin_sense);
+    arch_ioport_set_port_sense_mode( port, mask, pin_sense );
 }
 
 /**
@@ -376,20 +384,21 @@ static inline void ioport_set_port_sense_mode(ioport_port_t port,
  * \param pin IOPORT pin ID to convert
  * \retval Port ID for the given pin ID
  */
-static inline ioport_port_t ioport_pin_to_port_id(ioport_pin_t pin)
+static inline ioport_port_t ioport_pin_to_port_id( ioport_pin_t pin )
 {
-	return arch_ioport_pin_to_port_id(pin);
+    return arch_ioport_pin_to_port_id( pin );
 }
 
 /**
  * \brief Convert a pin ID into a bitmask mask for the given pin on its port.
  *
  * \param pin IOPORT pin ID to convert
- * \retval Bitmask with a bit set that corresponds to the given pin ID in its port
+ * \retval Bitmask with a bit set that corresponds to the given pin ID in its
+ * port
  */
-static inline ioport_port_mask_t ioport_pin_to_mask(ioport_pin_t pin)
+static inline ioport_port_mask_t ioport_pin_to_mask( ioport_pin_t pin )
 {
-	return arch_ioport_pin_to_mask(pin);
+    return arch_ioport_pin_to_mask( pin );
 }
 
 /** @} */
@@ -413,14 +422,14 @@ static inline ioport_port_mask_t ioport_pin_to_mask(ioport_pin_t pin)
  *
  * \subsection ioport_quickstart_basic_setup_code Example code
  * \code
-	 #define MY_LED    IOPORT_CREATE_PIN(PORTA, 5)
-	 #define MY_BUTTON IOPORT_CREATE_PIN(PORTA, 6)
+     #define MY_LED    IOPORT_CREATE_PIN(PORTA, 5)
+     #define MY_BUTTON IOPORT_CREATE_PIN(PORTA, 6)
 
-	 ioport_init();
+     ioport_init();
 
-	 ioport_set_pin_dir(MY_LED, IOPORT_DIR_OUTPUT);
-	 ioport_set_pin_dir(MY_BUTTON, IOPORT_DIR_INPUT);
-	 ioport_set_pin_mode(MY_BUTTON, IOPORT_MODE_PULLUP);
+     ioport_set_pin_dir(MY_LED, IOPORT_DIR_OUTPUT);
+     ioport_set_pin_dir(MY_BUTTON, IOPORT_DIR_INPUT);
+     ioport_set_pin_mode(MY_BUTTON, IOPORT_MODE_PULLUP);
 \endcode
  *
  * \subsection ioport_quickstart_basic_setup_flow Workflow
@@ -428,12 +437,13 @@ static inline ioport_port_mask_t ioport_pin_to_mask(ioport_pin_t pin)
  *    the \ref IOPORT_CREATE_PIN macro. We define one for a LED and one for a
  *    button.
  *   - \code
-	#define MY_LED    IOPORT_CREATE_PIN(PORTA, 5)
-	#define MY_BUTTON IOPORT_CREATE_PIN(PORTA, 6)
+    #define MY_LED    IOPORT_CREATE_PIN(PORTA, 5)
+    #define MY_BUTTON IOPORT_CREATE_PIN(PORTA, 6)
 \endcode
  *   - \note The usefulness of the \ref IOPORT_CREATE_PIN macro and port names
  *           differ between architectures:
- *     - MEGA, MEGA_RF and XMEGA: Use \ref IOPORT_CREATE_PIN macro with port definitions
+ *     - MEGA, MEGA_RF and XMEGA: Use \ref IOPORT_CREATE_PIN macro with port
+definitions
  *              PORTA, PORTB ...
  *     - UC3: Most convenient to pick up the device header file pin definition
  *            and us it directly. E.g.: AVR32_PIN_PB06
@@ -455,10 +465,10 @@ static inline ioport_port_mask_t ioport_pin_to_mask(ioport_pin_t pin)
  *
  * \subsection ioport_quickstart_basic_usage_code Example code
  * \code
-	 bool value;
+     bool value;
 
-	 value = ioport_get_pin_level(MY_BUTTON);
-	 ioport_set_pin_level(MY_LED, value);
+     value = ioport_get_pin_level(MY_BUTTON);
+     ioport_set_pin_level(MY_LED, value);
 \endcode
  *
  * \subsection ioport_quickstart_basic_usage_flow Workflow
@@ -483,24 +493,25 @@ static inline ioport_port_mask_t ioport_pin_to_mask(ioport_pin_t pin)
  *
  * \subsection ioport_quickstart_use_case_1_setup_code Example code
  * \code
-	 #define IN_PORT  IOPORT_PORTA
-	 #define OUT_PORT IOPORT_PORTB
-	 #define MASK     0x00000060
+     #define IN_PORT  IOPORT_PORTA
+     #define OUT_PORT IOPORT_PORTB
+     #define MASK     0x00000060
 
-	 ioport_init();
+     ioport_init();
 
-	 ioport_set_port_dir(IN_PORT, MASK, IOPORT_DIR_INPUT);
-	 ioport_set_port_dir(OUT_PORT, MASK, IOPORT_DIR_OUTPUT);
+     ioport_set_port_dir(IN_PORT, MASK, IOPORT_DIR_INPUT);
+     ioport_set_port_dir(OUT_PORT, MASK, IOPORT_DIR_OUTPUT);
 \endcode
  *
  * \subsection ioport_quickstart_basic_setup_flow Workflow
  * -# It's useful to give the ports symbolic names:
  *   - \code
-	#define IN_PORT  IOPORT_PORTA
-	#define OUT_PORT IOPORT_PORTB
+    #define IN_PORT  IOPORT_PORTA
+    #define OUT_PORT IOPORT_PORTB
 \endcode
  *   - \note The port names differ between architectures:
- *     - MEGA_RF, MEGA and XMEGA: There are predefined names for ports: IOPORT_PORTA,
+ *     - MEGA_RF, MEGA and XMEGA: There are predefined names for ports:
+IOPORT_PORTA,
  *              IOPORT_PORTB ...
  *     - UC3: Use the index value of the different IO blocks: 0, 1 ...
  *     - SAM: There are predefined names for ports: IOPORT_PIOA, IOPORT_PIOB
@@ -519,10 +530,10 @@ static inline ioport_port_mask_t ioport_pin_to_mask(ioport_pin_t pin)
  *
  * \subsection ioport_quickstart_basic_usage_code Example code
  * \code
-	 ioport_port_mask_t value;
+     ioport_port_mask_t value;
 
-	 value = ioport_get_port_level(IN_PORT, MASK);
-	 ioport_set_port_level(OUT_PORT, MASK, value);
+     value = ioport_get_port_level(IN_PORT, MASK);
+     ioport_set_port_level(OUT_PORT, MASK, value);
 \endcode
  *
  * \subsection ioport_quickstart_basic_usage_flow Workflow

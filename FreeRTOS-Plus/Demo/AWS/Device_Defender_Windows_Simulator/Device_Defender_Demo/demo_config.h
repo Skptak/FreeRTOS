@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -34,7 +35,8 @@
 /******* DO NOT CHANGE the following order ********/
 /**************************************************/
 
-/* Include logging header files and define logging macros in the following order:
+/* Include logging header files and define logging macros in the following
+ * order:
  * 1. Include the header file "logging_levels.h".
  * 2. Define the LIBRARY_LOG_NAME and LIBRARY_LOG_LEVEL macros depending on
  * the logging configuration for DEMO.
@@ -45,55 +47,55 @@
 
 /* Logging configuration for the Demo. */
 #ifndef LIBRARY_LOG_NAME
-    #define LIBRARY_LOG_NAME    "DefenderDemo"
+    #define LIBRARY_LOG_NAME "DefenderDemo"
 #endif
 
 #ifndef LIBRARY_LOG_LEVEL
-    #define LIBRARY_LOG_LEVEL    LOG_INFO
+    #define LIBRARY_LOG_LEVEL LOG_INFO
 #endif
 
 /* Prototype for the function used to print to console on Windows simulator
  * of FreeRTOS.
  * The function prints to the console before the network is connected;
  * then a UDP port after the network has connected. */
-extern void vLoggingPrintf( const char * pcFormatString,
-                            ... );
+extern void vLoggingPrintf( const char * pcFormatString, ... );
 
 /* Map the SdkLog macro to the logging function to enable logging
  * on Windows simulator. */
 #ifndef SdkLog
-    #define SdkLog( message )    vLoggingPrintf message
+    #define SdkLog( message ) vLoggingPrintf message
 #endif
 
 #include "logging_stack.h"
 
-
 /************ End of logging configuration ****************/
 
 /**
- * @brief The Thing resource registered on your AWS IoT account to use in the demo.
- * A Thing resource is required to communicate with the AWS IoT Device Shadow service.
+ * @brief The Thing resource registered on your AWS IoT account to use in the
+ * demo. A Thing resource is required to communicate with the AWS IoT Device
+ * Shadow service.
  *
  * @note The Things associated with your AWS account can be found in the
- * AWS IoT console under Manage/Things, or using the ListThings REST API (that can
- * be called with the AWS CLI command line tool).
+ * AWS IoT console under Manage/Things, or using the ListThings REST API (that
+ * can be called with the AWS CLI command line tool).
  *
  * #define democonfigTHING_NAME    "...insert here..."
  */
 
 #ifndef democonfigCLIENT_IDENTIFIER
 
-/**
- * @brief The MQTT client identifier used in this example.  Each client identifier
- * must be unique so edit as required to ensure no two clients connecting to the
- * same broker use the same client identifier.
- *
- * @note Appending __TIME__ to the client id string will reduce the possibility of a
- * client id collision in the broker. Note that the appended time is the compilation
- * time. This client id can cause collision, if more than one instance of the same
- * binary is used at the same time to connect to the broker.
- */
-    #define democonfigCLIENT_IDENTIFIER    "testClient"__TIME__
+    /**
+     * @brief The MQTT client identifier used in this example.  Each client
+     * identifier must be unique so edit as required to ensure no two clients
+     * connecting to the same broker use the same client identifier.
+     *
+     * @note Appending __TIME__ to the client id string will reduce the
+     * possibility of a client id collision in the broker. Note that the
+     * appended time is the compilation time. This client id can cause
+     * collision, if more than one instance of the same binary is used at the
+     * same time to connect to the broker.
+     */
+    #define democonfigCLIENT_IDENTIFIER "testClient"__TIME__
 #endif
 
 /**
@@ -122,8 +124,8 @@ extern void vLoggingPrintf( const char * pcFormatString,
 /**
  * @brief AWS root CA certificate.
  *
- * This certificate is used to identify the AWS IoT server and is publicly available.
- * Refer to the link below.
+ * This certificate is used to identify the AWS IoT server and is publicly
+ * available. Refer to the link below.
  * https://www.amazontrust.com/repository/AmazonRootCA1.pem
  *
  * @note This certificate should be PEM-encoded.
@@ -201,28 +203,28 @@ extern void vLoggingPrintf( const char * pcFormatString,
  * The current value is given as an example. Please update for your specific
  * operating system.
  */
-#define democonfigOS_NAME                   "FreeRTOS"
+#define democonfigOS_NAME                "FreeRTOS"
 
 /**
  * @brief The version of the operating system that the application is running
  * on. The current value is given as an example. Please update for your specific
  * operating system version.
  */
-#define democonfigOS_VERSION                tskKERNEL_VERSION_NUMBER
+#define democonfigOS_VERSION             tskKERNEL_VERSION_NUMBER
 
 /**
  * @brief The name of the hardware platform the application is running on. The
  * current value is given as an example. Please update for your specific
  * hardware platform.
  */
-#define democonfigHARDWARE_PLATFORM_NAME    "WinSim"
+#define democonfigHARDWARE_PLATFORM_NAME "WinSim"
 
 /**
  * @brief The name of the MQTT library used and its version, following an "@"
  * symbol.
  */
 #include "core_mqtt.h" /* Include coreMQTT header for MQTT_LIBRARY_VERSION macro. */
-#define democonfigMQTT_LIB                               "core-mqtt@"MQTT_LIBRARY_VERSION
+#define democonfigMQTT_LIB                            "core-mqtt@" MQTT_LIBRARY_VERSION
 
 /**
  * @brief Set the stack size of the main demo task.
@@ -230,12 +232,12 @@ extern void vLoggingPrintf( const char * pcFormatString,
  * In the Windows port, this stack only holds a structure. The actual
  * stack is created by an operating system thread.
  */
-#define democonfigDEMO_STACKSIZE                         configMINIMAL_STACK_SIZE
+#define democonfigDEMO_STACKSIZE                      configMINIMAL_STACK_SIZE
 
 /**
  * @brief Size of the network buffer for MQTT packets.
  */
-#define democonfigNETWORK_BUFFER_SIZE                    ( 1024U )
+#define democonfigNETWORK_BUFFER_SIZE                 ( 1024U )
 
 /**
  * @brief Size of the open TCP ports array.
@@ -243,7 +245,7 @@ extern void vLoggingPrintf( const char * pcFormatString,
  * A maximum of these many open TCP ports will be sent in the device defender
  * report.
  */
-#define democonfigOPEN_TCP_PORTS_ARRAY_SIZE              10
+#define democonfigOPEN_TCP_PORTS_ARRAY_SIZE           10
 
 /**
  * @brief Size of the open UDP ports array.
@@ -251,7 +253,7 @@ extern void vLoggingPrintf( const char * pcFormatString,
  * A maximum of these many open UDP ports will be sent in the device defender
  * report.
  */
-#define democonfigOPEN_UDP_PORTS_ARRAY_SIZE              10
+#define democonfigOPEN_UDP_PORTS_ARRAY_SIZE           10
 
 /**
  * @brief Size of the established connections array.
@@ -259,30 +261,31 @@ extern void vLoggingPrintf( const char * pcFormatString,
  * A maximum of these many established connections will be sent in the device
  * defender report.
  */
-#define democonfigESTABLISHED_CONNECTIONS_ARRAY_SIZE     10
+#define democonfigESTABLISHED_CONNECTIONS_ARRAY_SIZE  10
 
 /**
  * @brief Size of the task numbers array.
  *
  * This must be at least the number of tasks used.
  */
-#define democonfigCUSTOM_METRICS_TASKS_ARRAY_SIZE        10
+#define democonfigCUSTOM_METRICS_TASKS_ARRAY_SIZE     10
 
 /**
- * @brief Size of the buffer which contains the generated device defender report.
+ * @brief Size of the buffer which contains the generated device defender
+ * report.
  *
  * If the generated report is larger than this, it is rejected.
  */
-#define democonfigDEVICE_METRICS_REPORT_BUFFER_SIZE      1000
+#define democonfigDEVICE_METRICS_REPORT_BUFFER_SIZE   1000
 
 /**
  * @brief Major version number of the device defender report.
  */
-#define democonfigDEVICE_METRICS_REPORT_MAJOR_VERSION    1
+#define democonfigDEVICE_METRICS_REPORT_MAJOR_VERSION 1
 
 /**
  * @brief Minor version number of the device defender report.
  */
-#define democonfigDEVICE_METRICS_REPORT_MINOR_VERSION    0
+#define democonfigDEVICE_METRICS_REPORT_MINOR_VERSION 0
 
 #endif /* DEMO_CONFIG_H */

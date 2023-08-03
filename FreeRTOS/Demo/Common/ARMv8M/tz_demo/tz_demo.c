@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -41,7 +42,8 @@
  * 4 bytes and upto 32 bytes will also fall in the same MPU region and the task
  * having access to ulNonSecureCounter will also have access to all those items.
  */
-static uint32_t ulNonSecureCounter[ 8 ] __attribute__( ( aligned( 32 ) ) ) = { 0 };
+static uint32_t ulNonSecureCounter[ 8 ]
+    __attribute__( ( aligned( 32 ) ) ) = { 0 };
 /*-----------------------------------------------------------*/
 
 /**
@@ -67,22 +69,23 @@ static void prvSecureCallingTask( void * pvParameters );
 
 void vStartTZDemo( void )
 {
-    static StackType_t xSecureCallingTaskStack[ configMINIMAL_STACK_SIZE ] __attribute__( ( aligned( 32 ) ) );
-    TaskParameters_t xSecureCallingTaskParameters =
-    {
-        .pvTaskCode     = prvSecureCallingTask,
-        .pcName         = "SecCalling",
-        .usStackDepth   = configMINIMAL_STACK_SIZE,
-        .pvParameters   = NULL,
-        .uxPriority     = tskIDLE_PRIORITY,
-        .puxStackBuffer = xSecureCallingTaskStack,
-        .xRegions       =
-        {
-            { ulNonSecureCounter, 32, tskMPU_REGION_READ_WRITE | tskMPU_REGION_EXECUTE_NEVER },
-            { 0,                  0,  0                                                      },
-            { 0,                  0,  0                                                      },
-        }
-    };
+    static StackType_t xSecureCallingTaskStack[ configMINIMAL_STACK_SIZE ]
+        __attribute__( ( aligned( 32 ) ) );
+    TaskParameters_t
+        xSecureCallingTaskParameters = { .pvTaskCode = prvSecureCallingTask,
+                                         .pcName = "SecCalling",
+                                         .usStackDepth = configMINIMAL_STACK_SIZE,
+                                         .pvParameters = NULL,
+                                         .uxPriority = tskIDLE_PRIORITY,
+                                         .puxStackBuffer = xSecureCallingTaskStack,
+                                         .xRegions = {
+                                             { ulNonSecureCounter,
+                                               32,
+                                               tskMPU_REGION_READ_WRITE |
+                                                   tskMPU_REGION_EXECUTE_NEVER },
+                                             { 0, 0, 0 },
+                                             { 0, 0, 0 },
+                                         } };
 
     /* Create an unprivileged task which calls secure functions. */
     xTaskCreateRestricted( &( xSecureCallingTaskParameters ), NULL );
@@ -107,7 +110,7 @@ static void prvSecureCallingTask( void * pvParameters )
      * it. */
     portALLOCATE_SECURE_CONTEXT( configMINIMAL_SECURE_STACK_SIZE );
 
-    for( ; ; )
+    for( ;; )
     {
         /* Call the secure side function. It does two things:
          * - It calls the supplied function (prvCallback) which in turn

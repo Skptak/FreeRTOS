@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -30,9 +31,8 @@
 /* Queue includes */
 #include "FreeRTOS.h"
 #include "FreeRTOSConfig.h"
-#include "semphr.h"
 #include "mock_fake_port.h"
-
+#include "semphr.h"
 
 /* ============================  GLOBAL VARIABLES =========================== */
 
@@ -66,8 +66,6 @@ int suiteTearDown( int numFailures )
 /* ===========================  Helper functions ============================ */
 
 /* ==============================  Test Cases =============================== */
-
-
 
 /**
  * @brief Test xSemaphoreTake with xSemaphoreCreateCounting( 1, 0 )
@@ -112,12 +110,14 @@ void test_macro_xSemaphoreGive_CountingSemaphore_one_zero_success( void )
 }
 
 /**
- * @brief Test xSemaphoreGive and xSemaphoreTake with xSemaphoreCreateCounting( 1, 0 )
+ * @brief Test xSemaphoreGive and xSemaphoreTake with xSemaphoreCreateCounting(
+ * 1, 0 )
  * @details Test xSemaphoreGive and xSemaphoreTake with a binary semaphore
  * constructed with xSemaphoreCreateCounting.
  * @coverage xQueueGenericSend xQueueSemaphoreTake
  */
-void test_macro_xSemaphoreGive_xSemaphoreTake_CountingSemaphore_one_zero_success( void )
+void test_macro_xSemaphoreGive_xSemaphoreTake_CountingSemaphore_one_zero_success(
+    void )
 {
     SemaphoreHandle_t xSemaphore = xSemaphoreCreateCounting( 1, 0 );
 
@@ -137,7 +137,6 @@ void test_macro_xSemaphoreGive_xSemaphoreTake_CountingSemaphore_one_zero_success
 
     vSemaphoreDelete( xSemaphore );
 }
-
 
 /**
  * @brief Test xSemaphoreGive with xSemaphoreCreateCounting( 100, 50 )
@@ -224,14 +223,16 @@ void test_size_of_UBaseType_is_64_bits( void )
 }
 
 /**
- * @brief Test xSemaphoreGive with xSemaphoreCreateCounting( UINT64_MAX, UINT64_MAX-1 )
- * @details Test xSemaphoreGive with a counting semaphore with uxMaxCount=UINT64_MAX and
- *          uxInitialCount=UINT64_MAX-1
+ * @brief Test xSemaphoreGive with xSemaphoreCreateCounting( UINT64_MAX,
+ * UINT64_MAX-1 )
+ * @details Test xSemaphoreGive with a counting semaphore with
+ * uxMaxCount=UINT64_MAX and uxInitialCount=UINT64_MAX-1
  * @coverage xQueueGenericSend
  */
 void test_macro_xSemaphoreGive_CountingSemaphore_upper_bound( void )
 {
-    SemaphoreHandle_t xSemaphore = xSemaphoreCreateCounting( UINT64_MAX, UINT64_MAX - 1 );
+    SemaphoreHandle_t xSemaphore = xSemaphoreCreateCounting( UINT64_MAX,
+                                                             UINT64_MAX - 1 );
 
     /* validate returned semaphore handle */
     TEST_ASSERT_NOT_EQUAL( NULL, xSemaphore );
@@ -254,14 +255,16 @@ void test_macro_xSemaphoreGive_CountingSemaphore_upper_bound( void )
 }
 
 /**
- * @brief Test xSemaphoreTake with xSemaphoreCreateCounting( UINT64_MAX, UINT64_MAX )
- * @details Test xSemaphoreTake with a counting semaphore with uxMaxCount=UINT64_MAX and
- *          uxInitialCount=UINT64_MAX
+ * @brief Test xSemaphoreTake with xSemaphoreCreateCounting( UINT64_MAX,
+ * UINT64_MAX )
+ * @details Test xSemaphoreTake with a counting semaphore with
+ * uxMaxCount=UINT64_MAX and uxInitialCount=UINT64_MAX
  * @coverage xQueueSemaphoreTake
  */
 void test_macro_xSemaphoreTake_CountingSemaphore_upper_bound( void )
 {
-    SemaphoreHandle_t xSemaphore = xSemaphoreCreateCounting( UINT64_MAX, UINT64_MAX );
+    SemaphoreHandle_t xSemaphore = xSemaphoreCreateCounting( UINT64_MAX,
+                                                             UINT64_MAX );
 
     /* validate returned semaphore handle */
     TEST_ASSERT_NOT_EQUAL( NULL, xSemaphore );
@@ -285,8 +288,8 @@ void test_macro_xSemaphoreTake_CountingSemaphore_upper_bound( void )
 
 /**
  * @brief xSemaphoreTake with xSemaphoreCreateCounting( UINT64_MAX, 1)
- * @details Test xSemaphoreTake with a counting semaphore with uxMaxCount=UINT64_MAX and
- *          uxInitialCount=1
+ * @details Test xSemaphoreTake with a counting semaphore with
+ * uxMaxCount=UINT64_MAX and uxInitialCount=1
  * @coverage xQueueSemaphoreTake
  */
 void test_macro_xSemaphoreTake_CountingSemaphore_lower_bound( void )
@@ -313,8 +316,8 @@ void test_macro_xSemaphoreTake_CountingSemaphore_lower_bound( void )
 
 /**
  * @brief xSemaphoreGive with xSemaphoreCreateCounting( UINT64_MAX, 0)
- * @details Test xSemaphoreGive with a counting semaphore with uxMaxCount=UINT64_MAX and
- *          uxInitialCount=0
+ * @details Test xSemaphoreGive with a counting semaphore with
+ * uxMaxCount=UINT64_MAX and uxInitialCount=0
  * @coverage xQueueGenericSend
  */
 void test_macro_xSemaphoreGive_CountingSemaphore_lower_bound( void )
@@ -365,7 +368,6 @@ void test_xSemaphoreTake_blocking_suspended_assert( void )
     vSemaphoreDelete( xSemaphore );
 }
 
-
 /**
  *  @brief Test xSemaphoreTake with taskSCHEDULER_SUSPENDED and timeout=0
  *  @details This should not cause xSemaphoreTake to configASSERT because
@@ -389,11 +391,15 @@ void test_xSemaphoreTake_nonblocking_suspended_noassert( void )
  *  @brief Callback which calls xSemaphoreGive on xSemaphoreHandleStatic when
  *  cmock_num_calls == NUM_CALLS_TO_INTERCEPT
  */
-static BaseType_t blocking_xTaskCheckForTimeOut_cb( TimeOut_t * const pxTimeOut,
-                                                    TickType_t * const pxTicksToWait,
-                                                    int cmock_num_calls )
+static BaseType_t blocking_xTaskCheckForTimeOut_cb(
+    TimeOut_t * const pxTimeOut,
+    TickType_t * const pxTicksToWait,
+    int cmock_num_calls )
 {
-    BaseType_t xReturnValue = td_task_xTaskCheckForTimeOutStub( pxTimeOut, pxTicksToWait, cmock_num_calls );
+    BaseType_t
+        xReturnValue = td_task_xTaskCheckForTimeOutStub( pxTimeOut,
+                                                         pxTicksToWait,
+                                                         cmock_num_calls );
 
     if( cmock_num_calls == NUM_CALLS_TO_INTERCEPT )
     {
@@ -405,8 +411,8 @@ static BaseType_t blocking_xTaskCheckForTimeOut_cb( TimeOut_t * const pxTimeOut,
 }
 
 /**
- * @brief Test xSemaphoreTake in blocking mode with a fully taken Counting Semaphore
- * which becomes available while a call to xSemaphoreTake is blocking.
+ * @brief Test xSemaphoreTake in blocking mode with a fully taken Counting
+ * Semaphore which becomes available while a call to xSemaphoreTake is blocking.
  * @coverage xQueueSemaphoreTake
  */
 void test_xSemaphoreTake_blocking_success( void )
@@ -427,7 +433,8 @@ void test_xSemaphoreTake_blocking_success( void )
 
     TEST_ASSERT_EQUAL( NUM_CALLS_TO_INTERCEPT, td_task_getYieldCount() );
 
-    TEST_ASSERT_EQUAL( NUM_CALLS_TO_INTERCEPT, td_task_getCount_vPortYieldWithinAPI() );
+    TEST_ASSERT_EQUAL( NUM_CALLS_TO_INTERCEPT,
+                       td_task_getCount_vPortYieldWithinAPI() );
 
     TEST_ASSERT_EQUAL( 0, uxSemaphoreGetCount( xSemaphore ) );
 
@@ -438,11 +445,15 @@ void test_xSemaphoreTake_blocking_success( void )
  *  @brief Callback which calls xSemaphoreGive on xSemaphoreHandleStatic when
  *  cmock_num_calls == TICKS_TO_WAIT
  */
-static BaseType_t blocking_last_chance_xTaskCheckForTimeOut_cb( TimeOut_t * const pxTimeOut,
-                                                                TickType_t * const pxTicksToWait,
-                                                                int cmock_num_calls )
+static BaseType_t blocking_last_chance_xTaskCheckForTimeOut_cb(
+    TimeOut_t * const pxTimeOut,
+    TickType_t * const pxTicksToWait,
+    int cmock_num_calls )
 {
-    BaseType_t xReturnValue = td_task_xTaskCheckForTimeOutStub( pxTimeOut, pxTicksToWait, cmock_num_calls );
+    BaseType_t
+        xReturnValue = td_task_xTaskCheckForTimeOutStub( pxTimeOut,
+                                                         pxTicksToWait,
+                                                         cmock_num_calls );
 
     if( cmock_num_calls == TICKS_TO_WAIT )
     {
@@ -534,15 +545,20 @@ void test_xSemaphoreTake_blocking_locked( void )
  *  @brief Callback for test_xSemaphoreTake_blocking_success_locked_no_pending
  *  which adds an item to it's test queue.
  */
-static BaseType_t xSemaphoreTake_xTaskCheckForTimeOutCB( TimeOut_t * const pxTimeOut,
-                                                         TickType_t * const pxTicksToWait,
-                                                         int cmock_num_calls )
+static BaseType_t xSemaphoreTake_xTaskCheckForTimeOutCB(
+    TimeOut_t * const pxTimeOut,
+    TickType_t * const pxTicksToWait,
+    int cmock_num_calls )
 {
-    BaseType_t xReturnValue = td_task_xTaskCheckForTimeOutStub( pxTimeOut, pxTicksToWait, cmock_num_calls );
+    BaseType_t
+        xReturnValue = td_task_xTaskCheckForTimeOutStub( pxTimeOut,
+                                                         pxTicksToWait,
+                                                         cmock_num_calls );
 
     if( cmock_num_calls == NUM_CALLS_TO_INTERCEPT )
     {
-        TEST_ASSERT_TRUE( xSemaphoreGiveFromISR( xSemaphoreHandleStatic, NULL ) );
+        TEST_ASSERT_TRUE(
+            xSemaphoreGiveFromISR( xSemaphoreHandleStatic, NULL ) );
         TEST_ASSERT_EQUAL( 1, uxSemaphoreGetCount( xSemaphoreHandleStatic ) );
     }
 
@@ -550,9 +566,11 @@ static BaseType_t xSemaphoreTake_xTaskCheckForTimeOutCB( TimeOut_t * const pxTim
 }
 
 /**
- *  @brief Test a blocking call to xSemaphoreTake with a locked counting semaphore.
- *  @details Test a blocking call to xSemaphoreTake with a locked counting semaphore with no
- *  tasks in the counting semaphore WaitingToReceiveFrom event list.
+ *  @brief Test a blocking call to xSemaphoreTake with a locked counting
+ * semaphore.
+ *  @details Test a blocking call to xSemaphoreTake with a locked counting
+ * semaphore with no tasks in the counting semaphore WaitingToReceiveFrom event
+ * list.
  *  @coverage xQueueSemaphoreTake prvUnlockQueue
  */
 void test_xSemaphoreTake_blocking_success_locked_no_pending( void )
@@ -574,11 +592,11 @@ void test_xSemaphoreTake_blocking_success_locked_no_pending( void )
 
     TEST_ASSERT_EQUAL( NUM_CALLS_TO_INTERCEPT, td_task_getYieldCount() );
 
-    TEST_ASSERT_EQUAL( NUM_CALLS_TO_INTERCEPT, td_task_getCount_vPortYieldWithinAPI() );
+    TEST_ASSERT_EQUAL( NUM_CALLS_TO_INTERCEPT,
+                       td_task_getCount_vPortYieldWithinAPI() );
 
     vQueueDelete( xSemaphore );
 }
-
 
 /**
  * @brief Callback for xTaskResumeAll used by tests for blocking calls to
@@ -588,14 +606,16 @@ static BaseType_t xSemaphoreTake_xTaskResumeAllCallback( int cmock_num_calls )
 {
     BaseType_t xReturnValue = td_task_xTaskResumeAllStub( cmock_num_calls );
 
-    /* If td_task_xTaskResumeAllStub returns pdTRUE, a higher priority task is pending
-     * Receive from an ISR to block */
+    /* If td_task_xTaskResumeAllStub returns pdTRUE, a higher priority task is
+     * pending Receive from an ISR to block */
     if( pdTRUE == xReturnValue )
     {
         if( cmock_num_calls == NUM_CALLS_TO_INTERCEPT )
         {
-            TEST_ASSERT_EQUAL( 1, uxSemaphoreGetCount( xSemaphoreHandleStatic ) );
-            TEST_ASSERT_TRUE( xSemaphoreTakeFromISR( xSemaphoreHandleStatic, NULL ) );
+            TEST_ASSERT_EQUAL( 1,
+                               uxSemaphoreGetCount( xSemaphoreHandleStatic ) );
+            TEST_ASSERT_TRUE(
+                xSemaphoreTakeFromISR( xSemaphoreHandleStatic, NULL ) );
         }
     }
 
@@ -603,9 +623,11 @@ static BaseType_t xSemaphoreTake_xTaskResumeAllCallback( int cmock_num_calls )
 }
 
 /**
- *  @brief Test a blocking call to xSemaphoreTake with a locked counting semaphore.
- *  @details Test a blocking call to xSemaphoreTake with a locked counting semaphore with a
- *  higher priority task in the counting semaphore WaitingToReceiveFrom event list.
+ *  @brief Test a blocking call to xSemaphoreTake with a locked counting
+ * semaphore.
+ *  @details Test a blocking call to xSemaphoreTake with a locked counting
+ * semaphore with a higher priority task in the counting semaphore
+ * WaitingToReceiveFrom event list.
  *  @coverage xQueueSemaphoreTake prvUnlockQueue
  */
 void test_xSemaphoreTake_blocking_timeout_locked_high_prio_pending( void )
@@ -631,9 +653,11 @@ void test_xSemaphoreTake_blocking_timeout_locked_high_prio_pending( void )
 
     TEST_ASSERT_EQUAL( TICKS_TO_WAIT, td_task_getYieldCount() );
 
-    TEST_ASSERT_EQUAL( NUM_CALLS_TO_INTERCEPT + 1, td_task_getCount_YieldFromTaskResumeAll() );
+    TEST_ASSERT_EQUAL( NUM_CALLS_TO_INTERCEPT + 1,
+                       td_task_getCount_YieldFromTaskResumeAll() );
 
-    TEST_ASSERT_EQUAL( NUM_CALLS_TO_INTERCEPT - 1, td_task_getCount_vPortYieldWithinAPI() );
+    TEST_ASSERT_EQUAL( NUM_CALLS_TO_INTERCEPT - 1,
+                       td_task_getCount_vPortYieldWithinAPI() );
 
     TEST_ASSERT_EQUAL( 1, td_task_getCount_vTaskMissedYield() );
 
@@ -641,9 +665,11 @@ void test_xSemaphoreTake_blocking_timeout_locked_high_prio_pending( void )
 }
 
 /**
- *  @brief Test a blocking call to xSemaphoreTake with a locked counting semaphore.
- *  @details Test a blocking call to xSemaphoreTake with a locked counting semaphore with a
- *  lower priority task in the semaphore WaitingToReceiveFrom event list.
+ *  @brief Test a blocking call to xSemaphoreTake with a locked counting
+ * semaphore.
+ *  @details Test a blocking call to xSemaphoreTake with a locked counting
+ * semaphore with a lower priority task in the semaphore WaitingToReceiveFrom
+ * event list.
  *  @coverage xQueueSemaphoreTake prvUnlockQueue
  */
 void test_xSemaphoreTake_blocking_success_locked_low_prio_pending( void )
@@ -669,7 +695,8 @@ void test_xSemaphoreTake_blocking_success_locked_low_prio_pending( void )
 
     TEST_ASSERT_EQUAL( NUM_CALLS_TO_INTERCEPT, td_task_getYieldCount() );
 
-    TEST_ASSERT_EQUAL( NUM_CALLS_TO_INTERCEPT, td_task_getCount_vPortYieldWithinAPI() );
+    TEST_ASSERT_EQUAL( NUM_CALLS_TO_INTERCEPT,
+                       td_task_getCount_vPortYieldWithinAPI() );
 
     vQueueDelete( xSemaphore );
 }
@@ -698,7 +725,8 @@ void test_macro_xSemaphoreGiveFromISR_locked( void )
     /* Verify that the cTxLock counter has only been incremented by one
      * even after 2 calls to xQueueSendFromISR because there is only
      * one task in the system as returned from uxTaskGetNumberOfTasks. */
-    TEST_ASSERT_EQUAL( queueLOCKED_UNMODIFIED + 1, cGetQueueTxLock( xSemaphore ) );
+    TEST_ASSERT_EQUAL( queueLOCKED_UNMODIFIED + 1,
+                       cGetQueueTxLock( xSemaphore ) );
 
     vSemaphoreDelete( xSemaphore );
 }

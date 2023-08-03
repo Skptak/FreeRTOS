@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -30,9 +31,9 @@ extern uint32_t ulRegTest1LoopCounter, ulRegTest2LoopCounter;
 
 void vRegTest1Implementation( void )
 {
-	__asm {
+    __asm {
 
-	/* Fill the core registers with known values. */
+        /* Fill the core registers with known values. */
 	mov r0, #100
 	mov r1, #101
 	mov r2, #102
@@ -47,7 +48,7 @@ void vRegTest1Implementation( void )
 	mov	r11, #111
 	mov r12, #112
 
-	/* Fill the VFP registers with known values. */
+        /* Fill the VFP registers with known values. */
 	vmov d0, r0, r1
 	vmov d1, r2, r3
 	vmov d2, r4, r5
@@ -66,8 +67,8 @@ void vRegTest1Implementation( void )
 	vmov d15, r6, r7
 
 reg1_loop:
-	/* Check all the VFP registers still contain the values set above.
-	First save registers that are clobbered by the test. */
+            /* Check all the VFP registers still contain the values set above.
+            First save registers that are clobbered by the test. */
 	push ( r0-r1 )
 
 	vmov r0, r1, d0
@@ -151,15 +152,15 @@ reg1_loop:
 	cmp r1, #107
 	bne reg1_error_loopf
 
-	/* Restore the registers that were clobbered by the test. */
+            /* Restore the registers that were clobbered by the test. */
 	pop (r0-r1)
 
-	/* VFP register test passed.  Jump to the core register test. */
+        /* VFP register test passed.  Jump to the core register test. */
 	b reg1_loopf_pass
 
 reg1_error_loopf:
-	/* If this line is hit then a VFP register value was found to be
-	incorrect. */
+            /* If this line is hit then a VFP register value was found to be
+            incorrect. */
 	b reg1_error_loopf
 
 reg1_loopf_pass:
@@ -191,7 +192,7 @@ reg1_loopf_pass:
 	cmp	r12, #112
 	bne	reg1_error_loop
 
-	/* Everything passed, increment the loop counter. */
+            /* Everything passed, increment the loop counter. */
 	push ( r0-r1 )
 	ldr	r0, =_ulRegTest1LoopCounter
 	ldr r1, [r0]
@@ -199,23 +200,23 @@ reg1_loopf_pass:
 	str r1, [r0]
 	pop ( r0-r1 )
 
-	/* Start again. */
+        /* Start again. */
 	b reg1_loop
 
 reg1_error_loop:
-	/* If this line is hit then there was an error in a core register value.
-	The loop ensures the loop counter stops incrementing. */
+            /* If this line is hit then there was an error in a core register
+            value. The loop ensures the loop counter stops incrementing. */
 	b reg1_error_loop
 	nop
 
-	} /* __asm */
+    } /* __asm */
 }
 /*-----------------------------------------------------------*/
 
 void vRegTest2Implementation( void )
 {
-	__asm {
-	/* Set all the core registers to known values. */
+    __asm {
+        /* Set all the core registers to known values. */
 	mov r0, #-1
 	mov r1, #1
 	mov r2, #2
@@ -230,7 +231,7 @@ void vRegTest2Implementation( void )
 	mov	r11, #11
 	mov r12, #12
 
-	/* Set all the VFP to known values. */
+        /* Set all the VFP to known values. */
 	vmov d0, r0, r1
 	vmov d1, r2, r3
 	vmov d2, r4, r5
@@ -250,8 +251,8 @@ void vRegTest2Implementation( void )
 
 reg2_loop:
 
-	/* Check all the VFP registers still contain the values set above.
-	First save registers that are clobbered by the test. */
+            /* Check all the VFP registers still contain the values set above.
+            First save registers that are clobbered by the test. */
 	push ( r0-r1 )
 
 	vmov r0, r1, d0
@@ -335,15 +336,15 @@ reg2_loop:
 	cmp r1, #7
 	bne reg2_error_loopf
 
-	/* Restore the registers that were clobbered by the test. */
+            /* Restore the registers that were clobbered by the test. */
 	pop (r0-r1)
 
-	/* VFP register test passed.  Jump to the core register test. */
+        /* VFP register test passed.  Jump to the core register test. */
 	b reg2_loopf_pass
 
 reg2_error_loopf:
-	/* If this line is hit then a VFP register value was found to be
-	incorrect. */
+            /* If this line is hit then a VFP register value was found to be
+            incorrect. */
 	b reg2_error_loopf
 
 reg2_loopf_pass:
@@ -375,15 +376,15 @@ reg2_loopf_pass:
 	cmp	r12, #12
 	bne	reg2_error_loop
 
-	/* Increment the loop counter to indicate this test is still functioning
-	correctly. */
+            /* Increment the loop counter to indicate this test is still
+            functioning correctly. */
 	push ( r0-r1 )
 	ldr	r0, =_ulRegTest2LoopCounter
 	ldr r1, [r0]
 	adds r1, r1, #1
 	str r1, [r0]
 
-	/* Yield to increase test coverage. */
+        /* Yield to increase test coverage. */
 	movs r0, #0x01
 	ldr r1, =0xe000ed04 /*NVIC_INT_CTRL */
 	lsl r0, r0, #28 /* Shift to PendSV bit */
@@ -392,15 +393,15 @@ reg2_loopf_pass:
 
 	pop ( r0-r1 )
 
-	/* Start again. */
+        /* Start again. */
 	b reg2_loop
 
 reg2_error_loop:
-	/* If this line is hit then there was an error in a core register value.
-	This loop ensures the loop counter variable stops incrementing. */
+            /* If this line is hit then there was an error in a core register
+            value. This loop ensures the loop counter variable stops
+            incrementing. */
 	b reg2_error_loop
 
-	} /* __asm */
+    } /* __asm */
 }
 /*-----------------------------------------------------------*/
-

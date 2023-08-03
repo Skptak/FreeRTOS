@@ -1,6 +1,6 @@
 /*
  * -------------------------------------------
- *    MSP432 DriverLib - v3_10_00_09 
+ *    MSP432 DriverLib - v3_10_00_09
  * -------------------------------------------
  *
  * --COPYRIGHT--,BSD,BSD
@@ -43,7 +43,7 @@
 // to an API.  This is only used when doing a DEBUG build.
 //
 //*****************************************************************************
-extern void __error__(char *pcFilename, unsigned long line);
+extern void __error__( char * pcFilename, unsigned long line );
 
 //*****************************************************************************
 //
@@ -52,25 +52,27 @@ extern void __error__(char *pcFilename, unsigned long line);
 //
 //*****************************************************************************
 #ifdef DEBUG
-#define ASSERT(expr) {                                      \
-                         if(!(expr))                        \
-                         {                                  \
-                             __error__(__FILE__, __LINE__); \
-                         }                                  \
-                     }
+    #define ASSERT( expr )                       \
+        {                                        \
+            if( !( expr ) )                      \
+            {                                    \
+                __error__( __FILE__, __LINE__ ); \
+            }                                    \
+        }
 #else
-#define ASSERT(expr)
+    #define ASSERT( expr )
 #endif
 
 #ifdef DEBUG
-#define assert(expr) {                                      \
-                         if(!(expr))                        \
-                         {                                  \
-                             __error__(__FILE__, __LINE__); \
-                         }                                  \
-                     }
+    #define assert( expr )                       \
+        {                                        \
+            if( !( expr ) )                      \
+            {                                    \
+                __error__( __FILE__, __LINE__ ); \
+            }                                    \
+        }
 #else
-#define assert(expr)
+    #define assert( expr )
 #endif
 
 #endif // __DEBUG_H__

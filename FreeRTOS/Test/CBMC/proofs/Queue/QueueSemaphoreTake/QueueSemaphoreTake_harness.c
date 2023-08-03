@@ -27,10 +27,10 @@
  */
 
 #include "FreeRTOS.h"
+#include "cbmc.h"
 #include "queue.h"
 #include "queue_init.h"
 #include "tasksStubs.h"
-#include "cbmc.h"
 
 BaseType_t state;
 QueueHandle_t xQueue;
@@ -77,16 +77,18 @@ void harness()
          * positive 8-bit integer value. We subtract one,
          * because the bound must be one greater than the
          * amount of loop iterations. */
-        __CPROVER_assert( PRV_UNLOCK_QUEUE_BOUND > 0, "Make sure, a valid macro value is chosen." );
+        __CPROVER_assert( PRV_UNLOCK_QUEUE_BOUND > 0,
+                          "Make sure, a valid macro value is chosen." );
         xQueue->cTxLock = PRV_UNLOCK_QUEUE_BOUND - 1;
         xQueue->cRxLock = PRV_UNLOCK_QUEUE_BOUND - 1;
-        ( ( &( xQueue->xTasksWaitingToReceive ) )->xListEnd ).pxNext->xItemValue = nondet_ticktype();
+        ( ( &( xQueue->xTasksWaitingToReceive ) )->xListEnd )
+            .pxNext->xItemValue = nondet_ticktype();
 
-        /* This assumptions is required to prevent an overflow in l. 2057 of queue.c
-         * in the prvGetDisinheritPriorityAfterTimeout() function. */
-        __CPROVER_assume( (
-                              ( UBaseType_t ) listGET_ITEM_VALUE_OF_HEAD_ENTRY( &( xQueue->xTasksWaitingToReceive ) )
-                              <= ( ( UBaseType_t ) configMAX_PRIORITIES ) ) );
+        /* This assumptions is required to prevent an overflow in l. 2057 of
+         * queue.c in the prvGetDisinheritPriorityAfterTimeout() function. */
+        __CPROVER_assume( ( ( UBaseType_t ) listGET_ITEM_VALUE_OF_HEAD_ENTRY(
+                                &( xQueue->xTasksWaitingToReceive ) ) <=
+                            ( ( UBaseType_t ) configMAX_PRIORITIES ) ) );
         xQueueSemaphoreTake( xQueue, xTicksToWait );
     }
 }

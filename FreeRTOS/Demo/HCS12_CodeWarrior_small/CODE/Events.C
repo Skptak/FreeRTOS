@@ -23,20 +23,19 @@
 ** ###################################################################*/
 /* MODULE Events */
 
-
 /*Including used modules for compilling procedure*/
+#include "ButtonInterrupt.h"
+#include "Byte1.h"
 #include "Cpu.h"
 #include "Events.h"
-#include "Byte1.h"
 #include "TickTimer.h"
-#include "ButtonInterrupt.h"
 
 /*Include shared modules, which are used for whole project*/
-#include "PE_Types.h"
-#include "PE_Error.h"
-#include "PE_Const.h"
 #include "IO_Map.h"
+#include "PE_Const.h"
+#include "PE_Error.h"
 #include "PE_Timer.h"
+#include "PE_Types.h"
 
 /*
 ** ===================================================================
@@ -51,11 +50,10 @@
 **     Returns     : Nothing
 ** ===================================================================
 */
-void vTaskTickInterrupt(void)
+void vTaskTickInterrupt( void )
 {
-  /* Write your code here ... */
+    /* Write your code here ... */
 }
-
 
 /*
 ** ===================================================================
@@ -69,18 +67,17 @@ void vTaskTickInterrupt(void)
 **     Returns     : Nothing
 ** ===================================================================
 */
-void ButtonInterrupt_OnInterrupt(void)
+void ButtonInterrupt_OnInterrupt( void )
 {
-  /* place your ButtonInterrupt interrupt procedure body here */
+    /* place your ButtonInterrupt interrupt procedure body here */
 }
-
 
 /* END Events */
 
 /*
 ** ###################################################################
 **
-**     This file was created by UNIS Processor Expert 03.33 for 
+**     This file was created by UNIS Processor Expert 03.33 for
 **     the Motorola HCS12 series of microcontrollers.
 **
 ** ###################################################################

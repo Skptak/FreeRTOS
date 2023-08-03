@@ -12,7 +12,7 @@
 **         When the bean and its events are enabled, the "OnInterrupt"
 **         event is called periodically with the period that you specify.
 **         TimerInt supports also changing the period in runtime.
-**         The source of periodic interrupt can be timer compare or reload 
+**         The source of periodic interrupt can be timer compare or reload
 **         register or timer-overflow interrupt (of free running counter).
 **     Settings  :
 **         Timer name                  : TIM (16-bit)
@@ -30,7 +30,8 @@
 **             Hz                      : 1000
 **             kHz                     : 1
 **
-**         Runtime setting             : period/frequency interval (continual setting)
+**         Runtime setting             : period/frequency interval (continual
+*setting)
 **             ticks                   : 16000 to 160000 ticks
 **             microseconds            : 1000 to 10000 microseconds
 **             milliseconds            : 1 to 10 milliseconds
@@ -66,19 +67,20 @@
 ** ###################################################################*/
 
 #ifndef __TickTimer
-#define __TickTimer
+    #define __TickTimer
 
 /* MODULE TickTimer. */
 
-#include "Cpu.h"
+    #include "Cpu.h"
 
-#pragma CODE_SEG TickTimer_CODE        /* Code section for this module. */
+    #pragma CODE_SEG TickTimer_CODE /* Code section for this module. */
 
-#define TickTimer_SFHzMin  100         /* Lower bound of interval for method SetFreqHz */
-#define TickTimer_SFHzMax  1000        /* Upper bound of interval for method SetFreqHz */
+    #define TickTimer_SFHzMin \
+        100 /* Lower bound of interval for method SetFreqHz */
+    #define TickTimer_SFHzMax \
+        1000 /* Upper bound of interval for method SetFreqHz */
 
-
-byte TickTimer_Enable(void);
+byte TickTimer_Enable( void );
 /*
 ** ===================================================================
 **     Method      :  TickTimer_Enable (bean TimerInt)
@@ -95,7 +97,7 @@ byte TickTimer_Enable(void);
 ** ===================================================================
 */
 
-byte TickTimer_SetFreqHz(word Freq);
+byte TickTimer_SetFreqHz( word Freq );
 /*
 ** ===================================================================
 **     Method      :  TickTimer_SetFreqHz (bean TimerInt)
@@ -121,9 +123,11 @@ byte TickTimer_SetFreqHz(word Freq);
 ** ===================================================================
 */
 
-#pragma CODE_SEG __NEAR_SEG NON_BANKED /* Interrupt section for this module. Placement will be in NON_BANKED area. */
-__interrupt void  TickTimer_Interrupt(void);
-#pragma CODE_SEG TickTimer_CODE        /* Code section for this module. */
+    #pragma CODE_SEG __NEAR_SEG NON_BANKED /* Interrupt section for this   \
+                                              module. Placement will be in \
+                                              NON_BANKED area. */
+__interrupt void TickTimer_Interrupt( void );
+    #pragma CODE_SEG TickTimer_CODE /* Code section for this module. */
 /*
 ** ===================================================================
 **     Method      :  TickTimer_Interrupt (bean TimerInt)
@@ -134,7 +138,7 @@ __interrupt void  TickTimer_Interrupt(void);
 ** ===================================================================
 */
 
-void TickTimer_Init(void);
+void TickTimer_Init( void );
 /*
 ** ===================================================================
 **     Method      :  TickTimer_Init (bean TimerInt)
@@ -145,7 +149,7 @@ void TickTimer_Init(void);
 ** ===================================================================
 */
 
-#pragma CODE_SEG DEFAULT               /* Change code section to DEFAULT. */
+    #pragma CODE_SEG DEFAULT /* Change code section to DEFAULT. */
 
 /* END TickTimer. */
 
@@ -153,7 +157,7 @@ void TickTimer_Init(void);
 /*
 ** ###################################################################
 **
-**     This file was created by UNIS Processor Expert 03.33 for 
+**     This file was created by UNIS Processor Expert 03.33 for
 **     the Motorola HCS12 series of microcontrollers.
 **
 ** ###################################################################

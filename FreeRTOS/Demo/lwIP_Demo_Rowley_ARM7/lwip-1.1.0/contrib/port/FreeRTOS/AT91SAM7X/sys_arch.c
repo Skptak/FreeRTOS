@@ -2,8 +2,8 @@
  * Copyright (c) 2001-2003 Swedish Institute of Computer Science.
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without modification,
- * are permitted provided that the following conditions are met:
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
  *
  * 1. Redistributions of source code must retain the above copyright notice,
  *    this list of conditions and the following disclaimer.
@@ -15,14 +15,14 @@
  *
  * THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR IMPLIED
  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
- * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT
- * SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
- * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
- * OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
- * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING
- * IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
- * OF SUCH DAMAGE.
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO
+ * EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+ * OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+ * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+ * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * This file is part of the lwIP TCP/IP stack.
  *
@@ -33,40 +33,38 @@
 /* lwIP includes. */
 #include "lwip/debug.h"
 #include "lwip/def.h"
-#include "lwip/sys.h"
 #include "lwip/mem.h"
+#include "lwip/sys.h"
 
 /* Message queue constants. */
-#define archMESG_QUEUE_LENGTH	( 6 )
-#define archPOST_BLOCK_TIME_MS	( ( unsigned long ) 10000 )
+#define archMESG_QUEUE_LENGTH  ( 6 )
+#define archPOST_BLOCK_TIME_MS ( ( unsigned long ) 10000 )
 
 struct timeoutlist
 {
-	struct sys_timeouts timeouts;
-	TaskHandle_t pid;
+    struct sys_timeouts timeouts;
+    TaskHandle_t pid;
 };
 
 /* This is the number of threads that can be started with sys_thread_new() */
-#define SYS_THREAD_MAX 4
+#define SYS_THREAD_MAX              4
 
-#define lwipTCP_STACK_SIZE			600
-#define lwipBASIC_SERVER_STACK_SIZE	250
+#define lwipTCP_STACK_SIZE          600
+#define lwipBASIC_SERVER_STACK_SIZE 250
 
-static struct timeoutlist timeoutlist[SYS_THREAD_MAX];
+static struct timeoutlist timeoutlist[ SYS_THREAD_MAX ];
 static u16_t nextthread = 0;
 int intlevel = 0;
 
-
 /*-----------------------------------------------------------------------------------*/
 //  Creates an empty mailbox.
-sys_mbox_t
-sys_mbox_new(void)
+sys_mbox_t sys_mbox_new( void )
 {
-	QueueHandle_t mbox;
+    QueueHandle_t mbox;
 
-	mbox = xQueueCreate( archMESG_QUEUE_LENGTH, sizeof( void * ) );
+    mbox = xQueueCreate( archMESG_QUEUE_LENGTH, sizeof( void * ) );
 
-	return mbox;
+    return mbox;
 }
 
 /*-----------------------------------------------------------------------------------*/
@@ -75,26 +73,26 @@ sys_mbox_new(void)
   mailbox when the mailbox is deallocated, it is an indication of a
   programming error in lwIP and the developer should be notified.
 */
-void
-sys_mbox_free(sys_mbox_t mbox)
+void sys_mbox_free( sys_mbox_t mbox )
 {
-	if( uxQueueMessagesWaiting( mbox ) )
-	{
-		/* Line for breakpoint.  Should never break here! */
-		__asm volatile ( "NOP" );
-	}
+    if( uxQueueMessagesWaiting( mbox ) )
+    {
+        /* Line for breakpoint.  Should never break here! */
+        __asm volatile( "NOP" );
+    }
 
-	vQueueDelete( mbox );
+    vQueueDelete( mbox );
 }
 
 /*-----------------------------------------------------------------------------------*/
 //   Posts the "msg" to the mailbox.
-void
-sys_mbox_post(sys_mbox_t mbox, void *data)
+void sys_mbox_post( sys_mbox_t mbox, void * data )
 {
-	xQueueSend( mbox, &data, ( TickType_t ) ( archPOST_BLOCK_TIME_MS / portTICK_PERIOD_MS ) );
+    xQueueSend( mbox,
+                &data,
+                ( TickType_t ) ( archPOST_BLOCK_TIME_MS /
+                                 portTICK_PERIOD_MS ) );
 }
-
 
 /*-----------------------------------------------------------------------------------*/
 /*
@@ -112,76 +110,76 @@ sys_mbox_post(sys_mbox_t mbox, void *data)
   Note that a function with a similar name, sys_mbox_fetch(), is
   implemented by lwIP.
 */
-u32_t sys_arch_mbox_fetch(sys_mbox_t mbox, void **msg, u32_t timeout)
+u32_t sys_arch_mbox_fetch( sys_mbox_t mbox, void ** msg, u32_t timeout )
 {
-void *dummyptr;
-TickType_t StartTime, EndTime, Elapsed;
+    void * dummyptr;
+    TickType_t StartTime, EndTime, Elapsed;
 
-	StartTime = xTaskGetTickCount();
+    StartTime = xTaskGetTickCount();
 
-	if( msg == NULL )
-	{
-		msg = &dummyptr;
-	}
+    if( msg == NULL )
+    {
+        msg = &dummyptr;
+    }
 
-	if(	timeout != 0 )
-	{
-		if(pdTRUE == xQueueReceive( mbox, &(*msg), timeout ) )
-		{
-			EndTime = xTaskGetTickCount();
-			Elapsed = EndTime - StartTime;
-			if( Elapsed == 0 )
-			{
-				Elapsed = 1;
-			}
-			return ( Elapsed );
-		}
-		else // timed out blocking for message
-		{
-			*msg = NULL;
-			return SYS_ARCH_TIMEOUT;
-		}
-	}
-	else // block forever for a message.
-	{
-		while( pdTRUE != xQueueReceive( mbox, &(*msg), 10000 ) ) // time is arbitrary
-		{
-			;
-		}
-		EndTime = xTaskGetTickCount();
-		Elapsed = EndTime - StartTime;
-		if( Elapsed == 0 )
-		{
-			Elapsed = 1;
-		}
-		return ( Elapsed ); // return time blocked TBD test
-	}
+    if( timeout != 0 )
+    {
+        if( pdTRUE == xQueueReceive( mbox, &( *msg ), timeout ) )
+        {
+            EndTime = xTaskGetTickCount();
+            Elapsed = EndTime - StartTime;
+            if( Elapsed == 0 )
+            {
+                Elapsed = 1;
+            }
+            return ( Elapsed );
+        }
+        else // timed out blocking for message
+        {
+            *msg = NULL;
+            return SYS_ARCH_TIMEOUT;
+        }
+    }
+    else // block forever for a message.
+    {
+        while( pdTRUE != xQueueReceive( mbox, &( *msg ), 10000 ) ) // time is
+                                                                   // arbitrary
+        {
+            ;
+        }
+        EndTime = xTaskGetTickCount();
+        Elapsed = EndTime - StartTime;
+        if( Elapsed == 0 )
+        {
+            Elapsed = 1;
+        }
+        return ( Elapsed ); // return time blocked TBD test
+    }
 }
 
 /*-----------------------------------------------------------------------------------*/
 //  Creates and returns a new semaphore. The "count" argument specifies
 //  the initial state of the semaphore. TBD finish and test
-sys_sem_t
-sys_sem_new(u8_t count)
+sys_sem_t sys_sem_new( u8_t count )
 {
-	SemaphoreHandle_t  xSemaphore;
+    SemaphoreHandle_t xSemaphore;
 
-	portENTER_CRITICAL();
-	vSemaphoreCreateBinary( xSemaphore );
-	if(count == 0)	// Means it can't be taken
-	{
-		xSemaphoreTake(xSemaphore,1);
-	}
-	portEXIT_CRITICAL();
+    portENTER_CRITICAL();
+    vSemaphoreCreateBinary( xSemaphore );
+    if( count == 0 ) // Means it can't be taken
+    {
+        xSemaphoreTake( xSemaphore, 1 );
+    }
+    portEXIT_CRITICAL();
 
-	if( xSemaphore == NULL )
-	{
-		return NULL;	// TBD need assert
-	}
-	else
-	{
-		return xSemaphore;
-	}
+    if( xSemaphore == NULL )
+    {
+        return NULL; // TBD need assert
+    }
+    else
+    {
+        return xSemaphore;
+    }
 }
 
 /*-----------------------------------------------------------------------------------*/
@@ -200,81 +198,75 @@ sys_sem_new(u8_t count)
   Notice that lwIP implements a function with a similar name,
   sys_sem_wait(), that uses the sys_arch_sem_wait() function.
 */
-u32_t
-sys_arch_sem_wait(sys_sem_t sem, u32_t timeout)
+u32_t sys_arch_sem_wait( sys_sem_t sem, u32_t timeout )
 {
-TickType_t StartTime, EndTime, Elapsed;
+    TickType_t StartTime, EndTime, Elapsed;
 
-	StartTime = xTaskGetTickCount();
+    StartTime = xTaskGetTickCount();
 
-	if(	timeout != 0)
-	{
-		if( xSemaphoreTake( sem, timeout ) == pdTRUE )
-		{
-			EndTime = xTaskGetTickCount();
-			Elapsed = EndTime - StartTime;
-			if( Elapsed == 0 )
-			{
-				Elapsed = 1;
-			}
-			return (Elapsed); // return time blocked TBD test
-		}
-		else
-		{
-			return SYS_ARCH_TIMEOUT;
-		}
-	}
-	else // must block without a timeout
-	{
-		while( xSemaphoreTake( sem, 10000 ) != pdTRUE )
-		{
-			;
-		}
-		EndTime = xTaskGetTickCount();
-		Elapsed = EndTime - StartTime;
-		if( Elapsed == 0 )
-		{
-			Elapsed = 1;
-		}
+    if( timeout != 0 )
+    {
+        if( xSemaphoreTake( sem, timeout ) == pdTRUE )
+        {
+            EndTime = xTaskGetTickCount();
+            Elapsed = EndTime - StartTime;
+            if( Elapsed == 0 )
+            {
+                Elapsed = 1;
+            }
+            return ( Elapsed ); // return time blocked TBD test
+        }
+        else
+        {
+            return SYS_ARCH_TIMEOUT;
+        }
+    }
+    else // must block without a timeout
+    {
+        while( xSemaphoreTake( sem, 10000 ) != pdTRUE )
+        {
+            ;
+        }
+        EndTime = xTaskGetTickCount();
+        Elapsed = EndTime - StartTime;
+        if( Elapsed == 0 )
+        {
+            Elapsed = 1;
+        }
 
-		return ( Elapsed ); // return time blocked
-
-	}
+        return ( Elapsed ); // return time blocked
+    }
 }
 
 /*-----------------------------------------------------------------------------------*/
 // Signals a semaphore
-void
-sys_sem_signal(sys_sem_t sem)
+void sys_sem_signal( sys_sem_t sem )
 {
-	xSemaphoreGive( sem );
+    xSemaphoreGive( sem );
 }
 
 /*-----------------------------------------------------------------------------------*/
 // Deallocates a semaphore
-void
-sys_sem_free(sys_sem_t sem)
+void sys_sem_free( sys_sem_t sem )
 {
-	vQueueDelete( sem );
+    vQueueDelete( sem );
 }
 
 /*-----------------------------------------------------------------------------------*/
 // Initialize sys arch
-void
-sys_init(void)
+void sys_init( void )
 {
+    int i;
 
-	int i;
+    // Initialize the the per-thread sys_timeouts structures
+    // make sure there are no valid pids in the list
+    for( i = 0; i < SYS_THREAD_MAX; i++ )
+    {
+        timeoutlist[ i ].pid = 0;
+    }
 
-	// Initialize the the per-thread sys_timeouts structures
-	// make sure there are no valid pids in the list
-	for(i = 0; i < SYS_THREAD_MAX; i++)
-	{
-		timeoutlist[i].pid = 0;
-	}
-
-	// keep track of how many threads have been created
-	nextthread = 0;
+    // keep track of how many threads have been created
+    nextthread = 0;
 }
 
 /*-----------------------------------------------------------------------------------*/
@@ -289,26 +281,25 @@ sys_init(void)
   simply return a pointer to a global sys_timeouts variable stored in
   the sys_arch module.
 */
-struct sys_timeouts *
-sys_arch_timeouts(void)
+struct sys_timeouts * sys_arch_timeouts( void )
 {
-int i;
-TaskHandle_t pid;
-struct timeoutlist *tl;
+    int i;
+    TaskHandle_t pid;
+    struct timeoutlist * tl;
 
-	pid = xTaskGetCurrentTaskHandle( );
+    pid = xTaskGetCurrentTaskHandle();
 
-	for(i = 0; i < nextthread; i++)
-	{
-		tl = &timeoutlist[i];
-		if(tl->pid == pid)
-		{
-			return &(tl->timeouts);
-		}
-	}
+    for( i = 0; i < nextthread; i++ )
+    {
+        tl = &timeoutlist[ i ];
+        if( tl->pid == pid )
+        {
+            return &( tl->timeouts );
+        }
+    }
 
-	// Error
-	return NULL;
+    // Error
+    return NULL;
 }
 
 /*-----------------------------------------------------------------------------------*/
@@ -321,35 +312,47 @@ struct timeoutlist *tl;
   thread() function. The id of the new thread is returned. Both the id and
   the priority are system dependent.
 */
-sys_thread_t sys_thread_new(void (* thread)(void *arg), void *arg, int prio)
+sys_thread_t sys_thread_new( void ( *thread )( void * arg ),
+                             void * arg,
+                             int prio )
 {
-TaskHandle_t CreatedTask;
-int result;
-static int iCall = 0;
+    TaskHandle_t CreatedTask;
+    int result;
+    static int iCall = 0;
 
-	if( iCall == 0 )
-	{
-		/* The first time this is called we are creating the lwIP handler. */
-		result = xTaskCreate( thread, "lwIP", lwipTCP_STACK_SIZE, arg, prio, &CreatedTask );
-		iCall++;
-	}
-	else
-	{
-		result = xTaskCreate( thread, "WEBSvr", lwipBASIC_SERVER_STACK_SIZE, arg, prio, &CreatedTask );
-	}
+    if( iCall == 0 )
+    {
+        /* The first time this is called we are creating the lwIP handler. */
+        result = xTaskCreate( thread,
+                              "lwIP",
+                              lwipTCP_STACK_SIZE,
+                              arg,
+                              prio,
+                              &CreatedTask );
+        iCall++;
+    }
+    else
+    {
+        result = xTaskCreate( thread,
+                              "WEBSvr",
+                              lwipBASIC_SERVER_STACK_SIZE,
+                              arg,
+                              prio,
+                              &CreatedTask );
+    }
 
-	// For each task created, store the task handle (pid) in the timers array.
-	// This scheme doesn't allow for threads to be deleted
-	timeoutlist[nextthread++].pid = CreatedTask;
+    // For each task created, store the task handle (pid) in the timers array.
+    // This scheme doesn't allow for threads to be deleted
+    timeoutlist[ nextthread++ ].pid = CreatedTask;
 
-	if(result == pdPASS)
-	{
-		return CreatedTask;
-	}
-	else
-	{
-		return NULL;
-	}
+    if( result == pdPASS )
+    {
+        return CreatedTask;
+    }
+    else
+    {
+        return NULL;
+    }
 }
 
 /*
@@ -365,10 +368,10 @@ static int iCall = 0;
   sys_arch_protect() is only required if your port is supporting an operating
   system.
 */
-sys_prot_t sys_arch_protect(void)
+sys_prot_t sys_arch_protect( void )
 {
-	vPortEnterCritical();
-	return 1;
+    vPortEnterCritical();
+    return 1;
 }
 
 /*
@@ -377,9 +380,8 @@ sys_prot_t sys_arch_protect(void)
   more information. This function is only required if your port is supporting
   an operating system.
 */
-void sys_arch_unprotect(sys_prot_t pval)
+void sys_arch_unprotect( sys_prot_t pval )
 {
-	( void ) pval;
-	vPortExitCritical();
+    ( void ) pval;
+    vPortExitCritical();
 }
-

@@ -13,7 +13,7 @@ void metal_shutdown(int code) {
 }
 #else
 #pragma message(                                                               \
-    "There is no defined shutdown mechanism, metal_shutdown() will spin.")
+        "There is no defined shutdown mechanism, metal_shutdown() will spin.")
 void metal_shutdown(int code) {
     while (1) {
         __asm__ volatile("nop");

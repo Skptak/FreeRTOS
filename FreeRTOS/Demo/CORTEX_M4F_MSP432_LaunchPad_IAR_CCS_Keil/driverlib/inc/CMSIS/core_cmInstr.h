@@ -1,9 +1,9 @@
-/**************************************************************************//**
- * @file     core_cmInstr.h
- * @brief    CMSIS Cortex-M Core Instruction Access Header File
- * @version  V4.20
- * @date     02. July 2015
- ******************************************************************************/
+/**************************************************************************/ /**
+                                                                              * @file     core_cmInstr.h
+                                                                              * @brief    CMSIS Cortex-M Core Instruction Access Header File
+                                                                              * @version  V4.20
+                                                                              * @date     02. July 2015
+                                                                              ******************************************************************************/
 /* Copyright (c) 2009 - 2015 ARM LIMITED
 
    All rights reserved.
@@ -31,49 +31,56 @@
    POSSIBILITY OF SUCH DAMAGE.
    ---------------------------------------------------------------------------*/
 
-
-#if   defined ( __ICCARM__ )
- #pragma system_include         /* treat file as system include file for MISRA check */
-#elif (__ARMCC_VERSION >= 6010050)
-  #pragma clang system_header   /* treat file as system include file */
+#if defined( __ICCARM__ )
+    #pragma system_include /* treat file as system include file for MISRA \
+                              check */
+#elif( __ARMCC_VERSION >= 6010050 )
+    #pragma clang system_header /* treat file as system include file */
 #endif
 
 #ifndef __CORE_CMINSTR_H
-#define __CORE_CMINSTR_H
+    #define __CORE_CMINSTR_H
 
-
-/* ##########################  Core Instruction Access  ######################### */
+/* ##########################  Core Instruction Access #########################
+ */
 /** \defgroup CMSIS_Core_InstructionInterface CMSIS Core Instruction Interface
   Access to dedicated instructions
   @{
 */
 
-#if   defined ( __CC_ARM )         /*------------------ RealView Compiler -----------------*/
-  #include <cmsis_armcc.h>
+    #if defined( __CC_ARM ) /*------------------ RealView Compiler \
+                               -----------------*/
+        #include <cmsis_armcc.h>
 
-#elif (__ARMCC_VERSION >= 6010050) /*------------------ ARM Compiler V6 -------------------*/
-  #include <cmsis_armcc_V6.h>
+    #elif( __ARMCC_VERSION >= 6010050 ) /*------------------ ARM Compiler V6 \
+                                           -------------------*/
+        #include <cmsis_armcc_V6.h>
 
-#elif defined ( __GNUC__ )         /*------------------ GNU Compiler ----------------------*/
-  #include <cmsis_gcc.h>
+    #elif defined( __GNUC__ ) /*------------------ GNU Compiler \
+                                 ----------------------*/
+        #include <cmsis_gcc.h>
 
-#elif defined ( __ICCARM__ )       /*------------------ ICC Compiler ----------------------*/
-  #include <cmsis_iar.h>
+    #elif defined( __ICCARM__ ) /*------------------ ICC Compiler \
+                                   ----------------------*/
+        #include <cmsis_iar.h>
 
-#elif defined ( __TMS470__ )       /*------------------ TI CCS Compiler -------------------*/
-  #include <cmsis_ccs.h>
+    #elif defined( __TMS470__ ) /*------------------ TI CCS Compiler \
+                                   -------------------*/
+        #include <cmsis_ccs.h>
 
-#elif defined ( __TASKING__ )      /*------------------ TASKING Compiler ------------------*/
+    #elif defined( __TASKING__ ) /*------------------ TASKING Compiler \
+                                    ------------------*/
     /*
      * The CMSIS functions have been implemented as intrinsics in the compiler.
      * Please use "carm -?i" to get an up to date list of all intrinsics,
      * Including the CMSIS ones.
-   */
+     */
 
-#elif defined ( __CSMC__ )         /*------------------ COSMIC Compiler -------------------*/
-  #include <cmsis_csm.h>
+    #elif defined( __CSMC__ ) /*------------------ COSMIC Compiler \
+                                 -------------------*/
+        #include <cmsis_csm.h>
 
-#endif
+    #endif
 
 /*@}*/ /* end of group CMSIS_Core_InstructionInterface */
 

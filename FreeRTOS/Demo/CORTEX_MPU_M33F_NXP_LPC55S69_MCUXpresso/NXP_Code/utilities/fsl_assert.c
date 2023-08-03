@@ -11,56 +11,76 @@
 #include "fsl_debug_console.h"
 
 #ifndef NDEBUG
-#if (defined(__CC_ARM)) || (defined(__ARMCC_VERSION)) || (defined(__ICCARM__))
-void __aeabi_assert(const char *failedExpr, const char *file, int line)
+    #if( defined( __CC_ARM ) ) || ( defined( __ARMCC_VERSION ) ) || \
+        ( defined( __ICCARM__ ) )
+void __aeabi_assert( const char * failedExpr, const char * file, int line )
 {
-#if SDK_DEBUGCONSOLE == DEBUGCONSOLE_DISABLE
-    PRINTF("ASSERT ERROR \" %s \": file \"%s\" Line \"%d\" \n", failedExpr, file, line);
-#else
-    (void)PRINTF("ASSERT ERROR \" %s \": file \"%s\" Line \"%d\" \n", failedExpr, file, line);
-#endif
+        #if SDK_DEBUGCONSOLE == DEBUGCONSOLE_DISABLE
+    PRINTF( "ASSERT ERROR \" %s \": file \"%s\" Line \"%d\" \n",
+            failedExpr,
+            file,
+            line );
+        #else
+    ( void ) PRINTF( "ASSERT ERROR \" %s \": file \"%s\" Line \"%d\" \n",
+                     failedExpr,
+                     file,
+                     line );
+        #endif
 
-    for (;;)
+    for( ;; )
     {
-        __BKPT(0);
+        __BKPT( 0 );
     }
 }
-#elif (defined(__GNUC__))
-#if defined(__REDLIB__)
-void __assertion_failed(char *failedExpr)
+    #elif( defined( __GNUC__ ) )
+        #if defined( __REDLIB__ )
+void __assertion_failed( char * failedExpr )
 {
-    (void)PRINTF("ASSERT ERROR \" %s \n", failedExpr);
-    for (;;)
+    ( void ) PRINTF( "ASSERT ERROR \" %s \n", failedExpr );
+    for( ;; )
     {
-        __BKPT(0);
+        __BKPT( 0 );
     }
 }
-#else
-void __assert_func(const char *file, int line, const char *func, const char *failedExpr)
+        #else
+void __assert_func( const char * file,
+                    int line,
+                    const char * func,
+                    const char * failedExpr )
 {
-    (void)PRINTF("ASSERT ERROR \" %s \": file \"%s\" Line \"%d\" function name \"%s\" \n", failedExpr, file, line,
-                 func);
-    for (;;)
+    ( void ) PRINTF( "ASSERT ERROR \" %s \": file \"%s\" Line \"%d\" function "
+                     "name \"%s\" \n",
+                     failedExpr,
+                     file,
+                     line,
+                     func );
+    for( ;; )
     {
-        __BKPT(0);
+        __BKPT( 0 );
     }
 }
-#endif /* defined(__REDLIB__) */
-#else  /* (defined(__CC_ARM) || (defined(__ICCARM__)) || (defined(__ARMCC_VERSION)) */
+        #endif /* defined(__REDLIB__) */
+    #else      /* (defined(__CC_ARM) || (defined(__ICCARM__)) || \
+                  (defined(__ARMCC_VERSION)) */
 
-#if (defined(__DSC__) && defined(__CW__))
+        #if( defined( __DSC__ ) && defined( __CW__ ) )
 
-void __msl_assertion_failed(char const *failedExpr, char const *file, char const *func, int line)
+void __msl_assertion_failed( char const * failedExpr,
+                             char const * file,
+                             char const * func,
+                             int line )
 {
-    PRINTF("\r\nASSERT ERROR\r\n");
-    PRINTF("  File      : %s\r\n", file);
-    PRINTF("  Function  : %s\r\n", func); /*compiler not support func name yet*/
-    PRINTF("  Line      : %u\r\n", (uint32_t)line);
-    PRINTF("  failedExpr: %s\r\n", failedExpr);
-    asm(DEBUGHLT);
+    PRINTF( "\r\nASSERT ERROR\r\n" );
+    PRINTF( "  File      : %s\r\n", file );
+    PRINTF( "  Function  : %s\r\n", func ); /*compiler not support func name
+                                               yet*/
+    PRINTF( "  Line      : %u\r\n", ( uint32_t ) line );
+    PRINTF( "  failedExpr: %s\r\n", failedExpr );
+    asm( DEBUGHLT );
 }
 
-#endif /* (defined(__DSC__) && defined (__CW__)) */
+        #endif /* (defined(__DSC__) && defined (__CW__)) */
 
-#endif /* (defined(__CC_ARM) || (defined(__ICCARM__)) || (defined(__ARMCC_VERSION)) */
-#endif /* NDEBUG */
+    #endif /* (defined(__CC_ARM) || (defined(__ICCARM__)) || \
+              (defined(__ARMCC_VERSION)) */
+#endif     /* NDEBUG */

@@ -96,25 +96,25 @@ extern "C" {
 #include <stdint.h>
 #include <ti/drivers/SD.h>
 
-#include <third_party/fatfs/ff.h>
 #include <third_party/fatfs/diskio.h>
+#include <third_party/fatfs/ff.h>
 
 /*!
  *  @brief SDFatFS Object
  *  The application must not access any member variables of this structure!
  */
-typedef struct SDFatFS_Object_ {
+typedef struct SDFatFS_Object_
+{
     uint_fast32_t driveNum;
-    DSTATUS       diskState;
-    FATFS         filesystem; /* FATFS data object */
-    SD_Handle     sdHandle;
+    DSTATUS diskState;
+    FATFS filesystem; /* FATFS data object */
+    SD_Handle sdHandle;
 } SDFatFS_Object;
 
 /*!
  *  @brief A handle that is returned from a SDFatFS_open() call.
  */
-typedef struct SDFatFS_Config_      *SDFatFS_Handle;
-
+typedef struct SDFatFS_Config_ * SDFatFS_Handle;
 
 /*!
  *  @brief SDFatFS Global configuration
@@ -127,9 +127,10 @@ typedef struct SDFatFS_Config_      *SDFatFS_Handle;
  *
  *  @sa SDFatFS_init()
  */
-typedef struct SDFatFS_Config_ {
+typedef struct SDFatFS_Config_
+{
     /*! Pointer to a SDFatFS object */
-    void       *object;
+    void * object;
 } SDFatFS_Config;
 
 /*!
@@ -142,7 +143,7 @@ typedef struct SDFatFS_Config_ {
  *               table.
  *  @param drive Drive Number
  */
-extern SDFatFS_Handle SDFatFS_open(uint_least8_t idx, uint_least8_t drive);
+extern SDFatFS_Handle SDFatFS_open( uint_least8_t idx, uint_least8_t drive );
 
 /*!
  *  @brief Function to close a SDFatFS instance specified by the SDFatFS
@@ -157,12 +158,12 @@ extern SDFatFS_Handle SDFatFS_open(uint_least8_t idx, uint_least8_t drive);
  *
  *  @sa SDFatFS_open()
  */
-extern void SDFatFS_close(SDFatFS_Handle handle);
+extern void SDFatFS_close( SDFatFS_Handle handle );
 
 /*!
  *  Function to initialize a SDFatFS instance
  */
-extern void SDFatFS_init(void);
+extern void SDFatFS_init( void );
 
 #ifdef __cplusplus
 }

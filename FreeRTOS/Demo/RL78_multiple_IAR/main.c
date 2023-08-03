@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -50,15 +51,15 @@
 
 /* Scheduler include files. */
 #include "FreeRTOS.h"
-#include "task.h"
 #include "semphr.h"
+#include "task.h"
 
 /* Hardware includes. */
 #include "demo_specific_io.h"
 
 /* Set mainCREATE_SIMPLE_BLINKY_DEMO_ONLY to one to run the simple blinky demo,
 or 0 to run the more comprehensive test and demo application. */
-#define mainCREATE_SIMPLE_BLINKY_DEMO_ONLY    0
+#define mainCREATE_SIMPLE_BLINKY_DEMO_ONLY 0
 
 /*-----------------------------------------------------------*/
 
@@ -73,13 +74,13 @@ extern void main_full( void );
  * This function is called from the C startup routine to setup the processor -
  * in particular the CPU clock source.
  */
-int __low_level_init(void);
+int __low_level_init( void );
 
 /* Prototypes for the standard FreeRTOS callback/hook functions implemented
 within this file. */
 void vApplicationMallocFailedHook( void );
 void vApplicationIdleHook( void );
-void vApplicationStackOverflowHook( TaskHandle_t pxTask, char *pcTaskName );
+void vApplicationStackOverflowHook( TaskHandle_t pxTask, char * pcTaskName );
 void vApplicationTickHook( void );
 
 /* Prototype for the application-implemented timer for the OS tick */
@@ -93,32 +94,28 @@ static SemaphoreHandle_t xSemaphore = NULL;
 
 /* RL78 Option Byte Definition. Watchdog disabled, LVI enabled, OCD interface
 enabled. */
-__root __far const unsigned char OptionByte[] @ 0x00C0 =
-{
-    0x6eU, 0xffU, 0xe8U, 0x85U
-};
+__root __far const unsigned char OptionByte[]
+    @0x00C0 = { 0x6eU, 0xffU, 0xe8U, 0x85U };
 
 /* Security byte definition */
-__root __far const unsigned char ucSecurityCode[]  @ 0x00C4 =
-{
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
-};
+__root __far const unsigned char ucSecurityCode[]
+    @0x00C4 = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 
 /*-----------------------------------------------------------*/
 
 void main( void )
 {
-    /* The mainCREATE_SIMPLE_BLINKY_DEMO_ONLY setting is described at the top
-    of this file. */
-    #if mainCREATE_SIMPLE_BLINKY_DEMO_ONLY == 1
+/* The mainCREATE_SIMPLE_BLINKY_DEMO_ONLY setting is described at the top
+of this file. */
+#if mainCREATE_SIMPLE_BLINKY_DEMO_ONLY == 1
     {
         main_blinky();
     }
-    #else
+#else
     {
         main_full();
     }
-    #endif
+#endif
 }
 /*-----------------------------------------------------------*/
 
@@ -136,7 +133,7 @@ void vAnExampleISR_C_Handler( void )
      * Also see the documentation page for this demo on the FreeRTOS.org website
      * for full instructions.
      */
-short sHigherPriorityTaskWoken = pdFALSE;
+    short sHigherPriorityTaskWoken = pdFALSE;
 
     /* Handler code goes here...*/
 
@@ -154,7 +151,7 @@ short sHigherPriorityTaskWoken = pdFALSE;
 }
 /*-----------------------------------------------------------*/
 
-int __low_level_init(void)
+int __low_level_init( void )
 {
     portDISABLE_INTERRUPTS();
 
@@ -184,15 +181,15 @@ int __low_level_init(void)
 
 void vApplicationSetupTimerInterrupt( void )
 {
-const uint16_t usClockHz = 15000UL; /* Internal clock. */
-const uint16_t usCompareMatch = ( usClockHz / configTICK_RATE_HZ ) + 1UL;
+    const uint16_t usClockHz = 15000UL; /* Internal clock. */
+    const uint16_t usCompareMatch = ( usClockHz / configTICK_RATE_HZ ) + 1UL;
 
     /* Use the internal 15 kHz clock. */
     OSMC = ( uint8_t ) 0x16;
 
-    /* The clock source for the Interval Timer peripheral used for generating
-    the tick interrupt depends on the RL78 device in use. */
-    #if configTICK_VECTOR == 0x38
+/* The clock source for the Interval Timer peripheral used for generating
+the tick interrupt depends on the RL78 device in use. */
+#if configTICK_VECTOR == 0x38
     {
         /* Supply the interval timer clock. */
         RTCEN = ( uint8_t ) 1U;
@@ -212,7 +209,7 @@ const uint16_t usCompareMatch = ( usClockHz / configTICK_RATE_HZ ) + 1UL;
         /* Enable INTIT interrupt. */
         ITMK = ( uint8_t ) 0;
     }
-    #elif configTICK_VECTOR == 0x3C
+#elif configTICK_VECTOR == 0x3C
     {
         /* Supply the interval timer clock. */
         TMKAEN = ( uint8_t ) 1U;
@@ -232,9 +229,10 @@ const uint16_t usCompareMatch = ( usClockHz / configTICK_RATE_HZ ) + 1UL;
         /* Enable INTIT interrupt. */
         TMKAMK = ( uint8_t ) 0;
     }
-    #else
-        #error "It is necessary to configure a suitable timer interrupt for the tick."
-    #endif
+#else
+    #error \
+        "It is necessary to configure a suitable timer interrupt for the tick."
+#endif
 }
 /*-----------------------------------------------------------*/
 
@@ -246,11 +244,12 @@ void vApplicationMallocFailedHook( void )
     timers, and semaphores.  The size of the FreeRTOS heap is set by the
     configTOTAL_HEAP_SIZE configuration constant in FreeRTOSConfig.h. */
     taskDISABLE_INTERRUPTS();
-    for( ;; );
+    for( ;; )
+        ;
 }
 /*-----------------------------------------------------------*/
 
-void vApplicationStackOverflowHook( TaskHandle_t pxTask, char *pcTaskName )
+void vApplicationStackOverflowHook( TaskHandle_t pxTask, char * pcTaskName )
 {
     ( void ) pcTaskName;
     ( void ) pxTask;
@@ -259,13 +258,14 @@ void vApplicationStackOverflowHook( TaskHandle_t pxTask, char *pcTaskName )
     configCHECK_FOR_STACK_OVERFLOW is defined to 1 or 2.  This hook
     function is called if a stack overflow is detected. */
     taskDISABLE_INTERRUPTS();
-    for( ;; );
+    for( ;; )
+        ;
 }
 /*-----------------------------------------------------------*/
 
 void vApplicationIdleHook( void )
 {
-volatile size_t xFreeHeapSpace;
+    volatile size_t xFreeHeapSpace;
 
     /* This is just a trivial example of an idle hook.  It is called on each
     cycle of the idle task.  It must *NOT* attempt to block.  In this case the

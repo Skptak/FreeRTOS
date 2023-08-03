@@ -43,35 +43,35 @@
 #ifndef OSC_H_INCLUDED
 #define OSC_H_INCLUDED
 
-#include "parts.h"
 #include "conf_clock.h"
+#include "parts.h"
 
 #if SAM3S
-# include "sam3s/osc.h"
+    #include "sam3s/osc.h"
 #elif SAM3XA
-# include "sam3x/osc.h"
+    #include "sam3x/osc.h"
 #elif SAM3U
-# include "sam3u/osc.h"
+    #include "sam3u/osc.h"
 #elif SAM3N
-# include "sam3n/osc.h"
+    #include "sam3n/osc.h"
 #elif SAM4S
-# include "sam4s/osc.h"
-#elif (UC3A0 || UC3A1)
-# include "uc3a0_a1/osc.h"
+    #include "sam4s/osc.h"
+#elif( UC3A0 || UC3A1 )
+    #include "uc3a0_a1/osc.h"
 #elif UC3A3
-# include "uc3a3_a4/osc.h"
+    #include "uc3a3_a4/osc.h"
 #elif UC3B
-# include "uc3b0_b1/osc.h"
+    #include "uc3b0_b1/osc.h"
 #elif UC3C
-# include "uc3c/osc.h"
+    #include "uc3c/osc.h"
 #elif UC3D
-# include "uc3d/osc.h"
+    #include "uc3d/osc.h"
 #elif UC3L
-# include "uc3l/osc.h"
+    #include "uc3l/osc.h"
 #elif XMEGA
-# include "xmega/osc.h"
+    #include "xmega/osc.h"
 #else
-# error Unsupported chip type
+    #error Unsupported chip type
 #endif
 
 /**
@@ -93,8 +93,8 @@
  * procedure is used on all platforms, the parameter to osc_enable()
  * will be different from device to device.
  * \code
-	osc_enable(OSC_ID_XOSC);
-	osc_wait_ready(OSC_ID_XOSC); \endcode
+    osc_enable(OSC_ID_XOSC);
+    osc_wait_ready(OSC_ID_XOSC); \endcode
  *
  * \section osc_group_board Board-specific Definitions
  * If external oscillators are used, the board code must provide the
@@ -144,11 +144,12 @@
  *
  * \param id A number identifying the oscillator to wait for.
  */
-static inline void osc_wait_ready(uint8_t id)
+static inline void osc_wait_ready( uint8_t id )
 {
-	while (!osc_is_ready(id)) {
-		/* Do nothing */
-	}
+    while( !osc_is_ready( id ) )
+    {
+        /* Do nothing */
+    }
 }
 
 #endif /* __ASSEMBLY__ */

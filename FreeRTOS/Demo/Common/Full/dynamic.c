@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -109,8 +110,8 @@
 
 /* Scheduler include files. */
 #include "FreeRTOS.h"
-#include "task.h"
 #include "semphr.h"
+#include "task.h"
 
 /* Demo app include files. */
 #include "dynamic.h"
@@ -135,20 +136,20 @@ static void vQueueSendWhenSuspendedTask( void * pvParameters );
 static void prvChangePriorityWhenSuspendedTask( void * pvParameters );
 static void prvChangePriorityHelperTask( void * pvParameters );
 
-
 /* Demo task specific constants. */
-#define priSTACK_SIZE                ( ( unsigned short ) configMINIMAL_STACK_SIZE )
-#define priSLEEP_TIME                ( ( TickType_t ) 50 )
-#define priLOOPS                     ( 5 )
-#define priMAX_COUNT                 ( ( unsigned long ) 0xff )
-#define priNO_BLOCK                  ( ( TickType_t ) 0 )
-#define priSUSPENDED_QUEUE_LENGTH    ( 1 )
+#define priSTACK_SIZE             ( ( unsigned short ) configMINIMAL_STACK_SIZE )
+#define priSLEEP_TIME             ( ( TickType_t ) 50 )
+#define priLOOPS                  ( 5 )
+#define priMAX_COUNT              ( ( unsigned long ) 0xff )
+#define priNO_BLOCK               ( ( TickType_t ) 0 )
+#define priSUSPENDED_QUEUE_LENGTH ( 1 )
 
 /*-----------------------------------------------------------*/
 
 /* Handles to the two counter tasks.  These could be passed in as parameters
  * to the controller task to prevent them having to be file scope. */
-static TaskHandle_t xContinuousIncrementHandle, xLimitedIncrementHandle, xChangePriorityWhenSuspendedHandle;
+static TaskHandle_t xContinuousIncrementHandle, xLimitedIncrementHandle,
+    xChangePriorityWhenSuspendedHandle;
 
 /* The shared counter variable.  This is passed in as a parameter to the two
  * counter variables for demonstration purposes. */
@@ -178,14 +179,50 @@ QueueHandle_t xSuspendedTestQueue;
  */
 void vStartDynamicPriorityTasks( void )
 {
-    xSuspendedTestQueue = xQueueCreate( priSUSPENDED_QUEUE_LENGTH, sizeof( unsigned long ) );
-    xTaskCreate( vContinuousIncrementTask, "CONT_INC", priSTACK_SIZE, ( void * ) &ulCounter, tskIDLE_PRIORITY, &xContinuousIncrementHandle );
-    xTaskCreate( vLimitedIncrementTask, "LIM_INC", priSTACK_SIZE, ( void * ) &ulCounter, tskIDLE_PRIORITY + 1, &xLimitedIncrementHandle );
-    xTaskCreate( vCounterControlTask, "C_CTRL", priSTACK_SIZE, NULL, tskIDLE_PRIORITY, NULL );
-    xTaskCreate( vQueueSendWhenSuspendedTask, "SUSP_SEND", priSTACK_SIZE, NULL, tskIDLE_PRIORITY, NULL );
-    xTaskCreate( vQueueReceiveWhenSuspendedTask, "SUSP_RECV", priSTACK_SIZE, NULL, tskIDLE_PRIORITY, NULL );
-    xTaskCreate( prvChangePriorityWhenSuspendedTask, "1st_P_CHANGE", priSTACK_SIZE, NULL, tskIDLE_PRIORITY + 1, NULL );
-    xTaskCreate( prvChangePriorityHelperTask, "2nd_P_CHANGE", priSTACK_SIZE, NULL, tskIDLE_PRIORITY, &xChangePriorityWhenSuspendedHandle );
+    xSuspendedTestQueue = xQueueCreate( priSUSPENDED_QUEUE_LENGTH,
+                                        sizeof( unsigned long ) );
+    xTaskCreate( vContinuousIncrementTask,
+                 "CONT_INC",
+                 priSTACK_SIZE,
+                 ( void * ) &ulCounter,
+                 tskIDLE_PRIORITY,
+                 &xContinuousIncrementHandle );
+    xTaskCreate( vLimitedIncrementTask,
+                 "LIM_INC",
+                 priSTACK_SIZE,
+                 ( void * ) &ulCounter,
+                 tskIDLE_PRIORITY + 1,
+                 &xLimitedIncrementHandle );
+    xTaskCreate( vCounterControlTask,
+                 "C_CTRL",
+                 priSTACK_SIZE,
+                 NULL,
+                 tskIDLE_PRIORITY,
+                 NULL );
+    xTaskCreate( vQueueSendWhenSuspendedTask,
+                 "SUSP_SEND",
+                 priSTACK_SIZE,
+                 NULL,
+                 tskIDLE_PRIORITY,
+                 NULL );
+    xTaskCreate( vQueueReceiveWhenSuspendedTask,
+                 "SUSP_RECV",
+                 priSTACK_SIZE,
+                 NULL,
+                 tskIDLE_PRIORITY,
+                 NULL );
+    xTaskCreate( prvChangePriorityWhenSuspendedTask,
+                 "1st_P_CHANGE",
+                 priSTACK_SIZE,
+                 NULL,
+                 tskIDLE_PRIORITY + 1,
+                 NULL );
+    xTaskCreate( prvChangePriorityHelperTask,
+                 "2nd_P_CHANGE",
+                 priSTACK_SIZE,
+                 NULL,
+                 tskIDLE_PRIORITY,
+                 &xChangePriorityWhenSuspendedHandle );
 }
 /*-----------------------------------------------------------*/
 
@@ -205,7 +242,7 @@ static void vLimitedIncrementTask( void * pvParameters )
      * suspend - the control task will resume it when ready. */
     vTaskSuspend( NULL );
 
-    for( ; ; )
+    for( ;; )
     {
         /* Just count up to a value then suspend. */
         ( *pulCounter )++;
@@ -235,7 +272,7 @@ static void vContinuousIncrementTask( void * pvParameters )
      * shared variable is required. */
     uxOurPriority = uxTaskPriorityGet( NULL );
 
-    for( ; ; )
+    for( ;; )
     {
         /* Raise our priority above the controller task to ensure a context
          * switch does not occur while we are accessing this variable. */
@@ -243,9 +280,9 @@ static void vContinuousIncrementTask( void * pvParameters )
         ( *pulCounter )++;
         vTaskPrioritySet( NULL, uxOurPriority );
 
-        #if configUSE_PREEMPTION == 0
-            taskYIELD();
-        #endif
+#if configUSE_PREEMPTION == 0
+        taskYIELD();
+#endif
     }
 }
 /*-----------------------------------------------------------*/
@@ -258,7 +295,8 @@ static void vCounterControlTask( void * pvParameters )
     unsigned long ulLastCounter;
     short sLoops;
     short sError = pdFALSE;
-    const char * const pcTaskStartMsg = "Priority manipulation tasks started.\r\n";
+    const char * const pcTaskStartMsg = "Priority manipulation tasks "
+                                        "started.\r\n";
     const char * const pcTaskFailMsg = "Priority manipulation Task Failed\r\n";
 
     /* Just to stop warning messages. */
@@ -267,7 +305,7 @@ static void vCounterControlTask( void * pvParameters )
     /* Queue a message for printing to say the task has started. */
     vPrintDisplayMessage( &pcTaskStartMsg );
 
-    for( ; ; )
+    for( ;; )
     {
         /* Start with the counter at zero. */
         ulCounter = ( unsigned long ) 0;
@@ -306,7 +344,8 @@ static void vCounterControlTask( void * pvParameters )
 
         /* Second section: */
 
-        /* Suspend the continuous counter task so it stops accessing the shared variable. */
+        /* Suspend the continuous counter task so it stops accessing the shared
+         * variable. */
         vTaskSuspend( xContinuousIncrementHandle );
 
         /* Reset the variable. */
@@ -336,9 +375,9 @@ static void vCounterControlTask( void * pvParameters )
             portEXIT_CRITICAL();
         }
 
-        #if configUSE_PREEMPTION == 0
-            taskYIELD();
-        #endif
+#if configUSE_PREEMPTION == 0
+        taskYIELD();
+#endif
 
         /* Resume the continuous count task and do it all again. */
         vTaskResume( xContinuousIncrementHandle );
@@ -349,7 +388,8 @@ static void vCounterControlTask( void * pvParameters )
 static void vQueueSendWhenSuspendedTask( void * pvParameters )
 {
     static unsigned long ulValueToSend = ( unsigned long ) 0;
-    const char * const pcTaskStartMsg = "Queue send while suspended task started.\r\n";
+    const char * const pcTaskStartMsg = "Queue send while suspended task "
+                                        "started.\r\n";
     const char * const pcTaskFailMsg = "Queue send while suspended failed.\r\n";
 
     /* Just to stop warning messages. */
@@ -358,12 +398,14 @@ static void vQueueSendWhenSuspendedTask( void * pvParameters )
     /* Queue a message for printing to say the task has started. */
     vPrintDisplayMessage( &pcTaskStartMsg );
 
-    for( ; ; )
+    for( ;; )
     {
         vTaskSuspendAll();
         {
             /* We must not block while the scheduler is suspended! */
-            if( xQueueSend( xSuspendedTestQueue, ( void * ) &ulValueToSend, priNO_BLOCK ) != pdTRUE )
+            if( xQueueSend( xSuspendedTestQueue,
+                            ( void * ) &ulValueToSend,
+                            priNO_BLOCK ) != pdTRUE )
             {
                 if( xSuspendedQueueSendError == pdFALSE )
                 {
@@ -387,8 +429,10 @@ static void vQueueSendWhenSuspendedTask( void * pvParameters )
 static void vQueueReceiveWhenSuspendedTask( void * pvParameters )
 {
     static unsigned long ulExpectedValue = ( unsigned long ) 0, ulReceivedValue;
-    const char * const pcTaskStartMsg = "Queue receive while suspended task started.\r\n";
-    const char * const pcTaskFailMsg = "Queue receive while suspended failed.\r\n";
+    const char * const pcTaskStartMsg = "Queue receive while suspended task "
+                                        "started.\r\n";
+    const char * const pcTaskFailMsg = "Queue receive while suspended "
+                                       "failed.\r\n";
     portBASE_TYPE xGotValue;
 
     /* Just to stop warning messages. */
@@ -397,7 +441,7 @@ static void vQueueReceiveWhenSuspendedTask( void * pvParameters )
     /* Queue a message for printing to say the task has started. */
     vPrintDisplayMessage( &pcTaskStartMsg );
 
-    for( ; ; )
+    for( ;; )
     {
         do
         {
@@ -410,7 +454,9 @@ static void vQueueReceiveWhenSuspendedTask( void * pvParameters )
             {
                 vTaskSuspendAll();
                 {
-                    xGotValue = xQueueReceive( xSuspendedTestQueue, ( void * ) &ulReceivedValue, priNO_BLOCK );
+                    xGotValue = xQueueReceive( xSuspendedTestQueue,
+                                               ( void * ) &ulReceivedValue,
+                                               priNO_BLOCK );
                 }
 
                 if( xTaskResumeAll() )
@@ -420,9 +466,9 @@ static void vQueueReceiveWhenSuspendedTask( void * pvParameters )
             }
             xTaskResumeAll();
 
-            #if configUSE_PREEMPTION == 0
-                taskYIELD();
-            #endif
+#if configUSE_PREEMPTION == 0
+            taskYIELD();
+#endif
         } while( xGotValue == pdFALSE );
 
         if( ulReceivedValue != ulExpectedValue )
@@ -442,8 +488,10 @@ static void vQueueReceiveWhenSuspendedTask( void * pvParameters )
 
 static void prvChangePriorityWhenSuspendedTask( void * pvParameters )
 {
-    const char * const pcTaskStartMsg = "Priority change when suspended task started.\r\n";
-    const char * const pcTaskFailMsg = "Priority change when suspended task failed.\r\n";
+    const char * const pcTaskStartMsg = "Priority change when suspended task "
+                                        "started.\r\n";
+    const char * const pcTaskFailMsg = "Priority change when suspended task "
+                                       "failed.\r\n";
 
     /* Just to stop warning messages. */
     ( void ) pvParameters;
@@ -451,7 +499,7 @@ static void prvChangePriorityWhenSuspendedTask( void * pvParameters )
     /* Queue a message for printing to say the task has started. */
     vPrintDisplayMessage( &pcTaskStartMsg );
 
-    for( ; ; )
+    for( ;; )
     {
         /* Start with the counter at 0 so we know what the counter should be
          * when we check it next. */
@@ -475,7 +523,8 @@ static void prvChangePriorityWhenSuspendedTask( void * pvParameters )
         /* Now try raising the priority while the scheduler is suspended. */
         vTaskSuspendAll();
         {
-            vTaskPrioritySet( xChangePriorityWhenSuspendedHandle, ( configMAX_PRIORITIES - 1 ) );
+            vTaskPrioritySet( xChangePriorityWhenSuspendedHandle,
+                              ( configMAX_PRIORITIES - 1 ) );
 
             /* Again, even though the helper task has a priority greater than
              * ours, it should not have executed yet because the scheduler is
@@ -493,8 +542,9 @@ static void prvChangePriorityWhenSuspendedTask( void * pvParameters )
         xTaskResumeAll();
 
         /* Now the scheduler has been resumed the helper task should
-         * immediately preempt us and execute.  When it executes it will increment
-         * the ulPrioritySetCounter exactly once before suspending itself.
+         * immediately preempt us and execute.  When it executes it will
+         * increment the ulPrioritySetCounter exactly once before suspending
+         * itself.
          *
          * We should now always find the counter set to 1. */
         portENTER_CRITICAL();
@@ -513,7 +563,8 @@ static void prvChangePriorityWhenSuspendedTask( void * pvParameters )
         /* Set the priority of the helper task back ready for the next
          * execution of this task. */
         vTaskSuspendAll();
-        vTaskPrioritySet( xChangePriorityWhenSuspendedHandle, tskIDLE_PRIORITY );
+        vTaskPrioritySet( xChangePriorityWhenSuspendedHandle,
+                          tskIDLE_PRIORITY );
         xTaskResumeAll();
     }
 }
@@ -524,7 +575,7 @@ static void prvChangePriorityHelperTask( void * pvParameters )
     /* Just to stop warning messages. */
     ( void ) pvParameters;
 
-    for( ; ; )
+    for( ;; )
     {
         /* This is the helper task for prvChangePriorityWhenSuspendedTask().
          * It has it's priority raised and lowered.  When it runs it simply
@@ -537,11 +588,12 @@ static void prvChangePriorityHelperTask( void * pvParameters )
 }
 /*-----------------------------------------------------------*/
 
-/* Called to check that all the created tasks are still running without error. */
+/* Called to check that all the created tasks are still running without error.
+ */
 portBASE_TYPE xAreDynamicPriorityTasksStillRunning( void )
 {
-/* Keep a history of the check variables so we know if it has been incremented
- * since the last call. */
+    /* Keep a history of the check variables so we know if it has been
+     * incremented since the last call. */
     static unsigned short usLastTaskCheck = ( unsigned short ) 0;
     portBASE_TYPE xReturn = pdTRUE;
 

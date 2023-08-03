@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
- *         ATMEL Microcontroller Software Support 
+ *         ATMEL Microcontroller Software Support
  * ----------------------------------------------------------------------------
  * Copyright (c) 2008, Atmel Corporation
  *
@@ -39,9 +39,9 @@
 /// \param reloadValue  Value used for tick counter to reload.
 /// \param handler      Interrupt handler function, 0 to disable interrupt.
 //------------------------------------------------------------------------------
-void SysTick_Configure(unsigned char countEnable,
-                           unsigned int reloadValue,
-                           void( *handler )( void ))
+void SysTick_Configure( unsigned char countEnable,
+                        unsigned int reloadValue,
+                        void ( *handler )( void ) )
 {
     unsigned int intEnable = handler ? AT91C_NVIC_STICKINT : 0;
 
@@ -55,9 +55,6 @@ void SysTick_Configure(unsigned char countEnable,
     AT91C_BASE_NVIC->NVIC_STICKRVR = reloadValue;
 
     // Enable the SysTick
-    AT91C_BASE_NVIC->NVIC_STICKCSR =  AT91C_NVIC_STICKCLKSOURCE
-                                    | AT91C_NVIC_STICKENABLE
-                                    | intEnable;
-
+    AT91C_BASE_NVIC->NVIC_STICKCSR = AT91C_NVIC_STICKCLKSOURCE |
+                                     AT91C_NVIC_STICKENABLE | intEnable;
 }
-

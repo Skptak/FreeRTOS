@@ -32,13 +32,13 @@
 //
 //*****************************************************************************
 
+#include "flash.h"
 #include "../hw_flash.h"
 #include "../hw_ints.h"
 #include "../hw_memmap.h"
 #include "../hw_sysctl.h"
 #include "../hw_types.h"
 #include "debug.h"
-#include "flash.h"
 #include "interrupt.h"
 
 //*****************************************************************************
@@ -51,14 +51,13 @@
 //! \return Returns the number of processor clocks per micro-second.
 //
 //*****************************************************************************
-#if defined(GROUP_usecget) || defined(BUILD_ALL) || defined(DOXYGEN)
-unsigned long
-FlashUsecGet(void)
+#if defined( GROUP_usecget ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+unsigned long FlashUsecGet( void )
 {
     //
     // Return the number of clocks per micro-second.
     //
-    return(HWREG(FLASH_USECRL) + 1);
+    return ( HWREG( FLASH_USECRL ) + 1 );
 }
 #endif
 
@@ -76,14 +75,13 @@ FlashUsecGet(void)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_usecset) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-FlashUsecSet(unsigned long ulClocks)
+#if defined( GROUP_usecset ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void FlashUsecSet( unsigned long ulClocks )
 {
     //
     // Set the number of clocks per micro-second.
     //
-    HWREG(FLASH_USECRL) = ulClocks - 1;
+    HWREG( FLASH_USECRL ) = ulClocks - 1;
 }
 #endif
 
@@ -103,45 +101,44 @@ FlashUsecSet(unsigned long ulClocks)
 //! specified or the block is write-protected.
 //
 //*****************************************************************************
-#if defined(GROUP_erase) || defined(BUILD_ALL) || defined(DOXYGEN)
-long
-FlashErase(unsigned long ulAddress)
+#if defined( GROUP_erase ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+long FlashErase( unsigned long ulAddress )
 {
     //
     // Check the arguments.
     //
-    ASSERT(!(ulAddress & (FLASH_ERASE_SIZE - 1)));
+    ASSERT( !( ulAddress & ( FLASH_ERASE_SIZE - 1 ) ) );
 
     //
     // Clear the flash access interrupt.
     //
-    HWREG(FLASH_FCMISC) = FLASH_FCMISC_ACCESS;
+    HWREG( FLASH_FCMISC ) = FLASH_FCMISC_ACCESS;
 
     //
     // Erase the block.
     //
-    HWREG(FLASH_FMA) = ulAddress;
-    HWREG(FLASH_FMC) = FLASH_FMC_WRKEY | FLASH_FMC_ERASE;
+    HWREG( FLASH_FMA ) = ulAddress;
+    HWREG( FLASH_FMC ) = FLASH_FMC_WRKEY | FLASH_FMC_ERASE;
 
     //
     // Wait until the word has been programmed.
     //
-    while(HWREG(FLASH_FMC) & FLASH_FMC_ERASE)
+    while( HWREG( FLASH_FMC ) & FLASH_FMC_ERASE )
     {
     }
 
     //
     // Return an error if an access violation occurred.
     //
-    if(HWREG(FLASH_FCRIS) & FLASH_FCRIS_ACCESS)
+    if( HWREG( FLASH_FCRIS ) & FLASH_FCRIS_ACCESS )
     {
-        return(-1);
+        return ( -1 );
     }
 
     //
     // Success.
     //
-    return(0);
+    return ( 0 );
 }
 #endif
 
@@ -172,38 +169,38 @@ FlashErase(unsigned long ulAddress)
 //! \return Returns 0 on success, or -1 if a programming error is encountered.
 //
 //*****************************************************************************
-#if defined(GROUP_program) || defined(BUILD_ALL) || defined(DOXYGEN)
-long
-FlashProgram(unsigned long *pulData, unsigned long ulAddress,
-             unsigned long ulCount)
+#if defined( GROUP_program ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+long FlashProgram( unsigned long * pulData,
+                   unsigned long ulAddress,
+                   unsigned long ulCount )
 {
     //
     // Check the arguments.
     //
-    ASSERT(!(ulAddress & 3));
-    ASSERT(!(ulCount & 3));
+    ASSERT( !( ulAddress & 3 ) );
+    ASSERT( !( ulCount & 3 ) );
 
     //
     // Clear the flash access interrupt.
     //
-    HWREG(FLASH_FCMISC) = FLASH_FCMISC_ACCESS;
+    HWREG( FLASH_FCMISC ) = FLASH_FCMISC_ACCESS;
 
     //
     // Loop over the words to be programmed.
     //
-    while(ulCount)
+    while( ulCount )
     {
         //
         // Program the next word.
         //
-        HWREG(FLASH_FMA) = ulAddress;
-        HWREG(FLASH_FMD) = *pulData;
-        HWREG(FLASH_FMC) = FLASH_FMC_WRKEY | FLASH_FMC_WRITE;
+        HWREG( FLASH_FMA ) = ulAddress;
+        HWREG( FLASH_FMD ) = *pulData;
+        HWREG( FLASH_FMC ) = FLASH_FMC_WRKEY | FLASH_FMC_WRITE;
 
         //
         // Wait until the word has been programmed.
         //
-        while(HWREG(FLASH_FMC) & FLASH_FMC_WRITE)
+        while( HWREG( FLASH_FMC ) & FLASH_FMC_WRITE )
         {
         }
 
@@ -218,15 +215,15 @@ FlashProgram(unsigned long *pulData, unsigned long ulAddress,
     //
     // Return an error if an access violation occurred.
     //
-    if(HWREG(FLASH_FCRIS) & FLASH_FCRIS_ACCESS)
+    if( HWREG( FLASH_FCRIS ) & FLASH_FCRIS_ACCESS )
     {
-        return(-1);
+        return ( -1 );
     }
 
     //
     // Success.
     //
-    return(0);
+    return ( 0 );
 }
 #endif
 
@@ -246,26 +243,27 @@ FlashProgram(unsigned long *pulData, unsigned long ulAddress,
 //! FlashProtectSet() for possible values.
 //
 //*****************************************************************************
-#if defined(GROUP_protectget) || defined(BUILD_ALL) || defined(DOXYGEN)
-tFlashProtection
-FlashProtectGet(unsigned long ulAddress)
+#if defined( GROUP_protectget ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+tFlashProtection FlashProtectGet( unsigned long ulAddress )
 {
     unsigned long ulFMPRE, ulFMPPE;
 
     //
     // Check the argument.
     //
-    ASSERT(!(ulAddress & (FLASH_PROTECT_SIZE - 1)));
+    ASSERT( !( ulAddress & ( FLASH_PROTECT_SIZE - 1 ) ) );
 
     //
     // Read the flash protection register and get the bits that apply to the
     // specified block.
     //
-    ulFMPRE = HWREG(FLASH_FMPRE);
-    ulFMPPE = HWREG(FLASH_FMPPE);
-    switch((((ulFMPRE >> (ulAddress / FLASH_PROTECT_SIZE)) &
-             FLASH_FMP_BLOCK_0) << 1) |
-           ((ulFMPPE >> (ulAddress / FLASH_PROTECT_SIZE)) & FLASH_FMP_BLOCK_0))
+    ulFMPRE = HWREG( FLASH_FMPRE );
+    ulFMPPE = HWREG( FLASH_FMPPE );
+    switch( ( ( ( ulFMPRE >> ( ulAddress / FLASH_PROTECT_SIZE ) ) &
+                FLASH_FMP_BLOCK_0 )
+              << 1 ) |
+            ( ( ulFMPPE >> ( ulAddress / FLASH_PROTECT_SIZE ) ) &
+              FLASH_FMP_BLOCK_0 ) )
     {
         //
         // This block is marked as execute only (i.e. it can not be erased or
@@ -275,7 +273,7 @@ FlashProtectGet(unsigned long ulAddress)
         case 0:
         case 1:
         {
-            return(FlashExecuteOnly);
+            return ( FlashExecuteOnly );
         }
 
         //
@@ -284,7 +282,7 @@ FlashProtectGet(unsigned long ulAddress)
         //
         case 2:
         {
-            return(FlashReadOnly);
+            return ( FlashReadOnly );
         }
 
         //
@@ -293,7 +291,7 @@ FlashProtectGet(unsigned long ulAddress)
         case 3:
         default:
         {
-            return(FlashReadWrite);
+            return ( FlashReadWrite );
         }
     }
 }
@@ -324,18 +322,17 @@ FlashProtectGet(unsigned long ulAddress)
 //! protection was specified.
 //
 //*****************************************************************************
-#if defined(GROUP_protectset) || defined(BUILD_ALL) || defined(DOXYGEN)
-long
-FlashProtectSet(unsigned long ulAddress, tFlashProtection eProtect)
+#if defined( GROUP_protectset ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+long FlashProtectSet( unsigned long ulAddress, tFlashProtection eProtect )
 {
     unsigned long ulProtectRE, ulProtectPE;
 
     //
     // Check the argument.
     //
-    ASSERT(!(ulAddress & (FLASH_PROTECT_SIZE - 1)));
-    ASSERT((eProtect == FlashReadWrite) || (eProtect == FlashReadOnly) ||
-           (eProtect == FlashExecuteOnly));
+    ASSERT( !( ulAddress & ( FLASH_PROTECT_SIZE - 1 ) ) );
+    ASSERT( ( eProtect == FlashReadWrite ) || ( eProtect == FlashReadOnly ) ||
+            ( eProtect == FlashExecuteOnly ) );
 
     //
     // Convert the address into a block number.
@@ -345,13 +342,13 @@ FlashProtectSet(unsigned long ulAddress, tFlashProtection eProtect)
     //
     // Get the current protection.
     //
-    ulProtectRE = HWREG(FLASH_FMPRE);
-    ulProtectPE = HWREG(FLASH_FMPPE);
+    ulProtectRE = HWREG( FLASH_FMPRE );
+    ulProtectPE = HWREG( FLASH_FMPPE );
 
     //
     // Set the protection based on the requested proection.
     //
-    switch(eProtect)
+    switch( eProtect )
     {
         //
         // Make this block execute only.
@@ -361,8 +358,8 @@ FlashProtectSet(unsigned long ulAddress, tFlashProtection eProtect)
             //
             // Turn off the read and program bits for this block.
             //
-            ulProtectRE &= ~(FLASH_FMP_BLOCK_0 << ulAddress);
-            ulProtectPE &= ~(FLASH_FMP_BLOCK_0 << ulAddress);
+            ulProtectRE &= ~( FLASH_FMP_BLOCK_0 << ulAddress );
+            ulProtectPE &= ~( FLASH_FMP_BLOCK_0 << ulAddress );
 
             //
             // We're done handling this protection.
@@ -378,16 +375,16 @@ FlashProtectSet(unsigned long ulAddress, tFlashProtection eProtect)
             //
             // The block can not be made read only if it is execute only.
             //
-            if(((ulProtectRE >> ulAddress) & FLASH_FMP_BLOCK_0) !=
-               FLASH_FMP_BLOCK_0)
+            if( ( ( ulProtectRE >> ulAddress ) & FLASH_FMP_BLOCK_0 ) !=
+                FLASH_FMP_BLOCK_0 )
             {
-                return(-1);
+                return ( -1 );
             }
 
             //
             // Make this block read only.
             //
-            ulProtectPE &= ~(FLASH_FMP_BLOCK_0 << ulAddress);
+            ulProtectPE &= ~( FLASH_FMP_BLOCK_0 << ulAddress );
 
             //
             // We're done handling this protection.
@@ -405,31 +402,31 @@ FlashProtectSet(unsigned long ulAddress, tFlashProtection eProtect)
             // The block can not be made read/write if it is not already
             // read/write.
             //
-            if((((ulProtectRE >> ulAddress) & FLASH_FMP_BLOCK_0) !=
-                FLASH_FMP_BLOCK_0) ||
-               (((ulProtectPE >> ulAddress) & FLASH_FMP_BLOCK_0) !=
-                FLASH_FMP_BLOCK_0))
+            if( ( ( ( ulProtectRE >> ulAddress ) & FLASH_FMP_BLOCK_0 ) !=
+                  FLASH_FMP_BLOCK_0 ) ||
+                ( ( ( ulProtectPE >> ulAddress ) & FLASH_FMP_BLOCK_0 ) !=
+                  FLASH_FMP_BLOCK_0 ) )
             {
-                return(-1);
+                return ( -1 );
             }
 
             //
             // The block is already read/write, so there is nothing to do.
             //
-            return(0);
+            return ( 0 );
         }
     }
 
     //
     // Set the new protection.
     //
-    HWREG(FLASH_FMPRE) = ulProtectRE;
-    HWREG(FLASH_FMPPE) = ulProtectPE;
+    HWREG( FLASH_FMPRE ) = ulProtectRE;
+    HWREG( FLASH_FMPPE ) = ulProtectPE;
 
     //
     // Success.
     //
-    return(0);
+    return ( 0 );
 }
 #endif
 
@@ -446,20 +443,19 @@ FlashProtectSet(unsigned long ulAddress, tFlashProtection eProtect)
 //! \return Returns 0 on success, or -1 if a hardware error is encountered.
 //
 //*****************************************************************************
-#if defined(GROUP_protectsave) || defined(BUILD_ALL) || defined(DOXYGEN)
-long
-FlashProtectSave(void)
+#if defined( GROUP_protectsave ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+long FlashProtectSave( void )
 {
     //
     // Tell the flash controller to write the flash read protection register.
     //
-    HWREG(FLASH_FMA) = 0;
-    HWREG(FLASH_FMC) = FLASH_FMC_WRKEY | FLASH_FMC_COMT;
+    HWREG( FLASH_FMA ) = 0;
+    HWREG( FLASH_FMC ) = FLASH_FMC_WRKEY | FLASH_FMC_COMT;
 
     //
     // Wait until the write has completed.
     //
-    while(HWREG(FLASH_FMC) & FLASH_FMC_COMT)
+    while( HWREG( FLASH_FMC ) & FLASH_FMC_COMT )
     {
     }
 
@@ -467,20 +463,20 @@ FlashProtectSave(void)
     // Tell the flash controller to write the flash program protection
     // register.
     //
-    HWREG(FLASH_FMA) = 1;
-    HWREG(FLASH_FMC) = FLASH_FMC_WRKEY | FLASH_FMC_COMT;
+    HWREG( FLASH_FMA ) = 1;
+    HWREG( FLASH_FMC ) = FLASH_FMC_WRKEY | FLASH_FMC_COMT;
 
     //
     // Wait until the write has completed.
     //
-    while(HWREG(FLASH_FMC) & FLASH_FMC_COMT)
+    while( HWREG( FLASH_FMC ) & FLASH_FMC_COMT )
     {
     }
 
     //
     // Success.
     //
-    return(0);
+    return ( 0 );
 }
 #endif
 
@@ -504,19 +500,18 @@ FlashProtectSave(void)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_intregister) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-FlashIntRegister(void (*pfnHandler)(void))
+#if defined( GROUP_intregister ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void FlashIntRegister( void ( *pfnHandler )( void ) )
 {
     //
     // Register the interrupt handler, returning an error if an error occurs.
     //
-    IntRegister(INT_FLASH, pfnHandler);
+    IntRegister( INT_FLASH, pfnHandler );
 
     //
     // Enable the flash interrupt.
     //
-    IntEnable(INT_FLASH);
+    IntEnable( INT_FLASH );
 }
 #endif
 
@@ -534,19 +529,18 @@ FlashIntRegister(void (*pfnHandler)(void))
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_intunregister) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-FlashIntUnregister(void)
+#if defined( GROUP_intunregister ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void FlashIntUnregister( void )
 {
     //
     // Disable the interrupt.
     //
-    IntDisable(INT_FLASH);
+    IntDisable( INT_FLASH );
 
     //
     // Unregister the interrupt handler.
     //
-    IntUnregister(INT_FLASH);
+    IntUnregister( INT_FLASH );
 }
 #endif
 
@@ -564,14 +558,13 @@ FlashIntUnregister(void)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_intenable) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-FlashIntEnable(unsigned long ulIntFlags)
+#if defined( GROUP_intenable ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void FlashIntEnable( unsigned long ulIntFlags )
 {
     //
     // Enable the specified interrupts.
     //
-    HWREG(FLASH_FCIM) |= ulIntFlags;
+    HWREG( FLASH_FCIM ) |= ulIntFlags;
 }
 #endif
 
@@ -589,14 +582,13 @@ FlashIntEnable(unsigned long ulIntFlags)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_intdisable) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-FlashIntDisable(unsigned long ulIntFlags)
+#if defined( GROUP_intdisable ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void FlashIntDisable( unsigned long ulIntFlags )
 {
     //
     // Disable the specified interrupts.
     //
-    HWREG(FLASH_FCIM) &= ~(ulIntFlags);
+    HWREG( FLASH_FCIM ) &= ~( ulIntFlags );
 }
 #endif
 
@@ -615,21 +607,20 @@ FlashIntDisable(unsigned long ulIntFlags)
 //! \b FLASH_FCMISC_PROGRAM and \b FLASH_FCMISC_ACCESS.
 //
 //*****************************************************************************
-#if defined(GROUP_intgetstatus) || defined(BUILD_ALL) || defined(DOXYGEN)
-unsigned long
-FlashIntGetStatus(tBoolean bMasked)
+#if defined( GROUP_intgetstatus ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+unsigned long FlashIntGetStatus( tBoolean bMasked )
 {
     //
     // Return either the interrupt status or the raw interrupt status as
     // requested.
     //
-    if(bMasked)
+    if( bMasked )
     {
-        return(HWREG(FLASH_FCMISC));
+        return ( HWREG( FLASH_FCMISC ) );
     }
     else
     {
-        return(HWREG(FLASH_FCRIS));
+        return ( HWREG( FLASH_FCRIS ) );
     }
 }
 #endif
@@ -649,14 +640,13 @@ FlashIntGetStatus(tBoolean bMasked)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_intclear) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-FlashIntClear(unsigned long ulIntFlags)
+#if defined( GROUP_intclear ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void FlashIntClear( unsigned long ulIntFlags )
 {
     //
     // Clear the flash interrupt.
     //
-    HWREG(FLASH_FCMISC) = ulIntFlags;
+    HWREG( FLASH_FCMISC ) = ulIntFlags;
 }
 #endif
 

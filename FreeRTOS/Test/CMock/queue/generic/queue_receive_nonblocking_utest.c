@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -26,8 +27,8 @@
 /*! @file queue_receive_nonblocking_utest.c */
 
 /* C runtime includes. */
-#include <stdlib.h>
 #include <stdbool.h>
+#include <stdlib.h>
 #include <string.h>
 
 #include "../queue_utest_common.h"
@@ -141,7 +142,8 @@ void test_xQueuePeek_zeroItemSize_full( void )
 }
 
 /**
- * @brief Test xQueuePeek with a null pvBuffer on an empty queue of length 1, items size 4
+ * @brief Test xQueuePeek with a null pvBuffer on an empty queue of length 1,
+ * items size 4
  * @coverage xQueuePeek
  */
 void test_xQueuePeek_fourItemSize_nullptr_assert_empty( void )
@@ -160,7 +162,8 @@ void test_xQueuePeek_fourItemSize_nullptr_assert_empty( void )
 }
 
 /**
- * @brief Test xQueuePeek with a null pvBuffer on a full queue of length 1, items size 4
+ * @brief Test xQueuePeek with a null pvBuffer on a full queue of length 1,
+ * items size 4
  * @coverage xQueuePeek
  */
 void test_xQueuePeek_fourItemSize_nullptr_assert_full( void )
@@ -216,9 +219,11 @@ static void vPortYieldWithinAPI_xQueueReceive_Stub( int cmock_num_calls )
 
     uint32_t checkVal = INVALID_UINT32;
 
-    TEST_ASSERT_EQUAL( xStubExpectedReturnValue == pdTRUE ? 1 : 0, uxQueueMessagesWaiting( xQueueHandleStatic ) );
+    TEST_ASSERT_EQUAL( xStubExpectedReturnValue == pdTRUE ? 1 : 0,
+                       uxQueueMessagesWaiting( xQueueHandleStatic ) );
 
-    TEST_ASSERT_EQUAL( xStubExpectedReturnValue, xQueueReceive( xQueueHandleStatic, &checkVal, 0 ) );
+    TEST_ASSERT_EQUAL( xStubExpectedReturnValue,
+                       xQueueReceive( xQueueHandleStatic, &checkVal, 0 ) );
 
     TEST_ASSERT_EQUAL( 0, uxQueueMessagesWaiting( xQueueHandleStatic ) );
 
@@ -245,11 +250,14 @@ static void vPortYieldWithinAPI_xQueuePeek_Stub( int cmock_num_calls )
 
     uint32_t checkVal = INVALID_UINT32;
 
-    TEST_ASSERT_EQUAL( xStubExpectedReturnValue == pdTRUE ? 1 : 0, uxQueueMessagesWaiting( xQueueHandleStatic ) );
+    TEST_ASSERT_EQUAL( xStubExpectedReturnValue == pdTRUE ? 1 : 0,
+                       uxQueueMessagesWaiting( xQueueHandleStatic ) );
 
-    TEST_ASSERT_EQUAL( xStubExpectedReturnValue, xQueuePeek( xQueueHandleStatic, &checkVal, 0 ) );
+    TEST_ASSERT_EQUAL( xStubExpectedReturnValue,
+                       xQueuePeek( xQueueHandleStatic, &checkVal, 0 ) );
 
-    TEST_ASSERT_EQUAL( xStubExpectedReturnValue == pdTRUE ? 1 : 0, uxQueueMessagesWaiting( xQueueHandleStatic ) );
+    TEST_ASSERT_EQUAL( xStubExpectedReturnValue == pdTRUE ? 1 : 0,
+                       uxQueueMessagesWaiting( xQueueHandleStatic ) );
 
     if( pdTRUE == xStubExpectedReturnValue )
     {
@@ -264,7 +272,8 @@ static void vPortYieldWithinAPI_xQueuePeek_Stub( int cmock_num_calls )
 }
 
 /**
- * @brief Test xQueuePeek with an occupied queue with a higher priority task waiting that does not modify the queue.
+ * @brief Test xQueuePeek with an occupied queue with a higher priority task
+ * waiting that does not modify the queue.
  * @coverage xQueuePeek
  */
 void test_xQueuePeek_noop_waiting_higher_priority( void )
@@ -304,7 +313,8 @@ void test_xQueuePeek_noop_waiting_higher_priority( void )
 }
 
 /**
- * @brief Test xQueuePeek with an occupied queue with a higher priority xQueuePeek pending.
+ * @brief Test xQueuePeek with an occupied queue with a higher priority
+ * xQueuePeek pending.
  * @coverage xQueuePeek
  */
 void test_xQueuePeek_xQueuePeek_waiting_higher_priority( void )
@@ -348,7 +358,8 @@ void test_xQueuePeek_xQueuePeek_waiting_higher_priority( void )
 }
 
 /**
- * @brief Test xQueuePeek with an occupied queue with a higher priority xQueueReceive pending.
+ * @brief Test xQueuePeek with an occupied queue with a higher priority
+ * xQueueReceive pending.
  * @coverage xQueuePeek
  */
 void test_xQueuePeek_xQueueReceive_waiting_higher_priority( void )
@@ -392,7 +403,8 @@ void test_xQueuePeek_xQueueReceive_waiting_higher_priority( void )
 }
 
 /**
- * @brief Test xQueuePeek with an occupied queue with a lower priority task pending which does not modify the queue.
+ * @brief Test xQueuePeek with an occupied queue with a lower priority task
+ * pending which does not modify the queue.
  * @coverage xQueuePeek
  */
 void test_xQueuePeek_noop_waiting_lower_priority( void )
@@ -426,7 +438,8 @@ void test_xQueuePeek_noop_waiting_lower_priority( void )
 }
 
 /**
- * @brief Test xQueuePeek with an occupied queue with a lower priority xQueuePeek operation pending.
+ * @brief Test xQueuePeek with an occupied queue with a lower priority
+ * xQueuePeek operation pending.
  * @coverage xQueuePeek
  */
 void test_xQueuePeek_xQueuePeek_waiting_lower_priority( void )
@@ -464,7 +477,8 @@ void test_xQueuePeek_xQueuePeek_waiting_lower_priority( void )
 }
 
 /**
- * @brief Test xQueuePeek with an occupied queue with a lower priority xQueueReceive operation pending.
+ * @brief Test xQueuePeek with an occupied queue with a lower priority
+ * xQueueReceive operation pending.
  * @coverage xQueuePeek
  */
 void test_xQueuePeek_xQueueReceive_waiting_lower_priority( void )
@@ -533,7 +547,8 @@ void test_xQueuePeekFromISR_invalid_handle( void )
 
 /**
  * @brief Test xQueuePeekFromISR with a full queue of length 1, items size 0
- * @details xQueuePeekFromISR is not allowed on a semaphore (item size 0) and causes a configASSERT.
+ * @details xQueuePeekFromISR is not allowed on a semaphore (item size 0) and
+ * causes a configASSERT.
  * @coverage xQueuePeekFromISR
  */
 void test_xQueuePeekFromISR_zeroItemSize_assert_full( void )
@@ -544,10 +559,12 @@ void test_xQueuePeekFromISR_zeroItemSize_assert_full( void )
     ( void ) xQueueSend( xQueue, NULL, 0 );
 
     vFakePortAssertIfInterruptPriorityInvalid_Expect();
-    ulFakePortSetInterruptMaskFromISR_ExpectAndReturn( getNextMonotonicTestValue() );
+    ulFakePortSetInterruptMaskFromISR_ExpectAndReturn(
+        getNextMonotonicTestValue() );
     vFakePortClearInterruptMaskFromISR_Expect( getLastMonotonicTestValue() );
 
-    /* Expect an assertion failure because xQueuePeekFromISR is not supported for semaphores? */
+    /* Expect an assertion failure because xQueuePeekFromISR is not supported
+     * for semaphores? */
     fakeAssertExpectFail();
 
     TEST_ASSERT_EQUAL( 1, uxQueueMessagesWaiting( xQueue ) );
@@ -563,7 +580,8 @@ void test_xQueuePeekFromISR_zeroItemSize_assert_full( void )
 }
 
 /**
- * @brief Test xQueuePeekFromISR with a null pvBuffer on an empty queue of length 1, items size 4
+ * @brief Test xQueuePeekFromISR with a null pvBuffer on an empty queue of
+ * length 1, items size 4
  * @coverage xQueuePeekFromISR
  */
 void test_xQueuePeekFromISR_fourItemSize_nullptr_assert_empty( void )
@@ -572,10 +590,12 @@ void test_xQueuePeekFromISR_fourItemSize_nullptr_assert_empty( void )
     QueueHandle_t xQueue = xQueueCreate( 1, sizeof( uint32_t ) );
 
     vFakePortAssertIfInterruptPriorityInvalid_Expect();
-    ulFakePortSetInterruptMaskFromISR_ExpectAndReturn( getNextMonotonicTestValue() );
+    ulFakePortSetInterruptMaskFromISR_ExpectAndReturn(
+        getNextMonotonicTestValue() );
     vFakePortClearInterruptMaskFromISR_Expect( getLastMonotonicTestValue() );
 
-    /* Expect an assertion failure due to the null pointer passed into xqueuePeekFromISR */
+    /* Expect an assertion failure due to the null pointer passed into
+     * xqueuePeekFromISR */
     fakeAssertExpectFail();
 
     /* peek from the queue with a nullptr storage location */
@@ -587,7 +607,8 @@ void test_xQueuePeekFromISR_fourItemSize_nullptr_assert_empty( void )
 }
 
 /**
- * @brief Test xQueuePeekFromISR with a null pvBuffer on a full queue of length 1, items size 4
+ * @brief Test xQueuePeekFromISR with a null pvBuffer on a full queue of length
+ * 1, items size 4
  * @coverage xQueuePeekFromISR
  */
 void test_xQueuePeekFromISR_fourItemSize_nullptr_assert_full( void )
@@ -617,7 +638,8 @@ void test_xQueuePeekFromISR_fail_empty( void )
     uint32_t checkVal = INVALID_UINT32;
 
     vFakePortAssertIfInterruptPriorityInvalid_Expect();
-    ulFakePortSetInterruptMaskFromISR_ExpectAndReturn( getNextMonotonicTestValue() );
+    ulFakePortSetInterruptMaskFromISR_ExpectAndReturn(
+        getNextMonotonicTestValue() );
     vFakePortClearInterruptMaskFromISR_Expect( getLastMonotonicTestValue() );
 
     /* peek from the queue while empty */
@@ -640,7 +662,8 @@ void test_xQueuePeekFromISR_success( void )
     ( void ) xQueueSend( xQueue, &testVal, 0 );
 
     vFakePortAssertIfInterruptPriorityInvalid_Expect();
-    ulFakePortSetInterruptMaskFromISR_ExpectAndReturn( getNextMonotonicTestValue() );
+    ulFakePortSetInterruptMaskFromISR_ExpectAndReturn(
+        getNextMonotonicTestValue() );
     vFakePortClearInterruptMaskFromISR_Expect( getLastMonotonicTestValue() );
 
     uint32_t checkVal = INVALID_UINT32;
@@ -721,7 +744,8 @@ void test_xQueueReceive_zeroItemSize_full( void )
 }
 
 /**
- * @brief Test xQueueReceive with a null pvBuffer on an empty queue of length 1, items size 4
+ * @brief Test xQueueReceive with a null pvBuffer on an empty queue of length 1,
+ * items size 4
  * @coverage xQueueReceive
  */
 void test_xQueueReceive_fourItemSize_nullptr_assert_empty( void )
@@ -740,7 +764,8 @@ void test_xQueueReceive_fourItemSize_nullptr_assert_empty( void )
 }
 
 /**
- * @brief Test xQueueReceive with a null pvBuffer on a full queue of length 1, items size 4
+ * @brief Test xQueueReceive with a null pvBuffer on a full queue of length 1,
+ * items size 4
  * @coverage xQueueReceive
  */
 void test_xQueueReceive_fourItemSize_nullptr_assert_full( void )
@@ -817,12 +842,12 @@ void test_xQueueReceive_noop_waiting_higher_priority( void )
 
     TEST_ASSERT_EQUAL( 1, td_task_getCount_vPortYieldWithinAPI() );
 
-
     vQueueDelete( xQueue );
 }
 
 /**
- * @brief Test xQueueReceive with an occupied queue with a lower priority task waiting which does not modify the queue.
+ * @brief Test xQueueReceive with an occupied queue with a lower priority task
+ * waiting which does not modify the queue.
  * @coverage xQueueReceive
  */
 void test_xQueueReceive_noop_waiting_lower_priority( void )
@@ -906,7 +931,8 @@ void test_xQueueReceiveFromISR_zeroItemSize_noassert_full( void )
 }
 
 /**
- * @brief Test xQueueReceiveFromISR with a null pvBuffer on an empty queue of length 1, items size 4
+ * @brief Test xQueueReceiveFromISR with a null pvBuffer on an empty queue of
+ * length 1, items size 4
  * @coverage xQueueReceiveFromISR
  */
 void test_xQueueReceiveFromISR_fourItemSize_nullptr_assert_empty( void )
@@ -914,7 +940,8 @@ void test_xQueueReceiveFromISR_fourItemSize_nullptr_assert_empty( void )
     /* Create a new queue */
     QueueHandle_t xQueue = xQueueCreate( 1, sizeof( uint32_t ) );
 
-    /* Expect an assertion failure due to the null pointer passed into xqueuePeekFromISR */
+    /* Expect an assertion failure due to the null pointer passed into
+     * xqueuePeekFromISR */
     fakeAssertExpectFail();
 
     /* receive from the queue with a nullptr storage location */
@@ -926,7 +953,8 @@ void test_xQueueReceiveFromISR_fourItemSize_nullptr_assert_empty( void )
 }
 
 /**
- * @brief Test xQueueReceiveFromISR with a null pvBuffer on a full queue of length 1, items size 4
+ * @brief Test xQueueReceiveFromISR with a null pvBuffer on a full queue of
+ * length 1, items size 4
  * @coverage xQueueReceiveFromISR
  */
 void test_xQueueReceiveFromISR_fourItemSize_nullptr_assert_full( void )
@@ -956,7 +984,8 @@ void test_xQueueReceiveFromISR_fail_empty( void )
     uint32_t checkVal = INVALID_UINT32;
 
     /* receive from the queue while empty */
-    TEST_ASSERT_EQUAL( pdFALSE, xQueueReceiveFromISR( xQueue, &checkVal, NULL ) );
+    TEST_ASSERT_EQUAL( pdFALSE,
+                       xQueueReceiveFromISR( xQueue, &checkVal, NULL ) );
 
     vQueueDelete( xQueue );
 }
@@ -979,7 +1008,8 @@ void test_xQueueReceiveFromISR_success( void )
     TEST_ASSERT_EQUAL( 1, uxQueueMessagesWaiting( xQueue ) );
 
     /* receive from the queue while full */
-    TEST_ASSERT_EQUAL( pdTRUE, xQueueReceiveFromISR( xQueue, &checkVal, NULL ) );
+    TEST_ASSERT_EQUAL( pdTRUE,
+                       xQueueReceiveFromISR( xQueue, &checkVal, NULL ) );
     TEST_ASSERT_EQUAL( testVal, checkVal );
 
     TEST_ASSERT_EQUAL( 0, uxQueueMessagesWaiting( xQueue ) );
@@ -1013,8 +1043,10 @@ void test_xQueueReceiveFromISR_locked( void )
     uint32_t checkVal = INVALID_UINT32;
 
     /* Run xQueueReceiveFromISR with the queue locked */
-    TEST_ASSERT_EQUAL( pdTRUE, xQueueReceiveFromISR( xQueue, &checkVal, NULL ) );
-    TEST_ASSERT_EQUAL( pdTRUE, xQueueReceiveFromISR( xQueue, &checkVal, NULL ) );
+    TEST_ASSERT_EQUAL( pdTRUE,
+                       xQueueReceiveFromISR( xQueue, &checkVal, NULL ) );
+    TEST_ASSERT_EQUAL( pdTRUE,
+                       xQueueReceiveFromISR( xQueue, &checkVal, NULL ) );
 
     TEST_ASSERT_EQUAL( 0, uxQueueMessagesWaiting( xQueue ) );
 
@@ -1030,7 +1062,8 @@ void test_xQueueReceiveFromISR_locked( void )
 }
 
 /**
- * @brief Test xQueueReceiveFromISR on a queue that is locked and cRxLock overflows.
+ * @brief Test xQueueReceiveFromISR on a queue that is locked and cRxLock
+ * overflows.
  * @coverage xQueueReceiveFromISR
  */
 void test_xQueueReceiveFromISR_locked_overflow( void )
@@ -1059,7 +1092,8 @@ void test_xQueueReceiveFromISR_locked_overflow( void )
     TEST_ASSERT_EQUAL( 1, uxQueueMessagesWaiting( xQueue ) );
 
     /* Run xQueueReceiveFromISR with the queue locked */
-    TEST_ASSERT_EQUAL( pdTRUE, xQueueReceiveFromISR( xQueue, &checkVal, NULL ) );
+    TEST_ASSERT_EQUAL( pdTRUE,
+                       xQueueReceiveFromISR( xQueue, &checkVal, NULL ) );
 
     TEST_ASSERT_EQUAL( 0, uxQueueMessagesWaiting( xQueue ) );
 
@@ -1077,8 +1111,10 @@ void test_xQueueReceiveFromISR_locked_overflow( void )
 }
 
 /**
- * @brief Test xQueueReceiveFromISR with an occupied queue with higher priority tasks waiting.
- * @details also verify that calling xQueueReceiveFromISR with a NULL pxHigherPriorityTaskWoken does not cause invalid memory access.
+ * @brief Test xQueueReceiveFromISR with an occupied queue with higher priority
+ * tasks waiting.
+ * @details also verify that calling xQueueReceiveFromISR with a NULL
+ * pxHigherPriorityTaskWoken does not cause invalid memory access.
  * @coverage xQueueReceiveFromISR
  */
 void test_xQueueReceiveFromISR_tasks_waiting_higher_priority_success( void )
@@ -1103,7 +1139,8 @@ void test_xQueueReceiveFromISR_tasks_waiting_higher_priority_success( void )
     TEST_ASSERT_EQUAL( 1, uxQueueMessagesWaiting( xQueue ) );
 
     /* receive from the queue */
-    TEST_ASSERT_EQUAL( pdTRUE, xQueueReceiveFromISR( xQueue, &checkVal, NULL ) );
+    TEST_ASSERT_EQUAL( pdTRUE,
+                       xQueueReceiveFromISR( xQueue, &checkVal, NULL ) );
     TEST_ASSERT_EQUAL( testVal, checkVal );
 
     TEST_ASSERT_EQUAL( 0, uxQueueMessagesWaiting( xQueue ) );
@@ -1114,10 +1151,12 @@ void test_xQueueReceiveFromISR_tasks_waiting_higher_priority_success( void )
 }
 
 /**
- * @brief Test xQueueReceiveFromISR with an occupied queue and verify that the returned pxHigherPriorityTaskWoken value has been set accordingly.
+ * @brief Test xQueueReceiveFromISR with an occupied queue and verify that the
+ * returned pxHigherPriorityTaskWoken value has been set accordingly.
  * @coverage xQueueReceiveFromISR
  */
-void test_xQueueReceiveFromISR_tasks_waiting_higher_priority_check_pxHigherPriorityTaskWoken( void )
+void test_xQueueReceiveFromISR_tasks_waiting_higher_priority_check_pxHigherPriorityTaskWoken(
+    void )
 {
     /* Create a new queue */
     QueueHandle_t xQueue = xQueueCreate( 1, sizeof( uint32_t ) );
@@ -1141,7 +1180,10 @@ void test_xQueueReceiveFromISR_tasks_waiting_higher_priority_check_pxHigherPrior
     TEST_ASSERT_EQUAL( 1, uxQueueMessagesWaiting( xQueue ) );
 
     /* receive from the queue */
-    TEST_ASSERT_EQUAL( pdTRUE, xQueueReceiveFromISR( xQueue, &checkVal, &xHigherPriorityTaskWoken ) );
+    TEST_ASSERT_EQUAL( pdTRUE,
+                       xQueueReceiveFromISR( xQueue,
+                                             &checkVal,
+                                             &xHigherPriorityTaskWoken ) );
 
     TEST_ASSERT_EQUAL( true, xHigherPriorityTaskWoken );
 
@@ -1155,7 +1197,8 @@ void test_xQueueReceiveFromISR_tasks_waiting_higher_priority_check_pxHigherPrior
 }
 
 /**
- * @brief Test xQueueReceiveFromISR with an occupied queue with a lower priority task waiting.
+ * @brief Test xQueueReceiveFromISR with an occupied queue with a lower priority
+ * task waiting.
  * @coverage xQueueReceiveFromISR
  */
 void test_xQueueReceiveFromISR_tasks_waiting_lower_priority_success( void )
@@ -1182,7 +1225,10 @@ void test_xQueueReceiveFromISR_tasks_waiting_lower_priority_success( void )
     TEST_ASSERT_EQUAL( 1, uxQueueMessagesWaiting( xQueue ) );
 
     /* receive from the queue */
-    TEST_ASSERT_EQUAL( pdTRUE, xQueueReceiveFromISR( xQueue, &checkVal, &xHigherPriorityTaskWoken ) );
+    TEST_ASSERT_EQUAL( pdTRUE,
+                       xQueueReceiveFromISR( xQueue,
+                                             &checkVal,
+                                             &xHigherPriorityTaskWoken ) );
 
     TEST_ASSERT_EQUAL( 0, uxQueueMessagesWaiting( xQueue ) );
 

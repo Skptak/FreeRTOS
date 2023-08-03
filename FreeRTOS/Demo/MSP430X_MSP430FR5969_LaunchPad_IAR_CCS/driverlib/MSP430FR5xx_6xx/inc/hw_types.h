@@ -44,17 +44,15 @@
 // Macros for hardware access
 //
 //*****************************************************************************
-#define HWREG(x)                                                              \
-    (*((volatile unsigned int *)(x)))
-#define HWREGB(x)                                                             \
-    (*((volatile unsigned char *)(x)))
+#define HWREG( x )     ( *( ( volatile unsigned int * ) ( x ) ) )
+#define HWREGB( x )    ( *( ( volatile unsigned char * ) ( x ) ) )
 
 //*****************************************************************************
 //
 // SUCCESS and FAILURE for API return value
 //
 //*****************************************************************************
-#define STATUS_SUCCESS  0x01
-#define STATUS_FAIL     0x00
+#define STATUS_SUCCESS 0x01
+#define STATUS_FAIL    0x00
 
 #endif // #ifndef __HW_TYPES__

@@ -32,12 +32,12 @@
 //
 //*****************************************************************************
 
+#include "systick.h"
 #include "../hw_ints.h"
 #include "../hw_nvic.h"
 #include "../hw_types.h"
 #include "debug.h"
 #include "interrupt.h"
-#include "systick.h"
 
 //*****************************************************************************
 //
@@ -49,14 +49,13 @@
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_enable) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-SysTickEnable(void)
+#if defined( GROUP_enable ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void SysTickEnable( void )
 {
     //
     // Enable SysTick.
     //
-    HWREG(NVIC_ST_CTRL) |= NVIC_ST_CTRL_CLK_SRC | NVIC_ST_CTRL_ENABLE;
+    HWREG( NVIC_ST_CTRL ) |= NVIC_ST_CTRL_CLK_SRC | NVIC_ST_CTRL_ENABLE;
 }
 #endif
 
@@ -70,14 +69,13 @@ SysTickEnable(void)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_disable) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-SysTickDisable(void)
+#if defined( GROUP_disable ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void SysTickDisable( void )
 {
     //
     // Disable SysTick.
     //
-    HWREG(NVIC_ST_CTRL) &= ~(NVIC_ST_CTRL_ENABLE);
+    HWREG( NVIC_ST_CTRL ) &= ~( NVIC_ST_CTRL_ENABLE );
 }
 #endif
 
@@ -96,19 +94,18 @@ SysTickDisable(void)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_intregister) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-SysTickIntRegister(void (*pfnHandler)(void))
+#if defined( GROUP_intregister ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void SysTickIntRegister( void ( *pfnHandler )( void ) )
 {
     //
     // Register the interrupt handler, returning an error if an error occurs.
     //
-    IntRegister(FAULT_SYSTICK, pfnHandler);
+    IntRegister( FAULT_SYSTICK, pfnHandler );
 
     //
     // Enable the SysTick interrupt.
     //
-    HWREG(NVIC_ST_CTRL) |= NVIC_ST_CTRL_INTEN;
+    HWREG( NVIC_ST_CTRL ) |= NVIC_ST_CTRL_INTEN;
 }
 #endif
 
@@ -125,19 +122,18 @@ SysTickIntRegister(void (*pfnHandler)(void))
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_intunregister) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-SysTickIntUnregister(void)
+#if defined( GROUP_intunregister ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void SysTickIntUnregister( void )
 {
     //
     // Disable the SysTick interrupt.
     //
-    HWREG(NVIC_ST_CTRL) &= ~(NVIC_ST_CTRL_INTEN);
+    HWREG( NVIC_ST_CTRL ) &= ~( NVIC_ST_CTRL_INTEN );
 
     //
     // Unregister the interrupt handler.
     //
-    IntUnregister(FAULT_SYSTICK);
+    IntUnregister( FAULT_SYSTICK );
 }
 #endif
 
@@ -151,14 +147,13 @@ SysTickIntUnregister(void)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_intenable) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-SysTickIntEnable(void)
+#if defined( GROUP_intenable ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void SysTickIntEnable( void )
 {
     //
     // Enable the SysTick interrupt.
     //
-    HWREG(NVIC_ST_CTRL) |= NVIC_ST_CTRL_INTEN;
+    HWREG( NVIC_ST_CTRL ) |= NVIC_ST_CTRL_INTEN;
 }
 #endif
 
@@ -172,14 +167,13 @@ SysTickIntEnable(void)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_intdisable) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-SysTickIntDisable(void)
+#if defined( GROUP_intdisable ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void SysTickIntDisable( void )
 {
     //
     // Disable the SysTick interrupt.
     //
-    HWREG(NVIC_ST_CTRL) &= ~(NVIC_ST_CTRL_INTEN);
+    HWREG( NVIC_ST_CTRL ) &= ~( NVIC_ST_CTRL_INTEN );
 }
 #endif
 
@@ -196,19 +190,18 @@ SysTickIntDisable(void)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_periodset) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-SysTickPeriodSet(unsigned long ulPeriod)
+#if defined( GROUP_periodset ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void SysTickPeriodSet( unsigned long ulPeriod )
 {
     //
     // Check the arguments.
     //
-    ASSERT((ulPeriod > 0) && (ulPeriod <= 16777216));
+    ASSERT( ( ulPeriod > 0 ) && ( ulPeriod <= 16777216 ) );
 
     //
     // Set the period of the SysTick counter.
     //
-    HWREG(NVIC_ST_RELOAD) = ulPeriod - 1;
+    HWREG( NVIC_ST_RELOAD ) = ulPeriod - 1;
 }
 #endif
 
@@ -222,14 +215,13 @@ SysTickPeriodSet(unsigned long ulPeriod)
 //! \return Returns the period of the SysTick counter.
 //
 //*****************************************************************************
-#if defined(GROUP_periodget) || defined(BUILD_ALL) || defined(DOXYGEN)
-unsigned long
-SysTickPeriodGet(void)
+#if defined( GROUP_periodget ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+unsigned long SysTickPeriodGet( void )
 {
     //
     // Return the period of the SysTick counter.
     //
-    return(HWREG(NVIC_ST_RELOAD) + 1);
+    return ( HWREG( NVIC_ST_RELOAD ) + 1 );
 }
 #endif
 
@@ -243,14 +235,13 @@ SysTickPeriodGet(void)
 //! \return Returns the current value of the SysTick counter.
 //
 //*****************************************************************************
-#if defined(GROUP_valueget) || defined(BUILD_ALL) || defined(DOXYGEN)
-unsigned long
-SysTickValueGet(void)
+#if defined( GROUP_valueget ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+unsigned long SysTickValueGet( void )
 {
     //
     // Return the current value of the SysTick counter.
     //
-    return(HWREG(NVIC_ST_CURRENT));
+    return ( HWREG( NVIC_ST_CURRENT ) );
 }
 #endif
 

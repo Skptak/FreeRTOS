@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
- *         SAM Software Package License 
+ *         SAM Software Package License
  * ----------------------------------------------------------------------------
  * Copyright (c) 2011, Atmel Corporation
  *
@@ -60,12 +60,11 @@
  */
 
 /** LED for indicating that the device is powered. */
-#define USBD_LEDPOWER                   0
+#define USBD_LEDPOWER 0
 /** LED for custom usage. */
-#define USBD_LEDOTHER                   1
+#define USBD_LEDOTHER 1
 /**     @}*/
 
 /**@}*/
 
-#endif //#ifndef USBDLEDS_H
-
+#endif // #ifndef USBDLEDS_H

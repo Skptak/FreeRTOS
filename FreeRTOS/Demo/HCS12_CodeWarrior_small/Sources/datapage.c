@@ -12,114 +12,127 @@
    If none of them is given as argument, then no page accesses should occur and
    this runtime routine should not be used !
    To be on the save side, the runtime routines are created anyway.
-   If some of the -Cp options are given an adapted versions which only covers the
-   needed cases is produced.
+   If some of the -Cp options are given an adapted versions which only covers
+   the needed cases is produced.
 */
 
-/* if no compiler option -Cp is given, it is assumed that all possible are given : */
+/* if no compiler option -Cp is given, it is assumed that all possible are given
+ * : */
 
 /* Compile with option -DHCS12 to activate this code */
-#if defined(HCS12) || defined(_HCS12) /* HCS12 family has PPAGE register only at 0x30 */
-#define PPAGE_ADDR (0x30+REGISTER_BASE)
-#ifndef __PPAGE__ /* may be set already by option -CPPPAGE */
-#define __PPAGE__
-#endif
+#if defined( HCS12 ) || \
+    defined( _HCS12 ) /* HCS12 family has PPAGE register only at 0x30 */
+    #define PPAGE_ADDR ( 0x30 + REGISTER_BASE )
+    #ifndef __PPAGE__ /* may be set already by option -CPPPAGE */
+        #define __PPAGE__
+    #endif
 /* Compile with option -DDG128 to activate this code */
-#elif defined DG128 /* HC912DG128 derivative has PPAGE register only at 0xFF */
-#define PPAGE_ADDR (0xFF+REGISTER_BASE)
-#ifndef __PPAGE__ /* may be set already by option -CPPPAGE */
-#define __PPAGE__
-#endif
-#elif defined(HC812A4)
+#elif defined DG128 /* HC912DG128 derivative has PPAGE register only at 0xFF \
+                     */
+    #define PPAGE_ADDR ( 0xFF + REGISTER_BASE )
+    #ifndef __PPAGE__ /* may be set already by option -CPPPAGE */
+        #define __PPAGE__
+    #endif
+#elif defined( HC812A4 )
 /* all setting default to A4 already */
 #endif
 
-
-#if !defined(__EPAGE__) && !defined(__PPAGE__) && !defined(__DPAGE__)
-/* as default use all page registers */
-#define __DPAGE__
-#define __EPAGE__
-#define __PPAGE__
+#if !defined( __EPAGE__ ) && !defined( __PPAGE__ ) && !defined( __DPAGE__ )
+    /* as default use all page registers */
+    #define __DPAGE__
+    #define __EPAGE__
+    #define __PPAGE__
 #endif
 
 /* modify the following defines to your memory configuration */
 
-#define EPAGE_LOW_BOUND   0x400u
-#define EPAGE_HIGH_BOUND  0x7ffu
+#define EPAGE_LOW_BOUND  0x400u
+#define EPAGE_HIGH_BOUND 0x7ffu
 
-#define DPAGE_LOW_BOUND   0x7000u
-#define DPAGE_HIGH_BOUND  0x7fffu
+#define DPAGE_LOW_BOUND  0x7000u
+#define DPAGE_HIGH_BOUND 0x7fffu
 
-#define PPAGE_LOW_BOUND   (DPAGE_HIGH_BOUND+1)
-#define PPAGE_HIGH_BOUND  0xBFFFu
+#define PPAGE_LOW_BOUND  ( DPAGE_HIGH_BOUND + 1 )
+#define PPAGE_HIGH_BOUND 0xBFFFu
 
-#define REGISTER_BASE      0x0u
+#define REGISTER_BASE    0x0u
 #ifndef DPAGE_ADDR
-#define DPAGE_ADDR        (0x34u+REGISTER_BASE)
+    #define DPAGE_ADDR ( 0x34u + REGISTER_BASE )
 #endif
 #ifndef EPAGE_ADDR
-#define EPAGE_ADDR        (0x36u+REGISTER_BASE)
+    #define EPAGE_ADDR ( 0x36u + REGISTER_BASE )
 #endif
 #ifndef PPAGE_ADDR
-#define PPAGE_ADDR        (0x35u+REGISTER_BASE)
+    #define PPAGE_ADDR ( 0x35u + REGISTER_BASE )
 #endif
 
 /*
-  The following parts about the defines are assumed in the code of _GET_PAGE_REG :
-  - the memory region controlled by DPAGE is above the area controlled by the EPAGE and
-    below the area controlled by the PPAGE.
-  - the lower bound of the PPAGE area is equal to be the higher bound of the DPAGE area + 1
+  The following parts about the defines are assumed in the code of _GET_PAGE_REG
+  :
+  - the memory region controlled by DPAGE is above the area controlled by the
+  EPAGE and below the area controlled by the PPAGE.
+  - the lower bound of the PPAGE area is equal to be the higher bound of the
+  DPAGE area + 1
 */
-#if EPAGE_LOW_BOUND >= EPAGE_HIGH_BOUND || EPAGE_HIGH_BOUND >= DPAGE_LOW_BOUND || DPAGE_LOW_BOUND >= DPAGE_HIGH_BOUND || DPAGE_HIGH_BOUND >= PPAGE_LOW_BOUND || PPAGE_LOW_BOUND >= PPAGE_HIGH_BOUND
-#error /* please adapt _GET_PAGE_REG for this non default page configuration */
+#if EPAGE_LOW_BOUND >= EPAGE_HIGH_BOUND || \
+    EPAGE_HIGH_BOUND >= DPAGE_LOW_BOUND || \
+    DPAGE_LOW_BOUND >= DPAGE_HIGH_BOUND || \
+    DPAGE_HIGH_BOUND >= PPAGE_LOW_BOUND || PPAGE_LOW_BOUND >= PPAGE_HIGH_BOUND
+    #error /* please adapt _GET_PAGE_REG for this non default page \
+              configuration */
 #endif
 
-#if DPAGE_HIGH_BOUND+1 != PPAGE_LOW_BOUND
-#error /* please adapt _GET_PAGE_REG for this non default page configuration */
+#if DPAGE_HIGH_BOUND + 1 != PPAGE_LOW_BOUND
+    #error /* please adapt _GET_PAGE_REG for this non default page \
+              configuration */
 #endif
 
 #include "hidef.h"
 #include "non_bank.sgm"
 #include "runtime.sgm"
 
-/* this module does either control if any access is in the bounds of the specified page or */
+/* this module does either control if any access is in the bounds of the
+ * specified page or */
 /* ,if only one page is specified, just use this page. */
 /* This behavior is controlled by the define USE_SEVERAL_PAGES. */
 /* If !USE_SEVERAL_PAGES does increase the performance significantly */
-/* NOTE : When !USE_SEVERAL_PAGES, the page is also set for accesses outside of the area controlled */
-/*        by this single page. But this is usually no problem because the page is set again before any other access */
+/* NOTE : When !USE_SEVERAL_PAGES, the page is also set for accesses outside of
+ * the area controlled */
+/*        by this single page. But this is usually no problem because the page
+ * is set again before any other access */
 
-#if !defined(__DPAGE__) && !defined(__EPAGE__) && !defined(__PPAGE__)
-/* no page at all is specified */
-/* only specifing the right pages will speed up these functions a lot */
-#define USE_SEVERAL_PAGES 1
-#elif defined(__DPAGE__) && defined(__EPAGE__) || defined(__DPAGE__) && defined(__PPAGE__) || defined(__EPAGE__) && defined(__PPAGE__)
-/* more than one page register is used */
-#define USE_SEVERAL_PAGES 1
+#if !defined( __DPAGE__ ) && !defined( __EPAGE__ ) && !defined( __PPAGE__ )
+    /* no page at all is specified */
+    /* only specifing the right pages will speed up these functions a lot */
+    #define USE_SEVERAL_PAGES 1
+#elif defined( __DPAGE__ ) && defined( __EPAGE__ ) || \
+    defined( __DPAGE__ ) && defined( __PPAGE__ ) ||   \
+    defined( __EPAGE__ ) && defined( __PPAGE__ )
+    /* more than one page register is used */
+    #define USE_SEVERAL_PAGES 1
 #else
 
-#define USE_SEVERAL_PAGES 0
+    #define USE_SEVERAL_PAGES 0
 
-#if defined(__DPAGE__) /* check which pages are used  */
-#define PAGE_ADDR PPAGE_ADDR
-#elif defined(__EPAGE__)
-#define PAGE_ADDR EPAGE_ADDR
-#elif defined(__PPAGE__)
-#define PAGE_ADDR PPAGE_ADDR
-#else /* we dont know which page, decide it at runtime */
-#error /* must not happen */
+    #if defined( __DPAGE__ ) /* check which pages are used  */
+        #define PAGE_ADDR PPAGE_ADDR
+    #elif defined( __EPAGE__ )
+        #define PAGE_ADDR EPAGE_ADDR
+    #elif defined( __PPAGE__ )
+        #define PAGE_ADDR PPAGE_ADDR
+    #else      /* we dont know which page, decide it at runtime */
+        #error /* must not happen */
+    #endif
+
 #endif
-
-#endif
-
 
 #if USE_SEVERAL_PAGES /* only needed for several pages support */
 /*--------------------------- _GET_PAGE_REG --------------------------------
-  Runtime routine to detect the right register depending on the 16 bit offset part
-  of an address.
-  This function is only used by the functions below.
+  Runtime routine to detect the right register depending on the 16 bit offset
+  part of an address. This function is only used by the functions below.
 
-  Depending on the compiler options -Cp different versions of _GET_PAGE_REG are produced.
+  Depending on the compiler options -Cp different versions of _GET_PAGE_REG are
+  produced.
 
   Arguments :
   - Y : offset part of an address
@@ -136,44 +149,46 @@
 
   --------------------------- _GET_PAGE_REG ----------------------------------*/
 
-#if defined(__DPAGE__)
+    #if defined( __DPAGE__ )
 
-#ifdef __cplusplus
+        #ifdef __cplusplus
 extern "C"
-#endif
-#pragma NO_ENTRY
-#pragma NO_EXIT
-#pragma NO_FRAME
+        #endif
+        #pragma NO_ENTRY
+        #pragma NO_EXIT
+        #pragma NO_FRAME
 
-static void NEAR _GET_PAGE_REG(void) { /*lint -esym(528, _GET_PAGE_REG) used in asm code */
-  asm {
+    static void NEAR
+    _GET_PAGE_REG( void )
+{ /*lint -esym(528, _GET_PAGE_REG) used in asm code */
+    asm {
 L_DPAGE:
         CPY  #DPAGE_LOW_BOUND     ; test of lower bound of DPAGE
-#if defined(__EPAGE__)
+        #if defined( __EPAGE__ )
         BLO  L_EPAGE              ; EPAGE accesses are possible
-#else
+        #else
         BLO  L_NOPAGE             ; no paged memory below accesses
-#endif
+        #endif
         CPY  #DPAGE_HIGH_BOUND    ; test of higher bound DPAGE/lower bound PPAGE
-#if defined(__PPAGE__)
+        #if defined( __PPAGE__ )
         BHI  L_PPAGE              ; EPAGE accesses are possible
-#else
+        #else
         BHI  L_NOPAGE             ; no paged memory above accesses
-#endif
+        #endif
 FOUND_DPAGE:
         LDX  #DPAGE_ADDR          ; load page register address and clear zero flag
         RTS
 
-#if defined(__PPAGE__)
+        #if defined( __PPAGE__ )
 L_PPAGE:
         CPY  #PPAGE_HIGH_BOUND    ; test of higher bound of PPAGE
         BHI  L_NOPAGE
 FOUND_PPAGE:
         LDX  #PPAGE_ADDR          ; load page register address and clear zero flag
         RTS
-#endif
+        #endif
 
-#if defined(__EPAGE__)
+        #if defined( __EPAGE__ )
 L_EPAGE:
         CPY #EPAGE_LOW_BOUND      ; test of lower bound of EPAGE
         BLO L_NOPAGE
@@ -183,40 +198,42 @@ L_EPAGE:
 FOUND_EPAGE:
         LDX #EPAGE_ADDR           ; load page register address and clear zero flag
         RTS
-#endif
+        #endif
 
 L_NOPAGE:
         ORCC #0x04                ; sets zero flag
         RTS
-  }
+    }
 }
 
-#else /* !defined(__DPAGE__) */
+    #else /* !defined(__DPAGE__) */
 
-#if defined( __PPAGE__ )
+        #if defined( __PPAGE__ )
 
-#ifdef __cplusplus
+            #ifdef __cplusplus
 extern "C"
-#endif
-#pragma NO_ENTRY
-#pragma NO_EXIT
-#pragma NO_FRAME
+            #endif
+            #pragma NO_ENTRY
+            #pragma NO_EXIT
+            #pragma NO_FRAME
 
-static void NEAR _GET_PAGE_REG(void) {	/*lint -esym(528, _GET_PAGE_REG) used in asm code */
-  asm {
+    static void NEAR
+    _GET_PAGE_REG( void )
+{ /*lint -esym(528, _GET_PAGE_REG) used in asm code */
+    asm {
 L_PPAGE:
         CPY  #PPAGE_LOW_BOUND     ; test of lower bound of PPAGE
-#if defined( __EPAGE__ )
+            #if defined( __EPAGE__ )
         BLO  L_EPAGE
-#else
+            #else
         BLO  L_NOPAGE             ; no paged memory below
-#endif
+            #endif
         CPY  #PPAGE_HIGH_BOUND    ; test of higher bound PPAGE
         BHI  L_NOPAGE
 FOUND_PPAGE:
         LDX  #PPAGE_ADDR          ; load page register address and clear zero flag
         RTS
-#if defined( __EPAGE__ )
+            #if defined( __EPAGE__ )
 L_EPAGE:
         CPY #EPAGE_LOW_BOUND      ; test of lower bound of EPAGE
         BLO L_NOPAGE
@@ -225,27 +242,29 @@ L_EPAGE:
 FOUND_EPAGE:
         LDX #EPAGE_ADDR           ; load page register address and clear zero flag
         RTS
-#endif
+            #endif
 
 L_NOPAGE:                         ; not in any allowed page area
                                   ; its a far access to a non paged variable
         ORCC #0x04                ; sets zero flag
         RTS
-  }
+    }
 }
 
-#else /* !defined(__DPAGE__ ) && !defined( __PPAGE__) */
-#if defined(__EPAGE__)
+        #else /* !defined(__DPAGE__ ) && !defined( __PPAGE__) */
+            #if defined( __EPAGE__ )
 
-#ifdef __cplusplus
+                #ifdef __cplusplus
 extern "C"
-#endif
-#pragma NO_ENTRY
-#pragma NO_EXIT
-#pragma NO_FRAME
+                #endif
+                #pragma NO_ENTRY
+                #pragma NO_EXIT
+                #pragma NO_FRAME
 
-static void NEAR _GET_PAGE_REG(void) { /*lint -esym(528, _GET_PAGE_REG) used in asm code */
-  asm {
+    static void NEAR
+    _GET_PAGE_REG( void )
+{ /*lint -esym(528, _GET_PAGE_REG) used in asm code */
+    asm {
 L_EPAGE:
         CPY #EPAGE_LOW_BOUND      ; test of lower bound of EPAGE
         BLO L_NOPAGE
@@ -259,19 +278,20 @@ L_NOPAGE:                         ; not in any allowed page area
                                   ; its a far access to a non paged variable
         ORCC #0x04                ; sets zero flag
         RTS
-  }
+    }
 }
 
-#endif /*  defined(__EPAGE__) */
-#endif /*  defined(__PPAGE__) */
-#endif /*  defined(__DPAGE__) */
+            #endif /*  defined(__EPAGE__) */
+        #endif     /*  defined(__PPAGE__) */
+    #endif         /*  defined(__DPAGE__) */
 
 #endif /* USE_SEVERAL_PAGES */
 
 /*--------------------------- _SET_PAGE --------------------------------
-  Runtime routine to set the right page register. This routine is used if the compiler
-  does not know the right page register, i.e. if the option -Cp is used for more than
-  one pageregister or if the runtime option is used for one of the -Cp options.
+  Runtime routine to set the right page register. This routine is used if the
+  compiler does not know the right page register, i.e. if the option -Cp is used
+  for more than one pageregister or if the runtime option is used for one of the
+  -Cp options.
 
   Arguments :
   - offset part of an address in the Y register
@@ -290,9 +310,11 @@ extern "C"
 #pragma NO_EXIT
 #pragma NO_FRAME
 
-void NEAR _SET_PAGE(void) {
+    void NEAR
+    _SET_PAGE( void )
+{
 #if USE_SEVERAL_PAGES
-  asm {
+    asm {
           PSHX                  ; save X register
           __PIC_JSR(_GET_PAGE_REG)
           BEQ    L_NOPAGE
@@ -300,18 +322,19 @@ void NEAR _SET_PAGE(void) {
 L_NOPAGE:
           PULX                  ; restore X register
           RTS
-  }
-#else /* USE_SEVERAL_PAGES */
-  asm {
+    }
+#else  /* USE_SEVERAL_PAGES */
+    asm {
           STAB   PAGE_ADDR      ; set page register
           RTS
-  }
+    }
 #endif /* USE_SEVERAL_PAGES */
 }
 
 /*--------------------------- _LOAD_FAR_8 --------------------------------
   This runtime routine is used to access paged memory via a runtime function.
-  It may also be used if the compiler  option -Cp is not used with the runtime argument.
+  It may also be used if the compiler  option -Cp is not used with the runtime
+  argument.
 
   Arguments :
   - offset part of an address in the Y register
@@ -330,9 +353,11 @@ extern "C"
 #pragma NO_EXIT
 #pragma NO_FRAME
 
-void NEAR _LOAD_FAR_8(void) {
+    void NEAR
+    _LOAD_FAR_8( void )
+{
 #if USE_SEVERAL_PAGES
-  asm {
+    asm {
           PSHX                ; save X register
           __PIC_JSR(_GET_PAGE_REG)
           BEQ    L_NOPAGE
@@ -348,9 +373,9 @@ L_NOPAGE:
           LDAB   0,Y          ; actual load, overwrites page
           PULX                ; restore X register
           RTS
-  }
-#else /* USE_SEVERAL_PAGES */
-  asm {
+    }
+#else  /* USE_SEVERAL_PAGES */
+    asm {
           PSHA                ; save A register
           LDAA   PAGE_ADDR    ; save page register
           STAB   PAGE_ADDR    ; set page register
@@ -358,13 +383,14 @@ L_NOPAGE:
           STAA   PAGE_ADDR    ; restore page register
           PULA                ; restore A register
           RTS
-  }
+    }
 #endif /* USE_SEVERAL_PAGES */
 }
 
 /*--------------------------- _LOAD_FAR_16 --------------------------------
   This runtime routine is used to access paged memory via a runtime function.
-  It may also be used if the compiler  option -Cp is not used with the runtime argument.
+  It may also be used if the compiler  option -Cp is not used with the runtime
+  argument.
 
   Arguments :
   - offset part of an address in the Y register
@@ -383,9 +409,11 @@ extern "C"
 #pragma NO_EXIT
 #pragma NO_FRAME
 
-void NEAR _LOAD_FAR_16(void) {
+    void NEAR
+    _LOAD_FAR_16( void )
+{
 #if USE_SEVERAL_PAGES
-  asm {
+    asm {
           PSHX                 ; save X register
           __PIC_JSR(_GET_PAGE_REG)
           BEQ   L_NOPAGE
@@ -401,9 +429,9 @@ L_NOPAGE:
           LDY   0,Y              ; actual load, overwrites address
           PULX                 ; restore X register
           RTS
-  }
-#else /* USE_SEVERAL_PAGES */
-  asm {
+    }
+#else  /* USE_SEVERAL_PAGES */
+    asm {
           PSHA                ; save A register
           LDAA   PAGE_ADDR    ; save page register
           STAB   PAGE_ADDR    ; set page register
@@ -411,12 +439,13 @@ L_NOPAGE:
           STAA   PAGE_ADDR    ; restore page register
           PULA                ; restore A register
           RTS
-  }
+    }
 #endif /* USE_SEVERAL_PAGES */
 }
 /*--------------------------- _LOAD_FAR_24 --------------------------------
   This runtime routine is used to access paged memory via a runtime function.
-  It may also be used if the compiler  option -Cp is not used with the runtime argument.
+  It may also be used if the compiler  option -Cp is not used with the runtime
+  argument.
 
   Arguments :
   - offset part of an address in the Y register
@@ -435,9 +464,11 @@ extern "C"
 #pragma NO_EXIT
 #pragma NO_FRAME
 
-void NEAR _LOAD_FAR_24(void) {
+    void NEAR
+    _LOAD_FAR_24( void )
+{
 #if USE_SEVERAL_PAGES
-  asm {
+    asm {
           PSHX                 ; save X register
           __PIC_JSR(_GET_PAGE_REG)
           BEQ   L_NOPAGE
@@ -455,9 +486,9 @@ L_NOPAGE:
           LDY   1,Y            ; actual load, overwrites offset of address
           PULX                 ; restore X register
           RTS
-  }
-#else /* USE_SEVERAL_PAGES */
-  asm {
+    }
+#else  /* USE_SEVERAL_PAGES */
+    asm {
           PSHA                 ; save A register
           LDAA   PAGE_ADDR     ; save page register
           STAB   PAGE_ADDR     ; set page register
@@ -466,14 +497,14 @@ L_NOPAGE:
           STAA   PAGE_ADDR     ; restore page register
           PULA                 ; restore A register
           RTS
-  }
+    }
 #endif /* USE_SEVERAL_PAGES */
-
 }
 
 /*--------------------------- _LOAD_FAR_32 --------------------------------
   This runtime routine is used to access paged memory via a runtime function.
-  It may also be used if the compiler  option -Cp is not used with the runtime argument.
+  It may also be used if the compiler  option -Cp is not used with the runtime
+  argument.
 
   Arguments :
   - offset part of an address in the Y register
@@ -493,9 +524,11 @@ extern "C"
 #pragma NO_EXIT
 #pragma NO_FRAME
 
-void NEAR _LOAD_FAR_32(void) {
+    void NEAR
+    _LOAD_FAR_32( void )
+{
 #if USE_SEVERAL_PAGES
-  asm {
+    asm {
           PSHX                 ; save X register
           __PIC_JSR(_GET_PAGE_REG)
           BEQ   L_NOPAGE
@@ -512,9 +545,9 @@ L_NOPAGE:
           LDY   0,Y            ; actual load, high word
           PULX                 ; restore X register
           RTS
-  }
-#else /* USE_SEVERAL_PAGES */
-  asm {
+    }
+#else  /* USE_SEVERAL_PAGES */
+    asm {
           LDAA   PAGE_ADDR     ; save page register
           PSHA                 ; put it onto the stack
           STAB   PAGE_ADDR     ; set page register
@@ -522,13 +555,14 @@ L_NOPAGE:
           LDY   0,Y            ; actual load, high word
           MOVB  1,SP+,PAGE_ADDR; restore page register
           RTS
-  }
+    }
 #endif /* USE_SEVERAL_PAGES */
 }
 
 /*--------------------------- _STORE_FAR_8 --------------------------------
   This runtime routine is used to access paged memory via a runtime function.
-  It may also be used if the compiler  option -Cp is not used with the runtime argument.
+  It may also be used if the compiler  option -Cp is not used with the runtime
+  argument.
 
   Arguments :
   - offset part of an address in the Y register
@@ -548,9 +582,11 @@ extern "C"
 #pragma NO_EXIT
 #pragma NO_FRAME
 
-void NEAR _STORE_FAR_8(void) {
+    void NEAR
+    _STORE_FAR_8( void )
+{
 #if USE_SEVERAL_PAGES
-  asm {
+    asm {
           PSHX                   ; save X register
           __PIC_JSR(_GET_PAGE_REG)
           BEQ   L_NOPAGE
@@ -566,9 +602,9 @@ L_NOPAGE:
           STAA 0,Y               ; store the value passed in A
           PULX                   ; restore X register
           RTS
-  }
-#else /* USE_SEVERAL_PAGES */
-  asm {
+    }
+#else  /* USE_SEVERAL_PAGES */
+    asm {
           PSHB                 ; save A register
           LDAB   PAGE_ADDR     ; save page register
           MOVB  0,SP,PAGE_ADDR ; set page register
@@ -576,13 +612,14 @@ L_NOPAGE:
           STAB   PAGE_ADDR     ; restore page register
           PULB                   ; restore B register
           RTS
-  }
+    }
 #endif /* USE_SEVERAL_PAGES */
 }
 
 /*--------------------------- _STORE_FAR_16 --------------------------------
   This runtime routine is used to access paged memory via a runtime function.
-  It may also be used if the compiler  option -Cp is not used with the runtime argument.
+  It may also be used if the compiler  option -Cp is not used with the runtime
+  argument.
 
   Arguments :
   - offset part of an address in the Y register
@@ -602,9 +639,11 @@ extern "C"
 #pragma NO_EXIT
 #pragma NO_FRAME
 
-void NEAR _STORE_FAR_16(void) {
+    void NEAR
+    _STORE_FAR_16( void )
+{
 #if USE_SEVERAL_PAGES
-  asm {
+    asm {
           PSHX                  ; save X register
           __PIC_JSR(_GET_PAGE_REG)
           BEQ    L_NOPAGE
@@ -622,9 +661,9 @@ L_NOPAGE:
           STX 0,Y               ; store the value passed in X
           PULX                  ; restore X register
           RTS
-  }
-#else /* USE_SEVERAL_PAGES */
-  asm {
+    }
+#else  /* USE_SEVERAL_PAGES */
+    asm {
           PSHA                 ; save A register
           LDAA   PAGE_ADDR     ; save page register
           STAB   PAGE_ADDR     ; set page register
@@ -632,12 +671,13 @@ L_NOPAGE:
           STAA   PAGE_ADDR     ; restore page register
           PULA                 ; restore A register
           RTS
-  }
+    }
 #endif /* USE_SEVERAL_PAGES */
 }
 /*--------------------------- _STORE_FAR_24 --------------------------------
   This runtime routine is used to access paged memory via a runtime function.
-  It may also be used if the compiler  option -Cp is not used with the runtime argument.
+  It may also be used if the compiler  option -Cp is not used with the runtime
+  argument.
 
   Arguments :
   - offset part of an address in the Y register
@@ -657,9 +697,11 @@ extern "C"
 #pragma NO_EXIT
 #pragma NO_FRAME
 
-void NEAR _STORE_FAR_24(void) {
+    void NEAR
+    _STORE_FAR_24( void )
+{
 #if USE_SEVERAL_PAGES
-  asm {
+    asm {
           PSHX                  ; save X register
           __PIC_JSR(_GET_PAGE_REG)
           BEQ    L_NOPAGE
@@ -679,9 +721,9 @@ L_NOPAGE:
           STAA   0,Y            ; store the value passed in X
           PULX                  ; restore X register
           RTS
-  }
-#else /* USE_SEVERAL_PAGES */
-  asm {
+    }
+#else  /* USE_SEVERAL_PAGES */
+    asm {
           PSHA                 ; save A register
           LDAA   PAGE_ADDR     ; save page register
           STAB   PAGE_ADDR     ; set page register
@@ -690,16 +732,18 @@ L_NOPAGE:
           STAA   PAGE_ADDR     ; restore page register
           PULA                 ; restore A register
           RTS
-  }
+    }
 #endif /* USE_SEVERAL_PAGES */
 }
 /*--------------------------- _STORE_FAR_32 --------------------------------
   This runtime routine is used to access paged memory via a runtime function.
-  It may also be used if the compiler  option -Cp is not used with the runtime argument.
+  It may also be used if the compiler  option -Cp is not used with the runtime
+  argument.
 
   Arguments :
   - offset part of an address in the Y register
-  - page part of an address is on the stack at 3,SP (just below the return address)
+  - page part of an address is on the stack at 3,SP (just below the return
+  address)
   - value to be stored in the X:D registers (D : low 16 bit, X : high 16 bit)
 
   Result :
@@ -716,9 +760,11 @@ extern "C"
 #pragma NO_EXIT
 #pragma NO_FRAME
 
-void NEAR _STORE_FAR_32(void) {
+    void NEAR
+    _STORE_FAR_32( void )
+{
 #if USE_SEVERAL_PAGES
-  asm {
+    asm {
           PSHX                  ; save X register
           __PIC_JSR(_GET_PAGE_REG)
           BEQ    L_NOPAGE
@@ -739,9 +785,9 @@ done:
           PULX                  ; restore X register
           MOVW   0,SP, 1,+SP    ; move return address
           RTS
-  }
-#else /* USE_SEVERAL_PAGES */
-  asm {
+    }
+#else  /* USE_SEVERAL_PAGES */
+    asm {
           PSHD                    ; save D register
           LDAA   PAGE_ADDR        ; save page register
           LDAB   4,SP             ; load page part of address
@@ -752,13 +798,14 @@ done:
           PULD                    ; restore D register
           MOVW   0,SP, 1,+SP    ; move return address
           RTS
-  }
+    }
 #endif /* USE_SEVERAL_PAGES */
 }
 
 /*--------------------------- _FAR_COPY --------------------------------
   This runtime routine is used to access paged memory via a runtime function.
-  It may also be used if the compiler  option -Cp is not used with the runtime argument.
+  It may also be used if the compiler  option -Cp is not used with the runtime
+  argument.
 
   Arguments :
   - offset part of the source int the X register
@@ -789,9 +836,11 @@ extern "C"
 #pragma NO_EXIT
 #pragma NO_FRAME
 
-void NEAR _FAR_COPY(void) {
+    void NEAR
+    _FAR_COPY( void )
+{
 #if USE_SEVERAL_PAGES
-  asm {
+    asm {
         DEX                   ; source addr-=1, because loop counter ends at 1
         PSHX                  ; save source offset
         PSHD                  ; save both pages
@@ -815,9 +864,9 @@ loop:
         LDX     6,SP          ; load return address
         LEAS    10,SP         ; release stack
         JMP     0,X           ; return
-  }
+    }
 #else
-  asm {
+    asm {
         PSHD                   ; store page registers
         TFR   X,D
         ADDD  4,SP             ; calculate source end address
@@ -837,7 +886,6 @@ loop:
         STAA  PAGE_ADDR        ; store it into page register
         LDX   4,SP+            ; release stack and load return address
         JMP   0,X              ; return
-  }
+    }
 #endif
 }
-

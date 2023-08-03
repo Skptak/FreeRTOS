@@ -52,31 +52,31 @@
 //------------------------------------------------------------------------------
 
 #include <board.h>
-#if defined(cortexm3)
-#include <cmsis/core_cm3.h>
+#if defined( cortexm3 )
+    #include <cmsis/core_cm3.h>
 #endif
 
 //------------------------------------------------------------------------------
 //         Definitions
 //------------------------------------------------------------------------------
-#if defined(cortexm3)
-#ifdef __NVIC_PRIO_BITS
-#undef __NVIC_PRIO_BITS
-#define __NVIC_PRIO_BITS           ((SCB->AIRCR & 0x700) >> 8)
-#endif
+#if defined( cortexm3 )
+    #ifdef __NVIC_PRIO_BITS
+        #undef __NVIC_PRIO_BITS
+        #define __NVIC_PRIO_BITS ( ( SCB->AIRCR & 0x700 ) >> 8 )
+    #endif
 #endif
 
 //------------------------------------------------------------------------------
 //         Global functions
 //------------------------------------------------------------------------------
 
-extern void IRQ_ConfigureIT(unsigned int source,
-                            unsigned int mode,         // mode for AIC, priority for NVIC
-                            void( *handler )( void )); // ISR
+extern void IRQ_ConfigureIT( unsigned int source,
+                             unsigned int mode, // mode for AIC, priority for
+                                                // NVIC
+                             void ( *handler )( void ) ); // ISR
 
-extern void IRQ_EnableIT(unsigned int source);
+extern void IRQ_EnableIT( unsigned int source );
 
-extern void IRQ_DisableIT(unsigned int source);
+extern void IRQ_DisableIT( unsigned int source );
 
-#endif //#ifndef IRQ_H
-
+#endif // #ifndef IRQ_H

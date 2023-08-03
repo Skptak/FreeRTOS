@@ -37,8 +37,8 @@
 
 #include <stdarg.h>
 #include <stdlib.h>
-#if defined(__CC_ARM)
-#include <stdio.h>
+#if defined( __CC_ARM )
+    #include <stdio.h>
 #endif
 
 #include "fsl_debug_console.h"
@@ -46,9 +46,9 @@
 #include "fsl_log.h"
 #include "fsl_str.h"
 
-#if defined(__riscv)
-#include <sys/stat.h>
-#include <sys/types.h>
+#if defined( __riscv )
+    #include <sys/stat.h>
+    #include <sys/types.h>
 #endif
 
 /*******************************************************************************
@@ -63,8 +63,8 @@
  * Prototypes
  ******************************************************************************/
 /*!
- * @brief This is a printf call back function which is used to relocate the log to buffer
- * or print the log immediately when the local buffer is full.
+ * @brief This is a printf call back function which is used to relocate the log
+ * to buffer or print the log immediately when the local buffer is full.
  *
  * @param[in] buf   Buffer to store log.
  * @param[in] indicator Buffer index.
@@ -73,24 +73,31 @@
  *
  */
 #if SDK_DEBUGCONSOLE
-static void DbgConsole_RelocateLog(char *buf, int32_t *indicator, char val, int len);
+static void DbgConsole_RelocateLog( char * buf,
+                                    int32_t * indicator,
+                                    char val,
+                                    int len );
 #endif
 /*******************************************************************************
  * Code
  ******************************************************************************/
 
-/*************Code for DbgConsole Init, Deinit, Printf, Scanf *******************************/
+/*************Code for DbgConsole Init, Deinit, Printf, Scanf
+ * *******************************/
 
 /* See fsl_debug_console.h for documentation of this function. */
-status_t DbgConsole_Init(uint32_t baseAddr, uint32_t baudRate, uint8_t device, uint32_t clkSrcFreq)
+status_t DbgConsole_Init( uint32_t baseAddr,
+                          uint32_t baudRate,
+                          uint8_t device,
+                          uint32_t clkSrcFreq )
 {
-    assert(device != DEBUG_CONSOLE_DEVICE_TYPE_NONE);
+    assert( device != DEBUG_CONSOLE_DEVICE_TYPE_NONE );
 
-    return LOG_Init(baseAddr, device, baudRate, clkSrcFreq);
+    return LOG_Init( baseAddr, device, baudRate, clkSrcFreq );
 }
 
 /* See fsl_debug_console.h for documentation of this function. */
-status_t DbgConsole_Deinit(void)
+status_t DbgConsole_Deinit( void )
 {
     /* LOG deinit */
     LOG_Deinit();
@@ -98,7 +105,7 @@ status_t DbgConsole_Deinit(void)
     return kStatus_Success;
 }
 
-status_t DbgConsole_Flush(void)
+status_t DbgConsole_Flush( void )
 {
     /* wait log and io idle */
     return LOG_WaitIdle();
@@ -106,280 +113,296 @@ status_t DbgConsole_Flush(void)
 
 #if SDK_DEBUGCONSOLE
 /* See fsl_debug_console.h for documentation of this function. */
-int DbgConsole_Printf(const char *fmt_s, ...)
+int DbgConsole_Printf( const char * fmt_s, ... )
 {
     va_list ap;
     int logLength = 0U, result = 0U;
-    char printBuf[DEBUG_CONSOLE_PRINTF_MAX_LOG_LEN] = {0U};
+    char printBuf[ DEBUG_CONSOLE_PRINTF_MAX_LOG_LEN ] = { 0U };
 
-    va_start(ap, fmt_s);
+    va_start( ap, fmt_s );
     /* format print log first */
-    logLength = StrFormatPrintf(fmt_s, ap, printBuf, DbgConsole_RelocateLog);
+    logLength = StrFormatPrintf( fmt_s, ap, printBuf, DbgConsole_RelocateLog );
     /* print log */
-    result = LOG_Push((uint8_t *)printBuf, logLength);
+    result = LOG_Push( ( uint8_t * ) printBuf, logLength );
 
-    va_end(ap);
+    va_end( ap );
 
     return result;
 }
 
 /* See fsl_debug_console.h for documentation of this function. */
-int DbgConsole_Putchar(int ch)
+int DbgConsole_Putchar( int ch )
 {
     /* print char */
-    return LOG_Push((uint8_t *)&ch, 1U);
+    return LOG_Push( ( uint8_t * ) &ch, 1U );
 }
 
 /* See fsl_debug_console.h for documentation of this function. */
-int DbgConsole_Scanf(char *fmt_ptr, ...)
+int DbgConsole_Scanf( char * fmt_ptr, ... )
 {
     va_list ap;
     int result;
-    char scanfBuf[DEBUG_CONSOLE_SCANF_MAX_LOG_LEN + 1U] = {0U};
+    char scanfBuf[ DEBUG_CONSOLE_SCANF_MAX_LOG_LEN + 1U ] = { 0U };
 
     /* scanf log */
-    LOG_ReadLine((uint8_t *)scanfBuf, DEBUG_CONSOLE_SCANF_MAX_LOG_LEN);
+    LOG_ReadLine( ( uint8_t * ) scanfBuf, DEBUG_CONSOLE_SCANF_MAX_LOG_LEN );
     /* get va_list */
-    va_start(ap, fmt_ptr);
+    va_start( ap, fmt_ptr );
     /* format scanf log */
-    result = StrFormatScanf(scanfBuf, fmt_ptr, ap);
+    result = StrFormatScanf( scanfBuf, fmt_ptr, ap );
 
-    va_end(ap);
+    va_end( ap );
 
     return result;
 }
 
 /* See fsl_debug_console.h for documentation of this function. */
-int DbgConsole_Getchar(void)
+int DbgConsole_Getchar( void )
 {
     uint8_t ch;
 
     /* Get char */
-    LOG_ReadCharacter(&ch);
+    LOG_ReadCharacter( &ch );
 
     return ch;
 }
 
-static void DbgConsole_RelocateLog(char *buf, int32_t *indicator, char val, int len)
+static void DbgConsole_RelocateLog( char * buf,
+                                    int32_t * indicator,
+                                    char val,
+                                    int len )
 {
     int i = 0;
 
-    for (i = 0; i < len; i++)
+    for( i = 0; i < len; i++ )
     {
-        if ((*indicator + 1) >= DEBUG_CONSOLE_PRINTF_MAX_LOG_LEN)
+        if( ( *indicator + 1 ) >= DEBUG_CONSOLE_PRINTF_MAX_LOG_LEN )
         {
-            LOG_Push((uint8_t *)buf, *indicator);
+            LOG_Push( ( uint8_t * ) buf, *indicator );
             *indicator = 0U;
         }
 
-        buf[*indicator] = val;
-        (*indicator)++;
+        buf[ *indicator ] = val;
+        ( *indicator )++;
     }
 }
 
 #endif /* SDK_DEBUGCONSOLE */
-/*************Code to support toolchain's printf, scanf *******************************/
-/* These function __write and __read is used to support IAR toolchain to printf and scanf*/
-#if (defined(__ICCARM__))
-#pragma weak __write
-size_t __write(int handle, const unsigned char *buffer, size_t size)
+/*************Code to support toolchain's printf, scanf
+ * *******************************/
+/* These function __write and __read is used to support IAR toolchain to printf
+ * and scanf*/
+#if( defined( __ICCARM__ ) )
+    #pragma weak __write
+size_t __write( int handle, const unsigned char * buffer, size_t size )
 {
-    if (buffer == 0)
+    if( buffer == 0 )
     {
         /*
-         * This means that we should flush internal buffers.  Since we don't we just return.
-         * (Remember, "handle" == -1 means that all handles should be flushed.)
+         * This means that we should flush internal buffers.  Since we don't we
+         * just return. (Remember, "handle" == -1 means that all handles should
+         * be flushed.)
          */
         return 0;
     }
 
-    /* This function only writes to "standard out" and "standard err" for all other file handles it returns failure. */
-    if ((handle != 1) && (handle != 2))
+    /* This function only writes to "standard out" and "standard err" for all
+     * other file handles it returns failure. */
+    if( ( handle != 1 ) && ( handle != 2 ) )
     {
-        return ((size_t)-1);
+        return ( ( size_t ) -1 );
     }
 
     /* Send data. */
-    LOG_Push((uint8_t *)buffer, 1U);
+    LOG_Push( ( uint8_t * ) buffer, 1U );
 
     return size;
 }
 
-#pragma weak __read
-size_t __read(int handle, unsigned char *buffer, size_t size)
+    #pragma weak __read
+size_t __read( int handle, unsigned char * buffer, size_t size )
 {
-    /* This function only reads from "standard in", for all other file  handles it returns failure. */
-    if (handle != 0)
+    /* This function only reads from "standard in", for all other file  handles
+     * it returns failure. */
+    if( handle != 0 )
     {
-        return ((size_t)-1);
+        return ( ( size_t ) -1 );
     }
 
     /* Receive data.*/
-    LOG_ReadLine(buffer, size);
+    LOG_ReadLine( buffer, size );
 
     return size;
 }
 
 /* support LPC Xpresso with RedLib */
-#elif(defined(__REDLIB__))
+#elif( defined( __REDLIB__ ) )
 
-#if (!SDK_DEBUGCONSOLE) && (defined(SDK_DEBUGCONSOLE_UART))
-int __attribute__((weak)) __sys_write(int handle, char *buffer, int size)
+    #if( !SDK_DEBUGCONSOLE ) && ( defined( SDK_DEBUGCONSOLE_UART ) )
+int __attribute__( ( weak ) ) __sys_write( int handle, char * buffer, int size )
 {
-    if (buffer == 0)
+    if( buffer == 0 )
     {
         /* return -1 if error. */
         return -1;
     }
 
-    /* This function only writes to "standard out" and "standard err" for all other file handles it returns failure. */
-    if ((handle != 1) && (handle != 2))
+    /* This function only writes to "standard out" and "standard err" for all
+     * other file handles it returns failure. */
+    if( ( handle != 1 ) && ( handle != 2 ) )
     {
         return -1;
     }
 
     /* Send data. */
-    LOG_Push((uint8_t *)buffer, size);
+    LOG_Push( ( uint8_t * ) buffer, size );
 
     return 0;
 }
 
-int __attribute__((weak)) __sys_readc(void)
+int __attribute__( ( weak ) ) __sys_readc( void )
 {
     char tmp;
 
     /* Receive data. */
-    LOG_ReadCharacter((uint8_t *)&tmp);
+    LOG_ReadCharacter( ( uint8_t * ) &tmp );
 
     return tmp;
 }
-#endif
+    #endif
 
-/* These function __write and __read is used to support ARM_GCC, KDS, Atollic toolchains to printf and scanf*/
-#elif(defined(__GNUC__))
+/* These function __write and __read is used to support ARM_GCC, KDS, Atollic
+ * toolchains to printf and scanf*/
+#elif( defined( __GNUC__ ) )
 
-#if ((defined(__GNUC__) && (!defined(__MCUXPRESSO))) || \
-     (defined(__MCUXPRESSO) && (!SDK_DEBUGCONSOLE) && (defined(SDK_DEBUGCONSOLE_UART))))
+    #if( ( defined( __GNUC__ ) && ( !defined( __MCUXPRESSO ) ) ) || \
+         ( defined( __MCUXPRESSO ) && ( !SDK_DEBUGCONSOLE ) &&      \
+           ( defined( SDK_DEBUGCONSOLE_UART ) ) ) )
 
-int __attribute__((weak)) _write(int handle, char *buffer, int size)
+int __attribute__( ( weak ) ) _write( int handle, char * buffer, int size )
 {
-    if (buffer == 0)
+    if( buffer == 0 )
     {
         /* return -1 if error. */
         return -1;
     }
 
-    /* This function only writes to "standard out" and "standard err" for all other file handles it returns failure. */
-    if ((handle != 1) && (handle != 2))
+    /* This function only writes to "standard out" and "standard err" for all
+     * other file handles it returns failure. */
+    if( ( handle != 1 ) && ( handle != 2 ) )
     {
         return -1;
     }
 
     /* Send data. */
-    LOG_Push((uint8_t *)buffer, size);
+    LOG_Push( ( uint8_t * ) buffer, size );
 
     return size;
 }
 
-int __attribute__((weak)) _read(int handle, char *buffer, int size)
+int __attribute__( ( weak ) ) _read( int handle, char * buffer, int size )
 {
-    /* This function only reads from "standard in", for all other file handles it returns failure. */
-    if (handle != 0)
+    /* This function only reads from "standard in", for all other file handles
+     * it returns failure. */
+    if( handle != 0 )
     {
         return -1;
     }
 
     /* Receive data. */
-    return LOG_ReadLine((uint8_t *)buffer, size);
+    return LOG_ReadLine( ( uint8_t * ) buffer, size );
 }
-#endif
+    #endif
 
-/* These function fputc and fgetc is used to support KEIL toolchain to printf and scanf*/
-#elif defined(__CC_ARM)
+/* These function fputc and fgetc is used to support KEIL toolchain to printf
+ * and scanf*/
+#elif defined( __CC_ARM )
 struct __FILE
 {
     int handle;
     /*
-     * Whatever you require here. If the only file you are using is standard output using printf() for debugging,
-     * no file handling is required.
+     * Whatever you require here. If the only file you are using is standard
+     * output using printf() for debugging, no file handling is required.
      */
 };
 
-/* FILE is typedef in stdio.h. */
-#pragma weak __stdout
-#pragma weak __stdin
+    /* FILE is typedef in stdio.h. */
+    #pragma weak __stdout
+    #pragma weak __stdin
 FILE __stdout;
 FILE __stdin;
 
-#pragma weak fputc
-int fputc(int ch, FILE *f)
+    #pragma weak fputc
+int fputc( int ch, FILE * f )
 {
     /* Send data. */
-    return LOG_Push((uint8_t *)(&ch), 1);
+    return LOG_Push( ( uint8_t * ) ( &ch ), 1 );
 }
 
-#pragma weak fgetc
-int fgetc(FILE *f)
+    #pragma weak fgetc
+int fgetc( FILE * f )
 {
     char ch;
 
     /* Receive data. */
-    LOG_ReadCharacter((uint8_t *)&ch);
+    LOG_ReadCharacter( ( uint8_t * ) &ch );
 
     return ch;
 }
 #endif /* __ICCARM__ */
 
-#if defined(__riscv)
-int isatty(int fd)
+#if defined( __riscv )
+int isatty( int fd )
 {
     return 1;
 }
 
-int fstat(int fd, struct stat *st)
+int fstat( int fd, struct stat * st )
 {
     st->st_mode = S_IFCHR;
     return 0;
 }
 
-int lseek(int fd, off_t ptr, int dir)
+int lseek( int fd, off_t ptr, int dir )
 {
     return 0;
 }
 
-int close(int fd)
+int close( int fd )
 {
     return -1;
 }
 
-int read(int fd, void* ptr, size_t len)
+int read( int fd, void * ptr, size_t len )
 {
-    /* This function only reads from "standard in", for all other file handles it returns failure. */
-    if (fd != 0)
+    /* This function only reads from "standard in", for all other file handles
+     * it returns failure. */
+    if( fd != 0 )
     {
         return -1;
     }
 
     /* Receive data. */
-    return LOG_ReadLine((uint8_t *)ptr, len);
+    return LOG_ReadLine( ( uint8_t * ) ptr, len );
 }
 
-int write(int fd, const void* ptr, size_t len)
+int write( int fd, const void * ptr, size_t len )
 {
-    if (ptr == 0)
+    if( ptr == 0 )
     {
         /* return -1 if error. */
         return -1;
     }
 
-    /* This function only writes to "standard out" and "standard err" for all other file handles it returns failure. */
-    if ((fd != 1) && (fd != 2))
+    /* This function only writes to "standard out" and "standard err" for all
+     * other file handles it returns failure. */
+    if( ( fd != 1 ) && ( fd != 2 ) )
     {
         return -1;
     }
 
     /* Send data. */
-    LOG_Push((uint8_t *)ptr, len);
+    LOG_Push( ( uint8_t * ) ptr, len );
 
     return len;
 }

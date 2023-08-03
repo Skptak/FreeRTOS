@@ -45,7 +45,8 @@
 #define USART_H_INCLUDED
 
 /**
- * \defgroup asfdoc_samd20_sercom_usart_group SAM D20 Serial USART Driver (SERCOM USART)
+ * \defgroup asfdoc_samd20_sercom_usart_group SAM D20 Serial USART Driver
+ * (SERCOM USART)
  *
  * This driver for SAM D20 devices provides an interface for the configuration
  * and management of the SERCOM module in its USART mode to transfer or receive
@@ -131,10 +132,10 @@
  * - RX (Receive pin)
  * - XCK (Clock pin)
  *
- * \subsubsection asfdoc_samd20_sercom_usart_overview_sync_sampling Data sampling
- * In synchronous mode the data is sampled on either the rising or falling edge
- * of the clock signal. This is configured by setting the clock polarity in the
- * configuration struct.
+ * \subsubsection asfdoc_samd20_sercom_usart_overview_sync_sampling Data
+ * sampling In synchronous mode the data is sampled on either the rising or
+ * falling edge of the clock signal. This is configured by setting the clock
+ * polarity in the configuration struct.
  *
  * \subsection asfdoc_samd20_sercom_usart_overview_async Asynchronous mode
  *
@@ -147,7 +148,8 @@
  * - TX (Transmit pin)
  * - RX (Receive pin)
  *
- * \subsubsection asfdoc_samd20_sercom_usart_overview_async_clock_matching Transmitter/receiver clock matching
+ * \subsubsection asfdoc_samd20_sercom_usart_overview_async_clock_matching
+ * Transmitter/receiver clock matching
  *
  * For successful transmit and receive using the asynchronous mode the receiver
  * and transmitter clocks needs to be closely matched. When receiving a frame
@@ -156,8 +158,8 @@
  * result.
  *
  * \subsection asfdoc_samd20_sercom_usart_parity Parity
- * Parity can be enabled to detect if a transmission was in error. This is done by
- * counting the number of "1" bits in the frame. When using Even parity the
+ * Parity can be enabled to detect if a transmission was in error. This is done
+ * by counting the number of "1" bits in the frame. When using Even parity the
  * parity bit will be set if the total number of "1"s in the frame are an even
  * number. If using Odd parity the parity bit will be set if the total number
  * of "1"s are Odd.
@@ -165,17 +167,19 @@
  * When receiving a character the receiver will count the number of "1"s in the
  * frame and give an error if the received frame and parity bit disagree.
  *
- * \subsection asfdoc_samd20_sercom_usart_overview_pin_configuration GPIO configuration
+ * \subsection asfdoc_samd20_sercom_usart_overview_pin_configuration GPIO
+ * configuration
  *
- * the SERCOM module have four internal PADS where the RX pin can be placed at all
- * the PADS, and the TX and XCK pins have two predefined positions that can be changed.
- * The PADS can then be routed to an external GPIO pin using the normal pin
- * multiplexing scheme on the SAM D20.
+ * the SERCOM module have four internal PADS where the RX pin can be placed at
+ * all the PADS, and the TX and XCK pins have two predefined positions that can
+ * be changed. The PADS can then be routed to an external GPIO pin using the
+ * normal pin multiplexing scheme on the SAM D20.
  *
  * For SERCOM pad multiplexer position documentation, see
  * \ref asfdoc_samd20_sercom_usart_mux_settings.
  *
- * \section asfdoc_samd20_sercom_usart_special_considerations Special Considerations
+ * \section asfdoc_samd20_sercom_usart_special_considerations Special
+ * Considerations
  *
  * \if USART_CALLBACK_MODE
  * Never execute large portions of code in the callbacks. These
@@ -190,7 +194,8 @@
  *
  * \section asfdoc_samd20_sercom_usart_extra_info Extra Information
  *
- * For extra information see \ref asfdoc_samd20_sercom_usart_extra. This includes:
+ * For extra information see \ref asfdoc_samd20_sercom_usart_extra. This
+ * includes:
  * - \ref asfdoc_samd20_sercom_usart_extra_acronyms
  * - \ref asfdoc_samd20_sercom_usart_extra_dependencies
  * - \ref asfdoc_samd20_sercom_usart_extra_errata
@@ -205,11 +210,11 @@
  * @{
  */
 
-#include <sercom.h>
 #include <pinmux.h>
+#include <sercom.h>
 
 #if USART_CALLBACK_MODE == true
-#  include <sercom_interrupt.h>
+    #include <sercom_interrupt.h>
 #endif
 
 #ifdef __cplusplus
@@ -217,15 +222,15 @@ extern "C" {
 #endif
 
 #ifndef PINMUX_DEFAULT
-#  define PINMUX_DEFAULT 0
+    #define PINMUX_DEFAULT 0
 #endif
 
 #ifndef PINMUX_UNUSED
-#  define PINMUX_UNUSED 0xFFFFFFFF
+    #define PINMUX_UNUSED 0xFFFFFFFF
 #endif
 
 #ifndef USART_TIMEOUT
-#  define USART_TIMEOUT 0xFFFF
+    #define USART_TIMEOUT 0xFFFF
 #endif
 
 #if USART_CALLBACK_MODE == true
@@ -235,17 +240,18 @@ extern "C" {
  * Callbacks for the Asynchronous USART driver
  */
 /* TODO: Add support for RX started interrupt. */
-enum usart_callback {
-	/** Callback for buffer transmitted */
-	USART_CALLBACK_BUFFER_TRANSMITTED,
-	/** Callback for buffer received */
-	USART_CALLBACK_BUFFER_RECEIVED,
-	/** Callback for error */
-	USART_CALLBACK_ERROR,
-#  if !defined(__DOXYGEN__)
-	/** Number of available callbacks. */
-	USART_CALLBACK_N,
-#  endif
+enum usart_callback
+{
+    /** Callback for buffer transmitted */
+    USART_CALLBACK_BUFFER_TRANSMITTED,
+    /** Callback for buffer received */
+    USART_CALLBACK_BUFFER_RECEIVED,
+    /** Callback for error */
+    USART_CALLBACK_ERROR,
+    #if !defined( __DOXYGEN__ )
+    /** Number of available callbacks. */
+    USART_CALLBACK_N,
+    #endif
 };
 #endif
 
@@ -255,13 +261,14 @@ enum usart_callback {
  * The data order decides which of MSB or LSB is shifted out first when data is
  * transferred
  */
-enum usart_dataorder {
-	/** The MSB will be shifted out first during transmission,
-	 *  and shifted in first during reception */
-	USART_DATAORDER_MSB = 0,
-	/** The LSB will be shifted out first during transmission,
-	 *  and shifted in first during reception */
-	USART_DATAORDER_LSB = SERCOM_USART_CTRLA_DORD,
+enum usart_dataorder
+{
+    /** The MSB will be shifted out first during transmission,
+     *  and shifted in first during reception */
+    USART_DATAORDER_MSB = 0,
+    /** The LSB will be shifted out first during transmission,
+     *  and shifted in first during reception */
+    USART_DATAORDER_LSB = SERCOM_USART_CTRLA_DORD,
 };
 
 /**
@@ -269,11 +276,12 @@ enum usart_dataorder {
  *
  * Select USART transfer mode
  */
-enum usart_transfer_mode {
-	/** Transfer of data is done synchronously */
-	USART_TRANSFER_SYNCHRONOUSLY = (SERCOM_USART_CTRLA_CMODE),
-	/** Transfer of data is done asynchronously */
-	USART_TRANSFER_ASYNCHRONOUSLY = 0
+enum usart_transfer_mode
+{
+    /** Transfer of data is done synchronously */
+    USART_TRANSFER_SYNCHRONOUSLY = ( SERCOM_USART_CTRLA_CMODE ),
+    /** Transfer of data is done asynchronously */
+    USART_TRANSFER_ASYNCHRONOUSLY = 0
 };
 
 /**
@@ -281,18 +289,19 @@ enum usart_transfer_mode {
  *
  * Select parity USART parity mode
  */
-enum usart_parity {
-	/** For odd parity checking, the parity bit will be set if number of
-	 *  ones being transferred is even */
-	USART_PARITY_ODD  = SERCOM_USART_CTRLB_PMODE,
+enum usart_parity
+{
+    /** For odd parity checking, the parity bit will be set if number of
+     *  ones being transferred is even */
+    USART_PARITY_ODD = SERCOM_USART_CTRLB_PMODE,
 
-	/** For even parity checking, the parity bit will be set if number of
-	 *  ones being received is odd */
-	USART_PARITY_EVEN = 0,
+    /** For even parity checking, the parity bit will be set if number of
+     *  ones being received is odd */
+    USART_PARITY_EVEN = 0,
 
-	/** No parity checking will be executed, and there will be no parity bit
-	 *  in the received frame */
-	USART_PARITY_NONE = 0xFF,
+    /** No parity checking will be executed, and there will be no parity bit
+     *  in the received frame */
+    USART_PARITY_NONE = 0xFF,
 };
 
 /**
@@ -300,23 +309,28 @@ enum usart_parity {
  *
  * Set the functionality of the SERCOM pins.
  */
-enum usart_signal_mux_settings {
-	/** See \ref asfdoc_samd20_sercom_usart_mux_setting_a */
-	USART_RX_0_TX_0_XCK_1 = (SERCOM_USART_CTRLA_RXPO(0)),
-	/** See \ref asfdoc_samd20_sercom_usart_mux_setting_b */
-	USART_RX_0_TX_2_XCK_3 = (SERCOM_USART_CTRLA_RXPO(0) | SERCOM_USART_CTRLA_TXPO),
-	/** See \ref asfdoc_samd20_sercom_usart_mux_setting_c */
-	USART_RX_1_TX_0_XCK_1 = (SERCOM_USART_CTRLA_RXPO(1)),
-	/** See \ref asfdoc_samd20_sercom_usart_mux_setting_d */
-	USART_RX_1_TX_2_XCK_3 = (SERCOM_USART_CTRLA_RXPO(1) | SERCOM_USART_CTRLA_TXPO),
-	/** See \ref asfdoc_samd20_sercom_usart_mux_setting_e */
-	USART_RX_2_TX_0_XCK_1 = (SERCOM_USART_CTRLA_RXPO(2)),
-	/** See \ref asfdoc_samd20_sercom_usart_mux_setting_f */
-	USART_RX_2_TX_2_XCK_3 = (SERCOM_USART_CTRLA_RXPO(2) | SERCOM_USART_CTRLA_TXPO),
-	/** See \ref asfdoc_samd20_sercom_usart_mux_setting_g */
-	USART_RX_3_TX_0_XCK_1 = (SERCOM_USART_CTRLA_RXPO(3)),
-	/** See \ref asfdoc_samd20_sercom_usart_mux_setting_h */
-	USART_RX_3_TX_2_XCK_3 = (SERCOM_USART_CTRLA_RXPO(3) | SERCOM_USART_CTRLA_TXPO),
+enum usart_signal_mux_settings
+{
+    /** See \ref asfdoc_samd20_sercom_usart_mux_setting_a */
+    USART_RX_0_TX_0_XCK_1 = ( SERCOM_USART_CTRLA_RXPO( 0 ) ),
+    /** See \ref asfdoc_samd20_sercom_usart_mux_setting_b */
+    USART_RX_0_TX_2_XCK_3 = ( SERCOM_USART_CTRLA_RXPO( 0 ) |
+                              SERCOM_USART_CTRLA_TXPO ),
+    /** See \ref asfdoc_samd20_sercom_usart_mux_setting_c */
+    USART_RX_1_TX_0_XCK_1 = ( SERCOM_USART_CTRLA_RXPO( 1 ) ),
+    /** See \ref asfdoc_samd20_sercom_usart_mux_setting_d */
+    USART_RX_1_TX_2_XCK_3 = ( SERCOM_USART_CTRLA_RXPO( 1 ) |
+                              SERCOM_USART_CTRLA_TXPO ),
+    /** See \ref asfdoc_samd20_sercom_usart_mux_setting_e */
+    USART_RX_2_TX_0_XCK_1 = ( SERCOM_USART_CTRLA_RXPO( 2 ) ),
+    /** See \ref asfdoc_samd20_sercom_usart_mux_setting_f */
+    USART_RX_2_TX_2_XCK_3 = ( SERCOM_USART_CTRLA_RXPO( 2 ) |
+                              SERCOM_USART_CTRLA_TXPO ),
+    /** See \ref asfdoc_samd20_sercom_usart_mux_setting_g */
+    USART_RX_3_TX_0_XCK_1 = ( SERCOM_USART_CTRLA_RXPO( 3 ) ),
+    /** See \ref asfdoc_samd20_sercom_usart_mux_setting_h */
+    USART_RX_3_TX_2_XCK_3 = ( SERCOM_USART_CTRLA_RXPO( 3 ) |
+                              SERCOM_USART_CTRLA_TXPO ),
 };
 
 /**
@@ -324,11 +338,12 @@ enum usart_signal_mux_settings {
  *
  * Number of stop bits for a frame.
  */
-enum usart_stopbits {
-	/** Each transferred frame contains 1 stop bit */
-	USART_STOPBITS_1 = 0,
-	/** Each transferred frame contains 2 stop bits */
-	USART_STOPBITS_2 = SERCOM_USART_CTRLB_SBMODE,
+enum usart_stopbits
+{
+    /** Each transferred frame contains 1 stop bit */
+    USART_STOPBITS_1 = 0,
+    /** Each transferred frame contains 2 stop bits */
+    USART_STOPBITS_2 = SERCOM_USART_CTRLB_SBMODE,
 };
 
 /**
@@ -336,30 +351,31 @@ enum usart_stopbits {
  *
  * Number of bits for the character sent in a frame.
  */
-enum usart_character_size {
-	/** The char being sent in a frame is 5 bits long */
-	USART_CHARACTER_SIZE_5BIT = SERCOM_USART_CTRLB_CHSIZE(5),
-	/** The char being sent in a frame is 6 bits long */
-	USART_CHARACTER_SIZE_6BIT = SERCOM_USART_CTRLB_CHSIZE(6),
-	/** The char being sent in a frame is 7 bits long */
-	USART_CHARACTER_SIZE_7BIT = SERCOM_USART_CTRLB_CHSIZE(7),
-	/** The char being sent in a frame is 8 bits long */
-	USART_CHARACTER_SIZE_8BIT = SERCOM_USART_CTRLB_CHSIZE(0),
-	/** The char being sent in a frame is 9 bits long */
-	USART_CHARACTER_SIZE_9BIT = SERCOM_USART_CTRLB_CHSIZE(1),
+enum usart_character_size
+{
+    /** The char being sent in a frame is 5 bits long */
+    USART_CHARACTER_SIZE_5BIT = SERCOM_USART_CTRLB_CHSIZE( 5 ),
+    /** The char being sent in a frame is 6 bits long */
+    USART_CHARACTER_SIZE_6BIT = SERCOM_USART_CTRLB_CHSIZE( 6 ),
+    /** The char being sent in a frame is 7 bits long */
+    USART_CHARACTER_SIZE_7BIT = SERCOM_USART_CTRLB_CHSIZE( 7 ),
+    /** The char being sent in a frame is 8 bits long */
+    USART_CHARACTER_SIZE_8BIT = SERCOM_USART_CTRLB_CHSIZE( 0 ),
+    /** The char being sent in a frame is 9 bits long */
+    USART_CHARACTER_SIZE_9BIT = SERCOM_USART_CTRLB_CHSIZE( 1 ),
 };
-
 
 /**
  * \brief USART Transceiver
  *
  * Select Receiver or Transmitter
  */
-enum usart_transceiver_type {
-	/** The parameter is for the Receiver */
-	USART_TRANSCEIVER_RX,
-	/** The parameter is for the Transmitter */
-	USART_TRANSCEIVER_TX,
+enum usart_transceiver_type
+{
+    /** The parameter is for the Receiver */
+    USART_TRANSCEIVER_RX,
+    /** The parameter is for the Transmitter */
+    USART_TRANSCEIVER_TX,
 };
 
 /**
@@ -367,54 +383,56 @@ enum usart_transceiver_type {
  *
  * Configuration options for USART
  */
-struct usart_config {
-	/** USART bit order (MSB or LSB first) */
-	enum usart_dataorder data_order;
-	/** USART in asynchronous or synchronous mode */
-	enum usart_transfer_mode transfer_mode;
-	/** USART parity */
-	enum usart_parity parity;
-	/** Number of stop bits */
-	enum usart_stopbits stopbits;
-	/** USART character size */
-	enum usart_character_size character_size;
-	/** USART pin out */
-	enum usart_signal_mux_settings mux_setting;
-	/** USART baud rate */
-	uint32_t baudrate;
-	/** Enable receiver */
-	bool receiver_enable;
-	/** Enable transmitter */
-	bool transmitter_enable;
+struct usart_config
+{
+    /** USART bit order (MSB or LSB first) */
+    enum usart_dataorder data_order;
+    /** USART in asynchronous or synchronous mode */
+    enum usart_transfer_mode transfer_mode;
+    /** USART parity */
+    enum usart_parity parity;
+    /** Number of stop bits */
+    enum usart_stopbits stopbits;
+    /** USART character size */
+    enum usart_character_size character_size;
+    /** USART pin out */
+    enum usart_signal_mux_settings mux_setting;
+    /** USART baud rate */
+    uint32_t baudrate;
+    /** Enable receiver */
+    bool receiver_enable;
+    /** Enable transmitter */
+    bool transmitter_enable;
 
-	/** USART Clock Polarity.
-	 * If true, data changes on falling XCK edge and
-	 * is sampled at rising edge.
-	 * If false, data changes on rising XCK edge and
-	 * is sampled at falling edge.
-	 * */
-	bool clock_polarity_inverted;
+    /** USART Clock Polarity.
+     * If true, data changes on falling XCK edge and
+     * is sampled at rising edge.
+     * If false, data changes on rising XCK edge and
+     * is sampled at falling edge.
+     * */
+    bool clock_polarity_inverted;
 
-	/** States whether to use the external clock applied to the XCK pin.
-	 * In synchronous mode the shift register will act directly on the XCK clock.
-	 * In asynchronous mode the XCK will be the input to the USART hardware module.
-	 */
-	bool use_external_clock;
-	/** External clock frequency in synchronous mode.
-	 * This must be set if \c use_external_clock is true. */
-	uint32_t ext_clock_freq;
-	/** If true the USART will be kept running in Standby sleep mode */
-	bool run_in_standby;
-	/** GCLK generator source */
-	enum gclk_generator generator_source;
-	/** PAD0 pinmux */
-	uint32_t pinmux_pad0;
-	/** PAD1 pinmux */
-	uint32_t pinmux_pad1;
-	/** PAD2 pinmux */
-	uint32_t pinmux_pad2;
-	/** PAD3 pinmux */
-	uint32_t pinmux_pad3;
+    /** States whether to use the external clock applied to the XCK pin.
+     * In synchronous mode the shift register will act directly on the XCK
+     * clock. In asynchronous mode the XCK will be the input to the USART
+     * hardware module.
+     */
+    bool use_external_clock;
+    /** External clock frequency in synchronous mode.
+     * This must be set if \c use_external_clock is true. */
+    uint32_t ext_clock_freq;
+    /** If true the USART will be kept running in Standby sleep mode */
+    bool run_in_standby;
+    /** GCLK generator source */
+    enum gclk_generator generator_source;
+    /** PAD0 pinmux */
+    uint32_t pinmux_pad0;
+    /** PAD1 pinmux */
+    uint32_t pinmux_pad1;
+    /** PAD2 pinmux */
+    uint32_t pinmux_pad2;
+    /** PAD3 pinmux */
+    uint32_t pinmux_pad3;
 };
 
 #if USART_CALLBACK_MODE == true
@@ -422,7 +440,7 @@ struct usart_config {
 struct usart_module;
 
 /* Type of the callback functions */
-typedef void (*usart_callback_t)(const struct usart_module *const module);
+typedef void ( *usart_callback_t )( const struct usart_module * const module );
 #endif
 
 /**
@@ -434,55 +452,57 @@ typedef void (*usart_callback_t)(const struct usart_module *const module);
  * \note The fields of this structure should not be altered by the user
  *       application; they are reserved for module-internal use only.
  */
-struct usart_module {
-#if !defined(__DOXYGEN__)
-	/** Pointer to the hardware instance */
-	Sercom *hw;
-	/** Character size of the data being transferred */
-	enum usart_character_size character_size;
-	/** Receiver enabled */
-	bool receiver_enabled;
-	/** Transmitter enabled */
-	bool transmitter_enabled;
-#  if USART_CALLBACK_MODE == true
-	/** Array to store callback function pointers in */
-	usart_callback_t callback[USART_CALLBACK_N];
-	/** Buffer pointer to where the next received character will be put */
-	volatile uint8_t *rx_buffer_ptr;
+struct usart_module
+{
+#if !defined( __DOXYGEN__ )
+    /** Pointer to the hardware instance */
+    Sercom * hw;
+    /** Character size of the data being transferred */
+    enum usart_character_size character_size;
+    /** Receiver enabled */
+    bool receiver_enabled;
+    /** Transmitter enabled */
+    bool transmitter_enabled;
+    #if USART_CALLBACK_MODE == true
+    /** Array to store callback function pointers in */
+    usart_callback_t callback[ USART_CALLBACK_N ];
+    /** Buffer pointer to where the next received character will be put */
+    volatile uint8_t * rx_buffer_ptr;
 
-	/** Buffer pointer to where the next character will be transmitted from
-	**/
-	volatile uint8_t *tx_buffer_ptr;
-	/** Remaining characters to receive */
-	volatile uint16_t remaining_rx_buffer_length;
-	/** Remaining characters to transmit */
-	volatile uint16_t remaining_tx_buffer_length;
-	/** Bit mask for callbacks registered */
-	uint8_t callback_reg_mask;
-	/** Bit mask for callbacks enabled */
-	uint8_t callback_enable_mask;
-	/** Holds the status of the ongoing or last read operation */
-	volatile enum status_code rx_status;
-	/** Holds the status of the ongoing or last write operation */
-	volatile enum status_code tx_status;
-#  endif
+    /** Buffer pointer to where the next character will be transmitted from
+     **/
+    volatile uint8_t * tx_buffer_ptr;
+    /** Remaining characters to receive */
+    volatile uint16_t remaining_rx_buffer_length;
+    /** Remaining characters to transmit */
+    volatile uint16_t remaining_tx_buffer_length;
+    /** Bit mask for callbacks registered */
+    uint8_t callback_reg_mask;
+    /** Bit mask for callbacks enabled */
+    uint8_t callback_enable_mask;
+    /** Holds the status of the ongoing or last read operation */
+    volatile enum status_code rx_status;
+    /** Holds the status of the ongoing or last write operation */
+    volatile enum status_code tx_status;
+    #endif
 #endif
 };
 
-#if !defined (__DOXYGEN__)
+#if !defined( __DOXYGEN__ )
 /**
  * \internal
  * Waits until synchronization is complete
  */
 static inline void _usart_wait_for_sync(
-		const struct usart_module *const module)
+    const struct usart_module * const module )
 {
-	/* Get a pointer to the hardware module instance */
-	SercomUsart *const usart_hw = &(module->hw->USART);
+    /* Get a pointer to the hardware module instance */
+    SercomUsart * const usart_hw = &( module->hw->USART );
 
-	while (usart_hw->STATUS.reg & SERCOM_USART_STATUS_SYNCBUSY) {
-		/* Wait until the synchronization is complete */
-	}
+    while( usart_hw->STATUS.reg & SERCOM_USART_STATUS_SYNCBUSY )
+    {
+        /* Wait until the synchronization is complete */
+    }
 }
 #endif
 
@@ -502,20 +522,22 @@ static inline void _usart_wait_for_sync(
  * \retval false  Peripheral is not busy syncing and can be read/written without
  *                stalling the bus.
  */
-static inline bool usart_is_syncing(
-		const struct usart_module *const module)
+static inline bool usart_is_syncing( const struct usart_module * const module )
 {
-	/* Sanity check arguments */
-	Assert(module);
-	Assert(module->hw);
+    /* Sanity check arguments */
+    Assert( module );
+    Assert( module->hw );
 
-	SercomUsart *const usart_hw = &(module->hw->USART);
+    SercomUsart * const usart_hw = &( module->hw->USART );
 
-	if(usart_hw->STATUS.reg & SERCOM_USART_STATUS_SYNCBUSY) {
-		return true;
-	} else {
-		return false;
-	}
+    if( usart_hw->STATUS.reg & SERCOM_USART_STATUS_SYNCBUSY )
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 /**
@@ -537,36 +559,35 @@ static inline bool usart_is_syncing(
  * \param[in,out] config  Pointer to configuration struct
  */
 static inline void usart_get_config_defaults(
-		struct usart_config *const config)
+    struct usart_config * const config )
 {
-	/* Sanity check arguments */
-	Assert(config);
+    /* Sanity check arguments */
+    Assert( config );
 
-	/* Set default config in the config struct */
-	config->data_order       = USART_DATAORDER_LSB;
-	config->transfer_mode    = USART_TRANSFER_ASYNCHRONOUSLY;
-	config->parity           = USART_PARITY_NONE;
-	config->stopbits         = USART_STOPBITS_1;
-	config->character_size   = USART_CHARACTER_SIZE_8BIT;
-	config->baudrate         = 9600;
-	config->receiver_enable  = true;
-	config->transmitter_enable = true;
-	config->clock_polarity_inverted = false;
-	config->use_external_clock = false;
-	config->ext_clock_freq   = 0;
-	config->mux_setting      = USART_RX_1_TX_2_XCK_3;
-	config->run_in_standby   = false;
-	config->generator_source = GCLK_GENERATOR_0;
-	config->pinmux_pad0      = PINMUX_DEFAULT;
-	config->pinmux_pad1      = PINMUX_DEFAULT;
-	config->pinmux_pad2      = PINMUX_DEFAULT;
-	config->pinmux_pad3      = PINMUX_DEFAULT;
+    /* Set default config in the config struct */
+    config->data_order = USART_DATAORDER_LSB;
+    config->transfer_mode = USART_TRANSFER_ASYNCHRONOUSLY;
+    config->parity = USART_PARITY_NONE;
+    config->stopbits = USART_STOPBITS_1;
+    config->character_size = USART_CHARACTER_SIZE_8BIT;
+    config->baudrate = 9600;
+    config->receiver_enable = true;
+    config->transmitter_enable = true;
+    config->clock_polarity_inverted = false;
+    config->use_external_clock = false;
+    config->ext_clock_freq = 0;
+    config->mux_setting = USART_RX_1_TX_2_XCK_3;
+    config->run_in_standby = false;
+    config->generator_source = GCLK_GENERATOR_0;
+    config->pinmux_pad0 = PINMUX_DEFAULT;
+    config->pinmux_pad1 = PINMUX_DEFAULT;
+    config->pinmux_pad2 = PINMUX_DEFAULT;
+    config->pinmux_pad3 = PINMUX_DEFAULT;
 }
 
-enum status_code usart_init(
-		struct usart_module *const module,
-		Sercom *const hw,
-		const struct usart_config *const config);
+enum status_code usart_init( struct usart_module * const module,
+                             Sercom * const hw,
+                             const struct usart_config * const config );
 
 /**
  * \brief Enable the module
@@ -575,26 +596,25 @@ enum status_code usart_init(
  *
  * \param[in]  module  Pointer to USART software instance struct
  */
-static inline void usart_enable(
-		const struct usart_module *const module)
+static inline void usart_enable( const struct usart_module * const module )
 {
-	/* Sanity check arguments */
-	Assert(module);
-	Assert(module->hw);
+    /* Sanity check arguments */
+    Assert( module );
+    Assert( module->hw );
 
-	/* Get a pointer to the hardware module instance */
-	SercomUsart *const usart_hw = &(module->hw->USART);
+    /* Get a pointer to the hardware module instance */
+    SercomUsart * const usart_hw = &( module->hw->USART );
 
 #if USART_CALLBACK_MODE == true
-	/* Enable Global interrupt for module */
-	system_interrupt_enable(_sercom_get_interrupt_vector(module->hw));
+    /* Enable Global interrupt for module */
+    system_interrupt_enable( _sercom_get_interrupt_vector( module->hw ) );
 #endif
 
-	/* Wait until synchronization is complete */
-	_usart_wait_for_sync(module);
+    /* Wait until synchronization is complete */
+    _usart_wait_for_sync( module );
 
-	/* Enable USART module */
-	usart_hw->CTRLA.reg |= SERCOM_USART_CTRLA_ENABLE;
+    /* Enable USART module */
+    usart_hw->CTRLA.reg |= SERCOM_USART_CTRLA_ENABLE;
 }
 
 /**
@@ -604,24 +624,23 @@ static inline void usart_enable(
  *
  * \param[in]  module  Pointer to USART software instance struct
  */
-static inline void usart_disable(
-		const struct usart_module *const module)
+static inline void usart_disable( const struct usart_module * const module )
 {
-	/* Sanity check arguments */
-	Assert(module);
-	Assert(module->hw);
+    /* Sanity check arguments */
+    Assert( module );
+    Assert( module->hw );
 
-	/* Get a pointer to the hardware module instance */
-	SercomUsart *const usart_hw = &(module->hw->USART);
+    /* Get a pointer to the hardware module instance */
+    SercomUsart * const usart_hw = &( module->hw->USART );
 
-	/* Disable Global interrupt for module */
-	system_interrupt_disable(_sercom_get_interrupt_vector(module->hw));
+    /* Disable Global interrupt for module */
+    system_interrupt_disable( _sercom_get_interrupt_vector( module->hw ) );
 
-	/* Wait until synchronization is complete */
-	_usart_wait_for_sync(module);
+    /* Wait until synchronization is complete */
+    _usart_wait_for_sync( module );
 
-	/* Disable USART module */
-	usart_hw->CTRLA.reg &= ~SERCOM_USART_CTRLA_ENABLE;
+    /* Disable USART module */
+    usart_hw->CTRLA.reg &= ~SERCOM_USART_CTRLA_ENABLE;
 }
 
 /**
@@ -631,46 +650,41 @@ static inline void usart_disable(
  *
  * \param[in]  module  Pointer to the USART software instance struct
  */
-static inline void usart_reset(
-		const struct usart_module *const module)
+static inline void usart_reset( const struct usart_module * const module )
 {
-	/* Sanity check arguments */
-	Assert(module);
-	Assert(module->hw);
+    /* Sanity check arguments */
+    Assert( module );
+    Assert( module->hw );
 
-	/* Get a pointer to the hardware module instance */
-	SercomUsart *const usart_hw = &(module->hw->USART);
+    /* Get a pointer to the hardware module instance */
+    SercomUsart * const usart_hw = &( module->hw->USART );
 
-	usart_disable(module);
+    usart_disable( module );
 
-	/* Wait until synchronization is complete */
-	_usart_wait_for_sync(module);
+    /* Wait until synchronization is complete */
+    _usart_wait_for_sync( module );
 
-	/* Reset module */
-	usart_hw->CTRLA.reg = SERCOM_USART_CTRLA_SWRST;
+    /* Reset module */
+    usart_hw->CTRLA.reg = SERCOM_USART_CTRLA_SWRST;
 }
 
 /**
  * \name Writing and reading
  * @{
  */
-enum status_code usart_write_wait(
-		struct usart_module *const module,
-		const uint16_t tx_data);
+enum status_code usart_write_wait( struct usart_module * const module,
+                                   const uint16_t tx_data );
 
-enum status_code usart_read_wait(
-		struct usart_module *const module,
-		uint16_t *const rx_data);
+enum status_code usart_read_wait( struct usart_module * const module,
+                                  uint16_t * const rx_data );
 
-enum status_code usart_write_buffer_wait(
-		struct usart_module *const module,
-		const uint8_t *tx_data,
-		uint16_t length);
+enum status_code usart_write_buffer_wait( struct usart_module * const module,
+                                          const uint8_t * tx_data,
+                                          uint16_t length );
 
-enum status_code usart_read_buffer_wait(
-		struct usart_module *const module,
-		uint8_t *rx_data,
-		uint16_t length);
+enum status_code usart_read_buffer_wait( struct usart_module * const module,
+                                         uint8_t * rx_data,
+                                         uint16_t length );
 /** @} */
 
 /**
@@ -687,32 +701,33 @@ enum status_code usart_read_buffer_wait(
  * \param[in]  transceiver_type  Transceiver type.
  */
 static inline void usart_enable_transceiver(
-		struct usart_module *const module,
-		enum usart_transceiver_type transceiver_type)
+    struct usart_module * const module,
+    enum usart_transceiver_type transceiver_type )
 {
-	/* Sanity check arguments */
-	Assert(module);
-	Assert(module->hw);
+    /* Sanity check arguments */
+    Assert( module );
+    Assert( module->hw );
 
-	/* Get a pointer to the hardware module instance */
-	SercomUsart *const usart_hw = &(module->hw->USART);
+    /* Get a pointer to the hardware module instance */
+    SercomUsart * const usart_hw = &( module->hw->USART );
 
-	/* Wait until synchronization is complete */
-	_usart_wait_for_sync(module);
+    /* Wait until synchronization is complete */
+    _usart_wait_for_sync( module );
 
-	switch (transceiver_type) {
-		case USART_TRANSCEIVER_RX:
-			/* Enable RX */
-			usart_hw->CTRLB.reg |= SERCOM_USART_CTRLB_RXEN;
-			module->receiver_enabled = true;
-			break;
+    switch( transceiver_type )
+    {
+        case USART_TRANSCEIVER_RX:
+            /* Enable RX */
+            usart_hw->CTRLB.reg |= SERCOM_USART_CTRLB_RXEN;
+            module->receiver_enabled = true;
+            break;
 
-		case USART_TRANSCEIVER_TX:
-			/* Enable TX */
-			usart_hw->CTRLB.reg |= SERCOM_USART_CTRLB_TXEN;
-			module->transmitter_enabled = true;
-			break;
-	}
+        case USART_TRANSCEIVER_TX:
+            /* Enable TX */
+            usart_hw->CTRLB.reg |= SERCOM_USART_CTRLB_TXEN;
+            module->transmitter_enabled = true;
+            break;
+    }
 }
 
 /**
@@ -724,32 +739,33 @@ static inline void usart_enable_transceiver(
  * \param[in]  transceiver_type  Transceiver type.
  */
 static inline void usart_disable_transceiver(
-		struct usart_module *const module,
-		enum usart_transceiver_type transceiver_type)
+    struct usart_module * const module,
+    enum usart_transceiver_type transceiver_type )
 {
-	/* Sanity check arguments */
-	Assert(module);
-	Assert(module->hw);
+    /* Sanity check arguments */
+    Assert( module );
+    Assert( module->hw );
 
-	/* Get a pointer to the hardware module instance */
-	SercomUsart *const usart_hw = &(module->hw->USART);
+    /* Get a pointer to the hardware module instance */
+    SercomUsart * const usart_hw = &( module->hw->USART );
 
-	/* Wait until synchronization is complete */
-	_usart_wait_for_sync(module);
+    /* Wait until synchronization is complete */
+    _usart_wait_for_sync( module );
 
-	switch (transceiver_type) {
-		case USART_TRANSCEIVER_RX:
-			/* Disable RX */
-			usart_hw->CTRLB.reg &= ~SERCOM_USART_CTRLB_RXEN;
-			module->receiver_enabled = false;
-			break;
+    switch( transceiver_type )
+    {
+        case USART_TRANSCEIVER_RX:
+            /* Disable RX */
+            usart_hw->CTRLB.reg &= ~SERCOM_USART_CTRLB_RXEN;
+            module->receiver_enabled = false;
+            break;
 
-		case USART_TRANSCEIVER_TX:
-			/* Disable TX */
-			usart_hw->CTRLB.reg &= ~SERCOM_USART_CTRLB_TXEN;
-			module->transmitter_enabled = false;
-			break;
-	}
+        case USART_TRANSCEIVER_TX:
+            /* Disable TX */
+            usart_hw->CTRLB.reg &= ~SERCOM_USART_CTRLB_TXEN;
+            module->transmitter_enabled = false;
+            break;
+    }
 }
 
 /** @} */
@@ -761,54 +777,56 @@ static inline void usart_disable_transceiver(
 /** @} */
 
 /**
-* \page asfdoc_samd20_sercom_usart_extra Extra Information for SERCOM USART Driver
-*
-* \section asfdoc_samd20_sercom_usart_extra_acronyms Acronyms
-*
-* Below is a table listing the acronyms used in this module, along with their
-* intended meanings.
-*
-* <table>
-* <tr>
-* <th>Acronym</th>
-* <th>Description</th>
-* </tr>
-* <tr>
-* <td>SERCOM</td>
-* <td>Serial Communication Interface</td>
-* </tr>
-* <tr>
-* <td>USART</td>
-* <td>Universal Synchronous and Asynchronous Serial Receiver and Transmitter</td>
-* </tr>
-* <tr>
-* <td>LSB</td>
-* <td>Least Significant Bit</td>
-* </tr>
-* <tr>
-* <td>MSB</td>
-* <td>Most Significant Bit</td>
-* </tr>
-* </table>
-*
-*
-* \section asfdoc_samd20_sercom_usart_extra_dependencies Dependencies
-* This driver has the following dependencies:
-*
-* - \ref asfdoc_samd20_system_pinmux_group "System Pin Multiplexer Driver"
-* - \ref asfdoc_samd20_system_clock_group "System clock configuration"
-*
-*
-* \section asfdoc_samd20_sercom_usart_extra_errata Errata
-* There are no errata related to this driver.
-*
-*
-* \section asfdoc_samd20_sercom_usart_extra_history Module History
-* An overview of the module history is presented in the table below, with
-* details on the enhancements and fixes made to the module since its first
-* release. The current version of this corresponds to the newest version in
-* the table.
-*
+ * \page asfdoc_samd20_sercom_usart_extra Extra Information for SERCOM USART
+ *Driver
+ *
+ * \section asfdoc_samd20_sercom_usart_extra_acronyms Acronyms
+ *
+ * Below is a table listing the acronyms used in this module, along with their
+ * intended meanings.
+ *
+ * <table>
+ * <tr>
+ * <th>Acronym</th>
+ * <th>Description</th>
+ * </tr>
+ * <tr>
+ * <td>SERCOM</td>
+ * <td>Serial Communication Interface</td>
+ * </tr>
+ * <tr>
+ * <td>USART</td>
+ * <td>Universal Synchronous and Asynchronous Serial Receiver and
+ *Transmitter</td>
+ * </tr>
+ * <tr>
+ * <td>LSB</td>
+ * <td>Least Significant Bit</td>
+ * </tr>
+ * <tr>
+ * <td>MSB</td>
+ * <td>Most Significant Bit</td>
+ * </tr>
+ * </table>
+ *
+ *
+ * \section asfdoc_samd20_sercom_usart_extra_dependencies Dependencies
+ * This driver has the following dependencies:
+ *
+ * - \ref asfdoc_samd20_system_pinmux_group "System Pin Multiplexer Driver"
+ * - \ref asfdoc_samd20_system_clock_group "System clock configuration"
+ *
+ *
+ * \section asfdoc_samd20_sercom_usart_extra_errata Errata
+ * There are no errata related to this driver.
+ *
+ *
+ * \section asfdoc_samd20_sercom_usart_extra_history Module History
+ * An overview of the module history is presented in the table below, with
+ * details on the enhancements and fixes made to the module since its first
+ * release. The current version of this corresponds to the newest version in
+ * the table.
+ *
  * <table>
  *	<tr>
  *		<th>Changelog</th>
@@ -816,25 +834,25 @@ static inline void usart_disable_transceiver(
  *	<tr>
  *		<td>\li Added new \c transmitter_enable and \c receiver_enable boolean
  *              values to \c struct usart_config.
- *          \li Altered \c usart_write_* and usart_read_* functions to abort with
- *              an error code if the relevant transceiver is not enabled.
- *          \li Fixed \c usart_write_buffer_wait() and \c usart_read_buffer_wait()
- *              not aborting correctly when a timeout condition occurs.</td>
+ *          \li Altered \c usart_write_* and usart_read_* functions to abort
+ *with an error code if the relevant transceiver is not enabled. \li Fixed \c
+ *usart_write_buffer_wait() and \c usart_read_buffer_wait() not aborting
+ *correctly when a timeout condition occurs.</td>
  *	</tr>
  *	<tr>
  *		<td>Initial Release</td>
  *	</tr>
  * </table>
-*/
+ */
 
 /**
  * \page asfdoc_samd20_sercom_usart_exqsg Examples for SERCOM USART Driver
  *
  * This is a list of the available Quick Start guides (QSGs) and example
- * applications for \ref asfdoc_samd20_sercom_usart_group. QSGs are simple examples with
- * step-by-step instructions to configure and use this driver in a selection of
- * use cases. Note that QSGs can be compiled as a standalone application or be
- * added to the user application.
+ * applications for \ref asfdoc_samd20_sercom_usart_group. QSGs are simple
+ * examples with step-by-step instructions to configure and use this driver in a
+ * selection of use cases. Note that QSGs can be compiled as a standalone
+ * application or be added to the user application.
  *
  * - \subpage asfdoc_samd20_sercom_usart_basic_use_case
  * \if USART_CALLBACK_MODE
@@ -1143,7 +1161,8 @@ static inline void usart_disable_transceiver(
  *   </tr>
  * </table>
  *
- * \page asfdoc_samd20_sercom_usart_document_revision_history Document Revision History
+ * \page asfdoc_samd20_sercom_usart_document_revision_history Document Revision
+ *History
  *
  * <table>
  *	<tr>

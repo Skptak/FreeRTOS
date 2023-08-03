@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -31,13 +32,12 @@
  * prvSetupHardware(), in main.c.
  */
 
-
 /* Scheduler includes. */
 #include "FreeRTOS.h"
 
 /* Demo includes. */
-#include "IntQueueTimer.h"
 #include "IntQueue.h"
+#include "IntQueueTimer.h"
 
 /*
  * Prototypes of the callback functions which are called from the HPET timer
@@ -47,8 +47,8 @@
  * asm wrapper code and is installed using xPortInstallInterruptHandler().  For
  * convenience the asm wrapper which calls vApplicationHPETTimer1Handler(), is
  * implemented in RegTest.S.  See
- * https://www.FreeRTOS.org/RTOS_Intel_Quark_Galileo_GCC.html#interrupts for more
- * details.
+ * https://www.FreeRTOS.org/RTOS_Intel_Quark_Galileo_GCC.html#interrupts for
+ * more details.
  */
 void vApplicationHPETTimer0Handler( void );
 void vApplicationHPETTimer1Handler( void );
@@ -69,53 +69,52 @@ extern volatile uint32_t ulInterruptNesting;
 
 void vInitialiseTimerForIntQueueTest( void )
 {
-	/* The HPET timers are set up in main(), before the scheduler is started,
-	so there is nothing to do here other than note the scheduler is now running.
-	This could be done by calling a FreeRTOS API function, but its convenient
-	and efficient just to store the fact in a file scope variable. */
-	xSchedulerRunning = pdTRUE;
+    /* The HPET timers are set up in main(), before the scheduler is started,
+    so there is nothing to do here other than note the scheduler is now running.
+    This could be done by calling a FreeRTOS API function, but its convenient
+    and efficient just to store the fact in a file scope variable. */
+    xSchedulerRunning = pdTRUE;
 }
 /*-----------------------------------------------------------*/
 
 void vApplicationHPETTimer0Handler( void )
 {
-BaseType_t xHigherPriorityTaskWoken;
+    BaseType_t xHigherPriorityTaskWoken;
 
-	if( xSchedulerRunning != pdFALSE )
-	{
-		if( ulInterruptNesting > ulMaxInterruptNesting )
-		{
-			ulMaxInterruptNesting = ulInterruptNesting;
-		}
+    if( xSchedulerRunning != pdFALSE )
+    {
+        if( ulInterruptNesting > ulMaxInterruptNesting )
+        {
+            ulMaxInterruptNesting = ulInterruptNesting;
+        }
 
-		xHigherPriorityTaskWoken = xFirstTimerHandler();
-		portYIELD_FROM_ISR( xHigherPriorityTaskWoken );
-	}
+        xHigherPriorityTaskWoken = xFirstTimerHandler();
+        portYIELD_FROM_ISR( xHigherPriorityTaskWoken );
+    }
 }
 /*-----------------------------------------------------------*/
 
 void vApplicationHPETTimer1Handler( void )
 {
-BaseType_t xHigherPriorityTaskWoken;
+    BaseType_t xHigherPriorityTaskWoken;
 
-	if( xSchedulerRunning != pdFALSE )
-	{
-		if( ulInterruptNesting > ulMaxInterruptNesting )
-		{
-			ulMaxInterruptNesting = ulInterruptNesting;
-		}
+    if( xSchedulerRunning != pdFALSE )
+    {
+        if( ulInterruptNesting > ulMaxInterruptNesting )
+        {
+            ulMaxInterruptNesting = ulInterruptNesting;
+        }
 
-		xHigherPriorityTaskWoken = xSecondTimerHandler();
-		portYIELD_FROM_ISR( xHigherPriorityTaskWoken );
-	}
+        xHigherPriorityTaskWoken = xSecondTimerHandler();
+        portYIELD_FROM_ISR( xHigherPriorityTaskWoken );
+    }
 }
 /*-----------------------------------------------------------*/
 
 void vApplicationHPETTimer2Handler( void )
 {
-	if( ulInterruptNesting > ulMaxInterruptNesting )
-	{
-		ulMaxInterruptNesting = ulInterruptNesting;
-	}
+    if( ulInterruptNesting > ulMaxInterruptNesting )
+    {
+        ulMaxInterruptNesting = ulInterruptNesting;
+    }
 }
-

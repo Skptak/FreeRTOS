@@ -23,7 +23,6 @@
     \file wolfssl/openssl/ossl_typ.h
 */
 
-
 #ifndef WOLFSSL_OSSL_TYP_H_
 #define WOLFSSL_OSSL_TYP_H_
 

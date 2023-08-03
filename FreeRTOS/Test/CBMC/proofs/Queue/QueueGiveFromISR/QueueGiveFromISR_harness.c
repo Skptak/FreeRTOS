@@ -35,7 +35,8 @@
 void harness()
 {
     QueueHandle_t xQueue = xUnconstrainedMutex();
-    BaseType_t * xHigherPriorityTaskWoken = pvPortMalloc( sizeof( BaseType_t ) );
+    BaseType_t * xHigherPriorityTaskWoken = pvPortMalloc(
+        sizeof( BaseType_t ) );
 
     if( xQueue )
     {

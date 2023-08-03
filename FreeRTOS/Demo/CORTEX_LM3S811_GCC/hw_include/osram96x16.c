@@ -32,22 +32,22 @@
 //
 //*****************************************************************************
 
+#include "osram96x16.h"
+#include "debug.h"
+#include "gpio.h"
 #include "hw_i2c.h"
 #include "hw_memmap.h"
 #include "hw_sysctl.h"
 #include "hw_types.h"
-#include "debug.h"
-#include "gpio.h"
 #include "i2c.h"
 #include "sysctl.h"
-#include "osram96x16.h"
 
 //*****************************************************************************
 //
 // The I2C slave address of the SSD0303 controller on the OLED display.
 //
 //*****************************************************************************
-#define SSD0303_ADDR            0x3d
+#define SSD0303_ADDR 0x3d
 
 //*****************************************************************************
 //
@@ -57,8 +57,7 @@
 // the top row in the LSB and the bottom row in the MSB.
 //
 //*****************************************************************************
-static const unsigned char g_pucFont[95][5] =
-{
+static const unsigned char g_pucFont[ 95 ][ 5 ] = {
     { 0x00, 0x00, 0x00, 0x00, 0x00 }, // " "
     { 0x00, 0x00, 0x4f, 0x00, 0x00 }, // !
     { 0x00, 0x07, 0x00, 0x07, 0x00 }, // "
@@ -163,102 +162,195 @@ static const unsigned char g_pucFont[95][5] =
 // bytes in the I2C transfer, followed by that many bytes of command data.
 //
 //*****************************************************************************
-static const unsigned char g_pucOSRAMInit[] =
-{
+static const unsigned char g_pucOSRAMInit[] = {
     //
     // Turn off the panel
     //
-    0x04, 0x80, 0xae, 0x80, 0xe3,
+    0x04,
+    0x80,
+    0xae,
+    0x80,
+    0xe3,
 
     //
     // Set lower column address
     //
-    0x04, 0x80, 0x04, 0x80, 0xe3,
+    0x04,
+    0x80,
+    0x04,
+    0x80,
+    0xe3,
 
     //
     // Set higher column address
     //
-    0x04, 0x80, 0x12, 0x80, 0xe3,
+    0x04,
+    0x80,
+    0x12,
+    0x80,
+    0xe3,
 
     //
     // Set contrast control register
     //
-    0x06, 0x80, 0x81, 0x80, 0x2b, 0x80, 0xe3,
+    0x06,
+    0x80,
+    0x81,
+    0x80,
+    0x2b,
+    0x80,
+    0xe3,
 
     //
     // Set segment re-map
     //
-    0x04, 0x80, 0xa1, 0x80, 0xe3,
+    0x04,
+    0x80,
+    0xa1,
+    0x80,
+    0xe3,
 
     //
     // Set display start line
     //
-    0x04, 0x80, 0x40, 0x80, 0xe3,
+    0x04,
+    0x80,
+    0x40,
+    0x80,
+    0xe3,
 
     //
     // Set display offset
     //
-    0x06, 0x80, 0xd3, 0x80, 0x00, 0x80, 0xe3,
+    0x06,
+    0x80,
+    0xd3,
+    0x80,
+    0x00,
+    0x80,
+    0xe3,
 
     //
     // Set multiplex ratio
     //
-    0x06, 0x80, 0xa8, 0x80, 0x0f, 0x80, 0xe3,
+    0x06,
+    0x80,
+    0xa8,
+    0x80,
+    0x0f,
+    0x80,
+    0xe3,
 
     //
     // Set the display to normal mode
     //
-    0x04, 0x80, 0xa4, 0x80, 0xe3,
+    0x04,
+    0x80,
+    0xa4,
+    0x80,
+    0xe3,
 
     //
     // Non-inverted display
     //
-    0x04, 0x80, 0xa6, 0x80, 0xe3,
+    0x04,
+    0x80,
+    0xa6,
+    0x80,
+    0xe3,
 
     //
     // Set the page address
     //
-    0x04, 0x80, 0xb0, 0x80, 0xe3,
+    0x04,
+    0x80,
+    0xb0,
+    0x80,
+    0xe3,
 
     //
     // Set COM output scan direction
     //
-    0x04, 0x80, 0xc8, 0x80, 0xe3,
+    0x04,
+    0x80,
+    0xc8,
+    0x80,
+    0xe3,
 
     //
     // Set display clock divide ratio/oscillator frequency
     //
-    0x06, 0x80, 0xd5, 0x80, 0x72, 0x80, 0xe3,
+    0x06,
+    0x80,
+    0xd5,
+    0x80,
+    0x72,
+    0x80,
+    0xe3,
 
     //
     // Enable mono mode
     //
-    0x06, 0x80, 0xd8, 0x80, 0x00, 0x80, 0xe3,
+    0x06,
+    0x80,
+    0xd8,
+    0x80,
+    0x00,
+    0x80,
+    0xe3,
 
     //
     // Set pre-charge period
     //
-    0x06, 0x80, 0xd9, 0x80, 0x22, 0x80, 0xe3,
+    0x06,
+    0x80,
+    0xd9,
+    0x80,
+    0x22,
+    0x80,
+    0xe3,
 
     //
     // Set COM pins hardware configuration
     //
-    0x06, 0x80, 0xda, 0x80, 0x12, 0x80, 0xe3,
+    0x06,
+    0x80,
+    0xda,
+    0x80,
+    0x12,
+    0x80,
+    0xe3,
 
     //
     // Set VCOM deslect level
     //
-    0x06, 0x80, 0xdb, 0x80, 0x0f, 0x80, 0xe3,
+    0x06,
+    0x80,
+    0xdb,
+    0x80,
+    0x0f,
+    0x80,
+    0xe3,
 
     //
     // Set DC-DC on
     //
-    0x06, 0x80, 0xad, 0x80, 0x8b, 0x80, 0xe3,
+    0x06,
+    0x80,
+    0xad,
+    0x80,
+    0x8b,
+    0x80,
+    0xe3,
 
     //
     // Turn on the panel
     //
-    0x04, 0x80, 0xaf, 0x80, 0xe3,
+    0x04,
+    0x80,
+    0xaf,
+    0x80,
+    0xe3,
 };
 
 //*****************************************************************************
@@ -284,31 +376,28 @@ static unsigned long g_ulDelay;
 //! \return None.
 //
 //*****************************************************************************
-#if defined(ewarm)
-static void
-OSRAMDelay(unsigned long ulCount)
+#if defined( ewarm )
+static void OSRAMDelay( unsigned long ulCount )
 {
-    __asm("    subs    r0, #1\n"
-          "    bne     OSRAMDelay\n"
-          "    bx      lr");
+    __asm( "    subs    r0, #1\n"
+           "    bne     OSRAMDelay\n"
+           "    bx      lr" );
 }
 #endif
-#if defined(gcc)
-static void __attribute__((naked))
-OSRAMDelay(unsigned long ulCount)
+#if defined( gcc )
+static void __attribute__( ( naked ) ) OSRAMDelay( unsigned long ulCount )
 {
-    __asm("    subs    r0, #1\n"
-          "    bne     OSRAMDelay\n"
-          "    bx      lr");
+    __asm( "    subs    r0, #1\n"
+           "    bne     OSRAMDelay\n"
+           "    bx      lr" );
 }
 #endif
-#if defined(rvmdk) || defined(__ARMCC_VERSION)
-__asm void
-OSRAMDelay(unsigned long ulCount)
+#if defined( rvmdk ) || defined( __ARMCC_VERSION )
+__asm void OSRAMDelay( unsigned long ulCount )
 {
-    subs    r0, #1;
-    bne     OSRAMDelay;
-    bx      lr;
+    subs r0, #1;
+    bne OSRAMDelay;
+    bx lr;
 }
 #endif
 
@@ -329,23 +418,22 @@ OSRAMDelay(unsigned long ulCount)
 //! \return None.
 //
 //*****************************************************************************
-static void
-OSRAMWriteFirst(unsigned char ucChar)
+static void OSRAMWriteFirst( unsigned char ucChar )
 {
     //
     // Set the slave address.
     //
-    I2CMasterSlaveAddrSet(I2C_MASTER_BASE, SSD0303_ADDR, false);
+    I2CMasterSlaveAddrSet( I2C_MASTER_BASE, SSD0303_ADDR, false );
 
     //
     // Write the first byte to the controller.
     //
-    I2CMasterDataPut(I2C_MASTER_BASE, ucChar);
+    I2CMasterDataPut( I2C_MASTER_BASE, ucChar );
 
     //
     // Start the transfer.
     //
-    I2CMasterControl(I2C_MASTER_BASE, I2C_MASTER_CMD_BURST_SEND_START);
+    I2CMasterControl( I2C_MASTER_BASE, I2C_MASTER_CMD_BURST_SEND_START );
 }
 
 //*****************************************************************************
@@ -366,30 +454,29 @@ OSRAMWriteFirst(unsigned char ucChar)
 //! \return None.
 //
 //*****************************************************************************
-static void
-OSRAMWriteByte(unsigned char ucChar)
+static void OSRAMWriteByte( unsigned char ucChar )
 {
     //
     // Wait until the current byte has been transferred.
     //
-    while(I2CMasterIntStatus(I2C_MASTER_BASE, false) == 0)
+    while( I2CMasterIntStatus( I2C_MASTER_BASE, false ) == 0 )
     {
     }
 
     //
     // Provide the required inter-byte delay.
     //
-    OSRAMDelay(g_ulDelay);
+    OSRAMDelay( g_ulDelay );
 
     //
     // Write the next byte to the controller.
     //
-    I2CMasterDataPut(I2C_MASTER_BASE, ucChar);
+    I2CMasterDataPut( I2C_MASTER_BASE, ucChar );
 
     //
     // Continue the transfer.
     //
-    I2CMasterControl(I2C_MASTER_BASE, I2C_MASTER_CMD_BURST_SEND_CONT);
+    I2CMasterControl( I2C_MASTER_BASE, I2C_MASTER_CMD_BURST_SEND_CONT );
 }
 
 //*****************************************************************************
@@ -408,36 +495,36 @@ OSRAMWriteByte(unsigned char ucChar)
 //! \return None.
 //
 //*****************************************************************************
-static void
-OSRAMWriteArray(const unsigned char *pucBuffer, unsigned long ulCount)
+static void OSRAMWriteArray( const unsigned char * pucBuffer,
+                             unsigned long ulCount )
 {
     //
     // Loop while there are more bytes left to be transferred.
     //
-    while(ulCount != 0)
+    while( ulCount != 0 )
     {
         //
         // Wait until the current byte has been transferred.
         //
-        while(I2CMasterIntStatus(I2C_MASTER_BASE, false) == 0)
+        while( I2CMasterIntStatus( I2C_MASTER_BASE, false ) == 0 )
         {
         }
 
         //
         // Provide the required inter-byte delay.
         //
-        OSRAMDelay(g_ulDelay);
+        OSRAMDelay( g_ulDelay );
 
         //
         // Write the next byte to the controller.
         //
-        I2CMasterDataPut(I2C_MASTER_BASE, *pucBuffer++);
+        I2CMasterDataPut( I2C_MASTER_BASE, *pucBuffer++ );
         ulCount--;
 
         //
         // Continue the transfer.
         //
-        I2CMasterControl(I2C_MASTER_BASE, I2C_MASTER_CMD_BURST_SEND_CONT);
+        I2CMasterControl( I2C_MASTER_BASE, I2C_MASTER_CMD_BURST_SEND_CONT );
     }
 }
 
@@ -458,42 +545,41 @@ OSRAMWriteArray(const unsigned char *pucBuffer, unsigned long ulCount)
 //! \return None.
 //
 //*****************************************************************************
-static void
-OSRAMWriteFinal(unsigned char ucChar)
+static void OSRAMWriteFinal( unsigned char ucChar )
 {
     //
     // Wait until the current byte has been transferred.
     //
-    while(I2CMasterIntStatus(I2C_MASTER_BASE, false) == 0)
+    while( I2CMasterIntStatus( I2C_MASTER_BASE, false ) == 0 )
     {
     }
 
     //
     // Provide the required inter-byte delay.
     //
-    OSRAMDelay(g_ulDelay);
+    OSRAMDelay( g_ulDelay );
 
     //
     // Write the final byte to the controller.
     //
-    I2CMasterDataPut(I2C_MASTER_BASE, ucChar);
+    I2CMasterDataPut( I2C_MASTER_BASE, ucChar );
 
     //
     // Finish the transfer.
     //
-    I2CMasterControl(I2C_MASTER_BASE, I2C_MASTER_CMD_BURST_SEND_FINISH);
+    I2CMasterControl( I2C_MASTER_BASE, I2C_MASTER_CMD_BURST_SEND_FINISH );
 
     //
     // Wait until the final byte has been transferred.
     //
-    while(I2CMasterIntStatus(I2C_MASTER_BASE, false) == 0)
+    while( I2CMasterIntStatus( I2C_MASTER_BASE, false ) == 0 )
     {
     }
 
     //
     // Provide the required inter-byte delay.
     //
-    OSRAMDelay(g_ulDelay);
+    OSRAMDelay( g_ulDelay );
 }
 
 //*****************************************************************************
@@ -510,15 +596,12 @@ OSRAMWriteFinal(unsigned char ucChar)
 //! \return None.
 //
 //*****************************************************************************
-void
-OSRAMClear(void)
+void OSRAMClear( void )
 {
-    static const unsigned char pucRow1[] =
-    {
+    static const unsigned char pucRow1[] = {
         0xb0, 0x80, 0x04, 0x80, 0x12, 0x40
     };
-    static const unsigned char pucRow2[] =
-    {
+    static const unsigned char pucRow2[] = {
         0xb1, 0x80, 0x04, 0x80, 0x12, 0x40
     };
     unsigned long ulIdx;
@@ -526,32 +609,32 @@ OSRAMClear(void)
     //
     // Move the display cursor to the first column of the first row.
     //
-    OSRAMWriteFirst(0x80);
-    OSRAMWriteArray(pucRow1, sizeof(pucRow1));
+    OSRAMWriteFirst( 0x80 );
+    OSRAMWriteArray( pucRow1, sizeof( pucRow1 ) );
 
     //
     // Fill this row with zeros.
     //
-    for(ulIdx = 0; ulIdx < 95; ulIdx++)
+    for( ulIdx = 0; ulIdx < 95; ulIdx++ )
     {
-        OSRAMWriteByte(0x00);
+        OSRAMWriteByte( 0x00 );
     }
-    OSRAMWriteFinal(0x00);
+    OSRAMWriteFinal( 0x00 );
 
     //
     // Move the display cursor to the first column of the second row.
     //
-    OSRAMWriteFirst(0x80);
-    OSRAMWriteArray(pucRow2, sizeof(pucRow2));
+    OSRAMWriteFirst( 0x80 );
+    OSRAMWriteArray( pucRow2, sizeof( pucRow2 ) );
 
     //
     // Fill this row with zeros.
     //
-    for(ulIdx = 0; ulIdx < 95; ulIdx++)
+    for( ulIdx = 0; ulIdx < 95; ulIdx++ )
     {
-        OSRAMWriteByte(0x00);
+        OSRAMWriteByte( 0x00 );
     }
-    OSRAMWriteFinal(0x00);
+    OSRAMWriteFinal( 0x00 );
 }
 
 //*****************************************************************************
@@ -583,53 +666,52 @@ OSRAMClear(void)
 //! \return None.
 //
 //*****************************************************************************
-void
-OSRAMStringDraw(const char *pcStr, unsigned long ulX, unsigned long ulY)
+void OSRAMStringDraw( const char * pcStr, unsigned long ulX, unsigned long ulY )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulX < 96);
-    ASSERT(ulY < 2);
+    ASSERT( ulX < 96 );
+    ASSERT( ulY < 2 );
 
     //
     // Move the display cursor to the requested position on the display.
     //
-    OSRAMWriteFirst(0x80);
-    OSRAMWriteByte((ulY == 0) ? 0xb0 : 0xb1);
-    OSRAMWriteByte(0x80);
-    OSRAMWriteByte((ulX + 36) & 0x0f);
-    OSRAMWriteByte(0x80);
-    OSRAMWriteByte(0x10 | (((ulX + 36) >> 4) & 0x0f));
-    OSRAMWriteByte(0x40);
+    OSRAMWriteFirst( 0x80 );
+    OSRAMWriteByte( ( ulY == 0 ) ? 0xb0 : 0xb1 );
+    OSRAMWriteByte( 0x80 );
+    OSRAMWriteByte( ( ulX + 36 ) & 0x0f );
+    OSRAMWriteByte( 0x80 );
+    OSRAMWriteByte( 0x10 | ( ( ( ulX + 36 ) >> 4 ) & 0x0f ) );
+    OSRAMWriteByte( 0x40 );
 
     //
     // Loop while there are more characters in the string.
     //
-    while(*pcStr != 0)
+    while( *pcStr != 0 )
     {
         //
         // See if there is enough space on the display for this entire
         // character.
         //
-        if(ulX <= 90)
+        if( ulX <= 90 )
         {
             //
             // Write the contents of this character to the display.
             //
-            OSRAMWriteArray(g_pucFont[*pcStr - ' '], 5);
+            OSRAMWriteArray( g_pucFont[ *pcStr - ' ' ], 5 );
 
             //
             // See if this is the last character to display (either because the
             // right edge has been reached or because there are no more
             // characters).
             //
-            if((ulX == 90) || (pcStr[1] == 0))
+            if( ( ulX == 90 ) || ( pcStr[ 1 ] == 0 ) )
             {
                 //
                 // Write the final column of the display.
                 //
-                OSRAMWriteFinal(0x00);
+                OSRAMWriteFinal( 0x00 );
 
                 //
                 // The string has been displayed.
@@ -640,7 +722,7 @@ OSRAMStringDraw(const char *pcStr, unsigned long ulX, unsigned long ulY)
             //
             // Write the inter-character padding column.
             //
-            OSRAMWriteByte(0x00);
+            OSRAMWriteByte( 0x00 );
         }
         else
         {
@@ -648,8 +730,8 @@ OSRAMStringDraw(const char *pcStr, unsigned long ulX, unsigned long ulY)
             // Write the portion of the character that will fit onto the
             // display.
             //
-            OSRAMWriteArray(g_pucFont[*pcStr - ' '], 95 - ulX);
-            OSRAMWriteFinal(g_pucFont[*pcStr - ' '][95 - ulX]);
+            OSRAMWriteArray( g_pucFont[ *pcStr - ' ' ], 95 - ulX );
+            OSRAMWriteFinal( g_pucFont[ *pcStr - ' ' ][ 95 - ulX ] );
 
             //
             // The string has been displayed.
@@ -731,18 +813,19 @@ OSRAMStringDraw(const char *pcStr, unsigned long ulX, unsigned long ulY)
 //! \return None.
 //
 //*****************************************************************************
-void
-OSRAMImageDraw(const unsigned char *pucImage, unsigned long ulX,
-               unsigned long ulY, unsigned long ulWidth,
-               unsigned long ulHeight)
+void OSRAMImageDraw( const unsigned char * pucImage,
+                     unsigned long ulX,
+                     unsigned long ulY,
+                     unsigned long ulWidth,
+                     unsigned long ulHeight )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulX < 96);
-    ASSERT(ulY < 2);
-    ASSERT((ulX + ulWidth) <= 96);
-    ASSERT((ulY + ulHeight) <= 2);
+    ASSERT( ulX < 96 );
+    ASSERT( ulY < 2 );
+    ASSERT( ( ulX + ulWidth ) <= 96 );
+    ASSERT( ( ulY + ulHeight ) <= 2 );
 
     //
     // The first 36 columns of the LCD buffer are not displayed, so increment
@@ -754,24 +837,24 @@ OSRAMImageDraw(const unsigned char *pucImage, unsigned long ulX,
     //
     // Loop while there are more rows to display.
     //
-    while(ulHeight--)
+    while( ulHeight-- )
     {
         //
         // Write the starting address within this row.
         //
-        OSRAMWriteFirst(0x80);
-        OSRAMWriteByte((ulY == 0) ? 0xb0 : 0xb1);
-        OSRAMWriteByte(0x80);
-        OSRAMWriteByte(ulX & 0x0f);
-        OSRAMWriteByte(0x80);
-        OSRAMWriteByte(0x10 | ((ulX >> 4) & 0x0f));
-        OSRAMWriteByte(0x40);
+        OSRAMWriteFirst( 0x80 );
+        OSRAMWriteByte( ( ulY == 0 ) ? 0xb0 : 0xb1 );
+        OSRAMWriteByte( 0x80 );
+        OSRAMWriteByte( ulX & 0x0f );
+        OSRAMWriteByte( 0x80 );
+        OSRAMWriteByte( 0x10 | ( ( ulX >> 4 ) & 0x0f ) );
+        OSRAMWriteByte( 0x40 );
 
         //
         // Write this row of image data.
         //
-        OSRAMWriteArray(pucImage, ulWidth - 1);
-        OSRAMWriteFinal(pucImage[ulWidth - 1]);
+        OSRAMWriteArray( pucImage, ulWidth - 1 );
+        OSRAMWriteFinal( pucImage[ ulWidth - 1 ] );
 
         //
         // Advance to the next row of the image.
@@ -798,26 +881,25 @@ OSRAMImageDraw(const unsigned char *pucImage, unsigned long ulX,
 //! \return None.
 //
 //*****************************************************************************
-void
-OSRAMInit(tBoolean bFast)
+void OSRAMInit( tBoolean bFast )
 {
     unsigned long ulIdx;
 
     //
     // Enable the I2C and GPIO port B blocks as they are needed by this driver.
     //
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_I2C);
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOB);
+    SysCtlPeripheralEnable( SYSCTL_PERIPH_I2C );
+    SysCtlPeripheralEnable( SYSCTL_PERIPH_GPIOB );
 
     //
     // Configure the I2C SCL and SDA pins for I2C operation.
     //
-    GPIOPinTypeI2C(GPIO_PORTB_BASE, GPIO_PIN_2 | GPIO_PIN_3);
+    GPIOPinTypeI2C( GPIO_PORTB_BASE, GPIO_PIN_2 | GPIO_PIN_3 );
 
     //
     // Initialize the I2C master.
     //
-    I2CMasterInit(I2C_MASTER_BASE, bFast);
+    I2CMasterInit( I2C_MASTER_BASE, bFast );
 
     //
     // Compute the inter-byte delay for the SSD0303 controller.  This delay is
@@ -879,21 +961,22 @@ OSRAMInit(tBoolean bFast)
     // Note that the constant C is actually a bit larger than it needs to be in
     // order to provide some safety margin.
     //
-    g_ulDelay = 68 * (HWREG(I2C_MASTER_BASE + I2C_MASTER_O_TPR) + 1);
+    g_ulDelay = 68 * ( HWREG( I2C_MASTER_BASE + I2C_MASTER_O_TPR ) + 1 );
 
     //
     // Initialize the SSD0303 controller.  Loop through the initialization
     // sequence doing a single I2C transfer for each command.
     //
-    for(ulIdx = 0; ulIdx < sizeof(g_pucOSRAMInit);
-        ulIdx += g_pucOSRAMInit[ulIdx] + 1)
+    for( ulIdx = 0; ulIdx < sizeof( g_pucOSRAMInit );
+         ulIdx += g_pucOSRAMInit[ ulIdx ] + 1 )
     {
         //
         // Send this command.
         //
-        OSRAMWriteFirst(g_pucOSRAMInit[ulIdx + 1]);
-        OSRAMWriteArray(g_pucOSRAMInit + ulIdx + 2, g_pucOSRAMInit[ulIdx] - 2);
-        OSRAMWriteFinal(g_pucOSRAMInit[ulIdx + g_pucOSRAMInit[ulIdx]]);
+        OSRAMWriteFirst( g_pucOSRAMInit[ ulIdx + 1 ] );
+        OSRAMWriteArray( g_pucOSRAMInit + ulIdx + 2,
+                         g_pucOSRAMInit[ ulIdx ] - 2 );
+        OSRAMWriteFinal( g_pucOSRAMInit[ ulIdx + g_pucOSRAMInit[ ulIdx ] ] );
     }
 
     //
@@ -916,8 +999,7 @@ OSRAMInit(tBoolean bFast)
 //! \return None.
 //
 //*****************************************************************************
-void
-OSRAMDisplayOn(void)
+void OSRAMDisplayOn( void )
 {
     unsigned long ulIdx;
 
@@ -925,15 +1007,16 @@ OSRAMDisplayOn(void)
     // Re-initialize the SSD0303 controller.  Loop through the initialization
     // sequence doing a single I2C transfer for each command.
     //
-    for(ulIdx = 0; ulIdx < sizeof(g_pucOSRAMInit);
-        ulIdx += g_pucOSRAMInit[ulIdx] + 1)
+    for( ulIdx = 0; ulIdx < sizeof( g_pucOSRAMInit );
+         ulIdx += g_pucOSRAMInit[ ulIdx ] + 1 )
     {
         //
         // Send this command.
         //
-        OSRAMWriteFirst(g_pucOSRAMInit[ulIdx + 1]);
-        OSRAMWriteArray(g_pucOSRAMInit + ulIdx + 2, g_pucOSRAMInit[ulIdx] - 2);
-        OSRAMWriteFinal(g_pucOSRAMInit[ulIdx + g_pucOSRAMInit[ulIdx]]);
+        OSRAMWriteFirst( g_pucOSRAMInit[ ulIdx + 1 ] );
+        OSRAMWriteArray( g_pucOSRAMInit + ulIdx + 2,
+                         g_pucOSRAMInit[ ulIdx ] - 2 );
+        OSRAMWriteFinal( g_pucOSRAMInit[ ulIdx + g_pucOSRAMInit[ ulIdx ] ] );
     }
 }
 
@@ -953,18 +1036,17 @@ OSRAMDisplayOn(void)
 //! \return None.
 //
 //*****************************************************************************
-void
-OSRAMDisplayOff(void)
+void OSRAMDisplayOff( void )
 {
     //
     // Turn off the DC-DC converter and the display.
     //
-    OSRAMWriteFirst(0x80);
-    OSRAMWriteByte(0xae);
-    OSRAMWriteByte(0x80);
-    OSRAMWriteByte(0xad);
-    OSRAMWriteByte(0x80);
-    OSRAMWriteFinal(0x8a);
+    OSRAMWriteFirst( 0x80 );
+    OSRAMWriteByte( 0xae );
+    OSRAMWriteByte( 0x80 );
+    OSRAMWriteByte( 0xad );
+    OSRAMWriteByte( 0x80 );
+    OSRAMWriteFinal( 0x8a );
 }
 
 //*****************************************************************************

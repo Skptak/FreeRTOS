@@ -8,6 +8,6 @@
  * @param address Start memory address for zero-scrub.
  * @param size Memory region size in bytes.
  * @return None.*/
-void metal_mem_scrub(void *address, int size);
+void metal_mem_scrub( void * address, int size );
 
 #endif

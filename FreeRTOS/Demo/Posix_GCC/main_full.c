@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -66,61 +67,60 @@
  *
  */
 
-
 /* Standard includes. */
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#include <stdio.h>
 
 /* Kernel includes. */
 #include <FreeRTOS.h>
-#include <task.h>
 #include <queue.h>
-#include <timers.h>
 #include <semphr.h>
+#include <task.h>
+#include <timers.h>
 
 /* Standard demo includes. */
+#include "AbortDelay.h"
 #include "BlockQ.h"
-#include "integer.h"
-#include "semtest.h"
-#include "PollQ.h"
+#include "EventGroupsDemo.h"
 #include "GenQTest.h"
+#include "IntSemTest.h"
+#include "MessageBufferAMP.h"
+#include "MessageBufferDemo.h"
+#include "PollQ.h"
 #include "QPeek.h"
-#include "recmutex.h"
-#include "flop.h"
+#include "QueueOverwrite.h"
+#include "QueueSet.h"
+#include "QueueSetPolling.h"
+#include "StaticAllocation.h"
+#include "StreamBufferDemo.h"
+#include "StreamBufferInterrupt.h"
+#include "TaskNotify.h"
 #include "TimerDemo.h"
+#include "blocktim.h"
+#include "console.h"
 #include "countsem.h"
 #include "death.h"
 #include "dynamic.h"
-#include "QueueSet.h"
-#include "QueueOverwrite.h"
-#include "EventGroupsDemo.h"
-#include "IntSemTest.h"
-#include "TaskNotify.h"
-#include "QueueSetPolling.h"
-#include "StaticAllocation.h"
-#include "blocktim.h"
-#include "AbortDelay.h"
-#include "MessageBufferDemo.h"
-#include "StreamBufferDemo.h"
-#include "StreamBufferInterrupt.h"
-#include "MessageBufferAMP.h"
-#include "console.h"
+#include "flop.h"
+#include "integer.h"
+#include "recmutex.h"
+#include "semtest.h"
 
 /* Priorities at which the tasks are created. */
-#define mainCHECK_TASK_PRIORITY         ( configMAX_PRIORITIES - 2 )
-#define mainQUEUE_POLL_PRIORITY         ( tskIDLE_PRIORITY + 1 )
-#define mainSEM_TEST_PRIORITY           ( tskIDLE_PRIORITY + 1 )
-#define mainBLOCK_Q_PRIORITY            ( tskIDLE_PRIORITY + 2 )
-#define mainCREATOR_TASK_PRIORITY       ( tskIDLE_PRIORITY + 3 )
-#define mainFLASH_TASK_PRIORITY         ( tskIDLE_PRIORITY + 1 )
-#define mainINTEGER_TASK_PRIORITY       ( tskIDLE_PRIORITY )
-#define mainGEN_QUEUE_TASK_PRIORITY     ( tskIDLE_PRIORITY )
-#define mainFLOP_TASK_PRIORITY          ( tskIDLE_PRIORITY )
-#define mainQUEUE_OVERWRITE_PRIORITY    ( tskIDLE_PRIORITY )
+#define mainCHECK_TASK_PRIORITY      ( configMAX_PRIORITIES - 2 )
+#define mainQUEUE_POLL_PRIORITY      ( tskIDLE_PRIORITY + 1 )
+#define mainSEM_TEST_PRIORITY        ( tskIDLE_PRIORITY + 1 )
+#define mainBLOCK_Q_PRIORITY         ( tskIDLE_PRIORITY + 2 )
+#define mainCREATOR_TASK_PRIORITY    ( tskIDLE_PRIORITY + 3 )
+#define mainFLASH_TASK_PRIORITY      ( tskIDLE_PRIORITY + 1 )
+#define mainINTEGER_TASK_PRIORITY    ( tskIDLE_PRIORITY )
+#define mainGEN_QUEUE_TASK_PRIORITY  ( tskIDLE_PRIORITY )
+#define mainFLOP_TASK_PRIORITY       ( tskIDLE_PRIORITY )
+#define mainQUEUE_OVERWRITE_PRIORITY ( tskIDLE_PRIORITY )
 
-#define mainTIMER_TEST_PERIOD           ( 50 )
+#define mainTIMER_TEST_PERIOD        ( 50 )
 
 /*
  * Exercises code that is not otherwise covered by the standard demo/test
@@ -151,8 +151,7 @@ static void prvDemonstratePendingFunctionCall( void );
 /*
  * The function that is pended by prvDemonstratePendingFunctionCall().
  */
-static void prvPendedFunction( void * pvParameter1,
-                               uint32_t ulParameter2 );
+static void prvPendedFunction( void * pvParameter1, uint32_t ulParameter2 );
 
 /*
  * prvDemonstrateTimerQueryFunctions() is called from the idle task hook
@@ -196,7 +195,12 @@ static SemaphoreHandle_t xMutexToDelete = NULL;
 int main_full( void )
 {
     /* Start the check task as described at the top of this file. */
-    xTaskCreate( prvCheckTask, "Check", configMINIMAL_STACK_SIZE, NULL, mainCHECK_TASK_PRIORITY, NULL );
+    xTaskCreate( prvCheckTask,
+                 "Check",
+                 configMINIMAL_STACK_SIZE,
+                 NULL,
+                 mainCHECK_TASK_PRIORITY,
+                 NULL );
 
     /* Create the standard demo tasks. */
     vStartTaskNotifyTask();
@@ -216,39 +220,54 @@ int main_full( void )
     vStartInterruptSemaphoreTasks();
     vCreateBlockTimeTasks();
     vCreateAbortDelayTasks();
-    xTaskCreate( prvDemoQueueSpaceFunctions, "QSpace", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY, NULL );
-    xTaskCreate( prvPermanentlyBlockingSemaphoreTask, "BlockSem", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY, NULL );
-    xTaskCreate( prvPermanentlyBlockingNotificationTask, "BlockNoti", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY, NULL );
+    xTaskCreate( prvDemoQueueSpaceFunctions,
+                 "QSpace",
+                 configMINIMAL_STACK_SIZE,
+                 NULL,
+                 tskIDLE_PRIORITY,
+                 NULL );
+    xTaskCreate( prvPermanentlyBlockingSemaphoreTask,
+                 "BlockSem",
+                 configMINIMAL_STACK_SIZE,
+                 NULL,
+                 tskIDLE_PRIORITY,
+                 NULL );
+    xTaskCreate( prvPermanentlyBlockingNotificationTask,
+                 "BlockNoti",
+                 configMINIMAL_STACK_SIZE,
+                 NULL,
+                 tskIDLE_PRIORITY,
+                 NULL );
 
     vStartMessageBufferTasks( configMINIMAL_STACK_SIZE );
     vStartStreamBufferTasks();
     vStartStreamBufferInterruptDemo();
     vStartMessageBufferAMPTasks( configMINIMAL_STACK_SIZE );
 
-    #if ( configUSE_QUEUE_SETS == 1 )
-        {
-            vStartQueueSetTasks();
-            vStartQueueSetPollingTask();
-        }
-    #endif
+#if( configUSE_QUEUE_SETS == 1 )
+    {
+        vStartQueueSetTasks();
+        vStartQueueSetPollingTask();
+    }
+#endif
 
-    #if ( configSUPPORT_STATIC_ALLOCATION == 1 )
-        {
-            vStartStaticallyAllocatedTasks();
-        }
-    #endif
+#if( configSUPPORT_STATIC_ALLOCATION == 1 )
+    {
+        vStartStaticallyAllocatedTasks();
+    }
+#endif
 
-    #if ( configUSE_PREEMPTION != 0 )
-        {
-            /* Don't expect these tasks to pass when preemption is not used. */
-            vStartTimerDemoTask( mainTIMER_TEST_PERIOD );
-        }
-    #endif
+#if( configUSE_PREEMPTION != 0 )
+    {
+        /* Don't expect these tasks to pass when preemption is not used. */
+        vStartTimerDemoTask( mainTIMER_TEST_PERIOD );
+    }
+#endif
 
     /* The suicide tasks must be created last as they need to know how many
      * tasks were running prior to their creation.  This then allows them to
-     * ascertain whether or not the correct/expected number of tasks are running at
-     * any given time. */
+     * ascertain whether or not the correct/expected number of tasks are running
+     * at any given time. */
     vCreateSuicidalTasks( mainCREATOR_TASK_PRIORITY );
 
     /* Create the semaphore that will be deleted in the idle task hook.  This
@@ -276,22 +295,23 @@ static void prvCheckTask( void * pvParameters )
     /* Initialise xNextWakeTime - this only needs to be done once. */
     xNextWakeTime = xTaskGetTickCount();
 
-    for( ; ; )
+    for( ;; )
     {
-        /* Place this task in the blocked state until it is time to run again. */
+        /* Place this task in the blocked state until it is time to run again.
+         */
         vTaskDelayUntil( &xNextWakeTime, xCycleFrequency );
 
-        /* Check the standard demo tasks are running without error. */
-        #if ( configUSE_PREEMPTION != 0 )
+/* Check the standard demo tasks are running without error. */
+#if( configUSE_PREEMPTION != 0 )
+        {
+            /* These tasks are only created when preemption is used. */
+            if( xAreTimerDemoTasksStillRunning( xCycleFrequency ) != pdTRUE )
             {
-                /* These tasks are only created when preemption is used. */
-                if( xAreTimerDemoTasksStillRunning( xCycleFrequency ) != pdTRUE )
-                {
-                    pcStatusMessage = "Error: TimerDemo";
-                    xErrorCount++;
-                }
+                pcStatusMessage = "Error: TimerDemo";
+                xErrorCount++;
             }
-        #endif
+        }
+#endif
 
         if( xAreStreamBufferTasksStillRunning() != pdTRUE )
         {
@@ -405,26 +425,26 @@ static void prvCheckTask( void * pvParameters )
             xErrorCount++;
         }
 
-        #if ( configUSE_QUEUE_SETS == 1 )
-            else if( xAreQueueSetTasksStillRunning() != pdPASS )
-            {
-                pcStatusMessage = "Error: Queue set";
-                xErrorCount++;
-            }
-            else if( xAreQueueSetPollTasksStillRunning() != pdPASS )
-            {
-                pcStatusMessage = "Error: Queue set polling";
-                xErrorCount++;
-            }
-        #endif /* if ( configUSE_QUEUE_SETS == 1 ) */
+#if( configUSE_QUEUE_SETS == 1 )
+        else if( xAreQueueSetTasksStillRunning() != pdPASS )
+        {
+            pcStatusMessage = "Error: Queue set";
+            xErrorCount++;
+        }
+        else if( xAreQueueSetPollTasksStillRunning() != pdPASS )
+        {
+            pcStatusMessage = "Error: Queue set polling";
+            xErrorCount++;
+        }
+#endif /* if ( configUSE_QUEUE_SETS == 1 ) */
 
-        #if ( configSUPPORT_STATIC_ALLOCATION == 1 )
-            else if( xAreStaticAllocationTasksStillRunning() != pdPASS )
-            {
-                xErrorCount++;
-                pcStatusMessage = "Error: Static allocation";
-            }
-        #endif /* configSUPPORT_STATIC_ALLOCATION */
+#if( configSUPPORT_STATIC_ALLOCATION == 1 )
+        else if( xAreStaticAllocationTasksStillRunning() != pdPASS )
+        {
+            xErrorCount++;
+            pcStatusMessage = "Error: Static allocation";
+        }
+#endif /* configSUPPORT_STATIC_ALLOCATION */
 
         printf( "%s - tick count %lu \r\n",
                 pcStatusMessage,
@@ -450,10 +470,10 @@ static void prvTestTask( void * pvParameters )
 
     /* This task is just used to test the eTaskStateGet() function.  It
      * does not have anything to do. */
-    for( ; ; )
+    for( ;; )
     {
-        /* Sleep to reduce CPU load, but don't sleep indefinitely in case there are
-         * tasks waiting to be terminated by the idle task. */
+        /* Sleep to reduce CPU load, but don't sleep indefinitely in case there
+         * are tasks waiting to be terminated by the idle task. */
         struct timespec ts;
         ts.tv_sec = ulMSToSleep / 1000;
         ts.tv_nsec = ulMSToSleep % 1000l * 1000000l;
@@ -500,7 +520,8 @@ void vFullDemoIdleFunction( void )
          * registry. */
         configASSERT( pcQueueGetName( xMutexToDelete ) == NULL );
         vQueueAddToRegistry( xMutexToDelete, "Test_Mutex" );
-        configASSERT( strcmp( pcQueueGetName( xMutexToDelete ), "Test_Mutex" ) == 0 );
+        configASSERT(
+            strcmp( pcQueueGetName( xMutexToDelete ), "Test_Mutex" ) == 0 );
         vQueueUnregisterQueue( xMutexToDelete );
         configASSERT( pcQueueGetName( xMutexToDelete ) == NULL );
 
@@ -513,25 +534,25 @@ void vFullDemoIdleFunction( void )
     pvAllocated = pvPortMalloc( ( rand() % 500 ) + 1 );
     vPortFree( pvAllocated );
 
-    /* Exit after a fixed time so code coverage results are written to the
-     * disk. */
-    #if ( projCOVERAGE_TEST == 1 )
+/* Exit after a fixed time so code coverage results are written to the
+ * disk. */
+#if( projCOVERAGE_TEST == 1 )
+    {
+        const TickType_t xMaxRunTime = pdMS_TO_TICKS( 30000UL );
+
+        /* Exercise code not otherwise executed by standard demo/test tasks. */
+        if( xRunCodeCoverageTestAdditions() != pdPASS )
         {
-            const TickType_t xMaxRunTime = pdMS_TO_TICKS( 30000UL );
-
-            /* Exercise code not otherwise executed by standard demo/test tasks. */
-            if( xRunCodeCoverageTestAdditions() != pdPASS )
-            {
-                pcStatusMessage = "Code coverage additions failed.\r\n";
-                xErrorCount++;
-            }
-
-            if( ( xTaskGetTickCount() - configINITIAL_TICK_COUNT ) >= xMaxRunTime )
-            {
-                vTaskEndScheduler();
-            }
+            pcStatusMessage = "Code coverage additions failed.\r\n";
+            xErrorCount++;
         }
-    #endif /* if ( projCOVERAGE_TEST == 1 ) */
+
+        if( ( xTaskGetTickCount() - configINITIAL_TICK_COUNT ) >= xMaxRunTime )
+        {
+            vTaskEndScheduler();
+        }
+    }
+#endif /* if ( projCOVERAGE_TEST == 1 ) */
 }
 /*-----------------------------------------------------------*/
 
@@ -540,26 +561,27 @@ void vFullDemoTickHookFunction( void )
 {
     TaskHandle_t xTimerTask;
 
-    /* Call the periodic timer test, which tests the timer API functions that
-     * can be called from an ISR. */
-    #if ( configUSE_PREEMPTION != 0 )
-        {
-            /* Only created when preemption is used. */
-            vTimerPeriodicISRTests();
-        }
-    #endif
+/* Call the periodic timer test, which tests the timer API functions that
+ * can be called from an ISR. */
+#if( configUSE_PREEMPTION != 0 )
+    {
+        /* Only created when preemption is used. */
+        vTimerPeriodicISRTests();
+    }
+#endif
 
     /* Call the periodic queue overwrite from ISR demo. */
     vQueueOverwritePeriodicISRDemo();
 
-    #if ( configUSE_QUEUE_SETS == 1 ) /* Remove the tests if queue sets are not defined. */
-        {
-            /* Write to a queue that is in use as part of the queue set demo to
-             * demonstrate using queue sets from an ISR. */
-            vQueueSetAccessQueueSetFromISR();
-            vQueueSetPollingInterruptAccess();
-        }
-    #endif
+#if( configUSE_QUEUE_SETS == 1 ) /* Remove the tests if queue sets are not \
+                                    defined. */
+    {
+        /* Write to a queue that is in use as part of the queue set demo to
+         * demonstrate using queue sets from an ISR. */
+        vQueueSetAccessQueueSetFromISR();
+        vQueueSetPollingInterruptAccess();
+    }
+#endif
 
     /* Exercise event groups from interrupts. */
     vPeriodicEventGroupsProcessing();
@@ -581,12 +603,12 @@ void vFullDemoTickHookFunction( void )
 
     /* For code coverage purposes. */
     xTimerTask = xTimerGetTimerDaemonTaskHandle();
-    configASSERT( uxTaskPriorityGetFromISR( xTimerTask ) == configTIMER_TASK_PRIORITY );
+    configASSERT( uxTaskPriorityGetFromISR( xTimerTask ) ==
+                  configTIMER_TASK_PRIORITY );
 }
 /*-----------------------------------------------------------*/
 
-static void prvPendedFunction( void * pvParameter1,
-                               uint32_t ulParameter2 )
+static void prvPendedFunction( void * pvParameter1, uint32_t ulParameter2 )
 {
     static intptr_t ulLastParameter1 = 1000UL, ulLastParameter2 = 0UL;
     intptr_t ulParameter1;
@@ -610,7 +632,8 @@ static void prvPendedFunction( void * pvParameter1,
 static void prvTestTimerCallback( TimerHandle_t xTimer )
 {
     /* This is the callback function for the timer accessed by
-     * prvDemonstrateTimerQueryFunctions().  The callback does not do anything. */
+     * prvDemonstrateTimerQueryFunctions().  The callback does not do anything.
+     */
     ( void ) xTimer;
 }
 /*-----------------------------------------------------------*/
@@ -624,7 +647,11 @@ static void prvDemonstrateTimerQueryFunctions( void )
 
     if( xTimer == NULL )
     {
-        xTimer = xTimerCreate( pcTimerName, portMAX_DELAY, pdTRUE, NULL, prvTestTimerCallback );
+        xTimer = xTimerCreate( pcTimerName,
+                               portMAX_DELAY,
+                               pdTRUE,
+                               NULL,
+                               prvTestTimerCallback );
 
         if( xTimer != NULL )
         {
@@ -643,11 +670,11 @@ static void prvDemonstrateTimerQueryFunctions( void )
         configASSERT( xTimerGetPeriod( xTimer ) == portMAX_DELAY );
 
         /* Demonstrate querying a timer's next expiry time, although nothing is
-         * done with the returned value.  Note if the expiry time is less than the
-         * maximum tick count then the expiry time has overflowed from the current
-         * time.  In this case the expiry time was set to portMAX_DELAY, so it is
-         * expected to be less than the current time until the current time has
-         * itself overflowed. */
+         * done with the returned value.  Note if the expiry time is less than
+         * the maximum tick count then the expiry time has overflowed from the
+         * current time.  In this case the expiry time was set to portMAX_DELAY,
+         * so it is expected to be less than the current time until the current
+         * time has itself overflowed. */
         xExpiryTime = xTimerGetExpiryTime( xTimer );
         ( void ) xExpiryTime;
     }
@@ -657,7 +684,8 @@ static void prvDemonstrateTimerQueryFunctions( void )
 static void prvDemonstratePendingFunctionCall( void )
 {
     static intptr_t ulParameter1 = 1000UL, ulParameter2 = 0UL;
-    const TickType_t xDontBlock = 0; /* This is called from the idle task so must *not* attempt to block. */
+    const TickType_t xDontBlock = 0; /* This is called from the idle task so
+                                        must *not* attempt to block. */
 
     /* prvPendedFunction() just expects the parameters to be incremented by one
      * each time it is called. */
@@ -666,7 +694,10 @@ static void prvDemonstratePendingFunctionCall( void )
     ulParameter2++;
 
     /* Pend the function call, sending the parameters. */
-    xTimerPendFunctionCall( prvPendedFunction, ( void * ) ulParameter1, ulParameter2, xDontBlock );
+    xTimerPendFunctionCall( prvPendedFunction,
+                            ( void * ) ulParameter1,
+                            ulParameter2,
+                            xDontBlock );
 }
 /*-----------------------------------------------------------*/
 
@@ -680,8 +711,8 @@ static void prvDemonstrateTaskStateAndHandleGetFunctions( void )
     extern StackType_t uxTimerTaskStack[];
 
     /* Demonstrate the use of the xTimerGetTimerDaemonTaskHandle() and
-     * xTaskGetIdleTaskHandle() functions.  Also try using the function that sets
-     * the task number. */
+     * xTaskGetIdleTaskHandle() functions.  Also try using the function that
+     * sets the task number. */
     xIdleTaskHandle = xTaskGetIdleTaskHandle();
     xTimerTaskHandle = xTimerGetTimerDaemonTaskHandle();
 
@@ -718,7 +749,8 @@ static void prvDemonstrateTaskStateAndHandleGetFunctions( void )
 
     if( xTaskGetHandle( "Tmr Svc" ) != xTimerTaskHandle )
     {
-        pcStatusMessage = "Error:  Returned handle for name Tmr Svc was incorrect";
+        pcStatusMessage = "Error:  Returned handle for name Tmr Svc was "
+                          "incorrect";
         xErrorCount++;
     }
 
@@ -738,9 +770,11 @@ static void prvDemonstrateTaskStateAndHandleGetFunctions( void )
 
     /* Also with the vTaskGetInfo() function. */
     vTaskGetInfo( xTimerTaskHandle, /* The task being queried. */
-                  &xTaskInfo,       /* The structure into which information on the task will be written. */
-                  pdTRUE,           /* Include the task's high watermark in the structure. */
-                  eInvalid );       /* Include the task state in the structure. */
+                  &xTaskInfo, /* The structure into which information on the
+                                 task will be written. */
+                  pdTRUE, /* Include the task's high watermark in the structure.
+                           */
+                  eInvalid ); /* Include the task state in the structure. */
 
     /* Check the information returned by vTaskGetInfo() is as expected. */
     if( ( xTaskInfo.eCurrentState != eBlocked ) ||
@@ -749,7 +783,8 @@ static void prvDemonstrateTaskStateAndHandleGetFunctions( void )
         ( xTaskInfo.pxStackBase != uxTimerTaskStack ) ||
         ( xTaskInfo.xHandle != xTimerTaskHandle ) )
     {
-        pcStatusMessage = "Error:  vTaskGetInfo() returned incorrect information about the timer task";
+        pcStatusMessage = "Error:  vTaskGetInfo() returned incorrect "
+                          "information about the timer task";
         xErrorCount++;
     }
 
@@ -761,22 +796,32 @@ static void prvDemonstrateTaskStateAndHandleGetFunctions( void )
         /* Don't run this part of the test again. */
         xPerformedOneShotTests = pdTRUE;
 
-        /* Create a test task to use to test other eTaskStateGet() return values. */
-        if( xTaskCreate( prvTestTask, "Test", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY, &xTestTask ) == pdPASS )
+        /* Create a test task to use to test other eTaskStateGet() return
+         * values. */
+        if( xTaskCreate( prvTestTask,
+                         "Test",
+                         configMINIMAL_STACK_SIZE,
+                         NULL,
+                         tskIDLE_PRIORITY,
+                         &xTestTask ) == pdPASS )
         {
-            /* If this task is running, the test task must be in the ready state. */
+            /* If this task is running, the test task must be in the ready
+             * state. */
             if( eTaskStateGet( xTestTask ) != eReady )
             {
-                pcStatusMessage = "Error: Returned test task state was incorrect 1";
+                pcStatusMessage = "Error: Returned test task state was "
+                                  "incorrect 1";
                 xErrorCount++;
             }
 
-            /* Now suspend the test task and check its state is reported correctly. */
+            /* Now suspend the test task and check its state is reported
+             * correctly. */
             vTaskSuspend( xTestTask );
 
             if( eTaskStateGet( xTestTask ) != eSuspended )
             {
-                pcStatusMessage = "Error: Returned test task state was incorrect 2";
+                pcStatusMessage = "Error: Returned test task state was "
+                                  "incorrect 2";
                 xErrorCount++;
             }
 
@@ -785,7 +830,8 @@ static void prvDemonstrateTaskStateAndHandleGetFunctions( void )
 
             if( eTaskStateGet( xTestTask ) != eDeleted )
             {
-                pcStatusMessage = "Error: Returned test task state was incorrect 3";
+                pcStatusMessage = "Error: Returned test task state was "
+                                  "incorrect 3";
                 xErrorCount++;
             }
         }
@@ -807,7 +853,7 @@ static void prvDemoQueueSpaceFunctions( void * pvParameters )
     xQueue = xQueueCreate( uxQueueLength, 0 );
     configASSERT( xQueue );
 
-    for( ; ; )
+    for( ;; )
     {
         for( x = 0; x < uxQueueLength; x++ )
         {
@@ -857,9 +903,9 @@ static void prvDemoQueueSpaceFunctions( void * pvParameters )
         /* The queue is full, start again. */
         xQueueReset( xQueue );
 
-        #if ( configUSE_PREEMPTION == 0 )
-            taskYIELD();
-        #endif
+#if( configUSE_PREEMPTION == 0 )
+        taskYIELD();
+#endif
     }
 }
 /*-----------------------------------------------------------*/
@@ -933,8 +979,8 @@ static void prvDemonstrateChangingTimerReloadMode( void * pvParameters )
     configASSERT( xTimerGetPeriod( xTimer ) == x100ms );
 
     /* Timer was created as a one-shot timer.  Its callback just increments the
-     * timer's ID - so set the ID to 0, let the timer run for a number of timeout
-     * periods, then check the timer has only executed once. */
+     * timer's ID - so set the ID to 0, let the timer run for a number of
+     * timeout periods, then check the timer has only executed once. */
     vTimerSetTimerID( xTimer, ( void * ) 0 );
     xTimerStart( xTimer, portMAX_DELAY );
     vTaskDelay( 3UL * x100ms );

@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -81,63 +82,63 @@
 
 /* Scheduler includes. */
 #include "FreeRTOS.h"
-#include "task.h"
 #include "queue.h"
 #include "semphr.h"
+#include "task.h"
 #include "timers.h"
 
 /* Demo application includes. */
-#include "partest.h"
-#include "blocktim.h"
-#include "flash_timer.h"
-#include "semtest.h"
+#include "EventGroupsDemo.h"
 #include "GenQTest.h"
-#include "QPeek.h"
 #include "IntQueue.h"
-#include "countsem.h"
-#include "dynamic.h"
+#include "QPeek.h"
 #include "QueueOverwrite.h"
 #include "QueueSet.h"
-#include "recmutex.h"
-#include "EventGroupsDemo.h"
+#include "blocktim.h"
+#include "countsem.h"
+#include "dynamic.h"
+#include "flash_timer.h"
 #include "flop_mz.h"
+#include "partest.h"
+#include "recmutex.h"
+#include "semtest.h"
 
 /*-----------------------------------------------------------*/
 
 /* The period after which the check timer will expire, in ms, provided no errors
 have been reported by any of the standard demo tasks.  ms are converted to the
 equivalent in ticks using the portTICK_PERIOD_MS constant. */
-#define mainCHECK_TIMER_PERIOD_MS			( 3000UL / portTICK_PERIOD_MS )
+#define mainCHECK_TIMER_PERIOD_MS         ( 3000UL / portTICK_PERIOD_MS )
 
 /* The period at which the check timer will expire, in ms, if an error has been
 reported in one of the standard demo tasks.  ms are converted to the equivalent
 in ticks using the portTICK_PERIOD_MS constant. */
-#define mainERROR_CHECK_TIMER_PERIOD_MS 	( 200UL / portTICK_PERIOD_MS )
+#define mainERROR_CHECK_TIMER_PERIOD_MS   ( 200UL / portTICK_PERIOD_MS )
 
 /* The priorities of the various demo application tasks. */
-#define mainSEM_TEST_PRIORITY				( tskIDLE_PRIORITY + 1 )
-#define mainBLOCK_Q_PRIORITY				( tskIDLE_PRIORITY + 2 )
-#define mainCOM_TEST_PRIORITY				( tskIDLE_PRIORITY + 2 )
-#define mainINTEGER_TASK_PRIORITY			( tskIDLE_PRIORITY )
-#define mainGEN_QUEUE_TASK_PRIORITY			( tskIDLE_PRIORITY )
-#define mainQUEUE_OVERWRITE_TASK_PRIORITY	( tskIDLE_PRIORITY )
-#define mainFLOP_TASK_PRIORITY				( tskIDLE_PRIORITY )
+#define mainSEM_TEST_PRIORITY             ( tskIDLE_PRIORITY + 1 )
+#define mainBLOCK_Q_PRIORITY              ( tskIDLE_PRIORITY + 2 )
+#define mainCOM_TEST_PRIORITY             ( tskIDLE_PRIORITY + 2 )
+#define mainINTEGER_TASK_PRIORITY         ( tskIDLE_PRIORITY )
+#define mainGEN_QUEUE_TASK_PRIORITY       ( tskIDLE_PRIORITY )
+#define mainQUEUE_OVERWRITE_TASK_PRIORITY ( tskIDLE_PRIORITY )
+#define mainFLOP_TASK_PRIORITY            ( tskIDLE_PRIORITY )
 
 /* The LED controlled by the 'check' software timer. */
-#define mainCHECK_LED						( 2 )
+#define mainCHECK_LED                     ( 2 )
 
 /* The number of LEDs that should be controlled by the flash software timer
 standard demo.  In this case it is only 1 as the starter kit has three LEDs, one
 of which is controlled by the check timer and one of which is controlled by the
 ISR triggered task. */
-#define mainNUM_FLASH_TIMER_LEDS			( 1 )
+#define mainNUM_FLASH_TIMER_LEDS          ( 1 )
 
 /* Misc. */
-#define mainDONT_BLOCK						( 0 )
+#define mainDONT_BLOCK                    ( 0 )
 
 /* The frequency at which the "high frequency interrupt" interrupt will
 occur. */
-#define mainTEST_INTERRUPT_FREQUENCY		( 20000 )
+#define mainTEST_INTERRUPT_FREQUENCY      ( 20000 )
 
 /*-----------------------------------------------------------*/
 
@@ -162,8 +163,8 @@ static void prvSetupHighFrequencyTimerTest( TimerHandle_t xTimer );
  * in and out between setting the register values and checking the register
  * values.
  */
-static void prvRegTestTask1( void *pvParameters );
-static void prvRegTestTask2( void *pvParameters );
+static void prvRegTestTask1( void * pvParameters );
+static void prvRegTestTask2( void * pvParameters );
 
 /*
  * The task that is periodically triggered by an interrupt, as described at the
@@ -185,231 +186,263 @@ volatile unsigned long ulRegTest1Cycles = 0, ulRegTest2Cycles = 0;
  */
 int main_full( void )
 {
-TimerHandle_t xTimer = NULL;
+    TimerHandle_t xTimer = NULL;
 
-	/* Create all the other standard demo tasks. */
-	vStartLEDFlashTimers( mainNUM_FLASH_TIMER_LEDS );
-	vCreateBlockTimeTasks();
-	vStartSemaphoreTasks( mainSEM_TEST_PRIORITY );
-	vStartGenericQueueTasks( mainGEN_QUEUE_TASK_PRIORITY );
-	vStartQueuePeekTasks();
-	vStartInterruptQueueTasks();
-	vStartISRTriggeredTask();
-	vStartCountingSemaphoreTasks();
-	vStartDynamicPriorityTasks();
-	vStartQueueOverwriteTask( mainQUEUE_OVERWRITE_TASK_PRIORITY );
-	vStartQueueSetTasks();
-	vStartRecursiveMutexTasks();
-	vStartEventGroupTasks();
-	vStartMathTasks( mainFLOP_TASK_PRIORITY );
+    /* Create all the other standard demo tasks. */
+    vStartLEDFlashTimers( mainNUM_FLASH_TIMER_LEDS );
+    vCreateBlockTimeTasks();
+    vStartSemaphoreTasks( mainSEM_TEST_PRIORITY );
+    vStartGenericQueueTasks( mainGEN_QUEUE_TASK_PRIORITY );
+    vStartQueuePeekTasks();
+    vStartInterruptQueueTasks();
+    vStartISRTriggeredTask();
+    vStartCountingSemaphoreTasks();
+    vStartDynamicPriorityTasks();
+    vStartQueueOverwriteTask( mainQUEUE_OVERWRITE_TASK_PRIORITY );
+    vStartQueueSetTasks();
+    vStartRecursiveMutexTasks();
+    vStartEventGroupTasks();
+    vStartMathTasks( mainFLOP_TASK_PRIORITY );
 
-	/* Create the tasks defined within this file. */
-	xTaskCreate( prvRegTestTask1,			/* The function that implements the task. */
-				"Reg1",						/* Text name for the task to assist debugger - not used by FreeRTOS itself. */
-				configMINIMAL_STACK_SIZE,	/* The stack size to allocate for the task - specified in words not bytes. */
-				NULL,						/* The parameter to pass into the task - not used in this case so set to NULL. */
-				tskIDLE_PRIORITY,			/* The priority to assign to the task. */
-				NULL );						/* Used to obtain a handle to the task being created - not used in this case so set to NULL. */
+    /* Create the tasks defined within this file. */
+    xTaskCreate( prvRegTestTask1, /* The function that implements the task. */
+                 "Reg1", /* Text name for the task to assist debugger - not used
+                            by FreeRTOS itself. */
+                 configMINIMAL_STACK_SIZE, /* The stack size to allocate for the
+                                              task - specified in words not
+                                              bytes. */
+                 NULL, /* The parameter to pass into the task - not used in this
+                          case so set to NULL. */
+                 tskIDLE_PRIORITY, /* The priority to assign to the task. */
+                 NULL ); /* Used to obtain a handle to the task being created -
+                            not used in this case so set to NULL. */
 
-	xTaskCreate( prvRegTestTask2, "Reg2", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY, NULL );
+    xTaskCreate( prvRegTestTask2,
+                 "Reg2",
+                 configMINIMAL_STACK_SIZE,
+                 NULL,
+                 tskIDLE_PRIORITY,
+                 NULL );
 
-	/* Create the software timer that performs the 'check' functionality, as
-	described at the top of this file. */
-	xTimer = xTimerCreate( 	"CheckTimer",/* A text name, purely to help debugging. */
-							( mainCHECK_TIMER_PERIOD_MS ),		/* The timer period, in this case 3000ms (3s). */
-							pdTRUE,								/* This is an auto-reload timer, so xAutoReload is set to pdTRUE. */
-							( void * ) 0,						/* The ID is not used, so can be set to anything. */
-							prvCheckTimerCallback );			/* The callback function that inspects the status of all the other tasks. */
+    /* Create the software timer that performs the 'check' functionality, as
+    described at the top of this file. */
+    xTimer = xTimerCreate( "CheckTimer", /* A text name, purely to help
+                                            debugging. */
+                           ( mainCHECK_TIMER_PERIOD_MS ), /* The timer period,
+                                                             in this case 3000ms
+                                                             (3s). */
+                           pdTRUE,       /* This is an auto-reload timer, so
+                                            xAutoReload is set to pdTRUE. */
+                           ( void * ) 0, /* The ID is not used, so can be set to
+                                            anything. */
+                           prvCheckTimerCallback ); /* The callback function
+                                                       that inspects the status
+                                                       of all the other tasks.
+                                                     */
 
-	if( xTimer != NULL )
-	{
-		xTimerStart( xTimer, mainDONT_BLOCK );
-	}
+    if( xTimer != NULL )
+    {
+        xTimerStart( xTimer, mainDONT_BLOCK );
+    }
 
-	/* A software timer is also used to start the high frequency timer test.
-	This is to ensure the test does not start before the kernel.  This time a
-	one-shot software timer is used. */
-	xTimer = xTimerCreate( "HighHzTimerSetup", 1, pdFALSE, ( void * ) 0, prvSetupHighFrequencyTimerTest );
-	if( xTimer != NULL )
-	{
-		xTimerStart( xTimer, mainDONT_BLOCK );
-	}
+    /* A software timer is also used to start the high frequency timer test.
+    This is to ensure the test does not start before the kernel.  This time a
+    one-shot software timer is used. */
+    xTimer = xTimerCreate( "HighHzTimerSetup",
+                           1,
+                           pdFALSE,
+                           ( void * ) 0,
+                           prvSetupHighFrequencyTimerTest );
+    if( xTimer != NULL )
+    {
+        xTimerStart( xTimer, mainDONT_BLOCK );
+    }
 
-	/* Finally start the scheduler. */
-	vTaskStartScheduler();
+    /* Finally start the scheduler. */
+    vTaskStartScheduler();
 
-	/* If all is well, the scheduler will now be running, and the following line
-	will never be reached.  If the following line does execute, then there was
-	insufficient FreeRTOS heap memory available for the idle and/or timer tasks
-	to be created.  See the memory management section on the FreeRTOS web site
-	for more details.  http://www.freertos.org/a00111.html */
-	for( ;; );
+    /* If all is well, the scheduler will now be running, and the following line
+    will never be reached.  If the following line does execute, then there was
+    insufficient FreeRTOS heap memory available for the idle and/or timer tasks
+    to be created.  See the memory management section on the FreeRTOS web site
+    for more details.  http://www.freertos.org/a00111.html */
+    for( ;; )
+        ;
 }
 /*-----------------------------------------------------------*/
 
-static void prvRegTestTask1( void *pvParameters )
+static void prvRegTestTask1( void * pvParameters )
 {
-extern void vRegTest1( volatile unsigned long * );
+    extern void vRegTest1( volatile unsigned long * );
 
-	/* Avoid compiler warnings. */
-	( void ) pvParameters;
+    /* Avoid compiler warnings. */
+    ( void ) pvParameters;
 
-	/* Must be called before any hardware floating point operations are
-	performed to let the RTOS portable layer know that this task requires
-	a floating point context. */
-	portTASK_USES_FLOATING_POINT();
+    /* Must be called before any hardware floating point operations are
+    performed to let the RTOS portable layer know that this task requires
+    a floating point context. */
+    portTASK_USES_FLOATING_POINT();
 
-	/* Pass the address of the RegTest1 loop counter into the test function,
-	which is necessarily implemented in assembler. */
-	vRegTest1( &ulRegTest1Cycles );
+    /* Pass the address of the RegTest1 loop counter into the test function,
+    which is necessarily implemented in assembler. */
+    vRegTest1( &ulRegTest1Cycles );
 
-	/* vRegTest1 should never exit! */
-	vTaskDelete( NULL );
+    /* vRegTest1 should never exit! */
+    vTaskDelete( NULL );
 }
 /*-----------------------------------------------------------*/
 
-static void prvRegTestTask2( void *pvParameters )
+static void prvRegTestTask2( void * pvParameters )
 {
-extern void vRegTest2( volatile unsigned long * );
+    extern void vRegTest2( volatile unsigned long * );
 
-	/* Avoid compiler warnings. */
-	( void ) pvParameters;
+    /* Avoid compiler warnings. */
+    ( void ) pvParameters;
 
-	/* Must be called before any hardware floating point operations are
-	performed to let the RTOS portable layer know that this task requires
-	a floating point context. */
-	portTASK_USES_FLOATING_POINT();
+    /* Must be called before any hardware floating point operations are
+    performed to let the RTOS portable layer know that this task requires
+    a floating point context. */
+    portTASK_USES_FLOATING_POINT();
 
-	/* Pass the address of the RegTest2 loop counter into the test function,
-	which is necessarily implemented in assembler. */
-	vRegTest2( &ulRegTest2Cycles );
+    /* Pass the address of the RegTest2 loop counter into the test function,
+    which is necessarily implemented in assembler. */
+    vRegTest2( &ulRegTest2Cycles );
 
-	/* vRegTest1 should never exit! */
-	vTaskDelete( NULL );
+    /* vRegTest1 should never exit! */
+    vTaskDelete( NULL );
 }
 /*-----------------------------------------------------------*/
 
 static void prvCheckTimerCallback( TimerHandle_t xTimer )
 {
-static long lChangedTimerPeriodAlready = pdFALSE;
-static unsigned long ulLastRegTest1Value = 0, ulLastRegTest2Value = 0, ulLastHighFrequencyTimerInterrupts = 0;
-static const unsigned long ulExpectedHighFrequencyInterrupts = ( ( mainTEST_INTERRUPT_FREQUENCY / 1000UL ) * mainCHECK_TIMER_PERIOD_MS ) - 10; /* 10 allows for a margin of error. */
-unsigned long ulErrorOccurred = pdFALSE;
+    static long lChangedTimerPeriodAlready = pdFALSE;
+    static unsigned long ulLastRegTest1Value = 0, ulLastRegTest2Value = 0,
+                         ulLastHighFrequencyTimerInterrupts = 0;
+    static const unsigned long
+        ulExpectedHighFrequencyInterrupts = ( ( mainTEST_INTERRUPT_FREQUENCY /
+                                                1000UL ) *
+                                              mainCHECK_TIMER_PERIOD_MS ) -
+                                            10; /* 10 allows for a margin of
+                                                   error. */
+    unsigned long ulErrorOccurred = pdFALSE;
 
-/* The count of the high frequency timer interrupts. */
-extern unsigned long ulHighFrequencyTimerInterrupts;
+    /* The count of the high frequency timer interrupts. */
+    extern unsigned long ulHighFrequencyTimerInterrupts;
 
-	/* Avoid compiler warnings. */
-	( void ) xTimer;
+    /* Avoid compiler warnings. */
+    ( void ) xTimer;
 
-	/* Check that the register test 1 task is still running. */
-	if( ulLastRegTest1Value == ulRegTest1Cycles )
-	{
-		ulErrorOccurred |= ( 0x01UL << 1UL );
-	}
-	ulLastRegTest1Value = ulRegTest1Cycles;
+    /* Check that the register test 1 task is still running. */
+    if( ulLastRegTest1Value == ulRegTest1Cycles )
+    {
+        ulErrorOccurred |= ( 0x01UL << 1UL );
+    }
+    ulLastRegTest1Value = ulRegTest1Cycles;
 
+    /* Check that the register test 2 task is still running. */
+    if( ulLastRegTest2Value == ulRegTest2Cycles )
+    {
+        ulErrorOccurred |= ( 0x01UL << 2UL );
+    }
+    ulLastRegTest2Value = ulRegTest2Cycles;
 
-	/* Check that the register test 2 task is still running. */
-	if( ulLastRegTest2Value == ulRegTest2Cycles )
-	{
-		ulErrorOccurred |= ( 0x01UL << 2UL );
-	}
-	ulLastRegTest2Value = ulRegTest2Cycles;
+    /* Have any of the standard demo tasks detected an error in their
+    operation? */
+    if( xAreGenericQueueTasksStillRunning() != pdTRUE )
+    {
+        ulErrorOccurred |= ( 0x01UL << 3UL );
+    }
+    else if( xAreQueuePeekTasksStillRunning() != pdTRUE )
+    {
+        ulErrorOccurred |= ( 0x01UL << 4UL );
+    }
+    else if( xAreBlockTimeTestTasksStillRunning() != pdTRUE )
+    {
+        ulErrorOccurred |= ( 0x01UL << 5UL );
+    }
+    else if( xAreSemaphoreTasksStillRunning() != pdTRUE )
+    {
+        ulErrorOccurred |= ( 0x01UL << 6UL );
+    }
+    else if( xAreIntQueueTasksStillRunning() != pdTRUE )
+    {
+        ulErrorOccurred |= ( 0x01UL << 7UL );
+    }
+    else if( xAreCountingSemaphoreTasksStillRunning() != pdTRUE )
+    {
+        ulErrorOccurred |= ( 0x01UL << 8UL );
+    }
+    else if( xAreDynamicPriorityTasksStillRunning() != pdTRUE )
+    {
+        ulErrorOccurred |= ( 0x01UL << 9UL );
+    }
+    else if( xIsQueueOverwriteTaskStillRunning() != pdTRUE )
+    {
+        ulErrorOccurred |= ( 0x01UL << 10UL );
+    }
+    else if( xAreQueueSetTasksStillRunning() != pdTRUE )
+    {
+        ulErrorOccurred |= ( 0x01UL << 11UL );
+    }
+    else if( xAreRecursiveMutexTasksStillRunning() != pdTRUE )
+    {
+        ulErrorOccurred |= ( 0x01UL << 12UL );
+    }
+    else if( xAreEventGroupTasksStillRunning() != pdTRUE )
+    {
+        ulErrorOccurred |= ( 0x01UL << 13UL );
+    }
+    else if( xAreMathsTaskStillRunning() != pdTRUE )
+    {
+        ulErrorOccurred |= ( 0x01UL << 15UL );
+    }
 
-	/* Have any of the standard demo tasks detected an error in their
-	operation? */
-	if( xAreGenericQueueTasksStillRunning() != pdTRUE )
-	{
-		ulErrorOccurred |= ( 0x01UL << 3UL );
-	}
-	else if( xAreQueuePeekTasksStillRunning() != pdTRUE )
-	{
-		ulErrorOccurred |= ( 0x01UL << 4UL );
-	}
-	else if( xAreBlockTimeTestTasksStillRunning() != pdTRUE )
-	{
-		ulErrorOccurred |= ( 0x01UL << 5UL );
-	}
-	else if( xAreSemaphoreTasksStillRunning() != pdTRUE )
-	{
-		ulErrorOccurred |= ( 0x01UL << 6UL );
-	}
-	else if( xAreIntQueueTasksStillRunning() != pdTRUE )
-	{
-		ulErrorOccurred |= ( 0x01UL << 7UL );
-	}
-	else if( xAreCountingSemaphoreTasksStillRunning() != pdTRUE )
-	{
-		ulErrorOccurred |= ( 0x01UL << 8UL );
-	}
-	else if( xAreDynamicPriorityTasksStillRunning() != pdTRUE )
-	{
-		ulErrorOccurred |= ( 0x01UL << 9UL );
-	}
-	else if( xIsQueueOverwriteTaskStillRunning() != pdTRUE )
-	{
-		ulErrorOccurred |= ( 0x01UL << 10UL );
-	}
-	else if( xAreQueueSetTasksStillRunning() != pdTRUE )
-	{
-		ulErrorOccurred |= ( 0x01UL << 11UL );
-	}
-	else if( xAreRecursiveMutexTasksStillRunning() != pdTRUE )
-	{
-		ulErrorOccurred |= ( 0x01UL << 12UL );
-	}
-	else if( xAreEventGroupTasksStillRunning() != pdTRUE )
-	{
-		ulErrorOccurred |= ( 0x01UL << 13UL );
-	}
-	else if( xAreMathsTaskStillRunning() != pdTRUE )
-	{
-		ulErrorOccurred |= ( 0x01UL << 15UL );
-	}
+    /* Ensure the expected number of high frequency interrupts have occurred. */
+    if( ulLastHighFrequencyTimerInterrupts != 0 )
+    {
+        if( ( ulHighFrequencyTimerInterrupts -
+              ulLastHighFrequencyTimerInterrupts ) <
+            ulExpectedHighFrequencyInterrupts )
+        {
+            ulErrorOccurred |= ( 0x01UL << 14UL );
+        }
+    }
+    ulLastHighFrequencyTimerInterrupts = ulHighFrequencyTimerInterrupts;
 
-	/* Ensure the expected number of high frequency interrupts have occurred. */
-	if( ulLastHighFrequencyTimerInterrupts != 0 )
-	{
-		if( ( ulHighFrequencyTimerInterrupts - ulLastHighFrequencyTimerInterrupts ) < ulExpectedHighFrequencyInterrupts )
-		{
-			ulErrorOccurred |= ( 0x01UL << 14UL );
-		}
-	}
-	ulLastHighFrequencyTimerInterrupts = ulHighFrequencyTimerInterrupts;
+    if( ulErrorOccurred != pdFALSE )
+    {
+        /* An error occurred.  Increase the frequency at which the check timer
+        toggles its LED to give visual feedback of the potential error
+        condition. */
+        if( lChangedTimerPeriodAlready == pdFALSE )
+        {
+            lChangedTimerPeriodAlready = pdTRUE;
 
-	if( ulErrorOccurred != pdFALSE )
-	{
-		/* An error occurred.  Increase the frequency at which the check timer
-		toggles its LED to give visual feedback of the potential error
-		condition. */
-		if( lChangedTimerPeriodAlready == pdFALSE )
-		{
-			lChangedTimerPeriodAlready = pdTRUE;
+            /* This call to xTimerChangePeriod() uses a zero block time.
+            Functions called from inside of a timer callback function must
+            *never* attempt	to block as to do so could impact other software
+            timers. */
+            xTimerChangePeriod( xTimer,
+                                ( mainERROR_CHECK_TIMER_PERIOD_MS ),
+                                mainDONT_BLOCK );
+        }
+    }
 
-			/* This call to xTimerChangePeriod() uses a zero block time.
-			Functions called from inside of a timer callback function must
-			*never* attempt	to block as to do so could impact other software
-			timers. */
-			xTimerChangePeriod( xTimer, ( mainERROR_CHECK_TIMER_PERIOD_MS ), mainDONT_BLOCK );
-		}
-	}
-
-	vParTestToggleLED( mainCHECK_LED );
+    vParTestToggleLED( mainCHECK_LED );
 }
 /*-----------------------------------------------------------*/
 
 static void prvSetupHighFrequencyTimerTest( TimerHandle_t xTimer )
 {
-void vSetupTimerTest( unsigned short usFrequencyHz );
+    void vSetupTimerTest( unsigned short usFrequencyHz );
 
-	/* Avoid compiler warnings. */
-	( void ) xTimer;
+    /* Avoid compiler warnings. */
+    ( void ) xTimer;
 
-	/* Setup the high frequency, high priority, timer test.  It is setup in this
-	software timer callback to ensure it does not start before the kernel does.
-	This is a one-shot timer - so the setup routine will only be executed once. */
-	vSetupTimerTest( mainTEST_INTERRUPT_FREQUENCY );
+    /* Setup the high frequency, high priority, timer test.  It is setup in this
+    software timer callback to ensure it does not start before the kernel does.
+    This is a one-shot timer - so the setup routine will only be executed once.
+  */
+    vSetupTimerTest( mainTEST_INTERRUPT_FREQUENCY );
 }
 /*-----------------------------------------------------------*/
-

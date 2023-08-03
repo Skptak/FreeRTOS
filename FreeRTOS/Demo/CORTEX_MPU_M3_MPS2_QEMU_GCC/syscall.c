@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -38,13 +39,12 @@ typedef struct UART_t
     volatile uint32_t BAUDDIV;
 } UART_t;
 
-#define UART0_ADDR           ( ( UART_t * ) ( 0x40004000 ) )
-#define UART_DR( baseaddr )    ( *( unsigned int * ) ( baseaddr ) )
+#define UART0_ADDR          ( ( UART_t * ) ( 0x40004000 ) )
+#define UART_DR( baseaddr ) ( *( unsigned int * ) ( baseaddr ) )
 
-#define UART_STATE_TXFULL    ( 1 << 0 )
-#define UART_CTRL_TX_EN      ( 1 << 0 )
-#define UART_CTRL_RX_EN      ( 1 << 1 )
-
+#define UART_STATE_TXFULL   ( 1 << 0 )
+#define UART_CTRL_TX_EN     ( 1 << 0 )
+#define UART_CTRL_RX_EN     ( 1 << 1 )
 
 extern unsigned long _heap_bottom;
 extern unsigned long _heap_top;
@@ -109,7 +109,8 @@ int _write( __attribute__( ( unused ) ) int file,
  * @brief function called by malloc and friends to reserve memory on the heap
  * @param [in] incr the amount of bytes to increase or decrease
  * @returns the previous top of the heap
- * @note uses a global variable <b>heap_end</b> to keep track of the previous top
+ * @note uses a global variable <b>heap_end</b> to keep track of the previous
+ * top
  */
 void * _sbrk( int incr )
 {
@@ -136,9 +137,7 @@ void _close( int fd )
     ( void ) fd;
 }
 
-int _lseek( int filedes,
-            int offset,
-            int whence )
+int _lseek( int filedes, int offset, int whence )
 {
     ( void ) filedes;
     ( void ) offset;
@@ -152,25 +151,22 @@ int _isatty()
     return 0;
 }
 
-__attribute__( ( naked ) )
-void _exit( int exit_code )
+__attribute__( ( naked ) ) void _exit( int exit_code )
 {
     ( void ) exit_code;
     /* Force qemu to exit using ARM Semihosting */
-    __asm volatile (
-        "mov r1, r0\n"
-        "cmp r1, #0\n"
-        "bne .notclean\n"
-        "ldr r1, =0x20026\n" /* ADP_Stopped_ApplicationExit, a clean exit */
-        ".notclean:\n"
-        "movs r0, #0x18\n"   /* SYS_EXIT */
-        "bkpt 0xab\n"
-        "end: b end\n"
-        );
+    __asm volatile( "mov r1, r0\n"
+                    "cmp r1, #0\n"
+                    "bne .notclean\n"
+                    "ldr r1, =0x20026\n" /* ADP_Stopped_ApplicationExit, a clean
+                                            exit */
+                    ".notclean:\n"
+                    "movs r0, #0x18\n" /* SYS_EXIT */
+                    "bkpt 0xab\n"
+                    "end: b end\n" );
 }
 
-void _kill( pid_t pid,
-            int sig )
+void _kill( pid_t pid, int sig )
 {
     ( void ) pid;
     ( void ) sig;

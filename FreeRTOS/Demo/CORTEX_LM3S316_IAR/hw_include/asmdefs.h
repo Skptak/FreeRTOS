@@ -35,24 +35,24 @@
 //*****************************************************************************
 #ifdef ewarm
 
-//
-// Section headers.
-//
-#define __TEXT__                rseg CODE:CODE(2)
-#define __DATA__                rseg DATA:DATA(2)
-#define __BSS__                 rseg DATA:DATA(2)
+    //
+    // Section headers.
+    //
+    #define __TEXT__   rseg CODE: CODE( 2 )
+    #define __DATA__   rseg DATA: DATA( 2 )
+    #define __BSS__    rseg DATA: DATA( 2 )
 
-//
-// Assembler nmenonics.
-//
-#define __ALIGN__               alignrom 4
-#define __END__                 end
-#define __EXPORT__              export
-#define __IMPORT__              import
-#define __LABEL__
-#define __STR__                 dcb
-#define __THUMB_LABEL__
-#define __WORD__                dcd
+    //
+    // Assembler nmenonics.
+    //
+    #define __ALIGN__  alignrom 4
+    #define __END__    end
+    #define __EXPORT__ export
+    #define __IMPORT__ import
+    #define __LABEL__
+    #define __STR__ dcb
+    #define __THUMB_LABEL__
+    #define __WORD__ dcd
 
 #endif // ewarm
 
@@ -67,27 +67,26 @@
 // The assembly code preamble required to put the assembler into the correct
 // configuration.
 //
-    .syntax unified
-    .thumb
+.syntax unified.thumb
 
-//
-// Section headers.
-//
-#define __TEXT__                .text
-#define __DATA__                .data
-#define __BSS__                 .bss
+    //
+    // Section headers.
+    //
+    #define __TEXT__   .text
+    #define __DATA__   .data
+    #define __BSS__    .bss
 
-//
-// Assembler nmenonics.
-//
-#define __ALIGN__               .balign 4
-#define __END__                 .end
-#define __EXPORT__              .globl
-#define __IMPORT__              .extern
-#define __LABEL__               :
-#define __STR__                 .ascii
-#define __THUMB_LABEL__         .thumb_func
-#define __WORD__                .word
+    //
+    // Assembler nmenonics.
+    //
+    #define __ALIGN__  .balign 4
+    #define __END__    .end
+    #define __EXPORT__ .globl
+    #define __IMPORT__ .extern
+    #define __LABEL__               :
+    #define __STR__         .ascii
+    #define __THUMB_LABEL__ .thumb_func
+    #define __WORD__        .word
 
 #endif // gcc
 
@@ -98,32 +97,30 @@
 //*****************************************************************************
 #ifdef rvmdk
 
-//
-// The assembly code preamble required to put the assembler into the correct
-// configuration.
-//
-    thumb
-    require8
-    preserve8
+    //
+    // The assembly code preamble required to put the assembler into the correct
+    // configuration.
+    //
+    thumb require8 preserve8
 
-//
-// Section headers.
-//
-#define __TEXT__                area ||.text||, code, readonly, align=2
-#define __DATA__                area ||.data||, data, align=2
-#define __BSS__                 area ||.bss||, noinit, align=2
+    //
+    // Section headers.
+    //
+    #define __TEXT__   area ||.text ||, code, readonly, align = 2
+    #define __DATA__   area ||.data ||, data, align = 2
+    #define __BSS__    area ||.bss ||, noinit, align = 2
 
-//
-// Assembler nmenonics.
-//
-#define __ALIGN__               align 4
-#define __END__                 end
-#define __EXPORT__              export
-#define __IMPORT__              import
-#define __LABEL__
-#define __STR__                 dcb
-#define __THUMB_LABEL__
-#define __WORD__                dcd
+    //
+    // Assembler nmenonics.
+    //
+    #define __ALIGN__  align 4
+    #define __END__    end
+    #define __EXPORT__ export
+    #define __IMPORT__ import
+    #define __LABEL__
+    #define __STR__ dcb
+    #define __THUMB_LABEL__
+    #define __WORD__ dcd
 
 #endif // rvmdk
 

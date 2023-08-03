@@ -1,10 +1,10 @@
 /*******************************************************************************
  * (c) Copyright 2009-2015 Microsemi SoC Products Group.  All rights reserved.
- * 
+ *
  * CoreI2C software driver Application Programming Interface.
  * This file contains defines and function declarations allowing to interface
  * with the CoreI2C software driver.
- * 
+ *
  * SVN $Revision: 7984 $
  * SVN $Date: 2015-10-12 12:07:40 +0530 (Mon, 12 Oct 2015) $
  */
@@ -402,50 +402,51 @@
 #include "cpu_types.h"
 #ifdef __cplusplus
 extern "C" {
-#endif 
+#endif
 
-/*-------------------------------------------------------------------------*//**
-  The I2C_RELEASE_BUS constant is used to specify the options parameter to
-  functions I2C_read(), I2C_write() and I2C_write_read() to indicate
-  that a STOP bit must be generated at the end of the I2C transaction to release
-  the bus.
- */
-#define I2C_RELEASE_BUS     0x00u
+/*-------------------------------------------------------------------------*/ /**
+   The I2C_RELEASE_BUS constant is used to specify the options parameter to
+   functions I2C_read(), I2C_write() and I2C_write_read() to indicate
+   that a STOP bit must be generated at the end of the I2C transaction to
+   release the bus.
+  */
+#define I2C_RELEASE_BUS  0x00u
 
-/*-------------------------------------------------------------------------*//**
-  The I2C_HOLD_BUS constant is used to specify the options parameter to
-  functions I2C_read(), I2C_write() and I2C_write_read() to indicate
-  that a STOP bit must not be generated at the end of the I2C transaction in
-  order to retain the bus ownership. This causes the next transaction to
-  begin with a repeated START bit and no STOP bit between the transactions.
- */
-#define I2C_HOLD_BUS        0x01u
+/*-------------------------------------------------------------------------*/ /**
+   The I2C_HOLD_BUS constant is used to specify the options parameter to
+   functions I2C_read(), I2C_write() and I2C_write_read() to indicate
+   that a STOP bit must not be generated at the end of the I2C transaction in
+   order to retain the bus ownership. This causes the next transaction to
+   begin with a repeated START bit and no STOP bit between the transactions.
+  */
+#define I2C_HOLD_BUS     0x01u
 
-/*-------------------------------------------------------------------------*//**
-  The following constants specify the interrupt identifier number which will be
-  solely used by driver API. This has nothing to do with hardware interrupt line.
-  I2C_INT_IRQ is the primary interrupt signal which drives the state machine
-  of the CoreI2C driver. The I2C_SMBALERT_IRQ and I2C_SMBUS_IRQ are used by
-  SMBus interrupt enable and disable functions. These IRQ numbers are also used
-  by I2C_get_irq_status().
- */
-#define I2C_NO_IRQ             0x00u
-#define I2C_SMBALERT_IRQ       0x01u
-#define I2C_SMBSUS_IRQ         0x02u
-#define I2C_INTR_IRQ           0x04u
+/*-------------------------------------------------------------------------*/ /**
+   The following constants specify the interrupt identifier number which will be
+   solely used by driver API. This has nothing to do with hardware interrupt
+   line. I2C_INT_IRQ is the primary interrupt signal which drives the state
+   machine of the CoreI2C driver. The I2C_SMBALERT_IRQ and I2C_SMBUS_IRQ are
+   used by SMBus interrupt enable and disable functions. These IRQ numbers are
+   also used by I2C_get_irq_status().
+  */
+#define I2C_NO_IRQ       0x00u
+#define I2C_SMBALERT_IRQ 0x01u
+#define I2C_SMBSUS_IRQ   0x02u
+#define I2C_INTR_IRQ     0x04u
 
-/*-------------------------------------------------------------------------*//**
-  The I2C_NO_TIMEOUT constant is used as parameter to the I2C_wait_complete()
-  function to indicate that the wait for completion of the transaction should
-  not time out.
- */
-#define I2C_NO_TIMEOUT  0u
+/*-------------------------------------------------------------------------*/ /**
+   The I2C_NO_TIMEOUT constant is used as parameter to the I2C_wait_complete()
+   function to indicate that the wait for completion of the transaction should
+   not time out.
+  */
+#define I2C_NO_TIMEOUT   0u
 
-/*-------------------------------------------------------------------------*//**
-  The i2c_channel_number_t type is used to specify the channel number of a
-  CoreI2C instance.
- */
-typedef enum i2c_channel_number {
+/*-------------------------------------------------------------------------*/ /**
+   The i2c_channel_number_t type is used to specify the channel number of a
+   CoreI2C instance.
+  */
+typedef enum i2c_channel_number
+{
     I2C_CHANNEL_0 = 0u,
     I2C_CHANNEL_1,
     I2C_CHANNEL_2,
@@ -465,13 +466,14 @@ typedef enum i2c_channel_number {
     I2C_MAX_CHANNELS = 16u
 } i2c_channel_number_t;
 
-/*-------------------------------------------------------------------------*//**
-  The i2c_clock_divider_t type is used to specify the divider to be applied
-  to the I2C PCLK or BCLK signal in order to generate the I2C clock.
-  The I2C_BCLK_DIV_8 value selects a clock frequency based on division of BCLK,
-  all other values select a clock frequency based on division of PCLK.
- */
-typedef enum i2c_clock_divider {
+/*-------------------------------------------------------------------------*/ /**
+   The i2c_clock_divider_t type is used to specify the divider to be applied
+   to the I2C PCLK or BCLK signal in order to generate the I2C clock.
+   The I2C_BCLK_DIV_8 value selects a clock frequency based on division of BCLK,
+   all other values select a clock frequency based on division of PCLK.
+  */
+typedef enum i2c_clock_divider
+{
     I2C_PCLK_DIV_256 = 0u,
     I2C_PCLK_DIV_224,
     I2C_PCLK_DIV_192,
@@ -482,9 +484,9 @@ typedef enum i2c_clock_divider {
     I2C_BCLK_DIV_8
 } i2c_clock_divider_t;
 
-/*-------------------------------------------------------------------------*//**
-  The i2c_status_t type is used to report the status of I2C transactions.
- */
+/*-------------------------------------------------------------------------*/ /**
+   The i2c_status_t type is used to report the status of I2C transactions.
+  */
 typedef enum i2c_status
 {
     I2C_SUCCESS = 0u,
@@ -493,83 +495,84 @@ typedef enum i2c_status
     I2C_TIMED_OUT
 } i2c_status_t;
 
-/*-------------------------------------------------------------------------*//**
-  The i2c_slave_handler_ret_t type is used by slave write handler functions
-  to indicate whether or not the received data buffer should be released.
- */
-typedef enum i2c_slave_handler_ret {
+/*-------------------------------------------------------------------------*/ /**
+   The i2c_slave_handler_ret_t type is used by slave write handler functions
+   to indicate whether or not the received data buffer should be released.
+  */
+typedef enum i2c_slave_handler_ret
+{
     I2C_REENABLE_SLAVE_RX = 0u,
     I2C_PAUSE_SLAVE_RX = 1u
 } i2c_slave_handler_ret_t;
 
-typedef struct i2c_instance i2c_instance_t ;
+typedef struct i2c_instance i2c_instance_t;
 
-/*-------------------------------------------------------------------------*//**
-  Slave write handler functions prototype.
-  ------------------------------------------------------------------------------
-  This defines the function prototype that must be followed by  I2C slave write
-  handler functions. These functions are registered with the CoreI2C driver
-  through the I2C_register_write_handler() function.
+/*-------------------------------------------------------------------------*/ /**
+   Slave write handler functions prototype.
+   ------------------------------------------------------------------------------
+   This defines the function prototype that must be followed by  I2C slave write
+   handler functions. These functions are registered with the CoreI2C driver
+   through the I2C_register_write_handler() function.
 
-  Declaring and Implementing Slave Write Handler Functions:
-    Slave write handler functions should follow the following prototype:
-    i2c_slave_handler_ret_t write_handler
-    ( 
-        i2c_instance_t *instance, uint8_t * data, uint16_t size 
-    );
+   Declaring and Implementing Slave Write Handler Functions:
+     Slave write handler functions should follow the following prototype:
+     i2c_slave_handler_ret_t write_handler
+     (
+         i2c_instance_t *instance, uint8_t * data, uint16_t size
+     );
 
-    The instance parameter is a pointer to the i2c_instance_t for which this
-    slave write handler has been declared.
-    
-    The data parameter is a pointer to a buffer (received data buffer) holding
-    the data written to the I2C slave.
-    
-    Defining the macro INCLUDE_SLA_IN_RX_PAYLOAD causes the driver to insert the
-    actual address used to access the slave as the first byte in the buffer.
-    This allows applications tailor their response based on the actual address
-    used to access the slave (primary address, secondary address or GCA).
-    
-    The size parameter is the number of bytes held in the received data buffer.
-    Handler functions must return one of the following values:
-        I2C_REENABLE_SLAVE_RX
-        I2C_PAUSE_SLAVE_RX.
-        
-    If the handler function returns I2C_REENABLE_SLAVE_RX, the driver releases
-    the received data buffer and allows further I2C write transactions to the
-    I2C slave to take place.
-    
-    If the handler function returns I2C_PAUSE_SLAVE_RX, the I2C slave responds
-    to subsequent write requests with a non-acknowledge bit (NACK), until the
-    received data buffer content has been processed by some other part of the
-    software application.
-    
-    A call to I2C_enable_slave() is required at some point after returning
-    I2C_PAUSE_SLAVE_RX in order to release the received data buffer so it can
-    be used to store data received by subsequent I2C write transactions.
- */
-typedef i2c_slave_handler_ret_t (*i2c_slave_wr_handler_t)(i2c_instance_t *instance, uint8_t *, uint16_t );
+     The instance parameter is a pointer to the i2c_instance_t for which this
+     slave write handler has been declared.
 
+     The data parameter is a pointer to a buffer (received data buffer) holding
+     the data written to the I2C slave.
 
-/*-------------------------------------------------------------------------*//**
-  i2c_instance_t
-  ------------------------------------------------------------------------------
-  This structure is used to identify the various CoreI2C hardware instances in
-  your system and the I2C channels within them. Your application software should
-  declare one instance of this structure for each channel of each instance of
-  CoreI2C in your system. The functions I2C_init() and I2C_channel_init() 
-  initialize this structure depending on whether it is channel 0 or one of the
-  additional channels respectively. A pointer to an initialized instance of the
-  structure should be passed as the first parameter to the CoreI2C driver
-  functions, to identify which CoreI2C hardware instance and channel should
-  perform the requested operation.
-  
-  The contents of this data structure should not be modified or used outside of
-  the CoreI2C driver. Software using the CoreI2C driver should only need to 
-  create one single instance of this data structure for each channel of each 
-  CoreI2C hardware instance in the system then pass a pointer to these data
-  structures with each call to the CoreI2C driver in order to identify the
-  CoreI2C hardware instance it wishes to use.
- */
+     Defining the macro INCLUDE_SLA_IN_RX_PAYLOAD causes the driver to insert
+   the actual address used to access the slave as the first byte in the buffer.
+     This allows applications tailor their response based on the actual address
+     used to access the slave (primary address, secondary address or GCA).
+
+     The size parameter is the number of bytes held in the received data buffer.
+     Handler functions must return one of the following values:
+         I2C_REENABLE_SLAVE_RX
+         I2C_PAUSE_SLAVE_RX.
+
+     If the handler function returns I2C_REENABLE_SLAVE_RX, the driver releases
+     the received data buffer and allows further I2C write transactions to the
+     I2C slave to take place.
+
+     If the handler function returns I2C_PAUSE_SLAVE_RX, the I2C slave responds
+     to subsequent write requests with a non-acknowledge bit (NACK), until the
+     received data buffer content has been processed by some other part of the
+     software application.
+
+     A call to I2C_enable_slave() is required at some point after returning
+     I2C_PAUSE_SLAVE_RX in order to release the received data buffer so it can
+     be used to store data received by subsequent I2C write transactions.
+  */
+typedef i2c_slave_handler_ret_t (
+    *i2c_slave_wr_handler_t )( i2c_instance_t * instance, uint8_t *, uint16_t );
+
+/*-------------------------------------------------------------------------*/ /**
+   i2c_instance_t
+   ------------------------------------------------------------------------------
+   This structure is used to identify the various CoreI2C hardware instances in
+   your system and the I2C channels within them. Your application software
+   should declare one instance of this structure for each channel of each
+   instance of CoreI2C in your system. The functions I2C_init() and
+   I2C_channel_init() initialize this structure depending on whether it is
+   channel 0 or one of the additional channels respectively. A pointer to an
+   initialized instance of the structure should be passed as the first parameter
+   to the CoreI2C driver functions, to identify which CoreI2C hardware instance
+   and channel should perform the requested operation.
+
+   The contents of this data structure should not be modified or used outside of
+   the CoreI2C driver. Software using the CoreI2C driver should only need to
+   create one single instance of this data structure for each channel of each
+   CoreI2C hardware instance in the system then pass a pointer to these data
+   structures with each call to the CoreI2C driver in order to identify the
+   CoreI2C hardware instance it wishes to use.
+  */
 struct i2c_instance
 {
     addr_t base_address;
@@ -580,17 +583,17 @@ struct i2c_instance
 
     /* Current transaction type (WRITE, READ, RANDOM_READ)*/
     uint8_t transaction;
-    
+
     uint_fast16_t random_read_addr;
 
     uint8_t options;
-    
+
     /* Master TX INFO: */
     const uint8_t * master_tx_buffer;
     uint_fast16_t master_tx_size;
     uint_fast16_t master_tx_idx;
     uint_fast8_t dir;
-    
+
     /* Master RX INFO: */
     uint8_t * master_rx_buffer;
     uint_fast16_t master_rx_size;
@@ -604,21 +607,21 @@ struct i2c_instance
     const uint8_t * slave_tx_buffer;
     uint_fast16_t slave_tx_size;
     uint_fast16_t slave_tx_idx;
-    
+
     /* Slave RX INFO */
     uint8_t * slave_rx_buffer;
     uint_fast16_t slave_rx_size;
     uint_fast16_t slave_rx_idx;
     /* Slave Status */
     volatile i2c_status_t slave_status;
-    
+
     /* Slave data: */
     uint_fast8_t slave_mem_offset_length;
     i2c_slave_wr_handler_t slave_write_handler;
     uint8_t is_slave_enabled;
-    
+
     /* user  specific data */
-    void *p_user_data ;
+    void * p_user_data;
 
     /* I2C bus status */
     uint8_t bus_status;
@@ -630,224 +633,218 @@ struct i2c_instance
     uint8_t pending_transaction;
 };
 
-/*-------------------------------------------------------------------------*//**
-  I2C initialization routine.
-  ------------------------------------------------------------------------------
-  The I2C_init() function is used to configure channel 0 of a CoreI2C instance.
-  It sets the base hardware address which is used to locate the CoreI2C instance
-  in memory and also used internally by I2C_channel_init() to calculate the
-  register addresses for any additional channels. The slave serial address set
-  is shared by all channels on a CoreI2C instance. 
-  
-  If only one channel is configured in a CoreI2C, the address of the 
-  i2c_instance_t used in I2C_Init() will also be used in subsequent calls to the
-  CoreI2C driver functions. If more than one channel is configured in the
-  CoreI2C, I2C_channel_init() will be called after I2C_init(), which initializes
-  the i2c_instance_t data structure for a specific channel.
-  ------------------------------------------------------------------------------
- @param this_i2c:
-    Pointer to the i2c_instance_t data structure which will hold all data
-    related to channel 0 of the CoreI2C instance being initialized. A pointer
-    to this structure will be used in all subsequent calls to CoreI2C driver
-    functions which are to operate on channel 0 of this CoreI2C instance.
-  
-  @param base_address:
-    Base address in the processor's memory map of the registers of the CoreI2C
-    instance being initialized.
- 
-  @param ser_address:
-    This parameter sets the primary I2C serial address (SLAVE0 address) for the
-    CoreI2C being initialized. It is the principal I2C bus address to which the
-    CoreI2C instance will respond. CoreI2C can operate in master mode or slave
-    mode and the serial address is significant only in the case of I2C slave
-    mode. In master mode, CoreI2C does not require a serial address and the
-    value of this parameter is not important. If you do not intend to use the
-    CoreI2C device in slave mode, then any dummy slave address value can be
-    provided to this parameter. However, in systems where the CoreI2C may be
-    expected to switch from master mode to slave mode, it is advisable to
-    initialize the CoreI2C device with a valid serial slave address.
-    
-    You need to call the I2C_init() function whenever it is required to change 
-    the primary slave address as there is no separate function to set the
-    primary slave address of the I2C device. The serial address being
-    initialized through this function is basically the primary slave address or
-    slave address0. I2C_set_slave_second_addr() can be used to set the
-    secondary slave address or slave address 1.
-    Note : ser_address parameter does not have any affect if fixed slave 
-           address is enabled in CoreI2C hardware design. CoreI2C will 
-           be always addressed with the hardware configured fixed slave
-           address.
-    Note : ser_address parameter will not have any affect if the CoreI2C
-           instance is only used in master mode.
+/*-------------------------------------------------------------------------*/ /**
+   I2C initialization routine.
+   ------------------------------------------------------------------------------
+   The I2C_init() function is used to configure channel 0 of a CoreI2C instance.
+   It sets the base hardware address which is used to locate the CoreI2C
+  instance in memory and also used internally by I2C_channel_init() to calculate
+  the register addresses for any additional channels. The slave serial address
+  set is shared by all channels on a CoreI2C instance.
 
-  @param ser_clock_speed:
-    This parameter sets the I2C serial clock frequency. It selects the divider
-    that will be used to generate the serial clock from the APB PCLK or from
-    the BCLK. It can be one of the following:
-        I2C_PCLK_DIV_256
-        I2C_PCLK_DIV_224
-        I2C_PCLK_DIV_192
-        I2C_PCLK_DIV_160
-        I2C_PCLK_DIV_960
-        I2C_PCLK_DIV_120
-        I2C_PCLK_DIV_60
-        I2C_BCLK_DIV_8
-    Note: serial_clock_speed value will have no affect if Fixed baud rate is 
-          enabled in CoreI2C hardware instance configuration dialogue window. 
-          The fixed baud rate divider value will override the value
-          passed as parameter in this function.
-    Note: serial_clock_speed value is not critical for devices that only operate
-          as slaves and can be set to any of the above values.  
-
-  @return none.  
-  
-  Example:
-  @code
-    #define COREI2C_BASE_ADDR  0xC0000000u
-    #define COREI2C_SER_ADDR   0x10u
-
-    i2c_instance_t g_i2c_inst;
-
-    void system_init( void )
-    {
-        I2C_init( &g_i2c_inst, COREI2C_BASE_ADDR, COREI2C_SER_ADDR,
-                  I2C_PCLK_DIV_256 );
-    }
-  @endcode
- */
-void I2C_init
-(
-    i2c_instance_t * this_i2c,
-    addr_t base_address,
-    uint8_t ser_address,
-    i2c_clock_divider_t ser_clock_speed
-);
-
-/*-------------------------------------------------------------------------*//**
-  I2C channel initialization routine.
-  ------------------------------------------------------------------------------
-  The I2C_channel_init() function initializes and configures hardware and data
-  structures of one of the additional channels of a CoreI2C instance.
-  I2C_init() must be called before calling this function to set the CoreI2C
-  instance hardware base address and I2C serial address. I2C_channel_init() also
-  initializes I2C serial clock divider to set the serial clock baud rate.  
-  The pointer to data structure i2c_instance_t used for a particular channel
-  will be used as an input parameter to subsequent CoreI2C driver functions
-  which operate on this channel.
-  ------------------------------------------------------------------------------
-  @param this_i2c_channel
-    Pointer to the i2c_instance_t data structure holding all data related to the
-    CoreI2C channel being initialized. A pointer to the same data structure will
-    be used in subsequent calls to the CoreI2C driver functions in order to
-    identify the CoreI2C channel instance that should perform the operation 
-    implemented by the called driver function.
-
+   If only one channel is configured in a CoreI2C, the address of the
+   i2c_instance_t used in I2C_Init() will also be used in subsequent calls to
+  the CoreI2C driver functions. If more than one channel is configured in the
+   CoreI2C, I2C_channel_init() will be called after I2C_init(), which
+  initializes the i2c_instance_t data structure for a specific channel.
+   ------------------------------------------------------------------------------
   @param this_i2c:
-    This is a pointer to an i2c_instance_t structure previously initialized by
-    I2C_init(). It holds information regarding the hardware base address and
-    I2C serial address for the CoreI2C containing the channel to be
-    initialized. This information is required by I2C_channel_init() to
-    initialize the i2c_instance_t structure pointed to by this_i2c_channel as
-    all channels in a CoreI2C instance share the same base address and serial
-    address. It is very important that the i2c_instance_t structure pointed to
-    by this_i2c has been previously initialized with a call to I2C_init().
-    
-  @param channel_number:
-    This parameter of type i2c_channel_number_t identifies the channel to be
-    initialized.
+     Pointer to the i2c_instance_t data structure which will hold all data
+     related to channel 0 of the CoreI2C instance being initialized. A pointer
+     to this structure will be used in all subsequent calls to CoreI2C driver
+     functions which are to operate on channel 0 of this CoreI2C instance.
 
-  @param ser_clock_speed:
-    This parameter sets the I2C serial clock frequency. It selects the divider
-    that will be used to generate the serial clock from the APB PCLK or from
-    the BCLK. It can be one of the following:
-        I2C_PCLK_DIV_256
-        I2C_PCLK_DIV_224
-        I2C_PCLK_DIV_192
-        I2C_PCLK_DIV_160
-        I2C_PCLK_DIV_960
-        I2C_PCLK_DIV_120
-        I2C_PCLK_DIV_60
-        I2C_BCLK_DIV_8
-    
-    Note: serial_clock_speed value will have no affect if Fixed baud rate is 
-          enabled in CoreI2C hardware instance configuration dialogue window. 
-          The fixed baud rate divider value will supersede the value 
-          passed as parameter in this function.
+   @param base_address:
+     Base address in the processor's memory map of the registers of the CoreI2C
+     instance being initialized.
 
-    Note: ser_clock_speed value is not critical for devices that only operate
-          as slaves and can be set to any of the above values.  
-  @return none.  
-  
-  Example:
-  @code
-    #define COREI2C_BASE_ADDR  0xC0000000u
-    #define COREI2C_SER_ADDR   0x10u
-    #define DATA_LENGTH        16u
+   @param ser_address:
+     This parameter sets the primary I2C serial address (SLAVE0 address) for the
+     CoreI2C being initialized. It is the principal I2C bus address to which the
+     CoreI2C instance will respond. CoreI2C can operate in master mode or slave
+     mode and the serial address is significant only in the case of I2C slave
+     mode. In master mode, CoreI2C does not require a serial address and the
+     value of this parameter is not important. If you do not intend to use the
+     CoreI2C device in slave mode, then any dummy slave address value can be
+     provided to this parameter. However, in systems where the CoreI2C may be
+     expected to switch from master mode to slave mode, it is advisable to
+     initialize the CoreI2C device with a valid serial slave address.
 
-    i2c_instance_t g_i2c_inst;
-    i2c_instance_t g_i2c_channel_1_inst;
+     You need to call the I2C_init() function whenever it is required to change
+     the primary slave address as there is no separate function to set the
+     primary slave address of the I2C device. The serial address being
+     initialized through this function is basically the primary slave address or
+     slave address0. I2C_set_slave_second_addr() can be used to set the
+     secondary slave address or slave address 1.
+     Note : ser_address parameter does not have any affect if fixed slave
+            address is enabled in CoreI2C hardware design. CoreI2C will
+            be always addressed with the hardware configured fixed slave
+            address.
+     Note : ser_address parameter will not have any affect if the CoreI2C
+            instance is only used in master mode.
 
-    uint8_t  tx_buffer[DATA_LENGTH];
-    uint8_t  write_length = DATA_LENGTH;
+   @param ser_clock_speed:
+     This parameter sets the I2C serial clock frequency. It selects the divider
+     that will be used to generate the serial clock from the APB PCLK or from
+     the BCLK. It can be one of the following:
+         I2C_PCLK_DIV_256
+         I2C_PCLK_DIV_224
+         I2C_PCLK_DIV_192
+         I2C_PCLK_DIV_160
+         I2C_PCLK_DIV_960
+         I2C_PCLK_DIV_120
+         I2C_PCLK_DIV_60
+         I2C_BCLK_DIV_8
+     Note: serial_clock_speed value will have no affect if Fixed baud rate is
+           enabled in CoreI2C hardware instance configuration dialogue window.
+           The fixed baud rate divider value will override the value
+           passed as parameter in this function.
+     Note: serial_clock_speed value is not critical for devices that only
+  operate as slaves and can be set to any of the above values.
 
-    void system_init( void )
-    {
-        uint8_t  target_slave_addr = 0x12;
-        
-        // Initialize base CoreI2C instance
-        I2C_init( &g_i2c_inst, COREI2C_BASE_ADDR, COREI2C_SER_ADDR,
-                  I2C_PCLK_DIV_256 );
-        
-        // Initialize CoreI2C channel 1 with different clock speed
-        I2C_channel_init( &g_i2c_channel_1_inst, &g_i2c_inst, I2C_CHANNEL_1,
-                          I2C_PCLK_DIV_224 );
-        
-        // Write data to Channel 1 of CoreI2C instance.
-        I2C_write( &g_i2c_channel_1_inst, target_slave_addr, tx_buffer,
-                   write_length, I2C_RELEASE_BUS );
-    }
-  @endcode
-          
-*/
-void I2C_channel_init
-(
-    i2c_instance_t * this_i2c_channel,
-    i2c_instance_t * this_i2c,
-    i2c_channel_number_t channel_number,
-    i2c_clock_divider_t ser_clock_speed
-);
+   @return none.
+
+   Example:
+   @code
+     #define COREI2C_BASE_ADDR  0xC0000000u
+     #define COREI2C_SER_ADDR   0x10u
+
+     i2c_instance_t g_i2c_inst;
+
+     void system_init( void )
+     {
+         I2C_init( &g_i2c_inst, COREI2C_BASE_ADDR, COREI2C_SER_ADDR,
+                   I2C_PCLK_DIV_256 );
+     }
+   @endcode
+  */
+void I2C_init( i2c_instance_t * this_i2c,
+               addr_t base_address,
+               uint8_t ser_address,
+               i2c_clock_divider_t ser_clock_speed );
+
+/*-------------------------------------------------------------------------*/ /**
+   I2C channel initialization routine.
+   ------------------------------------------------------------------------------
+   The I2C_channel_init() function initializes and configures hardware and data
+   structures of one of the additional channels of a CoreI2C instance.
+   I2C_init() must be called before calling this function to set the CoreI2C
+   instance hardware base address and I2C serial address. I2C_channel_init()
+   also initializes I2C serial clock divider to set the serial clock baud rate.
+   The pointer to data structure i2c_instance_t used for a particular channel
+   will be used as an input parameter to subsequent CoreI2C driver functions
+   which operate on this channel.
+   ------------------------------------------------------------------------------
+   @param this_i2c_channel
+     Pointer to the i2c_instance_t data structure holding all data related to
+   the CoreI2C channel being initialized. A pointer to the same data structure
+   will be used in subsequent calls to the CoreI2C driver functions in order to
+     identify the CoreI2C channel instance that should perform the operation
+     implemented by the called driver function.
+
+   @param this_i2c:
+     This is a pointer to an i2c_instance_t structure previously initialized by
+     I2C_init(). It holds information regarding the hardware base address and
+     I2C serial address for the CoreI2C containing the channel to be
+     initialized. This information is required by I2C_channel_init() to
+     initialize the i2c_instance_t structure pointed to by this_i2c_channel as
+     all channels in a CoreI2C instance share the same base address and serial
+     address. It is very important that the i2c_instance_t structure pointed to
+     by this_i2c has been previously initialized with a call to I2C_init().
+
+   @param channel_number:
+     This parameter of type i2c_channel_number_t identifies the channel to be
+     initialized.
+
+   @param ser_clock_speed:
+     This parameter sets the I2C serial clock frequency. It selects the divider
+     that will be used to generate the serial clock from the APB PCLK or from
+     the BCLK. It can be one of the following:
+         I2C_PCLK_DIV_256
+         I2C_PCLK_DIV_224
+         I2C_PCLK_DIV_192
+         I2C_PCLK_DIV_160
+         I2C_PCLK_DIV_960
+         I2C_PCLK_DIV_120
+         I2C_PCLK_DIV_60
+         I2C_BCLK_DIV_8
+
+     Note: serial_clock_speed value will have no affect if Fixed baud rate is
+           enabled in CoreI2C hardware instance configuration dialogue window.
+           The fixed baud rate divider value will supersede the value
+           passed as parameter in this function.
+
+     Note: ser_clock_speed value is not critical for devices that only operate
+           as slaves and can be set to any of the above values.
+   @return none.
+
+   Example:
+   @code
+     #define COREI2C_BASE_ADDR  0xC0000000u
+     #define COREI2C_SER_ADDR   0x10u
+     #define DATA_LENGTH        16u
+
+     i2c_instance_t g_i2c_inst;
+     i2c_instance_t g_i2c_channel_1_inst;
+
+     uint8_t  tx_buffer[DATA_LENGTH];
+     uint8_t  write_length = DATA_LENGTH;
+
+     void system_init( void )
+     {
+         uint8_t  target_slave_addr = 0x12;
+
+         // Initialize base CoreI2C instance
+         I2C_init( &g_i2c_inst, COREI2C_BASE_ADDR, COREI2C_SER_ADDR,
+                   I2C_PCLK_DIV_256 );
+
+         // Initialize CoreI2C channel 1 with different clock speed
+         I2C_channel_init( &g_i2c_channel_1_inst, &g_i2c_inst, I2C_CHANNEL_1,
+                           I2C_PCLK_DIV_224 );
+
+         // Write data to Channel 1 of CoreI2C instance.
+         I2C_write( &g_i2c_channel_1_inst, target_slave_addr, tx_buffer,
+                    write_length, I2C_RELEASE_BUS );
+     }
+   @endcode
+
+ */
+void I2C_channel_init( i2c_instance_t * this_i2c_channel,
+                       i2c_instance_t * this_i2c,
+                       i2c_channel_number_t channel_number,
+                       i2c_clock_divider_t ser_clock_speed );
 
 /*------------------------------------------------------------------------------
   CoreI2C interrupt service routine.
   ------------------------------------------------------------------------------
     The function I2C_isr is the CoreI2C interrupt service routine. User must
     call this function from their application level CoreI2C interrupt handler
-    function. This function runs the I2C state machine based on previous and 
+    function. This function runs the I2C state machine based on previous and
     current status.
   ------------------------------------------------------------------------------
     @param this_i2c:
     The this_i2c parameter is a pointer to the i2c_instance_t data structure
     holding all data related to a specific CoreI2C channel. For example, if only
-    one channel is initialized, this data structure holds the information of 
+    one channel is initialized, this data structure holds the information of
     channel 0 of the instantiated CoreI2C hardware.
-    
+
     @return none
-    
+
     Example:
     @code
-    
+
     #define COREI2C_BASE_ADDR  0xC0000000u
     #define COREINTERRUPT_BASE_ADDR  0xCC000000u
     #define COREI2C_SER_ADDR   0x10u
     #define I2C_IRQ_NB           2u
-    
+
     i2c_instance_t g_i2c_inst;
 
     void core_i2c_isr( void )
     {
        I2C_isr( &g_i2c_inst );
     }
-    
+
    void main( void )
     {
         CIC_init( COREINTERRUPT_BASE_ADDR );
@@ -859,994 +856,1192 @@ void I2C_channel_init
     }
     @endcode
  */
-void I2C_isr
-(
-    i2c_instance_t * this_i2c
-);
+void I2C_isr( i2c_instance_t * this_i2c );
 
 /*******************************************************************************
  *******************************************************************************
- * 
+ *
  *                           Master specific functions
- * 
+ *
  * The following functions are only used within an I2C master's implementation.
  */
- 
-/*-------------------------------------------------------------------------*//**
-  I2C master write function.
-  ------------------------------------------------------------------------------
-  This function initiates an I2C master write transaction. This function returns
-  immediately after initiating the transaction. The content of the write buffer
-  passed as parameter should not be modified until the write transaction
-  completes. It also means that the memory allocated for the write buffer should
-  not be freed or should not go out of scope before the write completes. You can
-  check for the write transaction completion using the I2C_status() function.
-  ------------------------------------------------------------------------------
-  @param this_i2c:
-    The this_i2c parameter is a pointer to the i2c_instance_t data structure
-    holding all data related to a specific CoreI2C channel. For example, if only
-    one channel is initialized, this data structure holds the information of 
-    channel 0 of the instantiated CoreI2C hardware.
 
-  @param serial_addr:
-    This parameter specifies the serial address of the target I2C device.
-  
-  @param write_buffer:
-    This parameter is a pointer to a buffer holding the data to be written to
-    the target I2C device.
-    Care must be taken not to release the memory used by this buffer before the
-    write transaction completes. For example, it is not appropriate to return
-    from a function allocating this buffer as an auto array variable before the
-    write transaction completes as this would result in the buffer's memory 
-    being de-allocated from the stack when the function returns. This memory
-    could then be subsequently reused and modified causing unexpected data to 
-    be written to the target I2C device.
-  
-  @param write_size:
-    Number of bytes held in the write_buffer to be written to the target I2C
-    device.
- 
-  @param options:
-    The options parameter is used to indicate if the I2C bus should be released
-    on completion of the write transaction. Using the I2C_RELEASE_BUS
-    constant for the options parameter causes a STOP bit to be generated at the
-    end of the write transaction causing the bus to be released for other I2C
-    devices to use. Using the I2C_HOLD_BUS constant as options parameter
-    prevents a STOP bit from being generated at the end of the write
-    transaction, preventing other I2C devices from initiating a bus transaction.
-  
-  @return none.  
-  
-  Example:
-  @code
-    #define COREI2C_BASE_ADDR  0xC0000000u
-    #define COREI2C_DUMMY_ADDR   0x10u
-    #define DATA_LENGTH           16u
+/*-------------------------------------------------------------------------*/ /**
+   I2C master write function.
+   ------------------------------------------------------------------------------
+   This function initiates an I2C master write transaction. This function
+   returns immediately after initiating the transaction. The content of the
+   write buffer passed as parameter should not be modified until the write
+   transaction completes. It also means that the memory allocated for the write
+   buffer should not be freed or should not go out of scope before the write
+   completes. You can check for the write transaction completion using the
+   I2C_status() function.
+   ------------------------------------------------------------------------------
+   @param this_i2c:
+     The this_i2c parameter is a pointer to the i2c_instance_t data structure
+     holding all data related to a specific CoreI2C channel. For example, if
+   only one channel is initialized, this data structure holds the information of
+     channel 0 of the instantiated CoreI2C hardware.
 
-    i2c_instance_t g_i2c_inst;
+   @param serial_addr:
+     This parameter specifies the serial address of the target I2C device.
 
-    uint8_t  tx_buffer[DATA_LENGTH];
-    uint8_t  write_length = DATA_LENGTH;     
+   @param write_buffer:
+     This parameter is a pointer to a buffer holding the data to be written to
+     the target I2C device.
+     Care must be taken not to release the memory used by this buffer before the
+     write transaction completes. For example, it is not appropriate to return
+     from a function allocating this buffer as an auto array variable before the
+     write transaction completes as this would result in the buffer's memory
+     being de-allocated from the stack when the function returns. This memory
+     could then be subsequently reused and modified causing unexpected data to
+     be written to the target I2C device.
 
-    void main( void )
-    {
-        uint8_t  target_slave_addr = 0x12;
-        i2c_status_t status;
-        
-        // Initialize base CoreI2C instance
-        I2C_init( &g_i2c_inst, COREI2C_BASE_ADDR, COREI2C_DUMMY_ADDR,
-                  I2C_PCLK_DIV_256 );
-        
-        // Write data to Channel 0 of CoreI2C instance.
-        I2C_write( &g_i2c_inst, target_slave_addr, tx_buffer, write_length,
+   @param write_size:
+     Number of bytes held in the write_buffer to be written to the target I2C
+     device.
+
+   @param options:
+     The options parameter is used to indicate if the I2C bus should be released
+     on completion of the write transaction. Using the I2C_RELEASE_BUS
+     constant for the options parameter causes a STOP bit to be generated at the
+     end of the write transaction causing the bus to be released for other I2C
+     devices to use. Using the I2C_HOLD_BUS constant as options parameter
+     prevents a STOP bit from being generated at the end of the write
+     transaction, preventing other I2C devices from initiating a bus
+   transaction.
+
+   @return none.
+
+   Example:
+   @code
+     #define COREI2C_BASE_ADDR  0xC0000000u
+     #define COREI2C_DUMMY_ADDR   0x10u
+     #define DATA_LENGTH           16u
+
+     i2c_instance_t g_i2c_inst;
+
+     uint8_t  tx_buffer[DATA_LENGTH];
+     uint8_t  write_length = DATA_LENGTH;
+
+     void main( void )
+     {
+         uint8_t  target_slave_addr = 0x12;
+         i2c_status_t status;
+
+         // Initialize base CoreI2C instance
+         I2C_init( &g_i2c_inst, COREI2C_BASE_ADDR, COREI2C_DUMMY_ADDR,
+                   I2C_PCLK_DIV_256 );
+
+         // Write data to Channel 0 of CoreI2C instance.
+         I2C_write( &g_i2c_inst, target_slave_addr, tx_buffer, write_length,
+                    I2C_RELEASE_BUS );
+
+         // Wait for completion and record the outcome
+         status = I2C_wait_complete( &g_i2c_inst, I2C_NO_TIMEOUT );
+     }
+   @endcode
+  */
+void I2C_write( i2c_instance_t * this_i2c,
+                uint8_t serial_addr,
+                const uint8_t * write_buffer,
+                uint16_t write_size,
+                uint8_t options );
+
+/*-------------------------------------------------------------------------*/ /**
+   I2C master read.
+   ------------------------------------------------------------------------------
+   This function initiates an I2C master read transaction. This function returns
+   immediately after initiating the transaction.
+   The contents of the read buffer passed as parameter should not be modified
+   until the read transaction completes. It also means that the memory allocated
+   for the read buffer should not be freed or should not go out of scope before
+   the read completes. You can check for the read transaction completion using
+   the I2C_status() function.
+   ------------------------------------------------------------------------------
+   @param this_i2c:
+     The this_i2c parameter is a pointer to the i2c_instance_t data structure
+     holding all data related to a specific CoreI2C channel. For example, if
+   only one channel is initialized, this data structure holds the information of
+     channel 0 of the instantiated CoreI2C hardware.
+
+   @param serial_addr:
+     This parameter specifies the serial address of the target I2C device.
+
+   @param read_buffer
+     This is a pointer to a buffer where the data received from the target
+   device will be stored. Care must be taken not to release the memory used by
+   this buffer before the read transaction completes. For example, it is not
+   appropriate to return from a function allocating this buffer as an auto array
+   variable before the read transaction completes as this would result in the
+   buffer's memory being de-allocated from the stack when the function returns.
+   This memory could then be subsequently reallocated resulting in the read
+   transaction corrupting the newly allocated memory.
+
+   @param read_size:
+     This parameter specifies the number of bytes to read from the target
+   device. This size must not exceed the size of the read_buffer buffer.
+
+   @param options:
+     The options parameter is used to indicate if the I2C bus should be released
+     on completion of the read transaction. Using the I2C_RELEASE_BUS
+     constant for the options parameter causes a STOP bit to be generated at the
+     end of the read transaction causing the bus to be released for other I2C
+     devices to use. Using the I2C_HOLD_BUS constant as options parameter
+     prevents a STOP bit from being generated at the end of the read
+   transaction, preventing other I2C devices from initiating a bus transaction.
+
+   @return none.
+
+   Example:
+   @code
+     #define COREI2C_BASE_ADDR  0xC0000000u
+     #define COREI2C_DUMMY_ADDR   0x10u
+     #define DATA_LENGTH           16u
+
+     i2c_instance_t g_i2c_inst;
+
+     uint8_t  rx_buffer[DATA_LENGTH];
+     uint8_t  read_length = DATA_LENGTH;
+
+     void main( void )
+     {
+         uint8_t  target_slave_addr = 0x12;
+         i2c_status_t status;
+
+         // Initialize base CoreI2C instance
+         I2C_init( &g_i2c_inst, COREI2C_BASE_ADDR, COREI2C_DUMMY_ADDR,
+                   I2C_PCLK_DIV_256 );
+
+         // Read data from target slave Channel 0 of CoreI2C instance.
+         I2C_read( &g_i2c_inst, target_slave_addr, rx_buffer, read_length,
                    I2C_RELEASE_BUS );
-                   
-        // Wait for completion and record the outcome
-        status = I2C_wait_complete( &g_i2c_inst, I2C_NO_TIMEOUT );
-    }
-  @endcode
- */
-void I2C_write
-(
-    i2c_instance_t * this_i2c,
-    uint8_t serial_addr,
-    const uint8_t * write_buffer,
-    uint16_t write_size,
-    uint8_t options
-);
 
-/*-------------------------------------------------------------------------*//**
-  I2C master read.
-  ------------------------------------------------------------------------------
-  This function initiates an I2C master read transaction. This function returns
-  immediately after initiating the transaction.
-  The contents of the read buffer passed as parameter should not be modified
-  until the read transaction completes. It also means that the memory allocated
-  for the read buffer should not be freed or should not go out of scope before
-  the read completes. You can check for the read transaction completion using 
-  the I2C_status() function.
-  ------------------------------------------------------------------------------
-  @param this_i2c:
-    The this_i2c parameter is a pointer to the i2c_instance_t data structure
-    holding all data related to a specific CoreI2C channel. For example, if only
-    one channel is initialized, this data structure holds the information of 
-    channel 0 of the instantiated CoreI2C hardware.
-  
-  @param serial_addr:
-    This parameter specifies the serial address of the target I2C device.
-  
-  @param read_buffer
-    This is a pointer to a buffer where the data received from the target device
-    will be stored.
-    Care must be taken not to release the memory used by this buffer before the
-    read transaction completes. For example, it is not appropriate to return
-    from a function allocating this buffer as an auto array variable before the
-    read transaction completes as this would result in the buffer's memory being
-    de-allocated from the stack when the function returns. This memory could
-    then be subsequently reallocated resulting in the read transaction
-    corrupting the newly allocated memory. 
+         status = I2C_wait_complete( &g_i2c_inst, I2C_NO_TIMEOUT );
+     }
+   @endcode
+  */
+void I2C_read( i2c_instance_t * this_i2c,
+               uint8_t serial_addr,
+               uint8_t * read_buffer,
+               uint16_t read_size,
+               uint8_t options );
 
-  @param read_size:
-    This parameter specifies the number of bytes to read from the target device.
-    This size must not exceed the size of the read_buffer buffer.
- 
-  @param options:
-    The options parameter is used to indicate if the I2C bus should be released
-    on completion of the read transaction. Using the I2C_RELEASE_BUS
-    constant for the options parameter causes a STOP bit to be generated at the
-    end of the read transaction causing the bus to be released for other I2C
-    devices to use. Using the I2C_HOLD_BUS constant as options parameter
-    prevents a STOP bit from being generated at the end of the read transaction,
-    preventing other I2C devices from initiating a bus transaction.
-    
-  @return none.  
-  
-  Example:
-  @code
-    #define COREI2C_BASE_ADDR  0xC0000000u
-    #define COREI2C_DUMMY_ADDR   0x10u
-    #define DATA_LENGTH           16u
+/*-------------------------------------------------------------------------*/ /**
+   I2C master write-read
+   ------------------------------------------------------------------------------
+   This function initiates an I2C write-read transaction where data is first
+   written to the target device before issuing a restart condition and changing
+   the direction of the I2C transaction in order to read from the target device.
 
-    i2c_instance_t g_i2c_inst;
+   The same warnings about buffer allocation in I2C_write() and I2C_read()
+   apply to this function.
+   ------------------------------------------------------------------------------
+   @param this_i2c:
+     The this_i2c parameter is a pointer to the i2c_instance_t data structure
+     holding all data related to a specific CoreI2C channel. For example, if
+   only one channel is initialized, this data structure holds the information of
+     channel 0 of the instantiated CoreI2C hardware.
 
-    uint8_t  rx_buffer[DATA_LENGTH];
-    uint8_t  read_length = DATA_LENGTH;     
+   @param serial_addr:
+     This parameter specifies the serial address of the target I2C device.
 
-    void main( void )
-    {
-        uint8_t  target_slave_addr = 0x12;
-        i2c_status_t status;
-        
-        // Initialize base CoreI2C instance
-        I2C_init( &g_i2c_inst, COREI2C_BASE_ADDR, COREI2C_DUMMY_ADDR,
-                  I2C_PCLK_DIV_256 );
-        
-        // Read data from target slave Channel 0 of CoreI2C instance.
-        I2C_read( &g_i2c_inst, target_slave_addr, rx_buffer, read_length,
-                  I2C_RELEASE_BUS );
-        
-        status = I2C_wait_complete( &g_i2c_inst, I2C_NO_TIMEOUT );
-    }
-  @endcode
- */
-void I2C_read
-(
-    i2c_instance_t * this_i2c,
-    uint8_t serial_addr,
-    uint8_t * read_buffer,
-    uint16_t read_size,
-    uint8_t options
-);
+   @param addr_offset:
+     This parameter is a pointer to the buffer containing the data that will be
+     sent to the slave during the write phase of the write-read transaction.
+   This data is typically used to specify an address offset specifying to the
+   I2C slave device what data it must return during the read phase of the
+     write-read transaction.
 
-/*-------------------------------------------------------------------------*//**
-  I2C master write-read
-  ------------------------------------------------------------------------------
-  This function initiates an I2C write-read transaction where data is first
-  written to the target device before issuing a restart condition and changing
-  the direction of the I2C transaction in order to read from the target device.
-  
-  The same warnings about buffer allocation in I2C_write() and I2C_read() 
-  apply to this function.
-  ------------------------------------------------------------------------------
-  @param this_i2c:
-    The this_i2c parameter is a pointer to the i2c_instance_t data structure
-    holding all data related to a specific CoreI2C channel. For example, if only
-    one channel is initialized, this data structure holds the information of
-    channel 0 of the instantiated CoreI2C hardware.
-  
-  @param serial_addr:
-    This parameter specifies the serial address of the target I2C device.
-  
-  @param addr_offset:
-    This parameter is a pointer to the buffer containing the data that will be
-    sent to the slave during the write phase of the write-read transaction. This
-    data is typically used to specify an address offset specifying to the I2C
-    slave device what data it must return during the read phase of the
-    write-read transaction.
-  
-  @param offset_size:
-    This parameter specifies the number of offset bytes to be written during the
-    write phase of the write-read transaction. This is typically the size of the
-    buffer pointed to by the addr_offset parameter.
-  
-  @param read_buffer:
-    This parameter is a pointer to the buffer where the data read from the I2C
-    slave will be stored.
-  
-  @param read_size:
-    This parameter specifies the number of bytes to read from the target I2C
-    slave device. This size must not exceed the size of the buffer pointed to by
-    the read_buffer parameter.
- 
-  @param options:
-    The options parameter is used to indicate if the I2C bus should be released
-    on completion of the write-read transaction. Using the I2C_RELEASE_BUS
-    constant for the options parameter causes a STOP bit to be generated at the
-    end of the write-read transaction causing the bus to be released for other
-    I2C devices to use. Using the I2C_HOLD_BUS constant as options parameter
-    prevents a STOP bit from being generated at the end of the write-read
-    transaction, preventing other I2C devices from initiating a bus transaction.
-        
-  @return none.  
-  
-  Example:
-  @code
-    #define COREI2C_BASE_ADDR    0xC0000000u
-    #define COREI2C_DUMMY_ADDR   0x10u
-    #define TX_LENGTH            16u
-    #define RX_LENGTH            8u
+   @param offset_size:
+     This parameter specifies the number of offset bytes to be written during
+   the write phase of the write-read transaction. This is typically the size of
+   the buffer pointed to by the addr_offset parameter.
 
-    i2c_instance_t g_i2c_inst;
-    uint8_t  rx_buffer[RX_LENGTH];
-    uint8_t  read_length = RX_LENGTH;     
-    uint8_t  tx_buffer[TX_LENGTH];
-    uint8_t  write_length = TX_LENGTH;  
-    
-    void main( void )
-    {
-        uint8_t  target_slave_addr = 0x12;
-        i2c_status_t status;
-        // Initialize base CoreI2C instance
-        I2C_init( &g_i2c_inst, COREI2C_BASE_ADDR, COREI2C_DUMMY_ADDR,
-                  I2C_PCLK_DIV_256 );
-                  
-        I2C_write_read( &g_i2c_inst, target_slave_addr, tx_buffer, write_length,
-                        rx_buffer, read_length, I2C_RELEASE_BUS );
-                        
-        status = I2C_wait_complete( &g_i2c_inst, I2C_NO_TIMEOUT );
-    }
-  @endcode
- */
-void I2C_write_read
-(
-    i2c_instance_t * this_i2c,
-    uint8_t serial_addr,
-    const uint8_t * addr_offset,
-    uint16_t offset_size,
-    uint8_t * read_buffer,
-    uint16_t read_size,
-    uint8_t options
-);
-    
-/*-------------------------------------------------------------------------*//**
-  I2C status
-  ------------------------------------------------------------------------------
-  This function indicates the current state of a CoreI2C channel.
-  ------------------------------------------------------------------------------
-  @param this_i2c:
-    The this_i2c parameter is a pointer to the i2c_instance_t data structure
-    holding all data related to a specific CoreI2C channel. For example, if only
-    one channel is initialized, this data structure holds the information of 
-    channel 0 of the instantiated CoreI2C hardware.
-  ------------------------------------------------------------------------------
-  @return
-    The return value indicates the current state of a CoreI2C channel or the
-    outcome of the previous transaction if no transaction is in progress. 
-    Possible return values are:
-      I2C_SUCCESS
-        The last I2C transaction has completed successfully.  
-      I2C_IN_PROGRESS
-        There is an I2C transaction in progress.
-      I2C_FAILED
-        The last I2C transaction failed.
-      I2C_TIMED_OUT
-        The request has failed to complete in the allotted time.      
-  
-  Example:
-  @code
-    i2c_instance_t g_i2c_inst;
-    
-    while( I2C_IN_PROGRESS == I2C_get_status( &g_i2c_inst ) )
-    {
-        // Do something useful while waiting for I2C operation to complete
-        our_i2c_busy_task();
-    }
-    
-    if( I2C_SUCCESS != I2C_get_status( &g_i2c_inst ) )
-    {
-        // Something went wrong... 
-        our_i2c_error_recovery( &g_i2c_inst );
-    }
-  @endcode
- */
-i2c_status_t I2C_get_status
-(
-    i2c_instance_t * this_i2c
-);
+   @param read_buffer:
+     This parameter is a pointer to the buffer where the data read from the I2C
+     slave will be stored.
 
-/*-------------------------------------------------------------------------*//**
-  Wait for I2C transaction completion.
-  ------------------------------------------------------------------------------
-  This function waits for the current I2C transaction to complete. The return
-  value indicates whether the last I2C transaction was successful or not.
-  ------------------------------------------------------------------------------
-  @param this_i2c:
-    The this_i2c parameter is a pointer to the i2c_instance_t data structure
-    holding all data related to a specific CoreI2C channel. For example, if only
-    one channel is initialized, this data structure holds the information of
-    channel 0 of the instantiated CoreI2C hardware.
-  @param timeout_ms:
-    The timeout_ms parameter specified the delay within which the current I2C 
-    transaction is expected to complete. The time out delay is given in 
-    milliseconds. I2C_wait_complete() will return I2C_TIMED_OUT if the current
-    transaction has not completed after the time out delay has expired. This
-    parameter can be set to I2C_NO_TIMEOUT to indicate that I2C_wait_complete()
-    must not time out.
-  ------------------------------------------------------------------------------
-  @return
-    The return value indicates the outcome of the last I2C transaction. It can
-    be one of the following: 
-      I2C_SUCCESS
-        The last I2C transaction has completed successfully.
-      I2C_FAILED
-        The last I2C transaction failed.
-      I2C_TIMED_OUT
-        The last transaction failed to complete within the time out delay given
-        as second parameter.
+   @param read_size:
+     This parameter specifies the number of bytes to read from the target I2C
+     slave device. This size must not exceed the size of the buffer pointed to
+   by the read_buffer parameter.
 
-  Example:
-  @code
-    #define COREI2C_BASE_ADDR  0xC0000000u
-    #define COREI2C_DUMMY_ADDR   0x10u
-    #define DATA_LENGTH           16u
+   @param options:
+     The options parameter is used to indicate if the I2C bus should be released
+     on completion of the write-read transaction. Using the I2C_RELEASE_BUS
+     constant for the options parameter causes a STOP bit to be generated at the
+     end of the write-read transaction causing the bus to be released for other
+     I2C devices to use. Using the I2C_HOLD_BUS constant as options parameter
+     prevents a STOP bit from being generated at the end of the write-read
+     transaction, preventing other I2C devices from initiating a bus
+   transaction.
 
-    i2c_instance_t g_i2c_inst;
+   @return none.
 
-    uint8_t  rx_buffer[DATA_LENGTH];
-    uint8_t  read_length = DATA_LENGTH;     
+   Example:
+   @code
+     #define COREI2C_BASE_ADDR    0xC0000000u
+     #define COREI2C_DUMMY_ADDR   0x10u
+     #define TX_LENGTH            16u
+     #define RX_LENGTH            8u
 
-    void main( void )
-    {
-        uint8_t  target_slave_addr = 0x12;
-        i2c_status_t status;
-        
-        // Initialize base CoreI2C instance
-        I2C_init( &g_i2c_inst, COREI2C_BASE_ADDR, COREI2C_DUMMY_ADDR,
-                  I2C_PCLK_DIV_256 );
-        
-        // Read data from Channel 0 of CoreI2C instance.
-        I2C_read( &g_i2c_inst, target_slave_addr, rx_buffer, read_length,
-                  I2C_RELEASE_BUS );
-        
-        // Wait for completion and record the outcome
-        status = I2C_wait_complete( &g_i2c_inst, I2C_NO_TIMEOUT );
-    }
-  @endcode
- */
-i2c_status_t I2C_wait_complete
-(
-    i2c_instance_t * this_i2c,
-    uint32_t timeout_ms
-);
+     i2c_instance_t g_i2c_inst;
+     uint8_t  rx_buffer[RX_LENGTH];
+     uint8_t  read_length = RX_LENGTH;
+     uint8_t  tx_buffer[TX_LENGTH];
+     uint8_t  write_length = TX_LENGTH;
 
-/*-------------------------------------------------------------------------*//**
-  Time out delay expiration.
-  ------------------------------------------------------------------------------
-  This function is used to control the expiration of the time out delay
-  specified as a parameter to the I2C_wait_complete() function. It must be
-  called from the interrupt service routine of a periodic interrupt source such
-  as the Cortex-M3 SysTick timer interrupt. It takes the period of the interrupt
-  source as its ms_since_last_tick parameter and uses it as the time base for
-  the I2C_wait_complete() function’s time out delay.
-  
-  Note: This function does not need to be called if the I2C_wait_complete()
-        function is called with a timeout_ms value of I2C_NO_TIMEOUT.
-  Note: If this function is not called then the I2C_wait_complete() function
-        will behave as if its timeout_ms was specified as I2C_NO_TIMEOUT and it
-        will not time out.
-  Note: If this function is being called from an interrupt handler (e.g SysTick)
-        it is important that the calling interrupt have a lower priority than
-        the CoreI2C interrupt(s) to ensure any updates to shared data are
-        protected.
-  
-  ------------------------------------------------------------------------------
-  @param this_i2c:
-    The this_i2c parameter is a pointer to the i2c_instance_t data structure
-    holding all data related to a specific CoreI2C channel. For example, if only
-    one channel is initialized, this data structure holds the information of 
-    channel 0 of the instantiated CoreI2C hardware.
-  @param ms_since_last_tick:
-    The ms_since_last_tick parameter specifies the number of milliseconds that
-    elapsed since the last call to I2C_system_tick(). This parameter would
-    typically be a constant specifying the interrupt rate of a timer used to
-    generate system ticks.
-  ------------------------------------------------------------------------------
-  @return
-    none.
+     void main( void )
+     {
+         uint8_t  target_slave_addr = 0x12;
+         i2c_status_t status;
+         // Initialize base CoreI2C instance
+         I2C_init( &g_i2c_inst, COREI2C_BASE_ADDR, COREI2C_DUMMY_ADDR,
+                   I2C_PCLK_DIV_256 );
 
-  Example:
-    The example below shows an example of how the I2C_system_tick() function
-    would be called in a Cortex-M3 based system. I2C_system_tick() is called for
-    each I2C channel from the Cortex-M3 SysTick timer interrupt service routine.
-    The SysTick is configured to generate an interrupt every 10 milliseconds in
-    the example below.
-  @code
-    #define SYSTICK_INTERVAL_MS 10
-   
-    void SysTick_Handler(void)
-    {
-        I2C_system_tick(&g_core_i2c0, SYSTICK_INTERVAL_MS);
-        I2C_system_tick(&g_core_i2c2, SYSTICK_INTERVAL_MS);
-    }
-  @endcode
- */
-void I2C_system_tick
-(
-    i2c_instance_t * this_i2c,
-    uint32_t ms_since_last_tick
-);
+         I2C_write_read( &g_i2c_inst, target_slave_addr, tx_buffer,
+   write_length, rx_buffer, read_length, I2C_RELEASE_BUS );
+
+         status = I2C_wait_complete( &g_i2c_inst, I2C_NO_TIMEOUT );
+     }
+   @endcode
+  */
+void I2C_write_read( i2c_instance_t * this_i2c,
+                     uint8_t serial_addr,
+                     const uint8_t * addr_offset,
+                     uint16_t offset_size,
+                     uint8_t * read_buffer,
+                     uint16_t read_size,
+                     uint8_t options );
+
+/*-------------------------------------------------------------------------*/ /**
+   I2C status
+   ------------------------------------------------------------------------------
+   This function indicates the current state of a CoreI2C channel.
+   ------------------------------------------------------------------------------
+   @param this_i2c:
+     The this_i2c parameter is a pointer to the i2c_instance_t data structure
+     holding all data related to a specific CoreI2C channel. For example, if
+   only one channel is initialized, this data structure holds the information of
+     channel 0 of the instantiated CoreI2C hardware.
+   ------------------------------------------------------------------------------
+   @return
+     The return value indicates the current state of a CoreI2C channel or the
+     outcome of the previous transaction if no transaction is in progress.
+     Possible return values are:
+       I2C_SUCCESS
+         The last I2C transaction has completed successfully.
+       I2C_IN_PROGRESS
+         There is an I2C transaction in progress.
+       I2C_FAILED
+         The last I2C transaction failed.
+       I2C_TIMED_OUT
+         The request has failed to complete in the allotted time.
+
+   Example:
+   @code
+     i2c_instance_t g_i2c_inst;
+
+     while( I2C_IN_PROGRESS == I2C_get_status( &g_i2c_inst ) )
+     {
+         // Do something useful while waiting for I2C operation to complete
+         our_i2c_busy_task();
+     }
+
+     if( I2C_SUCCESS != I2C_get_status( &g_i2c_inst ) )
+     {
+         // Something went wrong...
+         our_i2c_error_recovery( &g_i2c_inst );
+     }
+   @endcode
+  */
+i2c_status_t I2C_get_status( i2c_instance_t * this_i2c );
+
+/*-------------------------------------------------------------------------*/ /**
+   Wait for I2C transaction completion.
+   ------------------------------------------------------------------------------
+   This function waits for the current I2C transaction to complete. The return
+   value indicates whether the last I2C transaction was successful or not.
+   ------------------------------------------------------------------------------
+   @param this_i2c:
+     The this_i2c parameter is a pointer to the i2c_instance_t data structure
+     holding all data related to a specific CoreI2C channel. For example, if
+   only one channel is initialized, this data structure holds the information of
+     channel 0 of the instantiated CoreI2C hardware.
+   @param timeout_ms:
+     The timeout_ms parameter specified the delay within which the current I2C
+     transaction is expected to complete. The time out delay is given in
+     milliseconds. I2C_wait_complete() will return I2C_TIMED_OUT if the current
+     transaction has not completed after the time out delay has expired. This
+     parameter can be set to I2C_NO_TIMEOUT to indicate that I2C_wait_complete()
+     must not time out.
+   ------------------------------------------------------------------------------
+   @return
+     The return value indicates the outcome of the last I2C transaction. It can
+     be one of the following:
+       I2C_SUCCESS
+         The last I2C transaction has completed successfully.
+       I2C_FAILED
+         The last I2C transaction failed.
+       I2C_TIMED_OUT
+         The last transaction failed to complete within the time out delay given
+         as second parameter.
+
+   Example:
+   @code
+     #define COREI2C_BASE_ADDR  0xC0000000u
+     #define COREI2C_DUMMY_ADDR   0x10u
+     #define DATA_LENGTH           16u
+
+     i2c_instance_t g_i2c_inst;
+
+     uint8_t  rx_buffer[DATA_LENGTH];
+     uint8_t  read_length = DATA_LENGTH;
+
+     void main( void )
+     {
+         uint8_t  target_slave_addr = 0x12;
+         i2c_status_t status;
+
+         // Initialize base CoreI2C instance
+         I2C_init( &g_i2c_inst, COREI2C_BASE_ADDR, COREI2C_DUMMY_ADDR,
+                   I2C_PCLK_DIV_256 );
+
+         // Read data from Channel 0 of CoreI2C instance.
+         I2C_read( &g_i2c_inst, target_slave_addr, rx_buffer, read_length,
+                   I2C_RELEASE_BUS );
+
+         // Wait for completion and record the outcome
+         status = I2C_wait_complete( &g_i2c_inst, I2C_NO_TIMEOUT );
+     }
+   @endcode
+  */
+i2c_status_t I2C_wait_complete( i2c_instance_t * this_i2c,
+                                uint32_t timeout_ms );
+
+/*-------------------------------------------------------------------------*/ /**
+   Time out delay expiration.
+   ------------------------------------------------------------------------------
+   This function is used to control the expiration of the time out delay
+   specified as a parameter to the I2C_wait_complete() function. It must be
+   called from the interrupt service routine of a periodic interrupt source such
+   as the Cortex-M3 SysTick timer interrupt. It takes the period of the
+   interrupt source as its ms_since_last_tick parameter and uses it as the time
+   base for the I2C_wait_complete() function’s time out delay.
+
+   Note: This function does not need to be called if the I2C_wait_complete()
+         function is called with a timeout_ms value of I2C_NO_TIMEOUT.
+   Note: If this function is not called then the I2C_wait_complete() function
+         will behave as if its timeout_ms was specified as I2C_NO_TIMEOUT and it
+         will not time out.
+   Note: If this function is being called from an interrupt handler (e.g
+   SysTick) it is important that the calling interrupt have a lower priority
+   than the CoreI2C interrupt(s) to ensure any updates to shared data are
+         protected.
+
+   ------------------------------------------------------------------------------
+   @param this_i2c:
+     The this_i2c parameter is a pointer to the i2c_instance_t data structure
+     holding all data related to a specific CoreI2C channel. For example, if
+   only one channel is initialized, this data structure holds the information of
+     channel 0 of the instantiated CoreI2C hardware.
+   @param ms_since_last_tick:
+     The ms_since_last_tick parameter specifies the number of milliseconds that
+     elapsed since the last call to I2C_system_tick(). This parameter would
+     typically be a constant specifying the interrupt rate of a timer used to
+     generate system ticks.
+   ------------------------------------------------------------------------------
+   @return
+     none.
+
+   Example:
+     The example below shows an example of how the I2C_system_tick() function
+     would be called in a Cortex-M3 based system. I2C_system_tick() is called
+   for each I2C channel from the Cortex-M3 SysTick timer interrupt service
+   routine. The SysTick is configured to generate an interrupt every 10
+   milliseconds in the example below.
+   @code
+     #define SYSTICK_INTERVAL_MS 10
+
+     void SysTick_Handler(void)
+     {
+         I2C_system_tick(&g_core_i2c0, SYSTICK_INTERVAL_MS);
+         I2C_system_tick(&g_core_i2c2, SYSTICK_INTERVAL_MS);
+     }
+   @endcode
+  */
+void I2C_system_tick( i2c_instance_t * this_i2c, uint32_t ms_since_last_tick );
 
 /*******************************************************************************
  *******************************************************************************
- * 
+ *
  *                           Slave specific functions
- * 
+ *
  * The following functions are only used within the implementation of an I2C
  * slave device.
  */
 
-/*-------------------------------------------------------------------------*//**
-  I2C slave transmit buffer configuration.
-  ------------------------------------------------------------------------------
-  This function specifies the memory buffer holding the data that will be sent
-  to the I2C master when this CoreI2C channel is the target of an I2C read or
-  write-read transaction.
-  ------------------------------------------------------------------------------
-  @param this_i2c:
-    The this_i2c parameter is a pointer to the i2c_instance_t data structure
-    holding all data related to a specific CoreI2C channel. For example, if only
-    one channel is initialized, this data structure holds the information of 
-    channel 0 of the instantiated CoreI2C hardware.
-  
-  @param tx_buffer:
-    This parameter is a pointer to the memory buffer holding the data to be
-    returned to the I2C master when this CoreI2C channel is the target of an
-    I2C read or write-read transaction.
-  
-  @param tx_size:
-    Size of the transmit buffer pointed to by the tx_buffer parameter.
+/*-------------------------------------------------------------------------*/ /**
+   I2C slave transmit buffer configuration.
+   ------------------------------------------------------------------------------
+   This function specifies the memory buffer holding the data that will be sent
+   to the I2C master when this CoreI2C channel is the target of an I2C read or
+   write-read transaction.
+   ------------------------------------------------------------------------------
+   @param this_i2c:
+     The this_i2c parameter is a pointer to the i2c_instance_t data structure
+     holding all data related to a specific CoreI2C channel. For example, if
+   only one channel is initialized, this data structure holds the information of
+     channel 0 of the instantiated CoreI2C hardware.
 
-  @return none.  
-      
-  Example:
-  @code
-    #define COREI2C_BASE_ADDR    0xC0000000u
-    #define SLAVE_SER_ADDR       0x10u
-    #define SLAVE_TX_BUFFER_SIZE 10u
+   @param tx_buffer:
+     This parameter is a pointer to the memory buffer holding the data to be
+     returned to the I2C master when this CoreI2C channel is the target of an
+     I2C read or write-read transaction.
 
-    i2c_instance_t g_i2c_inst;
+   @param tx_size:
+     Size of the transmit buffer pointed to by the tx_buffer parameter.
 
-    uint8_t g_slave_tx_buffer[SLAVE_TX_BUFFER_SIZE] = { 1, 2, 3, 4, 5,
+   @return none.
+
+   Example:
+   @code
+     #define COREI2C_BASE_ADDR    0xC0000000u
+     #define SLAVE_SER_ADDR       0x10u
+     #define SLAVE_TX_BUFFER_SIZE 10u
+
+     i2c_instance_t g_i2c_inst;
+
+     uint8_t g_slave_tx_buffer[SLAVE_TX_BUFFER_SIZE] = { 1, 2, 3, 4, 5,
+                                                         6, 7, 8, 9, 10 };
+
+     void main( void )
+     {
+         // Initialize the CoreI2C driver with its base address, I2C serial
+         // address and serial clock divider.
+         I2C_init( &g_i2c_inst, COREI2C_BASE_ADDR, SLAVE_SER_ADDR,
+                   I2C_PCLK_DIV_256 );
+
+         // Specify the transmit buffer containing the data that will be
+         // returned to the master during read and write-read transactions.
+         I2C_set_slave_tx_buffer( &g_i2c_inst, g_slave_tx_buffer,
+                                  sizeof(g_slave_tx_buffer) );
+     }
+   @endcode
+  */
+void I2C_set_slave_tx_buffer( i2c_instance_t * this_i2c,
+                              const uint8_t * tx_buffer,
+                              uint16_t tx_size );
+
+/*-------------------------------------------------------------------------*/ /**
+   I2C slave receive buffer configuration.
+   ------------------------------------------------------------------------------
+   This function specifies the memory buffer that will be used by the CoreI2C
+   channel to receive data when it is a slave. This buffer is the memory where
+   data will be stored when the CoreI2C channel is the target of an I2C master
+   write transaction (i.e. when it is the slave).
+   ------------------------------------------------------------------------------
+   @param this_i2c:
+     The this_i2c parameter is a pointer to the i2c_instance_t data structure
+     holding all data related to a specific CoreI2C channel. For example, if
+   only one channel is initialized, this data structure holds the information of
+     channel 0 of the instantiated CoreI2C hardware.
+
+   @param rx_buffer:
+     This parameter is a pointer to the memory buffer allocated by the caller
+     software to be used as a slave receive buffer.
+
+   @param rx_size:
+     Size of the slave receive buffer. This is the amount of memory that is
+     allocated to the buffer pointed to by rx_buffer.
+     Note:   This buffer size indirectly specifies the maximum I2C write
+             transaction length this CoreI2C channel can be the target of. This
+             is because this CoreI2C channel responds to further received
+             bytes with a non-acknowledge bit (NACK) as soon as its receive
+             buffer is full. This causes the write transaction to fail.
+
+   @return none.
+
+   Example:
+   @code
+     #define COREI2C_BASE_ADDR    0xC0000000u
+     #define SLAVE_SER_ADDR       0x10u
+     #define SLAVE_RX_BUFFER_SIZE 10u
+
+     i2c_instance_t g_i2c_inst;
+
+     uint8_t g_slave_rx_buffer[SLAVE_RX_BUFFER_SIZE];
+
+     void main( void )
+     {
+         // Initialize the CoreI2C driver with its base address, I2C serial
+         // address and serial clock divider.
+         I2C_init( &g_i2c_inst, COREI2C_BASE_ADDR, SLAVE_SER_ADDR,
+                   I2C_PCLK_DIV_256 );
+
+         // Specify the buffer used to store the data written by the I2C master.
+         I2C_set_slave_rx_buffer( &g_i2c_inst, g_slave_rx_buffer,
+                                  sizeof(g_slave_rx_buffer) );
+     }
+   @endcode
+  */
+void I2C_set_slave_rx_buffer( i2c_instance_t * this_i2c,
+                              uint8_t * rx_buffer,
+                              uint16_t rx_size );
+
+/*-------------------------------------------------------------------------*/ /**
+   I2C slave memory offset length configuration.
+   ------------------------------------------------------------------------------
+   This function is used as part of the configuration of a CoreI2C channel for
+   operation as a slave supporting write-read transactions. It specifies the
+   number of bytes expected as part of the write phase of a write-read
+   transaction. The bytes received during the write phase of a write-read
+   transaction will be interpreted as an offset into the slave's transmit
+   buffer. This allows random access into the I2C slave transmit buffer from a
+   remote I2C master.
+   ------------------------------------------------------------------------------
+   @param this_i2c:
+     The this_i2c parameter is a pointer to the i2c_instance_t data structure
+     holding all data related to a specific CoreI2C channel. For example, if
+   only one channel is initialized, this data structure holds the information of
+     channel 0 of the instantiated CoreI2C hardware.
+
+   @param offset_length:
+     The offset_length parameter configures the number of bytes to be
+   interpreted by the CoreI2C slave as a memory offset value during the write
+   phase of write-read transactions. The maximum value for the offset_length
+   parameter is two. The value of offset_length has the following effect on the
+     interpretation of the received data.
+
+       If offset_length is 0, the offset into the transmit buffer is fixed at 0.
+
+       If offset_length is 1, a single byte of received data is interpreted as
+   an unsigned 8 bit offset value in the range 0 to 255.
+
+       If offset_length is 2, 2 bytes of received data are interpreted as an
+       unsigned 16 bit offset value in the range 0 to 65535. The first byte
+       received in this case provides the high order bits of the offset and
+       the second byte provides the low order bits.
+
+     If the number of bytes received does not match the non 0 value of
+     offset_length the transmit buffer offset is set to 0.
+
+   @return none.
+
+   Example:
+   @code
+     #define COREI2C_BASE_ADDR    0xC0000000u
+     #define SLAVE_SER_ADDR       0x10u
+     #define SLAVE_TX_BUFFER_SIZE 10u
+
+     i2c_instance_t g_i2c_inst;
+
+     uint8_t g_slave_tx_buffer[SLAVE_TX_BUFFER_SIZE] = { 1, 2, 3, 4, 5,
+                                                         6, 7, 8, 9, 10 };
+
+     void main( void )
+     {
+         // Initialize the CoreI2C driver with its base address, I2C serial
+         // address and serial clock divider.
+         I2C_init( &g_i2c_inst, COREI2C_BASE_ADDR, SLAVE_SER_ADDR,
+                   I2C_PCLK_DIV_256 );
+         I2C_set_slave_tx_buffer( &g_i2c_inst, g_slave_tx_buffer,
+                                  sizeof(g_slave_tx_buffer) );
+         I2C_set_slave_mem_offset_length( &g_i2c_inst, 1 );
+     }
+   @endcode
+  */
+void I2C_set_slave_mem_offset_length( i2c_instance_t * this_i2c,
+                                      uint8_t offset_length );
+
+/*-------------------------------------------------------------------------*/ /**
+   I2C write handler registration.
+   ------------------------------------------------------------------------------
+   Register the function that is called to process the data written to this
+   CoreI2C channel when it is the slave in an I2C write transaction.
+   Note: If a write handler is registered, it is called on completion of the
+         write phase of a write-read transaction and responsible for processing
+         the received data in the slave receive buffer and populating the slave
+         transmit buffer with the data that will be transmitted to the I2C
+   master as part of the read phase of the write-read transaction. If a write
+         handler is not registered, the write data of a write read transaction
+   is interpreted as an offset into the slave’s transmit buffer and handled by
+         the driver.
+   ------------------------------------------------------------------------------
+   @param this_i2c:
+     The this_i2c parameter is a pointer to the i2c_instance_t data structure
+     holding all data related to a specific CoreI2C channel. For example, if
+   only one channel is initialized, this data structure holds the information of
+     channel 0 of the instantiated CoreI2C hardware.
+
+   @param handler:
+     Pointer to the function that will process the I2C write request.
+
+   @return none.
+
+   Example:
+   @code
+     #define COREI2C_BASE_ADDR    0xC0000000u
+     #define SLAVE_SER_ADDR       0x10u
+     #define SLAVE_TX_BUFFER_SIZE 10u
+
+     i2c_instance_t g_i2c_inst;
+
+     uint8_t g_slave_tx_buffer[SLAVE_TX_BUFFER_SIZE] = { 1, 2, 3, 4, 5,
                                                         6, 7, 8, 9, 10 };
 
-    void main( void )
-    {
-        // Initialize the CoreI2C driver with its base address, I2C serial
-        // address and serial clock divider.
-        I2C_init( &g_i2c_inst, COREI2C_BASE_ADDR, SLAVE_SER_ADDR,
-                  I2C_PCLK_DIV_256 );
-       
-        // Specify the transmit buffer containing the data that will be
-        // returned to the master during read and write-read transactions.
-        I2C_set_slave_tx_buffer( &g_i2c_inst, g_slave_tx_buffer, 
-                                 sizeof(g_slave_tx_buffer) );
-    }
-  @endcode
+     // local function prototype
+     void slave_write_handler
+     (
+         i2c_instance_t * this_i2c,
+         uint8_t * p_rx_data,
+         uint16_t rx_size
+     );
+
+     void main( void )
+     {
+         // Initialize the CoreI2C driver with its base address, I2C serial
+         // address and serial clock divider.
+         I2C_init( &g_i2c_inst, COREI2C_BASE_ADDR, SLAVE_SER_ADDR,
+                   I2C_PCLK_DIV_256 );
+         I2C_set_slave_tx_buffer( &g_i2c_inst, g_slave_tx_buffer,
+                                  sizeof(g_slave_tx_buffer) );
+         I2C_set_slave_mem_offset_length( &g_i2c_inst, 1 );
+         I2C_register_write_handler( &g_i2c_inst, slave_write_handler );
+     }
+   @endcode
  */
-void I2C_set_slave_tx_buffer
-(
-    i2c_instance_t * this_i2c,
-    const uint8_t * tx_buffer,
-    uint16_t tx_size
-);
+void I2C_register_write_handler( i2c_instance_t * this_i2c,
+                                 i2c_slave_wr_handler_t handler );
 
-/*-------------------------------------------------------------------------*//**
-  I2C slave receive buffer configuration.
-  ------------------------------------------------------------------------------
-  This function specifies the memory buffer that will be used by the CoreI2C
-  channel to receive data when it is a slave. This buffer is the memory where
-  data will be stored when the CoreI2C channel is the target of an I2C master
-  write transaction (i.e. when it is the slave).
-  ------------------------------------------------------------------------------
-  @param this_i2c:
-    The this_i2c parameter is a pointer to the i2c_instance_t data structure
-    holding all data related to a specific CoreI2C channel. For example, if only
-    one channel is initialized, this data structure holds the information of 
-    channel 0 of the instantiated CoreI2C hardware.
-  
-  @param rx_buffer:
-    This parameter is a pointer to the memory buffer allocated by the caller
-    software to be used as a slave receive buffer.
-  
-  @param rx_size:
-    Size of the slave receive buffer. This is the amount of memory that is
-    allocated to the buffer pointed to by rx_buffer.
-    Note:   This buffer size indirectly specifies the maximum I2C write
-            transaction length this CoreI2C channel can be the target of. This
-            is because this CoreI2C channel responds to further received
-            bytes with a non-acknowledge bit (NACK) as soon as its receive
-            buffer is full. This causes the write transaction to fail.
-            
-  @return none.  
-      
-  Example:
-  @code
-    #define COREI2C_BASE_ADDR    0xC0000000u
-    #define SLAVE_SER_ADDR       0x10u
-    #define SLAVE_RX_BUFFER_SIZE 10u
+/*-------------------------------------------------------------------------*/ /**
+   I2C slave enable.
+   ------------------------------------------------------------------------------
+   This function enables slave mode operation for a CoreI2C channel. It enables
+   the CoreI2C slave to receive data when it is the target of an I2C read, write
+   or write-read transaction.
+   ------------------------------------------------------------------------------
+   @param this_i2c:
+     The this_i2c parameter is a pointer to the i2c_instance_t data structure
+     holding all data related to a specific CoreI2C channel. For example, if
+   only one channel is initialized, this data structure holds the information of
+     channel 0 of the instantiated CoreI2C hardware.
 
-    i2c_instance_t g_i2c_inst;
+   @return none.
 
-    uint8_t g_slave_rx_buffer[SLAVE_RX_BUFFER_SIZE];
+   Example:
+   @code
+     // Enable I2C slave
+     I2C_enable_slave( &g_i2c_inst );
+   @endcode
+  */
+void I2C_enable_slave( i2c_instance_t * this_i2c );
 
-    void main( void )
-    {
-        // Initialize the CoreI2C driver with its base address, I2C serial
-        // address and serial clock divider.
-        I2C_init( &g_i2c_inst, COREI2C_BASE_ADDR, SLAVE_SER_ADDR,
-                  I2C_PCLK_DIV_256 );
-       
-        // Specify the buffer used to store the data written by the I2C master.
-        I2C_set_slave_rx_buffer( &g_i2c_inst, g_slave_rx_buffer, 
-                                 sizeof(g_slave_rx_buffer) );
-    }
-  @endcode
- */
-void I2C_set_slave_rx_buffer
-(
-    i2c_instance_t * this_i2c,
-    uint8_t * rx_buffer,
-    uint16_t rx_size
-);
+/*-------------------------------------------------------------------------*/ /**
+   I2C slave disable.
+   ------------------------------------------------------------------------------
+   This function disables slave mode operation for a CoreI2C channel. It stops
+   the CoreI2C slave acknowledging I2C read, write or write-read transactions
+   targeted at it.
+   ------------------------------------------------------------------------------
+   @param this_i2c:
+     The this_i2c parameter is a pointer to the i2c_instance_t data structure
+     holding all data related to a specific CoreI2C channel. For example, if
+   only one channel is initialized, this data structure holds the information of
+     channel 0 of the instantiated CoreI2C hardware.
 
-/*-------------------------------------------------------------------------*//**
-  I2C slave memory offset length configuration.
-  ------------------------------------------------------------------------------
-  This function is used as part of the configuration of a CoreI2C channel for
-  operation as a slave supporting write-read transactions. It specifies the
-  number of bytes expected as part of the write phase of a write-read
-  transaction. The bytes received during the write phase of a write-read
-  transaction will be interpreted as an offset into the slave's transmit buffer.
-  This allows random access into the I2C slave transmit buffer from a remote
-  I2C master.
-  ------------------------------------------------------------------------------
-  @param this_i2c:
-    The this_i2c parameter is a pointer to the i2c_instance_t data structure
-    holding all data related to a specific CoreI2C channel. For example, if only
-    one channel is initialized, this data structure holds the information of 
-    channel 0 of the instantiated CoreI2C hardware.
-  
-  @param offset_length:
-    The offset_length parameter configures the number of bytes to be interpreted
-    by the CoreI2C slave as a memory offset value during the write phase of
-    write-read transactions. The maximum value for the offset_length parameter
-    is two. The value of offset_length has the following effect on the 
-    interpretation of the received data.
-    
-      If offset_length is 0, the offset into the transmit buffer is fixed at 0.
-      
-      If offset_length is 1, a single byte of received data is interpreted as an
-      unsigned 8 bit offset value in the range 0 to 255.
-      
-      If offset_length is 2, 2 bytes of received data are interpreted as an
-      unsigned 16 bit offset value in the range 0 to 65535. The first byte
-      received in this case provides the high order bits of the offset and
-      the second byte provides the low order bits.
-      
-    If the number of bytes received does not match the non 0 value of
-    offset_length the transmit buffer offset is set to 0.
-            
-  @return none.  
-      
-  Example:
-  @code
-    #define COREI2C_BASE_ADDR    0xC0000000u
-    #define SLAVE_SER_ADDR       0x10u
-    #define SLAVE_TX_BUFFER_SIZE 10u
+   @return none.
 
-    i2c_instance_t g_i2c_inst;
+   Example:
+   @code
+    // Disable I2C slave
+    I2C_disable_slave( &g_i2c_inst );
+   @endcode
+  */
+void I2C_disable_slave( i2c_instance_t * this_i2c );
+/*-------------------------------------------------------------------------*/ /**
+   Set I2C slave second address.
+   ------------------------------------------------------------------------------
+   The function I2C_set_slave_second_addr() sets the secondary slave address for
+   a CoreI2C slave device. This is an additional slave address which might be
+   required in certain applications, for example to enable fail-safe operation
+   in a system. As the CoreI2C device supports 7-bit addressing, the highest
+   value which can be assigned to second slave address is 127 (0x7F). Note: This
+   function does not support CoreI2C hardware configured with a fixed second
+   slave address.  The current implementation of the ADDR1[0] register bit makes
+   it difficult for the driver to support both programmable and fixed second
+   slave address, so we choose to support programmable only.
+   ------------------------------------------------------------------------------
+   @param this_i2c:
+     The this_i2c parameter is a pointer to the i2c_instance_t data structure
+     holding all data related to a specific CoreI2C channel. For example, if
+   only one channel is initialized, this data structure holds the information of
+     channel 0 of the instantiated CoreI2C hardware.
 
-    uint8_t g_slave_tx_buffer[SLAVE_TX_BUFFER_SIZE] = { 1, 2, 3, 4, 5,
-                                                        6, 7, 8, 9, 10 };
+   @param second_slave_addr:
+     The second_slave_addr parameter is the secondary slave address of the I2C
+     device.
 
-    void main( void )
-    {
-        // Initialize the CoreI2C driver with its base address, I2C serial
-        // address and serial clock divider.
-        I2C_init( &g_i2c_inst, COREI2C_BASE_ADDR, SLAVE_SER_ADDR,
-                  I2C_PCLK_DIV_256 );
-        I2C_set_slave_tx_buffer( &g_i2c_inst, g_slave_tx_buffer, 
-                                 sizeof(g_slave_tx_buffer) );
-        I2C_set_slave_mem_offset_length( &g_i2c_inst, 1 );
-    }
-  @endcode        
- */
-void I2C_set_slave_mem_offset_length
-(
-    i2c_instance_t * this_i2c,
-    uint8_t offset_length
-);
+   @return
+     none.
 
-/*-------------------------------------------------------------------------*//**
-  I2C write handler registration. 
-  ------------------------------------------------------------------------------
-  Register the function that is called to process the data written to this
-  CoreI2C channel when it is the slave in an I2C write transaction.
-  Note: If a write handler is registered, it is called on completion of the
-        write phase of a write-read transaction and responsible for processing
-        the received data in the slave receive buffer and populating the slave
-        transmit buffer with the data that will be transmitted to the I2C master
-        as part of the read phase of the write-read transaction. If a write
-        handler is not registered, the write data of a write read transaction is
-        interpreted as an offset into the slave’s transmit buffer and handled by
-        the driver.
-  ------------------------------------------------------------------------------
-  @param this_i2c:
-    The this_i2c parameter is a pointer to the i2c_instance_t data structure
-    holding all data related to a specific CoreI2C channel. For example, if only
-    one channel is initialized, this data structure holds the information of 
-    channel 0 of the instantiated CoreI2C hardware.
-  
-  @param handler:
-    Pointer to the function that will process the I2C write request.
-            
-  @return none.  
-      
-  Example:
-  @code
-    #define COREI2C_BASE_ADDR    0xC0000000u
-    #define SLAVE_SER_ADDR       0x10u
-    #define SLAVE_TX_BUFFER_SIZE 10u
+   Example:
+   @code
+     #define COREI2C_BASE_ADDR  0xC0000000u
+     #define SLAVE_SER_ADDR     0x10u
+     #define SECOND_SLAVE_ADDR  0x20u
 
-    i2c_instance_t g_i2c_inst;
+     i2c_instance_t g_i2c_inst;
+     void main( void )
+     {
+         // Initialize the CoreI2C driver with its base address, primary I2C
+         // serial address and serial clock divider.
+         I2C_init( &g_i2c_inst, COREI2C_BASE_ADDR, SLAVE_SER_ADDR,
+                   I2C_PCLK_DIV_256 );
+         I2C_set_slave_second_addr( &g_i2c_inst, SECOND_SLAVE_ADDR );
+     }
+   @endcode
+  */
+void I2C_set_slave_second_addr( i2c_instance_t * this_i2c,
+                                uint8_t second_slave_addr );
 
-    uint8_t g_slave_tx_buffer[SLAVE_TX_BUFFER_SIZE] = { 1, 2, 3, 4, 5,
-                                                       6, 7, 8, 9, 10 };
+/*-------------------------------------------------------------------------*/ /**
+   Disable second slave address.
+   ------------------------------------------------------------------------------
+   The function I2C_disable_slave_second_addr() disables the secondary slave
+   address of the CoreI2C slave device.
+   Note: This version of the driver only supports CoreI2C hardware configured
+         with a programmable second slave address.
+   ------------------------------------------------------------------------------
+   @param this_i2c:
+     The this_i2c parameter is a pointer to the i2c_instance_t data structure
+     holding all data related to a specific CoreI2C channel. For example, if
+   only one channel is initialized, this data structure holds the information of
+     channel 0 of the instantiated CoreI2C hardware.
 
-    // local function prototype
-    void slave_write_handler
-    (
-        i2c_instance_t * this_i2c,
-        uint8_t * p_rx_data,
-        uint16_t rx_size
-    );
+   @return
+     none.
 
-    void main( void )
-    {
-        // Initialize the CoreI2C driver with its base address, I2C serial
-        // address and serial clock divider.
-        I2C_init( &g_i2c_inst, COREI2C_BASE_ADDR, SLAVE_SER_ADDR, 
-                  I2C_PCLK_DIV_256 );
-        I2C_set_slave_tx_buffer( &g_i2c_inst, g_slave_tx_buffer, 
-                                 sizeof(g_slave_tx_buffer) );
-        I2C_set_slave_mem_offset_length( &g_i2c_inst, 1 );
-        I2C_register_write_handler( &g_i2c_inst, slave_write_handler );
-    }
-  @endcode    
-*/
-void I2C_register_write_handler
-(
-    i2c_instance_t * this_i2c,
-    i2c_slave_wr_handler_t handler
-);
+   Example:
+   @code
+     i2c_instance_t g_i2c_inst;
+     I2C_disable_slave_second_addr( &g_i2c_inst);
+   @endcode
+  */
+void I2C_disable_slave_second_addr( i2c_instance_t * this_i2c );
 
-/*-------------------------------------------------------------------------*//**
-  I2C slave enable.
-  ------------------------------------------------------------------------------
-  This function enables slave mode operation for a CoreI2C channel. It enables 
-  the CoreI2C slave to receive data when it is the target of an I2C read, write
-  or write-read transaction.
-  ------------------------------------------------------------------------------
-  @param this_i2c:
-    The this_i2c parameter is a pointer to the i2c_instance_t data structure
-    holding all data related to a specific CoreI2C channel. For example, if only
-    one channel is initialized, this data structure holds the information of 
-    channel 0 of the instantiated CoreI2C hardware.
+/*-------------------------------------------------------------------------*/ /**
+   The I2C_set_gca() function is used to set the general call acknowledgement
+   bit of a CoreI2C slave device. This allows all channels of the CoreI2C slave
+   device respond to a general call or broadcast message from an I2C master.
+   ------------------------------------------------------------------------------
+   @param this_i2c:
+     The this_i2c parameter is a pointer to the i2c_instance_t data structure
+     holding all data related to a specific CoreI2C channel. For example, if
+   only one channel is initialized, this data structure holds the information of
+     channel 0 of the instantiated CoreI2C hardware.
 
-  @return none.
+   @return
+     none.
 
-  Example:
-  @code
-    // Enable I2C slave
-    I2C_enable_slave( &g_i2c_inst );
-  @endcode
- */
-void I2C_enable_slave
-(
-    i2c_instance_t * this_i2c
-);
+   Example:
+   @code
+     i2c_instance_t g_i2c_inst;
 
-/*-------------------------------------------------------------------------*//**
-  I2C slave disable.
-  ------------------------------------------------------------------------------
-  This function disables slave mode operation for a CoreI2C channel. It stops
-  the CoreI2C slave acknowledging I2C read, write or write-read transactions
-  targeted at it.
-  ------------------------------------------------------------------------------
-  @param this_i2c:
-    The this_i2c parameter is a pointer to the i2c_instance_t data structure
-    holding all data related to a specific CoreI2C channel. For example, if only
-    one channel is initialized, this data structure holds the information of 
-    channel 0 of the instantiated CoreI2C hardware.
+     // Enable recognition of the General Call Address
+     I2C_set_gca( &g_i2c_inst );
+   @endcode
+  */
+void I2C_set_gca( i2c_instance_t * this_i2c );
 
-  @return none.
+/*-------------------------------------------------------------------------*/ /**
+   The I2C_clear_gca() function is used to clear the general call
+   acknowledgement bit of a CoreI2C slave device. This will stop all channels of
+   the I2C slave device responding to any general call or broadcast message from
+   the master.
+   ------------------------------------------------------------------------------
+   @param this_i2c:
+     The this_i2c parameter is a pointer to the i2c_instance_t data structure
+     holding all data related to a specific CoreI2C channel. For example, if
+   only one channel is initialized, this data structure holds the information of
+     channel 0 of the instantiated CoreI2C hardware.
 
-  Example:
-  @code
-   // Disable I2C slave
-   I2C_disable_slave( &g_i2c_inst );
-  @endcode
- */
-void I2C_disable_slave
-(
-    i2c_instance_t * this_i2c
-);
-/*-------------------------------------------------------------------------*//**
-  Set I2C slave second address.
-  ------------------------------------------------------------------------------
-  The function I2C_set_slave_second_addr() sets the secondary slave address for
-  a CoreI2C slave device. This is an additional slave address which might be
-  required in certain applications, for example to enable fail-safe operation in
-  a system. As the CoreI2C device supports 7-bit addressing, the highest value
-  which can be assigned to second slave address is 127 (0x7F).
-  Note: This function does not support CoreI2C hardware configured with a fixed 
-      second slave address.  The current implementation of the ADDR1[0] register
-      bit makes it difficult for the driver to support both programmable and
-      fixed second slave address, so we choose to support programmable only.
-  ------------------------------------------------------------------------------
-  @param this_i2c:
-    The this_i2c parameter is a pointer to the i2c_instance_t data structure
-    holding all data related to a specific CoreI2C channel. For example, if only
-    one channel is initialized, this data structure holds the information of 
-    channel 0 of the instantiated CoreI2C hardware.
+   @return
+     none.
 
-  @param second_slave_addr:
-    The second_slave_addr parameter is the secondary slave address of the I2C
-    device.
+   Example:
+   @code
+     i2c_instance_t g_i2c_inst;
 
-  @return
-    none.
+     // Disable recognition of the General Call Address
+     I2C_clear_gca( &g_i2c_inst );
+   @endcode
+  */
 
-  Example:
-  @code
-    #define COREI2C_BASE_ADDR  0xC0000000u
-    #define SLAVE_SER_ADDR     0x10u
-    #define SECOND_SLAVE_ADDR  0x20u
-
-    i2c_instance_t g_i2c_inst;
-    void main( void )
-    {
-        // Initialize the CoreI2C driver with its base address, primary I2C
-        // serial address and serial clock divider.
-        I2C_init( &g_i2c_inst, COREI2C_BASE_ADDR, SLAVE_SER_ADDR, 
-                  I2C_PCLK_DIV_256 );
-        I2C_set_slave_second_addr( &g_i2c_inst, SECOND_SLAVE_ADDR );
-    }
-  @endcode
- */
-void I2C_set_slave_second_addr
-(
-    i2c_instance_t * this_i2c,
-    uint8_t second_slave_addr
-);
-
-/*-------------------------------------------------------------------------*//**
-  Disable second slave address.
-  ------------------------------------------------------------------------------
-  The function I2C_disable_slave_second_addr() disables the secondary slave
-  address of the CoreI2C slave device. 
-  Note: This version of the driver only supports CoreI2C hardware configured
-        with a programmable second slave address.
-  ------------------------------------------------------------------------------
-  @param this_i2c:
-    The this_i2c parameter is a pointer to the i2c_instance_t data structure
-    holding all data related to a specific CoreI2C channel. For example, if only
-    one channel is initialized, this data structure holds the information of 
-    channel 0 of the instantiated CoreI2C hardware.
-
-  @return
-    none.
-
-  Example:
-  @code
-    i2c_instance_t g_i2c_inst;
-    I2C_disable_slave_second_addr( &g_i2c_inst);
-  @endcode
- */
-void I2C_disable_slave_second_addr
-(
-    i2c_instance_t * this_i2c
-);
-
-/*-------------------------------------------------------------------------*//**
-  The I2C_set_gca() function is used to set the general call acknowledgement bit
-  of a CoreI2C slave device. This allows all channels of the CoreI2C slave
-  device respond to a general call or broadcast message from an I2C master.
-  ------------------------------------------------------------------------------
-  @param this_i2c:
-    The this_i2c parameter is a pointer to the i2c_instance_t data structure
-    holding all data related to a specific CoreI2C channel. For example, if only
-    one channel is initialized, this data structure holds the information of 
-    channel 0 of the instantiated CoreI2C hardware.
-
-  @return
-    none.
-
-  Example:
-  @code
-    i2c_instance_t g_i2c_inst;
-
-    // Enable recognition of the General Call Address
-    I2C_set_gca( &g_i2c_inst ); 
-  @endcode
- */
-void I2C_set_gca
-(
-    i2c_instance_t * this_i2c
-);
-
-/*-------------------------------------------------------------------------*//**
-  The I2C_clear_gca() function is used to clear the general call acknowledgement
-  bit of a CoreI2C slave device. This will stop all channels of the I2C slave
-  device responding to any general call or broadcast message from the master.
-  ------------------------------------------------------------------------------
-  @param this_i2c:
-    The this_i2c parameter is a pointer to the i2c_instance_t data structure
-    holding all data related to a specific CoreI2C channel. For example, if only
-    one channel is initialized, this data structure holds the information of 
-    channel 0 of the instantiated CoreI2C hardware.
-
-  @return
-    none.
-
-  Example:
-  @code
-    i2c_instance_t g_i2c_inst;
-
-    // Disable recognition of the General Call Address
-    I2C_clear_gca( &g_i2c_inst );
-  @endcode
- */
-
-void I2C_clear_gca
-(
-    i2c_instance_t * this_i2c
-);
+void I2C_clear_gca( i2c_instance_t * this_i2c );
 
 /*------------------------------------------------------------------------------
                       I2C SMBUS specific APIs
  ----------------------------------------------------------------------------*/
 
-/*-------------------------------------------------------------------------*//**
-  The I2C_smbus_init() function enables SMBus timeouts and status logic for a
-  CoreI2C channel.
-  Note: This and any of the other SMBus related functionality will only have an
-        effect if the CoreI2C was instantiated with the Generate SMBus Logic
-        option checked.
-  Note: If the CoreI2C was instantiated with the Generate IPMI Logic option
-        checked this function will enable the IPMI 3mS SCL low timeout but none
-        of the other SMBus functions will have any effect.
-  ------------------------------------------------------------------------------
-  @param this_i2c:
-    The this_i2c parameter is a pointer to the i2c_instance_t data structure
-    holding all data related to a specific CoreI2C channel. For example, if only
-    one channel is initialized, this data structure holds the information of 
-    channel 0 of the instantiated CoreI2C hardware.
+/*-------------------------------------------------------------------------*/ /**
+   The I2C_smbus_init() function enables SMBus timeouts and status logic for a
+   CoreI2C channel.
+   Note: This and any of the other SMBus related functionality will only have an
+         effect if the CoreI2C was instantiated with the Generate SMBus Logic
+         option checked.
+   Note: If the CoreI2C was instantiated with the Generate IPMI Logic option
+         checked this function will enable the IPMI 3mS SCL low timeout but none
+         of the other SMBus functions will have any effect.
+   ------------------------------------------------------------------------------
+   @param this_i2c:
+     The this_i2c parameter is a pointer to the i2c_instance_t data structure
+     holding all data related to a specific CoreI2C channel. For example, if
+   only one channel is initialized, this data structure holds the information of
+     channel 0 of the instantiated CoreI2C hardware.
 
-  @return
-    none.
+   @return
+     none.
 
-  Example:
-  @code
-   #define COREI2C_BASE_ADDR  0xC0000000u
-   #define SLAVE_SER_ADDR     0x10u
-
-   i2c_instance_t g_i2c_inst;
-
-   void system_init( void )
-   {
-        I2C_init( &g_i2c_inst, COREI2C_BASE_ADDR, SLAVE_SER_ADDR,
-                  I2C_PCLK_DIV_256 );
-        
-        // Initialize SMBus feature
-        I2C_smbus_init( &g_i2c_inst);
-   }
-  @endcode    
- */
-void I2C_smbus_init
-(
-    i2c_instance_t * this_i2c
-);
-
-/*-------------------------------------------------------------------------*//**
-  The I2C_enable_smbus_irq() function is used to enable the CoreI2C channel’s 
-  SMBSUS and SMBALERT SMBus interrupts.
-  ------------------------------------------------------------------------------
-  @param this_i2c:
-    The this_i2c parameter is a pointer to the i2c_instance_t data structure
-    holding all data related to a specific CoreI2C channel. For example, if only
-    one channel is initialized, this data structure holds the information of 
-    channel 0 of the instantiated CoreI2C hardware.
-
-  @param irq_type
-    The irq_type specify the SMBUS interrupt(s) which will be enabled.
-    The two possible interrupts are:
-      I2C_SMBALERT_IRQ
-      I2C_SMBSUS_IRQ
-    To enable both ints in one call, use I2C_SMBALERT_IRQ | I2C_SMBSUS_IRQ.
-    
-  @return
-    none
-  
-  Example:
-  @code
+   Example:
+   @code
     #define COREI2C_BASE_ADDR  0xC0000000u
     #define SLAVE_SER_ADDR     0x10u
 
     i2c_instance_t g_i2c_inst;
 
-    void main( void )
+    void system_init( void )
     {
-        I2C_init( &g_i2c_inst, COREI2C_BASE_ADDR, SLAVE_SER_ADDR,
-                  I2C_PCLK_DIV_256 );
-        
-        // Initialize SMBus feature
-        I2C_smbus_init( &g_i2c_inst );
-        
-        // Enable both I2C_SMBALERT_IRQ & I2C_SMBSUS_IRQ interrupts
-        I2C_enable_smbus_irq( &g_i2c_inst,
-                              (uint8_t)(I2C_SMBALERT_IRQ | I2C_SMBSUS_IRQ) );
-   }
+         I2C_init( &g_i2c_inst, COREI2C_BASE_ADDR, SLAVE_SER_ADDR,
+                   I2C_PCLK_DIV_256 );
+
+         // Initialize SMBus feature
+         I2C_smbus_init( &g_i2c_inst);
+    }
    @endcode
- */
-void I2C_enable_smbus_irq
-(
-    i2c_instance_t * this_i2c,
-    uint8_t  irq_type
-);
+  */
+void I2C_smbus_init( i2c_instance_t * this_i2c );
 
-/*-------------------------------------------------------------------------*//**
-  The I2C_disable_smbus_irq() function is used to disable the CoreI2C channel’s
-  SMBSUS and SMBALERT SMBus interrupts.
-  ------------------------------------------------------------------------------
-  @param this_i2c:
-    The this_i2c parameter is a pointer to the i2c_instance_t data structure
-    holding all data related to a specific CoreI2C channel. For example, if only
-    one channel is initialized, this data structure holds the information of 
-    channel 0 of the instantiated CoreI2C hardware.
+/*-------------------------------------------------------------------------*/ /**
+   The I2C_enable_smbus_irq() function is used to enable the CoreI2C channel’s
+   SMBSUS and SMBALERT SMBus interrupts.
+   ------------------------------------------------------------------------------
+   @param this_i2c:
+     The this_i2c parameter is a pointer to the i2c_instance_t data structure
+     holding all data related to a specific CoreI2C channel. For example, if
+   only one channel is initialized, this data structure holds the information of
+     channel 0 of the instantiated CoreI2C hardware.
 
-  @param irq_type
-    The irq_type specifies the SMBUS interrupt(s) which will be disabled.
-    The two possible interrupts are:
-      I2C_SMBALERT_IRQ
-      I2C_SMBSUS_IRQ
-    To disable both ints in one call, use I2C_SMBALERT_IRQ | I2C_SMBSUS_IRQ.
+   @param irq_type
+     The irq_type specify the SMBUS interrupt(s) which will be enabled.
+     The two possible interrupts are:
+       I2C_SMBALERT_IRQ
+       I2C_SMBSUS_IRQ
+     To enable both ints in one call, use I2C_SMBALERT_IRQ | I2C_SMBSUS_IRQ.
 
-  @return
-    none.
-      
-  Example:
-  @code
+   @return
+     none
+
+   Example:
+   @code
+     #define COREI2C_BASE_ADDR  0xC0000000u
+     #define SLAVE_SER_ADDR     0x10u
+
+     i2c_instance_t g_i2c_inst;
+
+     void main( void )
+     {
+         I2C_init( &g_i2c_inst, COREI2C_BASE_ADDR, SLAVE_SER_ADDR,
+                   I2C_PCLK_DIV_256 );
+
+         // Initialize SMBus feature
+         I2C_smbus_init( &g_i2c_inst );
+
+         // Enable both I2C_SMBALERT_IRQ & I2C_SMBSUS_IRQ interrupts
+         I2C_enable_smbus_irq( &g_i2c_inst,
+                               (uint8_t)(I2C_SMBALERT_IRQ | I2C_SMBSUS_IRQ) );
+    }
+    @endcode
+  */
+void I2C_enable_smbus_irq( i2c_instance_t * this_i2c, uint8_t irq_type );
+
+/*-------------------------------------------------------------------------*/ /**
+   The I2C_disable_smbus_irq() function is used to disable the CoreI2C channel’s
+   SMBSUS and SMBALERT SMBus interrupts.
+   ------------------------------------------------------------------------------
+   @param this_i2c:
+     The this_i2c parameter is a pointer to the i2c_instance_t data structure
+     holding all data related to a specific CoreI2C channel. For example, if
+   only one channel is initialized, this data structure holds the information of
+     channel 0 of the instantiated CoreI2C hardware.
+
+   @param irq_type
+     The irq_type specifies the SMBUS interrupt(s) which will be disabled.
+     The two possible interrupts are:
+       I2C_SMBALERT_IRQ
+       I2C_SMBSUS_IRQ
+     To disable both ints in one call, use I2C_SMBALERT_IRQ | I2C_SMBSUS_IRQ.
+
+   @return
+     none.
+
+   Example:
+   @code
+     #define COREI2C_BASE_ADDR  0xC0000000u
+     #define SLAVE_SER_ADDR     0x10u
+
+     i2c_instance_t g_i2c_inst;
+
+     void main( void )
+     {
+         I2C_init( &g_i2c_inst, COREI2C_BASE_ADDR, SLAVE_SER_ADDR,
+                   I2C_PCLK_DIV_256 );
+
+         // Initialize SMBus feature
+         I2C_smbus_init( &g_i2c_inst );
+
+         // Enable both SMBALERT & SMBSUS interrupts
+         I2C_enable_smbus_irq( &g_i2c_inst,
+                               (uint8_t)(I2C_SMBALERT_IRQ | I2C_SMBSUS_IRQ));
+
+         ...
+
+         // Disable the SMBALERT interrupt
+         I2C_disable_smbus_irq( &g_i2c_inst, I2C_SMBALERT_IRQ );
+     }
+   @endcode
+  */
+void I2C_disable_smbus_irq( i2c_instance_t * this_i2c, uint8_t irq_type );
+
+/*-------------------------------------------------------------------------*/ /**
+   The function I2C_suspend_smbus_slave() forces any SMBUS slave devices
+   connected to a CoreI2C channel into power down or suspend mode by asserting
+   the channel's SMBSUS signal. The CoreI2C channel is the SMBus master in this
+   case.
+   ------------------------------------------------------------------------------
+   @param this_i2c:
+     The this_i2c parameter is a pointer to the i2c_instance_t data structure
+     holding all data related to a specific CoreI2C channel. For example, if
+   only one channel is initialized, this data structure holds the information of
+     channel 0 of the instantiated CoreI2C hardware.
+
+   @return
+     none.
+
+   Example:
+   @code
+     #define COREI2C_BASE_ADDR  0xC0000000u
+     #define SLAVE_SER_ADDR     0x10u
+
+     i2c_instance_t g_i2c_inst;
+
+     void main( void )
+     {
+         I2C_init( &g_i2c_inst, COREI2C_BASE_ADDR, SLAVE_SER_ADDR,
+                   I2C_PCLK_DIV_256 );
+
+         // Initialize SMBus feature
+         I2C_smbus_init( &g_i2c_inst );
+
+         // suspend SMBus slaves
+         I2C_suspend_smbus_slave( &g_i2c_inst );
+
+         ...
+
+         // Re-enable SMBus slaves
+         I2C_resume_smbus_slave( &g_i2c_inst );
+     }
+   @endcode
+  */
+void I2C_suspend_smbus_slave( i2c_instance_t * this_i2c );
+
+/*-------------------------------------------------------------------------*/ /**
+   The function I2C_resume_smbus_slave() de-asserts the CoreI2C channel's SMBSUS
+   signal to take any connected slave devices out of suspend mode. The CoreI2C
+   channel is the SMBus master in this case.
+   ------------------------------------------------------------------------------
+   @param this_i2c:
+     The this_i2c parameter is a pointer to the i2c_instance_t data structure
+     holding all data related to a specific CoreI2C channel. For example, if
+   only one channel is initialized, this data structure holds the information of
+     channel 0 of the instantiated CoreI2C hardware.
+
+   @return
+     none.
+
+   Example:
+   @code
+     #define COREI2C_BASE_ADDR  0xC0000000u
+     #define SLAVE_SER_ADDR     0x10u
+
+     i2c_instance_t g_i2c_inst;
+
+     void main( void )
+     {
+         I2C_init( &g_i2c_inst, COREI2C_BASE_ADDR, SLAVE_SER_ADDR,
+                   I2C_PCLK_DIV_256 );
+
+         // Initialize SMBus feature
+         I2C_smbus_init( &g_i2c_inst );
+
+         // suspend SMBus slaves
+         I2C_suspend_smbus_slave( &g_i2c_inst );
+
+         ...
+
+         // Re-enable SMBus slaves
+         I2C_resume_smbus_slave( &g_i2c_inst );
+     }
+   @endcode
+  */
+void I2C_resume_smbus_slave( i2c_instance_t * this_i2c );
+
+/*-------------------------------------------------------------------------*/ /**
+   The I2C_reset_smbus() function resets the CoreI2C channel's SMBus connection
+   by forcing SCLK low for 35mS. The reset is automatically cleared after 35ms
+   have elapsed. The CoreI2C channel is the SMBus master in this case.
+   ------------------------------------------------------------------------------
+   @param this_i2c:
+     The this_i2c parameter is a pointer to the i2c_instance_t data structure
+     holding all data related to a specific CoreI2C channel. For example, if
+   only one channel is initialized, this data structure holds the information of
+     channel 0 of the instantiated CoreI2C hardware.
+
+   @return
+     none.
+
+   Example:
+   @code
+     #define COREI2C_BASE_ADDR  0xC0000000u
+     #define SLAVE_SER_ADDR     0x10u
+
+     i2c_instance_t g_i2c_inst;
+
+     void main( void )
+     {
+         I2C_init( &g_i2c_inst, COREI2C_BASE_ADDR, SLAVE_SER_ADDR,
+                   I2C_PCLK_DIV_256 );
+
+         // Initialize SMBus feature
+         I2C_smbus_init( &g_i2c_inst );
+
+         // Make sure the SMBus channel is in a known state by resetting it
+         I2C_reset_smbus( &g_i2c_inst );
+     }
+   @endcode
+  */
+void I2C_reset_smbus( i2c_instance_t * this_i2c );
+
+/*-------------------------------------------------------------------------*/ /**
+   The I2C_set_smbus_alert() function is used to force master communication with
+   an I2C slave device by asserting the CoreI2C channel’s SMBALERT signal. The
+   CoreI2C channel is the SMBus slave in this case.
+   ------------------------------------------------------------------------------
+   @param this_i2c:
+     The this_i2c parameter is a pointer to the i2c_instance_t data structure
+     holding all data related to a specific CoreI2C channel. For example, if
+   only one channel is initialized, this data structure holds the information of
+     channel 0 of the instantiated CoreI2C hardware.
+
+   @return
+     none.
+
+   Example:
+   @code
+     #define COREI2C_BASE_ADDR  0xC0000000u
+     #define SLAVE_SER_ADDR     0x10u
+
+     i2c_instance_t g_i2c_inst;
+
+     void main( void )
+     {
+         I2C_init( &g_i2c_inst, COREI2C_BASE_ADDR, SLAVE_SER_ADDR,
+                   I2C_PCLK_DIV_256 );
+
+         // Initialize SMBus feature
+         I2C_smbus_init( &g_i2c_inst );
+
+         // Get the SMBus masters attention
+         I2C_set_smbus_alert( &g_i2c_inst );
+
+         ...
+
+         // Once we are happy, drop the alert
+         I2C_clear_smbus_alert( &g_i2c_inst );
+     }
+   @endcode
+  */
+void I2C_set_smbus_alert( i2c_instance_t * this_i2c );
+
+/*-------------------------------------------------------------------------*/ /**
+   The I2C_clear_smbus_alert() function is used de-assert the CoreI2C channel’s
+   SMBALERT signal once a slave device has had a response from the master. The
+   CoreI2C channel is the SMBus slave in this case.
+   ------------------------------------------------------------------------------
+   @param this_i2c:
+     The this_i2c parameter is a pointer to the i2c_instance_t data structure
+     holding all data related to a specific CoreI2C channel. For example, if
+   only one channel is initialized, this data structure holds the information of
+     channel 0 of the instantiated CoreI2C hardware.
+
+   @return
+     none.
+
+   Example:
+   @code
+     #define COREI2C_BASE_ADDR  0xC0000000u
+     #define SLAVE_SER_ADDR     0x10u
+
+     i2c_instance_t g_i2c_inst;
+
+     void main( void )
+     {
+         I2C_init( &g_i2c_inst, COREI2C_BASE_ADDR, SLAVE_SER_ADDR,
+                   I2C_PCLK_DIV_256 );
+
+         // Initialize SMBus feature
+         I2C_smbus_init( &g_i2c_inst );
+
+         // Get the SMBus masters attention
+         I2C_set_smbus_alert( &g_i2c_inst );
+
+         ...
+
+         // Once we are happy, drop the alert
+         I2C_clear_smbus_alert( &g_i2c_inst );
+     }
+   @endcode
+  */
+void I2C_clear_smbus_alert( i2c_instance_t * this_i2c );
+
+/*-------------------------------------------------------------------------*/ /**
+   The I2C_get_irq_status function returns information on which interrupts are
+   currently pending in a CoreI2C channel.
+   The interrupts supported by CoreI2C are:
+     * SMBUSALERT
+     * SMBSUS
+     * INTR
+   The macros I2C_NO_IRQ, I2C_SMBALERT_IRQ, I2C_SMBSUS_IRQ and I2C_INTR_IRQ are
+   provided for use with this function.
+   ------------------------------------------------------------------------------
+   @param this_i2c:
+     The this_i2c parameter is a pointer to the i2c_instance_t data structure
+     holding all data related to a specific CoreI2C channel. For example, if
+   only one channel is initialized, this data structure holds the information of
+     channel 0 of the instantiated CoreI2C hardware.
+
+   @return
+     This function returns the status of the CoreI2C channel’s interrupts as a
+     single byte bitmap where a bit is set to indicate a pending interrupt.
+     The following are the bit positions associated with each interrupt type:
+         Bit 0 - SMBUS_ALERT_IRQ
+         Bit 1 - SMBSUS_IRQ
+         Bit 2 - INTR_IRQ
+     It returns 0, if there are no pending interrupts.
+
+   Example
+   @code
     #define COREI2C_BASE_ADDR  0xC0000000u
     #define SLAVE_SER_ADDR     0x10u
 
@@ -1854,424 +2049,141 @@ void I2C_enable_smbus_irq
 
     void main( void )
     {
-        I2C_init( &g_i2c_inst, COREI2C_BASE_ADDR, SLAVE_SER_ADDR,
-                  I2C_PCLK_DIV_256 );
-        
-        // Initialize SMBus feature
-        I2C_smbus_init( &g_i2c_inst );
-        
-        // Enable both SMBALERT & SMBSUS interrupts
-        I2C_enable_smbus_irq( &g_i2c_inst,
-                              (uint8_t)(I2C_SMBALERT_IRQ | I2C_SMBSUS_IRQ));
-        
-        ...        
+         uint8_t irq_to_enable = I2C_SMBALERT_IRQ | I2C_SMBSUS_IRQ;
+         uint8_t pending_irq = 0u;
 
-        // Disable the SMBALERT interrupt
-        I2C_disable_smbus_irq( &g_i2c_inst, I2C_SMBALERT_IRQ );
+         I2C_init( &g_i2c_inst, COREI2C_BASE_ADDR, SLAVE_SER_ADDR,
+                   I2C_PCLK_DIV_256 );
+
+         // Initialize SMBus feature
+         I2C_smbus_init( &g_i2c_inst );
+
+         // Enable both I2C_SMBALERT_IRQ & I2C_SMBSUS_IRQ irq
+         I2C_enable_smbus_irq( &g_i2c_inst, irq_to_enable );
+
+         // Get I2C IRQ type
+         pending_irq = I2C_get_irq_status( &g_i2c_inst );
+
+         // Let's assume, in system, INTR and SMBALERT IRQ is pending.
+         // So pending_irq will return status of both the IRQs
+
+         if( pending_irq & I2C_SMBALERT_IRQ )
+         {
+            // if true, it means SMBALERT_IRQ is there in pending IRQ list
+         }
+         if( pending_irq & I2C_INTR_IRQ )
+         {
+            // if true, it means I2C_INTR_IRQ is there in pending IRQ list
+         }
     }
-  @endcode
- */
-void I2C_disable_smbus_irq
-(
-    i2c_instance_t * this_i2c,
-    uint8_t  irq_type
-);
+   @endcode
+  */
+uint8_t I2C_get_irq_status( i2c_instance_t * this_i2c );
 
-/*-------------------------------------------------------------------------*//**
-  The function I2C_suspend_smbus_slave() forces any SMBUS slave devices
-  connected to a CoreI2C channel into power down or suspend mode by asserting
-  the channel's SMBSUS signal. The CoreI2C channel is the SMBus master in this
-  case.
-  ------------------------------------------------------------------------------
-  @param this_i2c:
-    The this_i2c parameter is a pointer to the i2c_instance_t data structure
-    holding all data related to a specific CoreI2C channel. For example, if only
-    one channel is initialized, this data structure holds the information of 
-    channel 0 of the instantiated CoreI2C hardware.
+/*-------------------------------------------------------------------------*/ /**
+   The I2C_set_user_data() function is used to allow the association of a block
+   of application specific data with a CoreI2C channel. The composition of the
+   data block is an application matter and the driver simply provides the means
+   for the application to set and retrieve the pointer. This may for example be
+   used to provide additional channel specific information to the slave write
+   handler.
+   ------------------------------------------------------------------------------
+   @param this_i2c:
+     The this_i2c parameter is a pointer to the i2c_instance_t data structure
+     holding all data related to a specific CoreI2C channel. For example, if
+   only one channel is initialized, this data structure holds the information of
+     channel 0 of the instantiated CoreI2C hardware.
 
-  @return
-    none.
-    
-  Example:
-  @code
-    #define COREI2C_BASE_ADDR  0xC0000000u
-    #define SLAVE_SER_ADDR     0x10u
+   @param p_user_data:
+     The p_user_data parameter is a pointer to the user specific data block for
+     this channel. It is defined as void * as the driver does not know the
+   actual type of data being pointed to and simply stores the pointer for later
+     retrieval by the application.
 
-    i2c_instance_t g_i2c_inst;
-    
-    void main( void )
-    {
-        I2C_init( &g_i2c_inst, COREI2C_BASE_ADDR, SLAVE_SER_ADDR, 
-                  I2C_PCLK_DIV_256 );
+   @return
+     none.
 
-        // Initialize SMBus feature
-        I2C_smbus_init( &g_i2c_inst );
+   Example
+   @code
+     #define COREI2C_BASE_ADDR  0xC0000000u
+     #define SLAVE_SER_ADDR     0x10u
 
-        // suspend SMBus slaves
-        I2C_suspend_smbus_slave( &g_i2c_inst );
+     i2c_instance_t g_i2c_inst;
+     app_data_t channel_xdata;
 
-        ...
+     void main( void )
+     {
+         app_data_t *p_xdata;
 
-        // Re-enable SMBus slaves
-        I2C_resume_smbus_slave( &g_i2c_inst );
-    }
-  @endcode
- */
-void I2C_suspend_smbus_slave
-(
-    i2c_instance_t * this_i2c
-);
+         I2C_init( &g_i2c_inst, COREI2C_BASE_ADDR, SLAVE_SER_ADDR,
+                   I2C_PCLK_DIV_256 );
 
-/*-------------------------------------------------------------------------*//**
-  The function I2C_resume_smbus_slave() de-asserts the CoreI2C channel's SMBSUS
-  signal to take any connected slave devices out of suspend mode. The CoreI2C
-  channel is the SMBus master in this case.
-  ------------------------------------------------------------------------------
-  @param this_i2c:
-    The this_i2c parameter is a pointer to the i2c_instance_t data structure
-    holding all data related to a specific CoreI2C channel. For example, if only
-    one channel is initialized, this data structure holds the information of 
-    channel 0 of the instantiated CoreI2C hardware.
+         // Store location of user data in instance structure
+         I2C_set_user_data( &g_i2c_inst, (void *)&channel_xdata );
 
-  @return
-    none.
-    
-  Example:
-  @code
-    #define COREI2C_BASE_ADDR  0xC0000000u
-    #define SLAVE_SER_ADDR     0x10u
+         ...
 
-    i2c_instance_t g_i2c_inst;
-    
-    void main( void )
-    {
-        I2C_init( &g_i2c_inst, COREI2C_BASE_ADDR, SLAVE_SER_ADDR, 
-                  I2C_PCLK_DIV_256 );
+         // Retrieve location of user data and do some work on it
+         p_xdata = (app_data_t *)I2C_get_user_data( &g_i2c_inst );
+         if( NULL != p_xdata )
+         {
+             p_xdata->foo = 123;
+         }
+     }
+   @endcode
+  */
+void I2C_set_user_data( i2c_instance_t * this_i2c, void * p_user_data );
 
-        // Initialize SMBus feature
-        I2C_smbus_init( &g_i2c_inst );
+/*-------------------------------------------------------------------------*/ /**
+   The I2C_get_user_data() function is used to allow the retrieval of the
+   address of a block of application specific data associated with a CoreI2C
+   channel. The composition of the data block is an application matter and the
+   driver simply provides the means for the application to set and retrieve the
+   pointer. This may for example be used to provide additional channel specific
+   information to the slave write handler.
+   ------------------------------------------------------------------------------
+   @param this_i2c:
+     The this_i2c parameter is a pointer to the i2c_instance_t data structure
+     holding all data related to a specific CoreI2C channel. For example, if
+   only one channel is initialized, this data structure holds the information of
+     channel 0 of the instantiated CoreI2C hardware.
 
-        // suspend SMBus slaves
-        I2C_suspend_smbus_slave( &g_i2c_inst );
+   @return
+     This function returns a pointer to the user specific data block for this
+     channel. It is defined as void * as the driver does not know the actual
+   type of data being pointed. If no user data has been registered for this
+   channel a NULL pointer is returned.
 
-        ...
+   Example
+   @code
+     #define COREI2C_BASE_ADDR  0xC0000000u
+     #define SLAVE_SER_ADDR     0x10u
 
-        // Re-enable SMBus slaves
-        I2C_resume_smbus_slave( &g_i2c_inst );
-    }
-  @endcode
- */
-void I2C_resume_smbus_slave
-(
-    i2c_instance_t * this_i2c
-);
+     i2c_instance_t g_i2c_inst;
+     app_data_t channel_xdata;
 
-/*-------------------------------------------------------------------------*//**
-  The I2C_reset_smbus() function resets the CoreI2C channel's SMBus connection
-  by forcing SCLK low for 35mS. The reset is automatically cleared after 35ms
-  have elapsed. The CoreI2C channel is the SMBus master in this case.
-  ------------------------------------------------------------------------------
-  @param this_i2c:
-    The this_i2c parameter is a pointer to the i2c_instance_t data structure
-    holding all data related to a specific CoreI2C channel. For example, if only
-    one channel is initialized, this data structure holds the information of 
-    channel 0 of the instantiated CoreI2C hardware.
+     void main( void )
+     {
+         app_data_t *p_xdata;
 
-  @return
-    none.
+         I2C_init( &g_i2c_inst, COREI2C_BASE_ADDR, SLAVE_SER_ADDR,
+                   I2C_PCLK_DIV_256 );
 
-  Example:
-  @code
-    #define COREI2C_BASE_ADDR  0xC0000000u
-    #define SLAVE_SER_ADDR     0x10u
+         // Store location of user data in instance structure
+         I2C_set_user_data( &g_i2c_inst, (void *)&channel_xdata );
 
-    i2c_instance_t g_i2c_inst;
-    
-    void main( void )
-    {
-        I2C_init( &g_i2c_inst, COREI2C_BASE_ADDR, SLAVE_SER_ADDR, 
-                  I2C_PCLK_DIV_256 );
+         ...
 
-        // Initialize SMBus feature
-        I2C_smbus_init( &g_i2c_inst );
-
-        // Make sure the SMBus channel is in a known state by resetting it
-        I2C_reset_smbus( &g_i2c_inst ); 
-    }
-  @endcode
- */
-void I2C_reset_smbus
-(
-    i2c_instance_t * this_i2c
-);
-
-/*-------------------------------------------------------------------------*//**
-  The I2C_set_smbus_alert() function is used to force master communication with
-  an I2C slave device by asserting the CoreI2C channel’s SMBALERT signal. The
-  CoreI2C channel is the SMBus slave in this case.
-  ------------------------------------------------------------------------------
-  @param this_i2c:
-    The this_i2c parameter is a pointer to the i2c_instance_t data structure
-    holding all data related to a specific CoreI2C channel. For example, if only
-    one channel is initialized, this data structure holds the information of 
-    channel 0 of the instantiated CoreI2C hardware.
-
-  @return
-    none.
-
-  Example:
-  @code
-    #define COREI2C_BASE_ADDR  0xC0000000u
-    #define SLAVE_SER_ADDR     0x10u
-
-    i2c_instance_t g_i2c_inst;
-    
-    void main( void )
-    {
-        I2C_init( &g_i2c_inst, COREI2C_BASE_ADDR, SLAVE_SER_ADDR, 
-                  I2C_PCLK_DIV_256 );
-
-        // Initialize SMBus feature
-        I2C_smbus_init( &g_i2c_inst );
-
-        // Get the SMBus masters attention
-        I2C_set_smbus_alert( &g_i2c_inst );
-
-        ...
-
-        // Once we are happy, drop the alert
-        I2C_clear_smbus_alert( &g_i2c_inst );
-    }
-  @endcode
- */
-void I2C_set_smbus_alert
-(
-    i2c_instance_t * this_i2c
-);
-
-/*-------------------------------------------------------------------------*//**
-  The I2C_clear_smbus_alert() function is used de-assert the CoreI2C channel’s 
-  SMBALERT signal once a slave device has had a response from the master. The
-  CoreI2C channel is the SMBus slave in this case.
-  ------------------------------------------------------------------------------
-  @param this_i2c:
-    The this_i2c parameter is a pointer to the i2c_instance_t data structure
-    holding all data related to a specific CoreI2C channel. For example, if only
-    one channel is initialized, this data structure holds the information of 
-    channel 0 of the instantiated CoreI2C hardware.
-
-  @return
-    none.
-    
-  Example:
-  @code
-    #define COREI2C_BASE_ADDR  0xC0000000u
-    #define SLAVE_SER_ADDR     0x10u
-
-    i2c_instance_t g_i2c_inst;
-    
-    void main( void )
-    {
-        I2C_init( &g_i2c_inst, COREI2C_BASE_ADDR, SLAVE_SER_ADDR, 
-                  I2C_PCLK_DIV_256 );
-
-        // Initialize SMBus feature
-        I2C_smbus_init( &g_i2c_inst );
-
-        // Get the SMBus masters attention
-        I2C_set_smbus_alert( &g_i2c_inst );
-
-        ...
-
-        // Once we are happy, drop the alert
-        I2C_clear_smbus_alert( &g_i2c_inst );
-    }
-  @endcode
- */
-void I2C_clear_smbus_alert
-(
-    i2c_instance_t * this_i2c
-);
-
-/*-------------------------------------------------------------------------*//**
-  The I2C_get_irq_status function returns information on which interrupts are
-  currently pending in a CoreI2C channel.
-  The interrupts supported by CoreI2C are:
-    * SMBUSALERT
-    * SMBSUS
-    * INTR
-  The macros I2C_NO_IRQ, I2C_SMBALERT_IRQ, I2C_SMBSUS_IRQ and I2C_INTR_IRQ are
-  provided for use with this function.
-  ------------------------------------------------------------------------------
-  @param this_i2c:
-    The this_i2c parameter is a pointer to the i2c_instance_t data structure
-    holding all data related to a specific CoreI2C channel. For example, if only
-    one channel is initialized, this data structure holds the information of 
-    channel 0 of the instantiated CoreI2C hardware.
-
-  @return
-    This function returns the status of the CoreI2C channel’s interrupts as a 
-    single byte bitmap where a bit is set to indicate a pending interrupt.
-    The following are the bit positions associated with each interrupt type:
-        Bit 0 - SMBUS_ALERT_IRQ
-        Bit 1 - SMBSUS_IRQ
-        Bit 2 - INTR_IRQ
-    It returns 0, if there are no pending interrupts.
-
-  Example
-  @code
-   #define COREI2C_BASE_ADDR  0xC0000000u
-   #define SLAVE_SER_ADDR     0x10u
-
-   i2c_instance_t g_i2c_inst;
-   
-   void main( void )
-   {
-        uint8_t irq_to_enable = I2C_SMBALERT_IRQ | I2C_SMBSUS_IRQ;
-        uint8_t pending_irq = 0u;
-        
-        I2C_init( &g_i2c_inst, COREI2C_BASE_ADDR, SLAVE_SER_ADDR,
-                  I2C_PCLK_DIV_256 );
-
-        // Initialize SMBus feature
-        I2C_smbus_init( &g_i2c_inst );
-
-        // Enable both I2C_SMBALERT_IRQ & I2C_SMBSUS_IRQ irq
-        I2C_enable_smbus_irq( &g_i2c_inst, irq_to_enable );
-
-        // Get I2C IRQ type
-        pending_irq = I2C_get_irq_status( &g_i2c_inst );
-
-        // Let's assume, in system, INTR and SMBALERT IRQ is pending.
-        // So pending_irq will return status of both the IRQs
-
-        if( pending_irq & I2C_SMBALERT_IRQ )
-        {
-           // if true, it means SMBALERT_IRQ is there in pending IRQ list
-        }
-        if( pending_irq & I2C_INTR_IRQ )
-        {
-           // if true, it means I2C_INTR_IRQ is there in pending IRQ list
-        }
-   }
-  @endcode
- */
-uint8_t I2C_get_irq_status
-(
-    i2c_instance_t * this_i2c
-);
-
-/*-------------------------------------------------------------------------*//**
-  The I2C_set_user_data() function is used to allow the association of a block
-  of application specific data with a CoreI2C channel. The composition of the 
-  data block is an application matter and the driver simply provides the means
-  for the application to set and retrieve the pointer. This may for example be
-  used to provide additional channel specific information to the slave write 
-  handler.
-  ------------------------------------------------------------------------------
-  @param this_i2c:
-    The this_i2c parameter is a pointer to the i2c_instance_t data structure
-    holding all data related to a specific CoreI2C channel. For example, if only
-    one channel is initialized, this data structure holds the information of 
-    channel 0 of the instantiated CoreI2C hardware.
-
-  @param p_user_data:
-    The p_user_data parameter is a pointer to the user specific data block for
-    this channel. It is defined as void * as the driver does not know the actual
-    type of data being pointed to and simply stores the pointer for later
-    retrieval by the application.
-
-  @return
-    none.
-    
-  Example
-  @code
-    #define COREI2C_BASE_ADDR  0xC0000000u
-    #define SLAVE_SER_ADDR     0x10u
-
-    i2c_instance_t g_i2c_inst;
-    app_data_t channel_xdata;
-  
-    void main( void )
-    {
-        app_data_t *p_xdata;
-
-        I2C_init( &g_i2c_inst, COREI2C_BASE_ADDR, SLAVE_SER_ADDR, 
-                  I2C_PCLK_DIV_256 );
-
-        // Store location of user data in instance structure
-        I2C_set_user_data( &g_i2c_inst, (void *)&channel_xdata );
-
-        ...
-
-        // Retrieve location of user data and do some work on it
-        p_xdata = (app_data_t *)I2C_get_user_data( &g_i2c_inst );
-        if( NULL != p_xdata )
-        {
-            p_xdata->foo = 123;
-        }
-    }
-  @endcode
- */
-void I2C_set_user_data
-(
-    i2c_instance_t * this_i2c,
-    void * p_user_data
-);
-
-/*-------------------------------------------------------------------------*//**
-  The I2C_get_user_data() function is used to allow the retrieval of the address
-  of a block of application specific data associated with a CoreI2C channel.
-  The composition of the data block is an application matter and the driver 
-  simply provides the means for the application to set and retrieve the pointer.
-  This may for example be used to provide additional channel specific
-  information to the slave write handler.
-  ------------------------------------------------------------------------------
-  @param this_i2c:
-    The this_i2c parameter is a pointer to the i2c_instance_t data structure
-    holding all data related to a specific CoreI2C channel. For example, if only
-    one channel is initialized, this data structure holds the information of 
-    channel 0 of the instantiated CoreI2C hardware.
-
-  @return
-    This function returns a pointer to the user specific data block for this 
-    channel. It is defined as void * as the driver does not know the actual type
-    of data being pointed. If no user data has been registered for this channel
-    a NULL pointer is returned.
-    
-  Example
-  @code
-    #define COREI2C_BASE_ADDR  0xC0000000u
-    #define SLAVE_SER_ADDR     0x10u
-
-    i2c_instance_t g_i2c_inst;
-    app_data_t channel_xdata;
-  
-    void main( void )
-    {
-        app_data_t *p_xdata;
-
-        I2C_init( &g_i2c_inst, COREI2C_BASE_ADDR, SLAVE_SER_ADDR,
-                  I2C_PCLK_DIV_256 );
-
-        // Store location of user data in instance structure
-        I2C_set_user_data( &g_i2c_inst, (void *)&channel_xdata );
-
-        ...
-        
-        // Retrieve location of user data and do some work on it
-        p_xdata = (app_data_t *)I2C_get_user_data( &g_i2c_inst );
-        if( NULL != p_xdata )
-        {
-            p_xdata->foo = 123;
-        }
-    }
-  @endcode
- */
-void * I2C_get_user_data
-(
-    i2c_instance_t * this_i2c
-);
+         // Retrieve location of user data and do some work on it
+         p_xdata = (app_data_t *)I2C_get_user_data( &g_i2c_inst );
+         if( NULL != p_xdata )
+         {
+             p_xdata->foo = 123;
+         }
+     }
+   @endcode
+  */
+void * I2C_get_user_data( i2c_instance_t * this_i2c );
 
 #ifdef __cplusplus
 }

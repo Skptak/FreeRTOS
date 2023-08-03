@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -26,8 +27,8 @@
 /*! @file list_utest.c */
 
 /* C runtime includes. */
-#include <stdlib.h>
 #include <stdbool.h>
+#include <stdlib.h>
 
 /* List includes */
 #include "FreeRTOS.h"
@@ -38,10 +39,9 @@
 #include "unity.h"
 
 /* ===========================  DEFINES CONSTANTS  ========================== */
-#define MAX_ITEMS    5000 /*!< number of items for a few testcases*/
+#define MAX_ITEMS 5000 /*!< number of items for a few testcases*/
 
 /* ===========================  GLOBAL VARIABLES  =========================== */
-
 
 /* ============================  Unity Fixtures  ============================ */
 /*! called before each testcase */
@@ -72,8 +72,7 @@ int suiteTearDown( int numFailures )
  * @param listItems list to initialize
  * @param count the number of listItems in the list
  */
-static void initialise_list_items( ListItem_t * listItems,
-                                   int count )
+static void initialise_list_items( ListItem_t * listItems, int count )
 {
     for( int i = 0; i < count; i++ )
     {
@@ -266,8 +265,10 @@ void test_vListInsertEnd_success_multiple_items( void )
     /* Validate all elements except first and last */
     for( int i = 1; i < MAX_ITEMS - 1; i++ )
     {
-        TEST_ASSERT_EQUAL_PTR( pxNewListItem[ i ].pxNext, &pxNewListItem[ i + 1 ] );
-        TEST_ASSERT_EQUAL_PTR( pxNewListItem[ i ].pxPrevious, &pxNewListItem[ i - 1 ] );
+        TEST_ASSERT_EQUAL_PTR( pxNewListItem[ i ].pxNext,
+                               &pxNewListItem[ i + 1 ] );
+        TEST_ASSERT_EQUAL_PTR( pxNewListItem[ i ].pxPrevious,
+                               &pxNewListItem[ i - 1 ] );
         TEST_ASSERT_EQUAL_PTR( pxNewListItem[ i ].pxContainer, &pxList );
     }
 
@@ -278,12 +279,15 @@ void test_vListInsertEnd_success_multiple_items( void )
 
     /* Validate last element */
     TEST_ASSERT_EQUAL_PTR( pxNewListItem[ MAX_ITEMS - 1 ].pxNext, miniListEnd );
-    TEST_ASSERT_EQUAL_PTR( pxNewListItem[ MAX_ITEMS - 1 ].pxPrevious, &pxNewListItem[ MAX_ITEMS - 2 ] );
-    TEST_ASSERT_EQUAL_PTR( pxNewListItem[ MAX_ITEMS - 1 ].pxContainer, &pxList );
+    TEST_ASSERT_EQUAL_PTR( pxNewListItem[ MAX_ITEMS - 1 ].pxPrevious,
+                           &pxNewListItem[ MAX_ITEMS - 2 ] );
+    TEST_ASSERT_EQUAL_PTR( pxNewListItem[ MAX_ITEMS - 1 ].pxContainer,
+                           &pxList );
 
     /* Validate end marker */
     TEST_ASSERT_EQUAL_PTR( miniListEnd->pxNext, &pxNewListItem[ 0 ] );
-    TEST_ASSERT_EQUAL_PTR( miniListEnd->pxPrevious, &pxNewListItem[ MAX_ITEMS - 1 ] );
+    TEST_ASSERT_EQUAL_PTR( miniListEnd->pxPrevious,
+                           &pxNewListItem[ MAX_ITEMS - 1 ] );
     TEST_ASSERT_EQUAL_PTR( miniListEnd->xItemValue, portMAX_DELAY );
 }
 
@@ -374,7 +378,6 @@ void test_vListInsert_success_3_items( void )
     vListInsert( &pxList, &pxNewListItem[ 1 ] );
     vListInsert( &pxList, &pxNewListItem[ 2 ] );
 
-
     TEST_ASSERT_EQUAL_PTR( pxNewListItem[ 0 ].pxNext, &pxNewListItem[ 1 ] );
     TEST_ASSERT_EQUAL_PTR( pxNewListItem[ 0 ].pxPrevious, miniListEnd );
     TEST_ASSERT_EQUAL_PTR( pxNewListItem[ 0 ].pxContainer, &pxList );
@@ -418,8 +421,10 @@ void test_vListInsert_success_multiple_items( void )
     /* Validate all elements except first and last */
     for( int i = 1; i < MAX_ITEMS - 1; i++ )
     {
-        TEST_ASSERT_EQUAL_PTR( pxNewListItem[ i ].pxNext, &pxNewListItem[ i + 1 ] );
-        TEST_ASSERT_EQUAL_PTR( pxNewListItem[ i ].pxPrevious, &pxNewListItem[ i - 1 ] );
+        TEST_ASSERT_EQUAL_PTR( pxNewListItem[ i ].pxNext,
+                               &pxNewListItem[ i + 1 ] );
+        TEST_ASSERT_EQUAL_PTR( pxNewListItem[ i ].pxPrevious,
+                               &pxNewListItem[ i - 1 ] );
         TEST_ASSERT_EQUAL_PTR( pxNewListItem[ i ].pxContainer, &pxList );
     }
 
@@ -432,11 +437,13 @@ void test_vListInsert_success_multiple_items( void )
     TEST_ASSERT_EQUAL_PTR( pxNewListItem[ MAX_ITEMS - 1 ].pxNext, miniListEnd );
     TEST_ASSERT_EQUAL_PTR( pxNewListItem[ MAX_ITEMS - 1 ].pxPrevious,
                            &pxNewListItem[ MAX_ITEMS - 2 ] );
-    TEST_ASSERT_EQUAL_PTR( pxNewListItem[ MAX_ITEMS - 1 ].pxContainer, &pxList );
+    TEST_ASSERT_EQUAL_PTR( pxNewListItem[ MAX_ITEMS - 1 ].pxContainer,
+                           &pxList );
 
     /* Validate end marker */
     TEST_ASSERT_EQUAL_PTR( miniListEnd->pxNext, &pxNewListItem[ 0 ] );
-    TEST_ASSERT_EQUAL_PTR( miniListEnd->pxPrevious, &pxNewListItem[ MAX_ITEMS - 1 ] );
+    TEST_ASSERT_EQUAL_PTR( miniListEnd->pxPrevious,
+                           &pxNewListItem[ MAX_ITEMS - 1 ] );
     TEST_ASSERT_EQUAL_PTR( miniListEnd->xItemValue, portMAX_DELAY );
 }
 
@@ -689,7 +696,8 @@ void test_macros_list_SET_GET_LIST_ITEM_OWNER( void )
 
 /*!
  * @brief test macro  listGET_OWNER_OF_NEXT_ENTRY
- * @details This test ensures  that the macro is circling correctly through the list
+ * @details This test ensures  that the macro is circling correctly through the
+ * list
  */
 void test_macro_listGET_OWNER_OF_NEXT_ENTRY( void )
 {
@@ -898,7 +906,6 @@ void test_macro_listIS_CONTAINED_WITHIN( void )
     vListInitialise( &pxList );
     initialise_list_items( pxNewListItem, 2 );
 
-
     vListInsertEnd( &pxList, &pxNewListItem[ 0 ] );
     is_contained = listIS_CONTAINED_WITHIN( &pxList, &pxNewListItem[ 1 ] );
     TEST_ASSERT_FALSE( is_contained );
@@ -926,7 +933,6 @@ void test_macro_listLIST_ITEM_CONTAINER( void )
 
     vListInitialise( &pxList );
     initialise_list_items( pxNewListItem, 2 );
-
 
     vListInsertEnd( &pxList, &pxNewListItem[ 0 ] );
     vListInsertEnd( &pxList, &pxNewListItem[ 1 ] );

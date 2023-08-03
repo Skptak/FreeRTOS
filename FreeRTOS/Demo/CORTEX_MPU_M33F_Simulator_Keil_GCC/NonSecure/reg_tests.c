@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -29,10 +30,9 @@
 #include "task.h"
 
 /* Reg test includes. */
-#include "reg_tests.h"
 #include "reg_test_asm.h"
+#include "reg_tests.h"
 #include "secure_reg_test_asm.h"
-
 
 /*
  * Functions that implement reg test tasks.
@@ -53,13 +53,13 @@ static void prvCheckTask( void * pvParameters );
 /*
  * Priority of the check task.
  */
-#define CHECK_TASK_PRIORITY                 ( configMAX_PRIORITIES - 1 )
+#define CHECK_TASK_PRIORITY                         ( configMAX_PRIORITIES - 1 )
 
 /*
  * Frequency of check task.
  */
-#define NO_ERROR_CHECK_TASK_PERIOD          ( pdMS_TO_TICKS( 5000UL ) )
-#define ERROR_CHECK_TASK_PERIOD             ( pdMS_TO_TICKS( 200UL ) )
+#define NO_ERROR_CHECK_TASK_PERIOD                  ( pdMS_TO_TICKS( 5000UL ) )
+#define ERROR_CHECK_TASK_PERIOD                     ( pdMS_TO_TICKS( 200UL ) )
 
 /*
  * Parameters passed to reg test tasks.
@@ -92,113 +92,86 @@ volatile unsigned long ulCheckTaskLoops = 0UL;
 
 void vStartRegTests( void )
 {
-static StackType_t xRegTest1TaskStack[ configMINIMAL_STACK_SIZE ] __attribute__( ( aligned( 32 ) ) );
-static StackType_t xRegTest2TaskStack[ configMINIMAL_STACK_SIZE ] __attribute__( ( aligned( 32 ) ) );
-static StackType_t xRegTest3TaskStack[ configMINIMAL_STACK_SIZE ] __attribute__( ( aligned( 32 ) ) );
-static StackType_t xRegTest4TaskStack[ configMINIMAL_STACK_SIZE ] __attribute__( ( aligned( 32 ) ) );
-static StackType_t xRegTestSecureTaskStack[ configMINIMAL_STACK_SIZE ] __attribute__( ( aligned( 32 ) ) );
-static StackType_t xRegTestNonSecureCallbackTaskStack[ configMINIMAL_STACK_SIZE ] __attribute__( ( aligned( 32 ) ) );
-static StackType_t xCheckTaskStack[ configMINIMAL_STACK_SIZE ] __attribute__( ( aligned( 32 ) ) );
+    static StackType_t xRegTest1TaskStack[ configMINIMAL_STACK_SIZE ]
+        __attribute__( ( aligned( 32 ) ) );
+    static StackType_t xRegTest2TaskStack[ configMINIMAL_STACK_SIZE ]
+        __attribute__( ( aligned( 32 ) ) );
+    static StackType_t xRegTest3TaskStack[ configMINIMAL_STACK_SIZE ]
+        __attribute__( ( aligned( 32 ) ) );
+    static StackType_t xRegTest4TaskStack[ configMINIMAL_STACK_SIZE ]
+        __attribute__( ( aligned( 32 ) ) );
+    static StackType_t xRegTestSecureTaskStack[ configMINIMAL_STACK_SIZE ]
+        __attribute__( ( aligned( 32 ) ) );
+    static StackType_t
+        xRegTestNonSecureCallbackTaskStack[ configMINIMAL_STACK_SIZE ]
+        __attribute__( ( aligned( 32 ) ) );
+    static StackType_t xCheckTaskStack[ configMINIMAL_STACK_SIZE ]
+        __attribute__( ( aligned( 32 ) ) );
 
-TaskParameters_t xRegTest1TaskParameters =
-{
-    .pvTaskCode      = prvRegTest1_Task,
-    .pcName          = "RegTest1",
-    .usStackDepth    = configMINIMAL_STACK_SIZE,
-    .pvParameters    = REG_TEST_1_TASK_PARAMETER,
-    .uxPriority      = tskIDLE_PRIORITY | portPRIVILEGE_BIT,
-    .puxStackBuffer  = xRegTest1TaskStack,
-    .xRegions        =  {
-                            { 0, 0, 0 },
-                            { 0, 0, 0 },
-                            { 0, 0, 0 }
-                        }
-};
-TaskParameters_t xRegTest2TaskParameters =
-{
-    .pvTaskCode      = prvRegTest2_Task,
-    .pcName          = "RegTest2",
-    .usStackDepth    = configMINIMAL_STACK_SIZE,
-    .pvParameters    = REG_TEST_2_TASK_PARAMETER,
-    .uxPriority      = tskIDLE_PRIORITY | portPRIVILEGE_BIT,
-    .puxStackBuffer  = xRegTest2TaskStack,
-    .xRegions        =  {
-                            { 0, 0, 0 },
-                            { 0, 0, 0 },
-                            { 0, 0, 0 }
-                        }
-};
-TaskParameters_t xRegTest3TaskParameters =
-{
-    .pvTaskCode      = prvRegTest3_Task,
-    .pcName          = "RegTest3",
-    .usStackDepth    = configMINIMAL_STACK_SIZE,
-    .pvParameters    = REG_TEST_3_TASK_PARAMETER,
-    .uxPriority      = tskIDLE_PRIORITY | portPRIVILEGE_BIT,
-    .puxStackBuffer  = xRegTest3TaskStack,
-    .xRegions        =  {
-                            { 0, 0, 0 },
-                            { 0, 0, 0 },
-                            { 0, 0, 0 }
-                        }
-};
-TaskParameters_t xRegTest4TaskParameters =
-{
-    .pvTaskCode      = prvRegTest4_Task,
-    .pcName          = "RegTest4",
-    .usStackDepth    = configMINIMAL_STACK_SIZE,
-    .pvParameters    = REG_TEST_4_TASK_PARAMETER,
-    .uxPriority      = tskIDLE_PRIORITY | portPRIVILEGE_BIT,
-    .puxStackBuffer  = xRegTest4TaskStack,
-    .xRegions        =  {
-                            { 0, 0, 0 },
-                            { 0, 0, 0 },
-                            { 0, 0, 0 }
-                        }
-};
-TaskParameters_t xRegTestSecureTaskParameters =
-{
-    .pvTaskCode      = prvRegTest_Secure_Task,
-    .pcName          = "RegTestSecure",
-    .usStackDepth    = configMINIMAL_STACK_SIZE,
-    .pvParameters    = REG_TEST_SECURE_TASK_PARAMETER,
-    .uxPriority      = tskIDLE_PRIORITY | portPRIVILEGE_BIT,
-    .puxStackBuffer  = xRegTestSecureTaskStack,
-    .xRegions        =  {
-                            { 0, 0, 0 },
-                            { 0, 0, 0 },
-                            { 0, 0, 0 }
-                        }
-};
-TaskParameters_t xRegTestNonSecureCallbackTaskParameters =
-{
-    .pvTaskCode      = prvRegTest_NonSecureCallback_Task,
-    .pcName          = "RegTestNonSecureCallback",
-    .usStackDepth    = configMINIMAL_STACK_SIZE,
-    .pvParameters    = REG_TEST_NON_SECURE_CALLBACK_TASK_PARAMETER,
-    .uxPriority      = tskIDLE_PRIORITY | portPRIVILEGE_BIT,
-    .puxStackBuffer  = xRegTestNonSecureCallbackTaskStack,
-    .xRegions        =  {
-                            { 0, 0, 0 },
-                            { 0, 0, 0 },
-                            { 0, 0, 0 }
-                        }
-};
+    TaskParameters_t xRegTest1TaskParameters = {
+        .pvTaskCode = prvRegTest1_Task,
+        .pcName = "RegTest1",
+        .usStackDepth = configMINIMAL_STACK_SIZE,
+        .pvParameters = REG_TEST_1_TASK_PARAMETER,
+        .uxPriority = tskIDLE_PRIORITY | portPRIVILEGE_BIT,
+        .puxStackBuffer = xRegTest1TaskStack,
+        .xRegions = { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } }
+    };
+    TaskParameters_t xRegTest2TaskParameters = {
+        .pvTaskCode = prvRegTest2_Task,
+        .pcName = "RegTest2",
+        .usStackDepth = configMINIMAL_STACK_SIZE,
+        .pvParameters = REG_TEST_2_TASK_PARAMETER,
+        .uxPriority = tskIDLE_PRIORITY | portPRIVILEGE_BIT,
+        .puxStackBuffer = xRegTest2TaskStack,
+        .xRegions = { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } }
+    };
+    TaskParameters_t xRegTest3TaskParameters = {
+        .pvTaskCode = prvRegTest3_Task,
+        .pcName = "RegTest3",
+        .usStackDepth = configMINIMAL_STACK_SIZE,
+        .pvParameters = REG_TEST_3_TASK_PARAMETER,
+        .uxPriority = tskIDLE_PRIORITY | portPRIVILEGE_BIT,
+        .puxStackBuffer = xRegTest3TaskStack,
+        .xRegions = { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } }
+    };
+    TaskParameters_t xRegTest4TaskParameters = {
+        .pvTaskCode = prvRegTest4_Task,
+        .pcName = "RegTest4",
+        .usStackDepth = configMINIMAL_STACK_SIZE,
+        .pvParameters = REG_TEST_4_TASK_PARAMETER,
+        .uxPriority = tskIDLE_PRIORITY | portPRIVILEGE_BIT,
+        .puxStackBuffer = xRegTest4TaskStack,
+        .xRegions = { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } }
+    };
+    TaskParameters_t xRegTestSecureTaskParameters = {
+        .pvTaskCode = prvRegTest_Secure_Task,
+        .pcName = "RegTestSecure",
+        .usStackDepth = configMINIMAL_STACK_SIZE,
+        .pvParameters = REG_TEST_SECURE_TASK_PARAMETER,
+        .uxPriority = tskIDLE_PRIORITY | portPRIVILEGE_BIT,
+        .puxStackBuffer = xRegTestSecureTaskStack,
+        .xRegions = { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } }
+    };
+    TaskParameters_t xRegTestNonSecureCallbackTaskParameters = {
+        .pvTaskCode = prvRegTest_NonSecureCallback_Task,
+        .pcName = "RegTestNonSecureCallback",
+        .usStackDepth = configMINIMAL_STACK_SIZE,
+        .pvParameters = REG_TEST_NON_SECURE_CALLBACK_TASK_PARAMETER,
+        .uxPriority = tskIDLE_PRIORITY | portPRIVILEGE_BIT,
+        .puxStackBuffer = xRegTestNonSecureCallbackTaskStack,
+        .xRegions = { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } }
+    };
 
-TaskParameters_t xCheckTaskParameters =
-{
-    .pvTaskCode      = prvCheckTask,
-    .pcName          = "Check",
-    .usStackDepth    = configMINIMAL_STACK_SIZE,
-    .pvParameters    = NULL,
-    .uxPriority      = ( CHECK_TASK_PRIORITY | portPRIVILEGE_BIT ),
-    .puxStackBuffer  = xCheckTaskStack,
-    .xRegions        =  {
-                            { 0, 0, 0 },
-                            { 0, 0, 0 },
-                            { 0, 0, 0 }
-                        }
-};
+    TaskParameters_t xCheckTaskParameters = {
+        .pvTaskCode = prvCheckTask,
+        .pcName = "Check",
+        .usStackDepth = configMINIMAL_STACK_SIZE,
+        .pvParameters = NULL,
+        .uxPriority = ( CHECK_TASK_PRIORITY | portPRIVILEGE_BIT ),
+        .puxStackBuffer = xCheckTaskStack,
+        .xRegions = { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } }
+    };
 
     xTaskCreateRestricted( &( xRegTest1TaskParameters ), NULL );
     xTaskCreateRestricted( &( xRegTest2TaskParameters ), NULL );
@@ -353,12 +326,13 @@ static void prvRegTest_NonSecureCallback_Task( void * pvParameters )
 
 static void prvCheckTask( void * pvParameters )
 {
-TickType_t xDelayPeriod = NO_ERROR_CHECK_TASK_PERIOD;
-TickType_t xLastExecutionTime;
-unsigned long ulErrorFound = pdFALSE;
-static unsigned long ulLastRegTest1Value = 0, ulLastRegTest2Value = 0;
-static unsigned long ulLastRegTest3Value = 0, ulLastRegTest4Value = 0;
-static unsigned long ulLastRegTestSecureValue = 0, ulLastRegTestNonSecureCallbackValue = 0;
+    TickType_t xDelayPeriod = NO_ERROR_CHECK_TASK_PERIOD;
+    TickType_t xLastExecutionTime;
+    unsigned long ulErrorFound = pdFALSE;
+    static unsigned long ulLastRegTest1Value = 0, ulLastRegTest2Value = 0;
+    static unsigned long ulLastRegTest3Value = 0, ulLastRegTest4Value = 0;
+    static unsigned long ulLastRegTestSecureValue = 0,
+                         ulLastRegTestNonSecureCallbackValue = 0;
 
     /* Just to stop compiler warnings. */
     ( void ) pvParameters;
@@ -415,7 +389,8 @@ static unsigned long ulLastRegTestSecureValue = 0, ulLastRegTestNonSecureCallbac
 
         /* Check that the register test non-secure callback task is
          * still running. */
-        if( ulLastRegTestNonSecureCallbackValue == ulRegTestNonSecureCallbackLoopCounter )
+        if( ulLastRegTestNonSecureCallbackValue ==
+            ulRegTestNonSecureCallbackLoopCounter )
         {
             ulErrorFound |= 1UL << 5UL;
         }
@@ -423,11 +398,9 @@ static unsigned long ulLastRegTestSecureValue = 0, ulLastRegTestNonSecureCallbac
 
         if( ulErrorFound != pdFALSE )
         {
-
             /* Increment error detection count. */
             ulCheckTaskLoops++;
         }
-
     }
 }
 /*-----------------------------------------------------------*/

@@ -24,28 +24,26 @@
 #ifndef _CSI_REG_H_
 #define _CSI_REG_H_
 
-#include<csi_gcc.h>
+#include <csi_gcc.h>
 
 /**
   \brief   Enable IRQ Interrupts
   \details Enables IRQ interrupts by setting the IE-bit in the PSR.
            Can only be executed in Privileged modes.
  */
-__ALWAYS_INLINE void __enable_irq(void)
+__ALWAYS_INLINE void __enable_irq( void )
 {
-    __ASM volatile("psrset ie");
+    __ASM volatile( "psrset ie" );
 }
-
-
 
 /**
   \brief   Disable IRQ Interrupts
   \details Disables IRQ interrupts by clearing the IE-bit in the PSR.
   Can only be executed in Privileged modes.
  */
-__ALWAYS_INLINE void __disable_irq(void)
+__ALWAYS_INLINE void __disable_irq( void )
 {
-    __ASM volatile("psrclr ie");
+    __ASM volatile( "psrclr ie" );
 }
 
 /**
@@ -53,12 +51,12 @@ __ALWAYS_INLINE void __disable_irq(void)
   \details Returns the content of the PSR Register.
   \return               PSR Register value
  */
-__ALWAYS_INLINE uint32_t __get_PSR(void)
+__ALWAYS_INLINE uint32_t __get_PSR( void )
 {
     uint32_t result;
 
-    __ASM volatile("mfcr %0, psr" : "=r"(result));
-    return (result);
+    __ASM volatile( "mfcr %0, psr" : "=r"( result ) );
+    return ( result );
 }
 
 /**
@@ -66,9 +64,9 @@ __ALWAYS_INLINE uint32_t __get_PSR(void)
   \details Writes the given value to the PSR Register.
   \param [in]    psr  PSR Register value to set
  */
-__ALWAYS_INLINE void __set_PSR(uint32_t psr)
+__ALWAYS_INLINE void __set_PSR( uint32_t psr )
 {
-    __ASM volatile("mtcr %0, psr" : : "r"(psr));
+    __ASM volatile( "mtcr %0, psr" : : "r"( psr ) );
 }
 
 /**
@@ -76,12 +74,12 @@ __ALWAYS_INLINE void __set_PSR(uint32_t psr)
   \details Returns the content of the SP Register.
   \return               SP Register value
  */
-__ALWAYS_INLINE uint32_t __get_SP(void)
+__ALWAYS_INLINE uint32_t __get_SP( void )
 {
     uint32_t result;
 
-    __ASM volatile("mov %0, sp" : "=r"(result));
-    return (result);
+    __ASM volatile( "mov %0, sp" : "=r"( result ) );
+    return ( result );
 }
 
 /**
@@ -89,23 +87,22 @@ __ALWAYS_INLINE uint32_t __get_SP(void)
   \details Writes the given value to the SP Register.
   \param [in]    sp  SP Register value to set
  */
-__ALWAYS_INLINE void __set_SP(uint32_t sp)
+__ALWAYS_INLINE void __set_SP( uint32_t sp )
 {
-    __ASM volatile("mov sp, %0" : : "r"(sp): "sp");
+    __ASM volatile( "mov sp, %0" : : "r"( sp ) : "sp" );
 }
-
 
 /**
   \brief   Get VBR Register
   \details Returns the content of the VBR Register.
   \return               VBR Register value
  */
-__ALWAYS_INLINE uint32_t __get_VBR(void)
+__ALWAYS_INLINE uint32_t __get_VBR( void )
 {
     uint32_t result;
 
-    __ASM volatile("mfcr %0, vbr" : "=r"(result));
-    return (result);
+    __ASM volatile( "mfcr %0, vbr" : "=r"( result ) );
+    return ( result );
 }
 
 /**
@@ -113,9 +110,9 @@ __ALWAYS_INLINE uint32_t __get_VBR(void)
   \details Writes the given value to the VBR Register.
   \param [in]    vbr  VBR Register value to set
  */
-__ALWAYS_INLINE void __set_VBR(uint32_t vbr)
+__ALWAYS_INLINE void __set_VBR( uint32_t vbr )
 {
-    __ASM volatile("mtcr %0, vbr" : : "r"(vbr));
+    __ASM volatile( "mtcr %0, vbr" : : "r"( vbr ) );
 }
 
 /**
@@ -123,12 +120,12 @@ __ALWAYS_INLINE void __set_VBR(uint32_t vbr)
   \details Returns the content of the EPC Register.
   \return               EPC Register value
  */
-__ALWAYS_INLINE uint32_t __get_EPC(void)
+__ALWAYS_INLINE uint32_t __get_EPC( void )
 {
     uint32_t result;
 
-    __ASM volatile("mfcr %0, epc" : "=r"(result));
-    return (result);
+    __ASM volatile( "mfcr %0, epc" : "=r"( result ) );
+    return ( result );
 }
 
 /**
@@ -136,9 +133,9 @@ __ALWAYS_INLINE uint32_t __get_EPC(void)
   \details Writes the given value to the EPC Register.
   \param [in]    epc  EPC Register value to set
  */
-__ALWAYS_INLINE void __set_EPC(uint32_t epc)
+__ALWAYS_INLINE void __set_EPC( uint32_t epc )
 {
-    __ASM volatile("mtcr %0, epc" : : "r"(epc));
+    __ASM volatile( "mtcr %0, epc" : : "r"( epc ) );
 }
 
 /**
@@ -146,12 +143,12 @@ __ALWAYS_INLINE void __set_EPC(uint32_t epc)
   \details Returns the content of the EPSR Register.
   \return               EPSR Register value
  */
-__ALWAYS_INLINE uint32_t __get_EPSR(void)
+__ALWAYS_INLINE uint32_t __get_EPSR( void )
 {
     uint32_t result;
 
-    __ASM volatile("mfcr %0, epsr" : "=r"(result));
-    return (result);
+    __ASM volatile( "mfcr %0, epsr" : "=r"( result ) );
+    return ( result );
 }
 
 /**
@@ -159,9 +156,9 @@ __ALWAYS_INLINE uint32_t __get_EPSR(void)
   \details Writes the given value to the EPSR Register.
   \param [in]    epsr  EPSR Register value to set
  */
-__ALWAYS_INLINE void __set_EPSR(uint32_t epsr)
+__ALWAYS_INLINE void __set_EPSR( uint32_t epsr )
 {
-    __ASM volatile("mtcr %0, epsr" : : "r"(epsr));
+    __ASM volatile( "mtcr %0, epsr" : : "r"( epsr ) );
 }
 
 /**
@@ -169,79 +166,77 @@ __ALWAYS_INLINE void __set_EPSR(uint32_t epsr)
   \details Returns the content of the CPUID Register.
   \return               CPUID Register value
  */
-__ALWAYS_INLINE uint32_t __get_CPUID(void)
+__ALWAYS_INLINE uint32_t __get_CPUID( void )
 {
     uint32_t result;
 
 #ifdef __CK610
-    __ASM volatile("mfcr %0, cr13" : "=r"(result));
+    __ASM volatile( "mfcr %0, cr13" : "=r"( result ) );
 #else
-    __ASM volatile("mfcr %0, cr<13, 0>" : "=r"(result));
+    __ASM volatile( "mfcr %0, cr<13, 0>" : "=r"( result ) );
 #endif
-    return (result);
+    return ( result );
 }
 
-#if (__SOFTRESET_PRESENT == 1U)
+#if( __SOFTRESET_PRESENT == 1U )
 /**
   \brief   Set SRCR
   \details Assigns the given value to the SRCR.
   \param [in]    srcr  SRCR value to set
  */
-__ALWAYS_INLINE void __set_SRCR(uint32_t srcr)
+__ALWAYS_INLINE void __set_SRCR( uint32_t srcr )
 {
-    __ASM volatile("mtcr %0, cr<31, 0>\n" : : "r"(srcr));
+    __ASM volatile( "mtcr %0, cr<31, 0>\n" : : "r"( srcr ) );
 }
 #endif /* __SOFTRESET_PRESENT == 1U */
 
-#if (__MGU_PRESENT == 1U)
+#if( __MGU_PRESENT == 1U )
 /**
   \brief   Get CCR
   \details Returns the current value of the CCR.
   \return               CCR Register value
  */
-__ALWAYS_INLINE uint32_t __get_CCR(void)
+__ALWAYS_INLINE uint32_t __get_CCR( void )
 {
     register uint32_t result;
 
-#ifdef __CK610
-    __ASM volatile("mfcr %0, cr18\n"  : "=r"(result));
-#else
-    __ASM volatile("mfcr %0, cr<18, 0>\n"  : "=r"(result));
-#endif
-    return (result);
+    #ifdef __CK610
+    __ASM volatile( "mfcr %0, cr18\n" : "=r"( result ) );
+    #else
+    __ASM volatile( "mfcr %0, cr<18, 0>\n" : "=r"( result ) );
+    #endif
+    return ( result );
 }
-
 
 /**
   \brief   Set CCR
   \details Assigns the given value to the CCR.
   \param [in]    ccr  CCR value to set
  */
-__ALWAYS_INLINE void __set_CCR(uint32_t ccr)
+__ALWAYS_INLINE void __set_CCR( uint32_t ccr )
 {
-#ifdef __CK610
-    __ASM volatile("mtcr %0, cr18\n" : : "r"(ccr));
-#else
-    __ASM volatile("mtcr %0, cr<18, 0>\n" : : "r"(ccr));
-#endif
+    #ifdef __CK610
+    __ASM volatile( "mtcr %0, cr18\n" : : "r"( ccr ) );
+    #else
+    __ASM volatile( "mtcr %0, cr<18, 0>\n" : : "r"( ccr ) );
+    #endif
 }
-
 
 /**
   \brief   Get CAPR
   \details Returns the current value of the CAPR.
   \return               CAPR Register value
  */
-__ALWAYS_INLINE uint32_t __get_CAPR(void)
+__ALWAYS_INLINE uint32_t __get_CAPR( void )
 {
     register uint32_t result;
 
-#ifdef __CK610
-    __ASM volatile("mfcr %0, cr19\n" : "=r"(result));
-#else
-    __ASM volatile("mfcr %0, cr<19, 0>\n" : "=r"(result));
-#endif
-    return (result);
+    #ifdef __CK610
+    __ASM volatile( "mfcr %0, cr19\n" : "=r"( result ) );
+    #else
+    __ASM volatile( "mfcr %0, cr<19, 0>\n" : "=r"( result ) );
+    #endif
+    return ( result );
 }
 
 /**
@@ -249,15 +244,14 @@ __ALWAYS_INLINE uint32_t __get_CAPR(void)
   \details Assigns the given value to the CAPR.
   \param [in]    capr  CAPR value to set
  */
-__ALWAYS_INLINE void __set_CAPR(uint32_t capr)
+__ALWAYS_INLINE void __set_CAPR( uint32_t capr )
 {
-#ifdef __CK610
-    __ASM volatile("mtcr %0, cr19\n" : : "r"(capr));
-#else
-    __ASM volatile("mtcr %0, cr<19, 0>\n" : : "r"(capr));
-#endif
+    #ifdef __CK610
+    __ASM volatile( "mtcr %0, cr19\n" : : "r"( capr ) );
+    #else
+    __ASM volatile( "mtcr %0, cr<19, 0>\n" : : "r"( capr ) );
+    #endif
 }
-
 
 /**
   \brief   Set PACR
@@ -265,31 +259,30 @@ __ALWAYS_INLINE void __set_CAPR(uint32_t capr)
 
     \param [in]    pacr  PACR value to set
  */
-__ALWAYS_INLINE void __set_PACR(uint32_t pacr)
+__ALWAYS_INLINE void __set_PACR( uint32_t pacr )
 {
-#ifdef __CK610
-    __ASM volatile("mtcr %0, cr20\n" : : "r"(pacr));
-#else
-    __ASM volatile("mtcr %0, cr<20, 0>\n" : : "r"(pacr));
-#endif
+    #ifdef __CK610
+    __ASM volatile( "mtcr %0, cr20\n" : : "r"( pacr ) );
+    #else
+    __ASM volatile( "mtcr %0, cr<20, 0>\n" : : "r"( pacr ) );
+    #endif
 }
-
 
 /**
   \brief   Get PACR
   \details Returns the current value of PACR.
   \return               PACR value
  */
-__ALWAYS_INLINE uint32_t __get_PACR(void)
+__ALWAYS_INLINE uint32_t __get_PACR( void )
 {
     uint32_t result;
 
-#ifdef __CK610
-    __ASM volatile("mfcr %0, cr20" : "=r"(result));
-#else
-    __ASM volatile("mfcr %0, cr<20, 0>" : "=r"(result));
-#endif
-    return (result);
+    #ifdef __CK610
+    __ASM volatile( "mfcr %0, cr20" : "=r"( result ) );
+    #else
+    __ASM volatile( "mfcr %0, cr<20, 0>" : "=r"( result ) );
+    #endif
+    return ( result );
 }
 
 /**
@@ -298,13 +291,13 @@ __ALWAYS_INLINE uint32_t __get_PACR(void)
 
     \param [in]    prsr  PRSR value to set
  */
-__ALWAYS_INLINE void __set_PRSR(uint32_t prsr)
+__ALWAYS_INLINE void __set_PRSR( uint32_t prsr )
 {
-#ifdef __CK610
-    __ASM volatile("mtcr %0, cr21\n" : : "r"(prsr));
-#else
-    __ASM volatile("mtcr %0, cr<21, 0>\n" : : "r"(prsr));
-#endif
+    #ifdef __CK610
+    __ASM volatile( "mtcr %0, cr21\n" : : "r"( prsr ) );
+    #else
+    __ASM volatile( "mtcr %0, cr<21, 0>\n" : : "r"( prsr ) );
+    #endif
 }
 
 /**
@@ -312,16 +305,16 @@ __ALWAYS_INLINE void __set_PRSR(uint32_t prsr)
   \details Returns the current value of PRSR.
   \return               PRSR value
  */
-__ALWAYS_INLINE uint32_t __get_PRSR(void)
+__ALWAYS_INLINE uint32_t __get_PRSR( void )
 {
     uint32_t result;
 
-#ifdef __CK610
-    __ASM volatile("mfcr %0, cr21" : "=r"(result));
-#else
-    __ASM volatile("mfcr %0, cr<21, 0>" : "=r"(result));
-#endif
-    return (result);
+    #ifdef __CK610
+    __ASM volatile( "mfcr %0, cr21" : "=r"( result ) );
+    #else
+    __ASM volatile( "mfcr %0, cr<21, 0>" : "=r"( result ) );
+    #endif
+    return ( result );
 }
 #endif /* __MGU_PRESENT == 1U */
 
@@ -330,55 +323,54 @@ __ALWAYS_INLINE uint32_t __get_PRSR(void)
   \details Returns the current value of user r14.
   \return               UR14 value
  */
-__ALWAYS_INLINE uint32_t __get_UR14(void)
+__ALWAYS_INLINE uint32_t __get_UR14( void )
 {
     uint32_t result;
 
 #ifdef __CK610
-    __ASM volatile("mov %0, sp" : "=r"(result));
+    __ASM volatile( "mov %0, sp" : "=r"( result ) );
 #else
-    __ASM volatile("mfcr %0, cr<14, 1>" : "=r"(result));
+    __ASM volatile( "mfcr %0, cr<14, 1>" : "=r"( result ) );
 #endif
-    return (result);
+    return ( result );
 }
 
 /**
   \brief   Enable interrupts and exceptions
-  \details Enables interrupts and exceptions by setting the IE-bit and EE-bit in the PSR.
-           Can only be executed in Privileged modes.
+  \details Enables interrupts and exceptions by setting the IE-bit and EE-bit in
+  the PSR. Can only be executed in Privileged modes.
  */
-__ALWAYS_INLINE void __enable_excp_irq(void)
+__ALWAYS_INLINE void __enable_excp_irq( void )
 {
-    __ASM volatile("psrset ee, ie");
+    __ASM volatile( "psrset ee, ie" );
 }
-
 
 /**
   \brief   Disable interrupts and exceptions
-  \details Disables interrupts and exceptions by clearing the IE-bit and EE-bit in the PSR.
-           Can only be executed in Privileged modes.
+  \details Disables interrupts and exceptions by clearing the IE-bit and EE-bit
+  in the PSR. Can only be executed in Privileged modes.
  */
-__ALWAYS_INLINE void __disable_excp_irq(void)
+__ALWAYS_INLINE void __disable_excp_irq( void )
 {
-    __ASM volatile("psrclr ee, ie");
+    __ASM volatile( "psrclr ee, ie" );
 }
 
-#if (__GSR_GCR_PRESENT == 1U)
+#if( __GSR_GCR_PRESENT == 1U )
 /**
   \brief   Get GSR
   \details Returns the content of the GSR Register.
   \return               GSR Register value
  */
-__ALWAYS_INLINE uint32_t __get_GSR(void)
+__ALWAYS_INLINE uint32_t __get_GSR( void )
 {
     uint32_t result;
 
-#ifdef __CK610
-    __ASM volatile("mfcr %0, cr12" : "=r"(result));
-#else
-    __ASM volatile("mfcr %0, cr<12, 0>" : "=r"(result));
-#endif
-    return (result);
+    #ifdef __CK610
+    __ASM volatile( "mfcr %0, cr12" : "=r"( result ) );
+    #else
+    __ASM volatile( "mfcr %0, cr<12, 0>" : "=r"( result ) );
+    #endif
+    return ( result );
 }
 
 /**
@@ -386,16 +378,16 @@ __ALWAYS_INLINE uint32_t __get_GSR(void)
   \details Returns the content of the GCR Register.
   \return               GCR Register value
  */
-__ALWAYS_INLINE uint32_t __get_GCR(void)
+__ALWAYS_INLINE uint32_t __get_GCR( void )
 {
     uint32_t result;
 
-#ifdef __CK610
-    __ASM volatile("mfcr %0, cr11" : "=r"(result));
-#else
-    __ASM volatile("mfcr %0, cr<11, 0>" : "=r"(result));
-#endif
-    return (result);
+    #ifdef __CK610
+    __ASM volatile( "mfcr %0, cr11" : "=r"( result ) );
+    #else
+    __ASM volatile( "mfcr %0, cr<11, 0>" : "=r"( result ) );
+    #endif
+    return ( result );
 }
 
 /**
@@ -403,16 +395,15 @@ __ALWAYS_INLINE uint32_t __get_GCR(void)
   \details Writes the given value to the GCR Register.
   \param [in]    gcr  GCR Register value to set
  */
-__ALWAYS_INLINE void __set_GCR(uint32_t gcr)
+__ALWAYS_INLINE void __set_GCR( uint32_t gcr )
 {
-#ifdef __CK610
-    __ASM volatile("mtcr %0, cr11" : : "r"(gcr));
-#else
-    __ASM volatile("mtcr %0, cr<11, 0>" : : "r"(gcr));
-#endif
+    #ifdef __CK610
+    __ASM volatile( "mtcr %0, cr11" : : "r"( gcr ) );
+    #else
+    __ASM volatile( "mtcr %0, cr<11, 0>" : : "r"( gcr ) );
+    #endif
 }
 
 #endif /* (__GSR_GCR_PRESENT == 1U) */
-
 
 #endif /* _CSI_REG_H_ */

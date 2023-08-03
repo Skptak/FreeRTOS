@@ -17,7 +17,6 @@
 #ifndef xUSER_CONFIG_MSS_DDRC_MSS_IO_CONFIG_H_
 #define xUSER_CONFIG_MSS_DDRC_MSS_IO_CONFIG_H_
 
-
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -57,19 +56,18 @@ extern "C" {
 /**
  * \brief IOMUX configuration
  */
-typedef struct IOMUX_CONFIG_ {
-    __IO uint32_t iomux0_cr;     /* peripheral is connected to the Fabric or
-                                    IOMUX structure */
-    __IO uint32_t iomux1_cr;     /* BNK4 SDV PAD 0 to 7      */
-    __IO uint32_t iomux2_cr;     /* BNK4 SDV PAD 8 to 13     */
-    __IO uint32_t iomux3_cr;     /* BNK2 SDV PAD 14 to 21    */
-    __IO uint32_t iomux4_cr;     /* BNK2 SDV PAD 22 to 29    */
-    __IO uint32_t iomux5_cr;     /* BNK2 PAD 30 to 37        */
-    __IO uint32_t iomux6_cr;     /* MMC/SD Voltage select lines are inverted on
-                                    entry to the IOMUX structure */
+typedef struct IOMUX_CONFIG_
+{
+    __IO uint32_t iomux0_cr; /* peripheral is connected to the Fabric or
+                                IOMUX structure */
+    __IO uint32_t iomux1_cr; /* BNK4 SDV PAD 0 to 7      */
+    __IO uint32_t iomux2_cr; /* BNK4 SDV PAD 8 to 13     */
+    __IO uint32_t iomux3_cr; /* BNK2 SDV PAD 14 to 21    */
+    __IO uint32_t iomux4_cr; /* BNK2 SDV PAD 22 to 29    */
+    __IO uint32_t iomux5_cr; /* BNK2 PAD 30 to 37        */
+    __IO uint32_t iomux6_cr; /* MMC/SD Voltage select lines are inverted on
+                                entry to the IOMUX structure */
 } IOMUX_CONFIG;
-
-
 
 /*
     pcode, ncode and drive strength for each bank is set using direct writes to
@@ -106,28 +104,30 @@ typedef struct IOMUX_CONFIG_ {
  * \brief Bank 2 and 4 voltage settings
  *
  */
-typedef struct HSS_MSSIO_Bank_Config_ {
-    __IO uint32_t mssio_bank4_pcode_ncode_vs;   /* bank 4- set pcode, ncode and
-                                                   drive strength */
-    __IO uint32_t mssio_bank2_pcode_ncode_vs;   /* bank 2- set pcode, ncode and
-                                                   drive strength */
-}MSSIO_BANK_CONFIG;
+typedef struct HSS_MSSIO_Bank_Config_
+{
+    __IO uint32_t mssio_bank4_pcode_ncode_vs; /* bank 4- set pcode, ncode and
+                                                 drive strength */
+    __IO uint32_t mssio_bank2_pcode_ncode_vs; /* bank 2- set pcode, ncode and
+                                                 drive strength */
+} MSSIO_BANK_CONFIG;
 
 /**
  * \brief MSS IO Bank 4 configuration
  */
-typedef struct MSSIO_Bank4_IO_Config_ {
-    __IO uint32_t mssio_bank4_io_cfg_0_cr;   /* x_vddi Ratio Rx<0-2> == 001
-                                                drv<3-6> == 1111
-                                                7:clamp   == 0
-                                                enhyst   == 0
-                                                lockdn_en == 1
-                                                10:wpd  == 0
-                                                atp_en`== 0
-                                                lpmd_ibuf  == 0
-                                                lpmd_obuf == 0
-                                                persist == 0
-                                                */
+typedef struct MSSIO_Bank4_IO_Config_
+{
+    __IO uint32_t mssio_bank4_io_cfg_0_cr; /* x_vddi Ratio Rx<0-2> == 001
+                                              drv<3-6> == 1111
+                                              7:clamp   == 0
+                                              enhyst   == 0
+                                              lockdn_en == 1
+                                              10:wpd  == 0
+                                              atp_en`== 0
+                                              lpmd_ibuf  == 0
+                                              lpmd_obuf == 0
+                                              persist == 0
+                                              */
     __IO uint32_t mssio_bank4_io_cfg_1_cr;
     __IO uint32_t mssio_bank4_io_cfg_2_cr;
     __IO uint32_t mssio_bank4_io_cfg_3_cr;
@@ -135,23 +135,24 @@ typedef struct MSSIO_Bank4_IO_Config_ {
     __IO uint32_t mssio_bank4_io_cfg_5_cr;
     __IO uint32_t mssio_bank4_io_cfg_6_cr;
 
-}MSSIO_BANK4_CONFIG;
+} MSSIO_BANK4_CONFIG;
 
 /**
  * \brief MSS IO Bank 2 configuration
  */
-typedef struct MSSIO_Bank2_IO_Config_ {
-    __IO uint32_t mssio_bank2_io_cfg_0_cr;   /* x_vddi Ratio Rx<0-2> == 001
-                                                drv<3-6> == 1111
-                                                7:clamp   == 0
-                                                enhyst   == 0
-                                                lockdn_en == 1
-                                                10:wpd  == 0
-                                                atp_en`== 0
-                                                lpmd_ibuf  == 0
-                                                lpmd_obuf == 0
-                                                persist == 0
-                                                */
+typedef struct MSSIO_Bank2_IO_Config_
+{
+    __IO uint32_t mssio_bank2_io_cfg_0_cr; /* x_vddi Ratio Rx<0-2> == 001
+                                              drv<3-6> == 1111
+                                              7:clamp   == 0
+                                              enhyst   == 0
+                                              lockdn_en == 1
+                                              10:wpd  == 0
+                                              atp_en`== 0
+                                              lpmd_ibuf  == 0
+                                              lpmd_obuf == 0
+                                              persist == 0
+                                              */
     __IO uint32_t mssio_bank2_io_cfg_1_cr;
     __IO uint32_t mssio_bank2_io_cfg_2_cr;
     __IO uint32_t mssio_bank2_io_cfg_3_cr;
@@ -163,77 +164,62 @@ typedef struct MSSIO_Bank2_IO_Config_ {
     __IO uint32_t mssio_bank2_io_cfg_9_cr;
     __IO uint32_t mssio_bank2_io_cfg_10_cr;
     __IO uint32_t mssio_bank2_io_cfg_11_cr;
-}MSSIO_BANK2_CONFIG;
+} MSSIO_BANK2_CONFIG;
 
+/***************************************************************************/ /**
+   The int32_t mssio_setup(void)()
 
-/***************************************************************************//**
-  The int32_t mssio_setup(void)()
+   Setup the IOMUX and IO bank 2 and 4.
+   The values used in this function are set by Libero.
+   It configures the I/O mux, which detemines what peripherals are connected to
+   what pins, and the electrical properties of each bank and each I/O.
 
-  Setup the IOMUX and IO bank 2 and 4.
-  The values used in this function are set by Libero.
-  It configures the I/O mux, which detemines what peripherals are connected to
-  what pins, and the electrical properties of each bank and each I/O.
+   @return
+     This function returns status, 0 => OK
 
-  @return
-    This function returns status, 0 => OK
+   Example:
+   @code
 
-  Example:
-  @code
+         error |= mssio_setup();
 
-        error |= mssio_setup();
+   @endcode
 
-  @endcode
+  */
+uint8_t mssio_setup( void );
 
- */
-uint8_t
-mssio_setup
-(
-    void
-);
+/***************************************************************************/ /**
+   The gpio_toggle_test(void)()
 
+   Toggle a GPIO PIN on start-up
 
-/***************************************************************************//**
-  The gpio_toggle_test(void)()
+   @return
+     This function returns status, 0 => OK
 
-  Toggle a GPIO PIN on start-up
+   Example:
+   @code
 
-  @return
-    This function returns status, 0 => OK
+         error |= mssio_setup();
 
-  Example:
-  @code
+   @endcode
 
-        error |= mssio_setup();
+  */
+int32_t gpio_toggle_test( void );
 
-  @endcode
+/***************************************************************************/ /**
+   set_bank2_and_bank4_volts()
+   Sets bank 2 and 4 voltages, with Values coming from Libero
 
- */
-int32_t
-gpio_toggle_test
-(
-    void
-);
+   Example:
 
-/***************************************************************************//**
-  set_bank2_and_bank4_volts()
-  Sets bank 2 and 4 voltages, with Values coming from Libero
+   @code
 
-  Example:
+   set_bank2_and_bank4_volts();
 
-  @code
+   @endcode
 
-  set_bank2_and_bank4_volts();
-
-  @endcode
-
- *
- */
-void
-set_bank2_and_bank4_volts
-(
-   void
-);
-
+  *
+  */
+void set_bank2_and_bank4_volts( void );
 
 #ifdef __cplusplus
 }

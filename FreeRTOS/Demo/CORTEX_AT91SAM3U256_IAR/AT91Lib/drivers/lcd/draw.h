@@ -50,32 +50,28 @@
 //         Global functions
 //------------------------------------------------------------------------------
 
-extern void LCDD_Fill(void *pBuffer, unsigned int color);
+extern void LCDD_Fill( void * pBuffer, unsigned int color );
 
-extern void LCDD_DrawPixel(
-    void *pBuffer,
-    unsigned int x,
-    unsigned int y,
-    unsigned int c);
+extern void LCDD_DrawPixel( void * pBuffer,
+                            unsigned int x,
+                            unsigned int y,
+                            unsigned int c );
 
-extern void LCDD_DrawRectangle(
-    void *pBuffer,
-    unsigned int x,
-    unsigned int y,
-    unsigned int width,
-    unsigned int height,
-    unsigned int color);
+extern void LCDD_DrawRectangle( void * pBuffer,
+                                unsigned int x,
+                                unsigned int y,
+                                unsigned int width,
+                                unsigned int height,
+                                unsigned int color );
 
-extern void LCDD_DrawString(
-    void *pBuffer,
-    unsigned int x,
-    unsigned int y,
-    const char *pString,
-    unsigned int color);
+extern void LCDD_DrawString( void * pBuffer,
+                             unsigned int x,
+                             unsigned int y,
+                             const char * pString,
+                             unsigned int color );
 
-extern void LCDD_GetStringSize(
-    const char *pString,
-    unsigned int *pWidth,
-    unsigned int *pHeight);
+extern void LCDD_GetStringSize( const char * pString,
+                                unsigned int * pWidth,
+                                unsigned int * pHeight );
 
-#endif //#ifndef DRAW_H
+#endif // #ifndef DRAW_H

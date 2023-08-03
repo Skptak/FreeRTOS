@@ -33,8 +33,8 @@
  *         Headers
  *------------------------------------------------------------------------------*/
 
-#include "board.h"
 #include "trace.h"
+#include "board.h"
 #include "misc/console.h"
 #include "peripherals/pio.h"
 

@@ -32,11 +32,11 @@
 //
 //*****************************************************************************
 
+#include "comp.h"
 #include "../hw_comp.h"
 #include "../hw_ints.h"
 #include "../hw_memmap.h"
 #include "../hw_types.h"
-#include "comp.h"
 #include "debug.h"
 #include "interrupt.h"
 
@@ -97,21 +97,21 @@
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_configure) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-ComparatorConfigure(unsigned long ulBase, unsigned long ulComp,
-                    unsigned long ulConfig)
+#if defined( GROUP_configure ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void ComparatorConfigure( unsigned long ulBase,
+                          unsigned long ulComp,
+                          unsigned long ulConfig )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == COMP_BASE);
-    ASSERT(ulComp < 3);
+    ASSERT( ulBase == COMP_BASE );
+    ASSERT( ulComp < 3 );
 
     //
     // Configure this comparator.
     //
-    HWREG(ulBase + (ulComp * 0x20) + COMP_O_ACCTL0) = ulConfig;
+    HWREG( ulBase + ( ulComp * 0x20 ) + COMP_O_ACCTL0 ) = ulConfig;
 }
 #endif
 
@@ -158,19 +158,18 @@ ComparatorConfigure(unsigned long ulBase, unsigned long ulComp,
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_refset) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-ComparatorRefSet(unsigned long ulBase, unsigned long ulRef)
+#if defined( GROUP_refset ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void ComparatorRefSet( unsigned long ulBase, unsigned long ulRef )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == COMP_BASE);
+    ASSERT( ulBase == COMP_BASE );
 
     //
     // Set the voltage reference voltage as requested.
     //
-    HWREG(ulBase + COMP_O_REFCTL) = ulRef;
+    HWREG( ulBase + COMP_O_REFCTL ) = ulRef;
 }
 #endif
 
@@ -187,27 +186,27 @@ ComparatorRefSet(unsigned long ulBase, unsigned long ulRef)
 //! the comparator output is low.
 //
 //*****************************************************************************
-#if defined(GROUP_valueget) || defined(BUILD_ALL) || defined(DOXYGEN)
-tBoolean
-ComparatorValueGet(unsigned long ulBase, unsigned long ulComp)
+#if defined( GROUP_valueget ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+tBoolean ComparatorValueGet( unsigned long ulBase, unsigned long ulComp )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == COMP_BASE);
-    ASSERT(ulComp < 3);
+    ASSERT( ulBase == COMP_BASE );
+    ASSERT( ulComp < 3 );
 
     //
     // Return the appropriate value based on the comparator's present output
     // value.
     //
-    if(HWREG(ulBase + (ulComp * 0x20) + COMP_O_ACSTAT0) & COMP_ACSTAT_OVAL)
+    if( HWREG( ulBase + ( ulComp * 0x20 ) + COMP_O_ACSTAT0 ) &
+        COMP_ACSTAT_OVAL )
     {
-        return(true);
+        return ( true );
     }
     else
     {
-        return(false);
+        return ( false );
     }
 }
 #endif
@@ -232,31 +231,31 @@ ComparatorValueGet(unsigned long ulBase, unsigned long ulComp)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_intregister) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-ComparatorIntRegister(unsigned long ulBase, unsigned long ulComp,
-                      void (*pfnHandler)(void))
+#if defined( GROUP_intregister ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void ComparatorIntRegister( unsigned long ulBase,
+                            unsigned long ulComp,
+                            void ( *pfnHandler )( void ) )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == COMP_BASE);
-    ASSERT(ulComp < 3);
+    ASSERT( ulBase == COMP_BASE );
+    ASSERT( ulComp < 3 );
 
     //
     // Register the interrupt handler, returning an error if an error occurs.
     //
-    IntRegister(INT_COMP0 + ulComp, pfnHandler);
+    IntRegister( INT_COMP0 + ulComp, pfnHandler );
 
     //
     // Enable the interrupt in the interrupt controller.
     //
-    IntEnable(INT_COMP0 + ulComp);
+    IntEnable( INT_COMP0 + ulComp );
 
     //
     // Enable the comparator interrupt.
     //
-    HWREG(ulBase + COMP_O_INTEN) |= 1 << ulComp;
+    HWREG( ulBase + COMP_O_INTEN ) |= 1 << ulComp;
 }
 #endif
 
@@ -277,30 +276,29 @@ ComparatorIntRegister(unsigned long ulBase, unsigned long ulComp,
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_intunregister) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-ComparatorIntUnregister(unsigned long ulBase, unsigned long ulComp)
+#if defined( GROUP_intunregister ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void ComparatorIntUnregister( unsigned long ulBase, unsigned long ulComp )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == COMP_BASE);
-    ASSERT(ulComp < 3);
+    ASSERT( ulBase == COMP_BASE );
+    ASSERT( ulComp < 3 );
 
     //
     // Disable the comparator interrupt.
     //
-    HWREG(ulBase + COMP_O_INTEN) &= ~(1 << ulComp);
+    HWREG( ulBase + COMP_O_INTEN ) &= ~( 1 << ulComp );
 
     //
     // Disable the interrupt in the interrupt controller.
     //
-    IntDisable(INT_COMP0 + ulComp);
+    IntDisable( INT_COMP0 + ulComp );
 
     //
     // Unregister the interrupt handler.
     //
-    IntUnregister(INT_COMP0 + ulComp);
+    IntUnregister( INT_COMP0 + ulComp );
 }
 #endif
 
@@ -318,20 +316,19 @@ ComparatorIntUnregister(unsigned long ulBase, unsigned long ulComp)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_intenable) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-ComparatorIntEnable(unsigned long ulBase, unsigned long ulComp)
+#if defined( GROUP_intenable ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void ComparatorIntEnable( unsigned long ulBase, unsigned long ulComp )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == COMP_BASE);
-    ASSERT(ulComp < 3);
+    ASSERT( ulBase == COMP_BASE );
+    ASSERT( ulComp < 3 );
 
     //
     // Enable the comparator interrupt.
     //
-    HWREG(ulBase + COMP_O_INTEN) |= 1 << ulComp;
+    HWREG( ulBase + COMP_O_INTEN ) |= 1 << ulComp;
 }
 #endif
 
@@ -349,20 +346,19 @@ ComparatorIntEnable(unsigned long ulBase, unsigned long ulComp)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_intdisable) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-ComparatorIntDisable(unsigned long ulBase, unsigned long ulComp)
+#if defined( GROUP_intdisable ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void ComparatorIntDisable( unsigned long ulBase, unsigned long ulComp )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == COMP_BASE);
-    ASSERT(ulComp < 3);
+    ASSERT( ulBase == COMP_BASE );
+    ASSERT( ulComp < 3 );
 
     //
     // Disable the comparator interrupt.
     //
-    HWREG(ulBase + COMP_O_INTEN) &= ~(1 << ulComp);
+    HWREG( ulBase + COMP_O_INTEN ) &= ~( 1 << ulComp );
 }
 #endif
 
@@ -382,28 +378,30 @@ ComparatorIntDisable(unsigned long ulBase, unsigned long ulComp)
 //! asserted.
 //
 //*****************************************************************************
-#if defined(GROUP_intstatus) || defined(BUILD_ALL) || defined(DOXYGEN)
-tBoolean
-ComparatorIntStatus(unsigned long ulBase, unsigned long ulComp,
-                    tBoolean bMasked)
+#if defined( GROUP_intstatus ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+tBoolean ComparatorIntStatus( unsigned long ulBase,
+                              unsigned long ulComp,
+                              tBoolean bMasked )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == COMP_BASE);
-    ASSERT(ulComp < 3);
+    ASSERT( ulBase == COMP_BASE );
+    ASSERT( ulComp < 3 );
 
     //
     // Return either the interrupt status or the raw interrupt status as
     // requested.
     //
-    if(bMasked)
+    if( bMasked )
     {
-        return(((HWREG(ulBase + COMP_O_MIS) >> ulComp) & 1) ? true : false);
+        return ( ( ( HWREG( ulBase + COMP_O_MIS ) >> ulComp ) & 1 ) ? true
+                                                                    : false );
     }
     else
     {
-        return(((HWREG(ulBase + COMP_O_RIS) >> ulComp) & 1) ? true : false);
+        return ( ( ( HWREG( ulBase + COMP_O_RIS ) >> ulComp ) & 1 ) ? true
+                                                                    : false );
     }
 }
 #endif
@@ -423,20 +421,19 @@ ComparatorIntStatus(unsigned long ulBase, unsigned long ulComp,
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_intclear) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-ComparatorIntClear(unsigned long ulBase, unsigned long ulComp)
+#if defined( GROUP_intclear ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void ComparatorIntClear( unsigned long ulBase, unsigned long ulComp )
 {
     //
     // Check the arguments.
     //
-    ASSERT(ulBase == COMP_BASE);
-    ASSERT(ulComp < 3);
+    ASSERT( ulBase == COMP_BASE );
+    ASSERT( ulComp < 3 );
 
     //
     // Clear the interrupt.
     //
-    HWREG(ulBase + COMP_O_MIS) = 1 << ulComp;
+    HWREG( ulBase + COMP_O_MIS ) = 1 << ulComp;
 }
 #endif
 

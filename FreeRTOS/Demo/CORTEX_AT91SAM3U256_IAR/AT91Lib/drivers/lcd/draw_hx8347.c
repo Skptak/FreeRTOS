@@ -34,8 +34,8 @@
 #include "draw.h"
 #include "font.h"
 #include <board.h>
-#include <utility/assert.h>
 #include <hx8347/hx8347.h>
+#include <utility/assert.h>
 
 #include <string.h>
 
@@ -49,17 +49,16 @@
 /// \param pBuffer  LCD buffer to fill.
 /// \param color  Fill color.
 //------------------------------------------------------------------------------
-void LCDD_Fill(void *pBuffer, unsigned int color)
+void LCDD_Fill( void * pBuffer, unsigned int color )
 {
     unsigned int i;
-    unsigned short color16 = RGB24ToRGB16(color);
+    unsigned short color16 = RGB24ToRGB16( color );
 
-
-    LCD_SetCursor((void *)BOARD_LCD_BASE, 0, 0);
-    LCD_WriteRAM_Prepare((void *)BOARD_LCD_BASE);
-    for (i = 0; i < (BOARD_LCD_WIDTH * BOARD_LCD_HEIGHT); i++) {
-
-        LCD_WriteRAM((void *)BOARD_LCD_BASE, color16);
+    LCD_SetCursor( ( void * ) BOARD_LCD_BASE, 0, 0 );
+    LCD_WriteRAM_Prepare( ( void * ) BOARD_LCD_BASE );
+    for( i = 0; i < ( BOARD_LCD_WIDTH * BOARD_LCD_HEIGHT ); i++ )
+    {
+        LCD_WriteRAM( ( void * ) BOARD_LCD_BASE, color16 );
     }
 }
 
@@ -71,17 +70,16 @@ void LCDD_Fill(void *pBuffer, unsigned int color)
 /// \param y  Y-coordinate of pixel.
 /// \param color  Pixel color.
 //------------------------------------------------------------------------------
-void LCDD_DrawPixel(
-    void *pBuffer,
-    unsigned int x,
-    unsigned int y,
-    unsigned int color)
+void LCDD_DrawPixel( void * pBuffer,
+                     unsigned int x,
+                     unsigned int y,
+                     unsigned int color )
 {
-    unsigned short color16 = RGB24ToRGB16(color);
+    unsigned short color16 = RGB24ToRGB16( color );
 
-    LCD_SetCursor(pBuffer, x, y);
-    LCD_WriteRAM_Prepare(pBuffer);
-    LCD_WriteRAM(pBuffer, color16);
+    LCD_SetCursor( pBuffer, x, y );
+    LCD_WriteRAM_Prepare( pBuffer );
+    LCD_WriteRAM( pBuffer, color16 );
 }
 
 //------------------------------------------------------------------------------
@@ -93,21 +91,20 @@ void LCDD_DrawPixel(
 /// \param height  Rectangle height in pixels.
 /// \param color  Rectangle color.
 //------------------------------------------------------------------------------
-void LCDD_DrawRectangle(
-    void *pBuffer,
-    unsigned int x,
-    unsigned int y,
-    unsigned int width,
-    unsigned int height,
-    unsigned int color)
+void LCDD_DrawRectangle( void * pBuffer,
+                         unsigned int x,
+                         unsigned int y,
+                         unsigned int width,
+                         unsigned int height,
+                         unsigned int color )
 {
     unsigned int rx, ry;
 
-    for (ry=0; ry < height; ry++) {
-
-        for (rx=0; rx < width; rx++) {
-
-            LCDD_DrawPixel(pBuffer, x+rx, y+ry, color);
+    for( ry = 0; ry < height; ry++ )
+    {
+        for( rx = 0; rx < width; rx++ )
+        {
+            LCDD_DrawPixel( pBuffer, x + rx, y + ry, color );
         }
     }
 }
@@ -121,24 +118,24 @@ void LCDD_DrawRectangle(
 /// \param pString  String to display.
 /// \param color  String color.
 //------------------------------------------------------------------------------
-void LCDD_DrawString(
-    void *pBuffer,
-    unsigned int x,
-    unsigned int y,
-    const char *pString,
-    unsigned int color)
+void LCDD_DrawString( void * pBuffer,
+                      unsigned int x,
+                      unsigned int y,
+                      const char * pString,
+                      unsigned int color )
 {
     unsigned xorg = x;
 
-    while (*pString != 0) {
-        if (*pString == '\n') {
-
+    while( *pString != 0 )
+    {
+        if( *pString == '\n' )
+        {
             y += gFont.height + 2;
             x = xorg;
         }
-        else {
-
-            LCDD_DrawChar(pBuffer, x, y, *pString, color);
+        else
+        {
+            LCDD_DrawChar( pBuffer, x, y, *pString, color );
             x += gFont.width + 2;
         }
         pString++;
@@ -153,29 +150,31 @@ void LCDD_DrawString(
 /// \param pHeight  Pointer for storing the string height (optional).
 /// \return String width in pixels.
 //------------------------------------------------------------------------------
-void LCDD_GetStringSize(
-    const char *pString,
-    unsigned int *pWidth,
-    unsigned int *pHeight)
+void LCDD_GetStringSize( const char * pString,
+                         unsigned int * pWidth,
+                         unsigned int * pHeight )
 {
     unsigned int width = 0;
     unsigned int height = gFont.height;
 
-    while (*pString != 0) {
-
-        if (*pString == '\n') {
-
+    while( *pString != 0 )
+    {
+        if( *pString == '\n' )
+        {
             height += gFont.height + 2;
         }
-        else {
-
+        else
+        {
             width += gFont.width + 2;
         }
         pString++;
     }
 
-    if (width > 0) width -= 2;
+    if( width > 0 )
+        width -= 2;
 
-    if (pWidth) *pWidth = width;
-    if (pHeight) *pHeight = height;
+    if( pWidth )
+        *pWidth = width;
+    if( pHeight )
+        *pHeight = height;
 }

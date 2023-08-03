@@ -42,75 +42,76 @@
 
 #ifdef __MSP430_HAS_SYS__
 
-//*****************************************************************************
-//
-// If building with a C++ compiler, make all of the definitions in this header
-// have a C binding.
-//
-//*****************************************************************************
-#ifdef __cplusplus
-extern "C"
-{
-#endif
+    //*****************************************************************************
+    //
+    // If building with a C++ compiler, make all of the definitions in this
+    // header have a C binding.
+    //
+    //*****************************************************************************
+    #ifdef __cplusplus
+extern "C" {
+    #endif
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the mailboxSizeSelect
-// parameter for functions: SysCtl_initJTAGMailbox().
-//
-//*****************************************************************************
-#define SYSCTL_JTAGMBSIZE_16BIT                                    (!(JMBMODE))
-#define SYSCTL_JTAGMBSIZE_32BIT                                       (JMBMODE)
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the mailboxSizeSelect
+    // parameter for functions: SysCtl_initJTAGMailbox().
+    //
+    //*****************************************************************************
+    #define SYSCTL_JTAGMBSIZE_16BIT ( !( JMBMODE ) )
+    #define SYSCTL_JTAGMBSIZE_32BIT ( JMBMODE )
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the autoClearInboxFlagSelect
-// parameter for functions: SysCtl_initJTAGMailbox().
-//
-//*****************************************************************************
-#define SYSCTL_JTAGINBOX0AUTO_JTAGINBOX1AUTO       (!(JMBCLR0OFF + JMBCLR1OFF))
-#define SYSCTL_JTAGINBOX0AUTO_JTAGINBOX1SW                         (JMBCLR1OFF)
-#define SYSCTL_JTAGINBOX0SW_JTAGINBOX1AUTO                         (JMBCLR0OFF)
-#define SYSCTL_JTAGINBOX0SW_JTAGINBOX1SW              (JMBCLR0OFF + JMBCLR1OFF)
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the
+    // autoClearInboxFlagSelect parameter for functions:
+    // SysCtl_initJTAGMailbox().
+    //
+    //*****************************************************************************
+    #define SYSCTL_JTAGINBOX0AUTO_JTAGINBOX1AUTO \
+        ( !( JMBCLR0OFF + JMBCLR1OFF ) )
+    #define SYSCTL_JTAGINBOX0AUTO_JTAGINBOX1SW ( JMBCLR1OFF )
+    #define SYSCTL_JTAGINBOX0SW_JTAGINBOX1AUTO ( JMBCLR0OFF )
+    #define SYSCTL_JTAGINBOX0SW_JTAGINBOX1SW   ( JMBCLR0OFF + JMBCLR1OFF )
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the mailboxFlagMask parameter
-// for functions: SysCtl_getJTAGMailboxFlagStatus(), and
-// SysCtl_clearJTAGMailboxFlagStatus().
-//
-//*****************************************************************************
-#define SYSCTL_JTAGOUTBOX_FLAG0                                     (JMBOUT0FG)
-#define SYSCTL_JTAGOUTBOX_FLAG1                                     (JMBOUT1FG)
-#define SYSCTL_JTAGINBOX_FLAG0                                       (JMBIN0FG)
-#define SYSCTL_JTAGINBOX_FLAG1                                       (JMBIN1FG)
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the mailboxFlagMask
+    // parameter for functions: SysCtl_getJTAGMailboxFlagStatus(), and
+    // SysCtl_clearJTAGMailboxFlagStatus().
+    //
+    //*****************************************************************************
+    #define SYSCTL_JTAGOUTBOX_FLAG0            ( JMBOUT0FG )
+    #define SYSCTL_JTAGOUTBOX_FLAG1            ( JMBOUT1FG )
+    #define SYSCTL_JTAGINBOX_FLAG0             ( JMBIN0FG )
+    #define SYSCTL_JTAGINBOX_FLAG1             ( JMBIN1FG )
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the inboxSelect parameter for
-// functions: SysCtl_getJTAGInboxMessage16Bit().
-//
-//*****************************************************************************
-#define SYSCTL_JTAGINBOX_0                                                (0x0)
-#define SYSCTL_JTAGINBOX_1                                                (0x2)
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the inboxSelect parameter
+    // for functions: SysCtl_getJTAGInboxMessage16Bit().
+    //
+    //*****************************************************************************
+    #define SYSCTL_JTAGINBOX_0                 ( 0x0 )
+    #define SYSCTL_JTAGINBOX_1                 ( 0x2 )
 
-//*****************************************************************************
-//
-// The following are values that can be passed to the outboxSelect parameter
-// for functions: SysCtl_setJTAGOutgoingMessage16Bit().
-//
-//*****************************************************************************
-#define SYSCTL_JTAGOUTBOX_0                                               (0x0)
-#define SYSCTL_JTAGOUTBOX_1                                               (0x2)
+    //*****************************************************************************
+    //
+    // The following are values that can be passed to the outboxSelect parameter
+    // for functions: SysCtl_setJTAGOutgoingMessage16Bit().
+    //
+    //*****************************************************************************
+    #define SYSCTL_JTAGOUTBOX_0                ( 0x0 )
+    #define SYSCTL_JTAGOUTBOX_1                ( 0x2 )
 
-//*****************************************************************************
-//
-// The following are values that can be passed toThe following are values that
-// can be returned by the SysCtl_getBSLEntryIndication() function.
-//
-//*****************************************************************************
-#define SYSCTL_BSLENTRY_INDICATED                                         (0x1)
-#define SYSCTL_BSLENTRY_NOTINDICATED                                      (0x0)
+    //*****************************************************************************
+    //
+    // The following are values that can be passed toThe following are values
+    // that can be returned by the SysCtl_getBSLEntryIndication() function.
+    //
+    //*****************************************************************************
+    #define SYSCTL_BSLENTRY_INDICATED          ( 0x1 )
+    #define SYSCTL_BSLENTRY_NOTINDICATED       ( 0x0 )
 
 //*****************************************************************************
 //
@@ -130,7 +131,7 @@ extern "C"
 //! \return None
 //
 //*****************************************************************************
-extern void SysCtl_enableDedicatedJTAGPins(void);
+extern void SysCtl_enableDedicatedJTAGPins( void );
 
 //*****************************************************************************
 //
@@ -146,7 +147,7 @@ extern void SysCtl_enableDedicatedJTAGPins(void);
 //!         \n indicating if a BSL entry sequence was detected
 //
 //*****************************************************************************
-extern uint8_t SysCtl_getBSLEntryIndication(void);
+extern uint8_t SysCtl_getBSLEntryIndication( void );
 
 //*****************************************************************************
 //
@@ -159,7 +160,7 @@ extern uint8_t SysCtl_getBSLEntryIndication(void);
 //! \return None
 //
 //*****************************************************************************
-extern void SysCtl_enablePMMAccessProtect(void);
+extern void SysCtl_enablePMMAccessProtect( void );
 
 //*****************************************************************************
 //
@@ -173,7 +174,7 @@ extern void SysCtl_enablePMMAccessProtect(void);
 //! \return None
 //
 //*****************************************************************************
-extern void SysCtl_enableRAMBasedInterruptVectors(void);
+extern void SysCtl_enableRAMBasedInterruptVectors( void );
 
 //*****************************************************************************
 //
@@ -186,7 +187,7 @@ extern void SysCtl_enableRAMBasedInterruptVectors(void);
 //! \return None
 //
 //*****************************************************************************
-extern void SysCtl_disableRAMBasedInterruptVectors(void);
+extern void SysCtl_disableRAMBasedInterruptVectors( void );
 
 //*****************************************************************************
 //
@@ -228,8 +229,8 @@ extern void SysCtl_disableRAMBasedInterruptVectors(void);
 //! \return None
 //
 //*****************************************************************************
-extern void SysCtl_initJTAGMailbox(uint8_t mailboxSizeSelect,
-                                   uint8_t autoClearInboxFlagSelect);
+extern void SysCtl_initJTAGMailbox( uint8_t mailboxSizeSelect,
+                                    uint8_t autoClearInboxFlagSelect );
 
 //*****************************************************************************
 //
@@ -249,7 +250,7 @@ extern void SysCtl_initJTAGMailbox(uint8_t mailboxSizeSelect,
 //! \return A bit mask of the status of the selected mailbox flags.
 //
 //*****************************************************************************
-extern uint8_t SysCtl_getJTAGMailboxFlagStatus(uint8_t mailboxFlagMask);
+extern uint8_t SysCtl_getJTAGMailboxFlagStatus( uint8_t mailboxFlagMask );
 
 //*****************************************************************************
 //
@@ -268,7 +269,7 @@ extern uint8_t SysCtl_getJTAGMailboxFlagStatus(uint8_t mailboxFlagMask);
 //! \return None
 //
 //*****************************************************************************
-extern void SysCtl_clearJTAGMailboxFlagStatus(uint8_t mailboxFlagMask);
+extern void SysCtl_clearJTAGMailboxFlagStatus( uint8_t mailboxFlagMask );
 
 //*****************************************************************************
 //
@@ -287,7 +288,7 @@ extern void SysCtl_clearJTAGMailboxFlagStatus(uint8_t mailboxFlagMask);
 //! \return The contents of the selected JTAG inbox in a 16 bit format.
 //
 //*****************************************************************************
-extern uint16_t SysCtl_getJTAGInboxMessage16Bit(uint8_t inboxSelect);
+extern uint16_t SysCtl_getJTAGInboxMessage16Bit( uint8_t inboxSelect );
 
 //*****************************************************************************
 //
@@ -303,7 +304,7 @@ extern uint16_t SysCtl_getJTAGInboxMessage16Bit(uint8_t inboxSelect);
 //! \return The contents of both JTAG messages in a 32 bit format.
 //
 //*****************************************************************************
-extern uint32_t SysCtl_getJTAGInboxMessage32Bit(void);
+extern uint32_t SysCtl_getJTAGInboxMessage32Bit( void );
 
 //*****************************************************************************
 //
@@ -324,8 +325,8 @@ extern uint32_t SysCtl_getJTAGInboxMessage32Bit(void);
 //! \return None
 //
 //*****************************************************************************
-extern void SysCtl_setJTAGOutgoingMessage16Bit(uint8_t outboxSelect,
-                                               uint16_t outgoingMessage);
+extern void SysCtl_setJTAGOutgoingMessage16Bit( uint8_t outboxSelect,
+                                                uint16_t outgoingMessage );
 
 //*****************************************************************************
 //
@@ -341,16 +342,16 @@ extern void SysCtl_setJTAGOutgoingMessage16Bit(uint8_t outboxSelect,
 //! \return None
 //
 //*****************************************************************************
-extern void SysCtl_setJTAGOutgoingMessage32Bit(uint32_t outgoingMessage);
+extern void SysCtl_setJTAGOutgoingMessage32Bit( uint32_t outgoingMessage );
 
-//*****************************************************************************
-//
-// Mark the end of the C bindings section for C++ compilers.
-//
-//*****************************************************************************
-#ifdef __cplusplus
+    //*****************************************************************************
+    //
+    // Mark the end of the C bindings section for C++ compilers.
+    //
+    //*****************************************************************************
+    #ifdef __cplusplus
 }
-#endif
+    #endif
 
 #endif
 #endif // __MSP430WARE_SYSCTL_H__

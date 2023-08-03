@@ -120,7 +120,7 @@
 
 #define END_FILE()
 
-/* clang-format on */
+    /* clang-format on */
 
 #endif /* __DOXYGEN__ */
 

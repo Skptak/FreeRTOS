@@ -54,8 +54,8 @@
  *
  *  The Camera driver includes the following APIs:
  *    - Camera_init(): Initialize the Camera driver.
- *    - Camera_Params_init():  Initialize a #Camera_Params structure with default
- *      vaules.
+ *    - Camera_Params_init():  Initialize a #Camera_Params structure with
+ *default vaules.
  *    - Camera_open():  Open an instance of the Camera driver.
  *    - Camera_control():  Performs implemenation-specific features on a given
  *      Camera peripheral.
@@ -105,8 +105,8 @@
  *  is passed for the parameters, Camera_open() uses default parameters.
  *  A #Camera_Params structure is initialized with default values by passing
  *  it to Camera_Params_init().
- *  Some of the Camera parameters are described below.  To see brief descriptions
- *  of all the parameters, see #Camera_Params.
+ *  Some of the Camera parameters are described below.  To see brief
+ *descriptions of all the parameters, see #Camera_Params.
  *
  *  #### Camera Modes
  *  The Camera driver operates in either blocking mode or callback mode:
@@ -117,8 +117,8 @@
  *    specified callback function.
  *
  *  The capture mode is determined by the #Camera_Params.captureMode parameter
- *  passed to Camera_open().  The Camera driver defaults to blocking mode, if the
- *  application does not set it.
+ *  passed to Camera_open().  The Camera driver defaults to blocking mode, if
+ *the application does not set it.
  *
  *  Once a Camera driver instance is opened, the only way
  *  to change the capture mode is to close and re-open the Camera
@@ -176,8 +176,8 @@
 extern "C" {
 #endif
 
-#include <stdint.h>
 #include <stddef.h>
+#include <stdint.h>
 
 /**
  *  @defgroup CAMERA_CONTROL Camera_control command and status codes
@@ -196,7 +196,7 @@ extern "C" {
  * #define CAMERAXYZ_CMD_COMMAND1   CAMERA_CMD_RESERVED + 1
  * @endcode
  */
-#define CAMERA_CMD_RESERVED          (32)
+#define CAMERA_CMD_RESERVED        ( 32 )
 
 /*!
  * Common Camera_control status code reservation offset.
@@ -210,7 +210,7 @@ extern "C" {
  * #define CAMERAXYZ_STATUS_ERROR2  CAMERA_STATUS_RESERVED - 2
  * @endcode
  */
-#define CAMERA_STATUS_RESERVED      (-32)
+#define CAMERA_STATUS_RESERVED     ( -32 )
 
 /**
  *  @defgroup Camera_STATUS Status Codes
@@ -225,7 +225,7 @@ extern "C" {
  * Camera_control() returns CAMERA_STATUS_SUCCESS if the control code was
  * executed successfully.
  */
-#define CAMERA_STATUS_SUCCESS       (0)
+#define CAMERA_STATUS_SUCCESS      ( 0 )
 
 /*!
  * @brief   Generic error status code returned by Camera_control().
@@ -233,7 +233,7 @@ extern "C" {
  * Camera_control() returns CAMERA_STATUS_ERROR if the control code was not
  * executed successfully.
  */
-#define CAMERA_STATUS_ERROR        (-1)
+#define CAMERA_STATUS_ERROR        ( -1 )
 
 /*!
  * @brief   An error status code returned by Camera_control() for undefined
@@ -242,7 +242,7 @@ extern "C" {
  * Camera_control() returns CAMERA_STATUS_UNDEFINEDCMD if the control code is
  * not recognized by the driver implementation.
  */
-#define CAMERA_STATUS_UNDEFINEDCMD (-2)
+#define CAMERA_STATUS_UNDEFINEDCMD ( -2 )
 /** @}*/
 
 /**
@@ -262,12 +262,12 @@ extern "C" {
 /*!
  *  @brief    Wait forever define
  */
-#define Camera_WAIT_FOREVER (~(0U))
+#define Camera_WAIT_FOREVER        ( ~( 0U ) )
 
 /*!
  *  @brief      A handle that is returned from a Camera_open() call.
  */
-typedef struct Camera_Config_      *Camera_Handle;
+typedef struct Camera_Config_ * Camera_Handle;
 
 /*!
  *  @brief      The definition of a callback function used by the Camera driver
@@ -280,8 +280,9 @@ typedef struct Camera_Config_      *Camera_Handle;
  *  @param      frameLength               length of frame
  *
  */
-typedef void (*Camera_Callback) (Camera_Handle handle, void *buf,
-    size_t frameLength);
+typedef void ( *Camera_Callback )( Camera_Handle handle,
+                                   void * buf,
+                                   size_t frameLength );
 
 /*!
  *  @brief      Camera capture mode settings
@@ -289,18 +290,19 @@ typedef void (*Camera_Callback) (Camera_Handle handle, void *buf,
  *  This enum defines the capture mode for the
  *  configured Camera.
  */
-typedef enum Camera_CaptureMode_ {
+typedef enum Camera_CaptureMode_
+{
     /*!
-      *  Uses a semaphore to block while data is being sent.  Context of
-      *  the call must be a Task.
-      */
+     *  Uses a semaphore to block while data is being sent.  Context of
+     *  the call must be a Task.
+     */
     Camera_MODE_BLOCKING,
 
     /*!
-      *  Non-blocking and will return immediately.  When the capture
-      *  by the interrupt is finished the configured callback function
-      *  is called.
-      */
+     *  Non-blocking and will return immediately.  When the capture
+     *  by the interrupt is finished the configured callback function
+     *  is called.
+     */
     Camera_MODE_CALLBACK
 } Camera_CaptureMode;
 
@@ -309,7 +311,8 @@ typedef enum Camera_CaptureMode_ {
  *
  *  This enum defines the polarity of the HSync signal.
  */
-typedef enum Camera_HSyncPolarity_ {
+typedef enum Camera_HSyncPolarity_
+{
     Camera_HSYNC_POLARITY_HIGH = 0,
     Camera_HSYNC_POLARITY_LOW
 } Camera_HSyncPolarity;
@@ -319,7 +322,8 @@ typedef enum Camera_HSyncPolarity_ {
  *
  *  This enum defines the polarity of the VSync signal.
  */
-typedef enum Camera_VSyncPolarity_ {
+typedef enum Camera_VSyncPolarity_
+{
     Camera_VSYNC_POLARITY_HIGH = 0,
     Camera_VSYNC_POLARITY_LOW
 } Camera_VSyncPolarity;
@@ -329,7 +333,8 @@ typedef enum Camera_VSyncPolarity_ {
  *
  *  This enum defines the pixel clock configuration.
  */
-typedef enum Camera_PixelClkConfig_ {
+typedef enum Camera_PixelClkConfig_
+{
     Camera_PCLK_CONFIG_RISING_EDGE = 0,
     Camera_PCLK_CONFIG_FALLING_EDGE
 } Camera_PixelClkConfig;
@@ -345,7 +350,8 @@ typedef enum Camera_PixelClkConfig_ {
  *  In swap mode, the bytes are ordered as:
  *  | byte2 | byte3 | byte0 | byte1 |
  */
-typedef enum Camera_ByteOrder_ {
+typedef enum Camera_ByteOrder_
+{
     Camera_BYTE_ORDER_NORMAL = 0,
     Camera_BYTE_ORDER_SWAP
 } Camera_ByteOrder;
@@ -356,7 +362,8 @@ typedef enum Camera_ByteOrder_ {
  *  This enum defines the sensor to camera interface synchronization
  *  configuration.
  */
-typedef enum Camera_IfSynchoronisation_ {
+typedef enum Camera_IfSynchoronisation_
+{
     Camera_INTERFACE_SYNC_OFF = 0,
     Camera_INTERFACE_SYNC_ON
 } Camera_IfSynchoronisation;
@@ -366,7 +373,8 @@ typedef enum Camera_IfSynchoronisation_ {
  *
  *  This enum defines the stop capture configuration.
  */
-typedef enum Camera_StopCaptureConfig_ {
+typedef enum Camera_StopCaptureConfig_
+{
     Camera_STOP_CAPTURE_IMMEDIATE = 0,
     Camera_STOP_CAPTURE_FRAME_END
 } Camera_StopCaptureConfig;
@@ -376,7 +384,8 @@ typedef enum Camera_StopCaptureConfig_ {
  *
  *  This enum defines the start capture configuration.
  */
-typedef enum Camera_StartCaptureConfig_ {
+typedef enum Camera_StartCaptureConfig_
+{
     Camera_START_CAPTURE_IMMEDIATE = 0,
     Camera_START_CAPTURE_FRAME_START
 } Camera_StartCaptureConfig;
@@ -396,98 +405,102 @@ typedef enum Camera_StartCaptureConfig_ {
  *
  *  @sa     Camera_Params_init()
  */
-typedef struct Camera_Params_ {
+typedef struct Camera_Params_
+{
     /*!< Mode for camera capture */
-    Camera_CaptureMode         captureMode;
+    Camera_CaptureMode captureMode;
 
     /*!< Output clock to set divider */
-    uint32_t                    outputClock;
+    uint32_t outputClock;
 
     /*!< Polarity of Hsync  */
-    Camera_HSyncPolarity       hsyncPolarity;
+    Camera_HSyncPolarity hsyncPolarity;
 
     /*!< Polarity of VSync */
-    Camera_VSyncPolarity       vsyncPolarity;
+    Camera_VSyncPolarity vsyncPolarity;
 
     /*!< Pixel clock configuration */
-    Camera_PixelClkConfig      pixelClkConfig;
+    Camera_PixelClkConfig pixelClkConfig;
 
     /*!< camera capture byte order */
-    Camera_ByteOrder           byteOrder;
+    Camera_ByteOrder byteOrder;
 
     /*!< Camera-Sensor synchronization */
-    Camera_IfSynchoronisation  interfaceSync;
+    Camera_IfSynchoronisation interfaceSync;
 
-     /*!< Camera stop configuration */
-    Camera_StopCaptureConfig   stopConfig;
+    /*!< Camera stop configuration */
+    Camera_StopCaptureConfig stopConfig;
 
     /*!< Camera start configuration */
-    Camera_StartCaptureConfig  startConfig;
+    Camera_StartCaptureConfig startConfig;
 
     /*!< Timeout for capture semaphore */
-    uint32_t                   captureTimeout;
+    uint32_t captureTimeout;
 
     /*!< Pointer to capture callback */
-    Camera_Callback            captureCallback;
+    Camera_Callback captureCallback;
 
     /*!< Custom argument used by driver implementation */
-    void                      *custom;
+    void * custom;
 } Camera_Params;
 
 /*!
  *  @brief      A function pointer to a driver specific implementation of
  *              Camera_close().
  */
-typedef void        (*Camera_CloseFxn)    (Camera_Handle handle);
+typedef void ( *Camera_CloseFxn )( Camera_Handle handle );
 
 /*!
  *  @brief      A function pointer to a driver specific implementation of
  *              Camera_control().
  */
-typedef int_fast16_t (*Camera_ControlFxn)  (Camera_Handle handle,
-                                            uint_fast16_t cmd,
-                                            void *arg);
+typedef int_fast16_t ( *Camera_ControlFxn )( Camera_Handle handle,
+                                             uint_fast16_t cmd,
+                                             void * arg );
 
 /*!
  *  @brief      A function pointer to a driver specific implementation of
  *              Camera_init().
  */
-typedef void        (*Camera_InitFxn)     (Camera_Handle handle);
+typedef void ( *Camera_InitFxn )( Camera_Handle handle );
 
 /*!
  *  @brief      A function pointer to a driver specific implementation of
  *              Camera_open().
  */
-typedef Camera_Handle (*Camera_OpenFxn) (Camera_Handle handle,
-    Camera_Params *params);
+typedef Camera_Handle ( *Camera_OpenFxn )( Camera_Handle handle,
+                                           Camera_Params * params );
 
 /*!
  *  @brief      A function pointer to a driver specific implementation of
  *              Camera_capture().
  */
-typedef int_fast16_t (*Camera_CaptureFxn) (Camera_Handle handle, void *buffer,
-    size_t bufferlen, size_t *frameLen);
+typedef int_fast16_t ( *Camera_CaptureFxn )( Camera_Handle handle,
+                                             void * buffer,
+                                             size_t bufferlen,
+                                             size_t * frameLen );
 
 /*!
  *  @brief      The definition of a Camera function table that contains the
  *              required set of functions to control a specific Camera driver
  *              implementation.
  */
-typedef struct Camera_FxnTable_ {
+typedef struct Camera_FxnTable_
+{
     /*! Function to close the specified peripheral */
-    Camera_CloseFxn        closeFxn;
+    Camera_CloseFxn closeFxn;
 
     /*! Function to implementation specific control function */
-    Camera_ControlFxn      controlFxn;
+    Camera_ControlFxn controlFxn;
 
     /*! Function to initialize the given data object */
-    Camera_InitFxn         initFxn;
+    Camera_InitFxn initFxn;
 
     /*! Function to open the specified peripheral */
-    Camera_OpenFxn         openFxn;
+    Camera_OpenFxn openFxn;
 
     /*! Function to initiate a Camera capture */
-    Camera_CaptureFxn     captureFxn;
+    Camera_CaptureFxn captureFxn;
 } Camera_FxnTable;
 
 /*!
@@ -499,17 +512,18 @@ typedef struct Camera_FxnTable_ {
  *  This structure needs to be defined before calling Camera_init() and it must
  *  not be changed thereafter.
  *
-*  @sa     Camera_init()
+ *  @sa     Camera_init()
  */
-typedef struct Camera_Config_ {
+typedef struct Camera_Config_
+{
     /*! Pointer to a table of driver-specific implementations of Camera APIs */
-    Camera_FxnTable const *fxnTablePtr;
+    Camera_FxnTable const * fxnTablePtr;
 
     /*! Pointer to a driver specific data object */
-    void                  *object;
+    void * object;
 
     /*! Pointer to a driver specific hardware attributes structure */
-    void            const *hwAttrs;
+    void const * hwAttrs;
 } Camera_Config;
 
 /*!
@@ -521,7 +535,7 @@ typedef struct Camera_Config_ {
  *
  *  @sa     Camera_open()
  */
-extern void Camera_close(Camera_Handle handle);
+extern void Camera_close( Camera_Handle handle );
 
 /*!
  *  @brief  Function performs implementation specific features on a given
@@ -544,7 +558,8 @@ extern void Camera_close(Camera_Handle handle);
  *
  *  See @ref Camera_CMD "Camera_control command codes" for command codes.
  *
- *  See @ref Camera_STATUS "Camera_control return status codes" for status codes.
+ *  See @ref Camera_STATUS "Camera_control return status codes" for status
+ * codes.
  *
  *  @pre    Camera_open() has to be called first.
  *
@@ -560,8 +575,9 @@ extern void Camera_close(Camera_Handle handle);
  *
  *  @sa     Camera_open()
  */
-extern int_fast16_t Camera_control(Camera_Handle handle, uint_fast16_t cmd,
-    void *arg);
+extern int_fast16_t Camera_control( Camera_Handle handle,
+                                    uint_fast16_t cmd,
+                                    void * arg );
 
 /*!
  *  @brief  Function to initializes the Camera module
@@ -571,7 +587,7 @@ extern int_fast16_t Camera_control(Camera_Handle handle, uint_fast16_t cmd,
  *          any other Camera driver APIs. This function call does not modify any
  *          peripheral registers.
  */
-extern void Camera_init(void);
+extern void Camera_init( void );
 
 /*!
  *  @brief  Function to initialize a given Camera peripheral specified by the
@@ -593,7 +609,7 @@ extern void Camera_init(void);
  *  @sa     Camera_init()
  *  @sa     Camera_close()
  */
-extern Camera_Handle Camera_open(uint_least8_t index, Camera_Params *params);
+extern Camera_Handle Camera_open( uint_least8_t index, Camera_Params * params );
 
 /*!
  *  @brief  Function to initialize the Camera_Params structure to its defaults
@@ -614,7 +630,7 @@ extern Camera_Handle Camera_open(uint_least8_t index, Camera_Params *params);
  *      captureTimeout    =  Camera_WAIT_FOREVER;
  *      captureCallback   =  NULL;
  */
-extern void Camera_Params_init(Camera_Params *params);
+extern void Camera_Params_init( Camera_Params * params );
 
 /*!
  *  @brief  Function that handles the Camera capture of a frame.
@@ -641,8 +657,10 @@ extern void Camera_Params_init(Camera_Params *params);
  *
  *  @sa     Camera_open
  */
-extern int_fast16_t Camera_capture(Camera_Handle handle, void *buffer,
-    size_t bufferlen, size_t *frameLen);
+extern int_fast16_t Camera_capture( Camera_Handle handle,
+                                    void * buffer,
+                                    size_t bufferlen,
+                                    size_t * frameLen );
 
 #ifdef __cplusplus
 }

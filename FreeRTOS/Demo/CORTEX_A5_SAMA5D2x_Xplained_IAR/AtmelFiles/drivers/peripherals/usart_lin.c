@@ -29,7 +29,8 @@
 
 /** \addtogroup usart_module Working with USART_LIN
  * \section Purpose
- * The USART_LIN driver provides the interface to configure and use the USART peripheral in LIN mode.\n
+ * The USART_LIN driver provides the interface to configure and use the USART
+ * peripheral in LIN mode.\n
  *
  *
  * For more accurate information, please look at the USART LIN section of the
@@ -38,17 +39,17 @@
  * Related files :\n
  * \ref usart_lin.c\n
  * \ref usart_lin.h\n
-*/
+ */
 
 /**
  * \file
  *
- * Implementation of USART in LIN mode (Universal Synchronous Asynchronous Receiver Transmitter)
- * controller.
+ * Implementation of USART in LIN mode (Universal Synchronous Asynchronous
+ * Receiver Transmitter) controller.
  *
  */
 /*-----------------------------------------------------------------------------
-*         Headers
+ *         Headers
  *---------------------------------------------------------------------------*/
 
 #include "chip.h"
@@ -58,35 +59,36 @@
 #include "peripherals/usart.h"
 #include "peripherals/usart_lin.h"
 
-#include "trace.h"
 #include "io.h"
+#include "trace.h"
 
 #include <assert.h>
 #include <string.h>
 
 /*-----------------------------------------------------------------------------
-*
+ *
  *---------------------------------------------------------------------------*/
 
 /*----------------------------------------------------------------------------
  *         Exported functions
  *----------------------------------------------------------------------------*/
 
-void usart_lin_reset_status_bits(Usart *usart)
+void usart_lin_reset_status_bits( Usart * usart )
 {
-	 usart->US_CR = US_CR_RSTSTA;
+    usart->US_CR = US_CR_RSTSTA;
 }
 
-
-uint32_t usart_lin_get_status_register(Usart *usart)
+uint32_t usart_lin_get_status_register( Usart * usart )
 {
-	return usart->US_CSR;
+    return usart->US_CSR;
 }
 
-void usart_lin_set_mode_master_or_slave (Usart* usart, uint32_t mode_master_or_slave)
+void usart_lin_set_mode_master_or_slave( Usart * usart,
+                                         uint32_t mode_master_or_slave )
 {
-	/* Set LIN master or slave mode. */
-	usart->US_MR = (usart->US_MR & ~US_MR_USART_MODE_Msk) | US_MR_USART_MODE(mode_master_or_slave);
+    /* Set LIN master or slave mode. */
+    usart->US_MR = ( usart->US_MR & ~US_MR_USART_MODE_Msk ) |
+                   US_MR_USART_MODE( mode_master_or_slave );
 }
 
 /**
@@ -94,9 +96,9 @@ void usart_lin_set_mode_master_or_slave (Usart* usart, uint32_t mode_master_or_s
  *
  * \param usart Pointer to a USART instance.
  */
-void usart_lin_abort_tx(Usart *usart)
+void usart_lin_abort_tx( Usart * usart )
 {
-	usart->US_CR = US_CR_LINABT;
+    usart->US_CR = US_CR_LINABT;
 }
 
 /**
@@ -104,9 +106,9 @@ void usart_lin_abort_tx(Usart *usart)
  *
  * \param usart Pointer to a USART instance.
  */
-void usart_lin_send_wakeup_signal(Usart *usart)
+void usart_lin_send_wakeup_signal( Usart * usart )
 {
-	usart->US_CR = US_CR_LINWKUP;
+    usart->US_CR = US_CR_LINWKUP;
 }
 
 /**
@@ -116,9 +118,10 @@ void usart_lin_send_wakeup_signal(Usart *usart)
  * \param usart Pointer to a USART instance.
  * \param action 0 for PUBLISH, 1 for SUBSCRIBE, 2 for IGNORE.
  */
-void usart_lin_set_node_action(Usart *usart, uint8_t action)
+void usart_lin_set_node_action( Usart * usart, uint8_t action )
 {
-	usart->US_LINMR = (usart->US_LINMR & ~US_LINMR_NACT_Msk) | (action << US_LINMR_NACT_Pos);
+    usart->US_LINMR = ( usart->US_LINMR & ~US_LINMR_NACT_Msk ) |
+                      ( action << US_LINMR_NACT_Pos );
 }
 
 /**
@@ -126,9 +129,9 @@ void usart_lin_set_node_action(Usart *usart, uint8_t action)
  *
  * \param usart Pointer to a USART instance.
  */
-void usart_lin_disable_parity(Usart *usart)
+void usart_lin_disable_parity( Usart * usart )
 {
-	usart->US_LINMR |= US_LINMR_PARDIS;
+    usart->US_LINMR |= US_LINMR_PARDIS;
 }
 
 /**
@@ -136,9 +139,9 @@ void usart_lin_disable_parity(Usart *usart)
  *
  * \param usart Pointer to a USART instance.
  */
-void usart_lin_enable_parity(Usart *usart)
+void usart_lin_enable_parity( Usart * usart )
 {
-	usart->US_LINMR &= ~US_LINMR_PARDIS;
+    usart->US_LINMR &= ~US_LINMR_PARDIS;
 }
 
 /**
@@ -146,9 +149,9 @@ void usart_lin_enable_parity(Usart *usart)
  *
  * \param usart Pointer to a USART instance.
  */
-void usart_lin_disable_checksum(Usart *usart)
+void usart_lin_disable_checksum( Usart * usart )
 {
-	usart->US_LINMR |= US_LINMR_CHKDIS;
+    usart->US_LINMR |= US_LINMR_CHKDIS;
 }
 
 /**
@@ -156,9 +159,9 @@ void usart_lin_disable_checksum(Usart *usart)
  *
  * \param usart Pointer to a USART instance.
  */
-void usart_lin_enable_checksum(Usart *usart)
+void usart_lin_enable_checksum( Usart * usart )
 {
-	usart->US_LINMR &= ~US_LINMR_CHKDIS;
+    usart->US_LINMR &= ~US_LINMR_CHKDIS;
 }
 
 /**
@@ -168,9 +171,9 @@ void usart_lin_enable_checksum(Usart *usart)
  * \param type 0 for LIN 2.0 Enhanced checksum or 1 for LIN 1.3 Classic
  *  checksum.
  */
-void usart_lin_set_checksum_type(Usart *usart, uint8_t type)
+void usart_lin_set_checksum_type( Usart * usart, uint8_t type )
 {
-	usart->US_LINMR = (usart->US_LINMR & ~US_LINMR_CHKTYP) | (type << 4);
+    usart->US_LINMR = ( usart->US_LINMR & ~US_LINMR_CHKTYP ) | ( type << 4 );
 }
 
 /**
@@ -181,9 +184,9 @@ void usart_lin_set_checksum_type(Usart *usart, uint8_t type)
  * defined by the DLC of LIN mode register or 1 if the data length is defined
  * by the bit 5 and 6 of the identifier.
  */
-void usart_lin_set_data_len_mode(Usart *usart, uint8_t mode)
+void usart_lin_set_data_len_mode( Usart * usart, uint8_t mode )
 {
-	usart->US_LINMR = (usart->US_LINMR & ~US_LINMR_DLM) | (mode << 5);
+    usart->US_LINMR = ( usart->US_LINMR & ~US_LINMR_DLM ) | ( mode << 5 );
 }
 
 /**
@@ -191,9 +194,9 @@ void usart_lin_set_data_len_mode(Usart *usart, uint8_t mode)
  *
  * \param usart Pointer to a USART instance.
  */
-void usart_lin_disable_frame_slot(Usart *usart)
+void usart_lin_disable_frame_slot( Usart * usart )
 {
-	usart->US_LINMR |= US_LINMR_FSDIS;
+    usart->US_LINMR |= US_LINMR_FSDIS;
 }
 
 /**
@@ -201,9 +204,9 @@ void usart_lin_disable_frame_slot(Usart *usart)
  *
  * \param usart Pointer to a USART instance.
  */
-void usart_lin_enable_frame_slot(Usart *usart)
+void usart_lin_enable_frame_slot( Usart * usart )
 {
-	usart->US_LINMR &= ~US_LINMR_FSDIS;
+    usart->US_LINMR &= ~US_LINMR_FSDIS;
 }
 
 /**
@@ -213,9 +216,9 @@ void usart_lin_enable_frame_slot(Usart *usart)
  * \param type Indicate the checksum type: 0 if the wakeup signal is a
  * LIN 2.0 wakeup signal; 1 if the wakeup signal is a LIN 1.3 wakeup signal.
  */
-void usart_lin_set_wakeup_signal_type(Usart *usart, uint8_t type)
+void usart_lin_set_wakeup_signal_type( Usart * usart, uint8_t type )
 {
-	usart->US_LINMR = (usart->US_LINMR & ~US_LINMR_WKUPTYP) | (type << 7);
+    usart->US_LINMR = ( usart->US_LINMR & ~US_LINMR_WKUPTYP ) | ( type << 7 );
 }
 
 /**
@@ -225,9 +228,10 @@ void usart_lin_set_wakeup_signal_type(Usart *usart, uint8_t type)
  * \param usart Pointer to a USART instance.
  * \param len Indicate the response data length.
  */
-void usart_lin_set_frame_data_len(Usart *usart, uint8_t len)
+void usart_lin_set_frame_data_len( Usart * usart, uint8_t len )
 {
-	usart->US_LINMR = (usart->US_LINMR & ~US_LINMR_DLC_Msk) | ((len-1) << US_LINMR_DLC_Pos);
+    usart->US_LINMR = ( usart->US_LINMR & ~US_LINMR_DLC_Msk ) |
+                      ( ( len - 1 ) << US_LINMR_DLC_Pos );
 }
 
 /**
@@ -235,9 +239,9 @@ void usart_lin_set_frame_data_len(Usart *usart, uint8_t len)
  *
  * \param usart Pointer to a USART instance.
  */
-void usart_lin_disable_dmac_mode(Usart *usart)
+void usart_lin_disable_dmac_mode( Usart * usart )
 {
-	usart->US_LINMR &= ~US_LINMR_PDCM;
+    usart->US_LINMR &= ~US_LINMR_PDCM;
 }
 
 /**
@@ -245,9 +249,9 @@ void usart_lin_disable_dmac_mode(Usart *usart)
  *
  * \param usart Pointer to a USART instance.
  */
-void usart_lin_enable_dmac_mode(Usart *usart)
+void usart_lin_enable_dmac_mode( Usart * usart )
 {
-	usart->US_LINMR |= US_LINMR_PDCM;
+    usart->US_LINMR |= US_LINMR_PDCM;
 }
 
 /**
@@ -256,9 +260,10 @@ void usart_lin_enable_dmac_mode(Usart *usart)
  * \param usart Pointer to a USART instance.
  * \param id The identifier to be transmitted.
  */
-void usart_lin_set_tx_identifier(Usart *usart, uint8_t id)
+void usart_lin_set_tx_identifier( Usart * usart, uint8_t id )
 {
-	usart->US_LINIR = (usart->US_LINIR & ~US_LINIR_IDCHR_Msk) | US_LINIR_IDCHR(id);
+    usart->US_LINIR = ( usart->US_LINIR & ~US_LINIR_IDCHR_Msk ) |
+                      US_LINIR_IDCHR( id );
 }
 
 /**
@@ -269,9 +274,9 @@ void usart_lin_set_tx_identifier(Usart *usart, uint8_t id)
  * \return The last identifier received in LIN slave mode or the last
  * identifier transmitted in LIN master mode.
  */
-uint8_t usart_lin_read_identifier(Usart *usart)
+uint8_t usart_lin_read_identifier( Usart * usart )
 {
-	return (usart->US_LINIR & US_LINIR_IDCHR_Msk);
+    return ( usart->US_LINIR & US_LINIR_IDCHR_Msk );
 }
 
 /**
@@ -281,18 +286,24 @@ uint8_t usart_lin_read_identifier(Usart *usart)
  *
  * \return Data length.
  */
-uint8_t usart_lin_get_data_length(Usart *usart)
+uint8_t usart_lin_get_data_length( Usart * usart )
 {
-	if (usart->US_LINMR & US_LINMR_DLM) {
-		uint8_t data_length = 1 << ((usart->US_LINIR >> (US_LINIR_IDCHR_Pos + 4)) & 0x03);
-		return data_length;
-	} else {
-		return ((usart->US_LINMR & US_LINMR_DLC_Msk) >> US_LINMR_DLC_Pos) + 1;
-	}
+    if( usart->US_LINMR & US_LINMR_DLM )
+    {
+        uint8_t data_length = 1 << ( ( usart->US_LINIR >>
+                                       ( US_LINIR_IDCHR_Pos + 4 ) ) &
+                                     0x03 );
+        return data_length;
+    }
+    else
+    {
+        return ( ( usart->US_LINMR & US_LINMR_DLC_Msk ) >> US_LINMR_DLC_Pos ) +
+               1;
+    }
 }
 
 /*-----------------------------------------------------------------------------
-*        Functions if FIFO are used
+ *        Functions if FIFO are used
  *---------------------------------------------------------------------------*/
 
 #ifdef CONFIG_HAVE_USART_FIFO
@@ -313,31 +324,35 @@ uint8_t usart_lin_get_data_length(Usart *usart)
  * \note In case of a TIMEOUT or a BREAK, a null character is appended to the
  * buffer and the returned value should be inferior to \ref len.
  */
-uint32_t usart_lin_read_stream(Usart *usart, uint8_t *stream, uint32_t len)
+uint32_t usart_lin_read_stream( Usart * usart, uint8_t * stream, uint32_t len )
 {
-	uint8_t* buffer = stream;
-	uint32_t left = len;
-	while (left > 0) {
-		/* Stop reception if a timeout or break occur */
-		if ((usart->US_CSR & (US_CSR_TIMEOUT | US_CSR_RXBRK)) != 0) {
-			*buffer = '\0';
-			break;
-		}
-		if ((usart->US_CSR & (US_CSR_RXRDY | US_CSR_LINTC)) == 0) continue;
+    uint8_t * buffer = stream;
+    uint32_t left = len;
+    while( left > 0 )
+    {
+        /* Stop reception if a timeout or break occur */
+        if( ( usart->US_CSR & ( US_CSR_TIMEOUT | US_CSR_RXBRK ) ) != 0 )
+        {
+            *buffer = '\0';
+            break;
+        }
+        if( ( usart->US_CSR & ( US_CSR_RXRDY | US_CSR_LINTC ) ) == 0 )
+            continue;
 
-		/* Get FIFO size (in octets) and clamp it */
-		uint32_t buf_size = usart_fifo_rx_size(usart);
-		buf_size = buf_size > left ? left : buf_size;
+        /* Get FIFO size (in octets) and clamp it */
+        uint32_t buf_size = usart_fifo_rx_size( usart );
+        buf_size = buf_size > left ? left : buf_size;
 
-		/* Fill the buffer with data received */
-		while (buf_size) {
-			readb(&usart->US_RHR, buffer);
-			buffer ++;
-			left -= sizeof(uint8_t);
-			buf_size -= sizeof(uint8_t);
-		}
-	}
-	return len - left;
+        /* Fill the buffer with data received */
+        while( buf_size )
+        {
+            readb( &usart->US_RHR, buffer );
+            buffer++;
+            left -= sizeof( uint8_t );
+            buf_size -= sizeof( uint8_t );
+        }
+    }
+    return len - left;
 }
 
 /**
@@ -357,31 +372,33 @@ uint32_t usart_lin_read_stream(Usart *usart, uint8_t *stream, uint32_t len)
  * \note In case of a TIMEOUT the transmission is aborted and the returned value
  * should be inferior to \ref len.
  */
-uint32_t usart_lin_write_stream(Usart *usart, uint8_t *stream, uint32_t len)
+uint32_t usart_lin_write_stream( Usart * usart, uint8_t * stream, uint32_t len )
 {
-	uint8_t* buffer = stream;
-	uint32_t left = len;
-	int32_t fifo_size = get_peripheral_fifo_depth(usart);
-	if (fifo_size < 0)
-		return 0;
+    uint8_t * buffer = stream;
+    uint32_t left = len;
+    int32_t fifo_size = get_peripheral_fifo_depth( usart );
+    if( fifo_size < 0 )
+        return 0;
 
-	while (left > 0) {
-		if ((usart->US_CSR & US_CSR_TXRDY) == 0) continue;
+    while( left > 0 )
+    {
+        if( ( usart->US_CSR & US_CSR_TXRDY ) == 0 )
+            continue;
 
-		/* Get FIFO free size (int octet) and clamp it */
-		uint32_t buf_size = fifo_size - usart_fifo_tx_size(usart);
-		buf_size = buf_size > left ? left : buf_size;
+        /* Get FIFO free size (int octet) and clamp it */
+        uint32_t buf_size = fifo_size - usart_fifo_tx_size( usart );
+        buf_size = buf_size > left ? left : buf_size;
 
-		/* Fill the FIFO with data to send */
-		while (buf_size) {
-			writeb(&usart->US_THR, *buffer);
-			buffer ++ ;
-			left -= sizeof(uint8_t);
-			buf_size -= sizeof(uint8_t);
-		}
-	}
-	return len - left;
+        /* Fill the FIFO with data to send */
+        while( buf_size )
+        {
+            writeb( &usart->US_THR, *buffer );
+            buffer++;
+            left -= sizeof( uint8_t );
+            buf_size -= sizeof( uint8_t );
+        }
+    }
+    return len - left;
 }
 
 #endif
-

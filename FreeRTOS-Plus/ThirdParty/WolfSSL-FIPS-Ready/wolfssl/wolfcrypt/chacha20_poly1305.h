@@ -34,23 +34,24 @@ or Authenticated Encryption with Additional Data (AEAD) algorithm.
 #ifndef WOLF_CRYPT_CHACHA20_POLY1305_H
 #define WOLF_CRYPT_CHACHA20_POLY1305_H
 
-#include <wolfssl/wolfcrypt/types.h>
 #include <wolfssl/wolfcrypt/chacha.h>
 #include <wolfssl/wolfcrypt/poly1305.h>
+#include <wolfssl/wolfcrypt/types.h>
 
-#if defined(HAVE_CHACHA) && defined(HAVE_POLY1305)
+#if defined( HAVE_CHACHA ) && defined( HAVE_POLY1305 )
 
-#ifdef __cplusplus
-    extern "C" {
-#endif
+    #ifdef __cplusplus
+extern "C" {
+    #endif
 
-#define CHACHA20_POLY1305_AEAD_KEYSIZE      32
-#define CHACHA20_POLY1305_AEAD_IV_SIZE      12
-#define CHACHA20_POLY1305_AEAD_AUTHTAG_SIZE 16
-#define CHACHA20_POLY1305_MAX               4294967295U
+    #define CHACHA20_POLY1305_AEAD_KEYSIZE      32
+    #define CHACHA20_POLY1305_AEAD_IV_SIZE      12
+    #define CHACHA20_POLY1305_AEAD_AUTHTAG_SIZE 16
+    #define CHACHA20_POLY1305_MAX               4294967295U
 
-enum {
-    CHACHA20_POLY_1305_ENC_TYPE = 8,    /* cipher unique type */
+enum
+{
+    CHACHA20_POLY_1305_ENC_TYPE = 8, /* cipher unique type */
 
     /* AEAD Cipher Direction */
     CHACHA20_POLY1305_AEAD_DECRYPT = 0,
@@ -63,17 +64,17 @@ enum {
     CHACHA20_POLY1305_STATE_DATA = 3,
 };
 
-typedef struct ChaChaPoly_Aead {
-    ChaCha   chacha;
+typedef struct ChaChaPoly_Aead
+{
+    ChaCha chacha;
     Poly1305 poly;
 
-    word32   aadLen;
-    word32   dataLen;
+    word32 aadLen;
+    word32 dataLen;
 
-    byte     state;
-    byte     isEncrypt:1;
+    byte state;
+    byte isEncrypt : 1;
 } ChaChaPoly_Aead;
-
 
 /*
  * The IV for this implementation is 96 bits to give the most flexibility.
@@ -87,46 +88,52 @@ typedef struct ChaChaPoly_Aead {
 
 WOLFSSL_API
 int wc_ChaCha20Poly1305_Encrypt(
-                const byte inKey[CHACHA20_POLY1305_AEAD_KEYSIZE],
-                const byte inIV[CHACHA20_POLY1305_AEAD_IV_SIZE],
-                const byte* inAAD, const word32 inAADLen,
-                const byte* inPlaintext, const word32 inPlaintextLen,
-                byte* outCiphertext,
-                byte outAuthTag[CHACHA20_POLY1305_AEAD_AUTHTAG_SIZE]);
+    const byte inKey[ CHACHA20_POLY1305_AEAD_KEYSIZE ],
+    const byte inIV[ CHACHA20_POLY1305_AEAD_IV_SIZE ],
+    const byte * inAAD,
+    const word32 inAADLen,
+    const byte * inPlaintext,
+    const word32 inPlaintextLen,
+    byte * outCiphertext,
+    byte outAuthTag[ CHACHA20_POLY1305_AEAD_AUTHTAG_SIZE ] );
 
 WOLFSSL_API
 int wc_ChaCha20Poly1305_Decrypt(
-                const byte inKey[CHACHA20_POLY1305_AEAD_KEYSIZE],
-                const byte inIV[CHACHA20_POLY1305_AEAD_IV_SIZE],
-                const byte* inAAD, const word32 inAADLen,
-                const byte* inCiphertext, const word32 inCiphertextLen,
-                const byte inAuthTag[CHACHA20_POLY1305_AEAD_AUTHTAG_SIZE],
-                byte* outPlaintext);
+    const byte inKey[ CHACHA20_POLY1305_AEAD_KEYSIZE ],
+    const byte inIV[ CHACHA20_POLY1305_AEAD_IV_SIZE ],
+    const byte * inAAD,
+    const word32 inAADLen,
+    const byte * inCiphertext,
+    const word32 inCiphertextLen,
+    const byte inAuthTag[ CHACHA20_POLY1305_AEAD_AUTHTAG_SIZE ],
+    byte * outPlaintext );
 
 WOLFSSL_API
 int wc_ChaCha20Poly1305_CheckTag(
-    const byte authTag[CHACHA20_POLY1305_AEAD_AUTHTAG_SIZE],
-    const byte authTagChk[CHACHA20_POLY1305_AEAD_AUTHTAG_SIZE]);
-
-
+    const byte authTag[ CHACHA20_POLY1305_AEAD_AUTHTAG_SIZE ],
+    const byte authTagChk[ CHACHA20_POLY1305_AEAD_AUTHTAG_SIZE ] );
 
 /* Implementation of AEAD, which includes support for adding
     data, then final calculation of authentication tag */
-WOLFSSL_API int wc_ChaCha20Poly1305_Init(ChaChaPoly_Aead* aead,
-    const byte inKey[CHACHA20_POLY1305_AEAD_KEYSIZE],
-    const byte inIV[CHACHA20_POLY1305_AEAD_IV_SIZE],
-    int isEncrypt);
-WOLFSSL_API int wc_ChaCha20Poly1305_UpdateAad(ChaChaPoly_Aead* aead,
-    const byte* inAAD, word32 inAADLen);
-WOLFSSL_API int wc_ChaCha20Poly1305_UpdateData(ChaChaPoly_Aead* aead,
-    const byte* inData, byte* outData, word32 dataLen);
-WOLFSSL_API int wc_ChaCha20Poly1305_Final(ChaChaPoly_Aead* aead,
-    byte outAuthTag[CHACHA20_POLY1305_AEAD_AUTHTAG_SIZE]);
+WOLFSSL_API int wc_ChaCha20Poly1305_Init(
+    ChaChaPoly_Aead * aead,
+    const byte inKey[ CHACHA20_POLY1305_AEAD_KEYSIZE ],
+    const byte inIV[ CHACHA20_POLY1305_AEAD_IV_SIZE ],
+    int isEncrypt );
+WOLFSSL_API int wc_ChaCha20Poly1305_UpdateAad( ChaChaPoly_Aead * aead,
+                                               const byte * inAAD,
+                                               word32 inAADLen );
+WOLFSSL_API int wc_ChaCha20Poly1305_UpdateData( ChaChaPoly_Aead * aead,
+                                                const byte * inData,
+                                                byte * outData,
+                                                word32 dataLen );
+WOLFSSL_API int wc_ChaCha20Poly1305_Final(
+    ChaChaPoly_Aead * aead,
+    byte outAuthTag[ CHACHA20_POLY1305_AEAD_AUTHTAG_SIZE ] );
 
-
-#ifdef __cplusplus
-    } /* extern "C" */
-#endif
+    #ifdef __cplusplus
+} /* extern "C" */
+    #endif
 
 #endif /* HAVE_CHACHA && HAVE_POLY1305 */
 #endif /* WOLF_CRYPT_CHACHA20_POLY1305_H */

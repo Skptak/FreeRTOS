@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -27,8 +28,8 @@
 /* *INDENT-OFF* */
 
 #include "proof/queue.h"
-#define taskENTER_CRITICAL()    setInterruptMask( pxQueue )
-#define taskEXIT_CRITICAL()     clearInterruptMask( pxQueue )
+#define taskENTER_CRITICAL() setInterruptMask( pxQueue )
+#define taskEXIT_CRITICAL()  clearInterruptMask( pxQueue )
 
 /* VeriFast: we make one major change. We merge the critical regions for
  * decrementing `cTxLock` and `cRxLock`. */
@@ -56,17 +57,17 @@ static void prvUnlockQueue( Queue_t * const pxQueue )
         while( cTxLock > queueLOCKED_UNMODIFIED )
         /*@invariant queuelists(pxQueue);@*/
         {
-            /* Data was posted while the queue was locked.  Are any tasks
-             * blocked waiting for data to become available? */
-            #if ( configUSE_QUEUE_SETS == 1 )
+/* Data was posted while the queue was locked.  Are any tasks
+ * blocked waiting for data to become available? */
+#if( configUSE_QUEUE_SETS == 1 )
             {
                 if( pxQueue->pxQueueSetContainer != NULL )
                 {
                     if( prvNotifyQueueSetContainer( pxQueue ) != pdFALSE )
                     {
                         /* The queue is a member of a queue set, and posting to
-                         * the queue set caused a higher priority task to unblock.
-                         * A context switch is required. */
+                         * the queue set caused a higher priority task to
+                         * unblock. A context switch is required. */
                         vTaskMissedYield();
                     }
                     else
@@ -79,12 +80,14 @@ static void prvUnlockQueue( Queue_t * const pxQueue )
                     /* Tasks that are removed from the event list will get
                      * added to the pending ready list as the scheduler is still
                      * suspended. */
-                    if( listLIST_IS_EMPTY( &( pxQueue->xTasksWaitingToReceive ) ) == pdFALSE )
+                    if( listLIST_IS_EMPTY(
+                            &( pxQueue->xTasksWaitingToReceive ) ) == pdFALSE )
                     {
-                        if( xTaskRemoveFromEventList( &( pxQueue->xTasksWaitingToReceive ) ) != pdFALSE )
+                        if( xTaskRemoveFromEventList( &(
+                                pxQueue->xTasksWaitingToReceive ) ) != pdFALSE )
                         {
-                            /* The task waiting has a higher priority so record that a
-                             * context switch is required. */
+                            /* The task waiting has a higher priority so record
+                             * that a context switch is required. */
                             vTaskMissedYield();
                         }
                         else
@@ -98,13 +101,16 @@ static void prvUnlockQueue( Queue_t * const pxQueue )
                     }
                 }
             }
-            #else /* configUSE_QUEUE_SETS */
+#else  /* configUSE_QUEUE_SETS */
             {
                 /* Tasks that are removed from the event list will get added to
-                 * the pending ready list as the scheduler is still suspended. */
-                if( listLIST_IS_EMPTY( &( pxQueue->xTasksWaitingToReceive ) ) == pdFALSE )
+                 * the pending ready list as the scheduler is still suspended.
+                 */
+                if( listLIST_IS_EMPTY( &( pxQueue->xTasksWaitingToReceive ) ) ==
+                    pdFALSE )
                 {
-                    if( xTaskRemoveFromEventList( &( pxQueue->xTasksWaitingToReceive ) ) != pdFALSE )
+                    if( xTaskRemoveFromEventList(
+                            &( pxQueue->xTasksWaitingToReceive ) ) != pdFALSE )
                     {
                         /* The task waiting has a higher priority so record that
                          * a context switch is required. */
@@ -120,7 +126,7 @@ static void prvUnlockQueue( Queue_t * const pxQueue )
                     break;
                 }
             }
-            #endif /* configUSE_QUEUE_SETS */
+#endif /* configUSE_QUEUE_SETS */
 
             --cTxLock;
         }
@@ -139,9 +145,11 @@ static void prvUnlockQueue( Queue_t * const pxQueue )
         while( cRxLock > queueLOCKED_UNMODIFIED )
         /*@invariant queuelists(pxQueue);@*/
         {
-            if( listLIST_IS_EMPTY( &( pxQueue->xTasksWaitingToSend ) ) == pdFALSE )
+            if( listLIST_IS_EMPTY( &( pxQueue->xTasksWaitingToSend ) ) ==
+                pdFALSE )
             {
-                if( xTaskRemoveFromEventList( &( pxQueue->xTasksWaitingToSend ) ) != pdFALSE )
+                if( xTaskRemoveFromEventList(
+                        &( pxQueue->xTasksWaitingToSend ) ) != pdFALSE )
                 {
                     vTaskMissedYield();
                 }

@@ -1,6 +1,6 @@
 /*
  * -------------------------------------------
- *    MSP432 DriverLib - v3_10_00_09 
+ *    MSP432 DriverLib - v3_10_00_09
  * -------------------------------------------
  *
  * --COPYRIGHT--,BSD,BSD
@@ -51,22 +51,21 @@
 //
 //*****************************************************************************
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
-#include <stdint.h>
 #include <msp.h>
 #include <stdbool.h>
+#include <stdint.h>
 
 //*****************************************************************************
 //
 // Control specific variables
 //
 //*****************************************************************************
-#define PSS_KEY_VALUE PSS_KEY_KEY_VAL
+#define PSS_KEY_VALUE               PSS_KEY_KEY_VAL
 
-#define PSS_SVSMH PSS_IE_SVSMHIE
+#define PSS_SVSMH                   PSS_IE_SVSMHIE
 
 #define PSS_FULL_PERFORMANCE_MODE   0x01
 #define PSS_NORMAL_PERFORMANCE_MODE 0x00
@@ -87,7 +86,7 @@ extern "C"
 //! \return None.
 //
 //*****************************************************************************
-extern void PSS_enableHighSidePinToggle(bool activeLow);
+extern void PSS_enableHighSidePinToggle( bool activeLow );
 
 //*****************************************************************************
 //
@@ -96,7 +95,7 @@ extern void PSS_enableHighSidePinToggle(bool activeLow);
 //! \return None.
 //
 //*****************************************************************************
-extern void PSS_disableHighSidePinToggle(void);
+extern void PSS_disableHighSidePinToggle( void );
 
 //*****************************************************************************
 //
@@ -105,7 +104,7 @@ extern void PSS_disableHighSidePinToggle(void);
 //! \return None.
 //
 //*****************************************************************************
-extern void PSS_enableHighSide(void);
+extern void PSS_enableHighSide( void );
 
 //*****************************************************************************
 //
@@ -114,7 +113,7 @@ extern void PSS_enableHighSide(void);
 //! \return None.
 //
 //*****************************************************************************
-extern void PSS_disableHighSide(void);
+extern void PSS_disableHighSide( void );
 
 //*****************************************************************************
 //
@@ -130,7 +129,7 @@ extern void PSS_disableHighSide(void);
 //! \return None.
 //
 //*****************************************************************************
-extern void PSS_setHighSidePerformanceMode(uint_fast8_t powerMode);
+extern void PSS_setHighSidePerformanceMode( uint_fast8_t powerMode );
 
 //*****************************************************************************
 //
@@ -141,7 +140,7 @@ extern void PSS_setHighSidePerformanceMode(uint_fast8_t powerMode);
 //! \return Performance mode of the voltage regulator
 //
 //*****************************************************************************
-extern uint_fast8_t PSS_getHighSidePerformanceMode(void);
+extern uint_fast8_t PSS_getHighSidePerformanceMode( void );
 
 //*****************************************************************************
 //
@@ -150,7 +149,7 @@ extern uint_fast8_t PSS_getHighSidePerformanceMode(void);
 //! \return None.
 //
 //*****************************************************************************
-extern void PSS_enableHighSideMonitor(void);
+extern void PSS_enableHighSideMonitor( void );
 
 //*****************************************************************************
 //
@@ -160,7 +159,7 @@ extern void PSS_enableHighSideMonitor(void);
 //! \return None.
 //
 //*****************************************************************************
-extern void PSS_disableHighSideMonitor(void);
+extern void PSS_disableHighSideMonitor( void );
 
 //*****************************************************************************
 //
@@ -187,7 +186,7 @@ extern void PSS_disableHighSideMonitor(void);
 //! \return None.
 //
 //*****************************************************************************
-extern void PSS_setHighSideVoltageTrigger(uint_fast8_t triggerVoltage);
+extern void PSS_setHighSideVoltageTrigger( uint_fast8_t triggerVoltage );
 
 //*****************************************************************************
 //
@@ -201,7 +200,7 @@ extern void PSS_setHighSideVoltageTrigger(uint_fast8_t triggerVoltage);
 //! the return value
 //
 //*****************************************************************************
-extern uint_fast8_t PSS_getHighSideVoltageTrigger(void);
+extern uint_fast8_t PSS_getHighSideVoltageTrigger( void );
 
 //*****************************************************************************
 //
@@ -210,7 +209,7 @@ extern uint_fast8_t PSS_getHighSideVoltageTrigger(void);
 //! \return None.
 //
 //*****************************************************************************
-extern void PSS_enableInterrupt(void);
+extern void PSS_enableInterrupt( void );
 
 //*****************************************************************************
 //
@@ -219,7 +218,7 @@ extern void PSS_enableInterrupt(void);
 //! \return None.
 //
 //*****************************************************************************
-extern void PSS_disableInterrupt(void);
+extern void PSS_disableInterrupt( void );
 
 //*****************************************************************************
 //
@@ -228,7 +227,7 @@ extern void PSS_disableInterrupt(void);
 //! \return The current interrupt status ( \b PSS_SVSMH )
 //!
 //*****************************************************************************
-extern uint32_t PSS_getInterruptStatus(void);
+extern uint32_t PSS_getInterruptStatus( void );
 
 //*****************************************************************************
 //
@@ -237,8 +236,7 @@ extern uint32_t PSS_getInterruptStatus(void);
 //! \return None.
 //
 //*****************************************************************************
-extern void PSS_clearInterruptFlag(void);
-
+extern void PSS_clearInterruptFlag( void );
 
 //*****************************************************************************
 //
@@ -250,8 +248,7 @@ extern void PSS_clearInterruptFlag(void);
 //! \return None.
 //
 //*****************************************************************************
-extern void PSS_enableForcedDCDCOperation(void);
-
+extern void PSS_enableForcedDCDCOperation( void );
 
 //*****************************************************************************
 //
@@ -263,7 +260,7 @@ extern void PSS_enableForcedDCDCOperation(void);
 //! \return None.
 //
 //*****************************************************************************
-extern void PSS_disableForcedDCDCOperation(void);
+extern void PSS_disableForcedDCDCOperation( void );
 
 //*****************************************************************************
 //
@@ -284,7 +281,7 @@ extern void PSS_disableForcedDCDCOperation(void);
 //! \return None.
 //
 //*****************************************************************************
-extern void PSS_registerInterrupt(void (*intHandler)(void));
+extern void PSS_registerInterrupt( void ( *intHandler )( void ) );
 
 //*****************************************************************************
 //
@@ -300,7 +297,7 @@ extern void PSS_registerInterrupt(void (*intHandler)(void));
 //! \return None.
 //
 //*****************************************************************************
-extern void PSS_unregisterInterrupt(void);
+extern void PSS_unregisterInterrupt( void );
 
 //*****************************************************************************
 //

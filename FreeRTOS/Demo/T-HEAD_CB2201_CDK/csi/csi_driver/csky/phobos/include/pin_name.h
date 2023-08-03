@@ -23,13 +23,12 @@
 #ifndef _PINNAMES_H
 #define _PINNAMES_H
 
-
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-
-typedef enum {
+typedef enum
+{
     PA0_TXD0_PWM0_XX_SIROUT0 = 0,
     PA1_RXD0_PWM1_XX_SIRIN0,
     PA2_CTS0_PWM2_SPI0CLK_XX,
@@ -73,10 +72,10 @@ typedef enum {
     PB8_PWMTRIG0_SPI1CS2_USINSS_XX,
     PB9_PWMTRIG1_CTS3_XX_XX,
     PB10_PWMFAULT_RTS3_XX_XX
-}
-pin_name_t;
+} pin_name_t;
 
-typedef enum {
+typedef enum
+{
     PORTA = 0,
     PORTB = 1
 } port_name_t;

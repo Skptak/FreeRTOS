@@ -2,8 +2,8 @@
  * Copyright (c) 2001-2003 Swedish Institute of Computer Science.
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without modification,
- * are permitted provided that the following conditions are met:
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
  *
  * 1. Redistributions of source code must retain the above copyright notice,
  *    this list of conditions and the following disclaimer.
@@ -15,14 +15,14 @@
  *
  * THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR IMPLIED
  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
- * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT
- * SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
- * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
- * OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
- * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING
- * IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
- * OF SUCH DAMAGE.
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO
+ * EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+ * OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+ * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+ * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * This file is part of the lwIP TCP/IP stack.
  *
@@ -36,26 +36,24 @@
 #ifndef __HTTPD_H__
 #define __HTTPD_H__
 
-#include "lwip/opt.h"
 #include "lwip/err.h"
+#include "lwip/opt.h"
 #include "lwip/pbuf.h"
-
 
 /** Set this to 1 to support CGI */
 #ifndef LWIP_HTTPD_CGI
-#define LWIP_HTTPD_CGI            0
+    #define LWIP_HTTPD_CGI 0
 #endif
 
 /** Set this to 1 to support SSI (Server-Side-Includes) */
 #ifndef LWIP_HTTPD_SSI
-#define LWIP_HTTPD_SSI            1     
+    #define LWIP_HTTPD_SSI 1
 #endif
 
 /** Set this to 1 to support HTTP POST */
 #ifndef LWIP_HTTPD_SUPPORT_POST
-#define LWIP_HTTPD_SUPPORT_POST   0
+    #define LWIP_HTTPD_SUPPORT_POST 0
 #endif
-
 
 #if LWIP_HTTPD_CGI
 
@@ -79,8 +77,8 @@
  * browser, for example "/thanks.htm" or "/response/error.ssi".
  *
  * The maximum number of parameters that will be passed to this function via
- * iNumParams is defined by LWIP_HTTPD_MAX_CGI_PARAMETERS. Any parameters in the incoming
- * HTTP request above this number will be discarded.
+ * iNumParams is defined by LWIP_HTTPD_MAX_CGI_PARAMETERS. Any parameters in the
+ * incoming HTTP request above this number will be discarded.
  *
  * Requests intended for use by this CGI mechanism must be sent using the GET
  * method (which encodes all parameters within the URI rather than in a block
@@ -88,8 +86,10 @@
  * request being ignored.
  *
  */
-typedef const char *(*tCGIHandler)(int iIndex, int iNumParams, char *pcParam[],
-                             char *pcValue[]);
+typedef const char * ( *tCGIHandler )( int iIndex,
+                                       int iNumParams,
+                                       char * pcParam[],
+                                       char * pcValue[] );
 
 /*
  * Structure defining the base filename (URL) of a CGI and the associated
@@ -97,29 +97,28 @@ typedef const char *(*tCGIHandler)(int iIndex, int iNumParams, char *pcParam[],
  */
 typedef struct
 {
-    const char *pcCGIName;
+    const char * pcCGIName;
     tCGIHandler pfnCGIHandler;
 } tCGI;
 
-void http_set_cgi_handlers(const tCGI *pCGIs, int iNumHandlers);
+void http_set_cgi_handlers( const tCGI * pCGIs, int iNumHandlers );
 
-
-/* The maximum number of parameters that the CGI handler can be sent. */
-#ifndef LWIP_HTTPD_MAX_CGI_PARAMETERS
-#define LWIP_HTTPD_MAX_CGI_PARAMETERS 16
-#endif
+    /* The maximum number of parameters that the CGI handler can be sent. */
+    #ifndef LWIP_HTTPD_MAX_CGI_PARAMETERS
+        #define LWIP_HTTPD_MAX_CGI_PARAMETERS 16
+    #endif
 
 #endif /* LWIP_HTTPD_CGI */
 
 #if LWIP_HTTPD_SSI
 
-/** LWIP_HTTPD_SSI_MULTIPART==1: SSI handler function is called with 2 more
- * arguments indicating a counter for insert string that are too long to be
- * inserted at once: the SSI handler function must then set 'next_tag_part'
- * which will be passed back to it in the next call. */
-#ifndef LWIP_HTTPD_SSI_MULTIPART
-#define LWIP_HTTPD_SSI_MULTIPART    0
-#endif
+    /** LWIP_HTTPD_SSI_MULTIPART==1: SSI handler function is called with 2 more
+     * arguments indicating a counter for insert string that are too long to be
+     * inserted at once: the SSI handler function must then set 'next_tag_part'
+     * which will be passed back to it in the next call. */
+    #ifndef LWIP_HTTPD_SSI_MULTIPART
+        #define LWIP_HTTPD_SSI_MULTIPART 0
+    #endif
 
 /*
  * Function pointer for the SSI tag handler callback.
@@ -150,27 +149,34 @@ void http_set_cgi_handlers(const tCGI *pCGIs, int iNumHandlers);
  * output JavaScript code must do so in an encapsulated way, sending the whole
  * HTML <script>...</script> section as a single include.
  */
-typedef u16_t (*tSSIHandler)(int iIndex, char *pcInsert, int iInsertLen
-#if LWIP_HTTPD_SSI_MULTIPART
-                             , u16_t current_tag_part, u16_t *next_tag_part
-#endif /* LWIP_HTTPD_SSI_MULTIPART */
-#if LWIP_HTTPD_FILE_STATE
-                             , void *connection_state
-#endif /* LWIP_HTTPD_FILE_STATE */
-                             );
+typedef u16_t ( *tSSIHandler )( int iIndex,
+                                char * pcInsert,
+                                int iInsertLen
+    #if LWIP_HTTPD_SSI_MULTIPART
+                                ,
+                                u16_t current_tag_part,
+                                u16_t * next_tag_part
+    #endif /* LWIP_HTTPD_SSI_MULTIPART */
+    #if LWIP_HTTPD_FILE_STATE
+                                ,
+                                void * connection_state
+    #endif /* LWIP_HTTPD_FILE_STATE */
+);
 
-void http_set_ssi_handler(tSSIHandler pfnSSIHandler,
-                          const char **ppcTags, int iNumTags);
+void http_set_ssi_handler( tSSIHandler pfnSSIHandler,
+                           const char ** ppcTags,
+                           int iNumTags );
 
-/* The maximum length of the string comprising the tag name */
-#ifndef LWIP_HTTPD_MAX_TAG_NAME_LEN
-#define LWIP_HTTPD_MAX_TAG_NAME_LEN 8
-#endif
+    /* The maximum length of the string comprising the tag name */
+    #ifndef LWIP_HTTPD_MAX_TAG_NAME_LEN
+        #define LWIP_HTTPD_MAX_TAG_NAME_LEN 8
+    #endif
 
-/* The maximum length of string that can be returned to replace any given tag */
-#ifndef LWIP_HTTPD_MAX_TAG_INSERT_LEN
-#define LWIP_HTTPD_MAX_TAG_INSERT_LEN 192
-#endif
+    /* The maximum length of string that can be returned to replace any given
+     * tag */
+    #ifndef LWIP_HTTPD_MAX_TAG_INSERT_LEN
+        #define LWIP_HTTPD_MAX_TAG_INSERT_LEN 192
+    #endif
 
 #endif /* LWIP_HTTPD_SSI */
 
@@ -196,9 +202,14 @@ void http_set_ssi_handler(tSSIHandler pfnSSIHandler,
  * @return ERR_OK: Accept the POST request, data may be passed in
  *         another err_t: Deny the POST request, send back 'bad request'.
  */
-err_t httpd_post_begin(void *connection, const char *uri, const char *http_request,
-                       u16_t http_request_len, int content_len, char *response_uri,
-                       u16_t response_uri_len, u8_t *post_auto_wnd);
+err_t httpd_post_begin( void * connection,
+                        const char * uri,
+                        const char * http_request,
+                        u16_t http_request_len,
+                        int content_len,
+                        char * response_uri,
+                        u16_t response_uri_len,
+                        u8_t * post_auto_wnd );
 
 /** Called for each pbuf of data that has been received for a POST.
  * ATTENTION: The application is responsible for freeing the pbufs passed in!
@@ -206,9 +217,10 @@ err_t httpd_post_begin(void *connection, const char *uri, const char *http_reque
  * @param connection Unique connection identifier.
  * @param p Received data.
  * @return ERR_OK: Data accepted.
- *         another err_t: Data denied, http_post_get_response_uri will be called.
+ *         another err_t: Data denied, http_post_get_response_uri will be
+ * called.
  */
-err_t httpd_post_receive_data(void *connection, struct pbuf *p);
+err_t httpd_post_receive_data( void * connection, struct pbuf * p );
 
 /** Called when all data is received or when the connection is closed.
  * The application must return the filename/URI of a file to send in response
@@ -216,21 +228,24 @@ err_t httpd_post_receive_data(void *connection, struct pbuf *p);
  * response is returned.
  *
  * @param connection Unique connection identifier.
- * @param response_uri Filename of response file, to be filled when denying the request
+ * @param response_uri Filename of response file, to be filled when denying the
+ * request
  * @param response_uri_len Size of the 'response_uri' buffer.
  */
-void httpd_post_finished(void *connection, char *response_uri, u16_t response_uri_len);
+void httpd_post_finished( void * connection,
+                          char * response_uri,
+                          u16_t response_uri_len );
 
-#ifndef LWIP_HTTPD_POST_MANUAL_WND
-#define LWIP_HTTPD_POST_MANUAL_WND  0
-#endif
+    #ifndef LWIP_HTTPD_POST_MANUAL_WND
+        #define LWIP_HTTPD_POST_MANUAL_WND 0
+    #endif
 
-#if LWIP_HTTPD_POST_MANUAL_WND
-void httpd_post_data_recved(void *connection, u16_t recved_len);
-#endif /* LWIP_HTTPD_POST_MANUAL_WND */
+    #if LWIP_HTTPD_POST_MANUAL_WND
+void httpd_post_data_recved( void * connection, u16_t recved_len );
+    #endif /* LWIP_HTTPD_POST_MANUAL_WND */
 
 #endif /* LWIP_HTTPD_SUPPORT_POST */
 
-void httpd_init(void);
+void httpd_init( void );
 
 #endif /* __HTTPD_H__ */

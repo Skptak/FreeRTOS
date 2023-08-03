@@ -32,12 +32,12 @@
 //
 //*****************************************************************************
 
+#include "gpio.h"
 #include "../hw_gpio.h"
 #include "../hw_ints.h"
 #include "../hw_memmap.h"
 #include "../hw_types.h"
 #include "debug.h"
-#include "gpio.h"
 #include "interrupt.h"
 
 //*****************************************************************************
@@ -52,16 +52,15 @@
 //! \return Returns a GPIO interrupt number, or -1 if \e ulPort is invalid.
 //
 //*****************************************************************************
-#if defined(GROUP_getintnumber) || defined(BUILD_ALL)
-long
-GPIOGetIntNumber(unsigned long ulPort)
+#if defined( GROUP_getintnumber ) || defined( BUILD_ALL )
+long GPIOGetIntNumber( unsigned long ulPort )
 {
     unsigned int ulInt;
 
     //
     // Determine the GPIO interrupt number for the given module.
     //
-    switch(ulPort)
+    switch( ulPort )
     {
         case GPIO_PORTA_BASE:
         {
@@ -95,17 +94,17 @@ GPIOGetIntNumber(unsigned long ulPort)
 
         default:
         {
-            return(-1);
+            return ( -1 );
         }
     }
 
     //
     // Return GPIO interrupt number.
     //
-    return(ulInt);
+    return ( ulInt );
 }
 #else
-extern long GPIOGetIntNumber(unsigned long ulPort);
+extern long GPIOGetIntNumber( unsigned long ulPort );
 #endif
 
 //*****************************************************************************
@@ -141,30 +140,34 @@ extern long GPIOGetIntNumber(unsigned long ulPort);
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_dirmodeset) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-GPIODirModeSet(unsigned long ulPort, unsigned char ucPins,
-               unsigned long ulPinIO)
+#if defined( GROUP_dirmodeset ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void GPIODirModeSet( unsigned long ulPort,
+                     unsigned char ucPins,
+                     unsigned long ulPinIO )
 {
     //
     // Check the arguments.
     //
-    ASSERT((ulPort == GPIO_PORTA_BASE) || (ulPort == GPIO_PORTB_BASE) ||
-           (ulPort == GPIO_PORTC_BASE) || (ulPort == GPIO_PORTD_BASE) ||
-           (ulPort == GPIO_PORTE_BASE));
-    ASSERT((ulPinIO == GPIO_DIR_MODE_IN) || (ulPinIO == GPIO_DIR_MODE_OUT) ||
-           (ulPinIO == GPIO_DIR_MODE_HW));
+    ASSERT( ( ulPort == GPIO_PORTA_BASE ) || ( ulPort == GPIO_PORTB_BASE ) ||
+            ( ulPort == GPIO_PORTC_BASE ) || ( ulPort == GPIO_PORTD_BASE ) ||
+            ( ulPort == GPIO_PORTE_BASE ) );
+    ASSERT( ( ulPinIO == GPIO_DIR_MODE_IN ) ||
+            ( ulPinIO == GPIO_DIR_MODE_OUT ) ||
+            ( ulPinIO == GPIO_DIR_MODE_HW ) );
 
     //
     // Set the pin direction and mode.
     //
-    HWREG(ulPort + GPIO_O_DIR) = ((ulPinIO & 1) ?
-                                  (HWREG(ulPort + GPIO_O_DIR) | ucPins) :
-                                  (HWREG(ulPort + GPIO_O_DIR) & ~(ucPins)));
-    HWREG(ulPort + GPIO_O_AFSEL) = ((ulPinIO & 2) ?
-                                    (HWREG(ulPort + GPIO_O_AFSEL) | ucPins) :
-                                    (HWREG(ulPort + GPIO_O_AFSEL) &
-                                     ~(ucPins)));
+    HWREG(
+        ulPort +
+        GPIO_O_DIR ) = ( ( ulPinIO & 1 )
+                             ? ( HWREG( ulPort + GPIO_O_DIR ) | ucPins )
+                             : ( HWREG( ulPort + GPIO_O_DIR ) & ~( ucPins ) ) );
+    HWREG( ulPort +
+           GPIO_O_AFSEL ) = ( ( ulPinIO & 2 )
+                                  ? ( HWREG( ulPort + GPIO_O_AFSEL ) | ucPins )
+                                  : ( HWREG( ulPort + GPIO_O_AFSEL ) &
+                                      ~( ucPins ) ) );
 }
 #endif
 
@@ -186,19 +189,18 @@ GPIODirModeSet(unsigned long ulPort, unsigned char ucPins,
 //! GPIODirModeSet().
 //
 //*****************************************************************************
-#if defined(GROUP_dirmodeget) || defined(BUILD_ALL) || defined(DOXYGEN)
-unsigned long
-GPIODirModeGet(unsigned long ulPort, unsigned char ucPin)
+#if defined( GROUP_dirmodeget ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+unsigned long GPIODirModeGet( unsigned long ulPort, unsigned char ucPin )
 {
     unsigned long ulDir, ulAFSEL;
 
     //
     // Check the arguments.
     //
-    ASSERT((ulPort == GPIO_PORTA_BASE) || (ulPort == GPIO_PORTB_BASE) ||
-           (ulPort == GPIO_PORTC_BASE) || (ulPort == GPIO_PORTD_BASE) ||
-           (ulPort == GPIO_PORTE_BASE));
-    ASSERT(ucPin < 8);
+    ASSERT( ( ulPort == GPIO_PORTA_BASE ) || ( ulPort == GPIO_PORTB_BASE ) ||
+            ( ulPort == GPIO_PORTC_BASE ) || ( ulPort == GPIO_PORTD_BASE ) ||
+            ( ulPort == GPIO_PORTE_BASE ) );
+    ASSERT( ucPin < 8 );
 
     //
     // Convert from a pin number to a bit position.
@@ -208,9 +210,9 @@ GPIODirModeGet(unsigned long ulPort, unsigned char ucPin)
     //
     // Return the pin direction and mode.
     //
-    ulDir = HWREG(ulPort + GPIO_O_DIR);
-    ulAFSEL = HWREG(ulPort + GPIO_O_AFSEL);
-    return(((ulDir & ucPin) ? 1 : 0) | ((ulAFSEL & ucPin) ? 2 : 0));
+    ulDir = HWREG( ulPort + GPIO_O_DIR );
+    ulAFSEL = HWREG( ulPort + GPIO_O_AFSEL );
+    return ( ( ( ulDir & ucPin ) ? 1 : 0 ) | ( ( ulAFSEL & ucPin ) ? 2 : 0 ) );
 }
 #endif
 
@@ -250,35 +252,40 @@ GPIODirModeGet(unsigned long ulPort, unsigned char ucPin)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_inttypeset) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-GPIOIntTypeSet(unsigned long ulPort, unsigned char ucPins,
-               unsigned long ulIntType)
+#if defined( GROUP_inttypeset ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void GPIOIntTypeSet( unsigned long ulPort,
+                     unsigned char ucPins,
+                     unsigned long ulIntType )
 {
     //
     // Check the arguments.
     //
-    ASSERT((ulPort == GPIO_PORTA_BASE) || (ulPort == GPIO_PORTB_BASE) ||
-           (ulPort == GPIO_PORTC_BASE) || (ulPort == GPIO_PORTD_BASE) ||
-           (ulPort == GPIO_PORTE_BASE));
-    ASSERT((ulIntType == GPIO_FALLING_EDGE) ||
-           (ulIntType == GPIO_RISING_EDGE) ||
-           (ulIntType == GPIO_BOTH_EDGES) ||
-           (ulIntType == GPIO_LOW_LEVEL) ||
-           (ulIntType == GPIO_HIGH_LEVEL));
+    ASSERT( ( ulPort == GPIO_PORTA_BASE ) || ( ulPort == GPIO_PORTB_BASE ) ||
+            ( ulPort == GPIO_PORTC_BASE ) || ( ulPort == GPIO_PORTD_BASE ) ||
+            ( ulPort == GPIO_PORTE_BASE ) );
+    ASSERT(
+        ( ulIntType == GPIO_FALLING_EDGE ) ||
+        ( ulIntType == GPIO_RISING_EDGE ) || ( ulIntType == GPIO_BOTH_EDGES ) ||
+        ( ulIntType == GPIO_LOW_LEVEL ) || ( ulIntType == GPIO_HIGH_LEVEL ) );
 
     //
     // Set the pin interrupt type.
     //
-    HWREG(ulPort + GPIO_O_IBE) = ((ulIntType & 1) ?
-                                  (HWREG(ulPort + GPIO_O_IBE) | ucPins) :
-                                  (HWREG(ulPort + GPIO_O_IBE) & ~(ucPins)));
-    HWREG(ulPort + GPIO_O_IS) = ((ulIntType & 2) ?
-                                 (HWREG(ulPort + GPIO_O_IS) | ucPins) :
-                                 (HWREG(ulPort + GPIO_O_IS) & ~(ucPins)));
-    HWREG(ulPort + GPIO_O_IEV) = ((ulIntType & 4) ?
-                                  (HWREG(ulPort + GPIO_O_IEV) | ucPins) :
-                                  (HWREG(ulPort + GPIO_O_IEV) & ~(ucPins)));
+    HWREG(
+        ulPort +
+        GPIO_O_IBE ) = ( ( ulIntType & 1 )
+                             ? ( HWREG( ulPort + GPIO_O_IBE ) | ucPins )
+                             : ( HWREG( ulPort + GPIO_O_IBE ) & ~( ucPins ) ) );
+    HWREG(
+        ulPort +
+        GPIO_O_IS ) = ( ( ulIntType & 2 )
+                            ? ( HWREG( ulPort + GPIO_O_IS ) | ucPins )
+                            : ( HWREG( ulPort + GPIO_O_IS ) & ~( ucPins ) ) );
+    HWREG(
+        ulPort +
+        GPIO_O_IEV ) = ( ( ulIntType & 4 )
+                             ? ( HWREG( ulPort + GPIO_O_IEV ) | ucPins )
+                             : ( HWREG( ulPort + GPIO_O_IEV ) & ~( ucPins ) ) );
 }
 #endif
 
@@ -301,19 +308,18 @@ GPIOIntTypeSet(unsigned long ulPort, unsigned char ucPins,
 //! GPIOIntTypeSet().
 //
 //*****************************************************************************
-#if defined(GROUP_inttypeget) || defined(BUILD_ALL) || defined(DOXYGEN)
-unsigned long
-GPIOIntTypeGet(unsigned long ulPort, unsigned char ucPin)
+#if defined( GROUP_inttypeget ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+unsigned long GPIOIntTypeGet( unsigned long ulPort, unsigned char ucPin )
 {
     unsigned long ulIBE, ulIS, ulIEV;
 
     //
     // Check the arguments.
     //
-    ASSERT((ulPort == GPIO_PORTA_BASE) || (ulPort == GPIO_PORTB_BASE) ||
-           (ulPort == GPIO_PORTC_BASE) || (ulPort == GPIO_PORTD_BASE) ||
-           (ulPort == GPIO_PORTE_BASE));
-    ASSERT(ucPin < 8);
+    ASSERT( ( ulPort == GPIO_PORTA_BASE ) || ( ulPort == GPIO_PORTB_BASE ) ||
+            ( ulPort == GPIO_PORTC_BASE ) || ( ulPort == GPIO_PORTD_BASE ) ||
+            ( ulPort == GPIO_PORTE_BASE ) );
+    ASSERT( ucPin < 8 );
 
     //
     // Convert from a pin number to a bit position.
@@ -323,11 +329,11 @@ GPIOIntTypeGet(unsigned long ulPort, unsigned char ucPin)
     //
     // Return the pin interrupt type.
     //
-    ulIBE = HWREG(ulPort + GPIO_O_IBE);
-    ulIS = HWREG(ulPort + GPIO_O_IS);
-    ulIEV = HWREG(ulPort + GPIO_O_IEV);
-    return(((ulIBE & ucPin) ? 1 : 0) | ((ulIS & ucPin) ? 2 : 0) |
-           ((ulIEV & ucPin) ? 4 : 0));
+    ulIBE = HWREG( ulPort + GPIO_O_IBE );
+    ulIS = HWREG( ulPort + GPIO_O_IS );
+    ulIEV = HWREG( ulPort + GPIO_O_IEV );
+    return ( ( ( ulIBE & ucPin ) ? 1 : 0 ) | ( ( ulIS & ucPin ) ? 2 : 0 ) |
+             ( ( ulIEV & ucPin ) ? 4 : 0 ) );
 }
 #endif
 
@@ -379,60 +385,77 @@ GPIOIntTypeGet(unsigned long ulPort, unsigned char ucPin)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_padconfigset) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-GPIOPadConfigSet(unsigned long ulPort, unsigned char ucPins,
-                 unsigned long ulStrength, unsigned long ulPinType)
+#if defined( GROUP_padconfigset ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void GPIOPadConfigSet( unsigned long ulPort,
+                       unsigned char ucPins,
+                       unsigned long ulStrength,
+                       unsigned long ulPinType )
 {
     //
     // Check the arguments.
     //
-    ASSERT((ulPort == GPIO_PORTA_BASE) || (ulPort == GPIO_PORTB_BASE) ||
-           (ulPort == GPIO_PORTC_BASE) || (ulPort == GPIO_PORTD_BASE) ||
-           (ulPort == GPIO_PORTE_BASE));
-    ASSERT((ulStrength == GPIO_STRENGTH_2MA) ||
-           (ulStrength == GPIO_STRENGTH_4MA) ||
-           (ulStrength == GPIO_STRENGTH_8MA) ||
-           (ulStrength == GPIO_STRENGTH_8MA_SC));
-    ASSERT((ulPinType == GPIO_PIN_TYPE_STD) ||
-           (ulPinType == GPIO_PIN_TYPE_STD_WPU) ||
-           (ulPinType == GPIO_PIN_TYPE_STD_WPD) ||
-           (ulPinType == GPIO_PIN_TYPE_OD) ||
-           (ulPinType == GPIO_PIN_TYPE_OD_WPU) ||
-           (ulPinType == GPIO_PIN_TYPE_OD_WPD) ||
-           (ulPinType == GPIO_PIN_TYPE_ANALOG))
+    ASSERT( ( ulPort == GPIO_PORTA_BASE ) || ( ulPort == GPIO_PORTB_BASE ) ||
+            ( ulPort == GPIO_PORTC_BASE ) || ( ulPort == GPIO_PORTD_BASE ) ||
+            ( ulPort == GPIO_PORTE_BASE ) );
+    ASSERT( ( ulStrength == GPIO_STRENGTH_2MA ) ||
+            ( ulStrength == GPIO_STRENGTH_4MA ) ||
+            ( ulStrength == GPIO_STRENGTH_8MA ) ||
+            ( ulStrength == GPIO_STRENGTH_8MA_SC ) );
+    ASSERT( ( ulPinType == GPIO_PIN_TYPE_STD ) ||
+            ( ulPinType == GPIO_PIN_TYPE_STD_WPU ) ||
+            ( ulPinType == GPIO_PIN_TYPE_STD_WPD ) ||
+            ( ulPinType == GPIO_PIN_TYPE_OD ) ||
+            ( ulPinType == GPIO_PIN_TYPE_OD_WPU ) ||
+            ( ulPinType == GPIO_PIN_TYPE_OD_WPD ) ||
+            ( ulPinType == GPIO_PIN_TYPE_ANALOG ) )
 
     //
     // Set the output drive strength.
     //
-    HWREG(ulPort + GPIO_O_DR2R) = ((ulStrength & 1) ?
-                                   (HWREG(ulPort + GPIO_O_DR2R) | ucPins) :
-                                   (HWREG(ulPort + GPIO_O_DR2R) & ~(ucPins)));
-    HWREG(ulPort + GPIO_O_DR4R) = ((ulStrength & 2) ?
-                                   (HWREG(ulPort + GPIO_O_DR4R) | ucPins) :
-                                   (HWREG(ulPort + GPIO_O_DR4R) & ~(ucPins)));
-    HWREG(ulPort + GPIO_O_DR8R) = ((ulStrength & 4) ?
-                                   (HWREG(ulPort + GPIO_O_DR8R) | ucPins) :
-                                   (HWREG(ulPort + GPIO_O_DR8R) & ~(ucPins)));
-    HWREG(ulPort + GPIO_O_SLR) = ((ulStrength & 8) ?
-                                  (HWREG(ulPort + GPIO_O_SLR) | ucPins) :
-                                  (HWREG(ulPort + GPIO_O_SLR) & ~(ucPins)));
+    HWREG( ulPort +
+           GPIO_O_DR2R ) = ( ( ulStrength & 1 )
+                                 ? ( HWREG( ulPort + GPIO_O_DR2R ) | ucPins )
+                                 : ( HWREG( ulPort + GPIO_O_DR2R ) &
+                                     ~( ucPins ) ) );
+    HWREG( ulPort +
+           GPIO_O_DR4R ) = ( ( ulStrength & 2 )
+                                 ? ( HWREG( ulPort + GPIO_O_DR4R ) | ucPins )
+                                 : ( HWREG( ulPort + GPIO_O_DR4R ) &
+                                     ~( ucPins ) ) );
+    HWREG( ulPort +
+           GPIO_O_DR8R ) = ( ( ulStrength & 4 )
+                                 ? ( HWREG( ulPort + GPIO_O_DR8R ) | ucPins )
+                                 : ( HWREG( ulPort + GPIO_O_DR8R ) &
+                                     ~( ucPins ) ) );
+    HWREG(
+        ulPort +
+        GPIO_O_SLR ) = ( ( ulStrength & 8 )
+                             ? ( HWREG( ulPort + GPIO_O_SLR ) | ucPins )
+                             : ( HWREG( ulPort + GPIO_O_SLR ) & ~( ucPins ) ) );
 
     //
     // Set the pin type.
     //
-    HWREG(ulPort + GPIO_O_ODR) = ((ulPinType & 1) ?
-                                  (HWREG(ulPort + GPIO_O_ODR) | ucPins) :
-                                  (HWREG(ulPort + GPIO_O_ODR) & ~(ucPins)));
-    HWREG(ulPort + GPIO_O_PUR) = ((ulPinType & 2) ?
-                                  (HWREG(ulPort + GPIO_O_PUR) | ucPins) :
-                                  (HWREG(ulPort + GPIO_O_PUR) & ~(ucPins)));
-    HWREG(ulPort + GPIO_O_PDR) = ((ulPinType & 4) ?
-                                  (HWREG(ulPort + GPIO_O_PDR) | ucPins) :
-                                  (HWREG(ulPort + GPIO_O_PDR) & ~(ucPins)));
-    HWREG(ulPort + GPIO_O_DEN) = ((ulPinType & 8) ?
-                                  (HWREG(ulPort + GPIO_O_DEN) | ucPins) :
-                                  (HWREG(ulPort + GPIO_O_DEN) & ~(ucPins)));
+    HWREG(
+        ulPort +
+        GPIO_O_ODR ) = ( ( ulPinType & 1 )
+                             ? ( HWREG( ulPort + GPIO_O_ODR ) | ucPins )
+                             : ( HWREG( ulPort + GPIO_O_ODR ) & ~( ucPins ) ) );
+    HWREG(
+        ulPort +
+        GPIO_O_PUR ) = ( ( ulPinType & 2 )
+                             ? ( HWREG( ulPort + GPIO_O_PUR ) | ucPins )
+                             : ( HWREG( ulPort + GPIO_O_PUR ) & ~( ucPins ) ) );
+    HWREG(
+        ulPort +
+        GPIO_O_PDR ) = ( ( ulPinType & 4 )
+                             ? ( HWREG( ulPort + GPIO_O_PDR ) | ucPins )
+                             : ( HWREG( ulPort + GPIO_O_PDR ) & ~( ucPins ) ) );
+    HWREG(
+        ulPort +
+        GPIO_O_DEN ) = ( ( ulPinType & 8 )
+                             ? ( HWREG( ulPort + GPIO_O_DEN ) | ucPins )
+                             : ( HWREG( ulPort + GPIO_O_DEN ) & ~( ucPins ) ) );
 }
 #endif
 
@@ -457,45 +480,50 @@ GPIOPadConfigSet(unsigned long ulPort, unsigned char ucPins,
 //! \return None
 //
 //*****************************************************************************
-#if defined(GROUP_padconfigget) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-GPIOPadConfigGet(unsigned long ulPort, unsigned char ucPin,
-                 unsigned long *pulStrength, unsigned long *pulPinType)
+#if defined( GROUP_padconfigget ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void GPIOPadConfigGet( unsigned long ulPort,
+                       unsigned char ucPin,
+                       unsigned long * pulStrength,
+                       unsigned long * pulPinType )
 {
     unsigned long ulTemp1, ulTemp2, ulTemp3, ulTemp4;
 
     //
     // Check the arguments.
     //
-    ASSERT((ulPort == GPIO_PORTA_BASE) || (ulPort == GPIO_PORTB_BASE) ||
-           (ulPort == GPIO_PORTC_BASE) || (ulPort == GPIO_PORTD_BASE) ||
-           (ulPort == GPIO_PORTE_BASE));
-    ASSERT(ucPin < 8);
+    ASSERT( ( ulPort == GPIO_PORTA_BASE ) || ( ulPort == GPIO_PORTB_BASE ) ||
+            ( ulPort == GPIO_PORTC_BASE ) || ( ulPort == GPIO_PORTD_BASE ) ||
+            ( ulPort == GPIO_PORTE_BASE ) );
+    ASSERT( ucPin < 8 );
 
     //
     // Convert from a pin number to a bit position.
     //
-    ucPin = (1 << ucPin);
+    ucPin = ( 1 << ucPin );
 
     //
     // Get the drive strength for this pin.
     //
-    ulTemp1 = HWREG(ulPort + GPIO_O_DR2R);
-    ulTemp2 = HWREG(ulPort + GPIO_O_DR4R);
-    ulTemp3 = HWREG(ulPort + GPIO_O_DR8R);
-    ulTemp4 = HWREG(ulPort + GPIO_O_SLR);
-    *pulStrength = (((ulTemp1 & ucPin) ? 1 : 0) | ((ulTemp2 & ucPin) ? 2 : 0) |
-                    ((ulTemp3 & ucPin) ? 4 : 0) | ((ulTemp4 & ucPin) ? 8 : 0));
+    ulTemp1 = HWREG( ulPort + GPIO_O_DR2R );
+    ulTemp2 = HWREG( ulPort + GPIO_O_DR4R );
+    ulTemp3 = HWREG( ulPort + GPIO_O_DR8R );
+    ulTemp4 = HWREG( ulPort + GPIO_O_SLR );
+    *pulStrength = ( ( ( ulTemp1 & ucPin ) ? 1 : 0 ) |
+                     ( ( ulTemp2 & ucPin ) ? 2 : 0 ) |
+                     ( ( ulTemp3 & ucPin ) ? 4 : 0 ) |
+                     ( ( ulTemp4 & ucPin ) ? 8 : 0 ) );
 
     //
     // Get the pin type.
     //
-    ulTemp1 = HWREG(ulPort + GPIO_O_ODR);
-    ulTemp2 = HWREG(ulPort + GPIO_O_PUR);
-    ulTemp3 = HWREG(ulPort + GPIO_O_PDR);
-    ulTemp4 = HWREG(ulPort + GPIO_O_DEN);
-    *pulPinType = (((ulTemp1 & ucPin) ? 1 : 0) | ((ulTemp2 & ucPin) ? 2 : 0) |
-                   ((ulTemp3 & ucPin) ? 4 : 0) | ((ulTemp4 & ucPin) ? 8 : 0));
+    ulTemp1 = HWREG( ulPort + GPIO_O_ODR );
+    ulTemp2 = HWREG( ulPort + GPIO_O_PUR );
+    ulTemp3 = HWREG( ulPort + GPIO_O_PDR );
+    ulTemp4 = HWREG( ulPort + GPIO_O_DEN );
+    *pulPinType = ( ( ( ulTemp1 & ucPin ) ? 1 : 0 ) |
+                    ( ( ulTemp2 & ucPin ) ? 2 : 0 ) |
+                    ( ( ulTemp3 & ucPin ) ? 4 : 0 ) |
+                    ( ( ulTemp4 & ucPin ) ? 8 : 0 ) );
 }
 #endif
 
@@ -515,21 +543,20 @@ GPIOPadConfigGet(unsigned long ulPort, unsigned char ucPin,
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_pinintenable) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-GPIOPinIntEnable(unsigned long ulPort, unsigned char ucPins)
+#if defined( GROUP_pinintenable ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void GPIOPinIntEnable( unsigned long ulPort, unsigned char ucPins )
 {
     //
     // Check the arguments.
     //
-    ASSERT((ulPort == GPIO_PORTA_BASE) || (ulPort == GPIO_PORTB_BASE) ||
-           (ulPort == GPIO_PORTC_BASE) || (ulPort == GPIO_PORTD_BASE) ||
-           (ulPort == GPIO_PORTE_BASE));
+    ASSERT( ( ulPort == GPIO_PORTA_BASE ) || ( ulPort == GPIO_PORTB_BASE ) ||
+            ( ulPort == GPIO_PORTC_BASE ) || ( ulPort == GPIO_PORTD_BASE ) ||
+            ( ulPort == GPIO_PORTE_BASE ) );
 
     //
     // Enable the interrupts.
     //
-    HWREG(ulPort + GPIO_O_IM) |= ucPins;
+    HWREG( ulPort + GPIO_O_IM ) |= ucPins;
 }
 #endif
 
@@ -549,21 +576,20 @@ GPIOPinIntEnable(unsigned long ulPort, unsigned char ucPins)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_pinintdisable) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-GPIOPinIntDisable(unsigned long ulPort, unsigned char ucPins)
+#if defined( GROUP_pinintdisable ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void GPIOPinIntDisable( unsigned long ulPort, unsigned char ucPins )
 {
     //
     // Check the arguments.
     //
-    ASSERT((ulPort == GPIO_PORTA_BASE) || (ulPort == GPIO_PORTB_BASE) ||
-           (ulPort == GPIO_PORTC_BASE) || (ulPort == GPIO_PORTD_BASE) ||
-           (ulPort == GPIO_PORTE_BASE));
+    ASSERT( ( ulPort == GPIO_PORTA_BASE ) || ( ulPort == GPIO_PORTB_BASE ) ||
+            ( ulPort == GPIO_PORTC_BASE ) || ( ulPort == GPIO_PORTD_BASE ) ||
+            ( ulPort == GPIO_PORTE_BASE ) );
 
     //
     // Disable the interrupts.
     //
-    HWREG(ulPort + GPIO_O_IM) &= ~(ucPins);
+    HWREG( ulPort + GPIO_O_IM ) &= ~( ucPins );
 }
 #endif
 
@@ -584,27 +610,26 @@ GPIOPinIntDisable(unsigned long ulPort, unsigned char ucPins)
 //! 31:8 should be ignored.
 //
 //*****************************************************************************
-#if defined(GROUP_pinintstatus) || defined(BUILD_ALL) || defined(DOXYGEN)
-long
-GPIOPinIntStatus(unsigned long ulPort, tBoolean bMasked)
+#if defined( GROUP_pinintstatus ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+long GPIOPinIntStatus( unsigned long ulPort, tBoolean bMasked )
 {
     //
     // Check the arguments.
     //
-    ASSERT((ulPort == GPIO_PORTA_BASE) || (ulPort == GPIO_PORTB_BASE) ||
-           (ulPort == GPIO_PORTC_BASE) || (ulPort == GPIO_PORTD_BASE) ||
-           (ulPort == GPIO_PORTE_BASE));
+    ASSERT( ( ulPort == GPIO_PORTA_BASE ) || ( ulPort == GPIO_PORTB_BASE ) ||
+            ( ulPort == GPIO_PORTC_BASE ) || ( ulPort == GPIO_PORTD_BASE ) ||
+            ( ulPort == GPIO_PORTE_BASE ) );
 
     //
     // Return the interrupt status.
     //
-    if(bMasked)
+    if( bMasked )
     {
-        return(HWREG(ulPort + GPIO_O_MIS));
+        return ( HWREG( ulPort + GPIO_O_MIS ) );
     }
     else
     {
-        return(HWREG(ulPort + GPIO_O_RIS));
+        return ( HWREG( ulPort + GPIO_O_RIS ) );
     }
 }
 #endif
@@ -625,21 +650,20 @@ GPIOPinIntStatus(unsigned long ulPort, tBoolean bMasked)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_pinintclear) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-GPIOPinIntClear(unsigned long ulPort, unsigned char ucPins)
+#if defined( GROUP_pinintclear ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void GPIOPinIntClear( unsigned long ulPort, unsigned char ucPins )
 {
     //
     // Check the arguments.
     //
-    ASSERT((ulPort == GPIO_PORTA_BASE) || (ulPort == GPIO_PORTB_BASE) ||
-           (ulPort == GPIO_PORTC_BASE) || (ulPort == GPIO_PORTD_BASE) ||
-           (ulPort == GPIO_PORTE_BASE));
+    ASSERT( ( ulPort == GPIO_PORTA_BASE ) || ( ulPort == GPIO_PORTB_BASE ) ||
+            ( ulPort == GPIO_PORTC_BASE ) || ( ulPort == GPIO_PORTD_BASE ) ||
+            ( ulPort == GPIO_PORTE_BASE ) );
 
     //
     // Clear the interrupts.
     //
-    HWREG(ulPort + GPIO_O_ICR) = ucPins;
+    HWREG( ulPort + GPIO_O_ICR ) = ucPins;
 }
 #endif
 
@@ -662,31 +686,31 @@ GPIOPinIntClear(unsigned long ulPort, unsigned char ucPins)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_portintregister) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-GPIOPortIntRegister(unsigned long ulPort, void (*pfIntHandler)(void))
+#if defined( GROUP_portintregister ) || defined( BUILD_ALL ) || \
+    defined( DOXYGEN )
+void GPIOPortIntRegister( unsigned long ulPort, void ( *pfIntHandler )( void ) )
 {
     //
     // Check the arguments.
     //
-    ASSERT((ulPort == GPIO_PORTA_BASE) || (ulPort == GPIO_PORTB_BASE) ||
-           (ulPort == GPIO_PORTC_BASE) || (ulPort == GPIO_PORTD_BASE) ||
-           (ulPort == GPIO_PORTE_BASE));
+    ASSERT( ( ulPort == GPIO_PORTA_BASE ) || ( ulPort == GPIO_PORTB_BASE ) ||
+            ( ulPort == GPIO_PORTC_BASE ) || ( ulPort == GPIO_PORTD_BASE ) ||
+            ( ulPort == GPIO_PORTE_BASE ) );
 
     //
     // Get the interrupt number associated with the specified GPIO.
     //
-    ulPort = GPIOGetIntNumber(ulPort);
+    ulPort = GPIOGetIntNumber( ulPort );
 
     //
     // Register the interrupt handler.
     //
-    IntRegister(ulPort, pfIntHandler);
+    IntRegister( ulPort, pfIntHandler );
 
     //
     // Enable the GPIO interrupt.
     //
-    IntEnable(ulPort);
+    IntEnable( ulPort );
 }
 #endif
 
@@ -707,31 +731,31 @@ GPIOPortIntRegister(unsigned long ulPort, void (*pfIntHandler)(void))
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_portintunregister) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-GPIOPortIntUnregister(unsigned long ulPort)
+#if defined( GROUP_portintunregister ) || defined( BUILD_ALL ) || \
+    defined( DOXYGEN )
+void GPIOPortIntUnregister( unsigned long ulPort )
 {
     //
     // Check the arguments.
     //
-    ASSERT((ulPort == GPIO_PORTA_BASE) || (ulPort == GPIO_PORTB_BASE) ||
-           (ulPort == GPIO_PORTC_BASE) || (ulPort == GPIO_PORTD_BASE) ||
-           (ulPort == GPIO_PORTE_BASE));
+    ASSERT( ( ulPort == GPIO_PORTA_BASE ) || ( ulPort == GPIO_PORTB_BASE ) ||
+            ( ulPort == GPIO_PORTC_BASE ) || ( ulPort == GPIO_PORTD_BASE ) ||
+            ( ulPort == GPIO_PORTE_BASE ) );
 
     //
     // Get the interrupt number associated with the specified GPIO.
     //
-    ulPort = GPIOGetIntNumber(ulPort);
+    ulPort = GPIOGetIntNumber( ulPort );
 
     //
     // Disable the GPIO interrupt.
     //
-    IntDisable(ulPort);
+    IntDisable( ulPort );
 
     //
     // Unregister the interrupt handler.
     //
-    IntUnregister(ulPort);
+    IntUnregister( ulPort );
 }
 #endif
 
@@ -756,21 +780,20 @@ GPIOPortIntUnregister(unsigned long ulPort)
 //! is returned as a 0. Bits 31:8 should be ignored.
 //
 //*****************************************************************************
-#if defined(GROUP_pinread) || defined(BUILD_ALL) || defined(DOXYGEN)
-long
-GPIOPinRead(unsigned long ulPort, unsigned char ucPins)
+#if defined( GROUP_pinread ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+long GPIOPinRead( unsigned long ulPort, unsigned char ucPins )
 {
     //
     // Check the arguments.
     //
-    ASSERT((ulPort == GPIO_PORTA_BASE) || (ulPort == GPIO_PORTB_BASE) ||
-           (ulPort == GPIO_PORTC_BASE) || (ulPort == GPIO_PORTD_BASE) ||
-           (ulPort == GPIO_PORTE_BASE));
+    ASSERT( ( ulPort == GPIO_PORTA_BASE ) || ( ulPort == GPIO_PORTB_BASE ) ||
+            ( ulPort == GPIO_PORTC_BASE ) || ( ulPort == GPIO_PORTD_BASE ) ||
+            ( ulPort == GPIO_PORTE_BASE ) );
 
     //
     // Return the pin value(s).
     //
-    return(HWREG(ulPort + (GPIO_O_DATA + (ucPins << 2))));
+    return ( HWREG( ulPort + ( GPIO_O_DATA + ( ucPins << 2 ) ) ) );
 }
 #endif
 
@@ -793,21 +816,22 @@ GPIOPinRead(unsigned long ulPort, unsigned char ucPins)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_pinwrite) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-GPIOPinWrite(unsigned long ulPort, unsigned char ucPins, unsigned char ucVal)
+#if defined( GROUP_pinwrite ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void GPIOPinWrite( unsigned long ulPort,
+                   unsigned char ucPins,
+                   unsigned char ucVal )
 {
     //
     // Check the arguments.
     //
-    ASSERT((ulPort == GPIO_PORTA_BASE) || (ulPort == GPIO_PORTB_BASE) ||
-           (ulPort == GPIO_PORTC_BASE) || (ulPort == GPIO_PORTD_BASE) ||
-           (ulPort == GPIO_PORTE_BASE));
+    ASSERT( ( ulPort == GPIO_PORTA_BASE ) || ( ulPort == GPIO_PORTB_BASE ) ||
+            ( ulPort == GPIO_PORTC_BASE ) || ( ulPort == GPIO_PORTD_BASE ) ||
+            ( ulPort == GPIO_PORTE_BASE ) );
 
     //
     // Write the pins.
     //
-    HWREG(ulPort + (GPIO_O_DATA + (ucPins << 2))) = ucVal;
+    HWREG( ulPort + ( GPIO_O_DATA + ( ucPins << 2 ) ) ) = ucVal;
 }
 #endif
 
@@ -828,26 +852,26 @@ GPIOPinWrite(unsigned long ulPort, unsigned char ucPins, unsigned char ucVal)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_pintypecomparator) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-GPIOPinTypeComparator(unsigned long ulPort, unsigned char ucPins)
+#if defined( GROUP_pintypecomparator ) || defined( BUILD_ALL ) || \
+    defined( DOXYGEN )
+void GPIOPinTypeComparator( unsigned long ulPort, unsigned char ucPins )
 {
     //
     // Check the arguments.
     //
-    ASSERT((ulPort == GPIO_PORTA_BASE) || (ulPort == GPIO_PORTB_BASE) ||
-           (ulPort == GPIO_PORTC_BASE) || (ulPort == GPIO_PORTD_BASE) ||
-           (ulPort == GPIO_PORTE_BASE));
+    ASSERT( ( ulPort == GPIO_PORTA_BASE ) || ( ulPort == GPIO_PORTB_BASE ) ||
+            ( ulPort == GPIO_PORTC_BASE ) || ( ulPort == GPIO_PORTD_BASE ) ||
+            ( ulPort == GPIO_PORTE_BASE ) );
 
     //
     // Make the pin(s) be inputs.
     //
-    GPIODirModeSet(ulPort, ucPins, GPIO_DIR_MODE_IN);
+    GPIODirModeSet( ulPort, ucPins, GPIO_DIR_MODE_IN );
 
     //
     // Set the pad(s) for analog operation.
     //
-    GPIOPadConfigSet(ulPort, ucPins, GPIO_STRENGTH_2MA, GPIO_PIN_TYPE_ANALOG);
+    GPIOPadConfigSet( ulPort, ucPins, GPIO_STRENGTH_2MA, GPIO_PIN_TYPE_ANALOG );
 }
 #endif
 
@@ -867,26 +891,25 @@ GPIOPinTypeComparator(unsigned long ulPort, unsigned char ucPins)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_pintypei2c) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-GPIOPinTypeI2C(unsigned long ulPort, unsigned char ucPins)
+#if defined( GROUP_pintypei2c ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void GPIOPinTypeI2C( unsigned long ulPort, unsigned char ucPins )
 {
     //
     // Check the arguments.
     //
-    ASSERT((ulPort == GPIO_PORTA_BASE) || (ulPort == GPIO_PORTB_BASE) ||
-           (ulPort == GPIO_PORTC_BASE) || (ulPort == GPIO_PORTD_BASE) ||
-           (ulPort == GPIO_PORTE_BASE));
+    ASSERT( ( ulPort == GPIO_PORTA_BASE ) || ( ulPort == GPIO_PORTB_BASE ) ||
+            ( ulPort == GPIO_PORTC_BASE ) || ( ulPort == GPIO_PORTD_BASE ) ||
+            ( ulPort == GPIO_PORTE_BASE ) );
 
     //
     // Make the pin(s) be peripheral controlled.
     //
-    GPIODirModeSet(ulPort, ucPins, GPIO_DIR_MODE_HW);
+    GPIODirModeSet( ulPort, ucPins, GPIO_DIR_MODE_HW );
 
     //
     // Set the pad(s) for open-drain operation with a weak pull-up.
     //
-    GPIOPadConfigSet(ulPort, ucPins, GPIO_STRENGTH_2MA, GPIO_PIN_TYPE_OD_WPU);
+    GPIOPadConfigSet( ulPort, ucPins, GPIO_STRENGTH_2MA, GPIO_PIN_TYPE_OD_WPU );
 }
 #endif
 
@@ -908,26 +931,25 @@ GPIOPinTypeI2C(unsigned long ulPort, unsigned char ucPins)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_pintypepwm) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-GPIOPinTypePWM(unsigned long ulPort, unsigned char ucPins)
+#if defined( GROUP_pintypepwm ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void GPIOPinTypePWM( unsigned long ulPort, unsigned char ucPins )
 {
     //
     // Check the arguments.
     //
-    ASSERT((ulPort == GPIO_PORTA_BASE) || (ulPort == GPIO_PORTB_BASE) ||
-           (ulPort == GPIO_PORTC_BASE) || (ulPort == GPIO_PORTD_BASE) ||
-           (ulPort == GPIO_PORTE_BASE));
+    ASSERT( ( ulPort == GPIO_PORTA_BASE ) || ( ulPort == GPIO_PORTB_BASE ) ||
+            ( ulPort == GPIO_PORTC_BASE ) || ( ulPort == GPIO_PORTD_BASE ) ||
+            ( ulPort == GPIO_PORTE_BASE ) );
 
     //
     // Make the pin(s) be peripheral controlled.
     //
-    GPIODirModeSet(ulPort, ucPins, GPIO_DIR_MODE_HW);
+    GPIODirModeSet( ulPort, ucPins, GPIO_DIR_MODE_HW );
 
     //
     // Set the pad(s) for standard push-pull operation.
     //
-    GPIOPadConfigSet(ulPort, ucPins, GPIO_STRENGTH_2MA, GPIO_PIN_TYPE_STD);
+    GPIOPadConfigSet( ulPort, ucPins, GPIO_STRENGTH_2MA, GPIO_PIN_TYPE_STD );
 }
 #endif
 
@@ -949,26 +971,25 @@ GPIOPinTypePWM(unsigned long ulPort, unsigned char ucPins)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_pintypeqei) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-GPIOPinTypeQEI(unsigned long ulPort, unsigned char ucPins)
+#if defined( GROUP_pintypeqei ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void GPIOPinTypeQEI( unsigned long ulPort, unsigned char ucPins )
 {
     //
     // Check the arguments.
     //
-    ASSERT((ulPort == GPIO_PORTA_BASE) || (ulPort == GPIO_PORTB_BASE) ||
-           (ulPort == GPIO_PORTC_BASE) || (ulPort == GPIO_PORTD_BASE) ||
-           (ulPort == GPIO_PORTE_BASE));
+    ASSERT( ( ulPort == GPIO_PORTA_BASE ) || ( ulPort == GPIO_PORTB_BASE ) ||
+            ( ulPort == GPIO_PORTC_BASE ) || ( ulPort == GPIO_PORTD_BASE ) ||
+            ( ulPort == GPIO_PORTE_BASE ) );
 
     //
     // Make the pin(s) be peripheral controlled.
     //
-    GPIODirModeSet(ulPort, ucPins, GPIO_DIR_MODE_HW);
+    GPIODirModeSet( ulPort, ucPins, GPIO_DIR_MODE_HW );
 
     //
     // Set the pad(s) for standard push-pull operation with a weak pull-up.
     //
-    GPIOPadConfigSet(ulPort, ucPins, GPIO_STRENGTH_2MA, GPIO_PIN_TYPE_STD_WPU);
+    GPIOPadConfigSet( ulPort, ucPins, GPIO_STRENGTH_2MA, GPIO_PIN_TYPE_STD_WPU );
 }
 #endif
 
@@ -990,26 +1011,25 @@ GPIOPinTypeQEI(unsigned long ulPort, unsigned char ucPins)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_pintypessi) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-GPIOPinTypeSSI(unsigned long ulPort, unsigned char ucPins)
+#if defined( GROUP_pintypessi ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void GPIOPinTypeSSI( unsigned long ulPort, unsigned char ucPins )
 {
     //
     // Check the arguments.
     //
-    ASSERT((ulPort == GPIO_PORTA_BASE) || (ulPort == GPIO_PORTB_BASE) ||
-           (ulPort == GPIO_PORTC_BASE) || (ulPort == GPIO_PORTD_BASE) ||
-           (ulPort == GPIO_PORTE_BASE));
+    ASSERT( ( ulPort == GPIO_PORTA_BASE ) || ( ulPort == GPIO_PORTB_BASE ) ||
+            ( ulPort == GPIO_PORTC_BASE ) || ( ulPort == GPIO_PORTD_BASE ) ||
+            ( ulPort == GPIO_PORTE_BASE ) );
 
     //
     // Make the pin(s) be peripheral controlled.
     //
-    GPIODirModeSet(ulPort, ucPins, GPIO_DIR_MODE_HW);
+    GPIODirModeSet( ulPort, ucPins, GPIO_DIR_MODE_HW );
 
     //
     // Set the pad(s) for standard push-pull operation.
     //
-    GPIOPadConfigSet(ulPort, ucPins, GPIO_STRENGTH_2MA, GPIO_PIN_TYPE_STD);
+    GPIOPadConfigSet( ulPort, ucPins, GPIO_STRENGTH_2MA, GPIO_PIN_TYPE_STD );
 }
 #endif
 
@@ -1031,26 +1051,25 @@ GPIOPinTypeSSI(unsigned long ulPort, unsigned char ucPins)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_pintypetimer) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-GPIOPinTypeTimer(unsigned long ulPort, unsigned char ucPins)
+#if defined( GROUP_pintypetimer ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void GPIOPinTypeTimer( unsigned long ulPort, unsigned char ucPins )
 {
     //
     // Check the arguments.
     //
-    ASSERT((ulPort == GPIO_PORTA_BASE) || (ulPort == GPIO_PORTB_BASE) ||
-           (ulPort == GPIO_PORTC_BASE) || (ulPort == GPIO_PORTD_BASE) ||
-           (ulPort == GPIO_PORTE_BASE));
+    ASSERT( ( ulPort == GPIO_PORTA_BASE ) || ( ulPort == GPIO_PORTB_BASE ) ||
+            ( ulPort == GPIO_PORTC_BASE ) || ( ulPort == GPIO_PORTD_BASE ) ||
+            ( ulPort == GPIO_PORTE_BASE ) );
 
     //
     // Make the pin(s) be peripheral controlled.
     //
-    GPIODirModeSet(ulPort, ucPins, GPIO_DIR_MODE_HW);
+    GPIODirModeSet( ulPort, ucPins, GPIO_DIR_MODE_HW );
 
     //
     // Set the pad(s) for standard push-pull operation.
     //
-    GPIOPadConfigSet(ulPort, ucPins, GPIO_STRENGTH_2MA, GPIO_PIN_TYPE_STD);
+    GPIOPadConfigSet( ulPort, ucPins, GPIO_STRENGTH_2MA, GPIO_PIN_TYPE_STD );
 }
 #endif
 
@@ -1072,26 +1091,25 @@ GPIOPinTypeTimer(unsigned long ulPort, unsigned char ucPins)
 //! \return None.
 //
 //*****************************************************************************
-#if defined(GROUP_pintypeuart) || defined(BUILD_ALL) || defined(DOXYGEN)
-void
-GPIOPinTypeUART(unsigned long ulPort, unsigned char ucPins)
+#if defined( GROUP_pintypeuart ) || defined( BUILD_ALL ) || defined( DOXYGEN )
+void GPIOPinTypeUART( unsigned long ulPort, unsigned char ucPins )
 {
     //
     // Check the arguments.
     //
-    ASSERT((ulPort == GPIO_PORTA_BASE) || (ulPort == GPIO_PORTB_BASE) ||
-           (ulPort == GPIO_PORTC_BASE) || (ulPort == GPIO_PORTD_BASE) ||
-           (ulPort == GPIO_PORTE_BASE));
+    ASSERT( ( ulPort == GPIO_PORTA_BASE ) || ( ulPort == GPIO_PORTB_BASE ) ||
+            ( ulPort == GPIO_PORTC_BASE ) || ( ulPort == GPIO_PORTD_BASE ) ||
+            ( ulPort == GPIO_PORTE_BASE ) );
 
     //
     // Make the pin(s) be peripheral controlled.
     //
-    GPIODirModeSet(ulPort, ucPins, GPIO_DIR_MODE_HW);
+    GPIODirModeSet( ulPort, ucPins, GPIO_DIR_MODE_HW );
 
     //
     // Set the pad(s) for standard push-pull operation.
     //
-    GPIOPadConfigSet(ulPort, ucPins, GPIO_STRENGTH_2MA, GPIO_PIN_TYPE_STD);
+    GPIOPadConfigSet( ulPort, ucPins, GPIO_STRENGTH_2MA, GPIO_PIN_TYPE_STD );
 }
 #endif
 

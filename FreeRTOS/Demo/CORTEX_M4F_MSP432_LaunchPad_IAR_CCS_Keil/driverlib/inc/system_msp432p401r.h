@@ -1,13 +1,13 @@
-/**************************************************************************//**
-* @file     system_msp432p401r.h
-* @brief    CMSIS Cortex-M4F Device Peripheral Access Layer Header File for
-*           MSP432P401R
-* @version  V1.00
-* @date     20-Oct-2015
-*
-* @note     View configuration instructions embedded in comments
-*
-******************************************************************************/
+/**************************************************************************/ /**
+                                                                              * @file     system_msp432p401r.h
+                                                                              * @brief    CMSIS Cortex-M4F Device Peripheral Access Layer Header File for
+                                                                              *           MSP432P401R
+                                                                              * @version  V1.00
+                                                                              * @date     20-Oct-2015
+                                                                              *
+                                                                              * @note     View configuration instructions embedded in comments
+                                                                              *
+                                                                              ******************************************************************************/
 //*****************************************************************************
 //
 // Copyright (C) 2015 Texas Instruments Incorporated - http://www.ti.com/
@@ -51,8 +51,7 @@ extern "C" {
 
 #include <stdint.h>
 
-extern uint32_t SystemCoreClock;     /*!< System Clock Frequency (Core Clock)  */
-
+extern uint32_t SystemCoreClock; /*!< System Clock Frequency (Core Clock)  */
 
 /**
  * Initialize the system
@@ -71,7 +70,7 @@ extern uint32_t SystemCoreClock;     /*!< System Clock Frequency (Core Clock)  *
  *     6. Change MCLK to desired frequency
  *     7. Enable Flash read buffering
  */
-extern void SystemInit (void);
+extern void SystemInit( void );
 
 /**
  * Update SystemCoreClock variable
@@ -82,7 +81,7 @@ extern void SystemInit (void);
  * @brief  Updates the SystemCoreClock with current core Clock
  *         retrieved from cpu registers.
  */
-extern void SystemCoreClockUpdate (void);
+extern void SystemCoreClockUpdate( void );
 
 #ifdef __cplusplus
 }

@@ -1,6 +1,6 @@
 /* Interrupt Vectors
    Copyright (C) 2000 Free Software Foundation, Inc.
-   Written by Stephane Carrez (stcarrez@worldnet.fr)	
+   Written by Stephane Carrez (stcarrez@worldnet.fr)
    Modified; Jefferson Smith, Robotronics; for HC12/9S12
 
 This file is free software; you can redistribute it and/or modify it
@@ -35,10 +35,10 @@ Boston, MA 02111-1307, USA.  */
 /*@{*/
 
 /*! Interrupt handler prototype.  */
-typedef void (* interrupt_t) (void);
+typedef void ( *interrupt_t )( void );
 
 #ifdef mc68hcs12
-#	include "interrupts-dp256.h"
+    #include "interrupts-dp256.h"
 #endif
 
 /*! Interrupt vector table.
@@ -46,9 +46,9 @@ typedef void (* interrupt_t) (void);
     The interrupt vector table is in general located at `0xff80'
     in memory.  It is at the same address as the interrupt
     vectors structure (alias).  */
-extern interrupt_t _vectors_addr[MAX_VECTORS];
+extern interrupt_t _vectors_addr[ MAX_VECTORS ];
 
-extern interrupt_vectors_t _vectors __asm__("_vectors_addr");
+extern interrupt_vectors_t _vectors __asm__( "_vectors_addr" );
 
 /*@}*/
-#endif  /* _M68HC12_INTERRUPTS_H */
+#endif /* _M68HC12_INTERRUPTS_H */

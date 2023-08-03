@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -57,12 +58,12 @@
  * (located in located in coreHTTP_Windows_Simulator/Common) to generate these
  * URLs. For detailed instructions, see the accompanied README.md.
  *
- * @note If your file requires more than 99 range requests to S3 (depending on the
- * size of the file and the length specified in democonfigRANGE_REQUEST_LENGTH),
- * your connection may be dropped by S3. In this case, either increase the
- * buffer size and range request length (if feasible), to reduce the number of
- * requests required, or re-establish the connection with S3 after receiving a
- * "Connection: close" response header.
+ * @note If your file requires more than 99 range requests to S3 (depending on
+ * the size of the file and the length specified in
+ * democonfigRANGE_REQUEST_LENGTH), your connection may be dropped by S3. In
+ * this case, either increase the buffer size and range request length (if
+ * feasible), to reduce the number of requests required, or re-establish the
+ * connection with S3 after receiving a "Connection: close" response header.
  */
 
 /**
@@ -77,8 +78,8 @@
 
 /* Kernel includes. */
 #include "FreeRTOS.h"
-#include "task.h"
 #include "queue.h"
+#include "task.h"
 
 /* Demo Specific configs. */
 #include "demo_config.h"
@@ -106,79 +107,81 @@
 
 /* Check that a TLS port for AWS IoT Core is defined. */
 #ifndef democonfigHTTPS_PORT
-    #define democonfigHTTPS_PORT    ( 443 )
+    #define democonfigHTTPS_PORT ( 443 )
 #endif
 
 /* Check the the queue size is defined. */
 #ifndef democonfigQUEUE_SIZE
-    #define democonfigQUEUE_SIZE    ( 10 )
+    #define democonfigQUEUE_SIZE ( 10 )
 #endif
 
 /* Check that a transport timeout for transport send and receive is defined. */
 #ifndef democonfigTRANSPORT_SEND_RECV_TIMEOUT_MS
-    #define democonfigTRANSPORT_SEND_RECV_TIMEOUT_MS    ( 5000 )
+    #define democonfigTRANSPORT_SEND_RECV_TIMEOUT_MS ( 5000 )
 #endif
 
 /* Check that a size for the user buffer is defined. */
 #ifndef democonfigUSER_BUFFER_LENGTH
-    #define democonfigUSER_BUFFER_LENGTH    ( 2048 )
+    #define democonfigUSER_BUFFER_LENGTH ( 2048 )
 #endif
 
 /* Check that the range request length is defined. */
 #ifndef democonfigRANGE_REQUEST_LENGTH
-    #define democonfigRANGE_REQUEST_LENGTH    ( 1024 )
+    #define democonfigRANGE_REQUEST_LENGTH ( 1024 )
 #endif
 
 /**
  * @brief Length of the pre-signed GET URL defined in demo_config.h.
  */
-#define httpexampleS3_PRESIGNED_GET_URL_LENGTH               ( sizeof( democonfigS3_PRESIGNED_GET_URL ) - 1 )
+#define httpexampleS3_PRESIGNED_GET_URL_LENGTH \
+    ( sizeof( democonfigS3_PRESIGNED_GET_URL ) - 1 )
 
 /**
  * @brief The length of the HTTP GET method.
  */
-#define httpexampleHTTP_METHOD_GET_LENGTH                    ( sizeof( HTTP_METHOD_GET ) - 1 )
+#define httpexampleHTTP_METHOD_GET_LENGTH          ( sizeof( HTTP_METHOD_GET ) - 1 )
 
 /**
  * @brief Field name of the HTTP range header to read from the server response.
  */
-#define httpexampleHTTP_CONTENT_RANGE_HEADER_FIELD           "Content-Range"
+#define httpexampleHTTP_CONTENT_RANGE_HEADER_FIELD "Content-Range"
 
 /**
  * @brief Length of the HTTP range header field.
  */
-#define httpexampleHTTP_CONTENT_RANGE_HEADER_FIELD_LENGTH    ( sizeof( httpexampleHTTP_CONTENT_RANGE_HEADER_FIELD ) - 1 )
+#define httpexampleHTTP_CONTENT_RANGE_HEADER_FIELD_LENGTH \
+    ( sizeof( httpexampleHTTP_CONTENT_RANGE_HEADER_FIELD ) - 1 )
 
 /**
  * @brief The HTTP status code returned for partial content.
  */
-#define httpexampleHTTP_STATUS_CODE_PARTIAL_CONTENT          206
+#define httpexampleHTTP_STATUS_CODE_PARTIAL_CONTENT 206
 
 /**
  * @brief Ticks to wait for task notifications.
  */
-#define httpexampleDEMO_TICKS_TO_WAIT                        pdMS_TO_TICKS( 1000 )
+#define httpexampleDEMO_TICKS_TO_WAIT               pdMS_TO_TICKS( 1000 )
 
 /**
  * @brief Notification bit indicating an error between tasks.
  */
-#define httpexampleHTTP_FAILURE                              ( 1U << 1 )
+#define httpexampleHTTP_FAILURE                     ( 1U << 1 )
 
 /**
  * @brief Notification bit indicating completion of the request task.
  */
-#define httpexampleREQUEST_TASK_COMPLETION                   ( 1U << 2 )
+#define httpexampleREQUEST_TASK_COMPLETION          ( 1U << 2 )
 
 /**
  * @brief Notification bit indicating completion of the response task.
  */
-#define httpexampleRESPONSE_TASK_COMPLETION                  ( 1U << 3 )
+#define httpexampleRESPONSE_TASK_COMPLETION         ( 1U << 3 )
 
 /**
  * @brief The maximum number of loop iterations to wait for task completion, or
  * after the last received server response, before declaring failure.
  */
-#define httpexampleMAX_WAIT_ITERATIONS                       ( 5 )
+#define httpexampleMAX_WAIT_ITERATIONS              ( 5 )
 
 /**
  * @brief The maximum number of times to run the loop in this demo.
@@ -187,21 +190,23 @@
  * loop succeeds on a single iteration, the demo exits successfully.
  */
 #ifndef HTTP_MAX_DEMO_LOOP_COUNT
-    #define HTTP_MAX_DEMO_LOOP_COUNT    ( 3 )
+    #define HTTP_MAX_DEMO_LOOP_COUNT ( 3 )
 #endif
 
 /**
  * @brief Time in ticks to wait between retries of the demo loop, if
  * demo loop fails.
  */
-#define DELAY_BETWEEN_DEMO_RETRY_ITERATIONS_TICKS    ( pdMS_TO_TICKS( 5000U ) )
+#define DELAY_BETWEEN_DEMO_RETRY_ITERATIONS_TICKS ( pdMS_TO_TICKS( 5000U ) )
 
 /**
  * @brief Each compilation unit that consumes the NetworkContext must define it.
  * It should contain a single pointer to the type of your desired transport.
- * When using multiple transports in the same compilation unit, define this pointer as void *.
+ * When using multiple transports in the same compilation unit, define this
+ * pointer as void *.
  *
- * @note Transport stacks are defined in FreeRTOS-Plus/Source/Application-Protocols/network_transport.
+ * @note Transport stacks are defined in
+ * FreeRTOS-Plus/Source/Application-Protocols/network_transport.
  */
 struct NetworkContext
 {
@@ -367,9 +372,10 @@ static BaseType_t prvConnectToServer( NetworkContext_t * pxNetworkContext );
  *
  * @return pdPASS if request successfully enqueued; pdFAIL otherwise.
  */
-static BaseType_t prvRequestS3ObjectRange( const HTTPRequestInfo_t * pxRequestInfo,
-                                           const size_t xStart,
-                                           const size_t xEnd );
+static BaseType_t prvRequestS3ObjectRange(
+    const HTTPRequestInfo_t * pxRequestInfo,
+    const size_t xStart,
+    const size_t xEnd );
 
 /**
  * @brief Check for a task notification.
@@ -391,7 +397,8 @@ static BaseType_t prvCheckNotification( uint32_t * pulNotification,
  *
  * @return pdFAIL on failure; pdPASS on success.
  */
-static BaseType_t prvGetS3ObjectFileSize( const HTTPRequestInfo_t * pxRequestInfo );
+static BaseType_t prvGetS3ObjectFileSize(
+    const HTTPRequestInfo_t * pxRequestInfo );
 
 /**
  * @brief Task to continuously enqueue HTTP range requests onto the request
@@ -438,12 +445,17 @@ void vStartSimpleHTTPDemo( void )
     /* This example uses one application task to process the request queue for
      * HTTP operations, and creates additional tasks to add operations to that
      * queue and interpret server responses. */
-    xTaskCreate( prvHTTPDemoTask,          /* Function that implements the task. */
-                 "MainTask",               /* Text name for the task - only used for debugging. */
-                 democonfigDEMO_STACKSIZE, /* Size of stack (in words, not bytes) to allocate for the task. */
-                 NULL,                     /* Task parameter - not used in this case. */
-                 tskIDLE_PRIORITY + 1,     /* Task priority, must be between 0 and configMAX_PRIORITIES - 1. */
-                 &xMainTask );             /* Used to pass out a handle to the created task. */
+    xTaskCreate( prvHTTPDemoTask, /* Function that implements the task. */
+                 "MainTask",      /* Text name for the task - only used for
+                                     debugging. */
+                 democonfigDEMO_STACKSIZE, /* Size of stack (in words, not
+                                              bytes) to allocate for the task.
+                                            */
+                 NULL, /* Task parameter - not used in this case. */
+                 tskIDLE_PRIORITY + 1, /* Task priority, must be between 0 and
+                                          configMAX_PRIORITIES - 1. */
+                 &xMainTask ); /* Used to pass out a handle to the created task.
+                                */
 }
 
 /*-----------------------------------------------------------*/
@@ -493,7 +505,8 @@ static void prvHTTPDemoTask( void * pvParameters )
     /* Set the pParams member of the network context with desired transport. */
     xNetworkContext.pParams = &xTlsTransportParams;
 
-    LogInfo( ( "HTTP Client S3 multi-threaded download demo using pre-signed URL:\n%s",
+    LogInfo( ( "HTTP Client S3 multi-threaded download demo using pre-signed "
+               "URL:\n%s",
                democonfigS3_PRESIGNED_GET_URL ) );
 
     /* This demo runs once, unless there are failures in the demo execution. In
@@ -503,7 +516,8 @@ static void prvHTTPDemoTask( void * pvParameters )
     {
         LogInfo( ( "---------STARTING DEMO---------\r\n" ) );
 
-        /**************************** Parse Signed URL. ******************************/
+        /**************************** Parse Signed URL.
+         * ******************************/
 
         /* Retrieve the path location from democonfigS3_PRESIGNED_GET_URL. This
          * function returns the length of the path without the query, into
@@ -550,11 +564,12 @@ static void prvHTTPDemoTask( void * pvParameters )
 
         if( xDemoStatus == pdPASS )
         {
-            /* Attempt to connect to the HTTP server. If connection fails, retry after a
-             * timeout. The timeout value will be exponentially increased until either the
-             * maximum number of attempts or the maximum timeout value is reached. The
-             * function returns pdFAIL if the TCP connection cannot be established with
-             * the server after the configured number of attempts. */
+            /* Attempt to connect to the HTTP server. If connection fails, retry
+             * after a timeout. The timeout value will be exponentially
+             * increased until either the maximum number of attempts or the
+             * maximum timeout value is reached. The function returns pdFAIL if
+             * the TCP connection cannot be established with the server after
+             * the configured number of attempts. */
             xDemoStatus = connectToServerWithBackoffRetries( prvConnectToServer,
                                                              &xNetworkContext );
         }
@@ -568,8 +583,7 @@ static void prvHTTPDemoTask( void * pvParameters )
         {
             /* Log an error to indicate connection failure after all reconnect
              * attempts are over. */
-            LogError( ( "Failed to connect to HTTP server %s.",
-                        cServerHost ) );
+            LogError( ( "Failed to connect to HTTP server %s.", cServerHost ) );
         }
 
         /************* Open queues and create additional tasks. *************/
@@ -608,8 +622,8 @@ static void prvHTTPDemoTask( void * pvParameters )
 
         /************************** Disconnect. *****************************/
 
-        /* Close the network connection to clean up any system resources that the
-         * demo may have consumed. */
+        /* Close the network connection to clean up any system resources that
+         * the demo may have consumed. */
         if( xIsConnectionEstablished == pdTRUE )
         {
             /* Close the network connection.  */
@@ -638,16 +652,19 @@ static void prvHTTPDemoTask( void * pvParameters )
         {
             LogInfo( ( "Demo iteration %lu was successful.", uxDemoRunCount ) );
         }
-        /* Attempt to retry a failed demo iteration for up to #HTTP_MAX_DEMO_LOOP_COUNT times. */
+        /* Attempt to retry a failed demo iteration for up to
+         * #HTTP_MAX_DEMO_LOOP_COUNT times. */
         else if( uxDemoRunCount < HTTP_MAX_DEMO_LOOP_COUNT )
         {
-            LogWarn( ( "Demo iteration %lu failed. Retrying...", uxDemoRunCount ) );
+            LogWarn(
+                ( "Demo iteration %lu failed. Retrying...", uxDemoRunCount ) );
             vTaskDelay( DELAY_BETWEEN_DEMO_RETRY_ITERATIONS_TICKS );
         }
         /* Failed all #HTTP_MAX_DEMO_LOOP_COUNT demo iterations. */
         else
         {
-            LogError( ( "All %d demo iterations failed.", HTTP_MAX_DEMO_LOOP_COUNT ) );
+            LogError( ( "All %d demo iterations failed.",
+                        HTTP_MAX_DEMO_LOOP_COUNT ) );
             break;
         }
     } while( xDemoStatus != pdPASS );
@@ -675,7 +692,8 @@ static BaseType_t prvConnectToServer( NetworkContext_t * pxNetworkContext )
 
     /* Set the credentials for establishing a TLS connection. */
     xNetworkCredentials.disableSni = democonfigDISABLE_SNI;
-    xNetworkCredentials.pRootCa = ( const unsigned char * ) democonfigROOT_CA_PEM;
+    xNetworkCredentials.pRootCa = ( const unsigned char * )
+        democonfigROOT_CA_PEM;
     xNetworkCredentials.rootCaSize = sizeof( democonfigROOT_CA_PEM );
 
     /* Establish a TLS session with the HTTP server. This example connects to
@@ -686,12 +704,13 @@ static BaseType_t prvConnectToServer( NetworkContext_t * pxNetworkContext )
                democonfigHTTPS_PORT ) );
 
     /* Attempt to create a server-authenticated TLS connection. */
-    xNetworkStatus = TLS_FreeRTOS_Connect( pxNetworkContext,
-                                           cServerHost,
-                                           democonfigHTTPS_PORT,
-                                           &xNetworkCredentials,
-                                           democonfigTRANSPORT_SEND_RECV_TIMEOUT_MS,
-                                           democonfigTRANSPORT_SEND_RECV_TIMEOUT_MS );
+    xNetworkStatus = TLS_FreeRTOS_Connect(
+        pxNetworkContext,
+        cServerHost,
+        democonfigHTTPS_PORT,
+        &xNetworkCredentials,
+        democonfigTRANSPORT_SEND_RECV_TIMEOUT_MS,
+        democonfigTRANSPORT_SEND_RECV_TIMEOUT_MS );
 
     if( xNetworkStatus != TLS_TRANSPORT_SUCCESS )
     {
@@ -705,9 +724,10 @@ static BaseType_t prvConnectToServer( NetworkContext_t * pxNetworkContext )
 
 /*-----------------------------------------------------------*/
 
-static BaseType_t prvRequestS3ObjectRange( const HTTPRequestInfo_t * pxRequestInfo,
-                                           const size_t xStart,
-                                           const size_t xEnd )
+static BaseType_t prvRequestS3ObjectRange(
+    const HTTPRequestInfo_t * pxRequestInfo,
+    const size_t xStart,
+    const size_t xEnd )
 {
     HTTPStatus_t xHTTPStatus = HTTPSuccess;
     BaseType_t xStatus = pdPASS;
@@ -718,8 +738,9 @@ static BaseType_t prvRequestS3ObjectRange( const HTTPRequestInfo_t * pxRequestIn
     xRequestItem.xRequestHeaders.pBuffer = xRequestItem.ucHeaderBuffer;
     xRequestItem.xRequestHeaders.bufferLen = democonfigUSER_BUFFER_LENGTH;
 
-    xHTTPStatus = HTTPClient_InitializeRequestHeaders( &( xRequestItem.xRequestHeaders ),
-                                                       pxRequestInfo );
+    xHTTPStatus = HTTPClient_InitializeRequestHeaders(
+        &( xRequestItem.xRequestHeaders ),
+        pxRequestInfo );
 
     if( xHTTPStatus != HTTPSuccess )
     {
@@ -730,21 +751,24 @@ static BaseType_t prvRequestS3ObjectRange( const HTTPRequestInfo_t * pxRequestIn
 
     if( xStatus == pdPASS )
     {
-        xHTTPStatus = HTTPClient_AddRangeHeader( &( xRequestItem.xRequestHeaders ),
+        xHTTPStatus = HTTPClient_AddRangeHeader( &( xRequestItem
+                                                        .xRequestHeaders ),
                                                  xStart,
                                                  xEnd );
 
         if( xHTTPStatus != HTTPSuccess )
         {
-            LogError( ( "Failed to add Range header to request headers: Error=%s.",
-                        HTTPClient_strerror( xHTTPStatus ) ) );
+            LogError(
+                ( "Failed to add Range header to request headers: Error=%s.",
+                  HTTPClient_strerror( xHTTPStatus ) ) );
             xStatus = pdFAIL;
         }
     }
 
     if( xStatus == pdPASS )
     {
-        LogInfo( ( "Request task: Enqueuing request for bytes %d to %d of S3 Object. ",
+        LogInfo( ( "Request task: Enqueuing request for bytes %d to %d of S3 "
+                   "Object. ",
                    ( int32_t ) xStart,
                    ( int32_t ) xEnd ) );
         LogDebug( ( "Request Headers:\n%.*s",
@@ -768,7 +792,8 @@ static BaseType_t prvRequestS3ObjectRange( const HTTPRequestInfo_t * pxRequestIn
 
 /*-----------------------------------------------------------*/
 
-static BaseType_t prvGetS3ObjectFileSize( const HTTPRequestInfo_t * pxRequestInfo )
+static BaseType_t prvGetS3ObjectFileSize(
+    const HTTPRequestInfo_t * pxRequestInfo )
 {
     BaseType_t xStatus = pdPASS;
 
@@ -780,9 +805,7 @@ static BaseType_t prvGetS3ObjectFileSize( const HTTPRequestInfo_t * pxRequestInf
      * contains the size of the file. The header will look like the following:
      * "Content-Range: bytes 0-0/FILESIZE". The response body will have a single
      * byte, that we are ignoring. */
-    xStatus = prvRequestS3ObjectRange( pxRequestInfo,
-                                       0,
-                                       0 );
+    xStatus = prvRequestS3ObjectRange( pxRequestInfo, 0, 0 );
 
     return xStatus;
 }
@@ -830,9 +853,13 @@ static void prvRequestTask( void * pvArgs )
     while( xFileSize == 0 )
     {
         /* Check if any errors in the response task have occurred. */
-        if( prvCheckNotification( &ulNotification, httpexampleHTTP_FAILURE, pdTRUE ) != pdFALSE )
+        if( prvCheckNotification( &ulNotification,
+                                  httpexampleHTTP_FAILURE,
+                                  pdTRUE ) != pdFALSE )
         {
-            LogError( ( "Request task: Received error notification from response task while waiting for the file size. Exiting task." ) );
+            LogError(
+                ( "Request task: Received error notification from response "
+                  "task while waiting for the file size. Exiting task." ) );
             xStatus = pdFAIL;
             break;
         }
@@ -903,30 +930,38 @@ static BaseType_t prvReadFileSize( void )
     char * pcContentRangeValStr = NULL;
     size_t xContentRangeValStrLength = 0;
 
-    for( ; ; )
+    for( ;; )
     {
-        if( xQueueReceive( xResponseQueue, &xResponseItem, httpexampleDEMO_TICKS_TO_WAIT ) != pdFAIL )
+        if( xQueueReceive( xResponseQueue,
+                           &xResponseItem,
+                           httpexampleDEMO_TICKS_TO_WAIT ) != pdFAIL )
         {
-            /* Ensure that the buffer pointer is accurate after being copied from the queue. */
+            /* Ensure that the buffer pointer is accurate after being copied
+             * from the queue. */
             xResponseItem.xResponse.pBuffer = xResponseItem.ucResponseBuffer;
 
             /* Ensure that we received a successful response from the server. */
-            if( xResponseItem.xResponse.statusCode != httpexampleHTTP_STATUS_CODE_PARTIAL_CONTENT )
+            if( xResponseItem.xResponse.statusCode !=
+                httpexampleHTTP_STATUS_CODE_PARTIAL_CONTENT )
             {
-                LogError( ( "Received response with unexpected status code: %d.", xResponseItem.xResponse.statusCode ) );
+                LogError(
+                    ( "Received response with unexpected status code: %d.",
+                      xResponseItem.xResponse.statusCode ) );
                 xStatus = pdFAIL;
             }
             else
             {
-                xHTTPStatus = HTTPClient_ReadHeader( &xResponseItem.xResponse,
-                                                     ( char * ) httpexampleHTTP_CONTENT_RANGE_HEADER_FIELD,
-                                                     ( size_t ) httpexampleHTTP_CONTENT_RANGE_HEADER_FIELD_LENGTH,
-                                                     ( const char ** ) &pcContentRangeValStr,
-                                                     &xContentRangeValStrLength );
+                xHTTPStatus = HTTPClient_ReadHeader(
+                    &xResponseItem.xResponse,
+                    ( char * ) httpexampleHTTP_CONTENT_RANGE_HEADER_FIELD,
+                    ( size_t ) httpexampleHTTP_CONTENT_RANGE_HEADER_FIELD_LENGTH,
+                    ( const char ** ) &pcContentRangeValStr,
+                    &xContentRangeValStrLength );
 
                 if( xHTTPStatus != HTTPSuccess )
                 {
-                    LogError( ( "Failed to read Content-Range header from HTTP response: Error=%s.",
+                    LogError( ( "Failed to read Content-Range header from HTTP "
+                                "response: Error=%s.",
                                 HTTPClient_strerror( xHTTPStatus ) ) );
                     xStatus = pdFAIL;
                 }
@@ -956,8 +991,10 @@ static BaseType_t prvReadFileSize( void )
 
         if( ( xFileSize == 0 ) || ( xFileSize == UINT32_MAX ) )
         {
-            LogError( ( "Error using strtoul to get the file size from %s: xFileSize=%d.",
-                        pcFileSizeStr, ( int32_t ) xFileSize ) );
+            LogError( ( "Error using strtoul to get the file size from %s: "
+                        "xFileSize=%d.",
+                        pcFileSizeStr,
+                        ( int32_t ) xFileSize ) );
             xStatus = pdFAIL;
         }
     }
@@ -982,7 +1019,8 @@ static void prvResponseTask( void * pvArgs )
 
     if( prvReadFileSize() != pdPASS )
     {
-        LogError( ( "Response task: Error obtaining file size from the server response. Exiting task." ) );
+        LogError( ( "Response task: Error obtaining file size from the server "
+                    "response. Exiting task." ) );
 
         /* Notify the other tasks of failure. */
         xTaskNotify( xRequestTask, httpexampleHTTP_FAILURE, eSetBits );
@@ -990,16 +1028,21 @@ static void prvResponseTask( void * pvArgs )
     }
     else
     {
-        for( ; ; )
+        for( ;; )
         {
             /* Retrieve response from the response queue, if available. */
-            while( ( xQueueReceive( xResponseQueue, &xResponseItem, httpexampleDEMO_TICKS_TO_WAIT ) != pdFAIL ) )
+            while(
+                ( xQueueReceive( xResponseQueue,
+                                 &xResponseItem,
+                                 httpexampleDEMO_TICKS_TO_WAIT ) != pdFAIL ) )
             {
-                /* Ensure that the buffer pointer is accurate after being copied from the queue. */
+                /* Ensure that the buffer pointer is accurate after being copied
+                 * from the queue. */
                 xResponseItem.xResponse.pBuffer = xResponseItem.ucResponseBuffer;
 
                 /* Log contents of server response. */
-                LogInfo( ( "The response task retrieved a server response from the response queue." ) );
+                LogInfo( ( "The response task retrieved a server response from "
+                           "the response queue." ) );
                 LogDebug( ( "Response Headers:\n%.*s",
                             ( int32_t ) xResponseItem.xResponse.headersLen,
                             xResponseItem.xResponse.pHeaders ) );
@@ -1011,9 +1054,12 @@ static void prvResponseTask( void * pvArgs )
 
                 /* Check for a partial content status code (206), indicating a
                  * successful server response. */
-                if( xResponseItem.xResponse.statusCode != httpexampleHTTP_STATUS_CODE_PARTIAL_CONTENT )
+                if( xResponseItem.xResponse.statusCode !=
+                    httpexampleHTTP_STATUS_CODE_PARTIAL_CONTENT )
                 {
-                    LogError( ( "Received response with unexpected status code: %d", xResponseItem.xResponse.statusCode ) );
+                    LogError(
+                        ( "Received response with unexpected status code: %d",
+                          xResponseItem.xResponse.statusCode ) );
                     break;
                 }
 
@@ -1037,12 +1083,16 @@ static void prvResponseTask( void * pvArgs )
              * receiving the last response before exiting the loop. */
             if( ++ulWaitCounter > httpexampleMAX_WAIT_ITERATIONS )
             {
-                LogError( ( "Response receive loop exceeded maximum wait time." ) );
+                LogError(
+                    ( "Response receive loop exceeded maximum wait time." ) );
                 break;
             }
-            else if( prvCheckNotification( &ulNotification, httpexampleHTTP_FAILURE, pdTRUE ) != pdFALSE )
+            else if( prvCheckNotification( &ulNotification,
+                                           httpexampleHTTP_FAILURE,
+                                           pdTRUE ) != pdFALSE )
             {
-                LogError( ( "Response task: Received error notification from the main HTTP task. Exiting task." ) );
+                LogError( ( "Response task: Received error notification from "
+                            "the main HTTP task. Exiting task." ) );
                 break;
             }
         }
@@ -1075,7 +1125,9 @@ static BaseType_t prvCheckNotification( uint32_t * pulNotification,
                      pulNotification,
                      httpexampleDEMO_TICKS_TO_WAIT );
 
-    xStatus = ( ( *pulNotification & ulExpectedBits ) == ulExpectedBits ) ? pdTRUE : pdFALSE;
+    xStatus = ( ( *pulNotification & ulExpectedBits ) == ulExpectedBits )
+                  ? pdTRUE
+                  : pdFALSE;
 
     return xStatus;
 }
@@ -1104,34 +1156,48 @@ static BaseType_t prvDownloadLoop( void )
     xDownloadRespItem.xResponse.pBuffer = xDownloadRespItem.ucResponseBuffer;
     xDownloadRespItem.xResponse.bufferLen = democonfigUSER_BUFFER_LENGTH;
 
-    for( ; ; )
+    for( ;; )
     {
         /* Read request from the request queue. */
-        if( xQueueReceive( xRequestQueue, &xDownloadReqItem, httpexampleDEMO_TICKS_TO_WAIT ) != pdPASS )
+        if( xQueueReceive( xRequestQueue,
+                           &xDownloadReqItem,
+                           httpexampleDEMO_TICKS_TO_WAIT ) != pdPASS )
         {
             /* Check for any errors in the response task. */
-            if( prvCheckNotification( &ulNotification, httpexampleHTTP_FAILURE, pdFALSE ) != pdFALSE )
+            if( prvCheckNotification( &ulNotification,
+                                      httpexampleHTTP_FAILURE,
+                                      pdFALSE ) != pdFALSE )
             {
-                LogInfo( ( "Main HTTP task: Received error notification from response task. Exiting HTTP download loop." ) );
+                LogInfo( ( "Main HTTP task: Received error notification from "
+                           "response task. Exiting HTTP download loop." ) );
                 xStatus = pdFAIL;
                 break;
             }
-            /* Check if the request task has finished adding requests to the queue. */
-            else if( prvCheckNotification( &ulNotification, httpexampleREQUEST_TASK_COMPLETION, pdFALSE ) != pdFALSE )
+            /* Check if the request task has finished adding requests to the
+             * queue. */
+            else if( prvCheckNotification( &ulNotification,
+                                           httpexampleREQUEST_TASK_COMPLETION,
+                                           pdFALSE ) != pdFALSE )
             {
-                LogInfo( ( "Main HTTP task: Received notification of completion from request task -- no more requests to process. "
-                           "Exiting HTTP download loop." ) );
+                LogInfo(
+                    ( "Main HTTP task: Received notification of completion "
+                      "from request task -- no more requests to process. "
+                      "Exiting HTTP download loop." ) );
                 break;
             }
 
-            LogInfo( ( "Main HTTP task: No requests in the queue. Trying again." ) );
+            LogInfo(
+                ( "Main HTTP task: No requests in the queue. Trying again." ) );
             continue;
         }
 
-        /* Ensure that the buffer pointer is accurate after being copied from the queue. */
-        xDownloadReqItem.xRequestHeaders.pBuffer = xDownloadReqItem.ucHeaderBuffer;
+        /* Ensure that the buffer pointer is accurate after being copied from
+         * the queue. */
+        xDownloadReqItem.xRequestHeaders.pBuffer = xDownloadReqItem
+                                                       .ucHeaderBuffer;
 
-        LogInfo( ( "The main HTTP task retrieved a request from the request queue. Sending to server..." ) );
+        LogInfo( ( "The main HTTP task retrieved a request from the request "
+                   "queue. Sending to server..." ) );
         LogDebug( ( "Request Headers:\n%.*s",
                     ( int32_t ) xDownloadReqItem.xRequestHeaders.headersLen,
                     ( char * ) xDownloadReqItem.xRequestHeaders.pBuffer ) );
@@ -1146,10 +1212,12 @@ static BaseType_t prvDownloadLoop( void )
 
         if( xHTTPStatus != HTTPSuccess )
         {
-            LogError( ( "Main HTTP task: Failed to send HTTP request: Error=%s.",
-                        HTTPClient_strerror( xHTTPStatus ) ) );
+            LogError(
+                ( "Main HTTP task: Failed to send HTTP request: Error=%s.",
+                  HTTPClient_strerror( xHTTPStatus ) ) );
 
-            /* Notify the response task that a response should not be expected. */
+            /* Notify the response task that a response should not be expected.
+             */
             xTaskNotify( xResponseTask, httpexampleHTTP_FAILURE, eSetBits );
 
             xStatus = pdFAIL;
@@ -1157,7 +1225,8 @@ static BaseType_t prvDownloadLoop( void )
         }
         else
         {
-            LogInfo( ( "The HTTP task received a response from the server. Adding to response queue." ) );
+            LogInfo( ( "The HTTP task received a response from the server. "
+                       "Adding to response queue." ) );
 
             /* Add response to response queue. */
             xStatus = xQueueSendToBack( xResponseQueue,
@@ -1174,11 +1243,14 @@ static BaseType_t prvDownloadLoop( void )
     }
 
     /* Wait for the other tasks to complete. */
-    while( prvCheckNotification( &ulNotification, ulExpectedNotifications, pdFALSE ) != pdTRUE )
+    while( prvCheckNotification( &ulNotification,
+                                 ulExpectedNotifications,
+                                 pdFALSE ) != pdTRUE )
     {
         if( ++ulWaitCounter > httpexampleMAX_WAIT_ITERATIONS )
         {
-            LogError( ( "Loop exceeded maximum wait time. Task completion error." ) );
+            LogError(
+                ( "Loop exceeded maximum wait time. Task completion error." ) );
             xStatus = pdFAIL;
             break;
         }

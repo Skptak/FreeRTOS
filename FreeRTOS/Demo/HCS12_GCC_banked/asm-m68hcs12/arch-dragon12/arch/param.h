@@ -33,15 +33,15 @@ Boston, MA 02111-1307, USA.  */
 
 /* An application can use these to determine resources of MCU. --jeffs */
 #undef RAM_SIZE
-#define RAM_SIZE       (12*1024)         /* Kb of ram  */
+#define RAM_SIZE ( 12 * 1024 ) /* Kb of ram  */
 
 #undef ROM_SIZE
-#define ROM_SIZE       (256*1024)        /* Kb read-only  */
+#define ROM_SIZE ( 256 * 1024 ) /* Kb read-only  */
 
 #undef DATA_SIZE
-#define DATA_SIZE      RAM_SIZE        /* Data section size.  */
+#define DATA_SIZE RAM_SIZE /* Data section size.  */
 
 #undef TEXT_SIZE
-#define TEXT_SIZE      ROM_SIZE        /* Text section size.  */
+#define TEXT_SIZE ROM_SIZE /* Text section size.  */
 
 #endif

@@ -2,54 +2,53 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
  *
  */
 
-
 /*
  * Tests the behaviour when data is peeked from a queue when there are
  * multiple tasks blocked on the queue.
  */
 
-
 #include <stdlib.h>
 
 /* Scheduler include files. */
 #include "FreeRTOS.h"
-#include "task.h"
 #include "queue.h"
 #include "semphr.h"
+#include "task.h"
 
 /* Demo program include files. */
 #include "QPeek.h"
 
-#define qpeekQUEUE_LENGTH        ( 5 )
-#define qpeekNO_BLOCK            ( 0 )
-#define qpeekSHORT_DELAY         ( 10 )
+#define qpeekQUEUE_LENGTH     ( 5 )
+#define qpeekNO_BLOCK         ( 0 )
+#define qpeekSHORT_DELAY      ( 10 )
 
-#define qpeekLOW_PRIORITY        ( tskIDLE_PRIORITY + 0 )
-#define qpeekMEDIUM_PRIORITY     ( tskIDLE_PRIORITY + 1 )
-#define qpeekHIGH_PRIORITY       ( tskIDLE_PRIORITY + 2 )
-#define qpeekHIGHEST_PRIORITY    ( tskIDLE_PRIORITY + 3 )
+#define qpeekLOW_PRIORITY     ( tskIDLE_PRIORITY + 0 )
+#define qpeekMEDIUM_PRIORITY  ( tskIDLE_PRIORITY + 1 )
+#define qpeekHIGH_PRIORITY    ( tskIDLE_PRIORITY + 2 )
+#define qpeekHIGHEST_PRIORITY ( tskIDLE_PRIORITY + 3 )
 
 /*-----------------------------------------------------------*/
 
@@ -88,19 +87,39 @@ void vStartQueuePeekTasks( void )
     {
         /* vQueueAddToRegistry() adds the queue to the queue registry, if one is
          * in use.  The queue registry is provided as a means for kernel aware
-         * debuggers to locate queues and has no purpose if a kernel aware debugger
-         * is not being used.  The call to vQueueAddToRegistry() will be removed
-         * by the pre-processor if configQUEUE_REGISTRY_SIZE is not defined or is
-         * defined to be less than 1. */
+         * debuggers to locate queues and has no purpose if a kernel aware
+         * debugger is not being used.  The call to vQueueAddToRegistry() will
+         * be removed by the pre-processor if configQUEUE_REGISTRY_SIZE is not
+         * defined or is defined to be less than 1. */
         vQueueAddToRegistry( xQueue, "QPeek_Test_Queue" );
 
         /* Create the demo tasks and pass it the queue just created.  We are
-         * passing the queue handle by value so it does not matter that it is declared
-         * on the stack here. */
-        xTaskCreate( prvLowPriorityPeekTask, "PeekL", configMINIMAL_STACK_SIZE, ( void * ) xQueue, qpeekLOW_PRIORITY, NULL );
-        xTaskCreate( prvMediumPriorityPeekTask, "PeekM", configMINIMAL_STACK_SIZE, ( void * ) xQueue, qpeekMEDIUM_PRIORITY, &xMediumPriorityTask );
-        xTaskCreate( prvHighPriorityPeekTask, "PeekH1", configMINIMAL_STACK_SIZE, ( void * ) xQueue, qpeekHIGH_PRIORITY, &xHighPriorityTask );
-        xTaskCreate( prvHighestPriorityPeekTask, "PeekH2", configMINIMAL_STACK_SIZE, ( void * ) xQueue, qpeekHIGHEST_PRIORITY, &xHighestPriorityTask );
+         * passing the queue handle by value so it does not matter that it is
+         * declared on the stack here. */
+        xTaskCreate( prvLowPriorityPeekTask,
+                     "PeekL",
+                     configMINIMAL_STACK_SIZE,
+                     ( void * ) xQueue,
+                     qpeekLOW_PRIORITY,
+                     NULL );
+        xTaskCreate( prvMediumPriorityPeekTask,
+                     "PeekM",
+                     configMINIMAL_STACK_SIZE,
+                     ( void * ) xQueue,
+                     qpeekMEDIUM_PRIORITY,
+                     &xMediumPriorityTask );
+        xTaskCreate( prvHighPriorityPeekTask,
+                     "PeekH1",
+                     configMINIMAL_STACK_SIZE,
+                     ( void * ) xQueue,
+                     qpeekHIGH_PRIORITY,
+                     &xHighPriorityTask );
+        xTaskCreate( prvHighestPriorityPeekTask,
+                     "PeekH2",
+                     configMINIMAL_STACK_SIZE,
+                     ( void * ) xQueue,
+                     qpeekHIGHEST_PRIORITY,
+                     &xHighestPriorityTask );
     }
 }
 /*-----------------------------------------------------------*/
@@ -110,7 +129,7 @@ static void prvHighestPriorityPeekTask( void * pvParameters )
     QueueHandle_t xQueue = ( QueueHandle_t ) pvParameters;
     uint32_t ulValue;
 
-    #ifdef USE_STDIO
+#ifdef USE_STDIO
     {
         void vPrintDisplayMessage( const char * const * ppcMessageToSend );
 
@@ -119,9 +138,9 @@ static void prvHighestPriorityPeekTask( void * pvParameters )
         /* Queue a message for printing to say the task has started. */
         vPrintDisplayMessage( &pcTaskStartMsg );
     }
-    #endif
+#endif
 
-    for( ; ; )
+    for( ;; )
     {
         /* Try peeking from the queue.  The queue should be empty so we will
          * block, allowing the high priority task to execute. */
@@ -175,8 +194,8 @@ static void prvHighestPriorityPeekTask( void * pvParameters )
             xErrorDetected = pdTRUE;
         }
 
-        /* When we get here the low priority task should have again written to the
-         * queue. */
+        /* When we get here the low priority task should have again written to
+         * the queue. */
         if( ulValue != 0x01234567 )
         {
             /* We did not receive the expected value. */
@@ -197,7 +216,8 @@ static void prvHighestPriorityPeekTask( void * pvParameters )
 
         /* This time we are going to do the same as the above test, but the
          * high priority task is going to receive the data, rather than peek it.
-         * This means that the medium priority task should never peek the value. */
+         * This means that the medium priority task should never peek the value.
+         */
         if( xQueuePeek( xQueue, &ulValue, portMAX_DELAY ) != pdPASS )
         {
             xErrorDetected = pdTRUE;
@@ -218,7 +238,7 @@ static void prvHighPriorityPeekTask( void * pvParameters )
     QueueHandle_t xQueue = ( QueueHandle_t ) pvParameters;
     uint32_t ulValue;
 
-    for( ; ; )
+    for( ;; )
     {
         /* Try peeking from the queue.  The queue should be empty so we will
          * block, allowing the medium priority task to execute.  Both the high
@@ -229,9 +249,9 @@ static void prvHighPriorityPeekTask( void * pvParameters )
             xErrorDetected = pdTRUE;
         }
 
-        /* When we get here the highest priority task should have peeked the data
-         * (unblocking this task) then suspended (allowing this task to also peek
-         * the data). */
+        /* When we get here the highest priority task should have peeked the
+         * data (unblocking this task) then suspended (allowing this task to
+         * also peek the data). */
         if( ulValue != 0x01234567 )
         {
             /* We did not receive the expected value. */
@@ -245,13 +265,14 @@ static void prvHighPriorityPeekTask( void * pvParameters )
         }
 
         /* We only peeked the data, so suspending ourselves now should enable
-         * the medium priority task to also peek the data.  The medium priority task
-         * will have been unblocked when we peeked the data as we left the data
-         * in the queue. */
+         * the medium priority task to also peek the data.  The medium priority
+         * task will have been unblocked when we peeked the data as we left the
+         * data in the queue. */
         vTaskSuspend( NULL );
 
         /* This time we are going actually receive the value, so the medium
-         * priority task will never peek the data - we removed it from the queue. */
+         * priority task will never peek the data - we removed it from the
+         * queue. */
         if( xQueueReceive( xQueue, &ulValue, portMAX_DELAY ) != pdPASS )
         {
             xErrorDetected = pdTRUE;
@@ -272,7 +293,7 @@ static void prvMediumPriorityPeekTask( void * pvParameters )
     QueueHandle_t xQueue = ( QueueHandle_t ) pvParameters;
     uint32_t ulValue;
 
-    for( ; ; )
+    for( ;; )
     {
         /* Try peeking from the queue.  The queue should be empty so we will
          * block, allowing the low priority task to execute.  The highest, high
@@ -284,8 +305,8 @@ static void prvMediumPriorityPeekTask( void * pvParameters )
         }
 
         /* When we get here the high priority task should have peeked the data
-         * (unblocking this task) then suspended (allowing this task to also peek
-         * the data). */
+         * (unblocking this task) then suspended (allowing this task to also
+         * peek the data). */
         if( ulValue != 0x01234567 )
         {
             /* We did not receive the expected value. */
@@ -313,7 +334,7 @@ static void prvLowPriorityPeekTask( void * pvParameters )
     QueueHandle_t xQueue = ( QueueHandle_t ) pvParameters;
     uint32_t ulValue;
 
-    for( ; ; )
+    for( ;; )
     {
         /* Write some data to the queue.  This should unblock the highest
          * priority task that is waiting to peek data from the queue. */
@@ -326,9 +347,9 @@ static void prvLowPriorityPeekTask( void * pvParameters )
             xErrorDetected = pdTRUE;
         }
 
-        #if configUSE_PREEMPTION == 0
-            taskYIELD();
-        #endif
+#if configUSE_PREEMPTION == 0
+        taskYIELD();
+#endif
 
         /* By the time we get here the data should have been removed from
          * the queue. */
@@ -348,9 +369,9 @@ static void prvLowPriorityPeekTask( void * pvParameters )
             xErrorDetected = pdTRUE;
         }
 
-        #if configUSE_PREEMPTION == 0
-            taskYIELD();
-        #endif
+#if configUSE_PREEMPTION == 0
+        taskYIELD();
+#endif
 
         /* All the other tasks should now have successfully peeked the data.
          * The data is still in the queue so we should be able to receive it. */
@@ -381,9 +402,9 @@ static void prvLowPriorityPeekTask( void * pvParameters )
         vTaskResume( xHighPriorityTask );
         vTaskResume( xHighestPriorityTask );
 
-        #if ( configUSE_PREEMPTION == 0 )
-            taskYIELD();
-        #endif
+#if( configUSE_PREEMPTION == 0 )
+        taskYIELD();
+#endif
 
         ulValue = 0xaabbaabb;
 
@@ -394,9 +415,9 @@ static void prvLowPriorityPeekTask( void * pvParameters )
             xErrorDetected = pdTRUE;
         }
 
-        #if configUSE_PREEMPTION == 0
-            taskYIELD();
-        #endif
+#if configUSE_PREEMPTION == 0
+        taskYIELD();
+#endif
 
         /* This time we should find that the queue is empty.  The high priority
          * task actually removed the data rather than just peeking it. */

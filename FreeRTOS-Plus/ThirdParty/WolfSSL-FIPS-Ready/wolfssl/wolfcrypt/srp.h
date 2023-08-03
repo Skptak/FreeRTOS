@@ -25,106 +25,112 @@
 
 #ifdef WOLFCRYPT_HAVE_SRP
 
-#ifndef WOLFCRYPT_SRP_H
-#define WOLFCRYPT_SRP_H
+    #ifndef WOLFCRYPT_SRP_H
+        #define WOLFCRYPT_SRP_H
 
-#include <wolfssl/wolfcrypt/types.h>
-#include <wolfssl/wolfcrypt/sha.h>
-#include <wolfssl/wolfcrypt/sha256.h>
-#include <wolfssl/wolfcrypt/sha512.h>
-#include <wolfssl/wolfcrypt/integer.h>
+        #include <wolfssl/wolfcrypt/integer.h>
+        #include <wolfssl/wolfcrypt/sha.h>
+        #include <wolfssl/wolfcrypt/sha256.h>
+        #include <wolfssl/wolfcrypt/sha512.h>
+        #include <wolfssl/wolfcrypt/types.h>
 
-#ifdef __cplusplus
-    extern "C" {
-#endif
+        #ifdef __cplusplus
+extern "C" {
+        #endif
 
-/* Select the largest available hash for the buffer size. */
-#if defined(WOLFSSL_SHA512)
-    #define SRP_MAX_DIGEST_SIZE WC_SHA512_DIGEST_SIZE
-#elif defined(WOLFSSL_SHA384)
-    #define SRP_MAX_DIGEST_SIZE WC_SHA384_DIGEST_SIZE
-#elif !defined(NO_SHA256)
-    #define SRP_MAX_DIGEST_SIZE WC_SHA256_DIGEST_SIZE
-#elif !defined(NO_SHA)
-    #define SRP_MAX_DIGEST_SIZE WC_SHA_DIGEST_SIZE
-#else
-    #error "You have to have some kind of SHA hash if you want to use SRP."
-#endif
+        /* Select the largest available hash for the buffer size. */
+        #if defined( WOLFSSL_SHA512 )
+            #define SRP_MAX_DIGEST_SIZE WC_SHA512_DIGEST_SIZE
+        #elif defined( WOLFSSL_SHA384 )
+            #define SRP_MAX_DIGEST_SIZE WC_SHA384_DIGEST_SIZE
+        #elif !defined( NO_SHA256 )
+            #define SRP_MAX_DIGEST_SIZE WC_SHA256_DIGEST_SIZE
+        #elif !defined( NO_SHA )
+            #define SRP_MAX_DIGEST_SIZE WC_SHA_DIGEST_SIZE
+        #else
+            #error \
+                "You have to have some kind of SHA hash if you want to use SRP."
+        #endif
 
-/* Set the minimum number of bits acceptable in an SRP modulus */
-#define SRP_MODULUS_MIN_BITS 512
+        /* Set the minimum number of bits acceptable in an SRP modulus */
+        #define SRP_MODULUS_MIN_BITS     512
 
-/* Set the minimum number of bits acceptable for private keys (RFC 5054) */
-#define SRP_PRIVATE_KEY_MIN_BITS 256
+        /* Set the minimum number of bits acceptable for private keys (RFC 5054)
+         */
+        #define SRP_PRIVATE_KEY_MIN_BITS 256
 
-/* salt size for SRP password */
-#define SRP_SALT_SIZE  16
+        /* salt size for SRP password */
+        #define SRP_SALT_SIZE            16
 
 /**
  * SRP side, client or server.
  */
-typedef enum {
-    SRP_CLIENT_SIDE  = 0,
-    SRP_SERVER_SIDE  = 1,
+typedef enum
+{
+    SRP_CLIENT_SIDE = 0,
+    SRP_SERVER_SIDE = 1,
 } SrpSide;
 
 /**
  * SRP hash type, SHA[1|256|384|512].
  */
-typedef enum {
-        SRP_TYPE_SHA    = 1,
-        SRP_TYPE_SHA256 = 2,
-        SRP_TYPE_SHA384 = 3,
-        SRP_TYPE_SHA512 = 4,
+typedef enum
+{
+    SRP_TYPE_SHA = 1,
+    SRP_TYPE_SHA256 = 2,
+    SRP_TYPE_SHA384 = 3,
+    SRP_TYPE_SHA512 = 4,
 } SrpType;
-
 
 /**
  * SRP hash struct.
  */
-typedef struct {
+typedef struct
+{
     byte type;
-    union {
+    union
+    {
         #ifndef NO_SHA
-            wc_Sha sha;
+        wc_Sha sha;
         #endif
         #ifndef NO_SHA256
-            wc_Sha256 sha256;
+        wc_Sha256 sha256;
         #endif
         #ifdef WOLFSSL_SHA384
-            wc_Sha384 sha384;
+        wc_Sha384 sha384;
         #endif
         #ifdef WOLFSSL_SHA512
-            wc_Sha512 sha512;
+        wc_Sha512 sha512;
         #endif
     } data;
 } SrpHash;
 
-typedef struct Srp {
-    SrpSide side;                   /**< Client or Server, @see SrpSide.      */
-    SrpType type;                   /**< Hash type, @see SrpType.             */
-    byte*   user;                   /**< Username, login.                     */
-    word32  userSz;                 /**< Username length.                     */
-    byte*   salt;                   /**< Small salt.                          */
-    word32  saltSz;                 /**< Salt length.                         */
-    mp_int  N;                      /**< Modulus. N = 2q+1, [q, N] are primes.*/
-    mp_int  g;                      /**< Generator. A generator modulo N.     */
-    byte    k[SRP_MAX_DIGEST_SIZE]; /**< Multiplier parameter. k = H(N, g)   */
-    mp_int  auth;                   /**< Client: x = H(salt + H(user:pswd))   */
-                                    /**< Server: v = g ^ x % N                */
-    mp_int  priv;                   /**< Private ephemeral value.             */
-    SrpHash client_proof;           /**< Client proof. Sent to the Server.    */
-    SrpHash server_proof;           /**< Server proof. Sent to the Client.    */
-    byte*   key;                    /**< Session key.                         */
-    word32  keySz;                  /**< Session key length.                  */
-    int (*keyGenFunc_cb) (struct Srp* srp, byte* secret, word32 size);
-        /**< Function responsible for generating the session key.             */
-        /**< It MUST use XMALLOC with type DYNAMIC_TYPE_SRP to allocate the   */
-        /**< key buffer for this structure and set keySz to the buffer size.  */
-        /**< The default function used by this implementation is a modified   */
-        /**< version of t_mgf1 that uses the proper hash function according   */
-        /**< to srp->type.                                                    */
-    void*   heap;                   /**< heap hint pointer                    */
+typedef struct Srp
+{
+    SrpSide side;                  /**< Client or Server, @see SrpSide.      */
+    SrpType type;                  /**< Hash type, @see SrpType.             */
+    byte * user;                   /**< Username, login.                     */
+    word32 userSz;                 /**< Username length.                     */
+    byte * salt;                   /**< Small salt.                          */
+    word32 saltSz;                 /**< Salt length.                         */
+    mp_int N;                      /**< Modulus. N = 2q+1, [q, N] are primes.*/
+    mp_int g;                      /**< Generator. A generator modulo N.     */
+    byte k[ SRP_MAX_DIGEST_SIZE ]; /**< Multiplier parameter. k = H(N, g)   */
+    mp_int auth;                   /**< Client: x = H(salt + H(user:pswd))   */
+                                   /**< Server: v = g ^ x % N                */
+    mp_int priv;                   /**< Private ephemeral value.             */
+    SrpHash client_proof;          /**< Client proof. Sent to the Server.    */
+    SrpHash server_proof;          /**< Server proof. Sent to the Client.    */
+    byte * key;                    /**< Session key.                         */
+    word32 keySz;                  /**< Session key length.                  */
+    int ( *keyGenFunc_cb )( struct Srp * srp, byte * secret, word32 size );
+    /**< Function responsible for generating the session key.             */
+    /**< It MUST use XMALLOC with type DYNAMIC_TYPE_SRP to allocate the   */
+    /**< key buffer for this structure and set keySz to the buffer size.  */
+    /**< The default function used by this implementation is a modified   */
+    /**< version of t_mgf1 that uses the proper hash function according   */
+    /**< to srp->type.                                                    */
+    void * heap; /**< heap hint pointer                    */
 } Srp;
 
 /**
@@ -136,14 +142,14 @@ typedef struct Srp {
  *
  * @return 0 on success, {@literal <} 0 on error. @see error-crypt.h
  */
-WOLFSSL_API int wc_SrpInit(Srp* srp, SrpType type, SrpSide side);
+WOLFSSL_API int wc_SrpInit( Srp * srp, SrpType type, SrpSide side );
 
 /**
  * Releases the Srp struct resources after usage.
  *
  * @param[in,out] srp    the Srp structure to be terminated.
  */
-WOLFSSL_API void wc_SrpTerm(Srp* srp);
+WOLFSSL_API void wc_SrpTerm( Srp * srp );
 
 /**
  * Sets the username.
@@ -156,8 +162,9 @@ WOLFSSL_API void wc_SrpTerm(Srp* srp);
  *
  * @return 0 on success, {@literal <} 0 on error. @see error-crypt.h
  */
-WOLFSSL_API int wc_SrpSetUsername(Srp* srp, const byte* username, word32 size);
-
+WOLFSSL_API int wc_SrpSetUsername( Srp * srp,
+                                   const byte * username,
+                                   word32 size );
 
 /**
  * Sets the srp parameters based on the username.
@@ -174,9 +181,13 @@ WOLFSSL_API int wc_SrpSetUsername(Srp* srp, const byte* username, word32 size);
  *
  * @return 0 on success, {@literal <} 0 on error. @see error-crypt.h
  */
-WOLFSSL_API int wc_SrpSetParams(Srp* srp, const byte* N,    word32 nSz,
-                                          const byte* g,    word32 gSz,
-                                          const byte* salt, word32 saltSz);
+WOLFSSL_API int wc_SrpSetParams( Srp * srp,
+                                 const byte * N,
+                                 word32 nSz,
+                                 const byte * g,
+                                 word32 gSz,
+                                 const byte * salt,
+                                 word32 saltSz );
 
 /**
  * Sets the password.
@@ -193,7 +204,9 @@ WOLFSSL_API int wc_SrpSetParams(Srp* srp, const byte* N,    word32 nSz,
  *
  * @return 0 on success, {@literal <} 0 on error. @see error-crypt.h
  */
-WOLFSSL_API int wc_SrpSetPassword(Srp* srp, const byte* password, word32 size);
+WOLFSSL_API int wc_SrpSetPassword( Srp * srp,
+                                   const byte * password,
+                                   word32 size );
 
 /**
  * Sets the verifier.
@@ -206,7 +219,9 @@ WOLFSSL_API int wc_SrpSetPassword(Srp* srp, const byte* password, word32 size);
  *
  * @return 0 on success, {@literal <} 0 on error. @see error-crypt.h
  */
-WOLFSSL_API int wc_SrpSetVerifier(Srp* srp, const byte* verifier, word32 size);
+WOLFSSL_API int wc_SrpSetVerifier( Srp * srp,
+                                   const byte * verifier,
+                                   word32 size );
 
 /**
  * Gets the verifier.
@@ -221,7 +236,7 @@ WOLFSSL_API int wc_SrpSetVerifier(Srp* srp, const byte* verifier, word32 size);
  *
  * @return 0 on success, {@literal <} 0 on error. @see error-crypt.h
  */
-WOLFSSL_API int wc_SrpGetVerifier(Srp* srp, byte* verifier, word32* size);
+WOLFSSL_API int wc_SrpGetVerifier( Srp * srp, byte * verifier, word32 * size );
 
 /**
  * Sets the private ephemeral value.
@@ -239,7 +254,7 @@ WOLFSSL_API int wc_SrpGetVerifier(Srp* srp, byte* verifier, word32* size);
  *
  * @return 0 on success, {@literal <} 0 on error. @see error-crypt.h
  */
-WOLFSSL_API int wc_SrpSetPrivate(Srp* srp, const byte* priv, word32 size);
+WOLFSSL_API int wc_SrpSetPrivate( Srp * srp, const byte * priv, word32 size );
 
 /**
  * Gets the public ephemeral value.
@@ -256,8 +271,7 @@ WOLFSSL_API int wc_SrpSetPrivate(Srp* srp, const byte* priv, word32 size);
  *
  * @return 0 on success, {@literal <} 0 on error. @see error-crypt.h
  */
-WOLFSSL_API int wc_SrpGetPublic(Srp* srp, byte* pub, word32* size);
-
+WOLFSSL_API int wc_SrpGetPublic( Srp * srp, byte * pub, word32 * size );
 
 /**
  * Computes the session key.
@@ -272,9 +286,11 @@ WOLFSSL_API int wc_SrpGetPublic(Srp* srp, byte* pub, word32* size);
  *
  * @return 0 on success, {@literal <} 0 on error. @see error-crypt.h
  */
-WOLFSSL_API int wc_SrpComputeKey(Srp* srp,
-                                 byte* clientPubKey, word32 clientPubKeySz,
-                                 byte* serverPubKey, word32 serverPubKeySz);
+WOLFSSL_API int wc_SrpComputeKey( Srp * srp,
+                                  byte * clientPubKey,
+                                  word32 clientPubKeySz,
+                                  byte * serverPubKey,
+                                  word32 serverPubKeySz );
 
 /**
  * Gets the proof.
@@ -288,7 +304,7 @@ WOLFSSL_API int wc_SrpComputeKey(Srp* srp,
  *
  * @return 0 on success, {@literal <} 0 on error. @see error-crypt.h
  */
-WOLFSSL_API int wc_SrpGetProof(Srp* srp, byte* proof, word32* size);
+WOLFSSL_API int wc_SrpGetProof( Srp * srp, byte * proof, word32 * size );
 
 /**
  * Verifies the peers proof.
@@ -301,11 +317,11 @@ WOLFSSL_API int wc_SrpGetProof(Srp* srp, byte* proof, word32* size);
  *
  * @return 0 on success, {@literal <} 0 on error. @see error-crypt.h
  */
-WOLFSSL_API int wc_SrpVerifyPeersProof(Srp* srp, byte* proof, word32 size);
+WOLFSSL_API int wc_SrpVerifyPeersProof( Srp * srp, byte * proof, word32 size );
 
-#ifdef __cplusplus
-   } /* extern "C" */
-#endif
+        #ifdef __cplusplus
+} /* extern "C" */
+        #endif
 
-#endif /* WOLFCRYPT_SRP_H */
-#endif /* WOLFCRYPT_HAVE_SRP */
+    #endif /* WOLFCRYPT_SRP_H */
+#endif     /* WOLFCRYPT_HAVE_SRP */

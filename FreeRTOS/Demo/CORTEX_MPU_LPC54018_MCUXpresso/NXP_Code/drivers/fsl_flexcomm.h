@@ -18,7 +18,7 @@
 /*! @name Driver version */
 /*@{*/
 /*! @brief FlexCOMM driver version 2.0.2. */
-#define FSL_FLEXCOMM_DRIVER_VERSION (MAKE_VERSION(2, 0, 2))
+#define FSL_FLEXCOMM_DRIVER_VERSION ( MAKE_VERSION( 2, 0, 2 ) )
 /*@}*/
 
 /*! @brief FLEXCOMM peripheral modes. */
@@ -33,7 +33,7 @@ typedef enum
 } FLEXCOMM_PERIPH_T;
 
 /*! @brief Typedef for interrupt handler. */
-typedef void (*flexcomm_irq_handler_t)(void *base, void *handle);
+typedef void ( *flexcomm_irq_handler_t )( void * base, void * handle );
 
 /*! @brief Array with IRQ number for each FLEXCOMM module. */
 extern IRQn_Type const kFlexcommIrqs[];
@@ -41,21 +41,25 @@ extern IRQn_Type const kFlexcommIrqs[];
 /*******************************************************************************
  * API
  ******************************************************************************/
-#if defined(__cplusplus)
+#if defined( __cplusplus )
 extern "C" {
 #endif
 
-/*! @brief Returns instance number for FLEXCOMM module with given base address. */
-uint32_t FLEXCOMM_GetInstance(void *base);
+/*! @brief Returns instance number for FLEXCOMM module with given base address.
+ */
+uint32_t FLEXCOMM_GetInstance( void * base );
 
-/*! @brief Initializes FLEXCOMM and selects peripheral mode according to the second parameter. */
-status_t FLEXCOMM_Init(void *base, FLEXCOMM_PERIPH_T periph);
+/*! @brief Initializes FLEXCOMM and selects peripheral mode according to the
+ * second parameter. */
+status_t FLEXCOMM_Init( void * base, FLEXCOMM_PERIPH_T periph );
 
-/*! @brief Sets IRQ handler for given FLEXCOMM module. It is used by drivers register IRQ handler according to FLEXCOMM
- * mode */
-void FLEXCOMM_SetIRQHandler(void *base, flexcomm_irq_handler_t handler, void *handle);
+/*! @brief Sets IRQ handler for given FLEXCOMM module. It is used by drivers
+ * register IRQ handler according to FLEXCOMM mode */
+void FLEXCOMM_SetIRQHandler( void * base,
+                             flexcomm_irq_handler_t handler,
+                             void * handle );
 
-#if defined(__cplusplus)
+#if defined( __cplusplus )
 }
 #endif
 

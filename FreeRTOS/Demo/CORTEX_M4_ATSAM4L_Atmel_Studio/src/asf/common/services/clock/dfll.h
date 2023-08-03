@@ -43,15 +43,15 @@
 #ifndef CLK_DFLL_H_INCLUDED
 #define CLK_DFLL_H_INCLUDED
 
-#include <parts.h>
 #include "conf_clock.h"
+#include <parts.h>
 
 #if UC3L
-# include "uc3l/dfll.h"
+    #include "uc3l/dfll.h"
 #elif SAM4L
-# include "sam4l/dfll.h"
+    #include "sam4l/dfll.h"
 #else
-# error Unsupported chip type
+    #error Unsupported chip type
 #endif
 
 /**
@@ -73,19 +73,19 @@
  * closed-loop mode using the default parameters specified through
  * configuration symbols.
  * \code
-	dfll_enable_config_defaults(0); \endcode
+    dfll_enable_config_defaults(0); \endcode
  *
  * To configure and enable DFLL0 in closed-loop mode using the default
  * parameters and to enable specific feature like dithering for better accuracy,
  * you can use this initialization process.
  * \code
-	struct dfll_config dfllcfg;
+    struct dfll_config dfllcfg;
 
-	dfll_enable_source(CONFIG_DFLL0_SOURCE);
-	dfll_config_defaults(&dfllcfg, 0);
-	dfll_config_enable_dithering(&dfllcfg);
-	dfll_enable(&dfllcfg, 0);
-	dfll_wait_for_accurate_lock(0); \endcode
+    dfll_enable_source(CONFIG_DFLL0_SOURCE);
+    dfll_config_defaults(&dfllcfg, 0);
+    dfll_config_enable_dithering(&dfllcfg);
+    dfll_enable(&dfllcfg, 0);
+    dfll_wait_for_accurate_lock(0); \endcode
  *
  * When the last function call returns, DFLL0 is running at a frequency
  * which matches the default configuration as accurately as possible.
@@ -345,14 +345,15 @@
  * \retval STATUS_OK The DFLL has achieved coarse lock.
  * \retval ERR_TIMEOUT Timed out waiting for lock.
  */
-static inline int dfll_wait_for_coarse_lock(unsigned int dfll_id)
+static inline int dfll_wait_for_coarse_lock( unsigned int dfll_id )
 {
-	/* TODO: Add timeout mechanism */
-	while (!dfll_is_coarse_locked(dfll_id)) {
-		/* Do nothing */
-	}
+    /* TODO: Add timeout mechanism */
+    while( !dfll_is_coarse_locked( dfll_id ) )
+    {
+        /* Do nothing */
+    }
 
-	return 0;
+    return 0;
 }
 
 /**
@@ -364,14 +365,15 @@ static inline int dfll_wait_for_coarse_lock(unsigned int dfll_id)
  * \retval STATUS_OK The DFLL has achieved fine lock.
  * \retval ERR_TIMEOUT Timed out waiting for lock.
  */
-static inline int dfll_wait_for_fine_lock(unsigned int dfll_id)
+static inline int dfll_wait_for_fine_lock( unsigned int dfll_id )
 {
-	/* TODO: Add timeout mechanism */
-	while (!dfll_is_fine_locked(dfll_id)) {
-		/* Do nothing */
-	}
+    /* TODO: Add timeout mechanism */
+    while( !dfll_is_fine_locked( dfll_id ) )
+    {
+        /* Do nothing */
+    }
 
-	return 0;
+    return 0;
 }
 
 /**
@@ -383,14 +385,15 @@ static inline int dfll_wait_for_fine_lock(unsigned int dfll_id)
  * \retval STATUS_OK The DFLL has achieved accurate lock.
  * \retval ERR_TIMEOUT Timed out waiting for lock.
  */
-static inline int dfll_wait_for_accurate_lock(unsigned int dfll_id)
+static inline int dfll_wait_for_accurate_lock( unsigned int dfll_id )
 {
-	/* TODO: Add timeout mechanism */
-	while (!dfll_is_accurate_locked(dfll_id)) {
-		/* Do nothing */
-	}
+    /* TODO: Add timeout mechanism */
+    while( !dfll_is_accurate_locked( dfll_id ) )
+    {
+        /* Do nothing */
+    }
 
-	return 0;
+    return 0;
 }
 
 //@}

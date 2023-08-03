@@ -37,13 +37,15 @@ POSSIBILITY OF SUCH DAMAGE.
 
 /*lint ++flb "Enter library region */
 
-/* This file is given to prevent your SW from not compiling with the updates made to nrf52.h and 
- * nrf52_bitfields.h. The macros defined in this file were available previously. Do not use these
- * macros on purpose. Use the ones defined in nrf52.h and nrf52_bitfields.h instead.
+/* This file is given to prevent your SW from not compiling with the updates
+ * made to nrf52.h and nrf52_bitfields.h. The macros defined in this file were
+ * available previously. Do not use these macros on purpose. Use the ones
+ * defined in nrf52.h and nrf52_bitfields.h instead.
  */
 
 /* I2S */
-/* Several enumerations changed case. Adding old macros to keep compilation compatibility. */
+/* Several enumerations changed case. Adding old macros to keep compilation
+ * compatibility. */
 #define I2S_ENABLE_ENABLE_DISABLE           I2S_ENABLE_ENABLE_Disabled
 #define I2S_ENABLE_ENABLE_ENABLE            I2S_ENABLE_ENABLE_Enabled
 #define I2S_CONFIG_MODE_MODE_MASTER         I2S_CONFIG_MODE_MODE_Master
@@ -71,4 +73,3 @@ POSSIBILITY OF SUCH DAMAGE.
 /*lint --flb "Leave library region" */
 
 #endif /* NRF52_NAME_CHANGE_H */
-

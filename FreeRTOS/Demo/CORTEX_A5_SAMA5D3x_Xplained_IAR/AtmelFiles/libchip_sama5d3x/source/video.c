@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
- *         SAM Software Package License 
+ *         SAM Software Package License
  * ----------------------------------------------------------------------------
  * Copyright (c) 2013, Atmel Corporation
  *
@@ -20,13 +20,12 @@
  * DISCLAIMED. IN NO EVENT SHALL ATMEL BE LIABLE FOR ANY DIRECT, INDIRECT,
  * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
- * OR PROFITS; OR BUSINESS uint32_tERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
- * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ * OR PROFITS; OR BUSINESS uint32_tERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
+ * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * ----------------------------------------------------------------------------
  */
-
 
 /*----------------------------------------------------------------------------
  *        Headers
@@ -49,7 +48,7 @@
 /// \param rgb Destination buffer (RGB)
 /// \param len Length of buffer
 //-----------------------------------------------------------------------------
-void VIDEO_Ycc2Rgb(uint8_t *ycc, uint16_t *rgb, uint32_t len)
+void VIDEO_Ycc2Rgb( uint8_t * ycc, uint16_t * rgb, uint32_t len )
 {
     int32_t r_calc_i;
     int32_t g_calc_i;
@@ -69,65 +68,64 @@ void VIDEO_Ycc2Rgb(uint8_t *ycc, uint16_t *rgb, uint32_t len)
     int32_t val5;
     uint32_t i;
 
-    for(i = 0; i < len; i++)
+    for( i = 0; i < len; i++ )
     {
 #if 1
-        cb_i = (int32_t)ycc[4*i];
-        y_i  = (int32_t )ycc[4*i+1];
-        cr_i = (int32_t )ycc[4*i+2];
-        y_i_incr =(int32_t )ycc[4*i+3];
+        cb_i = ( int32_t ) ycc[ 4 * i ];
+        y_i = ( int32_t ) ycc[ 4 * i + 1 ];
+        cr_i = ( int32_t ) ycc[ 4 * i + 2 ];
+        y_i_incr = ( int32_t ) ycc[ 4 * i + 3 ];
 #endif
-        val  = 1164*(y_i-16);
-        val1 = 1164*(y_i_incr-16);
-        val2 = 1596*(cr_i- 128);
-        val3 =  813*(cb_i-128);
-        val4 =  392*(cr_i-128);
-        val5 = 2017*(cb_i-128);
+        val = 1164 * ( y_i - 16 );
+        val1 = 1164 * ( y_i_incr - 16 );
+        val2 = 1596 * ( cr_i - 128 );
+        val3 = 813 * ( cb_i - 128 );
+        val4 = 392 * ( cr_i - 128 );
+        val5 = 2017 * ( cb_i - 128 );
 
-        r_calc_i = (val + val2)/1000;
-        g_calc_i = (val - val3 - val4)/1000;
-        b_calc_i = (val + val5)/1000;
-        r_calc_i_incr = (val1 + val2)/1000;
-        g_calc_i_incr = (val1 - val3 - val4)/1000;
-        b_calc_i_incr = (val1 + val5)/1000;
+        r_calc_i = ( val + val2 ) / 1000;
+        g_calc_i = ( val - val3 - val4 ) / 1000;
+        b_calc_i = ( val + val5 ) / 1000;
+        r_calc_i_incr = ( val1 + val2 ) / 1000;
+        g_calc_i_incr = ( val1 - val3 - val4 ) / 1000;
+        b_calc_i_incr = ( val1 + val5 ) / 1000;
 
-        if (r_calc_i < 0)
+        if( r_calc_i < 0 )
             r_calc_i = 0;
-        else if (r_calc_i > 255)
+        else if( r_calc_i > 255 )
             r_calc_i = 255;
 
-        if (g_calc_i < 0)
+        if( g_calc_i < 0 )
             g_calc_i = 0;
-        else if (g_calc_i > 255)
+        else if( g_calc_i > 255 )
             g_calc_i = 255;
 
-        if (b_calc_i < 0)
+        if( b_calc_i < 0 )
             b_calc_i = 0;
-        else if (b_calc_i > 255)
+        else if( b_calc_i > 255 )
             b_calc_i = 255;
 
-        if (r_calc_i_incr < 0)
+        if( r_calc_i_incr < 0 )
             r_calc_i_incr = 0;
-        else if (r_calc_i_incr > 255)
+        else if( r_calc_i_incr > 255 )
             r_calc_i_incr = 255;
 
-        if (g_calc_i_incr < 0)
+        if( g_calc_i_incr < 0 )
             g_calc_i_incr = 0;
-        else if (g_calc_i_incr > 255)
+        else if( g_calc_i_incr > 255 )
             g_calc_i_incr = 255;
 
-        if (b_calc_i_incr < 0)
+        if( b_calc_i_incr < 0 )
             b_calc_i_incr = 0;
-        else if (b_calc_i_incr > 255)
+        else if( b_calc_i_incr > 255 )
             b_calc_i_incr = 255;
-        //R1[4:0] G1[5:0] B1[4:0] R0[4:0] G0[5:0] B0[4:0]
-        *rgb++ = (((uint16_t )b_calc_i & 0xF8) >> 3)
-               | ((((uint16_t)g_calc_i & 0xFC) >> 2) << 5)
-               | ((((uint16_t)r_calc_i & 0xF8) >> 3) << 11);
+        // R1[4:0] G1[5:0] B1[4:0] R0[4:0] G0[5:0] B0[4:0]
+        *rgb++ = ( ( ( uint16_t ) b_calc_i & 0xF8 ) >> 3 ) |
+                 ( ( ( ( uint16_t ) g_calc_i & 0xFC ) >> 2 ) << 5 ) |
+                 ( ( ( ( uint16_t ) r_calc_i & 0xF8 ) >> 3 ) << 11 );
 
-        *rgb++ = (((uint16_t )b_calc_i_incr & 0xF8) >> 3)
-               | ((((uint16_t)g_calc_i_incr & 0xFC) >> 2) << 5)
-               | ((((uint16_t)r_calc_i_incr & 0xF8) >> 3) << 11);
+        *rgb++ = ( ( ( uint16_t ) b_calc_i_incr & 0xF8 ) >> 3 ) |
+                 ( ( ( ( uint16_t ) g_calc_i_incr & 0xFC ) >> 2 ) << 5 ) |
+                 ( ( ( ( uint16_t ) r_calc_i_incr & 0xF8 ) >> 3 ) << 11 );
     }
 }
-

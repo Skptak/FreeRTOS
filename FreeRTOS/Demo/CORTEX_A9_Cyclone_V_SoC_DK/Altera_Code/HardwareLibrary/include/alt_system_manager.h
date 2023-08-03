@@ -3,34 +3,34 @@
  */
 
 /******************************************************************************
-*
-* Copyright 2013 Altera Corporation. All Rights Reserved.
-* 
-* Redistribution and use in source and binary forms, with or without
-* modification, are permitted provided that the following conditions are met:
-* 
-* 1. Redistributions of source code must retain the above copyright notice,
-* this list of conditions and the following disclaimer.
-* 
-* 2. Redistributions in binary form must reproduce the above copyright notice,
-* this list of conditions and the following disclaimer in the documentation
-* and/or other materials provided with the distribution.
-* 
-* 3. The name of the author may not be used to endorse or promote products
-* derived from this software without specific prior written permission.
-* 
-* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDER "AS IS" AND ANY EXPRESS OR
-* IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
-* MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED. IN NO
-* EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
-* EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
-* OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-* INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-* CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING
-* IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
-* OF SUCH DAMAGE.
-* 
-******************************************************************************/
+ *
+ * Copyright 2013 Altera Corporation. All Rights Reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright notice,
+ * this list of conditions and the following disclaimer.
+ *
+ * 2. Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation
+ * and/or other materials provided with the distribution.
+ *
+ * 3. The name of the author may not be used to endorse or promote products
+ * derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDER "AS IS" AND ANY EXPRESS OR
+ * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED. IN NO
+ * EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ *SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ *PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+ *BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
+ *IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ *ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ *POSSIBILITY OF SUCH DAMAGE.
+ *
+ ******************************************************************************/
 
 #ifndef __ALT_SYS_MGR_H__
 #define __ALT_SYS_MGR_H__
@@ -38,16 +38,15 @@
 #include "hwlib.h"
 
 #ifdef __cplusplus
-extern "C"
-{
-#endif  /* __cplusplus */
+extern "C" {
+#endif /* __cplusplus */
 
 /******************************************************************************/
 /*! \addtogroup SYS_MGR The System Manager
  *
  * The System Manager API defines functions for control of system operation and
  * for other modules requiring external control as part of system integration.
- * 
+ *
  * The major functional APIs include:
  * * HPS I/O configuration and pin muxing
  * * External control of other modules
@@ -92,9 +91,12 @@ typedef enum ALT_FPGA_INTERFACE_e
                                      *   request HPS resets. The following reset
                                      *   request signals from the FPGA fabric to
                                      *   HPS are part of this interface:
-                                     *   * \b f2h_cold_rst_req_n - Triggers a HPS cold reset
-                                     *   * \b f2h_warm_rst_req_n - Triggers a HPS warm reset
-                                     *   * \b f2h_dbg_rst_req_n - Triggers a HPS debug reset
+                                     *   * \b f2h_cold_rst_req_n - Triggers a HPS
+                                     * cold reset
+                                     *   * \b f2h_warm_rst_req_n - Triggers a HPS
+                                     * warm reset
+                                     *   * \b f2h_dbg_rst_req_n - Triggers a HPS
+                                     * debug reset
                                      */
     ALT_FPGA_INTERFACE_JTAG_ENABLE, /*!< The JTAG enable interface. This
                                      *   interface allows logic in the FPGA
@@ -169,7 +171,7 @@ typedef enum ALT_FPGA_INTERFACE_e
  * \retval      ALT_E_BAD_ARG   The \e intfc argument designates an invalid
  *                              FPGA/HPS signal interface.
  */
-ALT_STATUS_CODE alt_fpga_interface_disable(ALT_FPGA_INTERFACE_t intfc);
+ALT_STATUS_CODE alt_fpga_interface_disable( ALT_FPGA_INTERFACE_t intfc );
 
 /******************************************************************************/
 /*!
@@ -183,7 +185,7 @@ ALT_STATUS_CODE alt_fpga_interface_disable(ALT_FPGA_INTERFACE_t intfc);
  * \retval      ALT_E_BAD_ARG   The \e intfc argument designates an invalid
  *                              FPGA/HPS signal interface.
  */
-ALT_STATUS_CODE alt_fpga_interface_enable(ALT_FPGA_INTERFACE_t intfc);
+ALT_STATUS_CODE alt_fpga_interface_enable( ALT_FPGA_INTERFACE_t intfc );
 
 /******************************************************************************/
 /*!
@@ -197,7 +199,7 @@ ALT_STATUS_CODE alt_fpga_interface_enable(ALT_FPGA_INTERFACE_t intfc);
  * \retval      ALT_E_BAD_ARG   The \e intfc argument designates an invalid
  *                              FPGA/HPS signal interface.
  */
-ALT_STATUS_CODE alt_fpga_interface_is_enabled(ALT_FPGA_INTERFACE_t intfc);
+ALT_STATUS_CODE alt_fpga_interface_is_enabled( ALT_FPGA_INTERFACE_t intfc );
 
 /*! @} */
 
@@ -205,5 +207,5 @@ ALT_STATUS_CODE alt_fpga_interface_is_enabled(ALT_FPGA_INTERFACE_t intfc);
 
 #ifdef __cplusplus
 }
-#endif  /* __cplusplus */
-#endif  /* __ALT_SYS_MGR_H__ */
+#endif /* __cplusplus */
+#endif /* __ALT_SYS_MGR_H__ */

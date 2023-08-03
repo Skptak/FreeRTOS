@@ -25,16 +25,15 @@
 /** @file
     @brief Implements common-code utilities for tools and tests.
 */
-#include <stdio.h>
-#include <stdlib.h>
 #include <errno.h>
 #include <limits.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-#include <redfs.h>
 #include <redcoreapi.h>
-#include <redvolume.h>
+#include <redfs.h>
 #include <redtoolcmn.h>
-
+#include <redvolume.h>
 
 /** @brief Convert a string into a volume number.
 
@@ -49,37 +48,37 @@
     @return On success, returns the volume number; on failure, returns
             #REDCONF_VOLUME_COUNT.
 */
-uint8_t RedFindVolumeNumber(
-    const char     *pszVolume)
+uint8_t RedFindVolumeNumber( const char * pszVolume )
 {
-    unsigned long   ulNumber;
-    const char     *pszEndPtr;
-    uint8_t         bVolNum = REDCONF_VOLUME_COUNT;
-  #if REDCONF_API_POSIX == 1
-    uint8_t         bIndex;
-  #endif
+    unsigned long ulNumber;
+    const char * pszEndPtr;
+    uint8_t bVolNum = REDCONF_VOLUME_COUNT;
+#if REDCONF_API_POSIX == 1
+    uint8_t bIndex;
+#endif
 
     /*  Determine if pszVolume can be interpreted as a volume number.
-    */
+     */
     errno = 0;
-    ulNumber = strtoul(pszVolume, (char **)&pszEndPtr, 10);
-    if((errno == 0) && (ulNumber != ULONG_MAX) && (pszEndPtr[0U] == '\0') && (ulNumber < REDCONF_VOLUME_COUNT))
+    ulNumber = strtoul( pszVolume, ( char ** ) &pszEndPtr, 10 );
+    if( ( errno == 0 ) && ( ulNumber != ULONG_MAX ) &&
+        ( pszEndPtr[ 0U ] == '\0' ) && ( ulNumber < REDCONF_VOLUME_COUNT ) )
     {
-        bVolNum = (uint8_t)ulNumber;
+        bVolNum = ( uint8_t ) ulNumber;
     }
 
-  #if REDCONF_API_POSIX == 1
+#if REDCONF_API_POSIX == 1
     /*  Determine if pszVolume is a valid path prefix.
-    */
-    for(bIndex = 0U; bIndex < REDCONF_VOLUME_COUNT; bIndex++)
+     */
+    for( bIndex = 0U; bIndex < REDCONF_VOLUME_COUNT; bIndex++ )
     {
-        if(strcmp(gaRedVolConf[bIndex].pszPathPrefix, pszVolume) == 0)
+        if( strcmp( gaRedVolConf[ bIndex ].pszPathPrefix, pszVolume ) == 0 )
         {
             break;
         }
     }
 
-    if(bIndex < REDCONF_VOLUME_COUNT)
+    if( bIndex < REDCONF_VOLUME_COUNT )
     {
         /*  Edge case: It is technically possible for pszVolume to be both a
             valid volume number and a valid volume prefix, for different
@@ -92,8 +91,7 @@ uint8_t RedFindVolumeNumber(
         */
         bVolNum = bIndex;
     }
-  #endif
+#endif
 
     return bVolNum;
 }
-

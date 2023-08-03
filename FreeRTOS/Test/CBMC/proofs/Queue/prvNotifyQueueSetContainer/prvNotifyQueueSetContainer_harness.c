@@ -27,12 +27,12 @@
  */
 
 #include "FreeRTOS.h"
+#include "cbmc.h"
 #include "queue.h"
 #include "queue_datastructure.h"
-#include "cbmc.h"
 
 #ifndef LOCK_BOUND
-    #define LOCK_BOUND    4
+    #define LOCK_BOUND 4
 #endif
 
 BaseType_t prvNotifyQueueSetContainer( const Queue_t * const pxQueue,
@@ -44,15 +44,22 @@ BaseType_t prvCopyDataToQueue( Queue_t * const pxQueue,
 {
     if( pxQueue->uxItemSize > ( UBaseType_t ) 0 )
     {
-        __CPROVER_assert( __CPROVER_r_ok( pvItemToQueue, ( size_t ) pxQueue->uxItemSize ), "pvItemToQueue region must be readable" );
+        __CPROVER_assert( __CPROVER_r_ok( pvItemToQueue,
+                                          ( size_t ) pxQueue->uxItemSize ),
+                          "pvItemToQueue region must be readable" );
 
         if( xPosition == queueSEND_TO_BACK )
         {
-            __CPROVER_assert( __CPROVER_w_ok( ( void * ) pxQueue->pcWriteTo, ( size_t ) pxQueue->uxItemSize ), "pxQueue->pcWriteTo region must be writable" );
+            __CPROVER_assert( __CPROVER_w_ok( ( void * ) pxQueue->pcWriteTo,
+                                              ( size_t ) pxQueue->uxItemSize ),
+                              "pxQueue->pcWriteTo region must be writable" );
         }
         else
         {
-            __CPROVER_assert( __CPROVER_w_ok( ( void * ) pxQueue->u.xQueue.pcReadFrom, ( size_t ) pxQueue->uxItemSize ), "pxQueue->u.xQueue.pcReadFrom region must be writable" );
+            __CPROVER_assert(
+                __CPROVER_w_ok( ( void * ) pxQueue->u.xQueue.pcReadFrom,
+                                ( size_t ) pxQueue->uxItemSize ),
+                "pxQueue->u.xQueue.pcReadFrom region must be writable" );
         }
 
         return pdFALSE;
@@ -95,8 +102,9 @@ void harness()
      * There is no check for this in the code base */
     UBaseType_t upper_bound = portMAX_DELAY - sizeof( Queue_t );
     __CPROVER_assume( uxItemSize < ( upper_bound ) / uxQueueLength );
-    QueueHandle_t xQueue =
-        xQueueGenericCreate( uxQueueLength, uxItemSize, ucQueueType );
+    QueueHandle_t xQueue = xQueueGenericCreate( uxQueueLength,
+                                                uxItemSize,
+                                                ucQueueType );
 
     if( xQueue )
     {
@@ -104,7 +112,8 @@ void harness()
 
         if( xQueue->pxQueueSetContainer )
         {
-            __CPROVER_assume( xQueue->pxQueueSetContainer->uxMessagesWaiting < xQueue->pxQueueSetContainer->uxLength );
+            __CPROVER_assume( xQueue->pxQueueSetContainer->uxMessagesWaiting <
+                              xQueue->pxQueueSetContainer->uxLength );
             BaseType_t xCopyPosition = nondet_BaseType_t();
             prvNotifyQueueSetContainer( xQueue, xCopyPosition );
         }

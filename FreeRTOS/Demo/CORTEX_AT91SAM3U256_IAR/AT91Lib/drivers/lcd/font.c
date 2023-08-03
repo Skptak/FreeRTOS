@@ -41,7 +41,7 @@
 //------------------------------------------------------------------------------
 
 /// Global variable describing the font being instancied.
-const Font gFont = {10, 14};
+const Font gFont = { 10, 14 };
 
 //------------------------------------------------------------------------------
 //     Global functions
@@ -55,31 +55,34 @@ const Font gFont = {10, 14};
 /// \param c  Character to output.
 /// \param color  Character color.
 //------------------------------------------------------------------------------
-void LCDD_DrawChar(
-    void *pBuffer,
-    unsigned int x,
-    unsigned int y,
-    char c,
-    unsigned int color)
+void LCDD_DrawChar( void * pBuffer,
+                    unsigned int x,
+                    unsigned int y,
+                    char c,
+                    unsigned int color )
 {
     unsigned int row, col;
 
-    SANITY_CHECK((c >= 0x20) && (c <= 0x7F));
+    SANITY_CHECK( ( c >= 0x20 ) && ( c <= 0x7F ) );
 
-    for (col = 0; col < 10; col++) {
-
-        for (row = 0; row < 8; row++) {
-
-            if ((pCharset10x14[((c - 0x20) * 20) + col * 2] >> (7 - row)) & 0x1) {
-
-                LCDD_DrawPixel(pBuffer, x+col, y+row, color);
+    for( col = 0; col < 10; col++ )
+    {
+        for( row = 0; row < 8; row++ )
+        {
+            if( ( pCharset10x14[ ( ( c - 0x20 ) * 20 ) + col * 2 ] >>
+                  ( 7 - row ) ) &
+                0x1 )
+            {
+                LCDD_DrawPixel( pBuffer, x + col, y + row, color );
             }
         }
-        for (row = 0; row < 6; row++) {
-
-            if ((pCharset10x14[((c - 0x20) * 20) + col * 2 + 1] >> (7 - row)) & 0x1) {
-
-                LCDD_DrawPixel(pBuffer, x+col, y+row+8, color);
+        for( row = 0; row < 6; row++ )
+        {
+            if( ( pCharset10x14[ ( ( c - 0x20 ) * 20 ) + col * 2 + 1 ] >>
+                  ( 7 - row ) ) &
+                0x1 )
+            {
+                LCDD_DrawPixel( pBuffer, x + col, y + row + 8, color );
             }
         }
     }

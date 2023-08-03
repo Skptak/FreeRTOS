@@ -14,35 +14,34 @@ extern "C" {
 
 /***********************************************************************/
 /*
- * This is the handler for all exceptions which are not common to all 
- * ColdFire Chips.  
+ * This is the handler for all exceptions which are not common to all
+ * ColdFire Chips.
  *
  * Called by mcf_exception_handler
- * 
+ *
  */
-void derivative_interrupt(unsigned long vector);
+void derivative_interrupt( unsigned long vector );
 
 /***********************************************************************/
 /*
- * This is the exception handler for all  exceptions common to all 
- * chips ColdFire.  Most exceptions do nothing, but some of the more 
+ * This is the exception handler for all  exceptions common to all
+ * chips ColdFire.  Most exceptions do nothing, but some of the more
  * important ones are handled to some extent.
  *
- * Called by asm_exception_handler 
+ * Called by asm_exception_handler
  */
-void mcf_exception_handler(void *framepointer);
-
+void mcf_exception_handler( void * framepointer );
 
 /***********************************************************************/
 /*
- * This is the assembly exception handler defined in the vector table.  
- * This function is in assembler so that the frame pointer can be read  
+ * This is the assembly exception handler defined in the vector table.
+ * This function is in assembler so that the frame pointer can be read
  * from the stack.
  * Note that the way to give the stack frame as argument to the c handler
  * depends on the used ABI (Register, Compact or Standard).
  *
  */
-asm void asm_exception_handler(void);
+asm void asm_exception_handler( void );
 
 /***********************************************************************/
 /* MCF5xxx exceptions table initialization:
@@ -55,13 +54,11 @@ asm void asm_exception_handler(void);
  * In case _vect address is different from __VECTOR_RAM,
  * the vector table is copied from _vect to __VECTOR_RAM.
  * In any case VBR is set to __VECTOR_RAM.
- */ 
-void initialize_exceptions(void);
-
+ */
+void initialize_exceptions( void );
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif   /* _MCF_EXCEPTIONS_H */
-
+#endif /* _MCF_EXCEPTIONS_H */

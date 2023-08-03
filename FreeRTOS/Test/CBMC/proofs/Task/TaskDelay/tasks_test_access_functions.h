@@ -50,7 +50,8 @@ TaskHandle_t xUnconstrainedTCB( void )
 
     if( nondet_bool() )
     {
-        listSET_LIST_ITEM_VALUE( &( pxTCB->xStateListItem ), pxTCB->uxPriority );
+        listSET_LIST_ITEM_VALUE( &( pxTCB->xStateListItem ),
+                                 pxTCB->uxPriority );
     }
     else
     {
@@ -59,7 +60,9 @@ TaskHandle_t xUnconstrainedTCB( void )
 
     if( nondet_bool() )
     {
-        listSET_LIST_ITEM_VALUE( &( pxTCB->xEventListItem ), ( TickType_t ) configMAX_PRIORITIES - ( TickType_t ) pxTCB->uxPriority );
+        listSET_LIST_ITEM_VALUE( &( pxTCB->xEventListItem ),
+                                 ( TickType_t ) configMAX_PRIORITIES -
+                                     ( TickType_t ) pxTCB->uxPriority );
     }
     else
     {
@@ -103,7 +106,8 @@ BaseType_t xPrepareTaskLists( void )
         return pdFAIL;
     }
 
-    vListInsert( &pxReadyTasksLists[ pxCurrentTCB->uxPriority ], &( pxCurrentTCB->xStateListItem ) );
+    vListInsert( &pxReadyTasksLists[ pxCurrentTCB->uxPriority ],
+                 &( pxCurrentTCB->xStateListItem ) );
 
     /*
      * Nondeterministic insertion of a task in the ready tasks list
@@ -118,10 +122,12 @@ BaseType_t xPrepareTaskLists( void )
             return pdFAIL;
         }
 
-        vListInsert( &pxReadyTasksLists[ pxTCB->uxPriority ], &( pxTCB->xStateListItem ) );
+        vListInsert( &pxReadyTasksLists[ pxTCB->uxPriority ],
+                     &( pxTCB->xStateListItem ) );
 
         /* Use of this macro ensures coverage on line 185 (list.c) */
-        listGET_OWNER_OF_NEXT_ENTRY( pxTCB, &pxReadyTasksLists[ pxTCB->uxPriority ] );
+        listGET_OWNER_OF_NEXT_ENTRY( pxTCB,
+                                     &pxReadyTasksLists[ pxTCB->uxPriority ] );
     }
 
     return pdPASS;
@@ -142,8 +148,10 @@ BaseType_t xTaskResumeAllStub( void )
     taskENTER_CRITICAL();
     {
         --uxSchedulerSuspended;
-        __CPROVER_assert( listLIST_IS_EMPTY( &xPendingReadyList ), "Pending ready tasks list not empty." );
-        __CPROVER_assert( xPendedTicks == 0, "xPendedTicks is not equal to zero." );
+        __CPROVER_assert( listLIST_IS_EMPTY( &xPendingReadyList ),
+                          "Pending ready tasks list not empty." );
+        __CPROVER_assert( xPendedTicks == 0,
+                          "xPendedTicks is not equal to zero." );
     }
     taskEXIT_CRITICAL();
 

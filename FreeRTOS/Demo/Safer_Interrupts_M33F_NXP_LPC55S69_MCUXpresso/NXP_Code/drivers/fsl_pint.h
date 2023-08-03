@@ -24,77 +24,97 @@
 
 /*! @name Driver version */
 /*@{*/
-#define FSL_PINT_DRIVER_VERSION (MAKE_VERSION(2, 1, 8)) /*!< Version 2.1.8 */
+#define FSL_PINT_DRIVER_VERSION \
+    ( MAKE_VERSION( 2, 1, 8 ) ) /*!< Version 2.1.8 */
 /*@}*/
 
 /* Number of interrupt line supported by PINT */
-#define PINT_PIN_INT_COUNT 8U
+#define PINT_PIN_INT_COUNT              8U
 
 /* Number of interrupt line supported by SECURE PINT */
-#define SEC_PINT_PIN_INT_COUNT 2U
+#define SEC_PINT_PIN_INT_COUNT          2U
 
 /* Number of input sources supported by PINT */
-#define PINT_INPUT_COUNT 8U
+#define PINT_INPUT_COUNT                8U
 
 /* PININT Bit slice source register bits */
-#define PININT_BITSLICE_SRC_START 8U
-#define PININT_BITSLICE_SRC_MASK  7U
+#define PININT_BITSLICE_SRC_START       8U
+#define PININT_BITSLICE_SRC_MASK        7U
 
 /* PININT Bit slice configuration register bits */
-#define PININT_BITSLICE_CFG_START 8U
-#define PININT_BITSLICE_CFG_MASK  7U
-#define PININT_BITSLICE_ENDP_MASK 7U
+#define PININT_BITSLICE_CFG_START       8U
+#define PININT_BITSLICE_CFG_MASK        7U
+#define PININT_BITSLICE_ENDP_MASK       7U
 
 #define PINT_PIN_INT_LEVEL              0x10U
 #define PINT_PIN_INT_EDGE               0x00U
 #define PINT_PIN_INT_FALL_OR_HIGH_LEVEL 0x02U
 #define PINT_PIN_INT_RISE               0x01U
-#define PINT_PIN_RISE_EDGE              (PINT_PIN_INT_EDGE | PINT_PIN_INT_RISE)
-#define PINT_PIN_FALL_EDGE              (PINT_PIN_INT_EDGE | PINT_PIN_INT_FALL_OR_HIGH_LEVEL)
-#define PINT_PIN_BOTH_EDGE              (PINT_PIN_INT_EDGE | PINT_PIN_INT_RISE | PINT_PIN_INT_FALL_OR_HIGH_LEVEL)
-#define PINT_PIN_LOW_LEVEL              (PINT_PIN_INT_LEVEL)
-#define PINT_PIN_HIGH_LEVEL             (PINT_PIN_INT_LEVEL | PINT_PIN_INT_FALL_OR_HIGH_LEVEL)
+#define PINT_PIN_RISE_EDGE              ( PINT_PIN_INT_EDGE | PINT_PIN_INT_RISE )
+#define PINT_PIN_FALL_EDGE \
+    ( PINT_PIN_INT_EDGE | PINT_PIN_INT_FALL_OR_HIGH_LEVEL )
+#define PINT_PIN_BOTH_EDGE \
+    ( PINT_PIN_INT_EDGE | PINT_PIN_INT_RISE | PINT_PIN_INT_FALL_OR_HIGH_LEVEL )
+#define PINT_PIN_LOW_LEVEL ( PINT_PIN_INT_LEVEL )
+#define PINT_PIN_HIGH_LEVEL \
+    ( PINT_PIN_INT_LEVEL | PINT_PIN_INT_FALL_OR_HIGH_LEVEL )
 
 /*! @brief PINT Pin Interrupt enable type */
 typedef enum _pint_pin_enable
 {
-    kPINT_PinIntEnableNone      = 0U,                 /*!< Do not generate Pin Interrupt */
-    kPINT_PinIntEnableRiseEdge  = PINT_PIN_RISE_EDGE, /*!< Generate Pin Interrupt on rising edge */
-    kPINT_PinIntEnableFallEdge  = PINT_PIN_FALL_EDGE, /*!< Generate Pin Interrupt on falling edge */
-    kPINT_PinIntEnableBothEdges = PINT_PIN_BOTH_EDGE, /*!< Generate Pin Interrupt on both edges */
-    kPINT_PinIntEnableLowLevel  = PINT_PIN_LOW_LEVEL, /*!< Generate Pin Interrupt on low level */
-    kPINT_PinIntEnableHighLevel = PINT_PIN_HIGH_LEVEL /*!< Generate Pin Interrupt on high level */
+    kPINT_PinIntEnableNone = 0U, /*!< Do not generate Pin Interrupt */
+    kPINT_PinIntEnableRiseEdge = PINT_PIN_RISE_EDGE, /*!< Generate Pin Interrupt
+                                                        on rising edge */
+    kPINT_PinIntEnableFallEdge = PINT_PIN_FALL_EDGE, /*!< Generate Pin Interrupt
+                                                        on falling edge */
+    kPINT_PinIntEnableBothEdges = PINT_PIN_BOTH_EDGE, /*!< Generate Pin
+                                                         Interrupt on both edges
+                                                       */
+    kPINT_PinIntEnableLowLevel = PINT_PIN_LOW_LEVEL, /*!< Generate Pin Interrupt
+                                                        on low level */
+    kPINT_PinIntEnableHighLevel = PINT_PIN_HIGH_LEVEL /*!< Generate Pin
+                                                         Interrupt on high level
+                                                       */
 } pint_pin_enable_t;
 
 /*! @brief PINT Pin Interrupt type */
 typedef enum _pint_int
 {
     kPINT_PinInt0 = 0U, /*!< Pin Interrupt  0 */
-#if defined(FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS) && (FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS > 1U)
+#if defined( FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS ) && \
+    ( FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS > 1U )
     kPINT_PinInt1 = 1U, /*!< Pin Interrupt  1 */
 #endif
-#if defined(FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS) && (FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS > 2U)
+#if defined( FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS ) && \
+    ( FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS > 2U )
     kPINT_PinInt2 = 2U, /*!< Pin Interrupt  2 */
 #endif
-#if defined(FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS) && (FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS > 3U)
+#if defined( FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS ) && \
+    ( FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS > 3U )
     kPINT_PinInt3 = 3U, /*!< Pin Interrupt  3 */
 #endif
-#if defined(FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS) && (FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS > 4U)
+#if defined( FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS ) && \
+    ( FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS > 4U )
     kPINT_PinInt4 = 4U, /*!< Pin Interrupt  4 */
 #endif
-#if defined(FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS) && (FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS > 5U)
+#if defined( FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS ) && \
+    ( FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS > 5U )
     kPINT_PinInt5 = 5U, /*!< Pin Interrupt  5 */
 #endif
-#if defined(FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS) && (FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS > 6U)
+#if defined( FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS ) && \
+    ( FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS > 6U )
     kPINT_PinInt6 = 6U, /*!< Pin Interrupt  6 */
 #endif
-#if defined(FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS) && (FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS > 7U)
+#if defined( FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS ) && \
+    ( FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS > 7U )
     kPINT_PinInt7 = 7U, /*!< Pin Interrupt  7 */
 #endif
-#if defined(FSL_FEATURE_SECPINT_NUMBER_OF_CONNECTED_OUTPUTS) && (FSL_FEATURE_SECPINT_NUMBER_OF_CONNECTED_OUTPUTS > 0U)
+#if defined( FSL_FEATURE_SECPINT_NUMBER_OF_CONNECTED_OUTPUTS ) && \
+    ( FSL_FEATURE_SECPINT_NUMBER_OF_CONNECTED_OUTPUTS > 0U )
     kPINT_SecPinInt0 = 0U, /*!< Secure Pin Interrupt  0 */
 #endif
-#if defined(FSL_FEATURE_SECPINT_NUMBER_OF_CONNECTED_OUTPUTS) && (FSL_FEATURE_SECPINT_NUMBER_OF_CONNECTED_OUTPUTS > 1U)
+#if defined( FSL_FEATURE_SECPINT_NUMBER_OF_CONNECTED_OUTPUTS ) && \
+    ( FSL_FEATURE_SECPINT_NUMBER_OF_CONNECTED_OUTPUTS > 1U )
     kPINT_SecPinInt1 = 1U, /*!< Secure Pin Interrupt  1 */
 #endif
 } pint_pin_int_t;
@@ -102,14 +122,14 @@ typedef enum _pint_int
 /*! @brief PINT Pattern Match bit slice input source type */
 typedef enum _pint_pmatch_input_src
 {
-    kPINT_PatternMatchInp0Src    = 0U, /*!< Input source 0 */
-    kPINT_PatternMatchInp1Src    = 1U, /*!< Input source 1 */
-    kPINT_PatternMatchInp2Src    = 2U, /*!< Input source 2 */
-    kPINT_PatternMatchInp3Src    = 3U, /*!< Input source 3 */
-    kPINT_PatternMatchInp4Src    = 4U, /*!< Input source 4 */
-    kPINT_PatternMatchInp5Src    = 5U, /*!< Input source 5 */
-    kPINT_PatternMatchInp6Src    = 6U, /*!< Input source 6 */
-    kPINT_PatternMatchInp7Src    = 7U, /*!< Input source 7 */
+    kPINT_PatternMatchInp0Src = 0U,    /*!< Input source 0 */
+    kPINT_PatternMatchInp1Src = 1U,    /*!< Input source 1 */
+    kPINT_PatternMatchInp2Src = 2U,    /*!< Input source 2 */
+    kPINT_PatternMatchInp3Src = 3U,    /*!< Input source 3 */
+    kPINT_PatternMatchInp4Src = 4U,    /*!< Input source 4 */
+    kPINT_PatternMatchInp5Src = 5U,    /*!< Input source 5 */
+    kPINT_PatternMatchInp6Src = 6U,    /*!< Input source 6 */
+    kPINT_PatternMatchInp7Src = 7U,    /*!< Input source 7 */
     kPINT_SecPatternMatchInp0Src = 0U, /*!< Input source 0 */
     kPINT_SecPatternMatchInp1Src = 1U, /*!< Input source 1 */
 } pint_pmatch_input_src_t;
@@ -118,31 +138,40 @@ typedef enum _pint_pmatch_input_src
 typedef enum _pint_pmatch_bslice
 {
     kPINT_PatternMatchBSlice0 = 0U, /*!< Bit slice 0 */
-#if defined(FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS) && (FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS > 1U)
+#if defined( FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS ) && \
+    ( FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS > 1U )
     kPINT_PatternMatchBSlice1 = 1U, /*!< Bit slice 1 */
 #endif
-#if defined(FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS) && (FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS > 2U)
+#if defined( FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS ) && \
+    ( FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS > 2U )
     kPINT_PatternMatchBSlice2 = 2U, /*!< Bit slice 2 */
 #endif
-#if defined(FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS) && (FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS > 3U)
+#if defined( FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS ) && \
+    ( FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS > 3U )
     kPINT_PatternMatchBSlice3 = 3U, /*!< Bit slice 3 */
 #endif
-#if defined(FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS) && (FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS > 4U)
+#if defined( FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS ) && \
+    ( FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS > 4U )
     kPINT_PatternMatchBSlice4 = 4U, /*!< Bit slice 4 */
 #endif
-#if defined(FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS) && (FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS > 5U)
+#if defined( FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS ) && \
+    ( FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS > 5U )
     kPINT_PatternMatchBSlice5 = 5U, /*!< Bit slice 5 */
 #endif
-#if defined(FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS) && (FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS > 6U)
+#if defined( FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS ) && \
+    ( FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS > 6U )
     kPINT_PatternMatchBSlice6 = 6U, /*!< Bit slice 6 */
 #endif
-#if defined(FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS) && (FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS > 7U)
+#if defined( FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS ) && \
+    ( FSL_FEATURE_PINT_NUMBER_OF_CONNECTED_OUTPUTS > 7U )
     kPINT_PatternMatchBSlice7 = 7U, /*!< Bit slice 7 */
 #endif
-#if defined(FSL_FEATURE_SECPINT_NUMBER_OF_CONNECTED_OUTPUTS) && (FSL_FEATURE_SECPINT_NUMBER_OF_CONNECTED_OUTPUTS > 0U)
+#if defined( FSL_FEATURE_SECPINT_NUMBER_OF_CONNECTED_OUTPUTS ) && \
+    ( FSL_FEATURE_SECPINT_NUMBER_OF_CONNECTED_OUTPUTS > 0U )
     kPINT_SecPatternMatchBSlice0 = 0U, /*!< Bit slice 0 */
 #endif
-#if defined(FSL_FEATURE_SECPINT_NUMBER_OF_CONNECTED_OUTPUTS) && (FSL_FEATURE_SECPINT_NUMBER_OF_CONNECTED_OUTPUTS > 1U)
+#if defined( FSL_FEATURE_SECPINT_NUMBER_OF_CONNECTED_OUTPUTS ) && \
+    ( FSL_FEATURE_SECPINT_NUMBER_OF_CONNECTED_OUTPUTS > 1U )
     kPINT_SecPatternMatchBSlice1 = 1U, /*!< Bit slice 1 */
 #endif
 } pint_pmatch_bslice_t;
@@ -150,18 +179,21 @@ typedef enum _pint_pmatch_bslice
 /*! @brief PINT Pattern Match configuration type */
 typedef enum _pint_pmatch_bslice_cfg
 {
-    kPINT_PatternMatchAlways          = 0U, /*!< Always Contributes to product term match */
-    kPINT_PatternMatchStickyRise      = 1U, /*!< Sticky Rising edge */
-    kPINT_PatternMatchStickyFall      = 2U, /*!< Sticky Falling edge */
-    kPINT_PatternMatchStickyBothEdges = 3U, /*!< Sticky Rising or Falling edge */
-    kPINT_PatternMatchHigh            = 4U, /*!< High level */
-    kPINT_PatternMatchLow             = 5U, /*!< Low level */
-    kPINT_PatternMatchNever           = 6U, /*!< Never contributes to product term match */
-    kPINT_PatternMatchBothEdges       = 7U, /*!< Either rising or falling edge */
+    kPINT_PatternMatchAlways = 0U, /*!< Always Contributes to product term match
+                                    */
+    kPINT_PatternMatchStickyRise = 1U,      /*!< Sticky Rising edge */
+    kPINT_PatternMatchStickyFall = 2U,      /*!< Sticky Falling edge */
+    kPINT_PatternMatchStickyBothEdges = 3U, /*!< Sticky Rising or Falling edge
+                                             */
+    kPINT_PatternMatchHigh = 4U,            /*!< High level */
+    kPINT_PatternMatchLow = 5U,             /*!< Low level */
+    kPINT_PatternMatchNever = 6U, /*!< Never contributes to product term match
+                                   */
+    kPINT_PatternMatchBothEdges = 7U, /*!< Either rising or falling edge */
 } pint_pmatch_bslice_cfg_t;
 
 /*! @brief PINT Callback function. */
-typedef void (*pint_cb_t)(pint_pin_int_t pintr, uint32_t pmatch_status);
+typedef void ( *pint_cb_t )( pint_pin_int_t pintr, uint32_t pmatch_status );
 
 typedef struct _pint_pmatch_cfg
 {
@@ -175,7 +207,7 @@ typedef struct _pint_pmatch_cfg
  * API
  ******************************************************************************/
 
-#if defined(__cplusplus)
+#if defined( __cplusplus )
 extern "C" {
 #endif
 
@@ -188,7 +220,7 @@ extern "C" {
  *
  * @retval None.
  */
-void PINT_Init(PINT_Type *base);
+void PINT_Init( PINT_Type * base );
 
 /*!
  * @brief	Configure PINT peripheral pin interrupt.
@@ -202,7 +234,10 @@ void PINT_Init(PINT_Type *base);
  *
  * @retval None.
  */
-void PINT_PinInterruptConfig(PINT_Type *base, pint_pin_int_t intr, pint_pin_enable_t enable, pint_cb_t callback);
+void PINT_PinInterruptConfig( PINT_Type * base,
+                              pint_pin_int_t intr,
+                              pint_pin_enable_t enable,
+                              pint_cb_t callback );
 
 /*!
  * @brief	Get PINT peripheral pin interrupt configuration.
@@ -216,10 +251,14 @@ void PINT_PinInterruptConfig(PINT_Type *base, pint_pin_int_t intr, pint_pin_enab
  *
  * @retval None.
  */
-void PINT_PinInterruptGetConfig(PINT_Type *base, pint_pin_int_t pintr, pint_pin_enable_t *enable, pint_cb_t *callback);
+void PINT_PinInterruptGetConfig( PINT_Type * base,
+                                 pint_pin_int_t pintr,
+                                 pint_pin_enable_t * enable,
+                                 pint_cb_t * callback );
 
 /*!
- * @brief	Clear Selected pin interrupt status only when the pin was triggered by edge-sensitive.
+ * @brief	Clear Selected pin interrupt status only when the pin was triggered
+ by edge-sensitive.
 
  * This function clears the selected pin interrupt status.
  *
@@ -228,7 +267,7 @@ void PINT_PinInterruptGetConfig(PINT_Type *base, pint_pin_int_t pintr, pint_pin_
  *
  * @retval None.
  */
-void PINT_PinInterruptClrStatus(PINT_Type *base, pint_pin_int_t pintr);
+void PINT_PinInterruptClrStatus( PINT_Type * base, pint_pin_int_t pintr );
 
 /*!
  * @brief	Get Selected pin interrupt status.
@@ -238,15 +277,18 @@ void PINT_PinInterruptClrStatus(PINT_Type *base, pint_pin_int_t pintr);
  * @param base Base address of the PINT peripheral.
  * @param pintr Pin interrupt.
  *
- * @retval status = 0 No pin interrupt request.  = 1 Selected Pin interrupt request active.
+ * @retval status = 0 No pin interrupt request.  = 1 Selected Pin interrupt
+ request active.
  */
-static inline uint32_t PINT_PinInterruptGetStatus(PINT_Type *base, pint_pin_int_t pintr)
+static inline uint32_t PINT_PinInterruptGetStatus( PINT_Type * base,
+                                                   pint_pin_int_t pintr )
 {
-    return ((base->IST & (1UL << (uint32_t)pintr)) != 0U ? 1U : 0U);
+    return ( ( base->IST & ( 1UL << ( uint32_t ) pintr ) ) != 0U ? 1U : 0U );
 }
 
 /*!
- * @brief	Clear all pin interrupts status only when pins were triggered by edge-sensitive.
+ * @brief	Clear all pin interrupts status only when pins were triggered by
+ edge-sensitive.
 
  * This function clears the status of all pin interrupts.
  *
@@ -254,7 +296,7 @@ static inline uint32_t PINT_PinInterruptGetStatus(PINT_Type *base, pint_pin_int_
  *
  * @retval None.
  */
-void PINT_PinInterruptClrStatusAll(PINT_Type *base);
+void PINT_PinInterruptClrStatusAll( PINT_Type * base );
 
 /*!
  * @brief	Get all pin interrupts status.
@@ -263,12 +305,13 @@ void PINT_PinInterruptClrStatusAll(PINT_Type *base);
  *
  * @param base Base address of the PINT peripheral.
  *
- * @retval status Each bit position indicates the status of corresponding pin interrupt.
+ * @retval status Each bit position indicates the status of corresponding pin
+ interrupt.
  * = 0 No pin interrupt request. = 1 Pin interrupt request active.
  */
-static inline uint32_t PINT_PinInterruptGetStatusAll(PINT_Type *base)
+static inline uint32_t PINT_PinInterruptGetStatusAll( PINT_Type * base )
 {
-    return (base->IST);
+    return ( base->IST );
 }
 
 /*!
@@ -281,9 +324,10 @@ static inline uint32_t PINT_PinInterruptGetStatusAll(PINT_Type *base)
  *
  * @retval None.
  */
-static inline void PINT_PinInterruptClrFallFlag(PINT_Type *base, pint_pin_int_t pintr)
+static inline void PINT_PinInterruptClrFallFlag( PINT_Type * base,
+                                                 pint_pin_int_t pintr )
 {
-    base->FALL = (1UL << (uint32_t)pintr);
+    base->FALL = ( 1UL << ( uint32_t ) pintr );
 }
 
 /*!
@@ -294,11 +338,13 @@ static inline void PINT_PinInterruptClrFallFlag(PINT_Type *base, pint_pin_int_t 
  * @param base Base address of the PINT peripheral.
  * @param pintr Pin interrupt.
  *
- * @retval flag = 0 Falling edge has not been detected.  = 1 Falling edge has been detected.
+ * @retval flag = 0 Falling edge has not been detected.  = 1 Falling edge has
+ been detected.
  */
-static inline uint32_t PINT_PinInterruptGetFallFlag(PINT_Type *base, pint_pin_int_t pintr)
+static inline uint32_t PINT_PinInterruptGetFallFlag( PINT_Type * base,
+                                                     pint_pin_int_t pintr )
 {
-    return ((base->FALL & (1UL << (uint32_t)pintr)) != 0U ? 1U : 0U);
+    return ( ( base->FALL & ( 1UL << ( uint32_t ) pintr ) ) != 0U ? 1U : 0U );
 }
 
 /*!
@@ -310,7 +356,7 @@ static inline uint32_t PINT_PinInterruptGetFallFlag(PINT_Type *base, pint_pin_in
  *
  * @retval None.
  */
-static inline void PINT_PinInterruptClrFallFlagAll(PINT_Type *base)
+static inline void PINT_PinInterruptClrFallFlagAll( PINT_Type * base )
 {
     base->FALL = PINT_FALL_FDET_MASK;
 }
@@ -322,12 +368,13 @@ static inline void PINT_PinInterruptClrFallFlagAll(PINT_Type *base)
  *
  * @param base Base address of the PINT peripheral.
  *
- * @retval flags Each bit position indicates the falling edge detection of the corresponding pin interrupt.
+ * @retval flags Each bit position indicates the falling edge detection of the
+ corresponding pin interrupt.
  * 0 Falling edge has not been detected.  = 1 Falling edge has been detected.
  */
-static inline uint32_t PINT_PinInterruptGetFallFlagAll(PINT_Type *base)
+static inline uint32_t PINT_PinInterruptGetFallFlagAll( PINT_Type * base )
 {
-    return (base->FALL);
+    return ( base->FALL );
 }
 
 /*!
@@ -340,9 +387,10 @@ static inline uint32_t PINT_PinInterruptGetFallFlagAll(PINT_Type *base)
  *
  * @retval None.
  */
-static inline void PINT_PinInterruptClrRiseFlag(PINT_Type *base, pint_pin_int_t pintr)
+static inline void PINT_PinInterruptClrRiseFlag( PINT_Type * base,
+                                                 pint_pin_int_t pintr )
 {
-    base->RISE = (1UL << (uint32_t)pintr);
+    base->RISE = ( 1UL << ( uint32_t ) pintr );
 }
 
 /*!
@@ -353,11 +401,13 @@ static inline void PINT_PinInterruptClrRiseFlag(PINT_Type *base, pint_pin_int_t 
  * @param base Base address of the PINT peripheral.
  * @param pintr Pin interrupt.
  *
- * @retval flag = 0 Rising edge has not been detected.  = 1 Rising edge has been detected.
+ * @retval flag = 0 Rising edge has not been detected.  = 1 Rising edge has been
+ detected.
  */
-static inline uint32_t PINT_PinInterruptGetRiseFlag(PINT_Type *base, pint_pin_int_t pintr)
+static inline uint32_t PINT_PinInterruptGetRiseFlag( PINT_Type * base,
+                                                     pint_pin_int_t pintr )
 {
-    return ((base->RISE & (1UL << (uint32_t)pintr)) != 0U ? 1U : 0U);
+    return ( ( base->RISE & ( 1UL << ( uint32_t ) pintr ) ) != 0U ? 1U : 0U );
 }
 
 /*!
@@ -369,7 +419,7 @@ static inline uint32_t PINT_PinInterruptGetRiseFlag(PINT_Type *base, pint_pin_in
  *
  * @retval None.
  */
-static inline void PINT_PinInterruptClrRiseFlagAll(PINT_Type *base)
+static inline void PINT_PinInterruptClrRiseFlagAll( PINT_Type * base )
 {
     base->RISE = PINT_RISE_RDET_MASK;
 }
@@ -381,12 +431,13 @@ static inline void PINT_PinInterruptClrRiseFlagAll(PINT_Type *base)
  *
  * @param base Base address of the PINT peripheral.
  *
- * @retval flags Each bit position indicates the rising edge detection of the corresponding pin interrupt.
+ * @retval flags Each bit position indicates the rising edge detection of the
+ corresponding pin interrupt.
  * 0 Rising edge has not been detected.  = 1 Rising edge has been detected.
  */
-static inline uint32_t PINT_PinInterruptGetRiseFlagAll(PINT_Type *base)
+static inline uint32_t PINT_PinInterruptGetRiseFlagAll( PINT_Type * base )
 {
-    return (base->RISE);
+    return ( base->RISE );
 }
 
 /*!
@@ -400,7 +451,9 @@ static inline uint32_t PINT_PinInterruptGetRiseFlagAll(PINT_Type *base)
  *
  * @retval None.
  */
-void PINT_PatternMatchConfig(PINT_Type *base, pint_pmatch_bslice_t bslice, pint_pmatch_cfg_t *cfg);
+void PINT_PatternMatchConfig( PINT_Type * base,
+                              pint_pmatch_bslice_t bslice,
+                              pint_pmatch_cfg_t * cfg );
 
 /*!
  * @brief	Get PINT pattern match configuration.
@@ -413,7 +466,9 @@ void PINT_PatternMatchConfig(PINT_Type *base, pint_pmatch_bslice_t bslice, pint_
  *
  * @retval None.
  */
-void PINT_PatternMatchGetConfig(PINT_Type *base, pint_pmatch_bslice_t bslice, pint_pmatch_cfg_t *cfg);
+void PINT_PatternMatchGetConfig( PINT_Type * base,
+                                 pint_pmatch_bslice_t bslice,
+                                 pint_pmatch_cfg_t * cfg );
 
 /*!
  * @brief	Get pattern match bit slice status.
@@ -425,9 +480,12 @@ void PINT_PatternMatchGetConfig(PINT_Type *base, pint_pmatch_bslice_t bslice, pi
  *
  * @retval status = 0 Match has not been detected.  = 1 Match has been detected.
  */
-static inline uint32_t PINT_PatternMatchGetStatus(PINT_Type *base, pint_pmatch_bslice_t bslice)
+static inline uint32_t PINT_PatternMatchGetStatus( PINT_Type * base,
+                                                   pint_pmatch_bslice_t bslice )
 {
-    return ((base->PMCTRL >> PINT_PMCTRL_PMAT_SHIFT) & (1UL << (uint32_t)bslice)) >> (uint32_t)bslice;
+    return ( ( base->PMCTRL >> PINT_PMCTRL_PMAT_SHIFT ) &
+             ( 1UL << ( uint32_t ) bslice ) ) >>
+           ( uint32_t ) bslice;
 }
 
 /*!
@@ -437,10 +495,11 @@ static inline uint32_t PINT_PatternMatchGetStatus(PINT_Type *base, pint_pmatch_b
  *
  * @param base Base address of the PINT peripheral.
  *
- * @retval status Each bit position indicates the match status of corresponding bit slice.
+ * @retval status Each bit position indicates the match status of corresponding
+ bit slice.
  * = 0 Match has not been detected.  = 1 Match has been detected.
  */
-static inline uint32_t PINT_PatternMatchGetStatusAll(PINT_Type *base)
+static inline uint32_t PINT_PatternMatchGetStatusAll( PINT_Type * base )
 {
     return base->PMCTRL >> PINT_PMCTRL_PMAT_SHIFT;
 }
@@ -448,14 +507,16 @@ static inline uint32_t PINT_PatternMatchGetStatusAll(PINT_Type *base)
 /*!
  * @brief	Reset pattern match detection logic.
 
- * This function resets the pattern match detection logic if any of the product term is matching.
+ * This function resets the pattern match detection logic if any of the product
+ term is matching.
  *
  * @param base Base address of the PINT peripheral.
  *
- * @retval pmstatus Each bit position indicates the match status of corresponding bit slice.
+ * @retval pmstatus Each bit position indicates the match status of
+ corresponding bit slice.
  * = 0 Match was detected.  = 1 Match was not detected.
  */
-uint32_t PINT_PatternMatchResetDetectLogic(PINT_Type *base);
+uint32_t PINT_PatternMatchResetDetectLogic( PINT_Type * base );
 
 /*!
  * @brief	Enable pattern match function.
@@ -466,9 +527,10 @@ uint32_t PINT_PatternMatchResetDetectLogic(PINT_Type *base);
  *
  * @retval	None.
  */
-static inline void PINT_PatternMatchEnable(PINT_Type *base)
+static inline void PINT_PatternMatchEnable( PINT_Type * base )
 {
-    base->PMCTRL = (base->PMCTRL & PINT_PMCTRL_ENA_RXEV_MASK) | PINT_PMCTRL_SEL_PMATCH_MASK;
+    base->PMCTRL = ( base->PMCTRL & PINT_PMCTRL_ENA_RXEV_MASK ) |
+                   PINT_PMCTRL_SEL_PMATCH_MASK;
 }
 
 /*!
@@ -480,9 +542,10 @@ static inline void PINT_PatternMatchEnable(PINT_Type *base)
  *
  * @retval	None.
  */
-static inline void PINT_PatternMatchDisable(PINT_Type *base)
+static inline void PINT_PatternMatchDisable( PINT_Type * base )
 {
-    base->PMCTRL = (base->PMCTRL & PINT_PMCTRL_ENA_RXEV_MASK) & ~PINT_PMCTRL_SEL_PMATCH_MASK;
+    base->PMCTRL = ( base->PMCTRL & PINT_PMCTRL_ENA_RXEV_MASK ) &
+                   ~PINT_PMCTRL_SEL_PMATCH_MASK;
 }
 
 /*!
@@ -494,9 +557,10 @@ static inline void PINT_PatternMatchDisable(PINT_Type *base)
  *
  * @retval	None.
  */
-static inline void PINT_PatternMatchEnableRXEV(PINT_Type *base)
+static inline void PINT_PatternMatchEnableRXEV( PINT_Type * base )
 {
-    base->PMCTRL = (base->PMCTRL & PINT_PMCTRL_SEL_PMATCH_MASK) | PINT_PMCTRL_ENA_RXEV_MASK;
+    base->PMCTRL = ( base->PMCTRL & PINT_PMCTRL_SEL_PMATCH_MASK ) |
+                   PINT_PMCTRL_ENA_RXEV_MASK;
 }
 
 /*!
@@ -508,34 +572,38 @@ static inline void PINT_PatternMatchEnableRXEV(PINT_Type *base)
  *
  * @retval	None.
  */
-static inline void PINT_PatternMatchDisableRXEV(PINT_Type *base)
+static inline void PINT_PatternMatchDisableRXEV( PINT_Type * base )
 {
-    base->PMCTRL = (base->PMCTRL & PINT_PMCTRL_SEL_PMATCH_MASK) & ~PINT_PMCTRL_ENA_RXEV_MASK;
+    base->PMCTRL = ( base->PMCTRL & PINT_PMCTRL_SEL_PMATCH_MASK ) &
+                   ~PINT_PMCTRL_ENA_RXEV_MASK;
 }
 
 /*!
  * @brief	Enable callback.
 
- * This function enables the interrupt for the selected PINT peripheral. Although the pin(s) are monitored
- * as soon as they are enabled, the callback function is not enabled until this function is called.
+ * This function enables the interrupt for the selected PINT peripheral.
+ Although the pin(s) are monitored
+ * as soon as they are enabled, the callback function is not enabled until this
+ function is called.
  *
  * @param base Base address of the PINT peripheral.
  *
  * @retval None.
  */
-void PINT_EnableCallback(PINT_Type *base);
+void PINT_EnableCallback( PINT_Type * base );
 
 /*!
  * @brief	Disable callback.
 
- * This function disables the interrupt for the selected PINT peripheral. Although the pins are still
+ * This function disables the interrupt for the selected PINT peripheral.
+ Although the pins are still
  * being monitored but the callback function is not called.
  *
  * @param base Base address of the peripheral.
  *
  * @retval None.
  */
-void PINT_DisableCallback(PINT_Type *base);
+void PINT_DisableCallback( PINT_Type * base );
 
 /*!
  * @brief	Deinitialize PINT peripheral.
@@ -546,7 +614,7 @@ void PINT_DisableCallback(PINT_Type *base);
  *
  * @retval None.
  */
-void PINT_Deinit(PINT_Type *base);
+void PINT_Deinit( PINT_Type * base );
 
 /*!
  * @brief	enable callback by pin index.
@@ -558,7 +626,7 @@ void PINT_Deinit(PINT_Type *base);
  *
  * @retval None.
  */
-void PINT_EnableCallbackByIndex(PINT_Type *base, pint_pin_int_t pintIdx);
+void PINT_EnableCallbackByIndex( PINT_Type * base, pint_pin_int_t pintIdx );
 
 /*!
  * @brief disable callback by pin index.
@@ -570,7 +638,7 @@ void PINT_EnableCallbackByIndex(PINT_Type *base, pint_pin_int_t pintIdx);
  *
  * @retval None.
  */
-void PINT_DisableCallbackByIndex(PINT_Type *base, pint_pin_int_t pintIdx);
+void PINT_DisableCallbackByIndex( PINT_Type * base, pint_pin_int_t pintIdx );
 
 #ifdef __cplusplus
 }

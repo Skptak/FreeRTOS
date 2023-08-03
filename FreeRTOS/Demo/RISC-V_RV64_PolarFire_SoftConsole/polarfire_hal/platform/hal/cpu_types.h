@@ -36,5 +36,4 @@ typedef unsigned long psr_t;
 }
 #endif
 
-#endif  /* CPU_TYPES_H */
-
+#endif /* CPU_TYPES_H */

@@ -1,6 +1,6 @@
 /*
  * -------------------------------------------
- *    MSP432 DriverLib - v3_10_00_09 
+ *    MSP432 DriverLib - v3_10_00_09
  * -------------------------------------------
  *
  * --COPYRIGHT--,BSD,BSD
@@ -51,116 +51,115 @@
 //
 //*****************************************************************************
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
-#include <stdint.h>
-#include <stdbool.h>
 #include <msp.h>
+#include <stdbool.h>
+#include <stdint.h>
 
 //*****************************************************************************
 //
 // Control specific variables
 //
 //*****************************************************************************
-#define CS_CLOCK_DIVIDER_1 CS_CTL1_DIVS_0
-#define CS_CLOCK_DIVIDER_2 CS_CTL1_DIVS_1
-#define CS_CLOCK_DIVIDER_4 CS_CTL1_DIVS_2
-#define CS_CLOCK_DIVIDER_8 CS_CTL1_DIVS_3
-#define CS_CLOCK_DIVIDER_16 CS_CTL1_DIVS_4
-#define CS_CLOCK_DIVIDER_32 CS_CTL1_DIVS_5
-#define CS_CLOCK_DIVIDER_64 CS_CTL1_DIVS_6
-#define CS_CLOCK_DIVIDER_128 CS_CTL1_DIVS_7
+#define CS_CLOCK_DIVIDER_1            CS_CTL1_DIVS_0
+#define CS_CLOCK_DIVIDER_2            CS_CTL1_DIVS_1
+#define CS_CLOCK_DIVIDER_4            CS_CTL1_DIVS_2
+#define CS_CLOCK_DIVIDER_8            CS_CTL1_DIVS_3
+#define CS_CLOCK_DIVIDER_16           CS_CTL1_DIVS_4
+#define CS_CLOCK_DIVIDER_32           CS_CTL1_DIVS_5
+#define CS_CLOCK_DIVIDER_64           CS_CTL1_DIVS_6
+#define CS_CLOCK_DIVIDER_128          CS_CTL1_DIVS_7
 
-#define CS_LFXTCLK_SELECT   CS_CTL1_SELM_0
-#define CS_HFXTCLK_SELECT   CS_CTL1_SELM_5
-#define CS_VLOCLK_SELECT    CS_CTL1_SELM_1
-#define CS_REFOCLK_SELECT   CS_CTL1_SELM_2
-#define CS_DCOCLK_SELECT    CS_CTL1_SELM_3
-#define CS_MODOSC_SELECT    CS_CTL1_SELM_4
+#define CS_LFXTCLK_SELECT             CS_CTL1_SELM_0
+#define CS_HFXTCLK_SELECT             CS_CTL1_SELM_5
+#define CS_VLOCLK_SELECT              CS_CTL1_SELM_1
+#define CS_REFOCLK_SELECT             CS_CTL1_SELM_2
+#define CS_DCOCLK_SELECT              CS_CTL1_SELM_3
+#define CS_MODOSC_SELECT              CS_CTL1_SELM_4
 
-#define CS_KEY 0x695A
+#define CS_KEY                        0x695A
 
 /* Number of positions to shift for divider calculation */
-#define CS_ACLK_DIV_BITPOS 0x04
-#define CS_MCLK_DIV_BITPOS 0x0C
-#define CS_SMCLK_DIV_BITPOS 0x00
-#define CS_HSMCLK_DIV_BITPOS 0x08
+#define CS_ACLK_DIV_BITPOS            0x04
+#define CS_MCLK_DIV_BITPOS            0x0C
+#define CS_SMCLK_DIV_BITPOS           0x00
+#define CS_HSMCLK_DIV_BITPOS          0x08
 
 /* Number of positions to shift for source calculation */
-#define CS_ACLK_SRC_BITPOS 0x08
-#define CS_MCLK_SRC_BITPOS 0x00
-#define CS_SMCLK_SRC_BITPOS 0x04
-#define CS_HSMCLK_SRC_BITPOS 0x04
+#define CS_ACLK_SRC_BITPOS            0x08
+#define CS_MCLK_SRC_BITPOS            0x00
+#define CS_SMCLK_SRC_BITPOS           0x04
+#define CS_HSMCLK_SRC_BITPOS          0x04
 
 /* REFO Clock Values */
-#define CS_REFO_32KHZ 0x00
-#define CS_REFO_128KHZ 0x01
+#define CS_REFO_32KHZ                 0x00
+#define CS_REFO_128KHZ                0x01
 
 /* Frequency Values */
-#define CS_VLOCLK_FREQUENCY 10000
-#define CS_MODCLK_FREQUENCY 24000000
+#define CS_VLOCLK_FREQUENCY           10000
+#define CS_MODCLK_FREQUENCY           24000000
 
 /* Interrupts */
-#define CS_LFXT_FAULT   CS_IE_LFXTIE
-#define CS_HFXT_FAULT   CS_IE_HFXTIE
-#define CS_DCO_OPEN_FAULT   CS_IE_DCOR_OPNIE
-#define CS_STARTCOUNT_LFXT_FAULT   CS_IE_FCNTLFIE
-#define CS_STARTCOUNT_HFXT_FAULT   CS_IE_FCNTHFIE
-#define CS_DCO_SHORT_FAULT   CS_IFG_DCOR_SHTIFG
+#define CS_LFXT_FAULT                 CS_IE_LFXTIE
+#define CS_HFXT_FAULT                 CS_IE_HFXTIE
+#define CS_DCO_OPEN_FAULT             CS_IE_DCOR_OPNIE
+#define CS_STARTCOUNT_LFXT_FAULT      CS_IE_FCNTLFIE
+#define CS_STARTCOUNT_HFXT_FAULT      CS_IE_FCNTHFIE
+#define CS_DCO_SHORT_FAULT            CS_IFG_DCOR_SHTIFG
 
-//#define CS_HFXT_DRIVE0 CS_CTL2_HFXTDRIVE_0
-//#define CS_HFXT_DRIVE1 CS_CTL2_HFXTDRIVE_1
-#define CS_HFXT_DRIVE CS_CTL2_HFXTDRIVE
-#define CS_HFXT_BYPASS CS_CTL2_HFXTBYPASS
+// #define CS_HFXT_DRIVE0 CS_CTL2_HFXTDRIVE_0
+// #define CS_HFXT_DRIVE1 CS_CTL2_HFXTDRIVE_1
+#define CS_HFXT_DRIVE                 CS_CTL2_HFXTDRIVE
+#define CS_HFXT_BYPASS                CS_CTL2_HFXTBYPASS
 
-#define CS_LFXT_DRIVE0 CS_CTL2_LFXTDRIVE_0
-#define CS_LFXT_DRIVE1 CS_CTL2_LFXTDRIVE_1
-#define CS_LFXT_DRIVE2 CS_CTL2_LFXTDRIVE_2
-#define CS_LFXT_DRIVE3 CS_CTL2_LFXTDRIVE_3
-#define CS_LFXT_BYPASS CS_CTL2_LFXTBYPASS
+#define CS_LFXT_DRIVE0                CS_CTL2_LFXTDRIVE_0
+#define CS_LFXT_DRIVE1                CS_CTL2_LFXTDRIVE_1
+#define CS_LFXT_DRIVE2                CS_CTL2_LFXTDRIVE_2
+#define CS_LFXT_DRIVE3                CS_CTL2_LFXTDRIVE_3
+#define CS_LFXT_BYPASS                CS_CTL2_LFXTBYPASS
 
-#define CS_ACLK CS_CLKEN_ACLK_EN
-#define CS_MCLK CS_CLKEN_MCLK_EN
-#define CS_SMCLK CS_CLKEN_SMCLK_EN
-#define CS_HSMCLK CS_CLKEN_HSMCLK_EN
-#define CS_BCLK CS_STAT_BCLK_READY
+#define CS_ACLK                       CS_CLKEN_ACLK_EN
+#define CS_MCLK                       CS_CLKEN_MCLK_EN
+#define CS_SMCLK                      CS_CLKEN_SMCLK_EN
+#define CS_HSMCLK                     CS_CLKEN_HSMCLK_EN
+#define CS_BCLK                       CS_STAT_BCLK_READY
 
-#define CS_LFXTCLK  0x01
+#define CS_LFXTCLK                    0x01
 
-#define CS_1MHZ 1000000
-#define CS_15MHZ 1500000
-#define CS_3MHZ 3000000
-#define CS_4MHZ 4000000
-#define CS_6MHZ 6000000
-#define CS_8MHZ 8000000
-#define CS_12MHZ 12000000
-#define CS_16MHZ 16000000
-#define CS_24MHZ 24000000
-#define CS_32MHZ 32000000
-#define CS_40MHZ 40000000
-#define CS_48MHZ 48000000
+#define CS_1MHZ                       1000000
+#define CS_15MHZ                      1500000
+#define CS_3MHZ                       3000000
+#define CS_4MHZ                       4000000
+#define CS_6MHZ                       6000000
+#define CS_8MHZ                       8000000
+#define CS_12MHZ                      12000000
+#define CS_16MHZ                      16000000
+#define CS_24MHZ                      24000000
+#define CS_32MHZ                      32000000
+#define CS_40MHZ                      40000000
+#define CS_48MHZ                      48000000
 
-#define CS_DCO_FREQUENCY_1_5 CS_CTL0_DCORSEL_0
-#define CS_DCO_FREQUENCY_3 CS_CTL0_DCORSEL_1
-#define CS_DCO_FREQUENCY_6 CS_CTL0_DCORSEL_2
-#define CS_DCO_FREQUENCY_12 CS_CTL0_DCORSEL_3
-#define CS_DCO_FREQUENCY_24 CS_CTL0_DCORSEL_4
-#define CS_DCO_FREQUENCY_48 CS_CTL0_DCORSEL_5
+#define CS_DCO_FREQUENCY_1_5          CS_CTL0_DCORSEL_0
+#define CS_DCO_FREQUENCY_3            CS_CTL0_DCORSEL_1
+#define CS_DCO_FREQUENCY_6            CS_CTL0_DCORSEL_2
+#define CS_DCO_FREQUENCY_12           CS_CTL0_DCORSEL_3
+#define CS_DCO_FREQUENCY_24           CS_CTL0_DCORSEL_4
+#define CS_DCO_FREQUENCY_48           CS_CTL0_DCORSEL_5
 
-#define CS_HFXT_FAULT_COUNTER 0x01
-#define CS_LFXT_FAULT_COUNTER 0x02
+#define CS_HFXT_FAULT_COUNTER         0x01
+#define CS_LFXT_FAULT_COUNTER         0x02
 
-#define CS_FAULT_COUNTER_4096_CYCLES CS_CTL3_FCNTLF_0
-#define CS_FAULT_COUNTER_8192_CYCLES CS_CTL3_FCNTLF_1
+#define CS_FAULT_COUNTER_4096_CYCLES  CS_CTL3_FCNTLF_0
+#define CS_FAULT_COUNTER_8192_CYCLES  CS_CTL3_FCNTLF_1
 #define CS_FAULT_COUNTER_16384_CYCLES CS_CTL3_FCNTLF_2
 #define CS_FAULT_COUNTER_32768_CYCLES CS_CTL3_FCNTLF_3
 
-#define CS_OVER32MHZ    0x01
-#define CS_UNDER32MHZ   0x02
+#define CS_OVER32MHZ                  0x01
+#define CS_UNDER32MHZ                 0x02
 
-#define DEVICE_PG1_1    0x42
+#define DEVICE_PG1_1                  0x42
 
 //******************************************************************************
 //
@@ -176,8 +175,8 @@ extern "C"
 //! \return None
 //
 //******************************************************************************
-extern void CS_setExternalClockSourceFrequency(uint32_t lfxt_XT_CLK_frequency,
-        uint32_t hfxt_XT_CLK_frequency);
+extern void CS_setExternalClockSourceFrequency( uint32_t lfxt_XT_CLK_frequency,
+                                                uint32_t hfxt_XT_CLK_frequency );
 
 //******************************************************************************
 //
@@ -185,7 +184,7 @@ extern void CS_setExternalClockSourceFrequency(uint32_t lfxt_XT_CLK_frequency,
 //! that this function is called for each clock signal. If not, the default
 //! state is assumed for the particular clock signal. Refer to DriverLib
 //! documentation for CS module or Device Family User's Guide for details of
-//! default clock signal states. 
+//! default clock signal states.
 //!
 //! Note that this function is blocking and will wait on the appropriate bit
 //! to be set in the CSSTAT READY register to be set before setting the clock
@@ -225,8 +224,9 @@ extern void CS_setExternalClockSourceFrequency(uint32_t lfxt_XT_CLK_frequency,
 //! \return NONE
 //
 //******************************************************************************
-extern void CS_initClockSignal(uint32_t selectedClockSignal,
-        uint32_t clockSource, uint32_t clockSourceDivider);
+extern void CS_initClockSignal( uint32_t selectedClockSignal,
+                                uint32_t clockSource,
+                                uint32_t clockSourceDivider );
 
 //******************************************************************************
 //
@@ -243,7 +243,7 @@ extern void CS_initClockSignal(uint32_t selectedClockSignal,
 //! \return true if started correctly, false otherwise
 //
 //******************************************************************************
-extern bool CS_startHFXT(bool bypassMode);
+extern bool CS_startHFXT( bool bypassMode );
 
 //******************************************************************************
 //
@@ -264,7 +264,7 @@ extern bool CS_startHFXT(bool bypassMode);
 //! \return true if started correctly, false otherwise
 //
 //******************************************************************************
-extern bool CS_startHFXTWithTimeout(bool bypassMode, uint32_t timeout);
+extern bool CS_startHFXTWithTimeout( bool bypassMode, uint32_t timeout );
 
 //******************************************************************************
 //
@@ -290,7 +290,7 @@ extern bool CS_startHFXTWithTimeout(bool bypassMode, uint32_t timeout);
 //! \return true if started correctly, false otherwise
 //
 //******************************************************************************
-extern bool CS_startLFXT(uint32_t xtDrive);
+extern bool CS_startLFXT( uint32_t xtDrive );
 
 //******************************************************************************
 //
@@ -321,7 +321,7 @@ extern bool CS_startLFXT(uint32_t xtDrive);
 //! \return true if started correctly, false otherwise
 //
 //******************************************************************************
-extern bool CS_startLFXTWithTimeout(uint32_t xtDrive, uint32_t timeout);
+extern bool CS_startLFXTWithTimeout( uint32_t xtDrive, uint32_t timeout );
 
 //******************************************************************************
 //
@@ -334,7 +334,7 @@ extern bool CS_startLFXTWithTimeout(uint32_t xtDrive, uint32_t timeout);
 //! \return NONE
 //
 //******************************************************************************
-extern void CS_setReferenceOscillatorFrequency(uint8_t referenceFrequency);
+extern void CS_setReferenceOscillatorFrequency( uint8_t referenceFrequency );
 
 //******************************************************************************
 //
@@ -350,7 +350,7 @@ extern void CS_setReferenceOscillatorFrequency(uint8_t referenceFrequency);
 //! \return NONE
 //
 //******************************************************************************
-extern void CS_enableClockRequest(uint32_t selectClock);
+extern void CS_enableClockRequest( uint32_t selectClock );
 
 //******************************************************************************
 //
@@ -366,7 +366,7 @@ extern void CS_enableClockRequest(uint32_t selectClock);
 //! \return NONE
 //
 //******************************************************************************
-extern void CS_disableClockRequest(uint32_t selectClock);
+extern void CS_disableClockRequest( uint32_t selectClock );
 
 //******************************************************************************
 //
@@ -380,7 +380,7 @@ extern void CS_disableClockRequest(uint32_t selectClock);
 //! \return Current ACLK frequency in Hz
 //
 //******************************************************************************
-extern uint32_t CS_getACLK(void);
+extern uint32_t CS_getACLK( void );
 
 //******************************************************************************
 //
@@ -394,7 +394,7 @@ extern uint32_t CS_getACLK(void);
 //! \return Current SMCLK frequency in Hz
 //
 //******************************************************************************
-extern uint32_t CS_getSMCLK(void);
+extern uint32_t CS_getSMCLK( void );
 
 //******************************************************************************
 //
@@ -408,7 +408,7 @@ extern uint32_t CS_getSMCLK(void);
 //! \return Current MCLK frequency in Hz
 //
 //******************************************************************************
-extern uint32_t CS_getMCLK(void);
+extern uint32_t CS_getMCLK( void );
 
 //******************************************************************************
 //
@@ -422,7 +422,7 @@ extern uint32_t CS_getMCLK(void);
 //! \return Current BCLK frequency in Hz
 //
 //******************************************************************************
-extern uint32_t CS_getBCLK(void);
+extern uint32_t CS_getBCLK( void );
 
 //******************************************************************************
 //
@@ -436,7 +436,7 @@ extern uint32_t CS_getBCLK(void);
 //! \return Current HSMCLK frequency in Hz
 //
 //******************************************************************************
-extern uint32_t CS_getHSMCLK(void);
+extern uint32_t CS_getHSMCLK( void );
 
 //******************************************************************************
 //
@@ -456,7 +456,7 @@ extern uint32_t CS_getHSMCLK(void);
 //! \return NONE
 //
 //******************************************************************************
-extern void CS_setDCOCenteredFrequency(uint32_t dcoFreq);
+extern void CS_setDCOCenteredFrequency( uint32_t dcoFreq );
 
 //******************************************************************************
 //
@@ -478,7 +478,7 @@ extern void CS_setDCOCenteredFrequency(uint32_t dcoFreq);
 //! \return None
 //
 //******************************************************************************
-extern void CS_setDCOFrequency(uint32_t dcoFrequency);
+extern void CS_setDCOFrequency( uint32_t dcoFrequency );
 
 //******************************************************************************
 //
@@ -487,12 +487,14 @@ extern void CS_setDCOFrequency(uint32_t dcoFrequency);
 //!
 //! See the user's guide for more detailed information about DCO tuning.
 //!
-//! \note This function is not currently available on pre-release MSP432 devices.
-//!  On early release versions of MSP432, the DCO calibration information has not been
-//!  populated making the DCO only able to operate at the pre-calibrated centered 
-//!  frequencies accessible by the \link CS_setDCOCenteredFrequency \endlink
-//!  function. While this function will be added on the final devices being released,
-//!  for early silicon please default to the pre-calibrated DCO center frequencies.
+//! \note This function is not currently available on pre-release MSP432
+//! devices.
+//!  On early release versions of MSP432, the DCO calibration information has
+//!  not been populated making the DCO only able to operate at the
+//!  pre-calibrated centered frequencies accessible by the \link
+//!  CS_setDCOCenteredFrequency \endlink function. While this function will be
+//!  added on the final devices being released, for early silicon please default
+//!  to the pre-calibrated DCO center frequencies.
 //!
 //! \param tuneParameter Tuning parameter in 2's Compliment representation.
 //!  Can be negative or positive.
@@ -500,7 +502,7 @@ extern void CS_setDCOFrequency(uint32_t dcoFrequency);
 //! \return NONE
 //
 //******************************************************************************
-extern void CS_tuneDCOFrequency(int16_t tuneParameter);
+extern void CS_tuneDCOFrequency( int16_t tuneParameter );
 
 //******************************************************************************
 //
@@ -509,7 +511,7 @@ extern void CS_tuneDCOFrequency(int16_t tuneParameter);
 //! \return NONE
 //
 //******************************************************************************
-extern void CS_enableDCOExternalResistor(void);
+extern void CS_enableDCOExternalResistor( void );
 
 //******************************************************************************
 //
@@ -518,7 +520,7 @@ extern void CS_enableDCOExternalResistor(void);
 //! \return NONE
 //
 //******************************************************************************
-extern void CS_disableDCOExternalResistor(void);
+extern void CS_disableDCOExternalResistor( void );
 
 //******************************************************************************
 //
@@ -536,8 +538,8 @@ extern void CS_disableDCOExternalResistor(void);
 //! \return None
 //
 //******************************************************************************
-extern void CS_setDCOExternalResistorCalibration(uint_fast8_t uiCalData,
-                                                 uint_fast8_t freqRange);
+extern void CS_setDCOExternalResistorCalibration( uint_fast8_t uiCalData,
+                                                  uint_fast8_t freqRange );
 
 //******************************************************************************
 //
@@ -554,7 +556,7 @@ extern void CS_setDCOExternalResistorCalibration(uint_fast8_t uiCalData,
 //! \return Current DCO frequency in Hz
 //
 //******************************************************************************
-extern uint32_t CS_getDCOFrequency(void);
+extern uint32_t CS_getDCOFrequency( void );
 
 //******************************************************************************
 //
@@ -563,12 +565,14 @@ extern uint32_t CS_getDCOFrequency(void);
 //! will do its best to determine the correct tuning parameter.
 //!
 //!
-//! \note This function is not currently available on pre-release MSP432 devices.
-//!  On early release versions of MSP432, the DCO calibration information has not been
-//!  populated making the DCO only able to operate at the pre-calibrated centered 
-//!  frequencies accessible by the \link CS_setDCOCenteredFrequency \endlink
-//!  function. While this function will be added on the final devices being released,
-//!  for early silicon please default to the pre-calibrated DCO center frequencies.
+//! \note This function is not currently available on pre-release MSP432
+//! devices.
+//!  On early release versions of MSP432, the DCO calibration information has
+//!  not been populated making the DCO only able to operate at the
+//!  pre-calibrated centered frequencies accessible by the \link
+//!  CS_setDCOCenteredFrequency \endlink function. While this function will be
+//!  added on the final devices being released, for early silicon please default
+//!  to the pre-calibrated DCO center frequencies.
 //!
 //! \param dcoFrequency Frequency in Hz (1500000 - 64000000) that the user wants
 //!         to set the DCO to.
@@ -581,7 +585,7 @@ extern uint32_t CS_getDCOFrequency(void);
 //! \return None
 //
 //******************************************************************************
-extern void CS_setDCOFrequency(uint32_t dcoFrequency);
+extern void CS_setDCOFrequency( uint32_t dcoFrequency );
 
 //******************************************************************************
 //
@@ -595,7 +599,7 @@ extern void CS_setDCOFrequency(uint32_t dcoFrequency);
 //! \return NONE
 //
 //******************************************************************************
-extern void CS_enableFaultCounter(uint_fast8_t counterSelect);
+extern void CS_enableFaultCounter( uint_fast8_t counterSelect );
 
 //******************************************************************************
 //
@@ -609,7 +613,7 @@ extern void CS_enableFaultCounter(uint_fast8_t counterSelect);
 //! \return NONE
 //
 //******************************************************************************
-extern void CS_disableFaultCounter(uint_fast8_t counterSelect);
+extern void CS_disableFaultCounter( uint_fast8_t counterSelect );
 
 //******************************************************************************
 //
@@ -623,7 +627,7 @@ extern void CS_disableFaultCounter(uint_fast8_t counterSelect);
 //! \return NONE
 //
 //******************************************************************************
-extern void CS_resetFaultCounter(uint_fast8_t counterSelect);
+extern void CS_resetFaultCounter( uint_fast8_t counterSelect );
 
 //******************************************************************************
 //
@@ -642,8 +646,8 @@ extern void CS_resetFaultCounter(uint_fast8_t counterSelect);
 //! \return NONE
 //
 //******************************************************************************
-extern void CS_startFaultCounter(uint_fast8_t counterSelect,
-        uint_fast8_t countValue);
+extern void CS_startFaultCounter( uint_fast8_t counterSelect,
+                                  uint_fast8_t countValue );
 
 //*****************************************************************************
 //
@@ -670,7 +674,7 @@ extern void CS_startFaultCounter(uint_fast8_t counterSelect,
 //! \return None.
 //
 //*****************************************************************************
-extern void CS_enableInterrupt(uint32_t flags);
+extern void CS_enableInterrupt( uint32_t flags );
 
 //*****************************************************************************
 //
@@ -693,7 +697,7 @@ extern void CS_enableInterrupt(uint32_t flags);
 //! \return None.
 //
 //*****************************************************************************
-extern void CS_disableInterrupt(uint32_t flags);
+extern void CS_disableInterrupt( uint32_t flags );
 
 //*****************************************************************************
 //
@@ -714,7 +718,7 @@ extern void CS_disableInterrupt(uint32_t flags);
 //! which interrupt sources are available.
 //
 //*****************************************************************************
-extern uint32_t CS_getEnabledInterruptStatus(void);
+extern uint32_t CS_getEnabledInterruptStatus( void );
 
 //*****************************************************************************
 //
@@ -733,7 +737,7 @@ extern uint32_t CS_getEnabledInterruptStatus(void);
 //! which interrupt sources are available.
 //
 //*****************************************************************************
-extern uint32_t CS_getInterruptStatus(void);
+extern uint32_t CS_getInterruptStatus( void );
 
 //*****************************************************************************
 //
@@ -767,7 +771,7 @@ extern uint32_t CS_getInterruptStatus(void);
 //! \return None.
 //
 //*****************************************************************************
-extern void CS_clearInterruptFlag(uint32_t flags);
+extern void CS_clearInterruptFlag( uint32_t flags );
 
 //*****************************************************************************
 //
@@ -790,7 +794,7 @@ extern void CS_clearInterruptFlag(uint32_t flags);
 //! \return None.
 //
 //*****************************************************************************
-extern void CS_registerInterrupt(void (*intHandler)(void));
+extern void CS_registerInterrupt( void ( *intHandler )( void ) );
 
 //*****************************************************************************
 //
@@ -806,7 +810,7 @@ extern void CS_registerInterrupt(void (*intHandler)(void));
 //! \return None.
 //
 //*****************************************************************************
-extern void CS_unregisterInterrupt(void);
+extern void CS_unregisterInterrupt( void );
 
 //*****************************************************************************
 //

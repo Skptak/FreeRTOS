@@ -48,7 +48,8 @@
  *  function are configured. The capture is stopped after calling Capture_open()
  *  until Capture_start() is called.
  *
- *  When Capture_open() is called, it tries to occupy the user-specified timer by
+ *  When Capture_open() is called, it tries to occupy the user-specified timer
+ by
  *  calling Timer_open(). If that timer is already allocated for other modules,
  *  NULL is returned. Otherwise, the Capture_Handle is returned.
 
@@ -106,7 +107,8 @@
  *  Capture_FxnTable.
  *
  *  The Capture driver interface module is joined (at link time) to a
- *  NULL-terminated array of Capture_Config data structures named *Capture_Config*.
+ *  NULL-terminated array of Capture_Config data structures named
+ *Capture_Config*.
  *  *Capture_Config* is implemented in the application with each entry being an
  *  instance of a Capture module. Each entry in *Capture_Config* contains a:
  *  - (Capture_FxnTable *) to a set of functions that implement a Capture module
@@ -128,22 +130,21 @@
 #define ti_drivers_Capture__include
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
-#include <stdint.h>
 #include <stdbool.h>
+#include <stdint.h>
 
 /*!
  *  @brief      A handle that is returned from a Capture_open() call.
  */
-typedef struct Capture_Config_ *Capture_Handle;
+typedef struct Capture_Config_ * Capture_Handle;
 
 /*!
  * Common Capture_control command code reservation offset.
- * Capture driver implementations should offset command codes with CAPTURE_CMD_RESERVED
- * growing positively
+ * Capture driver implementations should offset command codes with
+ * CAPTURE_CMD_RESERVED growing positively
  *
  * Example implementation specific command codes:
  * @code
@@ -151,7 +152,7 @@ typedef struct Capture_Config_ *Capture_Handle;
  * #define CAPTUREXYZ_CMD_COMMAND1      CAPTURE_CMD_RESERVED + 1
  * @endcode
  */
-#define CAPTURE_CMD_RESERVED             (32)
+#define CAPTURE_CMD_RESERVED        ( 32 )
 
 /*!
  * Common Capture_control status code reservation offset.
@@ -165,32 +166,32 @@ typedef struct Capture_Config_ *Capture_Handle;
  * #define CAPTUREXYZ_STATUS_ERROR2     CAPTURE_STATUS_RESERVED - 2
  * @endcode
  */
-#define CAPTURE_STATUS_RESERVED         (-32)
+#define CAPTURE_STATUS_RESERVED     ( -32 )
 
 /*!
  * @brief   Successful status code returned by Capture_control().
  *
- * Capture_control() returns TIMER_STATUS_SUCCESS if the control code was executed
- * successfully.
+ * Capture_control() returns TIMER_STATUS_SUCCESS if the control code was
+ * executed successfully.
  */
-#define CAPTURE_STATUS_SUCCESS          (0)
+#define CAPTURE_STATUS_SUCCESS      ( 0 )
 
 /*!
  * @brief   Generic error status code returned by Capture_control().
  *
- * Capture_control() returns CAPTURE_STATUS_ERROR if the control code was not executed
- * successfully.
+ * Capture_control() returns CAPTURE_STATUS_ERROR if the control code was not
+ * executed successfully.
  */
-#define CAPTURE_STATUS_ERROR            (-1)
+#define CAPTURE_STATUS_ERROR        ( -1 )
 
 /*!
  * @brief   An error status code returned by Capture_control() for undefined
  * command codes.
  *
- * Capture_control() returns TIMER_STATUS_UNDEFINEDCMD if the control code is not
- * recognized by the driver implementation.
+ * Capture_control() returns TIMER_STATUS_UNDEFINEDCMD if the control code is
+ * not recognized by the driver implementation.
  */
-#define CAPTURE_STATUS_UNDEFINEDCMD    (-2)
+#define CAPTURE_STATUS_UNDEFINEDCMD ( -2 )
 
 /*!
  *  @brief Capture period unit enum
@@ -199,10 +200,11 @@ typedef struct Capture_Config_ *Capture_Handle;
  *  specify the unit of two capture triggering interval.
  *
  */
-typedef enum Capture_Period_Unit_ {
-    CAPTURE_PERIOD_US,      /* Period in microseconds */
-    CAPTURE_PERIOD_HZ,      /* Period in frequency */
-    CAPTURE_PERIOD_COUNTS,  /* Period in counts */
+typedef enum Capture_Period_Unit_
+{
+    CAPTURE_PERIOD_US,     /* Period in microseconds */
+    CAPTURE_PERIOD_HZ,     /* Period in frequency */
+    CAPTURE_PERIOD_COUNTS, /* Period in counts */
 } Capture_Period_Unit;
 
 /*!
@@ -212,9 +214,12 @@ typedef enum Capture_Period_Unit_ {
  *  triggering mode.
  *
  */
-typedef enum Capture_Mode_ {
-    CAPTURE_MODE_RISING_RISING, /*!< capture is triggered at the rising edge followed by the rising edge */
-    CAPTURE_MODE_FALLING_FALLING, /*!< capture is triggered at the falling edge followed by the falling edge */
+typedef enum Capture_Mode_
+{
+    CAPTURE_MODE_RISING_RISING,   /*!< capture is triggered at the rising edge
+                                     followed by the rising edge */
+    CAPTURE_MODE_FALLING_FALLING, /*!< capture is triggered at the falling edge
+                                     followed by the falling edge */
     CAPTURE_MODE_ANY_EDGE
     /*!< capture is triggered at the falling edge followed by the rising edge */
 } Capture_Mode;
@@ -223,73 +228,78 @@ typedef enum Capture_Mode_ {
  *  @brief  Capture callback function
  *
  *  User definable callback function prototype. The Capture driver will call the
- *  defined function and pass in the Capture driver's handle and the pointer to the
- *  user-specified the argument.
+ *  defined function and pass in the Capture driver's handle and the pointer to
+ * the user-specified the argument.
  *
  *  @param  handle         Capture_Handle
  *
- *  @param  interval       Interval of two triggering edge in Capture_Period_Unit
+ *  @param  interval       Interval of two triggering edge in
+ * Capture_Period_Unit
  *
  */
-typedef void (*Capture_CallBackFxn)(Capture_Handle handle, uint32_t interval);
+typedef void ( *Capture_CallBackFxn )( Capture_Handle handle,
+                                       uint32_t interval );
 
 /*!
  *  @brief Capture Parameters
  *
- *  Capture parameters are used to with the Capture_open() call. Default values for
- *  these parameters are set using Capture_Params_init().
+ *  Capture parameters are used to with the Capture_open() call. Default values
+ * for these parameters are set using Capture_Params_init().
  *
  */
-typedef struct Capture_Params_ {
-    Capture_Mode mode; /*!< Capture triggering mode */
+typedef struct Capture_Params_
+{
+    Capture_Mode mode;               /*!< Capture triggering mode */
     Capture_CallBackFxn callbackFxn; /*!< Callback function pointer */
-    Capture_Period_Unit periodUnit; /*!< Period unit */
+    Capture_Period_Unit periodUnit;  /*!< Period unit */
 } Capture_Params;
 
 /*!
  *  @brief      A function pointer to a driver specific implementation of
  *              Capture_close().
  */
-typedef void (*Capture_CloseFxn)(Capture_Handle handle);
+typedef void ( *Capture_CloseFxn )( Capture_Handle handle );
 
 /*!
  *  @brief      A function pointer to a driver specific implementation of
  *              Capture_control().
  */
-typedef int_fast16_t (*Capture_ControlFxn)(Capture_Handle handle,
-        uint_fast16_t cmd, void *arg);
+typedef int_fast16_t ( *Capture_ControlFxn )( Capture_Handle handle,
+                                              uint_fast16_t cmd,
+                                              void * arg );
 
 /*!
  *  @brief      A function pointer to a driver specific implementation of
  *              Capture_init().
  */
-typedef void (*Capture_InitFxn)(Capture_Handle handle);
+typedef void ( *Capture_InitFxn )( Capture_Handle handle );
 
 /*!
  *  @brief      A function pointer to a driver specific implementation of
  *              Capture_open().
  */
-typedef Capture_Handle (*Capture_OpenFxn)(Capture_Handle handle,
-        Capture_Params *params);
+typedef Capture_Handle ( *Capture_OpenFxn )( Capture_Handle handle,
+                                             Capture_Params * params );
 
 /*!
  *  @brief      A function pointer to a driver specific implementation of
  *              Capture_start().
  */
-typedef void (*Capture_StartFxn)(Capture_Handle handle);
+typedef void ( *Capture_StartFxn )( Capture_Handle handle );
 
 /*!
  *  @brief      A function pointer to a driver specific implementation of
  *              Capture_stop().
  */
-typedef void (*Capture_StopFxn)(Capture_Handle handle);
+typedef void ( *Capture_StopFxn )( Capture_Handle handle );
 
 /*!
  *  @brief      The definition of a Capture function table that contains the
  *              required set of functions to control a specific Capture driver
  *              implementation.
  */
-typedef struct Capture_FxnTable_ {
+typedef struct Capture_FxnTable_
+{
     /*! Function to close the specified peripheral */
     Capture_CloseFxn closeFxn;
 
@@ -310,17 +320,19 @@ typedef struct Capture_FxnTable_ {
 
 } Capture_FxnTable;
 
-typedef struct Capture_Config_ {
-    Capture_FxnTable const *fxnTablePtr;
-    void *object;
-    void const *hwAttrs;
+typedef struct Capture_Config_
+{
+    Capture_FxnTable const * fxnTablePtr;
+    void * object;
+    void const * hwAttrs;
 } Capture_Config;
 
 /*!
  *  @brief  Function to close a Capture module specified by the Capture handle
  *
- *  The function takes care of timer resource allocation. The corresponding timer
- *  resource to the Capture_Handle is released to be an available timer resource.
+ *  The function takes care of timer resource allocation. The corresponding
+ * timer resource to the Capture_Handle is released to be an available timer
+ * resource.
  *
  *  @pre    Capture_open() had to be called first.
  *
@@ -328,7 +340,7 @@ typedef struct Capture_Config_ {
  *
  *  @sa     Capture_open()
  */
-extern void Capture_close(Capture_Handle handle);
+extern void Capture_close( Capture_Handle handle );
 
 /*!
  *  @brief  Function performs implementation specific features on a given
@@ -344,28 +356,29 @@ extern void Capture_close(Capture_Handle handle);
  *  @param  arg         A pointer to an optional R/W (read/write) argument that
  *                      is accompanied with cmd.
  *
- *  @return A Capture_Status describing an error or success state. Negative values
- *          indicate an error occurred.
+ *  @return A Capture_Status describing an error or success state. Negative
+ * values indicate an error occurred.
  *
  *  @sa     Capture_open()
  */
-extern int_fast16_t Capture_control(Capture_Handle handle, uint_fast16_t cmd,
-    void *arg);
+extern int_fast16_t Capture_control( Capture_Handle handle,
+                                     uint_fast16_t cmd,
+                                     void * arg );
 
 /*!
  *  @brief  Function to initialize Capture.
  */
-extern void Capture_init(void);
+extern void Capture_init( void );
 
 /*!
  *  @brief  Function to initialize a given Capture module specified by the
- *          particular index value. The parameter specifies which mode the Capture
- *          will operate.
+ *          particular index value. The parameter specifies which mode the
+ * Capture will operate.
  *
- *  The function takes care of timer resource allocation. If the particular timer
- *  passed by user has already been used by other modules, the return value is NULL.
- *  If the particular timer is available to use, Capture module owns it and returns
- *  a Capture_Handle.
+ *  The function takes care of timer resource allocation. If the particular
+ * timer passed by user has already been used by other modules, the return value
+ * is NULL. If the particular timer is available to use, Capture module owns it
+ * and returns a Capture_Handle.
  *
  *  @param  index         Logical instance number for the Capture indexed into
  *                        the Capture_config table
@@ -380,7 +393,8 @@ extern void Capture_init(void);
  *  @sa     Capture_init()
  *  @sa     Capture_close()
  */
-extern Capture_Handle Capture_open(uint_least8_t index, Capture_Params *params);
+extern Capture_Handle Capture_open( uint_least8_t index,
+                                    Capture_Params * params );
 
 /*!
  *  @brief  Function to initialize the Capture_Params struct to its defaults
@@ -393,12 +407,12 @@ extern Capture_Handle Capture_open(uint_least8_t index, Capture_Params *params);
  *      callbackFxn = user_specified_callbackFxn
  *      periodUnit = Capture_PERIOD_COUNTS
  */
-extern void Capture_Params_init(Capture_Params *params);
+extern void Capture_Params_init( Capture_Params * params );
 
 /*!
  *  @brief  Function to start capture. The Capture running mode
- *          and interval period unit are specfied in the Capture_Params when calling
- *          Capture_open().
+ *          and interval period unit are specfied in the Capture_Params when
+ * calling Capture_open().
  *
  *  @param  handle        Capture_Handle
  *
@@ -406,15 +420,16 @@ extern void Capture_Params_init(Capture_Params *params);
  *          CAPTURE_STATUS_ERROR if Capture fails to start.
  *
  */
-extern void Capture_start(Capture_Handle handle);
+extern void Capture_start( Capture_Handle handle );
 
 /*!
- *  @brief  Function to stop Capture after Capture_start() is called with success.
+ *  @brief  Function to stop Capture after Capture_start() is called with
+ * success.
  *
  *  @param  handle        Capture_Handle
  *
  */
-extern void Capture_stop(Capture_Handle handle);
+extern void Capture_stop( Capture_Handle handle );
 
 #ifdef __cplusplus
 }

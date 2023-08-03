@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -26,8 +27,8 @@
 /*! @file queue_status_utest.c */
 
 /* C runtime includes. */
-#include <stdlib.h>
 #include <stdbool.h>
+#include <stdlib.h>
 #include <string.h>
 
 #include "../queue_utest_common.h"
@@ -78,7 +79,8 @@ void test_uxQueueMessagesWaiting_invalid_handle( void )
 
 /**
  * @brief Test uxQueueMessagesWaiting with a queue of size 5 x 4 bytes
- * @details Test uxQueueMessagesWaiting with a typical queue when empty and occupied.
+ * @details Test uxQueueMessagesWaiting with a typical queue when empty and
+ * occupied.
  * @coverage uxQueueMessagesWaiting
  */
 void test_uxQueueMessagesWaiting_empty_occupied( void )
@@ -107,7 +109,8 @@ void test_uxQueueMessagesWaitingFromISR_invalid_handle( void )
 
 /**
  * @brief Test uxQueueMessagesWaitingFromISR with a queue of size 5 x 4 bytes
- * @details Test uxQueueMessagesWaitingFromISR with a typical queue when empty and occupied.
+ * @details Test uxQueueMessagesWaitingFromISR with a typical queue when empty
+ * and occupied.
  * @coverage uxQueueMessagesWaitingFromISR
  */
 void test_uxQueueMessagesWaitingFromISR_empty_occupied( void )
@@ -136,7 +139,8 @@ void test_uxQueueSpacesAvailable_invalid_handle( void )
 
 /**
  * @brief Test uxQueueSpacesAvailable with a queue of size 5 x 4 bytes
- * @details Test uxQueueSpacesAvailable with a typical queue when empty and occupied.
+ * @details Test uxQueueSpacesAvailable with a typical queue when empty and
+ * occupied.
  * @coverage uxQueueSpacesAvailable
  */
 void test_uxQueueSpacesAvailable_empty_occupied( void )
@@ -154,7 +158,6 @@ void test_uxQueueSpacesAvailable_empty_occupied( void )
     vQueueDelete( xQueue );
 }
 
-
 /**
  * @brief Test xQueueIsQueueEmptyFromISR with an invalid QueueHandle
  * @coverage xQueueIsQueueEmptyFromISR
@@ -166,7 +169,8 @@ void test_xQueueIsQueueEmptyFromISR_invalid_handle( void )
 
 /**
  * @brief Test xQueueIsQueueEmptyFromISR with a queue of size 5 x 4 bytes
- * @details Test xQueueIsQueueEmptyFromISR with a typical queue when empty and occupied.
+ * @details Test xQueueIsQueueEmptyFromISR with a typical queue when empty and
+ * occupied.
  * @coverage xQueueIsQueueEmptyFromISR
  */
 void test_xQueueIsQueueEmptyFromISR_empty_occupied( void )
@@ -195,7 +199,8 @@ void test_xQueueIsQueueFullFromISR_invalid_handle( void )
 
 /**
  * @brief Test xQueueIsQueueFullFromISR with a queue of size 5 x 4 bytes
- * @details Test xQueueIsQueueFullFromISR with a typical queue when empty and occupied.
+ * @details Test xQueueIsQueueFullFromISR with a typical queue when empty and
+ * occupied.
  * @coverage xQueueIsQueueFullFromISR
  */
 void test_xQueueIsQueueFullFromISR_empty_occupied( void )
@@ -227,25 +232,21 @@ void test_vQueueWaitForMessageRestricted_empty( void )
     {
         TickType_t xTicksToWait;
         BaseType_t xWaitIndefinitely;
-    }
-    xTestCaseArray[] =
-    {
-        { 0,     pdFALSE },
-        { 0,     pdTRUE  },
-        { 1,     pdFALSE },
-        { 1,     pdTRUE  },
-        { 10,    pdFALSE },
-        { 10,    pdTRUE  },
-        { 65536, pdTRUE  }
-    };
+    } xTestCaseArray[] = { { 0, pdFALSE },   { 0, pdTRUE },   { 1, pdFALSE },
+                           { 1, pdTRUE },    { 10, pdFALSE }, { 10, pdTRUE },
+                           { 65536, pdTRUE } };
 
-    List_t * pxTasksWaitingToReceive = pxGetTasksWaitingToReceiveFromQueue( xQueue );
+    List_t * pxTasksWaitingToReceive = pxGetTasksWaitingToReceiveFromQueue(
+        xQueue );
 
-    for( uint32_t i = 0; i < ( sizeof( xTestCaseArray ) / sizeof( xTestCaseArray[ 0 ] ) ); i++ )
+    for( uint32_t i = 0;
+         i < ( sizeof( xTestCaseArray ) / sizeof( xTestCaseArray[ 0 ] ) );
+         i++ )
     {
-        vTaskPlaceOnEventListRestricted_Expect( pxTasksWaitingToReceive,
-                                                xTestCaseArray[ i ].xTicksToWait,
-                                                xTestCaseArray[ i ].xWaitIndefinitely );
+        vTaskPlaceOnEventListRestricted_Expect(
+            pxTasksWaitingToReceive,
+            xTestCaseArray[ i ].xTicksToWait,
+            xTestCaseArray[ i ].xWaitIndefinitely );
         /* call api function */
         vQueueWaitForMessageRestricted( xQueue,
                                         xTestCaseArray[ i ].xTicksToWait,
@@ -273,19 +274,13 @@ void test_vQueueWaitForMessageRestricted_occupied( void )
     {
         TickType_t xTicksToWait;
         BaseType_t xWaitIndefinitely;
-    }
-    xTestCaseArray[] =
-    {
-        { 0,     pdFALSE },
-        { 0,     pdTRUE  },
-        { 1,     pdFALSE },
-        { 1,     pdTRUE  },
-        { 10,    pdFALSE },
-        { 10,    pdTRUE  },
-        { 65536, pdTRUE  }
-    };
+    } xTestCaseArray[] = { { 0, pdFALSE },   { 0, pdTRUE },   { 1, pdFALSE },
+                           { 1, pdTRUE },    { 10, pdFALSE }, { 10, pdTRUE },
+                           { 65536, pdTRUE } };
 
-    for( uint32_t i = 0; i < ( sizeof( xTestCaseArray ) / sizeof( xTestCaseArray[ 0 ] ) ); i++ )
+    for( uint32_t i = 0;
+         i < ( sizeof( xTestCaseArray ) / sizeof( xTestCaseArray[ 0 ] ) );
+         i++ )
     {
         /* call api function */
         vQueueWaitForMessageRestricted( xQueue,
@@ -299,7 +294,8 @@ void test_vQueueWaitForMessageRestricted_occupied( void )
 
 /**
  * @brief Test vQueueWaitForMessageRestricted on an empty locked queue.
- * @details This test case verifies a situation that should never occur ( vQueueWaitForMessageRestricted called on a locked queue ).
+ * @details This test case verifies a situation that should never occur (
+ * vQueueWaitForMessageRestricted called on a locked queue ).
  * @coverage vQueueWaitForMessageRestricted
  */
 void test_vQueueWaitForMessageRestricted_locked( void )
@@ -311,7 +307,8 @@ void test_vQueueWaitForMessageRestricted_locked( void )
     vSetQueueRxLock( xQueue, queueLOCKED_UNMODIFIED );
     vSetQueueTxLock( xQueue, queueLOCKED_UNMODIFIED );
 
-    List_t * pxTasksWaitingToReceive = pxGetTasksWaitingToReceiveFromQueue( xQueue );
+    List_t * pxTasksWaitingToReceive = pxGetTasksWaitingToReceiveFromQueue(
+        xQueue );
 
     vTaskPlaceOnEventListRestricted_Expect( pxTasksWaitingToReceive,
                                             10,

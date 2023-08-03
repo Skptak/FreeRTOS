@@ -1,11 +1,11 @@
 /* See LICENSE of license details. */
 
-#include <errno.h>
 #include "stub.h"
 #include "weak_under_alias.h"
+#include <errno.h>
 
-int __wrap_open(const char* name, int flags, int mode)
+int __wrap_open( const char * name, int flags, int mode )
 {
-  return _stub(ENOENT);
+    return _stub( ENOENT );
 }
-weak_under_alias(open);
+weak_under_alias( open );

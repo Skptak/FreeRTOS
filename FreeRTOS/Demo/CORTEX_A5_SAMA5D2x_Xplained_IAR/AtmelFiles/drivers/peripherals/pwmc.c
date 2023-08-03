@@ -33,14 +33,16 @@
  * peripheral.
  *
  * The PWM macrocell controls square output waveforms of 4 channels.
- * Characteristics of output waveforms such as period, duty-cycle can be configured.\n
+ * Characteristics of output waveforms such as period, duty-cycle can be
+ * configured.\n
  *
  * Before enabling the channels, they must have been configured first.
  * The main settings include:
  * <ul>
  * <li>Configuration of the clock generator.</li>
  * <li>Selection of the clock for each channel.</li>
- * <li>Configuration of output waveform characteristics, such as period, duty-cycle etc.</li>
+ * <li>Configuration of output waveform characteristics, such as period,
+ * duty-cycle etc.</li>
  * </ul>
  *
  * After the channels is enabled, the user must use respective update registers
@@ -51,11 +53,11 @@
  * \section Usage
  * <ul>
  * <li>  Configure PWM clock using pwmc_configure_clocks().
- * <li>  Enable & disable given PWM channel using pwmc_enable_channel() and pwmc_disable_channel().
- * <li>  Enable & disable interrupt of given PWM channel using pwmc_enable_channel_it()
- * and pwmc_disable_channel_it().
- * <li>  Set feature of the given PWM channel's output signal using pwmc_set_period()
- * and pwmc_set_duty_cycle().
+ * <li>  Enable & disable given PWM channel using pwmc_enable_channel() and
+ * pwmc_disable_channel(). <li>  Enable & disable interrupt of given PWM channel
+ * using pwmc_enable_channel_it() and pwmc_disable_channel_it(). <li>  Set
+ * feature of the given PWM channel's output signal using pwmc_set_period() and
+ * pwmc_set_duty_cycle().
  * </li>
  * </ul>
  *
@@ -80,68 +82,72 @@
  *        Headers
  *----------------------------------------------------------------------------*/
 
-#include "chip.h"
 #include "peripherals/pwmc.h"
+#include "chip.h"
 
-#include <stdint.h>
 #include <assert.h>
+#include <stdint.h>
 
 /*----------------------------------------------------------------------------
  *        Exported functions
  *----------------------------------------------------------------------------*/
 
-void pwmc_configure_clocks(Pwm * p_pwm, uint32_t mode)
+void pwmc_configure_clocks( Pwm * p_pwm, uint32_t mode )
 {
-	p_pwm->PWM_CLK = mode;
+    p_pwm->PWM_CLK = mode;
 }
 
-void pwmc_enable_channel(Pwm * p_pwm, uint8_t channel)
+void pwmc_enable_channel( Pwm * p_pwm, uint8_t channel )
 {
-	p_pwm->PWM_ENA = 0x1ul << channel;
+    p_pwm->PWM_ENA = 0x1ul << channel;
 }
 
-void pwmc_disable_channel(Pwm * p_pwm, uint8_t channel)
+void pwmc_disable_channel( Pwm * p_pwm, uint8_t channel )
 {
-	p_pwm->PWM_DIS = 0x1ul << channel;
+    p_pwm->PWM_DIS = 0x1ul << channel;
 }
 
-void pwmc_enable_channel_it(Pwm * p_pwm, uint8_t channel)
+void pwmc_enable_channel_it( Pwm * p_pwm, uint8_t channel )
 {
-	p_pwm->PWM_IER1 = 0x1ul << channel;
+    p_pwm->PWM_IER1 = 0x1ul << channel;
 }
 
-void pwmc_disable_channel_it(Pwm * p_pwm, uint8_t channel)
+void pwmc_disable_channel_it( Pwm * p_pwm, uint8_t channel )
 {
-	p_pwm->PWM_IDR1 = 0x1ul << channel;
+    p_pwm->PWM_IDR1 = 0x1ul << channel;
 }
 
-void pwmc_configure_channel(Pwm * p_pwm, uint8_t channel, uint32_t mode)
+void pwmc_configure_channel( Pwm * p_pwm, uint8_t channel, uint32_t mode )
 {
-	p_pwm->PWM_CH_NUM[channel].PWM_CMR = mode;
+    p_pwm->PWM_CH_NUM[ channel ].PWM_CMR = mode;
 }
 
-void pwmc_set_period(Pwm * p_pwm, uint8_t channel, uint16_t period)
+void pwmc_set_period( Pwm * p_pwm, uint8_t channel, uint16_t period )
 {
-	/* If channel is disabled, write to CPRD */
-	if ((p_pwm->PWM_SR & (1 << channel)) == 0) {
-		p_pwm->PWM_CH_NUM[channel].PWM_CPRD = period;
-	}
-	/* Otherwise use update register */
-	else {
-		p_pwm->PWM_CH_NUM[channel].PWM_CPRDUPD = period;
-	}
+    /* If channel is disabled, write to CPRD */
+    if( ( p_pwm->PWM_SR & ( 1 << channel ) ) == 0 )
+    {
+        p_pwm->PWM_CH_NUM[ channel ].PWM_CPRD = period;
+    }
+    /* Otherwise use update register */
+    else
+    {
+        p_pwm->PWM_CH_NUM[ channel ].PWM_CPRDUPD = period;
+    }
 }
 
-void pwmc_set_duty_cycle(Pwm * p_pwm, uint8_t channel, uint16_t duty)
+void pwmc_set_duty_cycle( Pwm * p_pwm, uint8_t channel, uint16_t duty )
 {
-	assert(duty <= p_pwm->PWM_CH_NUM[channel].PWM_CPRD);
+    assert( duty <= p_pwm->PWM_CH_NUM[ channel ].PWM_CPRD );
 
-	/* If channel is disabled, write to CDTY */
-	if ((p_pwm->PWM_SR & (1 << channel)) == 0) {
-		p_pwm->PWM_CH_NUM[channel].PWM_CDTY = duty;
-	}
-	/* Otherwise use update register */
-	else {
-		p_pwm->PWM_CH_NUM[channel].PWM_CDTYUPD = duty;
-	}
+    /* If channel is disabled, write to CDTY */
+    if( ( p_pwm->PWM_SR & ( 1 << channel ) ) == 0 )
+    {
+        p_pwm->PWM_CH_NUM[ channel ].PWM_CDTY = duty;
+    }
+    /* Otherwise use update register */
+    else
+    {
+        p_pwm->PWM_CH_NUM[ channel ].PWM_CDTYUPD = duty;
+    }
 }

@@ -1,6 +1,6 @@
 /*
  * -------------------------------------------
- *    MSP432 DriverLib - v3_10_00_09 
+ *    MSP432 DriverLib - v3_10_00_09
  * -------------------------------------------
  *
  * --COPYRIGHT--,BSD,BSD
@@ -44,7 +44,6 @@
 //
 //*****************************************************************************
 
-
 //*****************************************************************************
 //
 // If building with a C++ compiler, make all of the definitions in this header
@@ -52,117 +51,116 @@
 //
 //*****************************************************************************
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
-#include <stdint.h>
-#include <stdbool.h>
 #include <msp.h>
+#include <stdbool.h>
+#include <stdint.h>
 
 /******************************************************************************
-* NVIC interrupts                                                             *
-******************************************************************************/
+ * NVIC interrupts                                                             *
+ ******************************************************************************/
 /* System exceptions */
-#define FAULT_NMI                                       ( 2) /* NMI fault */
-#define FAULT_HARD                                      ( 3) /* Hard fault */
-#define FAULT_MPU                                       ( 4) /* MPU fault */
-#define FAULT_BUS                                       ( 5) /* Bus fault */
-#define FAULT_USAGE                                     ( 6) /* Usage fault */
-#define FAULT_SVCALL                                    (11) /* SVCall */
-#define FAULT_DEBUG                                     (12) /* Debug monitor */
-#define FAULT_PENDSV                                    (14) /* PendSV */
-#define FAULT_SYSTICK                                   (15) /* System Tick */
+#define FAULT_NMI               ( 2 )  /* NMI fault */
+#define FAULT_HARD              ( 3 )  /* Hard fault */
+#define FAULT_MPU               ( 4 )  /* MPU fault */
+#define FAULT_BUS               ( 5 )  /* Bus fault */
+#define FAULT_USAGE             ( 6 )  /* Usage fault */
+#define FAULT_SVCALL            ( 11 ) /* SVCall */
+#define FAULT_DEBUG             ( 12 ) /* Debug monitor */
+#define FAULT_PENDSV            ( 14 ) /* PendSV */
+#define FAULT_SYSTICK           ( 15 ) /* System Tick */
 
 /* External interrupts */
-#define INT_PSS                                         (16) /* PSS IRQ */
-#define INT_CS                                          (17) /* CS IRQ */
-#define INT_PCM                                         (18) /* PCM IRQ */
-#define INT_WDT_A                                       (19) /* WDT_A IRQ */
-#define INT_FPU                                         (20) /* FPU IRQ */
-#define INT_FLCTL                                       (21) /* FLCTL IRQ */
-#define INT_COMP_E0                                     (22) /* COMP_E0 IRQ */
-#define INT_COMP_E1                                     (23) /* COMP_E1 IRQ */
-#define INT_TA0_0                                       (24) /* TA0_0 IRQ */
-#define INT_TA0_N                                       (25) /* TA0_N IRQ */
-#define INT_TA1_0                                       (26) /* TA1_0 IRQ */
-#define INT_TA1_N                                       (27) /* TA1_N IRQ */
-#define INT_TA2_0                                       (28) /* TA2_0 IRQ */
-#define INT_TA2_N                                       (29) /* TA2_N IRQ */
-#define INT_TA3_0                                       (30) /* TA3_0 IRQ */
-#define INT_TA3_N                                       (31) /* TA3_N IRQ */
-#define INT_EUSCIA0                                     (32) /* EUSCIA0 IRQ */
-#define INT_EUSCIA1                                     (33) /* EUSCIA1 IRQ */
-#define INT_EUSCIA2                                     (34) /* EUSCIA2 IRQ */
-#define INT_EUSCIA3                                     (35) /* EUSCIA3 IRQ */
-#define INT_EUSCIB0                                     (36) /* EUSCIB0 IRQ */
-#define INT_EUSCIB1                                     (37) /* EUSCIB1 IRQ */
-#define INT_EUSCIB2                                     (38) /* EUSCIB2 IRQ */
-#define INT_EUSCIB3                                     (39) /* EUSCIB3 IRQ */
-#define INT_ADC14                                       (40) /* ADC14 IRQ */
-#define INT_T32_INT1                                    (41) /* T32_INT1 IRQ */
-#define INT_T32_INT2                                    (42) /* T32_INT2 IRQ */
-#define INT_T32_INTC                                    (43) /* T32_INTC IRQ */
-#define INT_AES256                                      (44) /* AES256 IRQ */
-#define INT_RTC_C                                       (45) /* RTC_C IRQ */
-#define INT_DMA_ERR                                     (46) /* DMA_ERR IRQ */
-#define INT_DMA_INT3                                    (47) /* DMA_INT3 IRQ */
-#define INT_DMA_INT2                                    (48) /* DMA_INT2 IRQ */
-#define INT_DMA_INT1                                    (49) /* DMA_INT1 IRQ */
-#define INT_DMA_INT0                                    (50) /* DMA_INT0 IRQ */
-#define INT_PORT1                                       (51) /* PORT1 IRQ */
-#define INT_PORT2                                       (52) /* PORT2 IRQ */
-#define INT_PORT3                                       (53) /* PORT3 IRQ */
-#define INT_PORT4                                       (54) /* PORT4 IRQ */
-#define INT_PORT5                                       (55) /* PORT5 IRQ */
-#define INT_PORT6                                       (56) /* PORT6 IRQ */
+#define INT_PSS                 ( 16 ) /* PSS IRQ */
+#define INT_CS                  ( 17 ) /* CS IRQ */
+#define INT_PCM                 ( 18 ) /* PCM IRQ */
+#define INT_WDT_A               ( 19 ) /* WDT_A IRQ */
+#define INT_FPU                 ( 20 ) /* FPU IRQ */
+#define INT_FLCTL               ( 21 ) /* FLCTL IRQ */
+#define INT_COMP_E0             ( 22 ) /* COMP_E0 IRQ */
+#define INT_COMP_E1             ( 23 ) /* COMP_E1 IRQ */
+#define INT_TA0_0               ( 24 ) /* TA0_0 IRQ */
+#define INT_TA0_N               ( 25 ) /* TA0_N IRQ */
+#define INT_TA1_0               ( 26 ) /* TA1_0 IRQ */
+#define INT_TA1_N               ( 27 ) /* TA1_N IRQ */
+#define INT_TA2_0               ( 28 ) /* TA2_0 IRQ */
+#define INT_TA2_N               ( 29 ) /* TA2_N IRQ */
+#define INT_TA3_0               ( 30 ) /* TA3_0 IRQ */
+#define INT_TA3_N               ( 31 ) /* TA3_N IRQ */
+#define INT_EUSCIA0             ( 32 ) /* EUSCIA0 IRQ */
+#define INT_EUSCIA1             ( 33 ) /* EUSCIA1 IRQ */
+#define INT_EUSCIA2             ( 34 ) /* EUSCIA2 IRQ */
+#define INT_EUSCIA3             ( 35 ) /* EUSCIA3 IRQ */
+#define INT_EUSCIB0             ( 36 ) /* EUSCIB0 IRQ */
+#define INT_EUSCIB1             ( 37 ) /* EUSCIB1 IRQ */
+#define INT_EUSCIB2             ( 38 ) /* EUSCIB2 IRQ */
+#define INT_EUSCIB3             ( 39 ) /* EUSCIB3 IRQ */
+#define INT_ADC14               ( 40 ) /* ADC14 IRQ */
+#define INT_T32_INT1            ( 41 ) /* T32_INT1 IRQ */
+#define INT_T32_INT2            ( 42 ) /* T32_INT2 IRQ */
+#define INT_T32_INTC            ( 43 ) /* T32_INTC IRQ */
+#define INT_AES256              ( 44 ) /* AES256 IRQ */
+#define INT_RTC_C               ( 45 ) /* RTC_C IRQ */
+#define INT_DMA_ERR             ( 46 ) /* DMA_ERR IRQ */
+#define INT_DMA_INT3            ( 47 ) /* DMA_INT3 IRQ */
+#define INT_DMA_INT2            ( 48 ) /* DMA_INT2 IRQ */
+#define INT_DMA_INT1            ( 49 ) /* DMA_INT1 IRQ */
+#define INT_DMA_INT0            ( 50 ) /* DMA_INT0 IRQ */
+#define INT_PORT1               ( 51 ) /* PORT1 IRQ */
+#define INT_PORT2               ( 52 ) /* PORT2 IRQ */
+#define INT_PORT3               ( 53 ) /* PORT3 IRQ */
+#define INT_PORT4               ( 54 ) /* PORT4 IRQ */
+#define INT_PORT5               ( 55 ) /* PORT5 IRQ */
+#define INT_PORT6               ( 56 ) /* PORT6 IRQ */
 
-#define NUM_INTERRUPTS                                  (56)
+#define NUM_INTERRUPTS          ( 56 )
 //*****************************************************************************
 //
 // Macro to generate an interrupt priority mask based on the number of bits
 // of priority supported by the hardware.
 //
 //*****************************************************************************
-#define INT_PRIORITY_MASK       ((0xFF << (8 - NUM_PRIORITY_BITS)) & 0xFF)
+#define INT_PRIORITY_MASK       ( ( 0xFF << ( 8 - NUM_PRIORITY_BITS ) ) & 0xFF )
 #define NUM_PRIORITY            8
 
-#define NVIC_APINT_PRIGROUP_M   0x00000700  // Interrupt Priority Grouping
-#define NVIC_APINT_PRIGROUP_7_1 0x00000000  // Priority group 7.1 split
-#define NVIC_APINT_PRIGROUP_6_2 0x00000100  // Priority group 6.2 split
-#define NVIC_APINT_PRIGROUP_5_3 0x00000200  // Priority group 5.3 split
-#define NVIC_APINT_PRIGROUP_4_4 0x00000300  // Priority group 4.4 split
-#define NVIC_APINT_PRIGROUP_3_5 0x00000400  // Priority group 3.5 split
-#define NVIC_APINT_PRIGROUP_2_6 0x00000500  // Priority group 2.6 split
-#define NVIC_APINT_PRIGROUP_1_7 0x00000600  // Priority group 1.7 split
-#define NVIC_APINT_PRIGROUP_0_8 0x00000700  // Priority group 0.8 split
-#define NVIC_SYS_PRI1_R         0xE000ED18  // System Handler Priority 1
-#define NVIC_SYS_PRI2_R         0xE000ED1C  // System Handler Priority 2
-#define NVIC_SYS_PRI3_R         0xE000ED20  // System Handler Priority 3
-#define NVIC_PRI0_R             0xE000E400  // Interrupt 0-3 Priority
-#define NVIC_PRI1_R             0xE000E404  // Interrupt 4-7 Priority
-#define NVIC_PRI2_R             0xE000E408  // Interrupt 8-11 Priority
-#define NVIC_PRI3_R             0xE000E40C  // Interrupt 12-15 Priority
-#define NVIC_PRI4_R             0xE000E410  // Interrupt 16-19 Priority
-#define NVIC_PRI5_R             0xE000E414  // Interrupt 20-23 Priority
-#define NVIC_PRI6_R             0xE000E418  // Interrupt 24-27 Priority
-#define NVIC_PRI7_R             0xE000E41C  // Interrupt 28-31 Priority
-#define NVIC_PRI8_R             0xE000E420  // Interrupt 32-35 Priority
-#define NVIC_PRI9_R             0xE000E424  // Interrupt 36-39 Priority
-#define NVIC_PRI10_R            0xE000E428  // Interrupt 40-43 Priority
-#define NVIC_PRI11_R            0xE000E42C  // Interrupt 44-47 Priority
-#define NVIC_PRI12_R            0xE000E430  // Interrupt 48-51 Priority
-#define NVIC_PRI13_R            0xE000E434  // Interrupt 52-55 Priority
-#define NVIC_PRI14_R            0xE000E438  // Interrupt 56-59 Priority
-#define NVIC_PRI15_R            0xE000E43C  // Interrupt 60-63 Priority
-#define NVIC_EN0_R              0xE000E100  // Interrupt 0-31 Set Enable
-#define NVIC_EN1_R              0xE000E104  // Interrupt 32-54 Set Enable
-#define NVIC_DIS0_R             0xE000E180  // Interrupt 0-31 Clear Enable
-#define NVIC_DIS1_R             0xE000E184  // Interrupt 32-54 Clear Enable
-#define NVIC_PEND0_R            0xE000E200  // Interrupt 0-31 Set Pending
-#define NVIC_PEND1_R            0xE000E204  // Interrupt 32-54 Set Pending
-#define NVIC_UNPEND0_R          0xE000E280  // Interrupt 0-31 Clear Pending
-#define NVIC_UNPEND1_R          0xE000E284  // Interrupt 32-54 Clear Pending
+#define NVIC_APINT_PRIGROUP_M   0x00000700 // Interrupt Priority Grouping
+#define NVIC_APINT_PRIGROUP_7_1 0x00000000 // Priority group 7.1 split
+#define NVIC_APINT_PRIGROUP_6_2 0x00000100 // Priority group 6.2 split
+#define NVIC_APINT_PRIGROUP_5_3 0x00000200 // Priority group 5.3 split
+#define NVIC_APINT_PRIGROUP_4_4 0x00000300 // Priority group 4.4 split
+#define NVIC_APINT_PRIGROUP_3_5 0x00000400 // Priority group 3.5 split
+#define NVIC_APINT_PRIGROUP_2_6 0x00000500 // Priority group 2.6 split
+#define NVIC_APINT_PRIGROUP_1_7 0x00000600 // Priority group 1.7 split
+#define NVIC_APINT_PRIGROUP_0_8 0x00000700 // Priority group 0.8 split
+#define NVIC_SYS_PRI1_R         0xE000ED18 // System Handler Priority 1
+#define NVIC_SYS_PRI2_R         0xE000ED1C // System Handler Priority 2
+#define NVIC_SYS_PRI3_R         0xE000ED20 // System Handler Priority 3
+#define NVIC_PRI0_R             0xE000E400 // Interrupt 0-3 Priority
+#define NVIC_PRI1_R             0xE000E404 // Interrupt 4-7 Priority
+#define NVIC_PRI2_R             0xE000E408 // Interrupt 8-11 Priority
+#define NVIC_PRI3_R             0xE000E40C // Interrupt 12-15 Priority
+#define NVIC_PRI4_R             0xE000E410 // Interrupt 16-19 Priority
+#define NVIC_PRI5_R             0xE000E414 // Interrupt 20-23 Priority
+#define NVIC_PRI6_R             0xE000E418 // Interrupt 24-27 Priority
+#define NVIC_PRI7_R             0xE000E41C // Interrupt 28-31 Priority
+#define NVIC_PRI8_R             0xE000E420 // Interrupt 32-35 Priority
+#define NVIC_PRI9_R             0xE000E424 // Interrupt 36-39 Priority
+#define NVIC_PRI10_R            0xE000E428 // Interrupt 40-43 Priority
+#define NVIC_PRI11_R            0xE000E42C // Interrupt 44-47 Priority
+#define NVIC_PRI12_R            0xE000E430 // Interrupt 48-51 Priority
+#define NVIC_PRI13_R            0xE000E434 // Interrupt 52-55 Priority
+#define NVIC_PRI14_R            0xE000E438 // Interrupt 56-59 Priority
+#define NVIC_PRI15_R            0xE000E43C // Interrupt 60-63 Priority
+#define NVIC_EN0_R              0xE000E100 // Interrupt 0-31 Set Enable
+#define NVIC_EN1_R              0xE000E104 // Interrupt 32-54 Set Enable
+#define NVIC_DIS0_R             0xE000E180 // Interrupt 0-31 Clear Enable
+#define NVIC_DIS1_R             0xE000E184 // Interrupt 32-54 Clear Enable
+#define NVIC_PEND0_R            0xE000E200 // Interrupt 0-31 Set Pending
+#define NVIC_PEND1_R            0xE000E204 // Interrupt 32-54 Set Pending
+#define NVIC_UNPEND0_R          0xE000E280 // Interrupt 0-31 Clear Pending
+#define NVIC_UNPEND1_R          0xE000E284 // Interrupt 32-54 Clear Pending
 //*****************************************************************************
 //
 // Prototypes for the APIs.
@@ -181,7 +179,7 @@ extern "C"
 //! called or \b false if they were initially enabled.
 //
 //*****************************************************************************
-extern bool Interrupt_enableMaster(void);
+extern bool Interrupt_enableMaster( void );
 
 //*****************************************************************************
 //
@@ -196,7 +194,7 @@ extern bool Interrupt_enableMaster(void);
 //! function was called or \b false if they were initially enabled.
 //
 //*****************************************************************************
-extern bool Interrupt_disableMaster(void);
+extern bool Interrupt_disableMaster( void );
 
 //*****************************************************************************
 //
@@ -215,7 +213,7 @@ extern bool Interrupt_disableMaster(void);
 //! See the discussion of compile-time versus run-time interrupt handler
 //! registration in the introduction to this chapter.
 //!
-//! \note This function is only used if the customer wants to specify the 
+//! \note This function is only used if the customer wants to specify the
 //!  interrupt handler at run time. In most cases, this is done through means
 //!  of the user setting the ISR function pointer in the startup file. Refer
 //!  Refer to the Module Operation section for more details.
@@ -226,8 +224,8 @@ extern bool Interrupt_disableMaster(void);
 //! \return None.
 //
 //*****************************************************************************
-extern void Interrupt_registerInterrupt(uint32_t interruptNumber,
-        void (*intHandler)(void));
+extern void Interrupt_registerInterrupt( uint32_t interruptNumber,
+                                         void ( *intHandler )( void ) );
 
 //*****************************************************************************
 //
@@ -248,7 +246,7 @@ extern void Interrupt_registerInterrupt(uint32_t interruptNumber,
 //! \return None.
 //
 //*****************************************************************************
-extern void Interrupt_unregisterInterrupt(uint32_t interruptNumber);
+extern void Interrupt_unregisterInterrupt( uint32_t interruptNumber );
 
 //*****************************************************************************
 //
@@ -266,7 +264,7 @@ extern void Interrupt_unregisterInterrupt(uint32_t interruptNumber);
 //! \return None.
 //
 //*****************************************************************************
-extern void Interrupt_setPriorityGrouping(uint32_t bits);
+extern void Interrupt_setPriorityGrouping( uint32_t bits );
 
 //*****************************************************************************
 //
@@ -278,7 +276,7 @@ extern void Interrupt_setPriorityGrouping(uint32_t bits);
 //! \return The number of bits of preemptable priority.
 //
 //*****************************************************************************
-extern uint32_t Interrupt_getPriorityGrouping(void);
+extern uint32_t Interrupt_getPriorityGrouping( void );
 
 //*****************************************************************************
 //
@@ -307,7 +305,7 @@ extern uint32_t Interrupt_getPriorityGrouping(void);
 //! \return None.
 //
 //*****************************************************************************
-extern void Interrupt_setPriority(uint32_t interruptNumber, uint8_t priority);
+extern void Interrupt_setPriority( uint32_t interruptNumber, uint8_t priority );
 
 //*****************************************************************************
 //
@@ -325,7 +323,7 @@ extern void Interrupt_setPriority(uint32_t interruptNumber, uint8_t priority);
 //! specified.
 //
 //*****************************************************************************
-extern uint8_t Interrupt_getPriority(uint32_t interruptNumber);
+extern uint8_t Interrupt_getPriority( uint32_t interruptNumber );
 
 //*****************************************************************************
 //
@@ -394,7 +392,7 @@ extern uint8_t Interrupt_getPriority(uint32_t interruptNumber);
 //! \return None.
 //
 //*****************************************************************************
-extern void Interrupt_enableInterrupt(uint32_t interruptNumber);
+extern void Interrupt_enableInterrupt( uint32_t interruptNumber );
 
 //*****************************************************************************
 //
@@ -412,7 +410,7 @@ extern void Interrupt_enableInterrupt(uint32_t interruptNumber);
 //! \return None.
 //
 //*****************************************************************************
-extern void Interrupt_disableInterrupt(uint32_t interruptNumber);
+extern void Interrupt_disableInterrupt( uint32_t interruptNumber );
 
 //*****************************************************************************
 //
@@ -429,7 +427,7 @@ extern void Interrupt_disableInterrupt(uint32_t interruptNumber);
 //! \return A non-zero value if the interrupt is enabled.
 //
 //*****************************************************************************
-extern bool Interrupt_isEnabled(uint32_t interruptNumber);
+extern bool Interrupt_isEnabled( uint32_t interruptNumber );
 
 //*****************************************************************************
 //
@@ -451,7 +449,7 @@ extern bool Interrupt_isEnabled(uint32_t interruptNumber);
 //! \return None.
 //
 //*****************************************************************************
-extern void Interrupt_pendInterrupt(uint32_t interruptNumber);
+extern void Interrupt_pendInterrupt( uint32_t interruptNumber );
 
 //*****************************************************************************
 //
@@ -470,7 +468,7 @@ extern void Interrupt_pendInterrupt(uint32_t interruptNumber);
 //! \return None.
 //
 //*****************************************************************************
-extern void Interrupt_unpendInterrupt(uint32_t interruptNumber);
+extern void Interrupt_unpendInterrupt( uint32_t interruptNumber );
 
 //*****************************************************************************
 //
@@ -495,7 +493,7 @@ extern void Interrupt_unpendInterrupt(uint32_t interruptNumber);
 //! \return None.
 //
 //*****************************************************************************
-extern void Interrupt_setPriorityMask(uint8_t priorityMask);
+extern void Interrupt_setPriorityMask( uint8_t priorityMask );
 
 //*****************************************************************************
 //
@@ -517,7 +515,7 @@ extern void Interrupt_setPriorityMask(uint8_t priorityMask);
 //! \return Returns the value of the interrupt priority level mask.
 //
 //*****************************************************************************
-extern uint8_t Interrupt_getPriorityMask(void);
+extern uint8_t Interrupt_getPriorityMask( void );
 
 //*****************************************************************************
 //
@@ -530,7 +528,7 @@ extern uint8_t Interrupt_getPriorityMask(void);
 //! \return None.
 //
 //*****************************************************************************
-extern void Interrupt_setVectorTableAddress(uint32_t addr);
+extern void Interrupt_setVectorTableAddress( uint32_t addr );
 
 //*****************************************************************************
 //
@@ -539,7 +537,7 @@ extern void Interrupt_setVectorTableAddress(uint32_t addr);
 //! \return Address of the vector table.
 //
 //*****************************************************************************
-extern uint32_t Interrupt_getVectorTableAddress(void);
+extern uint32_t Interrupt_getVectorTableAddress( void );
 
 //*****************************************************************************
 //
@@ -550,7 +548,7 @@ extern uint32_t Interrupt_getVectorTableAddress(void);
 //! \return None
 //
 //*****************************************************************************
-extern void Interrupt_enableSleepOnIsrExit(void);
+extern void Interrupt_enableSleepOnIsrExit( void );
 
 //*****************************************************************************
 //
@@ -559,7 +557,7 @@ extern void Interrupt_enableSleepOnIsrExit(void);
 //! \return None
 //
 //*****************************************************************************
-extern void Interrupt_disableSleepOnIsrExit(void);
+extern void Interrupt_disableSleepOnIsrExit( void );
 
 //*****************************************************************************
 //

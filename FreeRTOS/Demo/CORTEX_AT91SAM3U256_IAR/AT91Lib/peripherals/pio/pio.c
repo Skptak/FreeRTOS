@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
- *         ATMEL Microcontroller Software Support 
+ *         ATMEL Microcontroller Software Support
  * ----------------------------------------------------------------------------
  * Copyright (c) 2008, Atmel Corporation
  *
@@ -47,12 +47,11 @@
 /// \param enablePullUp  Indicates if the pin(s) internal pull-up shall be
 ///                      configured.
 //------------------------------------------------------------------------------
-static void PIO_SetPeripheralA(
-    AT91S_PIO *pio,
-    unsigned int mask,
-    unsigned char enablePullUp)
+static void PIO_SetPeripheralA( AT91S_PIO * pio,
+                                unsigned int mask,
+                                unsigned char enablePullUp )
 {
-#if !defined(AT91C_PIOA_ASR)
+#if !defined( AT91C_PIOA_ASR )
     unsigned int abmr;
 #endif
 
@@ -60,21 +59,21 @@ static void PIO_SetPeripheralA(
     pio->PIO_IDR = mask;
 
     // Enable the pull-up(s) if necessary
-    if (enablePullUp) {
-
+    if( enablePullUp )
+    {
         pio->PIO_PPUER = mask;
     }
-    else {
-
+    else
+    {
         pio->PIO_PPUDR = mask;
     }
 
     // Configure pin
-#if defined(AT91C_PIOA_ASR)
+#if defined( AT91C_PIOA_ASR )
     pio->PIO_ASR = mask;
 #else
     abmr = pio->PIO_ABSR;
-    pio->PIO_ABSR &= (~mask & abmr);
+    pio->PIO_ABSR &= ( ~mask & abmr );
 #endif
     pio->PIO_PDR = mask;
 }
@@ -88,12 +87,11 @@ static void PIO_SetPeripheralA(
 /// \param enablePullUp  Indicates if the pin(s) internal pull-up shall be
 ///                      configured.
 //------------------------------------------------------------------------------
-static void PIO_SetPeripheralB(
-    AT91S_PIO *pio,
-    unsigned int mask,
-    unsigned char enablePullUp)
+static void PIO_SetPeripheralB( AT91S_PIO * pio,
+                                unsigned int mask,
+                                unsigned char enablePullUp )
 {
-#if !defined(AT91C_PIOA_BSR)
+#if !defined( AT91C_PIOA_BSR )
     unsigned int abmr;
 #endif
 
@@ -101,17 +99,17 @@ static void PIO_SetPeripheralB(
     pio->PIO_IDR = mask;
 
     // Enable the pull-up(s) if necessary
-    if (enablePullUp) {
-
+    if( enablePullUp )
+    {
         pio->PIO_PPUER = mask;
     }
-    else {
-
+    else
+    {
         pio->PIO_PPUDR = mask;
     }
 
     // Configure pin
-#if defined(AT91C_PIOA_BSR)
+#if defined( AT91C_PIOA_BSR )
     pio->PIO_BSR = mask;
 #else
     abmr = pio->PIO_ABSR;
@@ -120,7 +118,8 @@ static void PIO_SetPeripheralB(
     pio->PIO_PDR = mask;
 }
 
-#if defined(AT91C_PIOA_IFDGSR) //Glitch or Debouncing filter selection supported
+#if defined( AT91C_PIOA_IFDGSR ) // Glitch or Debouncing filter selection
+                                 // supported
 //------------------------------------------------------------------------------
 /// Configures Glitch or Debouncing filter for input
 /// \param pio      Pointer to a PIO controller.
@@ -129,15 +128,14 @@ static void PIO_SetPeripheralB(
 /// \param clkDiv  Clock divider if Debouncing select, using the lowest 14 bits
 ///                     common for all PIO line of selecting deboucing filter
 //------------------------------------------------------------------------------
-static void PIO_SetFilter(
-    AT91S_PIO *pio,
-    unsigned int filterSel,
-    unsigned int clkDiv)
+static void PIO_SetFilter( AT91S_PIO * pio,
+                           unsigned int filterSel,
+                           unsigned int clkDiv )
 {
-    pio->PIO_DIFSR = filterSel;//set Debouncing, 0 bit field no effect
-    pio->PIO_SCIFSR = ~filterSel;//set Glitch, 0 bit field no effect
+    pio->PIO_DIFSR = filterSel;   // set Debouncing, 0 bit field no effect
+    pio->PIO_SCIFSR = ~filterSel; // set Glitch, 0 bit field no effect
 
-    pio->PIO_SCDR = clkDiv & 0x3FFF;//the lowest 14 bits work
+    pio->PIO_SCDR = clkDiv & 0x3FFF; // the lowest 14 bits work
 }
 #endif
 
@@ -150,32 +148,31 @@ static void PIO_SetFilter(
 /// \param enablePullUp  Indicates if the internal pull-up(s) must be enabled.
 /// \param enableFilter  Indicates if the glitch filter(s) must be enabled.
 //------------------------------------------------------------------------------
-static void PIO_SetInput(
-    AT91S_PIO *pio,
-    unsigned int mask,
-    unsigned char enablePullUp,
-    unsigned char enableFilter)
+static void PIO_SetInput( AT91S_PIO * pio,
+                          unsigned int mask,
+                          unsigned char enablePullUp,
+                          unsigned char enableFilter )
 {
     // Disable interrupts
     pio->PIO_IDR = mask;
 
     // Enable pull-up(s) if necessary
-    if (enablePullUp) {
-    
+    if( enablePullUp )
+    {
         pio->PIO_PPUER = mask;
     }
-    else {
-    
+    else
+    {
         pio->PIO_PPUDR = mask;
     }
 
     // Enable filter(s) if necessary
-    if (enableFilter) {
-    
+    if( enableFilter )
+    {
         pio->PIO_IFER = mask;
     }
-    else {
-    
+    else
+    {
         pio->PIO_IFDR = mask;
     }
 
@@ -195,43 +192,42 @@ static void PIO_SetInput(
 ///                          open-drain.
 /// \param enablePullUp  Indicates if the pin shall have its pull-up activated.
 //------------------------------------------------------------------------------
-static void PIO_SetOutput(
-    AT91S_PIO *pio,
-    unsigned int mask,
-    unsigned char defaultValue,
-    unsigned char enableMultiDrive,
-    unsigned char enablePullUp)
+static void PIO_SetOutput( AT91S_PIO * pio,
+                           unsigned int mask,
+                           unsigned char defaultValue,
+                           unsigned char enableMultiDrive,
+                           unsigned char enablePullUp )
 {
     // Disable interrupts
     pio->PIO_IDR = mask;
 
     // Enable pull-up(s) if necessary
-    if (enablePullUp) {
-    
+    if( enablePullUp )
+    {
         pio->PIO_PPUER = mask;
     }
-    else {
-    
+    else
+    {
         pio->PIO_PPUDR = mask;
     }
 
     // Enable multi-drive if necessary
-    if (enableMultiDrive) {
-    
+    if( enableMultiDrive )
+    {
         pio->PIO_MDER = mask;
     }
-    else {
-    
+    else
+    {
         pio->PIO_MDDR = mask;
     }
 
     // Set default value
-    if (defaultValue) {
-
+    if( defaultValue )
+    {
         pio->PIO_SODR = mask;
     }
-    else {
-
+    else
+    {
         pio->PIO_CODR = mask;
     }
 
@@ -253,51 +249,53 @@ static void PIO_SetOutput(
 /// \param size  Size of the Pin list (calculated using PIO_LISTSIZE).
 /// \return 1 if the pins have been configured properly; otherwise 0.
 //------------------------------------------------------------------------------
-unsigned char PIO_Configure(const Pin *list, unsigned int size)
+unsigned char PIO_Configure( const Pin * list, unsigned int size )
 {
     // Configure pins
-    while (size > 0) {
-    
-        switch (list->type) {
-    
+    while( size > 0 )
+    {
+        switch( list->type )
+        {
             case PIO_PERIPH_A:
-                PIO_SetPeripheralA(list->pio,
-                                   list->mask,
-                                   (list->attribute & PIO_PULLUP) ? 1 : 0);
+                PIO_SetPeripheralA( list->pio,
+                                    list->mask,
+                                    ( list->attribute & PIO_PULLUP ) ? 1 : 0 );
                 break;
-    
+
             case PIO_PERIPH_B:
-                PIO_SetPeripheralB(list->pio,
-                                   list->mask,
-                                   (list->attribute & PIO_PULLUP) ? 1 : 0);
+                PIO_SetPeripheralB( list->pio,
+                                    list->mask,
+                                    ( list->attribute & PIO_PULLUP ) ? 1 : 0 );
                 break;
-    
+
             case PIO_INPUT:
                 AT91C_BASE_PMC->PMC_PCER = 1 << list->id;
-                PIO_SetInput(list->pio,
-                             list->mask,
-                             (list->attribute & PIO_PULLUP) ? 1 : 0,
-                             (list->attribute & PIO_DEGLITCH)? 1 : 0);
+                PIO_SetInput( list->pio,
+                              list->mask,
+                              ( list->attribute & PIO_PULLUP ) ? 1 : 0,
+                              ( list->attribute & PIO_DEGLITCH ) ? 1 : 0 );
 
-                #if defined(AT91C_PIOA_IFDGSR) //PIO3 with Glitch or Debouncing selection
-                //if glitch input filter enabled, set it
-                if(list->attribute & PIO_DEGLITCH)//Glitch input filter enabled
-                    PIO_SetFilter(list->pio,
-                        list->inFilter.filterSel,
-                        list->inFilter.clkDivider);
-                #endif
+#if defined( AT91C_PIOA_IFDGSR ) // PIO3 with Glitch or Debouncing selection
+                // if glitch input filter enabled, set it
+                if( list->attribute & PIO_DEGLITCH ) // Glitch input filter
+                                                     // enabled
+                    PIO_SetFilter( list->pio,
+                                   list->inFilter.filterSel,
+                                   list->inFilter.clkDivider );
+#endif
                 break;
-    
+
             case PIO_OUTPUT_0:
             case PIO_OUTPUT_1:
-                PIO_SetOutput(list->pio,
-                              list->mask,
-                              (list->type == PIO_OUTPUT_1),
-                              (list->attribute & PIO_OPENDRAIN) ? 1 : 0,
-                              (list->attribute & PIO_PULLUP) ? 1 : 0);
+                PIO_SetOutput( list->pio,
+                               list->mask,
+                               ( list->type == PIO_OUTPUT_1 ),
+                               ( list->attribute & PIO_OPENDRAIN ) ? 1 : 0,
+                               ( list->attribute & PIO_PULLUP ) ? 1 : 0 );
                 break;
-    
-            default: return 0;
+
+            default:
+                return 0;
         }
 
         list++;
@@ -313,7 +311,7 @@ unsigned char PIO_Configure(const Pin *list, unsigned int size)
 /// controller will memorize the value they are changed to outputs.
 /// \param pin  Pointer to a Pin instance describing one or more pins.
 //------------------------------------------------------------------------------
-void PIO_Set(const Pin *pin)
+void PIO_Set( const Pin * pin )
 {
     pin->pio->PIO_SODR = pin->mask;
 }
@@ -324,7 +322,7 @@ void PIO_Set(const Pin *pin)
 /// controller will memorize the value they are changed to outputs.
 /// \param pin  Pointer to a Pin instance describing one or more pins.
 //------------------------------------------------------------------------------
-void PIO_Clear(const Pin *pin)
+void PIO_Clear( const Pin * pin )
 {
     pin->pio->PIO_CODR = pin->mask;
 }
@@ -338,28 +336,27 @@ void PIO_Clear(const Pin *pin)
 /// \return 1 if the Pin instance contains at least one PIO that currently has
 /// a high level; otherwise 0.
 //------------------------------------------------------------------------------
-unsigned char PIO_Get(const Pin *pin)
+unsigned char PIO_Get( const Pin * pin )
 {
     unsigned int reg;
-    if ((pin->type == PIO_OUTPUT_0) || (pin->type == PIO_OUTPUT_1)) {
-
+    if( ( pin->type == PIO_OUTPUT_0 ) || ( pin->type == PIO_OUTPUT_1 ) )
+    {
         reg = pin->pio->PIO_ODSR;
     }
-    else {
-
+    else
+    {
         reg = pin->pio->PIO_PDSR;
     }
 
-    if ((reg & pin->mask) == 0) {
-
+    if( ( reg & pin->mask ) == 0 )
+    {
         return 0;
     }
-    else {
-
+    else
+    {
         return 1;
     }
 }
-
 
 //------------------------------------------------------------------------------
 /// Returns 1 if one or more PIO of the given Pin are configured to output a
@@ -369,14 +366,14 @@ unsigned char PIO_Get(const Pin *pin)
 /// \return 1 if the Pin instance contains at least one PIO that is configured
 /// to output a high level; otherwise 0.
 //------------------------------------------------------------------------------
-unsigned char PIO_GetOutputDataStatus(const Pin *pin)
+unsigned char PIO_GetOutputDataStatus( const Pin * pin )
 {
-    if ((pin->pio->PIO_ODSR & pin->mask) == 0) {
-
+    if( ( pin->pio->PIO_ODSR & pin->mask ) == 0 )
+    {
         return 0;
     }
-    else {
-
+    else
+    {
         return 1;
     }
 }

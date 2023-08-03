@@ -1,6 +1,6 @@
 /*
  * -------------------------------------------
- *    MSP432 DriverLib - v3_10_00_09 
+ *    MSP432 DriverLib - v3_10_00_09
  * -------------------------------------------
  *
  * --COPYRIGHT--,BSD,BSD
@@ -44,7 +44,6 @@
 //
 //*****************************************************************************
 
-
 //*****************************************************************************
 //
 // If building with a C++ compiler, make all of the definitions in this header
@@ -52,18 +51,17 @@
 //
 //*****************************************************************************
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
-#include <stdint.h>
-#include <stdbool.h>
 #include <msp.h>
+#include <stdbool.h>
+#include <stdint.h>
 
 //*****************************************************************************
 //
-//The following is a struct that can be passed to RTC_CalendarInit() in the
-//CalendarTime parameter, as well as returned by RTC_getCalendarTime()
+// The following is a struct that can be passed to RTC_CalendarInit() in the
+// CalendarTime parameter, as well as returned by RTC_getCalendarTime()
 //
 //*****************************************************************************
 typedef struct _RTC_C_Calendar
@@ -79,91 +77,91 @@ typedef struct _RTC_C_Calendar
 
 //*****************************************************************************
 //
-//The following are values that can be passed to RTC_setCalibrationData()
+// The following are values that can be passed to RTC_setCalibrationData()
 //
 //*****************************************************************************
-#define RTC_C_CALIBRATIONFREQ_OFF   (RTC_C_CTL13_CALF_0)
-#define RTC_C_CALIBRATIONFREQ_512HZ (RTC_C_CTL13_CALF_1)
-#define RTC_C_CALIBRATIONFREQ_256HZ (RTC_C_CTL13_CALF_2)
-#define RTC_C_CALIBRATIONFREQ_1HZ   (RTC_C_CTL13_CALF_3)
+#define RTC_C_CALIBRATIONFREQ_OFF        ( RTC_C_CTL13_CALF_0 )
+#define RTC_C_CALIBRATIONFREQ_512HZ      ( RTC_C_CTL13_CALF_1 )
+#define RTC_C_CALIBRATIONFREQ_256HZ      ( RTC_C_CTL13_CALF_2 )
+#define RTC_C_CALIBRATIONFREQ_1HZ        ( RTC_C_CTL13_CALF_3 )
 
 //*****************************************************************************
 //
-//The following are values that can be passed to RTC_setCalibrationData()
+// The following are values that can be passed to RTC_setCalibrationData()
 //
 //*****************************************************************************
-#define RTC_C_CALIBRATION_DOWN1PPM  ( !(RTC_C_OCAL_OCALS) )
-#define RTC_C_CALIBRATION_UP1PPM    (RTC_C_OCAL_OCALS)
+#define RTC_C_CALIBRATION_DOWN1PPM       ( !( RTC_C_OCAL_OCALS ) )
+#define RTC_C_CALIBRATION_UP1PPM         ( RTC_C_OCAL_OCALS )
 
 //*****************************************************************************
 //
-//The following are values that can be passed to
-//RTC_setTemperatureCompensation()
+// The following are values that can be passed to
+// RTC_setTemperatureCompensation()
 //
 //*****************************************************************************
-#define RTC_C_COMPENSATION_DOWN1PPM  ( !(RTC_C_TCMP_TCMPS) )
-#define RTC_C_COMPENSATION_UP1PPM    (RTC_C_TCMP_TCMPS)
+#define RTC_C_COMPENSATION_DOWN1PPM      ( !( RTC_C_TCMP_TCMPS ) )
+#define RTC_C_COMPENSATION_UP1PPM        ( RTC_C_TCMP_TCMPS )
 
 //*****************************************************************************
 //
-//The following are values that can be passed to RTC_iniRTC_Calendar()
+// The following are values that can be passed to RTC_iniRTC_Calendar()
 //
 //*****************************************************************************
-#define RTC_C_FORMAT_BINARY  ( !(RTC_C_CTL13_BCD) )
-#define RTC_C_FORMAT_BCD     (RTC_C_CTL13_BCD)
+#define RTC_C_FORMAT_BINARY              ( !( RTC_C_CTL13_BCD ) )
+#define RTC_C_FORMAT_BCD                 ( RTC_C_CTL13_BCD )
 
 //*****************************************************************************
 //
-//The following is a value that can be passed to RTC_seRTC_CalendarAlarm()
+// The following is a value that can be passed to RTC_seRTC_CalendarAlarm()
 //
 //*****************************************************************************
-#define RTC_C_ALARMCONDITION_OFF  (0x80)
+#define RTC_C_ALARMCONDITION_OFF         ( 0x80 )
 
 //*****************************************************************************
 //
-//The following are values that can be passed to RTC_seRTC_CalendarEvent()
-//in the eventSelect parameter.
+// The following are values that can be passed to RTC_seRTC_CalendarEvent()
+// in the eventSelect parameter.
 //
 //*****************************************************************************
-#define RTC_C_CALENDAREVENT_MINUTECHANGE  (RTC_C_CTL13_TEV_0)
-#define RTC_C_CALENDAREVENT_HOURCHANGE    (RTC_C_CTL13_TEV_1)
-#define RTC_C_CALENDAREVENT_NOON          (RTC_C_CTL13_TEV_2)
-#define RTC_C_CALENDAREVENT_MIDNIGHT      (RTC_C_CTL13_TEV_3)
+#define RTC_C_CALENDAREVENT_MINUTECHANGE ( RTC_C_CTL13_TEV_0 )
+#define RTC_C_CALENDAREVENT_HOURCHANGE   ( RTC_C_CTL13_TEV_1 )
+#define RTC_C_CALENDAREVENT_NOON         ( RTC_C_CTL13_TEV_2 )
+#define RTC_C_CALENDAREVENT_MIDNIGHT     ( RTC_C_CTL13_TEV_3 )
 
 //*****************************************************************************
 //
-//The following are values that can be passed to RTC_definePrescaleEvent()
+// The following are values that can be passed to RTC_definePrescaleEvent()
 //
 //*****************************************************************************
-#define RTC_C_PRESCALE_0  (0x0)
-#define RTC_C_PRESCALE_1  (0x1)
+#define RTC_C_PRESCALE_0                 ( 0x0 )
+#define RTC_C_PRESCALE_1                 ( 0x1 )
 
 //*****************************************************************************
 //
-//The following are values that can be passed to RTC_definePrescaleEvent()
-//in the prescaleEventDivider parameter.
+// The following are values that can be passed to RTC_definePrescaleEvent()
+// in the prescaleEventDivider parameter.
 //
 //*****************************************************************************
-#define RTC_C_PSEVENTDIVIDER_2   (RTC_C_PS0CTL_RT0IP_0)
-#define RTC_C_PSEVENTDIVIDER_4   (RTC_C_PS0CTL_RT0IP_1)
-#define RTC_C_PSEVENTDIVIDER_8   (RTC_C_PS0CTL_RT0IP_2)
-#define RTC_C_PSEVENTDIVIDER_16  (RTC_C_PS0CTL_RT0IP_3)
-#define RTC_C_PSEVENTDIVIDER_32  (RTC_C_PS0CTL_RT0IP_4)
-#define RTC_C_PSEVENTDIVIDER_64  (RTC_C_PS0CTL_RT0IP_5)
-#define RTC_C_PSEVENTDIVIDER_128 (RTC_C_PS0CTL_RT0IP_6)
-#define RTC_C_PSEVENTDIVIDER_256 (RTC_C_PS0CTL_RT0IP_7)
+#define RTC_C_PSEVENTDIVIDER_2           ( RTC_C_PS0CTL_RT0IP_0 )
+#define RTC_C_PSEVENTDIVIDER_4           ( RTC_C_PS0CTL_RT0IP_1 )
+#define RTC_C_PSEVENTDIVIDER_8           ( RTC_C_PS0CTL_RT0IP_2 )
+#define RTC_C_PSEVENTDIVIDER_16          ( RTC_C_PS0CTL_RT0IP_3 )
+#define RTC_C_PSEVENTDIVIDER_32          ( RTC_C_PS0CTL_RT0IP_4 )
+#define RTC_C_PSEVENTDIVIDER_64          ( RTC_C_PS0CTL_RT0IP_5 )
+#define RTC_C_PSEVENTDIVIDER_128         ( RTC_C_PS0CTL_RT0IP_6 )
+#define RTC_C_PSEVENTDIVIDER_256         ( RTC_C_PS0CTL_RT0IP_7 )
 
 //*****************************************************************************
 //
-//The following are values that can be passed to the interrupt functions
+// The following are values that can be passed to the interrupt functions
 //
 //*****************************************************************************
-#define RTC_C_OSCILLATOR_FAULT_INTERRUPT  RTC_C_CTL0_OFIE
-#define RTC_C_TIME_EVENT_INTERRUPT        RTC_C_CTL0_TEVIE
-#define RTC_C_CLOCK_ALARM_INTERRUPT       RTC_C_CTL0_AIE
-#define RTC_C_CLOCK_READ_READY_INTERRUPT  RTC_C_CTL0_RDYIE
-#define RTC_C_PRESCALE_TIMER0_INTERRUPT   0x02
-#define RTC_C_PRESCALE_TIMER1_INTERRUPT   0x01
+#define RTC_C_OSCILLATOR_FAULT_INTERRUPT RTC_C_CTL0_OFIE
+#define RTC_C_TIME_EVENT_INTERRUPT       RTC_C_CTL0_TEVIE
+#define RTC_C_CLOCK_ALARM_INTERRUPT      RTC_C_CTL0_AIE
+#define RTC_C_CLOCK_READ_READY_INTERRUPT RTC_C_CTL0_RDYIE
+#define RTC_C_PRESCALE_TIMER0_INTERRUPT  0x02
+#define RTC_C_PRESCALE_TIMER1_INTERRUPT  0x01
 
 //*****************************************************************************
 //
@@ -174,7 +172,7 @@ typedef struct _RTC_C_Calendar
 //! \return None
 //
 //*****************************************************************************
-extern void RTC_C_startClock(void);
+extern void RTC_C_startClock( void );
 
 //*****************************************************************************
 //
@@ -185,7 +183,7 @@ extern void RTC_C_startClock(void);
 //! \return None
 //
 //*****************************************************************************
-extern void RTC_C_holdClock(void);
+extern void RTC_C_holdClock( void );
 
 //*****************************************************************************
 //
@@ -209,7 +207,7 @@ extern void RTC_C_holdClock(void);
 //! \return None
 //
 //*****************************************************************************
-extern void RTC_C_setCalibrationFrequency(uint_fast16_t frequencySelect);
+extern void RTC_C_setCalibrationFrequency( uint_fast16_t frequencySelect );
 
 //*****************************************************************************
 //
@@ -230,8 +228,8 @@ extern void RTC_C_setCalibrationFrequency(uint_fast16_t frequencySelect);
 //! \return None
 //
 //*****************************************************************************
-extern void RTC_C_setCalibrationData(uint_fast8_t offsetDirection,
-        uint_fast8_t offsetValue);
+extern void RTC_C_setCalibrationData( uint_fast8_t offsetDirection,
+                                      uint_fast8_t offsetValue );
 
 //*****************************************************************************
 //
@@ -253,8 +251,8 @@ extern void RTC_C_setCalibrationData(uint_fast8_t offsetDirection,
 //!
 //
 //*****************************************************************************
-extern bool RTC_C_setTemperatureCompensation(uint_fast16_t offsetDirection,
-        uint_fast8_t offsetValue);
+extern bool RTC_C_setTemperatureCompensation( uint_fast16_t offsetDirection,
+                                              uint_fast8_t offsetValue );
 
 //*****************************************************************************
 //
@@ -281,8 +279,8 @@ extern bool RTC_C_setTemperatureCompensation(uint_fast16_t offsetDirection,
 //! \return None
 //
 //*****************************************************************************
-extern void RTC_C_initCalendar(const RTC_C_Calendar *calendarTime,
-        uint_fast16_t formatSelect);
+extern void RTC_C_initCalendar( const RTC_C_Calendar * calendarTime,
+                                uint_fast16_t formatSelect );
 
 //*****************************************************************************
 //
@@ -295,7 +293,7 @@ extern void RTC_C_initCalendar(const RTC_C_Calendar *calendarTime,
 //! \return A Calendar structure containing the current time.
 //
 //*****************************************************************************
-extern RTC_C_Calendar RTC_C_getCalendarTime(void);
+extern RTC_C_Calendar RTC_C_getCalendarTime( void );
 
 //*****************************************************************************
 //
@@ -328,9 +326,10 @@ extern RTC_C_Calendar RTC_C_getCalendarTime(void);
 //! \return None
 //
 //*****************************************************************************
-extern void RTC_C_setCalendarAlarm(uint_fast8_t minutesAlarm,
-        uint_fast8_t hoursAlarm, uint_fast8_t dayOfWeekAlarm,
-        uint_fast8_t dayOfmonthAlarm);
+extern void RTC_C_setCalendarAlarm( uint_fast8_t minutesAlarm,
+                                    uint_fast8_t hoursAlarm,
+                                    uint_fast8_t dayOfWeekAlarm,
+                                    uint_fast8_t dayOfmonthAlarm );
 
 //*****************************************************************************
 //
@@ -340,7 +339,8 @@ extern void RTC_C_setCalendarAlarm(uint_fast8_t minutesAlarm,
 //!        Valid values are
 //!        - \b   RTC_C_CALENDAREVENT_MINUTECHANGE - assert interrupt on every
 //!             minute
-//!        - \b   RTC_C_CALENDAREVENT_HOURCHANGE - assert interrupt on every hour
+//!        - \b   RTC_C_CALENDAREVENT_HOURCHANGE - assert interrupt on every
+//!        hour
 //!        - \b   RTC_C_CALENDAREVENT_NOON - assert interrupt when hour is 12
 //!        - \b   RTC_C_CALENDAREVENT_MIDNIGHT - assert interrupt when hour is 0
 //!
@@ -350,7 +350,7 @@ extern void RTC_C_setCalendarAlarm(uint_fast8_t minutesAlarm,
 //! \return None
 //
 //*****************************************************************************
-extern void RTC_C_setCalendarEvent(uint_fast16_t eventSelect);
+extern void RTC_C_setCalendarEvent( uint_fast16_t eventSelect );
 
 //*****************************************************************************
 //
@@ -379,8 +379,8 @@ extern void RTC_C_setCalendarEvent(uint_fast16_t eventSelect);
 //! \return None
 //
 //*****************************************************************************
-extern void RTC_C_definePrescaleEvent(uint_fast8_t prescaleSelect,
-        uint_fast8_t prescaleEventDivider);
+extern void RTC_C_definePrescaleEvent( uint_fast8_t prescaleSelect,
+                                       uint_fast8_t prescaleEventDivider );
 
 //*****************************************************************************
 //
@@ -399,7 +399,7 @@ extern void RTC_C_definePrescaleEvent(uint_fast8_t prescaleSelect,
 //! \return The value of the specified Prescaler count register
 //
 //*****************************************************************************
-extern uint_fast8_t RTC_C_getPrescaleValue(uint_fast8_t prescaleSelect);
+extern uint_fast8_t RTC_C_getPrescaleValue( uint_fast8_t prescaleSelect );
 
 //*****************************************************************************
 //
@@ -418,8 +418,8 @@ extern uint_fast8_t RTC_C_getPrescaleValue(uint_fast8_t prescaleSelect);
 //! \return None
 //
 //*****************************************************************************
-extern void RTC_C_setPrescaleValue(uint_fast8_t prescaleSelect,
-        uint_fast8_t prescaleCounterValue);
+extern void RTC_C_setPrescaleValue( uint_fast8_t prescaleSelect,
+                                    uint_fast8_t prescaleCounterValue );
 
 //*****************************************************************************
 //
@@ -433,7 +433,7 @@ extern void RTC_C_setPrescaleValue(uint_fast8_t prescaleSelect,
 //! \return The Binary version of the valueToConvert parameter.
 //
 //*****************************************************************************
-extern uint16_t RTC_C_convertBCDToBinary(uint16_t valueToConvert);
+extern uint16_t RTC_C_convertBCDToBinary( uint16_t valueToConvert );
 
 //*****************************************************************************
 //
@@ -448,7 +448,7 @@ extern uint16_t RTC_C_convertBCDToBinary(uint16_t valueToConvert);
 //! \return The BCD version of the valueToConvert parameter.
 //
 //*****************************************************************************
-extern uint16_t RTC_C_convertBinaryToBCD(uint16_t valueToConvert);
+extern uint16_t RTC_C_convertBinaryToBCD( uint16_t valueToConvert );
 
 //*****************************************************************************
 //
@@ -477,7 +477,7 @@ extern uint16_t RTC_C_convertBinaryToBCD(uint16_t valueToConvert);
 //! \return None
 //
 //*****************************************************************************
-extern void RTC_C_enableInterrupt(uint8_t interruptMask);
+extern void RTC_C_enableInterrupt( uint8_t interruptMask );
 
 //*****************************************************************************
 //
@@ -506,7 +506,7 @@ extern void RTC_C_enableInterrupt(uint8_t interruptMask);
 //! \return None
 //
 //*****************************************************************************
-extern void RTC_C_disableInterrupt(uint8_t interruptMask);
+extern void RTC_C_disableInterrupt( uint8_t interruptMask );
 
 //*****************************************************************************
 //
@@ -529,7 +529,7 @@ extern void RTC_C_disableInterrupt(uint8_t interruptMask);
 //!             problem with the 32kHz oscillator, while the RTC is running.
 //
 //*****************************************************************************
-extern uint_fast8_t RTC_C_getInterruptStatus(void);
+extern uint_fast8_t RTC_C_getInterruptStatus( void );
 
 //*****************************************************************************
 //
@@ -555,7 +555,7 @@ extern uint_fast8_t RTC_C_getInterruptStatus(void);
 //!             with the 32kHz oscillator, while the RTC is running.
 //
 //*****************************************************************************
-extern uint_fast8_t RTC_C_getEnabledInterruptStatus(void);
+extern uint_fast8_t RTC_C_getEnabledInterruptStatus( void );
 
 //*****************************************************************************
 //
@@ -583,7 +583,7 @@ extern uint_fast8_t RTC_C_getEnabledInterruptStatus(void);
 //! \return None
 //
 //*****************************************************************************
-extern void RTC_C_clearInterruptFlag(uint_fast8_t interruptFlagMask);
+extern void RTC_C_clearInterruptFlag( uint_fast8_t interruptFlagMask );
 
 //*****************************************************************************
 //
@@ -601,7 +601,7 @@ extern void RTC_C_clearInterruptFlag(uint_fast8_t interruptFlagMask);
 //! \return None.
 //
 //*****************************************************************************
-extern void RTC_C_registerInterrupt(void (*intHandler)(void));
+extern void RTC_C_registerInterrupt( void ( *intHandler )( void ) );
 
 //*****************************************************************************
 //
@@ -617,30 +617,45 @@ extern void RTC_C_registerInterrupt(void (*intHandler)(void));
 //! \return None.
 //
 //*****************************************************************************
-extern void RTC_C_unregisterInterrupt(void);
+extern void RTC_C_unregisterInterrupt( void );
 
 /* Defines for future devices that might have multiple instances */
-#define RTC_C_startClockMultipleInstance(a) RTC_C_startClock()
-#define RTC_C_holdClockMultipleInstance(a) RTC_C_holdClock()
-#define RTC_C_setCalibrationFrequencyMultipleInstance(a,b) RTC_C_setCalibrationFrequency(b)
-#define RTC_C_setCalibrationDataMultipleInstance(a,b,c) RTC_C_setCalibrationData(b,c)
-#define RTC_C_setTemperatureCompensationMultipleInstance(a,b,c) RTC_C_setTemperatureCompensation(b,c)
-#define RTC_C_initCalendarMultipleInstance(a,b,c) RTC_C_initCalendar(b,c)
-#define RTC_C_getCalendarTimeMultipleInstance(a) RTC_C_getCalendarTime()
-#define RTC_C_setCalendarAlarmMultipleInstance(a,b,c,d,e) RTC_C_setCalendarAlarm(b,c,d,e)
-#define RTC_C_setCalendarEventMultipleInstance(a,b) RTC_C_setCalendarEvent(b)
-#define RTC_C_definePrescaleEventMultipleInstance(a,b,c) RTC_C_definePrescaleEvent(b,c)
-#define RTC_C_getPrescaleValueMultipleInstance(a,b) RTC_C_getPrescaleValue(b)
-#define RTC_C_setPrescaleValueMultipleInstance(a,b,c) RTC_C_setPrescaleValue(b,c)
-#define RTC_C_convertBCDToBinaryMultipleInstance(a,b) RTC_C_convertBCDToBinary(b)
-#define RTC_C_convertBinaryToBCDMultipleInstance(a,b) RTC_C_convertBinaryToBCD(b)
-#define RTC_C_enableInterruptMultipleInstance(a,b) RTC_C_enableInterrupt(b)
-#define RTC_C_disableInterruptMultipleInstance(a,b) RTC_C_disableInterrupt(b)
-#define RTC_C_getInterruptStatusMultipleInstance(a) RTC_C_getInterruptStatus()
-#define RTC_C_getEnabledInterruptStatusMultipleInstance(a) RTC_C_getEnabledInterruptStatus()
-#define RTC_C_clearInterruptFlagMultipleInstance(a,b) RTC_C_clearInterruptFlag(b)
-#define RTC_C_registerInterruptMultipleInstance(a,b) RTC_C_registerInterrupt(b)
-#define RTC_C_unregisterInterruptMultipleInstance(a) RTC_C_unregisterInterrupt()
+#define RTC_C_startClockMultipleInstance( a ) RTC_C_startClock()
+#define RTC_C_holdClockMultipleInstance( a )  RTC_C_holdClock()
+#define RTC_C_setCalibrationFrequencyMultipleInstance( a, b ) \
+    RTC_C_setCalibrationFrequency( b )
+#define RTC_C_setCalibrationDataMultipleInstance( a, b, c ) \
+    RTC_C_setCalibrationData( b, c )
+#define RTC_C_setTemperatureCompensationMultipleInstance( a, b, c ) \
+    RTC_C_setTemperatureCompensation( b, c )
+#define RTC_C_initCalendarMultipleInstance( a, b, c ) RTC_C_initCalendar( b, c )
+#define RTC_C_getCalendarTimeMultipleInstance( a )    RTC_C_getCalendarTime()
+#define RTC_C_setCalendarAlarmMultipleInstance( a, b, c, d, e ) \
+    RTC_C_setCalendarAlarm( b, c, d, e )
+#define RTC_C_setCalendarEventMultipleInstance( a, b ) \
+    RTC_C_setCalendarEvent( b )
+#define RTC_C_definePrescaleEventMultipleInstance( a, b, c ) \
+    RTC_C_definePrescaleEvent( b, c )
+#define RTC_C_getPrescaleValueMultipleInstance( a, b ) \
+    RTC_C_getPrescaleValue( b )
+#define RTC_C_setPrescaleValueMultipleInstance( a, b, c ) \
+    RTC_C_setPrescaleValue( b, c )
+#define RTC_C_convertBCDToBinaryMultipleInstance( a, b ) \
+    RTC_C_convertBCDToBinary( b )
+#define RTC_C_convertBinaryToBCDMultipleInstance( a, b ) \
+    RTC_C_convertBinaryToBCD( b )
+#define RTC_C_enableInterruptMultipleInstance( a, b ) RTC_C_enableInterrupt( b )
+#define RTC_C_disableInterruptMultipleInstance( a, b ) \
+    RTC_C_disableInterrupt( b )
+#define RTC_C_getInterruptStatusMultipleInstance( a ) RTC_C_getInterruptStatus()
+#define RTC_C_getEnabledInterruptStatusMultipleInstance( a ) \
+    RTC_C_getEnabledInterruptStatus()
+#define RTC_C_clearInterruptFlagMultipleInstance( a, b ) \
+    RTC_C_clearInterruptFlag( b )
+#define RTC_C_registerInterruptMultipleInstance( a, b ) \
+    RTC_C_registerInterrupt( b )
+#define RTC_C_unregisterInterruptMultipleInstance( a ) \
+    RTC_C_unregisterInterrupt()
 
 //*****************************************************************************
 //

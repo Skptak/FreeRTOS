@@ -29,16 +29,18 @@
 
 /** \addtogroup rtng_module Working with RTNG
  * \ingroup peripherals_module
- * The TRNG driver provides the interface to configure and use the TRNG peripheral.
- * \n
+ * The TRNG driver provides the interface to configure and use the TRNG
+ * peripheral. \n
  *
- * The True Random Number Generator (TRNG) passes the American NIST Special Publication
- * 800-22 and Diehard Random Tests Suites. As soon as the TRNG is enabled (TRNG_Enable()), 
- * the generator provides one 32-bit value every 84 clock cycles. 
- * Interrupt trng_int can be enabled through TRNG_EnableIt()(respectively disabled in TRNG_IDR).
- * This interrupt is set when a new random value is available and is cleared when the status 
- * register is read (TRNG_SR register). The flag DATRDY of the status register (TRNG_ISR) is set
- * when the random data is ready to be read out on the 32-bit output data through TRNG_GetRandData().
+ * The True Random Number Generator (TRNG) passes the American NIST Special
+ * Publication 800-22 and Diehard Random Tests Suites. As soon as the TRNG is
+ * enabled (TRNG_Enable()), the generator provides one 32-bit value every 84
+ * clock cycles. Interrupt trng_int can be enabled through
+ * TRNG_EnableIt()(respectively disabled in TRNG_IDR). This interrupt is set
+ * when a new random value is available and is cleared when the status register
+ * is read (TRNG_SR register). The flag DATRDY of the status register (TRNG_ISR)
+ * is set when the random data is ready to be read out on the 32-bit output data
+ * through TRNG_GetRandData().
  *
  * For more accurate information, please look at the SHA section of the
  * Datasheet.
@@ -71,7 +73,7 @@
  * \brief Enables the TRNG to provide Random Values.
  * \param key  This key is to be written when the ENABLE bit is set.
  */
-void TRNG_Enable(void)
+void TRNG_Enable( void )
 {
     TRNG->TRNG_CR = TRNG_CR_ENABLE | TRNG_CR_KEY_PASSWD;
 }
@@ -80,7 +82,7 @@ void TRNG_Enable(void)
  * \brief Disables the TRNG to provide Random Values.
  * \param key  This key is to be written when the DISABLE bit is set.
  */
-void TRNG_Disable(void)
+void TRNG_Disable( void )
 {
     TRNG->TRNG_CR = TRNG_CR_KEY_PASSWD;
 }
@@ -88,7 +90,7 @@ void TRNG_Disable(void)
 /**
  * \brief Data Ready Interrupt enable.
  */
-void TRNG_EnableIt(void)
+void TRNG_EnableIt( void )
 {
     TRNG->TRNG_IER = TRNG_IER_DATRDY;
 }
@@ -96,7 +98,7 @@ void TRNG_EnableIt(void)
 /**
  * \brief Data Ready Interrupt Disable.
  */
-void TRNG_DisableIt(void)
+void TRNG_DisableIt( void )
 {
     TRNG->TRNG_IDR = TRNG_IDR_DATRDY;
 }
@@ -105,7 +107,7 @@ void TRNG_DisableIt(void)
  * \brief Get the current status register of the given TRNG peripheral.
  * \return  TRNG status register.
  */
-uint32_t TRNG_GetStatus(void)
+uint32_t TRNG_GetStatus( void )
 {
     return TRNG->TRNG_ISR;
 }
@@ -114,7 +116,7 @@ uint32_t TRNG_GetStatus(void)
  * \brief Get the  32-bit Output Data from TRNG peripheral.
  * \return  TRNG output data.
  */
-uint32_t TRNG_GetRandData(void)
+uint32_t TRNG_GetRandData( void )
 {
     return TRNG->TRNG_ODATA;
 }

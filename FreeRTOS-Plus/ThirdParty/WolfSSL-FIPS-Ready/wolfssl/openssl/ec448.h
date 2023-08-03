@@ -29,16 +29,21 @@ extern "C" {
 #endif
 
 WOLFSSL_API
-int wolfSSL_EC448_generate_key(unsigned char *priv, unsigned int *privSz,
-                               unsigned char *pub, unsigned int *pubSz);
+int wolfSSL_EC448_generate_key( unsigned char * priv,
+                                unsigned int * privSz,
+                                unsigned char * pub,
+                                unsigned int * pubSz );
 
 WOLFSSL_API
-int wolfSSL_EC448_shared_key(unsigned char *shared, unsigned int *sharedSz,
-                             const unsigned char *priv, unsigned int privSz,
-                             const unsigned char *pub, unsigned int pubSz);
+int wolfSSL_EC448_shared_key( unsigned char * shared,
+                              unsigned int * sharedSz,
+                              const unsigned char * priv,
+                              unsigned int privSz,
+                              const unsigned char * pub,
+                              unsigned int pubSz );
 
 #ifdef __cplusplus
-}  /* extern "C" */
+} /* extern "C" */
 #endif
 
 #endif /* header */

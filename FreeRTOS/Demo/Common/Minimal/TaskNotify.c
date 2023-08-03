@@ -2,28 +2,28 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
  *
  */
-
 
 /*
  * Tests the behaviour of direct task notifications.
@@ -42,17 +42,17 @@
 
 /* Allow parameters to be overridden on a demo by demo basis. */
 #ifndef notifyNOTIFIED_TASK_STACK_SIZE
-    #define notifyNOTIFIED_TASK_STACK_SIZE    configMINIMAL_STACK_SIZE
+    #define notifyNOTIFIED_TASK_STACK_SIZE configMINIMAL_STACK_SIZE
 #endif
 
-#define notifyTASK_PRIORITY                   ( tskIDLE_PRIORITY )
+#define notifyTASK_PRIORITY               ( tskIDLE_PRIORITY )
 
 /* Constants used in tests when setting/clearing bits. */
-#define notifyUINT32_MAX                      ( ( uint32_t ) 0xffffffff )
-#define notifyUINT32_HIGH_BYTE                ( ( uint32_t ) 0xff000000 )
-#define notifyUINT32_LOW_BYTE                 ( ( uint32_t ) 0x000000ff )
+#define notifyUINT32_MAX                  ( ( uint32_t ) 0xffffffff )
+#define notifyUINT32_HIGH_BYTE            ( ( uint32_t ) 0xff000000 )
+#define notifyUINT32_LOW_BYTE             ( ( uint32_t ) 0x000000ff )
 
-#define notifySUSPENDED_TEST_TIMER_PERIOD     pdMS_TO_TICKS( 50 )
+#define notifySUSPENDED_TEST_TIMER_PERIOD pdMS_TO_TICKS( 50 )
 
 /*-----------------------------------------------------------*/
 
@@ -97,9 +97,10 @@ static volatile uint32_t ulNotifyCycleCount = 0;
 static TaskHandle_t xTaskToNotify = NULL;
 
 /* Used to count the notifications sent to the task from a software timer and
- * the number of notifications received by the task from the software timer.  The
+ * the number of notifications received by the task from the software timer. The
  * two should stay synchronised. */
-static uint32_t ulTimerNotificationsReceived = 0UL, ulTimerNotificationsSent = 0UL;
+static uint32_t ulTimerNotificationsReceived = 0UL,
+                ulTimerNotificationsSent = 0UL;
 
 /* The timer used to notify the task. */
 static TimerHandle_t xTimer = NULL;
@@ -113,12 +114,15 @@ void vStartTaskNotifyTask( void )
 {
     /* Create the task that performs some tests by itself, then loops around
      * being notified by both a software timer and an interrupt. */
-    xTaskCreate( prvNotifiedTask,                /* Function that implements the task. */
-                 "Notified",                     /* Text name for the task - for debugging only - not used by the kernel. */
-                 notifyNOTIFIED_TASK_STACK_SIZE, /* Task's stack size in words, not bytes!. */
-                 NULL,                           /* Task parameter, not used in this case. */
-                 notifyTASK_PRIORITY,            /* Task priority, 0 is the lowest. */
-                 &xTaskToNotify );               /* Used to pass a handle to the task out is needed, otherwise set to NULL. */
+    xTaskCreate( prvNotifiedTask, /* Function that implements the task. */
+                 "Notified", /* Text name for the task - for debugging only -
+                                not used by the kernel. */
+                 notifyNOTIFIED_TASK_STACK_SIZE, /* Task's stack size in words,
+                                                    not bytes!. */
+                 NULL, /* Task parameter, not used in this case. */
+                 notifyTASK_PRIORITY, /* Task priority, 0 is the lowest. */
+                 &xTaskToNotify ); /* Used to pass a handle to the task out is
+                                      needed, otherwise set to NULL. */
 
     /* Pseudo seed the random number generator. */
     uxNextRand = ( size_t ) prvRand;
@@ -129,17 +133,21 @@ static void prvSingleTaskTests( void )
 {
     const TickType_t xTicksToWait = pdMS_TO_TICKS( 100UL );
     BaseType_t xReturned;
-    uint32_t ulNotifiedValue, ulLoop, ulNotifyingValue, ulPreviousValue, ulExpectedValue;
+    uint32_t ulNotifiedValue, ulLoop, ulNotifyingValue, ulPreviousValue,
+        ulExpectedValue;
     TickType_t xTimeOnEntering;
-    const uint32_t ulFirstNotifiedConst = 100001UL, ulSecondNotifiedValueConst = 5555UL, ulMaxLoops = 5UL;
+    const uint32_t ulFirstNotifiedConst = 100001UL,
+                   ulSecondNotifiedValueConst = 5555UL, ulMaxLoops = 5UL;
     const uint32_t ulBit0 = 0x01UL, ulBit1 = 0x02UL;
     TimerHandle_t xSingleTaskTimer;
-
 
     /* ------------------------------------------------------------------------
      * Check blocking when there are no notifications. */
     xTimeOnEntering = xTaskGetTickCount();
-    xReturned = xTaskNotifyWait( notifyUINT32_MAX, 0, &ulNotifiedValue, xTicksToWait );
+    xReturned = xTaskNotifyWait( notifyUINT32_MAX,
+                                 0,
+                                 &ulNotifiedValue,
+                                 xTicksToWait );
     ( void ) xReturned; /* In case configASSERT() is not defined. */
 
     /* Should have blocked for the entire block time. */
@@ -153,13 +161,14 @@ static void prvSingleTaskTests( void )
     ( void ) xReturned; /* In case configASSERT() is not defined. */
     ( void ) ulNotifiedValue;
 
-
-
     /* ------------------------------------------------------------------------
      * Check no blocking when notifications are pending.  First notify itself -
      * this would not be a normal thing to do and is done here for test purposes
      * only. */
-    xReturned = xTaskNotifyAndQuery( xTaskToNotify, ulFirstNotifiedConst, eSetValueWithoutOverwrite, &ulPreviousValue );
+    xReturned = xTaskNotifyAndQuery( xTaskToNotify,
+                                     ulFirstNotifiedConst,
+                                     eSetValueWithoutOverwrite,
+                                     &ulPreviousValue );
 
     /* Even through the 'without overwrite' action was used the update should
      * have been successful. */
@@ -172,7 +181,10 @@ static void prvSingleTaskTests( void )
 
     /* The task should now have a notification pending, and so not time out. */
     xTimeOnEntering = xTaskGetTickCount();
-    xReturned = xTaskNotifyWait( notifyUINT32_MAX, 0, &ulNotifiedValue, xTicksToWait );
+    xReturned = xTaskNotifyWait( notifyUINT32_MAX,
+                                 0,
+                                 &ulNotifiedValue,
+                                 xTicksToWait );
 
     if( ( xTaskGetTickCount() - xTimeOnEntering ) >= xTicksToWait )
     {
@@ -189,18 +201,20 @@ static void prvSingleTaskTests( void )
     /* Incremented to show the task is still running. */
     ulNotifyCycleCount++;
 
-
-
     /*-------------------------------------------------------------------------
      * Check the non-overwriting functionality.  The notification is done twice
-     * using two different notification values.  The action says don't overwrite so
-     * only the first notification should pass and the value read back should also
-     * be that used with the first notification. */
-    xReturned = xTaskNotify( xTaskToNotify, ulFirstNotifiedConst, eSetValueWithoutOverwrite );
+     * using two different notification values.  The action says don't overwrite
+     * so only the first notification should pass and the value read back should
+     * also be that used with the first notification. */
+    xReturned = xTaskNotify( xTaskToNotify,
+                             ulFirstNotifiedConst,
+                             eSetValueWithoutOverwrite );
     configASSERT( xReturned == pdPASS );
     ( void ) xReturned; /* In case configASSERT() is not defined. */
 
-    xReturned = xTaskNotify( xTaskToNotify, ulSecondNotifiedValueConst, eSetValueWithoutOverwrite );
+    xReturned = xTaskNotify( xTaskToNotify,
+                             ulSecondNotifiedValueConst,
+                             eSetValueWithoutOverwrite );
     configASSERT( xReturned == pdFAIL );
     ( void ) xReturned; /* In case configASSERT() is not defined. */
 
@@ -213,17 +227,19 @@ static void prvSingleTaskTests( void )
     ( void ) xReturned; /* In case configASSERT() is not defined. */
     ( void ) ulNotifiedValue;
 
-
-
     /*-------------------------------------------------------------------------
      * Do the same again, only this time use the overwriting version.  This time
-     * both notifications should pass, and the value written the second time should
-     * overwrite the value written the first time, and so be the value that is read
-     * back. */
-    xReturned = xTaskNotify( xTaskToNotify, ulFirstNotifiedConst, eSetValueWithOverwrite );
+     * both notifications should pass, and the value written the second time
+     * should overwrite the value written the first time, and so be the value
+     * that is read back. */
+    xReturned = xTaskNotify( xTaskToNotify,
+                             ulFirstNotifiedConst,
+                             eSetValueWithOverwrite );
     configASSERT( xReturned == pdPASS );
     ( void ) xReturned; /* In case configASSERT() is not defined. */
-    xReturned = xTaskNotify( xTaskToNotify, ulSecondNotifiedValueConst, eSetValueWithOverwrite );
+    xReturned = xTaskNotify( xTaskToNotify,
+                             ulSecondNotifiedValueConst,
+                             eSetValueWithOverwrite );
     configASSERT( xReturned == pdPASS );
     ( void ) xReturned; /* In case configASSERT() is not defined. */
     xReturned = xTaskNotifyWait( notifyUINT32_MAX, 0, &ulNotifiedValue, 0 );
@@ -232,12 +248,10 @@ static void prvSingleTaskTests( void )
     configASSERT( ulNotifiedValue == ulSecondNotifiedValueConst );
     ( void ) ulNotifiedValue;
 
-
-
     /*-------------------------------------------------------------------------
      * Check notifications with no action pass without updating the value.  Even
-     * though ulFirstNotifiedConst is used as the value the value read back should
-     * remain at ulSecondNotifiedConst. */
+     * though ulFirstNotifiedConst is used as the value the value read back
+     * should remain at ulSecondNotifiedConst. */
     xReturned = xTaskNotify( xTaskToNotify, ulFirstNotifiedConst, eNoAction );
     configASSERT( xReturned == pdPASS );
     ( void ) xReturned; /* In case configASSERT() is not defined. */
@@ -248,7 +262,8 @@ static void prvSingleTaskTests( void )
     /*-------------------------------------------------------------------------
      * Check incrementing values.  Send ulMaxLoop increment notifications, then
      * ensure the received value is as expected - which should be
-     * ulSecondNotificationValueConst plus how ever many times to loop iterated. */
+     * ulSecondNotificationValueConst plus how ever many times to loop iterated.
+     */
     for( ulLoop = 0; ulLoop < ulMaxLoops; ulLoop++ )
     {
         xReturned = xTaskNotify( xTaskToNotify, 0, eIncrement );
@@ -258,7 +273,8 @@ static void prvSingleTaskTests( void )
 
     xReturned = xTaskNotifyWait( notifyUINT32_MAX, 0, &ulNotifiedValue, 0 );
     configASSERT( xReturned == pdPASS );
-    configASSERT( ulNotifiedValue == ( ulSecondNotifiedValueConst + ulMaxLoops ) );
+    configASSERT( ulNotifiedValue ==
+                  ( ulSecondNotifiedValueConst + ulMaxLoops ) );
     ( void ) xReturned; /* In case configASSERT() is not defined. */
     ( void ) ulNotifiedValue;
 
@@ -268,13 +284,11 @@ static void prvSingleTaskTests( void )
     ( void ) xReturned; /* In case configASSERT() is not defined. */
     ( void ) ulNotifiedValue;
 
-
-
     /*-------------------------------------------------------------------------
-     * Check all bits can be set by notifying the task with one additional bit	set
-     * on each notification, and exiting the loop when all the bits are found to be
-     * set.  As there are 32-bits the loop should execute 32 times before all the
-     * bits are found to be set. */
+     * Check all bits can be set by notifying the task with one additional bit
+     * set on each notification, and exiting the loop when all the bits are
+     * found to be set.  As there are 32-bits the loop should execute 32 times
+     * before all the bits are found to be set. */
     ulNotifyingValue = 0x01;
     ulLoop = 0;
 
@@ -287,8 +301,8 @@ static void prvSingleTaskTests( void )
         xTaskNotify( xTaskToNotify, ulNotifyingValue, eSetBits );
 
         /* Wait for the notified value - which of course will already be
-         * available.  Don't clear the bits on entry or exit as this loop is exited
-         * when all the bits are set. */
+         * available.  Don't clear the bits on entry or exit as this loop is
+         * exited when all the bits are set. */
         xReturned = xTaskNotifyWait( 0, 0, &ulNotifiedValue, 0 );
         configASSERT( xReturned == pdPASS );
         ( void ) xReturned; /* In case configASSERT() is not defined. */
@@ -303,16 +317,17 @@ static void prvSingleTaskTests( void )
      * all the bits were set. */
     configASSERT( ulLoop == 32 );
 
-
-
     /*-------------------------------------------------------------------------
      * Check bits are cleared on entry but not on exit when a notification fails
-     * to arrive before timing out - both with and without a timeout value.  Wait
-     * for the notification again - but this time it is not given by anything and
-     * should return pdFAIL.  The parameters are set to clear bit zero on entry and
-     * bit one on exit.  As no notification was received only the bit cleared on
-     * entry should actually get cleared. */
-    xReturned = xTaskNotifyWait( ulBit0, ulBit1, &ulNotifiedValue, xTicksToWait );
+     * to arrive before timing out - both with and without a timeout value. Wait
+     * for the notification again - but this time it is not given by anything
+     * and should return pdFAIL.  The parameters are set to clear bit zero on
+     * entry and bit one on exit.  As no notification was received only the bit
+     * cleared on entry should actually get cleared. */
+    xReturned = xTaskNotifyWait( ulBit0,
+                                 ulBit1,
+                                 &ulNotifiedValue,
+                                 xTicksToWait );
     configASSERT( xReturned == pdFAIL );
     ( void ) xReturned; /* In case configASSERT() is not defined. */
 
@@ -321,18 +336,16 @@ static void prvSingleTaskTests( void )
     xTaskNotify( xTaskToNotify, notifyUINT32_MAX, eNoAction );
 
     /* Reading back the value should should find bit 0 is clear, as this was
-     * cleared on entry, but bit 1 is not clear as it will not have been cleared on
-     * exit as no notification was received. */
+     * cleared on entry, but bit 1 is not clear as it will not have been cleared
+     * on exit as no notification was received. */
     xReturned = xTaskNotifyWait( 0x00UL, 0x00UL, &ulNotifiedValue, 0 );
     configASSERT( xReturned == pdPASS );
     configASSERT( ulNotifiedValue == ( notifyUINT32_MAX & ~ulBit0 ) );
     ( void ) xReturned; /* In case configASSERT() is not defined. */
 
-
-
     /*-------------------------------------------------------------------------
-     * Now try clearing the bit on exit.  For that to happen a notification must be
-     * received, so the task is notified first. */
+     * Now try clearing the bit on exit.  For that to happen a notification must
+     * be received, so the task is notified first. */
     xTaskNotify( xTaskToNotify, 0, eNoAction );
     xTaskNotifyWait( 0x00, ulBit1, &ulNotifiedValue, 0 );
 
@@ -342,19 +355,19 @@ static void prvSingleTaskTests( void )
     configASSERT( ulNotifiedValue == ( notifyUINT32_MAX & ~ulBit0 ) );
 
     /* ...but reading the value back again should find that the bit was indeed
-     * cleared internally.  The returned value should be pdFAIL however as nothing
-     * has notified the task in the mean time. */
+     * cleared internally.  The returned value should be pdFAIL however as
+     * nothing has notified the task in the mean time. */
     xReturned = xTaskNotifyWait( 0x00, 0x00, &ulNotifiedValue, 0 );
     configASSERT( xReturned == pdFAIL );
-    configASSERT( ulNotifiedValue == ( notifyUINT32_MAX & ~( ulBit0 | ulBit1 ) ) );
+    configASSERT( ulNotifiedValue ==
+                  ( notifyUINT32_MAX & ~( ulBit0 | ulBit1 ) ) );
     ( void ) xReturned; /* In case configASSERT() is not defined. */
-
-
 
     /*-------------------------------------------------------------------------
      * Now try querying the previous value while notifying a task. */
     xTaskNotifyAndQuery( xTaskToNotify, 0x00, eSetBits, &ulPreviousValue );
-    configASSERT( ulNotifiedValue == ( notifyUINT32_MAX & ~( ulBit0 | ulBit1 ) ) );
+    configASSERT( ulNotifiedValue ==
+                  ( notifyUINT32_MAX & ~( ulBit0 | ulBit1 ) ) );
 
     /* Clear all bits. */
     xTaskNotifyWait( 0x00, notifyUINT32_MAX, &ulNotifiedValue, 0 );
@@ -377,20 +390,21 @@ static void prvSingleTaskTests( void )
      * Clear the previous notifications. */
     xTaskNotifyWait( notifyUINT32_MAX, 0, &ulNotifiedValue, 0 );
 
-    /* The task should not have any notifications pending, so an attempt to clear
-     * the notification state should fail. */
+    /* The task should not have any notifications pending, so an attempt to
+     * clear the notification state should fail. */
     configASSERT( xTaskNotifyStateClear( NULL ) == pdFALSE );
 
     /* Get the task to notify itself.  This is not a normal thing to do, and is
      * only done here for test purposes. */
-    xTaskNotifyAndQuery( xTaskToNotify, ulFirstNotifiedConst, eSetValueWithoutOverwrite, &ulPreviousValue );
+    xTaskNotifyAndQuery( xTaskToNotify,
+                         ulFirstNotifiedConst,
+                         eSetValueWithoutOverwrite,
+                         &ulPreviousValue );
 
     /* Now the notification state should be eNotified, so it should now be
      * possible to clear the notification state. */
     configASSERT( xTaskNotifyStateClear( NULL ) == pdTRUE );
     configASSERT( xTaskNotifyStateClear( NULL ) == pdFALSE );
-
-
 
     /* ------------------------------------------------------------------------
      * Clear bits in the notification value. */
@@ -401,31 +415,43 @@ static void prvSingleTaskTests( void )
 
     /* Now clear the top bytes - the returned value from the first call should
      * indicate that previously all bits were set. */
-    configASSERT( ulTaskNotifyValueClear( xTaskToNotify, notifyUINT32_HIGH_BYTE ) == notifyUINT32_MAX );
+    configASSERT(
+        ulTaskNotifyValueClear( xTaskToNotify, notifyUINT32_HIGH_BYTE ) ==
+        notifyUINT32_MAX );
 
-    /* Next clear the bottom bytes - the returned value this time should indicate
-     * that the top byte was clear (before the bottom byte was cleared. */
-    configASSERT( ulTaskNotifyValueClear( xTaskToNotify, notifyUINT32_LOW_BYTE ) == ( notifyUINT32_MAX & ~notifyUINT32_HIGH_BYTE ) );
+    /* Next clear the bottom bytes - the returned value this time should
+     * indicate that the top byte was clear (before the bottom byte was cleared.
+     */
+    configASSERT(
+        ulTaskNotifyValueClear( xTaskToNotify, notifyUINT32_LOW_BYTE ) ==
+        ( notifyUINT32_MAX & ~notifyUINT32_HIGH_BYTE ) );
 
-    /* Next clear all bytes - the returned value should indicate that previously the
-     * high and low bytes were clear. */
-    configASSERT( ulTaskNotifyValueClear( xTaskToNotify, notifyUINT32_MAX ) == ( notifyUINT32_MAX & ~notifyUINT32_HIGH_BYTE & ~notifyUINT32_LOW_BYTE ) );
+    /* Next clear all bytes - the returned value should indicate that previously
+     * the high and low bytes were clear. */
+    configASSERT( ulTaskNotifyValueClear( xTaskToNotify, notifyUINT32_MAX ) ==
+                  ( notifyUINT32_MAX & ~notifyUINT32_HIGH_BYTE &
+                    ~notifyUINT32_LOW_BYTE ) );
 
     /* Now all bits should be clear. */
-    configASSERT( ulTaskNotifyValueClear( xTaskToNotify, notifyUINT32_MAX ) == 0 );
+    configASSERT( ulTaskNotifyValueClear( xTaskToNotify, notifyUINT32_MAX ) ==
+                  0 );
     configASSERT( ulTaskNotifyValueClear( xTaskToNotify, 0UL ) == 0 );
-    configASSERT( ulTaskNotifyValueClear( xTaskToNotify, notifyUINT32_MAX ) == 0 );
+    configASSERT( ulTaskNotifyValueClear( xTaskToNotify, notifyUINT32_MAX ) ==
+                  0 );
 
     /* Now the notification state should be eNotified, so it should now be
      * possible to clear the notification state. */
     configASSERT( xTaskNotifyStateClear( NULL ) == pdTRUE );
     configASSERT( xTaskNotifyStateClear( NULL ) == pdFALSE );
 
-
-
     /* ------------------------------------------------------------------------
-     * Create a timer that will try notifying this task while it is suspended. */
-    xSingleTaskTimer = xTimerCreate( "SingleNotify", notifySUSPENDED_TEST_TIMER_PERIOD, pdFALSE, NULL, prvSuspendedTaskTimerTestCallback );
+     * Create a timer that will try notifying this task while it is suspended.
+     */
+    xSingleTaskTimer = xTimerCreate( "SingleNotify",
+                                     notifySUSPENDED_TEST_TIMER_PERIOD,
+                                     pdFALSE,
+                                     NULL,
+                                     prvSuspendedTaskTimerTestCallback );
     configASSERT( xSingleTaskTimer );
 
     /* Incremented to show the task is still running. */
@@ -456,8 +482,9 @@ static void prvSingleTaskTests( void )
 
     /* Start the timer that will try notifying this task while it is
      * suspended, then wait for a notification.  The second time the callback
-     * executes the timer will suspend the task, notify the task, then resume the
-     * task (previously it was suspended and resumed without being notified). */
+     * executes the timer will suspend the task, notify the task, then resume
+     * the task (previously it was suspended and resumed without being
+     * notified). */
     xTimerStart( xSingleTaskTimer, portMAX_DELAY );
 
     /* Check a notification is received. */
@@ -487,9 +514,10 @@ static void prvSuspendedTaskTimerTestCallback( TimerHandle_t xExpiredTimer )
     ( void ) xExpiredTimer;
 
     /* Callback for a timer that is used during preliminary testing.  The timer
-     * tests the behaviour when 1: a task waiting for a notification is suspended
-     * and then resumed without ever receiving a notification, and 2: when a task
-     * waiting for a notification receives a notification while it is suspended. */
+     * tests the behaviour when 1: a task waiting for a notification is
+     * suspended and then resumed without ever receiving a notification, and 2:
+     * when a task waiting for a notification receives a notification while it
+     * is suspended. */
 
     if( ulCallCount == 0 )
     {
@@ -502,8 +530,8 @@ static void prvSuspendedTaskTimerTestCallback( TimerHandle_t xExpiredTimer )
         vTaskSuspend( xTaskToNotify );
 
         /* Sending a notification while the task is suspended should pass, but
-         * not cause the task to resume.  ulCallCount is just used as a convenient
-         * non-zero value. */
+         * not cause the task to resume.  ulCallCount is just used as a
+         * convenient non-zero value. */
         xTaskNotify( xTaskToNotify, ulCallCount, eSetValueWithOverwrite );
 
         /* Make sure giving the notification didn't resume the task. */
@@ -533,7 +561,8 @@ static void prvNotifyingTimer( TimerHandle_t xNotUsed )
 
 static void prvNotifiedTask( void * pvParameters )
 {
-    const TickType_t xMaxPeriod = pdMS_TO_TICKS( 90 ), xMinPeriod = pdMS_TO_TICKS( 10 ), xDontBlock = 0;
+    const TickType_t xMaxPeriod = pdMS_TO_TICKS( 90 ),
+                     xMinPeriod = pdMS_TO_TICKS( 10 ), xDontBlock = 0;
     TickType_t xPeriod;
     const uint32_t ulCyclesToRaisePriority = 50UL;
 
@@ -546,9 +575,13 @@ static void prvNotifiedTask( void * pvParameters )
 
     /* Create the software timer that is used to send notifications to this
      * task.  Notifications are also received from an interrupt. */
-    xTimer = xTimerCreate( "Notifier", xMaxPeriod, pdFALSE, NULL, prvNotifyingTimer );
+    xTimer = xTimerCreate( "Notifier",
+                           xMaxPeriod,
+                           pdFALSE,
+                           NULL,
+                           prvNotifyingTimer );
 
-    for( ; ; )
+    for( ;; )
     {
         /* Start the timer again with a different period.  Sometimes the period
          * will be higher than the task's block time, sometimes it will be lower
@@ -589,23 +622,24 @@ static void prvNotifiedTask( void * pvParameters )
         }
 
         /* Wait for the next notification from the timer, clearing all
-         * notifications if one is received, so this time adding the total number
-         * of notifications that were pending as none will be left pending after
-         * the function call. */
+         * notifications if one is received, so this time adding the total
+         * number of notifications that were pending as none will be left
+         * pending after the function call. */
         ulTimerNotificationsReceived += ulTaskNotifyTake( pdTRUE, xPeriod );
 
         /* Occasionally raise the priority of the task being notified to test
-         * the path where the task is notified from an ISR and becomes the highest
-         * priority ready state task, but the pxHigherPriorityTaskWoken parameter
-         * is NULL (which it is in the tick hook that sends notifications to this
-         * task). */
+         * the path where the task is notified from an ISR and becomes the
+         * highest priority ready state task, but the pxHigherPriorityTaskWoken
+         * parameter is NULL (which it is in the tick hook that sends
+         * notifications to this task). */
         if( ( ulNotifyCycleCount % ulCyclesToRaisePriority ) == 0 )
         {
             vTaskPrioritySet( xTaskToNotify, configMAX_PRIORITIES - 1 );
 
             /* Wait for the next notification again, clearing all notifications
              * if one is received, but this time blocking indefinitely. */
-            ulTimerNotificationsReceived += ulTaskNotifyTake( pdTRUE, portMAX_DELAY );
+            ulTimerNotificationsReceived += ulTaskNotifyTake( pdTRUE,
+                                                              portMAX_DELAY );
 
             /* Reset the priority. */
             vTaskPrioritySet( xTaskToNotify, notifyTASK_PRIORITY );
@@ -614,7 +648,8 @@ static void prvNotifiedTask( void * pvParameters )
         {
             /* Wait for the next notification again, clearing all notifications
              * if one is received, but this time blocking indefinitely. */
-            ulTimerNotificationsReceived += ulTaskNotifyTake( pdTRUE, portMAX_DELAY );
+            ulTimerNotificationsReceived += ulTaskNotifyTake( pdTRUE,
+                                                              portMAX_DELAY );
         }
 
         /* Incremented to show the task is still running. */
@@ -662,7 +697,11 @@ void xNotifyTaskFromISR( void )
 
                 case 2:
                     ulPreviousValue = ulUnexpectedValue;
-                    xTaskNotifyAndQueryFromISR( xTaskToNotify, 0, eIncrement, &ulPreviousValue, NULL );
+                    xTaskNotifyAndQueryFromISR( xTaskToNotify,
+                                                0,
+                                                eIncrement,
+                                                &ulPreviousValue,
+                                                NULL );
                     configASSERT( ulPreviousValue != ulUnexpectedValue );
                     xAPIToUse = 0;
                     break;
@@ -699,7 +738,8 @@ BaseType_t xAreTaskNotificationTasksStillRunning( void )
      * the amount of 'gives'. */
     if( ulTimerNotificationsSent > ulTimerNotificationsReceived )
     {
-        if( ( ulTimerNotificationsSent - ulTimerNotificationsReceived ) > ulMaxSendReceiveDeviation )
+        if( ( ulTimerNotificationsSent - ulTimerNotificationsReceived ) >
+            ulMaxSendReceiveDeviation )
         {
             xErrorStatus = pdFAIL;
         }
@@ -711,10 +751,11 @@ BaseType_t xAreTaskNotificationTasksStillRunning( void )
 
 static UBaseType_t prvRand( void )
 {
-    const size_t uxMultiplier = ( size_t ) 0x015a4e35, uxIncrement = ( size_t ) 1;
+    const size_t uxMultiplier = ( size_t ) 0x015a4e35,
+                 uxIncrement = ( size_t ) 1;
 
     /* Utility function to generate a pseudo random number. */
     uxNextRand = ( uxMultiplier * uxNextRand ) + uxIncrement;
-    return( ( uxNextRand >> 16 ) & ( ( size_t ) 0x7fff ) );
+    return ( ( uxNextRand >> 16 ) & ( ( size_t ) 0x7fff ) );
 }
 /*-----------------------------------------------------------*/

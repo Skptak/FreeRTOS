@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -28,23 +29,21 @@
 #define _DEMO_HELPER_FUNCTIONS_
 
 #include "core_pkcs11.h"
-#include "threading_alt.h"
 #include "mbedtls/pk.h"
+#include "threading_alt.h"
 
 /* This function contains standard setup code for PKCS #11. See the
  * "management_and_rng.c" file for the demo code explaining this section
  * of cryptoki.
  */
-void vStart( CK_SESSION_HANDLE * pxSession,
-             CK_SLOT_ID ** ppxSlotId );
+void vStart( CK_SESSION_HANDLE * pxSession, CK_SLOT_ID ** ppxSlotId );
 /*-----------------------------------------------------------*/
 
 /* This function contains standard tear down code for PKCS #11. See the
  * "management_and_rng.c" file for the demo code explaining this section
  * of cryptoki.
  */
-void vEnd( CK_SESSION_HANDLE xSession,
-           CK_SLOT_ID * pxSlotId );
+void vEnd( CK_SESSION_HANDLE xSession, CK_SLOT_ID * pxSlotId );
 /*-----------------------------------------------------------*/
 
 /* This function is simply a helper function to print the raw hex values
@@ -67,8 +66,7 @@ CK_RV vExportPublicKey( CK_SESSION_HANDLE xSession,
 /**
  * @brief Implements libc calloc semantics using the FreeRTOS heap
  */
-void * pvCalloc( size_t xNumElements,
-                 size_t xSize );
+void * pvCalloc( size_t xNumElements, size_t xSize );
 /*-----------------------------------------------------------*/
 
 /**

@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -29,14 +30,14 @@
 #include "remote-ext.h"
 
 /* uIP includes. */
+#include "net/clock-arch.h"
 #include "net/uip.h"
 #include "net/uip_arp.h"
-#include "net/clock-arch.h"
 
 /* FreeRTOS includes. */
 #include "FreeRTOS.h"
-#include "task.h"
 #include "queue.h"
+#include "task.h"
 
 /*
  * Query the computer the simulation is being executed on to find the network
@@ -48,7 +49,8 @@ static pcap_if_t * prvPrintAvailableNetworkInterfaces( void );
  * Open the network interface.  The number of the interface to be opened is set
  * by the configNETWORK_INTERFACE_TO_USE constant in FreeRTOSConfig.h.
  */
-static void prvOpenSelectedNetworkInterface( pcap_if_t * pxAllNetworkInterfaces );
+static void prvOpenSelectedNetworkInterface(
+    pcap_if_t * pxAllNetworkInterfaces );
 
 /*
  * Configure the capture filter to allow blocking reads, and to filter out
@@ -59,8 +61,8 @@ static void prvConfigureCaptureBehaviour( void );
 pcap_t * pxOpenedInterfaceHandle = NULL;
 LARGE_INTEGER freq, sys_start_time;
 
-#define archNUM_BUFFERS            5
-#define archNUM_BUFFER_POINTERS    ( archNUM_BUFFERS - 1 )
+#define archNUM_BUFFERS         5
+#define archNUM_BUFFER_POINTERS ( archNUM_BUFFERS - 1 )
 
 static void prvInterruptSimulator( void * pvParameters );
 
@@ -124,7 +126,9 @@ BaseType_t xNetifInit( void )
     pcap_if_t * pxAllNetworkInterfaces;
 
     /* Allocate a free buffer to each buffer pointer. */
-    for( x = 0; x < sizeof( pucEthernetBufferPointers ) / sizeof( unsigned char * ); x++ )
+    for( x = 0;
+         x < sizeof( pucEthernetBufferPointers ) / sizeof( unsigned char * );
+         x++ )
     {
         pucEthernetBufferPointers[ x ] = &( ucEthernetBuffer[ x ][ 0 ] );
     }
@@ -140,8 +144,8 @@ BaseType_t xNetifInit( void )
     /* Open the network interface.  The number of the interface to be opened is
      * set by the configNETWORK_INTERFACE_TO_USE constant in FreeRTOSConfig.h.
      * Calling this function will set the pxOpenedInterfaceHandle variable.  If,
-     * after calling this function, pxOpenedInterfaceHandle is equal to NULL, then
-     * the interface could not be opened. */
+     * after calling this function, pxOpenedInterfaceHandle is equal to NULL,
+     * then the interface could not be opened. */
     if( pxAllNetworkInterfaces != NULL )
     {
         prvOpenSelectedNetworkInterface( pxAllNetworkInterfaces );
@@ -153,12 +157,16 @@ BaseType_t xNetifInit( void )
 
 static pcap_if_t * prvPrintAvailableNetworkInterfaces( void )
 {
-    pcap_if_t * pxAllNetworkInterfaces = NULL, * xInterface;
+    pcap_if_t *pxAllNetworkInterfaces = NULL, *xInterface;
     long lInterfaceNumber = 1;
 
-    if( pcap_findalldevs_ex( PCAP_SRC_IF_STRING, NULL, &pxAllNetworkInterfaces, cErrorBuffer ) == -1 )
+    if( pcap_findalldevs_ex( PCAP_SRC_IF_STRING,
+                             NULL,
+                             &pxAllNetworkInterfaces,
+                             cErrorBuffer ) == -1 )
     {
-        printf( "\r\nCould not obtain a list of network interfaces\r\n%s\r\n", cErrorBuffer );
+        printf( "\r\nCould not obtain a list of network interfaces\r\n%s\r\n",
+                cErrorBuffer );
         pxAllNetworkInterfaces = NULL;
     }
 
@@ -166,7 +174,8 @@ static pcap_if_t * prvPrintAvailableNetworkInterfaces( void )
     {
         /* Print out the list of network interfaces.  The first in the list
          * is interface '1', not interface '0'. */
-        for( xInterface = pxAllNetworkInterfaces; xInterface != NULL; xInterface = xInterface->next )
+        for( xInterface = pxAllNetworkInterfaces; xInterface != NULL;
+             xInterface = xInterface->next )
         {
             printf( "%d. %s", lInterfaceNumber, xInterface->name );
 
@@ -191,12 +200,17 @@ static pcap_if_t * prvPrintAvailableNetworkInterfaces( void )
         pxAllNetworkInterfaces = NULL;
     }
 
-    printf( "\r\nThe interface that will be opened is set by configNETWORK_INTERFACE_TO_USE which should be defined in FreeRTOSConfig.h\r\n" );
-    printf( "Attempting to open interface number %d.\r\n", configNETWORK_INTERFACE_TO_USE );
+    printf( "\r\nThe interface that will be opened is set by "
+            "configNETWORK_INTERFACE_TO_USE which should be defined in "
+            "FreeRTOSConfig.h\r\n" );
+    printf( "Attempting to open interface number %d.\r\n",
+            configNETWORK_INTERFACE_TO_USE );
 
-    if( ( configNETWORK_INTERFACE_TO_USE < 1L ) || ( configNETWORK_INTERFACE_TO_USE > lInterfaceNumber ) )
+    if( ( configNETWORK_INTERFACE_TO_USE < 1L ) ||
+        ( configNETWORK_INTERFACE_TO_USE > lInterfaceNumber ) )
     {
-        printf( "\r\nconfigNETWORK_INTERFACE_TO_USE is not in the valid range.\r\n" );
+        printf( "\r\nconfigNETWORK_INTERFACE_TO_USE is not in the valid "
+                "range.\r\n" );
 
         if( pxAllNetworkInterfaces != NULL )
         {
@@ -224,24 +238,26 @@ static void prvOpenSelectedNetworkInterface( pcap_if_t * pxAllNetworkInterfaces 
     }
 
     /* Open the selected interface. */
-    pxOpenedInterfaceHandle = pcap_open( xInterface->name,          /* The name of the selected interface. */
-                                         UIP_CONF_BUFFER_SIZE,      /* The size of the packet to capture. */
-                                         PCAP_OPENFLAG_PROMISCUOUS, /* Open in promiscious mode as the MAC and
-                                                                     * IP address is going to be "simulated", and
-                                                                     * not be the real MAC and IP address.  This allows
-                                                                     * trafic to the simulated IP address to be routed
-                                                                     * to uIP, and trafic to the real IP address to be
-                                                                     * routed to the Windows TCP/IP stack. */
-                                         0xfffffffL,                /* The read time out.  This is going to block
-                                                                     * until data is available. */
-                                         NULL,                      /* No authentication is required as this is
-                                                                     * not a remote capture session. */
-                                         cErrorBuffer
-                                         );
+    pxOpenedInterfaceHandle = pcap_open(
+        xInterface->name,          /* The name of the selected interface. */
+        UIP_CONF_BUFFER_SIZE,      /* The size of the packet to capture. */
+        PCAP_OPENFLAG_PROMISCUOUS, /* Open in promiscious mode as the MAC and
+                                    * IP address is going to be "simulated", and
+                                    * not be the real MAC and IP address.  This
+                                    * allows trafic to the simulated IP address
+                                    * to be routed to uIP, and trafic to the
+                                    * real IP address to be routed to the
+                                    * Windows TCP/IP stack. */
+        0xfffffffL,                /* The read time out.  This is going to block
+                                    * until data is available. */
+        NULL,                      /* No authentication is required as this is
+                                    * not a remote capture session. */
+        cErrorBuffer );
 
     if( pxOpenedInterfaceHandle == NULL )
     {
-        printf( "\r\n%s is not supported by WinPcap and cannot be opened\r\n", xInterface->name );
+        printf( "\r\n%s is not supported by WinPcap and cannot be opened\r\n",
+                xInterface->name );
     }
     else
     {
@@ -270,11 +286,21 @@ static void prvConfigureCaptureBehaviour( void )
     /* Set up a filter so only the packets of interest are passed to the uIP
      * stack.  cErrorBuffer is used for convenience to create the string.  Don't
      * confuse this with an error message. */
-    sprintf( cErrorBuffer, "broadcast or multicast or host %d.%d.%d.%d", configIP_ADDR0, configIP_ADDR1, configIP_ADDR2, configIP_ADDR3 );
+    sprintf( cErrorBuffer,
+             "broadcast or multicast or host %d.%d.%d.%d",
+             configIP_ADDR0,
+             configIP_ADDR1,
+             configIP_ADDR2,
+             configIP_ADDR3 );
 
-    ulNetMask = ( configNET_MASK3 << 24UL ) | ( configNET_MASK2 << 16UL ) | ( configNET_MASK1 << 8L ) | configNET_MASK0;
+    ulNetMask = ( configNET_MASK3 << 24UL ) | ( configNET_MASK2 << 16UL ) |
+                ( configNET_MASK1 << 8L ) | configNET_MASK0;
 
-    if( pcap_compile( pxOpenedInterfaceHandle, &xFilterCode, cErrorBuffer, 1, ulNetMask ) < 0 )
+    if( pcap_compile( pxOpenedInterfaceHandle,
+                      &xFilterCode,
+                      cErrorBuffer,
+                      1,
+                      ulNetMask ) < 0 )
     {
         printf( "\r\nThe packet filter string is invalid\r\n" );
     }
@@ -289,7 +315,12 @@ static void prvConfigureCaptureBehaviour( void )
     /* Create a task that simulates an interrupt in a real system.  This will
      * block waiting for packets, then send a message to the uIP task when data
      * is available. */
-    xTaskCreate( prvInterruptSimulator, ( signed char * ) "MAC_ISR", configMINIMAL_STACK_SIZE, NULL, ( configuIP_TASK_PRIORITY - 1 ), NULL );
+    xTaskCreate( prvInterruptSimulator,
+                 ( signed char * ) "MAC_ISR",
+                 configMINIMAL_STACK_SIZE,
+                 NULL,
+                 ( configuIP_TASK_PRIORITY - 1 ),
+                 NULL );
 }
 /*-----------------------------------------------------------*/
 
@@ -304,10 +335,12 @@ static void prvInterruptSimulator( void * pvParameters )
     /* Just to kill the compiler warning. */
     ( void ) pvParameters;
 
-    for( ; ; )
+    for( ;; )
     {
         /* Get the next packet. */
-        lResult = pcap_next_ex( pxOpenedInterfaceHandle, &pxHeader, &pucPacketData );
+        lResult = pcap_next_ex( pxOpenedInterfaceHandle,
+                                &pxHeader,
+                                &pucPacketData );
 
         if( lResult )
         {
@@ -315,7 +348,9 @@ static void prvInterruptSimulator( void * pvParameters )
             if( lLengthOfDataInBuffer[ ucNextBufferToFill ] == 0L )
             {
                 /* Copy the data from the captured packet into the buffer. */
-                memcpy( pucEthernetBufferPointers[ ucNextBufferToFill ], pucPacketData, pxHeader->len );
+                memcpy( pucEthernetBufferPointers[ ucNextBufferToFill ],
+                        pucPacketData,
+                        pxHeader->len );
 
                 /* Note the amount of data that was copied. */
                 lLengthOfDataInBuffer[ ucNextBufferToFill ] = pxHeader->len;

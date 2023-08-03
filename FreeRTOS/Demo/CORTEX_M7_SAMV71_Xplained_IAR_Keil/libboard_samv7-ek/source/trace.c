@@ -27,7 +27,6 @@
  * ----------------------------------------------------------------------------
  */
 
-
 /*------------------------------------------------------------------------------
  *         Headers
  *------------------------------------------------------------------------------*/
@@ -39,8 +38,8 @@
  *------------------------------------------------------------------------------*/
 
 /** Trace level can be set at applet initialization */
-#if !defined(NOTRACE) && (DYN_TRACES == 1)
-uint32_t dwTraceLevel = TRACE_LEVEL ;
+#if !defined( NOTRACE ) && ( DYN_TRACES == 1 )
+uint32_t dwTraceLevel = TRACE_LEVEL;
 #endif
 
 /**
@@ -51,9 +50,9 @@ uint32_t dwTraceLevel = TRACE_LEVEL ;
  */
 extern void TRACE_CONFIGURE( uint32_t dwBaudRate, uint32_t dwMCk )
 {
-    const Pin pinsUART0[] = { PINS_UART0 } ;
+    const Pin pinsUART0[] = { PINS_UART0 };
 
-    PIO_Configure( pinsUART0, PIO_LISTSIZE( pinsUART0 ) ) ;
+    PIO_Configure( pinsUART0, PIO_LISTSIZE( pinsUART0 ) );
 
-    DBG_Configure( dwBaudRate, dwMCk ) ;
+    DBG_Configure( dwBaudRate, dwMCk );
 }

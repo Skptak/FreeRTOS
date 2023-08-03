@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -33,12 +34,12 @@
 #include <string.h>
 
 #include "FreeRTOS.h"
-#include "task.h"
-#include "timers.h"
 #include "event_groups.h"
+#include "message_buffer.h"
 #include "semphr.h"
 #include "stream_buffer.h"
-#include "message_buffer.h"
+#include "task.h"
+#include "timers.h"
 
 /*-----------------------------------------------------------*/
 
@@ -93,45 +94,60 @@ static BaseType_t prvStaticAllocationsWithNullBuffers( void )
     UBaseType_t uxDummy = 10;
 
     /* Don't expect to create any of the objects as a NULL parameter is always
-     * passed in place of a required buffer.  Hence if all passes then none of the
+     * passed in place of a required buffer.  Hence if all passes then none of
+     the
      |= will be against 0, and ulReturned will still be zero at the end of this
      * function. */
     ulReturned |= ( uintptr_t ) xEventGroupCreateStatic( NULL );
 
     /* Try creating a task twice, once with puxStackBuffer NULL, and once with
      * pxTaskBuffer NULL. */
-    ulReturned |= ( uintptr_t ) xTaskCreateStatic( NULL,    /* Task to run, not needed as the task is not created. */
-                                                   "Dummy", /* Task name. */
-                                                   configMINIMAL_STACK_SIZE,
-                                                   NULL,
-                                                   tskIDLE_PRIORITY,
-                                                   NULL,
-                                                   ( StaticTask_t * ) &xReturn ); /* Dummy value just to pass a non NULL value in - won't get used. */
+    ulReturned |= ( uintptr_t ) xTaskCreateStatic(
+        NULL,    /* Task to run, not needed as the task is not created. */
+        "Dummy", /* Task name. */
+        configMINIMAL_STACK_SIZE,
+        NULL,
+        tskIDLE_PRIORITY,
+        NULL,
+        ( StaticTask_t * ) &xReturn ); /* Dummy value just to pass a non NULL
+                                          value in - won't get used. */
 
-    ulReturned |= ( uintptr_t ) xTaskCreateStatic( NULL,                          /* Task to run, not needed as the task is not created. */
-                                                   "Dummy",                       /* Task name. */
-                                                   configMINIMAL_STACK_SIZE,
-                                                   NULL,
-                                                   tskIDLE_PRIORITY,
-                                                   ( StackType_t * ) &xReturn, /* Dummy value just to pass a non NULL value in - won't get used. */
-                                                   NULL );
+    ulReturned |= ( uintptr_t ) xTaskCreateStatic(
+        NULL,    /* Task to run, not needed as the task is not created. */
+        "Dummy", /* Task name. */
+        configMINIMAL_STACK_SIZE,
+        NULL,
+        tskIDLE_PRIORITY,
+        ( StackType_t * ) &xReturn, /* Dummy value just to pass a non NULL value
+                                       in - won't get used. */
+        NULL );
 
-    ulReturned |= ( uintptr_t ) xQueueCreateStatic( uxDummy,
-                                                    uxDummy,
-                                                    ( uint8_t * ) &xReturn, /* Dummy value just to pass a non NULL value in - won't get used. */
-                                                    NULL );
+    ulReturned |= ( uintptr_t )
+        xQueueCreateStatic( uxDummy,
+                            uxDummy,
+                            ( uint8_t * ) &xReturn, /* Dummy value just to pass
+                                                       a non NULL value in -
+                                                       won't get used. */
+                            NULL );
 
     /* Try creating a stream buffer twice, once with pucStreamBufferStorageArea
      * set to NULL, and once with pxStaticStreamBuffer set to NULL. */
-    ulReturned |= ( uintptr_t ) xStreamBufferCreateStatic( uxDummy,
-                                                           uxDummy,
-                                                           NULL,
-                                                           ( StaticStreamBuffer_t * ) &xReturn ); /* Dummy value just to pass a non NULL value in - won't get used. */
+    ulReturned |= ( uintptr_t ) xStreamBufferCreateStatic(
+        uxDummy,
+        uxDummy,
+        NULL,
+        ( StaticStreamBuffer_t * ) &xReturn ); /* Dummy value just to pass a non
+                                                  NULL value in - won't get
+                                                  used. */
 
-    ulReturned |= ( uintptr_t ) xStreamBufferCreateStatic( uxDummy,
-                                                           uxDummy,
-                                                           ( uint8_t * ) &xReturn, /* Dummy value just to pass a non NULL value in - won't get used. */
-                                                           NULL );
+    ulReturned |= ( uintptr_t )
+        xStreamBufferCreateStatic( uxDummy,
+                                   uxDummy,
+                                   ( uint8_t * ) &xReturn, /* Dummy value just
+                                                              to pass a non NULL
+                                                              value in - won't
+                                                              get used. */
+                                   NULL );
 
     if( ulReturned != 0 )
     {
@@ -148,7 +164,8 @@ static BaseType_t prvTraceUtils( void )
     EventGroupHandle_t xEventGroup;
     QueueHandle_t xQueue;
     BaseType_t xReturn = pdPASS;
-    const UBaseType_t xNumber = ( UBaseType_t ) 100, xQueueLength = ( UBaseType_t ) 1;
+    const UBaseType_t xNumber = ( UBaseType_t ) 100,
+                      xQueueLength = ( UBaseType_t ) 1;
     UBaseType_t uxValue;
     TaskHandle_t xTaskHandle;
     StreamBufferHandle_t xStreamBuffer;
@@ -220,7 +237,6 @@ static BaseType_t prvTraceUtils( void )
 
     /* Timer trace util functions are exercised in prvTimerQuery(). */
 
-
     /* Exercise the stream buffer utilities.  Try creating with a trigger level
      * of 0, it should then get capped to 1. */
     xStreamBuffer = xStreamBufferCreate( sizeof( uint32_t ), 0 );
@@ -277,7 +293,8 @@ static BaseType_t prvPeekTimeout( void )
     UBaseType_t uxReceived;
 
     /* Create the queue just to try peeking it while it is empty. */
-    xHandle = xQueueCreate( xQueueLength, ( UBaseType_t ) sizeof( xQueueLength ) );
+    xHandle = xQueueCreate( xQueueLength,
+                            ( UBaseType_t ) sizeof( xQueueLength ) );
 
     if( xHandle != NULL )
     {
@@ -310,7 +327,8 @@ static BaseType_t prvQueueQueryFromISR( void )
     const char * pcISRQueueName = "ISRQueue";
     QueueHandle_t xISRQueue = NULL;
 
-    xISRQueue = xQueueCreate( xISRQueueLength, ( UBaseType_t ) sizeof( BaseType_t ) );
+    xISRQueue = xQueueCreate( xISRQueueLength,
+                              ( UBaseType_t ) sizeof( BaseType_t ) );
 
     if( xISRQueue != NULL )
     {
@@ -372,7 +390,7 @@ static BaseType_t prvQueueQueryFromISR( void )
 
 static BaseType_t prvTaskQueryFunctions( void )
 {
-    static TaskStatus_t xStatus, * pxStatusArray;
+    static TaskStatus_t xStatus, *pxStatusArray;
     TaskHandle_t xTimerTask, xIdleTask;
     BaseType_t xReturn = pdPASS;
     UBaseType_t uxNumberOfTasks, uxReturned, ux;
@@ -388,7 +406,8 @@ static BaseType_t prvTaskQueryFunctions( void )
         xReturn = pdFAIL;
     }
 
-    if( uxTaskGetStackHighWaterMark2( NULL ) != ( configSTACK_DEPTH_TYPE ) xStatus.usStackHighWaterMark )
+    if( uxTaskGetStackHighWaterMark2( NULL ) !=
+        ( configSTACK_DEPTH_TYPE ) xStatus.usStackHighWaterMark )
     {
         xReturn = pdFAIL;
     }
@@ -417,17 +436,20 @@ static BaseType_t prvTaskQueryFunctions( void )
     xTaskResumeFromISR( xTimerTask );
     vTaskGetInfo( xTimerTask, &xStatus, pdTRUE, eInvalid );
 
-    if( ( xStatus.eCurrentState != eReady ) && ( xStatus.eCurrentState != eBlocked ) )
+    if( ( xStatus.eCurrentState != eReady ) &&
+        ( xStatus.eCurrentState != eBlocked ) )
     {
         xReturn = pdFAIL;
     }
 
-    if( uxTaskGetStackHighWaterMark( xTimerTask ) != xStatus.usStackHighWaterMark )
+    if( uxTaskGetStackHighWaterMark( xTimerTask ) !=
+        xStatus.usStackHighWaterMark )
     {
         xReturn = pdFAIL;
     }
 
-    if( uxTaskGetStackHighWaterMark2( xTimerTask ) != ( configSTACK_DEPTH_TYPE ) xStatus.usStackHighWaterMark )
+    if( uxTaskGetStackHighWaterMark2( xTimerTask ) !=
+        ( configSTACK_DEPTH_TYPE ) xStatus.usStackHighWaterMark )
     {
         xReturn = pdFAIL;
     }
@@ -445,13 +467,16 @@ static BaseType_t prvTaskQueryFunctions( void )
      * on the number of tasks at this time - note this may change at any time if
      * higher priority tasks are executing and creating tasks. */
     uxNumberOfTasks = uxTaskGetNumberOfTasks();
-    pxStatusArray = ( TaskStatus_t * ) pvPortMalloc( uxNumberOfTasks * sizeof( TaskStatus_t ) );
+    pxStatusArray = ( TaskStatus_t * ) pvPortMalloc( uxNumberOfTasks *
+                                                     sizeof( TaskStatus_t ) );
 
     if( pxStatusArray != NULL )
     {
-        /* Pass part of the array into uxTaskGetSystemState() to ensure it doesn't
-         * try using more space than there is available. */
-        uxReturned = uxTaskGetSystemState( pxStatusArray, uxNumberOfTasks / ( UBaseType_t ) 2, NULL );
+        /* Pass part of the array into uxTaskGetSystemState() to ensure it
+         * doesn't try using more space than there is available. */
+        uxReturned = uxTaskGetSystemState( pxStatusArray,
+                                           uxNumberOfTasks / ( UBaseType_t ) 2,
+                                           NULL );
 
         if( uxReturned != ( UBaseType_t ) 0 )
         {
@@ -460,9 +485,15 @@ static BaseType_t prvTaskQueryFunctions( void )
 
         /* Now do the same but passing in the complete array size, this is done
          * twice to check for a difference in the total run time. */
-        uxTaskGetSystemState( pxStatusArray, uxNumberOfTasks, &ulTotalRunTime1 );
-        memset( ( void * ) pxStatusArray, 0xaa, uxNumberOfTasks * sizeof( TaskStatus_t ) );
-        uxReturned = uxTaskGetSystemState( pxStatusArray, uxNumberOfTasks, &ulTotalRunTime2 );
+        uxTaskGetSystemState( pxStatusArray,
+                              uxNumberOfTasks,
+                              &ulTotalRunTime1 );
+        memset( ( void * ) pxStatusArray,
+                0xaa,
+                uxNumberOfTasks * sizeof( TaskStatus_t ) );
+        uxReturned = uxTaskGetSystemState( pxStatusArray,
+                                           uxNumberOfTasks,
+                                           &ulTotalRunTime2 );
 
         if( ( ulTotalRunTime2 - ulTotalRunTime1 ) > ulRunTimeTollerance )
         {
@@ -477,7 +508,8 @@ static BaseType_t prvTaskQueryFunctions( void )
                 xReturn = pdFAIL;
             }
 
-            if( pxStatusArray[ ux ].uxCurrentPriority >= ( UBaseType_t ) configMAX_PRIORITIES )
+            if( pxStatusArray[ ux ].uxCurrentPriority >=
+                ( UBaseType_t ) configMAX_PRIORITIES )
             {
                 xReturn = pdFAIL;
             }
@@ -517,7 +549,8 @@ static BaseType_t prvTaskTags( void )
     }
     else
     {
-        if( xTaskCallApplicationTaskHook( xTask, ( void * ) xParameter ) != xParameter )
+        if( xTaskCallApplicationTaskHook( xTask, ( void * ) xParameter ) !=
+            xParameter )
         {
             xReturn = pdFAIL;
         }
@@ -555,7 +588,8 @@ static BaseType_t prvTaskTags( void )
     }
     else
     {
-        if( xTaskCallApplicationTaskHook( NULL, ( void * ) xParameter ) != xParameter )
+        if( xTaskCallApplicationTaskHook( NULL, ( void * ) xParameter ) !=
+            xParameter )
         {
             xReturn = pdFAIL;
         }
@@ -595,7 +629,8 @@ static BaseType_t prvTimerQuery( void )
                            xTimerPeriod,
                            pdFALSE,
                            ( void * ) xTimerPeriod,
-                           NULL );  /* Not actually going to start timer so NULL callback is ok. */
+                           NULL ); /* Not actually going to start timer so NULL
+                                      callback is ok. */
 
     if( xTimer != NULL )
     {

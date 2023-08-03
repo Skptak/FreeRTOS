@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
- *         SAM Software Package License 
+ *         SAM Software Package License
  * ----------------------------------------------------------------------------
  * Copyright (c) 2013, Atmel Corporation
  *
@@ -35,11 +35,11 @@
  *  Methods and definitions for configuring interrupts.
  *
  *  \section Usage
-  *  -# Enable or disable interrupt generation of a particular source with
+ *  -# Enable or disable interrupt generation of a particular source with
  *    IRQ_EnableIT and IRQ_DisableIT.
  *  -# Start or stop the timer clock using TC_Start() and TC_Stop().
  */
- 
+
 #ifndef AIC_H
 #define AIC_H
 
@@ -54,16 +54,15 @@
 /*------------------------------------------------------------------------------
  *         Global functions
  *------------------------------------------------------------------------------*/
- 
- #ifdef __cplusplus
- extern "C" {
+
+#ifdef __cplusplus
+extern "C" {
 #endif
-extern void AIC_EnableIT( uint32_t source);
-extern void AIC_DisableIT(uint32_t source);
+extern void AIC_EnableIT( uint32_t source );
+extern void AIC_DisableIT( uint32_t source );
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif //#ifndef AIC_H
-
+#endif // #ifndef AIC_H
