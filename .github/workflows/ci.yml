@@ -30,13 +30,13 @@ jobs:
         steps:
             - uses: actions/checkout@v3
             - name: Check formatting of Common Demo Directory
-              uses: Skptak/CI-CD-Github-Actions/formatting@doublePrintFix
+              uses: Skptak/CI-CD-Github-Actions/formatting@main
               with:
                   path: ./FreeRTOS/Demo/Common
                   exclude-dirs: ethernet,drivers
 
             - name: Check formatting of Test Directory
-              uses: Skptak/CI-CD-Github-Actions/formatting@doublePrintFix
+              uses: Skptak/CI-CD-Github-Actions/formatting@main
               with:
                   path: ./FreeRTOS/Test
                   exclude-files: "*.patch"
@@ -89,7 +89,7 @@ jobs:
               uses: Skptak/CI-CD-Github-Actions/spellings@main
               with:
                 path: ./
-                exclude-dirs: portable,ThirdParty,Demo,dependency
+                exclude-dirs: portable,ThirdParty,Demo,dependency,*.patch
     verify-manifest:
         runs-on: ubuntu-latest
         steps:
