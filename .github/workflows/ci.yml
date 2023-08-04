@@ -7,7 +7,7 @@ on:
 
 jobs:
     git-secrets:
-        runs-on: ubuntu-20.04
+        runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v3
               with:
@@ -26,7 +26,7 @@ jobs:
                   git-secrets --scan
 
     formatting:
-        runs-on: ubuntu-20.04
+        runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v3
             - name: Check formatting of Common Demo Directory
@@ -42,7 +42,7 @@ jobs:
                   exclude-files: "*.patch"
 
     doxygen:
-        runs-on: ubuntu-20.04
+        runs-on: ubuntu-latest
         steps:
             - name: Clone repository
               uses: actions/checkout@v3
@@ -62,7 +62,7 @@ jobs:
                   "https://freertos.org/Documentation/api-ref/coreMQTT/docs/doxygen/output/mqtt.tag"
 
             - name: Generate doxygen ZIP
-              uses: FreeRTOS/CI-CD-GitHub-Actions/doxygen@main
+              uses: skptak/CI-CD-GitHub-Actions/doxygen@main
               with:
                   path: ./freertos
                   # List of directories containing libraries whose doxygen output will be generated.
@@ -81,38 +81,16 @@ jobs:
                   retention-days: 2
 
     spell-check:
-        runs-on: ubuntu-20.04
+        runs-on: ubuntu-latest
         if: ${{ github.event.pull_request }}
         steps:
             - name: Checkout Parent Repo
               uses: actions/checkout@v3
+            - name: Run spellings check
+              uses: Skptak/CI-CD-Github-Actions/spellings@main
               with:
-                  ref: main
-                  repository: FreeRTOS/CI-CD-Github-Actions
-                  path: commonCI
-            - name: Clone This Repo
-              uses: actions/checkout@v3
-              with:
-                  path: ./FreeRTOS
-            - name: Install spell
-              run: |
-                  sudo apt-get install spell
-                  sudo apt-get install util-linux
-            - name: Check spelling
-              run: |
-                  # Add path to the tool to the environment variable.
-                  PATH=$PATH:commonCI/spellings/tools
-                  # Make sure that only Amazon licenced files are checked.
-                  sed -i 's/`find $DIRNAME \\( -iname \\\*\.\[ch\] -o -iname \\\*\.dox \\) -type f`/`grep -ril "copyright \(c\) \[0-9\]\[0-9\]\[0-9\]\[0-9\] amazon.com" | grep "\\.\[ch\]" | grep -v "FreeRTOS\/FreeRTOS\/Test\/VeriFast"`/g' commonCI/spellings/tools/find-unknown-comment-words
-                  # Run the spell check script.
-                  find-unknown-comment-words --directory FreeRTOS/ --lexicon FreeRTOS/lexicon.txt
-                  # Check the exit status.
-                  if [ "$?" = "0" ]; then
-                    exit 0
-                  else
-                    exit 1
-                  fi
-
+                path: ./
+                exclude-dirs: portable,ThirdParty,*/CORTEX*,*/RISC*
     verify-manifest:
         runs-on: ubuntu-latest
         steps:
@@ -125,14 +103,14 @@ jobs:
               with:
                   python-version: "3.x"
             - name: Run manifest verifier
-              uses: FreeRTOS/CI-CD-Github-Actions/manifest-verifier@main
+              uses: skptak/CI-CD-GitHub-Actions/manifest-verifier@main
               with:
                   path: ./
                   exclude-submodules: FreeRTOS-Plus/Test/CMock,FreeRTOS/Test/CMock/CMock,FreeRTOS/Test/litani
                   fail-on-incorrect-version: true
 
     memory-statistics:
-        runs-on: ubuntu-20.04
+        runs-on: ubuntu-latest
         env:
             ARM_GCC_TOOLCHAIN_URL: "https://developer.arm.com/-/media/Files/downloads/gnu-rm/9-2020q2/gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2?revision=05382cca-1721-44e1-ae19-1e7c3dc96118&la=en&hash=D7C9D18FCA2DD9F894FD9F3C3DC9228498FA281A"
         steps:
@@ -151,7 +129,7 @@ jobs:
             - name: Clone CI-CD-Github-Actions repository
               uses: actions/checkout@v3
               with:
-                  repository: FreeRTOS/CI-CD-Github-Actions
+                  repository: skptak/CI-CD-GitHub-Actions
                   path: tools
             - name: Run script to generate JSON memory statistics
               run:
@@ -180,8 +158,8 @@ jobs:
                   sudo apt-get update
                   sudo apt-get install --yes --no-install-recommends gcc-multilib
             - name: Set up CBMC runner
-              uses: FreeRTOS/CI-CD-Github-Actions/set_up_cbmc_runner@main
+              uses: skptak/CI-CD-GitHub-Actions/set_up_cbmc_runner@main
             - name: Run CBMC
-              uses: FreeRTOS/CI-CD-Github-Actions/run_cbmc@main
+              uses: skptak/CI-CD-GitHub-Actions/run_cbmc@main
               with:
                   proofs_dir: FreeRTOS/Test/CBMC/proofs
