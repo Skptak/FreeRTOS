@@ -90,6 +90,15 @@ jobs:
               with:
                 path: ./
                 exclude-dirs: portable,ThirdParty,Demo,dependency,*.patch
+            - name: Run spellings check
+              uses: Skptak/CI-CD-Github-Actions/spellings@main
+              with:
+                path: ./FreeRTOS/Demo/Common
+            - name: Run spellings check
+              uses: Skptak/CI-CD-Github-Actions/spellings@main
+              with:
+                path: ./FreeRTOS-Plus/Demo
+
     verify-manifest:
         runs-on: ubuntu-latest
         steps:
