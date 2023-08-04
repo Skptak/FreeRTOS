@@ -89,15 +89,24 @@ jobs:
               uses: Skptak/CI-CD-Github-Actions/spellings@main
               with:
                 path: ./
-                exclude-dirs: portable,ThirdParty,Demo,dependency,*.patch
-            - name: Run spellings check
+                # We need to exclude all the various board demos
+                # So run this one for the parent directory
+                # Then go into the child directories to run the spell check
+                exclude-dirs: portable,ThirdParty,Demo,dependency,docs,FreeRTOS-Plus
+            - name: Run spellings check on Common Demos
               uses: Skptak/CI-CD-Github-Actions/spellings@main
               with:
                 path: ./FreeRTOS/Demo/Common
+
+            - name: Run spellings check on Common Demos
+              uses: Skptak/CI-CD-Github-Actions/spellings@main
+              with:
+                path: ./FreeRTOS/Demo/Common
+
             - name: Run spellings check
               uses: Skptak/CI-CD-Github-Actions/spellings@main
               with:
-                path: ./FreeRTOS-Plus/Demo
+                path: ./FreeRTOS-Plus
 
     verify-manifest:
         runs-on: ubuntu-latest
@@ -106,10 +115,6 @@ jobs:
               with:
                   submodules: true
                   fetch-depth: 0
-            - name: Install Python3
-              uses: actions/checkout@v3
-              with:
-                  python-version: "3.x"
             - name: Run manifest verifier
               uses: skptak/CI-CD-GitHub-Actions/manifest-verifier@main
               with:
