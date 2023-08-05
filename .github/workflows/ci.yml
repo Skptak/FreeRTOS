@@ -29,17 +29,45 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v3
+            - name: Check formatting of WIN32-MingW Demo Directories
+              uses: Skptak/CI-CD-Github-Actions/formatting@main
+              with:
+                  path: ./FreeRTOS/Demo/Common/WIN32-MingW
+
+            - uses: actions/checkout@v3
+            - name: Check formatting of WIN32-MSVC Demo Directories
+              uses: Skptak/CI-CD-Github-Actions/formatting@main
+              with:
+                  path: ./FreeRTOS/Demo/Common/WIN32-MSVC
+
+            - uses: actions/checkout@v3
+            - name: Check formatting of Posix_GCC Demo Directories
+              uses: Skptak/CI-CD-Github-Actions/formatting@main
+              with:
+                  path: ./FreeRTOS/Demo/Posix_GCC
+
+            - uses: actions/checkout@v3
             - name: Check formatting of Common Demo Directory
               uses: Skptak/CI-CD-Github-Actions/formatting@main
               with:
                   path: ./FreeRTOS/Demo/Common
-                  exclude-dirs: ethernet,drivers
 
             - name: Check formatting of Test Directory
               uses: Skptak/CI-CD-Github-Actions/formatting@main
               with:
                   path: ./FreeRTOS/Test
-                  exclude-files: "*.patch"
+
+            - name: Check formatting of FreeRTOS+TCP Directory
+              uses: Skptak/CI-CD-Github-Actions/formatting@main
+              with:
+                  path: ./FreeRTOS-Plus-TCP
+
+    formatting-all:
+      runs-on: ubuntu-latest
+      steps:
+          - uses: actions/checkout@v3
+          - name: Check formatting of Common Demo Directory
+            uses: Skptak/CI-CD-Github-Actions/formatting@main
 
     doxygen:
         runs-on: ubuntu-latest

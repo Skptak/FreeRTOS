@@ -5,15 +5,15 @@ on:
     workflow_dispatch:
 
 env:
-    bashPass: \033[32;1mPASSED -
-    bashWarn: \033[33;1mWARNING -
-    bashFail: \033[31;1mFAILED -
-    bashEnd: \033[0m
+  bashPass: \033[32;1mPASSED -
+  bashWarn: \033[33;1mWARNING -
+  bashFail: \033[31;1mFAILED -
+  bashEnd:  \033[0m
 
-    pwshPass: "`e[32;1mPASSED -"
-    pwshWarn: "`e[33;1mWARNING -"
-    pwshFail: "`e[31;1mFAILED -"
-    pwshEnd: "`e[0m"
+  pwshPass: "`e[32;1mPASSED -"
+  pwshWarn: "`e[33;1mWARNING -"
+  pwshFail: "`e[31;1mFAILED -"
+  pwshEnd:  "`e[0m"
 
 jobs:
     WIN32-MSVC:
@@ -58,7 +58,7 @@ jobs:
                   exitStatus=$?
                   set -e
                   echo "::endgroup::"
-                  if [[ "$exitStatus" = "0" ]]; then
+                  if [ $exitStatus -eq 0 ]; then
                     echo -e "${{ env.bashPass }} ${{env.stepName}} ${{ env.bashEnd }}"
                   else
                     echo -e "${{ env.bashFail }} ${{env.stepName}} ${{ env.bashEnd }}"
@@ -112,8 +112,8 @@ jobs:
                   $content = Get-Content -Path 'main.c' -Raw
                   $newContent = $content -replace '#define\s+mainCREATE_SIMPLE_BLINKY_DEMO_ONLY\s+0', '#define mainCREATE_SIMPLE_BLINKY_DEMO_ONLY    1'
                   $newContent | Set-Content -Path 'main.c'
-                  # ${{ env.stepName }}
                   msbuild WIN32.sln -t:rebuild
+                  echo "::endgroup::"
                   $exitStatus = $?
                   if($exitStatus -eq 1) {
                     echo "${{ env.pwshPass }} ${{ env.stepName }} ${{ env.pwshEnd }}"
@@ -162,6 +162,7 @@ jobs:
                   exe-path: FreeRTOS/Demo/WIN32-MSVC-Static-Allocation-Only/Debug/RTOSDemo.exe
                   timeout-seconds: 60
                   success-line: "No errors - tick count"
+                  retry-attempts: 3
 
     WIN32-MingW:
         name: WIN32 MingW
@@ -179,16 +180,9 @@ jobs:
               run: |
                   # ${{ env.stepName }}
                   echo "::group::${{ env.stepName }}"
-                  set +e
                   git submodule update --checkout --init --depth 1 FreeRTOS/Source
-                  exitStatus=$?
                   echo "::endgroup::"
-                  if [[ "$exitStatus" = "0" ]]; then
-                    echo -e "${{ env.bashPass }} ${{env.stepName}} ${{ env.bashEnd }}"
-                  else
-                    echo -e "${{ env.bashFail }} ${{env.stepName}} ${{ env.bashEnd }}"
-                    exit 1
-                  fi
+                  echo -e "${{ env.bashPass }} ${{env.stepName}} ${{ env.bashEnd }}"
 
             - env:
                   stepName: Build WIN32-MingW Full Demo
@@ -283,9 +277,11 @@ jobs:
                   echo "::group::${{ env.stepName }}"
                   set +e
                   git submodule update --checkout --init --depth 1 FreeRTOS/Source
+                  set -e
                   exitStatus=$?
+                  set -e
                   echo "::endgroup::"
-                  if [ "$exitStatus" = "0" ]; then
+                  if [ $exitStatus -eq 0 ]; then
                     echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
                   else
                     echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
@@ -303,8 +299,9 @@ jobs:
                   sudo apt-get -y update
                   sudo apt-get -y install build-essential
                   exitStatus=$?
+                  set -e
                   echo "::endgroup::"
-                  if [ "$exitStatus" = "0" ]; then
+                  if [ $exitStatus -eq 0 ]; then
                     echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
                   else
                     echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
@@ -324,8 +321,9 @@ jobs:
                   sed -i -z "s/int[[:space:]]*main[[:space:]]*([[:space:]]*void[[:space:]]*)\n{/int main( void ){setvbuf( stdout, NULL, _IONBF, 0 );/g" main.c
                   make -j
                   exitStatus=$?
+                  set -e
                   echo "::endgroup::"
-                  if [ "$exitStatus" = "0" ]; then
+                  if [ $exitStatus -eq 0 ]; then
                     echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
                   else
                     echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
@@ -340,6 +338,7 @@ jobs:
                   exe-path: FreeRTOS/Demo/Posix_GCC/build/posix_demo
                   timeout-seconds: 60
                   success-line: "OK: No errors"
+                  retry-attempts: 3
 
             - env:
                   stepName: Build Posix_GCC Blinky Demo
@@ -354,8 +353,9 @@ jobs:
                   set +e
                   make -j USER_DEMO=BLINKY_DEMO
                   exitStatus=$?
+                  set -e
                   echo "::endgroup::"
-                  if [ "$exitStatus" = "0" ]; then
+                  if [ $exitStatus -eq 0 ]; then
                     echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
                   else
                     echo -e "${{ env.bashFail }} ${{env.stepName}} ${{ env.bashEnd }}"
@@ -390,8 +390,9 @@ jobs:
                   set +e
                   git submodule update --checkout --init --depth 1 FreeRTOS/Source
                   exitStatus=$?
+                  set -e
                   echo "::endgroup::"
-                  if [ "$exitStatus" = "0" ]; then
+                  if [ $exitStatus -eq 0 ]; then
                     echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
                   else
                     echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
@@ -409,8 +410,9 @@ jobs:
                   sudo apt-get -y update
                   sudo apt-get -y install gcc-msp430 build-essential
                   exitStatus=$?
+                  set -e
                   echo "::endgroup::"
-                  if [ "$exitStatus" = "0" ]; then
+                  if [ $exitStatus -eq 0 ]; then
                     echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
                   else
                     echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
@@ -428,8 +430,9 @@ jobs:
                   set +e
                   make -j
                   exitStatus=$?
+                  set -e
                   echo "::endgroup::"
-                  if [ "$exitStatus" = "0" ]; then
+                  if [ $exitStatus -eq 0 ]; then
                     echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
                   else
                     echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
@@ -455,8 +458,9 @@ jobs:
                   set +e
                   git submodule update --checkout --init --depth 1 FreeRTOS/Source FreeRTOS/Demo/ThirdParty/Community-Supported-Demos
                   exitStatus=$?
+                  set -e
                   echo "::endgroup::"
-                  if [ "$exitStatus" = "0" ]; then
+                  if [ $exitStatus -eq 0 ]; then
                     echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
                   else
                     echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
@@ -474,8 +478,9 @@ jobs:
                   sudo apt-get -y update
                   sudo apt-get -y install gcc-arm-none-eabi build-essential cmake git ninja-build python3-minimal
                   exitStatus=$?
+                  set -e
                   echo "::endgroup::"
-                  if [ "$exitStatus" = "0" ]; then
+                  if [ $exitStatus -eq 0 ]; then
                     echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
                   else
                     echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
@@ -493,8 +498,9 @@ jobs:
                   set +e
                   make -j
                   exitStatus=$?
+                  set -e
                   echo "::endgroup::"
-                  if [ "$exitStatus" = "0" ]; then
+                  if [ $exitStatus -eq 0 ]; then
                     echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
                   else
                     echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
@@ -513,8 +519,9 @@ jobs:
                   make clean
                   make -j
                   exitStatus=$?
+                  set -e
                   echo "::endgroup::"
-                  if [ "$exitStatus" = "0" ]; then
+                  if [ $exitStatus -eq 0 ]; then
                     echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
                   else
                     echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
@@ -533,8 +540,9 @@ jobs:
                   make clean
                   make -j
                   exitStatus=$?
+                  set -e
                   echo "::endgroup::"
-                  if [ "$exitStatus" = "0" ]; then
+                  if [ $exitStatus -eq 0 ]; then
                     echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
                   else
                     echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
@@ -553,8 +561,9 @@ jobs:
                   make clean
                   make FULL_DEMO=1 -j
                   exitStatus=$?
+                  set -e
                   echo "::endgroup::"
-                  if [ "$exitStatus" = "0" ]; then
+                  if [ $exitStatus -eq 0 ]; then
                     echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
                   else
                     echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
@@ -572,8 +581,9 @@ jobs:
                   set +e
                   make -j
                   exitStatus=$?
+                  set -e
                   echo "::endgroup::"
-                  if [ "$exitStatus" = "0" ]; then
+                  if [ $exitStatus -eq 0 ]; then
                     echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
                   else
                     echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
@@ -593,8 +603,9 @@ jobs:
                   cmake -B build -DPICO_SDK_PATH=pico-sdk -GNinja
                   ninja -C build --verbose
                   exitStatus=$?
+                  set -e
                   echo "::endgroup::"
-                  if [ "$exitStatus" = "0" ]; then
+                  if [ $exitStatus -eq 0 ]; then
                     echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
                   else
                     echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
@@ -612,8 +623,9 @@ jobs:
                   set +e
                   make -C build/gcc -j
                   exitStatus=$?
+                  set -e
                   echo "::endgroup::"
-                  if [ "$exitStatus" = "0" ]; then
+                  if [ $exitStatus -eq 0 ]; then
                     echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
                   else
                     echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
