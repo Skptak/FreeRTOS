@@ -390,7 +390,7 @@ static inline void cpu_irq_restore( irqflags_t flags )
     #ifndef __cplusplus
         #if !defined( __bool_true_false_are_defined )
             #define false FALSE
-            #define true TRUE
+            #define true  TRUE
         #endif
     #endif
     #define KO   0

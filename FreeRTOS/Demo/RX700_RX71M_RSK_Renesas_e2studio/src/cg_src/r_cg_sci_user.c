@@ -99,7 +99,7 @@ static volatile uint8_t sci7_txdone;
  ***********************************************************************************************************************/
 #if FAST_INTERRUPT_VECTOR == VECT_SCI7_TXI7
     #pragma interrupt r_sci7_transmit_interrupt( vect = VECT( SCI7, TXI7 ), \
-                                                 fint )
+                                                     fint )
 #else
     #pragma interrupt r_sci7_transmit_interrupt( vect = VECT( SCI7, TXI7 ) )
 #endif
@@ -142,7 +142,7 @@ void r_sci7_transmitend_interrupt( void )
  ***********************************************************************************************************************/
 #if FAST_INTERRUPT_VECTOR == VECT_SCI7_RXI7
     #pragma interrupt r_sci7_receive_interrupt( vect = VECT( SCI7, RXI7 ), \
-                                                fint )
+                                                    fint )
 #else
     #pragma interrupt r_sci7_receive_interrupt( vect = VECT( SCI7, RXI7 ) )
 #endif

@@ -68,7 +68,7 @@
          * Workbench for Atmel AVR32.
          */
         //! @{
-        #define __asm__ asm
+        #define __asm__    asm
         #define __inline__ inline
         #define __volatile__
         //! @}

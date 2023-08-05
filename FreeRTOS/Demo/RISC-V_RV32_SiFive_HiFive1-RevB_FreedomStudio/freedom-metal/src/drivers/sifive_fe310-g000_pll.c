@@ -332,8 +332,8 @@ static void configure_pll(__metal_io_u32 *pllcfg, __metal_io_u32 *plloutdiv,
             __METAL_DT_RISCV_CLIC0_HANDLE, METAL_TIMER_MTIME_GET, &mtime);
     }
 #else
-#pragma message(                                                               \
-    No handle for CLINT or CLIC found, PLL might race with lock signal !)
+#pragma message(No handle for CLINT or CLIC found,                             \
+                    PLL might race with lock signal !)
 #endif
 
     /* Wait for PLL to lock */

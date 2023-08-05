@@ -358,22 +358,22 @@ static void sdmmc_set_device_clock( struct sdmmc_set * set, uint32_t freq )
 #else
         mult_freq = pmc_get_gck_clock( set->id );
 #endif
-        if( mult_freq != 0 )
+    if( mult_freq != 0 )
+    {
+        /* DIV = FMULTCLK / FSDCLK - 1 */
+        p_div = ROUND_INT_DIV( mult_freq, freq );
+        if( p_div > 0x3ff )
+            p_div = 0x3ff;
+        else if( p_div != 0 )
+            p_div = p_div - 1;
+        p_mode_freq = mult_freq / ( p_div + 1 );
+        if( ABS_DIFF( freq, p_mode_freq ) < ABS_DIFF( freq, new_freq ) )
         {
-            /* DIV = FMULTCLK / FSDCLK - 1 */
-            p_div = ROUND_INT_DIV( mult_freq, freq );
-            if( p_div > 0x3ff )
-                p_div = 0x3ff;
-            else if( p_div != 0 )
-                p_div = p_div - 1;
-            p_mode_freq = mult_freq / ( p_div + 1 );
-            if( ABS_DIFF( freq, p_mode_freq ) < ABS_DIFF( freq, new_freq ) )
-            {
-                use_prog_mode = true;
-                div = p_div;
-                new_freq = p_mode_freq;
-            }
+            use_prog_mode = true;
+            div = p_div;
+            new_freq = p_mode_freq;
         }
+    }
 
     /* Stop both the output clock and the SDMMC internal clock */
     shval = regs->SDMMC_CCR & ~SDMMC_CCR_SDCLKEN & ~SDMMC_CCR_INTCLKEN;

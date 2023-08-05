@@ -40,10 +40,10 @@ Macro definitions
 #ifndef R_TYPEDEFS_H
 #define R_TYPEDEFS_H
 
-#define bool ( _Bool )
+#define bool  ( _Bool )
 #define false ( 0 )
-#define true ( 1 )
-#define NULL ( 0 )
+#define true  ( 1 )
+#define NULL  ( 0 )
 
 /***********************************************************************************************************************
 Typedef definitions

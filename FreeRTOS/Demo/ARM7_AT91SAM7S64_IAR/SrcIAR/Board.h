@@ -20,8 +20,8 @@
 #define __inline static inline
 #include "lib_AT91SAM7S64.h"
 
-#define true -1
-#define false 0
+#define true            -1
+#define false           0
 
 /*-------------------------------*/
 /* SAM7Board Memories Definition */

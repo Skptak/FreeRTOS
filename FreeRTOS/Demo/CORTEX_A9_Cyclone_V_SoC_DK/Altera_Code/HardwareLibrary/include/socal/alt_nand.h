@@ -1264,7 +1264,7 @@ struct ALT_NAND_CFG_PREFETCH_MOD_s
     uint32_t
         prefetch_burst_length : 12; /* ALT_NAND_CFG_PREFETCH_MOD_PREFETCH_BURST_LEN
                                      */
-    uint32_t                  : 16; /* *UNDEFINED* */
+    uint32_t : 16;                  /* *UNDEFINED* */
 };
 
 /* The typedef declaration for register ALT_NAND_CFG_PREFETCH_MOD. */
@@ -6510,13 +6510,13 @@ struct ALT_NAND_STAT_INTR_STAT0_s
     uint32_t
         pipe_cpybck_cmd_comp : 1; /* ALT_NAND_STAT_INTR_STAT0_PIPE_CPYBCK_CMD_COMP
                                    */
-    uint32_t locked_blk      : 1;  /* ALT_NAND_STAT_INTR_STAT0_LOCKED_BLK */
-    uint32_t unsup_cmd       : 1;  /* ALT_NAND_STAT_INTR_STAT0_UNSUP_CMD */
-    uint32_t INT_act         : 1;  /* ALT_NAND_STAT_INTR_STAT0_INT_ACT */
-    uint32_t rst_comp        : 1;  /* ALT_NAND_STAT_INTR_STAT0_RST_COMP */
-    uint32_t pipe_cmd_err    : 1;  /* ALT_NAND_STAT_INTR_STAT0_PIPE_CMD_ERR */
-    uint32_t page_xfer_inc   : 1;  /* ALT_NAND_STAT_INTR_STAT0_PAGE_XFER_INC */
-    uint32_t                 : 16; /* *UNDEFINED* */
+    uint32_t locked_blk    : 1;   /* ALT_NAND_STAT_INTR_STAT0_LOCKED_BLK */
+    uint32_t unsup_cmd     : 1;   /* ALT_NAND_STAT_INTR_STAT0_UNSUP_CMD */
+    uint32_t INT_act       : 1;   /* ALT_NAND_STAT_INTR_STAT0_INT_ACT */
+    uint32_t rst_comp      : 1;   /* ALT_NAND_STAT_INTR_STAT0_RST_COMP */
+    uint32_t pipe_cmd_err  : 1;   /* ALT_NAND_STAT_INTR_STAT0_PIPE_CMD_ERR */
+    uint32_t page_xfer_inc : 1;   /* ALT_NAND_STAT_INTR_STAT0_PAGE_XFER_INC */
+    uint32_t               : 16; /* *UNDEFINED* */
 };
 
 /* The typedef declaration for register ALT_NAND_STAT_INTR_STAT0. */
@@ -7902,13 +7902,13 @@ struct ALT_NAND_STAT_INTR_STAT1_s
     uint32_t
         pipe_cpybck_cmd_comp : 1; /* ALT_NAND_STAT_INTR_STAT1_PIPE_CPYBCK_CMD_COMP
                                    */
-    uint32_t locked_blk      : 1;  /* ALT_NAND_STAT_INTR_STAT1_LOCKED_BLK */
-    uint32_t unsup_cmd       : 1;  /* ALT_NAND_STAT_INTR_STAT1_UNSUP_CMD */
-    uint32_t INT_act         : 1;  /* ALT_NAND_STAT_INTR_STAT1_INT_ACT */
-    uint32_t rst_comp        : 1;  /* ALT_NAND_STAT_INTR_STAT1_RST_COMP */
-    uint32_t pipe_cmd_err    : 1;  /* ALT_NAND_STAT_INTR_STAT1_PIPE_CMD_ERR */
-    uint32_t page_xfer_inc   : 1;  /* ALT_NAND_STAT_INTR_STAT1_PAGE_XFER_INC */
-    uint32_t                 : 16; /* *UNDEFINED* */
+    uint32_t locked_blk    : 1;   /* ALT_NAND_STAT_INTR_STAT1_LOCKED_BLK */
+    uint32_t unsup_cmd     : 1;   /* ALT_NAND_STAT_INTR_STAT1_UNSUP_CMD */
+    uint32_t INT_act       : 1;   /* ALT_NAND_STAT_INTR_STAT1_INT_ACT */
+    uint32_t rst_comp      : 1;   /* ALT_NAND_STAT_INTR_STAT1_RST_COMP */
+    uint32_t pipe_cmd_err  : 1;   /* ALT_NAND_STAT_INTR_STAT1_PIPE_CMD_ERR */
+    uint32_t page_xfer_inc : 1;   /* ALT_NAND_STAT_INTR_STAT1_PAGE_XFER_INC */
+    uint32_t               : 16; /* *UNDEFINED* */
 };
 
 /* The typedef declaration for register ALT_NAND_STAT_INTR_STAT1. */
@@ -9294,13 +9294,13 @@ struct ALT_NAND_STAT_INTR_STAT2_s
     uint32_t
         pipe_cpybck_cmd_comp : 1; /* ALT_NAND_STAT_INTR_STAT2_PIPE_CPYBCK_CMD_COMP
                                    */
-    uint32_t locked_blk      : 1;  /* ALT_NAND_STAT_INTR_STAT2_LOCKED_BLK */
-    uint32_t unsup_cmd       : 1;  /* ALT_NAND_STAT_INTR_STAT2_UNSUP_CMD */
-    uint32_t INT_act         : 1;  /* ALT_NAND_STAT_INTR_STAT2_INT_ACT */
-    uint32_t rst_comp        : 1;  /* ALT_NAND_STAT_INTR_STAT2_RST_COMP */
-    uint32_t pipe_cmd_err    : 1;  /* ALT_NAND_STAT_INTR_STAT2_PIPE_CMD_ERR */
-    uint32_t page_xfer_inc   : 1;  /* ALT_NAND_STAT_INTR_STAT2_PAGE_XFER_INC */
-    uint32_t                 : 16; /* *UNDEFINED* */
+    uint32_t locked_blk    : 1;   /* ALT_NAND_STAT_INTR_STAT2_LOCKED_BLK */
+    uint32_t unsup_cmd     : 1;   /* ALT_NAND_STAT_INTR_STAT2_UNSUP_CMD */
+    uint32_t INT_act       : 1;   /* ALT_NAND_STAT_INTR_STAT2_INT_ACT */
+    uint32_t rst_comp      : 1;   /* ALT_NAND_STAT_INTR_STAT2_RST_COMP */
+    uint32_t pipe_cmd_err  : 1;   /* ALT_NAND_STAT_INTR_STAT2_PIPE_CMD_ERR */
+    uint32_t page_xfer_inc : 1;   /* ALT_NAND_STAT_INTR_STAT2_PAGE_XFER_INC */
+    uint32_t               : 16; /* *UNDEFINED* */
 };
 
 /* The typedef declaration for register ALT_NAND_STAT_INTR_STAT2. */
@@ -10686,13 +10686,13 @@ struct ALT_NAND_STAT_INTR_STAT3_s
     uint32_t
         pipe_cpybck_cmd_comp : 1; /* ALT_NAND_STAT_INTR_STAT3_PIPE_CPYBCK_CMD_COMP
                                    */
-    uint32_t locked_blk      : 1;  /* ALT_NAND_STAT_INTR_STAT3_LOCKED_BLK */
-    uint32_t unsup_cmd       : 1;  /* ALT_NAND_STAT_INTR_STAT3_UNSUP_CMD */
-    uint32_t INT_act         : 1;  /* ALT_NAND_STAT_INTR_STAT3_INT_ACT */
-    uint32_t rst_comp        : 1;  /* ALT_NAND_STAT_INTR_STAT3_RST_COMP */
-    uint32_t pipe_cmd_err    : 1;  /* ALT_NAND_STAT_INTR_STAT3_PIPE_CMD_ERR */
-    uint32_t page_xfer_inc   : 1;  /* ALT_NAND_STAT_INTR_STAT3_PAGE_XFER_INC */
-    uint32_t                 : 16; /* *UNDEFINED* */
+    uint32_t locked_blk    : 1;   /* ALT_NAND_STAT_INTR_STAT3_LOCKED_BLK */
+    uint32_t unsup_cmd     : 1;   /* ALT_NAND_STAT_INTR_STAT3_UNSUP_CMD */
+    uint32_t INT_act       : 1;   /* ALT_NAND_STAT_INTR_STAT3_INT_ACT */
+    uint32_t rst_comp      : 1;   /* ALT_NAND_STAT_INTR_STAT3_RST_COMP */
+    uint32_t pipe_cmd_err  : 1;   /* ALT_NAND_STAT_INTR_STAT3_PIPE_CMD_ERR */
+    uint32_t page_xfer_inc : 1;   /* ALT_NAND_STAT_INTR_STAT3_PAGE_XFER_INC */
+    uint32_t               : 16; /* *UNDEFINED* */
 };
 
 /* The typedef declaration for register ALT_NAND_STAT_INTR_STAT3. */
@@ -12700,7 +12700,7 @@ struct ALT_NAND_DMA_INTRLV_s
     uint32_t
         allow_int_reads_within_luns : 1; /* ALT_NAND_DMA_INTRLV_ALLOW_INT_RDS_WITHIN_LUNS
                                           */
-    uint32_t                        : 27; /* *UNDEFINED* */
+    uint32_t : 27;                       /* *UNDEFINED* */
 };
 
 /* The typedef declaration for register ALT_NAND_DMA_INTRLV. */

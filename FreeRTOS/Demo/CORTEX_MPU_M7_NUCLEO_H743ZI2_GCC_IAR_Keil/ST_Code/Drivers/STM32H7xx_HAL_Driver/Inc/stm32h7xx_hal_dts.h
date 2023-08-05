@@ -605,24 +605,24 @@ void HAL_DTS_AsyncHighCallback( DTS_HandleTypeDef * hdts );
               ( ( __CYCLE__ ) == DTS_SMP_TIME_14_CYCLE ) || \
               ( ( __CYCLE__ ) == DTS_SMP_TIME_15_CYCLE ) )
 
-    /**
-     * @}
-     */
+  /**
+   * @}
+   */
 
-    /**
-     * @}
-     */
+  /**
+   * @}
+   */
 
-    /* Private functions
-     * ---------------------------------------------------------*/
+  /* Private functions
+   * ---------------------------------------------------------*/
 
-    /**
-     * @}
-     */
+  /**
+   * @}
+   */
 
-    /**
-     * @}
-     */
+  /**
+   * @}
+   */
 
     #endif /* DTS */
 

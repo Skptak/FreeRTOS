@@ -9353,56 +9353,56 @@ typedef struct
  * ULP Advisor                                                                 *
  ******************************************************************************/
 #ifdef __TI_ARM__
-    #pragma ULP_PORT_CONFIG( 1,                        \
-                             DIR = { 0x40004C04, 8 },  \
-                             OUT = { 0x40004C02, 8 },  \
-                             SEL1 = { 0x40004C0A, 8 }, \
-                             SEL2 = { 0x40004C0C, 8 } )
-    #pragma ULP_PORT_CONFIG( 2,                        \
-                             DIR = { 0x40004C05, 8 },  \
-                             OUT = { 0x40004C03, 8 },  \
-                             SEL1 = { 0x40004C0B, 8 }, \
-                             SEL2 = { 0x40004C0D, 8 } )
-    #pragma ULP_PORT_CONFIG( 3,                        \
-                             DIR = { 0x40004C24, 8 },  \
-                             OUT = { 0x40004C22, 8 },  \
-                             SEL1 = { 0x40004C2A, 8 }, \
-                             SEL2 = { 0x40004C2C, 8 } )
-    #pragma ULP_PORT_CONFIG( 4,                        \
-                             DIR = { 0x40004C25, 8 },  \
-                             OUT = { 0x40004C23, 8 },  \
-                             SEL1 = { 0x40004C2B, 8 }, \
-                             SEL2 = { 0x40004C2D, 8 } )
-    #pragma ULP_PORT_CONFIG( 5,                        \
-                             DIR = { 0x40004C44, 8 },  \
-                             OUT = { 0x40004C42, 8 },  \
-                             SEL1 = { 0x40004C4A, 8 }, \
-                             SEL2 = { 0x40004C4C, 8 } )
-    #pragma ULP_PORT_CONFIG( 6,                        \
-                             DIR = { 0x40004C45, 8 },  \
-                             OUT = { 0x40004C43, 8 },  \
-                             SEL1 = { 0x40004C4B, 8 }, \
-                             SEL2 = { 0x40004C4D, 8 } )
-    #pragma ULP_PORT_CONFIG( 7,                        \
-                             DIR = { 0x40004C64, 8 },  \
-                             OUT = { 0x40004C62, 8 },  \
-                             SEL1 = { 0x40004C6A, 8 }, \
-                             SEL2 = { 0x40004C6C, 8 } )
-    #pragma ULP_PORT_CONFIG( 8,                        \
-                             DIR = { 0x40004C65, 8 },  \
-                             OUT = { 0x40004C63, 8 },  \
-                             SEL1 = { 0x40004C6B, 8 }, \
-                             SEL2 = { 0x40004C6D, 8 } )
-    #pragma ULP_PORT_CONFIG( 9,                        \
-                             DIR = { 0x40004C84, 8 },  \
-                             OUT = { 0x40004C82, 8 },  \
-                             SEL1 = { 0x40004C8A, 8 }, \
-                             SEL2 = { 0x40004C8C, 8 } )
-    #pragma ULP_PORT_CONFIG( 10,                       \
-                             DIR = { 0x40004C85, 8 },  \
-                             OUT = { 0x40004C83, 8 },  \
-                             SEL1 = { 0x40004C8B, 8 }, \
-                             SEL2 = { 0x40004C8D, 8 } )
+    #pragma ULP_PORT_CONFIG( 1,                            \
+                                 DIR = { 0x40004C04, 8 },  \
+                                 OUT = { 0x40004C02, 8 },  \
+                                 SEL1 = { 0x40004C0A, 8 }, \
+                                 SEL2 = { 0x40004C0C, 8 } )
+    #pragma ULP_PORT_CONFIG( 2,                            \
+                                 DIR = { 0x40004C05, 8 },  \
+                                 OUT = { 0x40004C03, 8 },  \
+                                 SEL1 = { 0x40004C0B, 8 }, \
+                                 SEL2 = { 0x40004C0D, 8 } )
+    #pragma ULP_PORT_CONFIG( 3,                            \
+                                 DIR = { 0x40004C24, 8 },  \
+                                 OUT = { 0x40004C22, 8 },  \
+                                 SEL1 = { 0x40004C2A, 8 }, \
+                                 SEL2 = { 0x40004C2C, 8 } )
+    #pragma ULP_PORT_CONFIG( 4,                            \
+                                 DIR = { 0x40004C25, 8 },  \
+                                 OUT = { 0x40004C23, 8 },  \
+                                 SEL1 = { 0x40004C2B, 8 }, \
+                                 SEL2 = { 0x40004C2D, 8 } )
+    #pragma ULP_PORT_CONFIG( 5,                            \
+                                 DIR = { 0x40004C44, 8 },  \
+                                 OUT = { 0x40004C42, 8 },  \
+                                 SEL1 = { 0x40004C4A, 8 }, \
+                                 SEL2 = { 0x40004C4C, 8 } )
+    #pragma ULP_PORT_CONFIG( 6,                            \
+                                 DIR = { 0x40004C45, 8 },  \
+                                 OUT = { 0x40004C43, 8 },  \
+                                 SEL1 = { 0x40004C4B, 8 }, \
+                                 SEL2 = { 0x40004C4D, 8 } )
+    #pragma ULP_PORT_CONFIG( 7,                            \
+                                 DIR = { 0x40004C64, 8 },  \
+                                 OUT = { 0x40004C62, 8 },  \
+                                 SEL1 = { 0x40004C6A, 8 }, \
+                                 SEL2 = { 0x40004C6C, 8 } )
+    #pragma ULP_PORT_CONFIG( 8,                            \
+                                 DIR = { 0x40004C65, 8 },  \
+                                 OUT = { 0x40004C63, 8 },  \
+                                 SEL1 = { 0x40004C6B, 8 }, \
+                                 SEL2 = { 0x40004C6D, 8 } )
+    #pragma ULP_PORT_CONFIG( 9,                            \
+                                 DIR = { 0x40004C84, 8 },  \
+                                 OUT = { 0x40004C82, 8 },  \
+                                 SEL1 = { 0x40004C8A, 8 }, \
+                                 SEL2 = { 0x40004C8C, 8 } )
+    #pragma ULP_PORT_CONFIG( 10,                           \
+                                 DIR = { 0x40004C85, 8 },  \
+                                 OUT = { 0x40004C83, 8 },  \
+                                 SEL1 = { 0x40004C8B, 8 }, \
+                                 SEL2 = { 0x40004C8D, 8 } )
 #endif
 
 #ifdef __cplusplus
