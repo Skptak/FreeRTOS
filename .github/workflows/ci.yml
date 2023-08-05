@@ -86,7 +86,7 @@ jobs:
             - name: Checkout Parent Repo
               uses: actions/checkout@v3
             - name: Run spellings check
-              uses: Skptak/CI-CD-Github-Actions/spellings@main
+              uses: Skptak/CI-CD-Github-Actions/rust-spell-check@main
               with:
                 path: ./
                 # We need to exclude all the various board demos
@@ -94,17 +94,17 @@ jobs:
                 # Then go into the child directories to run the spell check
                 exclude-dirs: portable,ThirdParty,Demo,dependency,docs,FreeRTOS-Plus
             - name: Run spellings check on Common Demos
-              uses: Skptak/CI-CD-Github-Actions/spellings@main
+              uses: Skptak/CI-CD-Github-Actions/rust-spell-check@main
               with:
                 path: ./FreeRTOS/Demo/Common
 
             - name: Run spellings check on Common Demos
-              uses: Skptak/CI-CD-Github-Actions/spellings@main
+              uses: Skptak/CI-CD-Github-Actions/rust-spell-check@main
               with:
                 path: ./FreeRTOS/Demo/Common
 
             - name: Run spellings check
-              uses: Skptak/CI-CD-Github-Actions/spellings@main
+              uses: Skptak/CI-CD-Github-Actions/rust-spell-check@main
               with:
                 path: ./FreeRTOS-Plus
 
