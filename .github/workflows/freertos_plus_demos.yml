@@ -50,10 +50,10 @@ jobs:
                   set -e
                   echo "::endgroup::"
                   if [ $exitStatus -eq 0 ]; then
-                    echo -e "${{ env.bashPass }} Cloned Submodules ${{ env.bashEnd }} "
+                    echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }} "
                   else
                     echo "::endgroup::"
-                    echo -e "${{ env.bashFail }} Submodule Clone Failed... ${{ env.bashEnd }} "
+                    echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }} "
                     exit 1
                   fi
 
@@ -84,10 +84,10 @@ jobs:
                   set -e
                   echo "::endgroup::"
                   if [ $exitStatus -eq 0 ]; then
-                    echo -e "${{ env.bashPass }} Configured FreeRTOS+Cellular Demos ${{ env.bashEnd }} "
+                    echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }} "
                   else
                     echo "::endgroup::"
-                    echo -e "${{ env.bashFail }} Failed to Configure FreeRTOS+Cellular Demos... ${{ env.bashEnd }} "
+                    echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }} "
                     exit 1
                   fi
 
@@ -172,10 +172,10 @@ jobs:
                   set -e
                   echo "::endgroup::"
                   if [ $exitStatus -eq 0 ]; then
-                    echo -e "${{ env.bashPass }} Fetch Submodules Passed ${{ env.bashEnd }} "
+                    echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }} "
                   else
                     echo "::endgroup::"
-                    echo -e "${{ env.bashFail }} Fetch Submodules Failed...... ${{ env.bashEnd }} "
+                    echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }} "
                     exit 1
                   fi
             - name: Add msbuild to PATH
@@ -211,10 +211,10 @@ jobs:
                   set -e
                   echo "::endgroup::"
                   if [ $exitStatus -eq 0 ]; then
-                    echo -e "${{ env.bashPass }} Configure coreHTTP Demos Passed ${{ env.bashEnd }} "
+                    echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }} "
                   else
                     echo "::endgroup::"
-                    echo -e "${{ env.bashFail }} Configure coreHTTP Demos Failed...... ${{ env.bashEnd }} "
+                    echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }} "
                     exit 1
                   fi
 
@@ -342,10 +342,10 @@ jobs:
                   set -e
                   echo "::endgroup::"
                   if [ $exitStatus -eq 0 ]; then
-                    echo -e "${{ env.bashPass }} Fetch Submodules Passed ${{ env.bashEnd }} "
+                    echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }} "
                   else
                     echo "::endgroup::"
-                    echo -e "${{ env.bashFail }} Fetch Submodules Failed...... ${{ env.bashEnd }} "
+                    echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }} "
                     exit 1
                   fi
 
@@ -464,10 +464,10 @@ jobs:
                   set -e
                   echo "::endgroup::"
                   if [ $exitStatus -eq 0 ]; then
-                    echo -e "${{ env.bashPass }} Fetch Submodules Passed ${{ env.bashEnd }} "
+                    echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }} "
                   else
                     echo "::endgroup::"
-                    echo -e "${{ env.bashFail }} Fetch Submodules Failed...... ${{ env.bashEnd }} "
+                    echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }} "
                     exit 1
                   fi
 
@@ -544,10 +544,10 @@ jobs:
                   set -e
                   echo "::endgroup::"
                   if [ $exitStatus -eq 0 ]; then
-                    echo -e "${{ env.bashPass }} Configure MQTT Plain Text Demo Passed ${{ env.bashEnd }} "
+                    echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }} "
                   else
                     echo "::endgroup::"
-                    echo -e "${{ env.bashFail }} Configure MQTT Plain Text Demo Failed...... ${{ env.bashEnd }} "
+                    echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }} "
                     exit 1
                   fi
 
@@ -599,10 +599,10 @@ jobs:
                   set -e
                   echo "::endgroup::"
                   if [ $exitStatus -eq 0 ]; then
-                    echo -e "${{ env.bashPass }} Configure MQTT Basic TLS Demo Passed ${{ env.bashEnd }} "
+                    echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }} "
                   else
                     echo "::endgroup::"
-                    echo -e "${{ env.bashFail }} Configure MQTT Basic TLS Demo Failed...... ${{ env.bashEnd }} "
+                    echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }} "
                     exit 1
                   fi
 
@@ -668,7 +668,7 @@ jobs:
                     set -e
                   else
                     echo "::endgroup::"
-                    echo -e "${{ env.bashFail }} Configure MQTT Mutual Authentication with mbedtls Demo Failed... ${{ env.bashEnd }} "
+                    echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }} "
                     set -e
                     exit 1
                   fi
@@ -724,7 +724,7 @@ jobs:
                     set -e
                    else
                     echo "::endgroup::"
-                    echo -e "${{ env.bashFail }} Configure MQTT Mutual Authentication with mbedtls Demo Failed... ${{ env.bashEnd }} "
+                    echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }} "
                     set -e
                     exit 1
                    fi
@@ -773,10 +773,10 @@ jobs:
                   set -e
                   echo "::endgroup::"
                   if [ $exitStatus -eq 0 ]; then
-                    echo -e "${{ env.bashPass }} Configure MQTT Serializer Demo Passed ${{ env.bashEnd }} "
+                    echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }} "
                   else
                     echo "::endgroup::"
-                    echo -e "${{ env.bashFail }} Configure MQTT Serializer Demo Failed...... ${{ env.bashEnd }} "
+                    echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }} "
                     exit 1
                   fi
 
@@ -826,10 +826,10 @@ jobs:
                   set -e
                   echo "::endgroup::"
                   if [ $exitStatus -eq 0 ]; then
-                    echo -e "${{ env.bashPass }} Configure MQTT Mutual Authentication with WolfSSL Demo Passed ${{ env.bashEnd }} "
+                    echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }} "
                   else
                     echo "::endgroup::"
-                    echo -e "${{ env.bashFail }} Configure MQTT Mutual Authentication with WolfSSL Demo Failed...... ${{ env.bashEnd }} "
+                    echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }} "
                     exit 1
                   fi
 
@@ -883,10 +883,10 @@ jobs:
                   set -e
                   echo "::endgroup::"
                   if [ $exitStatus -eq 0 ]; then
-                    echo -e "${{ env.bashPass }} Configure MQTT Multi-Task Demo Passed ${{ env.bashEnd }} "
+                    echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }} "
                   else
                     echo "::endgroup::"
-                    echo -e "${{ env.bashFail }} Configure MQTT Multi-Task Demo Failed...... ${{ env.bashEnd }} "
+                    echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }} "
                     exit 1
                   fi
 
@@ -923,10 +923,10 @@ jobs:
                   set -e
                   echo "::endgroup::"
                   if [ $exitStatus -eq 0 ]; then
-                    echo -e "${{ env.bashPass }} Configure corePKCS11_MQTT_Mutual_Auth_Windows_Simulator Passed ${{ env.bashEnd }} "
+                    echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }} "
                   else
                     echo "::endgroup::"
-                    echo -e "${{ env.bashFail }} Configure corePKCS11_MQTT_Mutual_Auth_Windows_Simulator Failed...... ${{ env.bashEnd }} "
+                    echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }} "
                     exit 1
                   fi
 
@@ -958,10 +958,10 @@ jobs:
                   set -e
                   echo "::endgroup::"
                   if [ $exitStatus -eq 0 ]; then
-                    echo -e "${{ env.bashPass }} Configure coreSNTP_Windows_Simulator Passed ${{ env.bashEnd }} "
+                    echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }} "
                   else
                     echo "::endgroup::"
-                    echo -e "${{ env.bashFail }} Configure coreSNTP_Windows_Simulator Failed...... ${{ env.bashEnd }} "
+                    echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }} "
                     exit 1
                   fi
 
@@ -1018,10 +1018,10 @@ jobs:
                   set -e
                   echo "::endgroup::"
                   if [ $exitStatus -eq 0 ]; then
-                    echo -e "${{ env.bashPass }} Fetch Submodules Passed ${{ env.bashEnd }} "
+                    echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }} "
                   else
                     echo "::endgroup::"
-                    echo -e "${{ env.bashFail }} Fetch Submodules Failed...... ${{ env.bashEnd }} "
+                    echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }} "
                     exit 1
                   fi
 
@@ -1052,10 +1052,10 @@ jobs:
                   set -e
                   echo "::endgroup::"
                   if [ $exitStatus -eq 0 ]; then
-                    echo -e "${{ env.bashPass }} Adjust Configuration files Passed ${{ env.bashEnd }} "
+                    echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }} "
                   else
                     echo "::endgroup::"
-                    echo -e "${{ env.bashFail }} Adjust Configuration files Failed...... ${{ env.bashEnd }} "
+                    echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }} "
                     exit 1
                   fi
 
@@ -1240,7 +1240,7 @@ jobs:
 
     plus_tcp_arm:
         name: FreeRTOS+TCP QEMU ARM MPS2 AN385
-        runs-on: ubuntu-20.04
+        runs-on: ubuntu-latest
         steps:
             - name: Checkout Repository
               uses: actions/checkout@v3
@@ -1429,10 +1429,10 @@ jobs:
                   set -e
                   echo "::endgroup::"
                   if [ $exitStatus -eq 0 ]; then
-                    echo -e "${{ env.bashPass }} Configure FreeRTOS+WolfSSL Demo Passed ${{ env.bashEnd }} "
+                    echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }} "
                   else
                     echo "::endgroup::"
-                    echo -e "${{ env.bashFail }} Configure FreeRTOS+WolfSSL Demo Failed...... ${{ env.bashEnd }} "
+                    echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }} "
                     exit 1
                   fi
 
@@ -1546,10 +1546,10 @@ jobs:
                   if [[ "$?" = "0" ]]
                   then
                     echo "::endgroup::"
-                    echo -e "${{ env.bashPass }} Fetch Submodules Passed ${{ env.bashEnd }} "
+                    echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }} "
                   else
                     echo "::endgroup::"
-                    echo -e "${{ env.bashFail }} Fetch Submodules Failed... ${{ env.bashEnd }} "
+                    echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }} "
                     exit 1
                   fi
 
