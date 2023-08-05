@@ -449,11 +449,11 @@ jobs:
 
             - name: Generate SSL credentials
               id: generate-credentials
-              uses: FreeRTOS/CI-CD-GitHub-Actions/ssl-credential-creator@main
+              uses: Skptak/CI-CD-Github-Actions/ssl-credential-creator@main
 
             - name: Start localhost MQTT broker
               id: mqtt-broker
-              uses: FreeRTOS/CI-CD-GitHub-Actions/localhost-mqtt-broker@main
+              uses: Skptak/CI-CD-Github-Actions/localhost-mqtt-broker@main
               with:
                   root-ca-cert-path:
                       ${{ steps.generate-credentials.outputs.root-ca-cert-path
@@ -1057,7 +1057,7 @@ jobs:
 
             - name: Start localhost Echo server
               id: echo-server
-              uses: FreeRTOS/CI-CD-GitHub-Actions/localhost-echo-server@main
+              uses: Skptak/CI-CD-Github-Actions/localhost-echo-server@main
               with:
                   port_number: 5000
 
@@ -1204,7 +1204,7 @@ jobs:
 
             - name: Start localhost Echo server
               id: echo-server
-              uses: FreeRTOS/CI-CD-GitHub-Actions/localhost-echo-server@main
+              uses: Skptak/CI-CD-Github-Actions/localhost-echo-server@main
               with:
                   port_number: 5000
 
@@ -1244,7 +1244,7 @@ jobs:
 
             - name: Generate SSL credentials
               id: generate-credentials
-              uses: FreeRTOS/CI-CD-GitHub-Actions/ssl-credential-creator@main
+              uses: Skptak/CI-CD-Github-Actions/ssl-credential-creator@main
 
             - name: Configure FreeRTOS+WolfSSL Demo
               shell: bash
