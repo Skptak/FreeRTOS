@@ -28,6 +28,8 @@
 #ifndef PARTEST_H
 #define PARTEST_H
 
+#include "FreeRTOS.h"
+
 #define partstDEFAULT_PORT_ADDRESS ( ( uint16_t ) 0x378 )
 
 void vParTestInitialise( void );
