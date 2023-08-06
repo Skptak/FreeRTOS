@@ -385,6 +385,8 @@ jobs:
                   stepName: Checkout Repository
               name: ${{ env.stepName }}
               uses: actions/checkout@v3
+              with:
+                submodules: true
 
             - env:
                   stepName: Fetch Kernel Submodule
