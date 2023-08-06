@@ -32,6 +32,9 @@ jobs:
               shell: bash
               run: |
                   # ${{ env.stepName }}
+                  echo "::error Error ${{ env.stepName }}"
+                  echo "::warn Warn ${{ env.stepName }}"
+                  echo "::notice Notice ${{ env.stepName }}"
                   echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
                   echo -e "${{ env.bashWarn }} ${{ env.stepName }} ${{ env.bashEnd }}"
                   echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
@@ -42,6 +45,9 @@ jobs:
               id: test-windows-pwsh-colours
               run: |
                   # ${{ env.stepName }}
+                  echo "::error Error ${{ env.stepName }}"
+                  echo "::warn Warn ${{ env.stepName }}"
+                  echo "::notice Notice ${{ env.stepName }}"
                   echo "${{ env.pwshPass }} ${{ env.stepName }} ${{ env.pwshEnd }}"
                   echo "${{ env.pwshWarn }} ${{ env.stepName }} ${{ env.pwshEnd }}"
                   echo "${{ env.pwshFail }} ${{ env.stepName }} ${{ env.pwshEnd }}"
