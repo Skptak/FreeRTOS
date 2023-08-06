@@ -28,6 +28,8 @@
 #ifndef COMTEST_H
 #define COMTEST_H
 
+#include "serial.h"
+
 void vAltStartComTestTasks( UBaseType_t uxPriority,
                             uint32_t ulBaudRate,
                             UBaseType_t uxLED );
