@@ -28,6 +28,8 @@
 #ifndef __GPIO_H__
 #define __GPIO_H__
 
+#include "hw_types.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
