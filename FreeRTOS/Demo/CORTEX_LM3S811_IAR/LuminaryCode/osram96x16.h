@@ -29,6 +29,8 @@
 #ifndef __OSRAM96X16_H__
 #define __OSRAM96X16_H__
 
+#include "hw_types.h"
+
 //*****************************************************************************
 //
 // Prototypes for the driver APIs.
