@@ -28,6 +28,8 @@
 #ifndef __ADC_H__
 #define __ADC_H__
 
+#include "hw_types.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif

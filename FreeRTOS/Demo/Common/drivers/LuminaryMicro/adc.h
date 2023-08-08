@@ -29,6 +29,8 @@
 #ifndef __ADC_H__
 #define __ADC_H__
 
+include "hw_types.c"
+
 //*****************************************************************************
 //
 // If building with a C++ compiler, make all of the definitions in this header
