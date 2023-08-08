@@ -75,9 +75,9 @@
 #include <stdio.h>
 
 /* FreeRTOS includes. */
+#include "FreeRTOS.h"
 #include "queue.h"
 #include "task.h"
-#include <FreeRTOS.h>
 
 /* FreeRTOS+Trace includes. */
 #include "trcDefines.h"

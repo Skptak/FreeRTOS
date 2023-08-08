@@ -31,8 +31,8 @@
  */
 
 /* FreeRTOS include. */
+#include "FreeRTOS.h"
 #include "task.h"
-#include <FreeRTOS.h>
 
 #include <stdbool.h>
 #include <stdio.h>

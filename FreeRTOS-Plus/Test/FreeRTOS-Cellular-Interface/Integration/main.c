@@ -31,8 +31,8 @@
  */
 
 /* FreeRTOS include. */
+#include "FreeRTOS.h"
 #include "task.h"
-#include <FreeRTOS.h>
 /* TCP/IP stack includes. */
 #include "FreeRTOS_IP.h"
 #include "FreeRTOS_Sockets.h"

@@ -30,8 +30,8 @@
 #include <stdio.h>
 
 /* FreeRTOS includes. */
+#include "FreeRTOS.h"
 #include "task.h"
-#include <FreeRTOS.h>
 
 /* This application is using the FreeRTOS Windows simulator, which uses the
 FreeRTOS scheduler to schedule FreeRTOS task within the Windows environment.

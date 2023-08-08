@@ -39,7 +39,7 @@
 
 /* FreeRTOS includes. */
 #include "task.h"
-#include <FreeRTOS.h>
+#include "FreeRTOS.h"
 
 /* Demo application includes. */
 #include "FreeRTOS_IP.h"

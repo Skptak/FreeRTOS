@@ -30,10 +30,10 @@
 #include <stdio.h>
 
 /* FreeRTOS includes. */
+#include "FreeRTOS.h"
 #include "queue.h"
 #include "semphr.h"
 #include "task.h"
-#include <FreeRTOS.h>
 
 /* Demo application includes. */
 #include "FreeRTOS_IP.h"

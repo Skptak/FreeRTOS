@@ -43,8 +43,8 @@
 #include <stdio.h>
 
 /* FreeRTOS includes. */
-#include "task.h"
 #include <FreeRTOS.h>
+#include "task.h"
 
 /* FreeRTOS+TCP includes. */
 #include "FreeRTOS_IP.h"

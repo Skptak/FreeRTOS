@@ -37,8 +37,8 @@
 #include <unistd.h>
 
 /* FreeRTOS includes. */
-#include "task.h"
 #include <FreeRTOS.h>
+#include "task.h"
 
 /* Demo application includes. */
 #include "FreeRTOS_IP.h"
