@@ -15201,7 +15201,7 @@ static WC_INLINE void AeadIncrementExpIV( WOLFSSL * ssl )
     int i;
     for( i = AEAD_MAX_EXP_SZ - 1; i >= 0; i-- )
     {
-        if( ++ssl->keys.aead_exp_IV[ i ] )
+        if(++ssl->keys.aead_exp_IV[ i ] )
             return;
     }
 }
@@ -16709,7 +16709,7 @@ static int DoAlert( WOLFSSL * ssl,
         ssl->options.isClosed = 1; /* Don't send close_notify */
     }
 
-    if( ++ssl->options.alertCount >= WOLFSSL_ALERT_COUNT_MAX )
+    if(++ssl->options.alertCount >= WOLFSSL_ALERT_COUNT_MAX )
     {
         WOLFSSL_MSG( "Alert count exceeded" );
     #ifdef WOLFSSL_EXTRA_ALERTS
@@ -20136,7 +20136,7 @@ int SendCertificateStatus( WOLFSSL * ssl )
                     request->ssl = ssl;
                     ret = CheckOcspRequest( ssl->ctx->cm->ocsp_stapling,
                                             request,
-                                            &responses[ ++i ] );
+                                            &responses[++i ] );
 
                     /* Suppressing, not critical */
                     if( ret == OCSP_CERT_REVOKED || ret == OCSP_CERT_UNKNOWN ||
@@ -22717,7 +22717,7 @@ int SetCipherList( WOLFSSL_CTX * ctx, Suites * suites, const char * list )
                 break;
             }
         }
-    } while( next++ ); /* ++ needed to skip ':' */
+    } while( next++ ); /*++ needed to skip ':' */
 
     if( ret )
     {

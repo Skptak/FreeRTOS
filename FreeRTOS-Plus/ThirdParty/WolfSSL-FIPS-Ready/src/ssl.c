@@ -2755,7 +2755,7 @@ int wolfSSL_UseALPN( WOLFSSL * ssl,
     /* read all protocol name from the list */
     token[ idx ] = XSTRTOK( list, ",", &ptr );
     while( idx < WOLFSSL_MAX_ALPN_NUMBER && token[ idx ] != NULL )
-        token[ ++idx ] = XSTRTOK( NULL, ",", &ptr );
+        token[++idx ] = XSTRTOK( NULL, ",", &ptr );
 
     /* add protocol name list in the TLS extension in reverse order */
     while( ( idx-- ) > 0 )
@@ -11732,12 +11732,12 @@ int wolfSSL_memsave_session_cache( void * mem, int sz )
         return BAD_MUTEX_E;
     }
 
-    for( i = 0; i < cache_header.rows; ++i )
+    for( i = 0; i < cache_header.rows;++i )
         XMEMCPY( row++, SessionCache + i, sizeof( SessionRow ) );
 
             #ifndef NO_CLIENT_CACHE
     clRow = ( ClientRow * ) row;
-    for( i = 0; i < cache_header.rows; ++i )
+    for( i = 0; i < cache_header.rows;++i )
         XMEMCPY( clRow++, ClientCache + i, sizeof( ClientRow ) );
             #endif
 
@@ -11783,12 +11783,12 @@ int wolfSSL_memrestore_session_cache( const void * mem, int sz )
         return BAD_MUTEX_E;
     }
 
-    for( i = 0; i < cache_header.rows; ++i )
+    for( i = 0; i < cache_header.rows;++i )
         XMEMCPY( SessionCache + i, row++, sizeof( SessionRow ) );
 
             #ifndef NO_CLIENT_CACHE
     clRow = ( ClientRow * ) row;
-    for( i = 0; i < cache_header.rows; ++i )
+    for( i = 0; i < cache_header.rows;++i )
         XMEMCPY( ClientCache + i, clRow++, sizeof( ClientRow ) );
             #endif
 
@@ -11841,7 +11841,7 @@ int wolfSSL_save_session_cache( const char * fname )
     }
 
     /* session cache */
-    for( i = 0; i < cache_header.rows; ++i )
+    for( i = 0; i < cache_header.rows;++i )
     {
         ret = ( int ) XFWRITE( SessionCache + i, sizeof( SessionRow ), 1, file );
         if( ret != 1 )
@@ -11854,7 +11854,7 @@ int wolfSSL_save_session_cache( const char * fname )
 
                 #ifndef NO_CLIENT_CACHE
     /* client cache */
-    for( i = 0; i < cache_header.rows; ++i )
+    for( i = 0; i < cache_header.rows;++i )
     {
         ret = ( int ) XFWRITE( ClientCache + i, sizeof( ClientRow ), 1, file );
         if( ret != 1 )
@@ -11918,7 +11918,7 @@ int wolfSSL_restore_session_cache( const char * fname )
     }
 
     /* session cache */
-    for( i = 0; i < cache_header.rows; ++i )
+    for( i = 0; i < cache_header.rows;++i )
     {
         ret = ( int ) XFREAD( SessionCache + i, sizeof( SessionRow ), 1, file );
         if( ret != 1 )
@@ -11932,7 +11932,7 @@ int wolfSSL_restore_session_cache( const char * fname )
 
                 #ifndef NO_CLIENT_CACHE
     /* client cache */
-    for( i = 0; i < cache_header.rows; ++i )
+    for( i = 0; i < cache_header.rows;++i )
     {
         ret = ( int ) XFREAD( ClientCache + i, sizeof( ClientRow ), 1, file );
         if( ret != 1 )
@@ -12096,7 +12096,7 @@ static WC_INLINE void SetCertHeaderColumns( WOLFSSL_CERT_MANAGER * cm,
 
         while( row )
         {
-            ++count;
+           ++count;
             row = row->next;
         }
         columns[ i ] = count;
@@ -12283,7 +12283,7 @@ static WC_INLINE int DoMemSaveCertCache( WOLFSSL_CERT_MANAGER * cm,
         XMEMCPY( mem, &hdr, sizeof( CertCacheHeader ) );
         current = ( byte * ) mem + sizeof( CertCacheHeader );
 
-        for( i = 0; i < CA_TABLE_SIZE; ++i )
+        for( i = 0; i < CA_TABLE_SIZE;++i )
             current += StoreCertRow( cm, current, i );
     }
 
@@ -12468,7 +12468,7 @@ int CM_MemRestoreCertCache( WOLFSSL_CERT_MANAGER * cm,
 
     FreeSignerTable( cm->caTable, CA_TABLE_SIZE, cm->heap );
 
-    for( i = 0; i < CA_TABLE_SIZE; ++i )
+    for( i = 0; i < CA_TABLE_SIZE;++i )
     {
         int added = RestoreCertRow( cm, current, i, hdr->columns[ i ], end );
         if( added < 0 )
@@ -12551,7 +12551,7 @@ static int wolfSSL_remove_ciphers( char * list, int sz, const char * toRemove )
         {
             idx += length;
         }
-    } while( next++ ); /* ++ needed to skip ':' */
+    } while( next++ ); /*++ needed to skip ':' */
 
     return totalSz;
 }
@@ -12621,7 +12621,7 @@ static int wolfSSL_parse_cipher_list( WOLFSSL_CTX * ctx,
                     wolfSSL_remove_ciphers( localList, sz, "-NULL" );
                 }
             }
-        } while( next++ ); /* ++ needed to skip ':' */
+        } while( next++ ); /*++ needed to skip ':' */
 
         ret = SetCipherList( ctx, suites, localList );
         XFREE( localList, ctx->heap, DYNAMIC_TYPE_TMP_BUFFER );
@@ -26873,7 +26873,7 @@ int wolfSSL_ASN1_INTEGER_set( WOLFSSL_ASN1_INTEGER * a, long v )
         }
 
         /* Set length */
-        a->data[ i++ ] = ( unsigned char ) ( ( j == 0 ) ? ++j : j );
+        a->data[ i++ ] = ( unsigned char ) ( ( j == 0 ) ?++j : j );
         /* +2 for type and length */
         a->length = j + 2;
 
@@ -36337,7 +36337,7 @@ static int populate_groups( int * groups, int max_count, char * list )
         return -1;
     }
 
-    for( end = list;; list = ++end )
+    for( end = list;; list =++end )
     {
         if( count > max_count )
         {

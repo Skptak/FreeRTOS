@@ -5485,7 +5485,7 @@ HAL_StatusTypeDef HAL_HRTIM_WaveformCountStart_IT( HRTIM_HandleTypeDef * hhrtim,
 HAL_StatusTypeDef HAL_HRTIM_WaveformCountStop_IT( HRTIM_HandleTypeDef * hhrtim,
                                                   uint32_t Timers )
 {
-    /* ++ WA */
+    /*++ WA */
     __IO uint32_t delai = ( uint32_t ) ( 0x17FU );
     /* -- WA */
 
@@ -5525,7 +5525,7 @@ HAL_StatusTypeDef HAL_HRTIM_WaveformCountStop_IT( HRTIM_HandleTypeDef * hhrtim,
         }
     }
 
-    /* ++ WA */
+    /*++ WA */
     do
     {
         delai--;

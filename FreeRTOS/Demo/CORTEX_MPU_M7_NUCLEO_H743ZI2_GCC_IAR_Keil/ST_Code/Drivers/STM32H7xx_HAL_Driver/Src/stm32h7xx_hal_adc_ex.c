@@ -6,16 +6,16 @@
   *          functionalities of the Analog to Digital Convertor (ADC)
   *          peripheral:
   *           + Operation functions
-  *             ++ Start, stop, get result of conversions of ADC group injected,
+  *            ++ Start, stop, get result of conversions of ADC group injected,
   *                using 2 possible modes: polling, interruption.
-  *             ++ Calibration
-  *               +++ ADC automatic self-calibration
-  *               +++ Calibration factors get or set
-  *             ++ Multimode feature when available
+  *            ++ Calibration
+  *              +++ ADC automatic self-calibration
+  *              +++ Calibration factors get or set
+  *            ++ Multimode feature when available
   *           + Control functions
-  *             ++ Channels configuration on ADC group injected
+  *            ++ Channels configuration on ADC group injected
   *           + State functions
-  *             ++ ADC group injected contexts queue management
+  *            ++ ADC group injected contexts queue management
   *          Other functions (generic functions) are available in file
   *          "stm32h7xx_hal_adc.c".
   *

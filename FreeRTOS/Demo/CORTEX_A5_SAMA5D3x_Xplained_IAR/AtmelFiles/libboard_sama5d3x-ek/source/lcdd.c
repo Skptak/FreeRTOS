@@ -1055,10 +1055,10 @@ void * LCDD_ShowBMPRotated( uint8_t bLayer,
     {
         /* No rotation optimization */
         pCfgR[ 0 ] |= LCDC_HEOCFG0_ROTDIS;
-        /* X0 ++ */
+        /* X0++ */
         if( bPStride )
             pStrR[ 1 ] = LCDC_HEOCFG6_PSTRIDE( 0 );
-        /* Y0 ++ */
+        /* Y0++ */
         pStrR[ 0 ] = LCDC_HEOCFG5_XSTRIDE( padding );
         /* Pointer to Left,Top (x0,y0) */
     }
@@ -1071,7 +1071,7 @@ void * LCDD_ShowBMPRotated( uint8_t bLayer,
         /* X1 -- */
         if( bPStride )
             pStrR[ 1 ] = LCDC_HEOCFG6_PSTRIDE( 0 - 2 * bytesPPix );
-        /* Y0 ++ */
+        /* Y0++ */
         pStrR[ 0 ] = LCDC_HEOCFG5_XSTRIDE( bytesPRow * 2 + padding -
                                            2 * bytesPPix );
         /* Pointer to Right,Top (x1,y0) */
@@ -1084,7 +1084,7 @@ void * LCDD_ShowBMPRotated( uint8_t bLayer,
     {
         /* No rotation optimization */
         pCfgR[ 0 ] |= LCDC_HEOCFG0_ROTDIS;
-        /* X0 ++ */
+        /* X0++ */
         if( bPStride )
             pStrR[ 1 ] = LCDC_HEOCFG6_PSTRIDE( 0 );
         /* Y1 -- */
@@ -1119,7 +1119,7 @@ void * LCDD_ShowBMPRotated( uint8_t bLayer,
         if( bPStride )
             pStrR[ 1 ] = LCDC_HEOCFG6_PSTRIDE(
                 0 - ( bytesPPix + bytesPRow + padding ) );
-        /* X ++ as rows */
+        /* X++ as rows */
         pStrR[ 0 ] = LCDC_HEOCFG5_XSTRIDE( ( bytesPRow + padding ) *
                                            ( imgH - 1 ) );
         /* Pointer to Bottom,Left */
@@ -1132,7 +1132,7 @@ void * LCDD_ShowBMPRotated( uint8_t bLayer,
     {
         /* No rotation optimization */
         pCfgR[ 0 ] |= LCDC_HEOCFG0_ROTDIS;
-        /* Y ++ as pixels in row */
+        /* Y++ as pixels in row */
         if( bPStride )
             pStrR[ 1 ] = LCDC_HEOCFG6_PSTRIDE( bytesPRow + padding -
                                                bytesPPix );
@@ -1167,11 +1167,11 @@ void * LCDD_ShowBMPRotated( uint8_t bLayer,
     {
         /* No rotation optimization */
         pCfgR[ 0 ] |= LCDC_HEOCFG0_ROTDIS;
-        /* Y ++ as pixels in row */
+        /* Y++ as pixels in row */
         if( bPStride )
             pStrR[ 1 ] = LCDC_HEOCFG6_PSTRIDE( bytesPRow + padding -
                                                bytesPPix );
-        /* X ++ as rows */
+        /* X++ as rows */
         pStrR[ 0 ] = LCDC_HEOCFG5_XSTRIDE( 0 - ( bytesPRow + padding ) *
                                                    ( imgH - 1 ) );
         /* Pointer to top left (x0,y0) */

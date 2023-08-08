@@ -6,16 +6,16 @@
   *          functionalities of the Analog to Digital Convertor (ADC)
   *          peripheral:
   *           + Initialization and de-initialization functions
-  *             ++ Initialization and Configuration of ADC
+  *            ++ Initialization and Configuration of ADC
   *           + Operation functions
-  *             ++ Start, stop, get result of conversions of regular
+  *            ++ Start, stop, get result of conversions of regular
   *                group, using 3 possible modes: polling, interruption or DMA.
   *           + Control functions
-  *             ++ Channels configuration on regular group
-  *             ++ Analog Watchdog configuration
+  *            ++ Channels configuration on regular group
+  *            ++ Analog Watchdog configuration
   *           + State functions
-  *             ++ ADC state machine management
-  *             ++ Interrupts and flags management
+  *            ++ ADC state machine management
+  *            ++ Interrupts and flags management
   *          Other functions (extended functions) are available in file
   *          "stm32h7xx_hal_adc_ex.c".
   *
