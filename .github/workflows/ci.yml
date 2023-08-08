@@ -1,5 +1,11 @@
 name: CI Checks
 
+env:
+  bashPass: \033[32;1mPASSED -
+  bashWarn: \033[33;1mWARNING -
+  bashFail: \033[31;1mFAILED -
+  bashEnd:  \033[0m
+
 on:
     push:
     pull_request:
@@ -29,45 +35,8 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v3
-            - name: Check formatting of WIN32-MingW Demo Directories
+            - name: Check Formatting of Files
               uses: Skptak/CI-CD-Github-Actions/formatting@main
-              with:
-                  path: ./FreeRTOS/Demo/Common/WIN32-MingW
-
-            - uses: actions/checkout@v3
-            - name: Check formatting of WIN32-MSVC Demo Directories
-              uses: Skptak/CI-CD-Github-Actions/formatting@main
-              with:
-                  path: ./FreeRTOS/Demo/Common/WIN32-MSVC
-
-            - uses: actions/checkout@v3
-            - name: Check formatting of Posix_GCC Demo Directories
-              uses: Skptak/CI-CD-Github-Actions/formatting@main
-              with:
-                  path: ./FreeRTOS/Demo/Posix_GCC
-
-            - uses: actions/checkout@v3
-            - name: Check formatting of Common Demo Directory
-              uses: Skptak/CI-CD-Github-Actions/formatting@main
-              with:
-                  path: ./FreeRTOS/Demo/Common
-
-            - name: Check formatting of Test Directory
-              uses: Skptak/CI-CD-Github-Actions/formatting@main
-              with:
-                  path: ./FreeRTOS/Test
-
-            - name: Check formatting of FreeRTOS+TCP Directory
-              uses: Skptak/CI-CD-Github-Actions/formatting@main
-              with:
-                  path: ./FreeRTOS-Plus-TCP
-
-    formatting-all:
-      runs-on: ubuntu-latest
-      steps:
-          - uses: actions/checkout@v3
-          - name: Check formatting of Common Demo Directory
-            uses: Skptak/CI-CD-Github-Actions/formatting@main
 
     doxygen:
         runs-on: ubuntu-latest
@@ -79,8 +48,7 @@ jobs:
                   path: freertos
             - name: Install Python3
               uses: actions/setup-python@v3
-              with:
-                  python-version: "3.8"
+
             - name: Download tag dependency of coreMQTT-Agent
               run: |
                   # We don't need to generate the coreMQTT docs, we only need the tag file.
@@ -115,26 +83,6 @@ jobs:
               uses: actions/checkout@v3
             - name: Run spellings check
               uses: Skptak/CI-CD-Github-Actions/rust-spell-check@main
-              with:
-                path: ./
-                # We need to exclude all the various board demos
-                # So run this one for the parent directory
-                # Then go into the child directories to run the spell check
-                exclude-dirs: portable,ThirdParty,Demo,dependency,docs,FreeRTOS-Plus
-            - name: Run spellings check on Common Demos
-              uses: Skptak/CI-CD-Github-Actions/rust-spell-check@main
-              with:
-                path: ./FreeRTOS/Demo/Common
-
-            - name: Run spellings check on Common Demos
-              uses: Skptak/CI-CD-Github-Actions/rust-spell-check@main
-              with:
-                path: ./FreeRTOS/Demo/Common
-
-            - name: Run spellings check
-              uses: Skptak/CI-CD-Github-Actions/rust-spell-check@main
-              with:
-                path: ./FreeRTOS-Plus
 
     verify-manifest:
         runs-on: ubuntu-latest
@@ -194,12 +142,19 @@ jobs:
         runs-on: cbmc_ubuntu-latest_16-core
         steps:
             - uses: actions/checkout@v3
-            - run: |
+            - env:
+                stepName: Install Dependencies
+              run: |
+                  echo "::group::${{ env.stepName }}"
                   git submodule update --init --checkout --recursive --depth 1
                   sudo apt-get update
                   sudo apt-get install --yes --no-install-recommends gcc-multilib
+                  echo "::endgroup::"
+                  echo -e "${{ env.bashPass }} ${{env.stepName}} ${{ env.bashEnd }}"
+
             - name: Set up CBMC runner
               uses: skptak/CI-CD-GitHub-Actions/set_up_cbmc_runner@main
+
             - name: Run CBMC
               uses: skptak/CI-CD-GitHub-Actions/run_cbmc@main
               with:
