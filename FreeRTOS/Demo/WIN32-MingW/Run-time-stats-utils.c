@@ -38,7 +38,7 @@
  */
 
 /* FreeRTOS includes. */
-#include <FreeRTOS.h>
+#include "FreeRTOS.h"
 
 /* Variables used in the creation of the run time stats time base.  Run time
 stats record how much time each task spends in the Running state. */

@@ -26,7 +26,7 @@
  */
 
 /* FreeRTOS kernel includes. */
-#include <FreeRTOS.h>
+#include "FreeRTOS.h"
 #include <queue.h>
 #include <task.h>
 

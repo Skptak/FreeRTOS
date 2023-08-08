@@ -48,7 +48,7 @@
 #include <ti/drivers/dpl/ClockP.h>
 #include <ti/drivers/power/PowerCC32XX.h>
 
-#include <FreeRTOS.h>
+#include "FreeRTOS.h"
 #include <portmacro.h>
 #include <task.h>
 

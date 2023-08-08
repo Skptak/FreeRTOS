@@ -37,7 +37,7 @@
 #include <ti/drivers/dpl/HwiP.h>
 #include <ti/drivers/dpl/SemaphoreP.h>
 
-#include <FreeRTOS.h>
+#include "FreeRTOS.h"
 #include <queue.h>
 #include <semphr.h>
 

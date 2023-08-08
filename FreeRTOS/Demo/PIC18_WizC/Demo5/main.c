@@ -59,7 +59,7 @@ Changes from V3.0.1
  */
 
 /* Scheduler include files. */
-#include <FreeRTOS.h>
+#include "FreeRTOS.h"
 #include <task.h>
 
 /* Demo app include files. */

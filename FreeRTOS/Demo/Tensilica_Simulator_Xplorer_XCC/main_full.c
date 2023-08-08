@@ -61,7 +61,7 @@
 #include <stdlib.h>
 
 /* Kernel includes. */
-#include <FreeRTOS.h>
+#include "FreeRTOS.h"
 #include <queue.h>
 #include <semphr.h>
 #include <task.h>

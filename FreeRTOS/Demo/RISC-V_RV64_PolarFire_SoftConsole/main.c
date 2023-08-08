@@ -49,7 +49,7 @@
  */
 
 /* FreeRTOS kernel includes. */
-#include <FreeRTOS.h>
+#include "FreeRTOS.h"
 #include <task.h>
 
 /* PolarFire HAL includes. */

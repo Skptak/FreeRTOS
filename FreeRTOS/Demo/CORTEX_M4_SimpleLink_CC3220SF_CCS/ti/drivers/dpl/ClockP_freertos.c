@@ -34,7 +34,7 @@
  *  ======== ClockP_freertos.c ========
  */
 
-#include <FreeRTOS.h>
+#include "FreeRTOS.h"
 #include <ti/drivers/dpl/ClockP.h>
 #include <timers.h>
 

@@ -55,7 +55,7 @@ Changes from V3.0.1
  */
 
 /* Scheduler include files. */
-#include <FreeRTOS.h>
+#include "FreeRTOS.h"
 #include <task.h>
 
 #define mainBLINK_LED_INTERVAL ( ( TickType_t ) 100 / ( portTICK_PERIOD_MS ) )

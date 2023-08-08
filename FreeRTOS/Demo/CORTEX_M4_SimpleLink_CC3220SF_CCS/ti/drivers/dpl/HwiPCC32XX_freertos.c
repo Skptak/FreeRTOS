@@ -38,7 +38,7 @@
  *  the documentation page and demo application for the RTOS port being used.
  */
 
-#include <FreeRTOS.h>
+#include "FreeRTOS.h"
 #include <portmacro.h>
 #include <stdbool.h>
 #include <task.h>

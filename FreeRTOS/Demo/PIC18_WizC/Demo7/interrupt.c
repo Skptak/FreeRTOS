@@ -39,7 +39,7 @@ Changes from V3.0.1
 #include <pic.h>
 
 /* Scheduler include files. */
-#include <FreeRTOS.h>
+#include "FreeRTOS.h"
 #include <queue.h>
 #include <task.h>
 

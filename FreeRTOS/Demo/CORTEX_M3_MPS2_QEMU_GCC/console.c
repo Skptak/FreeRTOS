@@ -32,7 +32,7 @@
 #include <stdarg.h>
 #include <stdio.h>
 
-#include <FreeRTOS.h>
+#include "FreeRTOS.h"
 #include <semphr.h>
 
 SemaphoreHandle_t xStdioMutex;

@@ -43,7 +43,7 @@
 #include "utils\system_common.h"
 
 /* FreeRTOS.org includes. */
-#include <FreeRTOS.h>
+#include "FreeRTOS.h"
 #include <semphr.h>
 #include <task.h>
 
