@@ -85,18 +85,18 @@ jobs:
               uses: Skptak/CI-CD-Github-Actions/rust-spell-check@main
 
     verify-manifest:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v3
-              with:
-                  submodules: true
-                  fetch-depth: 0
-            - name: Run manifest verifier
-              uses: skptak/CI-CD-GitHub-Actions/manifest-verifier@main
-              with:
-                  path: ./
-                  exclude-submodules: FreeRTOS-Plus/Test/CMock,FreeRTOS/Test/CMock/CMock,FreeRTOS/Test/litani
-                  fail-on-incorrect-version: true
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v3
+          with:
+            submodules: true
+            fetch-depth: 0
+        - name: Run manifest verifier
+          uses: skptak/CI-CD-GitHub-Actions/manifest-verifier@main
+          with:
+            path: ./
+            exclude-submodules: FreeRTOS-Plus/Test/CMock,FreeRTOS/Test/CMock/CMock,FreeRTOS/Test/litani
+            fail-on-incorrect-version: true
 
     memory-statistics:
         runs-on: ubuntu-latest
@@ -136,6 +136,15 @@ jobs:
                   name: freertos-memory-estimates
                   path: ./freertos_lts_memory_estimates.json
                   retention-days: 2
+
+    link-verifier:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v3
+        - name: Check Links
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          uses: Skptak/CI-CD-Github-Actions/link-verifier@main
 
     proof_ci:
         if: ${{ github.event.pull_request }}
