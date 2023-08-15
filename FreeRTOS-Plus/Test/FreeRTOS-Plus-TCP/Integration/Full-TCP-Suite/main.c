@@ -30,8 +30,8 @@
  */
 
 /* FreeRTOS include. */
+#include "FreeRTOS.h"
 #include "task.h"
-#include <FreeRTOS.h>
 
 /* Standard includes. */
 #include <conio.h>

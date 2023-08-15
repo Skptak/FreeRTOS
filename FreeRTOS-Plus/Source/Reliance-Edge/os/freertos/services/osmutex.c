@@ -25,7 +25,7 @@
 /** @file
     @brief Implements a synchronization object to provide mutual exclusion.
 */
-#include <FreeRTOS.h>
+#include "FreeRTOS.h"
 #include <semphr.h>
 
 #include <redfs.h>

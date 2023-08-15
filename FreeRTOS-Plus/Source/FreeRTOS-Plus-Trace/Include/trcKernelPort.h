@@ -11,7 +11,7 @@
 #ifndef TRC_KERNEL_PORT_H
 #define TRC_KERNEL_PORT_H
 
-#include <FreeRTOS.h> /* Defines configUSE_TRACE_FACILITY */
+#include "FreeRTOS.h" /* Defines configUSE_TRACE_FACILITY */
 #include <trcDefines.h>
 
 #ifdef __cplusplus

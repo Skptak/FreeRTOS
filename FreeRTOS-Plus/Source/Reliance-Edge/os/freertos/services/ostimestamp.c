@@ -28,7 +28,7 @@
     The functionality implemented herein is not needed for the file system
     driver, only to provide accurate results with performance tests.
 */
-#include <FreeRTOS.h>
+#include "FreeRTOS.h"
 #include <task.h>
 
 #include <redfs.h>

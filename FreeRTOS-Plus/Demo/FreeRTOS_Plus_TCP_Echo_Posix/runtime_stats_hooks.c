@@ -40,7 +40,7 @@
 #include <time.h>
 
 /* FreeRTOS includes. */
-#include <FreeRTOS.h>
+#include "FreeRTOS.h"
 
 /* Time at start of day (in ns). */
 static unsigned long ulStartTimeNs;

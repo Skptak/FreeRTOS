@@ -37,7 +37,7 @@
 #include <unistd.h>
 
 /* FreeRTOS includes. */
-#include <FreeRTOS.h>
+#include "FreeRTOS.h"
 #include "task.h"
 
 /* Demo application includes. */

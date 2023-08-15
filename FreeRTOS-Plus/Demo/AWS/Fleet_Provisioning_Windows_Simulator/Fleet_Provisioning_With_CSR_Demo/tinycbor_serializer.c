@@ -26,7 +26,7 @@
  */
 
 /* FreeRTOS includes. */
-#include <FreeRTOS.h>
+#include "FreeRTOS.h"
 
 /* TinyCBOR library for CBOR encoding and decoding operations. */
 #include "cbor.h"
