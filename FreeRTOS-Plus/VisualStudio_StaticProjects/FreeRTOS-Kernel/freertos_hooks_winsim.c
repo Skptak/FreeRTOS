@@ -33,9 +33,11 @@
  * should an assert get hit. */
 #include <intrin.h>
 
+/* Include before wincrypt.h */
+#include <windows.h>
+
 /* Windows Crypt api for uxRand() */
 #include <wincrypt.h>
-#include <windows.h>
 
 /* FreeRTOS includes. */
 #include "FreeRTOS.h"

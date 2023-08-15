@@ -233,8 +233,11 @@ int ( *mbedtls_mutex_unlock )( mbedtls_threading_mutex_t * mutex ) =
     #endif
 
     #if defined( RNG_SOURCE_WINDOWS_CRYPT )
-        #include <wincrypt.h>
         #include <windows.h>
+
+        /* Include after windows.h */
+        #include <wincrypt.h>
+
 int mbedtls_hardware_poll( void * data,
                            unsigned char * output,
                            size_t len,
