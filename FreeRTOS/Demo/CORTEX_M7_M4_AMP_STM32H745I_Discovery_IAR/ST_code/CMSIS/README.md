@@ -38,7 +38,7 @@ pull requests for contributions.
     -   Adoption of IAR Flash Loader technology
 
 For further details see also the
-[Slides of the Embedded World CMSIS Partner Meeting](https://github.com/ARM-software/CMSIS_5/blob/master/CMSIS_EW2016.pdf).
+[Slides of the Embedded World CMSIS Partner Meeting](https://github.com/ARM-software/CMSIS_5/blob/5.0.0/CMSIS_EW2016.pdf).
 
 ## Directory Structure
 

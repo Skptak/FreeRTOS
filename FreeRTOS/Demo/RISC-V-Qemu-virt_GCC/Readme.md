@@ -200,5 +200,5 @@ You'll need to swap the `-march` flag from `-march=rv32ima` to
 
 If you receive this error while linking, add the `-no-pie` flag to your linker
 flags. See
-https://man.archlinux.org/man/community/riscv64-elf-binutils/riscv64-elf-ld.1.en#no~24
+https://man.archlinux.org/man/extra/riscv64-elf-binutils/riscv64-elf-ld.1.en#no~24
 for more.

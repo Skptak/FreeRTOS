@@ -27,4 +27,4 @@ manually add external tool, and it does not have debug capability.
 -   Board details
     https://www.microchip.com/DevelopmentTools/ProductDetails/atmega328pb-xmini
 -   Development environment
-    https://www.microchip.com/mplab/avr-support/atmel-studio-7
+    https://microchipdeveloper.com/atstudio:studio7intro

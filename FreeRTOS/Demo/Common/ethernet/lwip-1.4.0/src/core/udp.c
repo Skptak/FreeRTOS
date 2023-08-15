@@ -950,7 +950,7 @@ err_t udp_bind( struct udp_pcb * pcb, ip_addr_t * ipaddr, u16_t port )
     if( port == 0 )
     {
     #ifndef UDP_LOCAL_PORT_RANGE_START
-        /* From http://www.iana.org/assignments/port-numbers:
+        /* From http://www.iana.org/assignments/port-numbers
            "The Dynamic and/or Private Ports are those from 49152 through 65535"
          */
         #define UDP_LOCAL_PORT_RANGE_START 0xc000

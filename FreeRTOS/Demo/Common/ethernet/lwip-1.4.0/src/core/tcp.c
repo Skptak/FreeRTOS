@@ -665,7 +665,7 @@ static u16_t tcp_new_port( void )
     int i;
     struct tcp_pcb * pcb;
     #ifndef TCP_LOCAL_PORT_RANGE_START
-        /* From http://www.iana.org/assignments/port-numbers:
+        /* From http://www.iana.org/assignments/port-numbers
            "The Dynamic and/or Private Ports are those from 49152 through 65535"
          */
         #define TCP_LOCAL_PORT_RANGE_START 0xc000
