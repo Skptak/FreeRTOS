@@ -66,26 +66,6 @@ jobs:
                   fi
 
             - env:
-                  stepName: Build CORTEX_MPU_M3_MPS2_QEMU_GCC Demo
-              name: ${{ env.stepName }}
-              shell: bash
-              working-directory: FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC
-              run: |
-                  # ${{ env.stepName }}
-                  echo "::group::${{ env.stepName }}"
-                  set +e
-                  make -j
-                  exitStatus=$?
-                  set -e
-                  echo "::endgroup::"
-                  if [ $exitStatus -eq 0 ]; then
-                    echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
-                  else
-                    echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
-                    exit 1
-                  fi
-
-            - env:
                   stepName: Build Qemu Runner File
               name: ${{ env.stepName }}
               shell: bash
@@ -122,7 +102,6 @@ jobs:
                     echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
                     exit 1
                   fi
-
             - env:
                   stepName: Run and monitor CORTEX_MPS2_QEMU_IAR_GCC Demo
               name: ${{ env.stepName }}
@@ -132,6 +111,38 @@ jobs:
                   timeout-seconds: 20
                   success-line: "Message received from software timer"
                   retry-attempts: 1
+
+            - env:
+                  stepName: Raw Run CORTEX_MPS2_QEMU_IAR_GCC Demo
+              name: ${{ env.stepName }}
+              shell: bash
+              if: success() || failure()
+              working-directory: FreeRTOS/Demo/CORTEX_MPS2_QEMU_IAR_GCC
+              run: |
+                  # ${{ env.stepName }}
+                  echo "::group::${{ env.stepName }}"
+                  sudo qemu-system-arm -machine mps2-an385 -monitor null -semihosting --semihosting-config enable=on,target=native -serial stdio -nographic -kernel build/gcc/output/RTOSDemo.out &
+                  sleep 10
+                  qemu-system-arm -machine mps2-an385 -monitor null -semihosting --semihosting-config enable=on,target=native -serial stdio -nographic -kernel build/gcc/output/RTOSDemo.out &
+            - env:
+                  stepName: Build CORTEX_MPU_M3_MPS2_QEMU_GCC Demo
+              name: ${{ env.stepName }}
+              shell: bash
+              working-directory: FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC
+              run: |
+                  # ${{ env.stepName }}
+                  echo "::group::${{ env.stepName }}"
+                  set +e
+                  make -j
+                  exitStatus=$?
+                  set -e
+                  echo "::endgroup::"
+                  if [ $exitStatus -eq 0 ]; then
+                    echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
+                  else
+                    echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
+                    exit 1
+                  fi
 
             - env:
                   stepName: Build CORTEX_LM3S102_GCC Demo

@@ -197,5 +197,6 @@ dependencies:
       repository:
           type: "git"
           url: " https://github.com/ThrowTheSwitch/CMock.git"
-          path: "FreeRTOS/Test/CMock"
+          path: "FreeRTOS/Test/CMock/CMock"
+
 license: "MIT"
