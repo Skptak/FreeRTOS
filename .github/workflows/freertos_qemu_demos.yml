@@ -93,6 +93,7 @@ jobs:
                   # ${{ env.stepName }}
                   echo "::group::${{ env.stepName }}"
                   gcc qemu_reader.c -o ../../FreeRTOS/Demo/CORTEX_MPS2_QEMU_IAR_GCC/qemu_reader.out
+                  exitStatus=$?
                   echo "::endgroup::"
                   if [ $exitStatus -eq 0 ]; then
                     echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
@@ -102,11 +103,11 @@ jobs:
                   fi
 
             - env:
-                  stepName: Run and monitor CORTEX_MPU_M3_MPS2_QEMU_GCC Demo
+                  stepName: Run and monitor CORTEX_MPS2_QEMU_IAR_GCC Demo
               name: ${{ env.stepName }}
               uses: Skptak/CI-CD-GitHub-Actions/executable-monitor@main
               with:
-                  exe-path: FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC/qemu_reader.out
+                  exe-path: FreeRTOS/Demo/CORTEX_MPS2_QEMU_IAR_GCC/qemu_reader.out
                   timeout-seconds: 20
                   success-line: "Message received from software timer"
                   retry-attempts: 1
