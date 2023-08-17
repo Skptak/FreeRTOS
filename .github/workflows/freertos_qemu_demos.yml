@@ -102,6 +102,26 @@ jobs:
                     echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
                     exit 1
                   fi
+            - env:
+                  stepName: Build CORTEX_MPS2_QEMU_IAR_GCC Demo
+              name: ${{ env.stepName }}
+              shell: bash
+              working-directory: FreeRTOS/Demo/CORTEX_MPS2_QEMU_IAR_GCC
+              run: |
+                  # ${{ env.stepName }}
+                  echo "::group::${{ env.stepName }}"
+                  set +e
+                  make -C build/gcc clean;
+                  make -C build/gcc -j;
+                  exitStatus=$?
+                  set -e
+                  echo "::endgroup::"
+                  if [ $exitStatus -eq 0 ]; then
+                    echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
+                  else
+                    echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
+                    exit 1
+                  fi
 
             - env:
                   stepName: Run and monitor CORTEX_MPS2_QEMU_IAR_GCC Demo
