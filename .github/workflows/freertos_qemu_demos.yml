@@ -54,6 +54,7 @@ jobs:
                   set +e
                   sudo apt-get -y update
                   sudo apt-get -y install gcc-arm-none-eabi build-essential cmake git ninja-build python3-minimal
+                  sudo apt-get -y install qemu-system-arm qemu-efi
                   exitStatus=$?
                   set -e
                   echo "::endgroup::"
