@@ -185,4 +185,17 @@ dependencies:
           url: "https://github.com/intel/tinycbor.git"
           path: "FreeRTOS-Plus/ThirdParty/tinycbor"
 
+    - name: "CMock"
+      version: "v2.5.2"
+      repository:
+          type: "git"
+          url: " https://github.com/ThrowTheSwitch/CMock.git"
+          path: "FreeRTOS-Plus/Test/CMock"
+
+    - name: "CMock"
+      version: "v2.5.2"
+      repository:
+          type: "git"
+          url: " https://github.com/ThrowTheSwitch/CMock.git"
+          path: "FreeRTOS/Test/CMock"
 license: "MIT"
