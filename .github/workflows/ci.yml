@@ -82,7 +82,7 @@ jobs:
             - name: Checkout Parent Repo
               uses: actions/checkout@v3
             - name: Run spellings check
-              Uses: FreeRTOS/CI-CD-GitHub-Actions//rust-spell-check@CI-CD-Overhaul
+              uses: FreeRTOS/CI-CD-GitHub-Actions/rust-spell-check@CI-CD-Overhaul
 
     verify-manifest:
       runs-on: ubuntu-latest
