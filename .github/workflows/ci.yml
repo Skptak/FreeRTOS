@@ -58,7 +58,7 @@ jobs:
                   "https://freertos.org/Documentation/api-ref/coreMQTT/docs/doxygen/output/mqtt.tag"
 
             - name: Generate doxygen ZIP
-              uses: skptak/CI-CD-GitHub-Actions/doxygen@main
+              uses: FreeRTOS/CI-CD-Github-Actions/doxygen@CI-CD-Overhaul
               with:
                   path: ./freertos
                   # List of directories containing libraries whose doxygen output will be generated.
@@ -143,7 +143,7 @@ jobs:
         - name: Check Links
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          uses: Skptak/CI-CD-Github-Actions/link-verifier@main
+          uses: FreeRTOS/CI-CD-Github-Actions/link-verifier@CI-CD-Overhaul
 
     proof_ci:
         if: ${{ github.event.pull_request }}
@@ -161,9 +161,9 @@ jobs:
                   echo -e "${{ env.bashPass }} ${{env.stepName}} ${{ env.bashEnd }}"
 
             - name: Set up CBMC runner
-              uses: skptak/CI-CD-GitHub-Actions/set_up_cbmc_runner@main
+              uses: FreeRTOS/CI-CD-Github-Actions/set_up_cbmc_runner@CI-CD-Overhaul
 
             - name: Run CBMC
-              uses: skptak/CI-CD-GitHub-Actions/run_cbmc@main
+              uses: FreeRTOS/CI-CD-Github-Actions/run_cbmc@CI-CD-Overhaul
               with:
                   proofs_dir: FreeRTOS/Test/CBMC/proofs

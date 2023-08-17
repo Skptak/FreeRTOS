@@ -106,7 +106,7 @@ jobs:
             - env:
                   stepName: Run and monitor CORTEX_MPS2_QEMU_IAR_GCC Demo
               name: ${{ env.stepName }}
-              uses: Skptak/CI-CD-GitHub-Actions/executable-monitor@main
+              uses: FreeRTOS/CI-CD-Github-Actions/executable-monitor@CI-CD-Overhaul
               with:
                   exe-path: FreeRTOS/Demo/CORTEX_MPS2_QEMU_IAR_GCC/qemu_reader.out
                   timeout-seconds: 20
