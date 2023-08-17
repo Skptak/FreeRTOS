@@ -92,10 +92,9 @@ jobs:
             submodules: true
             fetch-depth: 0
         - name: Run manifest verifier
-          uses: skptak/CI-CD-GitHub-Actions/manifest-verifier@main
+          uses: FreeRTOS/CI-CD-GitHub-Actions/manifest-verifier@main
           with:
             path: ./
-            exclude-submodules: FreeRTOS-Plus/Test/CMock,FreeRTOS/Test/CMock/CMock,FreeRTOS/Test/litani
             fail-on-incorrect-version: true
 
     memory-statistics:
