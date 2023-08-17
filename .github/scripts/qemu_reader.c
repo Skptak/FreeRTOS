@@ -31,22 +31,6 @@ int main( int argc, char * argv[] )
         printf( "%s", path );
     }
 
-
-    sprintf(cmd, "sudo qemu-system-arm -machine mps2-an385 -monitor null -semihosting --semihosting-config enable=on,target=native -serial stdio -nographic -kernel %s", path);
-    printf("cmd= %s\n", cmd);
-    fp = popen( cmd, "r" );
-    if( fp == NULL )
-    {
-        printf( "Failed to run command\n" );
-        exit( 1 );
-    }
-
-    /* Read the output a line at a time - output it. */
-    while( fgets( path, sizeof( path ), fp ) != NULL )
-    {
-        printf( "%s", path );
-    }
-
     /* close */
     pclose( fp );
 
