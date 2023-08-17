@@ -6,11 +6,19 @@ int main( int argc, char * argv[] )
     setvbuf( stdout, NULL, _IONBF, 0 );
     FILE * fp;
     char path[ 256 ];
+    char cmd[ 256 ];
 
     /* Open the command for reading. */
-    char * cmd = "sudo qemu-system-arm -machine mps2-an385 -monitor null \
-                -semihosting --semihosting-config enable=on,target=native -kernel \
-                ./build/gcc/output/RTOSDemo.out -serial stdio -nographic";
+    fp = popen("find . -name RTOSDemo.out", "r");
+        /* Read the output a line at a time - output it. */
+    while( fgets( path, sizeof( path ), fp ) != NULL )
+    {
+        printf( "Path: %s\n", path );
+    }
+
+    sprintf(cmd, "sudo qemu-system-arm -machine mps2-an385 -monitor null -semihosting --semihosting-config enable=on,target=native -serial stdio -nographic -kernel %s", path);
+    printf("cmd= %s\n", cmd);
+    return 0;
     fp = popen( cmd, "r" );
     if( fp == NULL )
     {
