@@ -1,6 +1,7 @@
 name: "FreeRTOS"
 version: "202212.00"
 description: "This is the standard distribution of FreeRTOS."
+license: "MIT"
 
 dependencies:
     - name: "FreeRTOS-Kernel"
@@ -191,12 +192,3 @@ dependencies:
           type: "git"
           url: " https://github.com/ThrowTheSwitch/CMock.git"
           path: "FreeRTOS-Plus/Test/CMock"
-
-    - name: "CMock"
-      version: "v2.5.2"
-      repository:
-          type: "git"
-          url: " https://github.com/ThrowTheSwitch/CMock.git"
-          path: "FreeRTOS/Test/CMock/CMock"
-
-license: "MIT"
