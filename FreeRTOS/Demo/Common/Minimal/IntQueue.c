@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -51,102 +52,107 @@
 #include "IntQueue.h"
 #include "IntQueueTimer.h"
 
-#if ( INCLUDE_eTaskGetState != 1 )
+#if( INCLUDE_eTaskGetState != 1 )
     #error INCLUDE_eTaskGetState must be set to 1 in FreeRTOSConfig.h to use this demo file.
 #endif
 
 /* Priorities used by test tasks. */
 #ifndef intqHIGHER_PRIORITY
-    #define intqHIGHER_PRIORITY          ( configMAX_PRIORITIES - 2 )
+    #define intqHIGHER_PRIORITY ( configMAX_PRIORITIES - 2 )
 #endif
-#define intqLOWER_PRIORITY               ( tskIDLE_PRIORITY )
+#define intqLOWER_PRIORITY            ( tskIDLE_PRIORITY )
 
 /* The number of values to send/receive before checking that all values were
  * processed as expected. */
-#define intqNUM_VALUES_TO_LOG            ( 200 )
-#define intqSHORT_DELAY                  ( 140 )
+#define intqNUM_VALUES_TO_LOG         ( 200 )
+#define intqSHORT_DELAY               ( 140 )
 
 /* The value by which the value being sent to or received from a queue should
- * increment past intqNUM_VALUES_TO_LOG before we check that all values have been
- * sent/received correctly.  This is done to ensure that all tasks and interrupts
- * accessing the queue have completed their accesses with the
+ * increment past intqNUM_VALUES_TO_LOG before we check that all values have
+ * been sent/received correctly.  This is done to ensure that all tasks and
+ * interrupts accessing the queue have completed their accesses with the
  * intqNUM_VALUES_TO_LOG range. */
-#define intqVALUE_OVERRUN                ( 50 )
+#define intqVALUE_OVERRUN             ( 50 )
 
 /* The delay used by the polling task.  A short delay is used for code
  * coverage. */
-#define intqONE_TICK_DELAY               ( 1 )
+#define intqONE_TICK_DELAY            ( 1 )
 
 /* Each task and interrupt is given a unique identifier.  This value is used to
  * identify which task sent or received each value.  The identifier is also used
  * to distinguish between two tasks that are running the same task function. */
-#define intqHIGH_PRIORITY_TASK1          ( ( UBaseType_t ) 1 )
-#define intqHIGH_PRIORITY_TASK2          ( ( UBaseType_t ) 2 )
-#define intqLOW_PRIORITY_TASK            ( ( UBaseType_t ) 3 )
-#define intqFIRST_INTERRUPT              ( ( UBaseType_t ) 4 )
-#define intqSECOND_INTERRUPT             ( ( UBaseType_t ) 5 )
-#define intqQUEUE_LENGTH                 ( ( UBaseType_t ) 10 )
+#define intqHIGH_PRIORITY_TASK1       ( ( UBaseType_t ) 1 )
+#define intqHIGH_PRIORITY_TASK2       ( ( UBaseType_t ) 2 )
+#define intqLOW_PRIORITY_TASK         ( ( UBaseType_t ) 3 )
+#define intqFIRST_INTERRUPT           ( ( UBaseType_t ) 4 )
+#define intqSECOND_INTERRUPT          ( ( UBaseType_t ) 5 )
+#define intqQUEUE_LENGTH              ( ( UBaseType_t ) 10 )
 
 /* At least intqMIN_ACCEPTABLE_TASK_COUNT values should be sent to/received
  * from each queue by each task, otherwise an error is detected. */
-#define intqMIN_ACCEPTABLE_TASK_COUNT    ( 5 )
+#define intqMIN_ACCEPTABLE_TASK_COUNT ( 5 )
 
 /* Send the next value to the queue that is normally empty.  This is called
  * from within the interrupts. */
-#define timerNORMALLY_EMPTY_TX()                                                                                                          \
-    if( xQueueIsQueueFullFromISR( xNormallyEmptyQueue ) != pdTRUE )                                                                       \
-    {                                                                                                                                     \
-        UBaseType_t uxSavedInterruptStatus;                                                                                               \
-        uxSavedInterruptStatus = taskENTER_CRITICAL_FROM_ISR();                                                                           \
-        {                                                                                                                                 \
-            uxValueForNormallyEmptyQueue++;                                                                                               \
-            if( xQueueSendFromISR( xNormallyEmptyQueue, ( void * ) &uxValueForNormallyEmptyQueue, &xHigherPriorityTaskWoken ) != pdPASS ) \
-            {                                                                                                                             \
-                uxValueForNormallyEmptyQueue--;                                                                                           \
-            }                                                                                                                             \
-        }                                                                                                                                 \
-        taskEXIT_CRITICAL_FROM_ISR( uxSavedInterruptStatus );                                                                             \
-    }                                                                                                                                     \
-
+#define timerNORMALLY_EMPTY_TX()                                             \
+    if( xQueueIsQueueFullFromISR( xNormallyEmptyQueue ) != pdTRUE )          \
+    {                                                                        \
+        UBaseType_t uxSavedInterruptStatus;                                  \
+        uxSavedInterruptStatus = taskENTER_CRITICAL_FROM_ISR();              \
+        {                                                                    \
+            uxValueForNormallyEmptyQueue++;                                  \
+            if( xQueueSendFromISR( xNormallyEmptyQueue,                      \
+                                   ( void * ) &uxValueForNormallyEmptyQueue, \
+                                   &xHigherPriorityTaskWoken ) != pdPASS )   \
+            {                                                                \
+                uxValueForNormallyEmptyQueue--;                              \
+            }                                                                \
+        }                                                                    \
+        taskEXIT_CRITICAL_FROM_ISR( uxSavedInterruptStatus );                \
+    }
 
 /* Send the next value to the queue that is normally full.  This is called
  * from within the interrupts. */
-#define timerNORMALLY_FULL_TX()                                                                                                         \
-    if( xQueueIsQueueFullFromISR( xNormallyFullQueue ) != pdTRUE )                                                                      \
-    {                                                                                                                                   \
-        UBaseType_t uxSavedInterruptStatus;                                                                                             \
-        uxSavedInterruptStatus = taskENTER_CRITICAL_FROM_ISR();                                                                         \
-        {                                                                                                                               \
-            uxValueForNormallyFullQueue++;                                                                                              \
-            if( xQueueSendFromISR( xNormallyFullQueue, ( void * ) &uxValueForNormallyFullQueue, &xHigherPriorityTaskWoken ) != pdPASS ) \
-            {                                                                                                                           \
-                uxValueForNormallyFullQueue--;                                                                                          \
-            }                                                                                                                           \
-        }                                                                                                                               \
-        taskEXIT_CRITICAL_FROM_ISR( uxSavedInterruptStatus );                                                                           \
-    }                                                                                                                                   \
-
+#define timerNORMALLY_FULL_TX()                                             \
+    if( xQueueIsQueueFullFromISR( xNormallyFullQueue ) != pdTRUE )          \
+    {                                                                       \
+        UBaseType_t uxSavedInterruptStatus;                                 \
+        uxSavedInterruptStatus = taskENTER_CRITICAL_FROM_ISR();             \
+        {                                                                   \
+            uxValueForNormallyFullQueue++;                                  \
+            if( xQueueSendFromISR( xNormallyFullQueue,                      \
+                                   ( void * ) &uxValueForNormallyFullQueue, \
+                                   &xHigherPriorityTaskWoken ) != pdPASS )  \
+            {                                                               \
+                uxValueForNormallyFullQueue--;                              \
+            }                                                               \
+        }                                                                   \
+        taskEXIT_CRITICAL_FROM_ISR( uxSavedInterruptStatus );               \
+    }
 
 /* Receive a value from the normally empty queue.  This is called from within
  * an interrupt. */
-#define timerNORMALLY_EMPTY_RX()                                                                         \
-    if( xQueueReceiveFromISR( xNormallyEmptyQueue, &uxRxedValue, &xHigherPriorityTaskWoken ) != pdPASS ) \
-    {                                                                                                    \
-        prvQueueAccessLogError( __LINE__ );                                                              \
-    }                                                                                                    \
-    else                                                                                                 \
-    {                                                                                                    \
-        prvRecordValue_NormallyEmpty( uxRxedValue, intqSECOND_INTERRUPT );                               \
+#define timerNORMALLY_EMPTY_RX()                                           \
+    if( xQueueReceiveFromISR( xNormallyEmptyQueue,                         \
+                              &uxRxedValue,                                \
+                              &xHigherPriorityTaskWoken ) != pdPASS )      \
+    {                                                                      \
+        prvQueueAccessLogError( __LINE__ );                                \
+    }                                                                      \
+    else                                                                   \
+    {                                                                      \
+        prvRecordValue_NormallyEmpty( uxRxedValue, intqSECOND_INTERRUPT ); \
     }
 
 /* Receive a value from the normally full queue.  This is called from within
  * an interrupt. */
-#define timerNORMALLY_FULL_RX()                                                                         \
-    if( xQueueReceiveFromISR( xNormallyFullQueue, &uxRxedValue, &xHigherPriorityTaskWoken ) == pdPASS ) \
-    {                                                                                                   \
-        prvRecordValue_NormallyFull( uxRxedValue, intqSECOND_INTERRUPT );                               \
-    }                                                                                                   \
-
+#define timerNORMALLY_FULL_RX()                                           \
+    if( xQueueReceiveFromISR( xNormallyFullQueue,                         \
+                              &uxRxedValue,                               \
+                              &xHigherPriorityTaskWoken ) == pdPASS )     \
+    {                                                                     \
+        prvRecordValue_NormallyFull( uxRxedValue, intqSECOND_INTERRUPT ); \
+    }
 
 /*-----------------------------------------------------------*/
 
@@ -154,7 +160,8 @@
 static QueueHandle_t xNormallyEmptyQueue, xNormallyFullQueue;
 
 /* Variables used to detect a stall in one of the tasks. */
-static volatile UBaseType_t uxHighPriorityLoops1 = 0, uxHighPriorityLoops2 = 0, uxLowPriorityLoops1 = 0, uxLowPriorityLoops2 = 0;
+static volatile UBaseType_t uxHighPriorityLoops1 = 0, uxHighPriorityLoops2 = 0,
+                            uxLowPriorityLoops1 = 0, uxLowPriorityLoops2 = 0;
 
 /* Any unexpected behaviour sets xErrorStatus to fail and log the line that
  * caused the error in xErrorLine. */
@@ -166,15 +173,18 @@ static BaseType_t xWasSuspended = pdFALSE;
 
 /* The values that are sent to the queues.  An incremented value is sent each
  * time to each queue. */
-static volatile UBaseType_t uxValueForNormallyEmptyQueue = 0, uxValueForNormallyFullQueue = 0;
+static volatile UBaseType_t uxValueForNormallyEmptyQueue = 0,
+                            uxValueForNormallyFullQueue = 0;
 
-/* A handle to some of the tasks is required so they can be suspended/resumed. */
-TaskHandle_t xHighPriorityNormallyEmptyTask1, xHighPriorityNormallyEmptyTask2, xHighPriorityNormallyFullTask1, xHighPriorityNormallyFullTask2;
+/* A handle to some of the tasks is required so they can be suspended/resumed.
+ */
+TaskHandle_t xHighPriorityNormallyEmptyTask1, xHighPriorityNormallyEmptyTask2,
+    xHighPriorityNormallyFullTask1, xHighPriorityNormallyFullTask2;
 
 /* When a value is received in a queue the value is ticked off in the array
  * the array position of the value is set to a the identifier of the task or
- * interrupt that accessed the queue.  This way missing or duplicate values can be
- * detected. */
+ * interrupt that accessed the queue.  This way missing or duplicate values can
+ * be detected. */
 static uint8_t ucNormallyEmptyReceivedValues[ intqNUM_VALUES_TO_LOG ] = { 0 };
 static uint8_t ucNormallyFullReceivedValues[ intqNUM_VALUES_TO_LOG ] = { 0 };
 
@@ -200,17 +210,49 @@ static void prvQueueAccessLogError( UBaseType_t uxLine );
 void vStartInterruptQueueTasks( void )
 {
     /* Start the test tasks. */
-    xTaskCreate( prvHigherPriorityNormallyEmptyTask, "H1QRx", configMINIMAL_STACK_SIZE, ( void * ) intqHIGH_PRIORITY_TASK1, intqHIGHER_PRIORITY, &xHighPriorityNormallyEmptyTask1 );
-    xTaskCreate( prvHigherPriorityNormallyEmptyTask, "H2QRx", configMINIMAL_STACK_SIZE, ( void * ) intqHIGH_PRIORITY_TASK2, intqHIGHER_PRIORITY, &xHighPriorityNormallyEmptyTask2 );
-    xTaskCreate( prvLowerPriorityNormallyEmptyTask, "L1QRx", configMINIMAL_STACK_SIZE, NULL, intqLOWER_PRIORITY, NULL );
-    xTaskCreate( prv1stHigherPriorityNormallyFullTask, "H1QTx", configMINIMAL_STACK_SIZE, ( void * ) intqHIGH_PRIORITY_TASK1, intqHIGHER_PRIORITY, &xHighPriorityNormallyFullTask1 );
-    xTaskCreate( prv2ndHigherPriorityNormallyFullTask, "H2QTx", configMINIMAL_STACK_SIZE, ( void * ) intqHIGH_PRIORITY_TASK2, intqHIGHER_PRIORITY, &xHighPriorityNormallyFullTask2 );
-    xTaskCreate( prvLowerPriorityNormallyFullTask, "L2QRx", configMINIMAL_STACK_SIZE, NULL, intqLOWER_PRIORITY, NULL );
+    xTaskCreate( prvHigherPriorityNormallyEmptyTask,
+                 "H1QRx",
+                 configMINIMAL_STACK_SIZE,
+                 ( void * ) intqHIGH_PRIORITY_TASK1,
+                 intqHIGHER_PRIORITY,
+                 &xHighPriorityNormallyEmptyTask1 );
+    xTaskCreate( prvHigherPriorityNormallyEmptyTask,
+                 "H2QRx",
+                 configMINIMAL_STACK_SIZE,
+                 ( void * ) intqHIGH_PRIORITY_TASK2,
+                 intqHIGHER_PRIORITY,
+                 &xHighPriorityNormallyEmptyTask2 );
+    xTaskCreate( prvLowerPriorityNormallyEmptyTask,
+                 "L1QRx",
+                 configMINIMAL_STACK_SIZE,
+                 NULL,
+                 intqLOWER_PRIORITY,
+                 NULL );
+    xTaskCreate( prv1stHigherPriorityNormallyFullTask,
+                 "H1QTx",
+                 configMINIMAL_STACK_SIZE,
+                 ( void * ) intqHIGH_PRIORITY_TASK1,
+                 intqHIGHER_PRIORITY,
+                 &xHighPriorityNormallyFullTask1 );
+    xTaskCreate( prv2ndHigherPriorityNormallyFullTask,
+                 "H2QTx",
+                 configMINIMAL_STACK_SIZE,
+                 ( void * ) intqHIGH_PRIORITY_TASK2,
+                 intqHIGHER_PRIORITY,
+                 &xHighPriorityNormallyFullTask2 );
+    xTaskCreate( prvLowerPriorityNormallyFullTask,
+                 "L2QRx",
+                 configMINIMAL_STACK_SIZE,
+                 NULL,
+                 intqLOWER_PRIORITY,
+                 NULL );
 
     /* Create the queues that are accessed by multiple tasks and multiple
      * interrupts. */
-    xNormallyFullQueue = xQueueCreate( intqQUEUE_LENGTH, ( UBaseType_t ) sizeof( UBaseType_t ) );
-    xNormallyEmptyQueue = xQueueCreate( intqQUEUE_LENGTH, ( UBaseType_t ) sizeof( UBaseType_t ) );
+    xNormallyFullQueue = xQueueCreate( intqQUEUE_LENGTH,
+                                       ( UBaseType_t ) sizeof( UBaseType_t ) );
+    xNormallyEmptyQueue = xQueueCreate( intqQUEUE_LENGTH,
+                                        ( UBaseType_t ) sizeof( UBaseType_t ) );
 
     /* vQueueAddToRegistry() adds the queue to the queue registry, if one is
      * in use.  The queue registry is provided as a means for kernel aware
@@ -269,7 +311,8 @@ static void prvQueueAccessLogError( UBaseType_t uxLine )
 
 static void prvHigherPriorityNormallyEmptyTask( void * pvParameters )
 {
-    UBaseType_t uxRxed, ux, uxTask1, uxTask2, uxInterrupts, uxErrorCount1 = 0, uxErrorCount2 = 0;
+    UBaseType_t uxRxed, ux, uxTask1, uxTask2, uxInterrupts, uxErrorCount1 = 0,
+                                                            uxErrorCount2 = 0;
 
     /* The timer should not be started until after the scheduler has started.
      * More than one task is running this code so we check the parameter value
@@ -279,11 +322,12 @@ static void prvHigherPriorityNormallyEmptyTask( void * pvParameters )
         vInitialiseTimerForIntQueueTest();
     }
 
-    for( ; ; )
+    for( ;; )
     {
         /* Block waiting to receive a value from the normally empty queue.
          * Interrupts will write to the queue so we should receive a value. */
-        if( xQueueReceive( xNormallyEmptyQueue, &uxRxed, intqSHORT_DELAY ) != pdPASS )
+        if( xQueueReceive( xNormallyEmptyQueue, &uxRxed, intqSHORT_DELAY ) !=
+            pdPASS )
         {
             prvQueueAccessLogError( __LINE__ );
         }
@@ -291,7 +335,8 @@ static void prvHigherPriorityNormallyEmptyTask( void * pvParameters )
         {
             /* Note which value was received so we can check all expected
              * values are received and no values are duplicated. */
-            prvRecordValue_NormallyEmpty( uxRxed, ( UBaseType_t ) pvParameters );
+            prvRecordValue_NormallyEmpty( uxRxed,
+                                          ( UBaseType_t ) pvParameters );
         }
 
         /* Ensure the other task running this code gets a chance to execute. */
@@ -300,7 +345,8 @@ static void prvHigherPriorityNormallyEmptyTask( void * pvParameters )
         if( ( UBaseType_t ) pvParameters == intqHIGH_PRIORITY_TASK1 )
         {
             /* Have we received all the expected values? */
-            if( uxValueForNormallyEmptyQueue > ( intqNUM_VALUES_TO_LOG + intqVALUE_OVERRUN ) )
+            if( uxValueForNormallyEmptyQueue >
+                ( intqNUM_VALUES_TO_LOG + intqVALUE_OVERRUN ) )
             {
                 vTaskSuspend( xHighPriorityNormallyEmptyTask2 );
 
@@ -320,17 +366,20 @@ static void prvHigherPriorityNormallyEmptyTask( void * pvParameters )
                     }
                     else
                     {
-                        if( ucNormallyEmptyReceivedValues[ ux ] == intqHIGH_PRIORITY_TASK1 )
+                        if( ucNormallyEmptyReceivedValues[ ux ] ==
+                            intqHIGH_PRIORITY_TASK1 )
                         {
                             /* Value was placed into the array by task 1. */
                             uxTask1++;
                         }
-                        else if( ucNormallyEmptyReceivedValues[ ux ] == intqHIGH_PRIORITY_TASK2 )
+                        else if( ucNormallyEmptyReceivedValues[ ux ] ==
+                                 intqHIGH_PRIORITY_TASK2 )
                         {
                             /* Value was placed into the array by task 2. */
                             uxTask2++;
                         }
-                        else if( ucNormallyEmptyReceivedValues[ ux ] == intqSECOND_INTERRUPT )
+                        else if( ucNormallyEmptyReceivedValues[ ux ] ==
+                                 intqSECOND_INTERRUPT )
                         {
                             uxInterrupts++;
                         }
@@ -373,7 +422,9 @@ static void prvHigherPriorityNormallyEmptyTask( void * pvParameters )
                 }
 
                 /* Clear the array again, ready to start a new cycle. */
-                memset( ucNormallyEmptyReceivedValues, 0x00, sizeof( ucNormallyEmptyReceivedValues ) );
+                memset( ucNormallyEmptyReceivedValues,
+                        0x00,
+                        sizeof( ucNormallyEmptyReceivedValues ) );
 
                 uxHighPriorityLoops1++;
                 portENTER_CRITICAL();
@@ -403,9 +454,10 @@ static void prvLowerPriorityNormallyEmptyTask( void * pvParameters )
     /* The parameters are not being used so avoid compiler warnings. */
     ( void ) pvParameters;
 
-    for( ; ; )
+    for( ;; )
     {
-        if( xQueueReceive( xNormallyEmptyQueue, &uxRxed, intqONE_TICK_DELAY ) != errQUEUE_EMPTY )
+        if( xQueueReceive( xNormallyEmptyQueue, &uxRxed, intqONE_TICK_DELAY ) !=
+            errQUEUE_EMPTY )
         {
             /* A value should only be obtained when the high priority task is
              * suspended. */
@@ -433,7 +485,8 @@ static void prvLowerPriorityNormallyEmptyTask( void * pvParameters )
             }
             portEXIT_CRITICAL();
 
-            if( xQueueSend( xNormallyEmptyQueue, &uxValue, portMAX_DELAY ) != pdPASS )
+            if( xQueueSend( xNormallyEmptyQueue, &uxValue, portMAX_DELAY ) !=
+                pdPASS )
             {
                 prvQueueAccessLogError( __LINE__ );
             }
@@ -465,7 +518,7 @@ static void prv1stHigherPriorityNormallyFullTask( void * pvParameters )
         xQueueSend( xNormallyFullQueue, &uxValueToTx, intqSHORT_DELAY );
     }
 
-    for( ; ; )
+    for( ;; )
     {
         portENTER_CRITICAL();
         {
@@ -474,7 +527,8 @@ static void prv1stHigherPriorityNormallyFullTask( void * pvParameters )
         }
         portEXIT_CRITICAL();
 
-        if( xQueueSend( xNormallyFullQueue, &uxValueToTx, intqSHORT_DELAY ) != pdPASS )
+        if( xQueueSend( xNormallyFullQueue, &uxValueToTx, intqSHORT_DELAY ) !=
+            pdPASS )
         {
             /* intqHIGH_PRIORITY_TASK2 is never suspended so we would not
              * expect it to ever time out. */
@@ -515,7 +569,8 @@ static void prv1stHigherPriorityNormallyFullTask( void * pvParameters )
                     /* A value was missing. */
                     prvQueueAccessLogError( __LINE__ );
                 }
-                else if( ucNormallyFullReceivedValues[ ux ] == intqSECOND_INTERRUPT )
+                else if( ucNormallyFullReceivedValues[ ux ] ==
+                         intqSECOND_INTERRUPT )
                 {
                     uxInterrupts++;
                 }
@@ -529,7 +584,9 @@ static void prv1stHigherPriorityNormallyFullTask( void * pvParameters )
             }
 
             /* Reset the array ready for the next cycle. */
-            memset( ucNormallyFullReceivedValues, 0x00, sizeof( ucNormallyFullReceivedValues ) );
+            memset( ucNormallyFullReceivedValues,
+                    0x00,
+                    sizeof( ucNormallyFullReceivedValues ) );
 
             uxHighPriorityLoops2++;
             portENTER_CRITICAL();
@@ -572,7 +629,7 @@ static void prv2ndHigherPriorityNormallyFullTask( void * pvParameters )
         xQueueSend( xNormallyFullQueue, &uxValueToTx, intqSHORT_DELAY );
     }
 
-    for( ; ; )
+    for( ;; )
     {
         portENTER_CRITICAL();
         {
@@ -581,7 +638,8 @@ static void prv2ndHigherPriorityNormallyFullTask( void * pvParameters )
         }
         portEXIT_CRITICAL();
 
-        if( xQueueSend( xNormallyFullQueue, &uxValueToTx, intqSHORT_DELAY ) != pdPASS )
+        if( xQueueSend( xNormallyFullQueue, &uxValueToTx, intqSHORT_DELAY ) !=
+            pdPASS )
         {
             if( xWasSuspended != pdTRUE )
             {
@@ -604,9 +662,10 @@ static void prvLowerPriorityNormallyFullTask( void * pvParameters )
     /* The parameters are not being used so avoid compiler warnings. */
     ( void ) pvParameters;
 
-    for( ; ; )
+    for( ;; )
     {
-        if( xQueueSend( xNormallyFullQueue, &uxTxed, intqONE_TICK_DELAY ) != errQUEUE_FULL )
+        if( xQueueSend( xNormallyFullQueue, &uxTxed, intqONE_TICK_DELAY ) !=
+            errQUEUE_FULL )
         {
             /* Should only succeed when the higher priority task is suspended */
             if( eTaskGetState( xHighPriorityNormallyFullTask1 ) != eSuspended )
@@ -623,7 +682,8 @@ static void prvLowerPriorityNormallyFullTask( void * pvParameters )
              * priority task, and ensure we get the value from the queue. */
             vTaskPrioritySet( NULL, intqHIGHER_PRIORITY + 1 );
 
-            if( xQueueReceive( xNormallyFullQueue, &uxValue, portMAX_DELAY ) != pdPASS )
+            if( xQueueReceive( xNormallyFullQueue, &uxValue, portMAX_DELAY ) !=
+                pdPASS )
             {
                 prvQueueAccessLogError( __LINE__ );
             }
@@ -697,10 +757,11 @@ BaseType_t xSecondTimerHandler( void )
 }
 /*-----------------------------------------------------------*/
 
-
 BaseType_t xAreIntQueueTasksStillRunning( void )
 {
-    static UBaseType_t uxLastHighPriorityLoops1 = 0, uxLastHighPriorityLoops2 = 0, uxLastLowPriorityLoops1 = 0, uxLastLowPriorityLoops2 = 0;
+    static UBaseType_t uxLastHighPriorityLoops1 = 0,
+                       uxLastHighPriorityLoops2 = 0,
+                       uxLastLowPriorityLoops1 = 0, uxLastLowPriorityLoops2 = 0;
 
     /* xErrorStatus can be set outside of this function.  This function just
      * checks that all the tasks are still cycling. */

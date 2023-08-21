@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -25,24 +26,24 @@
  */
 
 /**
- * Create a single persistent task which periodically dynamically creates another
- * two tasks.  The original task is called the creator task, the two tasks it
- * creates are called suicidal tasks.
+ * Create a single persistent task which periodically dynamically creates
+ * another two tasks.  The original task is called the creator task, the two
+ * tasks it creates are called suicidal tasks.
  *
  * One of the created suicidal tasks kill one other suicidal task before killing
  * itself - leaving just the original task remaining.
  *
- * The creator task must be spawned after all of the other demo application tasks
- * as it keeps a check on the number of tasks under the scheduler control.  The
- * number of tasks it expects to see running should never be greater than the
- * number of tasks that were in existence when the creator task was spawned, plus
- * one set of four suicidal tasks.  If this number is exceeded an error is flagged.
+ * The creator task must be spawned after all of the other demo application
+ * tasks as it keeps a check on the number of tasks under the scheduler control.
+ * The number of tasks it expects to see running should never be greater than
+ * the number of tasks that were in existence when the creator task was spawned,
+ * plus one set of four suicidal tasks.  If this number is exceeded an error is
+ * flagged.
  *
  * \page DeathC death.c
  * \ingroup DemoFiles
  * <HR>
  */
-
 
 #include <stdlib.h>
 
@@ -53,7 +54,7 @@
 /* Demo program include files. */
 #include "death.h"
 
-#define deathSTACK_SIZE    ( configMINIMAL_STACK_SIZE + 60 )
+#define deathSTACK_SIZE ( configMINIMAL_STACK_SIZE + 60 )
 
 /* The task originally created which is responsible for periodically dynamically
  * creating another four tasks. */
@@ -62,8 +63,8 @@ static portTASK_FUNCTION_PROTO( vCreateTasks, pvParameters );
 /* The task function of the dynamically created tasks. */
 static portTASK_FUNCTION_PROTO( vSuicidalTask, pvParameters );
 
-/* A variable which is incremented every time the dynamic tasks are created.  This
- * is used to check that the task is still running. */
+/* A variable which is incremented every time the dynamic tasks are created.
+ * This is used to check that the task is still running. */
 static volatile uint16_t usCreationCount = 0;
 
 /* Used to store the number of tasks that were originally running so the creator
@@ -72,10 +73,10 @@ static volatile uint16_t usCreationCount = 0;
 static volatile UBaseType_t uxTasksRunningAtStart = 0;
 
 /* When a task deletes itself, it stack and TCB are cleaned up by the Idle task.
- * Under heavy load the idle task might not get much processing time, so it would
- * be legitimate for several tasks to remain undeleted for a short period.  There
- * may also be a few other unexpected tasks if, for example, the tasks that test
- * static allocation are also being used. */
+ * Under heavy load the idle task might not get much processing time, so it
+ * would be legitimate for several tasks to remain undeleted for a short period.
+ * There may also be a few other unexpected tasks if, for example, the tasks
+ * that test static allocation are also being used. */
 static const UBaseType_t uxMaxNumberOfExtraTasksRunning = 3;
 
 /* Used to store a handle to the task that should be killed by a suicidal task,
@@ -86,7 +87,12 @@ TaskHandle_t xCreatedTask;
 
 void vCreateSuicidalTasks( UBaseType_t uxPriority )
 {
-    xTaskCreate( vCreateTasks, "CREATOR", deathSTACK_SIZE, ( void * ) NULL, uxPriority, NULL );
+    xTaskCreate( vCreateTasks,
+                 "CREATOR",
+                 deathSTACK_SIZE,
+                 ( void * ) NULL,
+                 uxPriority,
+                 NULL );
 }
 /*-----------------------------------------------------------*/
 
@@ -102,8 +108,8 @@ static portTASK_FUNCTION( vSuicidalTask, pvParameters )
     if( pvParameters != NULL )
     {
         /* This task is periodically created four times.  Two created tasks are
-         * passed a handle to the other task so it can kill it before killing itself.
-         * The other task is passed in null. */
+         * passed a handle to the other task so it can kill it before killing
+         * itself. The other task is passed in null. */
         xTaskToKill = *( TaskHandle_t * ) pvParameters;
     }
     else
@@ -111,7 +117,7 @@ static portTASK_FUNCTION( vSuicidalTask, pvParameters )
         xTaskToKill = NULL;
     }
 
-    for( ; ; )
+    for( ;; )
     {
         /* Do something random just to use some stack and registers. */
         l1 = 2;
@@ -131,7 +137,8 @@ static portTASK_FUNCTION( vSuicidalTask, pvParameters )
             vTaskDelete( NULL );
         }
     }
-} /*lint !e818 !e550 Function prototype must be as per standard for task functions. */
+} /*lint !e818 !e550 Function prototype must be as per standard for task
+     functions. */
 /*-----------------------------------------------------------*/
 
 static portTASK_FUNCTION( vCreateTasks, pvParameters )
@@ -149,15 +156,25 @@ static portTASK_FUNCTION( vCreateTasks, pvParameters )
 
     uxPriority = uxTaskPriorityGet( NULL );
 
-    for( ; ; )
+    for( ;; )
     {
         /* Just loop round, delaying then creating the four suicidal tasks. */
         vTaskDelay( xDelay );
 
         xCreatedTask = NULL;
 
-        xTaskCreate( vSuicidalTask, "SUICID1", configMINIMAL_STACK_SIZE, NULL, uxPriority, &xCreatedTask );
-        xTaskCreate( vSuicidalTask, "SUICID2", configMINIMAL_STACK_SIZE, &xCreatedTask, uxPriority, NULL );
+        xTaskCreate( vSuicidalTask,
+                     "SUICID1",
+                     configMINIMAL_STACK_SIZE,
+                     NULL,
+                     uxPriority,
+                     &xCreatedTask );
+        xTaskCreate( vSuicidalTask,
+                     "SUICID2",
+                     configMINIMAL_STACK_SIZE,
+                     &xCreatedTask,
+                     uxPriority,
+                     NULL );
 
         ++usCreationCount;
     }
@@ -187,7 +204,8 @@ BaseType_t xIsCreateTaskStillRunning( void )
     {
         xReturn = pdFALSE;
     }
-    else if( ( uxTasksRunningNow - uxTasksRunningAtStart ) > uxMaxNumberOfExtraTasksRunning )
+    else if( ( uxTasksRunningNow - uxTasksRunningAtStart ) >
+             uxMaxNumberOfExtraTasksRunning )
     {
         xReturn = pdFALSE;
     }

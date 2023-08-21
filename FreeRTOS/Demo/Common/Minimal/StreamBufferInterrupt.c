@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -47,8 +48,8 @@
 /* Demo app includes. */
 #include "StreamBufferInterrupt.h"
 
-#define sbiSTREAM_BUFFER_LENGTH_BYTES        ( ( size_t ) 100 )
-#define sbiSTREAM_BUFFER_TRIGGER_LEVEL_10    ( ( BaseType_t ) 10 )
+#define sbiSTREAM_BUFFER_LENGTH_BYTES     ( ( size_t ) 100 )
+#define sbiSTREAM_BUFFER_TRIGGER_LEVEL_10 ( ( BaseType_t ) 10 )
 
 /*-----------------------------------------------------------*/
 
@@ -83,15 +84,17 @@ void vStartStreamBufferInterruptDemo( void )
     /* Create the stream buffer that sends data from the interrupt to the
      * task, and create the task. */
     xStreamBuffer = xStreamBufferCreate( /* The buffer length in bytes. */
-        sbiSTREAM_BUFFER_LENGTH_BYTES,
-        /* The stream buffer's trigger level. */
-        sbiSTREAM_BUFFER_TRIGGER_LEVEL_10 );
+                                         sbiSTREAM_BUFFER_LENGTH_BYTES,
+                                         /* The stream buffer's trigger level.
+                                          */
+                                         sbiSTREAM_BUFFER_TRIGGER_LEVEL_10 );
 
-    xTaskCreate( prvReceivingTask,         /* The function that implements the task. */
-                 "StrIntRx",               /* Human readable name for the task. */
+    xTaskCreate( prvReceivingTask, /* The function that implements the task. */
+                 "StrIntRx",       /* Human readable name for the task. */
                  configMINIMAL_STACK_SIZE, /* Stack size (in words!). */
                  NULL,                     /* Task parameter is not used. */
-                 tskIDLE_PRIORITY + 2,     /* The priority at which the task is created. */
+                 tskIDLE_PRIORITY + 2,     /* The priority at which the task is
+                                              created. */
                  NULL );                   /* No use for the task handle. */
 }
 /*-----------------------------------------------------------*/
@@ -114,22 +117,23 @@ static void prvReceivingTask( void * pvParameters )
     /* Start with the Rx buffer in a known state. */
     memset( cRxBuffer, 0x00, sizeof( cRxBuffer ) );
 
-    for( ; ; )
+    for( ;; )
     {
         /* Keep receiving characters until the end of the string is received.
-         * Note:  An infinite block time is used to simplify the example.  Infinite
-         * block times are not recommended in production code as they do not allow
-         * for error recovery. */
-        xStreamBufferReceive( /* The stream buffer data is being received from. */
-            xStreamBuffer,
-            /* Where to place received data. */
-            ( void * ) &( cRxBuffer[ xNextByte ] ),
-            /* The number of bytes to receive. */
-            sizeof( char ),
+         * Note:  An infinite block time is used to simplify the example.
+         * Infinite block times are not recommended in production code as they
+         * do not allow for error recovery. */
+        xStreamBufferReceive( /* The stream buffer data is being received from.
+                               */
+                              xStreamBuffer,
+                              /* Where to place received data. */
+                              ( void * ) &( cRxBuffer[ xNextByte ] ),
+                              /* The number of bytes to receive. */
+                              sizeof( char ),
 
-            /* The time to wait for the next data if the buffer
-             * is empty. */
-            portMAX_DELAY );
+                              /* The time to wait for the next data if the
+                               * buffer is empty. */
+                              portMAX_DELAY );
 
         /* If xNextByte is 0 then this task is looking for the start of the
          * string, which is 'H'. */
@@ -194,7 +198,8 @@ void vBasicStreamBufferSendFromISR( void )
 
         /* Send the next four bytes to the stream buffer. */
         xStreamBufferSendFromISR( xStreamBuffer,
-                                  ( const void * ) ( pcStringToSend + xNextByteToSend ),
+                                  ( const void * ) ( pcStringToSend +
+                                                     xNextByteToSend ),
                                   xBytesToSend,
                                   NULL );
 

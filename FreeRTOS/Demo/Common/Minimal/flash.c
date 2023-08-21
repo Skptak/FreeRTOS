@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -29,14 +30,13 @@
  * and no display facilities.  The complete version can be found in the
  * Demo/Common/Full directory.
  *
- * Three tasks are created, each of which flash an LED at a different rate.  The first
- * LED flashes every 200ms, the second every 400ms, the third every 600ms.
+ * Three tasks are created, each of which flash an LED at a different rate.  The
+ * first LED flashes every 200ms, the second every 400ms, the third every 600ms.
  *
- * The LED flash tasks provide instant visual feedback.  They show that the scheduler
- * is still operational.
+ * The LED flash tasks provide instant visual feedback.  They show that the
+ * scheduler is still operational.
  *
  */
-
 
 #include <stdlib.h>
 
@@ -48,9 +48,9 @@
 #include "partest.h"
 #include "flash.h"
 
-#define ledSTACK_SIZE         configMINIMAL_STACK_SIZE
-#define ledNUMBER_OF_LEDS     ( 3 )
-#define ledFLASH_RATE_BASE    ( ( TickType_t ) 333 )
+#define ledSTACK_SIZE      configMINIMAL_STACK_SIZE
+#define ledNUMBER_OF_LEDS  ( 3 )
+#define ledFLASH_RATE_BASE ( ( TickType_t ) 333 )
 
 /* Variable used by the created tasks to calculate the LED number to use, and
  * the rate at which they should flash the LED. */
@@ -69,7 +69,12 @@ void vStartLEDFlashTasks( UBaseType_t uxPriority )
     for( xLEDTask = 0; xLEDTask < ledNUMBER_OF_LEDS; ++xLEDTask )
     {
         /* Spawn the task. */
-        xTaskCreate( vLEDFlashTask, "LEDx", ledSTACK_SIZE, NULL, uxPriority, ( TaskHandle_t * ) NULL );
+        xTaskCreate( vLEDFlashTask,
+                     "LEDx",
+                     ledSTACK_SIZE,
+                     NULL,
+                     uxPriority,
+                     ( TaskHandle_t * ) NULL );
     }
 }
 /*-----------------------------------------------------------*/
@@ -93,7 +98,8 @@ static portTASK_FUNCTION( vLEDFlashTask, pvParameters )
     }
     portEXIT_CRITICAL();
 
-    xFlashRate = ledFLASH_RATE_BASE + ( ledFLASH_RATE_BASE * ( TickType_t ) uxLED );
+    xFlashRate = ledFLASH_RATE_BASE +
+                 ( ledFLASH_RATE_BASE * ( TickType_t ) uxLED );
     xFlashRate /= portTICK_PERIOD_MS;
 
     /* We will turn the LED on and off again in the delay period, so each
@@ -104,7 +110,7 @@ static portTASK_FUNCTION( vLEDFlashTask, pvParameters )
      * vTaskDelayUntil(). */
     xLastFlashTime = xTaskGetTickCount();
 
-    for( ; ; )
+    for( ;; )
     {
         /* Delay for half the flash period then turn the LED on. */
         vTaskDelayUntil( &xLastFlashTime, xFlashRate );
@@ -114,4 +120,5 @@ static portTASK_FUNCTION( vLEDFlashTask, pvParameters )
         vTaskDelayUntil( &xLastFlashTime, xFlashRate );
         vParTestToggleLED( uxLED );
     }
-} /*lint !e715 !e818 !e830 Function definition must be standard for task creation. */
+} /*lint !e715 !e818 !e830 Function definition must be standard for task
+     creation. */

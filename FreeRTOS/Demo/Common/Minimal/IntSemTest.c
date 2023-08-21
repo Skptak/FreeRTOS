@@ -2,33 +2,32 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
  *
  */
 
-
 /*
  * Demonstrates and tests mutexes being used from an interrupt.
  */
-
 
 #include <stdlib.h>
 
@@ -43,18 +42,18 @@
 /*-----------------------------------------------------------*/
 
 /* The priorities of the test tasks. */
-#define intsemMASTER_PRIORITY                   ( tskIDLE_PRIORITY )
-#define intsemSLAVE_PRIORITY                    ( tskIDLE_PRIORITY + 1 )
+#define intsemMASTER_PRIORITY                ( tskIDLE_PRIORITY )
+#define intsemSLAVE_PRIORITY                 ( tskIDLE_PRIORITY + 1 )
 
 /* The rate at which the tick hook will give the mutex. */
-#define intsemINTERRUPT_MUTEX_GIVE_PERIOD_MS    ( 100 )
+#define intsemINTERRUPT_MUTEX_GIVE_PERIOD_MS ( 100 )
 
 /* A block time of 0 means 'don't block'. */
-#define intsemNO_BLOCK                          0
+#define intsemNO_BLOCK                       0
 
 /* The maximum count value for the counting semaphore given from an
  * interrupt. */
-#define intsemMAX_COUNT                         3
+#define intsemMAX_COUNT                      3
 
 /*-----------------------------------------------------------*/
 
@@ -118,12 +117,14 @@ static SemaphoreHandle_t xISRCountingSemaphore = NULL;
 static SemaphoreHandle_t xMasterSlaveMutex = NULL;
 
 /* Flag that allows the master task to control when the interrupt gives or does
- * not give the mutex.  There is no mutual exclusion on this variable, but this is
- * only test code and it should be fine in the 32=bit test environment. */
-static BaseType_t xOkToGiveMutex = pdFALSE, xOkToGiveCountingSemaphore = pdFALSE;
+ * not give the mutex.  There is no mutual exclusion on this variable, but this
+ * is only test code and it should be fine in the 32=bit test environment. */
+static BaseType_t xOkToGiveMutex = pdFALSE,
+                  xOkToGiveCountingSemaphore = pdFALSE;
 
 /* Used to coordinate timing between tasks and the interrupt. */
-const TickType_t xInterruptGivePeriod = pdMS_TO_TICKS( intsemINTERRUPT_MUTEX_GIVE_PERIOD_MS );
+const TickType_t xInterruptGivePeriod = pdMS_TO_TICKS(
+    intsemINTERRUPT_MUTEX_GIVE_PERIOD_MS );
 
 /*-----------------------------------------------------------*/
 
@@ -142,11 +143,26 @@ void vStartInterruptSemaphoreTasks( void )
     configASSERT( xMasterSlaveMutex );
 
     /* Create the tasks that share mutexes between then and with interrupts. */
-    xTaskCreate( vInterruptMutexSlaveTask, "IntMuS", configMINIMAL_STACK_SIZE, NULL, intsemSLAVE_PRIORITY, &xSlaveHandle );
-    xTaskCreate( vInterruptMutexMasterTask, "IntMuM", configMINIMAL_STACK_SIZE, NULL, intsemMASTER_PRIORITY, NULL );
+    xTaskCreate( vInterruptMutexSlaveTask,
+                 "IntMuS",
+                 configMINIMAL_STACK_SIZE,
+                 NULL,
+                 intsemSLAVE_PRIORITY,
+                 &xSlaveHandle );
+    xTaskCreate( vInterruptMutexMasterTask,
+                 "IntMuM",
+                 configMINIMAL_STACK_SIZE,
+                 NULL,
+                 intsemMASTER_PRIORITY,
+                 NULL );
 
     /* Create the task that blocks on the counting semaphore. */
-    xTaskCreate( vInterruptCountingSemaphoreTask, "IntCnt", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY, NULL );
+    xTaskCreate( vInterruptCountingSemaphoreTask,
+                 "IntCnt",
+                 configMINIMAL_STACK_SIZE,
+                 NULL,
+                 tskIDLE_PRIORITY,
+                 NULL );
 }
 /*-----------------------------------------------------------*/
 
@@ -155,7 +171,7 @@ static void vInterruptMutexMasterTask( void * pvParameters )
     /* Just to avoid compiler warnings. */
     ( void ) pvParameters;
 
-    for( ; ; )
+    for( ;; )
     {
         prvTakeAndGiveInTheSameOrder();
 
@@ -174,13 +190,13 @@ static void vInterruptMutexMasterTask( void * pvParameters )
 
 static void prvTakeAndGiveInTheSameOrder( void )
 {
-    /* Ensure the slave is suspended, and that this task is running at the
-     * lower priority as expected as the start conditions. */
-    #if ( INCLUDE_eTaskGetState == 1 )
+/* Ensure the slave is suspended, and that this task is running at the
+ * lower priority as expected as the start conditions. */
+#if( INCLUDE_eTaskGetState == 1 )
     {
         configASSERT( eTaskGetState( xSlaveHandle ) == eSuspended );
     }
-    #endif /* INCLUDE_eTaskGetState */
+#endif /* INCLUDE_eTaskGetState */
 
     if( uxTaskPriorityGet( NULL ) != intsemMASTER_PRIORITY )
     {
@@ -197,13 +213,13 @@ static void prvTakeAndGiveInTheSameOrder( void )
      * attempts to take the mutex. */
     vTaskResume( xSlaveHandle );
 
-    /* The slave has the higher priority so should now have executed and
-     * blocked on the semaphore. */
-    #if ( INCLUDE_eTaskGetState == 1 )
+/* The slave has the higher priority so should now have executed and
+ * blocked on the semaphore. */
+#if( INCLUDE_eTaskGetState == 1 )
     {
         configASSERT( eTaskGetState( xSlaveHandle ) == eBlocked );
     }
-    #endif /* INCLUDE_eTaskGetState */
+#endif /* INCLUDE_eTaskGetState */
 
     /* This task should now have inherited the priority of the slave
      * task. */
@@ -263,11 +279,11 @@ static void prvTakeAndGiveInTheSameOrder( void )
         xErrorDetected = pdTRUE;
     }
 
-    #if ( INCLUDE_eTaskGetState == 1 )
+#if( INCLUDE_eTaskGetState == 1 )
     {
         configASSERT( eTaskGetState( xSlaveHandle ) == eSuspended );
     }
-    #endif /* INCLUDE_eTaskGetState */
+#endif /* INCLUDE_eTaskGetState */
 
     /* Reset the mutex ready for the next round. */
     xQueueReset( xISRMutex );
@@ -276,13 +292,13 @@ static void prvTakeAndGiveInTheSameOrder( void )
 
 static void prvTakeAndGiveInTheOppositeOrder( void )
 {
-    /* Ensure the slave is suspended, and that this task is running at the
-     * lower priority as expected as the start conditions. */
-    #if ( INCLUDE_eTaskGetState == 1 )
+/* Ensure the slave is suspended, and that this task is running at the
+ * lower priority as expected as the start conditions. */
+#if( INCLUDE_eTaskGetState == 1 )
     {
         configASSERT( eTaskGetState( xSlaveHandle ) == eSuspended );
     }
-    #endif /* INCLUDE_eTaskGetState */
+#endif /* INCLUDE_eTaskGetState */
 
     if( uxTaskPriorityGet( NULL ) != intsemMASTER_PRIORITY )
     {
@@ -299,13 +315,13 @@ static void prvTakeAndGiveInTheOppositeOrder( void )
      * attempts to take the mutex. */
     vTaskResume( xSlaveHandle );
 
-    /* The slave has the higher priority so should now have executed and
-     * blocked on the semaphore. */
-    #if ( INCLUDE_eTaskGetState == 1 )
+/* The slave has the higher priority so should now have executed and
+ * blocked on the semaphore. */
+#if( INCLUDE_eTaskGetState == 1 )
     {
         configASSERT( eTaskGetState( xSlaveHandle ) == eBlocked );
     }
-    #endif /* INCLUDE_eTaskGetState */
+#endif /* INCLUDE_eTaskGetState */
 
     /* This task should now have inherited the priority of the slave
      * task. */
@@ -339,8 +355,8 @@ static void prvTakeAndGiveInTheOppositeOrder( void )
     }
 
     /* Give back the shared semaphore to ensure the priority is not disinherited
-     * as the ISR mutex is still held.  The higher priority slave task should run
-     * before this task runs again. */
+     * as the ISR mutex is still held.  The higher priority slave task should
+     * run before this task runs again. */
     if( xSemaphoreGive( xMasterSlaveMutex ) != pdPASS )
     {
         xErrorDetected = pdTRUE;
@@ -376,7 +392,7 @@ static void vInterruptMutexSlaveTask( void * pvParameters )
     /* Just to avoid compiler warnings. */
     ( void ) pvParameters;
 
-    for( ; ; )
+    for( ;; )
     {
         /* This task starts by suspending itself so when it executes can be
          * controlled by the master task. */
@@ -401,14 +417,17 @@ static void vInterruptMutexSlaveTask( void * pvParameters )
 static void vInterruptCountingSemaphoreTask( void * pvParameters )
 {
     BaseType_t xCount;
-    const TickType_t xDelay = pdMS_TO_TICKS( intsemINTERRUPT_MUTEX_GIVE_PERIOD_MS ) * ( intsemMAX_COUNT + 1 );
+    const TickType_t xDelay = pdMS_TO_TICKS(
+                                  intsemINTERRUPT_MUTEX_GIVE_PERIOD_MS ) *
+                              ( intsemMAX_COUNT + 1 );
 
     ( void ) pvParameters;
 
-    for( ; ; )
+    for( ;; )
     {
         /* Expect to start with the counting semaphore empty. */
-        if( uxQueueMessagesWaiting( ( QueueHandle_t ) xISRCountingSemaphore ) != 0 )
+        if( uxQueueMessagesWaiting( ( QueueHandle_t ) xISRCountingSemaphore ) !=
+            0 )
         {
             xErrorDetected = pdTRUE;
         }
@@ -420,12 +439,14 @@ static void vInterruptCountingSemaphoreTask( void * pvParameters )
         xOkToGiveCountingSemaphore = pdFALSE;
 
         /* Now it is expected that the counting semaphore is full. */
-        if( uxQueueMessagesWaiting( ( QueueHandle_t ) xISRCountingSemaphore ) != intsemMAX_COUNT )
+        if( uxQueueMessagesWaiting( ( QueueHandle_t ) xISRCountingSemaphore ) !=
+            intsemMAX_COUNT )
         {
             xErrorDetected = pdTRUE;
         }
 
-        if( uxQueueSpacesAvailable( ( QueueHandle_t ) xISRCountingSemaphore ) != 0 )
+        if( uxQueueSpacesAvailable( ( QueueHandle_t ) xISRCountingSemaphore ) !=
+            0 )
         {
             xErrorDetected = pdTRUE;
         }
@@ -472,10 +493,11 @@ void vInterruptSemaphorePeriodicTest( void )
     TickType_t xTimeNow;
 
     /* No mutual exclusion on xOkToGiveMutex, but this is only test code (and
-    * only executed on a 32-bit architecture) so ignore that in this case. */
+     * only executed on a 32-bit architecture) so ignore that in this case. */
     xTimeNow = xTaskGetTickCountFromISR();
 
-    if( ( ( TickType_t ) ( xTimeNow - xLastGiveTime ) ) >= pdMS_TO_TICKS( intsemINTERRUPT_MUTEX_GIVE_PERIOD_MS ) )
+    if( ( ( TickType_t ) ( xTimeNow - xLastGiveTime ) ) >=
+        pdMS_TO_TICKS( intsemINTERRUPT_MUTEX_GIVE_PERIOD_MS ) )
     {
         configASSERT( xISRMutex );
 
@@ -486,12 +508,15 @@ void vInterruptSemaphorePeriodicTest( void )
             xSemaphoreGiveFromISR( xISRMutex, NULL );
 
             /* Second give attempt should fail. */
-            configASSERT( xSemaphoreGiveFromISR( xISRMutex, &xHigherPriorityTaskWoken ) == pdFAIL );
+            configASSERT(
+                xSemaphoreGiveFromISR( xISRMutex, &xHigherPriorityTaskWoken ) ==
+                pdFAIL );
         }
 
         if( xOkToGiveCountingSemaphore != pdFALSE )
         {
-            xSemaphoreGiveFromISR( xISRCountingSemaphore, &xHigherPriorityTaskWoken );
+            xSemaphoreGiveFromISR( xISRCountingSemaphore,
+                                   &xHigherPriorityTaskWoken );
         }
 
         xLastGiveTime = xTimeNow;
@@ -505,7 +530,8 @@ void vInterruptSemaphorePeriodicTest( void )
 /* This is called to check that all the created tasks are still running. */
 BaseType_t xAreInterruptSemaphoreTasksStillRunning( void )
 {
-    static uint32_t ulLastMasterLoopCounter = 0, ulLastCountingSemaphoreLoops = 0;
+    static uint32_t ulLastMasterLoopCounter = 0,
+                    ulLastCountingSemaphoreLoops = 0;
 
     /* If the demo tasks are running then it is expected that the loop counters
      * will have changed since this function was last called. */

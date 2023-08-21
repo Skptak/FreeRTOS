@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -42,7 +43,8 @@
  * implementation is provided in this file and can be enabled by adding the
  * following to FreeRTOSConfig.h:
  *
- * #define sbSEND_COMPLETED( pxStreamBuffer ) vGenerateCoreBInterrupt( pxStreamBuffer )
+ * #define sbSEND_COMPLETED( pxStreamBuffer ) vGenerateCoreBInterrupt(
+ * pxStreamBuffer )
  *
  * Core to core communication via message buffer requires the message buffers
  * to be at an address known to both cores within shared memory.
@@ -69,21 +71,21 @@
 
 /* Enough for 3 4 byte pointers, including the additional 4 bytes per message
  * overhead of message buffers. */
-#define mbaCONTROL_MESSAGE_BUFFER_SIZE    ( 24 )
+#define mbaCONTROL_MESSAGE_BUFFER_SIZE ( 24 )
 
 /* Enough four 4 8 byte strings, plus the additional 4 bytes per message
  * overhead of message buffers. */
-#define mbaTASK_MESSAGE_BUFFER_SIZE       ( 60 )
+#define mbaTASK_MESSAGE_BUFFER_SIZE    ( 60 )
 
 /* The number of instances of prvCoreBTasks that are created. */
-#define mbaNUMBER_OF_CORE_B_TASKS         2
+#define mbaNUMBER_OF_CORE_B_TASKS      2
 
 /* A block time of 0 simply means, don't block. */
-#define mbaDONT_BLOCK                     0
+#define mbaDONT_BLOCK                  0
 
 /* Macro that mimics an interrupt service routine executing by simply calling
  * the routine inline. */
-#define mbaGENERATE_CORE_B_INTERRUPT()    prvCoreBInterruptHandler()
+#define mbaGENERATE_CORE_B_INTERRUPT() prvCoreBInterruptHandler()
 
 /*-----------------------------------------------------------*/
 
@@ -129,18 +131,21 @@ void vStartMessageBufferAMPTasks( configSTACK_DEPTH_TYPE xStackSize )
 {
     BaseType_t x;
 
-    xControlMessageBuffer = xMessageBufferCreate( mbaCONTROL_MESSAGE_BUFFER_SIZE );
+    xControlMessageBuffer = xMessageBufferCreate(
+        mbaCONTROL_MESSAGE_BUFFER_SIZE );
 
     xTaskCreate( prvCoreATask,     /* The function that implements the task. */
                  "AMPCoreA",       /* Human readable name for the task. */
                  xStackSize,       /* Stack size (in words!). */
                  NULL,             /* Task parameter is not used. */
-                 tskIDLE_PRIORITY, /* The priority at which the task is created. */
+                 tskIDLE_PRIORITY, /* The priority at which the task is created.
+                                    */
                  NULL );           /* No use for the task handle. */
 
     for( x = 0; x < mbaNUMBER_OF_CORE_B_TASKS; x++ )
     {
-        xCoreBMessageBuffers[ x ] = xMessageBufferCreate( mbaTASK_MESSAGE_BUFFER_SIZE );
+        xCoreBMessageBuffers[ x ] = xMessageBufferCreate(
+            mbaTASK_MESSAGE_BUFFER_SIZE );
         configASSERT( xCoreBMessageBuffers[ x ] );
 
         /* Pass the loop counter into the created task using the task's
@@ -161,12 +166,13 @@ static void prvCoreATask( void * pvParameters )
     BaseType_t x;
     uint32_t ulNextValue = 0;
     const TickType_t xDelay = pdMS_TO_TICKS( 250 );
-    char cString[ 15 ]; /* At least large enough to hold "4294967295\0" (0xffffffff). */
+    char cString[ 15 ]; /* At least large enough to hold "4294967295\0"
+                           (0xffffffff). */
 
     /* Remove warning about unused parameters. */
     ( void ) pvParameters;
 
-    for( ; ; )
+    for( ;; )
     {
         /* Create the next string to send.  The value is incremented on each
          * loop iteration, and the length of the string changes as the number of
@@ -174,20 +180,20 @@ static void prvCoreATask( void * pvParameters )
         sprintf( cString, "%lu", ( unsigned long ) ulNextValue );
 
         /* Send the value from this (pseudo) Core A to the tasks on the (pseudo)
-         * Core B via the message buffers.  This will result in sbSEND_COMPLETED()
-         * being executed, which in turn will write the handle of the message
-         * buffer written to into xControlMessageBuffer then generate an interrupt
-         * in core B. */
+         * Core B via the message buffers.  This will result in
+         * sbSEND_COMPLETED() being executed, which in turn will write the
+         * handle of the message buffer written to into xControlMessageBuffer
+         * then generate an interrupt in core B. */
         for( x = 0; x < mbaNUMBER_OF_CORE_B_TASKS; x++ )
         {
             xMessageBufferSend( /* The message buffer to write to. */
-                xCoreBMessageBuffers[ x ],
-                /* The source of the data to send. */
-                ( void * ) cString,
-                /* The length of the data to send. */
-                strlen( cString ),
-                /* The block time, should the buffer be full. */
-                mbaDONT_BLOCK );
+                                xCoreBMessageBuffers[ x ],
+                                /* The source of the data to send. */
+                                ( void * ) cString,
+                                /* The length of the data to send. */
+                                strlen( cString ),
+                                /* The block time, should the buffer be full. */
+                                mbaDONT_BLOCK );
         }
 
         /* Delay before repeating with a different and potentially different
@@ -203,7 +209,8 @@ static void prvCoreBTasks( void * pvParameters )
     BaseType_t x;
     size_t xReceivedBytes;
     uint32_t ulNextValue = 0;
-    char cExpectedString[ 15 ]; /* At least large enough to hold "4294967295\0" (0xffffffff). */
+    char cExpectedString[ 15 ]; /* At least large enough to hold "4294967295\0"
+                                   (0xffffffff). */
     char cReceivedString[ 15 ];
 
     /* The index into the xCoreBMessageBuffers and ulLoopCounter arrays is
@@ -211,21 +218,25 @@ static void prvCoreBTasks( void * pvParameters )
     x = ( BaseType_t ) pvParameters;
     configASSERT( x < mbaNUMBER_OF_CORE_B_TASKS );
 
-    for( ; ; )
+    for( ;; )
     {
         /* Create the string that is expected to be received this time round. */
         sprintf( cExpectedString, "%lu", ( unsigned long ) ulNextValue );
 
         /* Wait to receive the next message from core A. */
         memset( cReceivedString, 0x00, sizeof( cReceivedString ) );
-        xReceivedBytes = xMessageBufferReceive( /* The message buffer to receive from. */
-            xCoreBMessageBuffers[ x ],
-            /* Location to store received data. */
-            cReceivedString,
-            /* Maximum number of bytes to receive. */
-            sizeof( cReceivedString ),
-            /* Ticks to wait if buffer is empty. */
-            portMAX_DELAY );
+        xReceivedBytes = xMessageBufferReceive( /* The message buffer to receive
+                                                   from. */
+                                                xCoreBMessageBuffers[ x ],
+                                                /* Location to store received
+                                                   data. */
+                                                cReceivedString,
+                                                /* Maximum number of bytes to
+                                                   receive. */
+                                                sizeof( cReceivedString ),
+                                                /* Ticks to wait if buffer is
+                                                   empty. */
+                                                portMAX_DELAY );
 
         /* Check the number of bytes received was as expected. */
         configASSERT( xReceivedBytes == strlen( cExpectedString ) );
@@ -250,28 +261,33 @@ static void prvCoreBTasks( void * pvParameters )
 
 /* Called by the reimplementation of sbSEND_COMPLETED(), which can be defined
  * as follows in FreeRTOSConfig.h:
- #define sbSEND_COMPLETED( pxStreamBuffer ) vGenerateCoreBInterrupt( pxStreamBuffer )
+ #define sbSEND_COMPLETED( pxStreamBuffer ) vGenerateCoreBInterrupt(
+ pxStreamBuffer )
  */
 void vGenerateCoreBInterrupt( void * xUpdatedMessageBuffer )
 {
-    MessageBufferHandle_t xUpdatedBuffer = ( MessageBufferHandle_t ) xUpdatedMessageBuffer;
+    MessageBufferHandle_t xUpdatedBuffer = ( MessageBufferHandle_t )
+        xUpdatedMessageBuffer;
 
     /* If sbSEND_COMPLETED() has been implemented as above, then this function
      * is called from within xMessageBufferSend().  As this function also calls
      * xMessageBufferSend() itself it is necessary to guard against a recursive
-     * call.  If the message buffer just updated is the message buffer written to
-     * by this function, then this is a recursive call, and the function can just
-     * exit without taking further action. */
+     * call.  If the message buffer just updated is the message buffer written
+     * to by this function, then this is a recursive call, and the function can
+     * just exit without taking further action. */
     if( xUpdatedBuffer != xControlMessageBuffer )
     {
         /* Use xControlMessageBuffer to pass the handle of the message buffer
-         * written to by core A to the interrupt handler about to be generated in
-         * core B. */
-        xMessageBufferSend( xControlMessageBuffer, &xUpdatedBuffer, sizeof( xUpdatedBuffer ), mbaDONT_BLOCK );
+         * written to by core A to the interrupt handler about to be generated
+         * in core B. */
+        xMessageBufferSend( xControlMessageBuffer,
+                            &xUpdatedBuffer,
+                            sizeof( xUpdatedBuffer ),
+                            mbaDONT_BLOCK );
 
         /* This is where the interrupt would be generated.  In this case it is
-         * not a genuine interrupt handler that executes, just a standard function
-         * call. */
+         * not a genuine interrupt handler that executes, just a standard
+         * function call. */
         mbaGENERATE_CORE_B_INTERRUPT();
     }
 }
@@ -289,18 +305,20 @@ static void prvCoreBInterruptHandler( void )
     if( xMessageBufferReceive( xControlMessageBuffer,
                                &xUpdatedMessageBuffer,
                                sizeof( xUpdatedMessageBuffer ),
-                               mbaDONT_BLOCK ) == sizeof( xUpdatedMessageBuffer ) )
+                               mbaDONT_BLOCK ) ==
+        sizeof( xUpdatedMessageBuffer ) )
     {
         /* Call the API function that sends a notification to any task that is
-         * blocked on the xUpdatedMessageBuffer message buffer waiting for data to
-         * arrive. */
-        xMessageBufferSendCompletedFromISR( xUpdatedMessageBuffer, &xHigherPriorityTaskWoken );
+         * blocked on the xUpdatedMessageBuffer message buffer waiting for data
+         * to arrive. */
+        xMessageBufferSendCompletedFromISR( xUpdatedMessageBuffer,
+                                            &xHigherPriorityTaskWoken );
     }
 
     /* Normal FreeRTOS yield from interrupt semantics, where
-     * xHigherPriorityTaskWoken is initialized to pdFALSE and will then get set to
-     * pdTRUE if the interrupt safe API unblocks a task that has a priority above
-     * that of the currently executing task. */
+     * xHigherPriorityTaskWoken is initialized to pdFALSE and will then get set
+     * to pdTRUE if the interrupt safe API unblocks a task that has a priority
+     * above that of the currently executing task. */
     portYIELD_FROM_ISR( xHigherPriorityTaskWoken );
 }
 /*-----------------------------------------------------------*/

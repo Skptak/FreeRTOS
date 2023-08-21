@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -49,10 +50,10 @@
 #include "flop.h"
 
 #ifndef mathSTACK_SIZE
-    #define mathSTACK_SIZE     configMINIMAL_STACK_SIZE
+    #define mathSTACK_SIZE configMINIMAL_STACK_SIZE
 #endif
 
-#define mathNUMBER_OF_TASKS    ( 4 )
+#define mathNUMBER_OF_TASKS ( 4 )
 
 /* Four tasks, each of which performs a different floating point calculation.
  * Each of the four is created twice. */
@@ -69,10 +70,30 @@ static uint16_t usTaskCheck[ mathNUMBER_OF_TASKS ] = { ( uint16_t ) 0 };
 
 void vStartMathTasks( UBaseType_t uxPriority )
 {
-    xTaskCreate( vCompetingMathTask1, "Math1", mathSTACK_SIZE, ( void * ) &( usTaskCheck[ 0 ] ), uxPriority, NULL );
-    xTaskCreate( vCompetingMathTask2, "Math2", mathSTACK_SIZE, ( void * ) &( usTaskCheck[ 1 ] ), uxPriority, NULL );
-    xTaskCreate( vCompetingMathTask3, "Math3", mathSTACK_SIZE, ( void * ) &( usTaskCheck[ 2 ] ), uxPriority, NULL );
-    xTaskCreate( vCompetingMathTask4, "Math4", mathSTACK_SIZE, ( void * ) &( usTaskCheck[ 3 ] ), uxPriority, NULL );
+    xTaskCreate( vCompetingMathTask1,
+                 "Math1",
+                 mathSTACK_SIZE,
+                 ( void * ) &( usTaskCheck[ 0 ] ),
+                 uxPriority,
+                 NULL );
+    xTaskCreate( vCompetingMathTask2,
+                 "Math2",
+                 mathSTACK_SIZE,
+                 ( void * ) &( usTaskCheck[ 1 ] ),
+                 uxPriority,
+                 NULL );
+    xTaskCreate( vCompetingMathTask3,
+                 "Math3",
+                 mathSTACK_SIZE,
+                 ( void * ) &( usTaskCheck[ 2 ] ),
+                 uxPriority,
+                 NULL );
+    xTaskCreate( vCompetingMathTask4,
+                 "Math4",
+                 mathSTACK_SIZE,
+                 ( void * ) &( usTaskCheck[ 3 ] ),
+                 uxPriority,
+                 NULL );
 }
 /*-----------------------------------------------------------*/
 
@@ -94,12 +115,13 @@ static portTASK_FUNCTION( vCompetingMathTask1, pvParameters )
 
     dAnswer = ( d1 + d2 ) * d3;
 
-    /* The variable this task increments to show it is still running is passed in
-     * as the parameter. */
+    /* The variable this task increments to show it is still running is passed
+     * in as the parameter. */
     pusTaskCheckVariable = ( volatile uint16_t * ) pvParameters;
 
-    /* Keep performing a calculation and checking the result against a constant. */
-    for( ; ; )
+    /* Keep performing a calculation and checking the result against a constant.
+     */
+    for( ;; )
     {
         d1 = 123.4567;
         d2 = 2345.6789;
@@ -107,9 +129,9 @@ static portTASK_FUNCTION( vCompetingMathTask1, pvParameters )
 
         d4 = ( d1 + d2 ) * d3;
 
-        #if configUSE_PREEMPTION == 0
-            taskYIELD();
-        #endif
+#if configUSE_PREEMPTION == 0
+        taskYIELD();
+#endif
 
         /* If the calculation does not match the expected constant, stop the
          * increment of the check variable. */
@@ -126,9 +148,9 @@ static portTASK_FUNCTION( vCompetingMathTask1, pvParameters )
             ( *pusTaskCheckVariable ) = pdTRUE;
         }
 
-        #if configUSE_PREEMPTION == 0
-            taskYIELD();
-        #endif
+#if configUSE_PREEMPTION == 0
+        taskYIELD();
+#endif
     }
 }
 /*-----------------------------------------------------------*/
@@ -151,13 +173,13 @@ static portTASK_FUNCTION( vCompetingMathTask2, pvParameters )
 
     dAnswer = ( d1 / d2 ) * d3;
 
-
-    /* The variable this task increments to show it is still running is passed in
-     * as the parameter. */
+    /* The variable this task increments to show it is still running is passed
+     * in as the parameter. */
     pusTaskCheckVariable = ( volatile uint16_t * ) pvParameters;
 
-    /* Keep performing a calculation and checking the result against a constant. */
-    for( ; ; )
+    /* Keep performing a calculation and checking the result against a constant.
+     */
+    for( ;; )
     {
         d1 = -389.38;
         d2 = 32498.2;
@@ -165,9 +187,9 @@ static portTASK_FUNCTION( vCompetingMathTask2, pvParameters )
 
         d4 = ( d1 / d2 ) * d3;
 
-        #if configUSE_PREEMPTION == 0
-            taskYIELD();
-        #endif
+#if configUSE_PREEMPTION == 0
+        taskYIELD();
+#endif
 
         /* If the calculation does not match the expected constant, stop the
          * increment of the check variable. */
@@ -184,16 +206,16 @@ static portTASK_FUNCTION( vCompetingMathTask2, pvParameters )
             ( *pusTaskCheckVariable ) = pdTRUE;
         }
 
-        #if configUSE_PREEMPTION == 0
-            taskYIELD();
-        #endif
+#if configUSE_PREEMPTION == 0
+        taskYIELD();
+#endif
     }
 }
 /*-----------------------------------------------------------*/
 
 static portTASK_FUNCTION( vCompetingMathTask3, pvParameters )
 {
-    volatile portDOUBLE * pdArray, dTotal1, dTotal2, dDifference;
+    volatile portDOUBLE *pdArray, dTotal1, dTotal2, dDifference;
     volatile uint16_t * pusTaskCheckVariable;
     const size_t xArraySize = 10;
     size_t xPosition;
@@ -204,16 +226,17 @@ static portTASK_FUNCTION( vCompetingMathTask3, pvParameters )
      * floating point instructions are executed. */
     portTASK_USES_FLOATING_POINT();
 
-    /* The variable this task increments to show it is still running is passed in
-     * as the parameter. */
+    /* The variable this task increments to show it is still running is passed
+     * in as the parameter. */
     pusTaskCheckVariable = ( volatile uint16_t * ) pvParameters;
 
-    pdArray = ( portDOUBLE * ) pvPortMalloc( xArraySize * sizeof( portDOUBLE ) );
+    pdArray = ( portDOUBLE * ) pvPortMalloc( xArraySize *
+                                             sizeof( portDOUBLE ) );
 
-    /* Keep filling an array, keeping a running total of the values placed in the
-     * array.  Then run through the array adding up all the values.  If the two totals
-     * do not match, stop the check variable from incrementing. */
-    for( ; ; )
+    /* Keep filling an array, keeping a running total of the values placed in
+     * the array.  Then run through the array adding up all the values.  If the
+     * two totals do not match, stop the check variable from incrementing. */
+    for( ;; )
     {
         dTotal1 = 0.0;
         dTotal2 = 0.0;
@@ -224,9 +247,9 @@ static portTASK_FUNCTION( vCompetingMathTask3, pvParameters )
             dTotal1 += ( portDOUBLE ) xPosition + 5.5;
         }
 
-        #if configUSE_PREEMPTION == 0
-            taskYIELD();
-        #endif
+#if configUSE_PREEMPTION == 0
+        taskYIELD();
+#endif
 
         for( xPosition = 0; xPosition < xArraySize; xPosition++ )
         {
@@ -240,9 +263,9 @@ static portTASK_FUNCTION( vCompetingMathTask3, pvParameters )
             sError = pdTRUE;
         }
 
-        #if configUSE_PREEMPTION == 0
-            taskYIELD();
-        #endif
+#if configUSE_PREEMPTION == 0
+        taskYIELD();
+#endif
 
         if( sError == pdFALSE )
         {
@@ -257,7 +280,7 @@ static portTASK_FUNCTION( vCompetingMathTask3, pvParameters )
 
 static portTASK_FUNCTION( vCompetingMathTask4, pvParameters )
 {
-    volatile portDOUBLE * pdArray, dTotal1, dTotal2, dDifference;
+    volatile portDOUBLE *pdArray, dTotal1, dTotal2, dDifference;
     volatile uint16_t * pusTaskCheckVariable;
     const size_t xArraySize = 10;
     size_t xPosition;
@@ -268,16 +291,17 @@ static portTASK_FUNCTION( vCompetingMathTask4, pvParameters )
      * floating point instructions are executed. */
     portTASK_USES_FLOATING_POINT();
 
-    /* The variable this task increments to show it is still running is passed in
-     * as the parameter. */
+    /* The variable this task increments to show it is still running is passed
+     * in as the parameter. */
     pusTaskCheckVariable = ( volatile uint16_t * ) pvParameters;
 
-    pdArray = ( portDOUBLE * ) pvPortMalloc( xArraySize * sizeof( portDOUBLE ) );
+    pdArray = ( portDOUBLE * ) pvPortMalloc( xArraySize *
+                                             sizeof( portDOUBLE ) );
 
-    /* Keep filling an array, keeping a running total of the values placed in the
-     * array.  Then run through the array adding up all the values.  If the two totals
-     * do not match, stop the check variable from incrementing. */
-    for( ; ; )
+    /* Keep filling an array, keeping a running total of the values placed in
+     * the array.  Then run through the array adding up all the values.  If the
+     * two totals do not match, stop the check variable from incrementing. */
+    for( ;; )
     {
         dTotal1 = 0.0;
         dTotal2 = 0.0;
@@ -288,9 +312,9 @@ static portTASK_FUNCTION( vCompetingMathTask4, pvParameters )
             dTotal1 += ( portDOUBLE ) xPosition * 12.123;
         }
 
-        #if configUSE_PREEMPTION == 0
-            taskYIELD();
-        #endif
+#if configUSE_PREEMPTION == 0
+        taskYIELD();
+#endif
 
         for( xPosition = 0; xPosition < xArraySize; xPosition++ )
         {
@@ -304,9 +328,9 @@ static portTASK_FUNCTION( vCompetingMathTask4, pvParameters )
             sError = pdTRUE;
         }
 
-        #if configUSE_PREEMPTION == 0
-            taskYIELD();
-        #endif
+#if configUSE_PREEMPTION == 0
+        taskYIELD();
+#endif
 
         if( sError == pdFALSE )
         {

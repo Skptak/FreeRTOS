@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -105,14 +106,14 @@ static portTASK_FUNCTION_PROTO( vQueueSendWhenSuspendedTask, pvParameters );
 
 /* Demo task specific constants. */
 #ifndef priSUSPENDED_RX_TASK_STACK_SIZE
-    #define priSUSPENDED_RX_TASK_STACK_SIZE    ( configMINIMAL_STACK_SIZE )
+    #define priSUSPENDED_RX_TASK_STACK_SIZE ( configMINIMAL_STACK_SIZE )
 #endif
-#define priSTACK_SIZE                          ( configMINIMAL_STACK_SIZE )
-#define priSLEEP_TIME                          pdMS_TO_TICKS( 128 )
-#define priLOOPS                               ( 5 )
-#define priMAX_COUNT                           ( ( uint32_t ) 0xff )
-#define priNO_BLOCK                            ( ( TickType_t ) 0 )
-#define priSUSPENDED_QUEUE_LENGTH              ( 1 )
+#define priSTACK_SIZE             ( configMINIMAL_STACK_SIZE )
+#define priSLEEP_TIME             pdMS_TO_TICKS( 128 )
+#define priLOOPS                  ( 5 )
+#define priMAX_COUNT              ( ( uint32_t ) 0xff )
+#define priNO_BLOCK               ( ( TickType_t ) 0 )
+#define priSUSPENDED_QUEUE_LENGTH ( 1 )
 
 /*-----------------------------------------------------------*/
 
@@ -148,23 +149,49 @@ static uint32_t ulExpectedValue = ( uint32_t ) 0;
  */
 void vStartDynamicPriorityTasks( void )
 {
-    xSuspendedTestQueue = xQueueCreate( priSUSPENDED_QUEUE_LENGTH, sizeof( uint32_t ) );
+    xSuspendedTestQueue = xQueueCreate( priSUSPENDED_QUEUE_LENGTH,
+                                        sizeof( uint32_t ) );
 
     if( xSuspendedTestQueue != NULL )
     {
         /* vQueueAddToRegistry() adds the queue to the queue registry, if one is
          * in use.  The queue registry is provided as a means for kernel aware
-         * debuggers to locate queues and has no purpose if a kernel aware debugger
-         * is not being used.  The call to vQueueAddToRegistry() will be removed
-         * by the pre-processor if configQUEUE_REGISTRY_SIZE is not defined or is
-         * defined to be less than 1. */
+         * debuggers to locate queues and has no purpose if a kernel aware
+         * debugger is not being used.  The call to vQueueAddToRegistry() will
+         * be removed by the pre-processor if configQUEUE_REGISTRY_SIZE is not
+         * defined or is defined to be less than 1. */
         vQueueAddToRegistry( xSuspendedTestQueue, "Suspended_Test_Queue" );
 
-        xTaskCreate( vContinuousIncrementTask, "CNT_INC", priSTACK_SIZE, ( void * ) &ulCounter, tskIDLE_PRIORITY, &xContinuousIncrementHandle );
-        xTaskCreate( vLimitedIncrementTask, "LIM_INC", priSTACK_SIZE, ( void * ) &ulCounter, tskIDLE_PRIORITY + 1, &xLimitedIncrementHandle );
-        xTaskCreate( vCounterControlTask, "C_CTRL", priSUSPENDED_RX_TASK_STACK_SIZE, NULL, tskIDLE_PRIORITY, NULL );
-        xTaskCreate( vQueueSendWhenSuspendedTask, "SUSP_TX", priSTACK_SIZE, NULL, tskIDLE_PRIORITY, NULL );
-        xTaskCreate( vQueueReceiveWhenSuspendedTask, "SUSP_RX", priSUSPENDED_RX_TASK_STACK_SIZE, NULL, tskIDLE_PRIORITY, NULL );
+        xTaskCreate( vContinuousIncrementTask,
+                     "CNT_INC",
+                     priSTACK_SIZE,
+                     ( void * ) &ulCounter,
+                     tskIDLE_PRIORITY,
+                     &xContinuousIncrementHandle );
+        xTaskCreate( vLimitedIncrementTask,
+                     "LIM_INC",
+                     priSTACK_SIZE,
+                     ( void * ) &ulCounter,
+                     tskIDLE_PRIORITY + 1,
+                     &xLimitedIncrementHandle );
+        xTaskCreate( vCounterControlTask,
+                     "C_CTRL",
+                     priSUSPENDED_RX_TASK_STACK_SIZE,
+                     NULL,
+                     tskIDLE_PRIORITY,
+                     NULL );
+        xTaskCreate( vQueueSendWhenSuspendedTask,
+                     "SUSP_TX",
+                     priSTACK_SIZE,
+                     NULL,
+                     tskIDLE_PRIORITY,
+                     NULL );
+        xTaskCreate( vQueueReceiveWhenSuspendedTask,
+                     "SUSP_RX",
+                     priSUSPENDED_RX_TASK_STACK_SIZE,
+                     NULL,
+                     tskIDLE_PRIORITY,
+                     NULL );
     }
 }
 /*-----------------------------------------------------------*/
@@ -185,7 +212,7 @@ static portTASK_FUNCTION( vLimitedIncrementTask, pvParameters )
      * suspend - the control task will resume it when ready. */
     vTaskSuspend( NULL );
 
-    for( ; ; )
+    for( ;; )
     {
         /* Just count up to a value then suspend. */
         ( *pulCounter )++;
@@ -215,20 +242,21 @@ static portTASK_FUNCTION( vContinuousIncrementTask, pvParameters )
      * shared variable is required. */
     uxOurPriority = uxTaskPriorityGet( NULL );
 
-    for( ; ; )
+    for( ;; )
     {
         /* Raise the priority above the controller task to ensure a context
          * switch does not occur while the variable is being accessed. */
         vTaskPrioritySet( NULL, uxOurPriority + 1 );
         {
-            configASSERT( ( uxTaskPriorityGet( NULL ) == ( uxOurPriority + 1 ) ) );
+            configASSERT(
+                ( uxTaskPriorityGet( NULL ) == ( uxOurPriority + 1 ) ) );
             ( *pulCounter )++;
         }
         vTaskPrioritySet( NULL, uxOurPriority );
 
-        #if ( configUSE_PREEMPTION == 0 )
-            taskYIELD();
-        #endif
+#if( configUSE_PREEMPTION == 0 )
+        taskYIELD();
+#endif
 
         configASSERT( ( uxTaskPriorityGet( NULL ) == uxOurPriority ) );
     }
@@ -247,7 +275,7 @@ static portTASK_FUNCTION( vCounterControlTask, pvParameters )
     /* Just to stop warning messages. */
     ( void ) pvParameters;
 
-    for( ; ; )
+    for( ;; )
     {
         /* Start with the counter at zero. */
         ulCounter = ( uint32_t ) 0;
@@ -263,34 +291,38 @@ static portTASK_FUNCTION( vCounterControlTask, pvParameters )
              * priority. */
             vTaskSuspend( xContinuousIncrementHandle );
             {
-                #if ( INCLUDE_eTaskGetState == 1 )
+#if( INCLUDE_eTaskGetState == 1 )
                 {
-                    configASSERT( eTaskGetState( xContinuousIncrementHandle ) == eSuspended );
+                    configASSERT( eTaskGetState( xContinuousIncrementHandle ) ==
+                                  eSuspended );
                 }
-                #endif /* INCLUDE_eTaskGetState */
+#endif /* INCLUDE_eTaskGetState */
 
                 ulLastCounter = ulCounter;
             }
             vTaskResume( xContinuousIncrementHandle );
 
-            #if ( configUSE_PREEMPTION == 0 )
-                taskYIELD();
-            #endif
+#if( configUSE_PREEMPTION == 0 )
+            taskYIELD();
+#endif
 
-            #if ( INCLUDE_eTaskGetState == 1 )
+#if( INCLUDE_eTaskGetState == 1 )
             {
-                #if ( configNUMBER_OF_CORES > 1 )
+    #if( configNUMBER_OF_CORES > 1 )
                 {
-                    eTaskState eState = eTaskGetState( xContinuousIncrementHandle );
-                    configASSERT( ( eState == eReady ) || ( eState == eRunning ) );
+                    eTaskState eState = eTaskGetState(
+                        xContinuousIncrementHandle );
+                    configASSERT( ( eState == eReady ) ||
+                                  ( eState == eRunning ) );
                 }
-                #else
+    #else
                 {
-                    configASSERT( eTaskGetState( xContinuousIncrementHandle ) == eReady );
+                    configASSERT( eTaskGetState( xContinuousIncrementHandle ) ==
+                                  eReady );
                 }
-                #endif
+    #endif
             }
-            #endif /* INCLUDE_eTaskGetState */
+#endif /* INCLUDE_eTaskGetState */
 
             /* Now delay to ensure the other task has processor time. */
             vTaskDelay( priSLEEP_TIME );
@@ -319,28 +351,31 @@ static portTASK_FUNCTION( vCounterControlTask, pvParameters )
         /* Reset the variable. */
         ulCounter = ( uint32_t ) 0;
 
-        #if ( INCLUDE_eTaskGetState == 1 )
+#if( INCLUDE_eTaskGetState == 1 )
         {
-            configASSERT( eTaskGetState( xLimitedIncrementHandle ) == eSuspended );
+            configASSERT( eTaskGetState( xLimitedIncrementHandle ) ==
+                          eSuspended );
         }
-        #endif /* INCLUDE_eTaskGetState */
+#endif /* INCLUDE_eTaskGetState */
 
         /* Resume the limited count task which has a higher priority than us.
          * We should therefore not return from this call until the limited count
-         * task has suspended itself with a known value in the counter variable. */
+         * task has suspended itself with a known value in the counter variable.
+         */
         vTaskResume( xLimitedIncrementHandle );
 
-        #if ( configUSE_PREEMPTION == 0 )
-            taskYIELD();
-        #endif
+#if( configUSE_PREEMPTION == 0 )
+        taskYIELD();
+#endif
 
-        /* This task should not run again until xLimitedIncrementHandle has
-         * suspended itself. */
-        #if ( INCLUDE_eTaskGetState == 1 )
+/* This task should not run again until xLimitedIncrementHandle has
+ * suspended itself. */
+#if( INCLUDE_eTaskGetState == 1 )
         {
-            configASSERT( eTaskGetState( xLimitedIncrementHandle ) == eSuspended );
+            configASSERT( eTaskGetState( xLimitedIncrementHandle ) ==
+                          eSuspended );
         }
-        #endif /* INCLUDE_eTaskGetState */
+#endif /* INCLUDE_eTaskGetState */
 
         /* Does the counter variable have the expected value? */
         if( ulCounter != priMAX_COUNT )
@@ -359,9 +394,9 @@ static portTASK_FUNCTION( vCounterControlTask, pvParameters )
         /* Resume the continuous count task and do it all again. */
         vTaskResume( xContinuousIncrementHandle );
 
-        #if ( configUSE_PREEMPTION == 0 )
-            taskYIELD();
-        #endif
+#if( configUSE_PREEMPTION == 0 )
+        taskYIELD();
+#endif
     }
 }
 /*-----------------------------------------------------------*/
@@ -373,12 +408,14 @@ static portTASK_FUNCTION( vQueueSendWhenSuspendedTask, pvParameters )
     /* Just to stop warning messages. */
     ( void ) pvParameters;
 
-    for( ; ; )
+    for( ;; )
     {
         vTaskSuspendAll();
         {
             /* We must not block while the scheduler is suspended! */
-            if( xQueueSend( xSuspendedTestQueue, ( void * ) &ulValueToSend, priNO_BLOCK ) != pdTRUE )
+            if( xQueueSend( xSuspendedTestQueue,
+                            ( void * ) &ulValueToSend,
+                            priNO_BLOCK ) != pdTRUE )
             {
                 xSuspendedQueueSendError = pdTRUE;
             }
@@ -400,7 +437,7 @@ static portTASK_FUNCTION( vQueueReceiveWhenSuspendedTask, pvParameters )
     /* Just to stop warning messages. */
     ( void ) pvParameters;
 
-    for( ; ; )
+    for( ;; )
     {
         do
         {
@@ -413,7 +450,9 @@ static portTASK_FUNCTION( vQueueReceiveWhenSuspendedTask, pvParameters )
             {
                 vTaskSuspendAll();
                 {
-                    xGotValue = xQueueReceive( xSuspendedTestQueue, ( void * ) &ulReceivedValue, priNO_BLOCK );
+                    xGotValue = xQueueReceive( xSuspendedTestQueue,
+                                               ( void * ) &ulReceivedValue,
+                                               priNO_BLOCK );
                 }
 
                 if( xTaskResumeAll() != pdFALSE )
@@ -423,11 +462,11 @@ static portTASK_FUNCTION( vQueueReceiveWhenSuspendedTask, pvParameters )
             }
             xTaskResumeAll();
 
-            #if configUSE_PREEMPTION == 0
+#if configUSE_PREEMPTION == 0
             {
                 taskYIELD();
             }
-            #endif
+#endif
         } while( xGotValue == pdFALSE );
 
         if( ulReceivedValue != ulExpectedValue )
@@ -438,19 +477,20 @@ static portTASK_FUNCTION( vQueueReceiveWhenSuspendedTask, pvParameters )
         if( xSuspendedQueueReceiveError != pdTRUE )
         {
             /* Only increment the variable if an error has not occurred.  This
-             * allows xAreDynamicPriorityTasksStillRunning() to check for stalled
-             * tasks as well as explicit errors. */
+             * allows xAreDynamicPriorityTasksStillRunning() to check for
+             * stalled tasks as well as explicit errors. */
             ++ulExpectedValue;
         }
     }
 }
 /*-----------------------------------------------------------*/
 
-/* Called to check that all the created tasks are still running without error. */
+/* Called to check that all the created tasks are still running without error.
+ */
 BaseType_t xAreDynamicPriorityTasksStillRunning( void )
 {
-/* Keep a history of the check variables so we know if it has been incremented
- * since the last call. */
+    /* Keep a history of the check variables so we know if it has been
+     * incremented since the last call. */
     static uint16_t usLastTaskCheck = ( uint16_t ) 0;
     static uint32_t ulLastExpectedValue = ( uint32_t ) 0U;
     BaseType_t xReturn = pdTRUE;

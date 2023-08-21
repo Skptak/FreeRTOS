@@ -2,28 +2,28 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
  *
  */
-
 
 /*
  * Creates a task and a timer that operate on an interrupt driven serial port.
@@ -64,42 +64,42 @@
     #error This demo uses timers.  configUSE_TIMERS must be set to 1 in FreeRTOSConfig.h.
 #endif
 
-
 /* Demo program include files. */
 #include "serial.h"
 #include "comtest_strings.h"
 #include "partest.h"
 
 /* The size of the stack given to the Rx task. */
-#define comSTACK_SIZE                    configMINIMAL_STACK_SIZE
+#define comSTACK_SIZE                 configMINIMAL_STACK_SIZE
 
 /* See the comment above the declaration of the uxBaseLED variable. */
-#define comTX_LED_OFFSET                 ( 0 )
-#define comRX_LED_OFFSET                 ( 1 )
+#define comTX_LED_OFFSET              ( 0 )
+#define comRX_LED_OFFSET              ( 1 )
 
 /* The Tx timer transmits the sequence of characters at a pseudo random
  * interval that is capped between comTX_MAX_BLOCK_TIME and
  * comTX_MIN_BLOCK_TIME. */
-#define comTX_MAX_BLOCK_TIME             ( ( TickType_t ) 0x96 )
-#define comTX_MIN_BLOCK_TIME             ( ( TickType_t ) 0x32 )
-#define comOFFSET_TIME                   ( ( TickType_t ) 3 )
+#define comTX_MAX_BLOCK_TIME          ( ( TickType_t ) 0x96 )
+#define comTX_MIN_BLOCK_TIME          ( ( TickType_t ) 0x32 )
+#define comOFFSET_TIME                ( ( TickType_t ) 3 )
 
 /* States for the simple state machine implemented in the Rx task. */
-#define comtstWAITING_START_OF_STRING    0
-#define comtstWAITING_END_OF_STRING      1
+#define comtstWAITING_START_OF_STRING 0
+#define comtstWAITING_END_OF_STRING   1
 
 /* A short delay in ticks - this delay is used to allow the Rx queue to fill up
- * a bit so more than one character can be processed at a time.  This is relative
- * to comTX_MIN_BLOCK_TIME to ensure it is never longer than the shortest gap
- * between transmissions.  It could be worked out more scientifically from the
- * baud rate being used. */
-#define comSHORT_DELAY                   ( comTX_MIN_BLOCK_TIME >> ( TickType_t ) 2 )
+ * a bit so more than one character can be processed at a time.  This is
+ * relative to comTX_MIN_BLOCK_TIME to ensure it is never longer than the
+ * shortest gap between transmissions.  It could be worked out more
+ * scientifically from the baud rate being used. */
+#define comSHORT_DELAY                ( comTX_MIN_BLOCK_TIME >> ( TickType_t ) 2 )
 
 /* The string that is transmitted and received. */
-#define comTRANSACTED_STRING             "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+#define comTRANSACTED_STRING \
+    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
 
 /* A block time of 0 simply means "don't block". */
-#define comtstDONT_BLOCK                 ( TickType_t ) 0
+#define comtstDONT_BLOCK ( TickType_t ) 0
 
 /* Handle to the com port used by both tasks. */
 static xComPortHandle xPort = NULL;
@@ -151,8 +151,17 @@ void vStartComTestStringsTasks( UBaseType_t uxPriority,
 
     /* Create the Rx task and the Tx timer.  The timer is started from the
      * Rx task. */
-    xTaskCreate( vComRxTask, "COMRx", comSTACK_SIZE, NULL, uxPriority, ( TaskHandle_t * ) NULL );
-    xTxTimer = xTimerCreate( "TxTimer", comTX_MIN_BLOCK_TIME, pdFALSE, NULL, prvComTxTimerCallback );
+    xTaskCreate( vComRxTask,
+                 "COMRx",
+                 comSTACK_SIZE,
+                 NULL,
+                 uxPriority,
+                 ( TaskHandle_t * ) NULL );
+    xTxTimer = xTimerCreate( "TxTimer",
+                             comTX_MIN_BLOCK_TIME,
+                             pdFALSE,
+                             NULL,
+                             prvComTxTimerCallback );
     configASSERT( xTxTimer );
 }
 /*-----------------------------------------------------------*/
@@ -196,7 +205,7 @@ static void prvComTxTimerCallback( TimerHandle_t xTimer )
 static void vComRxTask( void * pvParameters )
 {
     BaseType_t xState = comtstWAITING_START_OF_STRING, xErrorOccurred = pdFALSE;
-    char * pcExpectedByte, cRxedChar;
+    char *pcExpectedByte, cRxedChar;
     const xComPortHandle xPort = NULL;
 
     /* The parameter is not used in this example. */
@@ -210,14 +219,15 @@ static void vComRxTask( void * pvParameters )
      * transmitted. */
     pcExpectedByte = comTRANSACTED_STRING;
 
-    for( ; ; )
+    for( ;; )
     {
         /* Wait for the next character. */
-        if( xSerialGetChar( xPort, &cRxedChar, ( comTX_MAX_BLOCK_TIME * 2 ) ) == pdFALSE )
+        if( xSerialGetChar( xPort, &cRxedChar, ( comTX_MAX_BLOCK_TIME * 2 ) ) ==
+            pdFALSE )
         {
             /* A character definitely should have been received by now.  As a
-             * character was not received an error must have occurred (which might
-             * just be that the loopback connector is not fitted). */
+             * character was not received an error must have occurred (which
+             * might just be that the loopback connector is not fitted). */
             xErrorOccurred = pdTRUE;
         }
 
@@ -229,7 +239,8 @@ static void vComRxTask( void * pvParameters )
                 {
                     /* The received character was the first character of the
                      * string.  Move to the next state to check each character
-                     * as it comes in until the entire string has been received. */
+                     * as it comes in until the entire string has been received.
+                     */
                     xState = comtstWAITING_END_OF_STRING;
                     pcExpectedByte++;
 
@@ -297,8 +308,8 @@ BaseType_t xAreComTestTasksStillRunning( void )
     BaseType_t xReturn;
 
     /* If the count of successful reception loops has not changed than at
-     * some time an error occurred (i.e. a character was received out of sequence)
-     * and false is returned. */
+     * some time an error occurred (i.e. a character was received out of
+     * sequence) and false is returned. */
     if( uxRxLoops == 0UL )
     {
         xReturn = pdFALSE;
