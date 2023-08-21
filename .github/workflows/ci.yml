@@ -37,6 +37,13 @@ jobs:
             - uses: actions/checkout@v3
             - name: Check Formatting of Files
               uses: FreeRTOS/CI-CD-Github-Actions/formatting@CI-CD-Overhaul
+                exclude-dirs: Demo
+            - name: Check Formatting of FreeRTOS Common Demo Files
+              uses: FreeRTOS/CI-CD-Github-Actions/formatting@CI-CD-Overhaul
+                path: FreeRTOS/Demo/Common/
+            - name: Check Formatting of FreeRTOS-Plus-TCP Demo Files
+              uses: FreeRTOS/CI-CD-Github-Actions/formatting@CI-CD-Overhaul
+                path: FreeRTOS-Plus/Demo
 
     doxygen:
         runs-on: ubuntu-latest
