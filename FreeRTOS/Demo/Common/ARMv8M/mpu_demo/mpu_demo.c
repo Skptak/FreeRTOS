@@ -1,23 +1,23 @@
 /*
  * FreeRTOS V202212.00
- * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
+ * Copyright (C) 2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the "Software"), to
+ * deal in the Software without restriction, including without limitation the
+ * rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+ * sell copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -31,21 +31,30 @@
 /**
  * @brief Size of the shared memory region.
  */
-#define SHARED_MEMORY_SIZE    32
+#define SHARED_MEMORY_SIZE 32
 
 /**
  * @brief Memory region shared between two tasks.
  */
-static uint8_t ucSharedMemory[ SHARED_MEMORY_SIZE ] __attribute__( ( aligned( 32 ) ) );
-#if ( configTOTAL_MPU_REGIONS == 16 )
-    static uint8_t ucSharedMemory1[ SHARED_MEMORY_SIZE ] __attribute__( ( aligned( 32 ) ) );
-    static uint8_t ucSharedMemory2[ SHARED_MEMORY_SIZE ] __attribute__( ( aligned( 32 ) ) );
-    static uint8_t ucSharedMemory3[ SHARED_MEMORY_SIZE ] __attribute__( ( aligned( 32 ) ) );
-    static uint8_t ucSharedMemory4[ SHARED_MEMORY_SIZE ] __attribute__( ( aligned( 32 ) ) );
-    static uint8_t ucSharedMemory5[ SHARED_MEMORY_SIZE ] __attribute__( ( aligned( 32 ) ) );
-    static uint8_t ucSharedMemory6[ SHARED_MEMORY_SIZE ] __attribute__( ( aligned( 32 ) ) );
-    static uint8_t ucSharedMemory7[ SHARED_MEMORY_SIZE ] __attribute__( ( aligned( 32 ) ) );
-    static uint8_t ucSharedMemory8[ SHARED_MEMORY_SIZE ] __attribute__( ( aligned( 32 ) ) );
+static uint8_t ucSharedMemory[ SHARED_MEMORY_SIZE ]
+    __attribute__( ( aligned( 32 ) ) );
+#if( configTOTAL_MPU_REGIONS == 16 )
+static uint8_t ucSharedMemory1[ SHARED_MEMORY_SIZE ]
+    __attribute__( ( aligned( 32 ) ) );
+static uint8_t ucSharedMemory2[ SHARED_MEMORY_SIZE ]
+    __attribute__( ( aligned( 32 ) ) );
+static uint8_t ucSharedMemory3[ SHARED_MEMORY_SIZE ]
+    __attribute__( ( aligned( 32 ) ) );
+static uint8_t ucSharedMemory4[ SHARED_MEMORY_SIZE ]
+    __attribute__( ( aligned( 32 ) ) );
+static uint8_t ucSharedMemory5[ SHARED_MEMORY_SIZE ]
+    __attribute__( ( aligned( 32 ) ) );
+static uint8_t ucSharedMemory6[ SHARED_MEMORY_SIZE ]
+    __attribute__( ( aligned( 32 ) ) );
+static uint8_t ucSharedMemory7[ SHARED_MEMORY_SIZE ]
+    __attribute__( ( aligned( 32 ) ) );
+static uint8_t ucSharedMemory8[ SHARED_MEMORY_SIZE ]
+    __attribute__( ( aligned( 32 ) ) );
 #endif /* configTOTAL_MPU_REGIONS == 16 */
 
 /**
@@ -60,7 +69,8 @@ static uint8_t ucSharedMemory[ SHARED_MEMORY_SIZE ] __attribute__( ( aligned( 32
  * @note We are declaring a region of 32 bytes even though we need only one. The
  * reason is that the size of an MPU region must be a multiple of 32 bytes.
  */
-static volatile uint8_t ucROTaskFaultTracker[ SHARED_MEMORY_SIZE ] __attribute__( ( aligned( 32 ) ) ) = { 0 };
+static volatile uint8_t ucROTaskFaultTracker[ SHARED_MEMORY_SIZE ]
+    __attribute__( ( aligned( 32 ) ) ) = { 0 };
 /*-----------------------------------------------------------*/
 
 /**
@@ -88,7 +98,7 @@ static void prvROAccessTask( void * pvParameters )
     /* Unused parameters. */
     ( void ) pvParameters;
 
-    for( ; ; )
+    for( ;; )
     {
         /* This task performs the following sequence for all the shared memory
          * regions:
@@ -116,7 +126,7 @@ static void prvROAccessTask( void * pvParameters )
         ucSharedMemory[ 0 ] = 0;
         configASSERT( ucROTaskFaultTracker[ 0 ] == 0 );
 
-        #if ( configTOTAL_MPU_REGIONS == 16 )
+#if( configTOTAL_MPU_REGIONS == 16 )
         {
             /* Perform the above mentioned sequence on ucSharedMemory1. */
             ucVal = ucSharedMemory1[ 0 ];
@@ -182,7 +192,7 @@ static void prvROAccessTask( void * pvParameters )
             ucSharedMemory8[ 0 ] = 0;
             configASSERT( ucROTaskFaultTracker[ 0 ] == 0 );
         }
-        #endif /* configTOTAL_MPU_REGIONS == 16 */
+#endif /* configTOTAL_MPU_REGIONS == 16 */
 
         /* Wait for a second. */
         vTaskDelay( pdMS_TO_TICKS( 1000 ) );
@@ -195,13 +205,12 @@ static void prvRWAccessTask( void * pvParameters )
     /* Unused parameters. */
     ( void ) pvParameters;
 
-    for( ; ; )
+    for( ;; )
     {
-        /* This task has RW access to ucSharedMemory and therefore can write to
-         * it. */
+        /* This task has Read and Write access to ucSharedMemory */
         ucSharedMemory[ 0 ] = 0;
 
-        #if ( configTOTAL_MPU_REGIONS == 16 )
+#if( configTOTAL_MPU_REGIONS == 16 )
         {
             ucSharedMemory1[ 0 ] = 0;
             ucSharedMemory2[ 0 ] = 0;
@@ -212,7 +221,7 @@ static void prvRWAccessTask( void * pvParameters )
             ucSharedMemory7[ 0 ] = 0;
             ucSharedMemory8[ 0 ] = 0;
         }
-        #endif /* configTOTAL_MPU_REGIONS == 16 */
+#endif /* configTOTAL_MPU_REGIONS == 16 */
 
         /* Wait for a second. */
         vTaskDelay( pdMS_TO_TICKS( 1000 ) );
@@ -222,8 +231,11 @@ static void prvRWAccessTask( void * pvParameters )
 
 void vStartMPUDemo( void )
 {
-    static StackType_t xROAccessTaskStack[ configMINIMAL_STACK_SIZE ] __attribute__( ( aligned( 32 ) ) );
-    static StackType_t xRWAccessTaskStack[ configMINIMAL_STACK_SIZE ] __attribute__( ( aligned( 32 ) ) );
+    static StackType_t xROAccessTaskStack[ configMINIMAL_STACK_SIZE ]
+        __attribute__( ( aligned( 32 ) ) );
+    static StackType_t xRWAccessTaskStack[ configMINIMAL_STACK_SIZE ]
+        __attribute__( ( aligned( 32 ) ) );
+    /* clang-format off */
     TaskParameters_t xROAccessTaskParameters =
     {
         .pvTaskCode     = prvROAccessTask,
@@ -274,6 +286,7 @@ void vStartMPUDemo( void )
             { 0,                          0,  0                                                      },
         }
     };
+    /* clang-format on */
 
     /* Create an unprivileged task with RO access to ucSharedMemory. */
     xTaskCreateRestricted( &( xROAccessTaskParameters ), NULL );
@@ -339,9 +352,22 @@ portDONT_DISCARD void vHandleMemoryFault( uint32_t * pulFaultStackAddress )
     else
     {
         /* This is an unexpected fault - loop forever. */
-        for( ; ; )
-        {
-        }
+        for( ;; )
+            truction.* / ulPC += 2;
     }
+
+    /* Save the new program counter on the stack. */
+    pulFaultStackAddress[ 6 ] = ulPC;
+
+    /* Mark the fault as handled. */
+    ucROTaskFaultTracker[ 0 ] = 0;
+}
+else
+{
+    /* This is an unexpected fault - loop forever. */
+    for( ;; )
+    {
+    }
+}
 }
 /*-----------------------------------------------------------*/

@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -38,8 +39,7 @@
 
 void vRegTest1Asm_NonSecure( void ) /* __attribute__(( naked )) */
 {
-    __asm volatile
-    (
+    __asm volatile(
         ".extern ulRegTest1LoopCounter                              \n"
         ".syntax unified                                            \n"
         "                                                           \n"
@@ -122,9 +122,13 @@ void vRegTest1Asm_NonSecure( void ) /* __attribute__(( naked )) */
         "    bne reg1_error_loop                                    \n"
         "                                                           \n"
         " /* Verify that FPU registers contain correct values. */   \n"
-        "    vmov.f32 s0, #1.5                                      \n" /* s0 = 1.5. */
-        "    vcmp.f32 s1, s0                                        \n" /* Compare s0 and s1. */
-        "    vmrs     APSR_nzcv, FPSCR                              \n" /* Copy floating point flags (FPSCR flags) to ASPR flags - needed for next bne to work. */
+        /* s0 = 1.5. */
+        "    vmov.f32 s0, #1.5                                      \n"
+        /* Compare s0 and s1. */
+        "    vcmp.f32 s1, s0                                        \n"
+        /* Copy floating point flags (FPSCR flags) to ASPR flags - needed for
+           next bne to work. */
+        "    vmrs     APSR_nzcv, FPSCR                              \n"
         "    bne      reg1_error_loop                               \n"
         "    vmov.f32 s0, #2.5                                      \n"
         "    vcmp.f32 s2, s0                                        \n"
@@ -256,8 +260,10 @@ void vRegTest1Asm_NonSecure( void ) /* __attribute__(( naked )) */
         "                                                           \n"
         "    /* Yield to increase test coverage. */                 \n"
         "    movs r0, #0x01                                         \n"
-        "    ldr  r1, =0xe000ed04                                   \n" /* NVIC_ICSR. */
-        "    lsls r0, #28                                           \n" /* Shift to PendSV bit. */
+        /* NVIC_ICSR. */
+        "    ldr  r1, =0xe000ed04                                   \n"
+        /* Shift to PendSV bit. */
+        "    lsls r0, #28                                           \n"
         "    str  r0, [r1]                                          \n"
         "    dsb                                                    \n"
         "    pop  { r0, r1 }                                        \n"
@@ -271,15 +277,13 @@ void vRegTest1Asm_NonSecure( void ) /* __attribute__(( naked )) */
         "     * loop counter stops incrementing. */                 \n"
         "    b reg1_error_loop                                      \n"
         "    nop                                                    \n"
-        ".ltorg                                                     \n"
-    );
+        ".ltorg                                                     \n" );
 }
 /*-----------------------------------------------------------*/
 
 void vRegTest2Asm_NonSecure( void ) /* __attribute__(( naked )) */
 {
-    __asm volatile
-    (
+    __asm volatile(
         ".extern ulRegTest2LoopCounter                              \n"
         ".syntax unified                                            \n"
         "                                                           \n"
@@ -504,15 +508,13 @@ void vRegTest2Asm_NonSecure( void ) /* __attribute__(( naked )) */
         "     * loop counter stops incrementing. */                 \n"
         "    b reg2_error_loop                                      \n"
         "    nop                                                    \n"
-        ".ltorg                                                     \n"
-    );
+        ".ltorg                                                     \n" );
 }
 /*-----------------------------------------------------------*/
 
 void vRegTest3Asm_NonSecure( void ) /* __attribute__(( naked )) */
 {
-    __asm volatile
-    (
+    __asm volatile(
         ".extern ulRegTest3LoopCounter                              \n"
         ".syntax unified                                            \n"
         "                                                           \n"
@@ -729,8 +731,10 @@ void vRegTest3Asm_NonSecure( void ) /* __attribute__(( naked )) */
         "                                                           \n"
         "    /* Yield to increase test coverage. */                 \n"
         "    movs r0, #0x01                                         \n"
-        "    ldr  r1, =0xe000ed04                                   \n" /* NVIC_ICSR. */
-        "    lsls r0, #28                                           \n" /* Shift to PendSV bit. */
+        /* NVIC_ICSR. */
+        "    ldr  r1, =0xe000ed04                                   \n"
+        /* Shift to PendSV bit. */
+        "    lsls r0, #28                                           \n"
         "    str  r0, [r1]                                          \n"
         "    dsb                                                    \n"
         "    pop  { r0, r1 }                                        \n"
@@ -744,15 +748,13 @@ void vRegTest3Asm_NonSecure( void ) /* __attribute__(( naked )) */
         "     * loop counter stops incrementing. */                 \n"
         "    b reg3_error_loop                                      \n"
         "    nop                                                    \n"
-        ".ltorg                                                     \n"
-    );
+        ".ltorg                                                     \n" );
 }
 /*-----------------------------------------------------------*/
 
 void vRegTest4Asm_NonSecure( void ) /* __attribute__(( naked )) */
 {
-    __asm volatile
-    (
+    __asm volatile(
         ".extern ulRegTest4LoopCounter                              \n"
         ".syntax unified                                            \n"
         "                                                           \n"
@@ -977,15 +979,13 @@ void vRegTest4Asm_NonSecure( void ) /* __attribute__(( naked )) */
         "     * loop counter stops incrementing. */                 \n"
         "    b reg4_error_loop                                      \n"
         "    nop                                                    \n"
-        ".ltorg                                                     \n"
-    );
+        ".ltorg                                                     \n" );
 }
 /*-----------------------------------------------------------*/
 
 void vRegTestAsm_NonSecureCallback( void )
 {
-    __asm volatile
-    (
+    __asm volatile(
         ".syntax unified                                                \n"
         "                                                               \n"
         "    /* Store callee saved registers. */                        \n"
@@ -1042,8 +1042,10 @@ void vRegTestAsm_NonSecureCallback( void )
         "    /* Force a context switch by pending sv. */                \n"
         "    push { r0, r1 }                                            \n"
         "    movs r0, #0x01                                             \n"
-        "    ldr  r1, =0xe000ed04                                       \n" /* NVIC_ICSR. */
-        "    lsls r0, #28                                               \n" /* Shift to PendSV bit. */
+        /* NVIC_ICSR. */
+        "    ldr  r1, =0xe000ed04                                       \n"
+        /* Shift to PendSV bit. */
+        "    lsls r0, #28                                               \n"
         "    str  r0, [r1]                                              \n"
         "    dsb                                                        \n"
         "    pop  { r0, r1 }                                            \n"
@@ -1214,7 +1216,6 @@ void vRegTestAsm_NonSecureCallback( void )
         "                                                               \n"
         "reg_nscb_success:                                              \n"
         "    /* Restore callee saved registers. */                      \n"
-        "    pop { r4-r12 }                                             \n"
-    );
+        "    pop { r4-r12 }                                             \n" );
 }
 /*-----------------------------------------------------------*/
