@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -26,8 +27,8 @@
 
 #include "logging_levels.h"
 
-#define LIBRARY_LOG_NAME     "MbedTLSPkP11"
-#define LIBRARY_LOG_LEVEL    LOG_ERROR
+#define LIBRARY_LOG_NAME  "MbedTLSPkP11"
+#define LIBRARY_LOG_LEVEL LOG_ERROR
 
 #include "logging_stack.h"
 
@@ -88,7 +89,8 @@ static void * p11_ecdsa_ctx_alloc( void );
  *
  * @param pvCtx Void pointer to the P11EcDsaCtx_t.
  * @param pxFunctionList Pointer to a CK_FUNCTION_LIST for the PKCS11 module.
- * @param xSessionHandle An initialized CK_SESSION_HANDLE for the given PKCS11 module.
+ * @param xSessionHandle An initialized CK_SESSION_HANDLE for the given PKCS11
+ * module.
  * @param xPkHandle The CK_OBJECT_HANDLE for the target private key.
  * @return CKR_OK on success
  */
@@ -109,11 +111,13 @@ static void p11_ecdsa_ctx_free( void * pvCtx );
  *
  * @param pvCtx Void pointer to the relevant P11EcDsaCtx_t
  * @param xMdAlg Hashing algorithm used to generate pucHash
- * @param pucHash Pointer to a buffer containing the has of the data to be signed
+ * @param pucHash Pointer to a buffer containing the has of the data to be
+ * signed
  * @param xHashLen Length of the hash of data to be signed
  * @param pucSig Pointer to a buffer in which the signature should be stored
  * @param xSigBufferSize Length of the buffer provided in pucSig
- * @param pxSigLen Pointer to a size_t in which the length of the generated signature will be stored
+ * @param pxSigLen Pointer to a size_t in which the length of the generated
+ * signature will be stored
  * @param plRng Function pointer to the RNG function
  * @param pvRng Void pointer to the RNG function context
  * @return 0 on success
@@ -126,7 +130,7 @@ static int p11_ecdsa_sign( void * pvCtx,
                            unsigned char * pucSig,
                            size_t xSigBufferSize,
                            size_t * pxSigLen,
-                           int ( * plRng )( void *, unsigned char *, size_t ),
+                           int ( *plRng )( void *, unsigned char *, size_t ),
                            void * pvRng );
 
 /**
@@ -169,7 +173,9 @@ static int p11_ecdsa_verify( void * pvCtx,
 
 static int p11_ecdsa_check_pair( const void * pvPub,
                                  const void * pvPrv,
-                                 int ( * lFRng )( void *, unsigned char *, size_t ),
+                                 int ( *lFRng )( void *,
+                                                 unsigned char *,
+                                                 size_t ),
                                  void * pvPRng );
 
 static void p11_ecdsa_debug( const void * pvCtx,
@@ -187,28 +193,27 @@ static int prvASN1WriteBigIntFromOctetStr( unsigned char ** ppucPosition,
 /**
  * @brief mbedtls_pk_info_t struct for PKCS#11 ECDSA operations.
  */
-mbedtls_pk_info_t mbedtls_pkcs11_pk_ecdsa =
-{
-    .type               = MBEDTLS_PK_ECKEY,
-    .name               = "PKCS#11",
-    .get_bitlen         = p11_ecdsa_get_bitlen,
-    .can_do             = p11_ecdsa_can_do,
-    .verify_func        = p11_ecdsa_verify,
-    .sign_func          = p11_ecdsa_sign,
-    #if defined( MBEDTLS_ECDSA_C ) && defined( MBEDTLS_ECP_RESTARTABLE )
-        .verify_rs_func = NULL,
-        .sign_rs_func   = NULL,
-    #endif /* MBEDTLS_ECDSA_C && MBEDTLS_ECP_RESTARTABLE */
-    .decrypt_func       = NULL,
-    .encrypt_func       = NULL,
-    .check_pair_func    = p11_ecdsa_check_pair,
-    .ctx_alloc_func     = p11_ecdsa_ctx_alloc,
-    .ctx_free_func      = p11_ecdsa_ctx_free,
-    #if defined( MBEDTLS_ECDSA_C ) && defined( MBEDTLS_ECP_RESTARTABLE )
-        .rs_alloc_func  = NULL,
-        .rs_free_func   = NULL,
-    #endif /* MBEDTLS_ECDSA_C && MBEDTLS_ECP_RESTARTABLE */
-    .debug_func         = p11_ecdsa_debug,
+mbedtls_pk_info_t mbedtls_pkcs11_pk_ecdsa = {
+    .type = MBEDTLS_PK_ECKEY,
+    .name = "PKCS#11",
+    .get_bitlen = p11_ecdsa_get_bitlen,
+    .can_do = p11_ecdsa_can_do,
+    .verify_func = p11_ecdsa_verify,
+    .sign_func = p11_ecdsa_sign,
+#if defined( MBEDTLS_ECDSA_C ) && defined( MBEDTLS_ECP_RESTARTABLE )
+    .verify_rs_func = NULL,
+    .sign_rs_func = NULL,
+#endif /* MBEDTLS_ECDSA_C && MBEDTLS_ECP_RESTARTABLE */
+    .decrypt_func = NULL,
+    .encrypt_func = NULL,
+    .check_pair_func = p11_ecdsa_check_pair,
+    .ctx_alloc_func = p11_ecdsa_ctx_alloc,
+    .ctx_free_func = p11_ecdsa_ctx_free,
+#if defined( MBEDTLS_ECDSA_C ) && defined( MBEDTLS_ECP_RESTARTABLE )
+    .rs_alloc_func = NULL,
+    .rs_free_func = NULL,
+#endif /* MBEDTLS_ECDSA_C && MBEDTLS_ECP_RESTARTABLE */
+    .debug_func = p11_ecdsa_debug,
 };
 
 /*-----------------------------------------------------------*/
@@ -231,12 +236,12 @@ static int p11_rsa_sign( void * ctx,
                          unsigned char * sig,
                          size_t sig_size,
                          size_t * sig_len,
-                         int ( * f_rng )( void *, unsigned char *, size_t ),
+                         int ( *f_rng )( void *, unsigned char *, size_t ),
                          void * p_rng );
 
 static int p11_rsa_check_pair( const void * pvPub,
                                const void * pvPrv,
-                               int ( * lFRng )( void *, unsigned char *, size_t ),
+                               int ( *lFRng )( void *, unsigned char *, size_t ),
                                void * pvPRng );
 
 static void * p11_rsa_ctx_alloc( void );
@@ -256,28 +261,27 @@ static void p11_rsa_debug( const void * pvCtx,
 /**
  * @brief mbedtls_pk_info_t struct for PKCS#11 RSA operations.
  */
-mbedtls_pk_info_t mbedtls_pkcs11_pk_rsa =
-{
-    .type               = MBEDTLS_PK_RSA,
-    .name               = "PKCS#11",
-    .get_bitlen         = p11_rsa_get_bitlen,
-    .can_do             = p11_rsa_can_do,
-    .verify_func        = p11_rsa_verify,
-    .sign_func          = p11_rsa_sign,
-    #if defined( MBEDTLS_ECDSA_C ) && defined( MBEDTLS_ECP_RESTARTABLE )
-        .verify_rs_func = NULL,
-        .sign_rs_func   = NULL,
-    #endif /* MBEDTLS_ECDSA_C && MBEDTLS_ECP_RESTARTABLE */
-    .decrypt_func       = NULL,
-    .encrypt_func       = NULL,
-    .check_pair_func    = p11_rsa_check_pair,
-    .ctx_alloc_func     = p11_rsa_ctx_alloc,
-    .ctx_free_func      = p11_rsa_ctx_free,
-    #if defined( MBEDTLS_ECDSA_C ) && defined( MBEDTLS_ECP_RESTARTABLE )
-        .rs_alloc_func  = NULL,
-        .rs_free_func   = NULL,
-    #endif /* MBEDTLS_ECDSA_C && MBEDTLS_ECP_RESTARTABLE */
-    .debug_func         = p11_rsa_debug,
+mbedtls_pk_info_t mbedtls_pkcs11_pk_rsa = {
+    .type = MBEDTLS_PK_RSA,
+    .name = "PKCS#11",
+    .get_bitlen = p11_rsa_get_bitlen,
+    .can_do = p11_rsa_can_do,
+    .verify_func = p11_rsa_verify,
+    .sign_func = p11_rsa_sign,
+#if defined( MBEDTLS_ECDSA_C ) && defined( MBEDTLS_ECP_RESTARTABLE )
+    .verify_rs_func = NULL,
+    .sign_rs_func = NULL,
+#endif /* MBEDTLS_ECDSA_C && MBEDTLS_ECP_RESTARTABLE */
+    .decrypt_func = NULL,
+    .encrypt_func = NULL,
+    .check_pair_func = p11_rsa_check_pair,
+    .ctx_alloc_func = p11_rsa_ctx_alloc,
+    .ctx_free_func = p11_rsa_ctx_free,
+#if defined( MBEDTLS_ECDSA_C ) && defined( MBEDTLS_ECP_RESTARTABLE )
+    .rs_alloc_func = NULL,
+    .rs_free_func = NULL,
+#endif /* MBEDTLS_ECDSA_C && MBEDTLS_ECP_RESTARTABLE */
+    .debug_func = p11_rsa_debug,
 };
 
 /*-----------------------------------------------------------*/
@@ -312,17 +316,16 @@ CK_RV xPKCS11_initMbedtlsPkContext( mbedtls_pk_context * pxMbedtlsPkCtx,
     /* Determine key type */
     else
     {
-        CK_ATTRIBUTE xAttrTemplate =
-        {
-            .pValue     = &xKeyType,
-            .type       = CKA_KEY_TYPE,
-            .ulValueLen = sizeof( CK_KEY_TYPE )
-        };
+        CK_ATTRIBUTE xAttrTemplate = { .pValue = &xKeyType,
+                                       .type = CKA_KEY_TYPE,
+                                       .ulValueLen = sizeof( CK_KEY_TYPE ) };
 
         xResult = pxFunctionList->C_GetAttributeValue( xSessionHandle,
                                                        xPkHandle,
                                                        &xAttrTemplate,
-                                                       sizeof( xAttrTemplate ) / sizeof( CK_ATTRIBUTE ) );
+                                                       sizeof( xAttrTemplate ) /
+                                                           sizeof(
+                                                               CK_ATTRIBUTE ) );
     }
 
     if( xResult == CKR_OK )
@@ -337,7 +340,9 @@ CK_RV xPKCS11_initMbedtlsPkContext( mbedtls_pk_context * pxMbedtlsPkCtx,
                 if( pxMbedtlsPkCtx->pk_ctx != NULL )
                 {
                     xResult = p11_ecdsa_ctx_init( pxMbedtlsPkCtx->pk_ctx,
-                                                  pxFunctionList, xSessionHandle, xPkHandle );
+                                                  pxFunctionList,
+                                                  xSessionHandle,
+                                                  xPkHandle );
                 }
 
                 if( xResult == CKR_OK )
@@ -359,7 +364,9 @@ CK_RV xPKCS11_initMbedtlsPkContext( mbedtls_pk_context * pxMbedtlsPkCtx,
                 if( pxMbedtlsPkCtx->pk_ctx != NULL )
                 {
                     xResult = p11_rsa_ctx_init( pxMbedtlsPkCtx->pk_ctx,
-                                                pxFunctionList, xSessionHandle, xPkHandle );
+                                                pxFunctionList,
+                                                xSessionHandle,
+                                                xPkHandle );
                 }
 
                 if( xResult == CKR_OK )
@@ -446,17 +453,17 @@ static CK_RV p11_ecdsa_ctx_init( void * pvCtx,
 
     /* Initialize public EC parameter data from attributes */
 
-    CK_ATTRIBUTE pxAttrs[ 2 ] =
-    {
+    CK_ATTRIBUTE pxAttrs[ 2 ] = {
         { .type = CKA_EC_PARAMS, .ulValueLen = 0, .pValue = NULL },
-        { .type = CKA_EC_POINT,  .ulValueLen = 0, .pValue = NULL }
+        { .type = CKA_EC_POINT, .ulValueLen = 0, .pValue = NULL }
     };
 
     /* Determine necessary size */
     xResult = pxFunctionList->C_GetAttributeValue( xSessionHandle,
                                                    xPkHandle,
                                                    pxAttrs,
-                                                   sizeof( pxAttrs ) / sizeof( CK_ATTRIBUTE ) );
+                                                   sizeof( pxAttrs ) /
+                                                       sizeof( CK_ATTRIBUTE ) );
 
     if( xResult == CKR_OK )
     {
@@ -480,7 +487,8 @@ static CK_RV p11_ecdsa_ctx_init( void * pvCtx,
     if( xResult == CKR_OK )
     {
         /*TODO: Parse the ECParameters object */
-        int lResult = mbedtls_ecp_group_load( &( pxMbedEcDsaCtx->grp ), MBEDTLS_ECP_DP_SECP256R1 );
+        int lResult = mbedtls_ecp_group_load( &( pxMbedEcDsaCtx->grp ),
+                                              MBEDTLS_ECP_DP_SECP256R1 );
 
         if( lResult != 0 )
         {
@@ -495,7 +503,10 @@ static CK_RV p11_ecdsa_ctx_init( void * pvCtx,
         size_t uxLen = pxAttrs[ 1 ].ulValueLen;
         int lResult = 0;
 
-        lResult = mbedtls_asn1_get_tag( &pucIterator, &( pucIterator[ uxLen ] ), &uxLen, MBEDTLS_ASN1_OCTET_STRING );
+        lResult = mbedtls_asn1_get_tag( &pucIterator,
+                                        &( pucIterator[ uxLen ] ),
+                                        &uxLen,
+                                        MBEDTLS_ASN1_OCTET_STRING );
 
         if( lResult != 0 )
         {
@@ -569,12 +580,16 @@ static int prvASN1WriteBigIntFromOctetStr( unsigned char ** ppucPosition,
             **ppucPosition = 0;
         }
 
-        lReturn = mbedtls_asn1_write_len( ppucPosition, pucStart, uxRequiredLen );
+        lReturn = mbedtls_asn1_write_len( ppucPosition,
+                                          pucStart,
+                                          uxRequiredLen );
 
         if( lReturn > 0 )
         {
             uxRequiredLen += ( size_t ) lReturn;
-            lReturn = mbedtls_asn1_write_tag( ppucPosition, pucStart, MBEDTLS_ASN1_INTEGER );
+            lReturn = mbedtls_asn1_write_tag( ppucPosition,
+                                              pucStart,
+                                              MBEDTLS_ASN1_INTEGER );
         }
 
         if( lReturn > 0 )
@@ -611,15 +626,19 @@ static int prvEcdsaSigToASN1InPlace( unsigned char * pucSig,
     xComponentLen = ( *pxSigLen ) / 2;
 
     /* Write "S" portion VLT */
-    lReturn = prvASN1WriteBigIntFromOctetStr( &pucPosition, pucTempBuf,
-                                              &( pucSig[ xComponentLen ] ), xComponentLen );
+    lReturn = prvASN1WriteBigIntFromOctetStr( &pucPosition,
+                                              pucTempBuf,
+                                              &( pucSig[ xComponentLen ] ),
+                                              xComponentLen );
 
     /* Write "R" Portion VLT */
     if( lReturn > 0 )
     {
         uxLen += ( size_t ) lReturn;
-        lReturn = prvASN1WriteBigIntFromOctetStr( &pucPosition, pucTempBuf,
-                                                  pucSig, xComponentLen );
+        lReturn = prvASN1WriteBigIntFromOctetStr( &pucPosition,
+                                                  pucTempBuf,
+                                                  pucSig,
+                                                  xComponentLen );
     }
 
     if( lReturn > 0 )
@@ -631,8 +650,10 @@ static int prvEcdsaSigToASN1InPlace( unsigned char * pucSig,
     if( lReturn > 0 )
     {
         uxLen += ( size_t ) lReturn;
-        lReturn = mbedtls_asn1_write_tag( &pucPosition, pucTempBuf,
-                                          MBEDTLS_ASN1_CONSTRUCTED | MBEDTLS_ASN1_SEQUENCE );
+        lReturn = mbedtls_asn1_write_tag( &pucPosition,
+                                          pucTempBuf,
+                                          MBEDTLS_ASN1_CONSTRUCTED |
+                                              MBEDTLS_ASN1_SEQUENCE );
     }
 
     if( lReturn > 0 )
@@ -663,7 +684,7 @@ static int p11_ecdsa_sign( void * pvCtx,
                            unsigned char * pucSig,
                            size_t xSigBufferSize,
                            size_t * pxSigLen,
-                           int ( * plRng )( void *, unsigned char *, size_t ),
+                           int ( *plRng )( void *, unsigned char *, size_t ),
                            void * pvRng )
 {
     CK_RV xResult = CKR_OK;
@@ -672,12 +693,9 @@ static int p11_ecdsa_sign( void * pvCtx,
     const P11PkCtx_t * pxP11Ctx = NULL;
     unsigned char pucHashCopy[ MBEDTLS_MD_MAX_SIZE ];
 
-    CK_MECHANISM xMech =
-    {
-        .mechanism      = CKM_ECDSA,
-        .pParameter     = NULL,
-        .ulParameterLen = 0
-    };
+    CK_MECHANISM xMech = { .mechanism = CKM_ECDSA,
+                           .pParameter = NULL,
+                           .ulParameterLen = 0 };
 
     /* Unused parameters. */
     ( void ) ( xMdAlg );
@@ -715,8 +733,10 @@ static int p11_ecdsa_sign( void * pvCtx,
         ( void ) memcpy( pucHashCopy, pucHash, xHashLen );
 
         xResult = pxP11Ctx->pxFunctionList->C_Sign( pxP11Ctx->xSessionHandle,
-                                                    pucHashCopy, xHashLen,
-                                                    pucSig, &ulSigLen );
+                                                    pucHashCopy,
+                                                    xHashLen,
+                                                    pucSig,
+                                                    &ulSigLen );
 
         if( xResult == CKR_OK )
         {
@@ -726,12 +746,16 @@ static int p11_ecdsa_sign( void * pvCtx,
 
     if( xResult != CKR_OK )
     {
-        LogError( ( "Failed to sign message using PKCS #11 with error code %02X.", xResult ) );
+        LogError(
+            ( "Failed to sign message using PKCS #11 with error code %02X.",
+              xResult ) );
         lFinalResult = -1;
     }
     else
     {
-        lFinalResult = prvEcdsaSigToASN1InPlace( pucSig, xSigBufferSize, pxSigLen );
+        lFinalResult = prvEcdsaSigToASN1InPlace( pucSig,
+                                                 xSigBufferSize,
+                                                 pxSigLen );
     }
 
     return lFinalResult;
@@ -752,7 +776,7 @@ static size_t p11_ecdsa_get_bitlen( const void * pvCtx )
 
 static int p11_ecdsa_can_do( mbedtls_pk_type_t xType )
 {
-    return( xType == MBEDTLS_PK_ECDSA );
+    return ( xType == MBEDTLS_PK_ECDSA );
 }
 
 /*-----------------------------------------------------------*/
@@ -770,15 +794,19 @@ static int p11_ecdsa_verify( void * pvCtx,
 
     return mbedtls_ecdsa_info.verify_func( &( pxEcDsaCtx->xMbedEcDsaCtx ),
                                            xMdAlg,
-                                           pucHash, xHashLen,
-                                           pucSig, xSigLen );
+                                           pucHash,
+                                           xHashLen,
+                                           pucSig,
+                                           xSigLen );
 }
 
 /*-----------------------------------------------------------*/
 
 static int p11_ecdsa_check_pair( const void * pvPub,
                                  const void * pvPrv,
-                                 int ( * lFRng )( void *, unsigned char *, size_t ),
+                                 int ( *lFRng )( void *,
+                                                 unsigned char *,
+                                                 size_t ),
                                  void * pvPRng )
 {
     mbedtls_ecp_keypair * pxPubKey = ( mbedtls_ecp_keypair * ) pvPub;
@@ -823,25 +851,32 @@ static int p11_ecdsa_check_pair( const void * pvPub,
     /* Test sign op */
     if( lResult == 0 )
     {
-        unsigned char pucTestHash[ 32 ] =
-        {
-            0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08,
-            0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18,
-            0x21, 0x22, 0x23, 0x24, 0x25, 0x26, 0x27, 0x28,
-            0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38
+        unsigned char pucTestHash[ 32 ] = {
+            0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x11, 0x12, 0x13,
+            0x14, 0x15, 0x16, 0x17, 0x18, 0x21, 0x22, 0x23, 0x24, 0x25, 0x26,
+            0x27, 0x28, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38
         };
-        unsigned char pucTestSignature[ MBEDTLS_ECDSA_MAX_SIG_LEN( 256 ) ] = { 0 };
+        unsigned char pucTestSignature[ MBEDTLS_ECDSA_MAX_SIG_LEN( 256 ) ] = {
+            0
+        };
         size_t uxSigLen = 0;
-        lResult = p11_ecdsa_sign( ( void * ) ( void * ) pvPrv, MBEDTLS_MD_SHA256,
-                                  pucTestHash, sizeof( pucTestHash ),
-                                  pucTestSignature, sizeof( pucTestSignature ), &uxSigLen,
-                                  NULL, NULL );
+        lResult = p11_ecdsa_sign( ( void * ) ( void * ) pvPrv,
+                                  MBEDTLS_MD_SHA256,
+                                  pucTestHash,
+                                  sizeof( pucTestHash ),
+                                  pucTestSignature,
+                                  sizeof( pucTestSignature ),
+                                  &uxSigLen,
+                                  NULL,
+                                  NULL );
 
         if( lResult == 0 )
         {
             lResult = mbedtls_ecdsa_read_signature( pxPubKey,
-                                                    pucTestHash, sizeof( pucTestHash ),
-                                                    pucTestSignature, uxSigLen );
+                                                    pucTestHash,
+                                                    sizeof( pucTestHash ),
+                                                    pucTestSignature,
+                                                    uxSigLen );
         }
     }
 
@@ -875,7 +910,7 @@ static size_t p11_rsa_get_bitlen( const void * pvCtx )
 
 static int p11_rsa_can_do( mbedtls_pk_type_t xType )
 {
-    return( xType == MBEDTLS_PK_RSA );
+    return ( xType == MBEDTLS_PK_RSA );
 }
 
 /*-----------------------------------------------------------*/
@@ -893,8 +928,10 @@ static int p11_rsa_verify( void * pvCtx,
 
     return mbedtls_rsa_info.verify_func( &( pxRsaCtx->xMbedRsaCtx ),
                                          xMdAlg,
-                                         pucHash, xHashLen,
-                                         pucSig, xSigLen );
+                                         pucHash,
+                                         xHashLen,
+                                         pucSig,
+                                         xSigLen );
 }
 
 /*-----------------------------------------------------------*/
@@ -906,7 +943,7 @@ static int p11_rsa_sign( void * pvCtx,
                          unsigned char * pucSig,
                          size_t xSigBufferSize,
                          size_t * pxSigLen,
-                         int ( * plRng )( void *, unsigned char *, size_t ),
+                         int ( *plRng )( void *, unsigned char *, size_t ),
                          void * pvRng )
 {
     CK_RV xResult = CKR_OK;
@@ -917,12 +954,9 @@ static int p11_rsa_sign( void * pvCtx,
 
     CK_BYTE pxToBeSigned[ 256 ];
 
-    CK_MECHANISM xMech =
-    {
-        .mechanism      = CKM_RSA_PKCS,
-        .pParameter     = NULL,
-        .ulParameterLen = 0
-    };
+    CK_MECHANISM xMech = { .mechanism = CKM_RSA_PKCS,
+                           .pParameter = NULL,
+                           .ulParameterLen = 0 };
 
     /* Unused parameters. */
     ( void ) ( plRng );
@@ -954,7 +988,9 @@ static int p11_rsa_sign( void * pvCtx,
 
     if( xResult == CKR_OK )
     {
-        xResult = vAppendSHA256AlgorithmIdentifierSequence( ( uint8_t * ) pucHash, pxToBeSigned );
+        xResult = vAppendSHA256AlgorithmIdentifierSequence( ( uint8_t * )
+                                                                pucHash,
+                                                            pxToBeSigned );
     }
 
     if( CKR_OK == xResult )
@@ -969,18 +1005,21 @@ static int p11_rsa_sign( void * pvCtx,
     {
         CK_ULONG ulSigLen = sizeof( pxToBeSigned );
 
-        xResult = pxP11Ctx->pxFunctionList->C_Sign( pxP11Ctx->xSessionHandle,
-                                                    pxToBeSigned,
-                                                    pkcs11RSA_SIGNATURE_INPUT_LENGTH,
-                                                    pucSig,
-                                                    &ulSigLen );
+        xResult = pxP11Ctx->pxFunctionList
+                      ->C_Sign( pxP11Ctx->xSessionHandle,
+                                pxToBeSigned,
+                                pkcs11RSA_SIGNATURE_INPUT_LENGTH,
+                                pucSig,
+                                &ulSigLen );
 
         *pxSigLen = ( size_t ) ulSigLen;
     }
 
     if( xResult != CKR_OK )
     {
-        LogError( ( "Failed to sign message using PKCS #11 with error code %02X.", xResult ) );
+        LogError(
+            ( "Failed to sign message using PKCS #11 with error code %02X.",
+              xResult ) );
         lFinalResult = -1;
     }
 
@@ -991,15 +1030,17 @@ static int p11_rsa_sign( void * pvCtx,
 
 static int p11_rsa_check_pair( const void * pvPub,
                                const void * pvPrv,
-                               int ( * lFRng )( void *, unsigned char *, size_t ),
+                               int ( *lFRng )( void *, unsigned char *, size_t ),
                                void * pvPRng )
 {
     P11RsaCtx_t * pxP11RsaCtx = ( P11RsaCtx_t * ) pvPrv;
 
     configASSERT( mbedtls_rsa_info.check_pair_func );
 
-    return mbedtls_rsa_info.check_pair_func( pvPub, &( pxP11RsaCtx->xMbedRsaCtx ),
-                                             lFRng, pvPRng );
+    return mbedtls_rsa_info.check_pair_func( pvPub,
+                                             &( pxP11RsaCtx->xMbedRsaCtx ),
+                                             lFRng,
+                                             pvPRng );
 }
 
 /*-----------------------------------------------------------*/
@@ -1094,8 +1135,7 @@ static void p11_rsa_ctx_free( void * pvCtx )
 
 /*-----------------------------------------------------------*/
 
-static void p11_rsa_debug( const void * pvCtx,
-                           mbedtls_pk_debug_item * pxItems )
+static void p11_rsa_debug( const void * pvCtx, mbedtls_pk_debug_item * pxItems )
 {
     P11RsaCtx_t * pxP11RsaCtx = ( P11RsaCtx_t * ) pvCtx;
 

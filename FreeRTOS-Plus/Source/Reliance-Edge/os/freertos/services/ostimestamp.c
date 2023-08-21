@@ -33,13 +33,11 @@
 
 #include <redfs.h>
 
-
 /*  configTICK_RATE_HZ is almost always 100, 250, 500, or 1000.  If
     1000000U % configTICK_RATE_HZ != 0, then RedOsTimePassed() will be a
     little inaccurate.
 */
-#define MICROSECS_PER_TICK  (1000000U / configTICK_RATE_HZ)
-
+#define MICROSECS_PER_TICK ( 1000000U / configTICK_RATE_HZ )
 
 /** @brief Initialize the timestamp service.
 
@@ -51,11 +49,10 @@
     @retval 0           Operation was successful.
     @retval -RED_ENOSYS The timestamp service has not been implemented.
 */
-REDSTATUS RedOsTimestampInit(void)
+REDSTATUS RedOsTimestampInit( void )
 {
     return 0;
 }
-
 
 /** @brief Uninitialize the timestamp service.
 
@@ -66,11 +63,10 @@ REDSTATUS RedOsTimestampInit(void)
 
     @retval 0   Operation was successful.
 */
-REDSTATUS RedOsTimestampUninit(void)
+REDSTATUS RedOsTimestampUninit( void )
 {
     return 0;
 }
-
 
 /** @brief Retrieve a timestamp.
 
@@ -80,11 +76,10 @@ REDSTATUS RedOsTimestampUninit(void)
     @return A timestamp which can later be passed to RedOsTimePassed() to
             determine the amount of time which passed between the two calls.
 */
-REDTIMESTAMP RedOsTimestamp(void)
+REDTIMESTAMP RedOsTimestamp( void )
 {
     return xTaskGetTickCount();
 }
-
 
 /** @brief Determine how much time has passed since a timestamp was retrieved.
 
@@ -95,15 +90,13 @@ REDTIMESTAMP RedOsTimestamp(void)
 
     @return The number of microseconds which have passed since @p tsSince.
 */
-uint64_t RedOsTimePassed(
-    REDTIMESTAMP    tsSince)
+uint64_t RedOsTimePassed( REDTIMESTAMP tsSince )
 {
     /*  This works even if the tick count has wrapped around, provided it has
         only wrapped around once.
     */
-    uint32_t        ulTicksPassed = (uint32_t)xTaskGetTickCount() - tsSince;
-    uint64_t        ullMicrosecs = (uint64_t)ulTicksPassed * MICROSECS_PER_TICK;
+    uint32_t ulTicksPassed = ( uint32_t ) xTaskGetTickCount() - tsSince;
+    uint64_t ullMicrosecs = ( uint64_t ) ulTicksPassed * MICROSECS_PER_TICK;
 
     return ullMicrosecs;
 }
-

@@ -28,7 +28,6 @@
 #ifndef REDDEVIATIONS_H
 #define REDDEVIATIONS_H
 
-
 /** @brief Append a suffix to a constant so that it is an unsigned 64-bit value.
 
     Usages of this macro deviate from MISRA C:2012 Rule 1.2 (advisory).  The
@@ -57,8 +56,7 @@
     make it easier to search for 64-bit values.
 
 */
-#define UINT64_SUFFIX(number) (number##ULL)
-
+#define UINT64_SUFFIX( number )                 ( number##ULL )
 
 /** @brief Append a suffix to a constant so that it is a signed 64-bit value.
 
@@ -68,8 +66,7 @@
     Usages of this macro deviate from MISRA C:2012 Rule 20.10 (advisory).  See
     the description of UINT64_SUFFIX() for details.
 */
-#define INT64_SUFFIX(number) (number##LL)
-
+#define INT64_SUFFIX( number )                  ( number##LL )
 
 /** @brief Cast a pointer to a const uint8_t pointer.
 
@@ -81,8 +78,7 @@
     and the PC-Lint error inhibition option are the only records of the
     deviation.
 */
-#define CAST_VOID_PTR_TO_CONST_UINT8_PTR(PTR) ((const uint8_t *)(PTR))
-
+#define CAST_VOID_PTR_TO_CONST_UINT8_PTR( PTR ) ( ( const uint8_t * ) ( PTR ) )
 
 /** @brief Cast a pointer to a uint8_t pointer.
 
@@ -94,8 +90,7 @@
     and the PC-Lint error inhibition option are the only records of the
     deviation.
 */
-#define CAST_VOID_PTR_TO_UINT8_PTR(PTR) ((uint8_t *)(PTR))
-
+#define CAST_VOID_PTR_TO_UINT8_PTR( PTR )       ( ( uint8_t * ) ( PTR ) )
 
 /** @brief Cast a pointer to a const uint32_t pointer.
 
@@ -116,8 +111,8 @@
     requirements.  In the places where this macro is used, the pointer is
     checked to be of sufficient alignment.
 */
-#define CAST_CONST_UINT32_PTR(PTR) ((const uint32_t *)(const void *)(PTR))
-
+#define CAST_CONST_UINT32_PTR( PTR ) \
+    ( ( const uint32_t * ) ( const void * ) ( PTR ) )
 
 /** @brief Cast a pointer to a pointer to (void **).
 
@@ -127,8 +122,7 @@
 
     As Rule 11.3 is required, a separate deviation record is required.
 */
-#define CAST_VOID_PTR_PTR(PTRPTR) ((void **)(PTRPTR))
-
+#define CAST_VOID_PTR_PTR( PTRPTR ) ( ( void ** ) ( PTRPTR ) )
 
 /** @brief Create a two-dimensional byte array which is safely aligned.
 
@@ -140,13 +134,12 @@
     and the PC-Lint error inhibition option are the only records of the
     deviation.
 */
-#define ALIGNED_2D_BYTE_ARRAY(un, nam, size1, size2)    \
-    union                                               \
-    {                                                   \
-        uint8_t     nam[size1][size2];                  \
-        uint64_t    DummyAlign;                         \
+#define ALIGNED_2D_BYTE_ARRAY( un, nam, size1, size2 ) \
+    union                                              \
+    {                                                  \
+        uint8_t nam[ size1 ][ size2 ];                 \
+        uint64_t DummyAlign;                           \
     } un
-
 
 /** @brief Determine whether RedMemMove() must copy memory in the forward
            direction, instead of in the reverse.
@@ -170,8 +163,7 @@
     Usages of this macro deviate from MISRA-C:2012 Rule 18.3 (required).  As
     Rule 18.3 is required, a separate deviation record is required.
 */
-#define MEMMOVE_MUST_COPY_FORWARD(dest, src) ((dest) < (src))
-
+#define MEMMOVE_MUST_COPY_FORWARD( dest, src ) ( ( dest ) < ( src ) )
 
 /** @brief Cast a pointer to a (const DIRENT *).
 
@@ -182,8 +174,7 @@
 
     As Rule 11.3 is required, a separate deviation record is required.
 */
-#define CAST_CONST_DIRENT_PTR(PTR) ((const DIRENT *)(PTR))
-
+#define CAST_CONST_DIRENT_PTR( PTR )           ( ( const DIRENT * ) ( PTR ) )
 
 /** @brief Determine whether a pointer is aligned.
 
@@ -217,8 +208,7 @@
           void pointers.  Below, we use it on a pointer-to-object (uint8_t *),
           which is covered by Rule 11.4.
 */
-#define IS_ALIGNED_PTR(ptr) (((uintptr_t)(ptr) & (REDCONF_ALIGNMENT_SIZE - 1U)) == 0U)
-
+#define IS_ALIGNED_PTR( ptr ) \
+    ( ( ( uintptr_t ) ( ptr ) & ( REDCONF_ALIGNMENT_SIZE - 1U ) ) == 0U )
 
 #endif
-

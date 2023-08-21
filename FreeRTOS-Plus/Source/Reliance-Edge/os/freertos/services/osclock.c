@@ -27,7 +27,6 @@
 */
 #include <redfs.h>
 
-
 /** @brief Initialize the real time clock.
 
     The behavior of calling this function when the RTC is already initialized
@@ -37,11 +36,10 @@
 
     @retval 0   Operation was successful.
 */
-REDSTATUS RedOsClockInit(void)
+REDSTATUS RedOsClockInit( void )
 {
     return 0;
 }
-
 
 /** @brief Uninitialize the real time clock.
 
@@ -52,11 +50,10 @@ REDSTATUS RedOsClockInit(void)
 
     @retval 0   Operation was successful.
 */
-REDSTATUS RedOsClockUninit(void)
+REDSTATUS RedOsClockUninit( void )
 {
     return 0;
 }
-
 
 /** @brief Get the date/time.
 
@@ -68,7 +65,7 @@ REDSTATUS RedOsClockUninit(void)
             of the RTC is different than this, the implementation must convert
             it to the expected representation.
 */
-uint32_t RedOsClockGetTime(void)
+uint32_t RedOsClockGetTime( void )
 {
     /*  FreeRTOS does not provide an RTC abstraction since most of the systems
         it targets have no RTC hardware.  If your hardware includes an RTC that
@@ -76,4 +73,3 @@ uint32_t RedOsClockGetTime(void)
     */
     return 0;
 }
-

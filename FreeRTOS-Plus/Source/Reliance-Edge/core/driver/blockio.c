@@ -38,7 +38,6 @@
 #include <redfs.h>
 #include <redcore.h>
 
-
 /** @brief Read a range of logical blocks.
 
     @param bVolNum      The volume whose block device is being read from.
@@ -52,49 +51,51 @@
     @retval -RED_EIO    A disk I/O error occurred.
     @retval -RED_EINVAL Invalid parameters.
 */
-REDSTATUS RedIoRead(
-    uint8_t     bVolNum,
-    uint32_t    ulBlockStart,
-    uint32_t    ulBlockCount,
-    void       *pBuffer)
+REDSTATUS RedIoRead( uint8_t bVolNum,
+                     uint32_t ulBlockStart,
+                     uint32_t ulBlockCount,
+                     void * pBuffer )
 {
-    REDSTATUS   ret = 0;
+    REDSTATUS ret = 0;
 
-    if(    (bVolNum >= REDCONF_VOLUME_COUNT)
-        || (ulBlockStart >= gaRedVolume[bVolNum].ulBlockCount)
-        || ((gaRedVolume[bVolNum].ulBlockCount - ulBlockStart) < ulBlockCount)
-        || (ulBlockCount == 0U)
-        || (pBuffer == NULL))
+    if( ( bVolNum >= REDCONF_VOLUME_COUNT ) ||
+        ( ulBlockStart >= gaRedVolume[ bVolNum ].ulBlockCount ) ||
+        ( ( gaRedVolume[ bVolNum ].ulBlockCount - ulBlockStart ) <
+          ulBlockCount ) ||
+        ( ulBlockCount == 0U ) || ( pBuffer == NULL ) )
     {
         REDERROR();
         ret = -RED_EINVAL;
     }
     else
     {
-        uint8_t  bSectorShift = gaRedVolume[bVolNum].bBlockSectorShift;
-        uint64_t ullSectorStart = (uint64_t)ulBlockStart << bSectorShift;
+        uint8_t bSectorShift = gaRedVolume[ bVolNum ].bBlockSectorShift;
+        uint64_t ullSectorStart = ( uint64_t ) ulBlockStart << bSectorShift;
         uint32_t ulSectorCount = ulBlockCount << bSectorShift;
-        uint8_t  bRetryIdx;
+        uint8_t bRetryIdx;
 
-        REDASSERT(bSectorShift < 32U);
-        REDASSERT((ulSectorCount >> bSectorShift) == ulBlockCount);
+        REDASSERT( bSectorShift < 32U );
+        REDASSERT( ( ulSectorCount >> bSectorShift ) == ulBlockCount );
 
-        for(bRetryIdx = 0U; bRetryIdx <= gpRedVolConf->bBlockIoRetries; bRetryIdx++)
+        for( bRetryIdx = 0U; bRetryIdx <= gpRedVolConf->bBlockIoRetries;
+             bRetryIdx++ )
         {
-            ret = RedOsBDevRead(bVolNum, ullSectorStart, ulSectorCount, pBuffer);
+            ret = RedOsBDevRead( bVolNum,
+                                 ullSectorStart,
+                                 ulSectorCount,
+                                 pBuffer );
 
-            if(ret == 0)
+            if( ret == 0 )
             {
                 break;
             }
         }
     }
 
-    CRITICAL_ASSERT(ret == 0);
+    CRITICAL_ASSERT( ret == 0 );
 
     return ret;
 }
-
 
 #if REDCONF_READ_ONLY == 0
 /** @brief Write a range of logical blocks.
@@ -110,49 +111,51 @@ REDSTATUS RedIoRead(
     @retval -RED_EIO    A disk I/O error occurred.
     @retval -RED_EINVAL Invalid parameters.
 */
-REDSTATUS RedIoWrite(
-    uint8_t     bVolNum,
-    uint32_t    ulBlockStart,
-    uint32_t    ulBlockCount,
-    const void *pBuffer)
+REDSTATUS RedIoWrite( uint8_t bVolNum,
+                      uint32_t ulBlockStart,
+                      uint32_t ulBlockCount,
+                      const void * pBuffer )
 {
-    REDSTATUS   ret = 0;
+    REDSTATUS ret = 0;
 
-    if(    (bVolNum >= REDCONF_VOLUME_COUNT)
-        || (ulBlockStart >= gaRedVolume[bVolNum].ulBlockCount)
-        || ((gaRedVolume[bVolNum].ulBlockCount - ulBlockStart) < ulBlockCount)
-        || (ulBlockCount == 0U)
-        || (pBuffer == NULL))
+    if( ( bVolNum >= REDCONF_VOLUME_COUNT ) ||
+        ( ulBlockStart >= gaRedVolume[ bVolNum ].ulBlockCount ) ||
+        ( ( gaRedVolume[ bVolNum ].ulBlockCount - ulBlockStart ) <
+          ulBlockCount ) ||
+        ( ulBlockCount == 0U ) || ( pBuffer == NULL ) )
     {
         REDERROR();
         ret = -RED_EINVAL;
     }
     else
     {
-        uint8_t  bSectorShift = gaRedVolume[bVolNum].bBlockSectorShift;
-        uint64_t ullSectorStart = (uint64_t)ulBlockStart << bSectorShift;
+        uint8_t bSectorShift = gaRedVolume[ bVolNum ].bBlockSectorShift;
+        uint64_t ullSectorStart = ( uint64_t ) ulBlockStart << bSectorShift;
         uint32_t ulSectorCount = ulBlockCount << bSectorShift;
-        uint8_t  bRetryIdx;
+        uint8_t bRetryIdx;
 
-        REDASSERT(bSectorShift < 32U);
-        REDASSERT((ulSectorCount >> bSectorShift) == ulBlockCount);
+        REDASSERT( bSectorShift < 32U );
+        REDASSERT( ( ulSectorCount >> bSectorShift ) == ulBlockCount );
 
-        for(bRetryIdx = 0U; bRetryIdx <= gpRedVolConf->bBlockIoRetries; bRetryIdx++)
+        for( bRetryIdx = 0U; bRetryIdx <= gpRedVolConf->bBlockIoRetries;
+             bRetryIdx++ )
         {
-            ret = RedOsBDevWrite(bVolNum, ullSectorStart, ulSectorCount, pBuffer);
+            ret = RedOsBDevWrite( bVolNum,
+                                  ullSectorStart,
+                                  ulSectorCount,
+                                  pBuffer );
 
-            if(ret == 0)
+            if( ret == 0 )
             {
                 break;
             }
         }
     }
 
-    CRITICAL_ASSERT(ret == 0);
+    CRITICAL_ASSERT( ret == 0 );
 
     return ret;
 }
-
 
 /** @brief Flush any caches beneath the file system.
 
@@ -165,34 +168,33 @@ REDSTATUS RedIoWrite(
     @retval -RED_EINVAL @p bVolNum is an invalid volume number.
     @retval -RED_EIO    A disk I/O error occurred.
 */
-REDSTATUS RedIoFlush(
-    uint8_t     bVolNum)
+REDSTATUS RedIoFlush( uint8_t bVolNum )
 {
-    REDSTATUS   ret = 0;
+    REDSTATUS ret = 0;
 
-    if(bVolNum >= REDCONF_VOLUME_COUNT)
+    if( bVolNum >= REDCONF_VOLUME_COUNT )
     {
         REDERROR();
         ret = -RED_EINVAL;
     }
     else
     {
-        uint8_t  bRetryIdx;
+        uint8_t bRetryIdx;
 
-        for(bRetryIdx = 0U; bRetryIdx <= gpRedVolConf->bBlockIoRetries; bRetryIdx++)
+        for( bRetryIdx = 0U; bRetryIdx <= gpRedVolConf->bBlockIoRetries;
+             bRetryIdx++ )
         {
-            ret = RedOsBDevFlush(bVolNum);
+            ret = RedOsBDevFlush( bVolNum );
 
-            if(ret == 0)
+            if( ret == 0 )
             {
                 break;
             }
         }
     }
 
-    CRITICAL_ASSERT(ret == 0);
+    CRITICAL_ASSERT( ret == 0 );
 
     return ret;
 }
 #endif /* REDCONF_READ_ONLY == 0 */
-

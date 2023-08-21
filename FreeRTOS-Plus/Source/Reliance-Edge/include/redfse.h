@@ -49,57 +49,63 @@ extern "C" {
 
 #if REDCONF_API_FSE == 1
 
-#include <redtypes.h>
-#include "redapimacs.h"
-#include "rederrno.h"
+    #include <redtypes.h>
+    #include "redapimacs.h"
+    #include "rederrno.h"
 
+    /** @brief First valid file number.
 
-/** @brief First valid file number.
+        This macro can be used to statically define file numbers for given
+       files, as in the below example:
 
-    This macro can be used to statically define file numbers for given files,
-    as in the below example:
+        ~~~{.c}
+        #define LOG_FILE        (RED_FILENUM_FIRST_VALID)
+        #define DATABASE_FILE   (RED_FILENUM_FIRST_VALID + 1U)
+        #define ICON1_FILE      (RED_FILENUM_FIRST_VALID + 2U)
+        #define ICON2_FILE      (RED_FILENUM_FIRST_VALID + 3U)
+        ~~~
+    */
+    #define RED_FILENUM_FIRST_VALID ( 2U )
 
-    ~~~{.c}
-    #define LOG_FILE        (RED_FILENUM_FIRST_VALID)
-    #define DATABASE_FILE   (RED_FILENUM_FIRST_VALID + 1U)
-    #define ICON1_FILE      (RED_FILENUM_FIRST_VALID + 2U)
-    #define ICON2_FILE      (RED_FILENUM_FIRST_VALID + 3U)
-    ~~~
-*/
-#define RED_FILENUM_FIRST_VALID (2U)
-
-
-REDSTATUS RedFseInit(void);
-REDSTATUS RedFseUninit(void);
-REDSTATUS RedFseMount(uint8_t bVolNum);
-REDSTATUS RedFseUnmount(uint8_t bVolNum);
-#if (REDCONF_READ_ONLY == 0) && (REDCONF_API_FSE_FORMAT == 1)
-REDSTATUS RedFseFormat(uint8_t bVolNum);
-#endif
-int32_t RedFseRead(uint8_t bVolNum, uint32_t ulFileNum, uint64_t ullFileOffset, uint32_t ulLength, void *pBuffer);
-#if REDCONF_READ_ONLY == 0
-int32_t RedFseWrite(uint8_t bVolNum, uint32_t ulFileNum, uint64_t ullFileOffset, uint32_t ulLength, const void *pBuffer);
-#endif
-#if (REDCONF_READ_ONLY == 0) && (REDCONF_API_FSE_TRUNCATE == 1)
-REDSTATUS RedFseTruncate(uint8_t bVolNum, uint32_t ulFileNum, uint64_t ullNewFileSize);
-#endif
-int64_t RedFseSizeGet(uint8_t bVolNum, uint32_t ulFileNum);
-#if (REDCONF_READ_ONLY == 0) && (REDCONF_API_FSE_TRANSMASKSET == 1)
-REDSTATUS RedFseTransMaskSet(uint8_t bVolNum, uint32_t ulEventMask);
-#endif
-#if REDCONF_API_FSE_TRANSMASKGET == 1
-REDSTATUS RedFseTransMaskGet(uint8_t bVolNum, uint32_t *pulEventMask);
-#endif
-#if REDCONF_READ_ONLY == 0
-REDSTATUS RedFseTransact(uint8_t bVolNum);
-#endif
+REDSTATUS RedFseInit( void );
+REDSTATUS RedFseUninit( void );
+REDSTATUS RedFseMount( uint8_t bVolNum );
+REDSTATUS RedFseUnmount( uint8_t bVolNum );
+    #if( REDCONF_READ_ONLY == 0 ) && ( REDCONF_API_FSE_FORMAT == 1 )
+REDSTATUS RedFseFormat( uint8_t bVolNum );
+    #endif
+int32_t RedFseRead( uint8_t bVolNum,
+                    uint32_t ulFileNum,
+                    uint64_t ullFileOffset,
+                    uint32_t ulLength,
+                    void * pBuffer );
+    #if REDCONF_READ_ONLY == 0
+int32_t RedFseWrite( uint8_t bVolNum,
+                     uint32_t ulFileNum,
+                     uint64_t ullFileOffset,
+                     uint32_t ulLength,
+                     const void * pBuffer );
+    #endif
+    #if( REDCONF_READ_ONLY == 0 ) && ( REDCONF_API_FSE_TRUNCATE == 1 )
+REDSTATUS RedFseTruncate( uint8_t bVolNum,
+                          uint32_t ulFileNum,
+                          uint64_t ullNewFileSize );
+    #endif
+int64_t RedFseSizeGet( uint8_t bVolNum, uint32_t ulFileNum );
+    #if( REDCONF_READ_ONLY == 0 ) && ( REDCONF_API_FSE_TRANSMASKSET == 1 )
+REDSTATUS RedFseTransMaskSet( uint8_t bVolNum, uint32_t ulEventMask );
+    #endif
+    #if REDCONF_API_FSE_TRANSMASKGET == 1
+REDSTATUS RedFseTransMaskGet( uint8_t bVolNum, uint32_t * pulEventMask );
+    #endif
+    #if REDCONF_READ_ONLY == 0
+REDSTATUS RedFseTransact( uint8_t bVolNum );
+    #endif
 
 #endif /* REDCONF_API_FSE == 1 */
-
 
 #ifdef __cplusplus
 }
 #endif
 
 #endif
-

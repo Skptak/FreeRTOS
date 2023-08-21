@@ -32,8 +32,7 @@
 
 #if REDCONF_IMAP_INLINE == 1
 
-#include <redcore.h>
-
+    #include <redcore.h>
 
 /** @brief Get the allocation bit of a block from either metaroot.
 
@@ -49,33 +48,28 @@
                         @p pfAllocated is `NULL`; or the current volume does not
                         use the inline imap.
 */
-REDSTATUS RedImapIBlockGet(
-    uint8_t     bMR,
-    uint32_t    ulBlock,
-    bool       *pfAllocated)
+REDSTATUS RedImapIBlockGet( uint8_t bMR, uint32_t ulBlock, bool * pfAllocated )
 {
-    REDSTATUS   ret;
+    REDSTATUS ret;
 
-    if(    (!gpRedCoreVol->fImapInline)
-        || (bMR > 1U)
-        || (ulBlock < gpRedCoreVol->ulInodeTableStartBN)
-        || (ulBlock >= gpRedVolume->ulBlockCount)
-        || (pfAllocated == NULL))
+    if( ( !gpRedCoreVol->fImapInline ) || ( bMR > 1U ) ||
+        ( ulBlock < gpRedCoreVol->ulInodeTableStartBN ) ||
+        ( ulBlock >= gpRedVolume->ulBlockCount ) || ( pfAllocated == NULL ) )
     {
         REDERROR();
         ret = -RED_EINVAL;
     }
     else
     {
-        *pfAllocated = RedBitGet(gpRedCoreVol->aMR[bMR].abEntries, ulBlock - gpRedCoreVol->ulInodeTableStartBN);
+        *pfAllocated = RedBitGet( gpRedCoreVol->aMR[ bMR ].abEntries,
+                                  ulBlock - gpRedCoreVol->ulInodeTableStartBN );
         ret = 0;
     }
 
     return ret;
 }
 
-
-#if REDCONF_READ_ONLY == 0
+    #if REDCONF_READ_ONLY == 0
 /** @brief Set the allocation bit of a block in the working metaroot.
 
     @param ulBlock      The block number to allocate or free.
@@ -87,15 +81,13 @@ REDSTATUS RedImapIBlockGet(
     @retval -RED_EINVAL @p ulBlock is out of range; or the current volume does
                         not use the inline imap.
 */
-REDSTATUS RedImapIBlockSet(
-    uint32_t    ulBlock,
-    bool        fAllocated)
+REDSTATUS RedImapIBlockSet( uint32_t ulBlock, bool fAllocated )
 {
-    REDSTATUS   ret;
+    REDSTATUS ret;
 
-    if(    (!gpRedCoreVol->fImapInline)
-        || (ulBlock < gpRedCoreVol->ulInodeTableStartBN)
-        || (ulBlock >= gpRedVolume->ulBlockCount))
+    if( ( !gpRedCoreVol->fImapInline ) ||
+        ( ulBlock < gpRedCoreVol->ulInodeTableStartBN ) ||
+        ( ulBlock >= gpRedVolume->ulBlockCount ) )
     {
         REDERROR();
         ret = -RED_EINVAL;
@@ -104,7 +96,7 @@ REDSTATUS RedImapIBlockSet(
     {
         uint32_t ulOffset = ulBlock - gpRedCoreVol->ulInodeTableStartBN;
 
-        if(RedBitGet(gpRedMR->abEntries, ulOffset) == fAllocated)
+        if( RedBitGet( gpRedMR->abEntries, ulOffset ) == fAllocated )
         {
             /*  The driver shouldn't ever set a bit in the imap to its current
                 value.  This is more of a problem with the external imap, but it
@@ -113,21 +105,20 @@ REDSTATUS RedImapIBlockSet(
             CRITICAL_ERROR();
             ret = -RED_EFUBAR;
         }
-        else if(fAllocated)
+        else if( fAllocated )
         {
-            RedBitSet(gpRedMR->abEntries, ulOffset);
+            RedBitSet( gpRedMR->abEntries, ulOffset );
             ret = 0;
         }
         else
         {
-            RedBitClear(gpRedMR->abEntries, ulOffset);
+            RedBitClear( gpRedMR->abEntries, ulOffset );
             ret = 0;
         }
     }
 
     return ret;
 }
-#endif
+    #endif
 
 #endif /* REDCONF_IMAP_INLINE == 1 */
-

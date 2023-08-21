@@ -23,75 +23,94 @@
     more information.
 */
 /** @file
-*/
+ */
 #ifndef REDCOREAPI_H
 #define REDCOREAPI_H
 
-
 #include <redstat.h>
 
+REDSTATUS RedCoreInit( void );
+REDSTATUS RedCoreUninit( void );
 
-REDSTATUS RedCoreInit(void);
-REDSTATUS RedCoreUninit(void);
-
-REDSTATUS RedCoreVolSetCurrent(uint8_t bVolNum);
+REDSTATUS RedCoreVolSetCurrent( uint8_t bVolNum );
 
 #if FORMAT_SUPPORTED
-REDSTATUS RedCoreVolFormat(void);
+REDSTATUS RedCoreVolFormat( void );
 #endif
 #if REDCONF_CHECKER == 1
-REDSTATUS RedCoreVolCheck(void);
+REDSTATUS RedCoreVolCheck( void );
 #endif
-REDSTATUS RedCoreVolMount(void);
-REDSTATUS RedCoreVolUnmount(void);
+REDSTATUS RedCoreVolMount( void );
+REDSTATUS RedCoreVolUnmount( void );
 #if REDCONF_READ_ONLY == 0
-REDSTATUS RedCoreVolTransact(void);
+REDSTATUS RedCoreVolTransact( void );
 #endif
 #if REDCONF_API_POSIX == 1
-REDSTATUS RedCoreVolStat(REDSTATFS *pStatFS);
+REDSTATUS RedCoreVolStat( REDSTATFS * pStatFS );
 #endif
 
-#if (REDCONF_READ_ONLY == 0) && ((REDCONF_API_POSIX == 1) || (REDCONF_API_FSE_TRANSMASKSET == 1))
-REDSTATUS RedCoreTransMaskSet(uint32_t ulEventMask);
+#if( REDCONF_READ_ONLY == 0 ) && \
+    ( ( REDCONF_API_POSIX == 1 ) || ( REDCONF_API_FSE_TRANSMASKSET == 1 ) )
+REDSTATUS RedCoreTransMaskSet( uint32_t ulEventMask );
 #endif
-#if (REDCONF_API_POSIX == 1) || (REDCONF_API_FSE_TRANSMASKGET == 1)
-REDSTATUS RedCoreTransMaskGet(uint32_t *pulEventMask);
+#if( REDCONF_API_POSIX == 1 ) || ( REDCONF_API_FSE_TRANSMASKGET == 1 )
+REDSTATUS RedCoreTransMaskGet( uint32_t * pulEventMask );
 #endif
 
-#if (REDCONF_READ_ONLY == 0) && (REDCONF_API_POSIX == 1)
-REDSTATUS RedCoreCreate(uint32_t ulPInode, const char *pszName, bool fDir, uint32_t *pulInode);
+#if( REDCONF_READ_ONLY == 0 ) && ( REDCONF_API_POSIX == 1 )
+REDSTATUS RedCoreCreate( uint32_t ulPInode,
+                         const char * pszName,
+                         bool fDir,
+                         uint32_t * pulInode );
 #endif
-#if (REDCONF_READ_ONLY == 0) && (REDCONF_API_POSIX == 1) && (REDCONF_API_POSIX_LINK == 1)
-REDSTATUS RedCoreLink(uint32_t ulPInode, const char *pszName, uint32_t ulInode);
+#if( REDCONF_READ_ONLY == 0 ) && ( REDCONF_API_POSIX == 1 ) && \
+    ( REDCONF_API_POSIX_LINK == 1 )
+REDSTATUS RedCoreLink( uint32_t ulPInode,
+                       const char * pszName,
+                       uint32_t ulInode );
 #endif
-#if (REDCONF_READ_ONLY == 0) && (REDCONF_API_POSIX == 1) && ((REDCONF_API_POSIX_UNLINK == 1) || (REDCONF_API_POSIX_RMDIR == 1))
-REDSTATUS RedCoreUnlink(uint32_t ulPInode, const char *pszName);
+#if( REDCONF_READ_ONLY == 0 ) && ( REDCONF_API_POSIX == 1 ) && \
+    ( ( REDCONF_API_POSIX_UNLINK == 1 ) || ( REDCONF_API_POSIX_RMDIR == 1 ) )
+REDSTATUS RedCoreUnlink( uint32_t ulPInode, const char * pszName );
 #endif
 #if REDCONF_API_POSIX == 1
-REDSTATUS RedCoreLookup(uint32_t ulPInode, const char *pszName, uint32_t *pulInode);
+REDSTATUS RedCoreLookup( uint32_t ulPInode,
+                         const char * pszName,
+                         uint32_t * pulInode );
 #endif
-#if (REDCONF_READ_ONLY == 0) && (REDCONF_API_POSIX == 1) && (REDCONF_API_POSIX_RENAME == 1)
-REDSTATUS RedCoreRename(uint32_t ulSrcPInode, const char *pszSrcName, uint32_t ulDstPInode, const char *pszDstName);
+#if( REDCONF_READ_ONLY == 0 ) && ( REDCONF_API_POSIX == 1 ) && \
+    ( REDCONF_API_POSIX_RENAME == 1 )
+REDSTATUS RedCoreRename( uint32_t ulSrcPInode,
+                         const char * pszSrcName,
+                         uint32_t ulDstPInode,
+                         const char * pszDstName );
 #endif
 #if REDCONF_API_POSIX == 1
-REDSTATUS RedCoreStat(uint32_t ulInode, REDSTAT *pStat);
+REDSTATUS RedCoreStat( uint32_t ulInode, REDSTAT * pStat );
 #endif
 #if REDCONF_API_FSE == 1
-REDSTATUS RedCoreFileSizeGet(uint32_t ulInode, uint64_t *pullSize);
+REDSTATUS RedCoreFileSizeGet( uint32_t ulInode, uint64_t * pullSize );
 #endif
 
-REDSTATUS RedCoreFileRead(uint32_t ulInode, uint64_t ullStart, uint32_t *pulLen, void *pBuffer);
+REDSTATUS RedCoreFileRead( uint32_t ulInode,
+                           uint64_t ullStart,
+                           uint32_t * pulLen,
+                           void * pBuffer );
 #if REDCONF_READ_ONLY == 0
-REDSTATUS RedCoreFileWrite(uint32_t ulInode, uint64_t ullStart, uint32_t *pulLen, const void *pBuffer);
+REDSTATUS RedCoreFileWrite( uint32_t ulInode,
+                            uint64_t ullStart,
+                            uint32_t * pulLen,
+                            const void * pBuffer );
 #endif
 #if TRUNCATE_SUPPORTED
-REDSTATUS RedCoreFileTruncate(uint32_t ulInode, uint64_t ullSize);
+REDSTATUS RedCoreFileTruncate( uint32_t ulInode, uint64_t ullSize );
 #endif
 
-#if (REDCONF_API_POSIX == 1) && (REDCONF_API_POSIX_READDIR == 1)
-REDSTATUS RedCoreDirRead(uint32_t ulInode, uint32_t *pulPos, char *pszName, uint32_t *pulInode);
+#if( REDCONF_API_POSIX == 1 ) && ( REDCONF_API_POSIX_READDIR == 1 )
+REDSTATUS RedCoreDirRead( uint32_t ulInode,
+                          uint32_t * pulPos,
+                          char * pszName,
+                          uint32_t * pulInode );
 #endif
 
-
 #endif
-

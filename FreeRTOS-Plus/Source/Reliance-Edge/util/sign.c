@@ -27,23 +27,22 @@
 */
 #include <redfs.h>
 
-
 /** @brief Display the Reliance Edge signon message.
-*/
-void RedSignOn(void)
+ */
+void RedSignOn( void )
 {
-  #if REDCONF_OUTPUT == 1
+#if REDCONF_OUTPUT == 1
 
     /*  Use RedOsOutputString() instead of RedPrintf() to avoid using variadic
         arguments, since this function is called from the driver and cannot use
         functions that violate MISRA-C:2012.
     */
-    RedOsOutputString(RED_PRODUCT_NAME "\n");
-    RedOsOutputString(RED_PRODUCT_EDITION "\n");
-    RedOsOutputString(RED_PRODUCT_LEGAL "\n");
-    RedOsOutputString(RED_PRODUCT_PATENT "\n");
+    RedOsOutputString( RED_PRODUCT_NAME "\n" );
+    RedOsOutputString( RED_PRODUCT_EDITION "\n" );
+    RedOsOutputString( RED_PRODUCT_LEGAL "\n" );
+    RedOsOutputString( RED_PRODUCT_PATENT "\n" );
 
-  #else
+#else
 
     /*  Always embed the copyright into the program data.  Use "volatile" to try
         to avoid the compiler removing the variables.
@@ -53,11 +52,10 @@ void RedSignOn(void)
     static volatile const char szCopyright[] = RED_PRODUCT_LEGAL;
     static volatile const char szPatent[] = RED_PRODUCT_PATENT;
 
-    (void)szVersion;
-    (void)szEdition;
-    (void)szCopyright;
-    (void)szPatent;
+    ( void ) szVersion;
+    ( void ) szEdition;
+    ( void ) szCopyright;
+    ( void ) szPatent;
 
-  #endif
+#endif
 }
-

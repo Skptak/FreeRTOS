@@ -16,20 +16,20 @@ extern "C" {
 #endif
 
 /* The time to wait if the USB interface is busy. */
-#define TRC_CFG_STREAM_PORT_DELAY_ON_BUSY 3
+#define TRC_CFG_STREAM_PORT_DELAY_ON_BUSY        3
 
 /*******************************************************************************
-* Configuration Macro: TRC_CFG_STREAM_PORT_USB_BUFFER_SIZE
-*
-* Specifies the size of the usb buffer.
-******************************************************************************/
-#define TRC_CFG_STREAM_PORT_USB_BUFFER_SIZE 64
+ * Configuration Macro: TRC_CFG_STREAM_PORT_USB_BUFFER_SIZE
+ *
+ * Specifies the size of the usb buffer.
+ ******************************************************************************/
+#define TRC_CFG_STREAM_PORT_USB_BUFFER_SIZE      64
 
 /*******************************************************************************
-* Configuration Macro: TRC_CFG_STREAM_PORT_INTERNAL_BUFFER_SIZE
-*
-* Specifies the size of the internal buffer.
-******************************************************************************/
+ * Configuration Macro: TRC_CFG_STREAM_PORT_INTERNAL_BUFFER_SIZE
+ *
+ * Specifies the size of the internal buffer.
+ ******************************************************************************/
 #define TRC_CFG_STREAM_PORT_INTERNAL_BUFFER_SIZE 10000
 
 #ifdef __cplusplus

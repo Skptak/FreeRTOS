@@ -32,11 +32,9 @@
 #ifndef REDPOSIXCOMPAT_H
 #define REDPOSIXCOMPAT_H
 
-
 #ifndef assert
-#define assert(x) REDASSERT(x)
+    #define assert( x ) REDASSERT( x )
 #endif
-
 
 #undef O_RDONLY
 #undef O_WRONLY
@@ -47,11 +45,11 @@
 #undef O_TRUNC
 #define O_RDONLY RED_O_RDONLY
 #define O_WRONLY RED_O_WRONLY
-#define O_RDWR RED_O_RDWR
+#define O_RDWR   RED_O_RDWR
 #define O_APPEND RED_O_APPEND
-#define O_CREAT RED_O_CREAT
-#define O_EXCL RED_O_EXCL
-#define O_TRUNC RED_O_TRUNC
+#define O_CREAT  RED_O_CREAT
+#define O_EXCL   RED_O_EXCL
+#define O_TRUNC  RED_O_TRUNC
 
 #undef SEEK_SET
 #undef SEEK_CUR
@@ -61,11 +59,11 @@
 #define SEEK_END RED_SEEK_END
 
 /*  Old-fashioned Linux seek names.
-*/
+ */
 #undef L_SET
 #undef L_INCR
 #undef L_XTND
-#define L_SET SEEK_SET
+#define L_SET  SEEK_SET
 #define L_INCR SEEK_CUR
 #define L_XTND SEEK_END
 
@@ -73,10 +71,10 @@
 #undef S_IFREG
 #undef S_ISDIR
 #undef S_ISREG
-#define S_IFDIR RED_S_IFDIR
-#define S_IFREG RED_S_IFREG
-#define S_ISDIR(m) RED_S_ISDIR(m)
-#define S_ISREG(m) RED_S_ISREG(m)
+#define S_IFDIR      RED_S_IFDIR
+#define S_IFREG      RED_S_IFREG
+#define S_ISDIR( m ) RED_S_ISDIR( m )
+#define S_ISREG( m ) RED_S_ISREG( m )
 
 #undef ST_RDONLY
 #undef ST_NOSUID
@@ -102,34 +100,34 @@
 #undef readdir
 #undef rewinddir
 #undef closedir
-#define open(path, oflag) red_open(path, oflag)
-#define creat(path, mode) open(path, O_WRONLY|O_CREAT|O_TRUNC)
-#define unlink(path) red_unlink(path)
-#define mkdir(path) red_mkdir(path)
-#define rmdir(path) red_rmdir(path)
-#define rename(old, new) red_rename(old, new)
-#define link(path, hardlink) red_link(path, hardlink)
-#define close(fd) red_close(fd)
-#define read(fd, buf, len) red_read(fd, buf, len)
-#define write(fd, buf, len) red_write(fd, buf, len)
-#define fsync(fd) red_fsync(fd)
-#define fdatasync(fd) fsync(fd)
-#define lseek(fd, offset, whence) red_lseek(fd, offset, whence)
-#define lseek64(fd, offset, whence) lseek(fd, offset, whence)
-#define ftruncate(fd, size) red_ftruncate(fd, size)
-#define fstat(fd, stat) red_fstat(fd, stat)
-#define fstat64(fd, stat) fstat(fd, stat)
-#define opendir(path) red_opendir(path)
-#define readdir(dirp) red_readdir(dirp)
-#define readdir64(dirp) readdir(dirp)
-#define rewinddir(dirp) red_rewinddir(dirp)
-#define closedir(dirp) red_closedir(dirp)
+#define open( path, oflag )           red_open( path, oflag )
+#define creat( path, mode )           open( path, O_WRONLY | O_CREAT | O_TRUNC )
+#define unlink( path )                red_unlink( path )
+#define mkdir( path )                 red_mkdir( path )
+#define rmdir( path )                 red_rmdir( path )
+#define rename( old, new )            red_rename( old, new )
+#define link( path, hardlink )        red_link( path, hardlink )
+#define close( fd )                   red_close( fd )
+#define read( fd, buf, len )          red_read( fd, buf, len )
+#define write( fd, buf, len )         red_write( fd, buf, len )
+#define fsync( fd )                   red_fsync( fd )
+#define fdatasync( fd )               fsync( fd )
+#define lseek( fd, offset, whence )   red_lseek( fd, offset, whence )
+#define lseek64( fd, offset, whence ) lseek( fd, offset, whence )
+#define ftruncate( fd, size )         red_ftruncate( fd, size )
+#define fstat( fd, stat )             red_fstat( fd, stat )
+#define fstat64( fd, stat )           fstat( fd, stat )
+#define opendir( path )               red_opendir( path )
+#define readdir( dirp )               red_readdir( dirp )
+#define readdir64( dirp )             readdir( dirp )
+#define rewinddir( dirp )             red_rewinddir( dirp )
+#define closedir( dirp )              red_closedir( dirp )
 
 #undef DIR
 #define DIR REDDIR
 
 #undef errno
-#define errno (*(int *)red_errnoptr())
+#define errno ( *( int * ) red_errnoptr() )
 
 #undef memcpy
 #undef memmove
@@ -138,15 +136,12 @@
 #undef strncmp
 #undef strcmp
 #undef strncpy
-#define memcpy(d, s, l) RedMemCpy(d, s, (uint32_t)(l))
-#define memmove(d, s, l) RedMemMove(d, s, (uint32_t)(l))
-#define memset(d, c, l) RedMemSet(d, (uint8_t)(c), (uint32_t)(l))
-#define strlen(s) RedStrLen(s)
-#define strncmp(s1, s2, l) RedStrNCmp(s1, s2, (uint32_t)(l))
-#define strcmp(s1, s2) RedStrCmp(s1, s2)
-#define strncpy(d, s, l) RedStrNCpy(d, s, (uint32_t)(l))
-
+#define memcpy( d, s, l )    RedMemCpy( d, s, ( uint32_t ) ( l ) )
+#define memmove( d, s, l )   RedMemMove( d, s, ( uint32_t ) ( l ) )
+#define memset( d, c, l )    RedMemSet( d, ( uint8_t ) ( c ), ( uint32_t ) ( l ) )
+#define strlen( s )          RedStrLen( s )
+#define strncmp( s1, s2, l ) RedStrNCmp( s1, s2, ( uint32_t ) ( l ) )
+#define strcmp( s1, s2 )     RedStrCmp( s1, s2 )
+#define strncpy( d, s, l )   RedStrNCpy( d, s, ( uint32_t ) ( l ) )
 
 #endif
-
-

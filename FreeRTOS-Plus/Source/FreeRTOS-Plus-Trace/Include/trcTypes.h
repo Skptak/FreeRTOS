@@ -1,12 +1,12 @@
 /*
-* Percepio Trace Recorder for Tracealyzer v4.6.0
-* Copyright 2021 Percepio AB
-* www.percepio.com
-*
-* SPDX-License-Identifier: Apache-2.0
-*
-* The common types.
-*/
+ * Percepio Trace Recorder for Tracealyzer v4.6.0
+ * Copyright 2021 Percepio AB
+ * www.percepio.com
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * The common types.
+ */
 
 #ifndef TRC_TYPES_H
 #define TRC_TYPES_H
@@ -20,11 +20,11 @@ extern "C" {
 #endif
 
 #ifndef TRC_BASE_TYPE
-#define TRC_BASE_TYPE int32_t
+    #define TRC_BASE_TYPE int32_t
 #endif
 
 #ifndef TRC_UNSIGNED_BASE_TYPE
-#define TRC_UNSIGNED_BASE_TYPE uint32_t
+    #define TRC_UNSIGNED_BASE_TYPE uint32_t
 #endif
 
 typedef TRC_UNSIGNED_BASE_TYPE TraceUnsignedBaseType_t;
@@ -57,7 +57,7 @@ typedef TraceUnsignedBaseType_t TraceStringHandle_t;
 
 typedef TraceUnsignedBaseType_t TraceCounterHandle_t;
 
-typedef void (*TraceCounterCallback_t)(TraceCounterHandle_t xCounterHandle);
+typedef void ( *TraceCounterCallback_t )( TraceCounterHandle_t xCounterHandle );
 
 /* DEPRECATED. Backwards compatibility */
 typedef TraceStringHandle_t traceString;

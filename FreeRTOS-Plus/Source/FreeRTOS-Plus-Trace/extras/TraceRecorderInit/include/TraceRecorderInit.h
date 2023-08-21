@@ -23,16 +23,17 @@
  *	Finally, call vTraceEnable(TRC_START) after hardware is initialized to
  *	start gathering trace events.
  */
- 
+
 #pragma once
 
 class TraceRecorderInit
 {
-public:
-	static bool Initialize();
-private:
-	TraceRecorderInit();
-	~TraceRecorderInit();
+  public:
+    static bool Initialize();
 
-	bool IsInitialized();
+  private:
+    TraceRecorderInit();
+    ~TraceRecorderInit();
+
+    bool IsInitialized();
 };

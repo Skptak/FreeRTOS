@@ -18,7 +18,8 @@ extern "C" {
 
 /**
  * @def TRC_CFG_ENTRY_SLOTS
- * @brief The maximum number of objects and symbols that can be stored. This includes:
+ * @brief The maximum number of objects and symbols that can be stored. This
+ * includes:
  * - Task names
  * - Named ISRs (vTraceSetISRProperties)
  * - Named kernel objects (vTraceStoreKernelObjectName)
@@ -28,7 +29,7 @@ extern "C" {
  * trace display will be affected. In that case, there will be warnings
  * (as User Events) from TzCtrl task, that monitors this.
  */
-#define TRC_CFG_ENTRY_SLOTS 50
+#define TRC_CFG_ENTRY_SLOTS             50
 
 /**
  * @def TRC_CFG_ENTRY_SYMBOL_MAX_LENGTH

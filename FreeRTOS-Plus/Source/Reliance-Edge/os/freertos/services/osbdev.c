@@ -31,7 +31,6 @@
 #include <redvolume.h>
 #include <redosdeviations.h>
 
-
 /*------------------------------------------------------------------------------
     Porting Note:
 
@@ -54,7 +53,7 @@
     multi-sector requests, and servicing these one sector at a time will
     significantly slow down the file system.
 */
-#define BDEV_F_DRIVER       (0U)
+#define BDEV_F_DRIVER               ( 0U )
 
 /** @brief The FatFs example implementation.
 
@@ -63,7 +62,7 @@
     in and used immediately.  The FatFs `diskio.h` header must be in the include
     directory path.
 */
-#define BDEV_FATFS          (1U)
+#define BDEV_FATFS                  ( 1U )
 
 /** @brief The Atmel Studio Framework SD/MMC driver example implementation.
 
@@ -83,7 +82,7 @@
     advantages to issuing real multi-sector requests, so using the modified
     driver is recommended.
 */
-#define BDEV_ATMEL_SDMMC    (2U)
+#define BDEV_ATMEL_SDMMC            ( 2U )
 
 /** @brief The ST Microelectronics STM32 SDIO driver example implementation.
 
@@ -91,7 +90,7 @@
     provided as part of the STM32Cube package, used with the STM32 HAL drivers.
     The STM3240G-EVAL and STM32F746NG-Discovery boards are currently supported.
 */
-#define BDEV_STM32_SDIO     (3U)
+#define BDEV_STM32_SDIO             ( 3U )
 
 /** @brief The RAM disk example implementation.
 
@@ -100,7 +99,7 @@
     target hardware, the amount of spare RAM will be limited so generally only
     very small disks will be available.
 */
-#define BDEV_RAM_DISK       (4U)
+#define BDEV_RAM_DISK               ( 4U )
 
 /** @brief Pick which example implementation is compiled.
 
@@ -113,15 +112,19 @@
 */
 #define BDEV_EXAMPLE_IMPLEMENTATION BDEV_RAM_DISK
 
-
-static REDSTATUS DiskOpen(uint8_t bVolNum, BDEVOPENMODE mode);
-static REDSTATUS DiskClose(uint8_t bVolNum);
-static REDSTATUS DiskRead(uint8_t bVolNum, uint64_t ullSectorStart, uint32_t ulSectorCount, void *pBuffer);
+static REDSTATUS DiskOpen( uint8_t bVolNum, BDEVOPENMODE mode );
+static REDSTATUS DiskClose( uint8_t bVolNum );
+static REDSTATUS DiskRead( uint8_t bVolNum,
+                           uint64_t ullSectorStart,
+                           uint32_t ulSectorCount,
+                           void * pBuffer );
 #if REDCONF_READ_ONLY == 0
-static REDSTATUS DiskWrite(uint8_t bVolNum, uint64_t ullSectorStart, uint32_t ulSectorCount, const void *pBuffer);
-static REDSTATUS DiskFlush(uint8_t bVolNum);
+static REDSTATUS DiskWrite( uint8_t bVolNum,
+                            uint64_t ullSectorStart,
+                            uint32_t ulSectorCount,
+                            const void * pBuffer );
+static REDSTATUS DiskFlush( uint8_t bVolNum );
 #endif
-
 
 /** @brief Initialize a block device.
 
@@ -144,24 +147,21 @@ static REDSTATUS DiskFlush(uint8_t bVolNum);
     @retval -RED_EINVAL @p bVolNum is an invalid volume number.
     @retval -RED_EIO    A disk I/O error occurred.
 */
-REDSTATUS RedOsBDevOpen(
-    uint8_t         bVolNum,
-    BDEVOPENMODE    mode)
+REDSTATUS RedOsBDevOpen( uint8_t bVolNum, BDEVOPENMODE mode )
 {
-    REDSTATUS       ret;
+    REDSTATUS ret;
 
-    if(bVolNum >= REDCONF_VOLUME_COUNT)
+    if( bVolNum >= REDCONF_VOLUME_COUNT )
     {
         ret = -RED_EINVAL;
     }
     else
     {
-        ret = DiskOpen(bVolNum, mode);
+        ret = DiskOpen( bVolNum, mode );
     }
 
     return ret;
 }
-
 
 /** @brief Uninitialize a block device.
 
@@ -183,23 +183,21 @@ REDSTATUS RedOsBDevOpen(
     @retval 0           Operation was successful.
     @retval -RED_EINVAL @p bVolNum is an invalid volume number.
 */
-REDSTATUS RedOsBDevClose(
-    uint8_t     bVolNum)
+REDSTATUS RedOsBDevClose( uint8_t bVolNum )
 {
-    REDSTATUS   ret;
+    REDSTATUS ret;
 
-    if(bVolNum >= REDCONF_VOLUME_COUNT)
+    if( bVolNum >= REDCONF_VOLUME_COUNT )
     {
         ret = -RED_EINVAL;
     }
     else
     {
-        ret = DiskClose(bVolNum);
+        ret = DiskClose( bVolNum );
     }
 
     return ret;
 }
-
 
 /** @brief Read sectors from a physical block device.
 
@@ -220,29 +218,28 @@ REDSTATUS RedOsBDevClose(
                         refer to an invalid range of sectors.
     @retval -RED_EIO    A disk I/O error occurred.
 */
-REDSTATUS RedOsBDevRead(
-    uint8_t     bVolNum,
-    uint64_t    ullSectorStart,
-    uint32_t    ulSectorCount,
-    void       *pBuffer)
+REDSTATUS RedOsBDevRead( uint8_t bVolNum,
+                         uint64_t ullSectorStart,
+                         uint32_t ulSectorCount,
+                         void * pBuffer )
 {
-    REDSTATUS   ret = 0;
+    REDSTATUS ret = 0;
 
-    if(    (bVolNum >= REDCONF_VOLUME_COUNT)
-        || (ullSectorStart >= gaRedVolConf[bVolNum].ullSectorCount)
-        || ((gaRedVolConf[bVolNum].ullSectorCount - ullSectorStart) < ulSectorCount)
-        || (pBuffer == NULL))
+    if( ( bVolNum >= REDCONF_VOLUME_COUNT ) ||
+        ( ullSectorStart >= gaRedVolConf[ bVolNum ].ullSectorCount ) ||
+        ( ( gaRedVolConf[ bVolNum ].ullSectorCount - ullSectorStart ) <
+          ulSectorCount ) ||
+        ( pBuffer == NULL ) )
     {
         ret = -RED_EINVAL;
     }
     else
     {
-        ret = DiskRead(bVolNum, ullSectorStart, ulSectorCount, pBuffer);
+        ret = DiskRead( bVolNum, ullSectorStart, ulSectorCount, pBuffer );
     }
 
     return ret;
 }
-
 
 #if REDCONF_READ_ONLY == 0
 /** @brief Write sectors to a physical block device.
@@ -264,29 +261,28 @@ REDSTATUS RedOsBDevRead(
                         refer to an invalid range of sectors.
     @retval -RED_EIO    A disk I/O error occurred.
 */
-REDSTATUS RedOsBDevWrite(
-    uint8_t     bVolNum,
-    uint64_t    ullSectorStart,
-    uint32_t    ulSectorCount,
-    const void *pBuffer)
+REDSTATUS RedOsBDevWrite( uint8_t bVolNum,
+                          uint64_t ullSectorStart,
+                          uint32_t ulSectorCount,
+                          const void * pBuffer )
 {
-    REDSTATUS   ret = 0;
+    REDSTATUS ret = 0;
 
-    if(    (bVolNum >= REDCONF_VOLUME_COUNT)
-        || (ullSectorStart >= gaRedVolConf[bVolNum].ullSectorCount)
-        || ((gaRedVolConf[bVolNum].ullSectorCount - ullSectorStart) < ulSectorCount)
-        || (pBuffer == NULL))
+    if( ( bVolNum >= REDCONF_VOLUME_COUNT ) ||
+        ( ullSectorStart >= gaRedVolConf[ bVolNum ].ullSectorCount ) ||
+        ( ( gaRedVolConf[ bVolNum ].ullSectorCount - ullSectorStart ) <
+          ulSectorCount ) ||
+        ( pBuffer == NULL ) )
     {
         ret = -RED_EINVAL;
     }
     else
     {
-        ret = DiskWrite(bVolNum, ullSectorStart, ulSectorCount, pBuffer);
+        ret = DiskWrite( bVolNum, ullSectorStart, ulSectorCount, pBuffer );
     }
 
     return ret;
 }
-
 
 /** @brief Flush any caches beneath the file system.
 
@@ -309,37 +305,33 @@ REDSTATUS RedOsBDevWrite(
     @retval -RED_EINVAL @p bVolNum is an invalid volume number.
     @retval -RED_EIO    A disk I/O error occurred.
 */
-REDSTATUS RedOsBDevFlush(
-    uint8_t     bVolNum)
+REDSTATUS RedOsBDevFlush( uint8_t bVolNum )
 {
-    REDSTATUS   ret;
+    REDSTATUS ret;
 
-    if(bVolNum >= REDCONF_VOLUME_COUNT)
+    if( bVolNum >= REDCONF_VOLUME_COUNT )
     {
         ret = -RED_EINVAL;
     }
     else
     {
-        ret = DiskFlush(bVolNum);
+        ret = DiskFlush( bVolNum );
     }
 
     return ret;
 }
 #endif /* REDCONF_READ_ONLY == 0 */
 
-
 #if BDEV_EXAMPLE_IMPLEMENTATION == BDEV_F_DRIVER
 
-#include <api_mdriver.h>
-
+    #include <api_mdriver.h>
 
 /*  This must be declared and initialized elsewere (e.g., in project code) to
     point at the initialization function for the F_DRIVER block device.
 */
 extern const F_DRIVERINIT gpfnRedOsBDevInit;
 
-static F_DRIVER *gapFDriver[REDCONF_VOLUME_COUNT];
-
+static F_DRIVER * gapFDriver[ REDCONF_VOLUME_COUNT ];
 
 /** @brief Initialize a disk.
 
@@ -352,42 +344,42 @@ static F_DRIVER *gapFDriver[REDCONF_VOLUME_COUNT];
     @retval 0           Operation was successful.
     @retval -RED_EIO    A disk I/O error occurred.
 */
-static REDSTATUS DiskOpen(
-    uint8_t         bVolNum,
-    BDEVOPENMODE    mode)
+static REDSTATUS DiskOpen( uint8_t bVolNum, BDEVOPENMODE mode )
 {
-    REDSTATUS       ret;
+    REDSTATUS ret;
 
-    (void)mode;
+    ( void ) mode;
 
-    if((gpfnRedOsBDevInit == NULL) || (gapFDriver[bVolNum] != NULL))
+    if( ( gpfnRedOsBDevInit == NULL ) || ( gapFDriver[ bVolNum ] != NULL ) )
     {
         ret = -RED_EINVAL;
     }
     else
     {
-        F_DRIVER *pDriver;
+        F_DRIVER * pDriver;
 
-        pDriver = gpfnRedOsBDevInit(bVolNum);
-        if(pDriver != NULL)
+        pDriver = gpfnRedOsBDevInit( bVolNum );
+        if( pDriver != NULL )
         {
-            F_PHY   geom;
-            int     iErr;
+            F_PHY geom;
+            int iErr;
 
             /*  Validate that the geometry is consistent with the volume
                 configuration.
             */
-            iErr = pDriver->getphy(pDriver, &geom);
-            if(iErr == 0)
+            iErr = pDriver->getphy( pDriver, &geom );
+            if( iErr == 0 )
             {
-                if(    (geom.bytes_per_sector != gaRedVolConf[bVolNum].ulSectorSize)
-                    || (geom.number_of_sectors < gaRedVolConf[bVolNum].ullSectorCount))
+                if( ( geom.bytes_per_sector !=
+                      gaRedVolConf[ bVolNum ].ulSectorSize ) ||
+                    ( geom.number_of_sectors <
+                      gaRedVolConf[ bVolNum ].ullSectorCount ) )
                 {
                     ret = -RED_EINVAL;
                 }
                 else
                 {
-                    gapFDriver[bVolNum] = pDriver;
+                    gapFDriver[ bVolNum ] = pDriver;
                     ret = 0;
                 }
             }
@@ -396,9 +388,9 @@ static REDSTATUS DiskOpen(
                 ret = -RED_EIO;
             }
 
-            if(ret != 0)
+            if( ret != 0 )
             {
-                pDriver->release(pDriver);
+                pDriver->release( pDriver );
             }
         }
         else
@@ -410,7 +402,6 @@ static REDSTATUS DiskOpen(
     return ret;
 }
 
-
 /** @brief Uninitialize a disk.
 
     @param bVolNum  The volume number of the volume whose block device is being
@@ -420,26 +411,24 @@ static REDSTATUS DiskOpen(
 
     @retval 0   Operation was successful.
 */
-static REDSTATUS DiskClose(
-    uint8_t     bVolNum)
+static REDSTATUS DiskClose( uint8_t bVolNum )
 {
-    REDSTATUS   ret;
+    REDSTATUS ret;
 
-    if(gapFDriver[bVolNum] == NULL)
+    if( gapFDriver[ bVolNum ] == NULL )
     {
         ret = -RED_EINVAL;
     }
     else
     {
-        gapFDriver[bVolNum]->release(gapFDriver[bVolNum]);
-        gapFDriver[bVolNum] = NULL;
+        gapFDriver[ bVolNum ]->release( gapFDriver[ bVolNum ] );
+        gapFDriver[ bVolNum ] = NULL;
 
         ret = 0;
     }
 
     return ret;
 }
-
 
 /** @brief Read sectors from a disk.
 
@@ -454,31 +443,32 @@ static REDSTATUS DiskClose(
     @retval 0           Operation was successful.
     @retval -RED_EIO    A disk I/O error occurred.
 */
-static REDSTATUS DiskRead(
-    uint8_t     bVolNum,
-    uint64_t    ullSectorStart,
-    uint32_t    ulSectorCount,
-    void       *pBuffer)
+static REDSTATUS DiskRead( uint8_t bVolNum,
+                           uint64_t ullSectorStart,
+                           uint32_t ulSectorCount,
+                           void * pBuffer )
 {
-    REDSTATUS   ret = 0;
-    F_DRIVER   *pDriver = gapFDriver[bVolNum];
+    REDSTATUS ret = 0;
+    F_DRIVER * pDriver = gapFDriver[ bVolNum ];
 
-    if(pDriver == NULL)
+    if( pDriver == NULL )
     {
         ret = -RED_EINVAL;
     }
     else
     {
-        uint8_t    *pbBuffer = CAST_VOID_PTR_TO_UINT8_PTR(pBuffer);
-        uint32_t    ulSectorSize = gaRedVolConf[bVolNum].ulSectorSize;
-        uint32_t    ulSectorIdx;
-        int         iErr;
+        uint8_t * pbBuffer = CAST_VOID_PTR_TO_UINT8_PTR( pBuffer );
+        uint32_t ulSectorSize = gaRedVolConf[ bVolNum ].ulSectorSize;
+        uint32_t ulSectorIdx;
+        int iErr;
 
-        for(ulSectorIdx = 0U; ulSectorIdx < ulSectorCount; ulSectorIdx++)
+        for( ulSectorIdx = 0U; ulSectorIdx < ulSectorCount; ulSectorIdx++ )
         {
-            iErr = pDriver->readsector(pDriver, &pbBuffer[ulSectorIdx * ulSectorSize],
-                                       CAST_ULONG(ullSectorStart + ulSectorIdx));
-            if(iErr != 0)
+            iErr = pDriver->readsector( pDriver,
+                                        &pbBuffer[ ulSectorIdx * ulSectorSize ],
+                                        CAST_ULONG( ullSectorStart +
+                                                    ulSectorIdx ) );
+            if( iErr != 0 )
             {
                 ret = -RED_EIO;
                 break;
@@ -489,8 +479,7 @@ static REDSTATUS DiskRead(
     return ret;
 }
 
-
-#if REDCONF_READ_ONLY == 0
+    #if REDCONF_READ_ONLY == 0
 /** @brief Write sectors to a disk.
 
     @param bVolNum          The volume number of the volume whose block device
@@ -505,34 +494,36 @@ static REDSTATUS DiskRead(
     @retval -RED_EINVAL The block device is not open.
     @retval -RED_EIO    A disk I/O error occurred.
 */
-static REDSTATUS DiskWrite(
-    uint8_t     bVolNum,
-    uint64_t    ullSectorStart,
-    uint32_t    ulSectorCount,
-    const void *pBuffer)
+static REDSTATUS DiskWrite( uint8_t bVolNum,
+                            uint64_t ullSectorStart,
+                            uint32_t ulSectorCount,
+                            const void * pBuffer )
 {
-    REDSTATUS   ret = 0;
-    F_DRIVER   *pDriver = gapFDriver[bVolNum];
+    REDSTATUS ret = 0;
+    F_DRIVER * pDriver = gapFDriver[ bVolNum ];
 
-    if(pDriver == NULL)
+    if( pDriver == NULL )
     {
         ret = -RED_EINVAL;
     }
     else
     {
-        const uint8_t  *pbBuffer = CAST_VOID_PTR_TO_CONST_UINT8_PTR(pBuffer);
-        uint32_t        ulSectorSize = gaRedVolConf[bVolNum].ulSectorSize;
-        uint32_t        ulSectorIdx;
-        int             iErr;
+        const uint8_t * pbBuffer = CAST_VOID_PTR_TO_CONST_UINT8_PTR( pBuffer );
+        uint32_t ulSectorSize = gaRedVolConf[ bVolNum ].ulSectorSize;
+        uint32_t ulSectorIdx;
+        int iErr;
 
-        for(ulSectorIdx = 0U; ulSectorIdx < ulSectorCount; ulSectorIdx++)
+        for( ulSectorIdx = 0U; ulSectorIdx < ulSectorCount; ulSectorIdx++ )
         {
             /*  We have to cast pbBuffer to non-const since the writesector
                 prototype is flawed, using a non-const pointer for the buffer.
             */
-            iErr = pDriver->writesector(pDriver, CAST_AWAY_CONST(uint8_t, &pbBuffer[ulSectorIdx * ulSectorSize]),
-                                        CAST_ULONG(ullSectorStart + ulSectorIdx));
-            if(iErr != 0)
+            iErr = pDriver->writesector(
+                pDriver,
+                CAST_AWAY_CONST( uint8_t,
+                                 &pbBuffer[ ulSectorIdx * ulSectorSize ] ),
+                CAST_ULONG( ullSectorStart + ulSectorIdx ) );
+            if( iErr != 0 )
             {
                 ret = -RED_EIO;
                 break;
@@ -543,7 +534,6 @@ static REDSTATUS DiskWrite(
     return ret;
 }
 
-
 /** @brief Flush any caches beneath the file system.
 
     @param bVolNum  The volume number of the volume whose block device is being
@@ -553,12 +543,11 @@ static REDSTATUS DiskWrite(
 
     @retval 0   Operation was successful.
 */
-static REDSTATUS DiskFlush(
-    uint8_t     bVolNum)
+static REDSTATUS DiskFlush( uint8_t bVolNum )
 {
-    REDSTATUS   ret;
+    REDSTATUS ret;
 
-    if(gapFDriver[bVolNum] == NULL)
+    if( gapFDriver[ bVolNum ] == NULL )
     {
         ret = -RED_EINVAL;
     }
@@ -572,19 +561,17 @@ static REDSTATUS DiskFlush(
 
     return ret;
 }
-#endif /* REDCONF_READ_ONLY == 0 */
-
+    #endif /* REDCONF_READ_ONLY == 0 */
 
 #elif BDEV_EXAMPLE_IMPLEMENTATION == BDEV_FATFS
 
-#include <task.h>
-#include <diskio.h>
+    #include <task.h>
+    #include <diskio.h>
 
-/*  disk_read() and disk_write() use an unsigned 8-bit value to specify the
-    sector count, so no transfer can be larger than 255 sectors.
-*/
-#define MAX_SECTOR_TRANSFER UINT8_MAX
-
+    /*  disk_read() and disk_write() use an unsigned 8-bit value to specify the
+        sector count, so no transfer can be larger than 255 sectors.
+    */
+    #define MAX_SECTOR_TRANSFER UINT8_MAX
 
 /** @brief Initialize a disk.
 
@@ -597,13 +584,11 @@ static REDSTATUS DiskFlush(
     @retval 0           Operation was successful.
     @retval -RED_EIO    A disk I/O error occurred.
 */
-static REDSTATUS DiskOpen(
-    uint8_t         bVolNum,
-    BDEVOPENMODE    mode)
+static REDSTATUS DiskOpen( uint8_t bVolNum, BDEVOPENMODE mode )
 {
-    DSTATUS         status;
-    uint32_t        ulTries;
-    REDSTATUS       ret = 0;
+    DSTATUS status;
+    uint32_t ulTries;
+    REDSTATUS ret = 0;
 
     /*  With some implementations of disk_initialize(), such as the one
         implemented by Atmel for the ASF, the first time the disk is opened, the
@@ -612,22 +597,22 @@ static REDSTATUS DiskOpen(
         failure.  Empirically, this has been observed to succeed on the second
         try, so trying 10x more than that provides a margin of error.
     */
-    for(ulTries = 0U; ulTries < 20U; ulTries++)
+    for( ulTries = 0U; ulTries < 20U; ulTries++ )
     {
         /*  Assuming that the volume number is also the correct drive number.
             If this is not the case in your environment, a static constant array
             can be declared to map volume numbers to the correct driver number.
         */
-        status = disk_initialize(bVolNum);
-        if(status == 0)
+        status = disk_initialize( bVolNum );
+        if( status == 0 )
         {
             break;
         }
 
-        vTaskDelay(500U / portTICK_PERIOD_MS);
+        vTaskDelay( 500U / portTICK_PERIOD_MS );
     }
 
-    if(status != 0)
+    if( status != 0 )
     {
         ret = -RED_EIO;
     }
@@ -635,20 +620,20 @@ static REDSTATUS DiskOpen(
     /*  Retrieve the sector size and sector count to ensure they are compatible
         with our compile-time geometry.
     */
-    if(ret == 0)
+    if( ret == 0 )
     {
-        WORD    wSectorSize;
-        DWORD   dwSectorCount;
+        WORD wSectorSize;
+        DWORD dwSectorCount;
         DRESULT result;
 
-        result = disk_ioctl(bVolNum, GET_SECTOR_SIZE, &wSectorSize);
-        if(result == RES_OK)
+        result = disk_ioctl( bVolNum, GET_SECTOR_SIZE, &wSectorSize );
+        if( result == RES_OK )
         {
-            result = disk_ioctl(bVolNum, GET_SECTOR_COUNT, &dwSectorCount);
-            if(result == RES_OK)
+            result = disk_ioctl( bVolNum, GET_SECTOR_COUNT, &dwSectorCount );
+            if( result == RES_OK )
             {
-                if(    (wSectorSize != gaRedVolConf[bVolNum].ulSectorSize)
-                    || (dwSectorCount < gaRedVolConf[bVolNum].ullSectorCount))
+                if( ( wSectorSize != gaRedVolConf[ bVolNum ].ulSectorSize ) ||
+                    ( dwSectorCount < gaRedVolConf[ bVolNum ].ullSectorCount ) )
                 {
                     ret = -RED_EINVAL;
                 }
@@ -667,7 +652,6 @@ static REDSTATUS DiskOpen(
     return ret;
 }
 
-
 /** @brief Uninitialize a disk.
 
     @param bVolNum  The volume number of the volume whose block device is being
@@ -677,13 +661,11 @@ static REDSTATUS DiskOpen(
 
     @retval 0   Operation was successful.
 */
-static REDSTATUS DiskClose(
-    uint8_t     bVolNum)
+static REDSTATUS DiskClose( uint8_t bVolNum )
 {
-    (void)bVolNum;
+    ( void ) bVolNum;
     return 0;
 }
-
 
 /** @brief Read sectors from a disk.
 
@@ -698,24 +680,27 @@ static REDSTATUS DiskClose(
     @retval 0           Operation was successful.
     @retval -RED_EIO    A disk I/O error occurred.
 */
-static REDSTATUS DiskRead(
-    uint8_t     bVolNum,
-    uint64_t    ullSectorStart,
-    uint32_t    ulSectorCount,
-    void       *pBuffer)
+static REDSTATUS DiskRead( uint8_t bVolNum,
+                           uint64_t ullSectorStart,
+                           uint32_t ulSectorCount,
+                           void * pBuffer )
 {
-    REDSTATUS   ret = 0;
-    uint32_t    ulSectorIdx = 0U;
-    uint32_t    ulSectorSize = gaRedVolConf[bVolNum].ulSectorSize;
-    uint8_t    *pbBuffer = CAST_VOID_PTR_TO_UINT8_PTR(pBuffer);
+    REDSTATUS ret = 0;
+    uint32_t ulSectorIdx = 0U;
+    uint32_t ulSectorSize = gaRedVolConf[ bVolNum ].ulSectorSize;
+    uint8_t * pbBuffer = CAST_VOID_PTR_TO_UINT8_PTR( pBuffer );
 
-    while(ulSectorIdx < ulSectorCount)
+    while( ulSectorIdx < ulSectorCount )
     {
-        uint32_t    ulTransfer = REDMIN(ulSectorCount - ulSectorIdx, MAX_SECTOR_TRANSFER);
-        DRESULT     result;
+        uint32_t ulTransfer = REDMIN( ulSectorCount - ulSectorIdx,
+                                      MAX_SECTOR_TRANSFER );
+        DRESULT result;
 
-        result = disk_read(bVolNum, &pbBuffer[ulSectorIdx * ulSectorSize], (DWORD)(ullSectorStart + ulSectorIdx), (BYTE)ulTransfer);
-        if(result != RES_OK)
+        result = disk_read( bVolNum,
+                            &pbBuffer[ ulSectorIdx * ulSectorSize ],
+                            ( DWORD ) ( ullSectorStart + ulSectorIdx ),
+                            ( BYTE ) ulTransfer );
+        if( result != RES_OK )
         {
             ret = -RED_EIO;
             break;
@@ -727,8 +712,7 @@ static REDSTATUS DiskRead(
     return ret;
 }
 
-
-#if REDCONF_READ_ONLY == 0
+    #if REDCONF_READ_ONLY == 0
 /** @brief Write sectors to a disk.
 
     @param bVolNum          The volume number of the volume whose block device
@@ -742,24 +726,27 @@ static REDSTATUS DiskRead(
     @retval 0           Operation was successful.
     @retval -RED_EIO    A disk I/O error occurred.
 */
-static REDSTATUS DiskWrite(
-    uint8_t         bVolNum,
-    uint64_t        ullSectorStart,
-    uint32_t        ulSectorCount,
-    const void     *pBuffer)
+static REDSTATUS DiskWrite( uint8_t bVolNum,
+                            uint64_t ullSectorStart,
+                            uint32_t ulSectorCount,
+                            const void * pBuffer )
 {
-    REDSTATUS       ret = 0;
-    uint32_t        ulSectorIdx = 0U;
-    uint32_t        ulSectorSize = gaRedVolConf[bVolNum].ulSectorSize;
-    const uint8_t  *pbBuffer = CAST_VOID_PTR_TO_CONST_UINT8_PTR(pBuffer);
+    REDSTATUS ret = 0;
+    uint32_t ulSectorIdx = 0U;
+    uint32_t ulSectorSize = gaRedVolConf[ bVolNum ].ulSectorSize;
+    const uint8_t * pbBuffer = CAST_VOID_PTR_TO_CONST_UINT8_PTR( pBuffer );
 
-    while(ulSectorIdx < ulSectorCount)
+    while( ulSectorIdx < ulSectorCount )
     {
-        uint32_t    ulTransfer = REDMIN(ulSectorCount - ulSectorIdx, MAX_SECTOR_TRANSFER);
-        DRESULT     result;
+        uint32_t ulTransfer = REDMIN( ulSectorCount - ulSectorIdx,
+                                      MAX_SECTOR_TRANSFER );
+        DRESULT result;
 
-        result = disk_write(bVolNum, &pbBuffer[ulSectorIdx * ulSectorSize], (DWORD)(ullSectorStart + ulSectorIdx), (BYTE)ulTransfer);
-        if(result != RES_OK)
+        result = disk_write( bVolNum,
+                             &pbBuffer[ ulSectorIdx * ulSectorSize ],
+                             ( DWORD ) ( ullSectorStart + ulSectorIdx ),
+                             ( BYTE ) ulTransfer );
+        if( result != RES_OK )
         {
             ret = -RED_EIO;
             break;
@@ -771,7 +758,6 @@ static REDSTATUS DiskWrite(
     return ret;
 }
 
-
 /** @brief Flush any caches beneath the file system.
 
     @param bVolNum  The volume number of the volume whose block device is being
@@ -781,14 +767,13 @@ static REDSTATUS DiskWrite(
 
     @retval 0   Operation was successful.
 */
-static REDSTATUS DiskFlush(
-    uint8_t     bVolNum)
+static REDSTATUS DiskFlush( uint8_t bVolNum )
 {
-    REDSTATUS   ret;
-    DRESULT     result;
+    REDSTATUS ret;
+    DRESULT result;
 
-    result = disk_ioctl(bVolNum, CTRL_SYNC, NULL);
-    if(result == RES_OK)
+    result = disk_ioctl( bVolNum, CTRL_SYNC, NULL );
+    if( result == RES_OK )
     {
         ret = 0;
     }
@@ -799,24 +784,22 @@ static REDSTATUS DiskFlush(
 
     return ret;
 }
-#endif /* REDCONF_READ_ONLY == 0 */
-
+    #endif /* REDCONF_READ_ONLY == 0 */
 
 #elif BDEV_EXAMPLE_IMPLEMENTATION == BDEV_ATMEL_SDMMC
 
-#include <task.h>
+    #include <task.h>
 
-#include <conf_sd_mmc.h>
-#include <sd_mmc.h>
-#include <sd_mmc_mem.h>
-#include <ctrl_access.h>
+    #include <conf_sd_mmc.h>
+    #include <sd_mmc.h>
+    #include <sd_mmc_mem.h>
+    #include <ctrl_access.h>
 
-/*  sd_mmc_mem_2_ram_multi() and sd_mmc_ram_2_mem_multi() use an unsigned
-    16-bit value to specify the sector count, so no transfer can be larger
-    than UINT16_MAX sectors.
-*/
-#define MAX_SECTOR_TRANSFER UINT16_MAX
-
+    /*  sd_mmc_mem_2_ram_multi() and sd_mmc_ram_2_mem_multi() use an unsigned
+        16-bit value to specify the sector count, so no transfer can be larger
+        than UINT16_MAX sectors.
+    */
+    #define MAX_SECTOR_TRANSFER UINT16_MAX
 
 /** @brief Initialize a disk.
 
@@ -831,13 +814,11 @@ static REDSTATUS DiskFlush(
     @retval -RED_EROFS  The device is read-only media and write access was
                         requested.
 */
-static REDSTATUS DiskOpen(
-    uint8_t         bVolNum,
-    BDEVOPENMODE    mode)
+static REDSTATUS DiskOpen( uint8_t bVolNum, BDEVOPENMODE mode )
 {
-    REDSTATUS       ret = 0;
-    uint32_t        ulTries;
-    Ctrl_status     cs;
+    REDSTATUS ret = 0;
+    uint32_t ulTries;
+    Ctrl_status cs;
 
     /*  Note: Assuming the volume number is the same as the SD card slot.  The
         ASF SD/MMC driver supports two SD slots.  This implementation will need
@@ -850,39 +831,40 @@ static REDSTATUS DiskOpen(
         each failure.  Empirically, this has been observed to succeed on the
         second try, so trying 10x more than that provides a margin of error.
     */
-    for(ulTries = 0U; ulTries < 20U; ulTries++)
+    for( ulTries = 0U; ulTries < 20U; ulTries++ )
     {
-        cs = sd_mmc_test_unit_ready(bVolNum);
-        if((cs != CTRL_NO_PRESENT) && (cs != CTRL_BUSY))
+        cs = sd_mmc_test_unit_ready( bVolNum );
+        if( ( cs != CTRL_NO_PRESENT ) && ( cs != CTRL_BUSY ) )
         {
             break;
         }
 
-        vTaskDelay(500U / portTICK_PERIOD_MS);
+        vTaskDelay( 500U / portTICK_PERIOD_MS );
     }
 
-    if(cs == CTRL_GOOD)
+    if( cs == CTRL_GOOD )
     {
-      #if REDCONF_READ_ONLY == 0
-        if(mode != BDEV_O_RDONLY)
+    #if REDCONF_READ_ONLY == 0
+        if( mode != BDEV_O_RDONLY )
         {
-            if(sd_mmc_wr_protect(bVolNum))
+            if( sd_mmc_wr_protect( bVolNum ) )
             {
                 ret = -RED_EROFS;
             }
         }
 
-        if(ret == 0)
-      #endif
+        if( ret == 0 )
+    #endif
         {
             uint32_t ulSectorLast;
 
-            IGNORE_ERRORS(sd_mmc_read_capacity(bVolNum, &ulSectorLast));
+            IGNORE_ERRORS( sd_mmc_read_capacity( bVolNum, &ulSectorLast ) );
 
             /*  The ASF SD/MMC driver only supports 512-byte sectors.
-            */
-            if(    (gaRedVolConf[bVolNum].ulSectorSize != 512U)
-                || (((uint64_t)ulSectorLast + 1U) < gaRedVolConf[bVolNum].ullSectorCount))
+             */
+            if( ( gaRedVolConf[ bVolNum ].ulSectorSize != 512U ) ||
+                ( ( ( uint64_t ) ulSectorLast + 1U ) <
+                  gaRedVolConf[ bVolNum ].ullSectorCount ) )
             {
                 ret = -RED_EINVAL;
             }
@@ -896,7 +878,6 @@ static REDSTATUS DiskOpen(
     return ret;
 }
 
-
 /** @brief Uninitialize a disk.
 
     @param bVolNum  The volume number of the volume whose block device is being
@@ -906,13 +887,11 @@ static REDSTATUS DiskOpen(
 
     @retval 0   Operation was successful.
 */
-static REDSTATUS DiskClose(
-    uint8_t     bVolNum)
+static REDSTATUS DiskClose( uint8_t bVolNum )
 {
-    (void)bVolNum;
+    ( void ) bVolNum;
     return 0;
 }
-
 
 /** @brief Read sectors from a disk.
 
@@ -926,25 +905,28 @@ static REDSTATUS DiskClose(
 
     @retval 0   Operation was successful.
 */
-static REDSTATUS DiskRead(
-    uint8_t     bVolNum,
-    uint64_t    ullSectorStart,
-    uint32_t    ulSectorCount,
-    void       *pBuffer)
+static REDSTATUS DiskRead( uint8_t bVolNum,
+                           uint64_t ullSectorStart,
+                           uint32_t ulSectorCount,
+                           void * pBuffer )
 {
-    REDSTATUS   ret = 0;
-    uint32_t    ulSectorIdx = 0U;
-    uint32_t    ulSectorSize = gaRedVolConf[bVolNum].ulSectorSize;
-    uint8_t    *pbBuffer = CAST_VOID_PTR_TO_UINT8_PTR(pBuffer);
+    REDSTATUS ret = 0;
+    uint32_t ulSectorIdx = 0U;
+    uint32_t ulSectorSize = gaRedVolConf[ bVolNum ].ulSectorSize;
+    uint8_t * pbBuffer = CAST_VOID_PTR_TO_UINT8_PTR( pBuffer );
 
-    while(ulSectorIdx < ulSectorCount)
+    while( ulSectorIdx < ulSectorCount )
     {
-        uint32_t    ulTransfer = REDMIN(ulSectorCount - ulSectorIdx, MAX_SECTOR_TRANSFER);
+        uint32_t ulTransfer = REDMIN( ulSectorCount - ulSectorIdx,
+                                      MAX_SECTOR_TRANSFER );
         Ctrl_status cs;
 
-        cs = sd_mmc_mem_2_ram_multi(bVolNum, (uint32_t)(ullSectorStart + ulSectorIdx),
-                                    (uint16_t)ulTransfer, &pbBuffer[ulSectorIdx * ulSectorSize]);
-        if(cs != CTRL_GOOD)
+        cs = sd_mmc_mem_2_ram_multi( bVolNum,
+                                     ( uint32_t ) ( ullSectorStart +
+                                                    ulSectorIdx ),
+                                     ( uint16_t ) ulTransfer,
+                                     &pbBuffer[ ulSectorIdx * ulSectorSize ] );
+        if( cs != CTRL_GOOD )
         {
             ret = -RED_EIO;
             break;
@@ -956,8 +938,7 @@ static REDSTATUS DiskRead(
     return ret;
 }
 
-
-#if REDCONF_READ_ONLY == 0
+    #if REDCONF_READ_ONLY == 0
 /** @brief Write sectors to a disk.
 
     @param bVolNum          The volume number of the volume whose block device
@@ -970,25 +951,28 @@ static REDSTATUS DiskRead(
 
     @retval 0   Operation was successful.
 */
-static REDSTATUS DiskWrite(
-    uint8_t         bVolNum,
-    uint64_t        ullSectorStart,
-    uint32_t        ulSectorCount,
-    const void     *pBuffer)
+static REDSTATUS DiskWrite( uint8_t bVolNum,
+                            uint64_t ullSectorStart,
+                            uint32_t ulSectorCount,
+                            const void * pBuffer )
 {
-    REDSTATUS       ret = 0;
-    uint32_t        ulSectorIdx = 0U;
-    uint32_t        ulSectorSize = gaRedVolConf[bVolNum].ulSectorSize;
-    const uint8_t  *pbBuffer = CAST_VOID_PTR_TO_CONST_UINT8_PTR(pBuffer);
+    REDSTATUS ret = 0;
+    uint32_t ulSectorIdx = 0U;
+    uint32_t ulSectorSize = gaRedVolConf[ bVolNum ].ulSectorSize;
+    const uint8_t * pbBuffer = CAST_VOID_PTR_TO_CONST_UINT8_PTR( pBuffer );
 
-    while(ulSectorIdx < ulSectorCount)
+    while( ulSectorIdx < ulSectorCount )
     {
-        uint32_t    ulTransfer = REDMIN(ulSectorCount - ulSectorIdx, MAX_SECTOR_TRANSFER);
+        uint32_t ulTransfer = REDMIN( ulSectorCount - ulSectorIdx,
+                                      MAX_SECTOR_TRANSFER );
         Ctrl_status cs;
 
-        cs = sd_mmc_ram_2_mem_multi(bVolNum, (uint32_t)(ullSectorStart + ulSectorIdx),
-                                    (uint16_t)ulTransfer, &pbBuffer[ulSectorIdx * ulSectorSize]);
-        if(cs != CTRL_GOOD)
+        cs = sd_mmc_ram_2_mem_multi( bVolNum,
+                                     ( uint32_t ) ( ullSectorStart +
+                                                    ulSectorIdx ),
+                                     ( uint16_t ) ulTransfer,
+                                     &pbBuffer[ ulSectorIdx * ulSectorSize ] );
+        if( cs != CTRL_GOOD )
         {
             ret = -RED_EIO;
             break;
@@ -1000,7 +984,6 @@ static REDSTATUS DiskWrite(
     return ret;
 }
 
-
 /** @brief Flush any caches beneath the file system.
 
     @param bVolNum  The volume number of the volume whose block device is being
@@ -1010,10 +993,9 @@ static REDSTATUS DiskWrite(
 
     @retval 0   Operation was successful.
 */
-static REDSTATUS DiskFlush(
-    uint8_t     bVolNum)
+static REDSTATUS DiskFlush( uint8_t bVolNum )
 {
-    REDSTATUS   ret;
+    REDSTATUS ret;
     Ctrl_status cs;
 
     /*  The ASF SD/MMC driver appears to write sectors synchronously, so it
@@ -1022,8 +1004,8 @@ static REDSTATUS DiskFlush(
         below when the disk is flushed.  Just in case this is important for some
         non-obvious reason, do the same.
     */
-    cs = sd_mmc_test_unit_ready(bVolNum);
-    if(cs == CTRL_GOOD)
+    cs = sd_mmc_test_unit_ready( bVolNum );
+    if( cs == CTRL_GOOD )
     {
         ret = 0;
     }
@@ -1034,55 +1016,53 @@ static REDSTATUS DiskFlush(
 
     return ret;
 }
-#endif /* REDCONF_READ_ONLY == 0 */
+    #endif /* REDCONF_READ_ONLY == 0 */
 
 #elif BDEV_EXAMPLE_IMPLEMENTATION == BDEV_STM32_SDIO
 
-#ifdef USE_STM324xG_EVAL
-  #include <stm324xg_eval.h>
-  #include <stm324xg_eval_sd.h>
-#elif defined(USE_STM32746G_DISCO)
-  #include <stm32746g_discovery.h>
-  #include <stm32746g_discovery_sd.h>
-#else
-  /*  If you are using a compatible STM32 device other than the two listed above
-      and you have SD card driver headers, you can try adding them to the above
-      list.
-  */
-  #error "Unsupported device."
-#endif
+    #ifdef USE_STM324xG_EVAL
+        #include <stm324xg_eval.h>
+        #include <stm324xg_eval_sd.h>
+    #elif defined( USE_STM32746G_DISCO )
+        #include <stm32746g_discovery.h>
+        #include <stm32746g_discovery_sd.h>
+    #else
+        /*  If you are using a compatible STM32 device other than the two listed
+           above and you have SD card driver headers, you can try adding them to
+           the above list.
+        */
+        #error "Unsupported device."
+    #endif
 
-#if REDCONF_VOLUME_COUNT > 1
-  #error "The STM32 SDIO block device implementation does not support multiple volumes."
-#endif
+    #if REDCONF_VOLUME_COUNT > 1
+        #error \
+            "The STM32 SDIO block device implementation does not support multiple volumes."
+    #endif
 
+    #ifndef USE_HAL_DRIVER
+        #error \
+            "The STM32 StdPeriph driver is not supported. Please use the HAL driver or modify the Reliance Edge block device interface."
+    #endif
 
-#ifndef USE_HAL_DRIVER
-  #error "The STM32 StdPeriph driver is not supported. Please use the HAL driver or modify the Reliance Edge block device interface."
-#endif
+    /** @brief Number of times to call BSP_SD_GetStatus() before timing out and
+               returning an error.
 
+        See ::CheckStatus().
 
-/** @brief Number of times to call BSP_SD_GetStatus() before timing out and
-           returning an error.
-
-    See ::CheckStatus().
-
-    NOTE: Datalight has not observed a scenario where BSP_SD_GetStatus()
-    returns SD_TRANSFER_BUSY after a transfer command returns successfully.
-    Set SD_STATUS_TIMEOUT to 0U to skip checking BSP_SD_GetStatus().
-*/
-#define SD_STATUS_TIMEOUT (100000U)
+        NOTE: Datalight has not observed a scenario where BSP_SD_GetStatus()
+        returns SD_TRANSFER_BUSY after a transfer command returns successfully.
+        Set SD_STATUS_TIMEOUT to 0U to skip checking BSP_SD_GetStatus().
+    */
+    #define SD_STATUS_TIMEOUT ( 100000U )
 
 /** @brief 4-byte aligned buffer to use for DMA transfers when passed in
            an unaligned buffer.
 */
-static uint32_t gaulAlignedBuffer[512U / sizeof(uint32_t)];
+static uint32_t gaulAlignedBuffer[ 512U / sizeof( uint32_t ) ];
 
-
-#if SD_STATUS_TIMEOUT > 0U
-static REDSTATUS CheckStatus(void);
-#endif
-
+    #if SD_STATUS_TIMEOUT > 0U
+static REDSTATUS CheckStatus( void );
+    #endif
 
 /** @brief Initialize a disk.
 
@@ -1100,47 +1080,46 @@ static REDSTATUS CheckStatus(void);
                         4GiB, meaning that part of it cannot be accessed
                         through the STM32 SDIO driver.
 */
-static REDSTATUS DiskOpen(
-    uint8_t         bVolNum,
-    BDEVOPENMODE    mode)
+static REDSTATUS DiskOpen( uint8_t bVolNum, BDEVOPENMODE mode )
 {
-    REDSTATUS       ret = 0;
-    static bool     fSdInitted = false;
+    REDSTATUS ret = 0;
+    static bool fSdInitted = false;
 
-    (void) mode;
+    ( void ) mode;
 
-    if(!fSdInitted)
+    if( !fSdInitted )
     {
-        if(BSP_SD_Init() == MSD_OK)
+        if( BSP_SD_Init() == MSD_OK )
         {
             fSdInitted = true;
         }
     }
 
-    if(!fSdInitted)
+    if( !fSdInitted )
     {
         /*  Above initialization attempt failed.
-        */
+         */
         ret = -RED_EIO;
     }
-    else if(BSP_SD_IsDetected() == SD_NOT_PRESENT)
+    else if( BSP_SD_IsDetected() == SD_NOT_PRESENT )
     {
         ret = -RED_EIO;
     }
     else
     {
-        uint32_t                ulSectorSize = gaRedVolConf[bVolNum].ulSectorSize;
-        HAL_SD_CardInfoTypedef  sdCardInfo = {{0}};
+        uint32_t ulSectorSize = gaRedVolConf[ bVolNum ].ulSectorSize;
+        HAL_SD_CardInfoTypedef sdCardInfo = { { 0 } };
 
-        BSP_SD_GetCardInfo(&sdCardInfo);
+        BSP_SD_GetCardInfo( &sdCardInfo );
 
         /*  Note: the actual card block size is sdCardInfo.CardBlockSize,
             but the interface only supports a 512 byte block size. Further,
             one card has been observed to report a 1024-byte block size,
             but it worked fine with a 512-byte Reliance Edge ulSectorSize.
         */
-        if(    (ulSectorSize != 512U)
-            || (sdCardInfo.CardCapacity < (gaRedVolConf[bVolNum].ullSectorCount * ulSectorSize)))
+        if( ( ulSectorSize != 512U ) ||
+            ( sdCardInfo.CardCapacity <
+              ( gaRedVolConf[ bVolNum ].ullSectorCount * ulSectorSize ) ) )
         {
             ret = -RED_EINVAL;
         }
@@ -1148,7 +1127,6 @@ static REDSTATUS DiskOpen(
 
     return ret;
 }
-
 
 /** @brief Uninitialize a disk.
 
@@ -1159,13 +1137,11 @@ static REDSTATUS DiskOpen(
 
     @retval 0   Operation was successful.
 */
-static REDSTATUS DiskClose(
-    uint8_t     bVolNum)
+static REDSTATUS DiskClose( uint8_t bVolNum )
 {
-    (void)bVolNum;
+    ( void ) bVolNum;
     return 0;
 }
-
 
 /** @brief Read sectors from a disk.
 
@@ -1180,55 +1156,63 @@ static REDSTATUS DiskClose(
     @retval 0           Operation was successful.
     @retval -RED_EIO    A disk I/O error occurred.
 */
-static REDSTATUS DiskRead(
-    uint8_t     bVolNum,
-    uint64_t    ullSectorStart,
-    uint32_t    ulSectorCount,
-    void       *pBuffer)
+static REDSTATUS DiskRead( uint8_t bVolNum,
+                           uint64_t ullSectorStart,
+                           uint32_t ulSectorCount,
+                           void * pBuffer )
 {
-    REDSTATUS   redStat = 0;
-    uint32_t    ulSectorSize = gaRedVolConf[bVolNum].ulSectorSize;
-    uint8_t     bSdError;
+    REDSTATUS redStat = 0;
+    uint32_t ulSectorSize = gaRedVolConf[ bVolNum ].ulSectorSize;
+    uint8_t bSdError;
 
-    if(IS_UINT32_ALIGNED_PTR(pBuffer))
+    if( IS_UINT32_ALIGNED_PTR( pBuffer ) )
     {
-        bSdError = BSP_SD_ReadBlocks_DMA(CAST_UINT32_PTR(pBuffer), ullSectorStart * ulSectorSize, ulSectorSize, ulSectorCount);
+        bSdError = BSP_SD_ReadBlocks_DMA( CAST_UINT32_PTR( pBuffer ),
+                                          ullSectorStart * ulSectorSize,
+                                          ulSectorSize,
+                                          ulSectorCount );
 
-        if(bSdError != MSD_OK)
+        if( bSdError != MSD_OK )
         {
             redStat = -RED_EIO;
         }
-      #if SD_STATUS_TIMEOUT > 0U
+    #if SD_STATUS_TIMEOUT > 0U
         else
         {
             redStat = CheckStatus();
         }
-      #endif
+    #endif
     }
     else
     {
         uint32_t ulSectorIdx;
 
-        for(ulSectorIdx = 0U; ulSectorIdx < ulSectorCount; ulSectorIdx++)
+        for( ulSectorIdx = 0U; ulSectorIdx < ulSectorCount; ulSectorIdx++ )
         {
-            bSdError = BSP_SD_ReadBlocks_DMA(gaulAlignedBuffer, (ullSectorStart + ulSectorIdx) * ulSectorSize, ulSectorSize, 1U);
+            bSdError = BSP_SD_ReadBlocks_DMA( gaulAlignedBuffer,
+                                              ( ullSectorStart + ulSectorIdx ) *
+                                                  ulSectorSize,
+                                              ulSectorSize,
+                                              1U );
 
-            if(bSdError != MSD_OK)
+            if( bSdError != MSD_OK )
             {
                 redStat = -RED_EIO;
             }
-          #if SD_STATUS_TIMEOUT > 0U
+    #if SD_STATUS_TIMEOUT > 0U
             else
             {
                 redStat = CheckStatus();
             }
-          #endif
+    #endif
 
-            if(redStat == 0)
+            if( redStat == 0 )
             {
-                uint8_t *pbBuffer = CAST_VOID_PTR_TO_UINT8_PTR(pBuffer);
+                uint8_t * pbBuffer = CAST_VOID_PTR_TO_UINT8_PTR( pBuffer );
 
-                RedMemCpy(&pbBuffer[ulSectorIdx * ulSectorSize], gaulAlignedBuffer, ulSectorSize);
+                RedMemCpy( &pbBuffer[ ulSectorIdx * ulSectorSize ],
+                           gaulAlignedBuffer,
+                           ulSectorSize );
             }
             else
             {
@@ -1240,8 +1224,7 @@ static REDSTATUS DiskRead(
     return redStat;
 }
 
-
-#if REDCONF_READ_ONLY == 0
+    #if REDCONF_READ_ONLY == 0
 /** @brief Write sectors to a disk.
 
     @param bVolNum          The volume number of the volume whose block device
@@ -1255,56 +1238,67 @@ static REDSTATUS DiskRead(
     @retval 0           Operation was successful.
     @retval -RED_EIO    A disk I/O error occurred.
 */
-static REDSTATUS DiskWrite(
-    uint8_t         bVolNum,
-    uint64_t        ullSectorStart,
-    uint32_t        ulSectorCount,
-    const void     *pBuffer)
+static REDSTATUS DiskWrite( uint8_t bVolNum,
+                            uint64_t ullSectorStart,
+                            uint32_t ulSectorCount,
+                            const void * pBuffer )
 {
-    REDSTATUS       redStat = 0;
-    uint32_t        ulSectorSize = gaRedVolConf[bVolNum].ulSectorSize;
-    uint8_t         bSdError;
+    REDSTATUS redStat = 0;
+    uint32_t ulSectorSize = gaRedVolConf[ bVolNum ].ulSectorSize;
+    uint8_t bSdError;
 
-    if(IS_UINT32_ALIGNED_PTR(pBuffer))
+    if( IS_UINT32_ALIGNED_PTR( pBuffer ) )
     {
-        bSdError = BSP_SD_WriteBlocks_DMA(CAST_UINT32_PTR(CAST_AWAY_CONST(void, pBuffer)), ullSectorStart * ulSectorSize,
-                                          ulSectorSize, ulSectorCount);
+        bSdError = BSP_SD_WriteBlocks_DMA( CAST_UINT32_PTR(
+                                               CAST_AWAY_CONST( void,
+                                                                pBuffer ) ),
+                                           ullSectorStart * ulSectorSize,
+                                           ulSectorSize,
+                                           ulSectorCount );
 
-        if(bSdError != MSD_OK)
+        if( bSdError != MSD_OK )
         {
             redStat = -RED_EIO;
         }
-      #if SD_STATUS_TIMEOUT > 0U
+        #if SD_STATUS_TIMEOUT > 0U
         else
         {
             redStat = CheckStatus();
         }
-      #endif
+        #endif
     }
     else
     {
         uint32_t ulSectorIdx;
 
-        for(ulSectorIdx = 0U; ulSectorIdx < ulSectorCount; ulSectorIdx++)
+        for( ulSectorIdx = 0U; ulSectorIdx < ulSectorCount; ulSectorIdx++ )
         {
-            const uint8_t *pbBuffer = CAST_VOID_PTR_TO_CONST_UINT8_PTR(pBuffer);
+            const uint8_t * pbBuffer = CAST_VOID_PTR_TO_CONST_UINT8_PTR(
+                pBuffer );
 
-            RedMemCpy(gaulAlignedBuffer, &pbBuffer[ulSectorIdx * ulSectorSize], ulSectorSize);
+            RedMemCpy( gaulAlignedBuffer,
+                       &pbBuffer[ ulSectorIdx * ulSectorSize ],
+                       ulSectorSize );
 
-            bSdError = BSP_SD_WriteBlocks_DMA(gaulAlignedBuffer, (ullSectorStart + ulSectorIdx) * ulSectorSize, ulSectorSize, 1U);
+            bSdError = BSP_SD_WriteBlocks_DMA( gaulAlignedBuffer,
+                                               ( ullSectorStart +
+                                                 ulSectorIdx ) *
+                                                   ulSectorSize,
+                                               ulSectorSize,
+                                               1U );
 
-            if(bSdError != MSD_OK)
+            if( bSdError != MSD_OK )
             {
                 redStat = -RED_EIO;
             }
-          #if SD_STATUS_TIMEOUT > 0U
+        #if SD_STATUS_TIMEOUT > 0U
             else
             {
                 redStat = CheckStatus();
             }
-          #endif
+        #endif
 
-            if(redStat != 0)
+            if( redStat != 0 )
             {
                 break;
             }
@@ -1313,7 +1307,6 @@ static REDSTATUS DiskWrite(
 
     return redStat;
 }
-
 
 /** @brief Flush any caches beneath the file system.
 
@@ -1324,17 +1317,15 @@ static REDSTATUS DiskWrite(
 
     @retval 0   Operation was successful.
 */
-static REDSTATUS DiskFlush(
-    uint8_t     bVolNum)
+static REDSTATUS DiskFlush( uint8_t bVolNum )
 {
     /*  Disk transfer is synchronous; nothing to flush.
-    */
-    (void) bVolNum;
+     */
+    ( void ) bVolNum;
     return 0;
 }
 
-
-#if SD_STATUS_TIMEOUT > 0U
+        #if SD_STATUS_TIMEOUT > 0U
 /** @brief Wait until BSP_SD_GetStatus returns SD_TRANSFER_OK.
 
     This function calls BSP_SD_GetStatus repeatedly as long as it returns
@@ -1346,36 +1337,34 @@ static REDSTATUS DiskFlush(
     @retval -RED_EIO    SD_TRANSFER_ERROR received, or timed out waiting for
                         SD_TRANSFER_OK.
 */
-static REDSTATUS CheckStatus(void)
+static REDSTATUS CheckStatus( void )
 {
-    REDSTATUS                   redStat = 0;
-    uint32_t                    ulTimeout = SD_STATUS_TIMEOUT;
+    REDSTATUS redStat = 0;
+    uint32_t ulTimeout = SD_STATUS_TIMEOUT;
     HAL_SD_TransferStateTypedef transferState;
 
     do
     {
         transferState = BSP_SD_GetStatus();
         ulTimeout--;
-    } while((transferState == SD_TRANSFER_BUSY) && (ulTimeout > 0U));
+    } while( ( transferState == SD_TRANSFER_BUSY ) && ( ulTimeout > 0U ) );
 
-    if(transferState != SD_TRANSFER_OK)
+    if( transferState != SD_TRANSFER_OK )
     {
         redStat = -RED_EIO;
     }
 
     return redStat;
 }
-#endif
+        #endif
 
-#endif /* REDCONF_READ_ONLY == 0 */
+    #endif /* REDCONF_READ_ONLY == 0 */
 
 #elif BDEV_EXAMPLE_IMPLEMENTATION == BDEV_RAM_DISK
 
-#include <stdlib.h> /* For ALLOCATE_CLEARED_MEMORY(), which expands to calloc(). */
+    #include <stdlib.h> /* For ALLOCATE_CLEARED_MEMORY(), which expands to calloc(). */
 
-
-static uint8_t *gapbRamDisk[REDCONF_VOLUME_COUNT];
-
+static uint8_t * gapbRamDisk[ REDCONF_VOLUME_COUNT ];
 
 /** @brief Initialize a disk.
 
@@ -1388,18 +1377,18 @@ static uint8_t *gapbRamDisk[REDCONF_VOLUME_COUNT];
     @retval 0           Operation was successful.
     @retval -RED_EIO    A disk I/O error occurred.
 */
-static REDSTATUS DiskOpen(
-    uint8_t         bVolNum,
-    BDEVOPENMODE    mode)
+static REDSTATUS DiskOpen( uint8_t bVolNum, BDEVOPENMODE mode )
 {
-    REDSTATUS       ret = 0;
+    REDSTATUS ret = 0;
 
-    (void)mode;
+    ( void ) mode;
 
-    if(gapbRamDisk[bVolNum] == NULL)
+    if( gapbRamDisk[ bVolNum ] == NULL )
     {
-        gapbRamDisk[bVolNum] = ALLOCATE_CLEARED_MEMORY(gaRedVolume[bVolNum].ulBlockCount, REDCONF_BLOCK_SIZE);
-        if(gapbRamDisk[bVolNum] == NULL)
+        gapbRamDisk[ bVolNum ] = ALLOCATE_CLEARED_MEMORY( gaRedVolume[ bVolNum ]
+                                                              .ulBlockCount,
+                                                          REDCONF_BLOCK_SIZE );
+        if( gapbRamDisk[ bVolNum ] == NULL )
         {
             ret = -RED_EIO;
         }
@@ -1407,7 +1396,6 @@ static REDSTATUS DiskOpen(
 
     return ret;
 }
-
 
 /** @brief Uninitialize a disk.
 
@@ -1418,12 +1406,11 @@ static REDSTATUS DiskOpen(
 
     @retval 0   Operation was successful.
 */
-static REDSTATUS DiskClose(
-    uint8_t     bVolNum)
+static REDSTATUS DiskClose( uint8_t bVolNum )
 {
-    REDSTATUS   ret;
+    REDSTATUS ret;
 
-    if(gapbRamDisk[bVolNum] == NULL)
+    if( gapbRamDisk[ bVolNum ] == NULL )
     {
         ret = -RED_EINVAL;
     }
@@ -1440,7 +1427,6 @@ static REDSTATUS DiskClose(
     return ret;
 }
 
-
 /** @brief Read sectors from a disk.
 
     @param bVolNum          The volume number of the volume whose block device
@@ -1453,24 +1439,27 @@ static REDSTATUS DiskClose(
 
     @retval 0   Operation was successful.
 */
-static REDSTATUS DiskRead(
-    uint8_t     bVolNum,
-    uint64_t    ullSectorStart,
-    uint32_t    ulSectorCount,
-    void       *pBuffer)
+static REDSTATUS DiskRead( uint8_t bVolNum,
+                           uint64_t ullSectorStart,
+                           uint32_t ulSectorCount,
+                           void * pBuffer )
 {
-    REDSTATUS   ret;
+    REDSTATUS ret;
 
-    if(gapbRamDisk[bVolNum] == NULL)
+    if( gapbRamDisk[ bVolNum ] == NULL )
     {
         ret = -RED_EINVAL;
     }
     else
     {
-        uint64_t ullByteOffset = ullSectorStart * gaRedVolConf[bVolNum].ulSectorSize;
-        uint32_t ulByteCount = ulSectorCount * gaRedVolConf[bVolNum].ulSectorSize;
+        uint64_t ullByteOffset = ullSectorStart *
+                                 gaRedVolConf[ bVolNum ].ulSectorSize;
+        uint32_t ulByteCount = ulSectorCount *
+                               gaRedVolConf[ bVolNum ].ulSectorSize;
 
-        RedMemCpy(pBuffer, &gapbRamDisk[bVolNum][ullByteOffset], ulByteCount);
+        RedMemCpy( pBuffer,
+                   &gapbRamDisk[ bVolNum ][ ullByteOffset ],
+                   ulByteCount );
 
         ret = 0;
     }
@@ -1478,8 +1467,7 @@ static REDSTATUS DiskRead(
     return ret;
 }
 
-
-#if REDCONF_READ_ONLY == 0
+    #if REDCONF_READ_ONLY == 0
 /** @brief Write sectors to a disk.
 
     @param bVolNum          The volume number of the volume whose block device
@@ -1492,31 +1480,33 @@ static REDSTATUS DiskRead(
 
     @retval 0   Operation was successful.
 */
-static REDSTATUS DiskWrite(
-    uint8_t     bVolNum,
-    uint64_t    ullSectorStart,
-    uint32_t    ulSectorCount,
-    const void *pBuffer)
+static REDSTATUS DiskWrite( uint8_t bVolNum,
+                            uint64_t ullSectorStart,
+                            uint32_t ulSectorCount,
+                            const void * pBuffer )
 {
-    REDSTATUS   ret;
+    REDSTATUS ret;
 
-    if(gapbRamDisk[bVolNum] == NULL)
+    if( gapbRamDisk[ bVolNum ] == NULL )
     {
         ret = -RED_EINVAL;
     }
     else
     {
-        uint64_t ullByteOffset = ullSectorStart * gaRedVolConf[bVolNum].ulSectorSize;
-        uint32_t ulByteCount = ulSectorCount * gaRedVolConf[bVolNum].ulSectorSize;
+        uint64_t ullByteOffset = ullSectorStart *
+                                 gaRedVolConf[ bVolNum ].ulSectorSize;
+        uint32_t ulByteCount = ulSectorCount *
+                               gaRedVolConf[ bVolNum ].ulSectorSize;
 
-        RedMemCpy(&gapbRamDisk[bVolNum][ullByteOffset], pBuffer, ulByteCount);
+        RedMemCpy( &gapbRamDisk[ bVolNum ][ ullByteOffset ],
+                   pBuffer,
+                   ulByteCount );
 
         ret = 0;
     }
 
     return ret;
 }
-
 
 /** @brief Flush any caches beneath the file system.
 
@@ -1527,12 +1517,11 @@ static REDSTATUS DiskWrite(
 
     @retval 0   Operation was successful.
 */
-static REDSTATUS DiskFlush(
-    uint8_t     bVolNum)
+static REDSTATUS DiskFlush( uint8_t bVolNum )
 {
-    REDSTATUS   ret;
+    REDSTATUS ret;
 
-    if(gapbRamDisk[bVolNum] == NULL)
+    if( gapbRamDisk[ bVolNum ] == NULL )
     {
         ret = -RED_EINVAL;
     }
@@ -1543,11 +1532,10 @@ static REDSTATUS DiskFlush(
 
     return ret;
 }
-#endif /* REDCONF_READ_ONLY == 0 */
+    #endif /* REDCONF_READ_ONLY == 0 */
 
 #else
 
-#error "Invalid BDEV_EXAMPLE_IMPLEMENTATION value"
+    #error "Invalid BDEV_EXAMPLE_IMPLEMENTATION value"
 
 #endif /* BDEV_EXAMPLE_IMPLEMENTATION == ... */
-

@@ -29,56 +29,60 @@
 
 #if REDCONF_API_POSIX == 1
 
-#include <redcore.h>
+    #include <redcore.h>
 
+    #define DIR_INDEX_INVALID UINT32_MAX
 
-#define DIR_INDEX_INVALID   UINT32_MAX
-
-#if (REDCONF_NAME_MAX % 4U) != 0U
-#define DIRENT_PADDING      (4U - (REDCONF_NAME_MAX % 4U))
-#else
-#define DIRENT_PADDING      (0U)
-#endif
-#define DIRENT_SIZE         (4U + REDCONF_NAME_MAX + DIRENT_PADDING)
-#define DIRENTS_PER_BLOCK   (REDCONF_BLOCK_SIZE / DIRENT_SIZE)
-#define DIRENTS_MAX         (uint32_t)REDMIN(UINT32_MAX, UINT64_SUFFIX(1) * INODE_DATA_BLOCKS * DIRENTS_PER_BLOCK)
-
+    #if( REDCONF_NAME_MAX % 4U ) != 0U
+        #define DIRENT_PADDING ( 4U - ( REDCONF_NAME_MAX % 4U ) )
+    #else
+        #define DIRENT_PADDING ( 0U )
+    #endif
+    #define DIRENT_SIZE       ( 4U + REDCONF_NAME_MAX + DIRENT_PADDING )
+    #define DIRENTS_PER_BLOCK ( REDCONF_BLOCK_SIZE / DIRENT_SIZE )
+    #define DIRENTS_MAX                                               \
+        ( uint32_t ) REDMIN( UINT32_MAX,                              \
+                             UINT64_SUFFIX( 1 ) * INODE_DATA_BLOCKS * \
+                                 DIRENTS_PER_BLOCK )
 
 /** @brief On-disk directory entry.
-*/
+ */
 typedef struct
 {
     /** The inode number that the directory entry points at.  If the directory
         entry is available, this holds INODE_INVALID.
     */
-    uint32_t    ulInode;
+    uint32_t ulInode;
 
     /** The name of the directory entry.  For names shorter than
         REDCONF_NAME_MAX, unused bytes in the array are zeroed.  For names of
         the maximum length, the string is not null terminated.
     */
-    char        acName[REDCONF_NAME_MAX];
+    char acName[ REDCONF_NAME_MAX ];
 
-  #if DIRENT_PADDING > 0U
+    #if DIRENT_PADDING > 0U
     /** Unused padding so that ulInode is always aligned on a four-byte
         boundary.
     */
-    uint8_t     abPadding[DIRENT_PADDING];
-  #endif
+    uint8_t abPadding[ DIRENT_PADDING ];
+    #endif
 } DIRENT;
 
+    #if( REDCONF_READ_ONLY == 0 ) && ( REDCONF_API_POSIX_RENAME == 1 )
+static REDSTATUS DirCyclicRenameCheck( uint32_t ulSrcInode,
+                                       const CINODE * pDstPInode );
+    #endif
+    #if REDCONF_READ_ONLY == 0
+static REDSTATUS DirEntryWrite( CINODE * pPInode,
+                                uint32_t ulIdx,
+                                uint32_t ulInode,
+                                const char * pszName,
+                                uint32_t ulNameLen );
+static uint64_t DirEntryIndexToOffset( uint32_t ulIdx );
+    #endif
+static uint32_t DirOffsetToEntryIndex( uint64_t ullOffset );
 
-#if (REDCONF_READ_ONLY == 0) && (REDCONF_API_POSIX_RENAME == 1)
-static REDSTATUS DirCyclicRenameCheck(uint32_t ulSrcInode, const CINODE *pDstPInode);
-#endif
-#if REDCONF_READ_ONLY == 0
-static REDSTATUS DirEntryWrite(CINODE *pPInode, uint32_t ulIdx, uint32_t ulInode, const char *pszName, uint32_t ulNameLen);
-static uint64_t DirEntryIndexToOffset(uint32_t ulIdx);
-#endif
-static uint32_t DirOffsetToEntryIndex(uint64_t ullOffset);
-
-
-#if REDCONF_READ_ONLY == 0
+    #if REDCONF_READ_ONLY == 0
 /** @brief Create a new entry in a directory.
 
     @param pPInode      A pointer to the cached inode structure of the directory
@@ -100,30 +104,30 @@ static uint32_t DirOffsetToEntryIndex(uint64_t ullOffset);
     @retval -RED_EINVAL         @p pPInode is not a mounted dirty cached inode
                                 structure; or @p pszName is not a valid name.
 */
-REDSTATUS RedDirEntryCreate(
-    CINODE     *pPInode,
-    const char *pszName,
-    uint32_t    ulInode)
+REDSTATUS RedDirEntryCreate( CINODE * pPInode,
+                             const char * pszName,
+                             uint32_t ulInode )
 {
-    REDSTATUS   ret;
+    REDSTATUS ret;
 
-    if(!CINODE_IS_DIRTY(pPInode) || (pszName == NULL) || !INODE_IS_VALID(ulInode))
+    if( !CINODE_IS_DIRTY( pPInode ) || ( pszName == NULL ) ||
+        !INODE_IS_VALID( ulInode ) )
     {
         ret = -RED_EINVAL;
     }
-    else if(!pPInode->fDirectory)
+    else if( !pPInode->fDirectory )
     {
         ret = -RED_ENOTDIR;
     }
     else
     {
-        uint32_t ulNameLen = RedNameLen(pszName);
+        uint32_t ulNameLen = RedNameLen( pszName );
 
-        if(ulNameLen == 0U)
+        if( ulNameLen == 0U )
         {
             ret = -RED_EINVAL;
         }
-        else if(ulNameLen > REDCONF_NAME_MAX)
+        else if( ulNameLen > REDCONF_NAME_MAX )
         {
             ret = -RED_ENAMETOOLONG;
         }
@@ -131,14 +135,14 @@ REDSTATUS RedDirEntryCreate(
         {
             uint32_t ulEntryIdx;
 
-            ret = RedDirEntryLookup(pPInode, pszName, &ulEntryIdx, NULL);
-            if(ret == 0)
+            ret = RedDirEntryLookup( pPInode, pszName, &ulEntryIdx, NULL );
+            if( ret == 0 )
             {
                 ret = -RED_EEXIST;
             }
-            else if(ret == -RED_ENOENT)
+            else if( ret == -RED_ENOENT )
             {
-                if(ulEntryIdx == DIR_INDEX_INVALID)
+                if( ulEntryIdx == DIR_INDEX_INVALID )
                 {
                     ret = -RED_ENOSPC;
                 }
@@ -150,22 +154,25 @@ REDSTATUS RedDirEntryCreate(
             else
             {
                 /*  Unexpected error, no action.
-                */
+                 */
             }
 
-            if(ret == 0)
+            if( ret == 0 )
             {
-                ret = DirEntryWrite(pPInode, ulEntryIdx, ulInode, pszName, ulNameLen);
+                ret = DirEntryWrite( pPInode,
+                                     ulEntryIdx,
+                                     ulInode,
+                                     pszName,
+                                     ulNameLen );
             }
         }
     }
 
     return ret;
 }
-#endif /* REDCONF_READ_ONLY == 0 */
+    #endif /* REDCONF_READ_ONLY == 0 */
 
-
-#if DELETE_SUPPORTED
+    #if DELETE_SUPPORTED
 /** @brief Delete an existing directory entry.
 
     @param pPInode      A pointer to the cached inode structure of the directory
@@ -183,43 +190,44 @@ REDSTATUS RedDirEntryCreate(
     @retval -RED_EINVAL     @p pPInode is not a mounted dirty cached inode
                             structure; or @p ulIdx is out of range.
 */
-REDSTATUS RedDirEntryDelete(
-    CINODE     *pPInode,
-    uint32_t    ulDeleteIdx)
+REDSTATUS RedDirEntryDelete( CINODE * pPInode, uint32_t ulDeleteIdx )
 {
-    REDSTATUS   ret = 0;
+    REDSTATUS ret = 0;
 
-    if(!CINODE_IS_DIRTY(pPInode) || (ulDeleteIdx >= DIRENTS_MAX))
+    if( !CINODE_IS_DIRTY( pPInode ) || ( ulDeleteIdx >= DIRENTS_MAX ) )
     {
         ret = -RED_EINVAL;
     }
-    else if(!pPInode->fDirectory)
+    else if( !pPInode->fDirectory )
     {
         ret = -RED_ENOTDIR;
     }
-    else if((DirEntryIndexToOffset(ulDeleteIdx) + DIRENT_SIZE) == pPInode->pInodeBuf->ullSize)
+    else if( ( DirEntryIndexToOffset( ulDeleteIdx ) + DIRENT_SIZE ) ==
+             pPInode->pInodeBuf->ullSize )
     {
         /*  Start searching one behind the index to be deleted.
-        */
+         */
         uint32_t ulTruncIdx = ulDeleteIdx - 1U;
-        bool     fDone = false;
+        bool fDone = false;
 
         /*  We are deleting the last dirent in the directory, so search
             backwards to find the last populated dirent, allowing us to truncate
             the directory to that point.
         */
-        while((ret == 0) && (ulTruncIdx != UINT32_MAX) && !fDone)
+        while( ( ret == 0 ) && ( ulTruncIdx != UINT32_MAX ) && !fDone )
         {
-            ret = RedInodeDataSeekAndRead(pPInode, ulTruncIdx / DIRENTS_PER_BLOCK);
+            ret = RedInodeDataSeekAndRead( pPInode,
+                                           ulTruncIdx / DIRENTS_PER_BLOCK );
 
-            if(ret == 0)
+            if( ret == 0 )
             {
-                const DIRENT *pDirents = CAST_CONST_DIRENT_PTR(pPInode->pbData);
-                uint32_t      ulBlockIdx = ulTruncIdx % DIRENTS_PER_BLOCK;
+                const DIRENT * pDirents = CAST_CONST_DIRENT_PTR(
+                    pPInode->pbData );
+                uint32_t ulBlockIdx = ulTruncIdx % DIRENTS_PER_BLOCK;
 
                 do
                 {
-                    if(pDirents[ulBlockIdx].ulInode != INODE_INVALID)
+                    if( pDirents[ ulBlockIdx ].ulInode != INODE_INVALID )
                     {
                         fDone = true;
                         break;
@@ -227,13 +235,13 @@ REDSTATUS RedDirEntryDelete(
 
                     ulTruncIdx--;
                     ulBlockIdx--;
-                } while(ulBlockIdx != UINT32_MAX);
+                } while( ulBlockIdx != UINT32_MAX );
             }
-            else if(ret == -RED_ENODATA)
+            else if( ret == -RED_ENODATA )
             {
                 ret = 0;
 
-                REDASSERT((ulTruncIdx % DIRENTS_PER_BLOCK) == 0U);
+                REDASSERT( ( ulTruncIdx % DIRENTS_PER_BLOCK ) == 0U );
                 ulTruncIdx -= DIRENTS_PER_BLOCK;
             }
             else
@@ -253,9 +261,10 @@ REDSTATUS RedDirEntryDelete(
         /*  Truncate the directory, deleting the requested entry and any empty
             dirents at the end of the directory.
         */
-        if(ret == 0)
+        if( ret == 0 )
         {
-            ret = RedInodeDataTruncate(pPInode, DirEntryIndexToOffset(ulTruncIdx));
+            ret = RedInodeDataTruncate( pPInode,
+                                        DirEntryIndexToOffset( ulTruncIdx ) );
         }
     }
     else
@@ -263,13 +272,12 @@ REDSTATUS RedDirEntryDelete(
         /*  The dirent to delete is not the last entry in the directory, so just
             zero it.
         */
-        ret = DirEntryWrite(pPInode, ulDeleteIdx, INODE_INVALID, "", 0U);
+        ret = DirEntryWrite( pPInode, ulDeleteIdx, INODE_INVALID, "", 0U );
     }
 
     return ret;
 }
-#endif /* DELETE_SUPPORTED */
-
+    #endif /* DELETE_SUPPORTED */
 
 /** @brief Perform a case-sensitive search of a directory for a given name.
 
@@ -302,96 +310,104 @@ REDSTATUS RedDirEntryDelete(
                                 @p pulEntryIdx is `NULL`.
     @retval -RED_ENAMETOOLONG   @p pszName is too long.
 */
-REDSTATUS RedDirEntryLookup(
-    CINODE     *pPInode,
-    const char *pszName,
-    uint32_t   *pulEntryIdx,
-    uint32_t   *pulInode)
+REDSTATUS RedDirEntryLookup( CINODE * pPInode,
+                             const char * pszName,
+                             uint32_t * pulEntryIdx,
+                             uint32_t * pulInode )
 {
-    REDSTATUS   ret = 0;
+    REDSTATUS ret = 0;
 
-    if(!CINODE_IS_MOUNTED(pPInode) || (pszName == NULL))
+    if( !CINODE_IS_MOUNTED( pPInode ) || ( pszName == NULL ) )
     {
         ret = -RED_EINVAL;
     }
-    else if(!pPInode->fDirectory)
+    else if( !pPInode->fDirectory )
     {
         ret = -RED_ENOTDIR;
     }
     else
     {
-        uint32_t ulNameLen = RedNameLen(pszName);
+        uint32_t ulNameLen = RedNameLen( pszName );
 
-        if(ulNameLen == 0U)
+        if( ulNameLen == 0U )
         {
             ret = -RED_EINVAL;
         }
-        else if(ulNameLen > REDCONF_NAME_MAX)
+        else if( ulNameLen > REDCONF_NAME_MAX )
         {
             ret = -RED_ENAMETOOLONG;
         }
         else
         {
-            uint32_t    ulIdx = 0U;
-            uint32_t    ulDirentCount = DirOffsetToEntryIndex(pPInode->pInodeBuf->ullSize);
-            uint32_t    ulFreeIdx = DIR_INDEX_INVALID;  /* Index of first free dirent. */
+            uint32_t ulIdx = 0U;
+            uint32_t ulDirentCount = DirOffsetToEntryIndex(
+                pPInode->pInodeBuf->ullSize );
+            uint32_t ulFreeIdx = DIR_INDEX_INVALID; /* Index of first free
+                                                       dirent. */
 
             /*  Loop over the directory blocks, searching each block for a
                 dirent that matches the given name.
             */
-            while((ret == 0) && (ulIdx < ulDirentCount))
+            while( ( ret == 0 ) && ( ulIdx < ulDirentCount ) )
             {
-                ret = RedInodeDataSeekAndRead(pPInode, ulIdx / DIRENTS_PER_BLOCK);
+                ret = RedInodeDataSeekAndRead( pPInode,
+                                               ulIdx / DIRENTS_PER_BLOCK );
 
-                if(ret == 0)
+                if( ret == 0 )
                 {
-                    const DIRENT *pDirents = CAST_CONST_DIRENT_PTR(pPInode->pbData);
-                    uint32_t      ulBlockLastIdx = REDMIN(DIRENTS_PER_BLOCK, ulDirentCount - ulIdx);
-                    uint32_t      ulBlockIdx;
+                    const DIRENT * pDirents = CAST_CONST_DIRENT_PTR(
+                        pPInode->pbData );
+                    uint32_t ulBlockLastIdx = REDMIN( DIRENTS_PER_BLOCK,
+                                                      ulDirentCount - ulIdx );
+                    uint32_t ulBlockIdx;
 
-                    for(ulBlockIdx = 0U; ulBlockIdx < ulBlockLastIdx; ulBlockIdx++)
+                    for( ulBlockIdx = 0U; ulBlockIdx < ulBlockLastIdx;
+                         ulBlockIdx++ )
                     {
-                        const DIRENT *pDirent = &pDirents[ulBlockIdx];
+                        const DIRENT * pDirent = &pDirents[ ulBlockIdx ];
 
-                        if(pDirent->ulInode != INODE_INVALID)
+                        if( pDirent->ulInode != INODE_INVALID )
                         {
                             /*  The name in the dirent will not be null
                                 terminated if it is of the maximum length, so
                                 use a bounded string compare and then make sure
                                 there is nothing more to the name.
                             */
-                            if(    (RedStrNCmp(pDirent->acName, pszName, ulNameLen) == 0)
-                                && ((ulNameLen == REDCONF_NAME_MAX) || (pDirent->acName[ulNameLen] == '\0')))
+                            if( ( RedStrNCmp( pDirent->acName,
+                                              pszName,
+                                              ulNameLen ) == 0 ) &&
+                                ( ( ulNameLen == REDCONF_NAME_MAX ) ||
+                                  ( pDirent->acName[ ulNameLen ] == '\0' ) ) )
                             {
                                 /*  Found a matching dirent, stop and return its
                                     information.
                                 */
-                                if(pulInode != NULL)
+                                if( pulInode != NULL )
                                 {
                                     *pulInode = pDirent->ulInode;
 
-                                  #ifdef REDCONF_ENDIAN_SWAP
-                                    *pulInode = RedRev32(*pulInode);
-                                  #endif
+    #ifdef REDCONF_ENDIAN_SWAP
+                                    *pulInode = RedRev32( *pulInode );
+    #endif
                                 }
 
                                 ulIdx += ulBlockIdx;
                                 break;
                             }
                         }
-                        else if(ulFreeIdx == DIR_INDEX_INVALID)
+                        else if( ulFreeIdx == DIR_INDEX_INVALID )
                         {
                             ulFreeIdx = ulIdx + ulBlockIdx;
                         }
                         else
                         {
-                            /*  The directory entry is free, but we already found a free one, so there's
-                                nothing to do here.
+                            /*  The directory entry is free, but we already
+                               found a free one, so there's nothing to do here.
                             */
                         }
                     }
 
-                    if(ulBlockIdx < ulBlockLastIdx)
+                    if( ulBlockIdx < ulBlockLastIdx )
                     {
                         /*  If we broke out of the for loop, we found a matching
                             dirent and can stop the search.
@@ -401,9 +417,9 @@ REDSTATUS RedDirEntryLookup(
 
                     ulIdx += ulBlockLastIdx;
                 }
-                else if(ret == -RED_ENODATA)
+                else if( ret == -RED_ENODATA )
                 {
-                    if(ulFreeIdx == DIR_INDEX_INVALID)
+                    if( ulFreeIdx == DIR_INDEX_INVALID )
                     {
                         ulFreeIdx = ulIdx;
                     }
@@ -419,20 +435,21 @@ REDSTATUS RedDirEntryLookup(
                 }
             }
 
-            if(ret == 0)
+            if( ret == 0 )
             {
                 /*  If we made it all the way to the end of the directory
                     without stopping, then the given name does not exist in the
                     directory.
                 */
-                if(ulIdx == ulDirentCount)
+                if( ulIdx == ulDirentCount )
                 {
                     /*  If the directory had no sparse dirents, then the first
                         free dirent is beyond the end of the directory.  If the
                         directory is already the maximum size, then there is no
                         free dirent.
                     */
-                    if((ulFreeIdx == DIR_INDEX_INVALID) && (ulDirentCount < DIRENTS_MAX))
+                    if( ( ulFreeIdx == DIR_INDEX_INVALID ) &&
+                        ( ulDirentCount < DIRENTS_MAX ) )
                     {
                         ulFreeIdx = ulDirentCount;
                     }
@@ -442,7 +459,7 @@ REDSTATUS RedDirEntryLookup(
                     ret = -RED_ENOENT;
                 }
 
-                if(pulEntryIdx != NULL)
+                if( pulEntryIdx != NULL )
                 {
                     *pulEntryIdx = ulIdx;
                 }
@@ -453,8 +470,7 @@ REDSTATUS RedDirEntryLookup(
     return ret;
 }
 
-
-#if (REDCONF_API_POSIX_READDIR == 1) || (REDCONF_CHECKER == 1)
+    #if( REDCONF_API_POSIX_READDIR == 1 ) || ( REDCONF_CHECKER == 1 )
 /** @brief Read the next entry from a directory, given a starting index.
 
     @param pPInode  A pointer to the cached inode structure of the directory to
@@ -481,83 +497,92 @@ REDSTATUS RedDirEntryLookup(
                             or @p pszName is `NULL`; or @p pulIdx is `NULL`; or
                             @p pulInode is `NULL`.
 */
-REDSTATUS RedDirEntryRead(
-    CINODE     *pPInode,
-    uint32_t   *pulIdx,
-    char       *pszName,
-    uint32_t   *pulInode)
+REDSTATUS RedDirEntryRead( CINODE * pPInode,
+                           uint32_t * pulIdx,
+                           char * pszName,
+                           uint32_t * pulInode )
 {
-    REDSTATUS   ret = 0;
+    REDSTATUS ret = 0;
 
-    if(!CINODE_IS_MOUNTED(pPInode) || (pulIdx == NULL) || (pszName == NULL) || (pulInode == NULL))
+    if( !CINODE_IS_MOUNTED( pPInode ) || ( pulIdx == NULL ) ||
+        ( pszName == NULL ) || ( pulInode == NULL ) )
     {
         ret = -RED_EINVAL;
     }
-    else if(!pPInode->fDirectory)
+    else if( !pPInode->fDirectory )
     {
         ret = -RED_ENOTDIR;
     }
     else
     {
         uint32_t ulIdx = *pulIdx;
-        uint32_t ulDirentCount = DirOffsetToEntryIndex(pPInode->pInodeBuf->ullSize);
+        uint32_t ulDirentCount = DirOffsetToEntryIndex(
+            pPInode->pInodeBuf->ullSize );
 
         /*  Starting either at the beginning of the directory or where we left
             off, loop over the directory blocks, searching each block for a
             non-sparse dirent to return as the next entry in the directory.
         */
-        while((ret == 0) && (ulIdx < ulDirentCount))
+        while( ( ret == 0 ) && ( ulIdx < ulDirentCount ) )
         {
             uint32_t ulBlockOffset = ulIdx / DIRENTS_PER_BLOCK;
 
-            ret = RedInodeDataSeekAndRead(pPInode, ulBlockOffset);
+            ret = RedInodeDataSeekAndRead( pPInode, ulBlockOffset );
 
-            if(ret == 0)
+            if( ret == 0 )
             {
-                const DIRENT *pDirents = CAST_CONST_DIRENT_PTR(pPInode->pbData);
-                uint32_t      ulBlockLastIdx = REDMIN(DIRENTS_PER_BLOCK, ulDirentCount - (ulBlockOffset * DIRENTS_PER_BLOCK));
-                uint32_t      ulBlockIdx;
+                const DIRENT * pDirents = CAST_CONST_DIRENT_PTR(
+                    pPInode->pbData );
+                uint32_t ulBlockLastIdx = REDMIN( DIRENTS_PER_BLOCK,
+                                                  ulDirentCount -
+                                                      ( ulBlockOffset *
+                                                        DIRENTS_PER_BLOCK ) );
+                uint32_t ulBlockIdx;
 
-                for(ulBlockIdx = ulIdx % DIRENTS_PER_BLOCK; ulBlockIdx < ulBlockLastIdx; ulBlockIdx++)
+                for( ulBlockIdx = ulIdx % DIRENTS_PER_BLOCK;
+                     ulBlockIdx < ulBlockLastIdx;
+                     ulBlockIdx++ )
                 {
-                    if(pDirents[ulBlockIdx].ulInode != INODE_INVALID)
+                    if( pDirents[ ulBlockIdx ].ulInode != INODE_INVALID )
                     {
                         *pulIdx = ulIdx + 1U;
-                        RedStrNCpy(pszName, pDirents[ulBlockIdx].acName, REDCONF_NAME_MAX);
-                        pszName[REDCONF_NAME_MAX] = '\0';
+                        RedStrNCpy( pszName,
+                                    pDirents[ ulBlockIdx ].acName,
+                                    REDCONF_NAME_MAX );
+                        pszName[ REDCONF_NAME_MAX ] = '\0';
 
-                        *pulInode = pDirents[ulBlockIdx].ulInode;
+                        *pulInode = pDirents[ ulBlockIdx ].ulInode;
 
-                      #ifdef REDCONF_ENDIAN_SWAP
-                        *pulInode = RedRev32(*pulInode);
-                      #endif
+        #ifdef REDCONF_ENDIAN_SWAP
+                        *pulInode = RedRev32( *pulInode );
+        #endif
                         break;
                     }
 
                     ulIdx++;
                 }
 
-                if(ulBlockIdx < ulBlockLastIdx)
+                if( ulBlockIdx < ulBlockLastIdx )
                 {
-                    REDASSERT(ulIdx <= ulDirentCount);
+                    REDASSERT( ulIdx <= ulDirentCount );
                     break;
                 }
             }
-            else if(ret == -RED_ENODATA)
+            else if( ret == -RED_ENODATA )
             {
-                ulIdx += DIRENTS_PER_BLOCK - (ulIdx % DIRENTS_PER_BLOCK);
+                ulIdx += DIRENTS_PER_BLOCK - ( ulIdx % DIRENTS_PER_BLOCK );
                 ret = 0;
             }
             else
             {
                 /*  Unexpected error, loop will terminate; nothing else to do.
-                */
+                 */
             }
 
-            REDASSERT(ulIdx <= ulDirentCount);
+            REDASSERT( ulIdx <= ulDirentCount );
         }
 
-        if((ret == 0) && (ulIdx >= ulDirentCount))
+        if( ( ret == 0 ) && ( ulIdx >= ulDirentCount ) )
         {
             *pulIdx = ulDirentCount;
             ret = -RED_ENOENT;
@@ -566,10 +591,9 @@ REDSTATUS RedDirEntryRead(
 
     return ret;
 }
-#endif
+    #endif
 
-
-#if (REDCONF_READ_ONLY == 0) && (REDCONF_API_POSIX_RENAME == 1)
+    #if( REDCONF_READ_ONLY == 0 ) && ( REDCONF_API_POSIX_RENAME == 1 )
 /** Rename a directory entry.
 
     @param pSrcPInode   The inode of the directory containing @p pszSrcName.
@@ -616,26 +640,22 @@ REDSTATUS RedDirEntryRead(
     @retval -RED_EROFS          The directory to be removed resides on a
                                 read-only file system.
 */
-REDSTATUS RedDirEntryRename(
-    CINODE     *pSrcPInode,
-    const char *pszSrcName,
-    CINODE     *pSrcInode,
-    CINODE     *pDstPInode,
-    const char *pszDstName,
-    CINODE     *pDstInode)
+REDSTATUS RedDirEntryRename( CINODE * pSrcPInode,
+                             const char * pszSrcName,
+                             CINODE * pSrcInode,
+                             CINODE * pDstPInode,
+                             const char * pszDstName,
+                             CINODE * pDstInode )
 {
-    REDSTATUS   ret;
+    REDSTATUS ret;
 
-    if(    !CINODE_IS_DIRTY(pSrcPInode)
-        || (pszSrcName == NULL)
-        || (pSrcInode == NULL)
-        || !CINODE_IS_DIRTY(pDstPInode)
-        || (pszDstName == NULL)
-        || (pDstInode == NULL))
+    if( !CINODE_IS_DIRTY( pSrcPInode ) || ( pszSrcName == NULL ) ||
+        ( pSrcInode == NULL ) || !CINODE_IS_DIRTY( pDstPInode ) ||
+        ( pszDstName == NULL ) || ( pDstInode == NULL ) )
     {
         ret = -RED_EINVAL;
     }
-    else if(!pSrcPInode->fDirectory || !pDstPInode->fDirectory)
+    else if( !pSrcPInode->fDirectory || !pDstPInode->fDirectory )
     {
         ret = -RED_ENOTDIR;
     }
@@ -645,105 +665,123 @@ REDSTATUS RedDirEntryRename(
         uint32_t ulSrcIdx;
 
         /*  Look up the source and destination names.
-        */
-        ret = RedDirEntryLookup(pSrcPInode, pszSrcName, &ulSrcIdx, &pSrcInode->ulInode);
+         */
+        ret = RedDirEntryLookup( pSrcPInode,
+                                 pszSrcName,
+                                 &ulSrcIdx,
+                                 &pSrcInode->ulInode );
 
-        if(ret == 0)
+        if( ret == 0 )
         {
-            ret = RedDirEntryLookup(pDstPInode, pszDstName, &ulDstIdx, &pDstInode->ulInode);
+            ret = RedDirEntryLookup( pDstPInode,
+                                     pszDstName,
+                                     &ulDstIdx,
+                                     &pDstInode->ulInode );
 
-            if(ret == -RED_ENOENT)
+            if( ret == -RED_ENOENT )
             {
-                if(ulDstIdx == DIR_INDEX_INVALID)
+                if( ulDstIdx == DIR_INDEX_INVALID )
                 {
                     ret = -RED_ENOSPC;
                 }
                 else
                 {
-                  #if REDCONF_RENAME_ATOMIC == 1
+        #if REDCONF_RENAME_ATOMIC == 1
                     pDstInode->ulInode = INODE_INVALID;
-                  #endif
+        #endif
                     ret = 0;
                 }
             }
-          #if REDCONF_RENAME_ATOMIC == 0
-            else if(ret == 0)
+        #if REDCONF_RENAME_ATOMIC == 0
+            else if( ret == 0 )
             {
                 ret = -RED_EEXIST;
             }
             else
             {
                 /*  Nothing to do here, just propagate the error.
-                */
+                 */
             }
-          #endif
+        #endif
         }
 
-      #if REDCONF_RENAME_ATOMIC == 1
+        #if REDCONF_RENAME_ATOMIC == 1
         /*  If both names point to the same inode, POSIX says to do nothing to
             either name.
         */
-        if((ret == 0) && (pSrcInode->ulInode != pDstInode->ulInode))
-      #else
-        if(ret == 0)
-      #endif
+        if( ( ret == 0 ) && ( pSrcInode->ulInode != pDstInode->ulInode ) )
+        #else
+        if( ret == 0 )
+        #endif
         {
-            ret = RedInodeMount(pSrcInode, FTYPE_EITHER, true);
+            ret = RedInodeMount( pSrcInode, FTYPE_EITHER, true );
 
-          #if REDCONF_RENAME_ATOMIC == 1
-            if((ret == 0) && (pDstInode->ulInode != INODE_INVALID))
+        #if REDCONF_RENAME_ATOMIC == 1
+            if( ( ret == 0 ) && ( pDstInode->ulInode != INODE_INVALID ) )
             {
                 /*  Source and destination must be the same type (file/dir).
-                */
-                ret = RedInodeMount(pDstInode, pSrcInode->fDirectory ? FTYPE_DIR : FTYPE_FILE, true);
+                 */
+                ret = RedInodeMount( pDstInode,
+                                     pSrcInode->fDirectory ? FTYPE_DIR
+                                                           : FTYPE_FILE,
+                                     true );
 
                 /*  If renaming directories, the destination must be empty.
-                */
-                if((ret == 0) && pDstInode->fDirectory && (pDstInode->pInodeBuf->ullSize > 0U))
+                 */
+                if( ( ret == 0 ) && pDstInode->fDirectory &&
+                    ( pDstInode->pInodeBuf->ullSize > 0U ) )
                 {
                     ret = -RED_ENOTEMPTY;
                 }
             }
-          #endif
+        #endif
 
             /*  If we are renaming a directory, make sure the rename isn't
                 cyclic (e.g., renaming "foo" into "foo/bar").
             */
-            if((ret == 0) && pSrcInode->fDirectory)
+            if( ( ret == 0 ) && pSrcInode->fDirectory )
             {
-                ret = DirCyclicRenameCheck(pSrcInode->ulInode, pDstPInode);
+                ret = DirCyclicRenameCheck( pSrcInode->ulInode, pDstPInode );
             }
 
-            if(ret == 0)
+            if( ret == 0 )
             {
-                ret = DirEntryWrite(pDstPInode, ulDstIdx, pSrcInode->ulInode, pszDstName, RedNameLen(pszDstName));
+                ret = DirEntryWrite( pDstPInode,
+                                     ulDstIdx,
+                                     pSrcInode->ulInode,
+                                     pszDstName,
+                                     RedNameLen( pszDstName ) );
             }
 
-            if(ret == 0)
+            if( ret == 0 )
             {
-                ret = RedDirEntryDelete(pSrcPInode, ulSrcIdx);
+                ret = RedDirEntryDelete( pSrcPInode, ulSrcIdx );
 
-                if(ret == -RED_ENOSPC)
+                if( ret == -RED_ENOSPC )
                 {
                     REDSTATUS ret2;
 
-                    /*  If there was not enough space to branch the parent
-                        directory inode and data block containin the source
-                        entry, revert destination directory entry to its
-                        previous state.
-                    */
-                  #if REDCONF_RENAME_ATOMIC == 1
-                    if(pDstInode->ulInode != INODE_INVALID)
+                        /*  If there was not enough space to branch the parent
+                            directory inode and data block containin the source
+                            entry, revert destination directory entry to its
+                            previous state.
+                        */
+        #if REDCONF_RENAME_ATOMIC == 1
+                    if( pDstInode->ulInode != INODE_INVALID )
                     {
-                        ret2 = DirEntryWrite(pDstPInode, ulDstIdx, pDstInode->ulInode, pszDstName, RedNameLen(pszDstName));
+                        ret2 = DirEntryWrite( pDstPInode,
+                                              ulDstIdx,
+                                              pDstInode->ulInode,
+                                              pszDstName,
+                                              RedNameLen( pszDstName ) );
                     }
                     else
-                  #endif
+        #endif
                     {
-                        ret2 = RedDirEntryDelete(pDstPInode, ulDstIdx);
+                        ret2 = RedDirEntryDelete( pDstPInode, ulDstIdx );
                     }
 
-                    if(ret2 != 0)
+                    if( ret2 != 0 )
                     {
                         ret = ret2;
                         CRITICAL_ERROR();
@@ -751,7 +789,7 @@ REDSTATUS RedDirEntryRename(
                 }
             }
 
-            if(ret == 0)
+            if( ret == 0 )
             {
                 pSrcInode->pInodeBuf->ulPInode = pDstPInode->ulInode;
             }
@@ -760,7 +798,6 @@ REDSTATUS RedDirEntryRename(
 
     return ret;
 }
-
 
 /** @brief Check for a cyclic rename.
 
@@ -779,22 +816,21 @@ REDSTATUS RedDirEntryRename(
     @retval -RED_EINVAL     The rename is cyclic; or invalid parameters.
     @retval -RED_ENOTDIR    @p pDstPInode is not a directory.
 */
-static REDSTATUS DirCyclicRenameCheck(
-    uint32_t        ulSrcInode,
-    const CINODE   *pDstPInode)
+static REDSTATUS DirCyclicRenameCheck( uint32_t ulSrcInode,
+                                       const CINODE * pDstPInode )
 {
-    REDSTATUS       ret = 0;
+    REDSTATUS ret = 0;
 
-    if(!INODE_IS_VALID(ulSrcInode) || !CINODE_IS_MOUNTED(pDstPInode))
+    if( !INODE_IS_VALID( ulSrcInode ) || !CINODE_IS_MOUNTED( pDstPInode ) )
     {
         REDERROR();
         ret = -RED_EINVAL;
     }
-    else if(ulSrcInode == pDstPInode->ulInode)
+    else if( ulSrcInode == pDstPInode->ulInode )
     {
         ret = -RED_EINVAL;
     }
-    else if(!pDstPInode->fDirectory)
+    else if( !pDstPInode->fDirectory )
     {
         ret = -RED_ENOTDIR;
     }
@@ -808,31 +844,31 @@ static REDSTATUS DirCyclicRenameCheck(
 
         NextParent.ulInode = pDstPInode->pInodeBuf->ulPInode;
 
-        while(     (NextParent.ulInode != ulSrcInode)
-                && (NextParent.ulInode != INODE_ROOTDIR)
-                && (NextParent.ulInode != INODE_INVALID)
-                && (ulIteration < gpRedVolConf->ulInodeCount))
+        while( ( NextParent.ulInode != ulSrcInode ) &&
+               ( NextParent.ulInode != INODE_ROOTDIR ) &&
+               ( NextParent.ulInode != INODE_INVALID ) &&
+               ( ulIteration < gpRedVolConf->ulInodeCount ) )
         {
-            ret = RedInodeMount(&NextParent, FTYPE_DIR, false);
-            if(ret != 0)
+            ret = RedInodeMount( &NextParent, FTYPE_DIR, false );
+            if( ret != 0 )
             {
                 break;
             }
 
             NextParent.ulInode = NextParent.pInodeBuf->ulPInode;
 
-            RedInodePut(&NextParent, 0U);
+            RedInodePut( &NextParent, 0U );
 
             ulIteration++;
         }
 
-        if((ret == 0) && (ulIteration == gpRedVolConf->ulInodeCount))
+        if( ( ret == 0 ) && ( ulIteration == gpRedVolConf->ulInodeCount ) )
         {
             CRITICAL_ERROR();
             ret = -RED_EFUBAR;
         }
 
-        if((ret == 0) && (ulSrcInode == NextParent.ulInode))
+        if( ( ret == 0 ) && ( ulSrcInode == NextParent.ulInode ) )
         {
             ret = -RED_EINVAL;
         }
@@ -840,10 +876,9 @@ static REDSTATUS DirCyclicRenameCheck(
 
     return ret;
 }
-#endif /* (REDCONF_READ_ONLY == 0) && (REDCONF_API_POSIX_RENAME == 1) */
+    #endif /* (REDCONF_READ_ONLY == 0) && (REDCONF_API_POSIX_RENAME == 1) */
 
-
-#if REDCONF_READ_ONLY == 0
+    #if REDCONF_READ_ONLY == 0
 /** @brief Update the contents of a directory entry.
 
     @param pPInode      A pointer to the cached inode structure of the directory
@@ -862,51 +897,47 @@ static REDSTATUS DirCyclicRenameCheck(
     @retval -RED_ENOTDIR    @p pPInode is not a directory.
     @retval -RED_EINVAL     Invalid parameters.
 */
-static REDSTATUS DirEntryWrite(
-    CINODE     *pPInode,
-    uint32_t    ulIdx,
-    uint32_t    ulInode,
-    const char *pszName,
-    uint32_t    ulNameLen)
+static REDSTATUS DirEntryWrite( CINODE * pPInode,
+                                uint32_t ulIdx,
+                                uint32_t ulInode,
+                                const char * pszName,
+                                uint32_t ulNameLen )
 {
-    REDSTATUS   ret;
+    REDSTATUS ret;
 
-    if(    !CINODE_IS_DIRTY(pPInode)
-        || (ulIdx >= DIRENTS_MAX)
-        || (!INODE_IS_VALID(ulInode) && (ulInode != INODE_INVALID))
-        || (pszName == NULL)
-        || (ulNameLen > REDCONF_NAME_MAX)
-        || ((ulNameLen == 0U) != (ulInode == INODE_INVALID)))
+    if( !CINODE_IS_DIRTY( pPInode ) || ( ulIdx >= DIRENTS_MAX ) ||
+        ( !INODE_IS_VALID( ulInode ) && ( ulInode != INODE_INVALID ) ) ||
+        ( pszName == NULL ) || ( ulNameLen > REDCONF_NAME_MAX ) ||
+        ( ( ulNameLen == 0U ) != ( ulInode == INODE_INVALID ) ) )
     {
         REDERROR();
         ret = -RED_EINVAL;
     }
-    else if(!pPInode->fDirectory)
+    else if( !pPInode->fDirectory )
     {
         ret = -RED_ENOTDIR;
     }
     else
     {
-        uint64_t        ullOffset = DirEntryIndexToOffset(ulIdx);
-        uint32_t        ulLen = DIRENT_SIZE;
-        static DIRENT   de;
+        uint64_t ullOffset = DirEntryIndexToOffset( ulIdx );
+        uint32_t ulLen = DIRENT_SIZE;
+        static DIRENT de;
 
-        RedMemSet(&de, 0U, sizeof(de));
+        RedMemSet( &de, 0U, sizeof( de ) );
 
         de.ulInode = ulInode;
 
-      #ifdef REDCONF_ENDIAN_SWAP
-        de.ulInode = RedRev32(de.ulInode);
-      #endif
+        #ifdef REDCONF_ENDIAN_SWAP
+        de.ulInode = RedRev32( de.ulInode );
+        #endif
 
-        RedStrNCpy(de.acName, pszName, ulNameLen);
+        RedStrNCpy( de.acName, pszName, ulNameLen );
 
-        ret = RedInodeDataWrite(pPInode, ullOffset, &ulLen, &de);
+        ret = RedInodeDataWrite( pPInode, ullOffset, &ulLen, &de );
     }
 
     return ret;
 }
-
 
 /** @brief Convert a directory entry index to a byte offset.
 
@@ -914,22 +945,20 @@ static REDSTATUS DirEntryWrite(
 
     @return Byte offset in the directory corresponding with ulIdx.
 */
-static uint64_t DirEntryIndexToOffset(
-    uint32_t ulIdx)
+static uint64_t DirEntryIndexToOffset( uint32_t ulIdx )
 {
     uint32_t ulBlock = ulIdx / DIRENTS_PER_BLOCK;
     uint32_t ulOffsetInBlock = ulIdx % DIRENTS_PER_BLOCK;
     uint64_t ullOffset;
 
-    REDASSERT(ulIdx < DIRENTS_MAX);
+    REDASSERT( ulIdx < DIRENTS_MAX );
 
-    ullOffset = (uint64_t)ulBlock << BLOCK_SIZE_P2;
-    ullOffset += (uint64_t)ulOffsetInBlock * DIRENT_SIZE;
+    ullOffset = ( uint64_t ) ulBlock << BLOCK_SIZE_P2;
+    ullOffset += ( uint64_t ) ulOffsetInBlock * DIRENT_SIZE;
 
     return ullOffset;
 }
-#endif /* REDCONF_READ_ONLY == 0 */
-
+    #endif /* REDCONF_READ_ONLY == 0 */
 
 /** @brief Convert a byte offset to a directory entry index.
 
@@ -937,22 +966,21 @@ static uint64_t DirEntryIndexToOffset(
 
     @return Directory entry index corresponding with @p ullOffset.
 */
-static uint32_t DirOffsetToEntryIndex(
-    uint64_t ullOffset)
+static uint32_t DirOffsetToEntryIndex( uint64_t ullOffset )
 {
     uint32_t ulIdx;
 
-    REDASSERT(ullOffset < INODE_SIZE_MAX);
-    REDASSERT(((uint32_t)(ullOffset & (REDCONF_BLOCK_SIZE - 1U)) % DIRENT_SIZE) == 0U);
+    REDASSERT( ullOffset < INODE_SIZE_MAX );
+    REDASSERT( ( ( uint32_t ) ( ullOffset & ( REDCONF_BLOCK_SIZE - 1U ) ) %
+                 DIRENT_SIZE ) == 0U );
 
     /*  Avoid doing any 64-bit divides.
-    */
-    ulIdx = (uint32_t)(ullOffset >> BLOCK_SIZE_P2) * DIRENTS_PER_BLOCK;
-    ulIdx += (uint32_t)(ullOffset & (REDCONF_BLOCK_SIZE - 1U)) / DIRENT_SIZE;
+     */
+    ulIdx = ( uint32_t ) ( ullOffset >> BLOCK_SIZE_P2 ) * DIRENTS_PER_BLOCK;
+    ulIdx += ( uint32_t ) ( ullOffset & ( REDCONF_BLOCK_SIZE - 1U ) ) /
+             DIRENT_SIZE;
 
     return ulIdx;
 }
 
-
 #endif /* REDCONF_API_POSIX == 1 */
-

@@ -33,12 +33,11 @@
 
 #if REDCONF_TASK_COUNT > 1U
 
-
 static SemaphoreHandle_t xMutex;
-#if defined(configSUPPORT_STATIC_ALLOCATION) && (configSUPPORT_STATIC_ALLOCATION == 1)
+    #if defined( configSUPPORT_STATIC_ALLOCATION ) && \
+        ( configSUPPORT_STATIC_ALLOCATION == 1 )
 static StaticSemaphore_t xMutexBuffer;
-#endif
-
+    #endif
 
 /** @brief Initialize the mutex.
 
@@ -51,33 +50,33 @@ static StaticSemaphore_t xMutexBuffer;
 
     @retval 0   Operation was successful.
 */
-REDSTATUS RedOsMutexInit(void)
+REDSTATUS RedOsMutexInit( void )
 {
     REDSTATUS ret = 0;
-    
-  #if defined(configSUPPORT_STATIC_ALLOCATION) && (configSUPPORT_STATIC_ALLOCATION == 1)
-    xMutex = xSemaphoreCreateMutexStatic(&xMutexBuffer);
-    
-    if(xMutex == NULL)
+
+    #if defined( configSUPPORT_STATIC_ALLOCATION ) && \
+        ( configSUPPORT_STATIC_ALLOCATION == 1 )
+    xMutex = xSemaphoreCreateMutexStatic( &xMutexBuffer );
+
+    if( xMutex == NULL )
     {
-        /*  The only error case for xSemaphoreCreateMutexStatic is that the mutex
-            buffer parameter is NULL, which is not the case.
+        /*  The only error case for xSemaphoreCreateMutexStatic is that the
+           mutex buffer parameter is NULL, which is not the case.
         */
         REDERROR();
         ret = -RED_EINVAL;
-    }        
-    
-  #else
+    }
+
+    #else
     xMutex = xSemaphoreCreateMutex();
-    if(xMutex == NULL)
+    if( xMutex == NULL )
     {
         ret = -RED_ENOMEM;
     }
-  #endif
+    #endif
 
     return ret;
 }
-
 
 /** @brief Uninitialize the mutex.
 
@@ -89,14 +88,13 @@ REDSTATUS RedOsMutexInit(void)
 
     @retval 0   Operation was successful.
 */
-REDSTATUS RedOsMutexUninit(void)
+REDSTATUS RedOsMutexUninit( void )
 {
-    vSemaphoreDelete(xMutex);
+    vSemaphoreDelete( xMutex );
     xMutex = NULL;
 
     return 0;
 }
-
 
 /** @brief Acquire the mutex.
 
@@ -104,13 +102,12 @@ REDSTATUS RedOsMutexUninit(void)
     undefined; likewise, the behavior of recursively acquiring the mutex is
     undefined.
 */
-void RedOsMutexAcquire(void)
+void RedOsMutexAcquire( void )
 {
-    while(xSemaphoreTake(xMutex, portMAX_DELAY) != pdTRUE)
+    while( xSemaphoreTake( xMutex, portMAX_DELAY ) != pdTRUE )
     {
     }
 }
-
 
 /** @brief Release the mutex.
 
@@ -121,14 +118,13 @@ void RedOsMutexAcquire(void)
     - Releasing the mutex from a task or thread other than the one which
       acquired the mutex.
 */
-void RedOsMutexRelease(void)
+void RedOsMutexRelease( void )
 {
     BaseType_t xSuccess;
 
-    xSuccess = xSemaphoreGive(xMutex);
-    REDASSERT(xSuccess == pdTRUE);
-    IGNORE_ERRORS(xSuccess);
+    xSuccess = xSemaphoreGive( xMutex );
+    REDASSERT( xSuccess == pdTRUE );
+    IGNORE_ERRORS( xSuccess );
 }
 
 #endif
-

@@ -29,15 +29,13 @@
 
 #if REDCONF_API_POSIX == 1
 
-#include <redcoreapi.h>
-#include <redvolume.h>
-#include <redposix.h>
-#include <redpath.h>
+    #include <redcoreapi.h>
+    #include <redvolume.h>
+    #include <redposix.h>
+    #include <redpath.h>
 
-
-static bool IsRootDir(const char *pszLocalPath);
-static bool PathHasMoreNames(const char *pszPathIdx);
-
+static bool IsRootDir( const char * pszLocalPath );
+static bool PathHasMoreNames( const char * pszPathIdx );
 
 /** @brief Split a path into its component parts: a volume and a volume-local
            path.
@@ -60,31 +58,30 @@ static bool PathHasMoreNames(const char *pszPathIdx);
                         @p ppszLocalPath is NULL but @p pszPath includes a local
                         path.
 */
-REDSTATUS RedPathSplit(
-    const char     *pszPath,
-    uint8_t        *pbVolNum,
-    const char    **ppszLocalPath)
+REDSTATUS RedPathSplit( const char * pszPath,
+                        uint8_t * pbVolNum,
+                        const char ** ppszLocalPath )
 {
-    REDSTATUS       ret = 0;
+    REDSTATUS ret = 0;
 
-    if(pszPath == NULL)
+    if( pszPath == NULL )
     {
         ret = -RED_EINVAL;
     }
     else
     {
-        const char *pszLocalPath = pszPath;
-        uint8_t     bMatchVol = UINT8_MAX;
-        uint32_t    ulMatchLen = 0U;
-        uint8_t     bDefaultVolNum = UINT8_MAX;
-        uint8_t     bVolNum;
+        const char * pszLocalPath = pszPath;
+        uint8_t bMatchVol = UINT8_MAX;
+        uint32_t ulMatchLen = 0U;
+        uint8_t bDefaultVolNum = UINT8_MAX;
+        uint8_t bVolNum;
 
-        for(bVolNum = 0U; bVolNum < REDCONF_VOLUME_COUNT; bVolNum++)
+        for( bVolNum = 0U; bVolNum < REDCONF_VOLUME_COUNT; bVolNum++ )
         {
-            const char *pszPrefix = gaRedVolConf[bVolNum].pszPathPrefix;
-            uint32_t    ulPrefixLen = RedStrLen(pszPrefix);
+            const char * pszPrefix = gaRedVolConf[ bVolNum ].pszPathPrefix;
+            uint32_t ulPrefixLen = RedStrLen( pszPrefix );
 
-            if(ulPrefixLen == 0U)
+            if( ulPrefixLen == 0U )
             {
                 /*  A volume with a path prefix of an empty string is the
                     default volume, used when the path does not match the
@@ -94,7 +91,7 @@ REDSTATUS RedPathSplit(
                     initialization, RedCoreInit() ensures that all volume
                     prefixes are unique (including empty prefixes).
                 */
-                REDASSERT(bDefaultVolNum == UINT8_MAX);
+                REDASSERT( bDefaultVolNum == UINT8_MAX );
                 bDefaultVolNum = bVolNum;
             }
             /*  For a path to match, it must either be the prefix exactly, or
@@ -102,21 +99,22 @@ REDSTATUS RedPathSplit(
                 prefix of "/foo", both "/foo" and "/foo/bar" are matches, but
                 "/foobar" is not.
             */
-            else if(    (RedStrNCmp(pszPath, pszPrefix, ulPrefixLen) == 0)
-                     && ((pszPath[ulPrefixLen] == '\0') || (pszPath[ulPrefixLen] == REDCONF_PATH_SEPARATOR)))
+            else if( ( RedStrNCmp( pszPath, pszPrefix, ulPrefixLen ) == 0 ) &&
+                     ( ( pszPath[ ulPrefixLen ] == '\0' ) ||
+                       ( pszPath[ ulPrefixLen ] == REDCONF_PATH_SEPARATOR ) ) )
             {
                 /*  The length of this match should never exactly equal the
                     length of a previous match: that would require a duplicate
                     volume name, which should have been detected during init.
                 */
-                REDASSERT(ulPrefixLen != ulMatchLen);
+                REDASSERT( ulPrefixLen != ulMatchLen );
 
                 /*  If multiple prefixes match, the longest takes precedence.
                     Thus, if there are two prefixes "Flash" and "Flash/Backup",
                     the path "Flash/Backup/" will not be erroneously matched
                     with the "Flash" volume.
                 */
-                if(ulPrefixLen > ulMatchLen)
+                if( ulPrefixLen > ulMatchLen )
                 {
                     bMatchVol = bVolNum;
                     ulMatchLen = ulPrefixLen;
@@ -125,54 +123,54 @@ REDSTATUS RedPathSplit(
             else
             {
                 /*  No match, keep looking.
-                */
+                 */
             }
         }
 
-        if(bMatchVol != UINT8_MAX)
+        if( bMatchVol != UINT8_MAX )
         {
             /*  The path matched a volume path prefix.
-            */
+             */
             bVolNum = bMatchVol;
-            pszLocalPath = &pszPath[ulMatchLen];
+            pszLocalPath = &pszPath[ ulMatchLen ];
         }
-        else if(bDefaultVolNum != UINT8_MAX)
+        else if( bDefaultVolNum != UINT8_MAX )
         {
             /*  The path didn't match any of the prefixes, but one of the
                 volumes has a path prefix of "", so an unprefixed path is
                 assigned to that volume.
             */
             bVolNum = bDefaultVolNum;
-            REDASSERT(pszLocalPath == pszPath);
+            REDASSERT( pszLocalPath == pszPath );
         }
         else
         {
             /*  The path cannot be assigned a volume.
-            */
+             */
             ret = -RED_ENOENT;
         }
 
-        if(ret == 0)
+        if( ret == 0 )
         {
-            if(pbVolNum != NULL)
+            if( pbVolNum != NULL )
             {
                 *pbVolNum = bVolNum;
             }
 
-            if(ppszLocalPath != NULL)
+            if( ppszLocalPath != NULL )
             {
                 *ppszLocalPath = pszLocalPath;
             }
             else
             {
                 /*  If no local path is expected, then the string should either
-                    terminate after the path prefix or the local path should name
-                    the root directory.  Allowing path separators here means that
-                    red_mount("/data/") is OK with a path prefix of "/data".
+                    terminate after the path prefix or the local path should
+                   name the root directory.  Allowing path separators here means
+                   that red_mount("/data/") is OK with a path prefix of "/data".
                 */
-                if(pszLocalPath[0U] != '\0')
+                if( pszLocalPath[ 0U ] != '\0' )
                 {
-                    if(!IsRootDir(pszLocalPath))
+                    if( !IsRootDir( pszLocalPath ) )
                     {
                         ret = -RED_ENOENT;
                     }
@@ -183,7 +181,6 @@ REDSTATUS RedPathSplit(
 
     return ret;
 }
-
 
 /** @brief Lookup the inode named by the given path.
 
@@ -206,42 +203,39 @@ REDSTATUS RedPathSplit(
     @retval -RED_ENAMETOOLONG   The length of a component of @p pszLocalPath is
                                 longer than #REDCONF_NAME_MAX.
 */
-REDSTATUS RedPathLookup(
-    const char *pszLocalPath,
-    uint32_t   *pulInode)
+REDSTATUS RedPathLookup( const char * pszLocalPath, uint32_t * pulInode )
 {
-    REDSTATUS   ret;
+    REDSTATUS ret;
 
-    if((pszLocalPath == NULL) || (pulInode == NULL))
+    if( ( pszLocalPath == NULL ) || ( pulInode == NULL ) )
     {
         REDERROR();
         ret = -RED_EINVAL;
     }
-    else if(pszLocalPath[0U] == '\0')
+    else if( pszLocalPath[ 0U ] == '\0' )
     {
         ret = -RED_ENOENT;
     }
-    else if(IsRootDir(pszLocalPath))
+    else if( IsRootDir( pszLocalPath ) )
     {
         ret = 0;
         *pulInode = INODE_ROOTDIR;
     }
     else
     {
-        uint32_t    ulPInode;
-        const char *pszName;
+        uint32_t ulPInode;
+        const char * pszName;
 
-        ret = RedPathToName(pszLocalPath, &ulPInode, &pszName);
+        ret = RedPathToName( pszLocalPath, &ulPInode, &pszName );
 
-        if(ret == 0)
+        if( ret == 0 )
         {
-            ret = RedCoreLookup(ulPInode, pszName, pulInode);
+            ret = RedCoreLookup( ulPInode, pszName, pulInode );
         }
     }
 
     return ret;
 }
-
 
 /** @brief Given a path, return the parent inode number and a pointer to the
            last component in the path (the name).
@@ -271,23 +265,23 @@ REDSTATUS RedPathLookup(
     @retval -RED_ENAMETOOLONG   The length of a component of @p pszLocalPath is
                                 longer than #REDCONF_NAME_MAX.
 */
-REDSTATUS RedPathToName(
-    const char     *pszLocalPath,
-    uint32_t       *pulPInode,
-    const char    **ppszName)
+REDSTATUS RedPathToName( const char * pszLocalPath,
+                         uint32_t * pulPInode,
+                         const char ** ppszName )
 {
-    REDSTATUS       ret;
+    REDSTATUS ret;
 
-    if((pszLocalPath == NULL) || (pulPInode == NULL) || (ppszName == NULL))
+    if( ( pszLocalPath == NULL ) || ( pulPInode == NULL ) ||
+        ( ppszName == NULL ) )
     {
         REDERROR();
         ret = -RED_EINVAL;
     }
-    else if(IsRootDir(pszLocalPath))
+    else if( IsRootDir( pszLocalPath ) )
     {
         ret = -RED_EINVAL;
     }
-    else if(pszLocalPath[0U] == '\0')
+    else if( pszLocalPath[ 0U ] == '\0' )
     {
         ret = -RED_ENOENT;
     }
@@ -307,12 +301,12 @@ REDSTATUS RedPathToName(
             /*  Skip over path separators, to get pszLocalPath[ulPathIdx]
                 pointing at the next name.
             */
-            while(pszLocalPath[ulPathIdx] == REDCONF_PATH_SEPARATOR)
+            while( pszLocalPath[ ulPathIdx ] == REDCONF_PATH_SEPARATOR )
             {
                 ulPathIdx++;
             }
 
-            if(pszLocalPath[ulPathIdx] == '\0')
+            if( pszLocalPath[ ulPathIdx ] == '\0' )
             {
                 break;
             }
@@ -329,35 +323,35 @@ REDSTATUS RedPathToName(
             */
             ulPInode = ulInode;
 
-            ulNameLen = RedNameLen(&pszLocalPath[ulPathIdx]);
+            ulNameLen = RedNameLen( &pszLocalPath[ ulPathIdx ] );
 
             /*  Lookup the inode of the name, unless we are at the last name in
                 the path: we don't care whether the last name exists or not.
             */
-            if(PathHasMoreNames(&pszLocalPath[ulPathIdx + ulNameLen]))
+            if( PathHasMoreNames( &pszLocalPath[ ulPathIdx + ulNameLen ] ) )
             {
-                ret = RedCoreLookup(ulPInode, &pszLocalPath[ulPathIdx], &ulInode);
+                ret = RedCoreLookup( ulPInode,
+                                     &pszLocalPath[ ulPathIdx ],
+                                     &ulInode );
             }
 
             /*  Move on to the next path element.
-            */
-            if(ret == 0)
+             */
+            if( ret == 0 )
             {
                 ulPathIdx += ulNameLen;
             }
-        }
-        while(ret == 0);
+        } while( ret == 0 );
 
-        if(ret == 0)
+        if( ret == 0 )
         {
             *pulPInode = ulPInode;
-            *ppszName = &pszLocalPath[ulLastNameIdx];
+            *ppszName = &pszLocalPath[ ulLastNameIdx ];
         }
     }
 
     return ret;
 }
-
 
 /** @brief Determine whether a path names the root directory.
 
@@ -369,36 +363,34 @@ REDSTATUS RedPathToName(
     @retval true    @p pszLocalPath names the root directory.
     @retval false   @p pszLocalPath does not name the root directory.
 */
-static bool IsRootDir(
-    const char *pszLocalPath)
+static bool IsRootDir( const char * pszLocalPath )
 {
-    bool        fRet;
+    bool fRet;
 
-    if(pszLocalPath == NULL)
+    if( pszLocalPath == NULL )
     {
         REDERROR();
         fRet = false;
     }
     else
     {
-        uint32_t    ulIdx = 0U;
+        uint32_t ulIdx = 0U;
 
         /*  A string containing nothing but path separators (usually only one)
             names the root directory.  An empty string does *not* name the root
             directory, since in POSIX empty strings typically elicit -RED_ENOENT
             errors.
         */
-        while(pszLocalPath[ulIdx] == REDCONF_PATH_SEPARATOR)
+        while( pszLocalPath[ ulIdx ] == REDCONF_PATH_SEPARATOR )
         {
             ulIdx++;
         }
 
-        fRet = (ulIdx > 0U) && (pszLocalPath[ulIdx] == '\0');
+        fRet = ( ulIdx > 0U ) && ( pszLocalPath[ ulIdx ] == '\0' );
     }
 
     return fRet;
 }
-
 
 /** @brief Determine whether there are more names in a path.
 
@@ -419,12 +411,11 @@ static bool IsRootDir(
     @retval true    @p pszPathIdx has more names.
     @retval false   @p pszPathIdx has no more names.
 */
-static bool PathHasMoreNames(
-    const char *pszPathIdx)
+static bool PathHasMoreNames( const char * pszPathIdx )
 {
-    bool        fRet;
+    bool fRet;
 
-    if(pszPathIdx == NULL)
+    if( pszPathIdx == NULL )
     {
         REDERROR();
         fRet = false;
@@ -433,16 +424,15 @@ static bool PathHasMoreNames(
     {
         uint32_t ulIdx = 0U;
 
-        while(pszPathIdx[ulIdx] == REDCONF_PATH_SEPARATOR)
+        while( pszPathIdx[ ulIdx ] == REDCONF_PATH_SEPARATOR )
         {
             ulIdx++;
         }
 
-        fRet = pszPathIdx[ulIdx] != '\0';
+        fRet = pszPathIdx[ ulIdx ] != '\0';
     }
 
     return fRet;
 }
 
 #endif /* REDCONF_API_POSIX */
-

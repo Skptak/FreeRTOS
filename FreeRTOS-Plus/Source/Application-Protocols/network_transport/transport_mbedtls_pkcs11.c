@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -32,8 +33,8 @@
 
 #include "logging_levels.h"
 
-#define LIBRARY_LOG_NAME     "PkcsTlsTransport"
-#define LIBRARY_LOG_LEVEL    LOG_INFO
+#define LIBRARY_LOG_NAME  "PkcsTlsTransport"
+#define LIBRARY_LOG_LEVEL LOG_INFO
 
 #include "logging_stack.h"
 
@@ -90,20 +91,24 @@ static const char * pNoHighLevelMbedTlsCodeStr = "<No-High-Level-Code>";
 static const char * pNoLowLevelMbedTlsCodeStr = "<No-Low-Level-Code>";
 
 /**
- * @brief Utility for converting the high-level code in an mbedTLS error to string,
- * if the code-contains a high-level code; otherwise, using a default string.
+ * @brief Utility for converting the high-level code in an mbedTLS error to
+ * string, if the code-contains a high-level code; otherwise, using a default
+ * string.
  */
-#define mbedtlsHighLevelCodeOrDefault( mbedTlsCode )       \
-    ( mbedtls_high_level_strerr( mbedTlsCode ) != NULL ) ? \
-    mbedtls_high_level_strerr( mbedTlsCode ) : pNoHighLevelMbedTlsCodeStr
+#define mbedtlsHighLevelCodeOrDefault( mbedTlsCode )     \
+    ( mbedtls_high_level_strerr( mbedTlsCode ) != NULL ) \
+        ? mbedtls_high_level_strerr( mbedTlsCode )       \
+        : pNoHighLevelMbedTlsCodeStr
 
 /**
- * @brief Utility for converting the level-level code in an mbedTLS error to string,
- * if the code-contains a level-level code; otherwise, using a default string.
+ * @brief Utility for converting the level-level code in an mbedTLS error to
+ * string, if the code-contains a level-level code; otherwise, using a default
+ * string.
  */
-#define mbedtlsLowLevelCodeOrDefault( mbedTlsCode )       \
-    ( mbedtls_low_level_strerr( mbedTlsCode ) != NULL ) ? \
-    mbedtls_low_level_strerr( mbedTlsCode ) : pNoLowLevelMbedTlsCodeStr
+#define mbedtlsLowLevelCodeOrDefault( mbedTlsCode )     \
+    ( mbedtls_low_level_strerr( mbedTlsCode ) != NULL ) \
+        ? mbedtls_low_level_strerr( mbedTlsCode )       \
+        : pNoLowLevelMbedTlsCodeStr
 
 /*-----------------------------------------------------------*/
 
@@ -128,12 +133,14 @@ static void sslContextFree( SSLContext_t * pSslContext );
  * @param[in] pHostName Remote host name, used for server name indication.
  * @param[in] pNetworkCredentials TLS setup parameters.
  *
- * @return #TLS_TRANSPORT_SUCCESS, #TLS_TRANSPORT_INSUFFICIENT_MEMORY, #TLS_TRANSPORT_INVALID_CREDENTIALS,
- * #TLS_TRANSPORT_HANDSHAKE_FAILED, or #TLS_TRANSPORT_INTERNAL_ERROR.
+ * @return #TLS_TRANSPORT_SUCCESS, #TLS_TRANSPORT_INSUFFICIENT_MEMORY,
+ * #TLS_TRANSPORT_INVALID_CREDENTIALS, #TLS_TRANSPORT_HANDSHAKE_FAILED, or
+ * #TLS_TRANSPORT_INTERNAL_ERROR.
  */
-static TlsTransportStatus_t tlsSetup( NetworkContext_t * pNetworkContext,
-                                      const char * pHostName,
-                                      const NetworkCredentials_t * pNetworkCredentials );
+static TlsTransportStatus_t tlsSetup(
+    NetworkContext_t * pNetworkContext,
+    const char * pHostName,
+    const NetworkCredentials_t * pNetworkCredentials );
 
 /*-----------------------------------------------------------*/
 
@@ -162,10 +169,11 @@ static int32_t generateRandomBytes( void * pvCtx,
  *
  * @return Zero on success.
  */
-static CK_RV readCertificateIntoContext( SSLContext_t * pSslContext,
-                                         const char * pcLabelName,
-                                         CK_OBJECT_CLASS xClass,
-                                         mbedtls_x509_crt * pxCertificateContext );
+static CK_RV readCertificateIntoContext(
+    SSLContext_t * pSslContext,
+    const char * pcLabelName,
+    CK_OBJECT_CLASS xClass,
+    mbedtls_x509_crt * pxCertificateContext );
 
 /**
  * @brief Helper for setting up potentially hardware-based cryptographic context
@@ -199,11 +207,10 @@ static int32_t privateKeySigningCallback( void * pvContext,
                                           size_t xHashLen,
                                           unsigned char * pucSig,
                                           size_t * pxSigLen,
-                                          int32_t ( * piRng )( void *,
-                                                               unsigned char *,
-                                                               size_t ),
+                                          int32_t ( *piRng )( void *,
+                                                              unsigned char *,
+                                                              size_t ),
                                           void * pvRng );
-
 
 /*-----------------------------------------------------------*/
 
@@ -237,9 +244,10 @@ static void sslContextFree( SSLContext_t * pSslContext )
 
 /*-----------------------------------------------------------*/
 
-static TlsTransportStatus_t tlsSetup( NetworkContext_t * pNetworkContext,
-                                      const char * pHostName,
-                                      const NetworkCredentials_t * pNetworkCredentials )
+static TlsTransportStatus_t tlsSetup(
+    NetworkContext_t * pNetworkContext,
+    const char * pHostName,
+    const NetworkCredentials_t * pNetworkCredentials )
 {
     TlsTransportParams_t * pTlsTransportParams = NULL;
     TlsTransportStatus_t returnStatus = TLS_TRANSPORT_SUCCESS;
@@ -259,31 +267,37 @@ static TlsTransportStatus_t tlsSetup( NetworkContext_t * pNetworkContext,
     /* Initialize the mbed TLS context structures. */
     sslContextInit( &( pTlsTransportParams->sslContext ) );
 
-    mbedtlsError = mbedtls_ssl_config_defaults( &( pTlsTransportParams->sslContext.config ),
+    mbedtlsError = mbedtls_ssl_config_defaults( &( pTlsTransportParams
+                                                       ->sslContext.config ),
                                                 MBEDTLS_SSL_IS_CLIENT,
                                                 MBEDTLS_SSL_TRANSPORT_STREAM,
                                                 MBEDTLS_SSL_PRESET_DEFAULT );
 
     if( mbedtlsError != 0 )
     {
-        LogError( ( "Failed to set default SSL configuration: mbedTLSError= %s : %s.",
-                    mbedtlsHighLevelCodeOrDefault( mbedtlsError ),
-                    mbedtlsLowLevelCodeOrDefault( mbedtlsError ) ) );
+        LogError(
+            ( "Failed to set default SSL configuration: mbedTLSError= %s : %s.",
+              mbedtlsHighLevelCodeOrDefault( mbedtlsError ),
+              mbedtlsLowLevelCodeOrDefault( mbedtlsError ) ) );
 
-        /* Per mbed TLS docs, mbedtls_ssl_config_defaults only fails on memory allocation. */
+        /* Per mbed TLS docs, mbedtls_ssl_config_defaults only fails on memory
+         * allocation. */
         returnStatus = TLS_TRANSPORT_INSUFFICIENT_MEMORY;
     }
 
     if( returnStatus == TLS_TRANSPORT_SUCCESS )
     {
-        /* Set up the certificate security profile, starting from the default value. */
-        pTlsTransportParams->sslContext.certProfile = mbedtls_x509_crt_profile_default;
+        /* Set up the certificate security profile, starting from the default
+         * value. */
+        pTlsTransportParams->sslContext
+            .certProfile = mbedtls_x509_crt_profile_default;
 
         /* test.mosquitto.org only provides a 1024-bit RSA certificate, which is
          * not acceptable by the default mbed TLS certificate security profile.
-         * For the purposes of this demo, allow the use of 1024-bit RSA certificates.
-         * This block should be removed otherwise. */
-        if( strncmp( pHostName, "test.mosquitto.org", strlen( pHostName ) ) == 0 )
+         * For the purposes of this demo, allow the use of 1024-bit RSA
+         * certificates. This block should be removed otherwise. */
+        if( strncmp( pHostName, "test.mosquitto.org", strlen( pHostName ) ) ==
+            0 )
         {
             pTlsTransportParams->sslContext.certProfile.rsa_min_bitlen = 1024;
         }
@@ -294,17 +308,20 @@ static TlsTransportStatus_t tlsSetup( NetworkContext_t * pNetworkContext,
         mbedtls_ssl_conf_rng( &( pTlsTransportParams->sslContext.config ),
                               generateRandomBytes,
                               &pTlsTransportParams->sslContext );
-        mbedtls_ssl_conf_cert_profile( &( pTlsTransportParams->sslContext.config ),
-                                       &( pTlsTransportParams->sslContext.certProfile ) );
+        mbedtls_ssl_conf_cert_profile(
+            &( pTlsTransportParams->sslContext.config ),
+            &( pTlsTransportParams->sslContext.certProfile ) );
 
         /* Parse the server root CA certificate into the SSL context. */
-        mbedtlsError = mbedtls_x509_crt_parse( &( pTlsTransportParams->sslContext.rootCa ),
-                                               pNetworkCredentials->pRootCa,
-                                               pNetworkCredentials->rootCaSize );
+        mbedtlsError = mbedtls_x509_crt_parse(
+            &( pTlsTransportParams->sslContext.rootCa ),
+            pNetworkCredentials->pRootCa,
+            pNetworkCredentials->rootCaSize );
 
         if( mbedtlsError != 0 )
         {
-            LogError( ( "Failed to parse server root CA certificate: mbedTLSError= %s : %s.",
+            LogError( ( "Failed to parse server root CA certificate: "
+                        "mbedTLSError= %s : %s.",
                         mbedtlsHighLevelCodeOrDefault( mbedtlsError ),
                         mbedtlsLowLevelCodeOrDefault( mbedtlsError ) ) );
 
@@ -312,9 +329,10 @@ static TlsTransportStatus_t tlsSetup( NetworkContext_t * pNetworkContext,
         }
         else
         {
-            mbedtls_ssl_conf_ca_chain( &( pTlsTransportParams->sslContext.config ),
-                                       &( pTlsTransportParams->sslContext.rootCa ),
-                                       NULL );
+            mbedtls_ssl_conf_ca_chain(
+                &( pTlsTransportParams->sslContext.config ),
+                &( pTlsTransportParams->sslContext.rootCa ),
+                NULL );
         }
     }
 
@@ -333,36 +351,42 @@ static TlsTransportStatus_t tlsSetup( NetworkContext_t * pNetworkContext,
         else
         {
             /* Setup the client certificate. */
-            xResult = readCertificateIntoContext( &( pTlsTransportParams->sslContext ),
-                                                  pNetworkCredentials->pClientCertLabel,
-                                                  CKO_CERTIFICATE,
-                                                  &( pTlsTransportParams->sslContext.clientCert ) );
+            xResult = readCertificateIntoContext(
+                &( pTlsTransportParams->sslContext ),
+                pNetworkCredentials->pClientCertLabel,
+                CKO_CERTIFICATE,
+                &( pTlsTransportParams->sslContext.clientCert ) );
 
             if( xResult != CKR_OK )
             {
-                LogError( ( "Failed to get certificate from PKCS #11 module." ) );
+                LogError(
+                    ( "Failed to get certificate from PKCS #11 module." ) );
 
                 returnStatus = TLS_TRANSPORT_INVALID_CREDENTIALS;
             }
             else
             {
-                ( void ) mbedtls_ssl_conf_own_cert( &( pTlsTransportParams->sslContext.config ),
-                                                    &( pTlsTransportParams->sslContext.clientCert ),
-                                                    &( pTlsTransportParams->sslContext.privKey ) );
+                ( void ) mbedtls_ssl_conf_own_cert(
+                    &( pTlsTransportParams->sslContext.config ),
+                    &( pTlsTransportParams->sslContext.clientCert ),
+                    &( pTlsTransportParams->sslContext.privKey ) );
             }
         }
     }
 
-    if( ( returnStatus == TLS_TRANSPORT_SUCCESS ) && ( pNetworkCredentials->pAlpnProtos != NULL ) )
+    if( ( returnStatus == TLS_TRANSPORT_SUCCESS ) &&
+        ( pNetworkCredentials->pAlpnProtos != NULL ) )
     {
         /* Include an application protocol list in the TLS ClientHello
          * message. */
-        mbedtlsError = mbedtls_ssl_conf_alpn_protocols( &( pTlsTransportParams->sslContext.config ),
-                                                        pNetworkCredentials->pAlpnProtos );
+        mbedtlsError = mbedtls_ssl_conf_alpn_protocols(
+            &( pTlsTransportParams->sslContext.config ),
+            pNetworkCredentials->pAlpnProtos );
 
         if( mbedtlsError != 0 )
         {
-            LogError( ( "Failed to configure ALPN protocol in mbed TLS: mbedTLSError= %s : %s.",
+            LogError( ( "Failed to configure ALPN protocol in mbed TLS: "
+                        "mbedTLSError= %s : %s.",
                         mbedtlsHighLevelCodeOrDefault( mbedtlsError ),
                         mbedtlsLowLevelCodeOrDefault( mbedtlsError ) ) );
 
@@ -373,12 +397,14 @@ static TlsTransportStatus_t tlsSetup( NetworkContext_t * pNetworkContext,
     if( returnStatus == TLS_TRANSPORT_SUCCESS )
     {
         /* Initialize the mbed TLS secured connection context. */
-        mbedtlsError = mbedtls_ssl_setup( &( pTlsTransportParams->sslContext.context ),
-                                          &( pTlsTransportParams->sslContext.config ) );
+        mbedtlsError = mbedtls_ssl_setup(
+            &( pTlsTransportParams->sslContext.context ),
+            &( pTlsTransportParams->sslContext.config ) );
 
         if( mbedtlsError != 0 )
         {
-            LogError( ( "Failed to set up mbed TLS SSL context: mbedTLSError= %s : %s.",
+            LogError( ( "Failed to set up mbed TLS SSL context: mbedTLSError= "
+                        "%s : %s.",
                         mbedtlsHighLevelCodeOrDefault( mbedtlsError ),
                         mbedtlsLowLevelCodeOrDefault( mbedtlsError ) ) );
 
@@ -406,8 +432,9 @@ static TlsTransportStatus_t tlsSetup( NetworkContext_t * pNetworkContext,
         /* Enable SNI if requested. */
         if( pNetworkCredentials->disableSni == pdFALSE )
         {
-            mbedtlsError = mbedtls_ssl_set_hostname( &( pTlsTransportParams->sslContext.context ),
-                                                     pHostName );
+            mbedtlsError = mbedtls_ssl_set_hostname(
+                &( pTlsTransportParams->sslContext.context ),
+                pHostName );
 
             if( mbedtlsError != 0 )
             {
@@ -420,41 +447,47 @@ static TlsTransportStatus_t tlsSetup( NetworkContext_t * pNetworkContext,
         }
     }
 
-    /* Set Maximum Fragment Length if enabled. */
-    #ifdef MBEDTLS_SSL_MAX_FRAGMENT_LENGTH
-        if( returnStatus == TLS_TRANSPORT_SUCCESS )
-        {
-            /* Enable the max fragment extension. 4096 bytes is currently the largest fragment size permitted.
-             * See RFC 8449 https://tools.ietf.org/html/rfc8449 for more information.
-             *
-             * Smaller values can be found in "mbedtls/include/ssl.h".
-             */
-            mbedtlsError = mbedtls_ssl_conf_max_frag_len( &( pTlsTransportParams->sslContext.config ), MBEDTLS_SSL_MAX_FRAG_LEN_4096 );
+/* Set Maximum Fragment Length if enabled. */
+#ifdef MBEDTLS_SSL_MAX_FRAGMENT_LENGTH
+    if( returnStatus == TLS_TRANSPORT_SUCCESS )
+    {
+        /* Enable the max fragment extension. 4096 bytes is currently the
+         * largest fragment size permitted. See RFC 8449
+         * https://tools.ietf.org/html/rfc8449 for more information.
+         *
+         * Smaller values can be found in "mbedtls/include/ssl.h".
+         */
+        mbedtlsError = mbedtls_ssl_conf_max_frag_len(
+            &( pTlsTransportParams->sslContext.config ),
+            MBEDTLS_SSL_MAX_FRAG_LEN_4096 );
 
-            if( mbedtlsError != 0 )
-            {
-                LogError( ( "Failed to maximum fragment length extension: mbedTLSError= %s : %s.",
-                            mbedtlsHighLevelCodeOrDefault( mbedtlsError ),
-                            mbedtlsLowLevelCodeOrDefault( mbedtlsError ) ) );
-                returnStatus = TLS_TRANSPORT_INTERNAL_ERROR;
-            }
+        if( mbedtlsError != 0 )
+        {
+            LogError( ( "Failed to maximum fragment length extension: "
+                        "mbedTLSError= %s : %s.",
+                        mbedtlsHighLevelCodeOrDefault( mbedtlsError ),
+                        mbedtlsLowLevelCodeOrDefault( mbedtlsError ) ) );
+            returnStatus = TLS_TRANSPORT_INTERNAL_ERROR;
         }
-    #endif /* ifdef MBEDTLS_SSL_MAX_FRAGMENT_LENGTH */
+    }
+#endif /* ifdef MBEDTLS_SSL_MAX_FRAGMENT_LENGTH */
 
     if( returnStatus == TLS_TRANSPORT_SUCCESS )
     {
         /* Perform the TLS handshake. */
         do
         {
-            mbedtlsError = mbedtls_ssl_handshake( &( pTlsTransportParams->sslContext.context ) );
+            mbedtlsError = mbedtls_ssl_handshake(
+                &( pTlsTransportParams->sslContext.context ) );
         } while( ( mbedtlsError == MBEDTLS_ERR_SSL_WANT_READ ) ||
                  ( mbedtlsError == MBEDTLS_ERR_SSL_WANT_WRITE ) );
 
         if( mbedtlsError != 0 )
         {
-            LogError( ( "Failed to perform TLS handshake: mbedTLSError= %s : %s.",
-                        mbedtlsHighLevelCodeOrDefault( mbedtlsError ),
-                        mbedtlsLowLevelCodeOrDefault( mbedtlsError ) ) );
+            LogError(
+                ( "Failed to perform TLS handshake: mbedTLSError= %s : %s.",
+                  mbedtlsHighLevelCodeOrDefault( mbedtlsError ),
+                  mbedtlsLowLevelCodeOrDefault( mbedtlsError ) ) );
 
             returnStatus = TLS_TRANSPORT_HANDSHAKE_FAILED;
         }
@@ -483,11 +516,14 @@ static int32_t generateRandomBytes( void * pvCtx,
     SSLContext_t * pxCtx = ( SSLContext_t * ) pvCtx;
     CK_RV xResult;
 
-    xResult = pxCtx->pxP11FunctionList->C_GenerateRandom( pxCtx->xP11Session, pucRandom, xRandomLength );
+    xResult = pxCtx->pxP11FunctionList->C_GenerateRandom( pxCtx->xP11Session,
+                                                          pucRandom,
+                                                          xRandomLength );
 
     if( xResult != CKR_OK )
     {
-        LogError( ( "Failed to generate random bytes from the PKCS #11 module." ) );
+        LogError(
+            ( "Failed to generate random bytes from the PKCS #11 module." ) );
     }
 
     return xResult;
@@ -495,22 +531,23 @@ static int32_t generateRandomBytes( void * pvCtx,
 
 /*-----------------------------------------------------------*/
 
-static CK_RV readCertificateIntoContext( SSLContext_t * pSslContext,
-                                         const char * pcLabelName,
-                                         CK_OBJECT_CLASS xClass,
-                                         mbedtls_x509_crt * pxCertificateContext )
+static CK_RV readCertificateIntoContext(
+    SSLContext_t * pSslContext,
+    const char * pcLabelName,
+    CK_OBJECT_CLASS xClass,
+    mbedtls_x509_crt * pxCertificateContext )
 {
     CK_RV xResult = CKR_OK;
     CK_ATTRIBUTE xTemplate = { 0 };
     CK_OBJECT_HANDLE xCertObj = 0;
 
     /* Get the handle of the certificate. */
-    xResult = xFindObjectWithLabelAndClass( pSslContext->xP11Session,
-                                            pcLabelName,
-                                            strnlen( pcLabelName,
-                                                     pkcs11configMAX_LABEL_LENGTH ),
-                                            xClass,
-                                            &xCertObj );
+    xResult = xFindObjectWithLabelAndClass(
+        pSslContext->xP11Session,
+        pcLabelName,
+        strnlen( pcLabelName, pkcs11configMAX_LABEL_LENGTH ),
+        xClass,
+        &xCertObj );
 
     if( ( CKR_OK == xResult ) && ( xCertObj == CK_INVALID_HANDLE ) )
     {
@@ -523,10 +560,11 @@ static CK_RV readCertificateIntoContext( SSLContext_t * pSslContext,
         xTemplate.type = CKA_VALUE;
         xTemplate.ulValueLen = 0;
         xTemplate.pValue = NULL;
-        xResult = pSslContext->pxP11FunctionList->C_GetAttributeValue( pSslContext->xP11Session,
-                                                                       xCertObj,
-                                                                       &xTemplate,
-                                                                       1 );
+        xResult = pSslContext->pxP11FunctionList
+                      ->C_GetAttributeValue( pSslContext->xP11Session,
+                                             xCertObj,
+                                             &xTemplate,
+                                             1 );
     }
 
     /* Create a buffer for the certificate. */
@@ -543,17 +581,19 @@ static CK_RV readCertificateIntoContext( SSLContext_t * pSslContext,
     /* Export the certificate. */
     if( CKR_OK == xResult )
     {
-        xResult = pSslContext->pxP11FunctionList->C_GetAttributeValue( pSslContext->xP11Session,
-                                                                       xCertObj,
-                                                                       &xTemplate,
-                                                                       1 );
+        xResult = pSslContext->pxP11FunctionList
+                      ->C_GetAttributeValue( pSslContext->xP11Session,
+                                             xCertObj,
+                                             &xTemplate,
+                                             1 );
     }
 
     /* Decode the certificate. */
     if( CKR_OK == xResult )
     {
         xResult = mbedtls_x509_crt_parse( pxCertificateContext,
-                                          ( const unsigned char * ) xTemplate.pValue,
+                                          ( const unsigned char * )
+                                              xTemplate.pValue,
                                           xTemplate.ulValueLen );
     }
 
@@ -586,15 +626,15 @@ static CK_RV initializeClientKeys( SSLContext_t * pxCtx,
     /* Get the PKCS #11 module/token slot count. */
     if( CKR_OK == xResult )
     {
-        xResult = ( BaseType_t ) pxCtx->pxP11FunctionList->C_GetSlotList( CK_TRUE,
-                                                                          NULL,
-                                                                          &xCount );
+        xResult = ( BaseType_t ) pxCtx->pxP11FunctionList
+                      ->C_GetSlotList( CK_TRUE, NULL, &xCount );
     }
 
     /* Allocate memory to store the token slots. */
     if( CKR_OK == xResult )
     {
-        pxSlotIds = ( CK_SLOT_ID * ) pvPortMalloc( sizeof( CK_SLOT_ID ) * xCount );
+        pxSlotIds = ( CK_SLOT_ID * ) pvPortMalloc( sizeof( CK_SLOT_ID ) *
+                                                   xCount );
 
         if( NULL == pxSlotIds )
         {
@@ -605,32 +645,33 @@ static CK_RV initializeClientKeys( SSLContext_t * pxCtx,
     /* Get all of the available private key slot identities. */
     if( CKR_OK == xResult )
     {
-        xResult = ( BaseType_t ) pxCtx->pxP11FunctionList->C_GetSlotList( CK_TRUE,
-                                                                          pxSlotIds,
-                                                                          &xCount );
+        xResult = ( BaseType_t ) pxCtx->pxP11FunctionList
+                      ->C_GetSlotList( CK_TRUE, pxSlotIds, &xCount );
     }
 
     /* Put the module in authenticated mode. */
     if( CKR_OK == xResult )
     {
-        xResult = ( BaseType_t ) pxCtx->pxP11FunctionList->C_Login( pxCtx->xP11Session,
-                                                                    CKU_USER,
-                                                                    ( CK_UTF8CHAR_PTR ) configPKCS11_DEFAULT_USER_PIN,
-                                                                    sizeof( configPKCS11_DEFAULT_USER_PIN ) - 1 );
+        xResult = ( BaseType_t ) pxCtx->pxP11FunctionList->C_Login(
+            pxCtx->xP11Session,
+            CKU_USER,
+            ( CK_UTF8CHAR_PTR ) configPKCS11_DEFAULT_USER_PIN,
+            sizeof( configPKCS11_DEFAULT_USER_PIN ) - 1 );
     }
 
     if( CKR_OK == xResult )
     {
         /* Get the handle of the device private key. */
-        xResult = xFindObjectWithLabelAndClass( pxCtx->xP11Session,
-                                                pcLabelName,
-                                                strnlen( pcLabelName,
-                                                         pkcs11configMAX_LABEL_LENGTH ),
-                                                CKO_PRIVATE_KEY,
-                                                &pxCtx->xP11PrivateKey );
+        xResult = xFindObjectWithLabelAndClass(
+            pxCtx->xP11Session,
+            pcLabelName,
+            strnlen( pcLabelName, pkcs11configMAX_LABEL_LENGTH ),
+            CKO_PRIVATE_KEY,
+            &pxCtx->xP11PrivateKey );
     }
 
-    if( ( CKR_OK == xResult ) && ( pxCtx->xP11PrivateKey == CK_INVALID_HANDLE ) )
+    if( ( CKR_OK == xResult ) &&
+        ( pxCtx->xP11PrivateKey == CK_INVALID_HANDLE ) )
     {
         xResult = CK_INVALID_HANDLE;
         LogError( ( "Could not find private key." ) );
@@ -651,24 +692,24 @@ static CK_RV initializeClientKeys( SSLContext_t * pxCtx,
 
 /*-----------------------------------------------------------*/
 
-TlsTransportStatus_t TLS_FreeRTOS_Connect( NetworkContext_t * pNetworkContext,
-                                           const char * pHostName,
-                                           uint16_t port,
-                                           const NetworkCredentials_t * pNetworkCredentials,
-                                           uint32_t receiveTimeoutMs,
-                                           uint32_t sendTimeoutMs )
+TlsTransportStatus_t TLS_FreeRTOS_Connect(
+    NetworkContext_t * pNetworkContext,
+    const char * pHostName,
+    uint16_t port,
+    const NetworkCredentials_t * pNetworkCredentials,
+    uint32_t receiveTimeoutMs,
+    uint32_t sendTimeoutMs )
 {
     TlsTransportParams_t * pTlsTransportParams = NULL;
     TlsTransportStatus_t returnStatus = TLS_TRANSPORT_SUCCESS;
     BaseType_t socketStatus = 0;
     BaseType_t isSocketConnected = pdFALSE;
 
-    if( ( pNetworkContext == NULL ) ||
-        ( pNetworkContext->pParams == NULL ) ||
-        ( pHostName == NULL ) ||
-        ( pNetworkCredentials == NULL ) )
+    if( ( pNetworkContext == NULL ) || ( pNetworkContext->pParams == NULL ) ||
+        ( pHostName == NULL ) || ( pNetworkCredentials == NULL ) )
     {
-        LogError( ( "Invalid input parameter(s): Arguments cannot be NULL. pNetworkContext=%p, "
+        LogError( ( "Invalid input parameter(s): Arguments cannot be NULL. "
+                    "pNetworkContext=%p, "
                     "pHostName=%p, pNetworkCredentials=%p.",
                     pNetworkContext,
                     pHostName,
@@ -713,7 +754,9 @@ TlsTransportStatus_t TLS_FreeRTOS_Connect( NetworkContext_t * pNetworkContext,
     {
         isSocketConnected = pdTRUE;
 
-        returnStatus = tlsSetup( pNetworkContext, pHostName, pNetworkCredentials );
+        returnStatus = tlsSetup( pNetworkContext,
+                                 pHostName,
+                                 pNetworkCredentials );
     }
 
     /* Clean up on failure. */
@@ -746,7 +789,8 @@ void TLS_FreeRTOS_Disconnect( NetworkContext_t * pNetworkContext )
     {
         pTlsTransportParams = pNetworkContext->pParams;
         /* Attempting to terminate TLS connection. */
-        tlsStatus = ( BaseType_t ) mbedtls_ssl_close_notify( &( pTlsTransportParams->sslContext.context ) );
+        tlsStatus = ( BaseType_t ) mbedtls_ssl_close_notify(
+            &( pTlsTransportParams->sslContext.context ) );
 
         /* Ignore the WANT_READ and WANT_WRITE return values. */
         if( ( tlsStatus != ( BaseType_t ) MBEDTLS_ERR_SSL_WANT_READ ) &&
@@ -759,7 +803,8 @@ void TLS_FreeRTOS_Disconnect( NetworkContext_t * pNetworkContext )
             }
             else
             {
-                LogError( ( "(Network connection %p) Failed to send TLS close-notify: mbedTLSError= %s : %s.",
+                LogError( ( "(Network connection %p) Failed to send TLS "
+                            "close-notify: mbedTLSError= %s : %s.",
                             pNetworkContext,
                             mbedtlsHighLevelCodeOrDefault( tlsStatus ),
                             mbedtlsLowLevelCodeOrDefault( tlsStatus ) ) );
@@ -802,21 +847,23 @@ int32_t TLS_FreeRTOS_recv( NetworkContext_t * pNetworkContext,
     {
         pTlsTransportParams = pNetworkContext->pParams;
 
-        tlsStatus = ( int32_t ) mbedtls_ssl_read( &( pTlsTransportParams->sslContext.context ),
-                                                  pBuffer,
-                                                  bytesToRecv );
+        tlsStatus = ( int32_t )
+            mbedtls_ssl_read( &( pTlsTransportParams->sslContext.context ),
+                              pBuffer,
+                              bytesToRecv );
 
         if( ( tlsStatus == MBEDTLS_ERR_SSL_TIMEOUT ) ||
             ( tlsStatus == MBEDTLS_ERR_SSL_WANT_READ ) ||
             ( tlsStatus == MBEDTLS_ERR_SSL_WANT_WRITE ) )
         {
-            LogDebug( ( "Failed to read data. However, a read can be retried on this error. "
+            LogDebug( ( "Failed to read data. However, a read can be retried "
+                        "on this error. "
                         "mbedTLSError= %s : %s.",
                         mbedtlsHighLevelCodeOrDefault( tlsStatus ),
                         mbedtlsLowLevelCodeOrDefault( tlsStatus ) ) );
 
-            /* Mark these set of errors as a timeout. The libraries may retry read
-             * on these errors. */
+            /* Mark these set of errors as a timeout. The libraries may retry
+             * read on these errors. */
             tlsStatus = 0;
         }
         else if( tlsStatus < 0 )
@@ -861,21 +908,23 @@ int32_t TLS_FreeRTOS_send( NetworkContext_t * pNetworkContext,
     else
     {
         pTlsTransportParams = pNetworkContext->pParams;
-        tlsStatus = ( int32_t ) mbedtls_ssl_write( &( pTlsTransportParams->sslContext.context ),
-                                                   pBuffer,
-                                                   bytesToSend );
+        tlsStatus = ( int32_t )
+            mbedtls_ssl_write( &( pTlsTransportParams->sslContext.context ),
+                               pBuffer,
+                               bytesToSend );
 
         if( ( tlsStatus == MBEDTLS_ERR_SSL_TIMEOUT ) ||
             ( tlsStatus == MBEDTLS_ERR_SSL_WANT_READ ) ||
             ( tlsStatus == MBEDTLS_ERR_SSL_WANT_WRITE ) )
         {
-            LogDebug( ( "Failed to send data. However, send can be retried on this error. "
+            LogDebug( ( "Failed to send data. However, send can be retried on "
+                        "this error. "
                         "mbedTLSError= %s : %s.",
                         mbedtlsHighLevelCodeOrDefault( tlsStatus ),
                         mbedtlsLowLevelCodeOrDefault( tlsStatus ) ) );
 
-            /* Mark these set of errors as a timeout. The libraries may retry send
-             * on these errors. */
+            /* Mark these set of errors as a timeout. The libraries may retry
+             * send on these errors. */
             tlsStatus = 0;
         }
         else if( tlsStatus < 0 )

@@ -28,22 +28,22 @@
 #include <redfs.h>
 #include <redcore.h>
 
-
 #if REDCONF_READ_ONLY == 0
-static REDSTATUS InodeIsBranched(uint32_t ulInode, bool *pfIsBranched);
+static REDSTATUS InodeIsBranched( uint32_t ulInode, bool * pfIsBranched );
 #endif
-#if (REDCONF_READ_ONLY == 0) && (REDCONF_API_POSIX == 1)
-static REDSTATUS InodeFindFree(uint32_t *pulInode);
+#if( REDCONF_READ_ONLY == 0 ) && ( REDCONF_API_POSIX == 1 )
+static REDSTATUS InodeFindFree( uint32_t * pulInode );
 #endif
 #if REDCONF_READ_ONLY == 0
-static REDSTATUS InodeGetWriteableCopy(uint32_t ulInode, uint8_t *pbWhich);
+static REDSTATUS InodeGetWriteableCopy( uint32_t ulInode, uint8_t * pbWhich );
 #endif
-static REDSTATUS InodeGetCurrentCopy(uint32_t ulInode, uint8_t *pbWhich);
+static REDSTATUS InodeGetCurrentCopy( uint32_t ulInode, uint8_t * pbWhich );
 #if REDCONF_READ_ONLY == 0
-static REDSTATUS InodeBitSet(uint32_t ulInode, uint8_t bWhich, bool fAllocated);
+static REDSTATUS InodeBitSet( uint32_t ulInode,
+                              uint8_t bWhich,
+                              bool fAllocated );
 #endif
-static uint32_t InodeBlock(uint32_t ulInode, uint8_t bWhich);
-
+static uint32_t InodeBlock( uint32_t ulInode, uint8_t bWhich );
 
 /** @brief Mount an existing inode.
 
@@ -64,111 +64,111 @@ static uint32_t InodeBlock(uint32_t ulInode, uint8_t bWhich);
     @retval -RED_EIO        A disk I/O error occurred.
     @retval -RED_EBADF      The inode number is free; or the inode number is not
                             valid.
-    @retval -RED_EISDIR     @p type is ::FTYPE_FILE and the inode is a directory.
+    @retval -RED_EISDIR     @p type is ::FTYPE_FILE and the inode is a
+   directory.
     @retval -RED_ENOTDIR    @p type is ::FTYPE_DIR and the inode is a file.
 */
-REDSTATUS RedInodeMount(
-    CINODE     *pInode,
-    FTYPE       type,
-    bool        fBranch)
+REDSTATUS RedInodeMount( CINODE * pInode, FTYPE type, bool fBranch )
 {
-    REDSTATUS   ret = 0;
+    REDSTATUS ret = 0;
 
-    if(pInode == NULL)
+    if( pInode == NULL )
     {
         ret = -RED_EINVAL;
     }
-    else if(!INODE_IS_VALID(pInode->ulInode))
+    else if( !INODE_IS_VALID( pInode->ulInode ) )
     {
         ret = -RED_EBADF;
     }
-  #if REDCONF_API_FSE == 1
-    else if(type == FTYPE_DIR)
+#if REDCONF_API_FSE == 1
+    else if( type == FTYPE_DIR )
     {
         REDERROR();
         ret = -RED_EINVAL;
     }
-  #endif
-  #if REDCONF_READ_ONLY == 1
-    else if(fBranch)
+#endif
+#if REDCONF_READ_ONLY == 1
+    else if( fBranch )
     {
         REDERROR();
         ret = -RED_EROFS;
     }
-  #endif
+#endif
     else
     {
         uint32_t ulInode = pInode->ulInode;
-        uint8_t  bWhich = 0U; /* Init'd to quiet warnings. */
+        uint8_t bWhich = 0U; /* Init'd to quiet warnings. */
 
-        RedMemSet(pInode, 0U, sizeof(*pInode));
+        RedMemSet( pInode, 0U, sizeof( *pInode ) );
         pInode->ulInode = ulInode;
 
-        ret = InodeGetCurrentCopy(pInode->ulInode, &bWhich);
+        ret = InodeGetCurrentCopy( pInode->ulInode, &bWhich );
 
-        if(ret == 0)
+        if( ret == 0 )
         {
-            ret = RedBufferGet(InodeBlock(pInode->ulInode, bWhich), BFLAG_META_INODE, CAST_VOID_PTR_PTR(&pInode->pInodeBuf));
+            ret = RedBufferGet( InodeBlock( pInode->ulInode, bWhich ),
+                                BFLAG_META_INODE,
+                                CAST_VOID_PTR_PTR( &pInode->pInodeBuf ) );
         }
 
-      #if REDCONF_READ_ONLY == 0
-        if(ret == 0)
+#if REDCONF_READ_ONLY == 0
+        if( ret == 0 )
         {
-            ret = InodeIsBranched(pInode->ulInode, &pInode->fBranched);
+            ret = InodeIsBranched( pInode->ulInode, &pInode->fBranched );
         }
-      #endif
+#endif
 
-        if(ret == 0)
+        if( ret == 0 )
         {
-            if(RED_S_ISREG(pInode->pInodeBuf->uMode))
+            if( RED_S_ISREG( pInode->pInodeBuf->uMode ) )
             {
-              #if REDCONF_API_POSIX == 1
+#if REDCONF_API_POSIX == 1
                 pInode->fDirectory = false;
 
-                if(type == FTYPE_DIR)
+                if( type == FTYPE_DIR )
                 {
                     ret = -RED_ENOTDIR;
                 }
-              #endif
+#endif
             }
-          #if REDCONF_API_POSIX == 1
-            else if(RED_S_ISDIR(pInode->pInodeBuf->uMode))
+#if REDCONF_API_POSIX == 1
+            else if( RED_S_ISDIR( pInode->pInodeBuf->uMode ) )
             {
                 pInode->fDirectory = true;
 
-                if(type == FTYPE_FILE)
+                if( type == FTYPE_FILE )
                 {
                     ret = -RED_EISDIR;
                 }
             }
-          #endif
+#endif
             else
             {
                 /*  Missing or unsupported inode type.
-                */
+                 */
                 CRITICAL_ERROR();
                 ret = -RED_EFUBAR;
             }
         }
 
-      #if REDCONF_READ_ONLY == 0
-        if((ret == 0) && fBranch)
+#if REDCONF_READ_ONLY == 0
+        if( ( ret == 0 ) && fBranch )
         {
-            ret = RedInodeBranch(pInode);
+            ret = RedInodeBranch( pInode );
         }
-      #endif
+#endif
 
-        if(ret != 0)
+        if( ret != 0 )
         {
-            RedInodePut(pInode, 0U);
+            RedInodePut( pInode, 0U );
         }
     }
 
     return ret;
 }
 
-
-#if (REDCONF_READ_ONLY == 0) && ((REDCONF_API_POSIX == 1) || FORMAT_SUPPORTED)
+#if( REDCONF_READ_ONLY == 0 ) && \
+    ( ( REDCONF_API_POSIX == 1 ) || FORMAT_SUPPORTED )
 /** @brief Create an inode.
 
     @param pInode   Pointer to the cached inode structure.  If pInode->ulInode
@@ -189,23 +189,21 @@ REDSTATUS RedInodeMount(
     @retval -RED_ENFILE All inode slots are already in use.
     @retval -RED_EIO    A disk I/O error occurred.
 */
-REDSTATUS RedInodeCreate(
-    CINODE     *pInode,
-    uint32_t    ulPInode,
-    uint16_t    uMode)
+REDSTATUS RedInodeCreate( CINODE * pInode, uint32_t ulPInode, uint16_t uMode )
 {
-    REDSTATUS   ret;
+    REDSTATUS ret;
 
-  #if REDCONF_API_POSIX == 1
+    #if REDCONF_API_POSIX == 1
     /*  ulPInode must be a valid inode number, unless we are creating the root
         directory, in which case ulPInode must be INODE_INVALID (the root
         directory has no parent).
     */
-    if(    (pInode == NULL)
-        || (!INODE_IS_VALID(ulPInode) && ((ulPInode != INODE_INVALID) || (pInode->ulInode != INODE_ROOTDIR))))
-  #else
-    if(pInode == NULL)
-  #endif
+    if( ( pInode == NULL ) || ( !INODE_IS_VALID( ulPInode ) &&
+                                ( ( ulPInode != INODE_INVALID ) ||
+                                  ( pInode->ulInode != INODE_ROOTDIR ) ) ) )
+    #else
+    if( pInode == NULL )
+    #endif
     {
         REDERROR();
         ret = -RED_EINVAL;
@@ -214,30 +212,30 @@ REDSTATUS RedInodeCreate(
     {
         uint32_t ulInode = pInode->ulInode;
 
-        RedMemSet(pInode, 0U, sizeof(*pInode));
+        RedMemSet( pInode, 0U, sizeof( *pInode ) );
 
-      #if REDCONF_API_POSIX == 1
-        if(ulInode == INODE_INVALID)
+    #if REDCONF_API_POSIX == 1
+        if( ulInode == INODE_INVALID )
         {
             /*  Caller requested that an inode number be allocated.  Search for
                 an unused inode number, error if there isn't one.
             */
-            ret = InodeFindFree(&pInode->ulInode);
+            ret = InodeFindFree( &pInode->ulInode );
         }
         else
-      #endif
+    #endif
         {
             /*  Caller requested creation of a specific inode number.  Make sure
                 it's valid and doesn't already exist.
             */
-            if(INODE_IS_VALID(ulInode))
+            if( INODE_IS_VALID( ulInode ) )
             {
                 bool fFree;
 
-                ret = RedInodeIsFree(ulInode, &fFree);
-                if(ret == 0)
+                ret = RedInodeIsFree( ulInode, &fFree );
+                if( ret == 0 )
                 {
-                    if(fFree)
+                    if( fFree )
                     {
                         pInode->ulInode = ulInode;
                     }
@@ -253,65 +251,69 @@ REDSTATUS RedInodeCreate(
             }
         }
 
-        if(ret == 0)
+        if( ret == 0 )
         {
             uint8_t bWriteableWhich;
 
-            ret = InodeGetWriteableCopy(pInode->ulInode, &bWriteableWhich);
+            ret = InodeGetWriteableCopy( pInode->ulInode, &bWriteableWhich );
 
-            if(ret == 0)
+            if( ret == 0 )
             {
-                ret = RedBufferGet(InodeBlock(pInode->ulInode, bWriteableWhich),
-                    (uint16_t)((uint32_t)BFLAG_META_INODE | BFLAG_DIRTY | BFLAG_NEW), CAST_VOID_PTR_PTR(&pInode->pInodeBuf));
+                ret = RedBufferGet( InodeBlock( pInode->ulInode,
+                                                bWriteableWhich ),
+                                    ( uint16_t ) ( ( uint32_t )
+                                                       BFLAG_META_INODE |
+                                                   BFLAG_DIRTY | BFLAG_NEW ),
+                                    CAST_VOID_PTR_PTR( &pInode->pInodeBuf ) );
 
-                if(ret == 0)
+                if( ret == 0 )
                 {
                     /*  Mark the inode block as allocated.
-                    */
-                    ret = InodeBitSet(pInode->ulInode, bWriteableWhich, true);
+                     */
+                    ret = InodeBitSet( pInode->ulInode, bWriteableWhich, true );
 
-                    if(ret != 0)
+                    if( ret != 0 )
                     {
-                        RedBufferPut(pInode->pInodeBuf);
+                        RedBufferPut( pInode->pInodeBuf );
                     }
                 }
             }
         }
 
-        if(ret == 0)
+        if( ret == 0 )
         {
-          #if REDCONF_INODE_TIMESTAMPS == 1
+    #if REDCONF_INODE_TIMESTAMPS == 1
             uint32_t ulNow = RedOsClockGetTime();
 
             pInode->pInodeBuf->ulATime = ulNow;
             pInode->pInodeBuf->ulMTime = ulNow;
             pInode->pInodeBuf->ulCTime = ulNow;
-          #endif
+    #endif
 
             pInode->pInodeBuf->uMode = uMode;
 
-          #if REDCONF_API_POSIX == 1
-          #if REDCONF_API_POSIX_LINK == 1
+    #if REDCONF_API_POSIX == 1
+        #if REDCONF_API_POSIX_LINK == 1
             pInode->pInodeBuf->uNLink = 1U;
-          #endif
+        #endif
             pInode->pInodeBuf->ulPInode = ulPInode;
-          #else
-            (void)ulPInode;
-          #endif
+    #else
+            ( void ) ulPInode;
+    #endif
 
             pInode->fBranched = true;
             pInode->fDirty = true;
 
-          #if REDCONF_API_POSIX == 1
+    #if REDCONF_API_POSIX == 1
             gpRedMR->ulFreeInodes--;
-          #endif
+    #endif
         }
     }
 
     return ret;
 }
-#endif /* (REDCONF_READ_ONLY == 0) && ((REDCONF_API_POSIX == 1) || FORMAT_SUPPORTED) */
-
+#endif /* (REDCONF_READ_ONLY == 0) && ((REDCONF_API_POSIX == 1) || \
+          FORMAT_SUPPORTED) */
 
 #if DELETE_SUPPORTED
 /** @brief Delete an inode.
@@ -325,31 +327,29 @@ REDSTATUS RedInodeCreate(
     @retval -RED_EINVAL @p pInode is `NULL`; or pInode->pBuffer is `NULL`.
     @retval -RED_EIO    A disk I/O error occurred.
 */
-REDSTATUS RedInodeDelete(
-    CINODE     *pInode)
+REDSTATUS RedInodeDelete( CINODE * pInode )
 {
-    REDSTATUS   ret = 0;
+    REDSTATUS ret = 0;
 
-    if(!CINODE_IS_MOUNTED(pInode))
+    if( !CINODE_IS_MOUNTED( pInode ) )
     {
         ret = -RED_EINVAL;
     }
     else
     {
-        if(pInode->pInodeBuf->ullSize != 0U)
+        if( pInode->pInodeBuf->ullSize != 0U )
         {
-            ret = RedInodeDataTruncate(pInode, UINT64_SUFFIX(0));
+            ret = RedInodeDataTruncate( pInode, UINT64_SUFFIX( 0 ) );
         }
 
-        if(ret == 0)
+        if( ret == 0 )
         {
-            ret = RedInodeFree(pInode);
+            ret = RedInodeFree( pInode );
         }
     }
 
     return ret;
 }
-
 
 /** @brief Decrement an inode link count and delete the inode if the link count
            falls to zero.
@@ -362,37 +362,35 @@ REDSTATUS RedInodeDelete(
     @retval -RED_EINVAL @p pInode is not a mounted cachde inode.
     @retval -RED_EIO    A disk I/O error occurred.
 */
-REDSTATUS RedInodeLinkDec(
-    CINODE     *pInode)
+REDSTATUS RedInodeLinkDec( CINODE * pInode )
 {
-    REDSTATUS   ret;
+    REDSTATUS ret;
 
-    if(!CINODE_IS_MOUNTED(pInode))
+    if( !CINODE_IS_MOUNTED( pInode ) )
     {
         ret = -RED_EINVAL;
     }
-  #if REDCONF_API_POSIX_LINK == 1
-    else if(pInode->pInodeBuf->uNLink > 1U)
+    #if REDCONF_API_POSIX_LINK == 1
+    else if( pInode->pInodeBuf->uNLink > 1U )
     {
-        ret = RedInodeBranch(pInode);
+        ret = RedInodeBranch( pInode );
 
-        if(ret == 0)
+        if( ret == 0 )
         {
             pInode->pInodeBuf->uNLink--;
         }
     }
-  #endif
+    #endif
     else
     {
-        ret = RedInodeDelete(pInode);
+        ret = RedInodeDelete( pInode );
     }
 
     return ret;
 }
 #endif /* DELETE_SUPPORTED */
 
-
-#if (REDCONF_READ_ONLY == 0) && (REDCONF_API_POSIX == 1)
+#if( REDCONF_READ_ONLY == 0 ) && ( REDCONF_API_POSIX == 1 )
 /** @brief Free an inode.
 
     @param pInode   Pointer to the cached inode structure.
@@ -404,12 +402,11 @@ REDSTATUS RedInodeLinkDec(
     @retval -RED_EINVAL @p pInode is `NULL`; or pInode->pBuffer is `NULL`.
     @retval -RED_EIO    A disk I/O error occurred.
 */
-REDSTATUS RedInodeFree(
-    CINODE     *pInode)
+REDSTATUS RedInodeFree( CINODE * pInode )
 {
-    REDSTATUS   ret;
+    REDSTATUS ret;
 
-    if(!CINODE_IS_MOUNTED(pInode))
+    if( !CINODE_IS_MOUNTED( pInode ) )
     {
         ret = -RED_EINVAL;
     }
@@ -417,25 +414,31 @@ REDSTATUS RedInodeFree(
     {
         bool fSlot0Allocated;
 
-        RedBufferDiscard(pInode->pInodeBuf);
+        RedBufferDiscard( pInode->pInodeBuf );
         pInode->pInodeBuf = NULL;
 
         /*  Determine which of the two slots for the inode is currently
             allocated, and free that slot.
         */
-        ret = RedInodeBitGet(gpRedCoreVol->bCurMR, pInode->ulInode, 0U, &fSlot0Allocated);
+        ret = RedInodeBitGet( gpRedCoreVol->bCurMR,
+                              pInode->ulInode,
+                              0U,
+                              &fSlot0Allocated );
 
-        if(ret == 0)
+        if( ret == 0 )
         {
             bool fSlot1Allocated;
 
-            ret = RedInodeBitGet(gpRedCoreVol->bCurMR, pInode->ulInode, 1U, &fSlot1Allocated);
+            ret = RedInodeBitGet( gpRedCoreVol->bCurMR,
+                                  pInode->ulInode,
+                                  1U,
+                                  &fSlot1Allocated );
 
-            if(ret == 0)
+            if( ret == 0 )
             {
-                if(fSlot0Allocated)
+                if( fSlot0Allocated )
                 {
-                    if(fSlot1Allocated)
+                    if( fSlot1Allocated )
                     {
                         /*  Both inode slots should never be allocated at
                             the same time.
@@ -445,12 +448,12 @@ REDSTATUS RedInodeFree(
                     }
                     else
                     {
-                        ret = InodeBitSet(pInode->ulInode, 0U, false);
+                        ret = InodeBitSet( pInode->ulInode, 0U, false );
                     }
                 }
                 else
                 {
-                    if(!fSlot1Allocated)
+                    if( !fSlot1Allocated )
                     {
                         /*  The inode in unallocated, which should have been
                             caught when it was mounted.
@@ -460,7 +463,7 @@ REDSTATUS RedInodeFree(
                     }
                     else
                     {
-                        ret = InodeBitSet(pInode->ulInode, 1U, false);
+                        ret = InodeBitSet( pInode->ulInode, 1U, false );
                     }
                 }
             }
@@ -468,9 +471,9 @@ REDSTATUS RedInodeFree(
 
         pInode->ulInode = INODE_INVALID;
 
-        if(ret == 0)
+        if( ret == 0 )
         {
-            if(gpRedMR->ulFreeInodes >= gpRedVolConf->ulInodeCount)
+            if( gpRedMR->ulFreeInodes >= gpRedVolConf->ulInodeCount )
             {
                 CRITICAL_ERROR();
                 ret = -RED_EFUBAR;
@@ -486,7 +489,6 @@ REDSTATUS RedInodeFree(
 }
 #endif /* (REDCONF_READ_ONLY == 0) && (REDCONF_API_POSIX == 1) */
 
-
 /** @brief Put the cached inode structure.
 
     This puts all of the buffers in the ::CINODE structure.  Also updates inode
@@ -495,24 +497,22 @@ REDSTATUS RedInodeFree(
     @param pInode       The cached inode structure.
     @param bTimeFields  The inode timestamp fields to update.
 */
-void RedInodePut(
-    CINODE  *pInode,
-    uint8_t  bTimeFields)
+void RedInodePut( CINODE * pInode, uint8_t bTimeFields )
 {
-    if(pInode == NULL)
+    if( pInode == NULL )
     {
         REDERROR();
     }
     else
     {
-        RedInodePutCoord(pInode);
+        RedInodePutCoord( pInode );
 
-        if(pInode->pInodeBuf != NULL)
+        if( pInode->pInodeBuf != NULL )
         {
-          #if (REDCONF_READ_ONLY == 0) && (REDCONF_INODE_TIMESTAMPS == 1)
-            if((bTimeFields & IPUT_UPDATE_MASK) != 0U)
+#if( REDCONF_READ_ONLY == 0 ) && ( REDCONF_INODE_TIMESTAMPS == 1 )
+            if( ( bTimeFields & IPUT_UPDATE_MASK ) != 0U )
             {
-                if(!pInode->fBranched || !pInode->fDirty)
+                if( !pInode->fBranched || !pInode->fDirty )
                 {
                     REDERROR();
                 }
@@ -520,135 +520,126 @@ void RedInodePut(
                 {
                     uint32_t ulNow = RedOsClockGetTime();
 
-                  #if REDCONF_ATIME == 1
-                    if((bTimeFields & IPUT_UPDATE_ATIME) != 0U)
+    #if REDCONF_ATIME == 1
+                    if( ( bTimeFields & IPUT_UPDATE_ATIME ) != 0U )
                     {
                         pInode->pInodeBuf->ulATime = ulNow;
                     }
-                  #endif
+    #endif
 
-                    if((bTimeFields & IPUT_UPDATE_MTIME) != 0U)
+                    if( ( bTimeFields & IPUT_UPDATE_MTIME ) != 0U )
                     {
                         pInode->pInodeBuf->ulMTime = ulNow;
                     }
 
-                    if((bTimeFields & IPUT_UPDATE_CTIME) != 0U)
+                    if( ( bTimeFields & IPUT_UPDATE_CTIME ) != 0U )
                     {
                         pInode->pInodeBuf->ulCTime = ulNow;
                     }
                 }
             }
-          #else
-            (void)bTimeFields;
-          #endif
+#else
+            ( void ) bTimeFields;
+#endif
 
-            RedBufferPut(pInode->pInodeBuf);
+            RedBufferPut( pInode->pInodeBuf );
             pInode->pInodeBuf = NULL;
         }
     }
 }
-
 
 /** @brief Put all buffers in the cached inode structure except for the inode
            node buffer.
 
     @param pInode   A pointer to the cached inode structure.
 */
-void RedInodePutCoord(
-    CINODE *pInode)
+void RedInodePutCoord( CINODE * pInode )
 {
-    if(pInode == NULL)
+    if( pInode == NULL )
     {
         REDERROR();
     }
     else
     {
-        RedInodePutData(pInode);
-      #if REDCONF_DIRECT_POINTERS < INODE_ENTRIES
-        RedInodePutIndir(pInode);
-      #endif
-      #if DINDIR_POINTERS > 0U
-        RedInodePutDindir(pInode);
-      #endif
+        RedInodePutData( pInode );
+#if REDCONF_DIRECT_POINTERS < INODE_ENTRIES
+        RedInodePutIndir( pInode );
+#endif
+#if DINDIR_POINTERS > 0U
+        RedInodePutDindir( pInode );
+#endif
     }
 }
-
 
 #if DINDIR_POINTERS > 0U
 /** @brief Put the double indirect buffer.
 
     @param pInode   A pointer to the cached inode structure.
 */
-void RedInodePutDindir(
-    CINODE *pInode)
+void RedInodePutDindir( CINODE * pInode )
 {
-    if(pInode == NULL)
+    if( pInode == NULL )
     {
         REDERROR();
     }
-    else if(pInode->pDindir != NULL)
+    else if( pInode->pDindir != NULL )
     {
-        RedBufferPut(pInode->pDindir);
+        RedBufferPut( pInode->pDindir );
         pInode->pDindir = NULL;
     }
     else
     {
         /*  No double indirect buffer, nothing to put.
-        */
+         */
     }
 }
 #endif
-
 
 #if REDCONF_DIRECT_POINTERS < INODE_ENTRIES
 /** @brief Put the indirect buffer.
 
     @param pInode   A pointer to the cached inode structure.
 */
-void RedInodePutIndir(
-    CINODE *pInode)
+void RedInodePutIndir( CINODE * pInode )
 {
-    if(pInode == NULL)
+    if( pInode == NULL )
     {
         REDERROR();
     }
-    else if(pInode->pIndir != NULL)
+    else if( pInode->pIndir != NULL )
     {
-        RedBufferPut(pInode->pIndir);
+        RedBufferPut( pInode->pIndir );
         pInode->pIndir = NULL;
     }
     else
     {
         /*  No indirect buffer, nothing to put.
-        */
+         */
     }
 }
 #endif
-
 
 /** @brief Put the inode data buffer.
 
     @param pInode   A pointer to the cached inode structure.
 */
-void RedInodePutData(
-    CINODE *pInode)
+void RedInodePutData( CINODE * pInode )
 {
-    if(pInode == NULL)
+    if( pInode == NULL )
     {
         REDERROR();
     }
-    else if(pInode->pbData != NULL)
+    else if( pInode->pbData != NULL )
     {
-        RedBufferPut(pInode->pbData);
+        RedBufferPut( pInode->pbData );
         pInode->pbData = NULL;
     }
     else
     {
         /*  No data buffer, nothing to put.
-        */
+         */
     }
 }
-
 
 #if REDCONF_READ_ONLY == 0
 /** @brief Determine if an inode is branched.
@@ -664,13 +655,11 @@ void RedInodePutData(
                         number.
     @retval -RED_EIO    A disk I/O error occurred.
 */
-static REDSTATUS InodeIsBranched(
-    uint32_t    ulInode,
-    bool       *pfIsBranched)
+static REDSTATUS InodeIsBranched( uint32_t ulInode, bool * pfIsBranched )
 {
-    REDSTATUS   ret;
+    REDSTATUS ret;
 
-    if(!INODE_IS_VALID(ulInode) || (pfIsBranched == NULL))
+    if( !INODE_IS_VALID( ulInode ) || ( pfIsBranched == NULL ) )
     {
         REDERROR();
         ret = -RED_EINVAL;
@@ -679,21 +668,21 @@ static REDSTATUS InodeIsBranched(
     {
         ALLOCSTATE state;
 
-        ret = RedImapBlockState(InodeBlock(ulInode, 0U), &state);
+        ret = RedImapBlockState( InodeBlock( ulInode, 0U ), &state );
 
-        if(ret == 0)
+        if( ret == 0 )
         {
-            if(state == ALLOCSTATE_NEW)
+            if( state == ALLOCSTATE_NEW )
             {
                 *pfIsBranched = true;
             }
             else
             {
-                ret = RedImapBlockState(InodeBlock(ulInode, 1U), &state);
+                ret = RedImapBlockState( InodeBlock( ulInode, 1U ), &state );
 
-                if(ret == 0)
+                if( ret == 0 )
                 {
-                    if(state == ALLOCSTATE_NEW)
+                    if( state == ALLOCSTATE_NEW )
                     {
                         *pfIsBranched = true;
                     }
@@ -708,7 +697,6 @@ static REDSTATUS InodeIsBranched(
 
     return ret;
 }
-
 
 /** @brief Branch an inode.
 
@@ -725,25 +713,25 @@ static REDSTATUS InodeIsBranched(
     @retval -RED_EINVAL Invalid parameters.
     @retval -RED_EIO    A disk I/O error occurred.
 */
-REDSTATUS RedInodeBranch(
-    CINODE *pInode)
+REDSTATUS RedInodeBranch( CINODE * pInode )
 {
     REDSTATUS ret;
 
-    if(!CINODE_IS_MOUNTED(pInode))
+    if( !CINODE_IS_MOUNTED( pInode ) )
     {
         REDERROR();
         ret = -RED_EINVAL;
     }
-    else if(!pInode->fBranched)
+    else if( !pInode->fBranched )
     {
         uint8_t bWhich;
 
-        ret = InodeGetWriteableCopy(pInode->ulInode, &bWhich);
+        ret = InodeGetWriteableCopy( pInode->ulInode, &bWhich );
 
-        if(ret == 0)
+        if( ret == 0 )
         {
-            RedBufferBranch(pInode->pInodeBuf, InodeBlock(pInode->ulInode, bWhich));
+            RedBufferBranch( pInode->pInodeBuf,
+                             InodeBlock( pInode->ulInode, bWhich ) );
             pInode->fBranched = true;
             pInode->fDirty = true;
         }
@@ -752,21 +740,21 @@ REDSTATUS RedInodeBranch(
             (still used by the committed state) and the new slot block becomes
             new.
         */
-        if(ret == 0)
+        if( ret == 0 )
         {
-            ret = InodeBitSet(pInode->ulInode, 1U - bWhich, false);
+            ret = InodeBitSet( pInode->ulInode, 1U - bWhich, false );
         }
 
-        if(ret == 0)
+        if( ret == 0 )
         {
-            ret = InodeBitSet(pInode->ulInode, bWhich, true);
+            ret = InodeBitSet( pInode->ulInode, bWhich, true );
         }
 
-        CRITICAL_ASSERT(ret == 0);
+        CRITICAL_ASSERT( ret == 0 );
     }
     else
     {
-        RedBufferDirty(pInode->pInodeBuf);
+        RedBufferDirty( pInode->pInodeBuf );
         pInode->fDirty = true;
         ret = 0;
     }
@@ -775,8 +763,7 @@ REDSTATUS RedInodeBranch(
 }
 #endif /* REDCONF_READ_ONLY == 0 */
 
-
-#if (REDCONF_READ_ONLY == 0) && (REDCONF_API_POSIX == 1)
+#if( REDCONF_READ_ONLY == 0 ) && ( REDCONF_API_POSIX == 1 )
 /** @brief Find a free inode number.
 
     @param pulInode On successful return, populated with a free inode number.
@@ -788,17 +775,16 @@ REDSTATUS RedInodeBranch(
     @retval -RED_EIO    A disk I/O error occurred.
     @retval -RED_ENFILE No available inode numbers.
 */
-static REDSTATUS InodeFindFree(
-    uint32_t   *pulInode)
+static REDSTATUS InodeFindFree( uint32_t * pulInode )
 {
-    REDSTATUS   ret;
+    REDSTATUS ret;
 
-    if(pulInode == NULL)
+    if( pulInode == NULL )
     {
         REDERROR();
         ret = -RED_EINVAL;
     }
-    else if(gpRedMR->ulFreeInodes == 0U)
+    else if( gpRedMR->ulFreeInodes == 0U )
     {
         ret = -RED_ENFILE;
     }
@@ -808,28 +794,30 @@ static REDSTATUS InodeFindFree(
 
         ret = 0;
 
-        for(ulInode = INODE_FIRST_FREE; ulInode < (INODE_FIRST_VALID + gpRedVolConf->ulInodeCount); ulInode++)
+        for( ulInode = INODE_FIRST_FREE;
+             ulInode < ( INODE_FIRST_VALID + gpRedVolConf->ulInodeCount );
+             ulInode++ )
         {
             bool fFree;
 
-            ret = RedInodeIsFree(ulInode, &fFree);
+            ret = RedInodeIsFree( ulInode, &fFree );
 
-            if((ret != 0) || fFree)
+            if( ( ret != 0 ) || fFree )
             {
                 break;
             }
         }
 
-        if(ret == 0)
+        if( ret == 0 )
         {
-            if(ulInode < (INODE_FIRST_VALID + gpRedVolConf->ulInodeCount))
+            if( ulInode < ( INODE_FIRST_VALID + gpRedVolConf->ulInodeCount ) )
             {
                 *pulInode = ulInode;
             }
             else
             {
                 /*  If gpRedMR->ulFreeInodes > 0, we should have found an inode.
-                */
+                 */
                 CRITICAL_ERROR();
                 ret = -RED_ENFILE;
             }
@@ -840,8 +828,9 @@ static REDSTATUS InodeFindFree(
 }
 #endif
 
-
-#if ((REDCONF_READ_ONLY == 0) && ((REDCONF_API_POSIX == 1) || FORMAT_SUPPORTED)) || (REDCONF_CHECKER == 1)
+#if( ( REDCONF_READ_ONLY == 0 ) &&                           \
+     ( ( REDCONF_API_POSIX == 1 ) || FORMAT_SUPPORTED ) ) || \
+    ( REDCONF_CHECKER == 1 )
 /** @brief Determine whether an inode number is available.
 
     @param ulInode  The node number to examine.
@@ -855,13 +844,11 @@ static REDSTATUS InodeFindFree(
                         number.
     @retval -RED_EIO    A disk I/O error occurred.
 */
-REDSTATUS RedInodeIsFree(
-    uint32_t    ulInode,
-    bool       *pfFree)
+REDSTATUS RedInodeIsFree( uint32_t ulInode, bool * pfFree )
 {
-    REDSTATUS   ret;
+    REDSTATUS ret;
 
-    if(pfFree == NULL)
+    if( pfFree == NULL )
     {
         REDERROR();
         ret = -RED_EINVAL;
@@ -872,13 +859,19 @@ REDSTATUS RedInodeIsFree(
 
         *pfFree = false;
 
-        ret = RedInodeBitGet(gpRedCoreVol->bCurMR, ulInode, 0U, &fSlot0Allocated);
-        if((ret == 0) && !fSlot0Allocated)
+        ret = RedInodeBitGet( gpRedCoreVol->bCurMR,
+                              ulInode,
+                              0U,
+                              &fSlot0Allocated );
+        if( ( ret == 0 ) && !fSlot0Allocated )
         {
             bool fSlot1Allocated;
 
-            ret = RedInodeBitGet(gpRedCoreVol->bCurMR, ulInode, 1U, &fSlot1Allocated);
-            if((ret == 0) && !fSlot1Allocated)
+            ret = RedInodeBitGet( gpRedCoreVol->bCurMR,
+                                  ulInode,
+                                  1U,
+                                  &fSlot1Allocated );
+            if( ( ret == 0 ) && !fSlot1Allocated )
             {
                 *pfFree = true;
             }
@@ -888,7 +881,6 @@ REDSTATUS RedInodeIsFree(
     return ret;
 }
 #endif
-
 
 #if REDCONF_READ_ONLY == 0
 /** @brief Determine which copy of the inode is currently writeable.
@@ -904,13 +896,11 @@ REDSTATUS RedInodeIsFree(
                         number.
     @retval -RED_EIO    A disk I/O error occurred.
 */
-static REDSTATUS InodeGetWriteableCopy(
-    uint32_t    ulInode,
-    uint8_t    *pbWhich)
+static REDSTATUS InodeGetWriteableCopy( uint32_t ulInode, uint8_t * pbWhich )
 {
-    REDSTATUS   ret;
+    REDSTATUS ret;
 
-    if(pbWhich == NULL)
+    if( pbWhich == NULL )
     {
         REDERROR();
         ret = -RED_EINVAL;
@@ -922,11 +912,14 @@ static REDSTATUS InodeGetWriteableCopy(
         /*  The writeable inode slot is the one which is free in the committed
             state, so query the committed state metaroot.
         */
-        ret = RedInodeBitGet(1U - gpRedCoreVol->bCurMR, ulInode, 0U, &fSlot0Allocated);
+        ret = RedInodeBitGet( 1U - gpRedCoreVol->bCurMR,
+                              ulInode,
+                              0U,
+                              &fSlot0Allocated );
 
-        if(ret == 0)
+        if( ret == 0 )
         {
-            if(!fSlot0Allocated)
+            if( !fSlot0Allocated )
             {
                 *pbWhich = 0U;
             }
@@ -934,11 +927,14 @@ static REDSTATUS InodeGetWriteableCopy(
             {
                 bool fSlot1Allocated;
 
-                ret = RedInodeBitGet(1U - gpRedCoreVol->bCurMR, ulInode, 1U, &fSlot1Allocated);
+                ret = RedInodeBitGet( 1U - gpRedCoreVol->bCurMR,
+                                      ulInode,
+                                      1U,
+                                      &fSlot1Allocated );
 
-                if(ret == 0)
+                if( ret == 0 )
                 {
-                    if(!fSlot1Allocated)
+                    if( !fSlot1Allocated )
                     {
                         *pbWhich = 1U;
                     }
@@ -959,7 +955,6 @@ static REDSTATUS InodeGetWriteableCopy(
 }
 #endif
 
-
 /** @brief Determine which copy of the inode is current.
 
     @param ulInode  The inode number to examine.
@@ -974,13 +969,11 @@ static REDSTATUS InodeGetWriteableCopy(
                         number.
     @retval -RED_EIO    A disk I/O error occurred.
 */
-static REDSTATUS InodeGetCurrentCopy(
-    uint32_t    ulInode,
-    uint8_t    *pbWhich)
+static REDSTATUS InodeGetCurrentCopy( uint32_t ulInode, uint8_t * pbWhich )
 {
-    REDSTATUS   ret;
+    REDSTATUS ret;
 
-    if(pbWhich == NULL)
+    if( pbWhich == NULL )
     {
         REDERROR();
         ret = -RED_EINVAL;
@@ -992,10 +985,13 @@ static REDSTATUS InodeGetCurrentCopy(
         /*  The current inode slot is the one which is allocated in the working
             state metaroot.
         */
-        ret = RedInodeBitGet(gpRedCoreVol->bCurMR, ulInode, 0U, &fSlot0Allocated);
-        if(ret == 0)
+        ret = RedInodeBitGet( gpRedCoreVol->bCurMR,
+                              ulInode,
+                              0U,
+                              &fSlot0Allocated );
+        if( ret == 0 )
         {
-            if(fSlot0Allocated)
+            if( fSlot0Allocated )
             {
                 *pbWhich = 0U;
             }
@@ -1003,10 +999,13 @@ static REDSTATUS InodeGetCurrentCopy(
             {
                 bool fSlot1Allocated;
 
-                ret = RedInodeBitGet(gpRedCoreVol->bCurMR, ulInode, 1U, &fSlot1Allocated);
-                if(ret == 0)
+                ret = RedInodeBitGet( gpRedCoreVol->bCurMR,
+                                      ulInode,
+                                      1U,
+                                      &fSlot1Allocated );
+                if( ret == 0 )
                 {
-                    if(fSlot1Allocated)
+                    if( fSlot1Allocated )
                     {
                         *pbWhich = 1U;
                     }
@@ -1025,7 +1024,6 @@ static REDSTATUS InodeGetCurrentCopy(
     return ret;
 }
 
-
 /** @brief Get whether a copy of an inode is allocated.
 
     @param bMR          The metaroot index: either 0 or 1.
@@ -1042,27 +1040,27 @@ static REDSTATUS InodeGetCurrentCopy(
                         `NULL`.
     @retval -RED_EIO    A disk I/O error occurred.
 */
-REDSTATUS RedInodeBitGet(
-    uint8_t     bMR,
-    uint32_t    ulInode,
-    uint8_t     bWhich,
-    bool       *pfAllocated)
+REDSTATUS RedInodeBitGet( uint8_t bMR,
+                          uint32_t ulInode,
+                          uint8_t bWhich,
+                          bool * pfAllocated )
 {
-    REDSTATUS   ret;
+    REDSTATUS ret;
 
-    if(!INODE_IS_VALID(ulInode) || (bWhich > 1U))
+    if( !INODE_IS_VALID( ulInode ) || ( bWhich > 1U ) )
     {
         REDERROR();
         ret = -RED_EINVAL;
     }
     else
     {
-        ret = RedImapBlockGet(bMR, InodeBlock(ulInode, bWhich), pfAllocated);
+        ret = RedImapBlockGet( bMR,
+                               InodeBlock( ulInode, bWhich ),
+                               pfAllocated );
     }
 
     return ret;
 }
-
 
 #if REDCONF_READ_ONLY == 0
 /** @brief Set whether a copy of an inode is allocated.
@@ -1079,27 +1077,25 @@ REDSTATUS RedInodeBitGet(
                         not 1 or 0.
     @retval -RED_EIO    A disk I/O error occurred.
 */
-static REDSTATUS InodeBitSet(
-    uint32_t    ulInode,
-    uint8_t     bWhich,
-    bool        fAllocated)
+static REDSTATUS InodeBitSet( uint32_t ulInode,
+                              uint8_t bWhich,
+                              bool fAllocated )
 {
-    REDSTATUS   ret;
+    REDSTATUS ret;
 
-    if(!INODE_IS_VALID(ulInode) || (bWhich > 1U))
+    if( !INODE_IS_VALID( ulInode ) || ( bWhich > 1U ) )
     {
         REDERROR();
         ret = -RED_EINVAL;
     }
     else
     {
-        ret = RedImapBlockSet(InodeBlock(ulInode, bWhich), fAllocated);
+        ret = RedImapBlockSet( InodeBlock( ulInode, bWhich ), fAllocated );
     }
 
     return ret;
 }
 #endif
-
 
 /** @brief Determine the block number of an inode.
 
@@ -1108,13 +1104,11 @@ static REDSTATUS InodeBitSet(
 
     @return The block number of the inode.
 */
-static uint32_t InodeBlock(
-    uint32_t    ulInode,
-    uint8_t     bWhich)
+static uint32_t InodeBlock( uint32_t ulInode, uint8_t bWhich )
 {
-    REDASSERT(INODE_IS_VALID(ulInode));
-    REDASSERT(bWhich <= 1U);
+    REDASSERT( INODE_IS_VALID( ulInode ) );
+    REDASSERT( bWhich <= 1U );
 
-    return gpRedCoreVol->ulInodeTableStartBN + ((ulInode - INODE_FIRST_VALID) * 2U) + bWhich;
+    return gpRedCoreVol->ulInodeTableStartBN +
+           ( ( ulInode - INODE_FIRST_VALID ) * 2U ) + bWhich;
 }
-
