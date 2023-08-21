@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -42,16 +43,15 @@ void __attribute__( ( weak ) ) EthernetISR( void );
 extern uint32_t _estack, _sidata, _sdata, _edata, _sbss, _ebss;
 
 /* Prevent optimization so gcc does not replace code with memcpy */
-__attribute__( ( optimize( "O0" ) ) )
-__attribute__( ( naked ) )
-void Reset_Handler( void )
+__attribute__( ( optimize( "O0" ) ) ) __attribute__( ( naked ) ) void Reset_Handler(
+    void )
 {
     /* set stack pointer */
-    __asm volatile ( "ldr r0, =_estack" );
-    __asm volatile ( "mov sp, r0" );
+    __asm volatile( "ldr r0, =_estack" );
+    __asm volatile( "mov sp, r0" );
 
     /* copy .data section from flash to RAM */
-    for( uint32_t * src = &_sidata, * dest = &_sdata; dest < &_edata; )
+    for( uint32_t *src = &_sidata, *dest = &_sdata; dest < &_edata; )
     {
         *dest++ = *src++;
     }
@@ -69,10 +69,10 @@ void Reset_Handler( void )
 
 void prvGetRegistersFromStack( uint32_t * pulFaultStackAddress )
 {
-/* These are volatile to try and prevent the compiler/linker optimising them
- * away as the variables never actually get used.  If the debugger won't show the
- * values of the variables, make them global my moving their declaration outside
- * of this function. */
+    /* These are volatile to try and prevent the compiler/linker optimising them
+     * away as the variables never actually get used.  If the debugger won't
+     * show the values of the variables, make them global my moving their
+     * declaration outside of this function. */
     volatile uint32_t r0;
     volatile uint32_t r1;
     volatile uint32_t r2;
@@ -92,8 +92,9 @@ void prvGetRegistersFromStack( uint32_t * pulFaultStackAddress )
     pc = pulFaultStackAddress[ 6 ];
     psr = pulFaultStackAddress[ 7 ];
 
-    /* When the following line is hit, the variables contain the register values. */
-    for( ; ; )
+    /* When the following line is hit, the variables contain the register
+     * values. */
+    for( ;; )
     {
     }
 }
@@ -101,24 +102,20 @@ void prvGetRegistersFromStack( uint32_t * pulFaultStackAddress )
 static void Default_Handler( void ) __attribute__( ( naked ) );
 void Default_Handler( void )
 {
-    __asm volatile
-    (
-        "Default_Handler: \n"
-        "    ldr r3, NVIC_INT_CTRL_CONST  \n"
-        "    ldr r2, [r3, #0]\n"
-        "    uxtb r2, r2\n"
-        "Infinite_Loop:\n"
-        "    b  Infinite_Loop\n"
-        ".size  Default_Handler, .-Default_Handler\n"
-        ".align 4\n"
-        "NVIC_INT_CTRL_CONST: .word 0xe000ed04\n"
-    );
+    __asm volatile( "Default_Handler: \n"
+                    "    ldr r3, NVIC_INT_CTRL_CONST  \n"
+                    "    ldr r2, [r3, #0]\n"
+                    "    uxtb r2, r2\n"
+                    "Infinite_Loop:\n"
+                    "    b  Infinite_Loop\n"
+                    ".size  Default_Handler, .-Default_Handler\n"
+                    ".align 4\n"
+                    "NVIC_INT_CTRL_CONST: .word 0xe000ed04\n" );
 }
 static void HardFault_Handler( void ) __attribute__( ( naked ) );
 void Default_Handler2( void )
 {
-    __asm volatile
-    (
+    __asm volatile(
         " tst lr, #4                                                \n"
         " ite eq                                                    \n"
         " mrseq r0, msp                                             \n"
@@ -126,40 +123,38 @@ void Default_Handler2( void )
         " ldr r1, [r0, #24]                                         \n"
         " ldr r2, handler2_address_const                            \n"
         " bx r2                                                     \n"
-        " handler2_address_const: .word prvGetRegistersFromStack    \n"
-    );
+        " handler2_address_const: .word prvGetRegistersFromStack    \n" );
 }
 
 void Default_Handler3( void )
 {
-    for( ; ; )
+    for( ;; )
     {
     }
 }
 
 void Default_Handler4( void )
 {
-    for( ; ; )
+    for( ;; )
     {
     }
 }
 
 void Default_Handler5( void )
 {
-    for( ; ; )
+    for( ;; )
     {
     }
 }
 
 void Default_Handler6( void )
 {
-    for( ; ; )
+    for( ;; )
     {
     }
 }
 
-const uint32_t * isr_vector[] __attribute__( ( section( ".isr_vector" ) ) ) =
-{
+const uint32_t * isr_vector[] __attribute__( ( section( ".isr_vector" ) ) ) = {
     ( uint32_t * ) &_estack,
     ( uint32_t * ) &Reset_Handler,       /* Reset                -15  */
     ( uint32_t * ) &Default_Handler,     /* NMI_Handler          -14  */
@@ -202,14 +197,13 @@ void _start( void )
 __attribute__( ( naked ) ) void exit( int status )
 {
     /* Force qemu to exit using ARM Semihosting */
-    __asm volatile (
-        "mov r1, r0\n"
-        "cmp r1, #0\n"
-        "bne .notclean\n"
-        "ldr r1, =0x20026\n" /* ADP_Stopped_ApplicationExit, a clean exit */
-        ".notclean:\n"
-        "movs r0, #0x18\n"   /* SYS_EXIT */
-        "bkpt 0xab\n"
-        "end: b end\n"
-        );
+    __asm volatile( "mov r1, r0\n"
+                    "cmp r1, #0\n"
+                    "bne .notclean\n"
+                    "ldr r1, =0x20026\n" /* ADP_Stopped_ApplicationExit, a clean
+                                            exit */
+                    ".notclean:\n"
+                    "movs r0, #0x18\n" /* SYS_EXIT */
+                    "bkpt 0xab\n"
+                    "end: b end\n" );
 }

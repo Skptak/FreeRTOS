@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -29,7 +30,8 @@ extern "C" {
 
 #include <sys/types.h>
 
-typedef struct UART_t {
+typedef struct UART_t
+{
     volatile uint32_t DATA;
     volatile uint32_t STATE;
     volatile uint32_t CTRL;
@@ -37,19 +39,18 @@ typedef struct UART_t {
     volatile uint32_t BAUDDIV;
 } UART_t;
 
-#define UART0_ADDR ((UART_t *)(0x40004000))
-#define UART_DR(baseaddr) (*(unsigned int *)(baseaddr))
+#define UART0_ADDR          ( ( UART_t * ) ( 0x40004000 ) )
+#define UART_DR( baseaddr ) ( *( unsigned int * ) ( baseaddr ) )
 
-#define UART_STATE_TXFULL (1 << 0)
-#define UART_CTRL_TX_EN (1 << 0)
-#define UART_CTRL_RX_EN (1 << 1)
-
+#define UART_STATE_TXFULL   ( 1 << 0 )
+#define UART_CTRL_TX_EN     ( 1 << 0 )
+#define UART_CTRL_RX_EN     ( 1 << 1 )
 
 extern unsigned long _heap_bottom;
 extern unsigned long _heap_top;
 extern unsigned long g_ulBase;
 
-static void *heap_end = 0;
+static void * heap_end = 0;
 
 /**
  * @brief initializes the UART emulated hardware
@@ -65,7 +66,7 @@ void uart_init()
  * @todo  implement if necessary
  *
  */
-int _fstat(int file)
+int _fstat( int file )
 {
     return 0;
 }
@@ -75,9 +76,9 @@ int _fstat(int file)
  * @todo  implement if necessary
  *
  */
-int _read(int file, char *buf, int len)
+int _read( int file, char * buf, int len )
 {
-     return -1;
+    return -1;
 }
 
 /**
@@ -88,12 +89,13 @@ int _read(int file, char *buf, int len)
  * @param [in] len   length of the buffer
  * @returns the number of bytes written
  */
-int _write(int file, char *buf, int len)
+int _write( int file, char * buf, int len )
 {
     int todo;
 
-    for (todo = 0; todo < len; todo++){
-        UART_DR(UART0_ADDR) = *buf++;
+    for( todo = 0; todo < len; todo++ )
+    {
+        UART_DR( UART0_ADDR ) = *buf++;
     }
     return len;
 }
@@ -102,22 +104,23 @@ int _write(int file, char *buf, int len)
  * @brief function called by malloc and friends to reserve memory on the heap
  * @param [in] incr the amount of bytes to increase or decrease
  * @returns the previous top of the heap
- * @note uses a global variable <b>heap_end</b> to keep track of the previous top
+ * @note uses a global variable <b>heap_end</b> to keep track of the previous
+ * top
  */
-void* _sbrk(int incr)
+void * _sbrk( int incr )
 {
-    char *prev_heap_end;
+    char * prev_heap_end;
 
-    if (heap_end == 0)
+    if( heap_end == 0 )
     {
-        heap_end = (void*) &_heap_bottom;
+        heap_end = ( void * ) &_heap_bottom;
     }
 
     prev_heap_end = heap_end;
 
-    if ((heap_end + incr) > (void*)&_heap_top)
+    if( ( heap_end + incr ) > ( void * ) &_heap_top )
     {
-        return (void*)-1;
+        return ( void * ) -1;
     }
 
     heap_end += incr;

@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -97,37 +98,39 @@
 
 /* Check that a TLS port for AWS IoT Core is defined. */
 #ifndef democonfigAWS_HTTP_PORT
-    #define democonfigAWS_HTTP_PORT    ( 8443 )
+    #define democonfigAWS_HTTP_PORT ( 8443 )
 #endif
 
 /* Check that a transport timeout for transport send and receive is defined. */
 #ifndef democonfigTRANSPORT_SEND_RECV_TIMEOUT_MS
-    #define democonfigTRANSPORT_SEND_RECV_TIMEOUT_MS    ( 1000 )
+    #define democonfigTRANSPORT_SEND_RECV_TIMEOUT_MS ( 1000 )
 #endif
 
 /* Check that a size for the user buffer is defined. */
 #ifndef democonfigUSER_BUFFER_LENGTH
-    #define democonfigUSER_BUFFER_LENGTH    ( 2048 )
+    #define democonfigUSER_BUFFER_LENGTH ( 2048 )
 #endif
 
 /**
  * @brief The length of the AWS IoT Endpoint.
  */
-#define AWS_IOT_ENDPOINT_LENGTH        ( sizeof( democonfigAWS_IOT_ENDPOINT ) - 1 )
+#define AWS_IOT_ENDPOINT_LENGTH     ( sizeof( democonfigAWS_IOT_ENDPOINT ) - 1 )
 
 /**
  * @brief ALPN protocol name to be sent as part of the ClientHello message.
  *
  * @note When using ALPN, port 443 must be used to connect to AWS IoT Core.
  */
-#define IOT_CORE_ALPN_PROTOCOL_NAME    "x-amzn-http-ca"
+#define IOT_CORE_ALPN_PROTOCOL_NAME "x-amzn-http-ca"
 
 /**
  * @brief Each compilation unit that consumes the NetworkContext must define it.
  * It should contain a single pointer to the type of your desired transport.
- * When using multiple transports in the same compilation unit, define this pointer as void *.
+ * When using multiple transports in the same compilation unit, define this
+ * pointer as void *.
  *
- * @note Transport stacks are defined in FreeRTOS-Plus/Source/Application-Protocols/network_transport.
+ * @note Transport stacks are defined in
+ * FreeRTOS-Plus/Source/Application-Protocols/network_transport.
  */
 struct NetworkContext
 {
@@ -141,14 +144,14 @@ struct NetworkContext
  * Once the demo loop succeeds in an iteration, the demo exits successfully.
  */
 #ifndef HTTP_MAX_DEMO_LOOP_COUNT
-    #define HTTP_MAX_DEMO_LOOP_COUNT    ( 3 )
+    #define HTTP_MAX_DEMO_LOOP_COUNT ( 3 )
 #endif
 
 /**
  * @brief Time in ticks to wait between retries of the demo loop if
  * demo loop fails.
  */
-#define DELAY_BETWEEN_DEMO_RETRY_ITERATIONS_TICKS    ( pdMS_TO_TICKS( 5000U ) )
+#define DELAY_BETWEEN_DEMO_RETRY_ITERATIONS_TICKS ( pdMS_TO_TICKS( 5000U ) )
 
 /**
  * @brief A buffer used in the demo for storing HTTP request headers and
@@ -165,16 +168,16 @@ static uint8_t ucUserBuffer[ democonfigUSER_BUFFER_LENGTH ];
 /**
  * @brief The task used to demonstrate the HTTP API.
  *
- * @param[in] pvParameters Parameters as passed at the time of task creation. Not
- * used in this example.
+ * @param[in] pvParameters Parameters as passed at the time of task creation.
+ * Not used in this example.
  */
 static void prvHTTPDemoTask( void * pvParameters );
-
 
 /**
  * @brief Connect to HTTP server with reconnection retries.
  *
- * @param[out] pxNetworkContext The output parameter to return the created network context.
+ * @param[out] pxNetworkContext The output parameter to return the created
+ * network context.
  *
  * @return pdPASS on successful connection, pdFAIL otherwise.
  */
@@ -184,7 +187,8 @@ static BaseType_t prvConnectToServer( NetworkContext_t * pxNetworkContext );
  * @brief Send an HTTP request based on a specified method and path, then
  * print the response received from the server.
  *
- * @param[in] pxTransportInterface The transport interface for making network calls.
+ * @param[in] pxTransportInterface The transport interface for making network
+ * calls.
  * @param[in] pcMethod The HTTP request method.
  * @param[in] xMethodLen The length of the HTTP request method.
  * @param[in] pcPath The Request-URI to the objects of interest.
@@ -192,11 +196,12 @@ static BaseType_t prvConnectToServer( NetworkContext_t * pxNetworkContext );
  *
  * @return pdFAIL on failure; pdPASS on success.
  */
-static BaseType_t prvSendHttpRequest( const TransportInterface_t * pxTransportInterface,
-                                      const char * pcMethod,
-                                      size_t xMethodLen,
-                                      const char * pcPath,
-                                      size_t xPathLen );
+static BaseType_t prvSendHttpRequest(
+    const TransportInterface_t * pxTransportInterface,
+    const char * pcMethod,
+    size_t xMethodLen,
+    const char * pcPath,
+    size_t xPathLen );
 
 /*-----------------------------------------------------------*/
 
@@ -209,12 +214,17 @@ void vStartSimpleHTTPDemo( void )
     /* This example uses a single application task, which in turn is used to
      * connect, send requests, receive responses, and disconnect from the HTTP
      * server */
-    xTaskCreate( prvHTTPDemoTask,          /* Function that implements the task. */
-                 "DemoTask",               /* Text name for the task - only used for debugging. */
-                 democonfigDEMO_STACKSIZE, /* Size of stack (in words, not bytes) to allocate for the task. */
-                 NULL,                     /* Task parameter - not used in this case. */
-                 tskIDLE_PRIORITY,         /* Task priority, must be between 0 and configMAX_PRIORITIES - 1. */
-                 NULL );                   /* Used to pass out a handle to the created task - not used in this case. */
+    xTaskCreate( prvHTTPDemoTask, /* Function that implements the task. */
+                 "DemoTask",      /* Text name for the task - only used for
+                                     debugging. */
+                 democonfigDEMO_STACKSIZE, /* Size of stack (in words, not
+                                              bytes) to allocate for the task.
+                                            */
+                 NULL,             /* Task parameter - not used in this case. */
+                 tskIDLE_PRIORITY, /* Task priority, must be between 0 and
+                                      configMAX_PRIORITIES - 1. */
+                 NULL ); /* Used to pass out a handle to the created task - not
+                            used in this case. */
 }
 
 /*-----------------------------------------------------------*/
@@ -248,9 +258,9 @@ static void prvHTTPDemoTask( void * pvParameters )
     /* Set the pParams member of the network context with desired transport. */
     xNetworkContext.pParams = &xTlsTransportParams;
 
-    /* This demo runs a single loop unless there are failures in the demo execution.
-     * In case of failures in the demo execution, demo loop will be retried for up to
-     * HTTP_MAX_DEMO_LOOP_COUNT times. */
+    /* This demo runs a single loop unless there are failures in the demo
+     * execution. In case of failures in the demo execution, demo loop will be
+     * retried for up to HTTP_MAX_DEMO_LOOP_COUNT times. */
     do
     {
         LogInfo( ( "---------STARTING DEMO---------\r\n" ) );
@@ -268,11 +278,12 @@ static void prvHTTPDemoTask( void * pvParameters )
 
         /**************************** Connect. ******************************/
 
-        /* Attempt to connect to the HTTP server. If connection fails, retry after a
-         * timeout. The timeout value will be exponentially increased until either the
-         * maximum number of attempts or the maximum timeout value is reached. The
-         * function returns pdFAIL if the TCP connection cannot be established with
-         * the server after the configured number of attempts. */
+        /* Attempt to connect to the HTTP server. If connection fails, retry
+         * after a timeout. The timeout value will be exponentially increased
+         * until either the maximum number of attempts or the maximum timeout
+         * value is reached. The function returns pdFAIL if the TCP connection
+         * cannot be established with the server after the configured number of
+         * attempts. */
         xDemoStatus = connectToServerWithBackoffRetries( prvConnectToServer,
                                                          &xNetworkContext );
 
@@ -301,22 +312,26 @@ static void prvHTTPDemoTask( void * pvParameters )
         {
             xDemoStatus = prvSendHttpRequest( &xTransportInterface,
                                               HTTP_METHOD_POST,
-                                              ( sizeof( HTTP_METHOD_POST ) - 1 ),
+                                              ( sizeof( HTTP_METHOD_POST ) -
+                                                1 ),
                                               democonfigPOST_PATH,
-                                              ( sizeof( democonfigPOST_PATH ) - 1 ) );
+                                              ( sizeof( democonfigPOST_PATH ) -
+                                                1 ) );
         }
 
-        /**************************** Disconnect. ******************************/
+        /**************************** Disconnect.
+         * ******************************/
 
-        /* Close the network connection to clean up any system resources that the
-         * demo may have consumed. */
+        /* Close the network connection to clean up any system resources that
+         * the demo may have consumed. */
         if( xIsConnectionEstablished == pdTRUE )
         {
             /* Close the network connection.  */
             TLS_FreeRTOS_Disconnect( &xNetworkContext );
         }
 
-        /*********************** Retry in case of failure. ************************/
+        /*********************** Retry in case of failure.
+         * ************************/
 
         /* Increment the demo run count. */
         uxDemoRunCount++;
@@ -325,16 +340,19 @@ static void prvHTTPDemoTask( void * pvParameters )
         {
             LogInfo( ( "Demo iteration %lu was successful.", uxDemoRunCount ) );
         }
-        /* Attempt to retry a failed demo iteration for up to #HTTP_MAX_DEMO_LOOP_COUNT times. */
+        /* Attempt to retry a failed demo iteration for up to
+         * #HTTP_MAX_DEMO_LOOP_COUNT times. */
         else if( uxDemoRunCount < HTTP_MAX_DEMO_LOOP_COUNT )
         {
-            LogWarn( ( "Demo iteration %lu failed. Retrying...", uxDemoRunCount ) );
+            LogWarn(
+                ( "Demo iteration %lu failed. Retrying...", uxDemoRunCount ) );
             vTaskDelay( DELAY_BETWEEN_DEMO_RETRY_ITERATIONS_TICKS );
         }
         /* Failed all #HTTP_MAX_DEMO_LOOP_COUNT demo iterations. */
         else
         {
-            LogError( ( "All %d demo iterations failed.", HTTP_MAX_DEMO_LOOP_COUNT ) );
+            LogError( ( "All %d demo iterations failed.",
+                        HTTP_MAX_DEMO_LOOP_COUNT ) );
             break;
         }
     } while( xDemoStatus != pdPASS );
@@ -364,20 +382,26 @@ static BaseType_t prvConnectToServer( NetworkContext_t * pxNetworkContext )
     if( democonfigAWS_HTTP_PORT == 443 )
     {
         /* ALPN protocols must be a NULL-terminated list of strings. Therefore,
-         * the first entry will contain the actual ALPN protocol string while the
-         * second entry must remain NULL. */
-        static const char * pcAlpnProtocols[] = { IOT_CORE_ALPN_PROTOCOL_NAME, NULL };
+         * the first entry will contain the actual ALPN protocol string while
+         * the second entry must remain NULL. */
+        static const char * pcAlpnProtocols[] = { IOT_CORE_ALPN_PROTOCOL_NAME,
+                                                  NULL };
         xNetworkCredentials.pAlpnProtos = pcAlpnProtocols;
     }
 
     xNetworkCredentials.disableSni = democonfigDISABLE_SNI;
     /* Set the credentials for establishing a TLS connection. */
-    xNetworkCredentials.pRootCa = ( const unsigned char * ) democonfigROOT_CA_PEM;
+    xNetworkCredentials.pRootCa = ( const unsigned char * )
+        democonfigROOT_CA_PEM;
     xNetworkCredentials.rootCaSize = sizeof( democonfigROOT_CA_PEM );
-    xNetworkCredentials.pClientCert = ( const unsigned char * ) democonfigCLIENT_CERTIFICATE_PEM;
-    xNetworkCredentials.clientCertSize = sizeof( democonfigCLIENT_CERTIFICATE_PEM );
-    xNetworkCredentials.pPrivateKey = ( const unsigned char * ) democonfigCLIENT_PRIVATE_KEY_PEM;
-    xNetworkCredentials.privateKeySize = sizeof( democonfigCLIENT_PRIVATE_KEY_PEM );
+    xNetworkCredentials.pClientCert = ( const unsigned char * )
+        democonfigCLIENT_CERTIFICATE_PEM;
+    xNetworkCredentials.clientCertSize = sizeof(
+        democonfigCLIENT_CERTIFICATE_PEM );
+    xNetworkCredentials.pPrivateKey = ( const unsigned char * )
+        democonfigCLIENT_PRIVATE_KEY_PEM;
+    xNetworkCredentials.privateKeySize = sizeof(
+        democonfigCLIENT_PRIVATE_KEY_PEM );
 
     /* Establish a TLS session with the HTTP server. This example connects to
      * the HTTP server as specified in democonfigAWS_IOT_ENDPOINT and
@@ -388,12 +412,13 @@ static BaseType_t prvConnectToServer( NetworkContext_t * pxNetworkContext )
                democonfigAWS_HTTP_PORT ) );
 
     /* Attempt to create a mutually authenticated TLS connection. */
-    xNetworkStatus = TLS_FreeRTOS_Connect( pxNetworkContext,
-                                           democonfigAWS_IOT_ENDPOINT,
-                                           democonfigAWS_HTTP_PORT,
-                                           &xNetworkCredentials,
-                                           democonfigTRANSPORT_SEND_RECV_TIMEOUT_MS,
-                                           democonfigTRANSPORT_SEND_RECV_TIMEOUT_MS );
+    xNetworkStatus = TLS_FreeRTOS_Connect(
+        pxNetworkContext,
+        democonfigAWS_IOT_ENDPOINT,
+        democonfigAWS_HTTP_PORT,
+        &xNetworkCredentials,
+        democonfigTRANSPORT_SEND_RECV_TIMEOUT_MS,
+        democonfigTRANSPORT_SEND_RECV_TIMEOUT_MS );
 
     if( xNetworkStatus != TLS_TRANSPORT_SUCCESS )
     {
@@ -405,11 +430,12 @@ static BaseType_t prvConnectToServer( NetworkContext_t * pxNetworkContext )
 
 /*-----------------------------------------------------------*/
 
-static BaseType_t prvSendHttpRequest( const TransportInterface_t * pxTransportInterface,
-                                      const char * pcMethod,
-                                      size_t xMethodLen,
-                                      const char * pcPath,
-                                      size_t xPathLen )
+static BaseType_t prvSendHttpRequest(
+    const TransportInterface_t * pxTransportInterface,
+    const char * pcMethod,
+    size_t xMethodLen,
+    const char * pcPath,
+    size_t xPathLen )
 {
     /* Return value of this method. */
     BaseType_t xStatus = pdPASS;
@@ -460,9 +486,12 @@ static BaseType_t prvSendHttpRequest( const TransportInterface_t * pxTransportIn
         xResponse.bufferLen = democonfigUSER_BUFFER_LENGTH;
 
         LogInfo( ( "Sending HTTP %.*s request to %.*s%.*s...",
-                   ( int32_t ) xRequestInfo.methodLen, xRequestInfo.pMethod,
-                   ( int32_t ) AWS_IOT_ENDPOINT_LENGTH, democonfigAWS_IOT_ENDPOINT,
-                   ( int32_t ) xRequestInfo.pathLen, xRequestInfo.pPath ) );
+                   ( int32_t ) xRequestInfo.methodLen,
+                   xRequestInfo.pMethod,
+                   ( int32_t ) AWS_IOT_ENDPOINT_LENGTH,
+                   democonfigAWS_IOT_ENDPOINT,
+                   ( int32_t ) xRequestInfo.pathLen,
+                   xRequestInfo.pPath ) );
         LogDebug( ( "Request Headers:\n%.*s\n"
                     "Request Body:\n%.*s\n",
                     ( int32_t ) xRequestHeaders.headersLen,
@@ -487,21 +516,27 @@ static BaseType_t prvSendHttpRequest( const TransportInterface_t * pxTransportIn
     if( xHTTPStatus == HTTPSuccess )
     {
         LogInfo( ( "Received HTTP response from %.*s%.*s...\n",
-                   ( int32_t ) AWS_IOT_ENDPOINT_LENGTH, democonfigAWS_IOT_ENDPOINT,
-                   ( int32_t ) xRequestInfo.pathLen, xRequestInfo.pPath ) );
+                   ( int32_t ) AWS_IOT_ENDPOINT_LENGTH,
+                   democonfigAWS_IOT_ENDPOINT,
+                   ( int32_t ) xRequestInfo.pathLen,
+                   xRequestInfo.pPath ) );
         LogDebug( ( "Response Headers:\n%.*s\n",
-                    ( int32_t ) xResponse.headersLen, xResponse.pHeaders ) );
-        LogDebug( ( "Status Code:\n%u\n",
-                    xResponse.statusCode ) );
+                    ( int32_t ) xResponse.headersLen,
+                    xResponse.pHeaders ) );
+        LogDebug( ( "Status Code:\n%u\n", xResponse.statusCode ) );
         LogDebug( ( "Response Body:\n%.*s\n",
-                    ( int32_t ) xResponse.bodyLen, xResponse.pBody ) );
+                    ( int32_t ) xResponse.bodyLen,
+                    xResponse.pBody ) );
     }
     else
     {
         LogError( ( "Failed to send HTTP %.*s request to %.*s%.*s: Error=%s.",
-                    ( int32_t ) xRequestInfo.methodLen, xRequestInfo.pMethod,
-                    ( int32_t ) AWS_IOT_ENDPOINT_LENGTH, democonfigAWS_IOT_ENDPOINT,
-                    ( int32_t ) xRequestInfo.pathLen, xRequestInfo.pPath,
+                    ( int32_t ) xRequestInfo.methodLen,
+                    xRequestInfo.pMethod,
+                    ( int32_t ) AWS_IOT_ENDPOINT_LENGTH,
+                    democonfigAWS_IOT_ENDPOINT,
+                    ( int32_t ) xRequestInfo.pathLen,
+                    xRequestInfo.pPath,
                     HTTPClient_strerror( xHTTPStatus ) ) );
     }
 

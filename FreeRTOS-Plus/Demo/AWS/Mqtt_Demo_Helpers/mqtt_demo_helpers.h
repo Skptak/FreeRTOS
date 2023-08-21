@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -36,12 +37,12 @@
 /**
  * @brief Establish a MQTT connection.
  *
- * @param[in, out] pxMqttContext The memory for the MQTTContext_t that will be used for the
- * MQTT connection.
- * @param[out] pxNetworkContext The memory for the NetworkContext_t required for the
- * MQTT connection.
- * @param[in] pxNetworkBuffer The buffer space for initializing the @p pxMqttContext MQTT
- * context used in the MQTT connection.
+ * @param[in, out] pxMqttContext The memory for the MQTTContext_t that will be
+ * used for the MQTT connection.
+ * @param[out] pxNetworkContext The memory for the NetworkContext_t required for
+ * the MQTT connection.
+ * @param[in] pxNetworkBuffer The buffer space for initializing the @p
+ * pxMqttContext MQTT context used in the MQTT connection.
  * @param[in] eventCallback The callback function used to receive incoming
  * publishes and incoming acks from MQTT library.
  *
@@ -64,7 +65,8 @@ void vHandleOtherIncomingPacket( MQTTPacketInfo_t * pxPacketInfo,
 /**
  * @brief Close the MQTT connection.
  *
- * @param[in, out] pxMqttContext The MQTT context for the MQTT connection to close.
+ * @param[in, out] pxMqttContext The MQTT context for the MQTT connection to
+ * close.
  * @param[in, out] pxNetworkContext The network context for the TLS session to
  * terminate.
  *
@@ -131,7 +133,6 @@ BaseType_t xPublishToTopic( MQTTContext_t * pxMqttContext,
  * @return pdPASS if process loop was successful;
  * pdFAIL otherwise.
  */
-BaseType_t xProcessLoop( MQTTContext_t * pxMqttContext,
-                         uint32_t ulTimeoutMs );
+BaseType_t xProcessLoop( MQTTContext_t * pxMqttContext, uint32_t ulTimeoutMs );
 
 #endif /* ifndef MQTT_DEMO_HELPERS_H */

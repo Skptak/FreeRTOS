@@ -24,8 +24,8 @@
 
 #include "FreeRTOS.h"
 
-#define PAD_RIGHT    1
-#define PAD_ZERO     2
+#define PAD_RIGHT 1
+#define PAD_ZERO  2
 
 /*
  * Return 1 for readable, 2 for writeable, 3 for both.
@@ -33,8 +33,7 @@
  */
 extern BaseType_t xApplicationMemoryPermissions( uint32_t aAddress );
 
-extern void vOutputChar( const char cChar,
-                         const TickType_t xTicksToWait );
+extern void vOutputChar( const char cChar, const TickType_t xTicksToWait );
 static const TickType_t xTicksToWait = pdMS_TO_TICKS( 20 );
 
 struct xPrintFlags
@@ -42,12 +41,7 @@ struct xPrintFlags
     int base;
     int width;
     int printLimit;
-    unsigned
-        pad : 8,
-        letBase : 8,
-        isSigned : 1,
-        isNumber : 1,
-        long32 : 1,
+    unsigned pad : 8, letBase : 8, isSigned : 1, isNumber : 1, long32 : 1,
         long64 : 1;
 };
 
@@ -73,8 +67,7 @@ static void strbuf_init( struct SStringBuf * apStr,
 }
 /*-----------------------------------------------------------*/
 
-static BaseType_t strbuf_printchar( struct SStringBuf * apStr,
-                                    int c )
+static BaseType_t strbuf_printchar( struct SStringBuf * apStr, int c )
 {
     if( apStr->str == NULL )
     {
@@ -154,8 +147,7 @@ static portINLINE int i2hex( int aCh )
 }
 /*-----------------------------------------------------------*/
 
-static BaseType_t prints( struct SStringBuf * apBuf,
-                          const char * apString )
+static BaseType_t prints( struct SStringBuf * apBuf, const char * apString )
 {
     register int padchar = ' ';
     int i, len;
@@ -229,7 +221,8 @@ static BaseType_t prints( struct SStringBuf * apBuf,
     /* The string to print is not the result of a number conversion to ascii.
      * For a string, printLimit is the max number of characters to display
      */
-    for( ; apBuf->flags.printLimit && *apString; ++apString, --apBuf->flags.printLimit )
+    for( ; apBuf->flags.printLimit && *apString;
+         ++apString, --apBuf->flags.printLimit )
     {
         if( !strbuf_printchar( apBuf, *apString ) )
         {
@@ -250,84 +243,83 @@ static BaseType_t prints( struct SStringBuf * apBuf,
 /*-----------------------------------------------------------*/
 
 /* the following should be enough for 32 bit int */
-#define PRINT_BUF_LEN    12 /* to print 4294967296 */
+#define PRINT_BUF_LEN 12 /* to print 4294967296 */
 
 #if SPRINTF_LONG_LONG
     #warning 64-bit libraries will be included as well
-    static BaseType_t printll( struct SStringBuf * apBuf,
-                               long long i )
+static BaseType_t printll( struct SStringBuf * apBuf, long long i )
+{
+    char print_buf[ 2 * PRINT_BUF_LEN ];
+    register char * s;
+    register int t, neg = 0;
+    register unsigned long long u = i;
+    lldiv_t lldiv_result;
+
+    /* typedef struct
+     * {
+     *  long long int quot; // quotient
+     *  long long int rem;  // remainder
+     * } lldiv_t;
+     */
+
+    apBuf->flags.isNumber = pdTRUE; /* Parameter for prints */
+
+    if( i == 0LL )
     {
-        char print_buf[ 2 * PRINT_BUF_LEN ];
-        register char * s;
-        register int t, neg = 0;
-        register unsigned long long u = i;
-        lldiv_t lldiv_result;
-
-/* typedef struct
- * {
- *  long long int quot; // quotient
- *  long long int rem;  // remainder
- * } lldiv_t;
- */
-
-        apBuf->flags.isNumber = pdTRUE; /* Parameter for prints */
-
-        if( i == 0LL )
-        {
-            print_buf[ 0 ] = '0';
-            print_buf[ 1 ] = '\0';
-            return prints( apBuf, print_buf );
-        }
-
-        if( ( apBuf->flags.isSigned == pdTRUE ) && ( apBuf->flags.base == 10 ) && ( i < 0LL ) )
-        {
-            neg = 1;
-            u = -i;
-        }
-
-        s = print_buf + sizeof( print_buf ) - 1;
-
-        *s = '\0';
-
-        /* 18446744073709551616 */
-        while( u != 0 )
-        {
-            lldiv_result = lldiv( u, ( unsigned long long ) apBuf->flags.base );
-            t = lldiv_result.rem;
-
-            if( t >= 10 )
-            {
-                t += apBuf->flags.letBase - '0' - 10;
-            }
-
-            *( --s ) = t + '0';
-            u = lldiv_result.quot;
-        }
-
-        if( neg != 0 )
-        {
-            if( ( apBuf->flags.width != 0 ) && ( apBuf->flags.pad & PAD_ZERO ) )
-            {
-                if( !strbuf_printchar( apBuf, '-' ) )
-                {
-                    return pdFALSE;
-                }
-
-                --apBuf->flags.width;
-            }
-            else
-            {
-                *( --s ) = '-';
-            }
-        }
-
-        return prints( apBuf, s );
+        print_buf[ 0 ] = '0';
+        print_buf[ 1 ] = '\0';
+        return prints( apBuf, print_buf );
     }
+
+    if( ( apBuf->flags.isSigned == pdTRUE ) && ( apBuf->flags.base == 10 ) &&
+        ( i < 0LL ) )
+    {
+        neg = 1;
+        u = -i;
+    }
+
+    s = print_buf + sizeof( print_buf ) - 1;
+
+    *s = '\0';
+
+    /* 18446744073709551616 */
+    while( u != 0 )
+    {
+        lldiv_result = lldiv( u, ( unsigned long long ) apBuf->flags.base );
+        t = lldiv_result.rem;
+
+        if( t >= 10 )
+        {
+            t += apBuf->flags.letBase - '0' - 10;
+        }
+
+        *( --s ) = t + '0';
+        u = lldiv_result.quot;
+    }
+
+    if( neg != 0 )
+    {
+        if( ( apBuf->flags.width != 0 ) && ( apBuf->flags.pad & PAD_ZERO ) )
+        {
+            if( !strbuf_printchar( apBuf, '-' ) )
+            {
+                return pdFALSE;
+            }
+
+            --apBuf->flags.width;
+        }
+        else
+        {
+            *( --s ) = '-';
+        }
+    }
+
+    return prints( apBuf, s );
+}
 #endif /* SPRINTF_LONG_LONG */
 /*-----------------------------------------------------------*/
 
-static BaseType_t printi( struct SStringBuf * apBuf,
-                          int i )
+static BaseType_t printi( struct SStringBuf * apBuf, int i )
 {
     char print_buf[ PRINT_BUF_LEN ];
     register char * s;
@@ -386,21 +378,21 @@ static BaseType_t printi( struct SStringBuf * apBuf,
 
             break;
 
-/*
- *  // The generic case, not yet in use
- *  default:
- *      while( u )
- *      {
- *          t = u % base;
- *          if( t >= 10)
- *          {
- *              t += apBuf->flags.letBase - '0' - 10;
- *          }
- *( --s ) = t + '0';
- *          u /= base;
- *      }
- *      break;
- */
+            /*
+             *  // The generic case, not yet in use
+             *  default:
+             *      while( u )
+             *      {
+             *          t = u % base;
+             *          if( t >= 10)
+             *          {
+             *              t += apBuf->flags.letBase - '0' - 10;
+             *          }
+             *( --s ) = t + '0';
+             *          u /= base;
+             *      }
+             *      break;
+             */
     }
 
     if( neg != 0 )
@@ -424,12 +416,12 @@ static BaseType_t printi( struct SStringBuf * apBuf,
 }
 /*-----------------------------------------------------------*/
 
-static BaseType_t printIp( struct SStringBuf * apBuf,
-                           unsigned i )
+static BaseType_t printIp( struct SStringBuf * apBuf, unsigned i )
 {
     char print_buf[ 16 ];
 
-    sprintf( print_buf, "%u.%u.%u.%u",
+    sprintf( print_buf,
+             "%u.%u.%u.%u",
              i >> 24,
              ( i >> 16 ) & 0xff,
              ( i >> 8 ) & 0xff,
@@ -447,7 +439,7 @@ static void tiny_print( struct SStringBuf * apBuf,
 {
     char scr[ 2 ];
 
-    for( ; ; )
+    for( ;; )
     {
         int ch = *( format++ );
 
@@ -582,21 +574,21 @@ static void tiny_print( struct SStringBuf * apBuf,
         if( ( ch == 'd' ) || ( ch == 'u' ) )
         {
             apBuf->flags.isSigned = ( ch == 'd' );
-            #if SPRINTF_LONG_LONG
-                if( apBuf->flags.long64 != pdFALSE )
-                {
-                    if( printll( apBuf, va_arg( args, long long ) ) == 0 )
-                    {
-                        break;
-                    }
-                }
-                else
-            #endif /* SPRINTF_LONG_LONG */
-
-            if( printi( apBuf, va_arg( args, int ) ) == 0 )
+#if SPRINTF_LONG_LONG
+            if( apBuf->flags.long64 != pdFALSE )
             {
-                break;
+                if( printll( apBuf, va_arg( args, long long ) ) == 0 )
+                {
+                    break;
+                }
             }
+            else
+#endif /* SPRINTF_LONG_LONG */
+
+                if( printi( apBuf, va_arg( args, int ) ) == 0 )
+                {
+                    break;
+                }
 
             continue;
         }
@@ -627,21 +619,21 @@ static void tiny_print( struct SStringBuf * apBuf,
                 apBuf->flags.base = 8;
             }
 
-            #if SPRINTF_LONG_LONG
-                if( apBuf->flags.long64 != pdFALSE )
-                {
-                    if( printll( apBuf, va_arg( args, long long ) ) == 0 )
-                    {
-                        break;
-                    }
-                }
-                else
-            #endif /* SPRINTF_LONG_LONG */
-
-            if( printi( apBuf, va_arg( args, int ) ) == 0 )
+#if SPRINTF_LONG_LONG
+            if( apBuf->flags.long64 != pdFALSE )
             {
-                break;
+                if( printll( apBuf, va_arg( args, long long ) ) == 0 )
+                {
+                    break;
+                }
             }
+            else
+#endif /* SPRINTF_LONG_LONG */
+
+                if( printi( apBuf, va_arg( args, int ) ) == 0 )
+                {
+                    break;
+                }
 
             continue;
         }
@@ -651,10 +643,7 @@ static void tiny_print( struct SStringBuf * apBuf,
 }
 /*-----------------------------------------------------------*/
 
-int vsnprintf( char * apBuf,
-               size_t aMaxLen,
-               const char * apFmt,
-               va_list args )
+int vsnprintf( char * apBuf, size_t aMaxLen, const char * apFmt, va_list args )
 {
     struct SStringBuf strBuf;
 
@@ -665,10 +654,7 @@ int vsnprintf( char * apBuf,
 }
 /*-----------------------------------------------------------*/
 
-int snprintf( char * apBuf,
-              size_t aMaxLen,
-              const char * apFmt,
-              ... )
+int snprintf( char * apBuf, size_t aMaxLen, const char * apFmt, ... )
 {
     va_list args;
 
@@ -682,9 +668,7 @@ int snprintf( char * apBuf,
 }
 /*-----------------------------------------------------------*/
 
-int sprintf( char * apBuf,
-             const char * apFmt,
-             ... )
+int sprintf( char * apBuf, const char * apFmt, ... )
 {
     va_list args;
 
@@ -698,9 +682,7 @@ int sprintf( char * apBuf,
 }
 /*-----------------------------------------------------------*/
 
-int vsprintf( char * apBuf,
-              const char * apFmt,
-              va_list args )
+int vsprintf( char * apBuf, const char * apFmt, va_list args )
 {
     struct SStringBuf strBuf;
 
@@ -711,9 +693,7 @@ int vsprintf( char * apBuf,
 }
 /*-----------------------------------------------------------*/
 
-const char * mkSize( unsigned long long aSize,
-                     char * apBuf,
-                     int aLen )
+const char * mkSize( unsigned long long aSize, char * apBuf, int aLen )
 {
     static char retString[ 33 ];
     size_t gb, mb, kb, sb;
@@ -734,15 +714,27 @@ const char * mkSize( unsigned long long aSize,
 
     if( gb )
     {
-        snprintf( apBuf, aLen, "%u.%02u GB", ( unsigned ) gb, ( unsigned ) ( ( 100 * mb ) / 1024ul ) );
+        snprintf( apBuf,
+                  aLen,
+                  "%u.%02u GB",
+                  ( unsigned ) gb,
+                  ( unsigned ) ( ( 100 * mb ) / 1024ul ) );
     }
     else if( mb )
     {
-        snprintf( apBuf, aLen, "%u.%02u MB", ( unsigned ) mb, ( unsigned ) ( ( 100 * kb ) / 1024ul ) );
+        snprintf( apBuf,
+                  aLen,
+                  "%u.%02u MB",
+                  ( unsigned ) mb,
+                  ( unsigned ) ( ( 100 * kb ) / 1024ul ) );
     }
     else if( kb != 0ul )
     {
-        snprintf( apBuf, aLen, "%u.%02u KB", ( unsigned ) kb, ( unsigned ) ( ( 100 * sb ) / 1024ul ) );
+        snprintf( apBuf,
+                  aLen,
+                  "%u.%02u KB",
+                  ( unsigned ) kb,
+                  ( unsigned ) ( ( 100 * sb ) / 1024ul ) );
     }
     else
     {

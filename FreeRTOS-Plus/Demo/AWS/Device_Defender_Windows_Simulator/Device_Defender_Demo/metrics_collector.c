@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -67,7 +68,8 @@ eMetricsCollectorStatus eGetNetworkStats( NetworkStats_t * pxOutNetworkStats )
 
     if( xMetricsStatus != 0 )
     {
-        LogError( ( "Failed to acquire metrics from FreeRTOS+TCP tcp_netstat utility. Status: %d.",
+        LogError( ( "Failed to acquire metrics from FreeRTOS+TCP tcp_netstat "
+                    "utility. Status: %d.",
                     ( int ) xMetricsStatus ) );
         eStatus = eMetricsCollectorCollectionFailed;
     }
@@ -75,12 +77,13 @@ eMetricsCollectorStatus eGetNetworkStats( NetworkStats_t * pxOutNetworkStats )
     /* Fill our response with values gotten from FreeRTOS+TCP. */
     if( eStatus == eMetricsCollectorSuccess )
     {
-        LogDebug( ( "Network stats read. Bytes received: %lu, packets received: %lu, "
-                    "bytes sent: %lu, packets sent: %lu.",
-                    ( unsigned long ) xMetrics.xInput.uxByteCount,
-                    ( unsigned long ) xMetrics.xInput.uxPacketCount,
-                    ( unsigned long ) xMetrics.xOutput.uxByteCount,
-                    ( unsigned long ) xMetrics.xOutput.uxPacketCount ) );
+        LogDebug(
+            ( "Network stats read. Bytes received: %lu, packets received: %lu, "
+              "bytes sent: %lu, packets sent: %lu.",
+              ( unsigned long ) xMetrics.xInput.uxByteCount,
+              ( unsigned long ) xMetrics.xInput.uxPacketCount,
+              ( unsigned long ) xMetrics.xOutput.uxByteCount,
+              ( unsigned long ) xMetrics.xOutput.uxPacketCount ) );
 
         pxOutNetworkStats->uxBytesReceived = xMetrics.xInput.uxByteCount;
         pxOutNetworkStats->uxPacketsReceived = xMetrics.xInput.uxPacketCount;
@@ -110,7 +113,8 @@ eMetricsCollectorStatus eGetOpenTcpPorts( uint16_t * pusOutTcpPortsArray,
 
     if( xMetricsStatus != 0 )
     {
-        LogError( ( "Failed to acquire metrics from FreeRTOS+TCP tcp_netstat utility. Status: %d.",
+        LogError( ( "Failed to acquire metrics from FreeRTOS+TCP tcp_netstat "
+                    "utility. Status: %d.",
                     ( int ) xMetricsStatus ) );
         eStatus = eMetricsCollectorCollectionFailed;
     }
@@ -126,11 +130,14 @@ eMetricsCollectorStatus eGetOpenTcpPorts( uint16_t * pusOutTcpPortsArray,
             /* Limit the copied ports to what can fit in the output array. */
             if( xTcpPortsArrayLength < xMetrics.xTCPPortList.uxCount )
             {
-                LogWarn( ( "Ports returned truncated due to insufficient buffer size." ) );
+                LogWarn( ( "Ports returned truncated due to insufficient "
+                           "buffer size." ) );
                 xCopyAmount = xTcpPortsArrayLength;
             }
 
-            memcpy( pusOutTcpPortsArray, &xMetrics.xTCPPortList.usTCPPortList, xCopyAmount * sizeof( uint16_t ) );
+            memcpy( pusOutTcpPortsArray,
+                    &xMetrics.xTCPPortList.usTCPPortList,
+                    xCopyAmount * sizeof( uint16_t ) );
 
             /* Return the number of elements copied to the array. */
             *pxOutNumTcpOpenPorts = xCopyAmount;
@@ -164,7 +171,8 @@ eMetricsCollectorStatus eGetOpenUdpPorts( uint16_t * pusOutUdpPortsArray,
 
     if( xMetricsStatus != 0 )
     {
-        LogError( ( "Failed to acquire metrics from FreeRTOS+TCP tcp_netstat utility. Status: %d.",
+        LogError( ( "Failed to acquire metrics from FreeRTOS+TCP tcp_netstat "
+                    "utility. Status: %d.",
                     ( int ) xMetricsStatus ) );
         eStatus = eMetricsCollectorCollectionFailed;
     }
@@ -180,11 +188,14 @@ eMetricsCollectorStatus eGetOpenUdpPorts( uint16_t * pusOutUdpPortsArray,
             /* Limit the copied ports to what can fit in the output array. */
             if( xUdpPortsArrayLength < xMetrics.xUDPPortList.uxCount )
             {
-                LogWarn( ( "Ports returned truncated due to insufficient buffer size." ) );
+                LogWarn( ( "Ports returned truncated due to insufficient "
+                           "buffer size." ) );
                 xCopyAmount = xUdpPortsArrayLength;
             }
 
-            memcpy( pusOutUdpPortsArray, &xMetrics.xUDPPortList.usUDPPortList, xCopyAmount * sizeof( uint16_t ) );
+            memcpy( pusOutUdpPortsArray,
+                    &xMetrics.xUDPPortList.usUDPPortList,
+                    xCopyAmount * sizeof( uint16_t ) );
 
             /* Return the number of elements copied to the array. */
             *pxOutNumUdpOpenPorts = xCopyAmount;
@@ -201,9 +212,10 @@ eMetricsCollectorStatus eGetOpenUdpPorts( uint16_t * pusOutUdpPortsArray,
 
 /*-----------------------------------------------------------*/
 
-eMetricsCollectorStatus eGetEstablishedConnections( Connection_t * pxOutConnectionsArray,
-                                                    size_t xConnectionsArrayLength,
-                                                    size_t * pxOutNumEstablishedConnections )
+eMetricsCollectorStatus eGetEstablishedConnections(
+    Connection_t * pxOutConnectionsArray,
+    size_t xConnectionsArrayLength,
+    size_t * pxOutNumEstablishedConnections )
 {
     eMetricsCollectorStatus eStatus = eMetricsCollectorSuccess;
 
@@ -221,7 +233,8 @@ eMetricsCollectorStatus eGetEstablishedConnections( Connection_t * pxOutConnecti
 
     if( xMetricsStatus != 0 )
     {
-        LogError( ( "Failed to acquire metrics from FreeRTOS+TCP tcp_netstat utility. Status: %d.",
+        LogError( ( "Failed to acquire metrics from FreeRTOS+TCP tcp_netstat "
+                    "utility. Status: %d.",
                     ( int ) xMetricsStatus ) );
         eStatus = eMetricsCollectorCollectionFailed;
     }
@@ -237,22 +250,27 @@ eMetricsCollectorStatus eGetEstablishedConnections( Connection_t * pxOutConnecti
             /* Get local IP as the tcp_netstat utility does not give it. */
             ulLocalIp = FreeRTOS_GetIPAddress();
 
-            /* Limit the outputted connections to what can fit in the output array. */
+            /* Limit the outputted connections to what can fit in the output
+             * array. */
             if( xConnectionsArrayLength < xMetrics.xTCPSocketList.uxCount )
             {
-                LogWarn( ( "Ports returned truncated due to insufficient buffer size." ) );
+                LogWarn( ( "Ports returned truncated due to insufficient "
+                           "buffer size." ) );
                 xCopyAmount = xConnectionsArrayLength;
             }
 
             for( uxIdx = 0; uxIdx < xCopyAmount; uxIdx++ )
             {
                 pxOutConnectionsArray[ uxIdx ].ulLocalIp = ulLocalIp;
-                pxOutConnectionsArray[ uxIdx ].usLocalPort =
-                    xMetrics.xTCPSocketList.xTCPList[ uxIdx ].usLocalPort;
-                pxOutConnectionsArray[ uxIdx ].ulRemoteIp =
-                    xMetrics.xTCPSocketList.xTCPList[ uxIdx ].ulRemoteIP;
-                pxOutConnectionsArray[ uxIdx ].usRemotePort =
-                    xMetrics.xTCPSocketList.xTCPList[ uxIdx ].usRemotePort;
+                pxOutConnectionsArray[ uxIdx ]
+                    .usLocalPort = xMetrics.xTCPSocketList.xTCPList[ uxIdx ]
+                                       .usLocalPort;
+                pxOutConnectionsArray[ uxIdx ]
+                    .ulRemoteIp = xMetrics.xTCPSocketList.xTCPList[ uxIdx ]
+                                      .ulRemoteIP;
+                pxOutConnectionsArray[ uxIdx ]
+                    .usRemotePort = xMetrics.xTCPSocketList.xTCPList[ uxIdx ]
+                                        .usRemotePort;
             }
 
             /* Return the number of elements copied to the array. */

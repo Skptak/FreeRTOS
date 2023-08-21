@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -29,11 +30,13 @@
 #include "demo_config.h"
 
 /**
- * @brief Utility macro to convert milliseconds to the fractions value of an SNTP timestamp.
- * @note The fractions value MUST be less than 1000 as duration of seconds is not represented
- * as fractions part of SNTP timestamp.
+ * @brief Utility macro to convert milliseconds to the fractions value of an
+ * SNTP timestamp.
+ * @note The fractions value MUST be less than 1000 as duration of seconds is
+ * not represented as fractions part of SNTP timestamp.
  */
-#define MILLISECONDS_TO_SNTP_FRACTIONS( ms )    ( ms * 1000 * SNTP_FRACTION_VALUE_PER_MICROSECOND )
+#define MILLISECONDS_TO_SNTP_FRACTIONS( ms ) \
+    ( ms * 1000 * SNTP_FRACTION_VALUE_PER_MICROSECOND )
 
 /**
  * @brief Type representing system time in Coordinated Universal Time (UTC)
@@ -58,9 +61,9 @@ typedef struct UTCTime
 void printTime( const UTCTime_t * pTime );
 
 /**
- * @brief Initializes the system clock with the first second of the year (i.e. at midnight
- * of 1st January) that is configured in the democonfigSYSTEM_START_YEAR config of
- * demo_config.h file.
+ * @brief Initializes the system clock with the first second of the year (i.e.
+ * at midnight of 1st January) that is configured in the
+ * democonfigSYSTEM_START_YEAR config of demo_config.h file.
  */
 void initializeSystemClock( void );
 
@@ -94,6 +97,5 @@ void sampleAppTask( void * pvParameters );
  * @ref systemGetWallClockTime() function.
  */
 void sntpTask( void * parameters );
-
 
 #endif /* ifndef COMMON_DEMO_INCLUDE_H */

@@ -13,7 +13,7 @@
 #define TRC_CONFIG_H
 
 #ifdef __cplusplus
-    extern "C" {
+extern "C" {
 #endif
 
 /******************************************************************************
@@ -23,7 +23,8 @@
  * required at least for the ARM Cortex-M port, that uses the ARM CMSIS API.
  * Try that in case of build problems. Otherwise, remove the #error line below.
  *****************************************************************************/
-/*#error "Trace Recorder: Please include your processor's header file here and remove this line." */
+/*#error "Trace Recorder: Please include your processor's header file here and
+ * remove this line." */
 
 /**
  * @def TRC_CFG_HARDWARE_PORT
@@ -42,7 +43,7 @@
  * See trcHardwarePort.h for available ports and information on how to
  * define your own port, if not already present.
  */
-#define TRC_CFG_HARDWARE_PORT                 TRC_HARDWARE_PORT_Win64
+#define TRC_CFG_HARDWARE_PORT              TRC_HARDWARE_PORT_Win64
 
 /**
  * @def TRC_CFG_SCHEDULING_ONLY
@@ -53,7 +54,7 @@
  *
  * Default value is 0 (= include additional events).
  */
-#define TRC_CFG_SCHEDULING_ONLY               0
+#define TRC_CFG_SCHEDULING_ONLY            0
 
 /**
  * @def TRC_CFG_INCLUDE_MEMMANG_EVENTS
@@ -64,7 +65,7 @@
  *
  * Default value is 1.
  */
-#define TRC_CFG_INCLUDE_MEMMANG_EVENTS        1
+#define TRC_CFG_INCLUDE_MEMMANG_EVENTS     1
 
 /**
  * @def TRC_CFG_INCLUDE_USER_EVENTS
@@ -88,7 +89,7 @@
  *
  * Default value is 1.
  */
-#define TRC_CFG_INCLUDE_USER_EVENTS           1
+#define TRC_CFG_INCLUDE_USER_EVENTS        1
 
 /**
  * @def TRC_CFG_INCLUDE_ISR_TRACING
@@ -109,7 +110,7 @@
  * Note: tracing ISRs requires that you insert calls to vTraceStoreISRBegin
  * and vTraceStoreISREnd in your interrupt handlers.
  */
-#define TRC_CFG_INCLUDE_ISR_TRACING           1
+#define TRC_CFG_INCLUDE_ISR_TRACING        1
 
 /**
  * @def TRC_CFG_INCLUDE_READY_EVENTS
@@ -123,7 +124,7 @@
  *
  * Default value is 1.
  */
-#define TRC_CFG_INCLUDE_READY_EVENTS          1
+#define TRC_CFG_INCLUDE_READY_EVENTS       1
 
 /**
  * @def TRC_CFG_INCLUDE_OSTICK_EVENTS
@@ -135,18 +136,17 @@
  *
  * Default value is 1.
  */
-#define TRC_CFG_INCLUDE_OSTICK_EVENTS         1
+#define TRC_CFG_INCLUDE_OSTICK_EVENTS      1
 
 /**
  * @def TRC_CFG_ENABLE_STACK_MONITOR
- * @brief If enabled (1), the recorder periodically reports the unused stack space of
- * all active tasks.
- * The stack monitoring runs in the Tracealyzer Control task, TzCtrl. This task
- * is always created by the recorder when in streaming mode.
- * In snapshot mode, the TzCtrl task is only used for stack monitoring and is
- * not created unless this is enabled.
+ * @brief If enabled (1), the recorder periodically reports the unused stack
+ * space of all active tasks. The stack monitoring runs in the Tracealyzer
+ * Control task, TzCtrl. This task is always created by the recorder when in
+ * streaming mode. In snapshot mode, the TzCtrl task is only used for stack
+ * monitoring and is not created unless this is enabled.
  */
-#define TRC_CFG_ENABLE_STACK_MONITOR          1
+#define TRC_CFG_ENABLE_STACK_MONITOR       1
 
 /**
  * @def TRC_CFG_STACK_MONITOR_MAX_TASKS
@@ -157,7 +157,7 @@
  *
  * Default value is 10.
  */
-#define TRC_CFG_STACK_MONITOR_MAX_TASKS       10
+#define TRC_CFG_STACK_MONITOR_MAX_TASKS    10
 
 /**
  * @def TRC_CFG_STACK_MONITOR_MAX_REPORTS
@@ -177,7 +177,7 @@
  *
  * Default value is 1.
  */
-#define TRC_CFG_STACK_MONITOR_MAX_REPORTS     1
+#define TRC_CFG_STACK_MONITOR_MAX_REPORTS  1
 
 /**
  * @def TRC_CFG_CTRL_TASK_PRIORITY
@@ -191,34 +191,35 @@
  * time-sensitive functions.
  *
  * In Snapshot mode, TzCtrl is only used for the stack usage monitoring and is
- * not created if stack monitoring is disabled. TRC_CFG_CTRL_TASK_PRIORITY should
- * be low, to avoid disturbing any time-sensitive tasks.
+ * not created if stack monitoring is disabled. TRC_CFG_CTRL_TASK_PRIORITY
+ * should be low, to avoid disturbing any time-sensitive tasks.
  */
-#define TRC_CFG_CTRL_TASK_PRIORITY            1
+#define TRC_CFG_CTRL_TASK_PRIORITY         1
 
 /**
  * @def TRC_CFG_CTRL_TASK_DELAY
- * @brief The delay between loops of the TzCtrl task (see TRC_CFG_CTRL_TASK_PRIORITY),
- * which affects the frequency of the stack monitoring.
+ * @brief The delay between loops of the TzCtrl task (see
+ * TRC_CFG_CTRL_TASK_PRIORITY), which affects the frequency of the stack
+ * monitoring.
  *
  * In streaming mode, this also affects the trace data transfer if you are using
  * a stream port leveraging the internal buffer (like TCP/IP). A shorter delay
  * increases the CPU load of TzCtrl somewhat, but may improve the performance of
  * of the trace streaming, especially if the trace buffer is small.
  */
-#define TRC_CFG_CTRL_TASK_DELAY               2
+#define TRC_CFG_CTRL_TASK_DELAY            2
 
 /**
  * @def TRC_CFG_CTRL_TASK_STACK_SIZE
  * @brief The stack size of the Tracealyzer Control (TzCtrl) task.
  * See TRC_CFG_CTRL_TASK_PRIORITY for further information about TzCtrl.
  */
-#define TRC_CFG_CTRL_TASK_STACK_SIZE          4096
+#define TRC_CFG_CTRL_TASK_STACK_SIZE       4096
 
 /**
  * @def TRC_CFG_RECORDER_BUFFER_ALLOCATION
- * @brief Specifies how the recorder buffer is allocated (also in case of streaming, in
- * port using the recorder's internal temporary buffer)
+ * @brief Specifies how the recorder buffer is allocated (also in case of
+ * streaming, in port using the recorder's internal temporary buffer)
  *
  * Values:
  * TRC_RECORDER_BUFFER_ALLOCATION_STATIC  - Static allocation (internal)
@@ -230,21 +231,21 @@
  * The custom mode allows you to control how and where the allocation is made,
  * for details see TRC_ALLOC_CUSTOM_BUFFER and vTraceSetRecorderDataBuffer().
  */
-#define TRC_CFG_RECORDER_BUFFER_ALLOCATION    TRC_RECORDER_BUFFER_ALLOCATION_STATIC
+#define TRC_CFG_RECORDER_BUFFER_ALLOCATION TRC_RECORDER_BUFFER_ALLOCATION_STATIC
 
 /**
  * @def TRC_CFG_MAX_ISR_NESTING
- * @brief Defines how many levels of interrupt nesting the recorder can handle, in
- * case multiple ISRs are traced and ISR nesting is possible. If this
- * is exceeded, the particular ISR will not be traced and the recorder then
- * logs an error message. This setting is used to allocate an internal stack
- * for keeping track of the previous execution context (4 byte per entry).
+ * @brief Defines how many levels of interrupt nesting the recorder can handle,
+ * in case multiple ISRs are traced and ISR nesting is possible. If this is
+ * exceeded, the particular ISR will not be traced and the recorder then logs an
+ * error message. This setting is used to allocate an internal stack for keeping
+ * track of the previous execution context (4 byte per entry).
  *
  * This value must be a non-zero positive constant, at least 1.
  *
  * Default value: 8
  */
-#define TRC_CFG_MAX_ISR_NESTING               8
+#define TRC_CFG_MAX_ISR_NESTING            8
 
 /**
  * @def TRC_CFG_ISR_TAILCHAINING_THRESHOLD
@@ -268,11 +269,12 @@
  * Note: This setting has separate definitions in trcSnapshotConfig.h and
  * trcStreamingConfig.h, since it is affected by the recorder mode.
  */
-#define TRC_CFG_ISR_TAILCHAINING_THRESHOLD    0
+#define TRC_CFG_ISR_TAILCHAINING_THRESHOLD 0
 
 /**
  * @def TRC_CFG_RECORDER_DATA_INIT
- * @brief Macro which states wether the recorder data should have an initial value.
+ * @brief Macro which states wether the recorder data should have an initial
+ *value.
  *
  * In very specific cases where traced objects are created before main(),
  * the recorder will need to be started even before that. In these cases,
@@ -290,17 +292,18 @@
  *
  * Default value is 1.
  */
-#define TRC_CFG_RECORDER_DATA_INIT            1
+#define TRC_CFG_RECORDER_DATA_INIT         1
 
 /**
  * @def TRC_CFG_RECORDER_DATA_ATTRIBUTE
- * @brief When setting TRC_CFG_RECORDER_DATA_INIT to 0, you might also need to make
- * sure certain recorder data is placed in a specific RAM section to avoid being
- * zeroed out after initialization. Define TRC_CFG_RECORDER_DATA_ATTRIBUTE as
- * that attribute.
+ * @brief When setting TRC_CFG_RECORDER_DATA_INIT to 0, you might also need to
+ * make sure certain recorder data is placed in a specific RAM section to avoid
+ * being zeroed out after initialization. Define TRC_CFG_RECORDER_DATA_ATTRIBUTE
+ * as that attribute.
  *
  * Example:
- * #define TRC_CFG_RECORDER_DATA_ATTRIBUTE __attribute__((section(".bss.trace_recorder_data")))
+ * #define TRC_CFG_RECORDER_DATA_ATTRIBUTE
+ * __attribute__((section(".bss.trace_recorder_data")))
  *
  * Default value is empty.
  */
@@ -308,10 +311,10 @@
 
 /**
  * @def TRC_CFG_USE_TRACE_ASSERT
- * @brief Enable or disable debug asserts. Information regarding any assert that is
- * triggered will be in trcAssert.c.
+ * @brief Enable or disable debug asserts. Information regarding any assert that
+ * is triggered will be in trcAssert.c.
  */
-#define TRC_CFG_USE_TRACE_ASSERT    1
+#define TRC_CFG_USE_TRACE_ASSERT 1
 
 #ifdef __cplusplus
 }

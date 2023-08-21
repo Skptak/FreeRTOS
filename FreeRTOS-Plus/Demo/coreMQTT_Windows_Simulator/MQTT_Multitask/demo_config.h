@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -31,7 +32,8 @@
 /******* DO NOT CHANGE the following order ********/
 /**************************************************/
 
-/* Include logging header files and define logging macros in the following order:
+/* Include logging header files and define logging macros in the following
+ * order:
  * 1. Include the header file "logging_levels.h".
  * 2. Define the LIBRARY_LOG_NAME and LIBRARY_LOG_LEVEL macros depending on
  * the logging configuration for DEMO.
@@ -42,24 +44,23 @@
 
 /* Logging configuration for the Demo. */
 #ifndef LIBRARY_LOG_NAME
-    #define LIBRARY_LOG_NAME    "MQTTDemo"
+    #define LIBRARY_LOG_NAME "MQTTDemo"
 #endif
 
 #ifndef LIBRARY_LOG_LEVEL
-    #define LIBRARY_LOG_LEVEL    LOG_INFO
+    #define LIBRARY_LOG_LEVEL LOG_INFO
 #endif
 
 /* Prototype for the function used to print to console on Windows simulator
  * of FreeRTOS.
  * The function prints to the console before the network is connected;
  * then a UDP port after the network has connected. */
-extern void vLoggingPrintf( const char * pcFormatString,
-                            ... );
+extern void vLoggingPrintf( const char * pcFormatString, ... );
 
 /* Map the SdkLog macro to the logging function to enable logging
  * on Windows simulator. */
 #ifndef SdkLog
-    #define SdkLog( message )    vLoggingPrintf message
+    #define SdkLog( message ) vLoggingPrintf message
 #endif
 
 #include "logging_stack.h"
@@ -67,9 +68,9 @@ extern void vLoggingPrintf( const char * pcFormatString,
 /************ End of logging configuration ****************/
 
 /**
- * @brief The MQTT client identifier used in this example.  Each client identifier
- * must be unique so edit as required to ensure no two clients connecting to the
- * same broker use the same client identifier.
+ * @brief The MQTT client identifier used in this example.  Each client
+ *identifier must be unique so edit as required to ensure no two clients
+ *connecting to the same broker use the same client identifier.
  *
  *!!! Please note a #defined constant is used for convenience of demonstration
  *!!! only.  Production devices can use something unique to the device that can
@@ -78,7 +79,6 @@ extern void vLoggingPrintf( const char * pcFormatString,
  *
  * #define democonfigCLIENT_IDENTIFIER				"insert here."
  */
-
 
 /**
  * @brief Endpoint of the MQTT broker to connect to.
@@ -95,7 +95,6 @@ extern void vLoggingPrintf( const char * pcFormatString,
  *
  * #define democonfigMQTT_BROKER_ENDPOINT				"insert here."
  */
-
 
 /**
  * @brief The port to use for the demo.
@@ -181,14 +180,16 @@ extern void vLoggingPrintf( const char * pcFormatString,
  * for an MQTT broker that only has an IP address but no hostname. However,
  * SNI should be enabled whenever possible.
  */
-#define democonfigDISABLE_SNI    ( pdFALSE )
+#define democonfigDISABLE_SNI            ( pdFALSE )
 
 /**
- * @brief Configuration that indicates if the demo connection is made to the AWS IoT Core MQTT broker.
+ * @brief Configuration that indicates if the demo connection is made to the AWS
+ * IoT Core MQTT broker.
  *
- * If username/password based authentication is used, the demo will use appropriate TLS ALPN and
- * SNI configurations as required for the Custom Authentication feature of AWS IoT.
- * For more information, refer to the following documentation:
+ * If username/password based authentication is used, the demo will use
+ * appropriate TLS ALPN and SNI configurations as required for the Custom
+ * Authentication feature of AWS IoT. For more information, refer to the
+ * following documentation:
  * https://docs.aws.amazon.com/iot/latest/developerguide/custom-auth.html#custom-auth-mqtt
  *
  * #define democonfigUSE_AWS_IOT_CORE_BROKER    ( 1 )
@@ -225,34 +226,34 @@ extern void vLoggingPrintf( const char * pcFormatString,
  * The current value is given as an example. Please update for your specific
  * operating system.
  */
-#define democonfigOS_NAME                   "FreeRTOS"
+#define democonfigOS_NAME                "FreeRTOS"
 
 /**
  * @brief The version of the operating system that the application is running
  * on. The current value is given as an example. Please update for your specific
  * operating system version.
  */
-#define democonfigOS_VERSION                tskKERNEL_VERSION_NUMBER
+#define democonfigOS_VERSION             tskKERNEL_VERSION_NUMBER
 
 /**
  * @brief The name of the hardware platform the application is running on. The
  * current value is given as an example. Please update for your specific
  * hardware platform.
  */
-#define democonfigHARDWARE_PLATFORM_NAME    "WinSim"
+#define democonfigHARDWARE_PLATFORM_NAME "WinSim"
 
 /**
  * @brief The name of the MQTT library used and its version, following an "@"
  * symbol.
  */
 #include "core_mqtt.h" /* Include coreMQTT header for MQTT_LIBRARY_VERSION macro. */
-#define democonfigMQTT_LIB                              "core-mqtt@"MQTT_LIBRARY_VERSION
+#define democonfigMQTT_LIB                           "core-mqtt@" MQTT_LIBRARY_VERSION
 
 /**
  * @brief Whether to use mutual authentication. If this macro is not set to 1
  * or not defined, then plaintext TCP will be used instead of TLS over TCP.
  */
-#define democonfigUSE_TLS                               1
+#define democonfigUSE_TLS                            1
 
 /**
  * @brief Set the stack size of the main demo task.
@@ -260,37 +261,37 @@ extern void vLoggingPrintf( const char * pcFormatString,
  * In the Windows port, this stack only holds a structure. The actual
  * stack is created by an operating system thread.
  */
-#define democonfigDEMO_STACKSIZE                        configMINIMAL_STACK_SIZE
+#define democonfigDEMO_STACKSIZE                     configMINIMAL_STACK_SIZE
 
 /**
  * @brief The number of simple sub-pub tasks to create.
  */
-#define democonfigNUM_SIMPLE_SUB_PUB_TASKS_TO_CREATE    2
-#define democonfigSIMPLE_SUB_PUB_TASK_STACK_SIZE        ( configMINIMAL_STACK_SIZE )
+#define democonfigNUM_SIMPLE_SUB_PUB_TASKS_TO_CREATE 2
+#define democonfigSIMPLE_SUB_PUB_TASK_STACK_SIZE     ( configMINIMAL_STACK_SIZE )
 
 /**
  * @brief The length of the queue used to hold commands for the coreMQTT Agent.
  */
-#define MQTT_AGENT_COMMAND_QUEUE_LENGTH                 10
+#define MQTT_AGENT_COMMAND_QUEUE_LENGTH              10
 
 /**
  * Provide default values for undefined configuration settings.
  */
 #ifndef democonfigOS_NAME
-    #define democonfigOS_NAME    "FreeRTOS"
+    #define democonfigOS_NAME "FreeRTOS"
 #endif
 
 #ifndef democonfigOS_VERSION
-    #define democonfigOS_VERSION    tskKERNEL_VERSION_NUMBER
+    #define democonfigOS_VERSION tskKERNEL_VERSION_NUMBER
 #endif
 
 #ifndef democonfigHARDWARE_PLATFORM_NAME
-    #define democonfigHARDWARE_PLATFORM_NAME    "WinSim"
+    #define democonfigHARDWARE_PLATFORM_NAME "WinSim"
 #endif
 
 #ifndef democonfigMQTT_LIB
     #include "core_mqtt.h" /* Include coreMQTT header for MQTT_LIBRARY_VERSION macro. */
-    #define democonfigMQTT_LIB    "core-mqtt@"MQTT_LIBRARY_VERSION
+    #define democonfigMQTT_LIB "core-mqtt@" MQTT_LIBRARY_VERSION
 #endif
 
 #endif /* DEMO_CONFIG_H */

@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -31,7 +32,8 @@
 /******* DO NOT CHANGE the following order ********/
 /**************************************************/
 
-/* Include logging header files and define logging macros in the following order:
+/* Include logging header files and define logging macros in the following
+ * order:
  * 1. Include the header file "logging_levels.h".
  * 2. Define the LIBRARY_LOG_NAME and LIBRARY_LOG_LEVEL macros depending on
  * the logging configuration for DEMO.
@@ -43,24 +45,23 @@
 
 /* Logging configuration for the demo. */
 #ifndef LIBRARY_LOG_NAME
-    #define LIBRARY_LOG_NAME    "HTTPDemo"
+    #define LIBRARY_LOG_NAME "HTTPDemo"
 #endif
 
 #ifndef LIBRARY_LOG_LEVEL
-    #define LIBRARY_LOG_LEVEL    LOG_INFO
+    #define LIBRARY_LOG_LEVEL LOG_INFO
 #endif
 
 /* Prototype for the function used to print to console on Windows simulator
  * of FreeRTOS.
  * The function prints to the console before the network is connected;
  * then a UDP port after the network has connected. */
-extern void vLoggingPrintf( const char * pcFormatString,
-                            ... );
+extern void vLoggingPrintf( const char * pcFormatString, ... );
 
 /* Map the SdkLog macro to the logging function to enable logging
  * on Windows simulator. */
 #ifndef SdkLog
-    #define SdkLog( message )    vLoggingPrintf message
+    #define SdkLog( message ) vLoggingPrintf message
 #endif
 
 #include "logging_stack.h"
@@ -73,7 +74,7 @@ extern void vLoggingPrintf( const char * pcFormatString,
  * For this demo, an X.509 certificate is used to verify the client.
  */
 #ifndef democonfigHTTPS_PORT
-    #define democonfigHTTPS_PORT    443
+    #define democonfigHTTPS_PORT 443
 #endif
 
 /**
@@ -94,7 +95,7 @@ extern void vLoggingPrintf( const char * pcFormatString,
  * "...base64 data...\n"\
  * "-----END CERTIFICATE-----\n"
  *
- * #define democonfigS3_ROOT_CA_PEM   "...insert here..." 
+ * #define democonfigS3_ROOT_CA_PEM   "...insert here..."
  */
 
 /**
@@ -109,9 +110,8 @@ extern void vLoggingPrintf( const char * pcFormatString,
  * "-----BEGIN CERTIFICATE-----\n"\
  * "...base64 data...\n"\
  * "-----END CERTIFICATE-----\n"
- * #define democonfigIOT_CRED_PROVIDER_ROOT_CA_PEM   "...insert here..." 
+ * #define democonfigIOT_CRED_PROVIDER_ROOT_CA_PEM   "...insert here..."
  */
-
 
 /**
  * @brief Client certificate.
@@ -126,7 +126,6 @@ extern void vLoggingPrintf( const char * pcFormatString,
  *
  * #define democonfigCLIENT_CERTIFICATE_PEM    "...insert here..."
  */
-
 
 /**
  * @brief Client's private key.
@@ -170,20 +169,17 @@ extern void vLoggingPrintf( const char * pcFormatString,
  * #define democonfigIOT_CREDENTIAL_PROVIDER_ROLE   "...insert here..."
  */
 
-
 /**
  * @brief Define AWS IoT thing name.
  *
  * #define democonfigIOT_THING_NAME   "...insert here..."
  */
 
-
 /**
  * @brief Name of bucket in AWS S3 from where file needs to be downloaded.
  *
  * #define democonfigS3_BUCKET_NAME   "...insert here..."
  */
-
 
 /**
  * @brief AWS Region where the bucket resides.
@@ -202,17 +198,17 @@ extern void vLoggingPrintf( const char * pcFormatString,
  * that only has an IP address but no hostname. However, SNI should be enabled
  * whenever possible.
  */
-#define democonfigDISABLE_SNI                       ( pdFALSE )
+#define democonfigDISABLE_SNI                    ( pdFALSE )
 
 /**
  * @brief Transport timeout in milliseconds for transport send and receive.
  */
-#define democonfigTRANSPORT_SEND_RECV_TIMEOUT_MS    ( 5000 )
+#define democonfigTRANSPORT_SEND_RECV_TIMEOUT_MS ( 5000 )
 
 /**
  * @brief The length in bytes of the user buffer.
  */
-#define democonfigUSER_BUFFER_LENGTH                ( 4096 )
+#define democonfigUSER_BUFFER_LENGTH             ( 4096 )
 
 /**
  * @brief The size of the range of the file to download, with each request.
@@ -221,7 +217,7 @@ extern void vLoggingPrintf( const char * pcFormatString,
  * in the user buffer. We don't expect S3 to send more than 1024 bytes of
  * headers.
  */
-#define democonfigRANGE_REQUEST_LENGTH              ( 2048 )
+#define democonfigRANGE_REQUEST_LENGTH           ( 2048 )
 
 /**
  * @brief Set the stack size of the main demo task.
@@ -229,6 +225,6 @@ extern void vLoggingPrintf( const char * pcFormatString,
  * In the Windows port, this stack only holds a structure. The actual
  * stack is created by an operating system thread.
  */
-#define democonfigDEMO_STACKSIZE                    configMINIMAL_STACK_SIZE
+#define democonfigDEMO_STACKSIZE                 configMINIMAL_STACK_SIZE
 
 #endif /* ifndef DEMO_CONFIG_H */

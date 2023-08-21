@@ -2,22 +2,23 @@
  * FreeRTOS V202212.00
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  *
  * https://www.FreeRTOS.org
  * https://github.com/FreeRTOS
@@ -42,8 +43,8 @@
 
 /**
  * This function details what Cryptoki mechanisms are, how to query a slot's
- * support for them, and how to use those mechanisms to generate a hash of a buffer.
- * This can then be used as a message digest.
+ * support for them, and how to use those mechanisms to generate a hash of a
+ * buffer. This can then be used as a message digest.
  *
  * http://docs.oasis-open.org/pkcs11/pkcs11-base/v2.40/os/pkcs11-base-v2.40-os.html
  * please consult the standard for more information.
@@ -56,9 +57,9 @@
 void vPKCS11MechanismsAndDigestDemo( void )
 {
     /*
-     * This demo builds upon the demo found in "management_and_rng.c". It borrows
-     * code and terminology defined and explained, and it is recommended to complete
-     * the "management and rng" demo before this one.
+     * This demo builds upon the demo found in "management_and_rng.c". It
+     * borrows code and terminology defined and explained, and it is recommended
+     * to complete the "management and rng" demo before this one.
      */
     configPRINTF( ( "\r\nStarting PKCS #11 Mechanisms and Digest Demo.\r\n" ) );
 
@@ -69,8 +70,9 @@ void vPKCS11MechanismsAndDigestDemo( void )
     CK_RV xResult = CKR_OK;
 
     /* The PKCS #11 standard defines a mechanism to be a "A process for
-     * implementing a cryptographic operation." For example the SHA-256 algorithm
-     * will be the mechanism used in this demo to perform a digest (hash operation).
+     * implementing a cryptographic operation." For example the SHA-256
+     * algorithm will be the mechanism used in this demo to perform a digest
+     * (hash operation).
      *
      * The mechanism types are defined in "pkcs11t.h", and are prefixed CKM_, to
      * provide a portable way to identify mechanisms.
@@ -119,21 +121,24 @@ void vPKCS11MechanismsAndDigestDemo( void )
     configASSERT( CKR_OK == xResult );
 
     /* Check to see if the slot supports signing. This capability is important
-     * because we want to use the Cryptoki API to sign messages, without directly
-     * accessing the private key. This concept will be explained further in the
-     * "sign_verify.c" demo, but for now we will just check that the slot has the
-     * capabilities we need. See https://en.wikipedia.org/wiki/Public-key_cryptography
-     * for more information regarding private keys and public keys.
+     * because we want to use the Cryptoki API to sign messages, without
+     * directly accessing the private key. This concept will be explained
+     * further in the "sign_verify.c" demo, but for now we will just check that
+     * the slot has the capabilities we need. See
+     * https://en.wikipedia.org/wiki/Public-key_cryptography for more
+     * information regarding private keys and public keys.
      */
     if( 0 != ( CKF_SIGN & MechanismInfo.flags ) )
     {
-        configPRINTF( ( "This Cryptoki library supports signing messages with RSA" \
-                        " private keys.\r\n" ) );
+        configPRINTF(
+            ( "This Cryptoki library supports signing messages with RSA"
+              " private keys.\r\n" ) );
     }
     else
     {
-        configPRINTF( ( "This Cryptoki library does not support signing messages" \
-                        " with RSA private keys.\r\n" ) );
+        configPRINTF(
+            ( "This Cryptoki library does not support signing messages"
+              " with RSA private keys.\r\n" ) );
     }
 
     /* This Cryptoki library assumes that RSA private keys are 2048 bit . */
@@ -148,18 +153,21 @@ void vPKCS11MechanismsAndDigestDemo( void )
                                                   &MechanismInfo );
 
     /* If this fails, the slot is not able to verify the signature using
-     * a RSA public key. Please see https://en.wikipedia.org/wiki/Public_key_infrastructure
-     * for more information regarding PKI (Public Key Infrastructure).
+     * a RSA public key. Please see
+     * https://en.wikipedia.org/wiki/Public_key_infrastructure for more
+     * information regarding PKI (Public Key Infrastructure).
      */
     if( 0 != ( CKF_VERIFY & MechanismInfo.flags ) )
     {
-        configPRINTF( ( "This Cryptoki library supports verifying messages with RSA" \
-                        " public keys.\r\n" ) );
+        configPRINTF(
+            ( "This Cryptoki library supports verifying messages with RSA"
+              " public keys.\r\n" ) );
     }
     else
     {
-        configPRINTF( ( "This Cryptoki library does not support verifying messages" \
-                        " with RSA public keys.\r\n" ) );
+        configPRINTF(
+            ( "This Cryptoki library does not support verifying messages"
+              " with RSA public keys.\r\n" ) );
     }
 
     /* This Cryptoki library assumes that RSA public keys are 2048 bit . */
@@ -174,23 +182,24 @@ void vPKCS11MechanismsAndDigestDemo( void )
 
     if( 0 != ( CKF_SIGN & MechanismInfo.flags ) )
     {
-        configPRINTF( ( "This Cryptoki library supports signing messages with" \
+        configPRINTF( ( "This Cryptoki library supports signing messages with"
                         " ECDSA private keys.\r\n" ) );
     }
     else
     {
-        configPRINTF( ( "This Cryptoki library does not support signing messages" \
-                        " with ECDSA private keys.\r\n" ) );
+        configPRINTF(
+            ( "This Cryptoki library does not support signing messages"
+              " with ECDSA private keys.\r\n" ) );
     }
 
     if( 0 != ( CKF_VERIFY & MechanismInfo.flags ) )
     {
-        configPRINTF( ( "This Cryptoki library supports verifying messages with" \
+        configPRINTF( ( "This Cryptoki library supports verifying messages with"
                         " ECDSA public keys.\r\n" ) );
     }
     else
     {
-        configPRINTF( ( "This Cryptoki library does not support verifying" \
+        configPRINTF( ( "This Cryptoki library does not support verifying"
                         " messages with ECDSA public keys.\r\n" ) );
     }
 
@@ -205,12 +214,12 @@ void vPKCS11MechanismsAndDigestDemo( void )
 
     if( 0 != ( CKF_DIGEST & MechanismInfo.flags ) )
     {
-        configPRINTF( ( "The Cryptoki library supports the " \
+        configPRINTF( ( "The Cryptoki library supports the "
                         "SHA-256 algorithm.\r\n" ) );
     }
     else
     {
-        configPRINTF( ( "The Cryptoki library doesn't support the " \
+        configPRINTF( ( "The Cryptoki library doesn't support the "
                         "SHA-256 algorithm.\r\n" ) );
     }
 
@@ -220,10 +229,8 @@ void vPKCS11MechanismsAndDigestDemo( void )
 
     /* Initializes the digest operation and sets what mechanism will be used
      * for the digest. */
-    xResult = pxFunctionList->C_DigestInit( hSession,
-                                            &xDigestMechanism );
+    xResult = pxFunctionList->C_DigestInit( hSession, &xDigestMechanism );
     configASSERT( CKR_OK == xResult );
-
 
     /* Pass a pointer to the buffer of bytes to be hashed, and it's size. */
     xResult = pxFunctionList->C_DigestUpdate( hSession,
@@ -233,9 +240,9 @@ void vPKCS11MechanismsAndDigestDemo( void )
     configASSERT( CKR_OK == xResult );
 
     /* Retrieve the digest buffer. Since the mechanism is a SHA-256 algorithm,
-     * the size will always be 32 bytes. If the size cannot be known ahead of time,
-     * a NULL value to the second parameter pDigest, will set the third parameter,
-     * pulDigestLen to the number of required bytes. */
+     * the size will always be 32 bytes. If the size cannot be known ahead of
+     * time, a NULL value to the second parameter pDigest, will set the third
+     * parameter, pulDigestLen to the number of required bytes. */
     xResult = pxFunctionList->C_DigestFinal( hSession,
                                              xDigestResult,
                                              &ulDigestLength );
