@@ -1559,11 +1559,12 @@ typedef struct
     uint8_t channelBuffer[ ( ( TRC_CFG_SEPARATE_USER_EVENT_BUFFER_SIZE ) + 3 ) &
                            0xFFFFFFFC ]; /* 1 byte per slot, with padding for 4
                                             byte alignment */
-    uint8_t dataBuffer[ ( TRC_CFG_SEPARATE_USER_EVENT_BUFFER_SIZE ) *4 ]; /* 4
-                                                                             bytes
-                                                                             per
-                                                                             slot
-                                                                           */
+    uint8_t
+        dataBuffer[ ( TRC_CFG_SEPARATE_USER_EVENT_BUFFER_SIZE ) *4 ]; /* 4
+                                                                         bytes
+                                                                         per
+                                                                         slot
+                                                                       */
 
 } UserEventBuffer;
         #endif /* (TRC_CFG_USE_SEPARATE_USER_EVENT_BUFFER == 1) */

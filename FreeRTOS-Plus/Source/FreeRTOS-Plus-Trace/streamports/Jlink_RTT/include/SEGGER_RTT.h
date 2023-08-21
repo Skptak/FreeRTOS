@@ -131,9 +131,9 @@ typedef struct
                                                                // via debug
                                                                // probe to host
     SEGGER_RTT_BUFFER_DOWN
-        aDown[ SEGGER_RTT_MAX_NUM_DOWN_BUFFERS ]; // Down buffers, transferring
-                                                  // information down from host
-                                                  // via debug probe to target
+    aDown[ SEGGER_RTT_MAX_NUM_DOWN_BUFFERS ]; // Down buffers, transferring
+                                              // information down from host
+                                              // via debug probe to target
 } SEGGER_RTT_CB;
 
 /*********************************************************************

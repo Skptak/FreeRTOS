@@ -83,26 +83,27 @@ volatile char tz_host_command_data[ 32 ];
      * An example for Keil is included
      * (Keil-uVision-Tracealyzer-ITM-Exporter.ini). */
 
-        #define itm_write_32( __data )                                            \
-            {                                                                     \
-                if( ( CoreDebug->DEMCR &                                          \
-                      CoreDebug_DEMCR_TRCENA_Msk ) &&    /* Trace enabled? */     \
-                    ( ITM->TCR & ITM_TCR_ITMENA_Msk ) && /* ITM enabled? */       \
-                    ( ITM->TER &                                                  \
-                      ( 1UL << ( TRC_CFG_STREAM_PORT_ITM_PORT ) ) ) ) /* ITM      \
-                                                                         port     \
-                                                                         enabled? \
-                                                                       */         \
-                {                                                                 \
-                    while( ITM->PORT[ TRC_CFG_STREAM_PORT_ITM_PORT ].u32 ==       \
-                           0 )                                                    \
-                    { /* Do nothing */                                            \
-                    } /* Block until room in ITM FIFO - This stream port is       \
-                         always in "blocking mode", since intended for            \
-                         high-speed ITM! */                                       \
-                    ITM->PORT[ TRC_CFG_STREAM_PORT_ITM_PORT ]                     \
-                        .u32 = __data; /* Write the data */                       \
-                }                                                                 \
+        #define itm_write_32( __data )                                        \
+            {                                                                 \
+                if( ( CoreDebug->DEMCR &                                      \
+                      CoreDebug_DEMCR_TRCENA_Msk ) &&    /* Trace enabled? */ \
+                    ( ITM->TCR & ITM_TCR_ITMENA_Msk ) && /* ITM enabled? */   \
+                    ( ITM->TER &                                              \
+                      ( 1UL                                                   \
+                        << ( TRC_CFG_STREAM_PORT_ITM_PORT ) ) ) ) /* ITM      \
+                                                                     port     \
+                                                                     enabled? \
+                                                                   */         \
+                {                                                             \
+                    while( ITM->PORT[ TRC_CFG_STREAM_PORT_ITM_PORT ].u32 ==   \
+                           0 )                                                \
+                    { /* Do nothing */                                        \
+                    } /* Block until room in ITM FIFO - This stream port is   \
+                         always in "blocking mode", since intended for        \
+                         high-speed ITM! */                                   \
+                    ITM->PORT[ TRC_CFG_STREAM_PORT_ITM_PORT ]                 \
+                        .u32 = __data; /* Write the data */                   \
+                }                                                             \
             }
 
 /* This is assumed to execute from within the recorder, with interrupts disabled

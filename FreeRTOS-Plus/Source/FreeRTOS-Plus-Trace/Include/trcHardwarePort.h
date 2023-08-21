@@ -662,8 +662,8 @@ static inline uint32_t prvGetCPSR( void )
         #define TRC_IRQ_PRIORITY_ORDER 0
     #else
 /**
- * @brief 	Fetch core agnostic timestamp using the external 40MHz timer. This is
- * used by tracerecorder when running with both cores.
+ * @brief 	Fetch core agnostic timestamp using the external 40MHz timer. This
+ * is used by tracerecorder when running with both cores.
  *
  * @return 	Ticks since the timer started
  */

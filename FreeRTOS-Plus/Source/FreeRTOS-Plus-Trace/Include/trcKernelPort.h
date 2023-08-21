@@ -870,7 +870,8 @@ void prvTraceSetStreamBufferNumberHigh16( void * pvStreamBuffer,
                                             Byte 1: state (if already active) */
         #define PropertyTableSizeISR   ( ( TRC_CFG_NAME_LEN_ISR ) + 2 )
 
-        /* TRC_CFG_NTIMER properties:				Byte 0: state (unused for now)
+        /* TRC_CFG_NTIMER properties:				Byte 0: state (unused for
+         * now)
          */
         #define PropertyTableSizeTimer ( ( TRC_CFG_NAME_LEN_TIMER ) + 1 )
 
@@ -879,13 +880,13 @@ void prvTraceSetStreamBufferNumberHigh16( void * pvStreamBuffer,
         #define PropertyTableSizeEventGroup \
             ( ( TRC_CFG_NAME_LEN_EVENTGROUP ) + 4 )
 
-        /* TRC_CFG_NSTREAMBUFFER properties:			Byte 0-3: state (unused for
-         * now)*/
+        /* TRC_CFG_NSTREAMBUFFER properties:			Byte 0-3: state (unused
+         * for now)*/
         #define PropertyTableSizeStreamBuffer \
             ( ( TRC_CFG_NAME_LEN_STREAMBUFFER ) + 4 )
 
-        /* TRC_CFG_NMESSAGEBUFFER properties:			Byte 0-3: state (unused for
-         * now)*/
+        /* TRC_CFG_NMESSAGEBUFFER properties:			Byte 0-3: state (unused
+         * for now)*/
         #define PropertyTableSizeMessageBuffer \
             ( ( TRC_CFG_NAME_LEN_MESSAGEBUFFER ) + 4 )
 
