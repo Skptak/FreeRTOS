@@ -156,6 +156,7 @@ jobs:
                   retention-days: 2
 
     link-verifier:
+      if: ${{ github.event.pull_request }}
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v3
