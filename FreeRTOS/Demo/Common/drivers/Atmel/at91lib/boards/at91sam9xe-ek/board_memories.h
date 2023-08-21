@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
- *         ATMEL Microcontroller Software Support 
+ *         ATMEL Microcontroller Software Support
  * ----------------------------------------------------------------------------
  * Copyright (c) 2008, Atmel Corporation
  *
@@ -34,21 +34,20 @@
 //         Global functions
 //------------------------------------------------------------------------------
 
-extern void BOARD_RemapRom(void);
+extern void BOARD_RemapRom( void );
 
-extern void BOARD_RemapRam(void);
+extern void BOARD_RemapRam( void );
 
-extern void BOARD_ConfigureSdram(void);
+extern void BOARD_ConfigureSdram( void );
 
-extern void BOARD_ConfigureSdram48MHz(void);
+extern void BOARD_ConfigureSdram48MHz( void );
 
-extern void BOARD_ConfigureNandFlash(unsigned char busWidth);
+extern void BOARD_ConfigureNandFlash( unsigned char busWidth );
 
-extern void BOARD_ConfigureNandFlash48MHz(unsigned char busWidth);
+extern void BOARD_ConfigureNandFlash48MHz( unsigned char busWidth );
 
-extern void BOARD_ConfigureNorFlash48MHz(unsigned char busWidth);
+extern void BOARD_ConfigureNorFlash48MHz( unsigned char busWidth );
 
-extern void BOARD_ConfigureFlash48MHz(void);
+extern void BOARD_ConfigureFlash48MHz( void );
 
-#endif //#ifndef BOARD_MEMORIES_H
-
+#endif // #ifndef BOARD_MEMORIES_H

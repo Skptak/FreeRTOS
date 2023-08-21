@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
- *         ATMEL Microcontroller Software Support 
+ *         ATMEL Microcontroller Software Support
  * ----------------------------------------------------------------------------
  * Copyright (c) 2008, Atmel Corporation
  *
@@ -43,7 +43,7 @@
 //------------------------------------------------------------------------------
 
 /// Maximum size of one PDC buffer (in bytes).
-#define MAX_PDC_COUNTER	65535
+#define MAX_PDC_COUNTER 65535
 
 //------------------------------------------------------------------------------
 //         Local types
@@ -53,16 +53,16 @@
 /// AC97 transfer descriptor. Tracks the status and parameters of a transfer
 /// on the AC97 bus.
 //------------------------------------------------------------------------------
-typedef struct _Ac97Transfer {
-
-	/// Buffer containing the slots to send.
-	unsigned char *pBuffer;
-	/// Total number of samples to send.
-	volatile unsigned int numSamples;
-	/// Optional callback function.
-	Ac97Callback callback;
-	/// Optional argument to the callback function.
-	void *pArg;
+typedef struct _Ac97Transfer
+{
+    /// Buffer containing the slots to send.
+    unsigned char * pBuffer;
+    /// Total number of samples to send.
+    volatile unsigned int numSamples;
+    /// Optional callback function.
+    Ac97Callback callback;
+    /// Optional argument to the callback function.
+    void * pArg;
 
 } Ac97Transfer;
 
@@ -70,10 +70,10 @@ typedef struct _Ac97Transfer {
 /// AC97 controller driver structure. Monitors the status of transfers on all
 /// AC97 channels.
 //------------------------------------------------------------------------------
-typedef struct _Ac97c {
-
+typedef struct _Ac97c
+{
     /// List of transfers occuring on each channel.
-	Ac97Transfer transfers[5];
+    Ac97Transfer transfers[ 5 ];
 } Ac97c;
 
 //------------------------------------------------------------------------------
@@ -91,28 +91,34 @@ static Ac97c ac97c;
 /// Returns the size of one sample (in bytes) on the given channel.
 /// \param channel  Channel number.
 //------------------------------------------------------------------------------
-static unsigned char GetSampleSize(unsigned char channel)
+static unsigned char GetSampleSize( unsigned char channel )
 {
     unsigned int size = 0;
 
-    SANITY_CHECK((channel == AC97C_CHANNEL_A)
-                 || (channel == AC97C_CHANNEL_B)
-                 || (channel == AC97C_CHANNEL_CODEC));
+    SANITY_CHECK( ( channel == AC97C_CHANNEL_A ) ||
+                  ( channel == AC97C_CHANNEL_B ) ||
+                  ( channel == AC97C_CHANNEL_CODEC ) );
 
     // Check selected channel
-    switch (channel) {
-        case AC97C_CHANNEL_CODEC: return 2;
-        case AC97C_CHANNEL_A: size = (AT91C_BASE_AC97C->AC97C_CAMR & AT91C_AC97C_SIZE) >> 16; break;
-        case AC97C_CHANNEL_B: size = (AT91C_BASE_AC97C->AC97C_CBMR & AT91C_AC97C_SIZE) >> 16; break;
+    switch( channel )
+    {
+        case AC97C_CHANNEL_CODEC:
+            return 2;
+        case AC97C_CHANNEL_A:
+            size = ( AT91C_BASE_AC97C->AC97C_CAMR & AT91C_AC97C_SIZE ) >> 16;
+            break;
+        case AC97C_CHANNEL_B:
+            size = ( AT91C_BASE_AC97C->AC97C_CBMR & AT91C_AC97C_SIZE ) >> 16;
+            break;
     }
 
     // Compute size in bytes given SIZE field
-    if ((size & 2) != 0) {
-
+    if( ( size & 2 ) != 0 )
+    {
         return 2;
     }
-    else {
-
+    else
+    {
         return 4;
     }
 }
@@ -120,86 +126,86 @@ static unsigned char GetSampleSize(unsigned char channel)
 //------------------------------------------------------------------------------
 /// Interrupt service routine for Codec, is invoked by AC97C_Handler.
 //------------------------------------------------------------------------------
-static void CodecHandler(void)
+static void CodecHandler( void )
 {
     unsigned int status;
     unsigned int data;
-    Ac97Transfer *pTransfer = &(ac97c.transfers[AC97C_CODEC_TRANSFER]);
+    Ac97Transfer * pTransfer = &( ac97c.transfers[ AC97C_CODEC_TRANSFER ] );
 
     // Read CODEC status register
     status = AT91C_BASE_AC97C->AC97C_COSR;
     status &= AT91C_BASE_AC97C->AC97C_COMR;
 
     // A sample has been transmitted
-    if (status & AT91C_AC97C_TXRDY) {
-
+    if( status & AT91C_AC97C_TXRDY )
+    {
         pTransfer->numSamples--;
 
         // If there are remaining samples, transmit one
-        if (pTransfer->numSamples > 0) {
-
-            data = *((unsigned int *) pTransfer->pBuffer);
-            AT91C_BASE_AC97C->AC97C_COMR &= ~(AT91C_AC97C_TXRDY);
+        if( pTransfer->numSamples > 0 )
+        {
+            data = *( ( unsigned int * ) pTransfer->pBuffer );
+            AT91C_BASE_AC97C->AC97C_COMR &= ~( AT91C_AC97C_TXRDY );
             AT91C_BASE_AC97C->AC97C_COTHR = data;
 
             // Check if transfer is read or write
-            if ((data & AT91C_AC97C_READ) != 0) {
-    
+            if( ( data & AT91C_AC97C_READ ) != 0 )
+            {
                 AT91C_BASE_AC97C->AC97C_COMR |= AT91C_AC97C_RXRDY;
             }
-            else {
-            
-                pTransfer->pBuffer += sizeof(unsigned int);
+            else
+            {
+                pTransfer->pBuffer += sizeof( unsigned int );
                 AT91C_BASE_AC97C->AC97C_COMR |= AT91C_AC97C_TXRDY;
             }
         }
         // Transfer finished
-        else {
-
+        else
+        {
             AT91C_BASE_AC97C->AC97C_IDR = AT91C_AC97C_COEVT;
-            AT91C_BASE_AC97C->AC97C_COMR &= ~(AT91C_AC97C_TXRDY);
-            if (pTransfer->callback) {
-
-                pTransfer->callback(pTransfer->pArg, 0, 0);
+            AT91C_BASE_AC97C->AC97C_COMR &= ~( AT91C_AC97C_TXRDY );
+            if( pTransfer->callback )
+            {
+                pTransfer->callback( pTransfer->pArg, 0, 0 );
             }
-        }   
+        }
     }
 
     // A sample has been received
-    if (status & AT91C_AC97C_RXRDY) {
-
+    if( status & AT91C_AC97C_RXRDY )
+    {
         // Store sample
         data = AT91C_BASE_AC97C->AC97C_CORHR;
-        *((unsigned int *) pTransfer->pBuffer) = data;
+        *( ( unsigned int * ) pTransfer->pBuffer ) = data;
 
-        pTransfer->pBuffer += sizeof(unsigned int);
+        pTransfer->pBuffer += sizeof( unsigned int );
         pTransfer->numSamples--;
 
         // Transfer finished
-        if (pTransfer->numSamples > 0) {
-
-            data = *((unsigned int *) pTransfer->pBuffer);
-            AT91C_BASE_AC97C->AC97C_COMR &= ~(AT91C_AC97C_RXRDY);
+        if( pTransfer->numSamples > 0 )
+        {
+            data = *( ( unsigned int * ) pTransfer->pBuffer );
+            AT91C_BASE_AC97C->AC97C_COMR &= ~( AT91C_AC97C_RXRDY );
             AT91C_BASE_AC97C->AC97C_COTHR = data;
 
             // Check if transfer is read or write
-            if ((data & AT91C_AC97C_READ) != 0) {
-    
+            if( ( data & AT91C_AC97C_READ ) != 0 )
+            {
                 AT91C_BASE_AC97C->AC97C_COMR |= AT91C_AC97C_RXRDY;
             }
-            else {
-            
-                pTransfer->pBuffer += sizeof(unsigned int);
+            else
+            {
+                pTransfer->pBuffer += sizeof( unsigned int );
                 AT91C_BASE_AC97C->AC97C_COMR |= AT91C_AC97C_TXRDY;
             }
         }
-        else {
-
+        else
+        {
             AT91C_BASE_AC97C->AC97C_IDR = AT91C_AC97C_COEVT;
-            AT91C_BASE_AC97C->AC97C_COMR &= ~(AT91C_AC97C_RXRDY);
-            if (pTransfer->callback) {
-
-                pTransfer->callback(pTransfer->pArg, 0, 0);
+            AT91C_BASE_AC97C->AC97C_COMR &= ~( AT91C_AC97C_RXRDY );
+            if( pTransfer->callback )
+            {
+                pTransfer->callback( pTransfer->pArg, 0, 0 );
             }
         }
     }
@@ -208,106 +214,110 @@ static void CodecHandler(void)
 //------------------------------------------------------------------------------
 /// Interrupt service routine for channel A, is invoked by AC97C_Handler.
 //------------------------------------------------------------------------------
-static void ChannelAHandler(void)
+static void ChannelAHandler( void )
 {
     unsigned int status;
-    Ac97Transfer *pTransmit = &(ac97c.transfers[AC97C_CHANNEL_A_TRANSMIT]);
-    Ac97Transfer *pReceive = &(ac97c.transfers[AC97C_CHANNEL_A_RECEIVE]);
+    Ac97Transfer * pTransmit = &( ac97c.transfers[ AC97C_CHANNEL_A_TRANSMIT ] );
+    Ac97Transfer * pReceive = &( ac97c.transfers[ AC97C_CHANNEL_A_RECEIVE ] );
 
     // Read channel A status register
     status = AT91C_BASE_AC97C->AC97C_CASR;
 
     // A buffer has been transmitted
-    if ((status & AT91C_AC97C_ENDTX) != 0) {
-
+    if( ( status & AT91C_AC97C_ENDTX ) != 0 )
+    {
         // Update transfer information
-        if (pTransmit->numSamples > MAX_PDC_COUNTER) {
-
+        if( pTransmit->numSamples > MAX_PDC_COUNTER )
+        {
             pTransmit->numSamples -= MAX_PDC_COUNTER;
         }
-        else {
-
+        else
+        {
             pTransmit->numSamples = 0;
         }
 
         // Transmit new buffers if necessary
-        if (pTransmit->numSamples > MAX_PDC_COUNTER) {
-
+        if( pTransmit->numSamples > MAX_PDC_COUNTER )
+        {
             // Fill next PDC
-            AT91C_BASE_AC97C->AC97C_TNPR = (unsigned int) pTransmit->pBuffer;
-            if (pTransmit->numSamples > 2 * MAX_PDC_COUNTER) {
-
+            AT91C_BASE_AC97C->AC97C_TNPR = ( unsigned int ) pTransmit->pBuffer;
+            if( pTransmit->numSamples > 2 * MAX_PDC_COUNTER )
+            {
                 AT91C_BASE_AC97C->AC97C_TNCR = MAX_PDC_COUNTER;
-                pTransmit->pBuffer += MAX_PDC_COUNTER * GetSampleSize(AC97C_CHANNEL_A);
+                pTransmit->pBuffer += MAX_PDC_COUNTER *
+                                      GetSampleSize( AC97C_CHANNEL_A );
             }
-            else {
-
-                AT91C_BASE_AC97C->AC97C_TNCR = pTransmit->numSamples - MAX_PDC_COUNTER;
+            else
+            {
+                AT91C_BASE_AC97C->AC97C_TNCR = pTransmit->numSamples -
+                                               MAX_PDC_COUNTER;
             }
         }
         // Only one buffer remaining
-        else {
-
+        else
+        {
             AT91C_BASE_AC97C->AC97C_CAMR &= ~AT91C_AC97C_ENDTX;
             AT91C_BASE_AC97C->AC97C_CAMR |= AT91C_AC97C_TXBUFE;
         }
     }
 
     // Transmit completed
-    if ((status & AT91C_AC97C_TXBUFE) != 0) {
-
+    if( ( status & AT91C_AC97C_TXBUFE ) != 0 )
+    {
         pTransmit->numSamples = 0;
         AT91C_BASE_AC97C->AC97C_PTCR = AT91C_PDC_TXTDIS;
         AT91C_BASE_AC97C->AC97C_CAMR &= ~AT91C_AC97C_TXBUFE;
-        if (pTransmit->callback) {
-
-            pTransmit->callback(pTransmit->pArg, 0, 0);
+        if( pTransmit->callback )
+        {
+            pTransmit->callback( pTransmit->pArg, 0, 0 );
         }
     }
 
     // A buffer has been received
-    if (status & AT91C_AC97C_ENDRX) {
-
-        if (pReceive->numSamples > MAX_PDC_COUNTER) {
-        
+    if( status & AT91C_AC97C_ENDRX )
+    {
+        if( pReceive->numSamples > MAX_PDC_COUNTER )
+        {
             pReceive->numSamples -= MAX_PDC_COUNTER;
         }
-        else {
-
+        else
+        {
             pReceive->numSamples = 0;
         }
 
         // Transfer remaining samples
-        if (pReceive->numSamples > MAX_PDC_COUNTER) {
-
-            AT91C_BASE_AC97C->AC97C_RNPR = (unsigned int) pReceive->pBuffer;
-            if (pReceive->numSamples > 2 * MAX_PDC_COUNTER) {
-            
+        if( pReceive->numSamples > MAX_PDC_COUNTER )
+        {
+            AT91C_BASE_AC97C->AC97C_RNPR = ( unsigned int ) pReceive->pBuffer;
+            if( pReceive->numSamples > 2 * MAX_PDC_COUNTER )
+            {
                 AT91C_BASE_AC97C->AC97C_RNCR = MAX_PDC_COUNTER;
-                pReceive->pBuffer += MAX_PDC_COUNTER * GetSampleSize(AC97C_CHANNEL_A);
+                pReceive->pBuffer += MAX_PDC_COUNTER *
+                                     GetSampleSize( AC97C_CHANNEL_A );
             }
-            else {
-
-                AT91C_BASE_AC97C->AC97C_RNCR = pReceive->numSamples - MAX_PDC_COUNTER;
+            else
+            {
+                AT91C_BASE_AC97C->AC97C_RNCR = pReceive->numSamples -
+                                               MAX_PDC_COUNTER;
             }
         }
         // Only one buffer remaining
-        else {
-
-            AT91C_BASE_AC97C->AC97C_CAMR &= ~(AT91C_AC97C_ENDRX);
+        else
+        {
+            AT91C_BASE_AC97C->AC97C_CAMR &= ~( AT91C_AC97C_ENDRX );
             AT91C_BASE_AC97C->AC97C_CAMR |= AT91C_AC97C_RXBUFF;
         }
     }
 
     // Receive complete
-    if ((status & AT91C_AC97C_RXBUFF) != 0) {
-
+    if( ( status & AT91C_AC97C_RXBUFF ) != 0 )
+    {
         pReceive->numSamples = 0;
         AT91C_BASE_AC97C->AC97C_PTCR = AT91C_PDC_RXTDIS;
         AT91C_BASE_AC97C->AC97C_CAMR &= ~AT91C_AC97C_RXBUFF;
-        if (pReceive->callback) {
-
-            pReceive->callback(pReceive->pArg, 0, 0);
+        if( pReceive->callback )
+        {
+            pReceive->callback( pReceive->pArg, 0, 0 );
         }
     }
 }
@@ -318,24 +328,24 @@ static void ChannelAHandler(void)
 //------------------------------------------------------------------------------
 /// This handler function must be called by the AC97C interrupt service routine.
 /// Identifies which event was activated and calls the associated function.
-//------------------------------------------------------------------------------ 
-void AC97C_Handler(void)
+//------------------------------------------------------------------------------
+void AC97C_Handler( void )
 {
     unsigned int status;
 
     // Get the real interrupt source
     status = AT91C_BASE_AC97C->AC97C_SR;
     status &= AT91C_BASE_AC97C->AC97C_IMR;
-    
-    // Check if an event on the codec channel is active
-    if ((status & AT91C_AC97C_COEVT) != 0) {
 
-        CodecHandler();    
+    // Check if an event on the codec channel is active
+    if( ( status & AT91C_AC97C_COEVT ) != 0 )
+    {
+        CodecHandler();
     }
     // Check if an event on channel A is active
-    if ((status & AT91C_AC97C_CAEVT) != 0) {
-
-        ChannelAHandler();  
+    if( ( status & AT91C_AC97C_CAEVT ) != 0 )
+    {
+        ChannelAHandler();
     }
 }
 
@@ -343,30 +353,31 @@ void AC97C_Handler(void)
 /// Starts a read or write transfer on the given channel
 /// \param channel particular channel (AC97C_CHANNEL_A or AC97C_CHANNEL_B).
 /// \param pBuffer buffer containing the slots to send.
-/// \param numSamples total number of samples to send.  
+/// \param numSamples total number of samples to send.
 /// \param callback optional callback function.
 /// \param pArg optional argument to the callback function.
 //------------------------------------------------------------------------------
-unsigned char AC97C_Transfer(
-    unsigned char channel,
-    unsigned char *pBuffer,
-    unsigned int numSamples,
-    Ac97Callback callback,
-    void *pArg)
+unsigned char AC97C_Transfer( unsigned char channel,
+                              unsigned char * pBuffer,
+                              unsigned int numSamples,
+                              Ac97Callback callback,
+                              void * pArg )
 {
     unsigned int size;
     unsigned int data;
-    Ac97Transfer *pTransfer;
+    Ac97Transfer * pTransfer;
 
-    SANITY_CHECK(channel <= 5);
-    SANITY_CHECK(pBuffer);
-    SANITY_CHECK(numSamples > 0);
+    SANITY_CHECK( channel <= 5 );
+    SANITY_CHECK( pBuffer );
+    SANITY_CHECK( numSamples > 0 );
 
     // Check that no transfer is pending on the channel
-    pTransfer = &(ac97c.transfers[channel]);
-    if (pTransfer->numSamples > 0) {
-
-        trace_LOG(trace_WARNING, "-W- AC97C_Transfer: Channel %d is busy\n\r", channel);
+    pTransfer = &( ac97c.transfers[ channel ] );
+    if( pTransfer->numSamples > 0 )
+    {
+        trace_LOG( trace_WARNING,
+                   "-W- AC97C_Transfer: Channel %d is busy\n\r",
+                   channel );
         return AC97C_ERROR_BUSY;
     }
 
@@ -377,20 +388,20 @@ unsigned char AC97C_Transfer(
     pTransfer->pArg = pArg;
 
     // Transmit or receive over codec channel
-    if (channel == AC97C_CODEC_TRANSFER) {
-
+    if( channel == AC97C_CODEC_TRANSFER )
+    {
         // Send command
-        data = *((unsigned int *) pTransfer->pBuffer); 
+        data = *( ( unsigned int * ) pTransfer->pBuffer );
         AT91C_BASE_AC97C->AC97C_COTHR = data;
 
         // Check if transfer is read or write
-        if ((data & AT91C_AC97C_READ) != 0) {
-
+        if( ( data & AT91C_AC97C_READ ) != 0 )
+        {
             AT91C_BASE_AC97C->AC97C_COMR |= AT91C_AC97C_RXRDY;
         }
-        else {
-        
-            pTransfer->pBuffer += sizeof(unsigned int);
+        else
+        {
+            pTransfer->pBuffer += sizeof( unsigned int );
             AT91C_BASE_AC97C->AC97C_COMR |= AT91C_AC97C_TXRDY;
         }
 
@@ -398,23 +409,23 @@ unsigned char AC97C_Transfer(
         AT91C_BASE_AC97C->AC97C_IER |= AT91C_AC97C_COEVT;
     }
     // Transmit over channel A
-    else if (channel == AC97C_CHANNEL_A_TRANSMIT) {
-
+    else if( channel == AC97C_CHANNEL_A_TRANSMIT )
+    {
         // Disable PDC
         AT91C_BASE_AC97C->AC97C_PTCR = AT91C_PDC_TXTDIS;
 
         // Fill PDC buffers
-        size = min(pTransfer->numSamples, MAX_PDC_COUNTER);
-        AT91C_BASE_AC97C->AC97C_TPR = (unsigned int) pTransfer->pBuffer;
+        size = min( pTransfer->numSamples, MAX_PDC_COUNTER );
+        AT91C_BASE_AC97C->AC97C_TPR = ( unsigned int ) pTransfer->pBuffer;
         AT91C_BASE_AC97C->AC97C_TCR = size;
-        pTransfer->pBuffer += size * GetSampleSize(AC97C_CHANNEL_A);
+        pTransfer->pBuffer += size * GetSampleSize( AC97C_CHANNEL_A );
 
-        size = min(pTransfer->numSamples - size, MAX_PDC_COUNTER);
-        if (size > 0) {
-
-            AT91C_BASE_AC97C->AC97C_TNPR = (unsigned int) pTransfer->pBuffer;
+        size = min( pTransfer->numSamples - size, MAX_PDC_COUNTER );
+        if( size > 0 )
+        {
+            AT91C_BASE_AC97C->AC97C_TNPR = ( unsigned int ) pTransfer->pBuffer;
             AT91C_BASE_AC97C->AC97C_TNCR = size;
-            pTransfer->pBuffer += size * GetSampleSize(AC97C_CHANNEL_A);
+            pTransfer->pBuffer += size * GetSampleSize( AC97C_CHANNEL_A );
         }
 
         // Enable interrupts
@@ -425,23 +436,23 @@ unsigned char AC97C_Transfer(
         AT91C_BASE_AC97C->AC97C_PTCR = AT91C_PDC_TXTEN;
     }
     // Receive over channel A
-    else if (channel == AC97C_CHANNEL_A_RECEIVE) {
-
+    else if( channel == AC97C_CHANNEL_A_RECEIVE )
+    {
         // Disable PDC
         AT91C_BASE_AC97C->AC97C_PTCR = AT91C_PDC_RXTDIS;
 
         // Fill PDC buffers
-        size = min(pTransfer->numSamples, MAX_PDC_COUNTER);
-        AT91C_BASE_AC97C->AC97C_RPR = (unsigned int) pTransfer->pBuffer;
+        size = min( pTransfer->numSamples, MAX_PDC_COUNTER );
+        AT91C_BASE_AC97C->AC97C_RPR = ( unsigned int ) pTransfer->pBuffer;
         AT91C_BASE_AC97C->AC97C_RCR = size;
-        pTransfer->pBuffer += size * GetSampleSize(AC97C_CHANNEL_A);
+        pTransfer->pBuffer += size * GetSampleSize( AC97C_CHANNEL_A );
 
-        size = min(pTransfer->numSamples - size, MAX_PDC_COUNTER);
-        if (size > 0) {
-
-            AT91C_BASE_AC97C->AC97C_RNPR = (unsigned int) pTransfer->pBuffer;
+        size = min( pTransfer->numSamples - size, MAX_PDC_COUNTER );
+        if( size > 0 )
+        {
+            AT91C_BASE_AC97C->AC97C_RNPR = ( unsigned int ) pTransfer->pBuffer;
             AT91C_BASE_AC97C->AC97C_RNCR = size;
-            pTransfer->pBuffer += size * GetSampleSize(AC97C_CHANNEL_A);
+            pTransfer->pBuffer += size * GetSampleSize( AC97C_CHANNEL_A );
         }
 
         // Enable interrupts
@@ -459,66 +470,66 @@ unsigned char AC97C_Transfer(
 /// Stop read or write transfer on the given channel.
 /// \param channel  Channel number.
 //------------------------------------------------------------------------------
-void AC97C_CancelTransfer(unsigned char channel)
-{    
+void AC97C_CancelTransfer( unsigned char channel )
+{
     unsigned int size = 0;
-    Ac97Transfer *pTransfer;
+    Ac97Transfer * pTransfer;
 
-    SANITY_CHECK(channel <= AC97C_CHANNEL_B_TRANSMIT);
+    SANITY_CHECK( channel <= AC97C_CHANNEL_B_TRANSMIT );
 
     // Save remaining size
-    pTransfer = &(ac97c.transfers[channel]);
+    pTransfer = &( ac97c.transfers[ channel ] );
     size = pTransfer->numSamples;
     pTransfer->numSamples = 0;
 
     // Stop PDC
-    if (channel == AC97C_CHANNEL_A_TRANSMIT) {
-
+    if( channel == AC97C_CHANNEL_A_TRANSMIT )
+    {
         AT91C_BASE_AC97C->AC97C_PTCR = AT91C_PDC_TXTDIS;
-        size -= min(size, MAX_PDC_COUNTER) - AT91C_BASE_AC97C->AC97C_TCR;
+        size -= min( size, MAX_PDC_COUNTER ) - AT91C_BASE_AC97C->AC97C_TCR;
     }
-    if (channel == AC97C_CHANNEL_A_RECEIVE) {
-
+    if( channel == AC97C_CHANNEL_A_RECEIVE )
+    {
         AT91C_BASE_AC97C->AC97C_PTCR = AT91C_PDC_RXTDIS;
-        size -= min(size, MAX_PDC_COUNTER) - AT91C_BASE_AC97C->AC97C_RCR;
+        size -= min( size, MAX_PDC_COUNTER ) - AT91C_BASE_AC97C->AC97C_RCR;
     }
 
     // Invoke callback if provided
-    if (pTransfer->callback) {
-
-        pTransfer->callback(pTransfer->pArg, AC97C_ERROR_STOPPED, size);
+    if( pTransfer->callback )
+    {
+        pTransfer->callback( pTransfer->pArg, AC97C_ERROR_STOPPED, size );
     }
 }
 
 //------------------------------------------------------------------------------
 /// Initializes the AC97 controller.
 //------------------------------------------------------------------------------
-void AC97C_Configure(void)
+void AC97C_Configure( void )
 {
     unsigned char channel;
 
     // Enable the AC97 controller peripheral clock
-    AT91C_BASE_PMC->PMC_PCER = (1 << AT91C_ID_AC97C);   
-    
+    AT91C_BASE_PMC->PMC_PCER = ( 1 << AT91C_ID_AC97C );
+
     // Enable the peripheral and variable rate adjustment
-    AT91C_BASE_AC97C->AC97C_MR = AT91C_AC97C_ENA  | AT91C_AC97C_VRA;
+    AT91C_BASE_AC97C->AC97C_MR = AT91C_AC97C_ENA | AT91C_AC97C_VRA;
 
     // Unassigns all input & output slots
-    AC97C_AssignInputSlots(0, 0xFFFF);
-    AC97C_AssignOutputSlots(0, 0xFFFF);
+    AC97C_AssignInputSlots( 0, 0xFFFF );
+    AC97C_AssignOutputSlots( 0, 0xFFFF );
 
     // Install the AC97C interrupt handler
     AT91C_BASE_AC97C->AC97C_IDR = 0xFFFFFFFF;
-    AIC_ConfigureIT(AT91C_ID_AC97C, 0, AC97C_Handler);
-    AIC_EnableIT(AT91C_ID_AC97C);  
+    AIC_ConfigureIT( AT91C_ID_AC97C, 0, AC97C_Handler );
+    AIC_EnableIT( AT91C_ID_AC97C );
 
     // Disable PDC transfers
     AT91C_BASE_AC97C->AC97C_PTCR = AT91C_PDC_TXTDIS | AT91C_PDC_RXTDIS;
 
     // Clear channel transfers
-    for (channel = 0; channel < AC97C_CHANNEL_B_TRANSMIT; channel++) {
-
-        ac97c.transfers[channel].numSamples = 0;
+    for( channel = 0; channel < AC97C_CHANNEL_B_TRANSMIT; channel++ )
+    {
+        ac97c.transfers[ channel ].numSamples = 0;
     }
 }
 
@@ -527,16 +538,17 @@ void AC97C_Configure(void)
 /// \param channel  Channel number.
 /// \param cfg  Configuration value.
 //------------------------------------------------------------------------------
-void AC97C_ConfigureChannel(unsigned char channel, unsigned int cfg)
+void AC97C_ConfigureChannel( unsigned char channel, unsigned int cfg )
 {
-    SANITY_CHECK((channel == AC97C_CHANNEL_A) || (channel == AC97C_CHANNEL_B));
+    SANITY_CHECK( ( channel == AC97C_CHANNEL_A ) ||
+                  ( channel == AC97C_CHANNEL_B ) );
 
-    if (channel == AC97C_CHANNEL_A) {
-
+    if( channel == AC97C_CHANNEL_A )
+    {
         AT91C_BASE_AC97C->AC97C_CAMR = cfg;
     }
-    else {
-
+    else
+    {
         AT91C_BASE_AC97C->AC97C_CBMR = cfg;
     }
 }
@@ -546,23 +558,23 @@ void AC97C_ConfigureChannel(unsigned char channel, unsigned int cfg)
 /// \param channel  Channel number (or 0 to unassign slots).
 /// \param slots  Bitfield value of slots to assign.
 //------------------------------------------------------------------------------
-void AC97C_AssignInputSlots(unsigned char channel, unsigned int slots)
+void AC97C_AssignInputSlots( unsigned char channel, unsigned int slots )
 {
     unsigned int value;
     unsigned int i;
 
-    SANITY_CHECK(channel <= AC97C_CHANNEL_B);
+    SANITY_CHECK( channel <= AC97C_CHANNEL_B );
 
     // Assign all slots
     slots >>= 3;
-    for (i = 3; i < 15; i++) {
-
+    for( i = 3; i < 15; i++ )
+    {
         // Check if slots is selected
-        if (slots & 1) {
-
+        if( slots & 1 )
+        {
             value = AT91C_BASE_AC97C->AC97C_ICA;
-            value &= ~(0x07 << ((i - 3) * 3));
-            value |= channel << ((i - 3) * 3);
+            value &= ~( 0x07 << ( ( i - 3 ) * 3 ) );
+            value |= channel << ( ( i - 3 ) * 3 );
             AT91C_BASE_AC97C->AC97C_ICA = value;
         }
         slots >>= 1;
@@ -574,23 +586,23 @@ void AC97C_AssignInputSlots(unsigned char channel, unsigned int slots)
 /// \param channel  Channel number (or 0 to unassign slots).
 /// \param slots  Bitfield value of slots to assign.
 //------------------------------------------------------------------------------
-void AC97C_AssignOutputSlots(unsigned char channel, unsigned int slots)
+void AC97C_AssignOutputSlots( unsigned char channel, unsigned int slots )
 {
     unsigned int value;
     unsigned int i;
 
-    SANITY_CHECK(channel <= AC97C_CHANNEL_B);
+    SANITY_CHECK( channel <= AC97C_CHANNEL_B );
 
     // Assign all slots
     slots >>= 3;
-    for (i = 3; i < 15; i++) {
-
+    for( i = 3; i < 15; i++ )
+    {
         // Check if slots is selected
-        if (slots & 1) {
-
+        if( slots & 1 )
+        {
             value = AT91C_BASE_AC97C->AC97C_OCA;
-            value &= ~(0x07 << ((i - 3) * 3));
-            value |= channel << ((i - 3) * 3);
+            value &= ~( 0x07 << ( ( i - 3 ) * 3 ) );
+            value |= channel << ( ( i - 3 ) * 3 );
             AT91C_BASE_AC97C->AC97C_OCA = value;
         }
         slots >>= 1;
@@ -602,18 +614,18 @@ void AC97C_AssignOutputSlots(unsigned char channel, unsigned int slots)
 /// otherwise, returns 0.
 /// \param channel  Channel number.
 //------------------------------------------------------------------------------
-unsigned char AC97C_IsFinished(unsigned char channel)
+unsigned char AC97C_IsFinished( unsigned char channel )
 {
-    SANITY_CHECK(channel <= AC97C_CHANNEL_B_TRANSMIT);
+    SANITY_CHECK( channel <= AC97C_CHANNEL_B_TRANSMIT );
 
-	if (ac97c.transfers[channel].numSamples > 0) {
-
-		return 0;
-	}
-	else {
-
-		return 1;
-	}
+    if( ac97c.transfers[ channel ].numSamples > 0 )
+    {
+        return 0;
+    }
+    else
+    {
+        return 1;
+    }
 }
 
 //------------------------------------------------------------------------------
@@ -621,59 +633,70 @@ unsigned char AC97C_IsFinished(unsigned char channel)
 /// \param address  Register address.
 /// \param data  Command data.
 //------------------------------------------------------------------------------
-void AC97C_WriteCodec(unsigned char address, unsigned short data)
+void AC97C_WriteCodec( unsigned char address, unsigned short data )
 {
     unsigned int sample;
 
-    sample = (address << 16) | data;
-    AC97C_Transfer(AC97C_CODEC_TRANSFER, (unsigned char *) &sample, 1, 0, 0);
-    while (!AC97C_IsFinished(AC97C_CODEC_TRANSFER));
+    sample = ( address << 16 ) | data;
+    AC97C_Transfer( AC97C_CODEC_TRANSFER, ( unsigned char * ) &sample, 1, 0, 0 );
+    while( !AC97C_IsFinished( AC97C_CODEC_TRANSFER ) )
+        ;
 }
 
 //------------------------------------------------------------------------------
 /// Convenience function for receiving data from the AC97 codec.
 /// \param address  Register address.
 //------------------------------------------------------------------------------
-unsigned short AC97C_ReadCodec(unsigned char address)
+unsigned short AC97C_ReadCodec( unsigned char address )
 {
     unsigned int sample;
 
-    sample = AT91C_AC97C_READ | (address << 16);
-    AC97C_Transfer(AC97C_CODEC_TRANSFER, (unsigned char *) &sample, 1, 0, 0);
-	while (!AC97C_IsFinished(AC97C_CODEC_TRANSFER));
+    sample = AT91C_AC97C_READ | ( address << 16 );
+    AC97C_Transfer( AC97C_CODEC_TRANSFER, ( unsigned char * ) &sample, 1, 0, 0 );
+    while( !AC97C_IsFinished( AC97C_CODEC_TRANSFER ) )
+        ;
 
     return sample;
 }
-            
+
 //------------------------------------------------------------------------------
 /// Sets the size in bits of one sample on the given channel.
 /// \param channel  Channel number.
 /// \param size  Size of one sample in bits (10, 16, 18 or 24).
-//------------------------------------------------------------------------------        
-void AC97C_SetChannelSize(unsigned char channel, unsigned char size)
+//------------------------------------------------------------------------------
+void AC97C_SetChannelSize( unsigned char channel, unsigned char size )
 {
     unsigned int bits = 0;
 
-    SANITY_CHECK((size == 10) || (size == 16) || (size == 18) || (size == 24));
-    SANITY_CHECK((channel == AC97C_CHANNEL_A) || (channel == AC97C_CHANNEL_B));
+    SANITY_CHECK( ( size == 10 ) || ( size == 16 ) || ( size == 18 ) ||
+                  ( size == 24 ) );
+    SANITY_CHECK( ( channel == AC97C_CHANNEL_A ) ||
+                  ( channel == AC97C_CHANNEL_B ) );
 
-    switch (size) {
-
-        case 10 : bits = AT91C_AC97C_SIZE_10_BITS; break;
-        case 16 : bits = AT91C_AC97C_SIZE_16_BITS; break;
-        case 18 : bits = AT91C_AC97C_SIZE_18_BITS; break;
-        case 20 : bits = AT91C_AC97C_SIZE_20_BITS; break;
+    switch( size )
+    {
+        case 10:
+            bits = AT91C_AC97C_SIZE_10_BITS;
+            break;
+        case 16:
+            bits = AT91C_AC97C_SIZE_16_BITS;
+            break;
+        case 18:
+            bits = AT91C_AC97C_SIZE_18_BITS;
+            break;
+        case 20:
+            bits = AT91C_AC97C_SIZE_20_BITS;
+            break;
     }
 
-    if (channel == AC97C_CHANNEL_A) {
-
-        AT91C_BASE_AC97C->AC97C_CAMR &= ~(AT91C_AC97C_SIZE);
+    if( channel == AC97C_CHANNEL_A )
+    {
+        AT91C_BASE_AC97C->AC97C_CAMR &= ~( AT91C_AC97C_SIZE );
         AT91C_BASE_AC97C->AC97C_CAMR |= bits;
     }
-    else {
-
-        AT91C_BASE_AC97C->AC97C_CBMR &= ~(AT91C_AC97C_SIZE);
+    else
+    {
+        AT91C_BASE_AC97C->AC97C_CBMR &= ~( AT91C_AC97C_SIZE );
         AT91C_BASE_AC97C->AC97C_CBMR |= bits;
     }
 }
-

@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
- *         ATMEL Microcontroller Software Support 
+ *         ATMEL Microcontroller Software Support
  * ----------------------------------------------------------------------------
  * Copyright (c) 2008, Atmel Corporation
  *
@@ -40,49 +40,54 @@
 //         Global functions
 //------------------------------------------------------------------------------
 
-#if defined(at91sam7l64) || defined(at91sam7l128)
+#if defined( at91sam7l64 ) || defined( at91sam7l128 )
 //------------------------------------------------------------------------------
 /// Sets the fast wake-up inputs that can get the device out of Wait mode.
 /// \param inputs  Fast wake-up inputs to enable.
 //------------------------------------------------------------------------------
-void PMC_SetFastWakeUpInputs(unsigned int inputs)
+void PMC_SetFastWakeUpInputs( unsigned int inputs )
 {
-    SANITY_CHECK((inputs & ~0xFF) == 0);
+    SANITY_CHECK( ( inputs & ~0xFF ) == 0 );
     AT91C_BASE_PMC->PMC_FSMR = inputs;
 }
 
-#if !defined(__ICCARM__)
+    #if !defined( __ICCARM__ )
 __attribute__ ((section (".ramfunc"))) // GCC
-#endif
+    #endif
 //------------------------------------------------------------------------------
 /// Disables the main oscillator, making the device enter Wait mode.
 //------------------------------------------------------------------------------
 void PMC_DisableMainOscillatorForWaitMode(void)
 {
     AT91C_BASE_PMC->PMC_MOR = 0x37 << 16;
-    while ((AT91C_BASE_PMC->PMC_MOR & AT91C_PMC_MAINSELS) != AT91C_PMC_MAINSELS);
+    while( ( AT91C_BASE_PMC->PMC_MOR & AT91C_PMC_MAINSELS ) !=
+           AT91C_PMC_MAINSELS )
+        ;
 }
 
 #endif
 
-#if defined(at91sam7l)
+#if defined( at91sam7l )
 //------------------------------------------------------------------------------
 /// Disables the main oscillator when NOT running on it.
 //------------------------------------------------------------------------------
-void PMC_DisableMainOscillator(void)
+void PMC_DisableMainOscillator( void )
 {
     AT91C_BASE_PMC->PMC_MOR = 0x37 << 16;
-    while ((AT91C_BASE_PMC->PMC_SR & AT91C_PMC_MAINSELS) == AT91C_PMC_MAINSELS);
+    while( ( AT91C_BASE_PMC->PMC_SR & AT91C_PMC_MAINSELS ) ==
+           AT91C_PMC_MAINSELS )
+        ;
 }
 #endif
 
 //------------------------------------------------------------------------------
 /// Disables the processor clock, making the device enter Idle mode.
 //------------------------------------------------------------------------------
-void PMC_DisableProcessorClock(void)
+void PMC_DisableProcessorClock( void )
 {
     AT91C_BASE_PMC->PMC_SCDR = AT91C_PMC_PCK;
-    while ((AT91C_BASE_PMC->PMC_SCSR & AT91C_PMC_PCK) != AT91C_PMC_PCK);
+    while( ( AT91C_BASE_PMC->PMC_SCSR & AT91C_PMC_PCK ) != AT91C_PMC_PCK )
+        ;
 }
 
 //------------------------------------------------------------------------------
@@ -91,19 +96,19 @@ void PMC_DisableProcessorClock(void)
 /// Note that the ID must NOT be shifted (i.e. 1 << AT91C_ID_xxx).
 /// \param id  Peripheral ID (AT91C_ID_xxx).
 //------------------------------------------------------------------------------
-void PMC_EnablePeripheral(unsigned int id)
+void PMC_EnablePeripheral( unsigned int id )
 {
-    SANITY_CHECK(id < 32);
+    SANITY_CHECK( id < 32 );
 
-    if ((AT91C_BASE_PMC->PMC_PCSR & (1 << id)) == (1 << id)) {
-
-        trace_LOG(trace_INFO,
-                  "-I- PMC_EnablePeripheral: clock of peripheral"
-                  " %u is already enabled\n\r",
-                  id);
+    if( ( AT91C_BASE_PMC->PMC_PCSR & ( 1 << id ) ) == ( 1 << id ) )
+    {
+        trace_LOG( trace_INFO,
+                   "-I- PMC_EnablePeripheral: clock of peripheral"
+                   " %u is already enabled\n\r",
+                   id );
     }
-    else {
-
+    else
+    {
         AT91C_BASE_PMC->PMC_PCER = 1 << id;
     }
 }
@@ -114,20 +119,19 @@ void PMC_EnablePeripheral(unsigned int id)
 /// Note that the ID must NOT be shifted (i.e. 1 << AT91C_ID_xxx).
 /// \param id  Peripheral ID (AT91C_ID_xxx).
 //------------------------------------------------------------------------------
-void PMC_DisablePeripheral(unsigned int id)
+void PMC_DisablePeripheral( unsigned int id )
 {
-    SANITY_CHECK(id < 32);
+    SANITY_CHECK( id < 32 );
 
-    if ((AT91C_BASE_PMC->PMC_PCSR & (1 << id)) != (1 << id)) {
-
-        trace_LOG(trace_INFO,
-                  "-I- PMC_DisablePeripheral: clock of peripheral"
-                  " %u is not enabled\n\r",
-                  id);
+    if( ( AT91C_BASE_PMC->PMC_PCSR & ( 1 << id ) ) != ( 1 << id ) )
+    {
+        trace_LOG( trace_INFO,
+                   "-I- PMC_DisablePeripheral: clock of peripheral"
+                   " %u is not enabled\n\r",
+                   id );
     }
-    else {
-
+    else
+    {
         AT91C_BASE_PMC->PMC_PCDR = 1 << id;
     }
 }
-

@@ -353,7 +353,7 @@ portDONT_DISCARD void vHandleMemoryFault( uint32_t * pulFaultStackAddress )
     {
         /* This is an unexpected fault - loop forever. */
         for( ;; )
-            truction.* / ulPC += 2;
+            truction.*/ ulPC += 2;
     }
 
     /* Save the new program counter on the stack. */

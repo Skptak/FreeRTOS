@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
- *         ATMEL Microcontroller Software Support 
+ *         ATMEL Microcontroller Software Support
  * ----------------------------------------------------------------------------
  * Copyright (c) 2008, Atmel Corporation
  *
@@ -42,7 +42,7 @@
 //------------------------------------------------------------------------------
 
 /// Size of SLCDC buffer in bytes.
-#define BUFFER_SIZE     320
+#define BUFFER_SIZE 320
 
 //------------------------------------------------------------------------------
 //         Global functions
@@ -55,44 +55,45 @@
 /// \param bias  Bias value.
 /// \param timeSetting  Buffer timing value.
 //------------------------------------------------------------------------------
-void SLCDC_Configure(
-    unsigned int commons,
-    unsigned int segments,
-    unsigned int bias,
-    unsigned int timeSetting)
+void SLCDC_Configure( unsigned int commons,
+                      unsigned int segments,
+                      unsigned int bias,
+                      unsigned int timeSetting )
 {
-    SANITY_CHECK((commons > 0) && (commons <= 10));
-    SANITY_CHECK((segments > 0) && (segments <= 40));
-    SANITY_CHECK((bias & ~AT91C_SLCDC_BIAS) == 0);
-	SANITY_CHECK((timeSetting & ~(0xF << 16)) == 0);  
-    SANITY_CHECK((timeSetting >> 16) < 0x0A);
+    SANITY_CHECK( ( commons > 0 ) && ( commons <= 10 ) );
+    SANITY_CHECK( ( segments > 0 ) && ( segments <= 40 ) );
+    SANITY_CHECK( ( bias & ~AT91C_SLCDC_BIAS ) == 0 );
+    SANITY_CHECK( ( timeSetting & ~( 0xF << 16 ) ) == 0 );
+    SANITY_CHECK( ( timeSetting >> 16 ) < 0x0A );
 
     // Enable peripheral clock
     AT91C_BASE_PMC->PMC_PCER = 1 << AT91C_ID_SLCD;
-    AT91C_BASE_SLCDC->SLCDC_MR = (commons - 1) | ((segments - 1) << 8) | bias | timeSetting;
+    AT91C_BASE_SLCDC->SLCDC_MR = ( commons - 1 ) | ( ( segments - 1 ) << 8 ) |
+                                 bias | timeSetting;
 }
 
 //------------------------------------------------------------------------------
 /// Clears the SLCD display buffer.
 //------------------------------------------------------------------------------
-void SLCDC_Clear(void)
+void SLCDC_Clear( void )
 {
-    memset((void *) AT91C_BASE_SLCDC->SLCDC_MEM, 0, BUFFER_SIZE);
+    memset( ( void * ) AT91C_BASE_SLCDC->SLCDC_MEM, 0, BUFFER_SIZE );
 }
 
 //------------------------------------------------------------------------------
 /// Enables the SLCD controller.
 //------------------------------------------------------------------------------
-void SLCDC_Enable(void)
+void SLCDC_Enable( void )
 {
     AT91C_BASE_SLCDC->SLCDC_CR = AT91C_SLCDC_LCDEN;
-    while (AT91C_BASE_SLCDC -> SLCDC_SR != AT91C_SLCDC_ENA);
+    while( AT91C_BASE_SLCDC->SLCDC_SR != AT91C_SLCDC_ENA )
+        ;
 }
 
 //------------------------------------------------------------------------------
 /// Disables the SLCD controller.
 //------------------------------------------------------------------------------
-void SLCDC_Disable(void)
+void SLCDC_Disable( void )
 {
     AT91C_BASE_SLCDC->SLCDC_CR = AT91C_SLCDC_LCDDIS;
 }
@@ -100,20 +101,20 @@ void SLCDC_Disable(void)
 //------------------------------------------------------------------------------
 /// Enables the SLCD low power mode.
 //------------------------------------------------------------------------------
-void SLCDC_EnableLowPowerMode(void)
+void SLCDC_EnableLowPowerMode( void )
 {
     unsigned int value;
 
     value = AT91C_BASE_SLCDC->SLCDC_MR;
     value &= ~AT91C_SLCDC_LPMODE;
-    value |=AT91C_SLCDC_LPMODE;
+    value |= AT91C_SLCDC_LPMODE;
     AT91C_BASE_SLCDC->SLCDC_MR = value;
 }
- 
+
 //------------------------------------------------------------------------------
 /// Disables the SLCD low power mode
 //------------------------------------------------------------------------------
-void SLCDC_DisableLowPowerMode(void)
+void SLCDC_DisableLowPowerMode( void )
 {
     unsigned int value;
 
@@ -123,14 +124,15 @@ void SLCDC_DisableLowPowerMode(void)
 }
 
 //------------------------------------------------------------------------------
-/// Adjusts the frame frequency. Frequency = FsCLK / (prescaler * divider . NCOM)
-/// \param prescalerValue  Prescaler value
-/// \param dividerValue  Divider value
+/// Adjusts the frame frequency. Frequency = FsCLK / (prescaler * divider .
+/// NCOM) \param prescalerValue  Prescaler value \param dividerValue  Divider
+/// value
 //------------------------------------------------------------------------------
-void SLCDC_SetFrameFreq(unsigned int prescalerValue, unsigned int dividerValue)
+void SLCDC_SetFrameFreq( unsigned int prescalerValue,
+                         unsigned int dividerValue )
 {
-    SANITY_CHECK((prescalerValue & ~AT91C_SLCDC_PRESC) == 0);
-    SANITY_CHECK((dividerValue & (~(0x07 << 8))) == 0);
+    SANITY_CHECK( ( prescalerValue & ~AT91C_SLCDC_PRESC ) == 0 );
+    SANITY_CHECK( ( dividerValue & ( ~( 0x07 << 8 ) ) ) == 0 );
 
     AT91C_BASE_SLCDC->SLCDC_FRR = prescalerValue | dividerValue;
 }
@@ -139,12 +141,12 @@ void SLCDC_SetFrameFreq(unsigned int prescalerValue, unsigned int dividerValue)
 /// Sets the display mode (normal/force off/force on/blinking).
 /// \param mode  Display mode to be set
 //------------------------------------------------------------------------------
-void SLCDC_SetDisplayMode(unsigned int mode)
+void SLCDC_SetDisplayMode( unsigned int mode )
 {
     unsigned int value;
 
-    SANITY_CHECK(mode < 8);
-           
+    SANITY_CHECK( mode < 8 );
+
     value = AT91C_BASE_SLCDC->SLCDC_DR;
     value &= ~AT91C_SLCDC_DISPMODE;
     value |= mode;
@@ -156,15 +158,15 @@ void SLCDC_SetDisplayMode(unsigned int mode)
 /// Blinking frequency = Frame Frequency / LCDBLKFREQ.
 /// \param frequency  Frequency value.
 //------------------------------------------------------------------------------
-void SLCDC_SetBlinkFreq(unsigned int frequency)
+void SLCDC_SetBlinkFreq( unsigned int frequency )
 {
     unsigned int value;
 
-    SANITY_CHECK((frequency & ~(0xFF << 8)) == 0);
+    SANITY_CHECK( ( frequency & ~( 0xFF << 8 ) ) == 0 );
 
     value = AT91C_BASE_SLCDC->SLCDC_DR;
     value &= ~AT91C_SLCDC_BLKFREQ;
-    value |= frequency;           
+    value |= frequency;
     AT91C_BASE_SLCDC->SLCDC_DR = frequency;
 }
 
@@ -172,9 +174,9 @@ void SLCDC_SetBlinkFreq(unsigned int frequency)
 /// Enables the selected SLCDC interrupt sources.
 /// \param sources  Interrupt sources to enable.
 //------------------------------------------------------------------------------
-void SLCDC_EnableInterrupts(unsigned int sources)
+void SLCDC_EnableInterrupts( unsigned int sources )
 {
-    SANITY_CHECK((sources & 0xFFFFFFFA) == 0);
+    SANITY_CHECK( ( sources & 0xFFFFFFFA ) == 0 );
 
     AT91C_BASE_SLCDC->SLCDC_IER = sources;
 }
@@ -183,10 +185,9 @@ void SLCDC_EnableInterrupts(unsigned int sources)
 /// Disables the selected SLCDC interrupt sources.
 /// \param sources  Interrupt sources to disable.
 //------------------------------------------------------------------------------
-void SLCDC_DisableInterrupts(unsigned int sources)
+void SLCDC_DisableInterrupts( unsigned int sources )
 {
-    SANITY_CHECK((sources & 0xFFFFFFFA) == 0);
+    SANITY_CHECK( ( sources & 0xFFFFFFFA ) == 0 );
 
     AT91C_BASE_SLCDC->SLCDC_IDR = sources;
 }
-

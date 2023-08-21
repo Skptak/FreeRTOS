@@ -2,8 +2,8 @@
  * Copyright (c) 2001-2003 Swedish Institute of Computer Science.
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without modification,
- * are permitted provided that the following conditions are met:
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
  *
  * 1. Redistributions of source code must retain the above copyright notice,
  *    this list of conditions and the following disclaimer.
@@ -15,14 +15,14 @@
  *
  * THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR IMPLIED
  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
- * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT
- * SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
- * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
- * OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
- * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING
- * IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
- * OF SUCH DAMAGE.
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO
+ * EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+ * OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+ * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+ * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * This file is part of the lwIP TCP/IP stack.
  *
@@ -36,7 +36,8 @@
 //
 //*****************************************************************************
 
-/* ------------------------ System architecture includes ----------------------------- */
+/* ------------------------ System architecture includes
+ * ----------------------------- */
 #include "arch/sys_arch.h"
 
 /* ------------------------ lwIP includes --------------------------------- */
@@ -58,21 +59,20 @@
  * Outputs:
  *      sys_mbox_t              -- Handle to new mailbox
  *---------------------------------------------------------------------------*/
-err_t sys_mbox_new( sys_mbox_t *pxMailBox, int iSize )
+err_t sys_mbox_new( sys_mbox_t * pxMailBox, int iSize )
 {
-err_t xReturn = ERR_MEM;
+    err_t xReturn = ERR_MEM;
 
-	*pxMailBox = xQueueCreate( iSize, sizeof( void * ) );
+    *pxMailBox = xQueueCreate( iSize, sizeof( void * ) );
 
-	if( *pxMailBox != NULL )
-	{
-		xReturn = ERR_OK;
-		SYS_STATS_INC_USED( mbox );
-	}
+    if( *pxMailBox != NULL )
+    {
+        xReturn = ERR_OK;
+        SYS_STATS_INC_USED( mbox );
+    }
 
-	return xReturn;
+    return xReturn;
 }
-
 
 /*---------------------------------------------------------------------------*
  * Routine:  sys_mbox_free
@@ -86,25 +86,25 @@ err_t xReturn = ERR_MEM;
  * Outputs:
  *      sys_mbox_t              -- Handle to new mailbox
  *---------------------------------------------------------------------------*/
-void sys_mbox_free( sys_mbox_t *pxMailBox )
+void sys_mbox_free( sys_mbox_t * pxMailBox )
 {
-unsigned long ulMessagesWaiting;
+    unsigned long ulMessagesWaiting;
 
-	ulMessagesWaiting = uxQueueMessagesWaiting( *pxMailBox );
-	configASSERT( ( ulMessagesWaiting == 0 ) );
+    ulMessagesWaiting = uxQueueMessagesWaiting( *pxMailBox );
+    configASSERT( ( ulMessagesWaiting == 0 ) );
 
-	#if SYS_STATS
-	{
-		if( ulMessagesWaiting != 0UL )
-		{
-			SYS_STATS_INC( mbox.err );
-		}
+#if SYS_STATS
+    {
+        if( ulMessagesWaiting != 0UL )
+        {
+            SYS_STATS_INC( mbox.err );
+        }
 
-		SYS_STATS_DEC( mbox.used );
-	}
-	#endif /* SYS_STATS */
+        SYS_STATS_DEC( mbox.used );
+    }
+#endif /* SYS_STATS */
 
-	vQueueDelete( *pxMailBox );
+    vQueueDelete( *pxMailBox );
 }
 
 /*---------------------------------------------------------------------------*
@@ -116,9 +116,11 @@ unsigned long ulMessagesWaiting;
  *      sys_mbox_t mbox         -- Handle of mailbox
  *      void *data              -- Pointer to data to post
  *---------------------------------------------------------------------------*/
-void sys_mbox_post( sys_mbox_t *pxMailBox, void *pxMessageToPost )
+void sys_mbox_post( sys_mbox_t * pxMailBox, void * pxMessageToPost )
 {
-	while( xQueueSendToBack( *pxMailBox, &pxMessageToPost, portMAX_DELAY ) != pdTRUE );
+    while( xQueueSendToBack( *pxMailBox, &pxMessageToPost, portMAX_DELAY ) !=
+           pdTRUE )
+        ;
 }
 
 /*---------------------------------------------------------------------------*
@@ -134,22 +136,22 @@ void sys_mbox_post( sys_mbox_t *pxMailBox, void *pxMessageToPost )
  *      err_t                   -- ERR_OK if message posted, else ERR_MEM
  *                                  if not.
  *---------------------------------------------------------------------------*/
-err_t sys_mbox_trypost( sys_mbox_t *pxMailBox, void *pxMessageToPost )
+err_t sys_mbox_trypost( sys_mbox_t * pxMailBox, void * pxMessageToPost )
 {
-err_t xReturn;
+    err_t xReturn;
 
-	if( xQueueSend( *pxMailBox, &pxMessageToPost, 0UL ) == pdPASS )
-	{
-		xReturn = ERR_OK;
-	}
-	else
-	{
-		/* The queue was already full. */
-		xReturn = ERR_MEM;
-		SYS_STATS_INC( mbox.err );
-	}
+    if( xQueueSend( *pxMailBox, &pxMessageToPost, 0UL ) == pdPASS )
+    {
+        xReturn = ERR_OK;
+    }
+    else
+    {
+        /* The queue was already full. */
+        xReturn = ERR_MEM;
+        SYS_STATS_INC( mbox.err );
+    }
 
-	return xReturn;
+    return xReturn;
 }
 
 /*---------------------------------------------------------------------------*
@@ -177,50 +179,56 @@ err_t xReturn;
  *      u32_t                   -- SYS_ARCH_TIMEOUT if timeout, else number
  *                                  of milliseconds until received.
  *---------------------------------------------------------------------------*/
-u32_t sys_arch_mbox_fetch( sys_mbox_t *pxMailBox, void **ppvBuffer, u32_t ulTimeOut )
+u32_t sys_arch_mbox_fetch( sys_mbox_t * pxMailBox,
+                           void ** ppvBuffer,
+                           u32_t ulTimeOut )
 {
-void *pvDummy;
-TickType_t xStartTime, xEndTime, xElapsed;
-unsigned long ulReturn;
+    void * pvDummy;
+    TickType_t xStartTime, xEndTime, xElapsed;
+    unsigned long ulReturn;
 
-	xStartTime = xTaskGetTickCount();
+    xStartTime = xTaskGetTickCount();
 
-	if( NULL == ppvBuffer )
-	{
-		ppvBuffer = &pvDummy;
-	}
+    if( NULL == ppvBuffer )
+    {
+        ppvBuffer = &pvDummy;
+    }
 
-	if( ulTimeOut != 0UL )
-	{
-		if( pdTRUE == xQueueReceive( *pxMailBox, &( *ppvBuffer ), ulTimeOut/ portTICK_PERIOD_MS ) )
-		{
-			xEndTime = xTaskGetTickCount();
-			xElapsed = ( xEndTime - xStartTime ) * portTICK_PERIOD_MS;
+    if( ulTimeOut != 0UL )
+    {
+        if( pdTRUE == xQueueReceive( *pxMailBox,
+                                     &( *ppvBuffer ),
+                                     ulTimeOut / portTICK_PERIOD_MS ) )
+        {
+            xEndTime = xTaskGetTickCount();
+            xElapsed = ( xEndTime - xStartTime ) * portTICK_PERIOD_MS;
 
-			ulReturn = xElapsed;
-		}
-		else
-		{
-			/* Timed out. */
-			*ppvBuffer = NULL;
-			ulReturn = SYS_ARCH_TIMEOUT;
-		}
-	}
-	else
-	{
-		while( pdTRUE != xQueueReceive( *pxMailBox, &( *ppvBuffer ), portMAX_DELAY ) );
-		xEndTime = xTaskGetTickCount();
-		xElapsed = ( xEndTime - xStartTime ) * portTICK_PERIOD_MS;
+            ulReturn = xElapsed;
+        }
+        else
+        {
+            /* Timed out. */
+            *ppvBuffer = NULL;
+            ulReturn = SYS_ARCH_TIMEOUT;
+        }
+    }
+    else
+    {
+        while( pdTRUE !=
+               xQueueReceive( *pxMailBox, &( *ppvBuffer ), portMAX_DELAY ) )
+            ;
+        xEndTime = xTaskGetTickCount();
+        xElapsed = ( xEndTime - xStartTime ) * portTICK_PERIOD_MS;
 
-		if( xElapsed == 0UL )
-		{
-			xElapsed = 1UL;
-		}
+        if( xElapsed == 0UL )
+        {
+            xElapsed = 1UL;
+        }
 
-		ulReturn = xElapsed;
-	}
+        ulReturn = xElapsed;
+    }
 
-	return ulReturn;
+    return ulReturn;
 }
 
 /*---------------------------------------------------------------------------*
@@ -237,26 +245,26 @@ unsigned long ulReturn;
  *      u32_t                   -- SYS_MBOX_EMPTY if no messages.  Otherwise,
  *                                  return ERR_OK.
  *---------------------------------------------------------------------------*/
-u32_t sys_arch_mbox_tryfetch( sys_mbox_t *pxMailBox, void **ppvBuffer )
+u32_t sys_arch_mbox_tryfetch( sys_mbox_t * pxMailBox, void ** ppvBuffer )
 {
-void *pvDummy;
-unsigned long ulReturn;
+    void * pvDummy;
+    unsigned long ulReturn;
 
-	if( ppvBuffer== NULL )
-	{
-		ppvBuffer = &pvDummy;
-	}
+    if( ppvBuffer == NULL )
+    {
+        ppvBuffer = &pvDummy;
+    }
 
-	if( pdTRUE == xQueueReceive( *pxMailBox, &( *ppvBuffer ), 0UL ) )
-	{
-		ulReturn = ERR_OK;
-	}
-	else
-	{
-		ulReturn = SYS_MBOX_EMPTY;
-	}
+    if( pdTRUE == xQueueReceive( *pxMailBox, &( *ppvBuffer ), 0UL ) )
+    {
+        ulReturn = ERR_OK;
+    }
+    else
+    {
+        ulReturn = SYS_MBOX_EMPTY;
+    }
 
-	return ulReturn;
+    return ulReturn;
 }
 
 /*---------------------------------------------------------------------------*
@@ -272,28 +280,28 @@ unsigned long ulReturn;
  * Outputs:
  *      sys_sem_t               -- Created semaphore or 0 if could not create.
  *---------------------------------------------------------------------------*/
-err_t sys_sem_new( sys_sem_t *pxSemaphore, u8_t ucCount )
+err_t sys_sem_new( sys_sem_t * pxSemaphore, u8_t ucCount )
 {
-err_t xReturn = ERR_MEM;
+    err_t xReturn = ERR_MEM;
 
-	vSemaphoreCreateBinary( ( *pxSemaphore ) );
+    vSemaphoreCreateBinary( ( *pxSemaphore ) );
 
-	if( *pxSemaphore != NULL )
-	{
-		if( ucCount == 0U )
-		{
-			xSemaphoreTake( *pxSemaphore, 1UL );
-		}
+    if( *pxSemaphore != NULL )
+    {
+        if( ucCount == 0U )
+        {
+            xSemaphoreTake( *pxSemaphore, 1UL );
+        }
 
-		xReturn = ERR_OK;
-		SYS_STATS_INC_USED( sem );
-	}
-	else
-	{
-		SYS_STATS_INC( sem.err );
-	}
+        xReturn = ERR_OK;
+        SYS_STATS_INC_USED( sem );
+    }
+    else
+    {
+        SYS_STATS_INC( sem.err );
+    }
 
-	return xReturn;
+    return xReturn;
 }
 
 /*---------------------------------------------------------------------------*
@@ -319,88 +327,89 @@ err_t xReturn = ERR_MEM;
  * Outputs:
  *      u32_t                   -- Time elapsed or SYS_ARCH_TIMEOUT.
  *---------------------------------------------------------------------------*/
-u32_t sys_arch_sem_wait( sys_sem_t *pxSemaphore, u32_t ulTimeout )
+u32_t sys_arch_sem_wait( sys_sem_t * pxSemaphore, u32_t ulTimeout )
 {
-TickType_t xStartTime, xEndTime, xElapsed;
-unsigned long ulReturn;
+    TickType_t xStartTime, xEndTime, xElapsed;
+    unsigned long ulReturn;
 
-	xStartTime = xTaskGetTickCount();
+    xStartTime = xTaskGetTickCount();
 
-	if( ulTimeout != 0UL )
-	{
-		if( xSemaphoreTake( *pxSemaphore, ulTimeout / portTICK_PERIOD_MS ) == pdTRUE )
-		{
-			xEndTime = xTaskGetTickCount();
-			xElapsed = (xEndTime - xStartTime) * portTICK_PERIOD_MS;
-			ulReturn = xElapsed;
-		}
-		else
-		{
-			ulReturn = SYS_ARCH_TIMEOUT;
-		}
-	}
-	else
-	{
-		while( xSemaphoreTake( *pxSemaphore, portMAX_DELAY ) != pdTRUE );
-		xEndTime = xTaskGetTickCount();
-		xElapsed = ( xEndTime - xStartTime ) * portTICK_PERIOD_MS;
+    if( ulTimeout != 0UL )
+    {
+        if( xSemaphoreTake( *pxSemaphore, ulTimeout / portTICK_PERIOD_MS ) ==
+            pdTRUE )
+        {
+            xEndTime = xTaskGetTickCount();
+            xElapsed = ( xEndTime - xStartTime ) * portTICK_PERIOD_MS;
+            ulReturn = xElapsed;
+        }
+        else
+        {
+            ulReturn = SYS_ARCH_TIMEOUT;
+        }
+    }
+    else
+    {
+        while( xSemaphoreTake( *pxSemaphore, portMAX_DELAY ) != pdTRUE )
+            ;
+        xEndTime = xTaskGetTickCount();
+        xElapsed = ( xEndTime - xStartTime ) * portTICK_PERIOD_MS;
 
-		if( xElapsed == 0UL )
-		{
-			xElapsed = 1UL;
-		}
+        if( xElapsed == 0UL )
+        {
+            xElapsed = 1UL;
+        }
 
-		ulReturn = xElapsed;
-	}
+        ulReturn = xElapsed;
+    }
 
-	return ulReturn;
+    return ulReturn;
 }
 
 /** Create a new mutex
  * @param mutex pointer to the mutex to create
  * @return a new mutex */
-err_t sys_mutex_new( sys_mutex_t *pxMutex )
+err_t sys_mutex_new( sys_mutex_t * pxMutex )
 {
-err_t xReturn = ERR_MEM;
+    err_t xReturn = ERR_MEM;
 
-	*pxMutex = xSemaphoreCreateMutex();
+    *pxMutex = xSemaphoreCreateMutex();
 
-	if( *pxMutex != NULL )
-	{
-		xReturn = ERR_OK;
-		SYS_STATS_INC_USED( mutex );
-	}
-	else
-	{
-		SYS_STATS_INC( mutex.err );
-	}
+    if( *pxMutex != NULL )
+    {
+        xReturn = ERR_OK;
+        SYS_STATS_INC_USED( mutex );
+    }
+    else
+    {
+        SYS_STATS_INC( mutex.err );
+    }
 
-	return xReturn;
+    return xReturn;
 }
 
 /** Lock a mutex
  * @param mutex the mutex to lock */
-void sys_mutex_lock( sys_mutex_t *pxMutex )
+void sys_mutex_lock( sys_mutex_t * pxMutex )
 {
-	while( xSemaphoreTake( *pxMutex, portMAX_DELAY ) != pdPASS );
+    while( xSemaphoreTake( *pxMutex, portMAX_DELAY ) != pdPASS )
+        ;
 }
 
 /** Unlock a mutex
  * @param mutex the mutex to unlock */
-void sys_mutex_unlock(sys_mutex_t *pxMutex )
+void sys_mutex_unlock( sys_mutex_t * pxMutex )
 {
-	xSemaphoreGive( *pxMutex );
+    xSemaphoreGive( *pxMutex );
 }
-
 
 /** Delete a semaphore
  * @param mutex the mutex to delete */
-void sys_mutex_free( sys_mutex_t *pxMutex )
+void sys_mutex_free( sys_mutex_t * pxMutex )
 {
-	SYS_STATS_DEC( mutex.used );
-	vQueueDelete( *pxMutex );
+    SYS_STATS_DEC( mutex.used );
+    vQueueDelete( *pxMutex );
 }
-
 
 /*---------------------------------------------------------------------------*
  * Routine:  sys_sem_signal
@@ -410,9 +419,9 @@ void sys_mutex_free( sys_mutex_t *pxMutex )
  * Inputs:
  *      sys_sem_t sem           -- Semaphore to signal
  *---------------------------------------------------------------------------*/
-void sys_sem_signal( sys_sem_t *pxSemaphore )
+void sys_sem_signal( sys_sem_t * pxSemaphore )
 {
-	xSemaphoreGive( *pxSemaphore );
+    xSemaphoreGive( *pxSemaphore );
 }
 
 /*---------------------------------------------------------------------------*
@@ -423,10 +432,10 @@ void sys_sem_signal( sys_sem_t *pxSemaphore )
  * Inputs:
  *      sys_sem_t sem           -- Semaphore to free
  *---------------------------------------------------------------------------*/
-void sys_sem_free( sys_sem_t *pxSemaphore )
+void sys_sem_free( sys_sem_t * pxSemaphore )
 {
-	SYS_STATS_DEC(sem.used);
-	vQueueDelete( *pxSemaphore );
+    SYS_STATS_DEC( sem.used );
+    vQueueDelete( *pxSemaphore );
 }
 
 /*---------------------------------------------------------------------------*
@@ -435,13 +444,13 @@ void sys_sem_free( sys_sem_t *pxSemaphore )
  * Description:
  *      Initialize sys arch
  *---------------------------------------------------------------------------*/
-void sys_init(void)
+void sys_init( void )
 {
 }
 
-u32_t sys_now(void)
+u32_t sys_now( void )
 {
-	return xTaskGetTickCount();
+    return xTaskGetTickCount();
 }
 
 /*---------------------------------------------------------------------------*
@@ -462,24 +471,33 @@ u32_t sys_now(void)
  * Outputs:
  *      sys_thread_t            -- Pointer to per-thread timeouts.
  *---------------------------------------------------------------------------*/
-sys_thread_t sys_thread_new( const char *pcName, void( *pxThread )( void *pvParameters ), void *pvArg, int iStackSize, int iPriority )
+sys_thread_t sys_thread_new( const char * pcName,
+                             void ( *pxThread )( void * pvParameters ),
+                             void * pvArg,
+                             int iStackSize,
+                             int iPriority )
 {
-TaskHandle_t xCreatedTask;
-portBASE_TYPE xResult;
-sys_thread_t xReturn;
+    TaskHandle_t xCreatedTask;
+    portBASE_TYPE xResult;
+    sys_thread_t xReturn;
 
-	xResult = xTaskCreate( pxThread, pcName, iStackSize, pvArg, iPriority, &xCreatedTask );
+    xResult = xTaskCreate( pxThread,
+                           pcName,
+                           iStackSize,
+                           pvArg,
+                           iPriority,
+                           &xCreatedTask );
 
-	if( xResult == pdPASS )
-	{
-		xReturn = xCreatedTask;
-	}
-	else
-	{
-		xReturn = NULL;
-	}
+    if( xResult == pdPASS )
+    {
+        xReturn = xCreatedTask;
+    }
+    else
+    {
+        xReturn = NULL;
+    }
 
-	return xReturn;
+    return xReturn;
 }
 
 /*---------------------------------------------------------------------------*
@@ -503,8 +521,8 @@ sys_thread_t xReturn;
  *---------------------------------------------------------------------------*/
 sys_prot_t sys_arch_protect( void )
 {
-	vPortEnterCritical();
-	return ( sys_prot_t ) 1;
+    vPortEnterCritical();
+    return ( sys_prot_t ) 1;
 }
 
 /*---------------------------------------------------------------------------*
@@ -520,22 +538,21 @@ sys_prot_t sys_arch_protect( void )
  *---------------------------------------------------------------------------*/
 void sys_arch_unprotect( sys_prot_t xValue )
 {
-	(void) xValue;
-	taskEXIT_CRITICAL();
+    ( void ) xValue;
+    taskEXIT_CRITICAL();
 }
 
 /*
  * Prints an assertion messages and aborts execution.
  */
-void sys_assert( const char *pcMessage )
+void sys_assert( const char * pcMessage )
 {
-	(void) pcMessage;
+    ( void ) pcMessage;
 
-	for (;;)
-	{
-	}
+    for( ;; )
+    {
+    }
 }
 /*-------------------------------------------------------------------------*
  * End of File:  sys_arch.c
  *-------------------------------------------------------------------------*/
-

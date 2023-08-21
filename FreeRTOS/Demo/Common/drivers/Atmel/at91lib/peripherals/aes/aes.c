@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
- *         ATMEL Microcontroller Software Support 
+ *         ATMEL Microcontroller Software Support
  * ----------------------------------------------------------------------------
  * Copyright (c) 2008, Atmel Corporation
  *
@@ -28,7 +28,7 @@
  */
 
 #ifndef trace_LEVEL
-    #define trace_LEVEL     1
+    #define trace_LEVEL 1
 #endif
 
 //------------------------------------------------------------------------------
@@ -51,15 +51,14 @@
 /// \param smode  Start mode.
 /// \param opmode  Operating mode.
 //------------------------------------------------------------------------------
-void AES_Configure(
-    unsigned char cipher,
-    unsigned int smode,
-    unsigned int opmode)
+void AES_Configure( unsigned char cipher,
+                    unsigned int smode,
+                    unsigned int opmode )
 {
-    trace_LOG(trace_DEBUG, "-D- AES_Configure()\n\r");
-    SANITY_CHECK((cipher & 0xFFFFFFFE) == 0);
-    SANITY_CHECK((smode & 0xFFFFFCFF) == 0);
-    SANITY_CHECK((opmode & 0xFFFF8FFF) == 0);
+    trace_LOG( trace_DEBUG, "-D- AES_Configure()\n\r" );
+    SANITY_CHECK( ( cipher & 0xFFFFFFFE ) == 0 );
+    SANITY_CHECK( ( smode & 0xFFFFFCFF ) == 0 );
+    SANITY_CHECK( ( opmode & 0xFFFF8FFF ) == 0 );
 
     // Reset the peripheral first
     AT91C_BASE_AES->AES_CR = AT91C_AES_SWRST;
@@ -73,15 +72,15 @@ void AES_Configure(
 /// decipher the encrypted text.
 /// \param pKey  Pointer to a 16-bytes cipher key.
 //------------------------------------------------------------------------------
-void AES_SetKey(const unsigned int *pKey)
+void AES_SetKey( const unsigned int * pKey )
 {
-    trace_LOG(trace_DEBUG, "-D- AES_SetKey()\n\r");
-    SANITY_CHECK(pKey);
+    trace_LOG( trace_DEBUG, "-D- AES_SetKey()\n\r" );
+    SANITY_CHECK( pKey );
 
-    AT91C_BASE_AES->AES_KEYWxR[0] = pKey[0];
-    AT91C_BASE_AES->AES_KEYWxR[1] = pKey[1];
-    AT91C_BASE_AES->AES_KEYWxR[2] = pKey[2];
-    AT91C_BASE_AES->AES_KEYWxR[3] = pKey[3];
+    AT91C_BASE_AES->AES_KEYWxR[ 0 ] = pKey[ 0 ];
+    AT91C_BASE_AES->AES_KEYWxR[ 1 ] = pKey[ 1 ];
+    AT91C_BASE_AES->AES_KEYWxR[ 2 ] = pKey[ 2 ];
+    AT91C_BASE_AES->AES_KEYWxR[ 3 ] = pKey[ 3 ];
 }
 
 //------------------------------------------------------------------------------
@@ -89,15 +88,15 @@ void AES_SetKey(const unsigned int *pKey)
 /// decrypt the cipher text in chained block modes (CBC, CFB, OFB & CTR).
 /// \param pVector  Pointer to a 16-bytes initialization vector.
 //------------------------------------------------------------------------------
-void AES_SetVector(const unsigned int *pVector)
+void AES_SetVector( const unsigned int * pVector )
 {
-    trace_LOG(trace_DEBUG, "-D- AES_SetVector()\n\r");
-    SANITY_CHECK(pVector);
+    trace_LOG( trace_DEBUG, "-D- AES_SetVector()\n\r" );
+    SANITY_CHECK( pVector );
 
-    AT91C_BASE_AES->AES_IVxR[0] = pVector[0];
-    AT91C_BASE_AES->AES_IVxR[1] = pVector[1];
-    AT91C_BASE_AES->AES_IVxR[2] = pVector[2];
-    AT91C_BASE_AES->AES_IVxR[3] = pVector[3];
+    AT91C_BASE_AES->AES_IVxR[ 0 ] = pVector[ 0 ];
+    AT91C_BASE_AES->AES_IVxR[ 1 ] = pVector[ 1 ];
+    AT91C_BASE_AES->AES_IVxR[ 2 ] = pVector[ 2 ];
+    AT91C_BASE_AES->AES_IVxR[ 3 ] = pVector[ 3 ];
 }
 
 //------------------------------------------------------------------------------
@@ -106,15 +105,15 @@ void AES_SetVector(const unsigned int *pVector)
 /// started automatically after writing the last word.
 /// \param pData  Pointer to the 16-bytes data to cipher/decipher.
 //------------------------------------------------------------------------------
-void AES_SetInputData(const unsigned int *pData)
+void AES_SetInputData( const unsigned int * pData )
 {
-    trace_LOG(trace_DEBUG, "-D- AES_SetInputData()\n\r");
-    SANITY_CHECK(pData);
+    trace_LOG( trace_DEBUG, "-D- AES_SetInputData()\n\r" );
+    SANITY_CHECK( pData );
 
-    AT91C_BASE_AES->AES_IDATAxR[0] = pData[0];
-    AT91C_BASE_AES->AES_IDATAxR[1] = pData[1];
-    AT91C_BASE_AES->AES_IDATAxR[2] = pData[2];
-    AT91C_BASE_AES->AES_IDATAxR[3] = pData[3];
+    AT91C_BASE_AES->AES_IDATAxR[ 0 ] = pData[ 0 ];
+    AT91C_BASE_AES->AES_IDATAxR[ 1 ] = pData[ 1 ];
+    AT91C_BASE_AES->AES_IDATAxR[ 2 ] = pData[ 2 ];
+    AT91C_BASE_AES->AES_IDATAxR[ 3 ] = pData[ 3 ];
 }
 
 //------------------------------------------------------------------------------
@@ -122,27 +121,27 @@ void AES_SetInputData(const unsigned int *pData)
 /// provided buffer.
 /// \param pData  Pointer to a 16-bytes buffer.
 //------------------------------------------------------------------------------
-void AES_GetOutputData(unsigned int *pData)
+void AES_GetOutputData( unsigned int * pData )
 {
-    trace_LOG(trace_DEBUG, "-D- AES_GetOutputData()\n\r");
-    SANITY_CHECK(pData);
+    trace_LOG( trace_DEBUG, "-D- AES_GetOutputData()\n\r" );
+    SANITY_CHECK( pData );
 
-    pData[0] = AT91C_BASE_AES->AES_ODATAxR[0];
-    pData[1] = AT91C_BASE_AES->AES_ODATAxR[1];
-    pData[2] = AT91C_BASE_AES->AES_ODATAxR[2];
-    pData[3] = AT91C_BASE_AES->AES_ODATAxR[3];
+    pData[ 0 ] = AT91C_BASE_AES->AES_ODATAxR[ 0 ];
+    pData[ 1 ] = AT91C_BASE_AES->AES_ODATAxR[ 1 ];
+    pData[ 2 ] = AT91C_BASE_AES->AES_ODATAxR[ 2 ];
+    pData[ 3 ] = AT91C_BASE_AES->AES_ODATAxR[ 3 ];
 }
 
 //------------------------------------------------------------------------------
 /// Sets the input buffer to use when in PDC mode.
 /// \param pInput  Pointer to the input buffer.
 //------------------------------------------------------------------------------
-void AES_SetInputBuffer(const unsigned int *pInput)
+void AES_SetInputBuffer( const unsigned int * pInput )
 {
-    trace_LOG(trace_DEBUG, "-D- AES_SetInputBuffer()\n\r");
-    SANITY_CHECK(pInput);
+    trace_LOG( trace_DEBUG, "-D- AES_SetInputBuffer()\n\r" );
+    SANITY_CHECK( pInput );
 
-    AT91C_BASE_AES->AES_TPR = (unsigned int) pInput;
+    AT91C_BASE_AES->AES_TPR = ( unsigned int ) pInput;
     AT91C_BASE_AES->AES_TCR = 4;
 }
 
@@ -150,12 +149,12 @@ void AES_SetInputBuffer(const unsigned int *pInput)
 /// Sets the output buffer to use when in PDC mode.
 /// \param pOutput  Pointer to the output buffer.
 //------------------------------------------------------------------------------
-void AES_SetOutputBuffer(unsigned int *pOutput)
+void AES_SetOutputBuffer( unsigned int * pOutput )
 {
-    trace_LOG(trace_DEBUG, "-D- AES_SetOutputBuffer()\n\r");
-    SANITY_CHECK(pOutput);
+    trace_LOG( trace_DEBUG, "-D- AES_SetOutputBuffer()\n\r" );
+    SANITY_CHECK( pOutput );
 
-    AT91C_BASE_AES->AES_RPR = (unsigned int) pOutput;
+    AT91C_BASE_AES->AES_RPR = ( unsigned int ) pOutput;
     AT91C_BASE_AES->AES_RCR = 4;
 }
 
@@ -166,20 +165,22 @@ void AES_SetOutputBuffer(unsigned int *pOutput)
 /// buffer must have been set using AES_SetKey(), AES_SetInputBuffer() and
 /// AES_SetOutputBuffer().
 //------------------------------------------------------------------------------
-void AES_Start(void)
+void AES_Start( void )
 {
-    trace_LOG(trace_DEBUG, "AES_Start()\n\r");
-    SANITY_CHECK(((AT91C_BASE_AES->AES_MR & AT91C_AES_SMOD) == AT91C_AES_SMOD_MANUAL)
-                 || ((AT91C_BASE_AES->AES_MR & AT91C_AES_SMOD) == AT91C_AES_SMOD_PDC));
+    trace_LOG( trace_DEBUG, "AES_Start()\n\r" );
+    SANITY_CHECK(
+        ( ( AT91C_BASE_AES->AES_MR & AT91C_AES_SMOD ) ==
+          AT91C_AES_SMOD_MANUAL ) ||
+        ( ( AT91C_BASE_AES->AES_MR & AT91C_AES_SMOD ) == AT91C_AES_SMOD_PDC ) );
 
     // Manual mode
-    if ((AT91C_BASE_AES->AES_MR & AT91C_AES_SMOD) == AT91C_AES_SMOD_MANUAL) {
-
+    if( ( AT91C_BASE_AES->AES_MR & AT91C_AES_SMOD ) == AT91C_AES_SMOD_MANUAL )
+    {
         AT91C_BASE_AES->AES_CR = AT91C_AES_START;
     }
     // PDC
-    else {
-
+    else
+    {
         AT91C_BASE_AES->AES_PTCR = AT91C_PDC_RXTEN | AT91C_PDC_TXTEN;
     }
 }
@@ -187,10 +188,9 @@ void AES_Start(void)
 //------------------------------------------------------------------------------
 /// Returns the current value of the AES interrupt status register.
 //------------------------------------------------------------------------------
-unsigned int AES_GetStatus(void)
+unsigned int AES_GetStatus( void )
 {
-    trace_LOG(trace_DEBUG, "-D- AES_GetStatus()\n\r");
+    trace_LOG( trace_DEBUG, "-D- AES_GetStatus()\n\r" );
 
     return AT91C_BASE_AES->AES_ISR;
 }
-

@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
- *         ATMEL Microcontroller Software Support 
+ *         ATMEL Microcontroller Software Support
  * ----------------------------------------------------------------------------
  * Copyright (c) 2008, Atmel Corporation
  *
@@ -40,7 +40,7 @@
             any side-effect; otherwise, the program may not work properly
             anymore when assertions are disabled.
         2 - Use SANITY_CHECK to perform checks with a default error message
-            (outputs the file and line number where the error occured). This 
+            (outputs the file and line number where the error occured). This
             reduces memory overhead caused by assertion error strings.
         3 - Initialize the <DBGU> to see failed assertions at run-time.
         4 - Disable assertions by defining the NOASSERT symbol at compilation
@@ -69,22 +69,25 @@
         string - Formatted string to output if the condition fails.
         ... - Additional arguments depending on the formatted string.
 */
-#if !defined(NOASSERT) && !defined(NOTRACE)
+#if !defined( NOASSERT ) && !defined( NOTRACE )
 
-    //char sanityError[] = "Sanity check failed at %s:%d\n\r";
+    // char sanityError[] = "Sanity check failed at %s:%d\n\r";
 
-    #define ASSERT(condition, ...)  { \
-        if (!(condition)) { \
-            printf(__VA_ARGS__); \
-            while (1); \
-        } \
-    }
-    #define SANITY_ERROR            "Sanity check failed at %s:%d\n\r"
-    #define SANITY_CHECK(condition) ASSERT(condition, SANITY_ERROR, __FILE__, __LINE__)
+    #define ASSERT( condition, ... )   \
+        {                              \
+            if( !( condition ) )       \
+            {                          \
+                printf( __VA_ARGS__ ); \
+                while( 1 )             \
+                    ;                  \
+            }                          \
+        }
+    #define SANITY_ERROR "Sanity check failed at %s:%d\n\r"
+    #define SANITY_CHECK( condition ) \
+        ASSERT( condition, SANITY_ERROR, __FILE__, __LINE__ )
 #else
-    #define ASSERT(...)
-    #define SANITY_CHECK(...)
+    #define ASSERT( ... )
+    #define SANITY_CHECK( ... )
 #endif
 
-#endif //#ifndef ASSERT_H
-
+#endif // #ifndef ASSERT_H

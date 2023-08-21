@@ -92,9 +92,10 @@ static const char * const g_pcHex = "0123456789abcdef";
 //! the NULL termination character, regardless of space in the buffer.
 //
 //*****************************************************************************
-int
-uvsnprintf(char *pcBuf, unsigned long ulSize, const char *pcString,
-           va_list vaArgP)
+int uvsnprintf( char * pcBuf,
+                unsigned long ulSize,
+                const char * pcString,
+                va_list vaArgP )
 {
     unsigned long ulIdx, ulValue, ulCount, ulBase;
     char *pcStr, cFill;
@@ -103,14 +104,14 @@ uvsnprintf(char *pcBuf, unsigned long ulSize, const char *pcString,
     //
     // Check the arguments.
     //
-    ASSERT(pcString != 0);
-    ASSERT(pcBuf != 0);
-    ASSERT(ulSize != 0);
+    ASSERT( pcString != 0 );
+    ASSERT( pcBuf != 0 );
+    ASSERT( ulSize != 0 );
 
     //
     // Adjust buffer size limit to allow one space for null termination.
     //
-    if(ulSize)
+    if( ulSize )
     {
         ulSize--;
     }
@@ -123,13 +124,14 @@ uvsnprintf(char *pcBuf, unsigned long ulSize, const char *pcString,
     //
     // Loop while there are more characters in the format string.
     //
-    while(*pcString)
+    while( *pcString )
     {
         //
         // Find the first non-% character, or the end of the string.
         //
-        for(ulIdx = 0; (pcString[ulIdx] != '%') && (pcString[ulIdx] != '\0');
-            ulIdx++)
+        for( ulIdx = 0;
+             ( pcString[ ulIdx ] != '%' ) && ( pcString[ ulIdx ] != '\0' );
+             ulIdx++ )
         {
         }
 
@@ -138,15 +140,15 @@ uvsnprintf(char *pcBuf, unsigned long ulSize, const char *pcString,
         // there are more characters to write than there is space in the
         // buffer, then only write as much as will fit in the buffer.
         //
-        if(ulIdx > ulSize)
+        if( ulIdx > ulSize )
         {
-            strncpy(pcBuf, pcString, ulSize);
+            strncpy( pcBuf, pcString, ulSize );
             pcBuf += ulSize;
             ulSize = 0;
         }
         else
         {
-            strncpy(pcBuf, pcString, ulIdx);
+            strncpy( pcBuf, pcString, ulIdx );
             pcBuf += ulIdx;
             ulSize -= ulIdx;
         }
@@ -166,7 +168,7 @@ uvsnprintf(char *pcBuf, unsigned long ulSize, const char *pcString,
         //
         // See if the next character is a %.
         //
-        if(*pcString == '%')
+        if( *pcString == '%' )
         {
             //
             // Skip the %.
@@ -185,12 +187,12 @@ uvsnprintf(char *pcBuf, unsigned long ulSize, const char *pcString,
             // Goto's aren't pretty, but effective.  I feel extremely dirty for
             // using not one but two of the beasts.
             //
-again:
+        again:
 
             //
             // Determine how to handle the next character.
             //
-            switch(*pcString++)
+            switch( *pcString++ )
             {
                 //
                 // Handle the digit characters.
@@ -210,7 +212,7 @@ again:
                     // If this is a zero, and it is the first digit, then the
                     // fill character is a zero instead of a space.
                     //
-                    if((pcString[-1] == '0') && (ulCount == 0))
+                    if( ( pcString[ -1 ] == '0' ) && ( ulCount == 0 ) )
                     {
                         cFill = '0';
                     }
@@ -219,7 +221,7 @@ again:
                     // Update the digit count.
                     //
                     ulCount *= 10;
-                    ulCount += pcString[-1] - '0';
+                    ulCount += pcString[ -1 ] - '0';
 
                     //
                     // Get the next character.
@@ -235,15 +237,15 @@ again:
                     //
                     // Get the value from the varargs.
                     //
-                    ulValue = va_arg(vaArgP, unsigned long);
+                    ulValue = va_arg( vaArgP, unsigned long );
 
                     //
                     // Copy the character to the output buffer, if
                     // there is room.  Update the buffer size remaining.
                     //
-                    if(ulSize != 0)
+                    if( ulSize != 0 )
                     {
-                        *pcBuf++ = (char)ulValue;
+                        *pcBuf++ = ( char ) ulValue;
                         ulSize--;
                     }
 
@@ -266,17 +268,17 @@ again:
                     //
                     // Get the value from the varargs.
                     //
-                    ulValue = va_arg(vaArgP, unsigned long);
+                    ulValue = va_arg( vaArgP, unsigned long );
 
                     //
                     // If the value is negative, make it positive and stick a
                     // minus sign in the beginning of the buffer.
                     //
-                    if((long)ulValue < 0)
+                    if( ( long ) ulValue < 0 )
                     {
-                        ulValue = -(long)ulValue;
+                        ulValue = -( long ) ulValue;
 
-                        if(ulSize != 0)
+                        if( ulSize != 0 )
                         {
                             *pcBuf++ = '-';
                             ulSize--;
@@ -307,12 +309,12 @@ again:
                     //
                     // Get the string pointer from the varargs.
                     //
-                    pcStr = va_arg(vaArgP, char *);
+                    pcStr = va_arg( vaArgP, char * );
 
                     //
                     // Determine the length of the string.
                     //
-                    for(ulIdx = 0; pcStr[ulIdx] != '\0'; ulIdx++)
+                    for( ulIdx = 0; pcStr[ ulIdx ] != '\0'; ulIdx++ )
                     {
                     }
 
@@ -321,15 +323,15 @@ again:
                     // as much as will fit in the buffer.  Update the
                     // output buffer pointer and the space remaining.
                     //
-                    if(ulIdx > ulSize)
+                    if( ulIdx > ulSize )
                     {
-                        strncpy(pcBuf, pcStr, ulSize);
+                        strncpy( pcBuf, pcStr, ulSize );
                         pcBuf += ulSize;
                         ulSize = 0;
                     }
                     else
                     {
-                        strncpy(pcBuf, pcStr, ulIdx);
+                        strncpy( pcBuf, pcStr, ulIdx );
                         pcBuf += ulIdx;
                         ulSize -= ulIdx;
                     }
@@ -356,7 +358,7 @@ again:
                     //
                     // Get the value from the varargs.
                     //
-                    ulValue = va_arg(vaArgP, unsigned long);
+                    ulValue = va_arg( vaArgP, unsigned long );
 
                     //
                     // Set the base to 10.
@@ -380,7 +382,7 @@ again:
                     //
                     // Get the value from the varargs.
                     //
-                    ulValue = va_arg(vaArgP, unsigned long);
+                    ulValue = va_arg( vaArgP, unsigned long );
 
                     //
                     // Set the base to 16.
@@ -391,11 +393,11 @@ again:
                     // Determine the number of digits in the string version of
                     // the value.
                     //
-convert:
-                    for(ulIdx = 1;
-                        (((ulIdx * ulBase) <= ulValue) &&
-                         (((ulIdx * ulBase) / ulBase) == ulIdx));
-                        ulIdx *= ulBase, ulCount--)
+                convert:
+                    for( ulIdx = 1;
+                         ( ( ( ulIdx * ulBase ) <= ulValue ) &&
+                           ( ( ( ulIdx * ulBase ) / ulBase ) == ulIdx ) );
+                         ulIdx *= ulBase, ulCount-- )
                     {
                     }
 
@@ -403,15 +405,15 @@ convert:
                     // Provide additional padding at the beginning of the
                     // string conversion if needed.
                     //
-                    if((ulCount > 1) && (ulCount < 16))
+                    if( ( ulCount > 1 ) && ( ulCount < 16 ) )
                     {
-                        for(ulCount--; ulCount; ulCount--)
+                        for( ulCount--; ulCount; ulCount-- )
                         {
                             //
                             // Copy the character to the output buffer if
                             // there is room.
                             //
-                            if(ulSize != 0)
+                            if( ulSize != 0 )
                             {
                                 *pcBuf++ = cFill;
                                 ulSize--;
@@ -427,15 +429,15 @@ convert:
                     //
                     // Convert the value into a string.
                     //
-                    for(; ulIdx; ulIdx /= ulBase)
+                    for( ; ulIdx; ulIdx /= ulBase )
                     {
                         //
                         // Copy the character to the output buffer if
                         // there is room.
                         //
-                        if(ulSize != 0)
+                        if( ulSize != 0 )
                         {
-                            *pcBuf++ = g_pcHex[(ulValue / ulIdx) % ulBase];
+                            *pcBuf++ = g_pcHex[ ( ulValue / ulIdx ) % ulBase ];
                             ulSize--;
                         }
 
@@ -459,9 +461,9 @@ convert:
                     //
                     // Simply write a single %.
                     //
-                    if(ulSize != 0)
+                    if( ulSize != 0 )
                     {
-                        *pcBuf++ = pcString[-1];
+                        *pcBuf++ = pcString[ -1 ];
                         ulSize--;
                     }
 
@@ -484,15 +486,15 @@ convert:
                     //
                     // Indicate an error.
                     //
-                    if(ulSize >= 5)
+                    if( ulSize >= 5 )
                     {
-                        strncpy(pcBuf, "ERROR", 5);
+                        strncpy( pcBuf, "ERROR", 5 );
                         pcBuf += 5;
                         ulSize -= 5;
                     }
                     else
                     {
-                        strncpy(pcBuf, "ERROR", ulSize);
+                        strncpy( pcBuf, "ERROR", ulSize );
                         pcBuf += ulSize;
                         ulSize = 0;
                     }
@@ -515,7 +517,7 @@ convert:
     // Null terminate the string in the buffer.
     //
     *pcBuf = 0;
-    return(iConvertCount);
+    return ( iConvertCount );
 }
 
 //*****************************************************************************
@@ -558,8 +560,7 @@ convert:
 //! not including the NULL termination character.
 //
 //*****************************************************************************
-int
-usprintf(char *pcBuf, const char *pcString, ...)
+int usprintf( char * pcBuf, const char * pcString, ... )
 {
     va_list vaArgP;
     int iRet;
@@ -567,23 +568,23 @@ usprintf(char *pcBuf, const char *pcString, ...)
     //
     // Start the varargs processing.
     //
-    va_start(vaArgP, pcString);
+    va_start( vaArgP, pcString );
 
     //
     // Call vsnprintf to perform the conversion.  Use a
     // large number for the buffer size.
     //
-    iRet = uvsnprintf(pcBuf, 0xffff, pcString, vaArgP);
+    iRet = uvsnprintf( pcBuf, 0xffff, pcString, vaArgP );
 
     //
     // End the varargs processing.
     //
-    va_end(vaArgP);
+    va_end( vaArgP );
 
     //
     // Return the conversion count.
     //
-    return(iRet);
+    return ( iRet );
 }
 
 //*****************************************************************************
@@ -634,32 +635,31 @@ usprintf(char *pcBuf, const char *pcString, ...)
 //! the NULL termination character, regardless of space in the buffer.
 //
 //*****************************************************************************
-int
-usnprintf(char *pcBuf, unsigned long ulSize, const char *pcString, ...)
+int usnprintf( char * pcBuf, unsigned long ulSize, const char * pcString, ... )
 {
-int iRet;
+    int iRet;
 
     va_list vaArgP;
 
     //
     // Start the varargs processing.
     //
-    va_start(vaArgP, pcString);
+    va_start( vaArgP, pcString );
 
     //
     // Call vsnprintf to perform the conversion.
     //
-    iRet = uvsnprintf(pcBuf, ulSize, pcString, vaArgP);
+    iRet = uvsnprintf( pcBuf, ulSize, pcString, vaArgP );
 
     //
     // End the varargs processing.
     //
-    va_end(vaArgP);
+    va_end( vaArgP );
 
     //
     // Return the conversion count.
     //
-    return(iRet);
+    return ( iRet );
 }
 
 //*****************************************************************************

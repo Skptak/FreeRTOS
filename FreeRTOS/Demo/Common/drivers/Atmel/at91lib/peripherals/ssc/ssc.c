@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
- *         ATMEL Microcontroller Software Support 
+ *         ATMEL Microcontroller Software Support
  * ----------------------------------------------------------------------------
  * Copyright (c) 2008, Atmel Corporation
  *
@@ -44,10 +44,10 @@
 /// \param ssc  Pointer to an AT91S_SSC instance.
 /// \param id  Peripheral ID of the SSC.
 //------------------------------------------------------------------------------
-void SSC_Configure(AT91S_SSC *ssc,
-                          unsigned int id,
-                          unsigned int bitRate,
-                          unsigned int masterClock)
+void SSC_Configure( AT91S_SSC * ssc,
+                    unsigned int id,
+                    unsigned int bitRate,
+                    unsigned int masterClock )
 {
     // Enable SSC peripheral clock
     AT91C_BASE_PMC->PMC_PCER = 1 << id;
@@ -57,12 +57,12 @@ void SSC_Configure(AT91S_SSC *ssc,
     ssc->SSC_PTCR = AT91C_PDC_RXTDIS | AT91C_PDC_TXTDIS;
 
     // Configure clock frequency
-    if (bitRate != 0) {
-    
-        ssc->SSC_CMR = masterClock / (2 * bitRate);
+    if( bitRate != 0 )
+    {
+        ssc->SSC_CMR = masterClock / ( 2 * bitRate );
     }
-    else {
-
+    else
+    {
         ssc->SSC_CMR = 0;
     }
 }
@@ -75,9 +75,9 @@ void SSC_Configure(AT91S_SSC *ssc,
 /// \param tcmr  Transmit Clock Mode Register value.
 /// \param tfmr  Transmit Frame Mode Register value.
 //------------------------------------------------------------------------------
-void SSC_ConfigureTransmitter(AT91S_SSC *ssc,
-                                     unsigned int tcmr,
-                                     unsigned int tfmr)
+void SSC_ConfigureTransmitter( AT91S_SSC * ssc,
+                               unsigned int tcmr,
+                               unsigned int tfmr )
 {
     ssc->SSC_TCMR = tcmr;
     ssc->SSC_TFMR = tfmr;
@@ -91,9 +91,9 @@ void SSC_ConfigureTransmitter(AT91S_SSC *ssc,
 /// \param rcmr  Receive Clock Mode Register value.
 /// \param rfmr  Receive Frame Mode Register value.
 //------------------------------------------------------------------------------
-void SSC_ConfigureReceiver(AT91S_SSC *ssc,
-                                  unsigned int rcmr,
-                                  unsigned int rfmr)
+void SSC_ConfigureReceiver( AT91S_SSC * ssc,
+                            unsigned int rcmr,
+                            unsigned int rfmr )
 {
     ssc->SSC_RCMR = rcmr;
     ssc->SSC_RFMR = rfmr;
@@ -103,7 +103,7 @@ void SSC_ConfigureReceiver(AT91S_SSC *ssc,
 /// Enables the transmitter of a SSC peripheral.
 /// \param ssc  Pointer to an AT91S_SSC instance.
 //------------------------------------------------------------------------------
-void SSC_EnableTransmitter(AT91S_SSC *ssc)
+void SSC_EnableTransmitter( AT91S_SSC * ssc )
 {
     ssc->SSC_CR = AT91C_SSC_TXEN;
 }
@@ -112,7 +112,7 @@ void SSC_EnableTransmitter(AT91S_SSC *ssc)
 /// Disables the transmitter of a SSC peripheral.
 /// \param ssc  Pointer to an AT91S_SSC instance.
 //------------------------------------------------------------------------------
-void SSC_DisableTransmitter(AT91S_SSC *ssc)
+void SSC_DisableTransmitter( AT91S_SSC * ssc )
 {
     ssc->SSC_CR = AT91C_SSC_TXDIS;
 }
@@ -121,7 +121,7 @@ void SSC_DisableTransmitter(AT91S_SSC *ssc)
 /// Enables the receiver of a SSC peripheral.
 /// \param ssc  Pointer to an AT91S_SSC instance.
 //------------------------------------------------------------------------------
-void SSC_EnableReceiver(AT91S_SSC *ssc)
+void SSC_EnableReceiver( AT91S_SSC * ssc )
 {
     ssc->SSC_CR = AT91C_SSC_RXEN;
 }
@@ -130,7 +130,7 @@ void SSC_EnableReceiver(AT91S_SSC *ssc)
 /// Disables the receiver of a SSC peripheral.
 /// \param ssc  Pointer to an AT91S_SSC instance.
 //------------------------------------------------------------------------------
-void SSC_DisableReceiver(AT91S_SSC *ssc)
+void SSC_DisableReceiver( AT91S_SSC * ssc )
 {
     ssc->SSC_CR = AT91C_SSC_RXDIS;
 }
@@ -140,7 +140,7 @@ void SSC_DisableReceiver(AT91S_SSC *ssc)
 /// \param ssc  Pointer to an AT91S_SSC instance.
 /// \param sources  Interrupt sources to enable.
 //------------------------------------------------------------------------------
-void SSC_EnableInterrupts(AT91S_SSC *ssc, unsigned int sources)
+void SSC_EnableInterrupts( AT91S_SSC * ssc, unsigned int sources )
 {
     ssc->SSC_IER = sources;
 }
@@ -150,7 +150,7 @@ void SSC_EnableInterrupts(AT91S_SSC *ssc, unsigned int sources)
 /// \param ssc  Pointer to an AT91S_SSC instance.
 /// \param sources  Interrupt source to disable.
 //------------------------------------------------------------------------------
-void SSC_DisableInterrupts(AT91S_SSC *ssc, unsigned int sources)
+void SSC_DisableInterrupts( AT91S_SSC * ssc, unsigned int sources )
 {
     ssc->SSC_IDR = sources;
 }
@@ -161,9 +161,10 @@ void SSC_DisableInterrupts(AT91S_SSC *ssc, unsigned int sources)
 /// \param ssc  Pointer to an AT91S_SSC instance.
 /// \param frame  Data frame to send.
 //------------------------------------------------------------------------------
-void SSC_Write(AT91S_SSC *ssc, unsigned int frame)
+void SSC_Write( AT91S_SSC * ssc, unsigned int frame )
 {
-    while ((ssc->SSC_SR & AT91C_SSC_TXRDY) == 0);
+    while( ( ssc->SSC_SR & AT91C_SSC_TXRDY ) == 0 )
+        ;
     ssc->SSC_THR = frame;
 }
 
@@ -175,26 +176,26 @@ void SSC_Write(AT91S_SSC *ssc, unsigned int frame)
 /// \param buffer  Data buffer to send.
 /// \param length  Size of the data buffer.
 //------------------------------------------------------------------------------
-unsigned char SSC_WriteBuffer(AT91S_SSC *ssc,
-                                     void *buffer,
-                                     unsigned int length)
+unsigned char SSC_WriteBuffer( AT91S_SSC * ssc,
+                               void * buffer,
+                               unsigned int length )
 {
     // Check if first bank is free
-    if (ssc->SSC_TCR == 0) {
-
-        ssc->SSC_TPR = (unsigned int) buffer;
+    if( ssc->SSC_TCR == 0 )
+    {
+        ssc->SSC_TPR = ( unsigned int ) buffer;
         ssc->SSC_TCR = length;
         ssc->SSC_PTCR = AT91C_PDC_TXTEN;
         return 1;
     }
     // Check if second bank is free
-    else if (ssc->SSC_TNCR == 0) {
-
-        ssc->SSC_TNPR = (unsigned int) buffer;
+    else if( ssc->SSC_TNCR == 0 )
+    {
+        ssc->SSC_TNPR = ( unsigned int ) buffer;
         ssc->SSC_TNCR = length;
         return 1;
     }
-      
+
     // No free banks
     return 0;
 }
@@ -203,9 +204,10 @@ unsigned char SSC_WriteBuffer(AT91S_SSC *ssc,
 /// Waits until one frame is received on a SSC peripheral, and returns it.
 /// \param ssc  Pointer to an AT91S_SSC instance.
 //------------------------------------------------------------------------------
-unsigned int SSC_Read(AT91S_SSC *ssc)
+unsigned int SSC_Read( AT91S_SSC * ssc )
 {
-    while ((ssc->SSC_SR & AT91C_SSC_RXRDY) == 0);
+    while( ( ssc->SSC_SR & AT91C_SSC_RXRDY ) == 0 )
+        ;
     return ssc->SSC_RHR;
 }
 
@@ -217,22 +219,22 @@ unsigned int SSC_Read(AT91S_SSC *ssc)
 /// \param buffer  Data buffer used for reception.
 /// \param length  Size in bytes of the data buffer.
 //------------------------------------------------------------------------------
-unsigned char SSC_ReadBuffer(AT91S_SSC *ssc,
-                                    void *buffer,
-                                    unsigned int length)
+unsigned char SSC_ReadBuffer( AT91S_SSC * ssc,
+                              void * buffer,
+                              unsigned int length )
 {
     // Check if the first bank is free
-    if (ssc->SSC_RCR == 0) {
-
-        ssc->SSC_RPR = (unsigned int) buffer;
+    if( ssc->SSC_RCR == 0 )
+    {
+        ssc->SSC_RPR = ( unsigned int ) buffer;
         ssc->SSC_RCR = length;
         ssc->SSC_PTCR = AT91C_PDC_RXTEN;
         return 1;
     }
     // Check if second bank is free
-    else if (ssc->SSC_RNCR == 0) {
-
-        ssc->SSC_RNPR = (unsigned int) buffer;
+    else if( ssc->SSC_RNCR == 0 )
+    {
+        ssc->SSC_RNPR = ( unsigned int ) buffer;
         ssc->SSC_RNCR = length;
         return 1;
     }
@@ -240,4 +242,3 @@ unsigned char SSC_ReadBuffer(AT91S_SSC *ssc,
     // No free bank
     return 0;
 }
-

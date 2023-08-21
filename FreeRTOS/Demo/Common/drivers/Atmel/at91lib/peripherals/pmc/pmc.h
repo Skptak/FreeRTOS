@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
- *         ATMEL Microcontroller Software Support 
+ *         ATMEL Microcontroller Software Support
  * ----------------------------------------------------------------------------
  * Copyright (c) 2008, Atmel Corporation
  *
@@ -34,20 +34,20 @@
 //         Global functions
 //------------------------------------------------------------------------------
 
-#if defined(at91sam7l64) || defined(at91sam7l128)
-extern void PMC_SetFastWakeUpInputs(unsigned int inputs);
-extern void PMC_DisableMainOscillator(void);
+#if defined( at91sam7l64 ) || defined( at91sam7l128 )
+extern void PMC_SetFastWakeUpInputs( unsigned int inputs );
+extern void PMC_DisableMainOscillator( void );
 extern
-#ifdef __ICCARM__
-__ramfunc
+    #ifdef __ICCARM__
+    __ramfunc
+    #endif
+    void
+    PMC_DisableMainOscillatorForWaitMode( void );
 #endif
-void PMC_DisableMainOscillatorForWaitMode(void);
-#endif
 
-extern void PMC_DisableProcessorClock(void);
+extern void PMC_DisableProcessorClock( void );
 
-extern void PMC_EnablePeripheral(unsigned int id);
+extern void PMC_EnablePeripheral( unsigned int id );
 
-extern void PMC_DisablePeripheral(unsigned int id);
-#endif //#ifndef PMC_H
-
+extern void PMC_DisablePeripheral( unsigned int id );
+#endif // #ifndef PMC_H
