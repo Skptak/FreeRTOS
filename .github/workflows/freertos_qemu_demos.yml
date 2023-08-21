@@ -1,0 +1,259 @@
+name: FreeRTOS Qemu Demos
+on:
+    push:
+    pull_request:
+    workflow_dispatch:
+
+env:
+  bashPass: \033[32;1mPASSED -
+  bashWarn: \033[33;1mWARNING -
+  bashFail: \033[31;1mFAILED -
+  bashEnd:  \033[0m
+
+  pwshPass: "`e[32;1mPASSED -"
+  pwshWarn: "`e[33;1mWARNING -"
+  pwshFail: "`e[31;1mFAILED -"
+  pwshEnd:  "`e[0m"
+
+jobs:
+    ARM-GCC:
+        name: GNU ARM Toolchain
+        runs-on: ubuntu-latest
+        steps:
+            - env:
+                  stepName: Checkout Repository
+              name: ${{ env.stepName }}
+              uses: actions/checkout@v3
+
+            - env:
+                  stepName: Fetch Kernel Submodule
+              name: ${{ env.stepName }}
+              shell: bash
+              run: |
+                  # ${{ env.stepName }}
+                  echo "::group::${{ env.stepName }}"
+                  set +e
+                  git submodule update --checkout --init --depth 1 FreeRTOS/Source FreeRTOS/Demo/ThirdParty/Community-Supported-Demos
+                  exitStatus=$?
+                  set -e
+                  echo "::endgroup::"
+                  if [ $exitStatus -eq 0 ]; then
+                    echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
+                  else
+                    echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
+                    exit 1
+                  fi
+
+            - env:
+                  stepName: Install GNU ARM Toolchain
+              name: Install GNU ARM Toolchain
+              shell: bash
+              run: |
+                  # ${{ env.stepName }}
+                  echo "::group::${{ env.stepName }}"
+                  set +e
+                  sudo apt-get -y update
+                  sudo apt-get -y install gcc-arm-none-eabi build-essential cmake git ninja-build python3-minimal
+                  sudo apt-get -y install qemu-system-arm qemu-efi
+                  exitStatus=$?
+                  set -e
+                  echo "::endgroup::"
+                  if [ $exitStatus -eq 0 ]; then
+                    echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
+                  else
+                    echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
+                    exit 1
+                  fi
+
+            - env:
+                  stepName: Build Qemu Runner File
+              name: ${{ env.stepName }}
+              shell: bash
+              working-directory: .github/scripts
+              run: |
+                  # ${{ env.stepName }}
+                  echo "::group::${{ env.stepName }}"
+                  gcc qemu_reader.c -o ../../FreeRTOS/Demo/CORTEX_MPS2_QEMU_IAR_GCC/qemu_reader.out
+                  exitStatus=$?
+                  echo "::endgroup::"
+                  if [ $exitStatus -eq 0 ]; then
+                    echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
+                  else
+                    echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
+                    exit 1
+                  fi
+            - env:
+                  stepName: Build CORTEX_MPS2_QEMU_IAR_GCC Demo
+              name: ${{ env.stepName }}
+              shell: bash
+              working-directory: FreeRTOS/Demo/CORTEX_MPS2_QEMU_IAR_GCC
+              run: |
+                  # ${{ env.stepName }}
+                  echo "::group::${{ env.stepName }}"
+                  set +e
+                  make -C build/gcc clean;
+                  make -C build/gcc -j;
+                  exitStatus=$?
+                  set -e
+                  echo "::endgroup::"
+                  if [ $exitStatus -eq 0 ]; then
+                    echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
+                  else
+                    echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
+                    exit 1
+                  fi
+
+            - env:
+                  stepName: Run and monitor CORTEX_MPS2_QEMU_IAR_GCC Demo
+              name: ${{ env.stepName }}
+              uses: FreeRTOS/CI-CD-Github-Actions/executable-monitor@CI-CD-Overhaul
+              with:
+                  exe-path: FreeRTOS/Demo/CORTEX_MPS2_QEMU_IAR_GCC/qemu_reader.out
+                  timeout-seconds: 20
+                  success-line: "Message received from software timer"
+                  retry-attempts: 1
+
+            - env:
+                  stepName: Build CORTEX_MPU_M3_MPS2_QEMU_GCC Demo
+              name: ${{ env.stepName }}
+              shell: bash
+              working-directory: FreeRTOS/Demo/CORTEX_MPU_M3_MPS2_QEMU_GCC
+              run: |
+                  # ${{ env.stepName }}
+                  echo "::group::${{ env.stepName }}"
+                  set +e
+                  make -j
+                  exitStatus=$?
+                  set -e
+                  echo "::endgroup::"
+                  if [ $exitStatus -eq 0 ]; then
+                    echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
+                  else
+                    echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
+                    exit 1
+                  fi
+
+            - env:
+                  stepName: Build CORTEX_LM3S102_GCC Demo
+              name: ${{ env.stepName }}
+              shell: bash
+              working-directory: FreeRTOS/Demo/CORTEX_LM3S102_GCC
+              run: |
+                  # ${{ env.stepName }}
+                  echo "::group::${{ env.stepName }}"
+                  set +e
+                  make clean
+                  make -j
+                  exitStatus=$?
+                  set -e
+                  echo "::endgroup::"
+                  if [ $exitStatus -eq 0 ]; then
+                    echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
+                  else
+                    echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
+                    exit 1
+                  fi
+
+            - env:
+                  stepName: Build CORTEX_M3_MPS2_QEMU_GCC Demo
+              name: ${{ env.stepName }}
+              shell: bash
+              working-directory: FreeRTOS/Demo/CORTEX_M3_MPS2_QEMU_GCC
+              run: |
+                  # ${{ env.stepName }}
+                  echo "::group::${{ env.stepName }}"
+                  set +e
+                  make clean
+                  make -j
+                  exitStatus=$?
+                  set -e
+                  echo "::endgroup::"
+                  if [ $exitStatus -eq 0 ]; then
+                    echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
+                  else
+                    echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
+                    exit 1
+                  fi
+
+            - env:
+                  stepName: Build CORTEX_M3_MPS2_QEMU_GCC Full Demo
+              name: ${{ env.stepName }}
+              shell: bash
+              working-directory: FreeRTOS/Demo/CORTEX_M3_MPS2_QEMU_GCC
+              run: |
+                  # ${{ env.stepName }}
+                  echo "::group::${{ env.stepName }}"
+                  set +e
+                  make clean
+                  make FULL_DEMO=1 -j
+                  exitStatus=$?
+                  set -e
+                  echo "::endgroup::"
+                  if [ $exitStatus -eq 0 ]; then
+                    echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
+                  else
+                    echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
+                    exit 1
+                  fi
+
+            - env:
+                  stepName: Build CORTEX_LM3S811_GCC Demo
+              name: ${{ env.stepName }}
+              shell: bash
+              working-directory: FreeRTOS/Demo/CORTEX_LM3S811_GCC
+              run: |
+                  # ${{ env.stepName }}
+                  echo "::group::${{ env.stepName }}"
+                  set +e
+                  make -j
+                  exitStatus=$?
+                  set -e
+                  echo "::endgroup::"
+                  if [ $exitStatus -eq 0 ]; then
+                    echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
+                  else
+                    echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
+                    exit 1
+                  fi
+
+            - env:
+                  stepName: Build CORTEX_M0+_RP2040 Demos
+              name: ${{ env.stepName }}
+              shell: bash
+              working-directory: FreeRTOS/Demo/ThirdParty/Community-Supported-Demos/CORTEX_M0+_RP2040
+              run: |
+                  # ${{ env.stepName }}
+                  echo "::group::${{ env.stepName }}"
+                  set +e
+                  git clone https://github.com/raspberrypi/pico-sdk.git
+                  cmake -B build -DPICO_SDK_PATH=pico-sdk -GNinja
+                  ninja -C build --verbose
+                  exitStatus=$?
+                  set -e
+                  echo "::endgroup::"
+                  if [ $exitStatus -eq 0 ]; then
+                    echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
+                  else
+                    echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
+                    exit 1
+                  fi
+
+            - env:
+                  stepName: Build CORTEX_MPS2_QEMU_IAR_GCC Demo
+              name: ${{ env.stepName }}
+              shell: bash
+              working-directory: FreeRTOS/Demo/CORTEX_MPS2_QEMU_IAR_GCC
+              run: |
+                  # ${{ env.stepName }}
+                  echo "::group::${{ env.stepName }}"
+                  set +e
+                  make -C build/gcc -j
+                  exitStatus=$?
+                  set -e
+                  echo "::endgroup::"
+                  if [ $exitStatus -eq 0 ]; then
+                    echo -e "${{ env.bashPass }} ${{ env.stepName }} ${{ env.bashEnd }}"
+                  else
+                    echo -e "${{ env.bashFail }} ${{ env.stepName }} ${{ env.bashEnd }}"
+                    exit 1
+                  fi
