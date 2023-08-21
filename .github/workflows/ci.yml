@@ -38,12 +38,21 @@ jobs:
             - name: Check Formatting of Files
               uses: FreeRTOS/CI-CD-Github-Actions/formatting@CI-CD-Overhaul
               with:
-                exclude-dirs: Demo
+                exclude-dirs: Demo, Test
             - name: Check Formatting of FreeRTOS Common Demo Files
+              if: success() || failure()
               uses: FreeRTOS/CI-CD-Github-Actions/formatting@CI-CD-Overhaul
               with:
                 path: FreeRTOS/Demo/Common
+
+            - name: Check Formatting of FreeRTOS Common Demo Files
+              if: success() || failure()
+              uses: FreeRTOS/CI-CD-Github-Actions/formatting@CI-CD-Overhaul
+              with:
+                path: FreeRTOS/Demo/Common
+
             - name: Check Formatting of FreeRTOS-Plus-TCP Demo Files
+              if: success() || failure()
               uses: FreeRTOS/CI-CD-Github-Actions/formatting@CI-CD-Overhaul
               with:
                 path: FreeRTOS-Plus/Demo

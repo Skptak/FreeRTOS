@@ -33,7 +33,7 @@
 #include "cbmc.h"
 
 #ifndef LOCK_BOUND
-    #define LOCK_BOUND    4
+    #define LOCK_BOUND 4
 #endif
 
 void prvUnlockQueue( Queue_t * const pxQueue );
@@ -44,15 +44,22 @@ BaseType_t prvCopyDataToQueue( Queue_t * const pxQueue,
 {
     if( pxQueue->uxItemSize > ( UBaseType_t ) 0 )
     {
-        __CPROVER_assert( __CPROVER_r_ok( pvItemToQueue, ( size_t ) pxQueue->uxItemSize ), "pvItemToQueue region must be readable" );
+        __CPROVER_assert( __CPROVER_r_ok( pvItemToQueue,
+                                          ( size_t ) pxQueue->uxItemSize ),
+                          "pvItemToQueue region must be readable" );
 
         if( xPosition == queueSEND_TO_BACK )
         {
-            __CPROVER_assert( __CPROVER_w_ok( ( void * ) pxQueue->pcWriteTo, ( size_t ) pxQueue->uxItemSize ), "pxQueue->pcWriteTo region must be writable" );
+            __CPROVER_assert( __CPROVER_w_ok( ( void * ) pxQueue->pcWriteTo,
+                                              ( size_t ) pxQueue->uxItemSize ),
+                              "pxQueue->pcWriteTo region must be writable" );
         }
         else
         {
-            __CPROVER_assert( __CPROVER_w_ok( ( void * ) pxQueue->u.xQueue.pcReadFrom, ( size_t ) pxQueue->uxItemSize ), "pxQueue->u.xQueue.pcReadFrom region must be writable" );
+            __CPROVER_assert(
+                __CPROVER_w_ok( ( void * ) pxQueue->u.xQueue.pcReadFrom,
+                                ( size_t ) pxQueue->uxItemSize ),
+                "pxQueue->u.xQueue.pcReadFrom region must be writable" );
         }
 
         return pdFALSE;
@@ -76,8 +83,9 @@ QueueSetHandle_t xUnconstrainedQueueSet()
         xSet->uxMessagesWaiting = nondet_UBaseType_t();
         xSet->xTasksWaitingToReceive.uxNumberOfItems = nondet_UBaseType_t();
 
-        /* This is an invariant checked with a couple of asserts in the code base.
-         * If it is false from the beginning, there is no chance for the proof to succeed*/
+        /* This is an invariant checked with a couple of asserts in the code
+         * base. If it is false from the beginning, there is no chance for the
+         * proof to succeed*/
         __CPROVER_assume( xSet->uxMessagesWaiting < xSet->uxLength );
         xSet->xTasksWaitingToSend.uxNumberOfItems = nondet_UBaseType_t();
     }
@@ -99,8 +107,9 @@ void harness()
      * There is no check for this in the code base */
     UBaseType_t upper_bound = portMAX_DELAY - sizeof( Queue_t );
     __CPROVER_assume( uxItemSize < ( upper_bound ) / uxQueueLength );
-    QueueHandle_t xQueue =
-        xQueueGenericCreate( uxQueueLength, uxItemSize, ucQueueType );
+    QueueHandle_t xQueue = xQueueGenericCreate( uxQueueLength,
+                                                uxItemSize,
+                                                ucQueueType );
 
     if( xQueue )
     {
@@ -108,14 +117,15 @@ void harness()
         xQueue->cRxLock = LOCK_BOUND - 1;
         xQueue->uxMessagesWaiting = nondet_UBaseType_t();
 
-        /* This is an invariant checked with a couple of asserts in the code base.
-         * If it is false from the beginning, there is no chance for the proof to succeed*/
+        /* This is an invariant checked with a couple of asserts in the code
+         * base. If it is false from the beginning, there is no chance for the
+         * proof to succeed*/
         __CPROVER_assume( xQueue->uxMessagesWaiting < xQueue->uxLength );
         xQueue->xTasksWaitingToReceive.uxNumberOfItems = nondet_UBaseType_t();
         xQueue->xTasksWaitingToSend.uxNumberOfItems = nondet_UBaseType_t();
-        #if ( configUSE_QUEUE_SETS == 1 )
-            xQueueAddToSet( xQueue, xUnconstrainedQueueSet() );
-        #endif
+#if( configUSE_QUEUE_SETS == 1 )
+        xQueueAddToSet( xQueue, xUnconstrainedQueueSet() );
+#endif
         prvUnlockQueue( xQueue );
     }
 }

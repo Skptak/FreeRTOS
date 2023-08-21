@@ -31,7 +31,6 @@
 
 #include "cbmc.h"
 
-
 void harness()
 {
     UBaseType_t uxMaxCount;

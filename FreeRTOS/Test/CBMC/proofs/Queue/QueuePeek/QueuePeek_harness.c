@@ -34,15 +34,14 @@
 #include "cbmc.h"
 
 #ifndef LOCK_BOUND
-    #define LOCK_BOUND    4
+    #define LOCK_BOUND 4
 #endif
 
 #ifndef QUEUE_PEEK_BOUND
-    #define QUEUE_PEEK_BOUND    4
+    #define QUEUE_PEEK_BOUND 4
 #endif
 
 QueueHandle_t xQueue;
-
 
 /* This method is called to initialize pxTimeOut.
  * Setting up the data structure is not interesting for the proof,

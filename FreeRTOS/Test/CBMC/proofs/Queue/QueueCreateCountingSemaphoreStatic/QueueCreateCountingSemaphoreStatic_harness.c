@@ -30,13 +30,14 @@
 #include "queue.h"
 #include "cbmc.h"
 
-
 void harness()
 {
     UBaseType_t uxMaxCount;
     UBaseType_t uxInitialCount;
-    StaticQueue_t * pxStaticQueue = ( StaticQueue_t * ) pvPortMalloc( sizeof( StaticQueue_t ) );
+    StaticQueue_t * pxStaticQueue = ( StaticQueue_t * ) pvPortMalloc(
+        sizeof( StaticQueue_t ) );
 
-
-    xQueueCreateCountingSemaphoreStatic( uxMaxCount, uxInitialCount, pxStaticQueue );
+    xQueueCreateCountingSemaphoreStatic( uxMaxCount,
+                                         uxInitialCount,
+                                         pxStaticQueue );
 }
