@@ -103,7 +103,7 @@ static err_t low_level_output( struct netif * netif,
     initiate transfer();
 
     #if ETH_PAD_SIZE
-        pbuf_header( p, -ETH_PAD_SIZE );    /* drop the padding word */
+        pbuf_header( p, -ETH_PAD_SIZE ); /* drop the padding word */
     #endif
 
     for( q = p; q != NULL; q = q->next )
@@ -147,7 +147,7 @@ static struct pbuf * low_level_input( struct netif * netif )
     len =;
 
     #if ETH_PAD_SIZE
-        len += ETH_PAD_SIZE;                /* allow room for Ethernet padding */
+        len += ETH_PAD_SIZE; /* allow room for Ethernet padding */
     #endif
 
     /* We allocate a pbuf chain of pbufs from the pool. */

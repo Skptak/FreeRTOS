@@ -114,28 +114,28 @@
 /*
  * Callbacks for fsm code.  (CI = Configuration Information)
  */
-    static void lcp_resetci( fsm * );             /* Reset our CI */
-    static int lcp_cilen( fsm * );                /* Return length of our CI */
+    static void lcp_resetci( fsm * ); /* Reset our CI */
+    static int lcp_cilen( fsm * );    /* Return length of our CI */
     static void lcp_addci( fsm *,
                            u_char *,
-                           int * );               /* Add our CI to pkt */
+                           int * ); /* Add our CI to pkt */
     static int lcp_ackci( fsm *,
                           u_char *,
-                          int );                  /* Peer ack'd our CI */
+                          int ); /* Peer ack'd our CI */
     static int lcp_nakci( fsm *,
                           u_char *,
-                          int );                  /* Peer nak'd our CI */
+                          int ); /* Peer nak'd our CI */
     static int lcp_rejci( fsm *,
                           u_char *,
-                          int );                  /* Peer rej'd our CI */
+                          int ); /* Peer rej'd our CI */
     static int lcp_reqci( fsm *,
                           u_char *,
                           int *,
-                          int );                  /* Rcv peer CI */
-    static void lcp_up( fsm * );                  /* We're UP */
-    static void lcp_down( fsm * );                /* We're DOWN */
-    static void lcp_starting( fsm * );            /* We need lower layer up */
-    static void lcp_finished( fsm * );            /* We need lower layer down */
+                          int );       /* Rcv peer CI */
+    static void lcp_up( fsm * );       /* We're UP */
+    static void lcp_down( fsm * );     /* We're DOWN */
+    static void lcp_starting( fsm * ); /* We need lower layer up */
+    static void lcp_finished( fsm * ); /* We need lower layer down */
     static int lcp_extcode( fsm *,
                             int,
                             u_char,
@@ -290,31 +290,31 @@
 
         wo->passive = 0;
         wo->silent = 0;
-        wo->restart = 0;                   /* Set to 1 in kernels or multi-line implementations */
+        wo->restart = 0; /* Set to 1 in kernels or multi-line implementations */
         wo->neg_mru = 1;
         wo->mru = PPP_DEFMRU;
         wo->neg_asyncmap = 1;
-        wo->asyncmap = 0x00000000l;        /* Assume don't need to escape any ctl chars. */
-        wo->neg_chap = 0;                  /* Set to 1 on server */
-        wo->neg_upap = 0;                  /* Set to 1 on server */
+        wo->asyncmap = 0x00000000l; /* Assume don't need to escape any ctl chars. */
+        wo->neg_chap = 0;           /* Set to 1 on server */
+        wo->neg_upap = 0;           /* Set to 1 on server */
         wo->chap_mdtype = CHAP_DIGEST_MD5;
         wo->neg_magicnumber = 1;
         wo->neg_pcompression = 1;
         wo->neg_accompression = 1;
-        wo->neg_lqr = 0;                   /* no LQR implementation yet */
+        wo->neg_lqr = 0; /* no LQR implementation yet */
         wo->neg_cbcp = 0;
 
         ao->neg_mru = 1;
         ao->mru = PPP_MAXMRU;
         ao->neg_asyncmap = 1;
-        ao->asyncmap = 0x00000000l;        /* Assume don't need to escape any ctl chars. */
+        ao->asyncmap = 0x00000000l; /* Assume don't need to escape any ctl chars. */
         ao->neg_chap = ( CHAP_SUPPORT != 0 );
         ao->chap_mdtype = CHAP_DIGEST_MD5;
         ao->neg_upap = ( PAP_SUPPORT != 0 );
         ao->neg_magicnumber = 1;
         ao->neg_pcompression = 1;
         ao->neg_accompression = 1;
-        ao->neg_lqr = 0;                   /* no LQR implementation yet */
+        ao->neg_lqr = 0; /* no LQR implementation yet */
         ao->neg_cbcp = ( CBCP_SUPPORT != 0 );
 
         /*
@@ -1789,7 +1789,7 @@ endswitch:
                 continue;             /* Don't send this one */
             }
 
-            if( orc == CONFNAK ) /* Nak this CI? */
+            if( orc == CONFNAK )          /* Nak this CI? */
             {
                 if( reject_if_disagree && /* Getting fed up with sending NAKs? */
                     ( citype != CI_MAGICNUMBER ) )

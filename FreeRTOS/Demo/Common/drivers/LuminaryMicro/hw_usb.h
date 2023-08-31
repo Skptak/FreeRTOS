@@ -820,9 +820,9 @@
 /* */
 /****************************************************************************** */
 #define USB_TXINTERVAL1_NAKLMT_M \
-    0x000000FF                              /* NAK Limit. */
+    0x000000FF /* NAK Limit. */
 #define USB_TXINTERVAL1_TXPOLL_M \
-    0x000000FF                              /* TX Polling */
+    0x000000FF /* TX Polling */
 #define USB_TXINTERVAL1_TXPOLL_S \
     0
 #define USB_TXINTERVAL1_NAKLMT_S \
@@ -852,9 +852,9 @@
 /* */
 /****************************************************************************** */
 #define USB_RXINTERVAL1_TXPOLL_M \
-    0x000000FF                              /* RX Polling */
+    0x000000FF /* RX Polling */
 #define USB_RXINTERVAL1_NAKLMT_M \
-    0x000000FF                              /* NAK Limit. */
+    0x000000FF /* NAK Limit. */
 #define USB_RXINTERVAL1_TXPOLL_S \
     0
 #define USB_RXINTERVAL1_NAKLMT_S \
@@ -976,9 +976,9 @@
 /* */
 /****************************************************************************** */
 #define USB_TXINTERVAL2_TXPOLL_M \
-    0x000000FF                              /* TX Polling */
+    0x000000FF /* TX Polling */
 #define USB_TXINTERVAL2_NAKLMT_M \
-    0x000000FF                              /* NAK Limit. */
+    0x000000FF /* NAK Limit. */
 #define USB_TXINTERVAL2_NAKLMT_S \
     0
 #define USB_TXINTERVAL2_TXPOLL_S \
@@ -1008,9 +1008,9 @@
 /* */
 /****************************************************************************** */
 #define USB_RXINTERVAL2_TXPOLL_M \
-    0x000000FF                              /* RX Polling */
+    0x000000FF /* RX Polling */
 #define USB_RXINTERVAL2_NAKLMT_M \
-    0x000000FF                              /* NAK Limit. */
+    0x000000FF /* NAK Limit. */
 #define USB_RXINTERVAL2_TXPOLL_S \
     0
 #define USB_RXINTERVAL2_NAKLMT_S \
@@ -1132,9 +1132,9 @@
 /* */
 /****************************************************************************** */
 #define USB_TXINTERVAL3_TXPOLL_M \
-    0x000000FF                              /* TX Polling */
+    0x000000FF /* TX Polling */
 #define USB_TXINTERVAL3_NAKLMT_M \
-    0x000000FF                              /* NAK Limit. */
+    0x000000FF /* NAK Limit. */
 #define USB_TXINTERVAL3_TXPOLL_S \
     0
 #define USB_TXINTERVAL3_NAKLMT_S \
@@ -1164,9 +1164,9 @@
 /* */
 /****************************************************************************** */
 #define USB_RXINTERVAL3_TXPOLL_M \
-    0x000000FF                              /* RX Polling */
+    0x000000FF /* RX Polling */
 #define USB_RXINTERVAL3_NAKLMT_M \
-    0x000000FF                              /* NAK Limit. */
+    0x000000FF /* NAK Limit. */
 #define USB_RXINTERVAL3_TXPOLL_S \
     0
 #define USB_RXINTERVAL3_NAKLMT_S \

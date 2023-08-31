@@ -109,8 +109,8 @@
  */
         struct linger
         {
-            int l_onoff;           /* option on/off */
-            int l_linger;          /* linger time */
+            int l_onoff;  /* option on/off */
+            int l_linger; /* linger time */
         };
 
 /*

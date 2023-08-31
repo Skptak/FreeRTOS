@@ -1565,7 +1565,7 @@
         #define SYS_STATS    ( NO_SYS == 0 )
     #endif
 
-#else  /* if LWIP_STATS */
+#else /* if LWIP_STATS */
 
     #define LINK_STATS            0
     #define IP_STATS              0

@@ -83,7 +83,7 @@
 
         LOCK_TCPIP_CORE();
 
-        while( 1 )                     /* MAIN Loop */
+        while( 1 ) /* MAIN Loop */
         {
             UNLOCK_TCPIP_CORE();
             LWIP_TCPIP_THREAD_ALIVE();

@@ -88,16 +88,16 @@
     static int ipcp_cilen( fsm * );    /* Return length of our CI */
     static void ipcp_addci( fsm *,
                             u_char *,
-                            int * );             /* Add our CI */
+                            int * ); /* Add our CI */
     static int ipcp_ackci( fsm *,
                            u_char *,
-                           int );               /* Peer ack'd our CI */
+                           int ); /* Peer ack'd our CI */
     static int ipcp_nakci( fsm *,
                            u_char *,
-                           int );               /* Peer nak'd our CI */
+                           int ); /* Peer nak'd our CI */
     static int ipcp_rejci( fsm *,
                            u_char *,
-                           int );               /* Peer rej'd our CI */
+                           int ); /* Peer rej'd our CI */
     static int ipcp_reqci( fsm *,
                            u_char *,
                            int *,
@@ -596,8 +596,8 @@ bad:
         u_char citype, cilen, * next;
         u_short cishort;
         u32_t ciaddr1, ciaddr2, l, cidnsaddr;
-        ipcp_options no;    /* options we've seen Naks for */
-        ipcp_options try;   /* options to request next time */
+        ipcp_options no;  /* options we've seen Naks for */
+        ipcp_options try; /* options to request next time */
 
         BZERO( &no, sizeof( no ) );
         try = *go;
@@ -852,7 +852,7 @@ bad:
         u_char cimaxslotindex, ciflag, cilen;
         u_short cishort;
         u32_t cilong;
-        ipcp_options try;   /* options to request next time */
+        ipcp_options try; /* options to request next time */
 
         try = *go;
 
@@ -975,18 +975,18 @@ bad:
         #ifdef OLD_CI_ADDRS
             ipcp_options * go = &ipcp_gotoptions[ f->unit ];
         #endif
-        u_char * cip, * next;   /* Pointer to current and next CIs */
-        u_short cilen, citype;  /* Parsed len, type */
-        u_short cishort;        /* Parsed short value */
-        u32_t tl, ciaddr1;      /* Parsed address values */
+        u_char * cip, * next;  /* Pointer to current and next CIs */
+        u_short cilen, citype; /* Parsed len, type */
+        u_short cishort;       /* Parsed short value */
+        u32_t tl, ciaddr1;     /* Parsed address values */
         #ifdef OLD_CI_ADDRS
-            u32_t ciaddr2;      /* Parsed address values */
+            u32_t ciaddr2;     /* Parsed address values */
         #endif
-        int rc = CONFACK;       /* Final packet return code */
-        int orc;                /* Individual option return code */
-        u_char * p;             /* Pointer to next char to parse */
-        u_char * ucp = inp;     /* Pointer to current output char */
-        int l = *len;           /* Length left */
+        int rc = CONFACK;      /* Final packet return code */
+        int orc;               /* Individual option return code */
+        u_char * p;            /* Pointer to next char to parse */
+        u_char * ucp = inp;    /* Pointer to current output char */
+        int l = *len;          /* Length left */
         u_char maxslotindex, cflag;
         int d;
 
@@ -1004,17 +1004,17 @@ bad:
 
         while( l )
         {
-            orc = CONFACK;          /* Assume success */
-            cip = p = next;         /* Remember begining of CI */
+            orc = CONFACK;        /* Assume success */
+            cip = p = next;       /* Remember begining of CI */
 
-            if( ( l < 2 ) ||        /* Not enough data for CI header or */
-                ( p[ 1 ] < 2 ) ||   /*  CI length too small or */
-                ( p[ 1 ] > l ) )    /*  CI length too big? */
+            if( ( l < 2 ) ||      /* Not enough data for CI header or */
+                ( p[ 1 ] < 2 ) || /*  CI length too small or */
+                ( p[ 1 ] > l ) )  /*  CI length too big? */
             {
                 IPCPDEBUG( ( LOG_INFO, "ipcp_reqci: bad CI length!\n" ) );
-                orc = CONFREJ;      /* Reject bad CI */
-                cilen = l;          /* Reject till end of packet */
-                l = 0;              /* Don't loop again */
+                orc = CONFREJ; /* Reject bad CI */
+                cilen = l;     /* Reject till end of packet */
+                l = 0;         /* Don't loop again */
                 goto endswitch;
             }
 
@@ -1107,13 +1107,13 @@ bad:
                     if( !ao->neg_addr )
                     {
                         IPCPDEBUG( ( LOG_INFO, "ipcp_reqci: Reject ADDR not allowed\n" ) );
-                        orc = CONFREJ;      /* Reject CI */
+                        orc = CONFREJ; /* Reject CI */
                         break;
                     }
                     else if( cilen != CILEN_ADDR ) /* Check CI length */
                     {
                         IPCPDEBUG( ( LOG_INFO, "ipcp_reqci: Reject ADDR bad len\n" ) );
-                        orc = CONFREJ;      /* Reject CI */
+                        orc = CONFREJ; /* Reject CI */
                         break;
                     }
 
@@ -1166,7 +1166,7 @@ bad:
                         ( cilen != CILEN_ADDR ) ) /* Check CI length */
                     {
                         IPCPDEBUG( ( LOG_INFO, "ipcp_reqci: Rejecting DNS%d Request\n", d + 1 ) );
-                        orc = CONFREJ;      /* Reject CI */
+                        orc = CONFREJ; /* Reject CI */
                         break;
                     }
 
@@ -1303,7 +1303,7 @@ endswitch:
                 if( reject_if_disagree ) /* Getting fed up with sending NAKs? */
                 {
                     IPCPDEBUG( ( LOG_INFO, "ipcp_reqci: Rejecting too many naks\n" ) );
-                    orc = CONFREJ;  /* Get tough if so */
+                    orc = CONFREJ; /* Get tough if so */
                 }
                 else
                 {
@@ -1324,7 +1324,7 @@ endswitch:
                 ( rc != CONFREJ ) )   /*  but no prior ones? */
             {
                 rc = CONFREJ;
-                ucp = inp;          /* Backup */
+                ucp = inp; /* Backup */
             }
 
             /* Need to move CI? */
@@ -1352,8 +1352,8 @@ endswitch:
             if( rc == CONFACK )
             {
                 rc = CONFNAK;
-                ucp = inp;          /* reset pointer */
-                wo->req_addr = 0;   /* don't ask again */
+                ucp = inp;        /* reset pointer */
+                wo->req_addr = 0; /* don't ask again */
             }
 
             PUTCHAR( CI_ADDR, ucp );

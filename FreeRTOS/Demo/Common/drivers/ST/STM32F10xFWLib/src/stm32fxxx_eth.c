@@ -966,7 +966,7 @@ void ETH_BackPressureActivationCmd( FunctionalState NewState )
         /* Activate the MAC BackPressure operation */
 
         /* In Half duplex: during backpressure, when the MAC receives a new frame,
-         * the transmitter starts sending a JAM pattern resulting in a collision */
+        * the transmitter starts sending a JAM pattern resulting in a collision */
         ETH_MAC->MACFCR |= ETH_MACFCR_FCBBPA;
     }
     else

@@ -49,13 +49,13 @@ jobs:
           - name: Check Formatting of FreeRTOS Test Files
             uses: FreeRTOS/CI-CD-Github-Actions/formatting@v2
             with:
-              path: FreeRTOS/Demo/Test
+              path: FreeRTOS/Test
 
           - name: Check Formatting of FreeRTOS-Plus-TCP Files
             uses: FreeRTOS/CI-CD-Github-Actions/formatting@v2
             with:
               path: FreeRTOS-Plus
-              exclude-dirs: Demo, Test, ThirdParty
+              exclude-dirs: Demo, Test, ThirdParty, VisualStudio_StaticProjects
 
           - name: Check Formatting of FreeRTOS-Plus-TCP Demo Files
             uses: FreeRTOS/CI-CD-Github-Actions/formatting@v2

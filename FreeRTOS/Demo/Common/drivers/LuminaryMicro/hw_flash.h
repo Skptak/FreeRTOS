@@ -253,7 +253,7 @@
 /* register. */
 /* */
 /****************************************************************************** */
-    #define FLASH_FMC_WRKEY_MASK    0xFFFF0000/* FLASH write key mask */
+    #define FLASH_FMC_WRKEY_MASK    0xFFFF0000 /* FLASH write key mask */
 
 /****************************************************************************** */
 /* */

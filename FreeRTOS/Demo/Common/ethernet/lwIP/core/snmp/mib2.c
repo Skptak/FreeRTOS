@@ -850,7 +850,7 @@
         internet_ids,
         internet_nodes
     };
-    #else  /* if SNMP_PRIVATE_MIB */
+    #else /* if SNMP_PRIVATE_MIB */
     const s32_t internet_ids[ 1 ] = { 2 };
     struct mib_node * const internet_nodes[ 1 ] = { ( struct mib_node * const ) &mgmt };
     const struct mib_array_node internet =

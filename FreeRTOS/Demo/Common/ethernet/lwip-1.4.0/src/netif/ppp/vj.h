@@ -136,12 +136,12 @@ struct vjstat
  */
 struct vjcompress
 {
-    struct cstate * last_cs;       /* most recently used tstate */
-    u_char last_recv;              /* last rcvd conn. id */
-    u_char last_xmit;              /* last sent conn. id */
+    struct cstate * last_cs; /* most recently used tstate */
+    u_char last_recv;        /* last rcvd conn. id */
+    u_char last_xmit;        /* last sent conn. id */
     u_short flags;
     u_char maxSlotIndex;
-    u_char compressSlot;           /* Flag indicating OK to compress slot ID. */
+    u_char compressSlot; /* Flag indicating OK to compress slot ID. */
     #if LINK_STATS
         struct vjstat stats;
     #endif

@@ -297,7 +297,7 @@
 /* Raw Interrupt Status register. */
 /* */
 /****************************************************************************** */
-    #define I2C_MASTER_RIS_RIS    0x00000001/* Master raw interrupt status */
+    #define I2C_MASTER_RIS_RIS    0x00000001 /* Master raw interrupt status */
 
 /****************************************************************************** */
 /* */
@@ -305,7 +305,7 @@
 /* Masked Interrupt Status register. */
 /* */
 /****************************************************************************** */
-    #define I2C_MASTER_MIS_MIS    0x00000001/* Master masked interrupt status */
+    #define I2C_MASTER_MIS_MIS    0x00000001 /* Master masked interrupt status */
 
 /****************************************************************************** */
 /* */
@@ -313,7 +313,7 @@
 /* Interrupt Clear register. */
 /* */
 /****************************************************************************** */
-    #define I2C_MASTER_MICR_IC    0x00000001/* Master interrupt clear */
+    #define I2C_MASTER_MICR_IC    0x00000001 /* Master interrupt clear */
 
 /****************************************************************************** */
 /* */
@@ -331,7 +331,7 @@
 /* Address register. */
 /* */
 /****************************************************************************** */
-    #define I2C_SLAVE_SOAR_OAR_MASK    0x0000007F/* Slave address */
+    #define I2C_SLAVE_SOAR_OAR_MASK    0x0000007F /* Slave address */
 
 /****************************************************************************** */
 /* */

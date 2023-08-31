@@ -166,7 +166,7 @@
                 page = ( address - AT91C_IFLASH ) / AT91C_IFLASH_PAGE_SIZE;
                 offset = ( address - AT91C_IFLASH ) % AT91C_IFLASH_PAGE_SIZE;
             }
-        #else  /* if defined( AT91C_BASE_EFC0 ) */
+        #else /* if defined( AT91C_BASE_EFC0 ) */
             pEfc = AT91C_BASE_EFC;
             page = ( address - AT91C_IFLASH ) / AT91C_IFLASH_PAGE_SIZE;
             offset = ( address - AT91C_IFLASH ) % AT91C_IFLASH_PAGE_SIZE;

@@ -281,7 +281,7 @@
                               void * value );
 
         /** async Panic Close (agent returns error reply,
-         *  e.g. used for external transaction cleanup) */
+        *  e.g. used for external transaction cleanup) */
         void (* get_object_def_pc)( u8_t rid,
                                     u8_t ident_len,
                                     s32_t * ident );

@@ -350,7 +350,7 @@
 /* register. */
 /* */
 /****************************************************************************** */
-    #define TIMER_TBILR_TBILRL    0x0000FFFF/* TimerB interval load value */
+    #define TIMER_TBILR_TBILRL    0x0000FFFF /* TimerB interval load value */
 
 /****************************************************************************** */
 /* */
@@ -367,7 +367,7 @@
 /* TIMER_TBMATCHR register. */
 /* */
 /****************************************************************************** */
-    #define TIMER_TBMATCHR_TBMRL    0x0000FFFF/* TimerB match load value */
+    #define TIMER_TBMATCHR_TBMRL    0x0000FFFF /* TimerB match load value */
 
 /****************************************************************************** */
 /* */
@@ -383,7 +383,7 @@
 /* register. */
 /* */
 /****************************************************************************** */
-    #define TIMER_TNPMR_TNPSMR    0x000000FF/* TimerN prescale match value */
+    #define TIMER_TNPMR_TNPSMR    0x000000FF /* TimerN prescale match value */
 
 /****************************************************************************** */
 /* */

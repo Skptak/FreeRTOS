@@ -161,10 +161,10 @@
  */
     enum NPmode
     {
-        NPMODE_PASS,    /* pass the packet through */
-        NPMODE_DROP,    /* silently drop the packet */
-        NPMODE_ERROR,   /* return an error */
-        NPMODE_QUEUE    /* save it up for later. */
+        NPMODE_PASS,  /* pass the packet through */
+        NPMODE_DROP,  /* silently drop the packet */
+        NPMODE_ERROR, /* return an error */
+        NPMODE_QUEUE  /* save it up for later. */
     };
 
 /*

@@ -726,7 +726,7 @@
 /* register. */
 /* */
 /****************************************************************************** */
-    #define CAN_MSGINT1_INTPND    0x0000FFFF/* Interrupt Pending Bits */
+    #define CAN_MSGINT1_INTPND    0x0000FFFF /* Interrupt Pending Bits */
 
 /****************************************************************************** */
 /* */
@@ -734,7 +734,7 @@
 /* register. */
 /* */
 /****************************************************************************** */
-    #define CAN_MSGINT2_INTPND    0x0000FFFF/* Interrupt Pending Bits */
+    #define CAN_MSGINT2_INTPND    0x0000FFFF /* Interrupt Pending Bits */
 
 /****************************************************************************** */
 /* */
@@ -742,7 +742,7 @@
 /* register. */
 /* */
 /****************************************************************************** */
-    #define CAN_MSGVAL1_MSGVAL    0x0000FFFF/* Message Valid Bits */
+    #define CAN_MSGVAL1_MSGVAL    0x0000FFFF /* Message Valid Bits */
 
 /****************************************************************************** */
 /* */
@@ -750,7 +750,7 @@
 /* register. */
 /* */
 /****************************************************************************** */
-    #define CAN_MSGVAL2_MSGVAL    0x0000FFFF/* Message Valid Bits */
+    #define CAN_MSGVAL2_MSGVAL    0x0000FFFF /* Message Valid Bits */
 
 #endif /* ifndef DEPRECATED */
 

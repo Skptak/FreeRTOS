@@ -173,7 +173,7 @@
             return;
         }
 
-        upap_sauthreq( u );     /* Start protocol */
+        upap_sauthreq( u ); /* Start protocol */
     }
 
 
@@ -266,7 +266,7 @@
 
         if( u->us_serverstate != UPAPSS_LISTEN )
         {
-            return;     /* huh?? */
+            return; /* huh?? */
         }
 
         auth_peer_fail( u->us_unit, PPP_PAP );
@@ -420,7 +420,7 @@
                 upap_rauthnak( u, inp, id, len );
                 break;
 
-            default:        /* XXX Need code reject */
+            default: /* XXX Need code reject */
                 break;
         }
     }

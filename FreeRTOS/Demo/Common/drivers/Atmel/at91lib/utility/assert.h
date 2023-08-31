@@ -83,7 +83,7 @@
     }
     #define SANITY_ERROR    "Sanity check failed at %s:%d\n\r"
     #define SANITY_CHECK( condition )    ASSERT( condition, SANITY_ERROR, __FILE__, __LINE__ )
-#else  /* if !defined( NOASSERT ) && !defined( NOTRACE ) */
+#else /* if !defined( NOASSERT ) && !defined( NOTRACE ) */
     #define ASSERT( ... )
     #define SANITY_CHECK( ... )
 #endif /* if !defined( NOASSERT ) && !defined( NOTRACE ) */

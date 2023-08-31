@@ -39,21 +39,21 @@ typedef struct
 /* TIM Output Compare Init structure definition */
 typedef struct
 {
-    u16 TIM_OCMode;        /* Timer Output Compare Mode */
-    u16 TIM_Channel;       /* Timer Channel */
-    u16 TIM_Pulse;         /* PWM or OC Channel pulse length */
-    u16 TIM_OCPolarity;    /* PWM, OCM or OPM Channel polarity */
+    u16 TIM_OCMode;     /* Timer Output Compare Mode */
+    u16 TIM_Channel;    /* Timer Channel */
+    u16 TIM_Pulse;      /* PWM or OC Channel pulse length */
+    u16 TIM_OCPolarity; /* PWM, OCM or OPM Channel polarity */
 } TIM_OCInitTypeDef;
 
 /* TIM Input Capture Init structure definition */
 typedef struct
 {
-    u16 TIM_ICMode;         /* Timer Input Capture Mode */
-    u16 TIM_Channel;        /* Timer Channel */
-    u16 TIM_ICPolarity;     /* Input Capture polarity */
-    u16 TIM_ICSelection;    /* Input Capture selection */
-    u16 TIM_ICPrescaler;    /* Input Capture prescaler */
-    u8 TIM_ICFilter;        /* Input Capture filter */
+    u16 TIM_ICMode;      /* Timer Input Capture Mode */
+    u16 TIM_Channel;     /* Timer Channel */
+    u16 TIM_ICPolarity;  /* Input Capture polarity */
+    u16 TIM_ICSelection; /* Input Capture selection */
+    u16 TIM_ICPrescaler; /* Input Capture prescaler */
+    u8 TIM_ICFilter;     /* Input Capture filter */
 } TIM_ICInitTypeDef;
 
 /* Exported constants -------------------------------------------------------*/

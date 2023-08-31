@@ -814,7 +814,7 @@
             else
 
             /*if (TCP_SEQ_LT(pcb->lastack, ackno) &&
-             * TCP_SEQ_LEQ(ackno, pcb->snd_max)) { */
+            * TCP_SEQ_LEQ(ackno, pcb->snd_max)) { */
             if( TCP_SEQ_BETWEEN( ackno, pcb->lastack + 1, pcb->snd_max ) )
             {
                 /* We come here when the ACK acknowledges new data. */

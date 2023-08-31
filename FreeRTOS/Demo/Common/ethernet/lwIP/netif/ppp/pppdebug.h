@@ -75,7 +75,7 @@ void ppp_trace( int level,
 
     #define TRACELCP    1
 
-#else  /* if PPP_DEBUG > 0 */
+#else /* if PPP_DEBUG > 0 */
 
     #define AUTHDEBUG( a )
     #define IPCPDEBUG( a )

@@ -331,8 +331,8 @@ struct protent
  */
 struct ppp_idle
 {
-    u_short xmit_idle;    /* seconds since last NP packet sent */
-    u_short recv_idle;    /* seconds since last NP packet received */
+    u_short xmit_idle; /* seconds since last NP packet sent */
+    u_short recv_idle; /* seconds since last NP packet received */
 };
 
 struct ppp_settings

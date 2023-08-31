@@ -94,7 +94,7 @@
     {
         u_char LANManResp[ 24 ];
         u_char NTResp[ 24 ];
-        u_char UseNT;   /* If 1, ignore the LANMan response field */
+        u_char UseNT; /* If 1, ignore the LANMan response field */
     } MS_ChapResponse;
 
 /* We use MS_CHAP_RESPONSE_LEN, rather than sizeof(MS_ChapResponse),

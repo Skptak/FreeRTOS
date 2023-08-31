@@ -59,9 +59,9 @@ void ip_addr_set( struct ip_addr * dest,
     SMEMCPY( dest, src, sizeof( struct ip_addr ) );
 
     /*  dest->addr[0] = src->addr[0];
-     * dest->addr[1] = src->addr[1];
-     * dest->addr[2] = src->addr[2];
-     * dest->addr[3] = src->addr[3];*/
+    * dest->addr[1] = src->addr[1];
+    * dest->addr[2] = src->addr[2];
+    * dest->addr[3] = src->addr[3];*/
 }
 
 u8_t ip_addr_isany( struct ip_addr * addr )

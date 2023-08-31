@@ -251,7 +251,7 @@
                             if( chklen == 0 )
                             {
                                 /* For UDP-Lite, checksum length of 0 means checksum
-                                *  over the complete packet (See RFC 3828 chap. 3.1) */
+                                 *  over the complete packet (See RFC 3828 chap. 3.1) */
                                 chklen = p->tot_len;
                             }
                             else

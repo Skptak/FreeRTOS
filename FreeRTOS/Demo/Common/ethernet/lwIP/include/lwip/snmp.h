@@ -189,7 +189,7 @@
 
 /* LWIP_SNMP support not available */
 /* define everything to be empty */
-#else  /* if defined( LWIP_SNMP ) && ( LWIP_SNMP > 0 ) */
+#else /* if defined( LWIP_SNMP ) && ( LWIP_SNMP > 0 ) */
 
 /* system */
     #define snmp_set_sysdesr( str, strlen )

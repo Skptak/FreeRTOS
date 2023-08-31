@@ -111,7 +111,7 @@ unsigned char LED_Set( unsigned int led )
         }
 
         return 1;
-    #else  /* ifdef PINS_LEDS */
+    #else /* ifdef PINS_LEDS */
         return 0;
     #endif /* ifdef PINS_LEDS */
 }
@@ -146,7 +146,7 @@ unsigned char LED_Clear( unsigned int led )
         }
 
         return 1;
-    #else  /* ifdef PINS_LEDS */
+    #else /* ifdef PINS_LEDS */
         return 0;
     #endif /* ifdef PINS_LEDS */
 }
@@ -181,7 +181,7 @@ unsigned char LED_Toggle( unsigned int led )
         }
 
         return 1;
-    #else  /* ifdef PINS_LEDS */
+    #else /* ifdef PINS_LEDS */
         return 0;
     #endif /* ifdef PINS_LEDS */
 }

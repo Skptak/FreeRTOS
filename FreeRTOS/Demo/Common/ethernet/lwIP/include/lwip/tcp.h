@@ -147,8 +147,8 @@ void tcp_rexmit_rto( struct tcp_pcb * pcb );
 #endif /* TCP_TMR_INTERVAL */
 
 #ifndef TCP_FAST_INTERVAL
-    #define TCP_FAST_INTERVAL    TCP_TMR_INTERVAL/* the fine grained timeout in
-                                                 * milliseconds */
+    #define TCP_FAST_INTERVAL    TCP_TMR_INTERVAL /* the fine grained timeout in
+                                                   * milliseconds */
 #endif /* TCP_FAST_INTERVAL */
 
 #ifndef TCP_SLOW_INTERVAL

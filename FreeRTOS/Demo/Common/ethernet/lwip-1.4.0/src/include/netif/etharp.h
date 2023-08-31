@@ -189,7 +189,7 @@
                 };
             #endif /* ARP_QUEUEING */
 
-            #define etharp_init() /* Compatibility define, not init needed. */
+            #define etharp_init()    /* Compatibility define, not init needed. */
             void etharp_tmr( void );
             s8_t etharp_find_addr( struct netif * netif,
                                    ip_addr_t * ipaddr,

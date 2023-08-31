@@ -190,7 +190,7 @@
         sys_prot_t sys_arch_protect( void );
         void sys_arch_unprotect( sys_prot_t pval );
 
-    #else  /* if SYS_LIGHTWEIGHT_PROT */
+    #else /* if SYS_LIGHTWEIGHT_PROT */
 
         #define SYS_ARCH_DECL_PROTECT( lev )
         #define SYS_ARCH_PROTECT( lev )

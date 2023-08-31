@@ -408,7 +408,7 @@ err_t ip_input( struct pbuf * p,
     }
 
     #if LWIP_RAW
-}   /* LWIP_RAW */
+} /* LWIP_RAW */
     #endif
     return ERR_OK;
 }

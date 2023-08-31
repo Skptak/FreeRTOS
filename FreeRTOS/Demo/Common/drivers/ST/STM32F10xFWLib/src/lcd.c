@@ -1220,7 +1220,7 @@ void LCD_DisplayOn( void )
     /* Display On */
     LCD_WriteReg( R0, 0x80 );
     LCD_WriteReg( R59, 0x01 );
-    vTaskDelay( 40 / portTICK_PERIOD_MS );               /* Delay 40 ms */
+    vTaskDelay( 40 / portTICK_PERIOD_MS ); /* Delay 40 ms */
     LCD_WriteReg( R0, 0x20 );
 }
 
@@ -1235,7 +1235,7 @@ void LCD_DisplayOff( void )
 {
     /* Display Off */
     LCD_WriteReg( R0, 0xA0 );
-    vTaskDelay( 40 / portTICK_PERIOD_MS );               /* Delay 40 ms */
+    vTaskDelay( 40 / portTICK_PERIOD_MS ); /* Delay 40 ms */
     LCD_WriteReg( R59, 0x00 );
 }
 

@@ -471,7 +471,7 @@
                     ChapReceiveSuccess( cstate, inp, id, len );
                     break;
 
-                default:    /* Need code reject? */
+                default: /* Need code reject? */
                     CHAPDEBUG( ( LOG_WARNING, "Unknown CHAP code (%d) received.\n", code ) );
                     break;
             }

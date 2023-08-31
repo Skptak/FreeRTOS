@@ -85,26 +85,26 @@
 /*
  * Callbacks for fsm code.  (CI = Configuration Information)
  */
-    static void ipcp_resetci( fsm * );                /* Reset our CI */
-    static int ipcp_cilen( fsm * );                   /* Return length of our CI */
+    static void ipcp_resetci( fsm * ); /* Reset our CI */
+    static int ipcp_cilen( fsm * );    /* Return length of our CI */
     static void ipcp_addci( fsm *,
                             u_char *,
-                            int * );                  /* Add our CI */
+                            int * ); /* Add our CI */
     static int ipcp_ackci( fsm *,
                            u_char *,
-                           int );                     /* Peer ack'd our CI */
+                           int ); /* Peer ack'd our CI */
     static int ipcp_nakci( fsm *,
                            u_char *,
-                           int );                     /* Peer nak'd our CI */
+                           int ); /* Peer nak'd our CI */
     static int ipcp_rejci( fsm *,
                            u_char *,
-                           int );                     /* Peer rej'd our CI */
+                           int ); /* Peer rej'd our CI */
     static int ipcp_reqci( fsm *,
                            u_char *,
                            int *,
-                           int );                     /* Rcv CI */
-    static void ipcp_up( fsm * );                     /* We're UP */
-    static void ipcp_down( fsm * );                   /* We're DOWN */
+                           int );   /* Rcv CI */
+    static void ipcp_up( fsm * );   /* We're UP */
+    static void ipcp_down( fsm * ); /* We're DOWN */
     #if PPP_ADDITIONAL_CALLBACKS
         static void ipcp_script( fsm *,
                                  char * ); /* Run an up/down script */

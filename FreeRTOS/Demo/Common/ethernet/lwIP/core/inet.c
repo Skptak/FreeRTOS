@@ -223,14 +223,14 @@
 
                 if( tmp < sum )
                 {
-                    tmp++;      /* add back carry */
+                    tmp++; /* add back carry */
                 }
 
                 sum = tmp + *pl++; /* pong */
 
                 if( sum < tmp )
                 {
-                    sum++;      /* add back carry */
+                    sum++; /* add back carry */
                 }
 
                 len -= 8;
@@ -249,14 +249,14 @@
             }
 
             /* dangling tail byte remaining? */
-            if( len > 0 )       /* include odd byte */
+            if( len > 0 ) /* include odd byte */
             {
                 ( ( u8_t * ) &t )[ 0 ] = *( u8_t * ) ps;
             }
 
-            sum += t;           /* add end bytes */
+            sum += t;          /* add end bytes */
 
-            while( sum >> 16 )  /* combine halves */
+            while( sum >> 16 ) /* combine halves */
             {
                 sum = ( sum >> 16 ) + ( sum & 0xffff );
             }
@@ -523,7 +523,7 @@ int inet_aton( const char * cp,
         case 1:          /* a -- 32 bits */
             break;
 
-        case 2:       /* a.b -- 8.24 bits */
+        case 2: /* a.b -- 8.24 bits */
 
             if( val > 0xffffff )
             {
@@ -533,7 +533,7 @@ int inet_aton( const char * cp,
             val |= parts[ 0 ] << 24;
             break;
 
-        case 3:       /* a.b.c -- 8.8.16 bits */
+        case 3: /* a.b.c -- 8.8.16 bits */
 
             if( val > 0xffff )
             {
@@ -543,7 +543,7 @@ int inet_aton( const char * cp,
             val |= ( parts[ 0 ] << 24 ) | ( parts[ 1 ] << 16 );
             break;
 
-        case 4:       /* a.b.c.d -- 8.8.8.8 bits */
+        case 4: /* a.b.c.d -- 8.8.8.8 bits */
 
             if( val > 0xff )
             {

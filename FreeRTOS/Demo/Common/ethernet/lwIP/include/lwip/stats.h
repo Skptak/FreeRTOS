@@ -109,7 +109,7 @@
     void stats_init( void );
 
     #define STATS_INC( x )    ++ lwip_stats.x
-#else  /* if LWIP_STATS */
+#else /* if LWIP_STATS */
     #define stats_init()
     #define STATS_INC( x )
 #endif /* LWIP_STATS */

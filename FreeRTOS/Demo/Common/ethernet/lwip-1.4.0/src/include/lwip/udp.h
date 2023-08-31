@@ -177,7 +177,7 @@
         void udp_input( struct pbuf * p,
                         struct netif * inp );
 
-        #define udp_init() /* Compatibility define, not init needed. */
+        #define udp_init()    /* Compatibility define, not init needed. */
 
         #if UDP_DEBUG
             void udp_debug_print( struct udp_hdr * udphdr );

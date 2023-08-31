@@ -173,7 +173,7 @@ FlagStatus SysTick_GetFlagStatus( u8 SysTick_FLAG )
     {
         statusreg = SysTick->CTRL;
     }
-    else        /* The flag to check is in CALIB register */
+    else /* The flag to check is in CALIB register */
     {
         statusreg = SysTick->CALIB;
     }

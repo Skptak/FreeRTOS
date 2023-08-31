@@ -231,18 +231,18 @@
 
         while( len > 7 )
         {
-            tmp = sum + *pl++;  /* ping */
+            tmp = sum + *pl++; /* ping */
 
             if( tmp < sum )
             {
-                tmp++;          /* add back carry */
+                tmp++; /* add back carry */
             }
 
-            sum = tmp + *pl++;  /* pong */
+            sum = tmp + *pl++; /* pong */
 
             if( sum < tmp )
             {
-                sum++;          /* add back carry */
+                sum++; /* add back carry */
             }
 
             len -= 8;
@@ -261,12 +261,12 @@
         }
 
         /* dangling tail byte remaining? */
-        if( len > 0 )           /* include odd byte */
+        if( len > 0 ) /* include odd byte */
         {
             ( ( u8_t * ) &t )[ 0 ] = *( u8_t * ) ps;
         }
 
-        sum += t;               /* add end bytes */
+        sum += t; /* add end bytes */
 
         /* Fold 32-bit sum to 16 bits
          * calling this twice is propably faster than if statements... */

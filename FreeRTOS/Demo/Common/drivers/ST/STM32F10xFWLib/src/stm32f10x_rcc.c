@@ -968,15 +968,15 @@ FlagStatus RCC_GetFlagStatus( u8 RCC_FLAG )
     /* Get the RCC register index */
     tmp = RCC_FLAG >> 5;
 
-    if( tmp == 1 )            /* The flag to check is in CR register */
+    if( tmp == 1 ) /* The flag to check is in CR register */
     {
         statusreg = RCC->CR;
     }
-    else if( tmp == 2 )       /* The flag to check is in BDCR register */
+    else if( tmp == 2 ) /* The flag to check is in BDCR register */
     {
         statusreg = RCC->BDCR;
     }
-    else                     /* The flag to check is in CSR register */
+    else /* The flag to check is in CSR register */
     {
         statusreg = RCC->CSR;
     }

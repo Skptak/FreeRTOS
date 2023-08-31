@@ -99,36 +99,36 @@ typedef struct fsm
 
 typedef struct fsm_callbacks
 {
-    void ( * resetci )( fsm * );                    /* Reset our Configuration Information */
-    int ( * cilen )( fsm * );                       /* Length of our Configuration Information */
+    void ( * resetci )( fsm * ); /* Reset our Configuration Information */
+    int ( * cilen )( fsm * );    /* Length of our Configuration Information */
     void ( * addci )( fsm *,
                       u_char *,
-                      int * );                      /* Add our Configuration Information */
+                      int * ); /* Add our Configuration Information */
     int ( * ackci )( fsm *,
                      u_char *,
-                     int );                         /* ACK our Configuration Information */
+                     int ); /* ACK our Configuration Information */
     int ( * nakci )( fsm *,
                      u_char *,
-                     int );                         /* NAK our Configuration Information */
+                     int ); /* NAK our Configuration Information */
     int ( * rejci )( fsm *,
                      u_char *,
-                     int );                         /* Reject our Configuration Information */
+                     int ); /* Reject our Configuration Information */
     int ( * reqci )( fsm *,
                      u_char *,
                      int *,
-                     int );                         /* Request peer's Configuration Information */
-    void ( * up )( fsm * );                         /* Called when fsm reaches LS_OPENED state */
-    void ( * down )( fsm * );                       /* Called when fsm leaves LS_OPENED state */
-    void ( * starting )( fsm * );                   /* Called when we want the lower layer */
-    void ( * finished )( fsm * );                   /* Called when we don't want the lower layer */
-    void ( * protreject )( int );                   /* Called when Protocol-Reject received */
-    void ( * retransmit )( fsm * );                 /* Retransmission is necessary */
+                     int );         /* Request peer's Configuration Information */
+    void ( * up )( fsm * );         /* Called when fsm reaches LS_OPENED state */
+    void ( * down )( fsm * );       /* Called when fsm leaves LS_OPENED state */
+    void ( * starting )( fsm * );   /* Called when we want the lower layer */
+    void ( * finished )( fsm * );   /* Called when we don't want the lower layer */
+    void ( * protreject )( int );   /* Called when Protocol-Reject received */
+    void ( * retransmit )( fsm * ); /* Retransmission is necessary */
     int ( * extcode )( fsm *,
                        int,
                        u_char,
                        u_char *,
-                       int );                       /* Called when unknown code received */
-    char * proto_name;                              /* String name for protocol (for messages) */
+                       int ); /* Called when unknown code received */
+    char * proto_name;        /* String name for protocol (for messages) */
 } fsm_callbacks;
 
 

@@ -104,7 +104,7 @@
     #ifdef PPPOE_SERVER
         #error "PPPOE_SERVER is not yet supported under lwIP!"
 /* from if_spppsubr.c */
-        #define IFF_PASSIVE    IFF_LINK0/* wait passively for connection */
+        #define IFF_PASSIVE    IFF_LINK0 /* wait passively for connection */
     #endif
 
     #ifndef PPPOE_ERRORSTRING_LEN
@@ -604,7 +604,7 @@ breakbreak:;
                     sc->sc_state = PPPOE_STATE_SESSION;
                     pppoe_linkstatus_up( sc ); /* notify upper layers */
                     break;
-                #else  /* ifdef PPPOE_SERVER */
+                #else /* ifdef PPPOE_SERVER */
                     /* ignore, we are no access concentrator */
                     goto done;
                 #endif /* PPPOE_SERVER */

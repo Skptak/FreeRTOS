@@ -261,14 +261,14 @@
 /* The following are deprecated defines for the Integer baud-rate divisor */
 /* */
 /****************************************************************************** */
-    #define UART_IBRD_DIVINT_MASK    0x0000FFFF/* Integer baud-rate divisor */
+    #define UART_IBRD_DIVINT_MASK    0x0000FFFF /* Integer baud-rate divisor */
 
 /****************************************************************************** */
 /* */
 /* The following are deprecated defines for the Fractional baud-rate divisor */
 /* */
 /****************************************************************************** */
-    #define UART_FBRD_DIVFRAC_MASK    0x0000003F/* Fractional baud-rate divisor */
+    #define UART_FBRD_DIVFRAC_MASK    0x0000003F /* Fractional baud-rate divisor */
 
 /****************************************************************************** */
 /* */

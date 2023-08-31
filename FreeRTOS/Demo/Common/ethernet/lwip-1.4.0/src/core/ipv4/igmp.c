@@ -189,7 +189,7 @@
 
             LWIP_DEBUGF( IGMP_DEBUG, ( "\n" ) );
         }
-    #else  /* ifdef LWIP_DEBUG */
+    #else /* ifdef LWIP_DEBUG */
         #define igmp_dump_group_list()
     #endif /* LWIP_DEBUG */
 
@@ -362,7 +362,7 @@
         {
             group->netif = ifp;
             ip_addr_set( &( group->group_address ), addr );
-            group->timer = 0;      /* Not running */
+            group->timer = 0; /* Not running */
             group->group_state = IGMP_GROUP_NON_MEMBER;
             group->last_reporter_flag = 0;
             group->use = 0;
@@ -586,7 +586,7 @@
     err_t igmp_joingroup( ip_addr_t * ifaddr,
                           ip_addr_t * groupaddr )
     {
-        err_t err = ERR_VAL;        /* no matching interface */
+        err_t err = ERR_VAL; /* no matching interface */
         struct igmp_group * group;
         struct netif * netif;
 
@@ -672,7 +672,7 @@
     err_t igmp_leavegroup( ip_addr_t * ifaddr,
                            ip_addr_t * groupaddr )
     {
-        err_t err = ERR_VAL;        /* no matching interface */
+        err_t err = ERR_VAL; /* no matching interface */
         struct igmp_group * group;
         struct netif * netif;
 

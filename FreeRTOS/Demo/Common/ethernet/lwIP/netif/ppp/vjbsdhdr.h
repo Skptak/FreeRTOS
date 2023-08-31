@@ -18,11 +18,11 @@ struct ip
         u_char ip_hl_v; /* bug in GCC for mips means the bitfield stuff will sometimes break - so we use a char for both and get round it with macro's instead... */
     #else
         #if BYTE_ORDER == LITTLE_ENDIAN
-            unsigned ip_hl : 4,     /* header length */
-                     ip_v : 4;      /* version */
+            unsigned ip_hl : 4, /* header length */
+                     ip_v : 4;  /* version */
         #elif BYTE_ORDER == BIG_ENDIAN
-            unsigned ip_v : 4,      /* version */
-                     ip_hl : 4;     /* header length */
+            unsigned ip_v : 4,  /* version */
+                     ip_hl : 4; /* header length */
         #else
             COMPLAIN - NO BYTE ORDER SELECTED !
         #endif

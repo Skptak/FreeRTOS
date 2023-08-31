@@ -64,8 +64,8 @@ enum icmp_dur_type
 
 enum icmp_te_type
 {
-    ICMP_TE_TTL = 0,   /* time to live exceeded in transit */
-    ICMP_TE_FRAG = 1   /* fragment reassembly time exceeded */
+    ICMP_TE_TTL = 0, /* time to live exceeded in transit */
+    ICMP_TE_FRAG = 1 /* fragment reassembly time exceeded */
 };
 
 void icmp_input( struct pbuf * p,

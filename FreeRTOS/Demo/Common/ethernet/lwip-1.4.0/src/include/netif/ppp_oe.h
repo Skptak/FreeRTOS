@@ -175,7 +175,7 @@
     };
 
 
-    #define pppoe_init() /* compatibility define, no initialization needed */
+    #define pppoe_init()    /* compatibility define, no initialization needed */
 
     err_t pppoe_create( struct netif * ethif,
                         int pd,

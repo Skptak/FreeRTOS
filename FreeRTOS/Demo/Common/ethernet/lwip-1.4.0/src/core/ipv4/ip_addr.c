@@ -265,7 +265,7 @@ int ipaddr_aton( const char * cp,
         case 1:          /* a -- 32 bits */
             break;
 
-        case 2:       /* a.b -- 8.24 bits */
+        case 2: /* a.b -- 8.24 bits */
 
             if( val > 0xffffffUL )
             {
@@ -275,7 +275,7 @@ int ipaddr_aton( const char * cp,
             val |= parts[ 0 ] << 24;
             break;
 
-        case 3:       /* a.b.c -- 8.8.16 bits */
+        case 3: /* a.b.c -- 8.8.16 bits */
 
             if( val > 0xffff )
             {
@@ -285,7 +285,7 @@ int ipaddr_aton( const char * cp,
             val |= ( parts[ 0 ] << 24 ) | ( parts[ 1 ] << 16 );
             break;
 
-        case 4:       /* a.b.c.d -- 8.8.8.8 bits */
+        case 4: /* a.b.c.d -- 8.8.8.8 bits */
 
             if( val > 0xff )
             {

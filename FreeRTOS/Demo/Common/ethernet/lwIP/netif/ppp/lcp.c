@@ -85,28 +85,28 @@
 /*
  * Callbacks for fsm code.  (CI = Configuration Information)
  */
-    static void lcp_resetci( fsm * );   /* Reset our CI */
-    static int lcp_cilen( fsm * );      /* Return length of our CI */
+    static void lcp_resetci( fsm * ); /* Reset our CI */
+    static int lcp_cilen( fsm * );    /* Return length of our CI */
     static void lcp_addci( fsm *,
                            u_char *,
-                           int * );                /* Add our CI to pkt */
+                           int * ); /* Add our CI to pkt */
     static int lcp_ackci( fsm *,
                           u_char *,
-                          int );           /* Peer ack'd our CI */
+                          int ); /* Peer ack'd our CI */
     static int lcp_nakci( fsm *,
                           u_char *,
-                          int );           /* Peer nak'd our CI */
+                          int ); /* Peer nak'd our CI */
     static int lcp_rejci( fsm *,
                           u_char *,
-                          int );           /* Peer rej'd our CI */
+                          int ); /* Peer rej'd our CI */
     static int lcp_reqci( fsm *,
                           u_char *,
                           int *,
-                          int );        /* Rcv peer CI */
-    static void lcp_up( fsm * );        /* We're UP */
-    static void lcp_down( fsm * );      /* We're DOWN */
-    static void lcp_starting( fsm * );  /* We need lower layer up */
-    static void lcp_finished( fsm * );  /* We need lower layer down */
+                          int );       /* Rcv peer CI */
+    static void lcp_up( fsm * );       /* We're UP */
+    static void lcp_down( fsm * );     /* We're DOWN */
+    static void lcp_starting( fsm * ); /* We need lower layer up */
+    static void lcp_finished( fsm * ); /* We need lower layer down */
     static int lcp_extcode( fsm *,
                             int,
                             u_char,
@@ -237,8 +237,8 @@
 
         wo->passive = 0;
         wo->silent = 0;
-        wo->restart = 0;        /* Set to 1 in kernels or multi-line
-                                 * implementations */
+        wo->restart = 0; /* Set to 1 in kernels or multi-line
+                          * implementations */
         wo->neg_mru = 1;
         wo->mru = PPP_DEFMRU;
         wo->neg_asyncmap = 1;
@@ -249,7 +249,7 @@
         wo->neg_magicnumber = 1;
         wo->neg_pcompression = 1;
         wo->neg_accompression = 1;
-        wo->neg_lqr = 0;        /* no LQR implementation yet */
+        wo->neg_lqr = 0; /* no LQR implementation yet */
         wo->neg_cbcp = 0;
 
         ao->neg_mru = 1;
@@ -262,7 +262,7 @@
         ao->neg_magicnumber = 1;
         ao->neg_pcompression = 1;
         ao->neg_accompression = 1;
-        ao->neg_lqr = 0;        /* no LQR implementation yet */
+        ao->neg_lqr = 0; /* no LQR implementation yet */
         ao->neg_cbcp = ( CBCP_SUPPORT != 0 );
 
         /*
@@ -1187,7 +1187,7 @@ bad:
         u_char cichar;
         u_short cishort;
         u32_t cilong;
-        lcp_options try;    /* options to request next time */
+        lcp_options try; /* options to request next time */
 
         try = *go;
 
@@ -1327,8 +1327,8 @@ bad:
  * CONFNAK; returns CONFREJ if it can't return CONFACK.
  */
     static int lcp_reqci( fsm * f,
-                          u_char * inp,     /* Requested CIs */
-                          int * lenp,       /* Length of requested CIs */
+                          u_char * inp, /* Requested CIs */
+                          int * lenp,   /* Length of requested CIs */
                           int reject_if_disagree )
     {
         lcp_options * go = &lcp_gotoptions[ f->unit ];
@@ -1751,12 +1751,12 @@ endswitch:
                 continue;             /* Don't send this one */
             }
 
-            if( orc == CONFNAK )    /* Nak this CI? */
+            if( orc == CONFNAK )          /* Nak this CI? */
             {
                 if( reject_if_disagree && /* Getting fed up with sending NAKs? */
                     ( citype != CI_MAGICNUMBER ) )
                 {
-                    orc = CONFREJ;  /* Get tough if so */
+                    orc = CONFREJ; /* Get tough if so */
                 }
                 else
                 {
@@ -1769,7 +1769,7 @@ endswitch:
                 }
             }
 
-            if( orc == CONFREJ )    /* Reject this CI */
+            if( orc == CONFREJ ) /* Reject this CI */
             {
                 rc = CONFREJ;
 
@@ -1816,7 +1816,7 @@ endswitch:
             }
         #endif
         LCPDEBUG( ( LOG_INFO, "lcp_reqci: returning CONF%s.\n", CODENAME( rc ) ) );
-        return( rc );       /* Return final code */
+        return( rc ); /* Return final code */
     }
 
 

@@ -363,7 +363,7 @@
         AT91_REG Reserved44[ 1 ];    /* */
         AT91_REG SYS_GPBR[ 4 ];      /* General Purpose Register */
     } AT91S_SYS, * AT91PS_SYS;
-#else  /* ifndef __ASSEMBLY__ */
+#else /* ifndef __ASSEMBLY__ */
     #define SYS_GPBR    ( AT91_CAST( AT91_REG * )  0x00003D50 )/* (SYS_GPBR) General Purpose Register */
 
 #endif /* ifndef __ASSEMBLY__ */
@@ -376,7 +376,7 @@
 #ifndef __ASSEMBLY__
     typedef struct _AT91S_EBI
     {
-        AT91_REG EBI_DUMMY;     /* Dummy register - Do not use */
+        AT91_REG EBI_DUMMY; /* Dummy register - Do not use */
     } AT91S_EBI, * AT91PS_EBI;
 #else
     #define EBI_DUMMY    ( AT91_CAST( AT91_REG * )  0x00000000 )/* (EBI_DUMMY) Dummy register - Do not use */
@@ -397,7 +397,7 @@
         AT91_REG Reserved0[ 58 ]; /* */
         AT91_REG ECC_VR;          /*  ECC Version register */
     } AT91S_ECC, * AT91PS_ECC;
-#else  /* ifndef __ASSEMBLY__ */
+#else /* ifndef __ASSEMBLY__ */
     #define ECC_CR     ( AT91_CAST( AT91_REG * )  0x00000000 ) /* (ECC_CR)  ECC reset register */
     #define ECC_MR     ( AT91_CAST( AT91_REG * )  0x00000004 ) /* (ECC_MR)  ECC Page size register */
     #define ECC_SR     ( AT91_CAST( AT91_REG * )  0x00000008 ) /* (ECC_SR)  ECC Status register */
@@ -428,18 +428,18 @@
 #ifndef __ASSEMBLY__
     typedef struct _AT91S_SDRAMC
     {
-        AT91_REG SDRAMC_MR;     /* SDRAM Controller Mode Register */
-        AT91_REG SDRAMC_TR;     /* SDRAM Controller Refresh Timer Register */
-        AT91_REG SDRAMC_CR;     /* SDRAM Controller Configuration Register */
-        AT91_REG SDRAMC_HSR;    /* SDRAM Controller High Speed Register */
-        AT91_REG SDRAMC_LPR;    /* SDRAM Controller Low Power Register */
-        AT91_REG SDRAMC_IER;    /* SDRAM Controller Interrupt Enable Register */
-        AT91_REG SDRAMC_IDR;    /* SDRAM Controller Interrupt Disable Register */
-        AT91_REG SDRAMC_IMR;    /* SDRAM Controller Interrupt Mask Register */
-        AT91_REG SDRAMC_ISR;    /* SDRAM Controller Interrupt Mask Register */
-        AT91_REG SDRAMC_MDR;    /* SDRAM Memory Device Register */
+        AT91_REG SDRAMC_MR;  /* SDRAM Controller Mode Register */
+        AT91_REG SDRAMC_TR;  /* SDRAM Controller Refresh Timer Register */
+        AT91_REG SDRAMC_CR;  /* SDRAM Controller Configuration Register */
+        AT91_REG SDRAMC_HSR; /* SDRAM Controller High Speed Register */
+        AT91_REG SDRAMC_LPR; /* SDRAM Controller Low Power Register */
+        AT91_REG SDRAMC_IER; /* SDRAM Controller Interrupt Enable Register */
+        AT91_REG SDRAMC_IDR; /* SDRAM Controller Interrupt Disable Register */
+        AT91_REG SDRAMC_IMR; /* SDRAM Controller Interrupt Mask Register */
+        AT91_REG SDRAMC_ISR; /* SDRAM Controller Interrupt Mask Register */
+        AT91_REG SDRAMC_MDR; /* SDRAM Memory Device Register */
     } AT91S_SDRAMC, * AT91PS_SDRAMC;
-#else  /* ifndef __ASSEMBLY__ */
+#else /* ifndef __ASSEMBLY__ */
     #define SDRAMC_MR     ( AT91_CAST( AT91_REG * )  0x00000000 ) /* (SDRAMC_MR) SDRAM Controller Mode Register */
     #define SDRAMC_TR     ( AT91_CAST( AT91_REG * )  0x00000004 ) /* (SDRAMC_TR) SDRAM Controller Refresh Timer Register */
     #define SDRAMC_CR     ( AT91_CAST( AT91_REG * )  0x00000008 ) /* (SDRAMC_CR) SDRAM Controller Configuration Register */
@@ -617,40 +617,40 @@
 #ifndef __ASSEMBLY__
     typedef struct _AT91S_SMC
     {
-        AT91_REG SMC_SETUP0;    /*  Setup Register for CS 0 */
-        AT91_REG SMC_PULSE0;    /*  Pulse Register for CS 0 */
-        AT91_REG SMC_CYCLE0;    /*  Cycle Register for CS 0 */
-        AT91_REG SMC_CTRL0;     /*  Control Register for CS 0 */
-        AT91_REG SMC_SETUP1;    /*  Setup Register for CS 1 */
-        AT91_REG SMC_PULSE1;    /*  Pulse Register for CS 1 */
-        AT91_REG SMC_CYCLE1;    /*  Cycle Register for CS 1 */
-        AT91_REG SMC_CTRL1;     /*  Control Register for CS 1 */
-        AT91_REG SMC_SETUP2;    /*  Setup Register for CS 2 */
-        AT91_REG SMC_PULSE2;    /*  Pulse Register for CS 2 */
-        AT91_REG SMC_CYCLE2;    /*  Cycle Register for CS 2 */
-        AT91_REG SMC_CTRL2;     /*  Control Register for CS 2 */
-        AT91_REG SMC_SETUP3;    /*  Setup Register for CS 3 */
-        AT91_REG SMC_PULSE3;    /*  Pulse Register for CS 3 */
-        AT91_REG SMC_CYCLE3;    /*  Cycle Register for CS 3 */
-        AT91_REG SMC_CTRL3;     /*  Control Register for CS 3 */
-        AT91_REG SMC_SETUP4;    /*  Setup Register for CS 4 */
-        AT91_REG SMC_PULSE4;    /*  Pulse Register for CS 4 */
-        AT91_REG SMC_CYCLE4;    /*  Cycle Register for CS 4 */
-        AT91_REG SMC_CTRL4;     /*  Control Register for CS 4 */
-        AT91_REG SMC_SETUP5;    /*  Setup Register for CS 5 */
-        AT91_REG SMC_PULSE5;    /*  Pulse Register for CS 5 */
-        AT91_REG SMC_CYCLE5;    /*  Cycle Register for CS 5 */
-        AT91_REG SMC_CTRL5;     /*  Control Register for CS 5 */
-        AT91_REG SMC_SETUP6;    /*  Setup Register for CS 6 */
-        AT91_REG SMC_PULSE6;    /*  Pulse Register for CS 6 */
-        AT91_REG SMC_CYCLE6;    /*  Cycle Register for CS 6 */
-        AT91_REG SMC_CTRL6;     /*  Control Register for CS 6 */
-        AT91_REG SMC_SETUP7;    /*  Setup Register for CS 7 */
-        AT91_REG SMC_PULSE7;    /*  Pulse Register for CS 7 */
-        AT91_REG SMC_CYCLE7;    /*  Cycle Register for CS 7 */
-        AT91_REG SMC_CTRL7;     /*  Control Register for CS 7 */
+        AT91_REG SMC_SETUP0; /*  Setup Register for CS 0 */
+        AT91_REG SMC_PULSE0; /*  Pulse Register for CS 0 */
+        AT91_REG SMC_CYCLE0; /*  Cycle Register for CS 0 */
+        AT91_REG SMC_CTRL0;  /*  Control Register for CS 0 */
+        AT91_REG SMC_SETUP1; /*  Setup Register for CS 1 */
+        AT91_REG SMC_PULSE1; /*  Pulse Register for CS 1 */
+        AT91_REG SMC_CYCLE1; /*  Cycle Register for CS 1 */
+        AT91_REG SMC_CTRL1;  /*  Control Register for CS 1 */
+        AT91_REG SMC_SETUP2; /*  Setup Register for CS 2 */
+        AT91_REG SMC_PULSE2; /*  Pulse Register for CS 2 */
+        AT91_REG SMC_CYCLE2; /*  Cycle Register for CS 2 */
+        AT91_REG SMC_CTRL2;  /*  Control Register for CS 2 */
+        AT91_REG SMC_SETUP3; /*  Setup Register for CS 3 */
+        AT91_REG SMC_PULSE3; /*  Pulse Register for CS 3 */
+        AT91_REG SMC_CYCLE3; /*  Cycle Register for CS 3 */
+        AT91_REG SMC_CTRL3;  /*  Control Register for CS 3 */
+        AT91_REG SMC_SETUP4; /*  Setup Register for CS 4 */
+        AT91_REG SMC_PULSE4; /*  Pulse Register for CS 4 */
+        AT91_REG SMC_CYCLE4; /*  Cycle Register for CS 4 */
+        AT91_REG SMC_CTRL4;  /*  Control Register for CS 4 */
+        AT91_REG SMC_SETUP5; /*  Setup Register for CS 5 */
+        AT91_REG SMC_PULSE5; /*  Pulse Register for CS 5 */
+        AT91_REG SMC_CYCLE5; /*  Cycle Register for CS 5 */
+        AT91_REG SMC_CTRL5;  /*  Control Register for CS 5 */
+        AT91_REG SMC_SETUP6; /*  Setup Register for CS 6 */
+        AT91_REG SMC_PULSE6; /*  Pulse Register for CS 6 */
+        AT91_REG SMC_CYCLE6; /*  Cycle Register for CS 6 */
+        AT91_REG SMC_CTRL6;  /*  Control Register for CS 6 */
+        AT91_REG SMC_SETUP7; /*  Setup Register for CS 7 */
+        AT91_REG SMC_PULSE7; /*  Pulse Register for CS 7 */
+        AT91_REG SMC_CYCLE7; /*  Cycle Register for CS 7 */
+        AT91_REG SMC_CTRL7;  /*  Control Register for CS 7 */
     } AT91S_SMC, * AT91PS_SMC;
-#else  /* ifndef __ASSEMBLY__ */
+#else /* ifndef __ASSEMBLY__ */
     #define SETUP0    ( AT91_CAST( AT91_REG * )  0x00000000 ) /* (SETUP0)  Setup Register for CS 0 */
     #define PULSE0    ( AT91_CAST( AT91_REG * )  0x00000004 ) /* (PULSE0)  Pulse Register for CS 0 */
     #define CYCLE0    ( AT91_CAST( AT91_REG * )  0x00000008 ) /* (CYCLE0)  Cycle Register for CS 0 */
@@ -789,7 +789,7 @@
         AT91_REG Reserved5[ 51 ]; /* */
         AT91_REG MATRIX_VERSION;  /*  Version Register */
     } AT91S_MATRIX, * AT91PS_MATRIX;
-#else  /* ifndef __ASSEMBLY__ */
+#else /* ifndef __ASSEMBLY__ */
     #define MATRIX_MCFG0      ( AT91_CAST( AT91_REG * )  0x00000000 ) /* (MATRIX_MCFG0)  Master Configuration Register 0 (ram96k) */
     #define MATRIX_MCFG1      ( AT91_CAST( AT91_REG * )  0x00000004 ) /* (MATRIX_MCFG1)  Master Configuration Register 1 (rom) */
     #define MATRIX_MCFG2      ( AT91_CAST( AT91_REG * )  0x00000008 ) /* (MATRIX_MCFG2)  Master Configuration Register 2 (hperiphs) */
@@ -940,18 +940,18 @@
 #ifndef __ASSEMBLY__
     typedef struct _AT91S_PDC
     {
-        AT91_REG PDC_RPR;   /* Receive Pointer Register */
-        AT91_REG PDC_RCR;   /* Receive Counter Register */
-        AT91_REG PDC_TPR;   /* Transmit Pointer Register */
-        AT91_REG PDC_TCR;   /* Transmit Counter Register */
-        AT91_REG PDC_RNPR;  /* Receive Next Pointer Register */
-        AT91_REG PDC_RNCR;  /* Receive Next Counter Register */
-        AT91_REG PDC_TNPR;  /* Transmit Next Pointer Register */
-        AT91_REG PDC_TNCR;  /* Transmit Next Counter Register */
-        AT91_REG PDC_PTCR;  /* PDC Transfer Control Register */
-        AT91_REG PDC_PTSR;  /* PDC Transfer Status Register */
+        AT91_REG PDC_RPR;  /* Receive Pointer Register */
+        AT91_REG PDC_RCR;  /* Receive Counter Register */
+        AT91_REG PDC_TPR;  /* Transmit Pointer Register */
+        AT91_REG PDC_TCR;  /* Transmit Counter Register */
+        AT91_REG PDC_RNPR; /* Receive Next Pointer Register */
+        AT91_REG PDC_RNCR; /* Receive Next Counter Register */
+        AT91_REG PDC_TNPR; /* Transmit Next Pointer Register */
+        AT91_REG PDC_TNCR; /* Transmit Next Counter Register */
+        AT91_REG PDC_PTCR; /* PDC Transfer Control Register */
+        AT91_REG PDC_PTSR; /* PDC Transfer Status Register */
     } AT91S_PDC, * AT91PS_PDC;
-#else  /* ifndef __ASSEMBLY__ */
+#else /* ifndef __ASSEMBLY__ */
     #define PDC_RPR     ( AT91_CAST( AT91_REG * )  0x00000000 ) /* (PDC_RPR) Receive Pointer Register */
     #define PDC_RCR     ( AT91_CAST( AT91_REG * )  0x00000004 ) /* (PDC_RCR) Receive Counter Register */
     #define PDC_TPR     ( AT91_CAST( AT91_REG * )  0x00000008 ) /* (PDC_TPR) Transmit Pointer Register */
@@ -1002,7 +1002,7 @@
         AT91_REG DBGU_PTCR;       /* PDC Transfer Control Register */
         AT91_REG DBGU_PTSR;       /* PDC Transfer Status Register */
     } AT91S_DBGU, * AT91PS_DBGU;
-#else  /* ifndef __ASSEMBLY__ */
+#else /* ifndef __ASSEMBLY__ */
     #define DBGU_CR      ( AT91_CAST( AT91_REG * )  0x00000000 ) /* (DBGU_CR) Control Register */
     #define DBGU_MR      ( AT91_CAST( AT91_REG * )  0x00000004 ) /* (DBGU_MR) Mode Register */
     #define DBGU_IER     ( AT91_CAST( AT91_REG * )  0x00000008 ) /* (DBGU_IER) Interrupt Enable Register */
@@ -1084,7 +1084,7 @@
         AT91_REG AIC_FFDR;       /* Fast Forcing Disable Register */
         AT91_REG AIC_FFSR;       /* Fast Forcing Status Register */
     } AT91S_AIC, * AT91PS_AIC;
-#else  /* ifndef __ASSEMBLY__ */
+#else /* ifndef __ASSEMBLY__ */
     #define AIC_SMR      ( AT91_CAST( AT91_REG * )  0x00000000 ) /* (AIC_SMR) Source Mode Register */
     #define AIC_SVR      ( AT91_CAST( AT91_REG * )  0x00000080 ) /* (AIC_SVR) Source Vector Register */
     #define AIC_IVR      ( AT91_CAST( AT91_REG * )  0x00000100 ) /* (AIC_IVR) IRQ Vector Register */
@@ -1163,7 +1163,7 @@
         AT91_REG PIO_OWDR;       /* Output Write Disable Register */
         AT91_REG PIO_OWSR;       /* Output Write Status Register */
     } AT91S_PIO, * AT91PS_PIO;
-#else  /* ifndef __ASSEMBLY__ */
+#else /* ifndef __ASSEMBLY__ */
     #define PIO_PER      ( AT91_CAST( AT91_REG * )  0x00000000 ) /* (PIO_PER) PIO Enable Register */
     #define PIO_PDR      ( AT91_CAST( AT91_REG * )  0x00000004 ) /* (PIO_PDR) PIO Disable Register */
     #define PIO_PSR      ( AT91_CAST( AT91_REG * )  0x00000008 ) /* (PIO_PSR) PIO Status Register */
@@ -1202,11 +1202,11 @@
 #ifndef __ASSEMBLY__
     typedef struct _AT91S_EFC
     {
-        AT91_REG EFC_FMR;   /* EFC Flash Mode Register */
-        AT91_REG EFC_FCR;   /* EFC Flash Command Register */
-        AT91_REG EFC_FSR;   /* EFC Flash Status Register */
-        AT91_REG EFC_FRR;   /* EFC Flash Result Register */
-        AT91_REG EFC_FVR;   /* EFC Flash Version Register */
+        AT91_REG EFC_FMR; /* EFC Flash Mode Register */
+        AT91_REG EFC_FCR; /* EFC Flash Command Register */
+        AT91_REG EFC_FSR; /* EFC Flash Status Register */
+        AT91_REG EFC_FRR; /* EFC Flash Result Register */
+        AT91_REG EFC_FVR; /* EFC Flash Version Register */
     } AT91S_EFC, * AT91PS_EFC;
 #else
     #define EFC_FMR    ( AT91_CAST( AT91_REG * )  0x00000000 ) /* (EFC_FMR) EFC Flash Mode Register */
@@ -1327,7 +1327,7 @@
         AT91_REG PMC_SR;         /* Status Register */
         AT91_REG PMC_IMR;        /* Interrupt Mask Register */
     } AT91S_PMC, * AT91PS_PMC;
-#else  /* ifndef __ASSEMBLY__ */
+#else /* ifndef __ASSEMBLY__ */
     #define PMC_SCER    ( AT91_CAST( AT91_REG * )  0x00000000 ) /* (PMC_SCER) System Clock Enable Register */
     #define PMC_SCDR    ( AT91_CAST( AT91_REG * )  0x00000004 ) /* (PMC_SCDR) System Clock Disable Register */
     #define PMC_SCSR    ( AT91_CAST( AT91_REG * )  0x00000008 ) /* (PMC_SCSR) System Clock Status Register */
@@ -1395,9 +1395,9 @@
 #ifndef __ASSEMBLY__
     typedef struct _AT91S_RSTC
     {
-        AT91_REG RSTC_RCR;  /* Reset Control Register */
-        AT91_REG RSTC_RSR;  /* Reset Status Register */
-        AT91_REG RSTC_RMR;  /* Reset Mode Register */
+        AT91_REG RSTC_RCR; /* Reset Control Register */
+        AT91_REG RSTC_RSR; /* Reset Status Register */
+        AT91_REG RSTC_RMR; /* Reset Mode Register */
     } AT91S_RSTC, * AT91PS_RSTC;
 #else
     #define RSTC_RCR    ( AT91_CAST( AT91_REG * )  0x00000000 ) /* (RSTC_RCR) Reset Control Register */
@@ -1432,9 +1432,9 @@
 #ifndef __ASSEMBLY__
     typedef struct _AT91S_SHDWC
     {
-        AT91_REG SHDWC_SHCR;    /* Shut Down Control Register */
-        AT91_REG SHDWC_SHMR;    /* Shut Down Mode Register */
-        AT91_REG SHDWC_SHSR;    /* Shut Down Status Register */
+        AT91_REG SHDWC_SHCR; /* Shut Down Control Register */
+        AT91_REG SHDWC_SHMR; /* Shut Down Mode Register */
+        AT91_REG SHDWC_SHSR; /* Shut Down Status Register */
     } AT91S_SHDWC, * AT91PS_SHDWC;
 #else
     #define SHDWC_SHCR    ( AT91_CAST( AT91_REG * )  0x00000000 ) /* (SHDWC_SHCR) Shut Down Control Register */
@@ -1473,10 +1473,10 @@
 #ifndef __ASSEMBLY__
     typedef struct _AT91S_RTTC
     {
-        AT91_REG RTTC_RTMR;     /* Real-time Mode Register */
-        AT91_REG RTTC_RTAR;     /* Real-time Alarm Register */
-        AT91_REG RTTC_RTVR;     /* Real-time Value Register */
-        AT91_REG RTTC_RTSR;     /* Real-time Status Register */
+        AT91_REG RTTC_RTMR; /* Real-time Mode Register */
+        AT91_REG RTTC_RTAR; /* Real-time Alarm Register */
+        AT91_REG RTTC_RTVR; /* Real-time Value Register */
+        AT91_REG RTTC_RTSR; /* Real-time Status Register */
     } AT91S_RTTC, * AT91PS_RTTC;
 #else
     #define RTTC_RTMR    ( AT91_CAST( AT91_REG * )  0x00000000 ) /* (RTTC_RTMR) Real-time Mode Register */
@@ -1504,10 +1504,10 @@
 #ifndef __ASSEMBLY__
     typedef struct _AT91S_PITC
     {
-        AT91_REG PITC_PIMR;     /* Period Interval Mode Register */
-        AT91_REG PITC_PISR;     /* Period Interval Status Register */
-        AT91_REG PITC_PIVR;     /* Period Interval Value Register */
-        AT91_REG PITC_PIIR;     /* Period Interval Image Register */
+        AT91_REG PITC_PIMR; /* Period Interval Mode Register */
+        AT91_REG PITC_PISR; /* Period Interval Status Register */
+        AT91_REG PITC_PIVR; /* Period Interval Value Register */
+        AT91_REG PITC_PIIR; /* Period Interval Image Register */
     } AT91S_PITC, * AT91PS_PITC;
 #else
     #define PITC_PIMR    ( AT91_CAST( AT91_REG * )  0x00000000 ) /* (PITC_PIMR) Period Interval Mode Register */
@@ -1533,9 +1533,9 @@
 #ifndef __ASSEMBLY__
     typedef struct _AT91S_WDTC
     {
-        AT91_REG WDTC_WDCR;     /* Watchdog Control Register */
-        AT91_REG WDTC_WDMR;     /* Watchdog Mode Register */
-        AT91_REG WDTC_WDSR;     /* Watchdog Status Register */
+        AT91_REG WDTC_WDCR; /* Watchdog Control Register */
+        AT91_REG WDTC_WDMR; /* Watchdog Mode Register */
+        AT91_REG WDTC_WDSR; /* Watchdog Status Register */
     } AT91S_WDTC, * AT91PS_WDTC;
 #else
     #define WDTC_WDCR    ( AT91_CAST( AT91_REG * )  0x00000000 ) /* (WDTC_WDCR) Watchdog Control Register */
@@ -1577,7 +1577,7 @@
         AT91_REG TC_IDR;         /* Interrupt Disable Register */
         AT91_REG TC_IMR;         /* Interrupt Mask Register */
     } AT91S_TC, * AT91PS_TC;
-#else  /* ifndef __ASSEMBLY__ */
+#else /* ifndef __ASSEMBLY__ */
     #define TC_CCR    ( AT91_CAST( AT91_REG * )  0x00000000 ) /* (TC_CCR) Channel Control Register */
     #define TC_CMR    ( AT91_CAST( AT91_REG * )  0x00000004 ) /* (TC_CMR) Channel Mode Register (Capture Mode / Waveform Mode) */
     #define TC_CV     ( AT91_CAST( AT91_REG * )  0x00000010 ) /* (TC_CV) Counter Value */
@@ -1719,7 +1719,7 @@
         AT91_REG TCB_BCR;        /* TC Block Control Register */
         AT91_REG TCB_BMR;        /* TC Block Mode Register */
     } AT91S_TCB, * AT91PS_TCB;
-#else  /* ifndef __ASSEMBLY__ */
+#else /* ifndef __ASSEMBLY__ */
     #define TCB_BCR    ( AT91_CAST( AT91_REG * )  0x000000C0 ) /* (TCB_BCR) TC Block Control Register */
     #define TCB_BMR    ( AT91_CAST( AT91_REG * )  0x000000C4 ) /* (TCB_BMR) TC Block Mode Register */
 
@@ -1778,7 +1778,7 @@
         AT91_REG MCI_PTCR;        /* PDC Transfer Control Register */
         AT91_REG MCI_PTSR;        /* PDC Transfer Status Register */
     } AT91S_MCI, * AT91PS_MCI;
-#else  /* ifndef __ASSEMBLY__ */
+#else /* ifndef __ASSEMBLY__ */
     #define MCI_CR      ( AT91_CAST( AT91_REG * )  0x00000000 ) /* (MCI_CR) MCI Control Register */
     #define MCI_MR      ( AT91_CAST( AT91_REG * )  0x00000004 ) /* (MCI_MR) MCI Mode Register */
     #define MCI_DTOR    ( AT91_CAST( AT91_REG * )  0x00000008 ) /* (MCI_DTOR) MCI Data Timeout Register */
@@ -1914,7 +1914,7 @@
         AT91_REG TWI_PTCR;        /* PDC Transfer Control Register */
         AT91_REG TWI_PTSR;        /* PDC Transfer Status Register */
     } AT91S_TWI, * AT91PS_TWI;
-#else  /* ifndef __ASSEMBLY__ */
+#else /* ifndef __ASSEMBLY__ */
     #define TWI_CR      ( AT91_CAST( AT91_REG * )  0x00000000 ) /* (TWI_CR) Control Register */
     #define TWI_MMR     ( AT91_CAST( AT91_REG * )  0x00000004 ) /* (TWI_MMR) Master Mode Register */
     #define TWI_SMR     ( AT91_CAST( AT91_REG * )  0x00000008 ) /* (TWI_SMR) Slave Mode Register */
@@ -2007,7 +2007,7 @@
         AT91_REG US_PTCR;         /* PDC Transfer Control Register */
         AT91_REG US_PTSR;         /* PDC Transfer Status Register */
     } AT91S_USART, * AT91PS_USART;
-#else  /* ifndef __ASSEMBLY__ */
+#else /* ifndef __ASSEMBLY__ */
     #define US_CR      ( AT91_CAST( AT91_REG * )  0x00000000 ) /* (US_CR) Control Register */
     #define US_MR      ( AT91_CAST( AT91_REG * )  0x00000004 ) /* (US_MR) Mode Register */
     #define US_IER     ( AT91_CAST( AT91_REG * )  0x00000008 ) /* (US_IER) Interrupt Enable Register */
@@ -2121,7 +2121,7 @@
         AT91_REG SSC_PTCR;        /* PDC Transfer Control Register */
         AT91_REG SSC_PTSR;        /* PDC Transfer Status Register */
     } AT91S_SSC, * AT91PS_SSC;
-#else  /* ifndef __ASSEMBLY__ */
+#else /* ifndef __ASSEMBLY__ */
     #define SSC_CR      ( AT91_CAST( AT91_REG * )  0x00000000 ) /* (SSC_CR) Control Register */
     #define SSC_CMR     ( AT91_CAST( AT91_REG * )  0x00000004 ) /* (SSC_CMR) Clock Mode Register */
     #define SSC_RCMR    ( AT91_CAST( AT91_REG * )  0x00000010 ) /* (SSC_RCMR) Receive Clock ModeRegister */
@@ -2229,7 +2229,7 @@
         AT91_REG SPI_PTCR;        /* PDC Transfer Control Register */
         AT91_REG SPI_PTSR;        /* PDC Transfer Status Register */
     } AT91S_SPI, * AT91PS_SPI;
-#else  /* ifndef __ASSEMBLY__ */
+#else /* ifndef __ASSEMBLY__ */
     #define SPI_CR     ( AT91_CAST( AT91_REG * )  0x00000000 ) /* (SPI_CR) Control Register */
     #define SPI_MR     ( AT91_CAST( AT91_REG * )  0x00000004 ) /* (SPI_MR) Mode Register */
     #define SPI_RDR    ( AT91_CAST( AT91_REG * )  0x00000008 ) /* (SPI_RDR) Receive Data Register */
@@ -2333,7 +2333,7 @@
         AT91_REG ADC_PTCR;        /* PDC Transfer Control Register */
         AT91_REG ADC_PTSR;        /* PDC Transfer Status Register */
     } AT91S_ADC, * AT91PS_ADC;
-#else  /* ifndef __ASSEMBLY__ */
+#else /* ifndef __ASSEMBLY__ */
     #define ADC_CR      ( AT91_CAST( AT91_REG * )  0x00000000 ) /* (ADC_CR) ADC Control Register */
     #define ADC_MR      ( AT91_CAST( AT91_REG * )  0x00000004 ) /* (ADC_MR) ADC Mode Register */
     #define ADC_CHER    ( AT91_CAST( AT91_REG * )  0x00000010 ) /* (ADC_CHER) ADC Channel Enable Register */
@@ -2483,7 +2483,7 @@
         AT91_REG Reserved1[ 13 ]; /* */
         AT91_REG EMAC_REV;        /* Revision Register */
     } AT91S_EMAC, * AT91PS_EMAC;
-#else  /* ifndef __ASSEMBLY__ */
+#else /* ifndef __ASSEMBLY__ */
     #define EMAC_NCR      ( AT91_CAST( AT91_REG * )  0x00000000 ) /* (EMAC_NCR) Network Control Register */
     #define EMAC_NCFGR    ( AT91_CAST( AT91_REG * )  0x00000004 ) /* (EMAC_NCFGR) Network Configuration Register */
     #define EMAC_NSR      ( AT91_CAST( AT91_REG * )  0x00000008 ) /* (EMAC_NSR) Network Status Register */
@@ -2651,7 +2651,7 @@
         AT91_REG Reserved4[ 3 ]; /* */
         AT91_REG UDP_TXVC;       /* Transceiver Control Register */
     } AT91S_UDP, * AT91PS_UDP;
-#else  /* ifndef __ASSEMBLY__ */
+#else /* ifndef __ASSEMBLY__ */
     #define UDP_FRM_NUM     ( AT91_CAST( AT91_REG * )  0x00000000 ) /* (UDP_FRM_NUM) Frame Number Register */
     #define UDP_GLBSTATE    ( AT91_CAST( AT91_REG * )  0x00000004 ) /* (UDP_GLBSTATE) Global State Register */
     #define UDP_FADDR       ( AT91_CAST( AT91_REG * )  0x00000008 ) /* (UDP_FADDR) Function Address Register */
@@ -2757,7 +2757,7 @@
         AT91_REG UHP_HcRhStatus;          /* Root Hub Status register */
         AT91_REG UHP_HcRhPortStatus[ 2 ]; /* Root Hub Port Status Register */
     } AT91S_UHP, * AT91PS_UHP;
-#else  /* ifndef __ASSEMBLY__ */
+#else /* ifndef __ASSEMBLY__ */
     #define HcRevision            ( AT91_CAST( AT91_REG * )  0x00000000 )   /* (HcRevision) Revision */
     #define HcControl             ( AT91_CAST( AT91_REG * )  0x00000004 )   /* (HcControl) Operating modes for the Host Controller */
     #define HcCommandStatus       ( AT91_CAST( AT91_REG * )  0x00000008 )   /* (HcCommandStatus) Command & status Register */
@@ -2806,7 +2806,7 @@
         AT91_REG ISI_R2YSET1;    /* Color Space Conversion Register */
         AT91_REG ISI_R2YSET2;    /* Color Space Conversion Register */
     } AT91S_ISI, * AT91PS_ISI;
-#else  /* ifndef __ASSEMBLY__ */
+#else /* ifndef __ASSEMBLY__ */
     #define ISI_CR1        ( AT91_CAST( AT91_REG * )  0x00000000 ) /* (ISI_CR1) Control Register 1 */
     #define ISI_CR2        ( AT91_CAST( AT91_REG * )  0x00000004 ) /* (ISI_CR2) Control Register 2 */
     #define ISI_SR         ( AT91_CAST( AT91_REG * )  0x00000008 ) /* (ISI_SR) Status Register */

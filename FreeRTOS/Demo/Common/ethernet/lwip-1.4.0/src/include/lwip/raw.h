@@ -98,7 +98,7 @@
 /* The following functions are the lower layer interface to RAW. */
         u8_t raw_input( struct pbuf * p,
                         struct netif * inp );
-        #define raw_init() /* Compatibility define, not init needed. */
+        #define raw_init()    /* Compatibility define, not init needed. */
 
         #ifdef __cplusplus
 }

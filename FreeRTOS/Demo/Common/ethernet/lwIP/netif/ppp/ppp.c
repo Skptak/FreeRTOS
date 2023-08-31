@@ -116,13 +116,13 @@
  * completed. */
     typedef enum
     {
-        PDIDLE = 0,             /* Idle state - waiting. */
-        PDSTART,                /* Process start flag. */
-        PDADDRESS,              /* Process address field. */
-        PDCONTROL,              /* Process control field. */
-        PDPROTOCOL1,            /* Process protocol field 1. */
-        PDPROTOCOL2,            /* Process protocol field 2. */
-        PDDATA                  /* Process data byte. */
+        PDIDLE = 0,  /* Idle state - waiting. */
+        PDSTART,     /* Process start flag. */
+        PDADDRESS,   /* Process address field. */
+        PDCONTROL,   /* Process control field. */
+        PDPROTOCOL1, /* Process protocol field 1. */
+        PDPROTOCOL2, /* Process protocol field 2. */
+        PDDATA       /* Process data byte. */
     } PPPDevStates;
 
     #define ESCAPE_P( accm, c )    ( ( accm )[ ( c ) >> 3 ] & pppACCMMask[ c & 0x07 ] )
@@ -176,7 +176,7 @@
 
     struct npioctl
     {
-        int protocol;           /* PPP procotol, e.g. PPP_IP */
+        int protocol; /* PPP procotol, e.g. PPP_IP */
         enum NPmode mode;
     };
 
@@ -1547,7 +1547,7 @@ out:
 
                     /* Something's wrong so drop it. */
                     PPPDEBUG( ( LOG_WARNING, "pppInput[%d]: Dropping VJ compressed\n", pd ) );
-                #else  /* if VJ_SUPPORT > 0 */
+                #else /* if VJ_SUPPORT > 0 */
                     /* No handler for this protocol so drop the packet. */
                     PPPDEBUG( ( LOG_INFO, "pppInput[%d]: drop VJ Comp in %d:%s\n", pd, nb->len, nb->payload ) );
                 #endif /* VJ_SUPPORT > 0 */
@@ -1573,7 +1573,7 @@ out:
 
                     /* Something's wrong so drop it. */
                     PPPDEBUG( ( LOG_WARNING, "pppInput[%d]: Dropping VJ uncompressed\n", pd ) );
-                #else  /* if VJ_SUPPORT > 0 */
+                #else /* if VJ_SUPPORT > 0 */
                     /* No handler for this protocol so drop the packet. */
                     PPPDEBUG( ( LOG_INFO,
                                 "pppInput[%d]: drop VJ UnComp in %d:.*H\n",
@@ -1581,7 +1581,7 @@ out:
                 #endif /* VJ_SUPPORT > 0 */
                 break;
 
-            case PPP_IP:    /* Internet Protocol */
+            case PPP_IP: /* Internet Protocol */
                 PPPDEBUG( ( LOG_INFO, "pppInput[%d]: ip in pbuf len=%d\n", pd, nb->len ) );
 
                 if( pppControl[ pd ].netif.input != NULL )
@@ -1792,7 +1792,7 @@ out:
                 /* Process character relative to current state. */
                 switch( pc->inState )
                 {
-                    case PDIDLE:            /* Idle state - waiting. */
+                    case PDIDLE: /* Idle state - waiting. */
 
                         /* Drop the character if it's not 0xff
                          * we would have processed a flag character above. */
@@ -1802,12 +1802,12 @@ out:
                         }
 
                     /* Fall through */
-                    case PDSTART:           /* Process start flag. */
+                    case PDSTART: /* Process start flag. */
                         /* Prepare for a new packet. */
                         pc->inFCS = PPP_INITFCS;
 
                     /* Fall through */
-                    case PDADDRESS:         /* Process address field. */
+                    case PDADDRESS: /* Process address field. */
 
                         if( curChar == PPP_ALLSTATIONS )
                         {
@@ -1817,7 +1817,7 @@ out:
 
                     /* Else assume compressed address and control fields so
                      * fall through to get the protocol... */
-                    case PDCONTROL:         /* Process control field. */
+                    case PDCONTROL: /* Process control field. */
 
                         /* If we don't get a valid control code, restart. */
                         if( curChar == PPP_UI )
@@ -1834,7 +1834,7 @@ out:
                                 pc->inState = PDSTART;
                             }
                         #endif
-                    case PDPROTOCOL1:       /* Process protocol field 1. */
+                    case PDPROTOCOL1: /* Process protocol field 1. */
 
                         /* If the lower bit is set, this is the end of the protocol
                          * field. */
@@ -1851,12 +1851,12 @@ out:
 
                         break;
 
-                    case PDPROTOCOL2:       /* Process protocol field 2. */
+                    case PDPROTOCOL2: /* Process protocol field 2. */
                         pc->inProtocol |= curChar;
                         pc->inState = PDDATA;
                         break;
 
-                    case PDDATA:            /* Process data byte. */
+                    case PDDATA: /* Process data byte. */
 
                         /* Make space to receive processed data. */
                         if( ( pc->inTail == NULL ) || ( pc->inTail->len == PBUF_POOL_BUFSIZE ) )

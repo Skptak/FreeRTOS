@@ -352,7 +352,7 @@
             sys_sem_signal( mem_sem );
             return NULL;
         }
-    #else  /* if 1 */
+    #else /* if 1 */
 
 /**
  * Adam's mem_malloc() plus solution for bug #17922

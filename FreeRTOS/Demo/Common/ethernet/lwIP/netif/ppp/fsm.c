@@ -128,7 +128,7 @@
     {
         f->state = INITIAL;
         f->flags = 0;
-        f->id = 0;          /* XXX Start with random id? */
+        f->id = 0; /* XXX Start with random id? */
         f->timeouttime = FSM_DEFTIMEOUT;
         f->maxconfreqtransmits = FSM_DEFMAXCONFREQS;
         f->maxtermtransmits = FSM_DEFMAXTERMREQS;
@@ -424,7 +424,7 @@
             return;
         }
 
-        len -= HEADERLEN;   /* subtract header length */
+        len -= HEADERLEN; /* subtract header length */
 
         if( ( f->state == INITIAL ) || ( f->state == STARTING ) )
         {
@@ -676,14 +676,14 @@
          * Pass the requested configuration options
          * to protocol-specific code for checking.
          */
-        if( f->callbacks->reqci )   /* Check CI */
+        if( f->callbacks->reqci ) /* Check CI */
         {
             reject_if_disagree = ( f->nakloops >= f->maxnakloops );
             code = ( *f->callbacks->reqci )( f, inp, &len, reject_if_disagree );
         }
         else if( len )
         {
-            code = CONFREJ;     /* Reject all CI */
+            code = CONFREJ; /* Reject all CI */
         }
         else
         {

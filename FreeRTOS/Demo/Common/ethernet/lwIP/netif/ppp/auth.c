@@ -750,7 +750,7 @@
                 *secret_len = len;
 
                 return 1;
-            #else  /* if 1 */
+            #else /* if 1 */
                 int ret = 0, len;
                 struct wordlist * addrs;
                 char secbuf[ MAXWORDLEN ];
@@ -1099,7 +1099,7 @@
 
         if( addrs == NULL )
         {
-            return !ppp_settings.auth_required;  /* no addresses authorized */
+            return !ppp_settings.auth_required; /* no addresses authorized */
         }
 
         /* XXX All other addresses allowed. */

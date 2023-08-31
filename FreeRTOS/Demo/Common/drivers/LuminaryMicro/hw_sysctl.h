@@ -1161,7 +1161,7 @@
 /* register. */
 /* */
 /****************************************************************************** */
-    #define SYSCTL_DC3_MC_FAULT0    0x00008000/* MC0 fault pin present */
+    #define SYSCTL_DC3_MC_FAULT0    0x00008000 /* MC0 fault pin present */
 
 /****************************************************************************** */
 /* */
@@ -1178,7 +1178,7 @@
 /* SYSCTL_LDOPCTL register. */
 /* */
 /****************************************************************************** */
-    #define SYSCTL_LDOPCTL_MASK    0x0000003F/* Voltage adjust mask */
+    #define SYSCTL_LDOPCTL_MASK    0x0000003F /* Voltage adjust mask */
 
 /****************************************************************************** */
 /* */
@@ -1319,7 +1319,7 @@
 /* SYSCTL_CLKVCLR register. */
 /* */
 /****************************************************************************** */
-    #define SYSCTL_CLKVCLR_CLR    0x00000001/* Clear clock verification fault */
+    #define SYSCTL_CLKVCLR_CLR    0x00000001 /* Clear clock verification fault */
 
 /****************************************************************************** */
 /* */
@@ -1327,7 +1327,7 @@
 /* SYSCTL_LDOARST register. */
 /* */
 /****************************************************************************** */
-    #define SYSCTL_LDOARST_ARST    0x00000001/* Allow LDO to reset device */
+    #define SYSCTL_LDOARST_ARST    0x00000001 /* Allow LDO to reset device */
 
 #endif /* ifndef DEPRECATED */
 

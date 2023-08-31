@@ -209,7 +209,7 @@
         else
         {
             /* first pbuf alloc try or retry alloc failed
-            *  very low on memory, couldn't return tooBig */
+             *  very low on memory, couldn't return tooBig */
             return ERR_MEM;
         }
     }

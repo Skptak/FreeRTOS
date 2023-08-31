@@ -766,7 +766,7 @@
                         );
 
             /* drop short ARP packets: we have to check for p->len instead of p->tot_len here
-             * since a struct etharp_hdr is pointed to p->payload, so it musn't be chained! */
+            * since a struct etharp_hdr is pointed to p->payload, so it musn't be chained! */
             if( p->len < SIZEOF_ETHARP_PACKET )
             {
                 LWIP_DEBUGF( ETHARP_DEBUG | LWIP_DBG_TRACE | LWIP_DBG_LEVEL_WARNING,

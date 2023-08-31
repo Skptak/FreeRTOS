@@ -164,7 +164,7 @@ void lcp_lowerup( int );
 void lcp_lowerdown( int );
 void lcp_sprotrej( int,
                    u_char *,
-                   int );               /* send protocol reject */
+                   int ); /* send protocol reject */
 
 extern struct protent lcp_protent;
 

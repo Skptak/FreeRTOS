@@ -95,8 +95,8 @@ struct sockaddr
  */
 struct linger
 {
-    int l_onoff;                   /* option on/off */
-    int l_linger;                  /* linger time */
+    int l_onoff;  /* option on/off */
+    int l_linger; /* linger time */
 };
 
 /*
@@ -221,8 +221,8 @@ struct linger
     #if LWIP_TIMEVAL_PRIVATE
         struct timeval
         {
-            long tv_sec;    /* seconds */
-            long tv_usec;   /* and microseconds */
+            long tv_sec;  /* seconds */
+            long tv_usec; /* and microseconds */
         };
     #endif
 

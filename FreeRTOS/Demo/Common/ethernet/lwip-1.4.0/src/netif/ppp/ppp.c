@@ -180,12 +180,12 @@
         struct pbuf * inHead, * inTail;
 
         #if PPPOS_SUPPORT
-            u16_t inProtocol;   /* The input protocol code. */
-            u16_t inFCS;        /* Input Frame Check Sequence value. */
+            u16_t inProtocol; /* The input protocol code. */
+            u16_t inFCS;      /* Input Frame Check Sequence value. */
         #endif /* PPPOS_SUPPORT */
-        PPPDevStates inState;   /* The input process state. */
-        char inEscaped;         /* Escape next character. */
-        ext_accm inACCM;        /* Async-Ctl-Char-Map for input. */
+        PPPDevStates inState; /* The input process state. */
+        char inEscaped;       /* Escape next character. */
+        ext_accm inACCM;      /* Async-Ctl-Char-Map for input. */
     } PPPControlRx;
 
 /*
@@ -194,7 +194,7 @@
     typedef struct PPPControl_s
     {
         PPPControlRx rx;
-        char openFlag;          /* True when in use. */
+        char openFlag; /* True when in use. */
         #if PPPOE_SUPPORT
             struct netif * ethif;
             struct pppoe_softc * pppoe_sc;
@@ -231,7 +231,7 @@
 
     struct npioctl
     {
-        int protocol;   /* PPP procotol, e.g. PPP_IP */
+        int protocol; /* PPP procotol, e.g. PPP_IP */
         enum NPmode mode;
     };
 
@@ -1867,7 +1867,7 @@
                 #endif /* PPPOS_SUPPORT && VJ_SUPPORT */
                 break;
 
-            case PPP_IP:    /* Internet Protocol */
+            case PPP_IP: /* Internet Protocol */
                 PPPDEBUG( LOG_INFO, ( "pppInput[%d]: ip in pbuf len=%d\n", pd, nb->len ) );
 
                 if( pppControl[ pd ].netif.input )
@@ -2108,7 +2108,7 @@ out:
                     /* Process character relative to current state. */
                     switch( pcrx->inState )
                     {
-                        case PDIDLE:    /* Idle state - waiting. */
+                        case PDIDLE: /* Idle state - waiting. */
 
                             /* Drop the character if it's not 0xff
                              * we would have processed a flag character above. */
@@ -2118,7 +2118,7 @@ out:
                             }
 
                         /* Fall through */
-                        case PDSTART:   /* Process start flag. */
+                        case PDSTART: /* Process start flag. */
                             /* Prepare for a new packet. */
                             pcrx->inFCS = PPP_INITFCS;
 
@@ -2172,7 +2172,7 @@ out:
                             pcrx->inState = PDDATA;
                             break;
 
-                        case PDDATA:    /* Process data byte. */
+                        case PDDATA: /* Process data byte. */
 
                             /* Make space to receive processed data. */
                             if( ( pcrx->inTail == NULL ) || ( pcrx->inTail->len == PBUF_POOL_BUFSIZE ) )

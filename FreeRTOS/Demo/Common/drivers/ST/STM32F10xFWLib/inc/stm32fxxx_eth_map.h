@@ -200,7 +200,7 @@ typedef struct
 #define ETH_MACRWUFFR_D                           ( ( u32 ) 0xFFFFFFFF ) /* Wake-up frame filter register data */
 
 /* Eight sequential Writes to this address (offset 0x28) will write all Wake-UpFrame Filter Registers.
-*  Eight sequential Reads from this address (offset 0x28) will read all Wake-UpFrame Filter Registers. */
+ *  Eight sequential Reads from this address (offset 0x28) will read all Wake-UpFrame Filter Registers. */
 
 /* Wake-UpFrame Filter Reg0 : Filter 0 Byte Mask
  * Wake-UpFrame Filter Reg1 : Filter 1 Byte Mask

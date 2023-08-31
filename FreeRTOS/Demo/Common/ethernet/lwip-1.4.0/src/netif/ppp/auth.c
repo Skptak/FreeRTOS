@@ -1243,7 +1243,7 @@
                 *secret_len = len;
 
                 return 1;
-            #else  /* if 1 */
+            #else /* if 1 */
                 int ret = 0, len;
                 struct wordlist * addrs;
                 char secbuf[ MAXWORDLEN ];

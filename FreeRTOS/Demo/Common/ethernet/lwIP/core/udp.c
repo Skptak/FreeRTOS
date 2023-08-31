@@ -433,7 +433,7 @@ end:
             LWIP_DEBUGF( UDP_DEBUG, ( "udp_send: ip_output_if (,,,,IP_PROTO_UDPLITE,)\n" ) );
             err = ip_output_if( q, src_ip, &pcb->remote_ip, pcb->ttl, pcb->tos, IP_PROTO_UDPLITE, netif );
         }
-        else    /* UDP */
+        else /* UDP */
         {
             LWIP_DEBUGF( UDP_DEBUG, ( "udp_send: UDP packet length %"U16_F "\n", q->tot_len ) );
             udphdr->len = htons( q->tot_len );
@@ -449,7 +449,7 @@ end:
                         udphdr->chksum = 0xffff;
                     }
                 }
-            #else  /* if CHECKSUM_GEN_UDP */
+            #else /* if CHECKSUM_GEN_UDP */
                 udphdr->chksum = 0x0000;
             #endif /* if CHECKSUM_GEN_UDP */
             LWIP_DEBUGF( UDP_DEBUG, ( "udp_send: UDP checksum 0x%04"X16_F "\n", udphdr->chksum ) );

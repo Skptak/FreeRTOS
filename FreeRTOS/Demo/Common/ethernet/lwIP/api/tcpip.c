@@ -116,7 +116,7 @@ static void tcpip_thread( void * arg )
         tcpip_init_done( tcpip_init_done_arg );
     }
 
-    while( 1 )                         /* MAIN Loop */
+    while( 1 ) /* MAIN Loop */
     {
         sys_mbox_fetch( mbox, ( void * ) &msg );
 

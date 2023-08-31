@@ -413,7 +413,7 @@ typedef enum
 } tcptestEchoTestModes_t;
 
 typedef struct
-{    
+{
     uint16_t usTaskTag;
     BaseType_t xResult;
     TaskHandle_t xTaskHandle;
@@ -548,7 +548,7 @@ static BaseType_t prvConnect( Socket_t xSocketLocal)
     struct freertos_sockaddr xAddress;
 
     xResult = prvNonSecureConnectHelper( xSocketLocal, &xAddress );
-    
+
     if( xResult == pdFREERTOS_ERRNO_NONE )
     {
         xResult = FreeRTOS_connect( xSocketLocal,
@@ -643,7 +643,7 @@ static BaseType_t prvConnectHelperWithRetry( volatile Socket_t * pxSocket,
         /* Set the appropriate socket options for the destination. */
         if( pdFREERTOS_ERRNO_NONE == xResult )
         {
-            xResult = prvNonSecureConnectHelper( *pxSocket, &xEchoServerAddress );            
+            xResult = prvNonSecureConnectHelper( *pxSocket, &xEchoServerAddress );
         }
 
         /* Set socket timeout options. */
@@ -664,7 +664,7 @@ static BaseType_t prvConnectHelperWithRetry( volatile Socket_t * pxSocket,
                 xIsConnected = pdTRUE;
             }
             else
-            {                
+            {
                 if( xRetry < tcptestRETRY_CONNECTION_TIMES )
                 {
                     FreeRTOS_closesocket( *pxSocket );
@@ -943,7 +943,7 @@ static BaseType_t prvCheckTimeout( TickType_t xStartTime,
 
 TEST_GROUP_RUNNER( Full_TCP )
 {
-    RUN_TEST_CASE( Full_TCP, TCP_Socket ); 
+    RUN_TEST_CASE( Full_TCP, TCP_Socket );
     RUN_TEST_CASE( Full_TCP, TCP_Socket_InvalidInputParams );
     RUN_TEST_CASE( Full_TCP, TCP_Socket_Setsockopt_InvalidParams );
     RUN_TEST_CASE( Full_TCP, TCP_Socket_Close_InvalidParams );
@@ -964,7 +964,7 @@ TEST_GROUP_RUNNER( Full_TCP )
     RUN_TEST_CASE( Full_TCP, TCP_Socket_Recv_ByteByByte );
     RUN_TEST_CASE( Full_TCP, TCP_Socket_SendRecv_VaryLength );
     RUN_TEST_CASE( Full_TCP, TCP_test_dns_multiple_addresses );
-    
+
     /* Thread safety tests */
     RUN_TEST_CASE( Full_TCP, TCP_Threadsafe_SameSocketDifferentTasks );
     RUN_TEST_CASE( Full_TCP, TCP_Threadsafe_DifferentSocketsDifferentTasks );
@@ -1257,7 +1257,7 @@ static void prvSOCKETS_NonBlocking_Test( void )
          */
         xResult = FreeRTOS_setsockopt( xSocket, 0, FREERTOS_SO_RCVTIMEO, &xTimeout, sizeof( TickType_t ) );
         TEST_ASSERT_EQUAL_INT32_MESSAGE( pdFREERTOS_ERRNO_NONE, xResult, "Failed to set receive timeout" );
-                
+
         xStartTime = xTaskGetTickCount();
         xResult = FreeRTOS_recv( xSocket, &pucRxBuffer, 1, 0 );
         xEndTime = xTaskGetTickCount();
@@ -1380,7 +1380,7 @@ TEST( Full_TCP, TCP_Socket_Setsockopt_InvalidParams )
 /*-----------------------------------------------------------*/
 
 static void prvSOCKETS_SetSockOpt_SNDTIMEO( void )
-{    
+{
     /* TODO: This is a stub function. */
     TEST_FAIL_MESSAGE( "This test is not implemented." );
 }
@@ -1423,7 +1423,7 @@ static void prvSOCKETS_Shutdown( void )
 
     /* Shutdown: Write. Expected behavior of send after
      * Shutdown/WRITE is ambiguous. Therefore, we cannot
-     * test anything except the read/recv. */       
+     * test anything except the read/recv. */
 }
 
 TEST( Full_TCP, TCP_Socket_Shutdown )
@@ -1784,7 +1784,7 @@ static void prvSOCKETS_Socket_ConcurrentCount( void )
             }
         }
     #endif /* ifdef integrationtestportableMAX_NUM_UNSECURE_SOCKETS */
-    
+
     TEST_ASSERT_EQUAL_UINT32_MESSAGE(pdPASS, xResult, "Concurrent num sockets test failed");
 
     /* Cleanup. */
@@ -1794,7 +1794,7 @@ static void prvSOCKETS_Socket_ConcurrentCount( void )
         xResult = FreeRTOS_closesocket( xCreatedSockets[ xSocketsCreated ] );
         TEST_ASSERT_GREATER_OR_EQUAL_INT32_MESSAGE(0, xResult, "Closing Socket in Multiple Concurrent Socket test failed\n");
     }
-    
+
     /* Report Test Results. */
     tcptestPRINTF( ( "%s passed\r\n", __FUNCTION__ ) );
 }
@@ -1841,7 +1841,7 @@ static void prvFreeRTOS_connect_InvalidParams( void )
     #endif /* defined( ipconfigIPv4_BACKWARD_COMPATIBLE ) && ( ipconfigIPv4_BACKWARD_COMPATIBLE == 0 ) */
 
     xEchoServerAddress.sin_family = FREERTOS_AF_INET;
-    
+
 
     /* Invalid socket. */
     xResult = FreeRTOS_connect( FREERTOS_INVALID_SOCKET,
@@ -1852,7 +1852,7 @@ static void prvFreeRTOS_connect_InvalidParams( void )
 
     xResult = prvCloseHelper( xSocket, &xSocketOpen );
     TEST_ASSERT_GREATER_OR_EQUAL_INT32_MESSAGE( pdFREERTOS_ERRNO_NONE, xResult, "Socket failed to close" );
-    
+
 
 
     /* Invalid IP address (0.0.0.0).  TODO: Investigate reserved IP addresses */
@@ -1870,7 +1870,7 @@ static void prvFreeRTOS_connect_InvalidParams( void )
     #endif /* defined( ipconfigIPv4_BACKWARD_COMPATIBLE ) && ( ipconfigIPv4_BACKWARD_COMPATIBLE == 0 ) */
 
     xEchoServerAddress.sin_family = FREERTOS_AF_INET;
-    
+
     xResult = FreeRTOS_connect( xSocket,
                                &xEchoServerAddress,
                                sizeof( xEchoServerAddress ) );
@@ -1899,7 +1899,7 @@ static void prvFreeRTOS_connect_InvalidParams( void )
     #endif /* defined( ipconfigIPv4_BACKWARD_COMPATIBLE ) && ( ipconfigIPv4_BACKWARD_COMPATIBLE == 0 ) */
 
     xEchoServerAddress.sin_family = FREERTOS_AF_INET;
-    
+
     xResult = FreeRTOS_connect( xSocket,
                                &xEchoServerAddress,
                                sizeof( xEchoServerAddress ) );
@@ -2300,7 +2300,7 @@ void prvStartTCPEchoClientTasks_DifferentSockets( void )
         /* Create the echo client tasks. */
         for( usIndex = 0; usIndex < tcptestNUM_ECHO_CLIENTS; usIndex++ )
         {
-            xTcptestEchoClientsTaskParams[ usIndex ].usTaskTag = usIndex;            
+            xTcptestEchoClientsTaskParams[ usIndex ].usTaskTag = usIndex;
             xTcptestEchoClientsTaskParams[ usIndex ].xResult = FREERTOS_SOCKET_ERROR;
 
             xResult = xTaskCreate( prvThreadSafeDifferentSocketsDifferentTasks,                 /* The function that implements the task. */
