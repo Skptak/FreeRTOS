@@ -143,7 +143,7 @@ a lot of data that needs to be copied, this should be set high. */
    segments. */
 #define MEMP_NUM_TCP_SEG		256
 
-/* MEMP_NUM_SYS_TIMEOUT: the number of simulateously active
+/* MEMP_NUM_SYS_TIMEOUT: the number of simultaneously active
    timeouts. */
 #define MEMP_NUM_SYS_TIMEOUT	8
 

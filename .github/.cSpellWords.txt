@@ -5,6 +5,7 @@ ABCDEFGHIJKLMNOPQRSTUVWXY
 ABCDEFGHIJKLMNOPQRSTUVWYXZ
 ABEF
 ABETRG
+ABRTL
 ABSR
 ABTSZ
 ACCAH
@@ -65,6 +66,7 @@ ATPASTE
 ATSAM
 ATSAME
 ATcmd
+AUTOIP
 AUTONEGO
 AVRDX
 Aizca
@@ -91,6 +93,7 @@ BFTX
 BHILL
 BISR
 BIST
+BKCHGINT
 BLENGTH
 BMSR
 BODIEN
@@ -274,6 +277,7 @@ DCRCC
 DCRS
 DDISABLE
 DDRP
+DDRTC
 DDisable
 DEAS
 DEBUGF
@@ -443,8 +447,10 @@ ENRXP
 ENTXP
 EOICR
 EPEDS
+EPFR
 EPHY
 EPINT
+EPPD
 EPTYPE
 EQIC
 EQIF
@@ -590,6 +596,7 @@ HSDPA
 HSDPAHSUPA
 HSREN
 HSUPA
+HWADDRHINT
 HWHSH
 HWORD
 HWRD
@@ -639,6 +646,7 @@ IMSC
 IMSI
 INACK
 INDF
+INPKT
 INTE
 INTEN
 INTFRCH
@@ -730,7 +738,9 @@ LLIO
 LLMNR
 LLMNRDNS
 LLMNRI
+LMPD
 LOGD
+LOOPIF
 LOVRS
 LPACK
 LPBK
@@ -781,10 +791,12 @@ MANAG
 MARH
 MARM
 MAXFS
+MAXRTX
 MBCR
 MBED
 MBEDTLSSL
 MBIR
+MBOX
 MBSR
 MCASTHASHEN
 MCDB
@@ -807,6 +819,8 @@ MDIX
 MDLC
 MDNS
 MDSR
+MEM
+MEMP
 MFCR
 MFID
 MFPH
@@ -931,6 +945,7 @@ OFRX
 OMSOR
 OMSSR
 ONREAD
+OOSEQ
 OPAD
 OPMOD
 OPMODE
@@ -1021,6 +1036,7 @@ PIVR
 PKTIO
 PLIB
 PLLB
+PLLEN
 PLLR
 PMECR
 PMTIE
@@ -1030,6 +1046,7 @@ POPW
 PORT
 PORTEN
 PORTH
+PORTTC
 POWERUP
 PPUDR
 PPUER
@@ -1116,6 +1133,7 @@ RDUIEN
 RDUIF
 RDYY
 RECR
+RECV
 REENT
 REGA
 REGCR
@@ -1177,6 +1195,7 @@ RSTRX
 RSTSTA
 RSTTX
 RTAR
+RTCDR
 RTCEN
 RTCSC
 RTIC
@@ -1324,6 +1343,8 @@ SIGV
 SLCR
 SLCT
 SLEWCTL
+SLIPIF
+SMEMCPY
 SNTP
 SODR
 SOFTIRQ
@@ -1375,7 +1396,11 @@ SWRESET
 SWRST
 SWTRG
 SYMM
+SYNCR
+SYNMAXRTX
+SYNSR
 SYSC
+Simons
 Slirp
 Sntp
 Sqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
@@ -1569,6 +1594,7 @@ URSTEN
 URSTIEN
 URSTS
 URUN
+URXD
 USART
 USEND
 USPRG
@@ -1648,6 +1674,8 @@ Zapv
 Zimperium
 Zosi
 Zynq
+a
+aaddrlenlen
 abcdefghbcdefghicdefghijdefghijkefghijklfghijklmghijklmnhijklmnoijklmnopjklmnopqklmnopqrlmnopqrsmnopqrstnopqrstu
 abcdefghijk
 abcdefghijklmno
@@ -1662,6 +1690,7 @@ addiu
 aeevt
 aesni
 amsdu
+andi
 arasikere
 arpa
 arpq
@@ -1690,6 +1719,7 @@ clki
 cmac
 cmet
 cmock
+cmpa
 cmpx
 cntr
 coalescences
@@ -1814,6 +1844,7 @@ lpcount
 lpend
 lpstart
 lpthread
+lptr
 lsls
 ltorg
 ltry
@@ -1823,7 +1854,10 @@ macaddrhr
 macaddrlr
 mbed
 mbedcrypto
+mbox
 mcause
+mem
+memp
 mepc
 mevents
 mfear
@@ -1841,6 +1875,7 @@ miguelfreitas
 misra
 mlan
 mlkzxncvlknlkanlkqwlerknlasdflkzxcnvklnlksqwerasdfklqwenrklnfsad
+movea
 movem
 moveq
 movhi
@@ -1867,6 +1902,7 @@ mydevice
 myethaddr
 mypy
 mzef
+netifapi
 netto
 nmake
 noheap
@@ -1932,12 +1968,14 @@ ppkt
 ppublic
 ppuc
 ppux
+printi
 prtmacro
 ps
 psha
 psif
 psplim
 psps
+puapar
 pusha
 pushd
 pushf
@@ -1981,6 +2019,7 @@ sinclude
 sinit
 sinr
 sizet
+slipif
 sms
 smsc
 sntp
@@ -1994,6 +2033,7 @@ stringz
 strn
 strnn
 stsr
+suba
 submoduled
 svcne
 svlcx
@@ -2045,6 +2085,7 @@ vpop
 vpush
 vstmdbeq
 vstmiaeq
+vuint
 wakeon
 wakeonxzvf
 wavsel

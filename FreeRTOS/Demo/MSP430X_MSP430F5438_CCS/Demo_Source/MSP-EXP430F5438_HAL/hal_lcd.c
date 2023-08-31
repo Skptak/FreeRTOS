@@ -334,7 +334,7 @@ void halLcdActive(void)
   halLcdSendCommand(LcdInitMacro);                  // R00 start oscillation
 
   // Wait a minimum of 25ms after issuing "start oscillation"
-  // command (to accomodate for MCLK up to 25MHz)
+  // command (to accommodate for MCLK up to 25MHz)
   __delay_cycles(250000);
 
   LcdInitMacro[ 3 * 6 + 5 ] |= BIT3;

@@ -115,7 +115,7 @@ a lot of data that needs to be copied, this should be set high. */
 /* MEMP_NUM_TCP_SEG: the number of simultaneously queued TCP
    segments. */
 #define MEMP_NUM_TCP_SEG        6
-/* MEMP_NUM_SYS_TIMEOUT: the number of simulateously active
+/* MEMP_NUM_SYS_TIMEOUT: the number of simultaneously active
    timeouts. */
 #define MEMP_NUM_SYS_TIMEOUT    6
 

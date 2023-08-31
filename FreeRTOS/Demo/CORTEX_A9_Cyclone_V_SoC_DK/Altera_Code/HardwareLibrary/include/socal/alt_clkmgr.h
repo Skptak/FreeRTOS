@@ -1332,7 +1332,7 @@ typedef volatile struct ALT_CLKMGR_STAT_s  ALT_CLKMGR_STAT_t;
  * 
  * It is strongly recommended to select the external regulator while the PLL is not
  * enabled (in reset), and  then disable the external regulater once the PLL
- * becomes enabled.  Software should simulateously update the 'Enable' bit and the
+ * becomes enabled.  Software should simultaneously update the 'Enable' bit and the
  * 'External Regulator Input Select' in the same write access to the VCO register.
  * When the 'Enable' bit is clear, the 'External Regulator Input Select' should be
  * set, and vice versa.
@@ -3410,7 +3410,7 @@ typedef volatile struct ALT_CLKMGR_MAINPLL_raw_s  ALT_CLKMGR_MAINPLL_raw_t;
  * 
  * It is strongly recommended to select the external regulator while the PLL is not
  * enabled (in reset), and  then disable the external regulater once the PLL
- * becomes enabled.  Software should simulateously update the 'Enable' bit and the
+ * becomes enabled.  Software should simultaneously update the 'Enable' bit and the
  * 'External Regulator Input Select' in the same write access to the VCO register.
  * When the 'Enable' bit is clear, the 'External Regulator Input Select' should be
  * set, and vice versa.
@@ -5507,7 +5507,7 @@ typedef volatile struct ALT_CLKMGR_PERPLL_raw_s  ALT_CLKMGR_PERPLL_raw_t;
  * 
  * It is strongly recommended to select the external regulator while the PLL is not
  * enabled (in reset), and  then disable the external regulater once the PLL
- * becomes enabled.  Software should simulateously update the 'Enable' bit and the
+ * becomes enabled.  Software should simultaneously update the 'Enable' bit and the
  * 'External Regulator Input Select' in the same write access to the VCO register.
  * When the 'Enable' bit is clear, the 'External Regulator Input Select' should be
  * set, and vice versa.

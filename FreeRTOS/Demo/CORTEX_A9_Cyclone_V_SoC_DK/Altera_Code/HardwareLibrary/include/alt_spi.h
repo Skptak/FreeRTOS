@@ -1627,7 +1627,7 @@ ALT_STATUS_CODE alt_spi_master_eeprom_transfer(ALT_SPI_DEV_t *spi_dev,
  *
  * This API is suitable for being called during an interrupt context. It is the
  * programmer's responsibility to ensure that there is enough space in the TX
- * FIFO and space in the RX FIFO to accomodate the request made.
+ * FIFO and space in the RX FIFO to accommodate the request made.
  *
  * \param       spi_dev
  *              A pointer to the SPI controller device block instance.
@@ -1672,7 +1672,7 @@ ALT_STATUS_CODE alt_spi_slave_tx_rx_transfer(ALT_SPI_DEV_t *spi_dev,
  *
  * This API is suitable for being called during an interrupt context. It is the
  * programmer's responsibility to ensure that there is enough space in the TX
- * FIFO to accomodate the request made.
+ * FIFO to accommodate the request made.
  *
  * \param       spi_dev
  *              A pointer to the SPI controller device block instance.
@@ -1708,7 +1708,7 @@ ALT_STATUS_CODE alt_spi_slave_tx_transfer(ALT_SPI_DEV_t *spi_dev,
  *
  * This API is suitable for being called during an interrupt context. It is the
  * programmer's responsibility to ensure that there is enough data in the RX
- * FIFO to accomodate the request made.
+ * FIFO to accommodate the request made.
  *
  * \param       spi_dev
  *              A pointer to the SPI controller device block instance.

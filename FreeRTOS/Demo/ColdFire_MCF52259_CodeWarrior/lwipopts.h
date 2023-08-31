@@ -134,7 +134,7 @@
 #define MEMP_NUM_TCP_SEG                8
 
 /**
- * MEMP_NUM_SYS_TIMEOUT: the number of simulateously active timeouts.
+ * MEMP_NUM_SYS_TIMEOUT: the number of simultaneously active timeouts.
  * (requires NO_SYS==0)
  */
 #define MEMP_NUM_SYS_TIMEOUT            5
@@ -159,7 +159,7 @@
 
 /**
  * PBUF_POOL_BUFSIZE: the size of each pbuf in the pbuf pool. The default is
- * designed to accomodate single full size TCP frame in one pbuf, including
+ * designed to accommodate single full size TCP frame in one pbuf, including
  * TCP_MSS, IP header, and link header.
  */
 #define PBUF_POOL_BUFSIZE               1500

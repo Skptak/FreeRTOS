@@ -1021,7 +1021,7 @@ ALT_STATUS_CODE alt_i2c_write(ALT_I2C_DEV_t *i2c_dev, const uint8_t val);
  *
  * This API is suitable for being called during an interrupt context. It is the
  * programmer's responsibility to ensure that there is data in the RX FIFO to
- * accomodate the request made.
+ * accommodate the request made.
  *
  * The I2C controller must be in slave mode before calling this function.
  *
@@ -1046,7 +1046,7 @@ ALT_STATUS_CODE alt_i2c_slave_receive(ALT_I2C_DEV_t *i2c_dev,
  *
  * This API is suitable for being called during an interrupt context. It is the
  * programmer's responsibility to ensure that there is enough space in the TX
- * FIFO to accomodate the request made.
+ * FIFO to accommodate the request made.
  *
  * The I2C controller must be in slave mode before calling this function.
  *
@@ -1100,7 +1100,7 @@ ALT_STATUS_CODE alt_i2c_slave_transmit(ALT_I2C_DEV_t *i2c_dev,
  *
  * This API is suitable for being called during an interrupt context. It is the
  * programmer's responsibility to ensure that there is enough space in the TX
- * FIFO to accomodate the request made.
+ * FIFO to accommodate the request made.
  *
  * The I2C controller must be in slave mode before calling this function.
  *

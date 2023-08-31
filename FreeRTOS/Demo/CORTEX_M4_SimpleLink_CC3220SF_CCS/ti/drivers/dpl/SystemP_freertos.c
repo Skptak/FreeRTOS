@@ -52,7 +52,7 @@
 /*
  *  ======== OUTMAX ========
  *  The maximum length of the output of a base 8 number produced by formatNum
- *  plus 5 to accomodate the decimal point and 4 digits after the decimal
+ *  plus 5 to accommodate the decimal point and 4 digits after the decimal
  *  point.
  */
 #define OUTMAX      ((32 + 2) / 3) + 5

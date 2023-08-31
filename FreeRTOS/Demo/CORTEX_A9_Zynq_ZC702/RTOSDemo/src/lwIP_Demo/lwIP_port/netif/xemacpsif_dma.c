@@ -434,7 +434,7 @@ XStatus init_dma(struct xemac_s *xemac)
 
 	xemacpsif->rx_bdspace = (void *)endAdd_aligned;
 	/*
-	 * We allocate 65536 bytes for Rx BDs which can accomodate a
+	 * We allocate 65536 bytes for Rx BDs which can accommodate a
 	 * maximum of 8192 BDs which is much more than any application
 	 * will ever need.
 	 */

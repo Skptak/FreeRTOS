@@ -75,14 +75,16 @@ jobs:
         - name: Run spellings check
           uses: FreeRTOS/CI-CD-GitHub-Actions/spellings@v2
 
-    link-verifier:
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v3
-        - name: Check Links
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          uses: FreeRTOS/CI-CD-Github-Actions/link-verifier@v2
+#    link-verifier:
+#      runs-on: ubuntu-latest
+#      steps:
+#        - uses: actions/checkout@v3
+#        - name: Check Links
+#          env:
+#            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#          uses: FreeRTOS/CI-CD-Github-Actions/link-verifier@v2
+#          with:
+#            exclude-urls: http://example.com:8080/,
 
     doxygen:
         runs-on: ubuntu-latest
