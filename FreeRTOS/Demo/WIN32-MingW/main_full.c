@@ -864,13 +864,13 @@ const TickType_t x100ms = pdMS_TO_TICKS( 100UL );
     /* Avoid compiler warnings about unused parameter. */
     ( void ) pvParameters;
 
-    xTimer = xTimerCreate( 
+    xTimer = xTimerCreate(
         pcTimerName,
         x100ms,
         pdFALSE, /* Created as a one-shot timer. */
         0,
         prvReloadModeTestTimerCallback );
-        
+
     configASSERT( xTimer );
     configASSERT( xTimerIsTimerActive( xTimer ) == pdFALSE );
     configASSERT( xTimerGetTimerDaemonTaskHandle() != NULL );
