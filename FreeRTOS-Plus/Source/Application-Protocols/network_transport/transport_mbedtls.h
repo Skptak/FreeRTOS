@@ -97,7 +97,7 @@ typedef struct SSLContext
     mbedtls_x509_crt clientCert;             /**< @brief Client certificate context. */
     mbedtls_pk_context privKey;              /**< @brief Client private key context. */
     mbedtls_entropy_context entropyContext;  /**< @brief Entropy context for random number generation. */
-    mbedtls_ctr_drbg_context ctrDrgbContext; /**< @brief CTR DRBG context for random number generation. */
+    mbedtls_ctr_drbg_context ctrDrbgContext; /**< @brief CTR DRBG context for random number generation. */
 } SSLContext_t;
 
 /**

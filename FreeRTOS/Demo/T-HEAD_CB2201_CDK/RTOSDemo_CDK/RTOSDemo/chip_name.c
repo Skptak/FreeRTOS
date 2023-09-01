@@ -10,16 +10,15 @@
  *============================================================================
  */
 #include "chip_name.h"
+
 /**
  *  @brief initial CPU based on user config in chip_name.h
  */
-static void CPUInit(void)
+static void CPUInit( void )
 {
-	/**
-	 * Config CPU's Unit such as MGU, Cache...
-	 */
-
-	return;
+    /**
+     * Config CPU's Unit such as MGU, Cache...
+     */
 }
 
 /**
@@ -29,22 +28,20 @@ static void CPUInit(void)
  * Since here SystemInit is a weak symbol, any vendor can override this symbol on its own wishes.
  */
 
- #define CONFIG_SYSTICK_HZ 100
- #define CONFIG_SYSTEM_FREQ 24000000
+#define CONFIG_SYSTICK_HZ     100
+#define CONFIG_SYSTEM_FREQ    24000000
 
-__attribute__((weak)) void  SystemInit(void)
+__attribute__( ( weak ) ) void SystemInit( void )
 {
-	/**
-	 * initial CPU based on the config in chip_name.h
-	 */
-	CPUInit();
+    /**
+     * initial CPU based on the config in chip_name.h
+     */
+    CPUInit();
 
-	/**
-	 * TODO: initial IO, memory, flash...
-	 */
+    /**
+     * TODO: initial IO, memory, flash...
+     */
 
-	drv_coret_config(CONFIG_SYSTEM_FREQ / CONFIG_SYSTICK_HZ, CORET_IRQn);    //10ms
-    csi_vic_enable_sirq(CORET_IRQn);
-
-    return;
+    drv_coret_config( CONFIG_SYSTEM_FREQ / CONFIG_SYSTICK_HZ, CORET_IRQn ); /*10ms */
+    csi_vic_enable_sirq( CORET_IRQn );
 }

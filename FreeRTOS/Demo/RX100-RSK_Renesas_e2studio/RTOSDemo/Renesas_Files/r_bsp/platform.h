@@ -16,11 +16,13 @@
 *
 * Copyright (C) 2012 Renesas Electronics Corporation. All rights reserved.
 ***********************************************************************************************************************/
+
 /***********************************************************************************************************************
 * File Name	   : platform.h
 * Description  : The user chooses which MCU and board they are developing for in this file. If the board you are using
 *                is not listed below, please add your own or use the default 'User Board'.
 ***********************************************************************************************************************/
+
 /***********************************************************************************************************************
 * History : DD.MM.YYYY Version  Description
 *         : 30.11.2011 1.00     First Release
@@ -45,44 +47,43 @@
 #define _PLATFORM_H_
 
 /***********************************************************************************************************************
-DEFINE YOUR SYSTEM - UNCOMMENT THE INCLUDE PATH FOR THE PLATFORM YOU ARE USING.
+*  DEFINE YOUR SYSTEM - UNCOMMENT THE INCLUDE PATH FOR THE PLATFORM YOU ARE USING.
 ***********************************************************************************************************************/
 /* RSKRX610 */
-//#include "./board/rskrx610/r_bsp.h"
+/*#include "./board/rskrx610/r_bsp.h" */
 
 /* RSKRX62N */
-//#include "./board/rskrx62n/r_bsp.h"
+/*#include "./board/rskrx62n/r_bsp.h" */
 
 /* RSKRX62T */
-//#include "./board/rskrx62t/r_bsp.h"
+/*#include "./board/rskrx62t/r_bsp.h" */
 
 /* RDKRX62N */
-//#include "./board/rdkrx62n/r_bsp.h"
+/*#include "./board/rdkrx62n/r_bsp.h" */
 
 /* RSKRX630 */
-//#include "./board/rskrx630/r_bsp.h"
+/*#include "./board/rskrx630/r_bsp.h" */
 
 /* RSKRX63N */
-//#include "./board/rskrx63n/r_bsp.h"
+/*#include "./board/rskrx63n/r_bsp.h" */
 
 /* RDKRX63N */
-//#include "./board/rdkrx63n/r_bsp.h"
+/*#include "./board/rdkrx63n/r_bsp.h" */
 
 /* RSKRX210 */
-//#include "./board/rskrx210/r_bsp.h"
+/*#include "./board/rskrx210/r_bsp.h" */
 
 /* RSKRX111 */
 #include "./board/rskrx111/r_bsp.h"
 
 /* User Board - Define your own board here. */
-//#include "./board/user/r_bsp.h"
+/*#include "./board/user/r_bsp.h" */
 
 /***********************************************************************************************************************
-MAKE SURE AT LEAST ONE PLATFORM WAS DEFINED - DO NOT EDIT BELOW THIS POINT
+*  MAKE SURE AT LEAST ONE PLATFORM WAS DEFINED - DO NOT EDIT BELOW THIS POINT
 ***********************************************************************************************************************/
 #ifndef PLATFORM_DEFINED
-#error  "Error - No platform defined in platform.h!"
+    #error  "Error - No platform defined in platform.h!"
 #endif
 
 #endif /* _PLATFORM_H_ */
-

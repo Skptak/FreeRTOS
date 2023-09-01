@@ -239,7 +239,7 @@ void mbedtls_platform_free( void * ptr )
             int lStatus = MBEDTLS_ERR_ENTROPY_SOURCE_FAILED;
             HCRYPTPROV hProv = 0;
 
-            /* Unferenced parameter. */
+            /* Unreferenced parameter. */
             ( void ) data;
 
             /*
@@ -324,7 +324,7 @@ void mbedtls_platform_free( void * ptr )
             ( void ) _close( file );
             return rslt;
         }
-    #else  /* if defined( RNG_SOURCE_WINDOWS_CRYPT ) */
+    #else /* if defined( RNG_SOURCE_WINDOWS_CRYPT ) */
         #include <stdio.h>
         int mbedtls_hardware_poll( void * data,
                                    unsigned char * output,

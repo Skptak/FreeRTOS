@@ -16,11 +16,13 @@
 *
 * Copyright (C) 2012 Renesas Electronics Corporation. All rights reserved.
 ***********************************************************************************************************************/
+
 /***********************************************************************************************************************
 * File Name	   : vecttbl.h
 * Device(s)    : RX111
 * Description  : Has function prototypes for exception callback functions.
 ***********************************************************************************************************************/
+
 /***********************************************************************************************************************
 * History : DD.MM.YYYY Version  Description
 *         : 08.11.2012 1.20     Beta Release.
@@ -30,7 +32,7 @@
 #define VECTTBL_HEADER_INC
 
 /***********************************************************************************************************************
-Includes   <System Includes> , "Project Includes"
+*  Includes   <System Includes> , "Project Includes"
 ***********************************************************************************************************************/
 /* Fixed size integers. */
 #include <stdint.h>
@@ -40,26 +42,26 @@ Includes   <System Includes> , "Project Includes"
 #include "platform.h"
 
 /***********************************************************************************************************************
-Exported global functions (to be accessed by other files)
+*  Exported global functions (to be accessed by other files)
 ***********************************************************************************************************************/
-#if defined(EXCEP_SUPERVISOR_ISR_CALLBACK)
-void EXCEP_SUPERVISOR_ISR_CALLBACK(void);
+#if defined( EXCEP_SUPERVISOR_ISR_CALLBACK )
+    void EXCEP_SUPERVISOR_ISR_CALLBACK( void );
 #endif
 
-#if defined(EXCEP_UNDEFINED_INSTR_ISR_CALLBACK)
-void EXCEP_UNDEFINED_INSTR_ISR_CALLBACK(void);
+#if defined( EXCEP_UNDEFINED_INSTR_ISR_CALLBACK )
+    void EXCEP_UNDEFINED_INSTR_ISR_CALLBACK( void );
 #endif
 
-#if defined(NMI_ISR_CALLBACK)
-void NMI_ISR_CALLBACK(void);
+#if defined( NMI_ISR_CALLBACK )
+    void NMI_ISR_CALLBACK( void );
 #endif
 
-#if defined(UNDEFINED_INT_ISR_CALLBACK)
-void UNDEFINED_INT_ISR_CALLBACK(void);
+#if defined( UNDEFINED_INT_ISR_CALLBACK )
+    void UNDEFINED_INT_ISR_CALLBACK( void );
 #endif
 
-#if defined(BUS_ERROR_ISR_CALLBACK)
-void BUS_ERROR_ISR_CALLBACK(void);
+#if defined( BUS_ERROR_ISR_CALLBACK )
+    void BUS_ERROR_ISR_CALLBACK( void );
 #endif
 
 #endif /* VECTTBL_HEADER_INC */

@@ -27,7 +27,7 @@
  * ----------------------------------------------------------------------------
  */
 
- /** \file */
+/** \file */
 
 /*----------------------------------------------------------------------------
  *         Headers
@@ -43,7 +43,6 @@
  * Invoked when the USB device leaves the Suspended state. By default,
  * configures the LEDs.
  */
-void USBDCallbacks_Resumed(void)
+void USBDCallbacks_Resumed( void )
 {
 }
-

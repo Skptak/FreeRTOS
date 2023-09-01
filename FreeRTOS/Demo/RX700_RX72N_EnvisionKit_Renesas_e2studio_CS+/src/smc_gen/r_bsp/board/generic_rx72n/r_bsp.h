@@ -16,11 +16,13 @@
 *
 * Copyright (C) 2019 Renesas Electronics Corporation. All rights reserved.
 ***********************************************************************************************************************/
+
 /***********************************************************************************************************************
 * File Name    : r_bsp.h
 * H/W Platform : GENERIC_RX72N
 * Description  : Has the header files that should be included for this platform.
 ***********************************************************************************************************************/
+
 /***********************************************************************************************************************
 * History : DD.MM.YYYY Version  Description
 *         : 08.10.2019 1.00     First Release
@@ -28,9 +30,9 @@
 
 /* Make sure that no other platforms have already been defined. Do not touch this! */
 #ifdef  PLATFORM_DEFINED
-#error  "Error - Multiple platforms defined in platform.h!"
+    #error  "Error - Multiple platforms defined in platform.h!"
 #else
-#define PLATFORM_DEFINED
+    #define PLATFORM_DEFINED
 #endif
 
 #ifdef __cplusplus
@@ -38,7 +40,7 @@ extern "C" {
 #endif
 
 /***********************************************************************************************************************
-INCLUDE APPROPRIATE MCU AND BOARD FILES
+*  INCLUDE APPROPRIATE MCU AND BOARD FILES
 ***********************************************************************************************************************/
 #include    "mcu/all/r_bsp_common.h"
 #include    "r_bsp_config.h"
@@ -50,12 +52,12 @@ INCLUDE APPROPRIATE MCU AND BOARD FILES
 #include    "mcu/all/lowsrc.h"
 #include    "mcu/all/r_bsp_mcu_startup.h"
 
-#if defined(__CCRX__)
-#include    "mcu/rx72n/register_access/ccrx/iodefine.h"
-#elif defined(__GNUC__)
-#include    "mcu/rx72n/register_access/gnuc/iodefine.h"
-#elif defined(__ICCRX__)
-#include    "mcu/rx72n/register_access/iccrx/iodefine.h"
+#if defined( __CCRX__ )
+    #include    "mcu/rx72n/register_access/ccrx/iodefine.h"
+#elif defined( __GNUC__ )
+    #include    "mcu/rx72n/register_access/gnuc/iodefine.h"
+#elif defined( __ICCRX__ )
+    #include    "mcu/rx72n/register_access/iccrx/iodefine.h"
 #endif /* defined(__CCRX__), defined(__GNUC__), defined(__ICCRX__) */
 #include    "mcu/rx72n/r_bsp_cpu.h"
 #include    "mcu/rx72n/r_bsp_locking.h"
@@ -80,7 +82,6 @@ INCLUDE APPROPRIATE MCU AND BOARD FILES
 #endif
 
 #ifndef BSP_BOARD_GENERIC_RX72N
-#define BSP_BOARD_GENERIC_RX72N
+    #define BSP_BOARD_GENERIC_RX72N
 
 #endif /* BSP_BOARD_GENERIC_RX72N */
-

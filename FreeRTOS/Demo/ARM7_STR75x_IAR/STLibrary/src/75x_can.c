@@ -29,43 +29,44 @@
 /*                  a range of identifiers or a fixed identifier, for standard*/
 /*                  and extended IDs                                          */
 /*----------------------------------------------------------------------------*/
-#define RANGE_ID_MSK(range_start, range_end)	(~((range_end) - (range_start)))
-#define RANGE_ID_ARB(range_start, range_end)	((range_start) & (range_end))
+#define RANGE_ID_MSK( range_start, range_end )          ( ~( ( range_end ) - ( range_start ) ) )
+#define RANGE_ID_ARB( range_start, range_end )          ( ( range_start ) & ( range_end ) )
 
-#define FIXED_ID_MSK(id)	RANGE_ID_MSK((id), (id))
-#define FIXED_ID_ARB(id)	RANGE_ID_ARB((id), (id))
+#define FIXED_ID_MSK( id )                              RANGE_ID_MSK( ( id ), ( id ) )
+#define FIXED_ID_ARB( id )                              RANGE_ID_ARB( ( id ), ( id ) )
 
-#define STD_RANGE_ID_MSK(range_start, range_end)	((u16)((RANGE_ID_MSK((range_start), (range_end)) & 0x7FF) << 2))
-#define STD_RANGE_ID_ARB(range_start, range_end)	((u16)(RANGE_ID_ARB((range_start), (range_end)) << 2))
+#define STD_RANGE_ID_MSK( range_start, range_end )      ( ( u16 ) ( ( RANGE_ID_MSK( ( range_start ), ( range_end ) ) & 0x7FF ) << 2 ) )
+#define STD_RANGE_ID_ARB( range_start, range_end )      ( ( u16 ) ( RANGE_ID_ARB( ( range_start ), ( range_end ) ) << 2 ) )
 
-#define STD_FIXED_ID_MSK(id)	((u16)((FIXED_ID_MSK(id) & 0x7FF) << 2))
-#define STD_FIXED_ID_ARB(id)	((u16)(FIXED_ID_ARB(id) << 2))
+#define STD_FIXED_ID_MSK( id )                          ( ( u16 ) ( ( FIXED_ID_MSK( id ) & 0x7FF ) << 2 ) )
+#define STD_FIXED_ID_ARB( id )                          ( ( u16 ) ( FIXED_ID_ARB( id ) << 2 ) )
 
-#define EXT_RANGE_ID_MSK_L(range_start, range_end)	((u16)(RANGE_ID_MSK((range_start), (range_end)) >> 11))
-#define EXT_RANGE_ID_MSK_H(range_start, range_end)	((u16)(STD_RANGE_ID_MSK((range_start), (range_end)) | ((RANGE_ID_MSK((range_start), (range_end)) >> 27) & 0x03)))
-#define EXT_RANGE_ID_ARB_L(range_start, range_end)	((u16)(RANGE_ID_ARB((range_start), (range_end)) >> 11))
-#define EXT_RANGE_ID_ARB_H(range_start, range_end)	((u16)(STD_RANGE_ID_ARB((range_start), (range_end)) | ((RANGE_ID_ARB((range_start), (range_end)) >> 27) & 0x03)))
+#define EXT_RANGE_ID_MSK_L( range_start, range_end )    ( ( u16 ) ( RANGE_ID_MSK( ( range_start ), ( range_end ) ) >> 11 ) )
+#define EXT_RANGE_ID_MSK_H( range_start, range_end )    ( ( u16 ) ( STD_RANGE_ID_MSK( ( range_start ), ( range_end ) ) | ( ( RANGE_ID_MSK( ( range_start ), ( range_end ) ) >> 27 ) & 0x03 ) ) )
+#define EXT_RANGE_ID_ARB_L( range_start, range_end )    ( ( u16 ) ( RANGE_ID_ARB( ( range_start ), ( range_end ) ) >> 11 ) )
+#define EXT_RANGE_ID_ARB_H( range_start, range_end )    ( ( u16 ) ( STD_RANGE_ID_ARB( ( range_start ), ( range_end ) ) | ( ( RANGE_ID_ARB( ( range_start ), ( range_end ) ) >> 27 ) & 0x03 ) ) )
 
-#define EXT_FIXED_ID_MSK_L(id)	((u16)(FIXED_ID_MSK(id) >> 11))
-#define EXT_FIXED_ID_MSK_H(id)	((u16)(STD_FIXED_ID_MSK(id) | ((FIXED_ID_MSK(id) >> 27) & 0x03)))
-#define EXT_FIXED_ID_ARB_L(id)	((u16)(FIXED_ID_ARB(id) >> 11))
-#define EXT_FIXED_ID_ARB_H(id)	((u16)(STD_FIXED_ID_ARB(id) | ((FIXED_ID_ARB(id) >> 27) & 0x03)))
+#define EXT_FIXED_ID_MSK_L( id )                        ( ( u16 ) ( FIXED_ID_MSK( id ) >> 11 ) )
+#define EXT_FIXED_ID_MSK_H( id )                        ( ( u16 ) ( STD_FIXED_ID_MSK( id ) | ( ( FIXED_ID_MSK( id ) >> 27 ) & 0x03 ) ) )
+#define EXT_FIXED_ID_ARB_L( id )                        ( ( u16 ) ( FIXED_ID_ARB( id ) >> 11 ) )
+#define EXT_FIXED_ID_ARB_H( id )                        ( ( u16 ) ( STD_FIXED_ID_ARB( id ) | ( ( FIXED_ID_ARB( id ) >> 27 ) & 0x03 ) ) )
 
 /* macro to format the timing register value from the timing parameters*/
-#define CAN_TIMING(tseg1, tseg2, sjw, brp)	((((tseg2-1) & 0x07) << 12) | (((tseg1-1) & 0x0F) << 8) | (((sjw-1) & 0x03) << 6) | ((brp-1) & 0x3F))
+#define CAN_TIMING( tseg1, tseg2, sjw, brp )            ( ( ( ( tseg2 - 1 ) & 0x07 ) << 12 ) | ( ( ( tseg1 - 1 ) & 0x0F ) << 8 ) | ( ( ( sjw - 1 ) & 0x03 ) << 6 ) | ( ( brp - 1 ) & 0x3F ) )
 
 /* Private variables ---------------------------------------------------------*/
 /* array of pre-defined timing parameters for standard bitrates*/
-u16 CanTimings[] = {       /* value   bitrate     NTQ  TSEG1  TSEG2  SJW  BRP */
-  CAN_TIMING(11, 4, 4, 5), /* 0x3AC4  100 kbit/s  16   11     4      4    5   */
-  CAN_TIMING(11, 4, 4, 4), /* 0x3AC3  125 kbit/s  16   11     4      4    4   */
-  CAN_TIMING( 4, 3, 3, 4), /* 0x2383  250 kbit/s   8    4     3      3    4   */
-  CAN_TIMING(13, 2, 1, 1), /* 0x1C00  500 kbit/s  16   13     2      1    1   */
-  CAN_TIMING( 4, 3, 1, 1), /* 0x2300  1 Mbit/s     8    4     3      1    1   */
+u16 CanTimings[] =             /* value   bitrate     NTQ  TSEG1  TSEG2  SJW  BRP */
+{
+    CAN_TIMING( 11, 4, 4, 5 ), /* 0x3AC4  100 kbit/s  16   11     4      4    5   */
+    CAN_TIMING( 11, 4, 4, 4 ), /* 0x3AC3  125 kbit/s  16   11     4      4    4   */
+    CAN_TIMING( 4,  3, 3, 4 ), /* 0x2383  250 kbit/s   8    4     3      3    4   */
+    CAN_TIMING( 13, 2, 1, 1 ), /* 0x1C00  500 kbit/s  16   13     2      1    1   */
+    CAN_TIMING( 4,  3, 1, 1 ), /* 0x2300  1 Mbit/s     8    4     3      1    1   */
 };
 
 /* Private function prototypes -----------------------------------------------*/
-static u32 GetFreeIF(void);
+static u32 GetFreeIF( void );
 /* Private functions ---------------------------------------------------------*/
 
 /*******************************************************************************
@@ -76,11 +77,11 @@ static u32 GetFreeIF(void);
 * Output         : None
 * Return         : None
 *******************************************************************************/
-void CAN_DeInit (void)
+void CAN_DeInit( void )
 {
-  /* Reset the CAN registers values*/
-  MRCC_PeripheralSWResetConfig(MRCC_Peripheral_CAN,ENABLE);
-  MRCC_PeripheralSWResetConfig(MRCC_Peripheral_CAN,DISABLE);
+    /* Reset the CAN registers values*/
+    MRCC_PeripheralSWResetConfig( MRCC_Peripheral_CAN, ENABLE );
+    MRCC_PeripheralSWResetConfig( MRCC_Peripheral_CAN, DISABLE );
 }
 
 /*******************************************************************************
@@ -92,12 +93,12 @@ void CAN_DeInit (void)
 * Output         : None
 * Return         : None
 *******************************************************************************/
-void CAN_Init(CAN_InitTypeDef* CAN_InitStruct)
+void CAN_Init( CAN_InitTypeDef * CAN_InitStruct )
 {
-  CAN_EnterInitMode(CAN_CR_CCE | CAN_InitStruct->CAN_ConfigParameters);
-  CAN_SetBitrate(CAN_InitStruct->CAN_Bitrate);
-  CAN_LeaveInitMode();
-  CAN_LeaveTestMode();
+    CAN_EnterInitMode( CAN_CR_CCE | CAN_InitStruct->CAN_ConfigParameters );
+    CAN_SetBitrate( CAN_InitStruct->CAN_Bitrate );
+    CAN_LeaveInitMode();
+    CAN_LeaveTestMode();
 }
 
 /*******************************************************************************
@@ -108,11 +109,11 @@ void CAN_Init(CAN_InitTypeDef* CAN_InitStruct)
 * Output         : None
 * Return         : None.
 *******************************************************************************/
-void CAN_StructInit(CAN_InitTypeDef* CAN_InitStruct)
+void CAN_StructInit( CAN_InitTypeDef * CAN_InitStruct )
 {
 /* Reset CAN init structure parameters values */
-  CAN_InitStruct->CAN_ConfigParameters = 0x0;
-  CAN_InitStruct->CAN_Bitrate = 0x2301;
+    CAN_InitStruct->CAN_ConfigParameters = 0x0;
+    CAN_InitStruct->CAN_Bitrate = 0x2301;
 }
 
 /*******************************************************************************
@@ -122,10 +123,10 @@ void CAN_StructInit(CAN_InitTypeDef* CAN_InitStruct)
 * Output         : None
 * Return         : None
 *******************************************************************************/
-void CAN_SetBitrate(u32 bitrate)
+void CAN_SetBitrate( u32 bitrate )
 {
-  CAN->BTR = CanTimings[bitrate];  /* write the predefined timing value */
-  CAN->BRPR = 0; 		     /* clear the Extended Baud Rate Prescaler */
+    CAN->BTR = CanTimings[ bitrate ]; /* write the predefined timing value */
+    CAN->BRPR = 0;                    /* clear the Extended Baud Rate Prescaler */
 }
 
 /*******************************************************************************
@@ -142,10 +143,13 @@ void CAN_SetBitrate(u32 bitrate)
 * Output         : None
 * Return         : None
 *******************************************************************************/
-void CAN_SetTiming(u32 tseg1, u32 tseg2, u32 sjw, u32 brp)
+void CAN_SetTiming( u32 tseg1,
+                    u32 tseg2,
+                    u32 sjw,
+                    u32 brp )
 {
-  CAN->BTR = CAN_TIMING(tseg1, tseg2, sjw, brp);
-  CAN->BRPR = ((brp-1) >> 6) & 0x0F;
+    CAN->BTR = CAN_TIMING( tseg1, tseg2, sjw, brp );
+    CAN->BRPR = ( ( brp - 1 ) >> 6 ) & 0x0F;
 }
 
 /*******************************************************************************
@@ -155,14 +159,20 @@ void CAN_SetTiming(u32 tseg1, u32 tseg2, u32 sjw, u32 brp)
 * Output         : None
 * Return         : A free message interface number (0 or 1) if found, else 2
 *******************************************************************************/
-static u32 GetFreeIF(void)
+static u32 GetFreeIF( void )
 {
-  if ((CAN->sMsgObj[0].CRR & CAN_CRR_BUSY) == 0)
-    return 0;
-  else if ((CAN->sMsgObj[1].CRR & CAN_CRR_BUSY) == 0)
-    return 1;
-  else
-   return 2;
+    if( ( CAN->sMsgObj[ 0 ].CRR & CAN_CRR_BUSY ) == 0 )
+    {
+        return 0;
+    }
+    else if( ( CAN->sMsgObj[ 1 ].CRR & CAN_CRR_BUSY ) == 0 )
+    {
+        return 1;
+    }
+    else
+    {
+        return 2;
+    }
 }
 
 /*******************************************************************************
@@ -174,38 +184,38 @@ static u32 GetFreeIF(void)
 *                         - SUCCESS: Interface to treat the message
 *                         - ERROR: No interface found to treat the message
 *******************************************************************************/
-ErrorStatus CAN_SetUnusedMsgObj(u32 msgobj)
+ErrorStatus CAN_SetUnusedMsgObj( u32 msgobj )
 {
-  u32 msg_if=0;
+    u32 msg_if = 0;
 
-  if ((msg_if = GetFreeIF()) == 2)
-  {
-    return ERROR;
-  }
+    if( ( msg_if = GetFreeIF() ) == 2 )
+    {
+        return ERROR;
+    }
 
-  CAN->sMsgObj[msg_if].CMR = CAN_CMR_WRRD
-                           | CAN_CMR_MASK
-                           | CAN_CMR_ARB
-                           | CAN_CMR_CONTROL
-                           | CAN_CMR_DATAA
-                           | CAN_CMR_DATAB;
+    CAN->sMsgObj[ msg_if ].CMR = CAN_CMR_WRRD
+                                 | CAN_CMR_MASK
+                                 | CAN_CMR_ARB
+                                 | CAN_CMR_CONTROL
+                                 | CAN_CMR_DATAA
+                                 | CAN_CMR_DATAB;
 
-  CAN->sMsgObj[msg_if].M1R = 0;
-  CAN->sMsgObj[msg_if].M2R = 0;
+    CAN->sMsgObj[ msg_if ].M1R = 0;
+    CAN->sMsgObj[ msg_if ].M2R = 0;
 
-  CAN->sMsgObj[msg_if].A1R = 0;
-  CAN->sMsgObj[msg_if].A2R = 0;
+    CAN->sMsgObj[ msg_if ].A1R = 0;
+    CAN->sMsgObj[ msg_if ].A2R = 0;
 
-  CAN->sMsgObj[msg_if].MCR = 0;
+    CAN->sMsgObj[ msg_if ].MCR = 0;
 
-  CAN->sMsgObj[msg_if].DA1R = 0;
-  CAN->sMsgObj[msg_if].DA2R = 0;
-  CAN->sMsgObj[msg_if].DB1R = 0;
-  CAN->sMsgObj[msg_if].DB2R = 0;
+    CAN->sMsgObj[ msg_if ].DA1R = 0;
+    CAN->sMsgObj[ msg_if ].DA2R = 0;
+    CAN->sMsgObj[ msg_if ].DB1R = 0;
+    CAN->sMsgObj[ msg_if ].DB2R = 0;
 
- CAN->sMsgObj[msg_if].CRR = 1 + msgobj;
+    CAN->sMsgObj[ msg_if ].CRR = 1 + msgobj;
 
- return SUCCESS;
+    return SUCCESS;
 }
 
 /*******************************************************************************
@@ -222,46 +232,47 @@ ErrorStatus CAN_SetUnusedMsgObj(u32 msgobj)
 *                         - SUCCESS: Interface to treat the message
 *                         - ERROR: No interface found to treat the message
 *******************************************************************************/
-ErrorStatus CAN_SetTxMsgObj(u32 msgobj, u32 idType)
+ErrorStatus CAN_SetTxMsgObj( u32 msgobj,
+                             u32 idType )
 {
-  u32 msg_if=0;
+    u32 msg_if = 0;
 
-  if ((msg_if = GetFreeIF()) == 2)
-  {
-    return ERROR;
-  }
+    if( ( msg_if = GetFreeIF() ) == 2 )
+    {
+        return ERROR;
+    }
 
-  CAN->sMsgObj[msg_if].CMR = CAN_CMR_WRRD
-                           | CAN_CMR_MASK
-                           | CAN_CMR_ARB
-                           | CAN_CMR_CONTROL
-                           | CAN_CMR_DATAA
-                           | CAN_CMR_DATAB;
+    CAN->sMsgObj[ msg_if ].CMR = CAN_CMR_WRRD
+                                 | CAN_CMR_MASK
+                                 | CAN_CMR_ARB
+                                 | CAN_CMR_CONTROL
+                                 | CAN_CMR_DATAA
+                                 | CAN_CMR_DATAB;
 
-  CAN->sMsgObj[msg_if].M1R = 0;
-  CAN->sMsgObj[msg_if].A1R = 0;
+    CAN->sMsgObj[ msg_if ].M1R = 0;
+    CAN->sMsgObj[ msg_if ].A1R = 0;
 
-  if (idType == CAN_STD_ID)
-  {
-    CAN->sMsgObj[msg_if].M2R = CAN_M2R_MDIR;
-    CAN->sMsgObj[msg_if].A2R = CAN_A2R_MSGVAL | CAN_A2R_DIR;
-  }
-  else
-  {
-    CAN->sMsgObj[msg_if].M2R = CAN_M2R_MDIR | CAN_M2R_MXTD;
-    CAN->sMsgObj[msg_if].A2R = CAN_A2R_MSGVAL | CAN_A2R_DIR | CAN_A2R_XTD;
-  }
+    if( idType == CAN_STD_ID )
+    {
+        CAN->sMsgObj[ msg_if ].M2R = CAN_M2R_MDIR;
+        CAN->sMsgObj[ msg_if ].A2R = CAN_A2R_MSGVAL | CAN_A2R_DIR;
+    }
+    else
+    {
+        CAN->sMsgObj[ msg_if ].M2R = CAN_M2R_MDIR | CAN_M2R_MXTD;
+        CAN->sMsgObj[ msg_if ].A2R = CAN_A2R_MSGVAL | CAN_A2R_DIR | CAN_A2R_XTD;
+    }
 
-  CAN->sMsgObj[msg_if].MCR = CAN_MCR_TXIE | CAN_MCR_EOB;
+    CAN->sMsgObj[ msg_if ].MCR = CAN_MCR_TXIE | CAN_MCR_EOB;
 
-  CAN->sMsgObj[msg_if].DA1R = 0;
-  CAN->sMsgObj[msg_if].DA2R = 0;
-  CAN->sMsgObj[msg_if].DB1R = 0;
-  CAN->sMsgObj[msg_if].DB2R = 0;
+    CAN->sMsgObj[ msg_if ].DA1R = 0;
+    CAN->sMsgObj[ msg_if ].DA2R = 0;
+    CAN->sMsgObj[ msg_if ].DB1R = 0;
+    CAN->sMsgObj[ msg_if ].DB2R = 0;
 
-  CAN->sMsgObj[msg_if].CRR = 1 + msgobj;
+    CAN->sMsgObj[ msg_if ].CRR = 1 + msgobj;
 
-  return SUCCESS;
+    return SUCCESS;
 }
 
 /*******************************************************************************
@@ -288,49 +299,53 @@ ErrorStatus CAN_SetTxMsgObj(u32 msgobj, u32 idType)
 *                         - SUCCESS: Interface to treat the message
 *                         - ERROR: No interface found to treat the message
 *******************************************************************************/
-ErrorStatus CAN_SetRxMsgObj(u32 msgobj, u32 idType, u32 idLow, u32 idHigh, bool singleOrFifoLast)
+ErrorStatus CAN_SetRxMsgObj( u32 msgobj,
+                             u32 idType,
+                             u32 idLow,
+                             u32 idHigh,
+                             bool singleOrFifoLast )
 {
-  u32 msg_if=0;
+    u32 msg_if = 0;
 
-  if ((msg_if = GetFreeIF()) == 2)
-  {
-    return ERROR;
-  }
+    if( ( msg_if = GetFreeIF() ) == 2 )
+    {
+        return ERROR;
+    }
 
-  CAN->sMsgObj[msg_if].CMR = CAN_CMR_WRRD
-                           | CAN_CMR_MASK
-                           | CAN_CMR_ARB
-                           | CAN_CMR_CONTROL
-                           | CAN_CMR_DATAA
-                           | CAN_CMR_DATAB;
+    CAN->sMsgObj[ msg_if ].CMR = CAN_CMR_WRRD
+                                 | CAN_CMR_MASK
+                                 | CAN_CMR_ARB
+                                 | CAN_CMR_CONTROL
+                                 | CAN_CMR_DATAA
+                                 | CAN_CMR_DATAB;
 
-  if (idType == CAN_STD_ID)
-  {
-    CAN->sMsgObj[msg_if].M1R = 0;
-    CAN->sMsgObj[msg_if].M2R = STD_RANGE_ID_MSK(idLow, idHigh);
+    if( idType == CAN_STD_ID )
+    {
+        CAN->sMsgObj[ msg_if ].M1R = 0;
+        CAN->sMsgObj[ msg_if ].M2R = STD_RANGE_ID_MSK( idLow, idHigh );
 
-    CAN->sMsgObj[msg_if].A1R = 0;
-    CAN->sMsgObj[msg_if].A2R = CAN_A2R_MSGVAL | STD_RANGE_ID_ARB(idLow, idHigh);
-  }
-  else
-  {
-    CAN->sMsgObj[msg_if].M1R = EXT_RANGE_ID_MSK_L(idLow, idHigh);
-    CAN->sMsgObj[msg_if].M2R = CAN_M2R_MXTD | EXT_RANGE_ID_MSK_H(idLow, idHigh);
+        CAN->sMsgObj[ msg_if ].A1R = 0;
+        CAN->sMsgObj[ msg_if ].A2R = CAN_A2R_MSGVAL | STD_RANGE_ID_ARB( idLow, idHigh );
+    }
+    else
+    {
+        CAN->sMsgObj[ msg_if ].M1R = EXT_RANGE_ID_MSK_L( idLow, idHigh );
+        CAN->sMsgObj[ msg_if ].M2R = CAN_M2R_MXTD | EXT_RANGE_ID_MSK_H( idLow, idHigh );
 
-    CAN->sMsgObj[msg_if].A1R = EXT_RANGE_ID_ARB_L(idLow, idHigh);
-    CAN->sMsgObj[msg_if].A2R = CAN_A2R_MSGVAL | CAN_A2R_XTD | EXT_RANGE_ID_ARB_H(idLow, idHigh);
-  }
+        CAN->sMsgObj[ msg_if ].A1R = EXT_RANGE_ID_ARB_L( idLow, idHigh );
+        CAN->sMsgObj[ msg_if ].A2R = CAN_A2R_MSGVAL | CAN_A2R_XTD | EXT_RANGE_ID_ARB_H( idLow, idHigh );
+    }
 
-  CAN->sMsgObj[msg_if].MCR = CAN_MCR_RXIE | CAN_MCR_UMASK | (singleOrFifoLast ? CAN_MCR_EOB : 0);
+    CAN->sMsgObj[ msg_if ].MCR = CAN_MCR_RXIE | CAN_MCR_UMASK | ( singleOrFifoLast ? CAN_MCR_EOB : 0 );
 
-  CAN->sMsgObj[msg_if].DA1R = 0;
-  CAN->sMsgObj[msg_if].DA2R = 0;
-  CAN->sMsgObj[msg_if].DB1R = 0;
-  CAN->sMsgObj[msg_if].DB2R = 0;
+    CAN->sMsgObj[ msg_if ].DA1R = 0;
+    CAN->sMsgObj[ msg_if ].DA2R = 0;
+    CAN->sMsgObj[ msg_if ].DB1R = 0;
+    CAN->sMsgObj[ msg_if ].DB2R = 0;
 
-  CAN->sMsgObj[msg_if].CRR = 1 + msgobj;
+    CAN->sMsgObj[ msg_if ].CRR = 1 + msgobj;
 
-  return SUCCESS;
+    return SUCCESS;
 }
 
 /*******************************************************************************
@@ -340,11 +355,14 @@ ErrorStatus CAN_SetRxMsgObj(u32 msgobj, u32 idType, u32 idLow, u32 idHigh, bool 
 * Output         : None
 * Return         : None
 *******************************************************************************/
-void CAN_InvalidateAllMsgObj(void)
+void CAN_InvalidateAllMsgObj( void )
 {
-  u32 i=0;
-  for (i = 0; i < 32; i++)
-    CAN_SetUnusedMsgObj(i);
+    u32 i = 0;
+
+    for( i = 0; i < 32; i++ )
+    {
+        CAN_SetUnusedMsgObj( i );
+    }
 }
 
 
@@ -357,19 +375,19 @@ void CAN_InvalidateAllMsgObj(void)
 *                         - SUCCESS: Interface to treat the message
 *                         - ERROR: No interface found to treat the message
 *******************************************************************************/
-ErrorStatus CAN_ReleaseMessage(u32 msgobj)
+ErrorStatus CAN_ReleaseMessage( u32 msgobj )
 {
-  u32 msg_if=0;
+    u32 msg_if = 0;
 
-  if ((msg_if = GetFreeIF()) == 2)
-  {
-    return ERROR;
-  }
+    if( ( msg_if = GetFreeIF() ) == 2 )
+    {
+        return ERROR;
+    }
 
-  CAN->sMsgObj[msg_if].CMR = CAN_CMR_CLRINTPND | CAN_CMR_TXRQSTNEWDAT;
-  CAN->sMsgObj[msg_if].CRR = 1 + msgobj;
+    CAN->sMsgObj[ msg_if ].CMR = CAN_CMR_CLRINTPND | CAN_CMR_TXRQSTNEWDAT;
+    CAN->sMsgObj[ msg_if ].CRR = 1 + msgobj;
 
-  return SUCCESS;
+    return SUCCESS;
 }
 
 /*******************************************************************************
@@ -383,55 +401,56 @@ ErrorStatus CAN_ReleaseMessage(u32 msgobj)
 *                         - SUCCESS: Transmission OK
 *                         - ERROR: No transmission
 *******************************************************************************/
-ErrorStatus CAN_SendMessage(u32 msgobj, canmsg* pCanMsg)
+ErrorStatus CAN_SendMessage( u32 msgobj,
+                             canmsg * pCanMsg )
 {
-  if (CAN->sMsgObj[0].CRR & CAN_CRR_BUSY)
-  {
-    return ERROR;
-  }
+    if( CAN->sMsgObj[ 0 ].CRR & CAN_CRR_BUSY )
+    {
+        return ERROR;
+    }
 
-  CAN->SR &= ~CAN_SR_TXOK;
+    CAN->SR &= ~CAN_SR_TXOK;
 
-  /* read the Arbitration and Message Control*/
-  CAN->sMsgObj[0].CMR = CAN_CMR_ARB | CAN_CMR_CONTROL;
+    /* read the Arbitration and Message Control*/
+    CAN->sMsgObj[ 0 ].CMR = CAN_CMR_ARB | CAN_CMR_CONTROL;
 
-  CAN->sMsgObj[0].CRR = 1 + msgobj;
+    CAN->sMsgObj[ 0 ].CRR = 1 + msgobj;
 
-  if (CAN->sMsgObj[0].CRR & CAN_CRR_BUSY)
-  {
-    return ERROR;
-  }
+    if( CAN->sMsgObj[ 0 ].CRR & CAN_CRR_BUSY )
+    {
+        return ERROR;
+    }
 
-  /* update the contents needed for transmission*/
-  CAN->sMsgObj[0].CMR = CAN_CMR_WRRD
-                      | CAN_CMR_ARB
-                      | CAN_CMR_CONTROL
-                      | CAN_CMR_DATAA
-                      | CAN_CMR_DATAB;
+    /* update the contents needed for transmission*/
+    CAN->sMsgObj[ 0 ].CMR = CAN_CMR_WRRD
+                            | CAN_CMR_ARB
+                            | CAN_CMR_CONTROL
+                            | CAN_CMR_DATAA
+                            | CAN_CMR_DATAB;
 
-  if ((CAN->sMsgObj[0].A2R & CAN_A2R_XTD) == 0)
-  {
-    /* standard ID*/
-    CAN->sMsgObj[0].A1R = 0;
-    CAN->sMsgObj[0].A2R = (CAN->sMsgObj[0].A2R & 0xE000) | STD_FIXED_ID_ARB(pCanMsg->Id);
-  }
-  else
-  {
-    /* extended ID*/
-    CAN->sMsgObj[0].A1R = EXT_FIXED_ID_ARB_L(pCanMsg->Id);
-    CAN->sMsgObj[0].A2R = (CAN->sMsgObj[0].A2R & 0xE000) | EXT_FIXED_ID_ARB_H(pCanMsg->Id);
-  }
+    if( ( CAN->sMsgObj[ 0 ].A2R & CAN_A2R_XTD ) == 0 )
+    {
+        /* standard ID*/
+        CAN->sMsgObj[ 0 ].A1R = 0;
+        CAN->sMsgObj[ 0 ].A2R = ( CAN->sMsgObj[ 0 ].A2R & 0xE000 ) | STD_FIXED_ID_ARB( pCanMsg->Id );
+    }
+    else
+    {
+        /* extended ID*/
+        CAN->sMsgObj[ 0 ].A1R = EXT_FIXED_ID_ARB_L( pCanMsg->Id );
+        CAN->sMsgObj[ 0 ].A2R = ( CAN->sMsgObj[ 0 ].A2R & 0xE000 ) | EXT_FIXED_ID_ARB_H( pCanMsg->Id );
+    }
 
-  CAN->sMsgObj[0].MCR = (CAN->sMsgObj[0].MCR & 0xFEF0) | CAN_MCR_NEWDAT | CAN_MCR_TXRQST | pCanMsg->Dlc;
+    CAN->sMsgObj[ 0 ].MCR = ( CAN->sMsgObj[ 0 ].MCR & 0xFEF0 ) | CAN_MCR_NEWDAT | CAN_MCR_TXRQST | pCanMsg->Dlc;
 
-  CAN->sMsgObj[0].DA1R = ((u16)pCanMsg->Data[1]<<8) | pCanMsg->Data[0];
-  CAN->sMsgObj[0].DA2R = ((u16)pCanMsg->Data[3]<<8) | pCanMsg->Data[2];
-  CAN->sMsgObj[0].DB1R = ((u16)pCanMsg->Data[5]<<8) | pCanMsg->Data[4];
-  CAN->sMsgObj[0].DB2R = ((u16)pCanMsg->Data[7]<<8) | pCanMsg->Data[6];
+    CAN->sMsgObj[ 0 ].DA1R = ( ( u16 ) pCanMsg->Data[ 1 ] << 8 ) | pCanMsg->Data[ 0 ];
+    CAN->sMsgObj[ 0 ].DA2R = ( ( u16 ) pCanMsg->Data[ 3 ] << 8 ) | pCanMsg->Data[ 2 ];
+    CAN->sMsgObj[ 0 ].DB1R = ( ( u16 ) pCanMsg->Data[ 5 ] << 8 ) | pCanMsg->Data[ 4 ];
+    CAN->sMsgObj[ 0 ].DB2R = ( ( u16 ) pCanMsg->Data[ 7 ] << 8 ) | pCanMsg->Data[ 6 ];
 
-  CAN->sMsgObj[0].CRR = 1 + msgobj;
+    CAN->sMsgObj[ 0 ].CRR = 1 + msgobj;
 
-  return SUCCESS;
+    return SUCCESS;
 }
 
 /*******************************************************************************
@@ -450,58 +469,60 @@ ErrorStatus CAN_SendMessage(u32 msgobj, canmsg* pCanMsg)
 *                         - SUCCESS: Reception OK
 *                         - ERROR: No message pending
 *******************************************************************************/
-ErrorStatus CAN_ReceiveMessage(u32 msgobj, bool release, canmsg* pCanMsg)
+ErrorStatus CAN_ReceiveMessage( u32 msgobj,
+                                bool release,
+                                canmsg * pCanMsg )
 {
-  if (!CAN_IsMessageWaiting(msgobj))
-  {
-    return ERROR;
-  }
+    if( !CAN_IsMessageWaiting( msgobj ) )
+    {
+        return ERROR;
+    }
 
-  CAN->SR &= ~CAN_SR_RXOK;
+    CAN->SR &= ~CAN_SR_RXOK;
 
-  /* read the message contents*/
-  CAN->sMsgObj[1].CMR = CAN_CMR_MASK
-                      | CAN_CMR_ARB
-                      | CAN_CMR_CONTROL
-                      | CAN_CMR_CLRINTPND
-                      | (release ? CAN_CMR_TXRQSTNEWDAT : 0)
-                      | CAN_CMR_DATAA
-                      | CAN_CMR_DATAB;
+    /* read the message contents*/
+    CAN->sMsgObj[ 1 ].CMR = CAN_CMR_MASK
+                            | CAN_CMR_ARB
+                            | CAN_CMR_CONTROL
+                            | CAN_CMR_CLRINTPND
+                            | ( release ? CAN_CMR_TXRQSTNEWDAT : 0 )
+                            | CAN_CMR_DATAA
+                            | CAN_CMR_DATAB;
 
-  CAN->sMsgObj[1].CRR = 1 + msgobj;
+    CAN->sMsgObj[ 1 ].CRR = 1 + msgobj;
 
-  if (CAN->sMsgObj[1].CRR & CAN_CRR_BUSY)
-  {
-    return ERROR;
-  }
+    if( CAN->sMsgObj[ 1 ].CRR & CAN_CRR_BUSY )
+    {
+        return ERROR;
+    }
 
-  if ((CAN->sMsgObj[1].A2R & CAN_A2R_XTD) == 0)
-  {
-    /* standard ID*/
-    pCanMsg->IdType = CAN_STD_ID;
-    pCanMsg->Id = (CAN->sMsgObj[1].A2R >> 2) & 0x07FF;
-  }
-  else
-  {
-    /* extended ID*/
-    pCanMsg->IdType = CAN_EXT_ID;
-    pCanMsg->Id  = ((CAN->sMsgObj[1].A2R >> 2) & 0x07FF);
-    pCanMsg->Id |= ((u32)CAN->sMsgObj[1].A1R << 11);
-    pCanMsg->Id |= (((u32)CAN->sMsgObj[1].A2R & 0x0003) << 27);
-  }
+    if( ( CAN->sMsgObj[ 1 ].A2R & CAN_A2R_XTD ) == 0 )
+    {
+        /* standard ID*/
+        pCanMsg->IdType = CAN_STD_ID;
+        pCanMsg->Id = ( CAN->sMsgObj[ 1 ].A2R >> 2 ) & 0x07FF;
+    }
+    else
+    {
+        /* extended ID*/
+        pCanMsg->IdType = CAN_EXT_ID;
+        pCanMsg->Id = ( ( CAN->sMsgObj[ 1 ].A2R >> 2 ) & 0x07FF );
+        pCanMsg->Id |= ( ( u32 ) CAN->sMsgObj[ 1 ].A1R << 11 );
+        pCanMsg->Id |= ( ( ( u32 ) CAN->sMsgObj[ 1 ].A2R & 0x0003 ) << 27 );
+    }
 
-  pCanMsg->Dlc = CAN->sMsgObj[1].MCR & 0x0F;
+    pCanMsg->Dlc = CAN->sMsgObj[ 1 ].MCR & 0x0F;
 
-  pCanMsg->Data[0] = (u8) CAN->sMsgObj[1].DA1R;
-  pCanMsg->Data[1] = (u8)(CAN->sMsgObj[1].DA1R >> 8);
-  pCanMsg->Data[2] = (u8) CAN->sMsgObj[1].DA2R;
-  pCanMsg->Data[3] = (u8)(CAN->sMsgObj[1].DA2R >> 8);
-  pCanMsg->Data[4] = (u8) CAN->sMsgObj[1].DB1R;
-  pCanMsg->Data[5] = (u8)(CAN->sMsgObj[1].DB1R >> 8);
-  pCanMsg->Data[6] = (u8) CAN->sMsgObj[1].DB2R;
-  pCanMsg->Data[7] = (u8)(CAN->sMsgObj[1].DB2R >> 8);
+    pCanMsg->Data[ 0 ] = ( u8 ) CAN->sMsgObj[ 1 ].DA1R;
+    pCanMsg->Data[ 1 ] = ( u8 ) ( CAN->sMsgObj[ 1 ].DA1R >> 8 );
+    pCanMsg->Data[ 2 ] = ( u8 ) CAN->sMsgObj[ 1 ].DA2R;
+    pCanMsg->Data[ 3 ] = ( u8 ) ( CAN->sMsgObj[ 1 ].DA2R >> 8 );
+    pCanMsg->Data[ 4 ] = ( u8 ) CAN->sMsgObj[ 1 ].DB1R;
+    pCanMsg->Data[ 5 ] = ( u8 ) ( CAN->sMsgObj[ 1 ].DB1R >> 8 );
+    pCanMsg->Data[ 6 ] = ( u8 ) CAN->sMsgObj[ 1 ].DB2R;
+    pCanMsg->Data[ 7 ] = ( u8 ) ( CAN->sMsgObj[ 1 ].DB2R >> 8 );
 
-  return SUCCESS;
+    return SUCCESS;
 }
 
 /*******************************************************************************
@@ -513,15 +534,16 @@ ErrorStatus CAN_ReceiveMessage(u32 msgobj, bool release, canmsg* pCanMsg)
 *                         - SUCCESS: Transmission ended
 *                         - ERROR: Transmission did not occur yet
 *******************************************************************************/
-ErrorStatus CAN_WaitEndOfTx(void)
+ErrorStatus CAN_WaitEndOfTx( void )
 {
-  if ((CAN->SR & CAN_SR_TXOK) == 0)
-  {
-    return ERROR;
-  }
-  CAN->SR &= ~CAN_SR_TXOK;
+    if( ( CAN->SR & CAN_SR_TXOK ) == 0 )
+    {
+        return ERROR;
+    }
 
-  return SUCCESS;
+    CAN->SR &= ~CAN_SR_TXOK;
+
+    return SUCCESS;
 }
 
 /*******************************************************************************
@@ -535,45 +557,45 @@ ErrorStatus CAN_WaitEndOfTx(void)
 *                         - SUCCESS: Transmission OK
 *                         - ERROR: No transmission
 *******************************************************************************/
-ErrorStatus CAN_BasicSendMessage(canmsg* pCanMsg)
+ErrorStatus CAN_BasicSendMessage( canmsg * pCanMsg )
 {
-  /* clear NewDat bit in IF2 to detect next reception*/
-  CAN->sMsgObj[1].MCR &= ~CAN_MCR_NEWDAT;
+    /* clear NewDat bit in IF2 to detect next reception*/
+    CAN->sMsgObj[ 1 ].MCR &= ~CAN_MCR_NEWDAT;
 
-  CAN->SR &= ~CAN_SR_TXOK;
-  CAN->sMsgObj[0].CMR = CAN_CMR_WRRD
-                      | CAN_CMR_ARB
-                      | CAN_CMR_CONTROL
-                      | CAN_CMR_DATAA
-                      | CAN_CMR_DATAB;
+    CAN->SR &= ~CAN_SR_TXOK;
+    CAN->sMsgObj[ 0 ].CMR = CAN_CMR_WRRD
+                            | CAN_CMR_ARB
+                            | CAN_CMR_CONTROL
+                            | CAN_CMR_DATAA
+                            | CAN_CMR_DATAB;
 
-  if (pCanMsg->IdType == CAN_STD_ID)
-  {
-    /* standard ID*/
-    CAN->sMsgObj[0].A1R = 0;
-    CAN->sMsgObj[0].A2R = (CAN->sMsgObj[0].A2R & 0xE000) | STD_FIXED_ID_ARB(pCanMsg->Id);
-  }
-  else
-  {
-    /* extended ID*/
-    CAN->sMsgObj[0].A1R = EXT_FIXED_ID_ARB_L(pCanMsg->Id);
-    CAN->sMsgObj[0].A2R = ((CAN->sMsgObj[0].A2R) & 0xE000) | EXT_FIXED_ID_ARB_H(pCanMsg->Id);
-  }
+    if( pCanMsg->IdType == CAN_STD_ID )
+    {
+        /* standard ID*/
+        CAN->sMsgObj[ 0 ].A1R = 0;
+        CAN->sMsgObj[ 0 ].A2R = ( CAN->sMsgObj[ 0 ].A2R & 0xE000 ) | STD_FIXED_ID_ARB( pCanMsg->Id );
+    }
+    else
+    {
+        /* extended ID*/
+        CAN->sMsgObj[ 0 ].A1R = EXT_FIXED_ID_ARB_L( pCanMsg->Id );
+        CAN->sMsgObj[ 0 ].A2R = ( ( CAN->sMsgObj[ 0 ].A2R ) & 0xE000 ) | EXT_FIXED_ID_ARB_H( pCanMsg->Id );
+    }
 
-  CAN->sMsgObj[0].MCR = (CAN->sMsgObj[0].MCR & 0xFCF0) | pCanMsg->Dlc;
+    CAN->sMsgObj[ 0 ].MCR = ( CAN->sMsgObj[ 0 ].MCR & 0xFCF0 ) | pCanMsg->Dlc;
 
-  CAN->sMsgObj[0].DA1R = ((u16)pCanMsg->Data[1]<<8) | pCanMsg->Data[0];
-  CAN->sMsgObj[0].DA2R = ((u16)pCanMsg->Data[3]<<8) | pCanMsg->Data[2];
-  CAN->sMsgObj[0].DB1R = ((u16)pCanMsg->Data[5]<<8) | pCanMsg->Data[4];
-  CAN->sMsgObj[0].DB2R = ((u16)pCanMsg->Data[7]<<8) | pCanMsg->Data[6];
+    CAN->sMsgObj[ 0 ].DA1R = ( ( u16 ) pCanMsg->Data[ 1 ] << 8 ) | pCanMsg->Data[ 0 ];
+    CAN->sMsgObj[ 0 ].DA2R = ( ( u16 ) pCanMsg->Data[ 3 ] << 8 ) | pCanMsg->Data[ 2 ];
+    CAN->sMsgObj[ 0 ].DB1R = ( ( u16 ) pCanMsg->Data[ 5 ] << 8 ) | pCanMsg->Data[ 4 ];
+    CAN->sMsgObj[ 0 ].DB2R = ( ( u16 ) pCanMsg->Data[ 7 ] << 8 ) | pCanMsg->Data[ 6 ];
 
-  /* request transmission*/
-  if (CAN->sMsgObj[0].CRR == CAN_CRR_BUSY )
-  {
-    return ERROR;
-  }
+    /* request transmission*/
+    if( CAN->sMsgObj[ 0 ].CRR == CAN_CRR_BUSY )
+    {
+        return ERROR;
+    }
 
-  return SUCCESS;
+    return SUCCESS;
 }
 
 /*******************************************************************************
@@ -586,47 +608,47 @@ ErrorStatus CAN_BasicSendMessage(canmsg* pCanMsg)
 *                         - SUCCESS: Reception OK
 *                         - ERROR: No message pending
 *******************************************************************************/
-ErrorStatus CAN_BasicReceiveMessage(canmsg* pCanMsg)
+ErrorStatus CAN_BasicReceiveMessage( canmsg * pCanMsg )
 {
-  if ((CAN->sMsgObj[1].MCR & CAN_MCR_NEWDAT) == 0)
-  {
-    return ERROR;
-  }
+    if( ( CAN->sMsgObj[ 1 ].MCR & CAN_MCR_NEWDAT ) == 0 )
+    {
+        return ERROR;
+    }
 
-  CAN->SR &= ~CAN_SR_RXOK;
+    CAN->SR &= ~CAN_SR_RXOK;
 
-  CAN->sMsgObj[1].CMR = CAN_CMR_ARB
-                      | CAN_CMR_CONTROL
-                      | CAN_CMR_DATAA
-                      | CAN_CMR_DATAB;
+    CAN->sMsgObj[ 1 ].CMR = CAN_CMR_ARB
+                            | CAN_CMR_CONTROL
+                            | CAN_CMR_DATAA
+                            | CAN_CMR_DATAB;
 
-  if ((CAN->sMsgObj[1].A2R & CAN_A2R_XTD) == 0)
-  {
-    /* standard ID*/
-    pCanMsg->IdType = CAN_STD_ID;
-    pCanMsg->Id = (CAN->sMsgObj[1].A2R >> 2) & 0x07FF;
-  }
-  else
-  {
-    /* extended ID*/
-    pCanMsg->IdType = CAN_EXT_ID;
-    pCanMsg->Id  = ((CAN->sMsgObj[1].A2R >> 2) & 0x07FF);
-    pCanMsg->Id |= ((u32)CAN->sMsgObj[1].A1R << 11);
-    pCanMsg->Id |= (((u32)CAN->sMsgObj[1].A2R & 0x0003) << 27);
-  }
+    if( ( CAN->sMsgObj[ 1 ].A2R & CAN_A2R_XTD ) == 0 )
+    {
+        /* standard ID*/
+        pCanMsg->IdType = CAN_STD_ID;
+        pCanMsg->Id = ( CAN->sMsgObj[ 1 ].A2R >> 2 ) & 0x07FF;
+    }
+    else
+    {
+        /* extended ID*/
+        pCanMsg->IdType = CAN_EXT_ID;
+        pCanMsg->Id = ( ( CAN->sMsgObj[ 1 ].A2R >> 2 ) & 0x07FF );
+        pCanMsg->Id |= ( ( u32 ) CAN->sMsgObj[ 1 ].A1R << 11 );
+        pCanMsg->Id |= ( ( ( u32 ) CAN->sMsgObj[ 1 ].A2R & 0x0003 ) << 27 );
+    }
 
-  pCanMsg->Dlc = CAN->sMsgObj[1].MCR & 0x0F;
+    pCanMsg->Dlc = CAN->sMsgObj[ 1 ].MCR & 0x0F;
 
-  pCanMsg->Data[0] = (u8) CAN->sMsgObj[1].DA1R;
-  pCanMsg->Data[1] = (u8)(CAN->sMsgObj[1].DA1R >> 8);
-  pCanMsg->Data[2] = (u8) CAN->sMsgObj[1].DA2R;
-  pCanMsg->Data[3] = (u8)(CAN->sMsgObj[1].DA2R >> 8);
-  pCanMsg->Data[4] = (u8) CAN->sMsgObj[1].DB1R;
-  pCanMsg->Data[5] = (u8)(CAN->sMsgObj[1].DB1R >> 8);
-  pCanMsg->Data[6] = (u8) CAN->sMsgObj[1].DB2R;
-  pCanMsg->Data[7] = (u8)(CAN->sMsgObj[1].DB2R >> 8);
+    pCanMsg->Data[ 0 ] = ( u8 ) CAN->sMsgObj[ 1 ].DA1R;
+    pCanMsg->Data[ 1 ] = ( u8 ) ( CAN->sMsgObj[ 1 ].DA1R >> 8 );
+    pCanMsg->Data[ 2 ] = ( u8 ) CAN->sMsgObj[ 1 ].DA2R;
+    pCanMsg->Data[ 3 ] = ( u8 ) ( CAN->sMsgObj[ 1 ].DA2R >> 8 );
+    pCanMsg->Data[ 4 ] = ( u8 ) CAN->sMsgObj[ 1 ].DB1R;
+    pCanMsg->Data[ 5 ] = ( u8 ) ( CAN->sMsgObj[ 1 ].DB1R >> 8 );
+    pCanMsg->Data[ 6 ] = ( u8 ) CAN->sMsgObj[ 1 ].DB2R;
+    pCanMsg->Data[ 7 ] = ( u8 ) ( CAN->sMsgObj[ 1 ].DB2R >> 8 );
 
-  return SUCCESS;
+    return SUCCESS;
 }
 
 /*******************************************************************************
@@ -637,10 +659,10 @@ ErrorStatus CAN_BasicReceiveMessage(canmsg* pCanMsg)
 * Output         : None
 * Return         : None
 *******************************************************************************/
-void CAN_EnterInitMode(u8 InitMask)
+void CAN_EnterInitMode( u8 InitMask )
 {
-  CAN->CR = InitMask | CAN_CR_INIT;
-  CAN->SR = 0;					/* reset the status*/
+    CAN->CR = InitMask | CAN_CR_INIT;
+    CAN->SR = 0; /* reset the status*/
 }
 
 /*******************************************************************************
@@ -651,9 +673,9 @@ void CAN_EnterInitMode(u8 InitMask)
 * Output         : None
 * Return         : None
 *******************************************************************************/
-void CAN_LeaveInitMode(void)
+void CAN_LeaveInitMode( void )
 {
-  CAN->CR &= ~(CAN_CR_INIT | CAN_CR_CCE);
+    CAN->CR &= ~( CAN_CR_INIT | CAN_CR_CCE );
 }
 
 /*******************************************************************************
@@ -664,10 +686,10 @@ void CAN_LeaveInitMode(void)
 * Output         : None
 * Return         : None
 *******************************************************************************/
-void CAN_EnterTestMode(u8 TestMask)
+void CAN_EnterTestMode( u8 TestMask )
 {
-  CAN->CR |= CAN_CR_TEST;
-  CAN->TESTR |= TestMask;
+    CAN->CR |= CAN_CR_TEST;
+    CAN->TESTR |= TestMask;
 }
 
 /*******************************************************************************
@@ -678,11 +700,11 @@ void CAN_EnterTestMode(u8 TestMask)
 * Output         : None
 * Return         : None
 *******************************************************************************/
-void CAN_LeaveTestMode(void)
+void CAN_LeaveTestMode( void )
 {
-  CAN->CR |= CAN_CR_TEST;
-  CAN->TESTR &= ~(CAN_TESTR_LBACK | CAN_TESTR_SILENT | CAN_TESTR_BASIC);
-  CAN->CR &= ~CAN_CR_TEST;
+    CAN->CR |= CAN_CR_TEST;
+    CAN->TESTR &= ~( CAN_TESTR_LBACK | CAN_TESTR_SILENT | CAN_TESTR_BASIC );
+    CAN->CR &= ~CAN_CR_TEST;
 }
 
 /*******************************************************************************
@@ -692,10 +714,10 @@ void CAN_LeaveTestMode(void)
 * Output         : None
 * Return         : None
 *******************************************************************************/
-void CAN_ReleaseTxMessage(u32 msgobj)
+void CAN_ReleaseTxMessage( u32 msgobj )
 {
-  CAN->sMsgObj[0].CMR = CAN_CMR_CLRINTPND | CAN_CMR_TXRQSTNEWDAT;
-  CAN->sMsgObj[0].CRR = 1 + msgobj;
+    CAN->sMsgObj[ 0 ].CMR = CAN_CMR_CLRINTPND | CAN_CMR_TXRQSTNEWDAT;
+    CAN->sMsgObj[ 0 ].CRR = 1 + msgobj;
 }
 
 /*******************************************************************************
@@ -705,10 +727,10 @@ void CAN_ReleaseTxMessage(u32 msgobj)
 * Output         : None
 * Return         : None
 *******************************************************************************/
-void CAN_ReleaseRxMessage(u32 msgobj)
+void CAN_ReleaseRxMessage( u32 msgobj )
 {
-  CAN->sMsgObj[1].CMR = CAN_CMR_CLRINTPND | CAN_CMR_TXRQSTNEWDAT;
-  CAN->sMsgObj[1].CRR = 1 + msgobj;
+    CAN->sMsgObj[ 1 ].CMR = CAN_CMR_CLRINTPND | CAN_CMR_TXRQSTNEWDAT;
+    CAN->sMsgObj[ 1 ].CRR = 1 + msgobj;
 }
 
 /*******************************************************************************
@@ -719,9 +741,9 @@ void CAN_ReleaseRxMessage(u32 msgobj)
 * Return         : A non-zero value if the corresponding message object has
 *                  received a message waiting to be copied, else 0.
 *******************************************************************************/
-u32 CAN_IsMessageWaiting(u32 msgobj)
+u32 CAN_IsMessageWaiting( u32 msgobj )
 {
-  return (msgobj < 16 ? CAN->ND1R & (1 << msgobj) : CAN->ND2R & (1 << (msgobj-16)));
+    return( msgobj < 16 ? CAN->ND1R & ( 1 << msgobj ) : CAN->ND2R &( 1 << ( msgobj - 16 ) ) );
 }
 
 /*******************************************************************************
@@ -732,9 +754,9 @@ u32 CAN_IsMessageWaiting(u32 msgobj)
 * Return         : A non-zero value if the corresponding message is requested
 *                  to transmit, else 0.
 *******************************************************************************/
-u32 CAN_IsTransmitRequested(u32 msgobj)
+u32 CAN_IsTransmitRequested( u32 msgobj )
 {
-  return (msgobj < 16 ? CAN->TXR1R & (1 << msgobj) : CAN->TXR2R & (1 << (msgobj-16)));
+    return( msgobj < 16 ? CAN->TXR1R & ( 1 << msgobj ) : CAN->TXR2R &( 1 << ( msgobj - 16 ) ) );
 }
 
 /*******************************************************************************
@@ -745,9 +767,9 @@ u32 CAN_IsTransmitRequested(u32 msgobj)
 * Return         : A non-zero value if the corresponding message has an
 *                  interrupt pending, else 0.
 *******************************************************************************/
-u32 CAN_IsInterruptPending(u32 msgobj)
+u32 CAN_IsInterruptPending( u32 msgobj )
 {
-  return (msgobj < 16 ? CAN->IP1R & (1 << msgobj) : CAN->IP2R & (1 << (msgobj-16)));
+    return( msgobj < 16 ? CAN->IP1R & ( 1 << msgobj ) : CAN->IP2R &( 1 << ( msgobj - 16 ) ) );
 }
 
 /*******************************************************************************
@@ -758,8 +780,8 @@ u32 CAN_IsInterruptPending(u32 msgobj)
 * Return         : A non-zero value if the corresponding message object is
 *                  valid, else 0.
 *******************************************************************************/
-u32 CAN_IsObjectValid(u32 msgobj)
+u32 CAN_IsObjectValid( u32 msgobj )
 {
-  return (msgobj < 16 ? CAN->MV1R & (1 << msgobj) : CAN->MV2R & (1 << (msgobj-16)));
+    return( msgobj < 16 ? CAN->MV1R & ( 1 << msgobj ) : CAN->MV2R &( 1 << ( msgobj - 16 ) ) );
 }
 /******************* (C) COPYRIGHT 2006 STMicroelectronics *****END OF FILE****/

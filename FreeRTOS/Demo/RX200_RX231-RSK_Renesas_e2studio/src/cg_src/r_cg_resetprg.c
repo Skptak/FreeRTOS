@@ -27,66 +27,66 @@
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-Pragma directive
+*  Pragma directive
 ***********************************************************************************************************************/
 /* Start user code for pragma. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
 
 /***********************************************************************************************************************
-Includes
+*  Includes
 ***********************************************************************************************************************/
 #include "r_cg_macrodriver.h"
 #include <machine.h>
 #include <_h_c_lib.h>
-//#include <stddef.h> // Remove the comment when you use errno
-//#include <stdlib.h> // Remove the comment when you use rand()
+/*#include <stddef.h> // Remove the comment when you use errno */
+/*#include <stdlib.h> // Remove the comment when you use rand() */
 #include "r_cg_stacksct.h"
 #include "r_cg_userdefine.h"
 
 /***********************************************************************************************************************
-Global variables and functions
+*  Global variables and functions
 ***********************************************************************************************************************/
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-void PowerON_Reset_PC(void);
-void main(void);
+void PowerON_Reset_PC( void );
+void main( void );
 #ifdef __cplusplus
 }
 #endif
 
-#define PSW_init  0x00010000        /* PSW bit pattern */
-#define FPSW_init 0x00000000        /* FPSW bit base pattern */
+#define PSW_init     0x00010000 /* PSW bit pattern */
+#define FPSW_init    0x00000000 /* FPSW bit base pattern */
 
-#pragma section ResetPRG            /* output PowerON_Reset_PC to PResetPRG section */
+#pragma section ResetPRG        /* output PowerON_Reset_PC to PResetPRG section */
 
 #pragma entry PowerON_Reset_PC
 
-void PowerON_Reset_PC(void)
+void PowerON_Reset_PC( void )
 {
-#ifdef __RXV2
-    set_extb(__sectop("EXCEPTVECT"));
-#endif
-    set_intb(__sectop("C$VECT"));
+    #ifdef __RXV2
+        set_extb( __sectop( "EXCEPTVECT" ) );
+    #endif
+    set_intb( __sectop( "C$VECT" ) );
 
-#ifdef __ROZ                        /* Initialize FPSW */
-#define _ROUND 0x00000001           /* Let FPSW RMbits=01 (round to zero) */
-#else
-#define _ROUND 0x00000000           /* Let FPSW RMbits=00 (round to nearest) */
-#endif
-#ifdef __DOFF
-#define _DENOM 0x00000100           /* Let FPSW DNbit=1 (denormal as zero) */
-#else
-#define _DENOM 0x00000000           /* Let FPSW DNbit=0 (denormal as is) */
-#endif
+    #ifdef __ROZ                    /* Initialize FPSW */
+    #define _ROUND    0x00000001    /* Let FPSW RMbits=01 (round to zero) */
+    #else
+    #define _ROUND    0x00000000    /* Let FPSW RMbits=00 (round to nearest) */
+    #endif
+    #ifdef __DOFF
+    #define _DENOM    0x00000100    /* Let FPSW DNbit=1 (denormal as zero) */
+    #else
+    #define _DENOM    0x00000000    /* Let FPSW DNbit=0 (denormal as is) */
+    #endif
 
-    set_fpsw(FPSW_init | _ROUND | _DENOM);
+    set_fpsw( FPSW_init | _ROUND | _DENOM );
 
-    _INITSCT();                     /* Initialize Sections */
-    HardwareSetup();                /* Use Hardware Setup */
+    _INITSCT();          /* Initialize Sections */
+    HardwareSetup();     /* Use Hardware Setup */
     nop();
-    set_psw(PSW_init);              /* Set Ubit & Ibit for PSW */
+    set_psw( PSW_init ); /* Set Ubit & Ibit for PSW */
     main();
     brk();
 }

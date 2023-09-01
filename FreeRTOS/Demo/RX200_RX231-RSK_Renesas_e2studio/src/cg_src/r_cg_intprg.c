@@ -27,13 +27,13 @@
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-Pragma directive
+*  Pragma directive
 ***********************************************************************************************************************/
 /* Start user code for pragma. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
 
 /***********************************************************************************************************************
-Includes
+*  Includes
 ***********************************************************************************************************************/
 #include "r_cg_macrodriver.h"
 #include <machine.h>
@@ -41,55 +41,55 @@ Includes
 #include "r_cg_userdefine.h"
 
 /***********************************************************************************************************************
-Global variables and functions
+*  Global variables and functions
 ***********************************************************************************************************************/
 
 #pragma section IntPRG
 
 /* Undefined Instruction Exception */
-void r_undefined_exception(void)
+void r_undefined_exception( void )
 {
     /* Start user code. Do not edit comment generated here */
     /* End user code. Do not edit comment generated here */
 }
 
 /* Privileged Instruction Exception */
-void r_privileged_exception(void)
+void r_privileged_exception( void )
 {
     /* Start user code. Do not edit comment generated here */
     /* End user code. Do not edit comment generated here */
 }
 
 /* Floating Point Exception */
-void r_floatingpoint_exception(void)
+void r_floatingpoint_exception( void )
 {
     /* Start user code. Do not edit comment generated here */
     /* End user code. Do not edit comment generated here */
 }
 
 /* Access Exception */
-void r_access_exception(void)
+void r_access_exception( void )
 {
     /* Start user code. Do not edit comment generated here */
     /* End user code. Do not edit comment generated here */
 }
 
 /* Reserved */
-void r_reserved_exception(void)
+void r_reserved_exception( void )
 {
     /* Start user code. Do not edit comment generated here */
     /* End user code. Do not edit comment generated here */
 }
 
 /* NMI */
-void r_nmi_exception(void)
+void r_nmi_exception( void )
 {
     /* Start user code. Do not edit comment generated here */
     /* End user code. Do not edit comment generated here */
 }
 
 /* BRK */
-void r_brk_exception(void)
+void r_brk_exception( void )
 {
     /* Start user code. Do not edit comment generated here */
     /* End user code. Do not edit comment generated here */

@@ -51,7 +51,7 @@
 /*@{*/
 /*@}*/
 
- /**
+/**
  * \file
  *
  * Implementation of Advanced Interrupt Controller (AIC) controller.
@@ -85,19 +85,20 @@
  * \param mode  Triggering mode and priority of the interrupt.
  * \param handler  Interrupt handler function.
  */
-uint32_t IRQ_ConfigureIT(uint32_t source,
-                     uint32_t mode,
-                     void( *handler )( void ))
+uint32_t IRQ_ConfigureIT( uint32_t source,
+                          uint32_t mode,
+                          void ( * handler )( void ) )
 {
     uint32_t prevHandler;
-    PMC->PMC_PCER1 = (1 << ( ID_IRQ - 32));
-    AIC->AIC_SSR  = source;
+
+    PMC->PMC_PCER1 = ( 1 << ( ID_IRQ - 32 ) );
+    AIC->AIC_SSR = source;
     prevHandler = AIC->AIC_SVR;
     /* Disable the interrupt first */
     AIC->AIC_IDCR = AIC_IDCR_INTD;
     /* Configure mode and handler */
-    AIC->AIC_SMR  = mode;
-    AIC->AIC_SVR = (uint32_t) handler;
+    AIC->AIC_SMR = mode;
+    AIC->AIC_SVR = ( uint32_t ) handler;
     /* Clear interrupt */
     AIC->AIC_ICCR = AIC_ICCR_INTCLR;
     return prevHandler;
@@ -109,9 +110,9 @@ uint32_t IRQ_ConfigureIT(uint32_t source,
  *
  * \param source  Interrupt source to enable.
  */
-void IRQ_EnableIT(uint32_t source)
+void IRQ_EnableIT( uint32_t source )
 {
-    AIC->AIC_SSR  = source;
+    AIC->AIC_SSR = source;
     AIC->AIC_IECR = AIC_IECR_INTEN;
 }
 
@@ -120,9 +121,8 @@ void IRQ_EnableIT(uint32_t source)
  *
  * \param source  Interrupt source to disable.
  */
-void IRQ_DisableIT(uint32_t source)
+void IRQ_DisableIT( uint32_t source )
 {
-    AIC->AIC_SSR  = source;
-    AIC->AIC_IDCR = AIC_IDCR_INTD ;
+    AIC->AIC_SSR = source;
+    AIC->AIC_IDCR = AIC_IDCR_INTD;
 }
-

@@ -116,7 +116,7 @@ typedef struct
  */
     typedef struct
     {
-        NODEHEADER hdr;         /**< Common node header. */
+        NODEHEADER hdr; /**< Common node header. */
 
         /** Bitmap which indicates which inode blocks are used and which allocable
          *  blocks are used.
@@ -160,7 +160,7 @@ typedef struct
         uint8_t abPadding[ 2 ]; /**< Padding to 32-bit align the next member. */
     #endif
     #if REDCONF_API_POSIX == 1
-        uint32_t ulPInode;      /**< Parent inode number.  Only guaranteed to be accurate for directories. */
+        uint32_t ulPInode; /**< Parent inode number.  Only guaranteed to be accurate for directories. */
     #endif
 
     /** Block numbers for lower levels of the file metadata structure.  Some

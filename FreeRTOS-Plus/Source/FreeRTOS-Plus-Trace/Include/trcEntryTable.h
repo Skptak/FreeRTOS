@@ -243,7 +243,7 @@
                 traceResult xTraceEntryGetOptions( TraceEntryHandle_t xEntryHandle,
                                                    uint32_t * puiOptions );
 
-            #else  /* if ( ( TRC_CFG_USE_TRACE_ASSERT ) == 1 ) */
+            #else /* if ( ( TRC_CFG_USE_TRACE_ASSERT ) == 1 ) */
 
                 #define xTraceEntryCreateWithAddress    TRC_ENTRY_CREATE_WITH_ADDRESS
 

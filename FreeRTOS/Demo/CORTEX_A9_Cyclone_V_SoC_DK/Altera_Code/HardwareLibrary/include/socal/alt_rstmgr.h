@@ -31,12 +31,12 @@
 /* Altera - ALT_RSTMGR */
 
 #ifndef __ALTERA_ALT_RSTMGR_H__
-#define __ALTERA_ALT_RSTMGR_H__
+    #define __ALTERA_ALT_RSTMGR_H__
 
-#ifdef __cplusplus
-extern "C"
-{
-#endif  /* __cplusplus */
+    #ifdef __cplusplus
+        extern "C"
+        {
+    #endif /* __cplusplus */
 
 /*
  * Component : Reset Manager Module - ALT_RSTMGR
@@ -45,6 +45,7 @@ extern "C"
  * Registers in the Reset Manager module
  *
  */
+
 /*
  * Register : Status Register - stat
  *
@@ -97,6 +98,7 @@ extern "C"
  *  [31:29] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Power-On Voltage Detector Cold Reset - porvoltrst
  *
@@ -106,21 +108,21 @@ extern "C"
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_STAT_PORVOLTRST register field. */
-#define ALT_RSTMGR_STAT_PORVOLTRST_LSB        0
+    #define ALT_RSTMGR_STAT_PORVOLTRST_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_STAT_PORVOLTRST register field. */
-#define ALT_RSTMGR_STAT_PORVOLTRST_MSB        0
+    #define ALT_RSTMGR_STAT_PORVOLTRST_MSB        0
 /* The width in bits of the ALT_RSTMGR_STAT_PORVOLTRST register field. */
-#define ALT_RSTMGR_STAT_PORVOLTRST_WIDTH      1
+    #define ALT_RSTMGR_STAT_PORVOLTRST_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_STAT_PORVOLTRST register field value. */
-#define ALT_RSTMGR_STAT_PORVOLTRST_SET_MSK    0x00000001
+    #define ALT_RSTMGR_STAT_PORVOLTRST_SET_MSK    0x00000001
 /* The mask used to clear the ALT_RSTMGR_STAT_PORVOLTRST register field value. */
-#define ALT_RSTMGR_STAT_PORVOLTRST_CLR_MSK    0xfffffffe
+    #define ALT_RSTMGR_STAT_PORVOLTRST_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_RSTMGR_STAT_PORVOLTRST register field. */
-#define ALT_RSTMGR_STAT_PORVOLTRST_RESET      0x0
+    #define ALT_RSTMGR_STAT_PORVOLTRST_RESET      0x0
 /* Extracts the ALT_RSTMGR_STAT_PORVOLTRST field value from a register. */
-#define ALT_RSTMGR_STAT_PORVOLTRST_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_RSTMGR_STAT_PORVOLTRST_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_RSTMGR_STAT_PORVOLTRST register field value suitable for setting the register. */
-#define ALT_RSTMGR_STAT_PORVOLTRST_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_RSTMGR_STAT_PORVOLTRST_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
 /*
  * Field : nPOR Pin Cold Reset - nporpinrst
@@ -131,21 +133,21 @@ extern "C"
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_STAT_NPORPINRST register field. */
-#define ALT_RSTMGR_STAT_NPORPINRST_LSB        1
+    #define ALT_RSTMGR_STAT_NPORPINRST_LSB        1
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_STAT_NPORPINRST register field. */
-#define ALT_RSTMGR_STAT_NPORPINRST_MSB        1
+    #define ALT_RSTMGR_STAT_NPORPINRST_MSB        1
 /* The width in bits of the ALT_RSTMGR_STAT_NPORPINRST register field. */
-#define ALT_RSTMGR_STAT_NPORPINRST_WIDTH      1
+    #define ALT_RSTMGR_STAT_NPORPINRST_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_STAT_NPORPINRST register field value. */
-#define ALT_RSTMGR_STAT_NPORPINRST_SET_MSK    0x00000002
+    #define ALT_RSTMGR_STAT_NPORPINRST_SET_MSK    0x00000002
 /* The mask used to clear the ALT_RSTMGR_STAT_NPORPINRST register field value. */
-#define ALT_RSTMGR_STAT_NPORPINRST_CLR_MSK    0xfffffffd
+    #define ALT_RSTMGR_STAT_NPORPINRST_CLR_MSK    0xfffffffd
 /* The reset value of the ALT_RSTMGR_STAT_NPORPINRST register field. */
-#define ALT_RSTMGR_STAT_NPORPINRST_RESET      0x0
+    #define ALT_RSTMGR_STAT_NPORPINRST_RESET      0x0
 /* Extracts the ALT_RSTMGR_STAT_NPORPINRST field value from a register. */
-#define ALT_RSTMGR_STAT_NPORPINRST_GET(value) (((value) & 0x00000002) >> 1)
+    #define ALT_RSTMGR_STAT_NPORPINRST_GET( value )    ( ( ( value ) & 0x00000002 ) >> 1 )
 /* Produces a ALT_RSTMGR_STAT_NPORPINRST register field value suitable for setting the register. */
-#define ALT_RSTMGR_STAT_NPORPINRST_SET(value) (((value) << 1) & 0x00000002)
+    #define ALT_RSTMGR_STAT_NPORPINRST_SET( value )    ( ( ( value ) << 1 ) & 0x00000002 )
 
 /*
  * Field : FPGA Core Cold Reset - fpgacoldrst
@@ -156,21 +158,21 @@ extern "C"
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_STAT_FPGACOLDRST register field. */
-#define ALT_RSTMGR_STAT_FPGACOLDRST_LSB        2
+    #define ALT_RSTMGR_STAT_FPGACOLDRST_LSB        2
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_STAT_FPGACOLDRST register field. */
-#define ALT_RSTMGR_STAT_FPGACOLDRST_MSB        2
+    #define ALT_RSTMGR_STAT_FPGACOLDRST_MSB        2
 /* The width in bits of the ALT_RSTMGR_STAT_FPGACOLDRST register field. */
-#define ALT_RSTMGR_STAT_FPGACOLDRST_WIDTH      1
+    #define ALT_RSTMGR_STAT_FPGACOLDRST_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_STAT_FPGACOLDRST register field value. */
-#define ALT_RSTMGR_STAT_FPGACOLDRST_SET_MSK    0x00000004
+    #define ALT_RSTMGR_STAT_FPGACOLDRST_SET_MSK    0x00000004
 /* The mask used to clear the ALT_RSTMGR_STAT_FPGACOLDRST register field value. */
-#define ALT_RSTMGR_STAT_FPGACOLDRST_CLR_MSK    0xfffffffb
+    #define ALT_RSTMGR_STAT_FPGACOLDRST_CLR_MSK    0xfffffffb
 /* The reset value of the ALT_RSTMGR_STAT_FPGACOLDRST register field. */
-#define ALT_RSTMGR_STAT_FPGACOLDRST_RESET      0x0
+    #define ALT_RSTMGR_STAT_FPGACOLDRST_RESET      0x0
 /* Extracts the ALT_RSTMGR_STAT_FPGACOLDRST field value from a register. */
-#define ALT_RSTMGR_STAT_FPGACOLDRST_GET(value) (((value) & 0x00000004) >> 2)
+    #define ALT_RSTMGR_STAT_FPGACOLDRST_GET( value )    ( ( ( value ) & 0x00000004 ) >> 2 )
 /* Produces a ALT_RSTMGR_STAT_FPGACOLDRST register field value suitable for setting the register. */
-#define ALT_RSTMGR_STAT_FPGACOLDRST_SET(value) (((value) << 2) & 0x00000004)
+    #define ALT_RSTMGR_STAT_FPGACOLDRST_SET( value )    ( ( ( value ) << 2 ) & 0x00000004 )
 
 /*
  * Field : CONFIG_IO Cold Reset - configiocoldrst
@@ -181,21 +183,21 @@ extern "C"
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_STAT_CFGIOCOLDRST register field. */
-#define ALT_RSTMGR_STAT_CFGIOCOLDRST_LSB        3
+    #define ALT_RSTMGR_STAT_CFGIOCOLDRST_LSB        3
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_STAT_CFGIOCOLDRST register field. */
-#define ALT_RSTMGR_STAT_CFGIOCOLDRST_MSB        3
+    #define ALT_RSTMGR_STAT_CFGIOCOLDRST_MSB        3
 /* The width in bits of the ALT_RSTMGR_STAT_CFGIOCOLDRST register field. */
-#define ALT_RSTMGR_STAT_CFGIOCOLDRST_WIDTH      1
+    #define ALT_RSTMGR_STAT_CFGIOCOLDRST_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_STAT_CFGIOCOLDRST register field value. */
-#define ALT_RSTMGR_STAT_CFGIOCOLDRST_SET_MSK    0x00000008
+    #define ALT_RSTMGR_STAT_CFGIOCOLDRST_SET_MSK    0x00000008
 /* The mask used to clear the ALT_RSTMGR_STAT_CFGIOCOLDRST register field value. */
-#define ALT_RSTMGR_STAT_CFGIOCOLDRST_CLR_MSK    0xfffffff7
+    #define ALT_RSTMGR_STAT_CFGIOCOLDRST_CLR_MSK    0xfffffff7
 /* The reset value of the ALT_RSTMGR_STAT_CFGIOCOLDRST register field. */
-#define ALT_RSTMGR_STAT_CFGIOCOLDRST_RESET      0x0
+    #define ALT_RSTMGR_STAT_CFGIOCOLDRST_RESET      0x0
 /* Extracts the ALT_RSTMGR_STAT_CFGIOCOLDRST field value from a register. */
-#define ALT_RSTMGR_STAT_CFGIOCOLDRST_GET(value) (((value) & 0x00000008) >> 3)
+    #define ALT_RSTMGR_STAT_CFGIOCOLDRST_GET( value )    ( ( ( value ) & 0x00000008 ) >> 3 )
 /* Produces a ALT_RSTMGR_STAT_CFGIOCOLDRST register field value suitable for setting the register. */
-#define ALT_RSTMGR_STAT_CFGIOCOLDRST_SET(value) (((value) << 3) & 0x00000008)
+    #define ALT_RSTMGR_STAT_CFGIOCOLDRST_SET( value )    ( ( ( value ) << 3 ) & 0x00000008 )
 
 /*
  * Field : Software Cold Reset - swcoldrst
@@ -206,21 +208,21 @@ extern "C"
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_STAT_SWCOLDRST register field. */
-#define ALT_RSTMGR_STAT_SWCOLDRST_LSB        4
+    #define ALT_RSTMGR_STAT_SWCOLDRST_LSB        4
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_STAT_SWCOLDRST register field. */
-#define ALT_RSTMGR_STAT_SWCOLDRST_MSB        4
+    #define ALT_RSTMGR_STAT_SWCOLDRST_MSB        4
 /* The width in bits of the ALT_RSTMGR_STAT_SWCOLDRST register field. */
-#define ALT_RSTMGR_STAT_SWCOLDRST_WIDTH      1
+    #define ALT_RSTMGR_STAT_SWCOLDRST_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_STAT_SWCOLDRST register field value. */
-#define ALT_RSTMGR_STAT_SWCOLDRST_SET_MSK    0x00000010
+    #define ALT_RSTMGR_STAT_SWCOLDRST_SET_MSK    0x00000010
 /* The mask used to clear the ALT_RSTMGR_STAT_SWCOLDRST register field value. */
-#define ALT_RSTMGR_STAT_SWCOLDRST_CLR_MSK    0xffffffef
+    #define ALT_RSTMGR_STAT_SWCOLDRST_CLR_MSK    0xffffffef
 /* The reset value of the ALT_RSTMGR_STAT_SWCOLDRST register field. */
-#define ALT_RSTMGR_STAT_SWCOLDRST_RESET      0x0
+    #define ALT_RSTMGR_STAT_SWCOLDRST_RESET      0x0
 /* Extracts the ALT_RSTMGR_STAT_SWCOLDRST field value from a register. */
-#define ALT_RSTMGR_STAT_SWCOLDRST_GET(value) (((value) & 0x00000010) >> 4)
+    #define ALT_RSTMGR_STAT_SWCOLDRST_GET( value )    ( ( ( value ) & 0x00000010 ) >> 4 )
 /* Produces a ALT_RSTMGR_STAT_SWCOLDRST register field value suitable for setting the register. */
-#define ALT_RSTMGR_STAT_SWCOLDRST_SET(value) (((value) << 4) & 0x00000010)
+    #define ALT_RSTMGR_STAT_SWCOLDRST_SET( value )    ( ( ( value ) << 4 ) & 0x00000010 )
 
 /*
  * Field : nRST Pin Warm Reset - nrstpinrst
@@ -231,21 +233,21 @@ extern "C"
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_STAT_NRSTPINRST register field. */
-#define ALT_RSTMGR_STAT_NRSTPINRST_LSB        8
+    #define ALT_RSTMGR_STAT_NRSTPINRST_LSB        8
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_STAT_NRSTPINRST register field. */
-#define ALT_RSTMGR_STAT_NRSTPINRST_MSB        8
+    #define ALT_RSTMGR_STAT_NRSTPINRST_MSB        8
 /* The width in bits of the ALT_RSTMGR_STAT_NRSTPINRST register field. */
-#define ALT_RSTMGR_STAT_NRSTPINRST_WIDTH      1
+    #define ALT_RSTMGR_STAT_NRSTPINRST_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_STAT_NRSTPINRST register field value. */
-#define ALT_RSTMGR_STAT_NRSTPINRST_SET_MSK    0x00000100
+    #define ALT_RSTMGR_STAT_NRSTPINRST_SET_MSK    0x00000100
 /* The mask used to clear the ALT_RSTMGR_STAT_NRSTPINRST register field value. */
-#define ALT_RSTMGR_STAT_NRSTPINRST_CLR_MSK    0xfffffeff
+    #define ALT_RSTMGR_STAT_NRSTPINRST_CLR_MSK    0xfffffeff
 /* The reset value of the ALT_RSTMGR_STAT_NRSTPINRST register field. */
-#define ALT_RSTMGR_STAT_NRSTPINRST_RESET      0x0
+    #define ALT_RSTMGR_STAT_NRSTPINRST_RESET      0x0
 /* Extracts the ALT_RSTMGR_STAT_NRSTPINRST field value from a register. */
-#define ALT_RSTMGR_STAT_NRSTPINRST_GET(value) (((value) & 0x00000100) >> 8)
+    #define ALT_RSTMGR_STAT_NRSTPINRST_GET( value )    ( ( ( value ) & 0x00000100 ) >> 8 )
 /* Produces a ALT_RSTMGR_STAT_NRSTPINRST register field value suitable for setting the register. */
-#define ALT_RSTMGR_STAT_NRSTPINRST_SET(value) (((value) << 8) & 0x00000100)
+    #define ALT_RSTMGR_STAT_NRSTPINRST_SET( value )    ( ( ( value ) << 8 ) & 0x00000100 )
 
 /*
  * Field : FPGA Core Warm Reset - fpgawarmrst
@@ -256,21 +258,21 @@ extern "C"
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_STAT_FPGAWARMRST register field. */
-#define ALT_RSTMGR_STAT_FPGAWARMRST_LSB        9
+    #define ALT_RSTMGR_STAT_FPGAWARMRST_LSB        9
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_STAT_FPGAWARMRST register field. */
-#define ALT_RSTMGR_STAT_FPGAWARMRST_MSB        9
+    #define ALT_RSTMGR_STAT_FPGAWARMRST_MSB        9
 /* The width in bits of the ALT_RSTMGR_STAT_FPGAWARMRST register field. */
-#define ALT_RSTMGR_STAT_FPGAWARMRST_WIDTH      1
+    #define ALT_RSTMGR_STAT_FPGAWARMRST_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_STAT_FPGAWARMRST register field value. */
-#define ALT_RSTMGR_STAT_FPGAWARMRST_SET_MSK    0x00000200
+    #define ALT_RSTMGR_STAT_FPGAWARMRST_SET_MSK    0x00000200
 /* The mask used to clear the ALT_RSTMGR_STAT_FPGAWARMRST register field value. */
-#define ALT_RSTMGR_STAT_FPGAWARMRST_CLR_MSK    0xfffffdff
+    #define ALT_RSTMGR_STAT_FPGAWARMRST_CLR_MSK    0xfffffdff
 /* The reset value of the ALT_RSTMGR_STAT_FPGAWARMRST register field. */
-#define ALT_RSTMGR_STAT_FPGAWARMRST_RESET      0x0
+    #define ALT_RSTMGR_STAT_FPGAWARMRST_RESET      0x0
 /* Extracts the ALT_RSTMGR_STAT_FPGAWARMRST field value from a register. */
-#define ALT_RSTMGR_STAT_FPGAWARMRST_GET(value) (((value) & 0x00000200) >> 9)
+    #define ALT_RSTMGR_STAT_FPGAWARMRST_GET( value )    ( ( ( value ) & 0x00000200 ) >> 9 )
 /* Produces a ALT_RSTMGR_STAT_FPGAWARMRST register field value suitable for setting the register. */
-#define ALT_RSTMGR_STAT_FPGAWARMRST_SET(value) (((value) << 9) & 0x00000200)
+    #define ALT_RSTMGR_STAT_FPGAWARMRST_SET( value )    ( ( ( value ) << 9 ) & 0x00000200 )
 
 /*
  * Field : Software Warm Reset - swwarmrst
@@ -282,21 +284,21 @@ extern "C"
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_STAT_SWWARMRST register field. */
-#define ALT_RSTMGR_STAT_SWWARMRST_LSB        10
+    #define ALT_RSTMGR_STAT_SWWARMRST_LSB        10
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_STAT_SWWARMRST register field. */
-#define ALT_RSTMGR_STAT_SWWARMRST_MSB        10
+    #define ALT_RSTMGR_STAT_SWWARMRST_MSB        10
 /* The width in bits of the ALT_RSTMGR_STAT_SWWARMRST register field. */
-#define ALT_RSTMGR_STAT_SWWARMRST_WIDTH      1
+    #define ALT_RSTMGR_STAT_SWWARMRST_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_STAT_SWWARMRST register field value. */
-#define ALT_RSTMGR_STAT_SWWARMRST_SET_MSK    0x00000400
+    #define ALT_RSTMGR_STAT_SWWARMRST_SET_MSK    0x00000400
 /* The mask used to clear the ALT_RSTMGR_STAT_SWWARMRST register field value. */
-#define ALT_RSTMGR_STAT_SWWARMRST_CLR_MSK    0xfffffbff
+    #define ALT_RSTMGR_STAT_SWWARMRST_CLR_MSK    0xfffffbff
 /* The reset value of the ALT_RSTMGR_STAT_SWWARMRST register field. */
-#define ALT_RSTMGR_STAT_SWWARMRST_RESET      0x0
+    #define ALT_RSTMGR_STAT_SWWARMRST_RESET      0x0
 /* Extracts the ALT_RSTMGR_STAT_SWWARMRST field value from a register. */
-#define ALT_RSTMGR_STAT_SWWARMRST_GET(value) (((value) & 0x00000400) >> 10)
+    #define ALT_RSTMGR_STAT_SWWARMRST_GET( value )    ( ( ( value ) & 0x00000400 ) >> 10 )
 /* Produces a ALT_RSTMGR_STAT_SWWARMRST register field value suitable for setting the register. */
-#define ALT_RSTMGR_STAT_SWWARMRST_SET(value) (((value) << 10) & 0x00000400)
+    #define ALT_RSTMGR_STAT_SWWARMRST_SET( value )    ( ( ( value ) << 10 ) & 0x00000400 )
 
 /*
  * Field : MPU Watchdog 0 Warm Reset - mpuwd0rst
@@ -307,21 +309,21 @@ extern "C"
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_STAT_MPUWD0RST register field. */
-#define ALT_RSTMGR_STAT_MPUWD0RST_LSB        12
+    #define ALT_RSTMGR_STAT_MPUWD0RST_LSB        12
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_STAT_MPUWD0RST register field. */
-#define ALT_RSTMGR_STAT_MPUWD0RST_MSB        12
+    #define ALT_RSTMGR_STAT_MPUWD0RST_MSB        12
 /* The width in bits of the ALT_RSTMGR_STAT_MPUWD0RST register field. */
-#define ALT_RSTMGR_STAT_MPUWD0RST_WIDTH      1
+    #define ALT_RSTMGR_STAT_MPUWD0RST_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_STAT_MPUWD0RST register field value. */
-#define ALT_RSTMGR_STAT_MPUWD0RST_SET_MSK    0x00001000
+    #define ALT_RSTMGR_STAT_MPUWD0RST_SET_MSK    0x00001000
 /* The mask used to clear the ALT_RSTMGR_STAT_MPUWD0RST register field value. */
-#define ALT_RSTMGR_STAT_MPUWD0RST_CLR_MSK    0xffffefff
+    #define ALT_RSTMGR_STAT_MPUWD0RST_CLR_MSK    0xffffefff
 /* The reset value of the ALT_RSTMGR_STAT_MPUWD0RST register field. */
-#define ALT_RSTMGR_STAT_MPUWD0RST_RESET      0x0
+    #define ALT_RSTMGR_STAT_MPUWD0RST_RESET      0x0
 /* Extracts the ALT_RSTMGR_STAT_MPUWD0RST field value from a register. */
-#define ALT_RSTMGR_STAT_MPUWD0RST_GET(value) (((value) & 0x00001000) >> 12)
+    #define ALT_RSTMGR_STAT_MPUWD0RST_GET( value )    ( ( ( value ) & 0x00001000 ) >> 12 )
 /* Produces a ALT_RSTMGR_STAT_MPUWD0RST register field value suitable for setting the register. */
-#define ALT_RSTMGR_STAT_MPUWD0RST_SET(value) (((value) << 12) & 0x00001000)
+    #define ALT_RSTMGR_STAT_MPUWD0RST_SET( value )    ( ( ( value ) << 12 ) & 0x00001000 )
 
 /*
  * Field : MPU Watchdog 1 Warm Reset - mpuwd1rst
@@ -332,21 +334,21 @@ extern "C"
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_STAT_MPUWD1RST register field. */
-#define ALT_RSTMGR_STAT_MPUWD1RST_LSB        13
+    #define ALT_RSTMGR_STAT_MPUWD1RST_LSB        13
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_STAT_MPUWD1RST register field. */
-#define ALT_RSTMGR_STAT_MPUWD1RST_MSB        13
+    #define ALT_RSTMGR_STAT_MPUWD1RST_MSB        13
 /* The width in bits of the ALT_RSTMGR_STAT_MPUWD1RST register field. */
-#define ALT_RSTMGR_STAT_MPUWD1RST_WIDTH      1
+    #define ALT_RSTMGR_STAT_MPUWD1RST_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_STAT_MPUWD1RST register field value. */
-#define ALT_RSTMGR_STAT_MPUWD1RST_SET_MSK    0x00002000
+    #define ALT_RSTMGR_STAT_MPUWD1RST_SET_MSK    0x00002000
 /* The mask used to clear the ALT_RSTMGR_STAT_MPUWD1RST register field value. */
-#define ALT_RSTMGR_STAT_MPUWD1RST_CLR_MSK    0xffffdfff
+    #define ALT_RSTMGR_STAT_MPUWD1RST_CLR_MSK    0xffffdfff
 /* The reset value of the ALT_RSTMGR_STAT_MPUWD1RST register field. */
-#define ALT_RSTMGR_STAT_MPUWD1RST_RESET      0x0
+    #define ALT_RSTMGR_STAT_MPUWD1RST_RESET      0x0
 /* Extracts the ALT_RSTMGR_STAT_MPUWD1RST field value from a register. */
-#define ALT_RSTMGR_STAT_MPUWD1RST_GET(value) (((value) & 0x00002000) >> 13)
+    #define ALT_RSTMGR_STAT_MPUWD1RST_GET( value )    ( ( ( value ) & 0x00002000 ) >> 13 )
 /* Produces a ALT_RSTMGR_STAT_MPUWD1RST register field value suitable for setting the register. */
-#define ALT_RSTMGR_STAT_MPUWD1RST_SET(value) (((value) << 13) & 0x00002000)
+    #define ALT_RSTMGR_STAT_MPUWD1RST_SET( value )    ( ( ( value ) << 13 ) & 0x00002000 )
 
 /*
  * Field : L4 Watchdog 0 Warm Reset - l4wd0rst
@@ -357,21 +359,21 @@ extern "C"
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_STAT_L4WD0RST register field. */
-#define ALT_RSTMGR_STAT_L4WD0RST_LSB        14
+    #define ALT_RSTMGR_STAT_L4WD0RST_LSB        14
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_STAT_L4WD0RST register field. */
-#define ALT_RSTMGR_STAT_L4WD0RST_MSB        14
+    #define ALT_RSTMGR_STAT_L4WD0RST_MSB        14
 /* The width in bits of the ALT_RSTMGR_STAT_L4WD0RST register field. */
-#define ALT_RSTMGR_STAT_L4WD0RST_WIDTH      1
+    #define ALT_RSTMGR_STAT_L4WD0RST_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_STAT_L4WD0RST register field value. */
-#define ALT_RSTMGR_STAT_L4WD0RST_SET_MSK    0x00004000
+    #define ALT_RSTMGR_STAT_L4WD0RST_SET_MSK    0x00004000
 /* The mask used to clear the ALT_RSTMGR_STAT_L4WD0RST register field value. */
-#define ALT_RSTMGR_STAT_L4WD0RST_CLR_MSK    0xffffbfff
+    #define ALT_RSTMGR_STAT_L4WD0RST_CLR_MSK    0xffffbfff
 /* The reset value of the ALT_RSTMGR_STAT_L4WD0RST register field. */
-#define ALT_RSTMGR_STAT_L4WD0RST_RESET      0x0
+    #define ALT_RSTMGR_STAT_L4WD0RST_RESET      0x0
 /* Extracts the ALT_RSTMGR_STAT_L4WD0RST field value from a register. */
-#define ALT_RSTMGR_STAT_L4WD0RST_GET(value) (((value) & 0x00004000) >> 14)
+    #define ALT_RSTMGR_STAT_L4WD0RST_GET( value )    ( ( ( value ) & 0x00004000 ) >> 14 )
 /* Produces a ALT_RSTMGR_STAT_L4WD0RST register field value suitable for setting the register. */
-#define ALT_RSTMGR_STAT_L4WD0RST_SET(value) (((value) << 14) & 0x00004000)
+    #define ALT_RSTMGR_STAT_L4WD0RST_SET( value )    ( ( ( value ) << 14 ) & 0x00004000 )
 
 /*
  * Field : L4 Watchdog 1 Warm Reset - l4wd1rst
@@ -382,21 +384,21 @@ extern "C"
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_STAT_L4WD1RST register field. */
-#define ALT_RSTMGR_STAT_L4WD1RST_LSB        15
+    #define ALT_RSTMGR_STAT_L4WD1RST_LSB        15
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_STAT_L4WD1RST register field. */
-#define ALT_RSTMGR_STAT_L4WD1RST_MSB        15
+    #define ALT_RSTMGR_STAT_L4WD1RST_MSB        15
 /* The width in bits of the ALT_RSTMGR_STAT_L4WD1RST register field. */
-#define ALT_RSTMGR_STAT_L4WD1RST_WIDTH      1
+    #define ALT_RSTMGR_STAT_L4WD1RST_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_STAT_L4WD1RST register field value. */
-#define ALT_RSTMGR_STAT_L4WD1RST_SET_MSK    0x00008000
+    #define ALT_RSTMGR_STAT_L4WD1RST_SET_MSK    0x00008000
 /* The mask used to clear the ALT_RSTMGR_STAT_L4WD1RST register field value. */
-#define ALT_RSTMGR_STAT_L4WD1RST_CLR_MSK    0xffff7fff
+    #define ALT_RSTMGR_STAT_L4WD1RST_CLR_MSK    0xffff7fff
 /* The reset value of the ALT_RSTMGR_STAT_L4WD1RST register field. */
-#define ALT_RSTMGR_STAT_L4WD1RST_RESET      0x0
+    #define ALT_RSTMGR_STAT_L4WD1RST_RESET      0x0
 /* Extracts the ALT_RSTMGR_STAT_L4WD1RST field value from a register. */
-#define ALT_RSTMGR_STAT_L4WD1RST_GET(value) (((value) & 0x00008000) >> 15)
+    #define ALT_RSTMGR_STAT_L4WD1RST_GET( value )    ( ( ( value ) & 0x00008000 ) >> 15 )
 /* Produces a ALT_RSTMGR_STAT_L4WD1RST register field value suitable for setting the register. */
-#define ALT_RSTMGR_STAT_L4WD1RST_SET(value) (((value) << 15) & 0x00008000)
+    #define ALT_RSTMGR_STAT_L4WD1RST_SET( value )    ( ( ( value ) << 15 ) & 0x00008000 )
 
 /*
  * Field : FPGA Core Debug Reset - fpgadbgrst
@@ -407,21 +409,21 @@ extern "C"
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_STAT_FPGADBGRST register field. */
-#define ALT_RSTMGR_STAT_FPGADBGRST_LSB        18
+    #define ALT_RSTMGR_STAT_FPGADBGRST_LSB        18
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_STAT_FPGADBGRST register field. */
-#define ALT_RSTMGR_STAT_FPGADBGRST_MSB        18
+    #define ALT_RSTMGR_STAT_FPGADBGRST_MSB        18
 /* The width in bits of the ALT_RSTMGR_STAT_FPGADBGRST register field. */
-#define ALT_RSTMGR_STAT_FPGADBGRST_WIDTH      1
+    #define ALT_RSTMGR_STAT_FPGADBGRST_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_STAT_FPGADBGRST register field value. */
-#define ALT_RSTMGR_STAT_FPGADBGRST_SET_MSK    0x00040000
+    #define ALT_RSTMGR_STAT_FPGADBGRST_SET_MSK    0x00040000
 /* The mask used to clear the ALT_RSTMGR_STAT_FPGADBGRST register field value. */
-#define ALT_RSTMGR_STAT_FPGADBGRST_CLR_MSK    0xfffbffff
+    #define ALT_RSTMGR_STAT_FPGADBGRST_CLR_MSK    0xfffbffff
 /* The reset value of the ALT_RSTMGR_STAT_FPGADBGRST register field. */
-#define ALT_RSTMGR_STAT_FPGADBGRST_RESET      0x0
+    #define ALT_RSTMGR_STAT_FPGADBGRST_RESET      0x0
 /* Extracts the ALT_RSTMGR_STAT_FPGADBGRST field value from a register. */
-#define ALT_RSTMGR_STAT_FPGADBGRST_GET(value) (((value) & 0x00040000) >> 18)
+    #define ALT_RSTMGR_STAT_FPGADBGRST_GET( value )    ( ( ( value ) & 0x00040000 ) >> 18 )
 /* Produces a ALT_RSTMGR_STAT_FPGADBGRST register field value suitable for setting the register. */
-#define ALT_RSTMGR_STAT_FPGADBGRST_SET(value) (((value) << 18) & 0x00040000)
+    #define ALT_RSTMGR_STAT_FPGADBGRST_SET( value )    ( ( ( value ) << 18 ) & 0x00040000 )
 
 /*
  * Field : DAP Debug Reset - cdbgreqrst
@@ -432,21 +434,21 @@ extern "C"
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_STAT_CDBGREQRST register field. */
-#define ALT_RSTMGR_STAT_CDBGREQRST_LSB        19
+    #define ALT_RSTMGR_STAT_CDBGREQRST_LSB        19
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_STAT_CDBGREQRST register field. */
-#define ALT_RSTMGR_STAT_CDBGREQRST_MSB        19
+    #define ALT_RSTMGR_STAT_CDBGREQRST_MSB        19
 /* The width in bits of the ALT_RSTMGR_STAT_CDBGREQRST register field. */
-#define ALT_RSTMGR_STAT_CDBGREQRST_WIDTH      1
+    #define ALT_RSTMGR_STAT_CDBGREQRST_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_STAT_CDBGREQRST register field value. */
-#define ALT_RSTMGR_STAT_CDBGREQRST_SET_MSK    0x00080000
+    #define ALT_RSTMGR_STAT_CDBGREQRST_SET_MSK    0x00080000
 /* The mask used to clear the ALT_RSTMGR_STAT_CDBGREQRST register field value. */
-#define ALT_RSTMGR_STAT_CDBGREQRST_CLR_MSK    0xfff7ffff
+    #define ALT_RSTMGR_STAT_CDBGREQRST_CLR_MSK    0xfff7ffff
 /* The reset value of the ALT_RSTMGR_STAT_CDBGREQRST register field. */
-#define ALT_RSTMGR_STAT_CDBGREQRST_RESET      0x0
+    #define ALT_RSTMGR_STAT_CDBGREQRST_RESET      0x0
 /* Extracts the ALT_RSTMGR_STAT_CDBGREQRST field value from a register. */
-#define ALT_RSTMGR_STAT_CDBGREQRST_GET(value) (((value) & 0x00080000) >> 19)
+    #define ALT_RSTMGR_STAT_CDBGREQRST_GET( value )    ( ( ( value ) & 0x00080000 ) >> 19 )
 /* Produces a ALT_RSTMGR_STAT_CDBGREQRST register field value suitable for setting the register. */
-#define ALT_RSTMGR_STAT_CDBGREQRST_SET(value) (((value) << 19) & 0x00080000)
+    #define ALT_RSTMGR_STAT_CDBGREQRST_SET( value )    ( ( ( value ) << 19 ) & 0x00080000 )
 
 /*
  * Field : SDRAM Self-Refresh Timeout - sdrselfreftimeout
@@ -460,21 +462,21 @@ extern "C"
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_STAT_SDRSELFREFTMO register field. */
-#define ALT_RSTMGR_STAT_SDRSELFREFTMO_LSB        24
+    #define ALT_RSTMGR_STAT_SDRSELFREFTMO_LSB        24
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_STAT_SDRSELFREFTMO register field. */
-#define ALT_RSTMGR_STAT_SDRSELFREFTMO_MSB        24
+    #define ALT_RSTMGR_STAT_SDRSELFREFTMO_MSB        24
 /* The width in bits of the ALT_RSTMGR_STAT_SDRSELFREFTMO register field. */
-#define ALT_RSTMGR_STAT_SDRSELFREFTMO_WIDTH      1
+    #define ALT_RSTMGR_STAT_SDRSELFREFTMO_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_STAT_SDRSELFREFTMO register field value. */
-#define ALT_RSTMGR_STAT_SDRSELFREFTMO_SET_MSK    0x01000000
+    #define ALT_RSTMGR_STAT_SDRSELFREFTMO_SET_MSK    0x01000000
 /* The mask used to clear the ALT_RSTMGR_STAT_SDRSELFREFTMO register field value. */
-#define ALT_RSTMGR_STAT_SDRSELFREFTMO_CLR_MSK    0xfeffffff
+    #define ALT_RSTMGR_STAT_SDRSELFREFTMO_CLR_MSK    0xfeffffff
 /* The reset value of the ALT_RSTMGR_STAT_SDRSELFREFTMO register field. */
-#define ALT_RSTMGR_STAT_SDRSELFREFTMO_RESET      0x0
+    #define ALT_RSTMGR_STAT_SDRSELFREFTMO_RESET      0x0
 /* Extracts the ALT_RSTMGR_STAT_SDRSELFREFTMO field value from a register. */
-#define ALT_RSTMGR_STAT_SDRSELFREFTMO_GET(value) (((value) & 0x01000000) >> 24)
+    #define ALT_RSTMGR_STAT_SDRSELFREFTMO_GET( value )    ( ( ( value ) & 0x01000000 ) >> 24 )
 /* Produces a ALT_RSTMGR_STAT_SDRSELFREFTMO register field value suitable for setting the register. */
-#define ALT_RSTMGR_STAT_SDRSELFREFTMO_SET(value) (((value) << 24) & 0x01000000)
+    #define ALT_RSTMGR_STAT_SDRSELFREFTMO_SET( value )    ( ( ( value ) << 24 ) & 0x01000000 )
 
 /*
  * Field : FPGA manager handshake Timeout - fpgamgrhstimeout
@@ -487,21 +489,21 @@ extern "C"
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_STAT_FPGAMGRHSTMO register field. */
-#define ALT_RSTMGR_STAT_FPGAMGRHSTMO_LSB        25
+    #define ALT_RSTMGR_STAT_FPGAMGRHSTMO_LSB        25
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_STAT_FPGAMGRHSTMO register field. */
-#define ALT_RSTMGR_STAT_FPGAMGRHSTMO_MSB        25
+    #define ALT_RSTMGR_STAT_FPGAMGRHSTMO_MSB        25
 /* The width in bits of the ALT_RSTMGR_STAT_FPGAMGRHSTMO register field. */
-#define ALT_RSTMGR_STAT_FPGAMGRHSTMO_WIDTH      1
+    #define ALT_RSTMGR_STAT_FPGAMGRHSTMO_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_STAT_FPGAMGRHSTMO register field value. */
-#define ALT_RSTMGR_STAT_FPGAMGRHSTMO_SET_MSK    0x02000000
+    #define ALT_RSTMGR_STAT_FPGAMGRHSTMO_SET_MSK    0x02000000
 /* The mask used to clear the ALT_RSTMGR_STAT_FPGAMGRHSTMO register field value. */
-#define ALT_RSTMGR_STAT_FPGAMGRHSTMO_CLR_MSK    0xfdffffff
+    #define ALT_RSTMGR_STAT_FPGAMGRHSTMO_CLR_MSK    0xfdffffff
 /* The reset value of the ALT_RSTMGR_STAT_FPGAMGRHSTMO register field. */
-#define ALT_RSTMGR_STAT_FPGAMGRHSTMO_RESET      0x0
+    #define ALT_RSTMGR_STAT_FPGAMGRHSTMO_RESET      0x0
 /* Extracts the ALT_RSTMGR_STAT_FPGAMGRHSTMO field value from a register. */
-#define ALT_RSTMGR_STAT_FPGAMGRHSTMO_GET(value) (((value) & 0x02000000) >> 25)
+    #define ALT_RSTMGR_STAT_FPGAMGRHSTMO_GET( value )    ( ( ( value ) & 0x02000000 ) >> 25 )
 /* Produces a ALT_RSTMGR_STAT_FPGAMGRHSTMO register field value suitable for setting the register. */
-#define ALT_RSTMGR_STAT_FPGAMGRHSTMO_SET(value) (((value) << 25) & 0x02000000)
+    #define ALT_RSTMGR_STAT_FPGAMGRHSTMO_SET( value )    ( ( ( value ) << 25 ) & 0x02000000 )
 
 /*
  * Field : SCAN manager handshake Timeout - scanhstimeout
@@ -514,21 +516,21 @@ extern "C"
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_STAT_SCANHSTMO register field. */
-#define ALT_RSTMGR_STAT_SCANHSTMO_LSB        26
+    #define ALT_RSTMGR_STAT_SCANHSTMO_LSB        26
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_STAT_SCANHSTMO register field. */
-#define ALT_RSTMGR_STAT_SCANHSTMO_MSB        26
+    #define ALT_RSTMGR_STAT_SCANHSTMO_MSB        26
 /* The width in bits of the ALT_RSTMGR_STAT_SCANHSTMO register field. */
-#define ALT_RSTMGR_STAT_SCANHSTMO_WIDTH      1
+    #define ALT_RSTMGR_STAT_SCANHSTMO_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_STAT_SCANHSTMO register field value. */
-#define ALT_RSTMGR_STAT_SCANHSTMO_SET_MSK    0x04000000
+    #define ALT_RSTMGR_STAT_SCANHSTMO_SET_MSK    0x04000000
 /* The mask used to clear the ALT_RSTMGR_STAT_SCANHSTMO register field value. */
-#define ALT_RSTMGR_STAT_SCANHSTMO_CLR_MSK    0xfbffffff
+    #define ALT_RSTMGR_STAT_SCANHSTMO_CLR_MSK    0xfbffffff
 /* The reset value of the ALT_RSTMGR_STAT_SCANHSTMO register field. */
-#define ALT_RSTMGR_STAT_SCANHSTMO_RESET      0x0
+    #define ALT_RSTMGR_STAT_SCANHSTMO_RESET      0x0
 /* Extracts the ALT_RSTMGR_STAT_SCANHSTMO field value from a register. */
-#define ALT_RSTMGR_STAT_SCANHSTMO_GET(value) (((value) & 0x04000000) >> 26)
+    #define ALT_RSTMGR_STAT_SCANHSTMO_GET( value )    ( ( ( value ) & 0x04000000 ) >> 26 )
 /* Produces a ALT_RSTMGR_STAT_SCANHSTMO register field value suitable for setting the register. */
-#define ALT_RSTMGR_STAT_SCANHSTMO_SET(value) (((value) << 26) & 0x04000000)
+    #define ALT_RSTMGR_STAT_SCANHSTMO_SET( value )    ( ( ( value ) << 26 ) & 0x04000000 )
 
 /*
  * Field : FPGA handshake Timeout - fpgahstimeout
@@ -541,21 +543,21 @@ extern "C"
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_STAT_FPGAHSTMO register field. */
-#define ALT_RSTMGR_STAT_FPGAHSTMO_LSB        27
+    #define ALT_RSTMGR_STAT_FPGAHSTMO_LSB        27
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_STAT_FPGAHSTMO register field. */
-#define ALT_RSTMGR_STAT_FPGAHSTMO_MSB        27
+    #define ALT_RSTMGR_STAT_FPGAHSTMO_MSB        27
 /* The width in bits of the ALT_RSTMGR_STAT_FPGAHSTMO register field. */
-#define ALT_RSTMGR_STAT_FPGAHSTMO_WIDTH      1
+    #define ALT_RSTMGR_STAT_FPGAHSTMO_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_STAT_FPGAHSTMO register field value. */
-#define ALT_RSTMGR_STAT_FPGAHSTMO_SET_MSK    0x08000000
+    #define ALT_RSTMGR_STAT_FPGAHSTMO_SET_MSK    0x08000000
 /* The mask used to clear the ALT_RSTMGR_STAT_FPGAHSTMO register field value. */
-#define ALT_RSTMGR_STAT_FPGAHSTMO_CLR_MSK    0xf7ffffff
+    #define ALT_RSTMGR_STAT_FPGAHSTMO_CLR_MSK    0xf7ffffff
 /* The reset value of the ALT_RSTMGR_STAT_FPGAHSTMO register field. */
-#define ALT_RSTMGR_STAT_FPGAHSTMO_RESET      0x0
+    #define ALT_RSTMGR_STAT_FPGAHSTMO_RESET      0x0
 /* Extracts the ALT_RSTMGR_STAT_FPGAHSTMO field value from a register. */
-#define ALT_RSTMGR_STAT_FPGAHSTMO_GET(value) (((value) & 0x08000000) >> 27)
+    #define ALT_RSTMGR_STAT_FPGAHSTMO_GET( value )    ( ( ( value ) & 0x08000000 ) >> 27 )
 /* Produces a ALT_RSTMGR_STAT_FPGAHSTMO register field value suitable for setting the register. */
-#define ALT_RSTMGR_STAT_FPGAHSTMO_SET(value) (((value) << 27) & 0x08000000)
+    #define ALT_RSTMGR_STAT_FPGAHSTMO_SET( value )    ( ( ( value ) << 27 ) & 0x08000000 )
 
 /*
  * Field : ETR Stall Timeout - etrstalltimeout
@@ -568,23 +570,24 @@ extern "C"
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_STAT_ETRSTALLTMO register field. */
-#define ALT_RSTMGR_STAT_ETRSTALLTMO_LSB        28
+    #define ALT_RSTMGR_STAT_ETRSTALLTMO_LSB        28
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_STAT_ETRSTALLTMO register field. */
-#define ALT_RSTMGR_STAT_ETRSTALLTMO_MSB        28
+    #define ALT_RSTMGR_STAT_ETRSTALLTMO_MSB        28
 /* The width in bits of the ALT_RSTMGR_STAT_ETRSTALLTMO register field. */
-#define ALT_RSTMGR_STAT_ETRSTALLTMO_WIDTH      1
+    #define ALT_RSTMGR_STAT_ETRSTALLTMO_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_STAT_ETRSTALLTMO register field value. */
-#define ALT_RSTMGR_STAT_ETRSTALLTMO_SET_MSK    0x10000000
+    #define ALT_RSTMGR_STAT_ETRSTALLTMO_SET_MSK    0x10000000
 /* The mask used to clear the ALT_RSTMGR_STAT_ETRSTALLTMO register field value. */
-#define ALT_RSTMGR_STAT_ETRSTALLTMO_CLR_MSK    0xefffffff
+    #define ALT_RSTMGR_STAT_ETRSTALLTMO_CLR_MSK    0xefffffff
 /* The reset value of the ALT_RSTMGR_STAT_ETRSTALLTMO register field. */
-#define ALT_RSTMGR_STAT_ETRSTALLTMO_RESET      0x0
+    #define ALT_RSTMGR_STAT_ETRSTALLTMO_RESET      0x0
 /* Extracts the ALT_RSTMGR_STAT_ETRSTALLTMO field value from a register. */
-#define ALT_RSTMGR_STAT_ETRSTALLTMO_GET(value) (((value) & 0x10000000) >> 28)
+    #define ALT_RSTMGR_STAT_ETRSTALLTMO_GET( value )    ( ( ( value ) & 0x10000000 ) >> 28 )
 /* Produces a ALT_RSTMGR_STAT_ETRSTALLTMO register field value suitable for setting the register. */
-#define ALT_RSTMGR_STAT_ETRSTALLTMO_SET(value) (((value) << 28) & 0x10000000)
+    #define ALT_RSTMGR_STAT_ETRSTALLTMO_SET( value )    ( ( ( value ) << 28 ) & 0x10000000 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -595,40 +598,40 @@ extern "C"
  *
  * The struct declaration for register ALT_RSTMGR_STAT.
  */
-struct ALT_RSTMGR_STAT_s
-{
-    uint32_t  porvoltrst        :  1;  /* Power-On Voltage Detector Cold Reset */
-    uint32_t  nporpinrst        :  1;  /* nPOR Pin Cold Reset */
-    uint32_t  fpgacoldrst       :  1;  /* FPGA Core Cold Reset */
-    uint32_t  configiocoldrst   :  1;  /* CONFIG_IO Cold Reset */
-    uint32_t  swcoldrst         :  1;  /* Software Cold Reset */
-    uint32_t                    :  3;  /* *UNDEFINED* */
-    uint32_t  nrstpinrst        :  1;  /* nRST Pin Warm Reset */
-    uint32_t  fpgawarmrst       :  1;  /* FPGA Core Warm Reset */
-    uint32_t  swwarmrst         :  1;  /* Software Warm Reset */
-    uint32_t                    :  1;  /* *UNDEFINED* */
-    uint32_t  mpuwd0rst         :  1;  /* MPU Watchdog 0 Warm Reset */
-    uint32_t  mpuwd1rst         :  1;  /* MPU Watchdog 1 Warm Reset */
-    uint32_t  l4wd0rst          :  1;  /* L4 Watchdog 0 Warm Reset */
-    uint32_t  l4wd1rst          :  1;  /* L4 Watchdog 1 Warm Reset */
-    uint32_t                    :  2;  /* *UNDEFINED* */
-    uint32_t  fpgadbgrst        :  1;  /* FPGA Core Debug Reset */
-    uint32_t  cdbgreqrst        :  1;  /* DAP Debug Reset */
-    uint32_t                    :  4;  /* *UNDEFINED* */
-    uint32_t  sdrselfreftimeout :  1;  /* SDRAM Self-Refresh Timeout */
-    uint32_t  fpgamgrhstimeout  :  1;  /* FPGA manager handshake Timeout */
-    uint32_t  scanhstimeout     :  1;  /* SCAN manager handshake Timeout */
-    uint32_t  fpgahstimeout     :  1;  /* FPGA handshake Timeout */
-    uint32_t  etrstalltimeout   :  1;  /* ETR Stall Timeout */
-    uint32_t                    :  3;  /* *UNDEFINED* */
-};
+        struct ALT_RSTMGR_STAT_s
+        {
+            uint32_t porvoltrst        :  1;  /* Power-On Voltage Detector Cold Reset */
+            uint32_t nporpinrst        :  1;  /* nPOR Pin Cold Reset */
+            uint32_t fpgacoldrst       :  1;  /* FPGA Core Cold Reset */
+            uint32_t configiocoldrst   :  1;  /* CONFIG_IO Cold Reset */
+            uint32_t swcoldrst         :  1;  /* Software Cold Reset */
+            uint32_t                    :  3; /* *UNDEFINED* */
+            uint32_t nrstpinrst        :  1;  /* nRST Pin Warm Reset */
+            uint32_t fpgawarmrst       :  1;  /* FPGA Core Warm Reset */
+            uint32_t swwarmrst         :  1;  /* Software Warm Reset */
+            uint32_t                    :  1; /* *UNDEFINED* */
+            uint32_t mpuwd0rst         :  1;  /* MPU Watchdog 0 Warm Reset */
+            uint32_t mpuwd1rst         :  1;  /* MPU Watchdog 1 Warm Reset */
+            uint32_t l4wd0rst          :  1;  /* L4 Watchdog 0 Warm Reset */
+            uint32_t l4wd1rst          :  1;  /* L4 Watchdog 1 Warm Reset */
+            uint32_t                    :  2; /* *UNDEFINED* */
+            uint32_t fpgadbgrst        :  1;  /* FPGA Core Debug Reset */
+            uint32_t cdbgreqrst        :  1;  /* DAP Debug Reset */
+            uint32_t                    :  4; /* *UNDEFINED* */
+            uint32_t sdrselfreftimeout :  1;  /* SDRAM Self-Refresh Timeout */
+            uint32_t fpgamgrhstimeout  :  1;  /* FPGA manager handshake Timeout */
+            uint32_t scanhstimeout     :  1;  /* SCAN manager handshake Timeout */
+            uint32_t fpgahstimeout     :  1;  /* FPGA handshake Timeout */
+            uint32_t etrstalltimeout   :  1;  /* ETR Stall Timeout */
+            uint32_t                    :  3; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_RSTMGR_STAT. */
-typedef volatile struct ALT_RSTMGR_STAT_s  ALT_RSTMGR_STAT_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_RSTMGR_STAT_s ALT_RSTMGR_STAT_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_RSTMGR_STAT register from the beginning of the component. */
-#define ALT_RSTMGR_STAT_OFST        0x0
+    #define ALT_RSTMGR_STAT_OFST    0x0
 
 /*
  * Register : Control Register - ctrl
@@ -672,6 +675,7 @@ typedef volatile struct ALT_RSTMGR_STAT_s  ALT_RSTMGR_STAT_t;
  *  [31:24] | ???    | 0x0     | *UNDEFINED*
  *
  */
+
 /*
  * Field : Software Cold Reset Request - swcoldrstreq
  *
@@ -682,21 +686,21 @@ typedef volatile struct ALT_RSTMGR_STAT_s  ALT_RSTMGR_STAT_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_CTL_SWCOLDRSTREQ register field. */
-#define ALT_RSTMGR_CTL_SWCOLDRSTREQ_LSB        0
+    #define ALT_RSTMGR_CTL_SWCOLDRSTREQ_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_CTL_SWCOLDRSTREQ register field. */
-#define ALT_RSTMGR_CTL_SWCOLDRSTREQ_MSB        0
+    #define ALT_RSTMGR_CTL_SWCOLDRSTREQ_MSB        0
 /* The width in bits of the ALT_RSTMGR_CTL_SWCOLDRSTREQ register field. */
-#define ALT_RSTMGR_CTL_SWCOLDRSTREQ_WIDTH      1
+    #define ALT_RSTMGR_CTL_SWCOLDRSTREQ_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_CTL_SWCOLDRSTREQ register field value. */
-#define ALT_RSTMGR_CTL_SWCOLDRSTREQ_SET_MSK    0x00000001
+    #define ALT_RSTMGR_CTL_SWCOLDRSTREQ_SET_MSK    0x00000001
 /* The mask used to clear the ALT_RSTMGR_CTL_SWCOLDRSTREQ register field value. */
-#define ALT_RSTMGR_CTL_SWCOLDRSTREQ_CLR_MSK    0xfffffffe
+    #define ALT_RSTMGR_CTL_SWCOLDRSTREQ_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_RSTMGR_CTL_SWCOLDRSTREQ register field. */
-#define ALT_RSTMGR_CTL_SWCOLDRSTREQ_RESET      0x0
+    #define ALT_RSTMGR_CTL_SWCOLDRSTREQ_RESET      0x0
 /* Extracts the ALT_RSTMGR_CTL_SWCOLDRSTREQ field value from a register. */
-#define ALT_RSTMGR_CTL_SWCOLDRSTREQ_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_RSTMGR_CTL_SWCOLDRSTREQ_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_RSTMGR_CTL_SWCOLDRSTREQ register field value suitable for setting the register. */
-#define ALT_RSTMGR_CTL_SWCOLDRSTREQ_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_RSTMGR_CTL_SWCOLDRSTREQ_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
 /*
  * Field : Software Warm Reset Request - swwarmrstreq
@@ -708,21 +712,21 @@ typedef volatile struct ALT_RSTMGR_STAT_s  ALT_RSTMGR_STAT_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_CTL_SWWARMRSTREQ register field. */
-#define ALT_RSTMGR_CTL_SWWARMRSTREQ_LSB        1
+    #define ALT_RSTMGR_CTL_SWWARMRSTREQ_LSB        1
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_CTL_SWWARMRSTREQ register field. */
-#define ALT_RSTMGR_CTL_SWWARMRSTREQ_MSB        1
+    #define ALT_RSTMGR_CTL_SWWARMRSTREQ_MSB        1
 /* The width in bits of the ALT_RSTMGR_CTL_SWWARMRSTREQ register field. */
-#define ALT_RSTMGR_CTL_SWWARMRSTREQ_WIDTH      1
+    #define ALT_RSTMGR_CTL_SWWARMRSTREQ_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_CTL_SWWARMRSTREQ register field value. */
-#define ALT_RSTMGR_CTL_SWWARMRSTREQ_SET_MSK    0x00000002
+    #define ALT_RSTMGR_CTL_SWWARMRSTREQ_SET_MSK    0x00000002
 /* The mask used to clear the ALT_RSTMGR_CTL_SWWARMRSTREQ register field value. */
-#define ALT_RSTMGR_CTL_SWWARMRSTREQ_CLR_MSK    0xfffffffd
+    #define ALT_RSTMGR_CTL_SWWARMRSTREQ_CLR_MSK    0xfffffffd
 /* The reset value of the ALT_RSTMGR_CTL_SWWARMRSTREQ register field. */
-#define ALT_RSTMGR_CTL_SWWARMRSTREQ_RESET      0x0
+    #define ALT_RSTMGR_CTL_SWWARMRSTREQ_RESET      0x0
 /* Extracts the ALT_RSTMGR_CTL_SWWARMRSTREQ field value from a register. */
-#define ALT_RSTMGR_CTL_SWWARMRSTREQ_GET(value) (((value) & 0x00000002) >> 1)
+    #define ALT_RSTMGR_CTL_SWWARMRSTREQ_GET( value )    ( ( ( value ) & 0x00000002 ) >> 1 )
 /* Produces a ALT_RSTMGR_CTL_SWWARMRSTREQ register field value suitable for setting the register. */
-#define ALT_RSTMGR_CTL_SWWARMRSTREQ_SET(value) (((value) << 1) & 0x00000002)
+    #define ALT_RSTMGR_CTL_SWWARMRSTREQ_SET( value )    ( ( ( value ) << 1 ) & 0x00000002 )
 
 /*
  * Field : SDRAM Self-Refresh Enable - sdrselfrefen
@@ -737,21 +741,21 @@ typedef volatile struct ALT_RSTMGR_STAT_s  ALT_RSTMGR_STAT_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_CTL_SDRSELFREFEN register field. */
-#define ALT_RSTMGR_CTL_SDRSELFREFEN_LSB        4
+    #define ALT_RSTMGR_CTL_SDRSELFREFEN_LSB        4
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_CTL_SDRSELFREFEN register field. */
-#define ALT_RSTMGR_CTL_SDRSELFREFEN_MSB        4
+    #define ALT_RSTMGR_CTL_SDRSELFREFEN_MSB        4
 /* The width in bits of the ALT_RSTMGR_CTL_SDRSELFREFEN register field. */
-#define ALT_RSTMGR_CTL_SDRSELFREFEN_WIDTH      1
+    #define ALT_RSTMGR_CTL_SDRSELFREFEN_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_CTL_SDRSELFREFEN register field value. */
-#define ALT_RSTMGR_CTL_SDRSELFREFEN_SET_MSK    0x00000010
+    #define ALT_RSTMGR_CTL_SDRSELFREFEN_SET_MSK    0x00000010
 /* The mask used to clear the ALT_RSTMGR_CTL_SDRSELFREFEN register field value. */
-#define ALT_RSTMGR_CTL_SDRSELFREFEN_CLR_MSK    0xffffffef
+    #define ALT_RSTMGR_CTL_SDRSELFREFEN_CLR_MSK    0xffffffef
 /* The reset value of the ALT_RSTMGR_CTL_SDRSELFREFEN register field. */
-#define ALT_RSTMGR_CTL_SDRSELFREFEN_RESET      0x0
+    #define ALT_RSTMGR_CTL_SDRSELFREFEN_RESET      0x0
 /* Extracts the ALT_RSTMGR_CTL_SDRSELFREFEN field value from a register. */
-#define ALT_RSTMGR_CTL_SDRSELFREFEN_GET(value) (((value) & 0x00000010) >> 4)
+    #define ALT_RSTMGR_CTL_SDRSELFREFEN_GET( value )    ( ( ( value ) & 0x00000010 ) >> 4 )
 /* Produces a ALT_RSTMGR_CTL_SDRSELFREFEN register field value suitable for setting the register. */
-#define ALT_RSTMGR_CTL_SDRSELFREFEN_SET(value) (((value) << 4) & 0x00000010)
+    #define ALT_RSTMGR_CTL_SDRSELFREFEN_SET( value )    ( ( ( value ) << 4 ) & 0x00000010 )
 
 /*
  * Field : SDRAM Self-Refresh Request - sdrselfrefreq
@@ -768,21 +772,21 @@ typedef volatile struct ALT_RSTMGR_STAT_s  ALT_RSTMGR_STAT_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_CTL_SDRSELFREFREQ register field. */
-#define ALT_RSTMGR_CTL_SDRSELFREFREQ_LSB        5
+    #define ALT_RSTMGR_CTL_SDRSELFREFREQ_LSB        5
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_CTL_SDRSELFREFREQ register field. */
-#define ALT_RSTMGR_CTL_SDRSELFREFREQ_MSB        5
+    #define ALT_RSTMGR_CTL_SDRSELFREFREQ_MSB        5
 /* The width in bits of the ALT_RSTMGR_CTL_SDRSELFREFREQ register field. */
-#define ALT_RSTMGR_CTL_SDRSELFREFREQ_WIDTH      1
+    #define ALT_RSTMGR_CTL_SDRSELFREFREQ_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_CTL_SDRSELFREFREQ register field value. */
-#define ALT_RSTMGR_CTL_SDRSELFREFREQ_SET_MSK    0x00000020
+    #define ALT_RSTMGR_CTL_SDRSELFREFREQ_SET_MSK    0x00000020
 /* The mask used to clear the ALT_RSTMGR_CTL_SDRSELFREFREQ register field value. */
-#define ALT_RSTMGR_CTL_SDRSELFREFREQ_CLR_MSK    0xffffffdf
+    #define ALT_RSTMGR_CTL_SDRSELFREFREQ_CLR_MSK    0xffffffdf
 /* The reset value of the ALT_RSTMGR_CTL_SDRSELFREFREQ register field. */
-#define ALT_RSTMGR_CTL_SDRSELFREFREQ_RESET      0x0
+    #define ALT_RSTMGR_CTL_SDRSELFREFREQ_RESET      0x0
 /* Extracts the ALT_RSTMGR_CTL_SDRSELFREFREQ field value from a register. */
-#define ALT_RSTMGR_CTL_SDRSELFREFREQ_GET(value) (((value) & 0x00000020) >> 5)
+    #define ALT_RSTMGR_CTL_SDRSELFREFREQ_GET( value )    ( ( ( value ) & 0x00000020 ) >> 5 )
 /* Produces a ALT_RSTMGR_CTL_SDRSELFREFREQ register field value suitable for setting the register. */
-#define ALT_RSTMGR_CTL_SDRSELFREFREQ_SET(value) (((value) << 5) & 0x00000020)
+    #define ALT_RSTMGR_CTL_SDRSELFREFREQ_SET( value )    ( ( ( value ) << 5 ) & 0x00000020 )
 
 /*
  * Field : SDRAM Self-Refresh Acknowledge - sdrselfreqack
@@ -795,21 +799,21 @@ typedef volatile struct ALT_RSTMGR_STAT_s  ALT_RSTMGR_STAT_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_CTL_SDRSELFREQACK register field. */
-#define ALT_RSTMGR_CTL_SDRSELFREQACK_LSB        6
+    #define ALT_RSTMGR_CTL_SDRSELFREQACK_LSB        6
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_CTL_SDRSELFREQACK register field. */
-#define ALT_RSTMGR_CTL_SDRSELFREQACK_MSB        6
+    #define ALT_RSTMGR_CTL_SDRSELFREQACK_MSB        6
 /* The width in bits of the ALT_RSTMGR_CTL_SDRSELFREQACK register field. */
-#define ALT_RSTMGR_CTL_SDRSELFREQACK_WIDTH      1
+    #define ALT_RSTMGR_CTL_SDRSELFREQACK_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_CTL_SDRSELFREQACK register field value. */
-#define ALT_RSTMGR_CTL_SDRSELFREQACK_SET_MSK    0x00000040
+    #define ALT_RSTMGR_CTL_SDRSELFREQACK_SET_MSK    0x00000040
 /* The mask used to clear the ALT_RSTMGR_CTL_SDRSELFREQACK register field value. */
-#define ALT_RSTMGR_CTL_SDRSELFREQACK_CLR_MSK    0xffffffbf
+    #define ALT_RSTMGR_CTL_SDRSELFREQACK_CLR_MSK    0xffffffbf
 /* The reset value of the ALT_RSTMGR_CTL_SDRSELFREQACK register field. */
-#define ALT_RSTMGR_CTL_SDRSELFREQACK_RESET      0x0
+    #define ALT_RSTMGR_CTL_SDRSELFREQACK_RESET      0x0
 /* Extracts the ALT_RSTMGR_CTL_SDRSELFREQACK field value from a register. */
-#define ALT_RSTMGR_CTL_SDRSELFREQACK_GET(value) (((value) & 0x00000040) >> 6)
+    #define ALT_RSTMGR_CTL_SDRSELFREQACK_GET( value )    ( ( ( value ) & 0x00000040 ) >> 6 )
 /* Produces a ALT_RSTMGR_CTL_SDRSELFREQACK register field value suitable for setting the register. */
-#define ALT_RSTMGR_CTL_SDRSELFREQACK_SET(value) (((value) << 6) & 0x00000040)
+    #define ALT_RSTMGR_CTL_SDRSELFREQACK_SET( value )    ( ( ( value ) << 6 ) & 0x00000040 )
 
 /*
  * Field : FPGA Manager Handshake Enable - fpgamgrhsen
@@ -830,21 +834,21 @@ typedef volatile struct ALT_RSTMGR_STAT_s  ALT_RSTMGR_STAT_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_CTL_FPGAMGRHSEN register field. */
-#define ALT_RSTMGR_CTL_FPGAMGRHSEN_LSB        8
+    #define ALT_RSTMGR_CTL_FPGAMGRHSEN_LSB        8
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_CTL_FPGAMGRHSEN register field. */
-#define ALT_RSTMGR_CTL_FPGAMGRHSEN_MSB        8
+    #define ALT_RSTMGR_CTL_FPGAMGRHSEN_MSB        8
 /* The width in bits of the ALT_RSTMGR_CTL_FPGAMGRHSEN register field. */
-#define ALT_RSTMGR_CTL_FPGAMGRHSEN_WIDTH      1
+    #define ALT_RSTMGR_CTL_FPGAMGRHSEN_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_CTL_FPGAMGRHSEN register field value. */
-#define ALT_RSTMGR_CTL_FPGAMGRHSEN_SET_MSK    0x00000100
+    #define ALT_RSTMGR_CTL_FPGAMGRHSEN_SET_MSK    0x00000100
 /* The mask used to clear the ALT_RSTMGR_CTL_FPGAMGRHSEN register field value. */
-#define ALT_RSTMGR_CTL_FPGAMGRHSEN_CLR_MSK    0xfffffeff
+    #define ALT_RSTMGR_CTL_FPGAMGRHSEN_CLR_MSK    0xfffffeff
 /* The reset value of the ALT_RSTMGR_CTL_FPGAMGRHSEN register field. */
-#define ALT_RSTMGR_CTL_FPGAMGRHSEN_RESET      0x0
+    #define ALT_RSTMGR_CTL_FPGAMGRHSEN_RESET      0x0
 /* Extracts the ALT_RSTMGR_CTL_FPGAMGRHSEN field value from a register. */
-#define ALT_RSTMGR_CTL_FPGAMGRHSEN_GET(value) (((value) & 0x00000100) >> 8)
+    #define ALT_RSTMGR_CTL_FPGAMGRHSEN_GET( value )    ( ( ( value ) & 0x00000100 ) >> 8 )
 /* Produces a ALT_RSTMGR_CTL_FPGAMGRHSEN register field value suitable for setting the register. */
-#define ALT_RSTMGR_CTL_FPGAMGRHSEN_SET(value) (((value) << 8) & 0x00000100)
+    #define ALT_RSTMGR_CTL_FPGAMGRHSEN_SET( value )    ( ( ( value ) << 8 ) & 0x00000100 )
 
 /*
  * Field : FPGA Manager Handshake Request - fpgamgrhsreq
@@ -860,21 +864,21 @@ typedef volatile struct ALT_RSTMGR_STAT_s  ALT_RSTMGR_STAT_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_CTL_FPGAMGRHSREQ register field. */
-#define ALT_RSTMGR_CTL_FPGAMGRHSREQ_LSB        9
+    #define ALT_RSTMGR_CTL_FPGAMGRHSREQ_LSB        9
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_CTL_FPGAMGRHSREQ register field. */
-#define ALT_RSTMGR_CTL_FPGAMGRHSREQ_MSB        9
+    #define ALT_RSTMGR_CTL_FPGAMGRHSREQ_MSB        9
 /* The width in bits of the ALT_RSTMGR_CTL_FPGAMGRHSREQ register field. */
-#define ALT_RSTMGR_CTL_FPGAMGRHSREQ_WIDTH      1
+    #define ALT_RSTMGR_CTL_FPGAMGRHSREQ_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_CTL_FPGAMGRHSREQ register field value. */
-#define ALT_RSTMGR_CTL_FPGAMGRHSREQ_SET_MSK    0x00000200
+    #define ALT_RSTMGR_CTL_FPGAMGRHSREQ_SET_MSK    0x00000200
 /* The mask used to clear the ALT_RSTMGR_CTL_FPGAMGRHSREQ register field value. */
-#define ALT_RSTMGR_CTL_FPGAMGRHSREQ_CLR_MSK    0xfffffdff
+    #define ALT_RSTMGR_CTL_FPGAMGRHSREQ_CLR_MSK    0xfffffdff
 /* The reset value of the ALT_RSTMGR_CTL_FPGAMGRHSREQ register field. */
-#define ALT_RSTMGR_CTL_FPGAMGRHSREQ_RESET      0x0
+    #define ALT_RSTMGR_CTL_FPGAMGRHSREQ_RESET      0x0
 /* Extracts the ALT_RSTMGR_CTL_FPGAMGRHSREQ field value from a register. */
-#define ALT_RSTMGR_CTL_FPGAMGRHSREQ_GET(value) (((value) & 0x00000200) >> 9)
+    #define ALT_RSTMGR_CTL_FPGAMGRHSREQ_GET( value )    ( ( ( value ) & 0x00000200 ) >> 9 )
 /* Produces a ALT_RSTMGR_CTL_FPGAMGRHSREQ register field value suitable for setting the register. */
-#define ALT_RSTMGR_CTL_FPGAMGRHSREQ_SET(value) (((value) << 9) & 0x00000200)
+    #define ALT_RSTMGR_CTL_FPGAMGRHSREQ_SET( value )    ( ( ( value ) << 9 ) & 0x00000200 )
 
 /*
  * Field : FPGA Manager Handshake Acknowledge - fpgamgrhsack
@@ -886,21 +890,21 @@ typedef volatile struct ALT_RSTMGR_STAT_s  ALT_RSTMGR_STAT_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_CTL_FPGAMGRHSACK register field. */
-#define ALT_RSTMGR_CTL_FPGAMGRHSACK_LSB        10
+    #define ALT_RSTMGR_CTL_FPGAMGRHSACK_LSB        10
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_CTL_FPGAMGRHSACK register field. */
-#define ALT_RSTMGR_CTL_FPGAMGRHSACK_MSB        10
+    #define ALT_RSTMGR_CTL_FPGAMGRHSACK_MSB        10
 /* The width in bits of the ALT_RSTMGR_CTL_FPGAMGRHSACK register field. */
-#define ALT_RSTMGR_CTL_FPGAMGRHSACK_WIDTH      1
+    #define ALT_RSTMGR_CTL_FPGAMGRHSACK_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_CTL_FPGAMGRHSACK register field value. */
-#define ALT_RSTMGR_CTL_FPGAMGRHSACK_SET_MSK    0x00000400
+    #define ALT_RSTMGR_CTL_FPGAMGRHSACK_SET_MSK    0x00000400
 /* The mask used to clear the ALT_RSTMGR_CTL_FPGAMGRHSACK register field value. */
-#define ALT_RSTMGR_CTL_FPGAMGRHSACK_CLR_MSK    0xfffffbff
+    #define ALT_RSTMGR_CTL_FPGAMGRHSACK_CLR_MSK    0xfffffbff
 /* The reset value of the ALT_RSTMGR_CTL_FPGAMGRHSACK register field is UNKNOWN. */
-#define ALT_RSTMGR_CTL_FPGAMGRHSACK_RESET      0x0
+    #define ALT_RSTMGR_CTL_FPGAMGRHSACK_RESET      0x0
 /* Extracts the ALT_RSTMGR_CTL_FPGAMGRHSACK field value from a register. */
-#define ALT_RSTMGR_CTL_FPGAMGRHSACK_GET(value) (((value) & 0x00000400) >> 10)
+    #define ALT_RSTMGR_CTL_FPGAMGRHSACK_GET( value )    ( ( ( value ) & 0x00000400 ) >> 10 )
 /* Produces a ALT_RSTMGR_CTL_FPGAMGRHSACK register field value suitable for setting the register. */
-#define ALT_RSTMGR_CTL_FPGAMGRHSACK_SET(value) (((value) << 10) & 0x00000400)
+    #define ALT_RSTMGR_CTL_FPGAMGRHSACK_SET( value )    ( ( ( value ) << 10 ) & 0x00000400 )
 
 /*
  * Field : SCAN Manager Handshake Enable - scanmgrhsen
@@ -921,21 +925,21 @@ typedef volatile struct ALT_RSTMGR_STAT_s  ALT_RSTMGR_STAT_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_CTL_SCANMGRHSEN register field. */
-#define ALT_RSTMGR_CTL_SCANMGRHSEN_LSB        12
+    #define ALT_RSTMGR_CTL_SCANMGRHSEN_LSB        12
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_CTL_SCANMGRHSEN register field. */
-#define ALT_RSTMGR_CTL_SCANMGRHSEN_MSB        12
+    #define ALT_RSTMGR_CTL_SCANMGRHSEN_MSB        12
 /* The width in bits of the ALT_RSTMGR_CTL_SCANMGRHSEN register field. */
-#define ALT_RSTMGR_CTL_SCANMGRHSEN_WIDTH      1
+    #define ALT_RSTMGR_CTL_SCANMGRHSEN_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_CTL_SCANMGRHSEN register field value. */
-#define ALT_RSTMGR_CTL_SCANMGRHSEN_SET_MSK    0x00001000
+    #define ALT_RSTMGR_CTL_SCANMGRHSEN_SET_MSK    0x00001000
 /* The mask used to clear the ALT_RSTMGR_CTL_SCANMGRHSEN register field value. */
-#define ALT_RSTMGR_CTL_SCANMGRHSEN_CLR_MSK    0xffffefff
+    #define ALT_RSTMGR_CTL_SCANMGRHSEN_CLR_MSK    0xffffefff
 /* The reset value of the ALT_RSTMGR_CTL_SCANMGRHSEN register field. */
-#define ALT_RSTMGR_CTL_SCANMGRHSEN_RESET      0x0
+    #define ALT_RSTMGR_CTL_SCANMGRHSEN_RESET      0x0
 /* Extracts the ALT_RSTMGR_CTL_SCANMGRHSEN field value from a register. */
-#define ALT_RSTMGR_CTL_SCANMGRHSEN_GET(value) (((value) & 0x00001000) >> 12)
+    #define ALT_RSTMGR_CTL_SCANMGRHSEN_GET( value )    ( ( ( value ) & 0x00001000 ) >> 12 )
 /* Produces a ALT_RSTMGR_CTL_SCANMGRHSEN register field value suitable for setting the register. */
-#define ALT_RSTMGR_CTL_SCANMGRHSEN_SET(value) (((value) << 12) & 0x00001000)
+    #define ALT_RSTMGR_CTL_SCANMGRHSEN_SET( value )    ( ( ( value ) << 12 ) & 0x00001000 )
 
 /*
  * Field : SCAN Manager Handshake Request - scanmgrhsreq
@@ -951,21 +955,21 @@ typedef volatile struct ALT_RSTMGR_STAT_s  ALT_RSTMGR_STAT_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_CTL_SCANMGRHSREQ register field. */
-#define ALT_RSTMGR_CTL_SCANMGRHSREQ_LSB        13
+    #define ALT_RSTMGR_CTL_SCANMGRHSREQ_LSB        13
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_CTL_SCANMGRHSREQ register field. */
-#define ALT_RSTMGR_CTL_SCANMGRHSREQ_MSB        13
+    #define ALT_RSTMGR_CTL_SCANMGRHSREQ_MSB        13
 /* The width in bits of the ALT_RSTMGR_CTL_SCANMGRHSREQ register field. */
-#define ALT_RSTMGR_CTL_SCANMGRHSREQ_WIDTH      1
+    #define ALT_RSTMGR_CTL_SCANMGRHSREQ_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_CTL_SCANMGRHSREQ register field value. */
-#define ALT_RSTMGR_CTL_SCANMGRHSREQ_SET_MSK    0x00002000
+    #define ALT_RSTMGR_CTL_SCANMGRHSREQ_SET_MSK    0x00002000
 /* The mask used to clear the ALT_RSTMGR_CTL_SCANMGRHSREQ register field value. */
-#define ALT_RSTMGR_CTL_SCANMGRHSREQ_CLR_MSK    0xffffdfff
+    #define ALT_RSTMGR_CTL_SCANMGRHSREQ_CLR_MSK    0xffffdfff
 /* The reset value of the ALT_RSTMGR_CTL_SCANMGRHSREQ register field. */
-#define ALT_RSTMGR_CTL_SCANMGRHSREQ_RESET      0x0
+    #define ALT_RSTMGR_CTL_SCANMGRHSREQ_RESET      0x0
 /* Extracts the ALT_RSTMGR_CTL_SCANMGRHSREQ field value from a register. */
-#define ALT_RSTMGR_CTL_SCANMGRHSREQ_GET(value) (((value) & 0x00002000) >> 13)
+    #define ALT_RSTMGR_CTL_SCANMGRHSREQ_GET( value )    ( ( ( value ) & 0x00002000 ) >> 13 )
 /* Produces a ALT_RSTMGR_CTL_SCANMGRHSREQ register field value suitable for setting the register. */
-#define ALT_RSTMGR_CTL_SCANMGRHSREQ_SET(value) (((value) << 13) & 0x00002000)
+    #define ALT_RSTMGR_CTL_SCANMGRHSREQ_SET( value )    ( ( ( value ) << 13 ) & 0x00002000 )
 
 /*
  * Field : SCAN Manager Handshake Acknowledge - scanmgrhsack
@@ -977,21 +981,21 @@ typedef volatile struct ALT_RSTMGR_STAT_s  ALT_RSTMGR_STAT_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_CTL_SCANMGRHSACK register field. */
-#define ALT_RSTMGR_CTL_SCANMGRHSACK_LSB        14
+    #define ALT_RSTMGR_CTL_SCANMGRHSACK_LSB        14
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_CTL_SCANMGRHSACK register field. */
-#define ALT_RSTMGR_CTL_SCANMGRHSACK_MSB        14
+    #define ALT_RSTMGR_CTL_SCANMGRHSACK_MSB        14
 /* The width in bits of the ALT_RSTMGR_CTL_SCANMGRHSACK register field. */
-#define ALT_RSTMGR_CTL_SCANMGRHSACK_WIDTH      1
+    #define ALT_RSTMGR_CTL_SCANMGRHSACK_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_CTL_SCANMGRHSACK register field value. */
-#define ALT_RSTMGR_CTL_SCANMGRHSACK_SET_MSK    0x00004000
+    #define ALT_RSTMGR_CTL_SCANMGRHSACK_SET_MSK    0x00004000
 /* The mask used to clear the ALT_RSTMGR_CTL_SCANMGRHSACK register field value. */
-#define ALT_RSTMGR_CTL_SCANMGRHSACK_CLR_MSK    0xffffbfff
+    #define ALT_RSTMGR_CTL_SCANMGRHSACK_CLR_MSK    0xffffbfff
 /* The reset value of the ALT_RSTMGR_CTL_SCANMGRHSACK register field is UNKNOWN. */
-#define ALT_RSTMGR_CTL_SCANMGRHSACK_RESET      0x0
+    #define ALT_RSTMGR_CTL_SCANMGRHSACK_RESET      0x0
 /* Extracts the ALT_RSTMGR_CTL_SCANMGRHSACK field value from a register. */
-#define ALT_RSTMGR_CTL_SCANMGRHSACK_GET(value) (((value) & 0x00004000) >> 14)
+    #define ALT_RSTMGR_CTL_SCANMGRHSACK_GET( value )    ( ( ( value ) & 0x00004000 ) >> 14 )
 /* Produces a ALT_RSTMGR_CTL_SCANMGRHSACK register field value suitable for setting the register. */
-#define ALT_RSTMGR_CTL_SCANMGRHSACK_SET(value) (((value) << 14) & 0x00004000)
+    #define ALT_RSTMGR_CTL_SCANMGRHSACK_SET( value )    ( ( ( value ) << 14 ) & 0x00004000 )
 
 /*
  * Field : FPGA Handshake Enable - fpgahsen
@@ -1009,21 +1013,21 @@ typedef volatile struct ALT_RSTMGR_STAT_s  ALT_RSTMGR_STAT_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_CTL_FPGAHSEN register field. */
-#define ALT_RSTMGR_CTL_FPGAHSEN_LSB        16
+    #define ALT_RSTMGR_CTL_FPGAHSEN_LSB        16
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_CTL_FPGAHSEN register field. */
-#define ALT_RSTMGR_CTL_FPGAHSEN_MSB        16
+    #define ALT_RSTMGR_CTL_FPGAHSEN_MSB        16
 /* The width in bits of the ALT_RSTMGR_CTL_FPGAHSEN register field. */
-#define ALT_RSTMGR_CTL_FPGAHSEN_WIDTH      1
+    #define ALT_RSTMGR_CTL_FPGAHSEN_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_CTL_FPGAHSEN register field value. */
-#define ALT_RSTMGR_CTL_FPGAHSEN_SET_MSK    0x00010000
+    #define ALT_RSTMGR_CTL_FPGAHSEN_SET_MSK    0x00010000
 /* The mask used to clear the ALT_RSTMGR_CTL_FPGAHSEN register field value. */
-#define ALT_RSTMGR_CTL_FPGAHSEN_CLR_MSK    0xfffeffff
+    #define ALT_RSTMGR_CTL_FPGAHSEN_CLR_MSK    0xfffeffff
 /* The reset value of the ALT_RSTMGR_CTL_FPGAHSEN register field. */
-#define ALT_RSTMGR_CTL_FPGAHSEN_RESET      0x0
+    #define ALT_RSTMGR_CTL_FPGAHSEN_RESET      0x0
 /* Extracts the ALT_RSTMGR_CTL_FPGAHSEN field value from a register. */
-#define ALT_RSTMGR_CTL_FPGAHSEN_GET(value) (((value) & 0x00010000) >> 16)
+    #define ALT_RSTMGR_CTL_FPGAHSEN_GET( value )    ( ( ( value ) & 0x00010000 ) >> 16 )
 /* Produces a ALT_RSTMGR_CTL_FPGAHSEN register field value suitable for setting the register. */
-#define ALT_RSTMGR_CTL_FPGAHSEN_SET(value) (((value) << 16) & 0x00010000)
+    #define ALT_RSTMGR_CTL_FPGAHSEN_SET( value )    ( ( ( value ) << 16 ) & 0x00010000 )
 
 /*
  * Field : FPGA Handshake Request - fpgahsreq
@@ -1038,21 +1042,21 @@ typedef volatile struct ALT_RSTMGR_STAT_s  ALT_RSTMGR_STAT_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_CTL_FPGAHSREQ register field. */
-#define ALT_RSTMGR_CTL_FPGAHSREQ_LSB        17
+    #define ALT_RSTMGR_CTL_FPGAHSREQ_LSB        17
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_CTL_FPGAHSREQ register field. */
-#define ALT_RSTMGR_CTL_FPGAHSREQ_MSB        17
+    #define ALT_RSTMGR_CTL_FPGAHSREQ_MSB        17
 /* The width in bits of the ALT_RSTMGR_CTL_FPGAHSREQ register field. */
-#define ALT_RSTMGR_CTL_FPGAHSREQ_WIDTH      1
+    #define ALT_RSTMGR_CTL_FPGAHSREQ_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_CTL_FPGAHSREQ register field value. */
-#define ALT_RSTMGR_CTL_FPGAHSREQ_SET_MSK    0x00020000
+    #define ALT_RSTMGR_CTL_FPGAHSREQ_SET_MSK    0x00020000
 /* The mask used to clear the ALT_RSTMGR_CTL_FPGAHSREQ register field value. */
-#define ALT_RSTMGR_CTL_FPGAHSREQ_CLR_MSK    0xfffdffff
+    #define ALT_RSTMGR_CTL_FPGAHSREQ_CLR_MSK    0xfffdffff
 /* The reset value of the ALT_RSTMGR_CTL_FPGAHSREQ register field. */
-#define ALT_RSTMGR_CTL_FPGAHSREQ_RESET      0x0
+    #define ALT_RSTMGR_CTL_FPGAHSREQ_RESET      0x0
 /* Extracts the ALT_RSTMGR_CTL_FPGAHSREQ field value from a register. */
-#define ALT_RSTMGR_CTL_FPGAHSREQ_GET(value) (((value) & 0x00020000) >> 17)
+    #define ALT_RSTMGR_CTL_FPGAHSREQ_GET( value )    ( ( ( value ) & 0x00020000 ) >> 17 )
 /* Produces a ALT_RSTMGR_CTL_FPGAHSREQ register field value suitable for setting the register. */
-#define ALT_RSTMGR_CTL_FPGAHSREQ_SET(value) (((value) << 17) & 0x00020000)
+    #define ALT_RSTMGR_CTL_FPGAHSREQ_SET( value )    ( ( ( value ) << 17 ) & 0x00020000 )
 
 /*
  * Field : FPGA Handshake Acknowledge - fpgahsack
@@ -1064,21 +1068,21 @@ typedef volatile struct ALT_RSTMGR_STAT_s  ALT_RSTMGR_STAT_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_CTL_FPGAHSACK register field. */
-#define ALT_RSTMGR_CTL_FPGAHSACK_LSB        18
+    #define ALT_RSTMGR_CTL_FPGAHSACK_LSB        18
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_CTL_FPGAHSACK register field. */
-#define ALT_RSTMGR_CTL_FPGAHSACK_MSB        18
+    #define ALT_RSTMGR_CTL_FPGAHSACK_MSB        18
 /* The width in bits of the ALT_RSTMGR_CTL_FPGAHSACK register field. */
-#define ALT_RSTMGR_CTL_FPGAHSACK_WIDTH      1
+    #define ALT_RSTMGR_CTL_FPGAHSACK_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_CTL_FPGAHSACK register field value. */
-#define ALT_RSTMGR_CTL_FPGAHSACK_SET_MSK    0x00040000
+    #define ALT_RSTMGR_CTL_FPGAHSACK_SET_MSK    0x00040000
 /* The mask used to clear the ALT_RSTMGR_CTL_FPGAHSACK register field value. */
-#define ALT_RSTMGR_CTL_FPGAHSACK_CLR_MSK    0xfffbffff
+    #define ALT_RSTMGR_CTL_FPGAHSACK_CLR_MSK    0xfffbffff
 /* The reset value of the ALT_RSTMGR_CTL_FPGAHSACK register field is UNKNOWN. */
-#define ALT_RSTMGR_CTL_FPGAHSACK_RESET      0x0
+    #define ALT_RSTMGR_CTL_FPGAHSACK_RESET      0x0
 /* Extracts the ALT_RSTMGR_CTL_FPGAHSACK field value from a register. */
-#define ALT_RSTMGR_CTL_FPGAHSACK_GET(value) (((value) & 0x00040000) >> 18)
+    #define ALT_RSTMGR_CTL_FPGAHSACK_GET( value )    ( ( ( value ) & 0x00040000 ) >> 18 )
 /* Produces a ALT_RSTMGR_CTL_FPGAHSACK register field value suitable for setting the register. */
-#define ALT_RSTMGR_CTL_FPGAHSACK_SET(value) (((value) << 18) & 0x00040000)
+    #define ALT_RSTMGR_CTL_FPGAHSACK_SET( value )    ( ( ( value ) << 18 ) & 0x00040000 )
 
 /*
  * Field : ETR (Embedded Trace Router) Stall Enable - etrstallen
@@ -1097,21 +1101,21 @@ typedef volatile struct ALT_RSTMGR_STAT_s  ALT_RSTMGR_STAT_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_CTL_ETRSTALLEN register field. */
-#define ALT_RSTMGR_CTL_ETRSTALLEN_LSB        20
+    #define ALT_RSTMGR_CTL_ETRSTALLEN_LSB        20
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_CTL_ETRSTALLEN register field. */
-#define ALT_RSTMGR_CTL_ETRSTALLEN_MSB        20
+    #define ALT_RSTMGR_CTL_ETRSTALLEN_MSB        20
 /* The width in bits of the ALT_RSTMGR_CTL_ETRSTALLEN register field. */
-#define ALT_RSTMGR_CTL_ETRSTALLEN_WIDTH      1
+    #define ALT_RSTMGR_CTL_ETRSTALLEN_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_CTL_ETRSTALLEN register field value. */
-#define ALT_RSTMGR_CTL_ETRSTALLEN_SET_MSK    0x00100000
+    #define ALT_RSTMGR_CTL_ETRSTALLEN_SET_MSK    0x00100000
 /* The mask used to clear the ALT_RSTMGR_CTL_ETRSTALLEN register field value. */
-#define ALT_RSTMGR_CTL_ETRSTALLEN_CLR_MSK    0xffefffff
+    #define ALT_RSTMGR_CTL_ETRSTALLEN_CLR_MSK    0xffefffff
 /* The reset value of the ALT_RSTMGR_CTL_ETRSTALLEN register field. */
-#define ALT_RSTMGR_CTL_ETRSTALLEN_RESET      0x1
+    #define ALT_RSTMGR_CTL_ETRSTALLEN_RESET      0x1
 /* Extracts the ALT_RSTMGR_CTL_ETRSTALLEN field value from a register. */
-#define ALT_RSTMGR_CTL_ETRSTALLEN_GET(value) (((value) & 0x00100000) >> 20)
+    #define ALT_RSTMGR_CTL_ETRSTALLEN_GET( value )    ( ( ( value ) & 0x00100000 ) >> 20 )
 /* Produces a ALT_RSTMGR_CTL_ETRSTALLEN register field value suitable for setting the register. */
-#define ALT_RSTMGR_CTL_ETRSTALLEN_SET(value) (((value) << 20) & 0x00100000)
+    #define ALT_RSTMGR_CTL_ETRSTALLEN_SET( value )    ( ( ( value ) << 20 ) & 0x00100000 )
 
 /*
  * Field : ETR (Embedded Trace Router) Stall Request - etrstallreq
@@ -1127,21 +1131,21 @@ typedef volatile struct ALT_RSTMGR_STAT_s  ALT_RSTMGR_STAT_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_CTL_ETRSTALLREQ register field. */
-#define ALT_RSTMGR_CTL_ETRSTALLREQ_LSB        21
+    #define ALT_RSTMGR_CTL_ETRSTALLREQ_LSB        21
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_CTL_ETRSTALLREQ register field. */
-#define ALT_RSTMGR_CTL_ETRSTALLREQ_MSB        21
+    #define ALT_RSTMGR_CTL_ETRSTALLREQ_MSB        21
 /* The width in bits of the ALT_RSTMGR_CTL_ETRSTALLREQ register field. */
-#define ALT_RSTMGR_CTL_ETRSTALLREQ_WIDTH      1
+    #define ALT_RSTMGR_CTL_ETRSTALLREQ_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_CTL_ETRSTALLREQ register field value. */
-#define ALT_RSTMGR_CTL_ETRSTALLREQ_SET_MSK    0x00200000
+    #define ALT_RSTMGR_CTL_ETRSTALLREQ_SET_MSK    0x00200000
 /* The mask used to clear the ALT_RSTMGR_CTL_ETRSTALLREQ register field value. */
-#define ALT_RSTMGR_CTL_ETRSTALLREQ_CLR_MSK    0xffdfffff
+    #define ALT_RSTMGR_CTL_ETRSTALLREQ_CLR_MSK    0xffdfffff
 /* The reset value of the ALT_RSTMGR_CTL_ETRSTALLREQ register field. */
-#define ALT_RSTMGR_CTL_ETRSTALLREQ_RESET      0x0
+    #define ALT_RSTMGR_CTL_ETRSTALLREQ_RESET      0x0
 /* Extracts the ALT_RSTMGR_CTL_ETRSTALLREQ field value from a register. */
-#define ALT_RSTMGR_CTL_ETRSTALLREQ_GET(value) (((value) & 0x00200000) >> 21)
+    #define ALT_RSTMGR_CTL_ETRSTALLREQ_GET( value )    ( ( ( value ) & 0x00200000 ) >> 21 )
 /* Produces a ALT_RSTMGR_CTL_ETRSTALLREQ register field value suitable for setting the register. */
-#define ALT_RSTMGR_CTL_ETRSTALLREQ_SET(value) (((value) << 21) & 0x00200000)
+    #define ALT_RSTMGR_CTL_ETRSTALLREQ_SET( value )    ( ( ( value ) << 21 ) & 0x00200000 )
 
 /*
  * Field : ETR (Embedded Trace Router) Stall Acknowledge - etrstallack
@@ -1153,21 +1157,21 @@ typedef volatile struct ALT_RSTMGR_STAT_s  ALT_RSTMGR_STAT_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_CTL_ETRSTALLACK register field. */
-#define ALT_RSTMGR_CTL_ETRSTALLACK_LSB        22
+    #define ALT_RSTMGR_CTL_ETRSTALLACK_LSB        22
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_CTL_ETRSTALLACK register field. */
-#define ALT_RSTMGR_CTL_ETRSTALLACK_MSB        22
+    #define ALT_RSTMGR_CTL_ETRSTALLACK_MSB        22
 /* The width in bits of the ALT_RSTMGR_CTL_ETRSTALLACK register field. */
-#define ALT_RSTMGR_CTL_ETRSTALLACK_WIDTH      1
+    #define ALT_RSTMGR_CTL_ETRSTALLACK_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_CTL_ETRSTALLACK register field value. */
-#define ALT_RSTMGR_CTL_ETRSTALLACK_SET_MSK    0x00400000
+    #define ALT_RSTMGR_CTL_ETRSTALLACK_SET_MSK    0x00400000
 /* The mask used to clear the ALT_RSTMGR_CTL_ETRSTALLACK register field value. */
-#define ALT_RSTMGR_CTL_ETRSTALLACK_CLR_MSK    0xffbfffff
+    #define ALT_RSTMGR_CTL_ETRSTALLACK_CLR_MSK    0xffbfffff
 /* The reset value of the ALT_RSTMGR_CTL_ETRSTALLACK register field. */
-#define ALT_RSTMGR_CTL_ETRSTALLACK_RESET      0x0
+    #define ALT_RSTMGR_CTL_ETRSTALLACK_RESET      0x0
 /* Extracts the ALT_RSTMGR_CTL_ETRSTALLACK field value from a register. */
-#define ALT_RSTMGR_CTL_ETRSTALLACK_GET(value) (((value) & 0x00400000) >> 22)
+    #define ALT_RSTMGR_CTL_ETRSTALLACK_GET( value )    ( ( ( value ) & 0x00400000 ) >> 22 )
 /* Produces a ALT_RSTMGR_CTL_ETRSTALLACK register field value suitable for setting the register. */
-#define ALT_RSTMGR_CTL_ETRSTALLACK_SET(value) (((value) << 22) & 0x00400000)
+    #define ALT_RSTMGR_CTL_ETRSTALLACK_SET( value )    ( ( ( value ) << 22 ) & 0x00400000 )
 
 /*
  * Field : ETR (Embedded Trace Router) Stall After Warm Reset - etrstallwarmrst
@@ -1182,23 +1186,24 @@ typedef volatile struct ALT_RSTMGR_STAT_s  ALT_RSTMGR_STAT_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_CTL_ETRSTALLWARMRST register field. */
-#define ALT_RSTMGR_CTL_ETRSTALLWARMRST_LSB        23
+    #define ALT_RSTMGR_CTL_ETRSTALLWARMRST_LSB        23
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_CTL_ETRSTALLWARMRST register field. */
-#define ALT_RSTMGR_CTL_ETRSTALLWARMRST_MSB        23
+    #define ALT_RSTMGR_CTL_ETRSTALLWARMRST_MSB        23
 /* The width in bits of the ALT_RSTMGR_CTL_ETRSTALLWARMRST register field. */
-#define ALT_RSTMGR_CTL_ETRSTALLWARMRST_WIDTH      1
+    #define ALT_RSTMGR_CTL_ETRSTALLWARMRST_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_CTL_ETRSTALLWARMRST register field value. */
-#define ALT_RSTMGR_CTL_ETRSTALLWARMRST_SET_MSK    0x00800000
+    #define ALT_RSTMGR_CTL_ETRSTALLWARMRST_SET_MSK    0x00800000
 /* The mask used to clear the ALT_RSTMGR_CTL_ETRSTALLWARMRST register field value. */
-#define ALT_RSTMGR_CTL_ETRSTALLWARMRST_CLR_MSK    0xff7fffff
+    #define ALT_RSTMGR_CTL_ETRSTALLWARMRST_CLR_MSK    0xff7fffff
 /* The reset value of the ALT_RSTMGR_CTL_ETRSTALLWARMRST register field. */
-#define ALT_RSTMGR_CTL_ETRSTALLWARMRST_RESET      0x0
+    #define ALT_RSTMGR_CTL_ETRSTALLWARMRST_RESET      0x0
 /* Extracts the ALT_RSTMGR_CTL_ETRSTALLWARMRST field value from a register. */
-#define ALT_RSTMGR_CTL_ETRSTALLWARMRST_GET(value) (((value) & 0x00800000) >> 23)
+    #define ALT_RSTMGR_CTL_ETRSTALLWARMRST_GET( value )    ( ( ( value ) & 0x00800000 ) >> 23 )
 /* Produces a ALT_RSTMGR_CTL_ETRSTALLWARMRST register field value suitable for setting the register. */
-#define ALT_RSTMGR_CTL_ETRSTALLWARMRST_SET(value) (((value) << 23) & 0x00800000)
+    #define ALT_RSTMGR_CTL_ETRSTALLWARMRST_SET( value )    ( ( ( value ) << 23 ) & 0x00800000 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -1209,40 +1214,40 @@ typedef volatile struct ALT_RSTMGR_STAT_s  ALT_RSTMGR_STAT_t;
  *
  * The struct declaration for register ALT_RSTMGR_CTL.
  */
-struct ALT_RSTMGR_CTL_s
-{
-    uint32_t        swcoldrstreq    :  1;  /* Software Cold Reset Request */
-    uint32_t        swwarmrstreq    :  1;  /* Software Warm Reset Request */
-    uint32_t                        :  2;  /* *UNDEFINED* */
-    uint32_t        sdrselfrefen    :  1;  /* SDRAM Self-Refresh Enable */
-    uint32_t        sdrselfrefreq   :  1;  /* SDRAM Self-Refresh Request */
-    const uint32_t  sdrselfreqack   :  1;  /* SDRAM Self-Refresh Acknowledge */
-    uint32_t                        :  1;  /* *UNDEFINED* */
-    uint32_t        fpgamgrhsen     :  1;  /* FPGA Manager Handshake Enable */
-    uint32_t        fpgamgrhsreq    :  1;  /* FPGA Manager Handshake Request */
-    const uint32_t  fpgamgrhsack    :  1;  /* FPGA Manager Handshake Acknowledge */
-    uint32_t                        :  1;  /* *UNDEFINED* */
-    uint32_t        scanmgrhsen     :  1;  /* SCAN Manager Handshake Enable */
-    uint32_t        scanmgrhsreq    :  1;  /* SCAN Manager Handshake Request */
-    const uint32_t  scanmgrhsack    :  1;  /* SCAN Manager Handshake Acknowledge */
-    uint32_t                        :  1;  /* *UNDEFINED* */
-    uint32_t        fpgahsen        :  1;  /* FPGA Handshake Enable */
-    uint32_t        fpgahsreq       :  1;  /* FPGA Handshake Request */
-    const uint32_t  fpgahsack       :  1;  /* FPGA Handshake Acknowledge */
-    uint32_t                        :  1;  /* *UNDEFINED* */
-    uint32_t        etrstallen      :  1;  /* ETR (Embedded Trace Router) Stall Enable */
-    uint32_t        etrstallreq     :  1;  /* ETR (Embedded Trace Router) Stall Request */
-    const uint32_t  etrstallack     :  1;  /* ETR (Embedded Trace Router) Stall Acknowledge */
-    uint32_t        etrstallwarmrst :  1;  /* ETR (Embedded Trace Router) Stall After Warm Reset */
-    uint32_t                        :  8;  /* *UNDEFINED* */
-};
+        struct ALT_RSTMGR_CTL_s
+        {
+            uint32_t swcoldrstreq    :  1;        /* Software Cold Reset Request */
+            uint32_t swwarmrstreq    :  1;        /* Software Warm Reset Request */
+            uint32_t                        :  2; /* *UNDEFINED* */
+            uint32_t sdrselfrefen    :  1;        /* SDRAM Self-Refresh Enable */
+            uint32_t sdrselfrefreq   :  1;        /* SDRAM Self-Refresh Request */
+            const uint32_t sdrselfreqack   :  1;  /* SDRAM Self-Refresh Acknowledge */
+            uint32_t                        :  1; /* *UNDEFINED* */
+            uint32_t fpgamgrhsen     :  1;        /* FPGA Manager Handshake Enable */
+            uint32_t fpgamgrhsreq    :  1;        /* FPGA Manager Handshake Request */
+            const uint32_t fpgamgrhsack    :  1;  /* FPGA Manager Handshake Acknowledge */
+            uint32_t                        :  1; /* *UNDEFINED* */
+            uint32_t scanmgrhsen     :  1;        /* SCAN Manager Handshake Enable */
+            uint32_t scanmgrhsreq    :  1;        /* SCAN Manager Handshake Request */
+            const uint32_t scanmgrhsack    :  1;  /* SCAN Manager Handshake Acknowledge */
+            uint32_t                        :  1; /* *UNDEFINED* */
+            uint32_t fpgahsen        :  1;        /* FPGA Handshake Enable */
+            uint32_t fpgahsreq       :  1;        /* FPGA Handshake Request */
+            const uint32_t fpgahsack       :  1;  /* FPGA Handshake Acknowledge */
+            uint32_t                        :  1; /* *UNDEFINED* */
+            uint32_t etrstallen      :  1;        /* ETR (Embedded Trace Router) Stall Enable */
+            uint32_t etrstallreq     :  1;        /* ETR (Embedded Trace Router) Stall Request */
+            const uint32_t etrstallack     :  1;  /* ETR (Embedded Trace Router) Stall Acknowledge */
+            uint32_t etrstallwarmrst :  1;        /* ETR (Embedded Trace Router) Stall After Warm Reset */
+            uint32_t                        :  8; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_RSTMGR_CTL. */
-typedef volatile struct ALT_RSTMGR_CTL_s  ALT_RSTMGR_CTL_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_RSTMGR_CTL_s ALT_RSTMGR_CTL_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_RSTMGR_CTL register from the beginning of the component. */
-#define ALT_RSTMGR_CTL_OFST        0x4
+    #define ALT_RSTMGR_CTL_OFST    0x4
 
 /*
  * Register : Reset Cycles Count Register - counts
@@ -1261,6 +1266,7 @@ typedef volatile struct ALT_RSTMGR_CTL_s  ALT_RSTMGR_CTL_t;
  *  [31:28] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Warm reset release delay count - warmrstcycles
  *
@@ -1272,21 +1278,21 @@ typedef volatile struct ALT_RSTMGR_CTL_s  ALT_RSTMGR_CTL_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_COUNTS_WARMRSTCYCLES register field. */
-#define ALT_RSTMGR_COUNTS_WARMRSTCYCLES_LSB        0
+    #define ALT_RSTMGR_COUNTS_WARMRSTCYCLES_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_COUNTS_WARMRSTCYCLES register field. */
-#define ALT_RSTMGR_COUNTS_WARMRSTCYCLES_MSB        7
+    #define ALT_RSTMGR_COUNTS_WARMRSTCYCLES_MSB        7
 /* The width in bits of the ALT_RSTMGR_COUNTS_WARMRSTCYCLES register field. */
-#define ALT_RSTMGR_COUNTS_WARMRSTCYCLES_WIDTH      8
+    #define ALT_RSTMGR_COUNTS_WARMRSTCYCLES_WIDTH      8
 /* The mask used to set the ALT_RSTMGR_COUNTS_WARMRSTCYCLES register field value. */
-#define ALT_RSTMGR_COUNTS_WARMRSTCYCLES_SET_MSK    0x000000ff
+    #define ALT_RSTMGR_COUNTS_WARMRSTCYCLES_SET_MSK    0x000000ff
 /* The mask used to clear the ALT_RSTMGR_COUNTS_WARMRSTCYCLES register field value. */
-#define ALT_RSTMGR_COUNTS_WARMRSTCYCLES_CLR_MSK    0xffffff00
+    #define ALT_RSTMGR_COUNTS_WARMRSTCYCLES_CLR_MSK    0xffffff00
 /* The reset value of the ALT_RSTMGR_COUNTS_WARMRSTCYCLES register field. */
-#define ALT_RSTMGR_COUNTS_WARMRSTCYCLES_RESET      0x80
+    #define ALT_RSTMGR_COUNTS_WARMRSTCYCLES_RESET      0x80
 /* Extracts the ALT_RSTMGR_COUNTS_WARMRSTCYCLES field value from a register. */
-#define ALT_RSTMGR_COUNTS_WARMRSTCYCLES_GET(value) (((value) & 0x000000ff) >> 0)
+    #define ALT_RSTMGR_COUNTS_WARMRSTCYCLES_GET( value )    ( ( ( value ) & 0x000000ff ) >> 0 )
 /* Produces a ALT_RSTMGR_COUNTS_WARMRSTCYCLES register field value suitable for setting the register. */
-#define ALT_RSTMGR_COUNTS_WARMRSTCYCLES_SET(value) (((value) << 0) & 0x000000ff)
+    #define ALT_RSTMGR_COUNTS_WARMRSTCYCLES_SET( value )    ( ( ( value ) << 0 ) & 0x000000ff )
 
 /*
  * Field : nRST Pin Count - nrstcnt
@@ -1299,23 +1305,24 @@ typedef volatile struct ALT_RSTMGR_CTL_s  ALT_RSTMGR_CTL_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_COUNTS_NRSTCNT register field. */
-#define ALT_RSTMGR_COUNTS_NRSTCNT_LSB        8
+    #define ALT_RSTMGR_COUNTS_NRSTCNT_LSB        8
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_COUNTS_NRSTCNT register field. */
-#define ALT_RSTMGR_COUNTS_NRSTCNT_MSB        27
+    #define ALT_RSTMGR_COUNTS_NRSTCNT_MSB        27
 /* The width in bits of the ALT_RSTMGR_COUNTS_NRSTCNT register field. */
-#define ALT_RSTMGR_COUNTS_NRSTCNT_WIDTH      20
+    #define ALT_RSTMGR_COUNTS_NRSTCNT_WIDTH      20
 /* The mask used to set the ALT_RSTMGR_COUNTS_NRSTCNT register field value. */
-#define ALT_RSTMGR_COUNTS_NRSTCNT_SET_MSK    0x0fffff00
+    #define ALT_RSTMGR_COUNTS_NRSTCNT_SET_MSK    0x0fffff00
 /* The mask used to clear the ALT_RSTMGR_COUNTS_NRSTCNT register field value. */
-#define ALT_RSTMGR_COUNTS_NRSTCNT_CLR_MSK    0xf00000ff
+    #define ALT_RSTMGR_COUNTS_NRSTCNT_CLR_MSK    0xf00000ff
 /* The reset value of the ALT_RSTMGR_COUNTS_NRSTCNT register field. */
-#define ALT_RSTMGR_COUNTS_NRSTCNT_RESET      0x800
+    #define ALT_RSTMGR_COUNTS_NRSTCNT_RESET      0x800
 /* Extracts the ALT_RSTMGR_COUNTS_NRSTCNT field value from a register. */
-#define ALT_RSTMGR_COUNTS_NRSTCNT_GET(value) (((value) & 0x0fffff00) >> 8)
+    #define ALT_RSTMGR_COUNTS_NRSTCNT_GET( value )    ( ( ( value ) & 0x0fffff00 ) >> 8 )
 /* Produces a ALT_RSTMGR_COUNTS_NRSTCNT register field value suitable for setting the register. */
-#define ALT_RSTMGR_COUNTS_NRSTCNT_SET(value) (((value) << 8) & 0x0fffff00)
+    #define ALT_RSTMGR_COUNTS_NRSTCNT_SET( value )    ( ( ( value ) << 8 ) & 0x0fffff00 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -1326,19 +1333,19 @@ typedef volatile struct ALT_RSTMGR_CTL_s  ALT_RSTMGR_CTL_t;
  *
  * The struct declaration for register ALT_RSTMGR_COUNTS.
  */
-struct ALT_RSTMGR_COUNTS_s
-{
-    uint32_t  warmrstcycles :  8;  /* Warm reset release delay count */
-    uint32_t  nrstcnt       : 20;  /* nRST Pin Count */
-    uint32_t                :  4;  /* *UNDEFINED* */
-};
+        struct ALT_RSTMGR_COUNTS_s
+        {
+            uint32_t warmrstcycles :  8;  /* Warm reset release delay count */
+            uint32_t nrstcnt       : 20;  /* nRST Pin Count */
+            uint32_t                :  4; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_RSTMGR_COUNTS. */
-typedef volatile struct ALT_RSTMGR_COUNTS_s  ALT_RSTMGR_COUNTS_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_RSTMGR_COUNTS_s ALT_RSTMGR_COUNTS_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_RSTMGR_COUNTS register from the beginning of the component. */
-#define ALT_RSTMGR_COUNTS_OFST        0x8
+    #define ALT_RSTMGR_COUNTS_OFST    0x8
 
 /*
  * Register : MPU Module Reset Register - mpumodrst
@@ -1371,6 +1378,7 @@ typedef volatile struct ALT_RSTMGR_COUNTS_s  ALT_RSTMGR_COUNTS_t;
  *  [31:5] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : CPU0 - cpu0
  *
@@ -1389,21 +1397,21 @@ typedef volatile struct ALT_RSTMGR_COUNTS_s  ALT_RSTMGR_COUNTS_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_MPUMODRST_CPU0 register field. */
-#define ALT_RSTMGR_MPUMODRST_CPU0_LSB        0
+    #define ALT_RSTMGR_MPUMODRST_CPU0_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_MPUMODRST_CPU0 register field. */
-#define ALT_RSTMGR_MPUMODRST_CPU0_MSB        0
+    #define ALT_RSTMGR_MPUMODRST_CPU0_MSB        0
 /* The width in bits of the ALT_RSTMGR_MPUMODRST_CPU0 register field. */
-#define ALT_RSTMGR_MPUMODRST_CPU0_WIDTH      1
+    #define ALT_RSTMGR_MPUMODRST_CPU0_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_MPUMODRST_CPU0 register field value. */
-#define ALT_RSTMGR_MPUMODRST_CPU0_SET_MSK    0x00000001
+    #define ALT_RSTMGR_MPUMODRST_CPU0_SET_MSK    0x00000001
 /* The mask used to clear the ALT_RSTMGR_MPUMODRST_CPU0 register field value. */
-#define ALT_RSTMGR_MPUMODRST_CPU0_CLR_MSK    0xfffffffe
+    #define ALT_RSTMGR_MPUMODRST_CPU0_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_RSTMGR_MPUMODRST_CPU0 register field. */
-#define ALT_RSTMGR_MPUMODRST_CPU0_RESET      0x0
+    #define ALT_RSTMGR_MPUMODRST_CPU0_RESET      0x0
 /* Extracts the ALT_RSTMGR_MPUMODRST_CPU0 field value from a register. */
-#define ALT_RSTMGR_MPUMODRST_CPU0_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_RSTMGR_MPUMODRST_CPU0_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_RSTMGR_MPUMODRST_CPU0 register field value suitable for setting the register. */
-#define ALT_RSTMGR_MPUMODRST_CPU0_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_RSTMGR_MPUMODRST_CPU0_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
 /*
  * Field : CPU1 - cpu1
@@ -1421,21 +1429,21 @@ typedef volatile struct ALT_RSTMGR_COUNTS_s  ALT_RSTMGR_COUNTS_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_MPUMODRST_CPU1 register field. */
-#define ALT_RSTMGR_MPUMODRST_CPU1_LSB        1
+    #define ALT_RSTMGR_MPUMODRST_CPU1_LSB        1
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_MPUMODRST_CPU1 register field. */
-#define ALT_RSTMGR_MPUMODRST_CPU1_MSB        1
+    #define ALT_RSTMGR_MPUMODRST_CPU1_MSB        1
 /* The width in bits of the ALT_RSTMGR_MPUMODRST_CPU1 register field. */
-#define ALT_RSTMGR_MPUMODRST_CPU1_WIDTH      1
+    #define ALT_RSTMGR_MPUMODRST_CPU1_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_MPUMODRST_CPU1 register field value. */
-#define ALT_RSTMGR_MPUMODRST_CPU1_SET_MSK    0x00000002
+    #define ALT_RSTMGR_MPUMODRST_CPU1_SET_MSK    0x00000002
 /* The mask used to clear the ALT_RSTMGR_MPUMODRST_CPU1 register field value. */
-#define ALT_RSTMGR_MPUMODRST_CPU1_CLR_MSK    0xfffffffd
+    #define ALT_RSTMGR_MPUMODRST_CPU1_CLR_MSK    0xfffffffd
 /* The reset value of the ALT_RSTMGR_MPUMODRST_CPU1 register field. */
-#define ALT_RSTMGR_MPUMODRST_CPU1_RESET      0x1
+    #define ALT_RSTMGR_MPUMODRST_CPU1_RESET      0x1
 /* Extracts the ALT_RSTMGR_MPUMODRST_CPU1 field value from a register. */
-#define ALT_RSTMGR_MPUMODRST_CPU1_GET(value) (((value) & 0x00000002) >> 1)
+    #define ALT_RSTMGR_MPUMODRST_CPU1_GET( value )    ( ( ( value ) & 0x00000002 ) >> 1 )
 /* Produces a ALT_RSTMGR_MPUMODRST_CPU1 register field value suitable for setting the register. */
-#define ALT_RSTMGR_MPUMODRST_CPU1_SET(value) (((value) << 1) & 0x00000002)
+    #define ALT_RSTMGR_MPUMODRST_CPU1_SET( value )    ( ( ( value ) << 1 ) & 0x00000002 )
 
 /*
  * Field : Watchdogs - wds
@@ -1446,21 +1454,21 @@ typedef volatile struct ALT_RSTMGR_COUNTS_s  ALT_RSTMGR_COUNTS_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_MPUMODRST_WDS register field. */
-#define ALT_RSTMGR_MPUMODRST_WDS_LSB        2
+    #define ALT_RSTMGR_MPUMODRST_WDS_LSB        2
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_MPUMODRST_WDS register field. */
-#define ALT_RSTMGR_MPUMODRST_WDS_MSB        2
+    #define ALT_RSTMGR_MPUMODRST_WDS_MSB        2
 /* The width in bits of the ALT_RSTMGR_MPUMODRST_WDS register field. */
-#define ALT_RSTMGR_MPUMODRST_WDS_WIDTH      1
+    #define ALT_RSTMGR_MPUMODRST_WDS_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_MPUMODRST_WDS register field value. */
-#define ALT_RSTMGR_MPUMODRST_WDS_SET_MSK    0x00000004
+    #define ALT_RSTMGR_MPUMODRST_WDS_SET_MSK    0x00000004
 /* The mask used to clear the ALT_RSTMGR_MPUMODRST_WDS register field value. */
-#define ALT_RSTMGR_MPUMODRST_WDS_CLR_MSK    0xfffffffb
+    #define ALT_RSTMGR_MPUMODRST_WDS_CLR_MSK    0xfffffffb
 /* The reset value of the ALT_RSTMGR_MPUMODRST_WDS register field. */
-#define ALT_RSTMGR_MPUMODRST_WDS_RESET      0x0
+    #define ALT_RSTMGR_MPUMODRST_WDS_RESET      0x0
 /* Extracts the ALT_RSTMGR_MPUMODRST_WDS field value from a register. */
-#define ALT_RSTMGR_MPUMODRST_WDS_GET(value) (((value) & 0x00000004) >> 2)
+    #define ALT_RSTMGR_MPUMODRST_WDS_GET( value )    ( ( ( value ) & 0x00000004 ) >> 2 )
 /* Produces a ALT_RSTMGR_MPUMODRST_WDS register field value suitable for setting the register. */
-#define ALT_RSTMGR_MPUMODRST_WDS_SET(value) (((value) << 2) & 0x00000004)
+    #define ALT_RSTMGR_MPUMODRST_WDS_SET( value )    ( ( ( value ) << 2 ) & 0x00000004 )
 
 /*
  * Field : SCU/Peripherals - scuper
@@ -1473,21 +1481,21 @@ typedef volatile struct ALT_RSTMGR_COUNTS_s  ALT_RSTMGR_COUNTS_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_MPUMODRST_SCUPER register field. */
-#define ALT_RSTMGR_MPUMODRST_SCUPER_LSB        3
+    #define ALT_RSTMGR_MPUMODRST_SCUPER_LSB        3
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_MPUMODRST_SCUPER register field. */
-#define ALT_RSTMGR_MPUMODRST_SCUPER_MSB        3
+    #define ALT_RSTMGR_MPUMODRST_SCUPER_MSB        3
 /* The width in bits of the ALT_RSTMGR_MPUMODRST_SCUPER register field. */
-#define ALT_RSTMGR_MPUMODRST_SCUPER_WIDTH      1
+    #define ALT_RSTMGR_MPUMODRST_SCUPER_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_MPUMODRST_SCUPER register field value. */
-#define ALT_RSTMGR_MPUMODRST_SCUPER_SET_MSK    0x00000008
+    #define ALT_RSTMGR_MPUMODRST_SCUPER_SET_MSK    0x00000008
 /* The mask used to clear the ALT_RSTMGR_MPUMODRST_SCUPER register field value. */
-#define ALT_RSTMGR_MPUMODRST_SCUPER_CLR_MSK    0xfffffff7
+    #define ALT_RSTMGR_MPUMODRST_SCUPER_CLR_MSK    0xfffffff7
 /* The reset value of the ALT_RSTMGR_MPUMODRST_SCUPER register field. */
-#define ALT_RSTMGR_MPUMODRST_SCUPER_RESET      0x0
+    #define ALT_RSTMGR_MPUMODRST_SCUPER_RESET      0x0
 /* Extracts the ALT_RSTMGR_MPUMODRST_SCUPER field value from a register. */
-#define ALT_RSTMGR_MPUMODRST_SCUPER_GET(value) (((value) & 0x00000008) >> 3)
+    #define ALT_RSTMGR_MPUMODRST_SCUPER_GET( value )    ( ( ( value ) & 0x00000008 ) >> 3 )
 /* Produces a ALT_RSTMGR_MPUMODRST_SCUPER register field value suitable for setting the register. */
-#define ALT_RSTMGR_MPUMODRST_SCUPER_SET(value) (((value) << 3) & 0x00000008)
+    #define ALT_RSTMGR_MPUMODRST_SCUPER_SET( value )    ( ( ( value ) << 3 ) & 0x00000008 )
 
 /*
  * Field : L2 - l2
@@ -1498,23 +1506,24 @@ typedef volatile struct ALT_RSTMGR_COUNTS_s  ALT_RSTMGR_COUNTS_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_MPUMODRST_L2 register field. */
-#define ALT_RSTMGR_MPUMODRST_L2_LSB        4
+    #define ALT_RSTMGR_MPUMODRST_L2_LSB        4
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_MPUMODRST_L2 register field. */
-#define ALT_RSTMGR_MPUMODRST_L2_MSB        4
+    #define ALT_RSTMGR_MPUMODRST_L2_MSB        4
 /* The width in bits of the ALT_RSTMGR_MPUMODRST_L2 register field. */
-#define ALT_RSTMGR_MPUMODRST_L2_WIDTH      1
+    #define ALT_RSTMGR_MPUMODRST_L2_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_MPUMODRST_L2 register field value. */
-#define ALT_RSTMGR_MPUMODRST_L2_SET_MSK    0x00000010
+    #define ALT_RSTMGR_MPUMODRST_L2_SET_MSK    0x00000010
 /* The mask used to clear the ALT_RSTMGR_MPUMODRST_L2 register field value. */
-#define ALT_RSTMGR_MPUMODRST_L2_CLR_MSK    0xffffffef
+    #define ALT_RSTMGR_MPUMODRST_L2_CLR_MSK    0xffffffef
 /* The reset value of the ALT_RSTMGR_MPUMODRST_L2 register field. */
-#define ALT_RSTMGR_MPUMODRST_L2_RESET      0x0
+    #define ALT_RSTMGR_MPUMODRST_L2_RESET      0x0
 /* Extracts the ALT_RSTMGR_MPUMODRST_L2 field value from a register. */
-#define ALT_RSTMGR_MPUMODRST_L2_GET(value) (((value) & 0x00000010) >> 4)
+    #define ALT_RSTMGR_MPUMODRST_L2_GET( value )    ( ( ( value ) & 0x00000010 ) >> 4 )
 /* Produces a ALT_RSTMGR_MPUMODRST_L2 register field value suitable for setting the register. */
-#define ALT_RSTMGR_MPUMODRST_L2_SET(value) (((value) << 4) & 0x00000010)
+    #define ALT_RSTMGR_MPUMODRST_L2_SET( value )    ( ( ( value ) << 4 ) & 0x00000010 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -1525,22 +1534,22 @@ typedef volatile struct ALT_RSTMGR_COUNTS_s  ALT_RSTMGR_COUNTS_t;
  *
  * The struct declaration for register ALT_RSTMGR_MPUMODRST.
  */
-struct ALT_RSTMGR_MPUMODRST_s
-{
-    uint32_t  cpu0   :  1;  /* CPU0 */
-    uint32_t  cpu1   :  1;  /* CPU1 */
-    uint32_t  wds    :  1;  /* Watchdogs */
-    uint32_t  scuper :  1;  /* SCU/Peripherals */
-    uint32_t  l2     :  1;  /* L2 */
-    uint32_t         : 27;  /* *UNDEFINED* */
-};
+        struct ALT_RSTMGR_MPUMODRST_s
+        {
+            uint32_t cpu0   :  1;  /* CPU0 */
+            uint32_t cpu1   :  1;  /* CPU1 */
+            uint32_t wds    :  1;  /* Watchdogs */
+            uint32_t scuper :  1;  /* SCU/Peripherals */
+            uint32_t l2     :  1;  /* L2 */
+            uint32_t         : 27; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_RSTMGR_MPUMODRST. */
-typedef volatile struct ALT_RSTMGR_MPUMODRST_s  ALT_RSTMGR_MPUMODRST_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_RSTMGR_MPUMODRST_s ALT_RSTMGR_MPUMODRST_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_RSTMGR_MPUMODRST register from the beginning of the component. */
-#define ALT_RSTMGR_MPUMODRST_OFST        0x10
+    #define ALT_RSTMGR_MPUMODRST_OFST    0x10
 
 /*
  * Register : Peripheral Module Reset Register - permodrst
@@ -1601,6 +1610,7 @@ typedef volatile struct ALT_RSTMGR_MPUMODRST_s  ALT_RSTMGR_MPUMODRST_t;
  *  [31:30] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : EMAC0 - emac0
  *
@@ -1610,21 +1620,21 @@ typedef volatile struct ALT_RSTMGR_MPUMODRST_s  ALT_RSTMGR_MPUMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_PERMODRST_EMAC0 register field. */
-#define ALT_RSTMGR_PERMODRST_EMAC0_LSB        0
+    #define ALT_RSTMGR_PERMODRST_EMAC0_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_PERMODRST_EMAC0 register field. */
-#define ALT_RSTMGR_PERMODRST_EMAC0_MSB        0
+    #define ALT_RSTMGR_PERMODRST_EMAC0_MSB        0
 /* The width in bits of the ALT_RSTMGR_PERMODRST_EMAC0 register field. */
-#define ALT_RSTMGR_PERMODRST_EMAC0_WIDTH      1
+    #define ALT_RSTMGR_PERMODRST_EMAC0_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_PERMODRST_EMAC0 register field value. */
-#define ALT_RSTMGR_PERMODRST_EMAC0_SET_MSK    0x00000001
+    #define ALT_RSTMGR_PERMODRST_EMAC0_SET_MSK    0x00000001
 /* The mask used to clear the ALT_RSTMGR_PERMODRST_EMAC0 register field value. */
-#define ALT_RSTMGR_PERMODRST_EMAC0_CLR_MSK    0xfffffffe
+    #define ALT_RSTMGR_PERMODRST_EMAC0_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_RSTMGR_PERMODRST_EMAC0 register field. */
-#define ALT_RSTMGR_PERMODRST_EMAC0_RESET      0x1
+    #define ALT_RSTMGR_PERMODRST_EMAC0_RESET      0x1
 /* Extracts the ALT_RSTMGR_PERMODRST_EMAC0 field value from a register. */
-#define ALT_RSTMGR_PERMODRST_EMAC0_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_RSTMGR_PERMODRST_EMAC0_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_RSTMGR_PERMODRST_EMAC0 register field value suitable for setting the register. */
-#define ALT_RSTMGR_PERMODRST_EMAC0_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_RSTMGR_PERMODRST_EMAC0_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
 /*
  * Field : EMAC1 - emac1
@@ -1635,21 +1645,21 @@ typedef volatile struct ALT_RSTMGR_MPUMODRST_s  ALT_RSTMGR_MPUMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_PERMODRST_EMAC1 register field. */
-#define ALT_RSTMGR_PERMODRST_EMAC1_LSB        1
+    #define ALT_RSTMGR_PERMODRST_EMAC1_LSB        1
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_PERMODRST_EMAC1 register field. */
-#define ALT_RSTMGR_PERMODRST_EMAC1_MSB        1
+    #define ALT_RSTMGR_PERMODRST_EMAC1_MSB        1
 /* The width in bits of the ALT_RSTMGR_PERMODRST_EMAC1 register field. */
-#define ALT_RSTMGR_PERMODRST_EMAC1_WIDTH      1
+    #define ALT_RSTMGR_PERMODRST_EMAC1_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_PERMODRST_EMAC1 register field value. */
-#define ALT_RSTMGR_PERMODRST_EMAC1_SET_MSK    0x00000002
+    #define ALT_RSTMGR_PERMODRST_EMAC1_SET_MSK    0x00000002
 /* The mask used to clear the ALT_RSTMGR_PERMODRST_EMAC1 register field value. */
-#define ALT_RSTMGR_PERMODRST_EMAC1_CLR_MSK    0xfffffffd
+    #define ALT_RSTMGR_PERMODRST_EMAC1_CLR_MSK    0xfffffffd
 /* The reset value of the ALT_RSTMGR_PERMODRST_EMAC1 register field. */
-#define ALT_RSTMGR_PERMODRST_EMAC1_RESET      0x1
+    #define ALT_RSTMGR_PERMODRST_EMAC1_RESET      0x1
 /* Extracts the ALT_RSTMGR_PERMODRST_EMAC1 field value from a register. */
-#define ALT_RSTMGR_PERMODRST_EMAC1_GET(value) (((value) & 0x00000002) >> 1)
+    #define ALT_RSTMGR_PERMODRST_EMAC1_GET( value )    ( ( ( value ) & 0x00000002 ) >> 1 )
 /* Produces a ALT_RSTMGR_PERMODRST_EMAC1 register field value suitable for setting the register. */
-#define ALT_RSTMGR_PERMODRST_EMAC1_SET(value) (((value) << 1) & 0x00000002)
+    #define ALT_RSTMGR_PERMODRST_EMAC1_SET( value )    ( ( ( value ) << 1 ) & 0x00000002 )
 
 /*
  * Field : USB0 - usb0
@@ -1660,21 +1670,21 @@ typedef volatile struct ALT_RSTMGR_MPUMODRST_s  ALT_RSTMGR_MPUMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_PERMODRST_USB0 register field. */
-#define ALT_RSTMGR_PERMODRST_USB0_LSB        2
+    #define ALT_RSTMGR_PERMODRST_USB0_LSB        2
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_PERMODRST_USB0 register field. */
-#define ALT_RSTMGR_PERMODRST_USB0_MSB        2
+    #define ALT_RSTMGR_PERMODRST_USB0_MSB        2
 /* The width in bits of the ALT_RSTMGR_PERMODRST_USB0 register field. */
-#define ALT_RSTMGR_PERMODRST_USB0_WIDTH      1
+    #define ALT_RSTMGR_PERMODRST_USB0_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_PERMODRST_USB0 register field value. */
-#define ALT_RSTMGR_PERMODRST_USB0_SET_MSK    0x00000004
+    #define ALT_RSTMGR_PERMODRST_USB0_SET_MSK    0x00000004
 /* The mask used to clear the ALT_RSTMGR_PERMODRST_USB0 register field value. */
-#define ALT_RSTMGR_PERMODRST_USB0_CLR_MSK    0xfffffffb
+    #define ALT_RSTMGR_PERMODRST_USB0_CLR_MSK    0xfffffffb
 /* The reset value of the ALT_RSTMGR_PERMODRST_USB0 register field. */
-#define ALT_RSTMGR_PERMODRST_USB0_RESET      0x1
+    #define ALT_RSTMGR_PERMODRST_USB0_RESET      0x1
 /* Extracts the ALT_RSTMGR_PERMODRST_USB0 field value from a register. */
-#define ALT_RSTMGR_PERMODRST_USB0_GET(value) (((value) & 0x00000004) >> 2)
+    #define ALT_RSTMGR_PERMODRST_USB0_GET( value )    ( ( ( value ) & 0x00000004 ) >> 2 )
 /* Produces a ALT_RSTMGR_PERMODRST_USB0 register field value suitable for setting the register. */
-#define ALT_RSTMGR_PERMODRST_USB0_SET(value) (((value) << 2) & 0x00000004)
+    #define ALT_RSTMGR_PERMODRST_USB0_SET( value )    ( ( ( value ) << 2 ) & 0x00000004 )
 
 /*
  * Field : USB1 - usb1
@@ -1685,21 +1695,21 @@ typedef volatile struct ALT_RSTMGR_MPUMODRST_s  ALT_RSTMGR_MPUMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_PERMODRST_USB1 register field. */
-#define ALT_RSTMGR_PERMODRST_USB1_LSB        3
+    #define ALT_RSTMGR_PERMODRST_USB1_LSB        3
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_PERMODRST_USB1 register field. */
-#define ALT_RSTMGR_PERMODRST_USB1_MSB        3
+    #define ALT_RSTMGR_PERMODRST_USB1_MSB        3
 /* The width in bits of the ALT_RSTMGR_PERMODRST_USB1 register field. */
-#define ALT_RSTMGR_PERMODRST_USB1_WIDTH      1
+    #define ALT_RSTMGR_PERMODRST_USB1_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_PERMODRST_USB1 register field value. */
-#define ALT_RSTMGR_PERMODRST_USB1_SET_MSK    0x00000008
+    #define ALT_RSTMGR_PERMODRST_USB1_SET_MSK    0x00000008
 /* The mask used to clear the ALT_RSTMGR_PERMODRST_USB1 register field value. */
-#define ALT_RSTMGR_PERMODRST_USB1_CLR_MSK    0xfffffff7
+    #define ALT_RSTMGR_PERMODRST_USB1_CLR_MSK    0xfffffff7
 /* The reset value of the ALT_RSTMGR_PERMODRST_USB1 register field. */
-#define ALT_RSTMGR_PERMODRST_USB1_RESET      0x1
+    #define ALT_RSTMGR_PERMODRST_USB1_RESET      0x1
 /* Extracts the ALT_RSTMGR_PERMODRST_USB1 field value from a register. */
-#define ALT_RSTMGR_PERMODRST_USB1_GET(value) (((value) & 0x00000008) >> 3)
+    #define ALT_RSTMGR_PERMODRST_USB1_GET( value )    ( ( ( value ) & 0x00000008 ) >> 3 )
 /* Produces a ALT_RSTMGR_PERMODRST_USB1 register field value suitable for setting the register. */
-#define ALT_RSTMGR_PERMODRST_USB1_SET(value) (((value) << 3) & 0x00000008)
+    #define ALT_RSTMGR_PERMODRST_USB1_SET( value )    ( ( ( value ) << 3 ) & 0x00000008 )
 
 /*
  * Field : NAND Flash - nand
@@ -1710,21 +1720,21 @@ typedef volatile struct ALT_RSTMGR_MPUMODRST_s  ALT_RSTMGR_MPUMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_PERMODRST_NAND register field. */
-#define ALT_RSTMGR_PERMODRST_NAND_LSB        4
+    #define ALT_RSTMGR_PERMODRST_NAND_LSB        4
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_PERMODRST_NAND register field. */
-#define ALT_RSTMGR_PERMODRST_NAND_MSB        4
+    #define ALT_RSTMGR_PERMODRST_NAND_MSB        4
 /* The width in bits of the ALT_RSTMGR_PERMODRST_NAND register field. */
-#define ALT_RSTMGR_PERMODRST_NAND_WIDTH      1
+    #define ALT_RSTMGR_PERMODRST_NAND_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_PERMODRST_NAND register field value. */
-#define ALT_RSTMGR_PERMODRST_NAND_SET_MSK    0x00000010
+    #define ALT_RSTMGR_PERMODRST_NAND_SET_MSK    0x00000010
 /* The mask used to clear the ALT_RSTMGR_PERMODRST_NAND register field value. */
-#define ALT_RSTMGR_PERMODRST_NAND_CLR_MSK    0xffffffef
+    #define ALT_RSTMGR_PERMODRST_NAND_CLR_MSK    0xffffffef
 /* The reset value of the ALT_RSTMGR_PERMODRST_NAND register field. */
-#define ALT_RSTMGR_PERMODRST_NAND_RESET      0x1
+    #define ALT_RSTMGR_PERMODRST_NAND_RESET      0x1
 /* Extracts the ALT_RSTMGR_PERMODRST_NAND field value from a register. */
-#define ALT_RSTMGR_PERMODRST_NAND_GET(value) (((value) & 0x00000010) >> 4)
+    #define ALT_RSTMGR_PERMODRST_NAND_GET( value )    ( ( ( value ) & 0x00000010 ) >> 4 )
 /* Produces a ALT_RSTMGR_PERMODRST_NAND register field value suitable for setting the register. */
-#define ALT_RSTMGR_PERMODRST_NAND_SET(value) (((value) << 4) & 0x00000010)
+    #define ALT_RSTMGR_PERMODRST_NAND_SET( value )    ( ( ( value ) << 4 ) & 0x00000010 )
 
 /*
  * Field : QSPI Flash - qspi
@@ -1735,21 +1745,21 @@ typedef volatile struct ALT_RSTMGR_MPUMODRST_s  ALT_RSTMGR_MPUMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_PERMODRST_QSPI register field. */
-#define ALT_RSTMGR_PERMODRST_QSPI_LSB        5
+    #define ALT_RSTMGR_PERMODRST_QSPI_LSB        5
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_PERMODRST_QSPI register field. */
-#define ALT_RSTMGR_PERMODRST_QSPI_MSB        5
+    #define ALT_RSTMGR_PERMODRST_QSPI_MSB        5
 /* The width in bits of the ALT_RSTMGR_PERMODRST_QSPI register field. */
-#define ALT_RSTMGR_PERMODRST_QSPI_WIDTH      1
+    #define ALT_RSTMGR_PERMODRST_QSPI_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_PERMODRST_QSPI register field value. */
-#define ALT_RSTMGR_PERMODRST_QSPI_SET_MSK    0x00000020
+    #define ALT_RSTMGR_PERMODRST_QSPI_SET_MSK    0x00000020
 /* The mask used to clear the ALT_RSTMGR_PERMODRST_QSPI register field value. */
-#define ALT_RSTMGR_PERMODRST_QSPI_CLR_MSK    0xffffffdf
+    #define ALT_RSTMGR_PERMODRST_QSPI_CLR_MSK    0xffffffdf
 /* The reset value of the ALT_RSTMGR_PERMODRST_QSPI register field. */
-#define ALT_RSTMGR_PERMODRST_QSPI_RESET      0x1
+    #define ALT_RSTMGR_PERMODRST_QSPI_RESET      0x1
 /* Extracts the ALT_RSTMGR_PERMODRST_QSPI field value from a register. */
-#define ALT_RSTMGR_PERMODRST_QSPI_GET(value) (((value) & 0x00000020) >> 5)
+    #define ALT_RSTMGR_PERMODRST_QSPI_GET( value )    ( ( ( value ) & 0x00000020 ) >> 5 )
 /* Produces a ALT_RSTMGR_PERMODRST_QSPI register field value suitable for setting the register. */
-#define ALT_RSTMGR_PERMODRST_QSPI_SET(value) (((value) << 5) & 0x00000020)
+    #define ALT_RSTMGR_PERMODRST_QSPI_SET( value )    ( ( ( value ) << 5 ) & 0x00000020 )
 
 /*
  * Field : L4 Watchdog 0 - l4wd0
@@ -1760,21 +1770,21 @@ typedef volatile struct ALT_RSTMGR_MPUMODRST_s  ALT_RSTMGR_MPUMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_PERMODRST_L4WD0 register field. */
-#define ALT_RSTMGR_PERMODRST_L4WD0_LSB        6
+    #define ALT_RSTMGR_PERMODRST_L4WD0_LSB        6
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_PERMODRST_L4WD0 register field. */
-#define ALT_RSTMGR_PERMODRST_L4WD0_MSB        6
+    #define ALT_RSTMGR_PERMODRST_L4WD0_MSB        6
 /* The width in bits of the ALT_RSTMGR_PERMODRST_L4WD0 register field. */
-#define ALT_RSTMGR_PERMODRST_L4WD0_WIDTH      1
+    #define ALT_RSTMGR_PERMODRST_L4WD0_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_PERMODRST_L4WD0 register field value. */
-#define ALT_RSTMGR_PERMODRST_L4WD0_SET_MSK    0x00000040
+    #define ALT_RSTMGR_PERMODRST_L4WD0_SET_MSK    0x00000040
 /* The mask used to clear the ALT_RSTMGR_PERMODRST_L4WD0 register field value. */
-#define ALT_RSTMGR_PERMODRST_L4WD0_CLR_MSK    0xffffffbf
+    #define ALT_RSTMGR_PERMODRST_L4WD0_CLR_MSK    0xffffffbf
 /* The reset value of the ALT_RSTMGR_PERMODRST_L4WD0 register field. */
-#define ALT_RSTMGR_PERMODRST_L4WD0_RESET      0x1
+    #define ALT_RSTMGR_PERMODRST_L4WD0_RESET      0x1
 /* Extracts the ALT_RSTMGR_PERMODRST_L4WD0 field value from a register. */
-#define ALT_RSTMGR_PERMODRST_L4WD0_GET(value) (((value) & 0x00000040) >> 6)
+    #define ALT_RSTMGR_PERMODRST_L4WD0_GET( value )    ( ( ( value ) & 0x00000040 ) >> 6 )
 /* Produces a ALT_RSTMGR_PERMODRST_L4WD0 register field value suitable for setting the register. */
-#define ALT_RSTMGR_PERMODRST_L4WD0_SET(value) (((value) << 6) & 0x00000040)
+    #define ALT_RSTMGR_PERMODRST_L4WD0_SET( value )    ( ( ( value ) << 6 ) & 0x00000040 )
 
 /*
  * Field : L4 Watchdog 1 - l4wd1
@@ -1785,21 +1795,21 @@ typedef volatile struct ALT_RSTMGR_MPUMODRST_s  ALT_RSTMGR_MPUMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_PERMODRST_L4WD1 register field. */
-#define ALT_RSTMGR_PERMODRST_L4WD1_LSB        7
+    #define ALT_RSTMGR_PERMODRST_L4WD1_LSB        7
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_PERMODRST_L4WD1 register field. */
-#define ALT_RSTMGR_PERMODRST_L4WD1_MSB        7
+    #define ALT_RSTMGR_PERMODRST_L4WD1_MSB        7
 /* The width in bits of the ALT_RSTMGR_PERMODRST_L4WD1 register field. */
-#define ALT_RSTMGR_PERMODRST_L4WD1_WIDTH      1
+    #define ALT_RSTMGR_PERMODRST_L4WD1_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_PERMODRST_L4WD1 register field value. */
-#define ALT_RSTMGR_PERMODRST_L4WD1_SET_MSK    0x00000080
+    #define ALT_RSTMGR_PERMODRST_L4WD1_SET_MSK    0x00000080
 /* The mask used to clear the ALT_RSTMGR_PERMODRST_L4WD1 register field value. */
-#define ALT_RSTMGR_PERMODRST_L4WD1_CLR_MSK    0xffffff7f
+    #define ALT_RSTMGR_PERMODRST_L4WD1_CLR_MSK    0xffffff7f
 /* The reset value of the ALT_RSTMGR_PERMODRST_L4WD1 register field. */
-#define ALT_RSTMGR_PERMODRST_L4WD1_RESET      0x1
+    #define ALT_RSTMGR_PERMODRST_L4WD1_RESET      0x1
 /* Extracts the ALT_RSTMGR_PERMODRST_L4WD1 field value from a register. */
-#define ALT_RSTMGR_PERMODRST_L4WD1_GET(value) (((value) & 0x00000080) >> 7)
+    #define ALT_RSTMGR_PERMODRST_L4WD1_GET( value )    ( ( ( value ) & 0x00000080 ) >> 7 )
 /* Produces a ALT_RSTMGR_PERMODRST_L4WD1 register field value suitable for setting the register. */
-#define ALT_RSTMGR_PERMODRST_L4WD1_SET(value) (((value) << 7) & 0x00000080)
+    #define ALT_RSTMGR_PERMODRST_L4WD1_SET( value )    ( ( ( value ) << 7 ) & 0x00000080 )
 
 /*
  * Field : OSC1 Timer 0 - osc1timer0
@@ -1810,21 +1820,21 @@ typedef volatile struct ALT_RSTMGR_MPUMODRST_s  ALT_RSTMGR_MPUMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_PERMODRST_OSC1TMR0 register field. */
-#define ALT_RSTMGR_PERMODRST_OSC1TMR0_LSB        8
+    #define ALT_RSTMGR_PERMODRST_OSC1TMR0_LSB        8
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_PERMODRST_OSC1TMR0 register field. */
-#define ALT_RSTMGR_PERMODRST_OSC1TMR0_MSB        8
+    #define ALT_RSTMGR_PERMODRST_OSC1TMR0_MSB        8
 /* The width in bits of the ALT_RSTMGR_PERMODRST_OSC1TMR0 register field. */
-#define ALT_RSTMGR_PERMODRST_OSC1TMR0_WIDTH      1
+    #define ALT_RSTMGR_PERMODRST_OSC1TMR0_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_PERMODRST_OSC1TMR0 register field value. */
-#define ALT_RSTMGR_PERMODRST_OSC1TMR0_SET_MSK    0x00000100
+    #define ALT_RSTMGR_PERMODRST_OSC1TMR0_SET_MSK    0x00000100
 /* The mask used to clear the ALT_RSTMGR_PERMODRST_OSC1TMR0 register field value. */
-#define ALT_RSTMGR_PERMODRST_OSC1TMR0_CLR_MSK    0xfffffeff
+    #define ALT_RSTMGR_PERMODRST_OSC1TMR0_CLR_MSK    0xfffffeff
 /* The reset value of the ALT_RSTMGR_PERMODRST_OSC1TMR0 register field. */
-#define ALT_RSTMGR_PERMODRST_OSC1TMR0_RESET      0x1
+    #define ALT_RSTMGR_PERMODRST_OSC1TMR0_RESET      0x1
 /* Extracts the ALT_RSTMGR_PERMODRST_OSC1TMR0 field value from a register. */
-#define ALT_RSTMGR_PERMODRST_OSC1TMR0_GET(value) (((value) & 0x00000100) >> 8)
+    #define ALT_RSTMGR_PERMODRST_OSC1TMR0_GET( value )    ( ( ( value ) & 0x00000100 ) >> 8 )
 /* Produces a ALT_RSTMGR_PERMODRST_OSC1TMR0 register field value suitable for setting the register. */
-#define ALT_RSTMGR_PERMODRST_OSC1TMR0_SET(value) (((value) << 8) & 0x00000100)
+    #define ALT_RSTMGR_PERMODRST_OSC1TMR0_SET( value )    ( ( ( value ) << 8 ) & 0x00000100 )
 
 /*
  * Field : OSC1 Timer 1 - osc1timer1
@@ -1835,21 +1845,21 @@ typedef volatile struct ALT_RSTMGR_MPUMODRST_s  ALT_RSTMGR_MPUMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_PERMODRST_OSC1TMR1 register field. */
-#define ALT_RSTMGR_PERMODRST_OSC1TMR1_LSB        9
+    #define ALT_RSTMGR_PERMODRST_OSC1TMR1_LSB        9
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_PERMODRST_OSC1TMR1 register field. */
-#define ALT_RSTMGR_PERMODRST_OSC1TMR1_MSB        9
+    #define ALT_RSTMGR_PERMODRST_OSC1TMR1_MSB        9
 /* The width in bits of the ALT_RSTMGR_PERMODRST_OSC1TMR1 register field. */
-#define ALT_RSTMGR_PERMODRST_OSC1TMR1_WIDTH      1
+    #define ALT_RSTMGR_PERMODRST_OSC1TMR1_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_PERMODRST_OSC1TMR1 register field value. */
-#define ALT_RSTMGR_PERMODRST_OSC1TMR1_SET_MSK    0x00000200
+    #define ALT_RSTMGR_PERMODRST_OSC1TMR1_SET_MSK    0x00000200
 /* The mask used to clear the ALT_RSTMGR_PERMODRST_OSC1TMR1 register field value. */
-#define ALT_RSTMGR_PERMODRST_OSC1TMR1_CLR_MSK    0xfffffdff
+    #define ALT_RSTMGR_PERMODRST_OSC1TMR1_CLR_MSK    0xfffffdff
 /* The reset value of the ALT_RSTMGR_PERMODRST_OSC1TMR1 register field. */
-#define ALT_RSTMGR_PERMODRST_OSC1TMR1_RESET      0x1
+    #define ALT_RSTMGR_PERMODRST_OSC1TMR1_RESET      0x1
 /* Extracts the ALT_RSTMGR_PERMODRST_OSC1TMR1 field value from a register. */
-#define ALT_RSTMGR_PERMODRST_OSC1TMR1_GET(value) (((value) & 0x00000200) >> 9)
+    #define ALT_RSTMGR_PERMODRST_OSC1TMR1_GET( value )    ( ( ( value ) & 0x00000200 ) >> 9 )
 /* Produces a ALT_RSTMGR_PERMODRST_OSC1TMR1 register field value suitable for setting the register. */
-#define ALT_RSTMGR_PERMODRST_OSC1TMR1_SET(value) (((value) << 9) & 0x00000200)
+    #define ALT_RSTMGR_PERMODRST_OSC1TMR1_SET( value )    ( ( ( value ) << 9 ) & 0x00000200 )
 
 /*
  * Field : SP Timer 0 - sptimer0
@@ -1860,21 +1870,21 @@ typedef volatile struct ALT_RSTMGR_MPUMODRST_s  ALT_RSTMGR_MPUMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_PERMODRST_SPTMR0 register field. */
-#define ALT_RSTMGR_PERMODRST_SPTMR0_LSB        10
+    #define ALT_RSTMGR_PERMODRST_SPTMR0_LSB        10
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_PERMODRST_SPTMR0 register field. */
-#define ALT_RSTMGR_PERMODRST_SPTMR0_MSB        10
+    #define ALT_RSTMGR_PERMODRST_SPTMR0_MSB        10
 /* The width in bits of the ALT_RSTMGR_PERMODRST_SPTMR0 register field. */
-#define ALT_RSTMGR_PERMODRST_SPTMR0_WIDTH      1
+    #define ALT_RSTMGR_PERMODRST_SPTMR0_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_PERMODRST_SPTMR0 register field value. */
-#define ALT_RSTMGR_PERMODRST_SPTMR0_SET_MSK    0x00000400
+    #define ALT_RSTMGR_PERMODRST_SPTMR0_SET_MSK    0x00000400
 /* The mask used to clear the ALT_RSTMGR_PERMODRST_SPTMR0 register field value. */
-#define ALT_RSTMGR_PERMODRST_SPTMR0_CLR_MSK    0xfffffbff
+    #define ALT_RSTMGR_PERMODRST_SPTMR0_CLR_MSK    0xfffffbff
 /* The reset value of the ALT_RSTMGR_PERMODRST_SPTMR0 register field. */
-#define ALT_RSTMGR_PERMODRST_SPTMR0_RESET      0x1
+    #define ALT_RSTMGR_PERMODRST_SPTMR0_RESET      0x1
 /* Extracts the ALT_RSTMGR_PERMODRST_SPTMR0 field value from a register. */
-#define ALT_RSTMGR_PERMODRST_SPTMR0_GET(value) (((value) & 0x00000400) >> 10)
+    #define ALT_RSTMGR_PERMODRST_SPTMR0_GET( value )    ( ( ( value ) & 0x00000400 ) >> 10 )
 /* Produces a ALT_RSTMGR_PERMODRST_SPTMR0 register field value suitable for setting the register. */
-#define ALT_RSTMGR_PERMODRST_SPTMR0_SET(value) (((value) << 10) & 0x00000400)
+    #define ALT_RSTMGR_PERMODRST_SPTMR0_SET( value )    ( ( ( value ) << 10 ) & 0x00000400 )
 
 /*
  * Field : SP Timer 1 - sptimer1
@@ -1885,21 +1895,21 @@ typedef volatile struct ALT_RSTMGR_MPUMODRST_s  ALT_RSTMGR_MPUMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_PERMODRST_SPTMR1 register field. */
-#define ALT_RSTMGR_PERMODRST_SPTMR1_LSB        11
+    #define ALT_RSTMGR_PERMODRST_SPTMR1_LSB        11
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_PERMODRST_SPTMR1 register field. */
-#define ALT_RSTMGR_PERMODRST_SPTMR1_MSB        11
+    #define ALT_RSTMGR_PERMODRST_SPTMR1_MSB        11
 /* The width in bits of the ALT_RSTMGR_PERMODRST_SPTMR1 register field. */
-#define ALT_RSTMGR_PERMODRST_SPTMR1_WIDTH      1
+    #define ALT_RSTMGR_PERMODRST_SPTMR1_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_PERMODRST_SPTMR1 register field value. */
-#define ALT_RSTMGR_PERMODRST_SPTMR1_SET_MSK    0x00000800
+    #define ALT_RSTMGR_PERMODRST_SPTMR1_SET_MSK    0x00000800
 /* The mask used to clear the ALT_RSTMGR_PERMODRST_SPTMR1 register field value. */
-#define ALT_RSTMGR_PERMODRST_SPTMR1_CLR_MSK    0xfffff7ff
+    #define ALT_RSTMGR_PERMODRST_SPTMR1_CLR_MSK    0xfffff7ff
 /* The reset value of the ALT_RSTMGR_PERMODRST_SPTMR1 register field. */
-#define ALT_RSTMGR_PERMODRST_SPTMR1_RESET      0x1
+    #define ALT_RSTMGR_PERMODRST_SPTMR1_RESET      0x1
 /* Extracts the ALT_RSTMGR_PERMODRST_SPTMR1 field value from a register. */
-#define ALT_RSTMGR_PERMODRST_SPTMR1_GET(value) (((value) & 0x00000800) >> 11)
+    #define ALT_RSTMGR_PERMODRST_SPTMR1_GET( value )    ( ( ( value ) & 0x00000800 ) >> 11 )
 /* Produces a ALT_RSTMGR_PERMODRST_SPTMR1 register field value suitable for setting the register. */
-#define ALT_RSTMGR_PERMODRST_SPTMR1_SET(value) (((value) << 11) & 0x00000800)
+    #define ALT_RSTMGR_PERMODRST_SPTMR1_SET( value )    ( ( ( value ) << 11 ) & 0x00000800 )
 
 /*
  * Field : I2C0 - i2c0
@@ -1910,21 +1920,21 @@ typedef volatile struct ALT_RSTMGR_MPUMODRST_s  ALT_RSTMGR_MPUMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_PERMODRST_I2C0 register field. */
-#define ALT_RSTMGR_PERMODRST_I2C0_LSB        12
+    #define ALT_RSTMGR_PERMODRST_I2C0_LSB        12
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_PERMODRST_I2C0 register field. */
-#define ALT_RSTMGR_PERMODRST_I2C0_MSB        12
+    #define ALT_RSTMGR_PERMODRST_I2C0_MSB        12
 /* The width in bits of the ALT_RSTMGR_PERMODRST_I2C0 register field. */
-#define ALT_RSTMGR_PERMODRST_I2C0_WIDTH      1
+    #define ALT_RSTMGR_PERMODRST_I2C0_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_PERMODRST_I2C0 register field value. */
-#define ALT_RSTMGR_PERMODRST_I2C0_SET_MSK    0x00001000
+    #define ALT_RSTMGR_PERMODRST_I2C0_SET_MSK    0x00001000
 /* The mask used to clear the ALT_RSTMGR_PERMODRST_I2C0 register field value. */
-#define ALT_RSTMGR_PERMODRST_I2C0_CLR_MSK    0xffffefff
+    #define ALT_RSTMGR_PERMODRST_I2C0_CLR_MSK    0xffffefff
 /* The reset value of the ALT_RSTMGR_PERMODRST_I2C0 register field. */
-#define ALT_RSTMGR_PERMODRST_I2C0_RESET      0x1
+    #define ALT_RSTMGR_PERMODRST_I2C0_RESET      0x1
 /* Extracts the ALT_RSTMGR_PERMODRST_I2C0 field value from a register. */
-#define ALT_RSTMGR_PERMODRST_I2C0_GET(value) (((value) & 0x00001000) >> 12)
+    #define ALT_RSTMGR_PERMODRST_I2C0_GET( value )    ( ( ( value ) & 0x00001000 ) >> 12 )
 /* Produces a ALT_RSTMGR_PERMODRST_I2C0 register field value suitable for setting the register. */
-#define ALT_RSTMGR_PERMODRST_I2C0_SET(value) (((value) << 12) & 0x00001000)
+    #define ALT_RSTMGR_PERMODRST_I2C0_SET( value )    ( ( ( value ) << 12 ) & 0x00001000 )
 
 /*
  * Field : I2C1 - i2c1
@@ -1935,21 +1945,21 @@ typedef volatile struct ALT_RSTMGR_MPUMODRST_s  ALT_RSTMGR_MPUMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_PERMODRST_I2C1 register field. */
-#define ALT_RSTMGR_PERMODRST_I2C1_LSB        13
+    #define ALT_RSTMGR_PERMODRST_I2C1_LSB        13
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_PERMODRST_I2C1 register field. */
-#define ALT_RSTMGR_PERMODRST_I2C1_MSB        13
+    #define ALT_RSTMGR_PERMODRST_I2C1_MSB        13
 /* The width in bits of the ALT_RSTMGR_PERMODRST_I2C1 register field. */
-#define ALT_RSTMGR_PERMODRST_I2C1_WIDTH      1
+    #define ALT_RSTMGR_PERMODRST_I2C1_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_PERMODRST_I2C1 register field value. */
-#define ALT_RSTMGR_PERMODRST_I2C1_SET_MSK    0x00002000
+    #define ALT_RSTMGR_PERMODRST_I2C1_SET_MSK    0x00002000
 /* The mask used to clear the ALT_RSTMGR_PERMODRST_I2C1 register field value. */
-#define ALT_RSTMGR_PERMODRST_I2C1_CLR_MSK    0xffffdfff
+    #define ALT_RSTMGR_PERMODRST_I2C1_CLR_MSK    0xffffdfff
 /* The reset value of the ALT_RSTMGR_PERMODRST_I2C1 register field. */
-#define ALT_RSTMGR_PERMODRST_I2C1_RESET      0x1
+    #define ALT_RSTMGR_PERMODRST_I2C1_RESET      0x1
 /* Extracts the ALT_RSTMGR_PERMODRST_I2C1 field value from a register. */
-#define ALT_RSTMGR_PERMODRST_I2C1_GET(value) (((value) & 0x00002000) >> 13)
+    #define ALT_RSTMGR_PERMODRST_I2C1_GET( value )    ( ( ( value ) & 0x00002000 ) >> 13 )
 /* Produces a ALT_RSTMGR_PERMODRST_I2C1 register field value suitable for setting the register. */
-#define ALT_RSTMGR_PERMODRST_I2C1_SET(value) (((value) << 13) & 0x00002000)
+    #define ALT_RSTMGR_PERMODRST_I2C1_SET( value )    ( ( ( value ) << 13 ) & 0x00002000 )
 
 /*
  * Field : I2C2 - i2c2
@@ -1960,21 +1970,21 @@ typedef volatile struct ALT_RSTMGR_MPUMODRST_s  ALT_RSTMGR_MPUMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_PERMODRST_I2C2 register field. */
-#define ALT_RSTMGR_PERMODRST_I2C2_LSB        14
+    #define ALT_RSTMGR_PERMODRST_I2C2_LSB        14
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_PERMODRST_I2C2 register field. */
-#define ALT_RSTMGR_PERMODRST_I2C2_MSB        14
+    #define ALT_RSTMGR_PERMODRST_I2C2_MSB        14
 /* The width in bits of the ALT_RSTMGR_PERMODRST_I2C2 register field. */
-#define ALT_RSTMGR_PERMODRST_I2C2_WIDTH      1
+    #define ALT_RSTMGR_PERMODRST_I2C2_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_PERMODRST_I2C2 register field value. */
-#define ALT_RSTMGR_PERMODRST_I2C2_SET_MSK    0x00004000
+    #define ALT_RSTMGR_PERMODRST_I2C2_SET_MSK    0x00004000
 /* The mask used to clear the ALT_RSTMGR_PERMODRST_I2C2 register field value. */
-#define ALT_RSTMGR_PERMODRST_I2C2_CLR_MSK    0xffffbfff
+    #define ALT_RSTMGR_PERMODRST_I2C2_CLR_MSK    0xffffbfff
 /* The reset value of the ALT_RSTMGR_PERMODRST_I2C2 register field. */
-#define ALT_RSTMGR_PERMODRST_I2C2_RESET      0x1
+    #define ALT_RSTMGR_PERMODRST_I2C2_RESET      0x1
 /* Extracts the ALT_RSTMGR_PERMODRST_I2C2 field value from a register. */
-#define ALT_RSTMGR_PERMODRST_I2C2_GET(value) (((value) & 0x00004000) >> 14)
+    #define ALT_RSTMGR_PERMODRST_I2C2_GET( value )    ( ( ( value ) & 0x00004000 ) >> 14 )
 /* Produces a ALT_RSTMGR_PERMODRST_I2C2 register field value suitable for setting the register. */
-#define ALT_RSTMGR_PERMODRST_I2C2_SET(value) (((value) << 14) & 0x00004000)
+    #define ALT_RSTMGR_PERMODRST_I2C2_SET( value )    ( ( ( value ) << 14 ) & 0x00004000 )
 
 /*
  * Field : I2C3 - i2c3
@@ -1985,21 +1995,21 @@ typedef volatile struct ALT_RSTMGR_MPUMODRST_s  ALT_RSTMGR_MPUMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_PERMODRST_I2C3 register field. */
-#define ALT_RSTMGR_PERMODRST_I2C3_LSB        15
+    #define ALT_RSTMGR_PERMODRST_I2C3_LSB        15
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_PERMODRST_I2C3 register field. */
-#define ALT_RSTMGR_PERMODRST_I2C3_MSB        15
+    #define ALT_RSTMGR_PERMODRST_I2C3_MSB        15
 /* The width in bits of the ALT_RSTMGR_PERMODRST_I2C3 register field. */
-#define ALT_RSTMGR_PERMODRST_I2C3_WIDTH      1
+    #define ALT_RSTMGR_PERMODRST_I2C3_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_PERMODRST_I2C3 register field value. */
-#define ALT_RSTMGR_PERMODRST_I2C3_SET_MSK    0x00008000
+    #define ALT_RSTMGR_PERMODRST_I2C3_SET_MSK    0x00008000
 /* The mask used to clear the ALT_RSTMGR_PERMODRST_I2C3 register field value. */
-#define ALT_RSTMGR_PERMODRST_I2C3_CLR_MSK    0xffff7fff
+    #define ALT_RSTMGR_PERMODRST_I2C3_CLR_MSK    0xffff7fff
 /* The reset value of the ALT_RSTMGR_PERMODRST_I2C3 register field. */
-#define ALT_RSTMGR_PERMODRST_I2C3_RESET      0x1
+    #define ALT_RSTMGR_PERMODRST_I2C3_RESET      0x1
 /* Extracts the ALT_RSTMGR_PERMODRST_I2C3 field value from a register. */
-#define ALT_RSTMGR_PERMODRST_I2C3_GET(value) (((value) & 0x00008000) >> 15)
+    #define ALT_RSTMGR_PERMODRST_I2C3_GET( value )    ( ( ( value ) & 0x00008000 ) >> 15 )
 /* Produces a ALT_RSTMGR_PERMODRST_I2C3 register field value suitable for setting the register. */
-#define ALT_RSTMGR_PERMODRST_I2C3_SET(value) (((value) << 15) & 0x00008000)
+    #define ALT_RSTMGR_PERMODRST_I2C3_SET( value )    ( ( ( value ) << 15 ) & 0x00008000 )
 
 /*
  * Field : UART0 - uart0
@@ -2010,21 +2020,21 @@ typedef volatile struct ALT_RSTMGR_MPUMODRST_s  ALT_RSTMGR_MPUMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_PERMODRST_UART0 register field. */
-#define ALT_RSTMGR_PERMODRST_UART0_LSB        16
+    #define ALT_RSTMGR_PERMODRST_UART0_LSB        16
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_PERMODRST_UART0 register field. */
-#define ALT_RSTMGR_PERMODRST_UART0_MSB        16
+    #define ALT_RSTMGR_PERMODRST_UART0_MSB        16
 /* The width in bits of the ALT_RSTMGR_PERMODRST_UART0 register field. */
-#define ALT_RSTMGR_PERMODRST_UART0_WIDTH      1
+    #define ALT_RSTMGR_PERMODRST_UART0_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_PERMODRST_UART0 register field value. */
-#define ALT_RSTMGR_PERMODRST_UART0_SET_MSK    0x00010000
+    #define ALT_RSTMGR_PERMODRST_UART0_SET_MSK    0x00010000
 /* The mask used to clear the ALT_RSTMGR_PERMODRST_UART0 register field value. */
-#define ALT_RSTMGR_PERMODRST_UART0_CLR_MSK    0xfffeffff
+    #define ALT_RSTMGR_PERMODRST_UART0_CLR_MSK    0xfffeffff
 /* The reset value of the ALT_RSTMGR_PERMODRST_UART0 register field. */
-#define ALT_RSTMGR_PERMODRST_UART0_RESET      0x1
+    #define ALT_RSTMGR_PERMODRST_UART0_RESET      0x1
 /* Extracts the ALT_RSTMGR_PERMODRST_UART0 field value from a register. */
-#define ALT_RSTMGR_PERMODRST_UART0_GET(value) (((value) & 0x00010000) >> 16)
+    #define ALT_RSTMGR_PERMODRST_UART0_GET( value )    ( ( ( value ) & 0x00010000 ) >> 16 )
 /* Produces a ALT_RSTMGR_PERMODRST_UART0 register field value suitable for setting the register. */
-#define ALT_RSTMGR_PERMODRST_UART0_SET(value) (((value) << 16) & 0x00010000)
+    #define ALT_RSTMGR_PERMODRST_UART0_SET( value )    ( ( ( value ) << 16 ) & 0x00010000 )
 
 /*
  * Field : UART1 - uart1
@@ -2035,21 +2045,21 @@ typedef volatile struct ALT_RSTMGR_MPUMODRST_s  ALT_RSTMGR_MPUMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_PERMODRST_UART1 register field. */
-#define ALT_RSTMGR_PERMODRST_UART1_LSB        17
+    #define ALT_RSTMGR_PERMODRST_UART1_LSB        17
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_PERMODRST_UART1 register field. */
-#define ALT_RSTMGR_PERMODRST_UART1_MSB        17
+    #define ALT_RSTMGR_PERMODRST_UART1_MSB        17
 /* The width in bits of the ALT_RSTMGR_PERMODRST_UART1 register field. */
-#define ALT_RSTMGR_PERMODRST_UART1_WIDTH      1
+    #define ALT_RSTMGR_PERMODRST_UART1_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_PERMODRST_UART1 register field value. */
-#define ALT_RSTMGR_PERMODRST_UART1_SET_MSK    0x00020000
+    #define ALT_RSTMGR_PERMODRST_UART1_SET_MSK    0x00020000
 /* The mask used to clear the ALT_RSTMGR_PERMODRST_UART1 register field value. */
-#define ALT_RSTMGR_PERMODRST_UART1_CLR_MSK    0xfffdffff
+    #define ALT_RSTMGR_PERMODRST_UART1_CLR_MSK    0xfffdffff
 /* The reset value of the ALT_RSTMGR_PERMODRST_UART1 register field. */
-#define ALT_RSTMGR_PERMODRST_UART1_RESET      0x1
+    #define ALT_RSTMGR_PERMODRST_UART1_RESET      0x1
 /* Extracts the ALT_RSTMGR_PERMODRST_UART1 field value from a register. */
-#define ALT_RSTMGR_PERMODRST_UART1_GET(value) (((value) & 0x00020000) >> 17)
+    #define ALT_RSTMGR_PERMODRST_UART1_GET( value )    ( ( ( value ) & 0x00020000 ) >> 17 )
 /* Produces a ALT_RSTMGR_PERMODRST_UART1 register field value suitable for setting the register. */
-#define ALT_RSTMGR_PERMODRST_UART1_SET(value) (((value) << 17) & 0x00020000)
+    #define ALT_RSTMGR_PERMODRST_UART1_SET( value )    ( ( ( value ) << 17 ) & 0x00020000 )
 
 /*
  * Field : SPIM0 - spim0
@@ -2060,21 +2070,21 @@ typedef volatile struct ALT_RSTMGR_MPUMODRST_s  ALT_RSTMGR_MPUMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_PERMODRST_SPIM0 register field. */
-#define ALT_RSTMGR_PERMODRST_SPIM0_LSB        18
+    #define ALT_RSTMGR_PERMODRST_SPIM0_LSB        18
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_PERMODRST_SPIM0 register field. */
-#define ALT_RSTMGR_PERMODRST_SPIM0_MSB        18
+    #define ALT_RSTMGR_PERMODRST_SPIM0_MSB        18
 /* The width in bits of the ALT_RSTMGR_PERMODRST_SPIM0 register field. */
-#define ALT_RSTMGR_PERMODRST_SPIM0_WIDTH      1
+    #define ALT_RSTMGR_PERMODRST_SPIM0_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_PERMODRST_SPIM0 register field value. */
-#define ALT_RSTMGR_PERMODRST_SPIM0_SET_MSK    0x00040000
+    #define ALT_RSTMGR_PERMODRST_SPIM0_SET_MSK    0x00040000
 /* The mask used to clear the ALT_RSTMGR_PERMODRST_SPIM0 register field value. */
-#define ALT_RSTMGR_PERMODRST_SPIM0_CLR_MSK    0xfffbffff
+    #define ALT_RSTMGR_PERMODRST_SPIM0_CLR_MSK    0xfffbffff
 /* The reset value of the ALT_RSTMGR_PERMODRST_SPIM0 register field. */
-#define ALT_RSTMGR_PERMODRST_SPIM0_RESET      0x1
+    #define ALT_RSTMGR_PERMODRST_SPIM0_RESET      0x1
 /* Extracts the ALT_RSTMGR_PERMODRST_SPIM0 field value from a register. */
-#define ALT_RSTMGR_PERMODRST_SPIM0_GET(value) (((value) & 0x00040000) >> 18)
+    #define ALT_RSTMGR_PERMODRST_SPIM0_GET( value )    ( ( ( value ) & 0x00040000 ) >> 18 )
 /* Produces a ALT_RSTMGR_PERMODRST_SPIM0 register field value suitable for setting the register. */
-#define ALT_RSTMGR_PERMODRST_SPIM0_SET(value) (((value) << 18) & 0x00040000)
+    #define ALT_RSTMGR_PERMODRST_SPIM0_SET( value )    ( ( ( value ) << 18 ) & 0x00040000 )
 
 /*
  * Field : SPIM1 - spim1
@@ -2085,21 +2095,21 @@ typedef volatile struct ALT_RSTMGR_MPUMODRST_s  ALT_RSTMGR_MPUMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_PERMODRST_SPIM1 register field. */
-#define ALT_RSTMGR_PERMODRST_SPIM1_LSB        19
+    #define ALT_RSTMGR_PERMODRST_SPIM1_LSB        19
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_PERMODRST_SPIM1 register field. */
-#define ALT_RSTMGR_PERMODRST_SPIM1_MSB        19
+    #define ALT_RSTMGR_PERMODRST_SPIM1_MSB        19
 /* The width in bits of the ALT_RSTMGR_PERMODRST_SPIM1 register field. */
-#define ALT_RSTMGR_PERMODRST_SPIM1_WIDTH      1
+    #define ALT_RSTMGR_PERMODRST_SPIM1_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_PERMODRST_SPIM1 register field value. */
-#define ALT_RSTMGR_PERMODRST_SPIM1_SET_MSK    0x00080000
+    #define ALT_RSTMGR_PERMODRST_SPIM1_SET_MSK    0x00080000
 /* The mask used to clear the ALT_RSTMGR_PERMODRST_SPIM1 register field value. */
-#define ALT_RSTMGR_PERMODRST_SPIM1_CLR_MSK    0xfff7ffff
+    #define ALT_RSTMGR_PERMODRST_SPIM1_CLR_MSK    0xfff7ffff
 /* The reset value of the ALT_RSTMGR_PERMODRST_SPIM1 register field. */
-#define ALT_RSTMGR_PERMODRST_SPIM1_RESET      0x1
+    #define ALT_RSTMGR_PERMODRST_SPIM1_RESET      0x1
 /* Extracts the ALT_RSTMGR_PERMODRST_SPIM1 field value from a register. */
-#define ALT_RSTMGR_PERMODRST_SPIM1_GET(value) (((value) & 0x00080000) >> 19)
+    #define ALT_RSTMGR_PERMODRST_SPIM1_GET( value )    ( ( ( value ) & 0x00080000 ) >> 19 )
 /* Produces a ALT_RSTMGR_PERMODRST_SPIM1 register field value suitable for setting the register. */
-#define ALT_RSTMGR_PERMODRST_SPIM1_SET(value) (((value) << 19) & 0x00080000)
+    #define ALT_RSTMGR_PERMODRST_SPIM1_SET( value )    ( ( ( value ) << 19 ) & 0x00080000 )
 
 /*
  * Field : SPIS0 - spis0
@@ -2110,21 +2120,21 @@ typedef volatile struct ALT_RSTMGR_MPUMODRST_s  ALT_RSTMGR_MPUMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_PERMODRST_SPIS0 register field. */
-#define ALT_RSTMGR_PERMODRST_SPIS0_LSB        20
+    #define ALT_RSTMGR_PERMODRST_SPIS0_LSB        20
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_PERMODRST_SPIS0 register field. */
-#define ALT_RSTMGR_PERMODRST_SPIS0_MSB        20
+    #define ALT_RSTMGR_PERMODRST_SPIS0_MSB        20
 /* The width in bits of the ALT_RSTMGR_PERMODRST_SPIS0 register field. */
-#define ALT_RSTMGR_PERMODRST_SPIS0_WIDTH      1
+    #define ALT_RSTMGR_PERMODRST_SPIS0_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_PERMODRST_SPIS0 register field value. */
-#define ALT_RSTMGR_PERMODRST_SPIS0_SET_MSK    0x00100000
+    #define ALT_RSTMGR_PERMODRST_SPIS0_SET_MSK    0x00100000
 /* The mask used to clear the ALT_RSTMGR_PERMODRST_SPIS0 register field value. */
-#define ALT_RSTMGR_PERMODRST_SPIS0_CLR_MSK    0xffefffff
+    #define ALT_RSTMGR_PERMODRST_SPIS0_CLR_MSK    0xffefffff
 /* The reset value of the ALT_RSTMGR_PERMODRST_SPIS0 register field. */
-#define ALT_RSTMGR_PERMODRST_SPIS0_RESET      0x1
+    #define ALT_RSTMGR_PERMODRST_SPIS0_RESET      0x1
 /* Extracts the ALT_RSTMGR_PERMODRST_SPIS0 field value from a register. */
-#define ALT_RSTMGR_PERMODRST_SPIS0_GET(value) (((value) & 0x00100000) >> 20)
+    #define ALT_RSTMGR_PERMODRST_SPIS0_GET( value )    ( ( ( value ) & 0x00100000 ) >> 20 )
 /* Produces a ALT_RSTMGR_PERMODRST_SPIS0 register field value suitable for setting the register. */
-#define ALT_RSTMGR_PERMODRST_SPIS0_SET(value) (((value) << 20) & 0x00100000)
+    #define ALT_RSTMGR_PERMODRST_SPIS0_SET( value )    ( ( ( value ) << 20 ) & 0x00100000 )
 
 /*
  * Field : SPIS1 - spis1
@@ -2135,21 +2145,21 @@ typedef volatile struct ALT_RSTMGR_MPUMODRST_s  ALT_RSTMGR_MPUMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_PERMODRST_SPIS1 register field. */
-#define ALT_RSTMGR_PERMODRST_SPIS1_LSB        21
+    #define ALT_RSTMGR_PERMODRST_SPIS1_LSB        21
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_PERMODRST_SPIS1 register field. */
-#define ALT_RSTMGR_PERMODRST_SPIS1_MSB        21
+    #define ALT_RSTMGR_PERMODRST_SPIS1_MSB        21
 /* The width in bits of the ALT_RSTMGR_PERMODRST_SPIS1 register field. */
-#define ALT_RSTMGR_PERMODRST_SPIS1_WIDTH      1
+    #define ALT_RSTMGR_PERMODRST_SPIS1_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_PERMODRST_SPIS1 register field value. */
-#define ALT_RSTMGR_PERMODRST_SPIS1_SET_MSK    0x00200000
+    #define ALT_RSTMGR_PERMODRST_SPIS1_SET_MSK    0x00200000
 /* The mask used to clear the ALT_RSTMGR_PERMODRST_SPIS1 register field value. */
-#define ALT_RSTMGR_PERMODRST_SPIS1_CLR_MSK    0xffdfffff
+    #define ALT_RSTMGR_PERMODRST_SPIS1_CLR_MSK    0xffdfffff
 /* The reset value of the ALT_RSTMGR_PERMODRST_SPIS1 register field. */
-#define ALT_RSTMGR_PERMODRST_SPIS1_RESET      0x1
+    #define ALT_RSTMGR_PERMODRST_SPIS1_RESET      0x1
 /* Extracts the ALT_RSTMGR_PERMODRST_SPIS1 field value from a register. */
-#define ALT_RSTMGR_PERMODRST_SPIS1_GET(value) (((value) & 0x00200000) >> 21)
+    #define ALT_RSTMGR_PERMODRST_SPIS1_GET( value )    ( ( ( value ) & 0x00200000 ) >> 21 )
 /* Produces a ALT_RSTMGR_PERMODRST_SPIS1 register field value suitable for setting the register. */
-#define ALT_RSTMGR_PERMODRST_SPIS1_SET(value) (((value) << 21) & 0x00200000)
+    #define ALT_RSTMGR_PERMODRST_SPIS1_SET( value )    ( ( ( value ) << 21 ) & 0x00200000 )
 
 /*
  * Field : SD/MMC - sdmmc
@@ -2160,21 +2170,21 @@ typedef volatile struct ALT_RSTMGR_MPUMODRST_s  ALT_RSTMGR_MPUMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_PERMODRST_SDMMC register field. */
-#define ALT_RSTMGR_PERMODRST_SDMMC_LSB        22
+    #define ALT_RSTMGR_PERMODRST_SDMMC_LSB        22
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_PERMODRST_SDMMC register field. */
-#define ALT_RSTMGR_PERMODRST_SDMMC_MSB        22
+    #define ALT_RSTMGR_PERMODRST_SDMMC_MSB        22
 /* The width in bits of the ALT_RSTMGR_PERMODRST_SDMMC register field. */
-#define ALT_RSTMGR_PERMODRST_SDMMC_WIDTH      1
+    #define ALT_RSTMGR_PERMODRST_SDMMC_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_PERMODRST_SDMMC register field value. */
-#define ALT_RSTMGR_PERMODRST_SDMMC_SET_MSK    0x00400000
+    #define ALT_RSTMGR_PERMODRST_SDMMC_SET_MSK    0x00400000
 /* The mask used to clear the ALT_RSTMGR_PERMODRST_SDMMC register field value. */
-#define ALT_RSTMGR_PERMODRST_SDMMC_CLR_MSK    0xffbfffff
+    #define ALT_RSTMGR_PERMODRST_SDMMC_CLR_MSK    0xffbfffff
 /* The reset value of the ALT_RSTMGR_PERMODRST_SDMMC register field. */
-#define ALT_RSTMGR_PERMODRST_SDMMC_RESET      0x1
+    #define ALT_RSTMGR_PERMODRST_SDMMC_RESET      0x1
 /* Extracts the ALT_RSTMGR_PERMODRST_SDMMC field value from a register. */
-#define ALT_RSTMGR_PERMODRST_SDMMC_GET(value) (((value) & 0x00400000) >> 22)
+    #define ALT_RSTMGR_PERMODRST_SDMMC_GET( value )    ( ( ( value ) & 0x00400000 ) >> 22 )
 /* Produces a ALT_RSTMGR_PERMODRST_SDMMC register field value suitable for setting the register. */
-#define ALT_RSTMGR_PERMODRST_SDMMC_SET(value) (((value) << 22) & 0x00400000)
+    #define ALT_RSTMGR_PERMODRST_SDMMC_SET( value )    ( ( ( value ) << 22 ) & 0x00400000 )
 
 /*
  * Field : CAN0 - can0
@@ -2187,21 +2197,21 @@ typedef volatile struct ALT_RSTMGR_MPUMODRST_s  ALT_RSTMGR_MPUMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_PERMODRST_CAN0 register field. */
-#define ALT_RSTMGR_PERMODRST_CAN0_LSB        23
+    #define ALT_RSTMGR_PERMODRST_CAN0_LSB        23
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_PERMODRST_CAN0 register field. */
-#define ALT_RSTMGR_PERMODRST_CAN0_MSB        23
+    #define ALT_RSTMGR_PERMODRST_CAN0_MSB        23
 /* The width in bits of the ALT_RSTMGR_PERMODRST_CAN0 register field. */
-#define ALT_RSTMGR_PERMODRST_CAN0_WIDTH      1
+    #define ALT_RSTMGR_PERMODRST_CAN0_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_PERMODRST_CAN0 register field value. */
-#define ALT_RSTMGR_PERMODRST_CAN0_SET_MSK    0x00800000
+    #define ALT_RSTMGR_PERMODRST_CAN0_SET_MSK    0x00800000
 /* The mask used to clear the ALT_RSTMGR_PERMODRST_CAN0 register field value. */
-#define ALT_RSTMGR_PERMODRST_CAN0_CLR_MSK    0xff7fffff
+    #define ALT_RSTMGR_PERMODRST_CAN0_CLR_MSK    0xff7fffff
 /* The reset value of the ALT_RSTMGR_PERMODRST_CAN0 register field. */
-#define ALT_RSTMGR_PERMODRST_CAN0_RESET      0x1
+    #define ALT_RSTMGR_PERMODRST_CAN0_RESET      0x1
 /* Extracts the ALT_RSTMGR_PERMODRST_CAN0 field value from a register. */
-#define ALT_RSTMGR_PERMODRST_CAN0_GET(value) (((value) & 0x00800000) >> 23)
+    #define ALT_RSTMGR_PERMODRST_CAN0_GET( value )    ( ( ( value ) & 0x00800000 ) >> 23 )
 /* Produces a ALT_RSTMGR_PERMODRST_CAN0 register field value suitable for setting the register. */
-#define ALT_RSTMGR_PERMODRST_CAN0_SET(value) (((value) << 23) & 0x00800000)
+    #define ALT_RSTMGR_PERMODRST_CAN0_SET( value )    ( ( ( value ) << 23 ) & 0x00800000 )
 
 /*
  * Field : CAN1 - can1
@@ -2214,21 +2224,21 @@ typedef volatile struct ALT_RSTMGR_MPUMODRST_s  ALT_RSTMGR_MPUMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_PERMODRST_CAN1 register field. */
-#define ALT_RSTMGR_PERMODRST_CAN1_LSB        24
+    #define ALT_RSTMGR_PERMODRST_CAN1_LSB        24
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_PERMODRST_CAN1 register field. */
-#define ALT_RSTMGR_PERMODRST_CAN1_MSB        24
+    #define ALT_RSTMGR_PERMODRST_CAN1_MSB        24
 /* The width in bits of the ALT_RSTMGR_PERMODRST_CAN1 register field. */
-#define ALT_RSTMGR_PERMODRST_CAN1_WIDTH      1
+    #define ALT_RSTMGR_PERMODRST_CAN1_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_PERMODRST_CAN1 register field value. */
-#define ALT_RSTMGR_PERMODRST_CAN1_SET_MSK    0x01000000
+    #define ALT_RSTMGR_PERMODRST_CAN1_SET_MSK    0x01000000
 /* The mask used to clear the ALT_RSTMGR_PERMODRST_CAN1 register field value. */
-#define ALT_RSTMGR_PERMODRST_CAN1_CLR_MSK    0xfeffffff
+    #define ALT_RSTMGR_PERMODRST_CAN1_CLR_MSK    0xfeffffff
 /* The reset value of the ALT_RSTMGR_PERMODRST_CAN1 register field. */
-#define ALT_RSTMGR_PERMODRST_CAN1_RESET      0x1
+    #define ALT_RSTMGR_PERMODRST_CAN1_RESET      0x1
 /* Extracts the ALT_RSTMGR_PERMODRST_CAN1 field value from a register. */
-#define ALT_RSTMGR_PERMODRST_CAN1_GET(value) (((value) & 0x01000000) >> 24)
+    #define ALT_RSTMGR_PERMODRST_CAN1_GET( value )    ( ( ( value ) & 0x01000000 ) >> 24 )
 /* Produces a ALT_RSTMGR_PERMODRST_CAN1 register field value suitable for setting the register. */
-#define ALT_RSTMGR_PERMODRST_CAN1_SET(value) (((value) << 24) & 0x01000000)
+    #define ALT_RSTMGR_PERMODRST_CAN1_SET( value )    ( ( ( value ) << 24 ) & 0x01000000 )
 
 /*
  * Field : GPIO0 - gpio0
@@ -2239,21 +2249,21 @@ typedef volatile struct ALT_RSTMGR_MPUMODRST_s  ALT_RSTMGR_MPUMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_PERMODRST_GPIO0 register field. */
-#define ALT_RSTMGR_PERMODRST_GPIO0_LSB        25
+    #define ALT_RSTMGR_PERMODRST_GPIO0_LSB        25
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_PERMODRST_GPIO0 register field. */
-#define ALT_RSTMGR_PERMODRST_GPIO0_MSB        25
+    #define ALT_RSTMGR_PERMODRST_GPIO0_MSB        25
 /* The width in bits of the ALT_RSTMGR_PERMODRST_GPIO0 register field. */
-#define ALT_RSTMGR_PERMODRST_GPIO0_WIDTH      1
+    #define ALT_RSTMGR_PERMODRST_GPIO0_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_PERMODRST_GPIO0 register field value. */
-#define ALT_RSTMGR_PERMODRST_GPIO0_SET_MSK    0x02000000
+    #define ALT_RSTMGR_PERMODRST_GPIO0_SET_MSK    0x02000000
 /* The mask used to clear the ALT_RSTMGR_PERMODRST_GPIO0 register field value. */
-#define ALT_RSTMGR_PERMODRST_GPIO0_CLR_MSK    0xfdffffff
+    #define ALT_RSTMGR_PERMODRST_GPIO0_CLR_MSK    0xfdffffff
 /* The reset value of the ALT_RSTMGR_PERMODRST_GPIO0 register field. */
-#define ALT_RSTMGR_PERMODRST_GPIO0_RESET      0x1
+    #define ALT_RSTMGR_PERMODRST_GPIO0_RESET      0x1
 /* Extracts the ALT_RSTMGR_PERMODRST_GPIO0 field value from a register. */
-#define ALT_RSTMGR_PERMODRST_GPIO0_GET(value) (((value) & 0x02000000) >> 25)
+    #define ALT_RSTMGR_PERMODRST_GPIO0_GET( value )    ( ( ( value ) & 0x02000000 ) >> 25 )
 /* Produces a ALT_RSTMGR_PERMODRST_GPIO0 register field value suitable for setting the register. */
-#define ALT_RSTMGR_PERMODRST_GPIO0_SET(value) (((value) << 25) & 0x02000000)
+    #define ALT_RSTMGR_PERMODRST_GPIO0_SET( value )    ( ( ( value ) << 25 ) & 0x02000000 )
 
 /*
  * Field : GPIO1 - gpio1
@@ -2264,21 +2274,21 @@ typedef volatile struct ALT_RSTMGR_MPUMODRST_s  ALT_RSTMGR_MPUMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_PERMODRST_GPIO1 register field. */
-#define ALT_RSTMGR_PERMODRST_GPIO1_LSB        26
+    #define ALT_RSTMGR_PERMODRST_GPIO1_LSB        26
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_PERMODRST_GPIO1 register field. */
-#define ALT_RSTMGR_PERMODRST_GPIO1_MSB        26
+    #define ALT_RSTMGR_PERMODRST_GPIO1_MSB        26
 /* The width in bits of the ALT_RSTMGR_PERMODRST_GPIO1 register field. */
-#define ALT_RSTMGR_PERMODRST_GPIO1_WIDTH      1
+    #define ALT_RSTMGR_PERMODRST_GPIO1_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_PERMODRST_GPIO1 register field value. */
-#define ALT_RSTMGR_PERMODRST_GPIO1_SET_MSK    0x04000000
+    #define ALT_RSTMGR_PERMODRST_GPIO1_SET_MSK    0x04000000
 /* The mask used to clear the ALT_RSTMGR_PERMODRST_GPIO1 register field value. */
-#define ALT_RSTMGR_PERMODRST_GPIO1_CLR_MSK    0xfbffffff
+    #define ALT_RSTMGR_PERMODRST_GPIO1_CLR_MSK    0xfbffffff
 /* The reset value of the ALT_RSTMGR_PERMODRST_GPIO1 register field. */
-#define ALT_RSTMGR_PERMODRST_GPIO1_RESET      0x1
+    #define ALT_RSTMGR_PERMODRST_GPIO1_RESET      0x1
 /* Extracts the ALT_RSTMGR_PERMODRST_GPIO1 field value from a register. */
-#define ALT_RSTMGR_PERMODRST_GPIO1_GET(value) (((value) & 0x04000000) >> 26)
+    #define ALT_RSTMGR_PERMODRST_GPIO1_GET( value )    ( ( ( value ) & 0x04000000 ) >> 26 )
 /* Produces a ALT_RSTMGR_PERMODRST_GPIO1 register field value suitable for setting the register. */
-#define ALT_RSTMGR_PERMODRST_GPIO1_SET(value) (((value) << 26) & 0x04000000)
+    #define ALT_RSTMGR_PERMODRST_GPIO1_SET( value )    ( ( ( value ) << 26 ) & 0x04000000 )
 
 /*
  * Field : GPIO2 - gpio2
@@ -2289,21 +2299,21 @@ typedef volatile struct ALT_RSTMGR_MPUMODRST_s  ALT_RSTMGR_MPUMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_PERMODRST_GPIO2 register field. */
-#define ALT_RSTMGR_PERMODRST_GPIO2_LSB        27
+    #define ALT_RSTMGR_PERMODRST_GPIO2_LSB        27
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_PERMODRST_GPIO2 register field. */
-#define ALT_RSTMGR_PERMODRST_GPIO2_MSB        27
+    #define ALT_RSTMGR_PERMODRST_GPIO2_MSB        27
 /* The width in bits of the ALT_RSTMGR_PERMODRST_GPIO2 register field. */
-#define ALT_RSTMGR_PERMODRST_GPIO2_WIDTH      1
+    #define ALT_RSTMGR_PERMODRST_GPIO2_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_PERMODRST_GPIO2 register field value. */
-#define ALT_RSTMGR_PERMODRST_GPIO2_SET_MSK    0x08000000
+    #define ALT_RSTMGR_PERMODRST_GPIO2_SET_MSK    0x08000000
 /* The mask used to clear the ALT_RSTMGR_PERMODRST_GPIO2 register field value. */
-#define ALT_RSTMGR_PERMODRST_GPIO2_CLR_MSK    0xf7ffffff
+    #define ALT_RSTMGR_PERMODRST_GPIO2_CLR_MSK    0xf7ffffff
 /* The reset value of the ALT_RSTMGR_PERMODRST_GPIO2 register field. */
-#define ALT_RSTMGR_PERMODRST_GPIO2_RESET      0x1
+    #define ALT_RSTMGR_PERMODRST_GPIO2_RESET      0x1
 /* Extracts the ALT_RSTMGR_PERMODRST_GPIO2 field value from a register. */
-#define ALT_RSTMGR_PERMODRST_GPIO2_GET(value) (((value) & 0x08000000) >> 27)
+    #define ALT_RSTMGR_PERMODRST_GPIO2_GET( value )    ( ( ( value ) & 0x08000000 ) >> 27 )
 /* Produces a ALT_RSTMGR_PERMODRST_GPIO2 register field value suitable for setting the register. */
-#define ALT_RSTMGR_PERMODRST_GPIO2_SET(value) (((value) << 27) & 0x08000000)
+    #define ALT_RSTMGR_PERMODRST_GPIO2_SET( value )    ( ( ( value ) << 27 ) & 0x08000000 )
 
 /*
  * Field : DMA Controller - dma
@@ -2314,21 +2324,21 @@ typedef volatile struct ALT_RSTMGR_MPUMODRST_s  ALT_RSTMGR_MPUMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_PERMODRST_DMA register field. */
-#define ALT_RSTMGR_PERMODRST_DMA_LSB        28
+    #define ALT_RSTMGR_PERMODRST_DMA_LSB        28
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_PERMODRST_DMA register field. */
-#define ALT_RSTMGR_PERMODRST_DMA_MSB        28
+    #define ALT_RSTMGR_PERMODRST_DMA_MSB        28
 /* The width in bits of the ALT_RSTMGR_PERMODRST_DMA register field. */
-#define ALT_RSTMGR_PERMODRST_DMA_WIDTH      1
+    #define ALT_RSTMGR_PERMODRST_DMA_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_PERMODRST_DMA register field value. */
-#define ALT_RSTMGR_PERMODRST_DMA_SET_MSK    0x10000000
+    #define ALT_RSTMGR_PERMODRST_DMA_SET_MSK    0x10000000
 /* The mask used to clear the ALT_RSTMGR_PERMODRST_DMA register field value. */
-#define ALT_RSTMGR_PERMODRST_DMA_CLR_MSK    0xefffffff
+    #define ALT_RSTMGR_PERMODRST_DMA_CLR_MSK    0xefffffff
 /* The reset value of the ALT_RSTMGR_PERMODRST_DMA register field. */
-#define ALT_RSTMGR_PERMODRST_DMA_RESET      0x1
+    #define ALT_RSTMGR_PERMODRST_DMA_RESET      0x1
 /* Extracts the ALT_RSTMGR_PERMODRST_DMA field value from a register. */
-#define ALT_RSTMGR_PERMODRST_DMA_GET(value) (((value) & 0x10000000) >> 28)
+    #define ALT_RSTMGR_PERMODRST_DMA_GET( value )    ( ( ( value ) & 0x10000000 ) >> 28 )
 /* Produces a ALT_RSTMGR_PERMODRST_DMA register field value suitable for setting the register. */
-#define ALT_RSTMGR_PERMODRST_DMA_SET(value) (((value) << 28) & 0x10000000)
+    #define ALT_RSTMGR_PERMODRST_DMA_SET( value )    ( ( ( value ) << 28 ) & 0x10000000 )
 
 /*
  * Field : SDRAM Controller Subsystem - sdr
@@ -2339,23 +2349,24 @@ typedef volatile struct ALT_RSTMGR_MPUMODRST_s  ALT_RSTMGR_MPUMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_PERMODRST_SDR register field. */
-#define ALT_RSTMGR_PERMODRST_SDR_LSB        29
+    #define ALT_RSTMGR_PERMODRST_SDR_LSB        29
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_PERMODRST_SDR register field. */
-#define ALT_RSTMGR_PERMODRST_SDR_MSB        29
+    #define ALT_RSTMGR_PERMODRST_SDR_MSB        29
 /* The width in bits of the ALT_RSTMGR_PERMODRST_SDR register field. */
-#define ALT_RSTMGR_PERMODRST_SDR_WIDTH      1
+    #define ALT_RSTMGR_PERMODRST_SDR_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_PERMODRST_SDR register field value. */
-#define ALT_RSTMGR_PERMODRST_SDR_SET_MSK    0x20000000
+    #define ALT_RSTMGR_PERMODRST_SDR_SET_MSK    0x20000000
 /* The mask used to clear the ALT_RSTMGR_PERMODRST_SDR register field value. */
-#define ALT_RSTMGR_PERMODRST_SDR_CLR_MSK    0xdfffffff
+    #define ALT_RSTMGR_PERMODRST_SDR_CLR_MSK    0xdfffffff
 /* The reset value of the ALT_RSTMGR_PERMODRST_SDR register field. */
-#define ALT_RSTMGR_PERMODRST_SDR_RESET      0x1
+    #define ALT_RSTMGR_PERMODRST_SDR_RESET      0x1
 /* Extracts the ALT_RSTMGR_PERMODRST_SDR field value from a register. */
-#define ALT_RSTMGR_PERMODRST_SDR_GET(value) (((value) & 0x20000000) >> 29)
+    #define ALT_RSTMGR_PERMODRST_SDR_GET( value )    ( ( ( value ) & 0x20000000 ) >> 29 )
 /* Produces a ALT_RSTMGR_PERMODRST_SDR register field value suitable for setting the register. */
-#define ALT_RSTMGR_PERMODRST_SDR_SET(value) (((value) << 29) & 0x20000000)
+    #define ALT_RSTMGR_PERMODRST_SDR_SET( value )    ( ( ( value ) << 29 ) & 0x20000000 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -2366,47 +2377,47 @@ typedef volatile struct ALT_RSTMGR_MPUMODRST_s  ALT_RSTMGR_MPUMODRST_t;
  *
  * The struct declaration for register ALT_RSTMGR_PERMODRST.
  */
-struct ALT_RSTMGR_PERMODRST_s
-{
-    uint32_t  emac0      :  1;  /* EMAC0 */
-    uint32_t  emac1      :  1;  /* EMAC1 */
-    uint32_t  usb0       :  1;  /* USB0 */
-    uint32_t  usb1       :  1;  /* USB1 */
-    uint32_t  nand       :  1;  /* NAND Flash */
-    uint32_t  qspi       :  1;  /* QSPI Flash */
-    uint32_t  l4wd0      :  1;  /* L4 Watchdog 0 */
-    uint32_t  l4wd1      :  1;  /* L4 Watchdog 1 */
-    uint32_t  osc1timer0 :  1;  /* OSC1 Timer 0 */
-    uint32_t  osc1timer1 :  1;  /* OSC1 Timer 1 */
-    uint32_t  sptimer0   :  1;  /* SP Timer 0 */
-    uint32_t  sptimer1   :  1;  /* SP Timer 1 */
-    uint32_t  i2c0       :  1;  /* I2C0 */
-    uint32_t  i2c1       :  1;  /* I2C1 */
-    uint32_t  i2c2       :  1;  /* I2C2 */
-    uint32_t  i2c3       :  1;  /* I2C3 */
-    uint32_t  uart0      :  1;  /* UART0 */
-    uint32_t  uart1      :  1;  /* UART1 */
-    uint32_t  spim0      :  1;  /* SPIM0 */
-    uint32_t  spim1      :  1;  /* SPIM1 */
-    uint32_t  spis0      :  1;  /* SPIS0 */
-    uint32_t  spis1      :  1;  /* SPIS1 */
-    uint32_t  sdmmc      :  1;  /* SD/MMC */
-    uint32_t  can0       :  1;  /* CAN0 */
-    uint32_t  can1       :  1;  /* CAN1 */
-    uint32_t  gpio0      :  1;  /* GPIO0 */
-    uint32_t  gpio1      :  1;  /* GPIO1 */
-    uint32_t  gpio2      :  1;  /* GPIO2 */
-    uint32_t  dma        :  1;  /* DMA Controller */
-    uint32_t  sdr        :  1;  /* SDRAM Controller Subsystem */
-    uint32_t             :  2;  /* *UNDEFINED* */
-};
+        struct ALT_RSTMGR_PERMODRST_s
+        {
+            uint32_t emac0      :  1;  /* EMAC0 */
+            uint32_t emac1      :  1;  /* EMAC1 */
+            uint32_t usb0       :  1;  /* USB0 */
+            uint32_t usb1       :  1;  /* USB1 */
+            uint32_t nand       :  1;  /* NAND Flash */
+            uint32_t qspi       :  1;  /* QSPI Flash */
+            uint32_t l4wd0      :  1;  /* L4 Watchdog 0 */
+            uint32_t l4wd1      :  1;  /* L4 Watchdog 1 */
+            uint32_t osc1timer0 :  1;  /* OSC1 Timer 0 */
+            uint32_t osc1timer1 :  1;  /* OSC1 Timer 1 */
+            uint32_t sptimer0   :  1;  /* SP Timer 0 */
+            uint32_t sptimer1   :  1;  /* SP Timer 1 */
+            uint32_t i2c0       :  1;  /* I2C0 */
+            uint32_t i2c1       :  1;  /* I2C1 */
+            uint32_t i2c2       :  1;  /* I2C2 */
+            uint32_t i2c3       :  1;  /* I2C3 */
+            uint32_t uart0      :  1;  /* UART0 */
+            uint32_t uart1      :  1;  /* UART1 */
+            uint32_t spim0      :  1;  /* SPIM0 */
+            uint32_t spim1      :  1;  /* SPIM1 */
+            uint32_t spis0      :  1;  /* SPIS0 */
+            uint32_t spis1      :  1;  /* SPIS1 */
+            uint32_t sdmmc      :  1;  /* SD/MMC */
+            uint32_t can0       :  1;  /* CAN0 */
+            uint32_t can1       :  1;  /* CAN1 */
+            uint32_t gpio0      :  1;  /* GPIO0 */
+            uint32_t gpio1      :  1;  /* GPIO1 */
+            uint32_t gpio2      :  1;  /* GPIO2 */
+            uint32_t dma        :  1;  /* DMA Controller */
+            uint32_t sdr        :  1;  /* SDRAM Controller Subsystem */
+            uint32_t             :  2; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_RSTMGR_PERMODRST. */
-typedef volatile struct ALT_RSTMGR_PERMODRST_s  ALT_RSTMGR_PERMODRST_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_RSTMGR_PERMODRST_s ALT_RSTMGR_PERMODRST_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_RSTMGR_PERMODRST register from the beginning of the component. */
-#define ALT_RSTMGR_PERMODRST_OFST        0x14
+    #define ALT_RSTMGR_PERMODRST_OFST    0x14
 
 /*
  * Register : Peripheral 2 Module Reset Register - per2modrst
@@ -2445,6 +2456,7 @@ typedef volatile struct ALT_RSTMGR_PERMODRST_s  ALT_RSTMGR_PERMODRST_t;
  *  [31:8] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : FPGA DMA0 - dmaif0
  *
@@ -2455,21 +2467,21 @@ typedef volatile struct ALT_RSTMGR_PERMODRST_s  ALT_RSTMGR_PERMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_PER2MODRST_DMAIF0 register field. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF0_LSB        0
+    #define ALT_RSTMGR_PER2MODRST_DMAIF0_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_PER2MODRST_DMAIF0 register field. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF0_MSB        0
+    #define ALT_RSTMGR_PER2MODRST_DMAIF0_MSB        0
 /* The width in bits of the ALT_RSTMGR_PER2MODRST_DMAIF0 register field. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF0_WIDTH      1
+    #define ALT_RSTMGR_PER2MODRST_DMAIF0_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_PER2MODRST_DMAIF0 register field value. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF0_SET_MSK    0x00000001
+    #define ALT_RSTMGR_PER2MODRST_DMAIF0_SET_MSK    0x00000001
 /* The mask used to clear the ALT_RSTMGR_PER2MODRST_DMAIF0 register field value. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF0_CLR_MSK    0xfffffffe
+    #define ALT_RSTMGR_PER2MODRST_DMAIF0_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_RSTMGR_PER2MODRST_DMAIF0 register field. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF0_RESET      0x1
+    #define ALT_RSTMGR_PER2MODRST_DMAIF0_RESET      0x1
 /* Extracts the ALT_RSTMGR_PER2MODRST_DMAIF0 field value from a register. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF0_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_RSTMGR_PER2MODRST_DMAIF0_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_RSTMGR_PER2MODRST_DMAIF0 register field value suitable for setting the register. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF0_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_RSTMGR_PER2MODRST_DMAIF0_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
 /*
  * Field : FPGA DMA1 - dmaif1
@@ -2481,21 +2493,21 @@ typedef volatile struct ALT_RSTMGR_PERMODRST_s  ALT_RSTMGR_PERMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_PER2MODRST_DMAIF1 register field. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF1_LSB        1
+    #define ALT_RSTMGR_PER2MODRST_DMAIF1_LSB        1
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_PER2MODRST_DMAIF1 register field. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF1_MSB        1
+    #define ALT_RSTMGR_PER2MODRST_DMAIF1_MSB        1
 /* The width in bits of the ALT_RSTMGR_PER2MODRST_DMAIF1 register field. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF1_WIDTH      1
+    #define ALT_RSTMGR_PER2MODRST_DMAIF1_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_PER2MODRST_DMAIF1 register field value. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF1_SET_MSK    0x00000002
+    #define ALT_RSTMGR_PER2MODRST_DMAIF1_SET_MSK    0x00000002
 /* The mask used to clear the ALT_RSTMGR_PER2MODRST_DMAIF1 register field value. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF1_CLR_MSK    0xfffffffd
+    #define ALT_RSTMGR_PER2MODRST_DMAIF1_CLR_MSK    0xfffffffd
 /* The reset value of the ALT_RSTMGR_PER2MODRST_DMAIF1 register field. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF1_RESET      0x1
+    #define ALT_RSTMGR_PER2MODRST_DMAIF1_RESET      0x1
 /* Extracts the ALT_RSTMGR_PER2MODRST_DMAIF1 field value from a register. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF1_GET(value) (((value) & 0x00000002) >> 1)
+    #define ALT_RSTMGR_PER2MODRST_DMAIF1_GET( value )    ( ( ( value ) & 0x00000002 ) >> 1 )
 /* Produces a ALT_RSTMGR_PER2MODRST_DMAIF1 register field value suitable for setting the register. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF1_SET(value) (((value) << 1) & 0x00000002)
+    #define ALT_RSTMGR_PER2MODRST_DMAIF1_SET( value )    ( ( ( value ) << 1 ) & 0x00000002 )
 
 /*
  * Field : FPGA DMA2 - dmaif2
@@ -2507,21 +2519,21 @@ typedef volatile struct ALT_RSTMGR_PERMODRST_s  ALT_RSTMGR_PERMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_PER2MODRST_DMAIF2 register field. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF2_LSB        2
+    #define ALT_RSTMGR_PER2MODRST_DMAIF2_LSB        2
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_PER2MODRST_DMAIF2 register field. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF2_MSB        2
+    #define ALT_RSTMGR_PER2MODRST_DMAIF2_MSB        2
 /* The width in bits of the ALT_RSTMGR_PER2MODRST_DMAIF2 register field. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF2_WIDTH      1
+    #define ALT_RSTMGR_PER2MODRST_DMAIF2_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_PER2MODRST_DMAIF2 register field value. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF2_SET_MSK    0x00000004
+    #define ALT_RSTMGR_PER2MODRST_DMAIF2_SET_MSK    0x00000004
 /* The mask used to clear the ALT_RSTMGR_PER2MODRST_DMAIF2 register field value. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF2_CLR_MSK    0xfffffffb
+    #define ALT_RSTMGR_PER2MODRST_DMAIF2_CLR_MSK    0xfffffffb
 /* The reset value of the ALT_RSTMGR_PER2MODRST_DMAIF2 register field. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF2_RESET      0x1
+    #define ALT_RSTMGR_PER2MODRST_DMAIF2_RESET      0x1
 /* Extracts the ALT_RSTMGR_PER2MODRST_DMAIF2 field value from a register. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF2_GET(value) (((value) & 0x00000004) >> 2)
+    #define ALT_RSTMGR_PER2MODRST_DMAIF2_GET( value )    ( ( ( value ) & 0x00000004 ) >> 2 )
 /* Produces a ALT_RSTMGR_PER2MODRST_DMAIF2 register field value suitable for setting the register. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF2_SET(value) (((value) << 2) & 0x00000004)
+    #define ALT_RSTMGR_PER2MODRST_DMAIF2_SET( value )    ( ( ( value ) << 2 ) & 0x00000004 )
 
 /*
  * Field : FPGA DMA3 - dmaif3
@@ -2533,21 +2545,21 @@ typedef volatile struct ALT_RSTMGR_PERMODRST_s  ALT_RSTMGR_PERMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_PER2MODRST_DMAIF3 register field. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF3_LSB        3
+    #define ALT_RSTMGR_PER2MODRST_DMAIF3_LSB        3
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_PER2MODRST_DMAIF3 register field. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF3_MSB        3
+    #define ALT_RSTMGR_PER2MODRST_DMAIF3_MSB        3
 /* The width in bits of the ALT_RSTMGR_PER2MODRST_DMAIF3 register field. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF3_WIDTH      1
+    #define ALT_RSTMGR_PER2MODRST_DMAIF3_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_PER2MODRST_DMAIF3 register field value. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF3_SET_MSK    0x00000008
+    #define ALT_RSTMGR_PER2MODRST_DMAIF3_SET_MSK    0x00000008
 /* The mask used to clear the ALT_RSTMGR_PER2MODRST_DMAIF3 register field value. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF3_CLR_MSK    0xfffffff7
+    #define ALT_RSTMGR_PER2MODRST_DMAIF3_CLR_MSK    0xfffffff7
 /* The reset value of the ALT_RSTMGR_PER2MODRST_DMAIF3 register field. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF3_RESET      0x1
+    #define ALT_RSTMGR_PER2MODRST_DMAIF3_RESET      0x1
 /* Extracts the ALT_RSTMGR_PER2MODRST_DMAIF3 field value from a register. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF3_GET(value) (((value) & 0x00000008) >> 3)
+    #define ALT_RSTMGR_PER2MODRST_DMAIF3_GET( value )    ( ( ( value ) & 0x00000008 ) >> 3 )
 /* Produces a ALT_RSTMGR_PER2MODRST_DMAIF3 register field value suitable for setting the register. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF3_SET(value) (((value) << 3) & 0x00000008)
+    #define ALT_RSTMGR_PER2MODRST_DMAIF3_SET( value )    ( ( ( value ) << 3 ) & 0x00000008 )
 
 /*
  * Field : FPGA DMA4 - dmaif4
@@ -2559,21 +2571,21 @@ typedef volatile struct ALT_RSTMGR_PERMODRST_s  ALT_RSTMGR_PERMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_PER2MODRST_DMAIF4 register field. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF4_LSB        4
+    #define ALT_RSTMGR_PER2MODRST_DMAIF4_LSB        4
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_PER2MODRST_DMAIF4 register field. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF4_MSB        4
+    #define ALT_RSTMGR_PER2MODRST_DMAIF4_MSB        4
 /* The width in bits of the ALT_RSTMGR_PER2MODRST_DMAIF4 register field. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF4_WIDTH      1
+    #define ALT_RSTMGR_PER2MODRST_DMAIF4_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_PER2MODRST_DMAIF4 register field value. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF4_SET_MSK    0x00000010
+    #define ALT_RSTMGR_PER2MODRST_DMAIF4_SET_MSK    0x00000010
 /* The mask used to clear the ALT_RSTMGR_PER2MODRST_DMAIF4 register field value. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF4_CLR_MSK    0xffffffef
+    #define ALT_RSTMGR_PER2MODRST_DMAIF4_CLR_MSK    0xffffffef
 /* The reset value of the ALT_RSTMGR_PER2MODRST_DMAIF4 register field. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF4_RESET      0x1
+    #define ALT_RSTMGR_PER2MODRST_DMAIF4_RESET      0x1
 /* Extracts the ALT_RSTMGR_PER2MODRST_DMAIF4 field value from a register. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF4_GET(value) (((value) & 0x00000010) >> 4)
+    #define ALT_RSTMGR_PER2MODRST_DMAIF4_GET( value )    ( ( ( value ) & 0x00000010 ) >> 4 )
 /* Produces a ALT_RSTMGR_PER2MODRST_DMAIF4 register field value suitable for setting the register. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF4_SET(value) (((value) << 4) & 0x00000010)
+    #define ALT_RSTMGR_PER2MODRST_DMAIF4_SET( value )    ( ( ( value ) << 4 ) & 0x00000010 )
 
 /*
  * Field : FPGA DMA5 - dmaif5
@@ -2585,21 +2597,21 @@ typedef volatile struct ALT_RSTMGR_PERMODRST_s  ALT_RSTMGR_PERMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_PER2MODRST_DMAIF5 register field. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF5_LSB        5
+    #define ALT_RSTMGR_PER2MODRST_DMAIF5_LSB        5
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_PER2MODRST_DMAIF5 register field. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF5_MSB        5
+    #define ALT_RSTMGR_PER2MODRST_DMAIF5_MSB        5
 /* The width in bits of the ALT_RSTMGR_PER2MODRST_DMAIF5 register field. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF5_WIDTH      1
+    #define ALT_RSTMGR_PER2MODRST_DMAIF5_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_PER2MODRST_DMAIF5 register field value. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF5_SET_MSK    0x00000020
+    #define ALT_RSTMGR_PER2MODRST_DMAIF5_SET_MSK    0x00000020
 /* The mask used to clear the ALT_RSTMGR_PER2MODRST_DMAIF5 register field value. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF5_CLR_MSK    0xffffffdf
+    #define ALT_RSTMGR_PER2MODRST_DMAIF5_CLR_MSK    0xffffffdf
 /* The reset value of the ALT_RSTMGR_PER2MODRST_DMAIF5 register field. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF5_RESET      0x1
+    #define ALT_RSTMGR_PER2MODRST_DMAIF5_RESET      0x1
 /* Extracts the ALT_RSTMGR_PER2MODRST_DMAIF5 field value from a register. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF5_GET(value) (((value) & 0x00000020) >> 5)
+    #define ALT_RSTMGR_PER2MODRST_DMAIF5_GET( value )    ( ( ( value ) & 0x00000020 ) >> 5 )
 /* Produces a ALT_RSTMGR_PER2MODRST_DMAIF5 register field value suitable for setting the register. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF5_SET(value) (((value) << 5) & 0x00000020)
+    #define ALT_RSTMGR_PER2MODRST_DMAIF5_SET( value )    ( ( ( value ) << 5 ) & 0x00000020 )
 
 /*
  * Field : FPGA DMA6 - dmaif6
@@ -2611,21 +2623,21 @@ typedef volatile struct ALT_RSTMGR_PERMODRST_s  ALT_RSTMGR_PERMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_PER2MODRST_DMAIF6 register field. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF6_LSB        6
+    #define ALT_RSTMGR_PER2MODRST_DMAIF6_LSB        6
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_PER2MODRST_DMAIF6 register field. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF6_MSB        6
+    #define ALT_RSTMGR_PER2MODRST_DMAIF6_MSB        6
 /* The width in bits of the ALT_RSTMGR_PER2MODRST_DMAIF6 register field. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF6_WIDTH      1
+    #define ALT_RSTMGR_PER2MODRST_DMAIF6_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_PER2MODRST_DMAIF6 register field value. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF6_SET_MSK    0x00000040
+    #define ALT_RSTMGR_PER2MODRST_DMAIF6_SET_MSK    0x00000040
 /* The mask used to clear the ALT_RSTMGR_PER2MODRST_DMAIF6 register field value. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF6_CLR_MSK    0xffffffbf
+    #define ALT_RSTMGR_PER2MODRST_DMAIF6_CLR_MSK    0xffffffbf
 /* The reset value of the ALT_RSTMGR_PER2MODRST_DMAIF6 register field. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF6_RESET      0x1
+    #define ALT_RSTMGR_PER2MODRST_DMAIF6_RESET      0x1
 /* Extracts the ALT_RSTMGR_PER2MODRST_DMAIF6 field value from a register. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF6_GET(value) (((value) & 0x00000040) >> 6)
+    #define ALT_RSTMGR_PER2MODRST_DMAIF6_GET( value )    ( ( ( value ) & 0x00000040 ) >> 6 )
 /* Produces a ALT_RSTMGR_PER2MODRST_DMAIF6 register field value suitable for setting the register. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF6_SET(value) (((value) << 6) & 0x00000040)
+    #define ALT_RSTMGR_PER2MODRST_DMAIF6_SET( value )    ( ( ( value ) << 6 ) & 0x00000040 )
 
 /*
  * Field : FPGA DMA7 - dmaif7
@@ -2637,23 +2649,24 @@ typedef volatile struct ALT_RSTMGR_PERMODRST_s  ALT_RSTMGR_PERMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_PER2MODRST_DMAIF7 register field. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF7_LSB        7
+    #define ALT_RSTMGR_PER2MODRST_DMAIF7_LSB        7
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_PER2MODRST_DMAIF7 register field. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF7_MSB        7
+    #define ALT_RSTMGR_PER2MODRST_DMAIF7_MSB        7
 /* The width in bits of the ALT_RSTMGR_PER2MODRST_DMAIF7 register field. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF7_WIDTH      1
+    #define ALT_RSTMGR_PER2MODRST_DMAIF7_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_PER2MODRST_DMAIF7 register field value. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF7_SET_MSK    0x00000080
+    #define ALT_RSTMGR_PER2MODRST_DMAIF7_SET_MSK    0x00000080
 /* The mask used to clear the ALT_RSTMGR_PER2MODRST_DMAIF7 register field value. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF7_CLR_MSK    0xffffff7f
+    #define ALT_RSTMGR_PER2MODRST_DMAIF7_CLR_MSK    0xffffff7f
 /* The reset value of the ALT_RSTMGR_PER2MODRST_DMAIF7 register field. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF7_RESET      0x1
+    #define ALT_RSTMGR_PER2MODRST_DMAIF7_RESET      0x1
 /* Extracts the ALT_RSTMGR_PER2MODRST_DMAIF7 field value from a register. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF7_GET(value) (((value) & 0x00000080) >> 7)
+    #define ALT_RSTMGR_PER2MODRST_DMAIF7_GET( value )    ( ( ( value ) & 0x00000080 ) >> 7 )
 /* Produces a ALT_RSTMGR_PER2MODRST_DMAIF7 register field value suitable for setting the register. */
-#define ALT_RSTMGR_PER2MODRST_DMAIF7_SET(value) (((value) << 7) & 0x00000080)
+    #define ALT_RSTMGR_PER2MODRST_DMAIF7_SET( value )    ( ( ( value ) << 7 ) & 0x00000080 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -2664,25 +2677,25 @@ typedef volatile struct ALT_RSTMGR_PERMODRST_s  ALT_RSTMGR_PERMODRST_t;
  *
  * The struct declaration for register ALT_RSTMGR_PER2MODRST.
  */
-struct ALT_RSTMGR_PER2MODRST_s
-{
-    uint32_t  dmaif0 :  1;  /* FPGA DMA0 */
-    uint32_t  dmaif1 :  1;  /* FPGA DMA1 */
-    uint32_t  dmaif2 :  1;  /* FPGA DMA2 */
-    uint32_t  dmaif3 :  1;  /* FPGA DMA3 */
-    uint32_t  dmaif4 :  1;  /* FPGA DMA4 */
-    uint32_t  dmaif5 :  1;  /* FPGA DMA5 */
-    uint32_t  dmaif6 :  1;  /* FPGA DMA6 */
-    uint32_t  dmaif7 :  1;  /* FPGA DMA7 */
-    uint32_t         : 24;  /* *UNDEFINED* */
-};
+        struct ALT_RSTMGR_PER2MODRST_s
+        {
+            uint32_t dmaif0 :  1;  /* FPGA DMA0 */
+            uint32_t dmaif1 :  1;  /* FPGA DMA1 */
+            uint32_t dmaif2 :  1;  /* FPGA DMA2 */
+            uint32_t dmaif3 :  1;  /* FPGA DMA3 */
+            uint32_t dmaif4 :  1;  /* FPGA DMA4 */
+            uint32_t dmaif5 :  1;  /* FPGA DMA5 */
+            uint32_t dmaif6 :  1;  /* FPGA DMA6 */
+            uint32_t dmaif7 :  1;  /* FPGA DMA7 */
+            uint32_t         : 24; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_RSTMGR_PER2MODRST. */
-typedef volatile struct ALT_RSTMGR_PER2MODRST_s  ALT_RSTMGR_PER2MODRST_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_RSTMGR_PER2MODRST_s ALT_RSTMGR_PER2MODRST_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_RSTMGR_PER2MODRST register from the beginning of the component. */
-#define ALT_RSTMGR_PER2MODRST_OFST        0x18
+    #define ALT_RSTMGR_PER2MODRST_OFST    0x18
 
 /*
  * Register : Bridge Module Reset Register - brgmodrst
@@ -2716,6 +2729,7 @@ typedef volatile struct ALT_RSTMGR_PER2MODRST_s  ALT_RSTMGR_PER2MODRST_t;
  *  [31:3] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : HPS2FPGA Bridge - hps2fpga
  *
@@ -2725,21 +2739,21 @@ typedef volatile struct ALT_RSTMGR_PER2MODRST_s  ALT_RSTMGR_PER2MODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_BRGMODRST_H2F register field. */
-#define ALT_RSTMGR_BRGMODRST_H2F_LSB        0
+    #define ALT_RSTMGR_BRGMODRST_H2F_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_BRGMODRST_H2F register field. */
-#define ALT_RSTMGR_BRGMODRST_H2F_MSB        0
+    #define ALT_RSTMGR_BRGMODRST_H2F_MSB        0
 /* The width in bits of the ALT_RSTMGR_BRGMODRST_H2F register field. */
-#define ALT_RSTMGR_BRGMODRST_H2F_WIDTH      1
+    #define ALT_RSTMGR_BRGMODRST_H2F_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_BRGMODRST_H2F register field value. */
-#define ALT_RSTMGR_BRGMODRST_H2F_SET_MSK    0x00000001
+    #define ALT_RSTMGR_BRGMODRST_H2F_SET_MSK    0x00000001
 /* The mask used to clear the ALT_RSTMGR_BRGMODRST_H2F register field value. */
-#define ALT_RSTMGR_BRGMODRST_H2F_CLR_MSK    0xfffffffe
+    #define ALT_RSTMGR_BRGMODRST_H2F_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_RSTMGR_BRGMODRST_H2F register field. */
-#define ALT_RSTMGR_BRGMODRST_H2F_RESET      0x1
+    #define ALT_RSTMGR_BRGMODRST_H2F_RESET      0x1
 /* Extracts the ALT_RSTMGR_BRGMODRST_H2F field value from a register. */
-#define ALT_RSTMGR_BRGMODRST_H2F_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_RSTMGR_BRGMODRST_H2F_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_RSTMGR_BRGMODRST_H2F register field value suitable for setting the register. */
-#define ALT_RSTMGR_BRGMODRST_H2F_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_RSTMGR_BRGMODRST_H2F_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
 /*
  * Field : LWHPS2FPGA Bridge - lwhps2fpga
@@ -2750,21 +2764,21 @@ typedef volatile struct ALT_RSTMGR_PER2MODRST_s  ALT_RSTMGR_PER2MODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_BRGMODRST_LWH2F register field. */
-#define ALT_RSTMGR_BRGMODRST_LWH2F_LSB        1
+    #define ALT_RSTMGR_BRGMODRST_LWH2F_LSB        1
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_BRGMODRST_LWH2F register field. */
-#define ALT_RSTMGR_BRGMODRST_LWH2F_MSB        1
+    #define ALT_RSTMGR_BRGMODRST_LWH2F_MSB        1
 /* The width in bits of the ALT_RSTMGR_BRGMODRST_LWH2F register field. */
-#define ALT_RSTMGR_BRGMODRST_LWH2F_WIDTH      1
+    #define ALT_RSTMGR_BRGMODRST_LWH2F_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_BRGMODRST_LWH2F register field value. */
-#define ALT_RSTMGR_BRGMODRST_LWH2F_SET_MSK    0x00000002
+    #define ALT_RSTMGR_BRGMODRST_LWH2F_SET_MSK    0x00000002
 /* The mask used to clear the ALT_RSTMGR_BRGMODRST_LWH2F register field value. */
-#define ALT_RSTMGR_BRGMODRST_LWH2F_CLR_MSK    0xfffffffd
+    #define ALT_RSTMGR_BRGMODRST_LWH2F_CLR_MSK    0xfffffffd
 /* The reset value of the ALT_RSTMGR_BRGMODRST_LWH2F register field. */
-#define ALT_RSTMGR_BRGMODRST_LWH2F_RESET      0x1
+    #define ALT_RSTMGR_BRGMODRST_LWH2F_RESET      0x1
 /* Extracts the ALT_RSTMGR_BRGMODRST_LWH2F field value from a register. */
-#define ALT_RSTMGR_BRGMODRST_LWH2F_GET(value) (((value) & 0x00000002) >> 1)
+    #define ALT_RSTMGR_BRGMODRST_LWH2F_GET( value )    ( ( ( value ) & 0x00000002 ) >> 1 )
 /* Produces a ALT_RSTMGR_BRGMODRST_LWH2F register field value suitable for setting the register. */
-#define ALT_RSTMGR_BRGMODRST_LWH2F_SET(value) (((value) << 1) & 0x00000002)
+    #define ALT_RSTMGR_BRGMODRST_LWH2F_SET( value )    ( ( ( value ) << 1 ) & 0x00000002 )
 
 /*
  * Field : FPGA2HPS Bridge - fpga2hps
@@ -2775,23 +2789,24 @@ typedef volatile struct ALT_RSTMGR_PER2MODRST_s  ALT_RSTMGR_PER2MODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_BRGMODRST_F2H register field. */
-#define ALT_RSTMGR_BRGMODRST_F2H_LSB        2
+    #define ALT_RSTMGR_BRGMODRST_F2H_LSB        2
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_BRGMODRST_F2H register field. */
-#define ALT_RSTMGR_BRGMODRST_F2H_MSB        2
+    #define ALT_RSTMGR_BRGMODRST_F2H_MSB        2
 /* The width in bits of the ALT_RSTMGR_BRGMODRST_F2H register field. */
-#define ALT_RSTMGR_BRGMODRST_F2H_WIDTH      1
+    #define ALT_RSTMGR_BRGMODRST_F2H_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_BRGMODRST_F2H register field value. */
-#define ALT_RSTMGR_BRGMODRST_F2H_SET_MSK    0x00000004
+    #define ALT_RSTMGR_BRGMODRST_F2H_SET_MSK    0x00000004
 /* The mask used to clear the ALT_RSTMGR_BRGMODRST_F2H register field value. */
-#define ALT_RSTMGR_BRGMODRST_F2H_CLR_MSK    0xfffffffb
+    #define ALT_RSTMGR_BRGMODRST_F2H_CLR_MSK    0xfffffffb
 /* The reset value of the ALT_RSTMGR_BRGMODRST_F2H register field. */
-#define ALT_RSTMGR_BRGMODRST_F2H_RESET      0x1
+    #define ALT_RSTMGR_BRGMODRST_F2H_RESET      0x1
 /* Extracts the ALT_RSTMGR_BRGMODRST_F2H field value from a register. */
-#define ALT_RSTMGR_BRGMODRST_F2H_GET(value) (((value) & 0x00000004) >> 2)
+    #define ALT_RSTMGR_BRGMODRST_F2H_GET( value )    ( ( ( value ) & 0x00000004 ) >> 2 )
 /* Produces a ALT_RSTMGR_BRGMODRST_F2H register field value suitable for setting the register. */
-#define ALT_RSTMGR_BRGMODRST_F2H_SET(value) (((value) << 2) & 0x00000004)
+    #define ALT_RSTMGR_BRGMODRST_F2H_SET( value )    ( ( ( value ) << 2 ) & 0x00000004 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -2802,20 +2817,20 @@ typedef volatile struct ALT_RSTMGR_PER2MODRST_s  ALT_RSTMGR_PER2MODRST_t;
  *
  * The struct declaration for register ALT_RSTMGR_BRGMODRST.
  */
-struct ALT_RSTMGR_BRGMODRST_s
-{
-    uint32_t  hps2fpga   :  1;  /* HPS2FPGA Bridge */
-    uint32_t  lwhps2fpga :  1;  /* LWHPS2FPGA Bridge */
-    uint32_t  fpga2hps   :  1;  /* FPGA2HPS Bridge */
-    uint32_t             : 29;  /* *UNDEFINED* */
-};
+        struct ALT_RSTMGR_BRGMODRST_s
+        {
+            uint32_t hps2fpga   :  1;  /* HPS2FPGA Bridge */
+            uint32_t lwhps2fpga :  1;  /* LWHPS2FPGA Bridge */
+            uint32_t fpga2hps   :  1;  /* FPGA2HPS Bridge */
+            uint32_t             : 29; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_RSTMGR_BRGMODRST. */
-typedef volatile struct ALT_RSTMGR_BRGMODRST_s  ALT_RSTMGR_BRGMODRST_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_RSTMGR_BRGMODRST_s ALT_RSTMGR_BRGMODRST_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_RSTMGR_BRGMODRST register from the beginning of the component. */
-#define ALT_RSTMGR_BRGMODRST_OFST        0x1c
+    #define ALT_RSTMGR_BRGMODRST_OFST    0x1c
 
 /*
  * Register : Miscellaneous Module Reset Register - miscmodrst
@@ -2858,6 +2873,7 @@ typedef volatile struct ALT_RSTMGR_BRGMODRST_s  ALT_RSTMGR_BRGMODRST_t;
  *  [31:17] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Boot ROM - rom
  *
@@ -2867,21 +2883,21 @@ typedef volatile struct ALT_RSTMGR_BRGMODRST_s  ALT_RSTMGR_BRGMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_MISCMODRST_ROM register field. */
-#define ALT_RSTMGR_MISCMODRST_ROM_LSB        0
+    #define ALT_RSTMGR_MISCMODRST_ROM_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_MISCMODRST_ROM register field. */
-#define ALT_RSTMGR_MISCMODRST_ROM_MSB        0
+    #define ALT_RSTMGR_MISCMODRST_ROM_MSB        0
 /* The width in bits of the ALT_RSTMGR_MISCMODRST_ROM register field. */
-#define ALT_RSTMGR_MISCMODRST_ROM_WIDTH      1
+    #define ALT_RSTMGR_MISCMODRST_ROM_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_MISCMODRST_ROM register field value. */
-#define ALT_RSTMGR_MISCMODRST_ROM_SET_MSK    0x00000001
+    #define ALT_RSTMGR_MISCMODRST_ROM_SET_MSK    0x00000001
 /* The mask used to clear the ALT_RSTMGR_MISCMODRST_ROM register field value. */
-#define ALT_RSTMGR_MISCMODRST_ROM_CLR_MSK    0xfffffffe
+    #define ALT_RSTMGR_MISCMODRST_ROM_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_RSTMGR_MISCMODRST_ROM register field. */
-#define ALT_RSTMGR_MISCMODRST_ROM_RESET      0x0
+    #define ALT_RSTMGR_MISCMODRST_ROM_RESET      0x0
 /* Extracts the ALT_RSTMGR_MISCMODRST_ROM field value from a register. */
-#define ALT_RSTMGR_MISCMODRST_ROM_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_RSTMGR_MISCMODRST_ROM_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_RSTMGR_MISCMODRST_ROM register field value suitable for setting the register. */
-#define ALT_RSTMGR_MISCMODRST_ROM_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_RSTMGR_MISCMODRST_ROM_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
 /*
  * Field : On-chip RAM - ocram
@@ -2892,21 +2908,21 @@ typedef volatile struct ALT_RSTMGR_BRGMODRST_s  ALT_RSTMGR_BRGMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_MISCMODRST_OCRAM register field. */
-#define ALT_RSTMGR_MISCMODRST_OCRAM_LSB        1
+    #define ALT_RSTMGR_MISCMODRST_OCRAM_LSB        1
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_MISCMODRST_OCRAM register field. */
-#define ALT_RSTMGR_MISCMODRST_OCRAM_MSB        1
+    #define ALT_RSTMGR_MISCMODRST_OCRAM_MSB        1
 /* The width in bits of the ALT_RSTMGR_MISCMODRST_OCRAM register field. */
-#define ALT_RSTMGR_MISCMODRST_OCRAM_WIDTH      1
+    #define ALT_RSTMGR_MISCMODRST_OCRAM_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_MISCMODRST_OCRAM register field value. */
-#define ALT_RSTMGR_MISCMODRST_OCRAM_SET_MSK    0x00000002
+    #define ALT_RSTMGR_MISCMODRST_OCRAM_SET_MSK    0x00000002
 /* The mask used to clear the ALT_RSTMGR_MISCMODRST_OCRAM register field value. */
-#define ALT_RSTMGR_MISCMODRST_OCRAM_CLR_MSK    0xfffffffd
+    #define ALT_RSTMGR_MISCMODRST_OCRAM_CLR_MSK    0xfffffffd
 /* The reset value of the ALT_RSTMGR_MISCMODRST_OCRAM register field. */
-#define ALT_RSTMGR_MISCMODRST_OCRAM_RESET      0x0
+    #define ALT_RSTMGR_MISCMODRST_OCRAM_RESET      0x0
 /* Extracts the ALT_RSTMGR_MISCMODRST_OCRAM field value from a register. */
-#define ALT_RSTMGR_MISCMODRST_OCRAM_GET(value) (((value) & 0x00000002) >> 1)
+    #define ALT_RSTMGR_MISCMODRST_OCRAM_GET( value )    ( ( ( value ) & 0x00000002 ) >> 1 )
 /* Produces a ALT_RSTMGR_MISCMODRST_OCRAM register field value suitable for setting the register. */
-#define ALT_RSTMGR_MISCMODRST_OCRAM_SET(value) (((value) << 1) & 0x00000002)
+    #define ALT_RSTMGR_MISCMODRST_OCRAM_SET( value )    ( ( ( value ) << 1 ) & 0x00000002 )
 
 /*
  * Field : System Manager (Cold or Warm) - sysmgr
@@ -2918,21 +2934,21 @@ typedef volatile struct ALT_RSTMGR_BRGMODRST_s  ALT_RSTMGR_BRGMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_MISCMODRST_SYSMGR register field. */
-#define ALT_RSTMGR_MISCMODRST_SYSMGR_LSB        2
+    #define ALT_RSTMGR_MISCMODRST_SYSMGR_LSB        2
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_MISCMODRST_SYSMGR register field. */
-#define ALT_RSTMGR_MISCMODRST_SYSMGR_MSB        2
+    #define ALT_RSTMGR_MISCMODRST_SYSMGR_MSB        2
 /* The width in bits of the ALT_RSTMGR_MISCMODRST_SYSMGR register field. */
-#define ALT_RSTMGR_MISCMODRST_SYSMGR_WIDTH      1
+    #define ALT_RSTMGR_MISCMODRST_SYSMGR_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_MISCMODRST_SYSMGR register field value. */
-#define ALT_RSTMGR_MISCMODRST_SYSMGR_SET_MSK    0x00000004
+    #define ALT_RSTMGR_MISCMODRST_SYSMGR_SET_MSK    0x00000004
 /* The mask used to clear the ALT_RSTMGR_MISCMODRST_SYSMGR register field value. */
-#define ALT_RSTMGR_MISCMODRST_SYSMGR_CLR_MSK    0xfffffffb
+    #define ALT_RSTMGR_MISCMODRST_SYSMGR_CLR_MSK    0xfffffffb
 /* The reset value of the ALT_RSTMGR_MISCMODRST_SYSMGR register field. */
-#define ALT_RSTMGR_MISCMODRST_SYSMGR_RESET      0x0
+    #define ALT_RSTMGR_MISCMODRST_SYSMGR_RESET      0x0
 /* Extracts the ALT_RSTMGR_MISCMODRST_SYSMGR field value from a register. */
-#define ALT_RSTMGR_MISCMODRST_SYSMGR_GET(value) (((value) & 0x00000004) >> 2)
+    #define ALT_RSTMGR_MISCMODRST_SYSMGR_GET( value )    ( ( ( value ) & 0x00000004 ) >> 2 )
 /* Produces a ALT_RSTMGR_MISCMODRST_SYSMGR register field value suitable for setting the register. */
-#define ALT_RSTMGR_MISCMODRST_SYSMGR_SET(value) (((value) << 2) & 0x00000004)
+    #define ALT_RSTMGR_MISCMODRST_SYSMGR_SET( value )    ( ( ( value ) << 2 ) & 0x00000004 )
 
 /*
  * Field : System Manager (Cold-only) - sysmgrcold
@@ -2944,21 +2960,21 @@ typedef volatile struct ALT_RSTMGR_BRGMODRST_s  ALT_RSTMGR_BRGMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_MISCMODRST_SYSMGRCOLD register field. */
-#define ALT_RSTMGR_MISCMODRST_SYSMGRCOLD_LSB        3
+    #define ALT_RSTMGR_MISCMODRST_SYSMGRCOLD_LSB        3
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_MISCMODRST_SYSMGRCOLD register field. */
-#define ALT_RSTMGR_MISCMODRST_SYSMGRCOLD_MSB        3
+    #define ALT_RSTMGR_MISCMODRST_SYSMGRCOLD_MSB        3
 /* The width in bits of the ALT_RSTMGR_MISCMODRST_SYSMGRCOLD register field. */
-#define ALT_RSTMGR_MISCMODRST_SYSMGRCOLD_WIDTH      1
+    #define ALT_RSTMGR_MISCMODRST_SYSMGRCOLD_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_MISCMODRST_SYSMGRCOLD register field value. */
-#define ALT_RSTMGR_MISCMODRST_SYSMGRCOLD_SET_MSK    0x00000008
+    #define ALT_RSTMGR_MISCMODRST_SYSMGRCOLD_SET_MSK    0x00000008
 /* The mask used to clear the ALT_RSTMGR_MISCMODRST_SYSMGRCOLD register field value. */
-#define ALT_RSTMGR_MISCMODRST_SYSMGRCOLD_CLR_MSK    0xfffffff7
+    #define ALT_RSTMGR_MISCMODRST_SYSMGRCOLD_CLR_MSK    0xfffffff7
 /* The reset value of the ALT_RSTMGR_MISCMODRST_SYSMGRCOLD register field. */
-#define ALT_RSTMGR_MISCMODRST_SYSMGRCOLD_RESET      0x0
+    #define ALT_RSTMGR_MISCMODRST_SYSMGRCOLD_RESET      0x0
 /* Extracts the ALT_RSTMGR_MISCMODRST_SYSMGRCOLD field value from a register. */
-#define ALT_RSTMGR_MISCMODRST_SYSMGRCOLD_GET(value) (((value) & 0x00000008) >> 3)
+    #define ALT_RSTMGR_MISCMODRST_SYSMGRCOLD_GET( value )    ( ( ( value ) & 0x00000008 ) >> 3 )
 /* Produces a ALT_RSTMGR_MISCMODRST_SYSMGRCOLD register field value suitable for setting the register. */
-#define ALT_RSTMGR_MISCMODRST_SYSMGRCOLD_SET(value) (((value) << 3) & 0x00000008)
+    #define ALT_RSTMGR_MISCMODRST_SYSMGRCOLD_SET( value )    ( ( ( value ) << 3 ) & 0x00000008 )
 
 /*
  * Field : FPGA Manager - fpgamgr
@@ -2969,21 +2985,21 @@ typedef volatile struct ALT_RSTMGR_BRGMODRST_s  ALT_RSTMGR_BRGMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_MISCMODRST_FPGAMGR register field. */
-#define ALT_RSTMGR_MISCMODRST_FPGAMGR_LSB        4
+    #define ALT_RSTMGR_MISCMODRST_FPGAMGR_LSB        4
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_MISCMODRST_FPGAMGR register field. */
-#define ALT_RSTMGR_MISCMODRST_FPGAMGR_MSB        4
+    #define ALT_RSTMGR_MISCMODRST_FPGAMGR_MSB        4
 /* The width in bits of the ALT_RSTMGR_MISCMODRST_FPGAMGR register field. */
-#define ALT_RSTMGR_MISCMODRST_FPGAMGR_WIDTH      1
+    #define ALT_RSTMGR_MISCMODRST_FPGAMGR_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_MISCMODRST_FPGAMGR register field value. */
-#define ALT_RSTMGR_MISCMODRST_FPGAMGR_SET_MSK    0x00000010
+    #define ALT_RSTMGR_MISCMODRST_FPGAMGR_SET_MSK    0x00000010
 /* The mask used to clear the ALT_RSTMGR_MISCMODRST_FPGAMGR register field value. */
-#define ALT_RSTMGR_MISCMODRST_FPGAMGR_CLR_MSK    0xffffffef
+    #define ALT_RSTMGR_MISCMODRST_FPGAMGR_CLR_MSK    0xffffffef
 /* The reset value of the ALT_RSTMGR_MISCMODRST_FPGAMGR register field. */
-#define ALT_RSTMGR_MISCMODRST_FPGAMGR_RESET      0x0
+    #define ALT_RSTMGR_MISCMODRST_FPGAMGR_RESET      0x0
 /* Extracts the ALT_RSTMGR_MISCMODRST_FPGAMGR field value from a register. */
-#define ALT_RSTMGR_MISCMODRST_FPGAMGR_GET(value) (((value) & 0x00000010) >> 4)
+    #define ALT_RSTMGR_MISCMODRST_FPGAMGR_GET( value )    ( ( ( value ) & 0x00000010 ) >> 4 )
 /* Produces a ALT_RSTMGR_MISCMODRST_FPGAMGR register field value suitable for setting the register. */
-#define ALT_RSTMGR_MISCMODRST_FPGAMGR_SET(value) (((value) << 4) & 0x00000010)
+    #define ALT_RSTMGR_MISCMODRST_FPGAMGR_SET( value )    ( ( ( value ) << 4 ) & 0x00000010 )
 
 /*
  * Field : ACP ID Mapper - acpidmap
@@ -2994,21 +3010,21 @@ typedef volatile struct ALT_RSTMGR_BRGMODRST_s  ALT_RSTMGR_BRGMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_MISCMODRST_ACPIDMAP register field. */
-#define ALT_RSTMGR_MISCMODRST_ACPIDMAP_LSB        5
+    #define ALT_RSTMGR_MISCMODRST_ACPIDMAP_LSB        5
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_MISCMODRST_ACPIDMAP register field. */
-#define ALT_RSTMGR_MISCMODRST_ACPIDMAP_MSB        5
+    #define ALT_RSTMGR_MISCMODRST_ACPIDMAP_MSB        5
 /* The width in bits of the ALT_RSTMGR_MISCMODRST_ACPIDMAP register field. */
-#define ALT_RSTMGR_MISCMODRST_ACPIDMAP_WIDTH      1
+    #define ALT_RSTMGR_MISCMODRST_ACPIDMAP_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_MISCMODRST_ACPIDMAP register field value. */
-#define ALT_RSTMGR_MISCMODRST_ACPIDMAP_SET_MSK    0x00000020
+    #define ALT_RSTMGR_MISCMODRST_ACPIDMAP_SET_MSK    0x00000020
 /* The mask used to clear the ALT_RSTMGR_MISCMODRST_ACPIDMAP register field value. */
-#define ALT_RSTMGR_MISCMODRST_ACPIDMAP_CLR_MSK    0xffffffdf
+    #define ALT_RSTMGR_MISCMODRST_ACPIDMAP_CLR_MSK    0xffffffdf
 /* The reset value of the ALT_RSTMGR_MISCMODRST_ACPIDMAP register field. */
-#define ALT_RSTMGR_MISCMODRST_ACPIDMAP_RESET      0x0
+    #define ALT_RSTMGR_MISCMODRST_ACPIDMAP_RESET      0x0
 /* Extracts the ALT_RSTMGR_MISCMODRST_ACPIDMAP field value from a register. */
-#define ALT_RSTMGR_MISCMODRST_ACPIDMAP_GET(value) (((value) & 0x00000020) >> 5)
+    #define ALT_RSTMGR_MISCMODRST_ACPIDMAP_GET( value )    ( ( ( value ) & 0x00000020 ) >> 5 )
 /* Produces a ALT_RSTMGR_MISCMODRST_ACPIDMAP register field value suitable for setting the register. */
-#define ALT_RSTMGR_MISCMODRST_ACPIDMAP_SET(value) (((value) << 5) & 0x00000020)
+    #define ALT_RSTMGR_MISCMODRST_ACPIDMAP_SET( value )    ( ( ( value ) << 5 ) & 0x00000020 )
 
 /*
  * Field : HPS to FPGA Core (Cold or Warm) - s2f
@@ -3020,21 +3036,21 @@ typedef volatile struct ALT_RSTMGR_BRGMODRST_s  ALT_RSTMGR_BRGMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_MISCMODRST_S2F register field. */
-#define ALT_RSTMGR_MISCMODRST_S2F_LSB        6
+    #define ALT_RSTMGR_MISCMODRST_S2F_LSB        6
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_MISCMODRST_S2F register field. */
-#define ALT_RSTMGR_MISCMODRST_S2F_MSB        6
+    #define ALT_RSTMGR_MISCMODRST_S2F_MSB        6
 /* The width in bits of the ALT_RSTMGR_MISCMODRST_S2F register field. */
-#define ALT_RSTMGR_MISCMODRST_S2F_WIDTH      1
+    #define ALT_RSTMGR_MISCMODRST_S2F_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_MISCMODRST_S2F register field value. */
-#define ALT_RSTMGR_MISCMODRST_S2F_SET_MSK    0x00000040
+    #define ALT_RSTMGR_MISCMODRST_S2F_SET_MSK    0x00000040
 /* The mask used to clear the ALT_RSTMGR_MISCMODRST_S2F register field value. */
-#define ALT_RSTMGR_MISCMODRST_S2F_CLR_MSK    0xffffffbf
+    #define ALT_RSTMGR_MISCMODRST_S2F_CLR_MSK    0xffffffbf
 /* The reset value of the ALT_RSTMGR_MISCMODRST_S2F register field. */
-#define ALT_RSTMGR_MISCMODRST_S2F_RESET      0x0
+    #define ALT_RSTMGR_MISCMODRST_S2F_RESET      0x0
 /* Extracts the ALT_RSTMGR_MISCMODRST_S2F field value from a register. */
-#define ALT_RSTMGR_MISCMODRST_S2F_GET(value) (((value) & 0x00000040) >> 6)
+    #define ALT_RSTMGR_MISCMODRST_S2F_GET( value )    ( ( ( value ) & 0x00000040 ) >> 6 )
 /* Produces a ALT_RSTMGR_MISCMODRST_S2F register field value suitable for setting the register. */
-#define ALT_RSTMGR_MISCMODRST_S2F_SET(value) (((value) << 6) & 0x00000040)
+    #define ALT_RSTMGR_MISCMODRST_S2F_SET( value )    ( ( ( value ) << 6 ) & 0x00000040 )
 
 /*
  * Field : HPS to FPGA Core (Cold-only) - s2fcold
@@ -3046,21 +3062,21 @@ typedef volatile struct ALT_RSTMGR_BRGMODRST_s  ALT_RSTMGR_BRGMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_MISCMODRST_S2FCOLD register field. */
-#define ALT_RSTMGR_MISCMODRST_S2FCOLD_LSB        7
+    #define ALT_RSTMGR_MISCMODRST_S2FCOLD_LSB        7
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_MISCMODRST_S2FCOLD register field. */
-#define ALT_RSTMGR_MISCMODRST_S2FCOLD_MSB        7
+    #define ALT_RSTMGR_MISCMODRST_S2FCOLD_MSB        7
 /* The width in bits of the ALT_RSTMGR_MISCMODRST_S2FCOLD register field. */
-#define ALT_RSTMGR_MISCMODRST_S2FCOLD_WIDTH      1
+    #define ALT_RSTMGR_MISCMODRST_S2FCOLD_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_MISCMODRST_S2FCOLD register field value. */
-#define ALT_RSTMGR_MISCMODRST_S2FCOLD_SET_MSK    0x00000080
+    #define ALT_RSTMGR_MISCMODRST_S2FCOLD_SET_MSK    0x00000080
 /* The mask used to clear the ALT_RSTMGR_MISCMODRST_S2FCOLD register field value. */
-#define ALT_RSTMGR_MISCMODRST_S2FCOLD_CLR_MSK    0xffffff7f
+    #define ALT_RSTMGR_MISCMODRST_S2FCOLD_CLR_MSK    0xffffff7f
 /* The reset value of the ALT_RSTMGR_MISCMODRST_S2FCOLD register field. */
-#define ALT_RSTMGR_MISCMODRST_S2FCOLD_RESET      0x0
+    #define ALT_RSTMGR_MISCMODRST_S2FCOLD_RESET      0x0
 /* Extracts the ALT_RSTMGR_MISCMODRST_S2FCOLD field value from a register. */
-#define ALT_RSTMGR_MISCMODRST_S2FCOLD_GET(value) (((value) & 0x00000080) >> 7)
+    #define ALT_RSTMGR_MISCMODRST_S2FCOLD_GET( value )    ( ( ( value ) & 0x00000080 ) >> 7 )
 /* Produces a ALT_RSTMGR_MISCMODRST_S2FCOLD register field value suitable for setting the register. */
-#define ALT_RSTMGR_MISCMODRST_S2FCOLD_SET(value) (((value) << 7) & 0x00000080)
+    #define ALT_RSTMGR_MISCMODRST_S2FCOLD_SET( value )    ( ( ( value ) << 7 ) & 0x00000080 )
 
 /*
  * Field : nRST Pin - nrstpin
@@ -3071,21 +3087,21 @@ typedef volatile struct ALT_RSTMGR_BRGMODRST_s  ALT_RSTMGR_BRGMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_MISCMODRST_NRSTPIN register field. */
-#define ALT_RSTMGR_MISCMODRST_NRSTPIN_LSB        8
+    #define ALT_RSTMGR_MISCMODRST_NRSTPIN_LSB        8
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_MISCMODRST_NRSTPIN register field. */
-#define ALT_RSTMGR_MISCMODRST_NRSTPIN_MSB        8
+    #define ALT_RSTMGR_MISCMODRST_NRSTPIN_MSB        8
 /* The width in bits of the ALT_RSTMGR_MISCMODRST_NRSTPIN register field. */
-#define ALT_RSTMGR_MISCMODRST_NRSTPIN_WIDTH      1
+    #define ALT_RSTMGR_MISCMODRST_NRSTPIN_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_MISCMODRST_NRSTPIN register field value. */
-#define ALT_RSTMGR_MISCMODRST_NRSTPIN_SET_MSK    0x00000100
+    #define ALT_RSTMGR_MISCMODRST_NRSTPIN_SET_MSK    0x00000100
 /* The mask used to clear the ALT_RSTMGR_MISCMODRST_NRSTPIN register field value. */
-#define ALT_RSTMGR_MISCMODRST_NRSTPIN_CLR_MSK    0xfffffeff
+    #define ALT_RSTMGR_MISCMODRST_NRSTPIN_CLR_MSK    0xfffffeff
 /* The reset value of the ALT_RSTMGR_MISCMODRST_NRSTPIN register field. */
-#define ALT_RSTMGR_MISCMODRST_NRSTPIN_RESET      0x0
+    #define ALT_RSTMGR_MISCMODRST_NRSTPIN_RESET      0x0
 /* Extracts the ALT_RSTMGR_MISCMODRST_NRSTPIN field value from a register. */
-#define ALT_RSTMGR_MISCMODRST_NRSTPIN_GET(value) (((value) & 0x00000100) >> 8)
+    #define ALT_RSTMGR_MISCMODRST_NRSTPIN_GET( value )    ( ( ( value ) & 0x00000100 ) >> 8 )
 /* Produces a ALT_RSTMGR_MISCMODRST_NRSTPIN register field value suitable for setting the register. */
-#define ALT_RSTMGR_MISCMODRST_NRSTPIN_SET(value) (((value) << 8) & 0x00000100)
+    #define ALT_RSTMGR_MISCMODRST_NRSTPIN_SET( value )    ( ( ( value ) << 8 ) & 0x00000100 )
 
 /*
  * Field : Timestamp - timestampcold
@@ -3096,21 +3112,21 @@ typedef volatile struct ALT_RSTMGR_BRGMODRST_s  ALT_RSTMGR_BRGMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_MISCMODRST_TSCOLD register field. */
-#define ALT_RSTMGR_MISCMODRST_TSCOLD_LSB        9
+    #define ALT_RSTMGR_MISCMODRST_TSCOLD_LSB        9
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_MISCMODRST_TSCOLD register field. */
-#define ALT_RSTMGR_MISCMODRST_TSCOLD_MSB        9
+    #define ALT_RSTMGR_MISCMODRST_TSCOLD_MSB        9
 /* The width in bits of the ALT_RSTMGR_MISCMODRST_TSCOLD register field. */
-#define ALT_RSTMGR_MISCMODRST_TSCOLD_WIDTH      1
+    #define ALT_RSTMGR_MISCMODRST_TSCOLD_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_MISCMODRST_TSCOLD register field value. */
-#define ALT_RSTMGR_MISCMODRST_TSCOLD_SET_MSK    0x00000200
+    #define ALT_RSTMGR_MISCMODRST_TSCOLD_SET_MSK    0x00000200
 /* The mask used to clear the ALT_RSTMGR_MISCMODRST_TSCOLD register field value. */
-#define ALT_RSTMGR_MISCMODRST_TSCOLD_CLR_MSK    0xfffffdff
+    #define ALT_RSTMGR_MISCMODRST_TSCOLD_CLR_MSK    0xfffffdff
 /* The reset value of the ALT_RSTMGR_MISCMODRST_TSCOLD register field. */
-#define ALT_RSTMGR_MISCMODRST_TSCOLD_RESET      0x0
+    #define ALT_RSTMGR_MISCMODRST_TSCOLD_RESET      0x0
 /* Extracts the ALT_RSTMGR_MISCMODRST_TSCOLD field value from a register. */
-#define ALT_RSTMGR_MISCMODRST_TSCOLD_GET(value) (((value) & 0x00000200) >> 9)
+    #define ALT_RSTMGR_MISCMODRST_TSCOLD_GET( value )    ( ( ( value ) & 0x00000200 ) >> 9 )
 /* Produces a ALT_RSTMGR_MISCMODRST_TSCOLD register field value suitable for setting the register. */
-#define ALT_RSTMGR_MISCMODRST_TSCOLD_SET(value) (((value) << 9) & 0x00000200)
+    #define ALT_RSTMGR_MISCMODRST_TSCOLD_SET( value )    ( ( ( value ) << 9 ) & 0x00000200 )
 
 /*
  * Field : Clock Manager - clkmgrcold
@@ -3121,21 +3137,21 @@ typedef volatile struct ALT_RSTMGR_BRGMODRST_s  ALT_RSTMGR_BRGMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_MISCMODRST_CLKMGRCOLD register field. */
-#define ALT_RSTMGR_MISCMODRST_CLKMGRCOLD_LSB        10
+    #define ALT_RSTMGR_MISCMODRST_CLKMGRCOLD_LSB        10
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_MISCMODRST_CLKMGRCOLD register field. */
-#define ALT_RSTMGR_MISCMODRST_CLKMGRCOLD_MSB        10
+    #define ALT_RSTMGR_MISCMODRST_CLKMGRCOLD_MSB        10
 /* The width in bits of the ALT_RSTMGR_MISCMODRST_CLKMGRCOLD register field. */
-#define ALT_RSTMGR_MISCMODRST_CLKMGRCOLD_WIDTH      1
+    #define ALT_RSTMGR_MISCMODRST_CLKMGRCOLD_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_MISCMODRST_CLKMGRCOLD register field value. */
-#define ALT_RSTMGR_MISCMODRST_CLKMGRCOLD_SET_MSK    0x00000400
+    #define ALT_RSTMGR_MISCMODRST_CLKMGRCOLD_SET_MSK    0x00000400
 /* The mask used to clear the ALT_RSTMGR_MISCMODRST_CLKMGRCOLD register field value. */
-#define ALT_RSTMGR_MISCMODRST_CLKMGRCOLD_CLR_MSK    0xfffffbff
+    #define ALT_RSTMGR_MISCMODRST_CLKMGRCOLD_CLR_MSK    0xfffffbff
 /* The reset value of the ALT_RSTMGR_MISCMODRST_CLKMGRCOLD register field. */
-#define ALT_RSTMGR_MISCMODRST_CLKMGRCOLD_RESET      0x0
+    #define ALT_RSTMGR_MISCMODRST_CLKMGRCOLD_RESET      0x0
 /* Extracts the ALT_RSTMGR_MISCMODRST_CLKMGRCOLD field value from a register. */
-#define ALT_RSTMGR_MISCMODRST_CLKMGRCOLD_GET(value) (((value) & 0x00000400) >> 10)
+    #define ALT_RSTMGR_MISCMODRST_CLKMGRCOLD_GET( value )    ( ( ( value ) & 0x00000400 ) >> 10 )
 /* Produces a ALT_RSTMGR_MISCMODRST_CLKMGRCOLD register field value suitable for setting the register. */
-#define ALT_RSTMGR_MISCMODRST_CLKMGRCOLD_SET(value) (((value) << 10) & 0x00000400)
+    #define ALT_RSTMGR_MISCMODRST_CLKMGRCOLD_SET( value )    ( ( ( value ) << 10 ) & 0x00000400 )
 
 /*
  * Field : Scan Manager - scanmgr
@@ -3146,21 +3162,21 @@ typedef volatile struct ALT_RSTMGR_BRGMODRST_s  ALT_RSTMGR_BRGMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_MISCMODRST_SCANMGR register field. */
-#define ALT_RSTMGR_MISCMODRST_SCANMGR_LSB        11
+    #define ALT_RSTMGR_MISCMODRST_SCANMGR_LSB        11
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_MISCMODRST_SCANMGR register field. */
-#define ALT_RSTMGR_MISCMODRST_SCANMGR_MSB        11
+    #define ALT_RSTMGR_MISCMODRST_SCANMGR_MSB        11
 /* The width in bits of the ALT_RSTMGR_MISCMODRST_SCANMGR register field. */
-#define ALT_RSTMGR_MISCMODRST_SCANMGR_WIDTH      1
+    #define ALT_RSTMGR_MISCMODRST_SCANMGR_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_MISCMODRST_SCANMGR register field value. */
-#define ALT_RSTMGR_MISCMODRST_SCANMGR_SET_MSK    0x00000800
+    #define ALT_RSTMGR_MISCMODRST_SCANMGR_SET_MSK    0x00000800
 /* The mask used to clear the ALT_RSTMGR_MISCMODRST_SCANMGR register field value. */
-#define ALT_RSTMGR_MISCMODRST_SCANMGR_CLR_MSK    0xfffff7ff
+    #define ALT_RSTMGR_MISCMODRST_SCANMGR_CLR_MSK    0xfffff7ff
 /* The reset value of the ALT_RSTMGR_MISCMODRST_SCANMGR register field. */
-#define ALT_RSTMGR_MISCMODRST_SCANMGR_RESET      0x0
+    #define ALT_RSTMGR_MISCMODRST_SCANMGR_RESET      0x0
 /* Extracts the ALT_RSTMGR_MISCMODRST_SCANMGR field value from a register. */
-#define ALT_RSTMGR_MISCMODRST_SCANMGR_GET(value) (((value) & 0x00000800) >> 11)
+    #define ALT_RSTMGR_MISCMODRST_SCANMGR_GET( value )    ( ( ( value ) & 0x00000800 ) >> 11 )
 /* Produces a ALT_RSTMGR_MISCMODRST_SCANMGR register field value suitable for setting the register. */
-#define ALT_RSTMGR_MISCMODRST_SCANMGR_SET(value) (((value) << 11) & 0x00000800)
+    #define ALT_RSTMGR_MISCMODRST_SCANMGR_SET( value )    ( ( ( value ) << 11 ) & 0x00000800 )
 
 /*
  * Field : Freeze Controller - frzctrlcold
@@ -3171,21 +3187,21 @@ typedef volatile struct ALT_RSTMGR_BRGMODRST_s  ALT_RSTMGR_BRGMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_MISCMODRST_FRZCTLCOLD register field. */
-#define ALT_RSTMGR_MISCMODRST_FRZCTLCOLD_LSB        12
+    #define ALT_RSTMGR_MISCMODRST_FRZCTLCOLD_LSB        12
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_MISCMODRST_FRZCTLCOLD register field. */
-#define ALT_RSTMGR_MISCMODRST_FRZCTLCOLD_MSB        12
+    #define ALT_RSTMGR_MISCMODRST_FRZCTLCOLD_MSB        12
 /* The width in bits of the ALT_RSTMGR_MISCMODRST_FRZCTLCOLD register field. */
-#define ALT_RSTMGR_MISCMODRST_FRZCTLCOLD_WIDTH      1
+    #define ALT_RSTMGR_MISCMODRST_FRZCTLCOLD_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_MISCMODRST_FRZCTLCOLD register field value. */
-#define ALT_RSTMGR_MISCMODRST_FRZCTLCOLD_SET_MSK    0x00001000
+    #define ALT_RSTMGR_MISCMODRST_FRZCTLCOLD_SET_MSK    0x00001000
 /* The mask used to clear the ALT_RSTMGR_MISCMODRST_FRZCTLCOLD register field value. */
-#define ALT_RSTMGR_MISCMODRST_FRZCTLCOLD_CLR_MSK    0xffffefff
+    #define ALT_RSTMGR_MISCMODRST_FRZCTLCOLD_CLR_MSK    0xffffefff
 /* The reset value of the ALT_RSTMGR_MISCMODRST_FRZCTLCOLD register field. */
-#define ALT_RSTMGR_MISCMODRST_FRZCTLCOLD_RESET      0x0
+    #define ALT_RSTMGR_MISCMODRST_FRZCTLCOLD_RESET      0x0
 /* Extracts the ALT_RSTMGR_MISCMODRST_FRZCTLCOLD field value from a register. */
-#define ALT_RSTMGR_MISCMODRST_FRZCTLCOLD_GET(value) (((value) & 0x00001000) >> 12)
+    #define ALT_RSTMGR_MISCMODRST_FRZCTLCOLD_GET( value )    ( ( ( value ) & 0x00001000 ) >> 12 )
 /* Produces a ALT_RSTMGR_MISCMODRST_FRZCTLCOLD register field value suitable for setting the register. */
-#define ALT_RSTMGR_MISCMODRST_FRZCTLCOLD_SET(value) (((value) << 12) & 0x00001000)
+    #define ALT_RSTMGR_MISCMODRST_FRZCTLCOLD_SET( value )    ( ( ( value ) << 12 ) & 0x00001000 )
 
 /*
  * Field : System/Debug - sysdbg
@@ -3196,21 +3212,21 @@ typedef volatile struct ALT_RSTMGR_BRGMODRST_s  ALT_RSTMGR_BRGMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_MISCMODRST_SYSDBG register field. */
-#define ALT_RSTMGR_MISCMODRST_SYSDBG_LSB        13
+    #define ALT_RSTMGR_MISCMODRST_SYSDBG_LSB        13
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_MISCMODRST_SYSDBG register field. */
-#define ALT_RSTMGR_MISCMODRST_SYSDBG_MSB        13
+    #define ALT_RSTMGR_MISCMODRST_SYSDBG_MSB        13
 /* The width in bits of the ALT_RSTMGR_MISCMODRST_SYSDBG register field. */
-#define ALT_RSTMGR_MISCMODRST_SYSDBG_WIDTH      1
+    #define ALT_RSTMGR_MISCMODRST_SYSDBG_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_MISCMODRST_SYSDBG register field value. */
-#define ALT_RSTMGR_MISCMODRST_SYSDBG_SET_MSK    0x00002000
+    #define ALT_RSTMGR_MISCMODRST_SYSDBG_SET_MSK    0x00002000
 /* The mask used to clear the ALT_RSTMGR_MISCMODRST_SYSDBG register field value. */
-#define ALT_RSTMGR_MISCMODRST_SYSDBG_CLR_MSK    0xffffdfff
+    #define ALT_RSTMGR_MISCMODRST_SYSDBG_CLR_MSK    0xffffdfff
 /* The reset value of the ALT_RSTMGR_MISCMODRST_SYSDBG register field. */
-#define ALT_RSTMGR_MISCMODRST_SYSDBG_RESET      0x0
+    #define ALT_RSTMGR_MISCMODRST_SYSDBG_RESET      0x0
 /* Extracts the ALT_RSTMGR_MISCMODRST_SYSDBG field value from a register. */
-#define ALT_RSTMGR_MISCMODRST_SYSDBG_GET(value) (((value) & 0x00002000) >> 13)
+    #define ALT_RSTMGR_MISCMODRST_SYSDBG_GET( value )    ( ( ( value ) & 0x00002000 ) >> 13 )
 /* Produces a ALT_RSTMGR_MISCMODRST_SYSDBG register field value suitable for setting the register. */
-#define ALT_RSTMGR_MISCMODRST_SYSDBG_SET(value) (((value) << 13) & 0x00002000)
+    #define ALT_RSTMGR_MISCMODRST_SYSDBG_SET( value )    ( ( ( value ) << 13 ) & 0x00002000 )
 
 /*
  * Field : Debug - dbg
@@ -3221,21 +3237,21 @@ typedef volatile struct ALT_RSTMGR_BRGMODRST_s  ALT_RSTMGR_BRGMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_MISCMODRST_DBG register field. */
-#define ALT_RSTMGR_MISCMODRST_DBG_LSB        14
+    #define ALT_RSTMGR_MISCMODRST_DBG_LSB        14
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_MISCMODRST_DBG register field. */
-#define ALT_RSTMGR_MISCMODRST_DBG_MSB        14
+    #define ALT_RSTMGR_MISCMODRST_DBG_MSB        14
 /* The width in bits of the ALT_RSTMGR_MISCMODRST_DBG register field. */
-#define ALT_RSTMGR_MISCMODRST_DBG_WIDTH      1
+    #define ALT_RSTMGR_MISCMODRST_DBG_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_MISCMODRST_DBG register field value. */
-#define ALT_RSTMGR_MISCMODRST_DBG_SET_MSK    0x00004000
+    #define ALT_RSTMGR_MISCMODRST_DBG_SET_MSK    0x00004000
 /* The mask used to clear the ALT_RSTMGR_MISCMODRST_DBG register field value. */
-#define ALT_RSTMGR_MISCMODRST_DBG_CLR_MSK    0xffffbfff
+    #define ALT_RSTMGR_MISCMODRST_DBG_CLR_MSK    0xffffbfff
 /* The reset value of the ALT_RSTMGR_MISCMODRST_DBG register field. */
-#define ALT_RSTMGR_MISCMODRST_DBG_RESET      0x0
+    #define ALT_RSTMGR_MISCMODRST_DBG_RESET      0x0
 /* Extracts the ALT_RSTMGR_MISCMODRST_DBG field value from a register. */
-#define ALT_RSTMGR_MISCMODRST_DBG_GET(value) (((value) & 0x00004000) >> 14)
+    #define ALT_RSTMGR_MISCMODRST_DBG_GET( value )    ( ( ( value ) & 0x00004000 ) >> 14 )
 /* Produces a ALT_RSTMGR_MISCMODRST_DBG register field value suitable for setting the register. */
-#define ALT_RSTMGR_MISCMODRST_DBG_SET(value) (((value) << 14) & 0x00004000)
+    #define ALT_RSTMGR_MISCMODRST_DBG_SET( value )    ( ( ( value ) << 14 ) & 0x00004000 )
 
 /*
  * Field : TAP Controller - tapcold
@@ -3247,21 +3263,21 @@ typedef volatile struct ALT_RSTMGR_BRGMODRST_s  ALT_RSTMGR_BRGMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_MISCMODRST_TAPCOLD register field. */
-#define ALT_RSTMGR_MISCMODRST_TAPCOLD_LSB        15
+    #define ALT_RSTMGR_MISCMODRST_TAPCOLD_LSB        15
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_MISCMODRST_TAPCOLD register field. */
-#define ALT_RSTMGR_MISCMODRST_TAPCOLD_MSB        15
+    #define ALT_RSTMGR_MISCMODRST_TAPCOLD_MSB        15
 /* The width in bits of the ALT_RSTMGR_MISCMODRST_TAPCOLD register field. */
-#define ALT_RSTMGR_MISCMODRST_TAPCOLD_WIDTH      1
+    #define ALT_RSTMGR_MISCMODRST_TAPCOLD_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_MISCMODRST_TAPCOLD register field value. */
-#define ALT_RSTMGR_MISCMODRST_TAPCOLD_SET_MSK    0x00008000
+    #define ALT_RSTMGR_MISCMODRST_TAPCOLD_SET_MSK    0x00008000
 /* The mask used to clear the ALT_RSTMGR_MISCMODRST_TAPCOLD register field value. */
-#define ALT_RSTMGR_MISCMODRST_TAPCOLD_CLR_MSK    0xffff7fff
+    #define ALT_RSTMGR_MISCMODRST_TAPCOLD_CLR_MSK    0xffff7fff
 /* The reset value of the ALT_RSTMGR_MISCMODRST_TAPCOLD register field. */
-#define ALT_RSTMGR_MISCMODRST_TAPCOLD_RESET      0x0
+    #define ALT_RSTMGR_MISCMODRST_TAPCOLD_RESET      0x0
 /* Extracts the ALT_RSTMGR_MISCMODRST_TAPCOLD field value from a register. */
-#define ALT_RSTMGR_MISCMODRST_TAPCOLD_GET(value) (((value) & 0x00008000) >> 15)
+    #define ALT_RSTMGR_MISCMODRST_TAPCOLD_GET( value )    ( ( ( value ) & 0x00008000 ) >> 15 )
 /* Produces a ALT_RSTMGR_MISCMODRST_TAPCOLD register field value suitable for setting the register. */
-#define ALT_RSTMGR_MISCMODRST_TAPCOLD_SET(value) (((value) << 15) & 0x00008000)
+    #define ALT_RSTMGR_MISCMODRST_TAPCOLD_SET( value )    ( ( ( value ) << 15 ) & 0x00008000 )
 
 /*
  * Field : SDRAM Controller Subsystem Cold Reset - sdrcold
@@ -3272,23 +3288,24 @@ typedef volatile struct ALT_RSTMGR_BRGMODRST_s  ALT_RSTMGR_BRGMODRST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_RSTMGR_MISCMODRST_SDRCOLD register field. */
-#define ALT_RSTMGR_MISCMODRST_SDRCOLD_LSB        16
+    #define ALT_RSTMGR_MISCMODRST_SDRCOLD_LSB        16
 /* The Most Significant Bit (MSB) position of the ALT_RSTMGR_MISCMODRST_SDRCOLD register field. */
-#define ALT_RSTMGR_MISCMODRST_SDRCOLD_MSB        16
+    #define ALT_RSTMGR_MISCMODRST_SDRCOLD_MSB        16
 /* The width in bits of the ALT_RSTMGR_MISCMODRST_SDRCOLD register field. */
-#define ALT_RSTMGR_MISCMODRST_SDRCOLD_WIDTH      1
+    #define ALT_RSTMGR_MISCMODRST_SDRCOLD_WIDTH      1
 /* The mask used to set the ALT_RSTMGR_MISCMODRST_SDRCOLD register field value. */
-#define ALT_RSTMGR_MISCMODRST_SDRCOLD_SET_MSK    0x00010000
+    #define ALT_RSTMGR_MISCMODRST_SDRCOLD_SET_MSK    0x00010000
 /* The mask used to clear the ALT_RSTMGR_MISCMODRST_SDRCOLD register field value. */
-#define ALT_RSTMGR_MISCMODRST_SDRCOLD_CLR_MSK    0xfffeffff
+    #define ALT_RSTMGR_MISCMODRST_SDRCOLD_CLR_MSK    0xfffeffff
 /* The reset value of the ALT_RSTMGR_MISCMODRST_SDRCOLD register field. */
-#define ALT_RSTMGR_MISCMODRST_SDRCOLD_RESET      0x0
+    #define ALT_RSTMGR_MISCMODRST_SDRCOLD_RESET      0x0
 /* Extracts the ALT_RSTMGR_MISCMODRST_SDRCOLD field value from a register. */
-#define ALT_RSTMGR_MISCMODRST_SDRCOLD_GET(value) (((value) & 0x00010000) >> 16)
+    #define ALT_RSTMGR_MISCMODRST_SDRCOLD_GET( value )    ( ( ( value ) & 0x00010000 ) >> 16 )
 /* Produces a ALT_RSTMGR_MISCMODRST_SDRCOLD register field value suitable for setting the register. */
-#define ALT_RSTMGR_MISCMODRST_SDRCOLD_SET(value) (((value) << 16) & 0x00010000)
+    #define ALT_RSTMGR_MISCMODRST_SDRCOLD_SET( value )    ( ( ( value ) << 16 ) & 0x00010000 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -3299,36 +3316,37 @@ typedef volatile struct ALT_RSTMGR_BRGMODRST_s  ALT_RSTMGR_BRGMODRST_t;
  *
  * The struct declaration for register ALT_RSTMGR_MISCMODRST.
  */
-struct ALT_RSTMGR_MISCMODRST_s
-{
-    uint32_t  rom           :  1;  /* Boot ROM */
-    uint32_t  ocram         :  1;  /* On-chip RAM */
-    uint32_t  sysmgr        :  1;  /* System Manager (Cold or Warm) */
-    uint32_t  sysmgrcold    :  1;  /* System Manager (Cold-only) */
-    uint32_t  fpgamgr       :  1;  /* FPGA Manager */
-    uint32_t  acpidmap      :  1;  /* ACP ID Mapper */
-    uint32_t  s2f           :  1;  /* HPS to FPGA Core (Cold or Warm) */
-    uint32_t  s2fcold       :  1;  /* HPS to FPGA Core (Cold-only) */
-    uint32_t  nrstpin       :  1;  /* nRST Pin */
-    uint32_t  timestampcold :  1;  /* Timestamp */
-    uint32_t  clkmgrcold    :  1;  /* Clock Manager */
-    uint32_t  scanmgr       :  1;  /* Scan Manager */
-    uint32_t  frzctrlcold   :  1;  /* Freeze Controller */
-    uint32_t  sysdbg        :  1;  /* System/Debug */
-    uint32_t  dbg           :  1;  /* Debug */
-    uint32_t  tapcold       :  1;  /* TAP Controller */
-    uint32_t  sdrcold       :  1;  /* SDRAM Controller Subsystem Cold Reset */
-    uint32_t                : 15;  /* *UNDEFINED* */
-};
+        struct ALT_RSTMGR_MISCMODRST_s
+        {
+            uint32_t rom           :  1;  /* Boot ROM */
+            uint32_t ocram         :  1;  /* On-chip RAM */
+            uint32_t sysmgr        :  1;  /* System Manager (Cold or Warm) */
+            uint32_t sysmgrcold    :  1;  /* System Manager (Cold-only) */
+            uint32_t fpgamgr       :  1;  /* FPGA Manager */
+            uint32_t acpidmap      :  1;  /* ACP ID Mapper */
+            uint32_t s2f           :  1;  /* HPS to FPGA Core (Cold or Warm) */
+            uint32_t s2fcold       :  1;  /* HPS to FPGA Core (Cold-only) */
+            uint32_t nrstpin       :  1;  /* nRST Pin */
+            uint32_t timestampcold :  1;  /* Timestamp */
+            uint32_t clkmgrcold    :  1;  /* Clock Manager */
+            uint32_t scanmgr       :  1;  /* Scan Manager */
+            uint32_t frzctrlcold   :  1;  /* Freeze Controller */
+            uint32_t sysdbg        :  1;  /* System/Debug */
+            uint32_t dbg           :  1;  /* Debug */
+            uint32_t tapcold       :  1;  /* TAP Controller */
+            uint32_t sdrcold       :  1;  /* SDRAM Controller Subsystem Cold Reset */
+            uint32_t                : 15; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_RSTMGR_MISCMODRST. */
-typedef volatile struct ALT_RSTMGR_MISCMODRST_s  ALT_RSTMGR_MISCMODRST_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_RSTMGR_MISCMODRST_s ALT_RSTMGR_MISCMODRST_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_RSTMGR_MISCMODRST register from the beginning of the component. */
-#define ALT_RSTMGR_MISCMODRST_OFST        0x20
+    #define ALT_RSTMGR_MISCMODRST_OFST    0x20
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -3339,44 +3357,43 @@ typedef volatile struct ALT_RSTMGR_MISCMODRST_s  ALT_RSTMGR_MISCMODRST_t;
  *
  * The struct declaration for register group ALT_RSTMGR.
  */
-struct ALT_RSTMGR_s
-{
-    volatile ALT_RSTMGR_STAT_t        stat;                 /* ALT_RSTMGR_STAT */
-    volatile ALT_RSTMGR_CTL_t         ctrl;                 /* ALT_RSTMGR_CTL */
-    volatile ALT_RSTMGR_COUNTS_t      counts;               /* ALT_RSTMGR_COUNTS */
-    volatile uint32_t                 _pad_0xc_0xf;         /* *UNDEFINED* */
-    volatile ALT_RSTMGR_MPUMODRST_t   mpumodrst;            /* ALT_RSTMGR_MPUMODRST */
-    volatile ALT_RSTMGR_PERMODRST_t   permodrst;            /* ALT_RSTMGR_PERMODRST */
-    volatile ALT_RSTMGR_PER2MODRST_t  per2modrst;           /* ALT_RSTMGR_PER2MODRST */
-    volatile ALT_RSTMGR_BRGMODRST_t   brgmodrst;            /* ALT_RSTMGR_BRGMODRST */
-    volatile ALT_RSTMGR_MISCMODRST_t  miscmodrst;           /* ALT_RSTMGR_MISCMODRST */
-    volatile uint32_t                 _pad_0x24_0x100[55];  /* *UNDEFINED* */
-};
+        struct ALT_RSTMGR_s
+        {
+            volatile ALT_RSTMGR_STAT_t stat;             /* ALT_RSTMGR_STAT */
+            volatile ALT_RSTMGR_CTL_t ctrl;              /* ALT_RSTMGR_CTL */
+            volatile ALT_RSTMGR_COUNTS_t counts;         /* ALT_RSTMGR_COUNTS */
+            volatile uint32_t _pad_0xc_0xf;              /* *UNDEFINED* */
+            volatile ALT_RSTMGR_MPUMODRST_t mpumodrst;   /* ALT_RSTMGR_MPUMODRST */
+            volatile ALT_RSTMGR_PERMODRST_t permodrst;   /* ALT_RSTMGR_PERMODRST */
+            volatile ALT_RSTMGR_PER2MODRST_t per2modrst; /* ALT_RSTMGR_PER2MODRST */
+            volatile ALT_RSTMGR_BRGMODRST_t brgmodrst;   /* ALT_RSTMGR_BRGMODRST */
+            volatile ALT_RSTMGR_MISCMODRST_t miscmodrst; /* ALT_RSTMGR_MISCMODRST */
+            volatile uint32_t _pad_0x24_0x100[ 55 ];     /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register group ALT_RSTMGR. */
-typedef volatile struct ALT_RSTMGR_s  ALT_RSTMGR_t;
+        typedef volatile struct ALT_RSTMGR_s ALT_RSTMGR_t;
 /* The struct declaration for the raw register contents of register group ALT_RSTMGR. */
-struct ALT_RSTMGR_raw_s
-{
-    volatile uint32_t  stat;                 /* ALT_RSTMGR_STAT */
-    volatile uint32_t  ctrl;                 /* ALT_RSTMGR_CTL */
-    volatile uint32_t  counts;               /* ALT_RSTMGR_COUNTS */
-    volatile uint32_t  _pad_0xc_0xf;         /* *UNDEFINED* */
-    volatile uint32_t  mpumodrst;            /* ALT_RSTMGR_MPUMODRST */
-    volatile uint32_t  permodrst;            /* ALT_RSTMGR_PERMODRST */
-    volatile uint32_t  per2modrst;           /* ALT_RSTMGR_PER2MODRST */
-    volatile uint32_t  brgmodrst;            /* ALT_RSTMGR_BRGMODRST */
-    volatile uint32_t  miscmodrst;           /* ALT_RSTMGR_MISCMODRST */
-    volatile uint32_t  _pad_0x24_0x100[55];  /* *UNDEFINED* */
-};
+        struct ALT_RSTMGR_raw_s
+        {
+            volatile uint32_t stat;                  /* ALT_RSTMGR_STAT */
+            volatile uint32_t ctrl;                  /* ALT_RSTMGR_CTL */
+            volatile uint32_t counts;                /* ALT_RSTMGR_COUNTS */
+            volatile uint32_t _pad_0xc_0xf;          /* *UNDEFINED* */
+            volatile uint32_t mpumodrst;             /* ALT_RSTMGR_MPUMODRST */
+            volatile uint32_t permodrst;             /* ALT_RSTMGR_PERMODRST */
+            volatile uint32_t per2modrst;            /* ALT_RSTMGR_PER2MODRST */
+            volatile uint32_t brgmodrst;             /* ALT_RSTMGR_BRGMODRST */
+            volatile uint32_t miscmodrst;            /* ALT_RSTMGR_MISCMODRST */
+            volatile uint32_t _pad_0x24_0x100[ 55 ]; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for the raw register contents of register group ALT_RSTMGR. */
-typedef volatile struct ALT_RSTMGR_raw_s  ALT_RSTMGR_raw_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_RSTMGR_raw_s ALT_RSTMGR_raw_t;
+    #endif /* __ASSEMBLY__ */
 
 
-#ifdef __cplusplus
+    #ifdef __cplusplus
 }
-#endif  /* __cplusplus */
-#endif  /* __ALTERA_ALT_RSTMGR_H__ */
-
+    #endif /* __cplusplus */
+#endif /* __ALTERA_ALT_RSTMGR_H__ */

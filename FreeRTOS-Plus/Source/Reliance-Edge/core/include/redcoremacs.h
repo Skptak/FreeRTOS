@@ -81,7 +81,7 @@
     #else
         #define RESERVED_BLOCKS    0U
     #endif
-#else  /* if REDCONF_READ_ONLY == 1 */
+#else /* if REDCONF_READ_ONLY == 1 */
     #define RESERVED_BLOCKS        0U
 #endif /* if REDCONF_READ_ONLY == 1 */
 

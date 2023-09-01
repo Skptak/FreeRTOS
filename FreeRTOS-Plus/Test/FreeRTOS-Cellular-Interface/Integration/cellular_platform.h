@@ -41,7 +41,7 @@
  * @brief Cellular library log configuration.
  *
  * Cellular library use CellularLogLevel macro for logging.
- * The prototye of these logging function is similar with printf with return type ignored.
+ * The prototype of these logging function is similar with printf with return type ignored.
  *
  */
 

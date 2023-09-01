@@ -29,39 +29,39 @@
 #define _VECT_H
 
 /***********************************************************************************************************************
-Macro definitions (Register bit)
+*  Macro definitions (Register bit)
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-Macro definitions
+*  Macro definitions
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-Typedef definitions
+*  Typedef definitions
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-Global functions
+*  Global functions
 ***********************************************************************************************************************/
 /* Undefined */
 #pragma interrupt (r_undefined_exception)
-void r_undefined_exception(void);
+void r_undefined_exception( void );
 
 /* Reserved */
 #pragma interrupt (r_reserved_exception)
-void r_reserved_exception(void);
+void r_reserved_exception( void );
 
 /* NMI */
 #pragma interrupt (r_nmi_exception)
-void r_nmi_exception(void);
+void r_nmi_exception( void );
 
 /* BRK */
 #pragma interrupt (r_brk_exception(vect=0))
-void r_brk_exception(void);
+void r_brk_exception( void );
 
 /*;<<VECTOR DATA START (POWER ON RESET)>> */
 /*;Power On Reset PC */
-extern void PowerON_Reset(void);
+extern void PowerON_Reset( void );
 /*;<<VECTOR DATA END (POWER ON RESET)>> */
 
-#endif
+#endif /* ifndef _VECT_H */

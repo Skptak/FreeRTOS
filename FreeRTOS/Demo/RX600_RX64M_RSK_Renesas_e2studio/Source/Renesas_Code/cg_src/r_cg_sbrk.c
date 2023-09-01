@@ -32,13 +32,13 @@
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-Pragma directive
+*  Pragma directive
 ***********************************************************************************************************************/
 /* Start user code for pragma. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
 
 /***********************************************************************************************************************
-Includes
+*  Includes
 ***********************************************************************************************************************/
 #include "r_cg_macrodriver.h"
 #include <stddef.h>
@@ -47,41 +47,41 @@ Includes
 #include "r_cg_userdefine.h"
 
 /***********************************************************************************************************************
-Global variables and functions
+*  Global variables and functions
 ***********************************************************************************************************************/
 
-int8_t  *sbrk(size_t size);
+int8_t * sbrk( size_t size );
 
-extern int8_t *_s1ptr;
+extern int8_t * _s1ptr;
 
 union HEAP_TYPE
 {
-    int16_t  dummy ;            /* Dummy for 4-byte boundary */
-    int8_t heap[HEAPSIZE];      /* Declaration of the area managed by sbrk */
+    int16_t dummy;           /* Dummy for 4-byte boundary */
+    int8_t heap[ HEAPSIZE ]; /* Declaration of the area managed by sbrk */
 };
 
-static union HEAP_TYPE heap_area ;
+static union HEAP_TYPE heap_area;
 
 /* End address allocated by sbrk    */
-static int8_t *brk = (int8_t *) &heap_area;
+static int8_t * brk = ( int8_t * ) &heap_area;
 
 /**************************************************************************/
 /*      sbrk:Memory area allocation                                       */
 /*      Return value:Start address of allocated area    (Pass)            */
 /*                       -1                             (Failure)         */
 /**************************************************************************/
-int8_t *sbrk(size_t size)                       /* Assigned area size   */
+int8_t * sbrk( size_t size ) /* Assigned area size   */
 {
-    int8_t  *p;
+    int8_t * p;
 
-    if (brk+size > heap_area.heap + HEAPSIZE)   /* Empty area size      */
+    if( brk + size > heap_area.heap + HEAPSIZE ) /* Empty area size      */
     {
-        p = (int8_t *)-1;
+        p = ( int8_t * ) -1;
     }
     else
     {
-        p = brk;                                /* Area assignment      */
-        brk += size;                            /* End address update   */
+        p = brk;     /* Area assignment      */
+        brk += size; /* End address update   */
     }
 
     return p;

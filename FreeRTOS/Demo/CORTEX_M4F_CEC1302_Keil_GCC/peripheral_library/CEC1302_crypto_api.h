@@ -21,17 +21,18 @@
 
 
 #ifndef INCLUDE_CEC1302_CRYPTO_API_H_
-#define INCLUDE_CEC1302_CRYPTO_API_H_
+    #define INCLUDE_CEC1302_CRYPTO_API_H_
 
-#include <stdint.h>
-#include <stdbool.h>
-#ifdef __cplusplus
-extern "C" {
-#endif
+    #include <stdint.h>
+    #include <stdbool.h>
+    #ifdef __cplusplus
+    extern "C" {
+    #endif
 
 /* Misc. */
 
 /* RNG */
+
 /**
  *  \rng_power
  *
@@ -40,8 +41,7 @@ extern "C" {
  *
  *  \details Gate clocks on/off to NDRNG block
  */
-extern void
-rng_power(bool pwr_on);
+    extern void rng_power( bool pwr_on );
 
 
 /**
@@ -51,8 +51,7 @@ rng_power(bool pwr_on);
  *
  *  \details
  */
-extern void
-rng_reset(void);
+    extern void rng_reset( void );
 
 
 /**
@@ -64,8 +63,7 @@ rng_reset(void);
  *
  *  \details Set NDRNG random number generation mode
  */
-extern void
-rng_mode(uint8_t mode);
+    extern void rng_mode( uint8_t mode );
 
 
 /**
@@ -75,8 +73,7 @@ rng_mode(uint8_t mode);
  *
  *  \details Check if NDRNG block is powered on.
  */
-extern bool
-rng_is_on(void);
+    extern bool rng_is_on( void );
 
 
 /**
@@ -86,8 +83,7 @@ rng_is_on(void);
  *
  *  \details Start NDRNG engine
  */
-extern void
-rng_start(void);
+    extern void rng_start( void );
 
 /**
  *  \rng_stop
@@ -96,8 +92,7 @@ rng_start(void);
  *
  *  \details Stop NDRNG engine
  */
-extern void
-rng_stop(void);
+    extern void rng_stop( void );
 
 
 /**
@@ -108,8 +103,7 @@ rng_stop(void);
  *  \details return the number of 32-bit words of random data
  * currently in the FIFO.
  */
-extern uint32_t
-rng_get_fifo_level(void);
+    extern uint32_t rng_get_fifo_level( void );
 
 
 /**
@@ -121,8 +115,8 @@ rng_get_fifo_level(void);
  *
  *  \details read bytes from the NDRNG FIFO
  */
-extern uint32_t
-rng_get_bytes(uint8_t* pbuff, uint32_t nbytes);
+    extern uint32_t rng_get_bytes( uint8_t * pbuff,
+                                   uint32_t nbytes );
 
 
 /**
@@ -134,11 +128,12 @@ rng_get_bytes(uint8_t* pbuff, uint32_t nbytes);
  *
  *  \details Details
  */
-extern uint32_t
-rng_get_words(uint32_t* pwords, uint32_t nwords);
+    extern uint32_t rng_get_words( uint32_t * pwords,
+                                   uint32_t nwords );
 
 
 /* AES */
+
 /**
  *  \aes_hash_power
  *
@@ -147,8 +142,7 @@ rng_get_words(uint32_t* pwords, uint32_t nwords);
  *
  *  \details Enable/Disable AES and HASH H/W Block
  */
-extern void
-aes_hash_power(uint8_t pwr_on);
+    extern void aes_hash_power( uint8_t pwr_on );
 
 /**
  *  \aes_hash_reset
@@ -157,8 +151,7 @@ aes_hash_power(uint8_t pwr_on);
  *
  *  \details Stop AES and HASH
  */
-extern void
-aes_hash_reset(void);
+    extern void aes_hash_reset( void );
 
 /**
  *  \aes_busy
@@ -167,8 +160,7 @@ aes_hash_reset(void);
  *
  *  \details Is AES Block Running?
  */
-extern bool
-aes_busy(void);
+    extern bool aes_busy( void );
 
 
 /**
@@ -178,8 +170,7 @@ aes_busy(void);
  *
  *  \details Returns the Status of AES Block
  */
-extern uint32_t
-aes_status(void);
+    extern uint32_t aes_status( void );
 
 /**
  *  \aes_done_status
@@ -189,8 +180,7 @@ aes_status(void);
  *
  *  \details Returns the done status of AES block
  */
-extern bool
-aes_done_status(uint32_t* hw_status);
+    extern bool aes_done_status( uint32_t * hw_status );
 
 /**
  *  \aes_stop
@@ -199,8 +189,7 @@ aes_done_status(uint32_t* hw_status);
  *
  *  \details Stop AES Operations
  */
-extern bool
-aes_stop(void);
+    extern bool aes_stop( void );
 
 /**
  *  \aes_start
@@ -210,8 +199,7 @@ aes_stop(void);
  *
  *  \details Start AES block with or without interrupts
  */
-extern void
-aes_start(bool ien);
+    extern void aes_start( bool ien );
 
 /**
  *  \aes_iclr
@@ -220,8 +208,7 @@ aes_start(bool ien);
  *
  *  \details Clears AES Hash Interrupts
  */
-extern uint32_t
-aes_iclr(void);
+    extern uint32_t aes_iclr( void );
 
 
 /**
@@ -235,10 +222,10 @@ aes_iclr(void);
  *
  *  \details Load AES Accelerator with key and optional Initialization vector
  */
-extern uint8_t
-aes_set_key(const uint32_t* pkey,
-				const uint32_t* piv,
-				uint8_t key_len, bool msbf);
+    extern uint8_t aes_set_key( const uint32_t * pkey,
+                                const uint32_t * piv,
+                                uint8_t key_len,
+                                bool msbf );
 
 /**
  *  \aes_crypt
@@ -251,66 +238,70 @@ aes_set_key(const uint32_t* pkey,
  *
  *  \details Program specified AES Operation using currently programmed key
  */
-extern uint8_t
-aes_crypt(const uint32_t* data_in,
-			  uint32_t* data_out,
-			  uint32_t num_128bit_blocks, uint8_t mode);
+    extern uint8_t aes_crypt( const uint32_t * data_in,
+                              uint32_t * data_out,
+                              uint32_t num_128bit_blocks,
+                              uint8_t mode );
 
 
 /* SHA */
-#define SHA1_BLEN           (20u)
-#define SHA1_WLEN           (5u)
-#define SHA2_BLEN           (32u)
-#define SHA2_WLEN           (8u)
-#define SHA12_BLOCK_BLEN    (64u)
-#define SHA12_BLOCK_WLEN    (16u)
-#define SHA3_BLEN           (48u)
-#define SHA3_WLEN           (12u)
-#define SHA5_BLEN           (64u)
-#define SHA5_WLEN           (16u)
+    #define SHA1_BLEN                  ( 20u )
+    #define SHA1_WLEN                  ( 5u )
+    #define SHA2_BLEN                  ( 32u )
+    #define SHA2_WLEN                  ( 8u )
+    #define SHA12_BLOCK_BLEN           ( 64u )
+    #define SHA12_BLOCK_WLEN           ( 16u )
+    #define SHA3_BLEN                  ( 48u )
+    #define SHA3_WLEN                  ( 12u )
+    #define SHA5_BLEN                  ( 64u )
+    #define SHA5_WLEN                  ( 16u )
 
 /* return values */
-#define SHA_RET_OK                      (0) /* OK */
-#define SHA_RET_START                   (1) /* OK, SHA Engine started */
-#define SHA_RET_ERROR                   (0x80)  /* b[7]==1 indicates an error */
-#define SHA_RET_ERR_BUSY                (0x80)
-#define SHA_RET_ERR_BAD_ADDR            (0x81)
-#define SHA_RET_ERR_TIMEOUT             (0x82)
-#define SHA_RET_ERR_MAX_LEN             (0x83)
-#define SHA_RET_ERR_UNSUPPORTED         (0x84)
+    #define SHA_RET_OK                 ( 0 )    /* OK */
+    #define SHA_RET_START              ( 1 )    /* OK, SHA Engine started */
+    #define SHA_RET_ERROR              ( 0x80 ) /* b[7]==1 indicates an error */
+    #define SHA_RET_ERR_BUSY           ( 0x80 )
+    #define SHA_RET_ERR_BAD_ADDR       ( 0x81 )
+    #define SHA_RET_ERR_TIMEOUT        ( 0x82 )
+    #define SHA_RET_ERR_MAX_LEN        ( 0x83 )
+    #define SHA_RET_ERR_UNSUPPORTED    ( 0x84 )
 
-#define SHA_MODE_MD5    (0) // Not supported by HW
-#define SHA_MODE_1      (1)
-#define SHA_MODE_224    (2) // Not supported by HW
-#define SHA_MODE_256    (3)
-#define SHA_MODE_384    (4) // Not supported by HW
-#define SHA_MODE_512    (5) // Not supported by HW
+    #define SHA_MODE_MD5               ( 0 ) /* Not supported by HW */
+    #define SHA_MODE_1                 ( 1 )
+    #define SHA_MODE_224               ( 2 ) /* Not supported by HW */
+    #define SHA_MODE_256               ( 3 )
+    #define SHA_MODE_384               ( 4 ) /* Not supported by HW */
+    #define SHA_MODE_512               ( 5 ) /* Not supported by HW */
 
-#define HASH_START_IEN      (1u)
-#define HASH_START_NOIEN    (0u)
+    #define HASH_START_IEN             ( 1u )
+    #define HASH_START_NOIEN           ( 0u )
 
-typedef union {
-    uint32_t w[SHA2_WLEN];
-    uint8_t  b[SHA2_BLEN];
-} SHA12_DIGEST_U;
+    typedef union
+    {
+        uint32_t w[ SHA2_WLEN ];
+        uint8_t b[ SHA2_BLEN ];
+    } SHA12_DIGEST_U;
 
 
 /*
  * !!! SHA-1 & SHA-256
  * HW Engine requires alignment >= 4-byte boundary !!!
  */
-typedef struct sha12_context_s SHA12_CONTEXT_T;
-struct sha12_context_s {
-    SHA12_DIGEST_U hash;
-    union {
-        uint32_t w[(SHA12_BLOCK_WLEN) * 2];
-        uint8_t  b[(SHA12_BLOCK_BLEN) * 2];
-    } block;
-    uint8_t mode;
-    uint8_t block_len;
-    uint8_t rsvd[2];
-    uint32_t total_msg_len;
-};
+    typedef struct sha12_context_s SHA12_CONTEXT_T;
+    struct sha12_context_s
+    {
+        SHA12_DIGEST_U hash;
+        union
+        {
+            uint32_t w[ ( SHA12_BLOCK_WLEN ) * 2 ];
+            uint8_t b[ ( SHA12_BLOCK_BLEN ) * 2 ];
+        }
+        block;
+        uint8_t mode;
+        uint8_t block_len;
+        uint8_t rsvd[ 2 ];
+        uint32_t total_msg_len;
+    };
 
 
 /**
@@ -320,7 +311,7 @@ struct sha12_context_s {
  *
  *  \details returns the busy status of Hash Block
  */
-extern bool hash_busy(void);
+    extern bool hash_busy( void );
 
 /**
  *  \hash_start
@@ -330,8 +321,7 @@ extern bool hash_busy(void);
  *
  *  \details start hash block
  */
-extern void
-hash_start(bool ien);
+    extern void hash_start( bool ien );
 
 /**
  *  \hash_done_status
@@ -342,20 +332,19 @@ hash_start(bool ien);
  *  \details reflects the done status of HASH black and updates
  *		status regsiter value into the input variable
  */
-extern bool
-hash_done_status(uint32_t* hw_status);
+    extern bool hash_done_status( uint32_t * hw_status );
 
 /**
  *  \sha12_init
  *
- *  \param [in] psha12_ctx Data Structure for Input data and 	Output Digest
+ *  \param [in] psha12_ctx Data Structure for Input data and    Output Digest
  *  \param [in] mode SHA_MODE_1 or SHA_MODE_256
  *  \return SHA_RET_ERR_BAD_ADDR, SHA_RET_ERR_UNSPPORTED ,SHA_RET_OK
  *
  *  \details Initializes the Data structure provided
  */
-extern uint8_t
-sha12_init(SHA12_CONTEXT_T* psha12_ctx, uint8_t mode);
+    extern uint8_t sha12_init( SHA12_CONTEXT_T * psha12_ctx,
+                               uint8_t mode );
 
 /**
  *  \sha12_update
@@ -367,9 +356,9 @@ sha12_init(SHA12_CONTEXT_T* psha12_ctx, uint8_t mode);
  *
  *  \details Run hash block on data and if data greater than block size, put remaining bytes back into the data structure
  */
-extern uint8_t
-sha12_update(SHA12_CONTEXT_T* psha12_ctx,
-				 const uint32_t* pdata, uint32_t num_bytes);
+    extern uint8_t sha12_update( SHA12_CONTEXT_T * psha12_ctx,
+                                 const uint32_t * pdata,
+                                 uint32_t num_bytes );
 
 /**
  *  \sha12_finalize
@@ -379,8 +368,7 @@ sha12_update(SHA12_CONTEXT_T* psha12_ctx,
  *
  *  \details Apply FIPS padding to SHA256 and perform final hash calculation.
  */
-extern uint8_t
-sha12_finalize(SHA12_CONTEXT_T* psha12_ctx);
+    extern uint8_t sha12_finalize( SHA12_CONTEXT_T * psha12_ctx );
 
 /**
  *  \sha256_pad_fill
@@ -391,8 +379,8 @@ sha12_finalize(SHA12_CONTEXT_T* psha12_ctx);
  *
  *  \details Zero and fill a 64-byte SHA256 pad block with FIP padding values
  */
-extern void
-sha256_pad_fill(uint32_t* pblock64, uint32_t msg_byte_len);
+    extern void sha256_pad_fill( uint32_t * pblock64,
+                                 uint32_t msg_byte_len );
 
 
 /**
@@ -405,8 +393,9 @@ sha256_pad_fill(uint32_t* pblock64, uint32_t msg_byte_len);
  *
  *  \details Calculate SHA256 on data
  */
-extern uint8_t
-sha256_raw(uint32_t* pdata, uint32_t* pdigest, uint32_t num64byte_blocks);
+    extern uint8_t sha256_raw( uint32_t * pdata,
+                               uint32_t * pdigest,
+                               uint32_t num64byte_blocks );
 
 /**
  *  \sha256_raw_init
@@ -416,8 +405,7 @@ sha256_raw(uint32_t* pdata, uint32_t* pdigest, uint32_t num64byte_blocks);
  *
  *  \details Initialize the SHA256 Digest data block
  */
-extern void
-sha256_raw_init(uint32_t* psha256_digest);
+    extern void sha256_raw_init( uint32_t * psha256_digest );
 
 /**
  *  \sha256_raw_update
@@ -429,9 +417,9 @@ sha256_raw_init(uint32_t* psha256_digest);
  *
  *  \details run Hash block on data
  */
-extern uint8_t
-sha256_raw_update(uint32_t* pdata,
-		              uint32_t* pdigest, uint32_t num64byte_blocks);
+    extern uint8_t sha256_raw_update( uint32_t * pdata,
+                                      uint32_t * pdigest,
+                                      uint32_t num64byte_blocks );
 
 /**
  *  \hash_iclr
@@ -440,8 +428,7 @@ sha256_raw_update(uint32_t* pdata,
  *
  *  \details Clear Hash Interrupt
  */
-extern uint32_t
-hash_iclr(void);
+    extern uint32_t hash_iclr( void );
 
 
 /**
@@ -449,16 +436,16 @@ hash_iclr(void);
  *
  *  \param [in] mode SHA_MODE_1, SHA_MODE_256, SHA_MODE_512
  *  \param [in] pdigest Address where digest will be stored
- *  \return * 	0 = Success
- * 				1 = Hash Engine busy
- * 				2 = Unsupported SHA operation
- * 				3 = Bad digest pointer, NULL or mis-aligned.
- *  \details 	Initialize Hash engine for SHA operation.
- * 				Programs supported SHA operation's initial value, digest address,
- * 				and operation
+ *  \return *   0 = Success
+ *              1 = Hash Engine busy
+ *              2 = Unsupported SHA operation
+ *              3 = Bad digest pointer, NULL or mis-aligned.
+ *  \details    Initialize Hash engine for SHA operation.
+ *              Programs supported SHA operation's initial value, digest address,
+ *              and operation
  */
-extern uint8_t
-sha_init(uint8_t mode, uint32_t* pdigest);
+    extern uint8_t sha_init( uint8_t mode,
+                             uint32_t * pdigest );
 
 
 /**
@@ -471,8 +458,9 @@ sha_init(uint8_t mode, uint32_t* pdigest);
  *
  *  \details Run Hash block on data
  */
-extern uint8_t
-sha_update(uint32_t* pdata, uint16_t nblocks, uint8_t flags);
+    extern uint8_t sha_update( uint32_t * pdata,
+                               uint16_t nblocks,
+                               uint8_t flags );
 
 
 /**
@@ -486,21 +474,22 @@ sha_update(uint32_t* pdata, uint16_t nblocks, uint8_t flags);
  *
  *  \details Run final SHA Calculations and add padding
  */
-extern uint8_t
-sha_final(uint32_t* padbuf, uint32_t total_msg_len,
-		      const uint8_t* prem, uint8_t flags);
+    extern uint8_t sha_final( uint32_t * padbuf,
+                              uint32_t total_msg_len,
+                              const uint8_t * prem,
+                              uint8_t flags );
 
 
 /* PKE Miscellaneous */
 
-#define PKE_RET_STARTED                         (0)
-#define PKE_RET_OK                              (0)
-#define PKE_RET_ERR_BUSY                        (1)
-#define PKE_RET_ERR_BAD_PARAM                   (2)
-#define PKE_RET_ERR_BAD_ADDR                    (3)
-#define PKE_RET_ERR_UNKNOWN_OP                  (4)
-#define PKE_RET_ERR_INVALID_BIT_LENGTH          (5)
-#define PKE_RET_ERR_INVALID_MSG_LENGTH          (6)
+    #define PKE_RET_STARTED                   ( 0 )
+    #define PKE_RET_OK                        ( 0 )
+    #define PKE_RET_ERR_BUSY                  ( 1 )
+    #define PKE_RET_ERR_BAD_PARAM             ( 2 )
+    #define PKE_RET_ERR_BAD_ADDR              ( 3 )
+    #define PKE_RET_ERR_UNKNOWN_OP            ( 4 )
+    #define PKE_RET_ERR_INVALID_BIT_LENGTH    ( 5 )
+    #define PKE_RET_ERR_INVALID_MSG_LENGTH    ( 6 )
 
 
 /**
@@ -511,8 +500,7 @@ sha_final(uint32_t* padbuf, uint32_t total_msg_len,
  *
  *  \details Gate or Ungate power to PKE block
  */
-extern void
-pke_power(bool pwr_on);
+    extern void pke_power( bool pwr_on );
 
 
 /**
@@ -522,8 +510,7 @@ pke_power(bool pwr_on);
  *
  *  \details Reset PKE Block
  */
-extern void
-pke_reset(void);
+    extern void pke_reset( void );
 
 /**
  *  \pke_status
@@ -532,8 +519,7 @@ pke_reset(void);
  *
  *  \details Details
  */
-extern uint32_t
-pke_status(void);
+    extern uint32_t pke_status( void );
 
 /**
  *  \pke_done_status
@@ -543,8 +529,7 @@ pke_status(void);
  *
  *  \details Returns the done status of PKE block
  */
-extern bool
-pke_done_status(uint32_t* hw_status);
+    extern bool pke_done_status( uint32_t * hw_status );
 
 /**
  *  \pke_start
@@ -554,8 +539,7 @@ pke_done_status(uint32_t* hw_status);
  *
  *  \details Start PKE Block
  */
-extern void
-pke_start(bool ien);
+    extern void pke_start( bool ien );
 
 
 /**
@@ -565,8 +549,7 @@ pke_start(bool ien);
  *
  *  \details Details
  */
-extern bool
-pke_busy(void);
+    extern bool pke_busy( void );
 
 
 /**
@@ -576,8 +559,7 @@ pke_busy(void);
  *
  *  \details Clear the Shared Crypto memory
  */
-extern void
-pke_clear_scm(void);
+    extern void pke_clear_scm( void );
 
 /**
  *  \pke_scm_clear_slot
@@ -587,8 +569,7 @@ pke_clear_scm(void);
  *
  *  \details Clear the specified slot in Shared Crypto Memory
  */
-extern void
-pke_scm_clear_slot(uint8_t slot_num);
+    extern void pke_scm_clear_slot( uint8_t slot_num );
 
 /**
  *  \pke_read_scm
@@ -601,9 +582,10 @@ pke_scm_clear_slot(uint8_t slot_num);
  *
  *  \details Read data from specified slot number in Shared Crypto memory
  */
-extern uint16_t
-pke_read_scm(uint8_t* dest, uint16_t nbytes,
-				 uint8_t slot_num, bool reverse_byte_order);
+    extern uint16_t pke_read_scm( uint8_t * dest,
+                                  uint16_t nbytes,
+                                  uint8_t slot_num,
+                                  bool reverse_byte_order );
 
 
 /**
@@ -617,9 +599,10 @@ pke_read_scm(uint8_t* dest, uint16_t nbytes,
  *
  *  \details Write data provided to specified slot in Shared Crypto Memory
  */
-extern void
-pke_write_scm(const void* pdata, uint16_t num_bytes,
-				  uint8_t slot_num, uint8_t reverse_byte_order);
+    extern void pke_write_scm( const void * pdata,
+                               uint16_t num_bytes,
+                               uint8_t slot_num,
+                               uint8_t reverse_byte_order );
 
 /* PKE RSA */
 
@@ -636,13 +619,12 @@ pke_write_scm(const void* pdata, uint16_t num_bytes,
  *
  *  \details Load RSA keys into Crypto memory
  */
-extern uint8_t
-rsa_load_key(uint16_t rsa_bit_len,
-					 const uint8_t* private_exponent,
-					 const uint8_t* public_modulus,
-					 const uint8_t* public_exponent,
-					 uint16_t public_exponent_byte_len,
-					 bool msbf);
+    extern uint8_t rsa_load_key( uint16_t rsa_bit_len,
+                                 const uint8_t * private_exponent,
+                                 const uint8_t * public_modulus,
+                                 const uint8_t * public_exponent,
+                                 uint16_t public_exponent_byte_len,
+                                 bool msbf );
 
 
 /**
@@ -656,11 +638,10 @@ rsa_load_key(uint16_t rsa_bit_len,
  *
  *  \details Encrypt provided message. Load Keys before this function is called
  */
-extern uint8_t
-rsa_encrypt(uint16_t rsa_bit_len,
-					const uint8_t* mesg,
-					uint16_t mlen,
-					uint8_t flags);
+    extern uint8_t rsa_encrypt( uint16_t rsa_bit_len,
+                                const uint8_t * mesg,
+                                uint16_t mlen,
+                                uint8_t flags );
 
 
 
@@ -675,17 +656,16 @@ rsa_encrypt(uint16_t rsa_bit_len,
  *
  *  \details Perform decryption on provided encrypted message. load keys before calling this function
  */
-extern uint8_t
-rsa_decrypt(uint16_t rsa_bit_len,
-					const uint8_t* encrypted_mesg,
-					uint16_t mlen,
-					uint8_t flags);
+    extern uint8_t rsa_decrypt( uint16_t rsa_bit_len,
+                                const uint8_t * encrypted_mesg,
+                                uint16_t mlen,
+                                uint8_t flags );
 
 
 
-#ifdef __cplusplus
+    #ifdef __cplusplus
 }
-#endif
+    #endif
 
 
 #endif /* INCLUDE_CEC1302_CRYPTO_API_H_ */

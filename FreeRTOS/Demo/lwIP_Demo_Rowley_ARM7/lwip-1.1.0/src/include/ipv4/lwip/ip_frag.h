@@ -38,9 +38,9 @@
 #include "lwip/netif.h"
 #include "lwip/ip_addr.h"
 
-struct pbuf * ip_reass(struct pbuf *);
-err_t ip_frag(struct pbuf *, struct netif *, struct ip_addr *);
+struct pbuf * ip_reass( struct pbuf * );
+err_t ip_frag( struct pbuf *,
+               struct netif *,
+               struct ip_addr * );
 
 #endif /* __LWIP_IP_FRAG_H__ */
-
-

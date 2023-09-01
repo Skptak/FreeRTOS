@@ -32,13 +32,13 @@
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-Pragma directive
+*  Pragma directive
 ***********************************************************************************************************************/
 /* Start user code for pragma. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
 
 /***********************************************************************************************************************
-Includes
+*  Includes
 ***********************************************************************************************************************/
 #include "r_cg_macrodriver.h"
 #include "r_cg_cmt.h"
@@ -47,7 +47,7 @@ Includes
 #include "r_cg_userdefine.h"
 
 /***********************************************************************************************************************
-Global variables and functions
+*  Global variables and functions
 ***********************************************************************************************************************/
 /* Start user code for global. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
@@ -58,45 +58,47 @@ Global variables and functions
 * Arguments    : None
 * Return Value : None
 ***********************************************************************************************************************/
-void R_CMT0_Create(void)
+void R_CMT0_Create( void )
 {
     /* Disable CMI interrupt */
-    IEN(CMT0, CMI0) = 0U;
+    IEN( CMT0, CMI0 ) = 0U;
 
     /* Cancel CMT stop state in LPC */
-    MSTP(CMT0) = 0U;
+    MSTP( CMT0 ) = 0U;
 
     /* Set control registers */
     CMT0.CMCR.WORD = _0002_CMT_CMCR_CKS_PCLK128 | _0040_CMT_CMCR_CMIE_ENABLE;
     CMT0.CMCOR = _B71B_CMT0_CMCOR_VALUE;
 
     /* Set CMI0 priority level */
-    IPR(CMT0,CMI0) = _08_CMT_PRIORITY_LEVEL8;
+    IPR( CMT0, CMI0 ) = _08_CMT_PRIORITY_LEVEL8;
 }
+
 /***********************************************************************************************************************
 * Function Name: R_CMT0_Start
 * Description  : This function starts the CMT0 channel counter.
 * Arguments    : None
 * Return Value : None
 ***********************************************************************************************************************/
-void R_CMT0_Start(void)
+void R_CMT0_Start( void )
 {
     /* Enable CMI0 interrupt in ICU */
-    IEN(CMT0,CMI0) = 1U;
+    IEN( CMT0, CMI0 ) = 1U;
 
     /* Start CMT0 count */
     CMT.CMSTR0.BIT.STR0 = 1U;
 }
+
 /***********************************************************************************************************************
 * Function Name: R_CMT0_Stop
 * Description  : This function stops the CMT0 channel counter.
 * Arguments    : None
 * Return Value : None
 ***********************************************************************************************************************/
-void R_CMT0_Stop(void)
+void R_CMT0_Stop( void )
 {
     /* Disable CMI0 interrupt in ICU */
-    IEN(CMT0,CMI0) = 0U;
+    IEN( CMT0, CMI0 ) = 0U;
 
     /* Stop CMT0 count */
     CMT.CMSTR0.BIT.STR0 = 0U;

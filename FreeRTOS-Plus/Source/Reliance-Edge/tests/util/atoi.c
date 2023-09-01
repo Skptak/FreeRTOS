@@ -87,7 +87,7 @@ int32_t RedAtoI( const char * pszNum )
  *  first non-hex character.  Only hexadecimal digits are processed, so leading
  *  white space, or a leading "0x" prefix are not allowed.
  *
- *  If pachNum points to an empty string (points to a NUL), this function will
+ *  If pszNum points to an empty string (points to a NUL), this function will
  *  return NULL, and the value at *pulNum will not be modified.
  *
  *  @note This function does not check for overflow.  If there are more
@@ -133,7 +133,7 @@ const char * RedHtoUL( const char * pszNum,
  *  first non-hex character.  Only hexadecimal digits are processed, so leading
  *  white space, or a leading "0x" prefix are not allowed.
  *
- *  If pachNum points to an empty string (points to a NUL), this function will
+ *  If pszNum points to an empty string (points to a NUL), this function will
  *  return NULL, and the value at *pulNum will not be modified.
  *
  *  @note This function does not check for overflow.  If there are more
@@ -294,7 +294,7 @@ const char * RedNtoUL( const char * pszNum,
 }
 
 
-/** @brief Convert the ASCII number pointed to by pachNum to a uint64_t value.
+/** @brief Convert the ASCII number pointed to by pszNum to a uint64_t value.
  *
  *  The number may be hex or decimal.  Hex numbers must be prefixed by '0x', and
  *  they may be upper or lower case.  The conversion process will stop with the

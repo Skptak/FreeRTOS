@@ -26,35 +26,35 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* Mask for Power Down Mode */
-#define ADC_PowerDown_Enable  0x8000
-#define ADC_PowerDown_Disable 0x7FFF
+#define ADC_PowerDown_Enable               0x8000
+#define ADC_PowerDown_Disable              0x7FFF
 
 /* Mask for Watchdog Thresholds Enable */
-#define ADC_AnalogWatchdog_Enable  0x8000
-#define ADC_AnalogWatchdog_Disable 0x7FFF
+#define ADC_AnalogWatchdog_Enable          0x8000
+#define ADC_AnalogWatchdog_Disable         0x7FFF
 
 /* Mask for Injected conversion start */
-#define ADC_Injec_ConversionStart  0x8000
+#define ADC_Injec_ConversionStart          0x8000
 
 /* DMA enable */
-#define ADC_DMA_ExtEnable_Mask  0x4000
+#define ADC_DMA_ExtEnable_Mask             0x4000
 
 /* Injected start trigger enable */
-#define ADC_Injec_ExtTrigger_Enable   0x4000
+#define ADC_Injec_ExtTrigger_Enable        0x4000
 
 /* ADC Masks */
-#define ADC_DMAFirstEnabledChannel_Mask  0x000F
-#define ADC_DataRegisterOffset           0x0050
-#define ADC_FirstChannel_Mask            0xFFF0
-#define ADC_ChannelNumber_Mask           0xFC3F
-#define ADC_Threshold_Mask               0xFC00
-#define ADC_AnalogWatchdogChannel_Mask   0xC3FF
-#define ADC_Prescalers_Mask              0x7F18
-#define ADC_SPEN_Mask                    0x8000
-#define ADC_FallingEdge_Mask             0xEFFF
-#define ADC_LowLevel_Mask                0x4000
-#define ADC_HighLevel_Mask               0xDFFF
-#define ADC_Calibration_Mask             0x0002
+#define ADC_DMAFirstEnabledChannel_Mask    0x000F
+#define ADC_DataRegisterOffset             0x0050
+#define ADC_FirstChannel_Mask              0xFFF0
+#define ADC_ChannelNumber_Mask             0xFC3F
+#define ADC_Threshold_Mask                 0xFC00
+#define ADC_AnalogWatchdogChannel_Mask     0xC3FF
+#define ADC_Prescalers_Mask                0x7F18
+#define ADC_SPEN_Mask                      0x8000
+#define ADC_FallingEdge_Mask               0xEFFF
+#define ADC_LowLevel_Mask                  0x4000
+#define ADC_HighLevel_Mask                 0xDFFF
+#define ADC_Calibration_Mask               0x0002
 
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
@@ -67,11 +67,11 @@
 * Output         : None
 * Return         : None.
 *******************************************************************************/
-void ADC_DeInit(void)
+void ADC_DeInit( void )
 {
-  /* Reset the ADC registers values*/
-  MRCC_PeripheralSWResetConfig(MRCC_Peripheral_ADC,ENABLE);
-  MRCC_PeripheralSWResetConfig(MRCC_Peripheral_ADC,DISABLE);
+    /* Reset the ADC registers values*/
+    MRCC_PeripheralSWResetConfig( MRCC_Peripheral_ADC, ENABLE );
+    MRCC_PeripheralSWResetConfig( MRCC_Peripheral_ADC, DISABLE );
 }
 
 /*******************************************************************************
@@ -79,128 +79,129 @@ void ADC_DeInit(void)
 * Description    : Initializes the ADC  peripheral according to the specified
 *                  parameters in the ADC_InitStruct.
 * Input          : - ADC_InitStruct: pointer to an ADC_InitTypeDef structure that
-                   contains the configuration information for the ADC peripheral.
+*                  contains the configuration information for the ADC peripheral.
 * Output         : None
 * Return         : None
 *******************************************************************************/
-void ADC_Init(ADC_InitTypeDef* ADC_InitStruct)
+void ADC_Init( ADC_InitTypeDef * ADC_InitStruct )
 {
-  /* Configure the conversion mode */
-  if(ADC_InitStruct->ADC_ConversionMode == ADC_ConversionMode_Scan)
-  {
-    /* Set the scan conversion mode */
-    ADC->CLR2 |= ADC_ConversionMode_Scan;
-  }
-  else
-  {
-    /* Set the one-shot conversion mode */
-    ADC->CLR2 &= ADC_ConversionMode_OneShot;
-  }
+    /* Configure the conversion mode */
+    if( ADC_InitStruct->ADC_ConversionMode == ADC_ConversionMode_Scan )
+    {
+        /* Set the scan conversion mode */
+        ADC->CLR2 |= ADC_ConversionMode_Scan;
+    }
+    else
+    {
+        /* Set the one-shot conversion mode */
+        ADC->CLR2 &= ADC_ConversionMode_OneShot;
+    }
 
-  /* Configure the external start conversion trigger */
-  switch(ADC_InitStruct->ADC_ExtTrigger)
-  {
-    case ADC_ExtTrigger_HighLevel:
-      /* Start conversion on High level of the external trigger (TIM0) */
-      ADC->CLR0 &= ADC_HighLevel_Mask;
-      ADC->CLR0 |= ADC_ExtTrigger_HighLevel;
-      break;
+    /* Configure the external start conversion trigger */
+    switch( ADC_InitStruct->ADC_ExtTrigger )
+    {
+        case ADC_ExtTrigger_HighLevel:
+            /* Start conversion on High level of the external trigger (TIM0) */
+            ADC->CLR0 &= ADC_HighLevel_Mask;
+            ADC->CLR0 |= ADC_ExtTrigger_HighLevel;
+            break;
 
-    case ADC_ExtTrigger_LowLevel:
-      /* Start conversion on low level of the external trigger (TIM0) */
-      ADC->CLR0 &= ADC_ExtTrigger_LowLevel;
-      ADC->CLR0 |= ADC_LowLevel_Mask;
-      break;
+        case ADC_ExtTrigger_LowLevel:
+            /* Start conversion on low level of the external trigger (TIM0) */
+            ADC->CLR0 &= ADC_ExtTrigger_LowLevel;
+            ADC->CLR0 |= ADC_LowLevel_Mask;
+            break;
 
-    case ADC_ExtTrigger_RisingEdge:
-      /* Start conversion on rising edge of the external trigger (TIM0) */
-      ADC->CLR0 |= ADC_ExtTrigger_RisingEdge;
-      break;
+        case ADC_ExtTrigger_RisingEdge:
+            /* Start conversion on rising edge of the external trigger (TIM0) */
+            ADC->CLR0 |= ADC_ExtTrigger_RisingEdge;
+            break;
 
-    case ADC_ExtTrigger_FallingEdge:
-      /* Start conversion on falling edge of the external trigger (TIM0) */
-      ADC->CLR0 &= ADC_FallingEdge_Mask;
-      ADC->CLR0 |= ADC_ExtTrigger_FallingEdge;
-      break;
+        case ADC_ExtTrigger_FallingEdge:
+            /* Start conversion on falling edge of the external trigger (TIM0) */
+            ADC->CLR0 &= ADC_FallingEdge_Mask;
+            ADC->CLR0 |= ADC_ExtTrigger_FallingEdge;
+            break;
 
-    case ADC_ExtTrigger_Disable:
-      /* Disable the external trigger and start the conversion by software */
-      ADC->CLR0 &= ADC_ExtTrigger_Disable;
-      break;
+        case ADC_ExtTrigger_Disable:
+            /* Disable the external trigger and start the conversion by software */
+            ADC->CLR0 &= ADC_ExtTrigger_Disable;
+            break;
 
-    default:
-      break;
-  }
+        default:
+            break;
+    }
 
-  /* Configure the auto clock off feature */
-  if (ADC_InitStruct->ADC_AutoClockOff == ADC_AutoClockOff_Enable)
-  {
-    /* Enable the auto clock off feature */
-    ADC->CLR4 |= ADC_AutoClockOff_Enable;
-  }
-  else
-  {
-    /* Disable the auto clock off feature */
-    ADC->CLR4 &= ADC_AutoClockOff_Disable;
-  }
+    /* Configure the auto clock off feature */
+    if( ADC_InitStruct->ADC_AutoClockOff == ADC_AutoClockOff_Enable )
+    {
+        /* Enable the auto clock off feature */
+        ADC->CLR4 |= ADC_AutoClockOff_Enable;
+    }
+    else
+    {
+        /* Disable the auto clock off feature */
+        ADC->CLR4 &= ADC_AutoClockOff_Disable;
+    }
 
-  /* Clear conversion prescaler CNVP[2:0], sampling prescaler SMPP[2:0] bits
-     and Sample prescaler enable SPEN bit */
-  ADC->CLR1 &= ADC_Prescalers_Mask;
-  /* Set conversion prescaler value (sampling and conversion prescalers are equal
-     while SPEN bit is reset */
-  ADC->CLR1 |= (ADC_InitStruct->ADC_ConversionPrescaler<<5);
+    /* Clear conversion prescaler CNVP[2:0], sampling prescaler SMPP[2:0] bits
+     * and Sample prescaler enable SPEN bit */
+    ADC->CLR1 &= ADC_Prescalers_Mask;
 
-  /* In case ADC_SamplingPrescaler member is different from the conversion one */
-  if(ADC_InitStruct->ADC_SamplingPrescaler != ADC_InitStruct->ADC_ConversionPrescaler)
-  {
-    /* Set the sampling prescaler value */
-    ADC->CLR1 |= ADC_InitStruct->ADC_SamplingPrescaler;
-    /* Set SPEN bit (sampling and conversion prescalers are different */
-    ADC->CLR1 = (ADC->CLR1 | ADC_SPEN_Mask);
-  }
+    /* Set conversion prescaler value (sampling and conversion prescalers are equal
+     * while SPEN bit is reset */
+    ADC->CLR1 |= ( ADC_InitStruct->ADC_ConversionPrescaler << 5 );
 
-  /* Clear first channel to be converted FCH[3:0] bits */
-  ADC->CLR2 &= ADC_FirstChannel_Mask;
-  /* Set the first channel to be converted */
-  ADC->CLR2 |= ADC_InitStruct->ADC_FirstChannel;
-  /* Clear number of channels to be converted NCH[3:0] bits */
-  ADC->CLR2 &= ADC_ChannelNumber_Mask;
-  /* Set the number of channels to be converted */
-  ADC->CLR2 |= ((ADC_InitStruct->ADC_ChannelNumber)-1<<6);
+    /* In case ADC_SamplingPrescaler member is different from the conversion one */
+    if( ADC_InitStruct->ADC_SamplingPrescaler != ADC_InitStruct->ADC_ConversionPrescaler )
+    {
+        /* Set the sampling prescaler value */
+        ADC->CLR1 |= ADC_InitStruct->ADC_SamplingPrescaler;
+        /* Set SPEN bit (sampling and conversion prescalers are different */
+        ADC->CLR1 = ( ADC->CLR1 | ADC_SPEN_Mask );
+    }
+
+    /* Clear first channel to be converted FCH[3:0] bits */
+    ADC->CLR2 &= ADC_FirstChannel_Mask;
+    /* Set the first channel to be converted */
+    ADC->CLR2 |= ADC_InitStruct->ADC_FirstChannel;
+    /* Clear number of channels to be converted NCH[3:0] bits */
+    ADC->CLR2 &= ADC_ChannelNumber_Mask;
+    /* Set the number of channels to be converted */
+    ADC->CLR2 |= ( ( ADC_InitStruct->ADC_ChannelNumber ) - 1 << 6 );
 }
 
 /*******************************************************************************
 * Function Name  : ADC_StructInit
 * Description    : Fills each ADC_InitStruct member with its default value.
 * Input          : - ADC_InitStruct: pointer to an ADC_InitTypeDef structure
-                     which will be initialized.
+*                    which will be initialized.
 * Output         : None
 * Return         : None.
 *******************************************************************************/
-void ADC_StructInit(ADC_InitTypeDef* ADC_InitStruct)
+void ADC_StructInit( ADC_InitTypeDef * ADC_InitStruct )
 {
-  /* Initialize the ADC_ConversionMode member */
-  ADC_InitStruct->ADC_ConversionMode = ADC_ConversionMode_OneShot;
+    /* Initialize the ADC_ConversionMode member */
+    ADC_InitStruct->ADC_ConversionMode = ADC_ConversionMode_OneShot;
 
-  /* Initialize the ADC_ExtTrigger member */
-  ADC_InitStruct->ADC_ExtTrigger = ADC_ExtTrigger_Disable;
+    /* Initialize the ADC_ExtTrigger member */
+    ADC_InitStruct->ADC_ExtTrigger = ADC_ExtTrigger_Disable;
 
-  /* Initialize the ADC_AutoClockOff member */
-  ADC_InitStruct->ADC_AutoClockOff = ADC_AutoClockOff_Disable;
+    /* Initialize the ADC_AutoClockOff member */
+    ADC_InitStruct->ADC_AutoClockOff = ADC_AutoClockOff_Disable;
 
-  /* Initialize the ADC_SamplingPrescaler member */
-  ADC_InitStruct->ADC_SamplingPrescaler = 0;
+    /* Initialize the ADC_SamplingPrescaler member */
+    ADC_InitStruct->ADC_SamplingPrescaler = 0;
 
-  /* Initialize the ADC_ConversionPrescaler member */
-  ADC_InitStruct->ADC_ConversionPrescaler = 0;
+    /* Initialize the ADC_ConversionPrescaler member */
+    ADC_InitStruct->ADC_ConversionPrescaler = 0;
 
-  /* Initialize the ADC_FirstChannel member */
-  ADC_InitStruct->ADC_FirstChannel = ADC_CHANNEL0;
+    /* Initialize the ADC_FirstChannel member */
+    ADC_InitStruct->ADC_FirstChannel = ADC_CHANNEL0;
 
-  /* Initialize the ADC_ChannelNumber member */
-  ADC_InitStruct->ADC_ChannelNumber = 1;
- }
+    /* Initialize the ADC_ChannelNumber member */
+    ADC_InitStruct->ADC_ChannelNumber = 1;
+}
 
 /*******************************************************************************
 * Function Name  : ADC_StartCalibration
@@ -212,21 +213,21 @@ void ADC_StructInit(ADC_InitTypeDef* ADC_InitStruct)
 * Output         : None
 * Return         : None
 *******************************************************************************/
-void ADC_StartCalibration(u16 ADC_CalibAverage)
+void ADC_StartCalibration( u16 ADC_CalibAverage )
 {
-  if (ADC_CalibAverage == ADC_CalibAverage_Enable)
-  {
-    /* Enable ADC Calibration Average */
-    ADC->CLR4 &= ADC_CalibAverage_Enable;
-  }
-  else
-  {
-    /* Disable ADC Calibration Average */
-    ADC->CLR4 |= ADC_CalibAverage_Disable;
-  }
+    if( ADC_CalibAverage == ADC_CalibAverage_Enable )
+    {
+        /* Enable ADC Calibration Average */
+        ADC->CLR4 &= ADC_CalibAverage_Enable;
+    }
+    else
+    {
+        /* Disable ADC Calibration Average */
+        ADC->CLR4 |= ADC_CalibAverage_Disable;
+    }
 
-  /* Start Calibration */
-  ADC->CLR0 |= ADC_Calibration_ON;
+    /* Start Calibration */
+    ADC->CLR0 |= ADC_Calibration_ON;
 }
 
 /*******************************************************************************
@@ -236,19 +237,19 @@ void ADC_StartCalibration(u16 ADC_CalibAverage)
 * Output         : None
 * Return         : The NewState of the ADC calibration (SET or RESET).
 *******************************************************************************/
-FlagStatus ADC_GetCalibrationStatus(void)
+FlagStatus ADC_GetCalibrationStatus( void )
 {
-  /* Check the status of the ADC calibration */
-  if((ADC->CLR0 & ADC_Calibration_Mask) != RESET)
-  {
-    /* Return SET if ADC Calibration is on going */
-    return SET;
-  }
-  else
-  {
-    /* Return RESET if ADC Calibration is finished */
-    return RESET;
-  }
+    /* Check the status of the ADC calibration */
+    if( ( ADC->CLR0 & ADC_Calibration_Mask ) != RESET )
+    {
+        /* Return SET if ADC Calibration is on going */
+        return SET;
+    }
+    else
+    {
+        /* Return RESET if ADC Calibration is finished */
+        return RESET;
+    }
 }
 
 /*******************************************************************************
@@ -261,18 +262,18 @@ FlagStatus ADC_GetCalibrationStatus(void)
 * Output         : None
 * Return         : None
 *******************************************************************************/
-void ADC_ConversionCmd (u16 ADC_Conversion)
+void ADC_ConversionCmd( u16 ADC_Conversion )
 {
-  if (ADC_Conversion == ADC_Conversion_Start)
-  {
-    /* Start the ADC Conversion */
-    ADC->CLR0 |= ADC_Conversion_Start;
-  }
-  else
-  {
-    /* Stop the ADC Conversion */
-    ADC->CLR0 &= ADC_Conversion_Stop;
-  }
+    if( ADC_Conversion == ADC_Conversion_Start )
+    {
+        /* Start the ADC Conversion */
+        ADC->CLR0 |= ADC_Conversion_Start;
+    }
+    else
+    {
+        /* Stop the ADC Conversion */
+        ADC->CLR0 &= ADC_Conversion_Stop;
+    }
 }
 
 /*******************************************************************************
@@ -282,19 +283,19 @@ void ADC_ConversionCmd (u16 ADC_Conversion)
 * Output         : None
 * Return         : The NewState of the ADC START/STOP bit (SET or RESET).
 *******************************************************************************/
-FlagStatus ADC_GetSTARTBitStatus(void)
+FlagStatus ADC_GetSTARTBitStatus( void )
 {
-  /* Check the status of the ADC START/STOP bit */
-  if((ADC->CLR0 & ADC_Conversion_Start) != RESET)
-  {
-    /* Return SET if ADC Conversion is started */
-    return SET;
-  }
-  else
-  {
-    /* Return RESET if ADC Conversion is stopped */
-    return RESET;
-  }
+    /* Check the status of the ADC START/STOP bit */
+    if( ( ADC->CLR0 & ADC_Conversion_Start ) != RESET )
+    {
+        /* Return SET if ADC Conversion is started */
+        return SET;
+    }
+    else
+    {
+        /* Return RESET if ADC Conversion is stopped */
+        return RESET;
+    }
 }
 
 /*******************************************************************************
@@ -305,18 +306,18 @@ FlagStatus ADC_GetSTARTBitStatus(void)
 * Output         : None
 * Return         : None.
 *******************************************************************************/
-void ADC_Cmd(FunctionalState NewState)
+void ADC_Cmd( FunctionalState NewState )
 {
-  if (NewState == DISABLE)
-  {
-    /* Enable ADC Power Down Mode */
-    ADC->CLR4 |= ADC_PowerDown_Enable;
-  }
-  else
-  {
-    /* Disable ADC Power Down Mode */
-    ADC->CLR4 &= ADC_PowerDown_Disable;
-  }
+    if( NewState == DISABLE )
+    {
+        /* Enable ADC Power Down Mode */
+        ADC->CLR4 |= ADC_PowerDown_Enable;
+    }
+    else
+    {
+        /* Disable ADC Power Down Mode */
+        ADC->CLR4 &= ADC_PowerDown_Disable;
+    }
 }
 
 /*******************************************************************************
@@ -327,18 +328,18 @@ void ADC_Cmd(FunctionalState NewState)
 * Output         : None
 * Return         : None.
 *******************************************************************************/
-void ADC_AutoClockOffConfig(FunctionalState NewState)
+void ADC_AutoClockOffConfig( FunctionalState NewState )
 {
-  if (NewState == ENABLE)
-  {
-    /* Enable ADC Auto Clock Off */
-    ADC->CLR4 |= ADC_AutoClockOff_Enable;
-  }
-  else
-  {
-    /* Disable ADC Auto Clock Off */
-    ADC->CLR4 &= ADC_AutoClockOff_Disable;
-  }
+    if( NewState == ENABLE )
+    {
+        /* Enable ADC Auto Clock Off */
+        ADC->CLR4 |= ADC_AutoClockOff_Enable;
+    }
+    else
+    {
+        /* Disable ADC Auto Clock Off */
+        ADC->CLR4 &= ADC_AutoClockOff_Disable;
+    }
 }
 
 /*******************************************************************************
@@ -361,39 +362,41 @@ void ADC_AutoClockOffConfig(FunctionalState NewState)
 * Output         : None
 * Return         : None
 *******************************************************************************/
-void ADC_AnalogWatchdogConfig(u16 ADC_AnalogWatchdog, u8 ADC_CHANNEL,
-                              u16 LowThreshold, u16 HighThreshold)
+void ADC_AnalogWatchdogConfig( u16 ADC_AnalogWatchdog,
+                               u8 ADC_CHANNEL,
+                               u16 LowThreshold,
+                               u16 HighThreshold )
 {
-  switch (ADC_AnalogWatchdog)
-  {
-    /* Set the selected channel and their corresponding High and Low thresholds */
-    case ADC_AnalogWatchdog0 :
-      ADC->TRA0 = (ADC->TRA0 & ADC_AnalogWatchdogChannel_Mask) | ((u16) ADC_CHANNEL<<10);
-      ADC->TRA0 = (ADC->TRA0 & ADC_Threshold_Mask) |  HighThreshold;
-      ADC->TRB0 = (ADC->TRB0 & ADC_Threshold_Mask) |  LowThreshold;
-      break;
+    switch( ADC_AnalogWatchdog )
+    {
+        /* Set the selected channel and their corresponding High and Low thresholds */
+        case ADC_AnalogWatchdog0:
+            ADC->TRA0 = ( ADC->TRA0 & ADC_AnalogWatchdogChannel_Mask ) | ( ( u16 ) ADC_CHANNEL << 10 );
+            ADC->TRA0 = ( ADC->TRA0 & ADC_Threshold_Mask ) | HighThreshold;
+            ADC->TRB0 = ( ADC->TRB0 & ADC_Threshold_Mask ) | LowThreshold;
+            break;
 
-    case ADC_AnalogWatchdog1 :
-      ADC->TRA1 = (ADC->TRA1 & ADC_AnalogWatchdogChannel_Mask) | ((u16) ADC_CHANNEL<<10);
-      ADC->TRA1 = (ADC->TRA1 & ADC_Threshold_Mask) |  HighThreshold;
-      ADC->TRB1 = (ADC->TRB1 & ADC_Threshold_Mask) |  LowThreshold;
-      break;
+        case ADC_AnalogWatchdog1:
+            ADC->TRA1 = ( ADC->TRA1 & ADC_AnalogWatchdogChannel_Mask ) | ( ( u16 ) ADC_CHANNEL << 10 );
+            ADC->TRA1 = ( ADC->TRA1 & ADC_Threshold_Mask ) | HighThreshold;
+            ADC->TRB1 = ( ADC->TRB1 & ADC_Threshold_Mask ) | LowThreshold;
+            break;
 
-    case ADC_AnalogWatchdog2 :
-      ADC->TRA2 = (ADC->TRA2 & ADC_AnalogWatchdogChannel_Mask) | ((u16) ADC_CHANNEL<<10);
-      ADC->TRA2 = (ADC->TRA2 & ADC_Threshold_Mask) |  HighThreshold;
-      ADC->TRB2 = (ADC->TRB2 & ADC_Threshold_Mask) |  LowThreshold;
-      break;
+        case ADC_AnalogWatchdog2:
+            ADC->TRA2 = ( ADC->TRA2 & ADC_AnalogWatchdogChannel_Mask ) | ( ( u16 ) ADC_CHANNEL << 10 );
+            ADC->TRA2 = ( ADC->TRA2 & ADC_Threshold_Mask ) | HighThreshold;
+            ADC->TRB2 = ( ADC->TRB2 & ADC_Threshold_Mask ) | LowThreshold;
+            break;
 
-    case ADC_AnalogWatchdog3 :
-      ADC->TRA3 = (ADC->TRA3 & ADC_AnalogWatchdogChannel_Mask) | ((u16) ADC_CHANNEL<<10);
-      ADC->TRA3 = (ADC->TRA3 & ADC_Threshold_Mask) |  HighThreshold;
-      ADC->TRB3 = (ADC->TRB3 & ADC_Threshold_Mask) |  LowThreshold;
-      break;
+        case ADC_AnalogWatchdog3:
+            ADC->TRA3 = ( ADC->TRA3 & ADC_AnalogWatchdogChannel_Mask ) | ( ( u16 ) ADC_CHANNEL << 10 );
+            ADC->TRA3 = ( ADC->TRA3 & ADC_Threshold_Mask ) | HighThreshold;
+            ADC->TRB3 = ( ADC->TRB3 & ADC_Threshold_Mask ) | LowThreshold;
+            break;
 
-    default:
-      break;
-  }
+        default:
+            break;
+    }
 }
 
 /*******************************************************************************
@@ -411,58 +414,59 @@ void ADC_AnalogWatchdogConfig(u16 ADC_AnalogWatchdog, u8 ADC_CHANNEL,
 * Output         : None
 * Return         : None.
 *******************************************************************************/
-void ADC_AnalogWatchdogCmd(u16 ADC_AnalogWatchdog, FunctionalState NewState)
+void ADC_AnalogWatchdogCmd( u16 ADC_AnalogWatchdog,
+                            FunctionalState NewState )
 {
-  if (NewState == ENABLE)
-  {
-    /* Enable the selected ADC AnalogWatchdogx */
-    switch (ADC_AnalogWatchdog)
+    if( NewState == ENABLE )
     {
-      case ADC_AnalogWatchdog0 :
-        ADC->TRB0 |= ADC_AnalogWatchdog_Enable;
-        break;
+        /* Enable the selected ADC AnalogWatchdogx */
+        switch( ADC_AnalogWatchdog )
+        {
+            case ADC_AnalogWatchdog0:
+                ADC->TRB0 |= ADC_AnalogWatchdog_Enable;
+                break;
 
-      case ADC_AnalogWatchdog1 :
-        ADC->TRB1 |= ADC_AnalogWatchdog_Enable;
-        break;
+            case ADC_AnalogWatchdog1:
+                ADC->TRB1 |= ADC_AnalogWatchdog_Enable;
+                break;
 
-      case ADC_AnalogWatchdog2 :
-        ADC->TRB2 |= ADC_AnalogWatchdog_Enable;
-        break;
+            case ADC_AnalogWatchdog2:
+                ADC->TRB2 |= ADC_AnalogWatchdog_Enable;
+                break;
 
-      case ADC_AnalogWatchdog3 :
-        ADC->TRB3 |= ADC_AnalogWatchdog_Enable;
-        break;
+            case ADC_AnalogWatchdog3:
+                ADC->TRB3 |= ADC_AnalogWatchdog_Enable;
+                break;
 
-      default:
-        break;
+            default:
+                break;
+        }
     }
-  }
-  else
-  {
-    /* Disable the selected ADC AnalogWatchdogx */
-    switch (ADC_AnalogWatchdog)
+    else
     {
-      case ADC_AnalogWatchdog0 :
-        ADC->TRB0 &= ADC_AnalogWatchdog_Disable;
-        break;
+        /* Disable the selected ADC AnalogWatchdogx */
+        switch( ADC_AnalogWatchdog )
+        {
+            case ADC_AnalogWatchdog0:
+                ADC->TRB0 &= ADC_AnalogWatchdog_Disable;
+                break;
 
-      case ADC_AnalogWatchdog1 :
-        ADC->TRB1 &= ADC_AnalogWatchdog_Disable;
-        break;
+            case ADC_AnalogWatchdog1:
+                ADC->TRB1 &= ADC_AnalogWatchdog_Disable;
+                break;
 
-      case ADC_AnalogWatchdog2 :
-        ADC->TRB2 &= ADC_AnalogWatchdog_Disable;
-        break;
+            case ADC_AnalogWatchdog2:
+                ADC->TRB2 &= ADC_AnalogWatchdog_Disable;
+                break;
 
-      case ADC_AnalogWatchdog3 :
-        ADC->TRB3 &= ADC_AnalogWatchdog_Disable;
-        break;
+            case ADC_AnalogWatchdog3:
+                ADC->TRB3 &= ADC_AnalogWatchdog_Disable;
+                break;
 
-      default:
-        break;
+            default:
+                break;
+        }
     }
-  }
 }
 
 /*******************************************************************************
@@ -478,25 +482,26 @@ void ADC_AnalogWatchdogCmd(u16 ADC_AnalogWatchdog, FunctionalState NewState)
 * Output         : None
 * Return         : The analog watchdog comparaison result value
 *******************************************************************************/
-u16 ADC_GetAnalogWatchdogResult(u16 ADC_AnalogWatchdog)
+u16 ADC_GetAnalogWatchdogResult( u16 ADC_AnalogWatchdog )
 {
-  /* Return the selected ADC AnalogWatchdogx comparaison result */
-  switch(ADC_AnalogWatchdog)
-  {
-    case ADC_AnalogWatchdog0 :
-      return ((ADC->PBR & ADC_AnalogWatchdog)>>4);
+    /* Return the selected ADC AnalogWatchdogx comparaison result */
+    switch( ADC_AnalogWatchdog )
+    {
+        case ADC_AnalogWatchdog0:
+            return( ( ADC->PBR & ADC_AnalogWatchdog ) >> 4 );
 
-    case ADC_AnalogWatchdog1 :
-      return ((ADC->PBR & ADC_AnalogWatchdog)>>6);
+        case ADC_AnalogWatchdog1:
+            return( ( ADC->PBR & ADC_AnalogWatchdog ) >> 6 );
 
-    case ADC_AnalogWatchdog2 :
-      return ((ADC->PBR & ADC_AnalogWatchdog)>>8);
+        case ADC_AnalogWatchdog2:
+            return( ( ADC->PBR & ADC_AnalogWatchdog ) >> 8 );
 
-    case ADC_AnalogWatchdog3 :
-      return ((ADC->PBR & ADC_AnalogWatchdog)>>10);
+        case ADC_AnalogWatchdog3:
+            return( ( ADC->PBR & ADC_AnalogWatchdog ) >> 10 );
 
-    default : return (0xFF);  /* if a wrong value of ADC_AnalogWatchdog is selected */
-  }
+        default:
+            return( 0xFF ); /* if a wrong value of ADC_AnalogWatchdog is selected */
+    }
 }
 
 /*******************************************************************************
@@ -518,37 +523,41 @@ u16 ADC_GetAnalogWatchdogResult(u16 ADC_AnalogWatchdog)
 * Output         : None
 * Return         : None
 *******************************************************************************/
-void ADC_InjectedConversionConfig(u16 ADC_Injec_ExtTrigger, u8 FirstChannel, u8 ChannelNumber)
+void ADC_InjectedConversionConfig( u16 ADC_Injec_ExtTrigger,
+                                   u8 FirstChannel,
+                                   u8 ChannelNumber )
 {
-  /* Configure the external start injected conversion trigger */
-  switch (ADC_Injec_ExtTrigger)
-  {
-    case ADC_Injec_ExtTrigger_Disable  :
-      /* Disable the external trigger and start the injected conversion by software */
-      ADC->CLR3 &= ADC_Injec_ExtTrigger_Disable ;
-      break;
-    case ADC_Injec_ExtTrigger_RisingEdge :
-      /* Start injected conversion on rising edge of the external trigger (PWM) */
-      ADC->CLR3 |= ADC_Injec_ExtTrigger_RisingEdge;
-      break;
-    case ADC_Injec_ExtTrigger_FallingEdge :
-      /* Start injected conversion on falling edge of the external trigger (PWM) */
-      ADC->CLR3 |= ADC_Injec_ExtTrigger_Enable;
-      ADC->CLR3 &= ADC_Injec_ExtTrigger_FallingEdge;
-      break;
+    /* Configure the external start injected conversion trigger */
+    switch( ADC_Injec_ExtTrigger )
+    {
+        case ADC_Injec_ExtTrigger_Disable:
+            /* Disable the external trigger and start the injected conversion by software */
+            ADC->CLR3 &= ADC_Injec_ExtTrigger_Disable;
+            break;
 
-    default:
-      break;
-  }
+        case ADC_Injec_ExtTrigger_RisingEdge:
+            /* Start injected conversion on rising edge of the external trigger (PWM) */
+            ADC->CLR3 |= ADC_Injec_ExtTrigger_RisingEdge;
+            break;
 
-  /* Clear first injected channel to be converted JFCH[3:0] bits */
-  ADC->CLR3 &= ADC_FirstChannel_Mask;
-  /* Set the first injected channel to be converted */
-  ADC->CLR3 |= FirstChannel;
-  /* Clear number of injected channels to be converted JNCH[3:0] bits */
-  ADC->CLR3 &= ADC_ChannelNumber_Mask;
-  /* Set the number of injected channels to be converted */
-  ADC->CLR3 |= ((ChannelNumber-1)<<6);
+        case ADC_Injec_ExtTrigger_FallingEdge:
+            /* Start injected conversion on falling edge of the external trigger (PWM) */
+            ADC->CLR3 |= ADC_Injec_ExtTrigger_Enable;
+            ADC->CLR3 &= ADC_Injec_ExtTrigger_FallingEdge;
+            break;
+
+        default:
+            break;
+    }
+
+    /* Clear first injected channel to be converted JFCH[3:0] bits */
+    ADC->CLR3 &= ADC_FirstChannel_Mask;
+    /* Set the first injected channel to be converted */
+    ADC->CLR3 |= FirstChannel;
+    /* Clear number of injected channels to be converted JNCH[3:0] bits */
+    ADC->CLR3 &= ADC_ChannelNumber_Mask;
+    /* Set the number of injected channels to be converted */
+    ADC->CLR3 |= ( ( ChannelNumber - 1 ) << 6 );
 }
 
 /*******************************************************************************
@@ -558,10 +567,10 @@ void ADC_InjectedConversionConfig(u16 ADC_Injec_ExtTrigger, u8 FirstChannel, u8 
 * Output         : None
 * Return         : None
 *******************************************************************************/
-void ADC_StartInjectedConversion(void)
+void ADC_StartInjectedConversion( void )
 {
-  /* Start the injected ADC Conversion */
-  ADC->CLR3 |= ADC_Injec_ConversionStart;
+    /* Start the injected ADC Conversion */
+    ADC->CLR3 |= ADC_Injec_ConversionStart;
 }
 
 /*******************************************************************************
@@ -574,10 +583,10 @@ void ADC_StartInjectedConversion(void)
 * Return         : The returned value holds the conversion result of the selected
 *                  channel.
 *******************************************************************************/
-u16 ADC_GetConversionValue(u8 ADC_CHANNEL)
+u16 ADC_GetConversionValue( u8 ADC_CHANNEL )
 {
-  /* Return the conversion result of the selected channel */
-  return *((u16 *)(ADC_BASE + ((ADC_CHANNEL<<2) + ADC_DataRegisterOffset)));
+    /* Return the conversion result of the selected channel */
+    return *( ( u16 * ) ( ADC_BASE + ( ( ADC_CHANNEL << 2 ) + ADC_DataRegisterOffset ) ) );
 }
 
 /*******************************************************************************
@@ -611,18 +620,19 @@ u16 ADC_GetConversionValue(u8 ADC_CHANNEL)
 * Output         : None
 * Return         : None
 *******************************************************************************/
-void ADC_ITConfig(u16 ADC_IT, FunctionalState NewState)
+void ADC_ITConfig( u16 ADC_IT,
+                   FunctionalState NewState )
 {
-  if (NewState == ENABLE)
-  {
-    /* Enable the selected ADC interrupts */
-    ADC->IMR |= ADC_IT;
-  }
-  else
-  {
-    /* Disable the selected ADC interrupts */
-    ADC->IMR &= ~ADC_IT;
-  }
+    if( NewState == ENABLE )
+    {
+        /* Enable the selected ADC interrupts */
+        ADC->IMR |= ADC_IT;
+    }
+    else
+    {
+        /* Disable the selected ADC interrupts */
+        ADC->IMR &= ~ADC_IT;
+    }
 }
 
 /*******************************************************************************
@@ -636,18 +646,19 @@ void ADC_ITConfig(u16 ADC_IT, FunctionalState NewState)
 * Output         : None
 * Return         : None
 *******************************************************************************/
-void ADC_DMAConfig(u16 ADC_DMA_CHANNEL, FunctionalState NewState)
+void ADC_DMAConfig( u16 ADC_DMA_CHANNEL,
+                    FunctionalState NewState )
 {
-  if(NewState == ENABLE)
-  {
-    /* Enable DMA for the selected channels */
-    ADC->DMAR |= ADC_DMA_CHANNEL ;
-  }
-  else
-  {
-    /* Disable DMA for the selected channels */
-    ADC->DMAR &= ~ADC_DMA_CHANNEL;
-  }
+    if( NewState == ENABLE )
+    {
+        /* Enable DMA for the selected channels */
+        ADC->DMAR |= ADC_DMA_CHANNEL;
+    }
+    else
+    {
+        /* Disable DMA for the selected channels */
+        ADC->DMAR &= ~ADC_DMA_CHANNEL;
+    }
 }
 
 /*******************************************************************************
@@ -665,36 +676,36 @@ void ADC_DMAConfig(u16 ADC_DMA_CHANNEL, FunctionalState NewState)
 * Output         : None
 * Return         : None
 *******************************************************************************/
-void ADC_DMACmd(u16 ADC_DMA)
+void ADC_DMACmd( u16 ADC_DMA )
 {
-  /* Configure the DMA external trigger enable */
-  switch (ADC_DMA)
-  {
-    case ADC_DMA_Disable :
-      /* Disable DMA transfer */
-      ADC->DMAE &= ADC_DMA_Disable;
-      break;
+    /* Configure the DMA external trigger enable */
+    switch( ADC_DMA )
+    {
+        case ADC_DMA_Disable:
+            /* Disable DMA transfer */
+            ADC->DMAE &= ADC_DMA_Disable;
+            break;
 
-    case ADC_DMA_Enable :
-      /* Enable DMA transfer */
-      ADC->DMAE |= ADC_DMA_Enable;
-      break;
+        case ADC_DMA_Enable:
+            /* Enable DMA transfer */
+            ADC->DMAE |= ADC_DMA_Enable;
+            break;
 
-    case ADC_DMA_ExtTrigger_HighLevel :
-      /* Enable DMA transfer on high level of the external trigger (TIM2) */
-      ADC->DMAE &= ADC_DMA_Disable;
-      ADC->DMAE |= ADC_DMA_ExtTrigger_HighLevel;
-      break;
+        case ADC_DMA_ExtTrigger_HighLevel:
+            /* Enable DMA transfer on high level of the external trigger (TIM2) */
+            ADC->DMAE &= ADC_DMA_Disable;
+            ADC->DMAE |= ADC_DMA_ExtTrigger_HighLevel;
+            break;
 
-    case ADC_DMA_ExtTrigger_LowLevel :
-      /* Enable DMA transfer on low level of the external trigger (TIM2) */
-      ADC->DMAE |= ADC_DMA_ExtEnable_Mask;
-      ADC->DMAE &= ADC_DMA_ExtTrigger_LowLevel;
-      break;
+        case ADC_DMA_ExtTrigger_LowLevel:
+            /* Enable DMA transfer on low level of the external trigger (TIM2) */
+            ADC->DMAE |= ADC_DMA_ExtEnable_Mask;
+            ADC->DMAE &= ADC_DMA_ExtTrigger_LowLevel;
+            break;
 
-    default:
-      break;
-  }
+        default:
+            break;
+    }
 }
 
 /*******************************************************************************
@@ -705,10 +716,10 @@ void ADC_DMACmd(u16 ADC_DMA)
 * Output         : None
 * Return         : The first DMA enabled channel
 *******************************************************************************/
-u16 ADC_GetDMAFirstEnabledChannel(void)
+u16 ADC_GetDMAFirstEnabledChannel( void )
 {
-  /* Return the DMA first enabled channel */
-  return (ADC->DMAE & ADC_DMAFirstEnabledChannel_Mask);
+    /* Return the DMA first enabled channel */
+    return( ADC->DMAE & ADC_DMAFirstEnabledChannel_Mask );
 }
 
 /*******************************************************************************
@@ -739,19 +750,19 @@ u16 ADC_GetDMAFirstEnabledChannel(void)
 * Output         : None
 * Return         : The new state of the ADC_FLAG (SET or RESET).
 *******************************************************************************/
-FlagStatus ADC_GetFlagStatus(u16 ADC_FLAG)
+FlagStatus ADC_GetFlagStatus( u16 ADC_FLAG )
 {
-  /* Check the status of the specified ADC flag */
-  if((ADC->PBR & ADC_FLAG) != RESET)
-  {
-    /* Return SET if ADC_FLAG is set */
-    return SET;
-  }
-  else
-  {
-    /* Return RESET if ADC_FLAG is reset */
-    return RESET;
-  }
+    /* Check the status of the specified ADC flag */
+    if( ( ADC->PBR & ADC_FLAG ) != RESET )
+    {
+        /* Return SET if ADC_FLAG is set */
+        return SET;
+    }
+    else
+    {
+        /* Return RESET if ADC_FLAG is reset */
+        return RESET;
+    }
 }
 
 /*******************************************************************************
@@ -782,10 +793,10 @@ FlagStatus ADC_GetFlagStatus(u16 ADC_FLAG)
 * Output         : None
 * Return         : None
 *******************************************************************************/
-void ADC_ClearFlag(u16 ADC_FLAG)
+void ADC_ClearFlag( u16 ADC_FLAG )
 {
-  /* Clear the selected ADC flag */
-  ADC->PBR = ADC_FLAG;
+    /* Clear the selected ADC flag */
+    ADC->PBR = ADC_FLAG;
 }
 
 /*******************************************************************************
@@ -816,19 +827,19 @@ void ADC_ClearFlag(u16 ADC_FLAG)
 * Output         : None
 * Return         : The new state of the ADC_IT (SET or RESET).
 *******************************************************************************/
-ITStatus ADC_GetITStatus(u16 ADC_IT)
+ITStatus ADC_GetITStatus( u16 ADC_IT )
 {
-  /* Check the status of the specified ADC interrupt */
-  if((ADC->PBR & ADC_IT) != RESET)
-  {
-    /* Return SET if the ADC interrupt flag is set */
-    return SET;
-  }
-  else
-  {
-    /* Return RESET if the ADC interrupt flag is reset */
-    return RESET;
-  }
+    /* Check the status of the specified ADC interrupt */
+    if( ( ADC->PBR & ADC_IT ) != RESET )
+    {
+        /* Return SET if the ADC interrupt flag is set */
+        return SET;
+    }
+    else
+    {
+        /* Return RESET if the ADC interrupt flag is reset */
+        return RESET;
+    }
 }
 
 /*******************************************************************************
@@ -860,10 +871,10 @@ ITStatus ADC_GetITStatus(u16 ADC_IT)
 * Output         : None
 * Return         : None
 *******************************************************************************/
-void ADC_ClearITPendingBit(u16 ADC_IT)
+void ADC_ClearITPendingBit( u16 ADC_IT )
 {
-  /* Clear the selected ADC interrupts pending bits */
-  ADC->PBR = ADC_IT;
+    /* Clear the selected ADC interrupts pending bits */
+    ADC->PBR = ADC_IT;
 }
 
 /******************* (C) COPYRIGHT 2006 STMicroelectronics *****END OF FILE****/

@@ -20,31 +20,33 @@
 * http://www.renesas.com/disclaimer
 * Copyright (C) 2018 Renesas Electronics Corporation. All rights reserved.
 *******************************************************************************/
+
 /*******************************************************************************
-* File Name    : freertos_start.h
-* Version      : 1.0
-* Description  : FreeRTOS's user-defined functions header file.
-******************************************************************************/
+ * File Name    : freertos_start.h
+ * Version      : 1.0
+ * Description  : FreeRTOS's user-defined functions header file.
+ ******************************************************************************/
+
 /*****************************************************************************
-* History : DD.MM.YYYY Version  Description
-*         : 30.06.2016 1.00     First Release
-******************************************************************************/
+ * History : DD.MM.YYYY Version  Description
+ *         : 30.06.2016 1.00     First Release
+ ******************************************************************************/
 
 #ifndef FREERTOS_START_H_
 #define FREERTOS_START_H_
 
 /******************************************************************************
-Macro definitions
+*  Macro definitions
 ******************************************************************************/
 /* USB FIT module support macro */
-#define RTOS_USB_SUPPORT   0
+#define RTOS_USB_SUPPORT    0
 
 /******************************************************************************
-Typedef definitions
+*  Typedef definitions
 ******************************************************************************/
 
 /******************************************************************************
-Exported global variables
+*  Exported global variables
 ******************************************************************************/
 /************* semaphore handler *****************/
 
@@ -69,9 +71,9 @@ Exported global variables
 
 
 /******************************************************************************
-Exported global functions (to be accessed by other files)
+*  Exported global functions (to be accessed by other files)
 ******************************************************************************/
-extern void Processing_Before_Start_Kernel(void);
-extern void Kernel_Object_init(void);
+extern void Processing_Before_Start_Kernel( void );
+extern void Kernel_Object_init( void );
 
 #endif /* FREERTOS_START_H_ */

@@ -30,7 +30,10 @@
 
 /* MODULE PE_Timer. */
 
-bool PE_Timer_LngHi1(dword Low, dword High, word *Out);
+bool PE_Timer_LngHi1( dword Low,
+                      dword High,
+                      word * Out );
+
 /*
 ** ===================================================================
 **     Method      :  PE_Timer_LngHi1 (bean PE_Timer)
@@ -43,6 +46,7 @@ bool PE_Timer_LngHi1(dword Low, dword High, word *Out);
 
 
 #endif /* END PE_Timer. */
+
 /*
 ** ###################################################################
 **

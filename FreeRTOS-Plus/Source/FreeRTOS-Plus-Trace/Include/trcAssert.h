@@ -62,7 +62,7 @@
                 return condition;
             }
 
-                #else  /* if ( defined( TRC_CFG_TEST_MODE ) && ( TRC_CFG_TEST_MODE ) == 1 ) */
+                #else /* if ( defined( TRC_CFG_TEST_MODE ) && ( TRC_CFG_TEST_MODE ) == 1 ) */
 
                     #define TRC_ASSERT_EQUAL_SIZE( x, y )
 

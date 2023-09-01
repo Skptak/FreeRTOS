@@ -235,7 +235,7 @@ static const char gacDigits[] = "0123456789ABCDEF";
 
         if( RedVSNPrintf( achBuffer, sizeof( achBuffer ), pszFormat, arglist ) == -1 )
         {
-            /*  Ensture the buffer is null terminated.
+            /*  Ensure the buffer is null terminated.
              */
             achBuffer[ sizeof( achBuffer ) - 1U ] = '\0';
 

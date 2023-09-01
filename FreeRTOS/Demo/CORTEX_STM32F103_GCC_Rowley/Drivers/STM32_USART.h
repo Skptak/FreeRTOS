@@ -33,7 +33,8 @@
  * terminology.  The baud rate can be any standard baud rate and has been tested
  * up to 115200 baud.
  */
-long lCOMPortInit( unsigned long ulPort, unsigned long ulWantedBaud );
+long lCOMPortInit( unsigned long ulPort,
+                   unsigned long ulWantedBaud );
 
 /*
  * Output a single char to a COM port.  As supplied 2 COM ports are supported,
@@ -45,7 +46,9 @@ long lCOMPortInit( unsigned long ulPort, unsigned long ulWantedBaud );
  * waiting in the Blocked state for up to xBlockTime ticks), otherwise pdFAIL
  * will be returned.
  */
-signed long xSerialPutChar( long lPort, signed char cOutChar, TickType_t xBlockTime );
+signed long xSerialPutChar( long lPort,
+                            signed char cOutChar,
+                            TickType_t xBlockTime );
 
 /*
  * Retrieve a character from the queue of received characters.  As supplied 2
@@ -57,7 +60,9 @@ signed long xSerialPutChar( long lPort, signed char cOutChar, TickType_t xBlockT
  * character is successfully returned (possible after waiting in the Blocked
  * state for up to xBlockTime ticks), otherwise pdFAIL will be returned.
  */
-signed long xSerialGetChar( long lPort, signed char *pcRxedChar, TickType_t xBlockTime );
+signed long xSerialGetChar( long lPort,
+                            signed char * pcRxedChar,
+                            TickType_t xBlockTime );
 
 /*
  * Send a string of characters to a COM port.  As supplied 2 COM ports are
@@ -70,8 +75,8 @@ signed long xSerialGetChar( long lPort, signed char *pcRxedChar, TickType_t xBlo
  * accordance with the applications requirements.  Comments are included where
  * serPUT_STRING_CHAR_DELAY is defined.
  */
-long lSerialPutString( long lPort, const char * const pcString, unsigned long ulStringLength );
+long lSerialPutString( long lPort,
+                       const char * const pcString,
+                       unsigned long ulStringLength );
 
-#endif
-
-
+#endif /* ifndef STM_32_SERIAL_COMMS_H */

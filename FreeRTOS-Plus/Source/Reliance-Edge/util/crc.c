@@ -557,7 +557,7 @@
         return ulCrc32;
     }
 
-#else  /* if REDCONF_CRC_ALGORITHM == CRC_BITWISE */
+#else /* if REDCONF_CRC_ALGORITHM == CRC_BITWISE */
 
     #error "REDCONF_CRC_ALGORITHM must be set to CRC_BITWISE, CRC_SARWATE, or CRC_SLICEBY8"
 

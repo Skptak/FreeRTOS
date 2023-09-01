@@ -32,13 +32,13 @@
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-Pragma directive
+*  Pragma directive
 ***********************************************************************************************************************/
 /* Start user code for pragma. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
 
 /***********************************************************************************************************************
-Includes
+*  Includes
 ***********************************************************************************************************************/
 #include "r_cg_macrodriver.h"
 #include <machine.h>
@@ -46,62 +46,62 @@ Includes
 #include "r_cg_userdefine.h"
 
 /***********************************************************************************************************************
-Global variables and functions
+*  Global variables and functions
 ***********************************************************************************************************************/
 
 #pragma section IntPRG
 
 /* Undefined exceptions for supervisor instruction, undefined instruction and floating point exceptions */
-void r_undefined_exception(void)
+void r_undefined_exception( void )
 {
     /* Start user code. Do not edit comment generated here */
     /* End user code. Do not edit comment generated here */
 }
 
 /* Reserved */
-void r_reserved_exception(void)
+void r_reserved_exception( void )
 {
     /* Start user code. Do not edit comment generated here */
     /* End user code. Do not edit comment generated here */
 }
 
 /* NMI */
-void r_nmi_exception(void)
+void r_nmi_exception( void )
 {
     /* Start user code. Do not edit comment generated here */
     /* End user code. Do not edit comment generated here */
 }
 
 /* ICU GROUPBE0 */
-void r_icua_group_be0_interrupt(void)
+void r_icua_group_be0_interrupt( void )
 {
     /* Start user code. Do not edit comment generated here */
     /* End user code. Do not edit comment generated here */
 }
 
 /* ICU GROUPBL0 */
-void r_icua_group_bl0_interrupt(void)
+void r_icua_group_bl0_interrupt( void )
 {
     /* Start user code. Do not edit comment generated here */
     /* End user code. Do not edit comment generated here */
 }
 
 /* ICU GROUPBL1 */
-void r_icua_group_bl1_interrupt(void)
+void r_icua_group_bl1_interrupt( void )
 {
     /* Start user code. Do not edit comment generated here */
     /* End user code. Do not edit comment generated here */
 }
 
 /* ICU GROUPAL0 */
-void r_icua_group_al0_interrupt(void)
+void r_icua_group_al0_interrupt( void )
 {
     /* Start user code. Do not edit comment generated here */
     /* End user code. Do not edit comment generated here */
 }
 
 /* ICU GROUPAL1 */
-void r_icua_group_al1_interrupt(void)
+void r_icua_group_al1_interrupt( void )
 {
     /* Start user code. Do not edit comment generated here */
     /* End user code. Do not edit comment generated here */

@@ -173,7 +173,7 @@
                      : "r0", "r1"             \
                      );                       \
 }
-    #else  /* ifdef __ARM_ARCH_6M__ */
+    #else /* ifdef __ARM_ARCH_6M__ */
         #define SEGGER_RTT_LOCK()
         #define SEGGER_RTT_UNLOCK()
     #endif /* ifdef __ARM_ARCH_6M__ */
@@ -268,11 +268,11 @@
  *       RTT lock configuration fallback
  */
 #ifndef   SEGGER_RTT_LOCK
-    #define SEGGER_RTT_LOCK()              /* Lock RTT (nestable)   (i.e. disable interrupts) */
+    #define SEGGER_RTT_LOCK()    /* Lock RTT (nestable)   (i.e. disable interrupts) */
 #endif
 
 #ifndef   SEGGER_RTT_UNLOCK
-    #define SEGGER_RTT_UNLOCK()            /* Unlock RTT (nestable) (i.e. enable previous interrupt lock state) */
+    #define SEGGER_RTT_UNLOCK()    /* Unlock RTT (nestable) (i.e. enable previous interrupt lock state) */
 #endif
 
 #endif /* ifndef SEGGER_RTT_CONF_H */

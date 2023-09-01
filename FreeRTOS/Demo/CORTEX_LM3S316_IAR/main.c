@@ -95,43 +95,43 @@
 #include "DriverLib.h"
 
 /* The time to delay between writing each character to the LCD. */
-#define mainCHAR_WRITE_DELAY		( 2 / portTICK_PERIOD_MS )
+#define mainCHAR_WRITE_DELAY           ( 2 / portTICK_PERIOD_MS )
 
 /* The time to delay between writing each string to the LCD. */
-#define mainSTRING_WRITE_DELAY		( 400 / portTICK_PERIOD_MS )
+#define mainSTRING_WRITE_DELAY         ( 400 / portTICK_PERIOD_MS )
 
-#define mainADC_DELAY				( 200 / portTICK_PERIOD_MS )
+#define mainADC_DELAY                  ( 200 / portTICK_PERIOD_MS )
 
 /* The number of flash co-routines to create. */
-#define mainNUM_FLASH_CO_ROUTINES	( 5 )
+#define mainNUM_FLASH_CO_ROUTINES      ( 5 )
 
 /* The length of the queue used to send messages to the LCD task. */
-#define mainLCD_QUEUE_LEN			( 3 )
+#define mainLCD_QUEUE_LEN              ( 3 )
 
 /* The priority of the co-routine used to initiate the transmission of the
-string on UART 0. */
-#define mainTX_CO_ROUTINE_PRIORITY	( 1 )
-#define mainADC_CO_ROUTINE_PRIORITY 	( 2 )
+ * string on UART 0. */
+#define mainTX_CO_ROUTINE_PRIORITY     ( 1 )
+#define mainADC_CO_ROUTINE_PRIORITY    ( 2 )
 
 /* Only one of each co-routine is created so its index is not important. */
-#define mainTX_CO_ROUTINE_INDEX		( 0 )
-#define mainADC_CO_ROUTINE_INDEX  	( 0 )
+#define mainTX_CO_ROUTINE_INDEX        ( 0 )
+#define mainADC_CO_ROUTINE_INDEX       ( 0 )
 
 /* The task priorities. */
-#define mainLCD_TASK_PRIORITY		( tskIDLE_PRIORITY + 1 )
-#define mainMSG_TASK_PRIORITY		( mainLCD_TASK_PRIORITY - 1 )
-#define mainCOMMS_RX_TASK_PRIORITY	( tskIDLE_PRIORITY + 1 )
+#define mainLCD_TASK_PRIORITY          ( tskIDLE_PRIORITY + 1 )
+#define mainMSG_TASK_PRIORITY          ( mainLCD_TASK_PRIORITY - 1 )
+#define mainCOMMS_RX_TASK_PRIORITY     ( tskIDLE_PRIORITY + 1 )
 
 /* The LCD had two rows. */
-#define mainTOP_ROW		0
-#define mainBOTTOM_ROW 	1
+#define mainTOP_ROW                    0
+#define mainBOTTOM_ROW                 1
 
 /* Dimension for the buffer into which the ADC value string is written. */
-#define mainMAX_ADC_STRING_LEN	20
+#define mainMAX_ADC_STRING_LEN         20
 
 /* The LED that is lit should an error be detected in any of the tasks or
-co-routines. */
-#define mainFAIL_LED			( 7 )
+ * co-routines. */
+#define mainFAIL_LED                   ( 7 )
 
 /*-----------------------------------------------------------*/
 
@@ -149,7 +149,8 @@ static void prvLCDMessageTask( void * pvParameters );
  * The co-routine that reads the ADC and sends messages for display on the
  * bottom row of the LCD.
  */
-static void prvADCCoRoutine( CoRoutineHandle_t xHandle, unsigned portBASE_TYPE uxIndex );
+static void prvADCCoRoutine( CoRoutineHandle_t xHandle,
+                             unsigned portBASE_TYPE uxIndex );
 
 /*
  * Function to simply set a known value into the general purpose registers
@@ -166,7 +167,8 @@ void vSetErrorLED( void );
 /*
  * Thread safe write to the PDC.
  */
-static void prvPDCWrite( char cAddress, char cData );
+static void prvPDCWrite( char cAddress,
+                         char cData );
 
 /*
  * Sets up the hardware used by the demo.
@@ -179,12 +181,12 @@ static void prvSetupHardware( void );
 /* The structure that is passed on the LCD message queue. */
 typedef struct
 {
-	char **ppcMessageToDisplay; /*<< Points to a char* pointing to the message to display. */
-	portBASE_TYPE xRow;				/*<< The row on which the message should be displayed. */
+    char ** ppcMessageToDisplay; /*<< Points to a char* pointing to the message to display. */
+    portBASE_TYPE xRow;          /*<< The row on which the message should be displayed. */
 } xLCDMessage;
 
 /* Error flag set to pdFAIL if an error is encountered in the tasks/co-routines
-defined within this file. */
+ * defined within this file. */
 unsigned portBASE_TYPE uxErrorStatus = pdPASS;
 
 /* The queue used to transmit messages to the LCD task. */
@@ -197,242 +199,250 @@ static QueueHandle_t xLCDQueue;
  */
 void main( void )
 {
-	/* Create the queue used by tasks wanting to write to the LCD. */
-	xLCDQueue = xQueueCreate( mainLCD_QUEUE_LEN, sizeof( xLCDMessage ) );
+    /* Create the queue used by tasks wanting to write to the LCD. */
+    xLCDQueue = xQueueCreate( mainLCD_QUEUE_LEN, sizeof( xLCDMessage ) );
 
-	/* Setup the ports used by the demo and the clock. */
-	prvSetupHardware();
+    /* Setup the ports used by the demo and the clock. */
+    prvSetupHardware();
 
-	/* Create the co-routines that flash the LED's. */
-	vStartFlashCoRoutines( mainNUM_FLASH_CO_ROUTINES );
+    /* Create the co-routines that flash the LED's. */
+    vStartFlashCoRoutines( mainNUM_FLASH_CO_ROUTINES );
 
-	/* Create the co-routine that initiates the transmission of characters
-	on the UART and the task that receives them, as described at the top of
-	this file. */
-	xCoRoutineCreate( vSerialTxCoRoutine, mainTX_CO_ROUTINE_PRIORITY, mainTX_CO_ROUTINE_INDEX );
-	xTaskCreate( vCommsRxTask, "CMS", configMINIMAL_STACK_SIZE, NULL, mainCOMMS_RX_TASK_PRIORITY, NULL );
+    /* Create the co-routine that initiates the transmission of characters
+     * on the UART and the task that receives them, as described at the top of
+     * this file. */
+    xCoRoutineCreate( vSerialTxCoRoutine, mainTX_CO_ROUTINE_PRIORITY, mainTX_CO_ROUTINE_INDEX );
+    xTaskCreate( vCommsRxTask, "CMS", configMINIMAL_STACK_SIZE, NULL, mainCOMMS_RX_TASK_PRIORITY, NULL );
 
-	/* Create the task that waits for messages to display on the LCD, plus the
-	task and co-routine that send messages for display (as described at the top
-	of this file. */
-	xTaskCreate( prvLCDTask, "LCD", configMINIMAL_STACK_SIZE, ( void * ) &xLCDQueue, mainLCD_TASK_PRIORITY, NULL );
-	xTaskCreate( prvLCDMessageTask, "MSG", configMINIMAL_STACK_SIZE, ( void * ) &xLCDQueue, mainMSG_TASK_PRIORITY, NULL );
-	xCoRoutineCreate( prvADCCoRoutine, mainADC_CO_ROUTINE_PRIORITY, mainADC_CO_ROUTINE_INDEX );
+    /* Create the task that waits for messages to display on the LCD, plus the
+     * task and co-routine that send messages for display (as described at the top
+     * of this file. */
+    xTaskCreate( prvLCDTask, "LCD", configMINIMAL_STACK_SIZE, ( void * ) &xLCDQueue, mainLCD_TASK_PRIORITY, NULL );
+    xTaskCreate( prvLCDMessageTask, "MSG", configMINIMAL_STACK_SIZE, ( void * ) &xLCDQueue, mainMSG_TASK_PRIORITY, NULL );
+    xCoRoutineCreate( prvADCCoRoutine, mainADC_CO_ROUTINE_PRIORITY, mainADC_CO_ROUTINE_INDEX );
 
-	/* Start the scheduler running the tasks and co-routines just created. */
-	vTaskStartScheduler();
+    /* Start the scheduler running the tasks and co-routines just created. */
+    vTaskStartScheduler();
 
-	/* Should not get here unless we did not have enough memory to start the
-	scheduler. */
-	for( ;; );
+    /* Should not get here unless we did not have enough memory to start the
+     * scheduler. */
+    for( ; ; )
+    {
+    }
 }
 /*-----------------------------------------------------------*/
 
 static void prvLCDMessageTask( void * pvParameters )
 {
 /* The strings that are written to the LCD. */
-char *pcStringsToDisplay[] = {
-									"IAR             ",
-									"Stellaris       ",
-									"Demo            ",
-									"www.FreeRTOS.org",
-									""
-								};
+    char * pcStringsToDisplay[] =
+    {
+        "IAR             ",
+        "Stellaris       ",
+        "Demo            ",
+        "www.FreeRTOS.org",
+        ""
+    };
 
-QueueHandle_t *pxLCDQueue;
-xLCDMessage xMessageToSend;
-portBASE_TYPE xIndex = 0;
+    QueueHandle_t * pxLCDQueue;
+    xLCDMessage xMessageToSend;
+    portBASE_TYPE xIndex = 0;
 
-	/* To test the parameter passing mechanism, the queue on which messages are
-	posted is passed in as a parameter even though it is available as a file
-	scope variable anyway. */
-	pxLCDQueue = ( QueueHandle_t * ) pvParameters;
+    /* To test the parameter passing mechanism, the queue on which messages are
+     * posted is passed in as a parameter even though it is available as a file
+     * scope variable anyway. */
+    pxLCDQueue = ( QueueHandle_t * ) pvParameters;
 
-	for( ;; )
-	{
-		/* Wait until it is time to move onto the next string. */
-		vTaskDelay( mainSTRING_WRITE_DELAY );
+    for( ; ; )
+    {
+        /* Wait until it is time to move onto the next string. */
+        vTaskDelay( mainSTRING_WRITE_DELAY );
 
-		/* Create the message object to send to the LCD task. */
-		xMessageToSend.ppcMessageToDisplay = &pcStringsToDisplay[ xIndex ];
-		xMessageToSend.xRow = mainTOP_ROW;
+        /* Create the message object to send to the LCD task. */
+        xMessageToSend.ppcMessageToDisplay = &pcStringsToDisplay[ xIndex ];
+        xMessageToSend.xRow = mainTOP_ROW;
 
-		/* Post the message to be displayed. */
-		if( !xQueueSend( *pxLCDQueue, ( void * ) &xMessageToSend, 0 ) )
-		{
-			uxErrorStatus = pdFAIL;
-		}
+        /* Post the message to be displayed. */
+        if( !xQueueSend( *pxLCDQueue, ( void * ) &xMessageToSend, 0 ) )
+        {
+            uxErrorStatus = pdFAIL;
+        }
 
-		/* Move onto the next message, wrapping when necessary. */
-		xIndex++;
-		if( *( pcStringsToDisplay[ xIndex ] ) == 0x00 )
-		{
-			xIndex = 0;
+        /* Move onto the next message, wrapping when necessary. */
+        xIndex++;
 
-			/* Delay longer before going back to the start of the messages. */
-			vTaskDelay( mainSTRING_WRITE_DELAY * 2 );
-		}
-	}
+        if( *( pcStringsToDisplay[ xIndex ] ) == 0x00 )
+        {
+            xIndex = 0;
+
+            /* Delay longer before going back to the start of the messages. */
+            vTaskDelay( mainSTRING_WRITE_DELAY * 2 );
+        }
+    }
 }
 /*-----------------------------------------------------------*/
 
 void prvLCDTask( void * pvParameters )
 {
-unsigned portBASE_TYPE uxIndex;
-QueueHandle_t *pxLCDQueue;
-xLCDMessage xReceivedMessage;
-char *pcString;
-const unsigned char ucCFGData[] = {
-											0x30,   /* Set data bus to 8-bits. */
-											0x30,
-											0x30,
-											0x3C,   /* Number of lines/font. */
-											0x08,   /* Display off. */
-											0x01,   /* Display clear. */
-											0x06,   /* Entry mode [cursor dir][shift]. */
-											0x0C	/* Display on [display on][curson on][blinking on]. */
-									  };
+    unsigned portBASE_TYPE uxIndex;
+    QueueHandle_t * pxLCDQueue;
+    xLCDMessage xReceivedMessage;
+    char * pcString;
+    const unsigned char ucCFGData[] =
+    {
+        0x30, /* Set data bus to 8-bits. */
+        0x30,
+        0x30,
+        0x3C, /* Number of lines/font. */
+        0x08, /* Display off. */
+        0x01, /* Display clear. */
+        0x06, /* Entry mode [cursor dir][shift]. */
+        0x0C  /* Display on [display on][curson on][blinking on]. */
+    };
 
-	/* To test the parameter passing mechanism, the queue on which messages are
-	received is passed in as a parameter even though it is available as a file
-	scope variable anyway. */
-	pxLCDQueue = ( QueueHandle_t * ) pvParameters;
+    /* To test the parameter passing mechanism, the queue on which messages are
+     * received is passed in as a parameter even though it is available as a file
+     * scope variable anyway. */
+    pxLCDQueue = ( QueueHandle_t * ) pvParameters;
 
-	/* Configure the LCD. */
-	uxIndex = 0;
-	while( uxIndex < sizeof( ucCFGData ) )
-	{
-		prvPDCWrite( PDC_LCD_CSR, ucCFGData[ uxIndex ] );
-		uxIndex++;
-		vTaskDelay( mainCHAR_WRITE_DELAY );
-	}
+    /* Configure the LCD. */
+    uxIndex = 0;
 
-	/* Turn the LCD Backlight on. */
-	prvPDCWrite( PDC_CSR, 0x01 );
+    while( uxIndex < sizeof( ucCFGData ) )
+    {
+        prvPDCWrite( PDC_LCD_CSR, ucCFGData[ uxIndex ] );
+        uxIndex++;
+        vTaskDelay( mainCHAR_WRITE_DELAY );
+    }
 
-	/* Clear display. */
-	vTaskDelay( mainCHAR_WRITE_DELAY );
-	prvPDCWrite( PDC_LCD_CSR, LCD_CLEAR );
+    /* Turn the LCD Backlight on. */
+    prvPDCWrite( PDC_CSR, 0x01 );
 
-	uxIndex = 0;
-	for( ;; )
-	{
-		/* Wait for a message to arrive. */
-		if( xQueueReceive( *pxLCDQueue, &xReceivedMessage, portMAX_DELAY ) )
-		{
-			/* Which row does the received message say to write to? */
-			PDCLCDSetPos( 0, xReceivedMessage.xRow );
+    /* Clear display. */
+    vTaskDelay( mainCHAR_WRITE_DELAY );
+    prvPDCWrite( PDC_LCD_CSR, LCD_CLEAR );
 
-			/* Where is the string we are going to display? */
-			pcString = *xReceivedMessage.ppcMessageToDisplay;
+    uxIndex = 0;
 
-			while( *pcString )
-			{
-				/* Don't write out the string too quickly as LCD's are usually
-				pretty slow devices. */
-				vTaskDelay( mainCHAR_WRITE_DELAY );
-				prvPDCWrite( PDC_LCD_RAM, *pcString );
-				pcString++;
-			}
-		}
-	}
+    for( ; ; )
+    {
+        /* Wait for a message to arrive. */
+        if( xQueueReceive( *pxLCDQueue, &xReceivedMessage, portMAX_DELAY ) )
+        {
+            /* Which row does the received message say to write to? */
+            PDCLCDSetPos( 0, xReceivedMessage.xRow );
+
+            /* Where is the string we are going to display? */
+            pcString = *xReceivedMessage.ppcMessageToDisplay;
+
+            while( *pcString )
+            {
+                /* Don't write out the string too quickly as LCD's are usually
+                 * pretty slow devices. */
+                vTaskDelay( mainCHAR_WRITE_DELAY );
+                prvPDCWrite( PDC_LCD_RAM, *pcString );
+                pcString++;
+            }
+        }
+    }
 }
 /*-----------------------------------------------------------*/
 
-static void prvADCCoRoutine( CoRoutineHandle_t xHandle, unsigned portBASE_TYPE uxIndex )
+static void prvADCCoRoutine( CoRoutineHandle_t xHandle,
+                             unsigned portBASE_TYPE uxIndex )
 {
-static unsigned long ulADCValue;
-static char cMessageBuffer[ mainMAX_ADC_STRING_LEN ];
-static char *pcMessage;
-static xLCDMessage xMessageToSend;
+    static unsigned long ulADCValue;
+    static char cMessageBuffer[ mainMAX_ADC_STRING_LEN ];
+    static char * pcMessage;
+    static xLCDMessage xMessageToSend;
 
-	/* Co-routines MUST start with a call to crSTART(). */
-	crSTART( xHandle );
+    /* Co-routines MUST start with a call to crSTART(). */
+    crSTART( xHandle );
 
-	for( ;; )
-	{
-		/* Start an ADC conversion. */
-		ADCProcessorTrigger( ADC_BASE, 0 );
+    for( ; ; )
+    {
+        /* Start an ADC conversion. */
+        ADCProcessorTrigger( ADC_BASE, 0 );
 
-		/* Simply delay - when we unblock the result should be available */
-		crDELAY( xHandle, mainADC_DELAY );
+        /* Simply delay - when we unblock the result should be available */
+        crDELAY( xHandle, mainADC_DELAY );
 
-		/* Get the ADC result. */
-		ADCSequenceDataGet( ADC_BASE, 0, &ulADCValue );
+        /* Get the ADC result. */
+        ADCSequenceDataGet( ADC_BASE, 0, &ulADCValue );
 
-		/* Create a string with the result. */
-		sprintf( cMessageBuffer, "ADC = %d   ", ulADCValue );
-		pcMessage = cMessageBuffer;
+        /* Create a string with the result. */
+        sprintf( cMessageBuffer, "ADC = %d   ", ulADCValue );
+        pcMessage = cMessageBuffer;
 
-		/* Configure the message we are going to send for display. */
-		xMessageToSend.ppcMessageToDisplay = ( char** ) &pcMessage;
-		xMessageToSend.xRow = mainBOTTOM_ROW;
+        /* Configure the message we are going to send for display. */
+        xMessageToSend.ppcMessageToDisplay = ( char ** ) &pcMessage;
+        xMessageToSend.xRow = mainBOTTOM_ROW;
 
-		/* Send the string to the LCD task for display.  We are sending
-		on a task queue so do not have the option to block. */
-		if( !xQueueSend( xLCDQueue, ( void * ) &xMessageToSend, 0 ) )
-		{
-			uxErrorStatus = pdFAIL;
-		}
-	}
+        /* Send the string to the LCD task for display.  We are sending
+         * on a task queue so do not have the option to block. */
+        if( !xQueueSend( xLCDQueue, ( void * ) &xMessageToSend, 0 ) )
+        {
+            uxErrorStatus = pdFAIL;
+        }
+    }
 
-	/* Co-routines MUST end with a call to crEND(). */
-	crEND();
+    /* Co-routines MUST end with a call to crEND(). */
+    crEND();
 }
 /*-----------------------------------------------------------*/
 
 static void prvSetupHardware( void )
 {
-	/* Setup the PLL. */
-	SysCtlClockSet( SYSCTL_SYSDIV_10 | SYSCTL_USE_PLL | SYSCTL_OSC_MAIN | SYSCTL_XTAL_6MHZ );
+    /* Setup the PLL. */
+    SysCtlClockSet( SYSCTL_SYSDIV_10 | SYSCTL_USE_PLL | SYSCTL_OSC_MAIN | SYSCTL_XTAL_6MHZ );
 
-	/* Initialise the hardware used to talk to the LCD, LED's and UART. */
-	PDCInit();
-	vParTestInitialise();
-	vSerialInit();
+    /* Initialise the hardware used to talk to the LCD, LED's and UART. */
+    PDCInit();
+    vParTestInitialise();
+    vSerialInit();
 
-	/* The ADC is used to read the light sensor. */
-	SysCtlPeripheralEnable( SYSCTL_PERIPH_ADC );
-    ADCSequenceConfigure( ADC_BASE, 3, ADC_TRIGGER_PROCESSOR, 0);
+    /* The ADC is used to read the light sensor. */
+    SysCtlPeripheralEnable( SYSCTL_PERIPH_ADC );
+    ADCSequenceConfigure( ADC_BASE, 3, ADC_TRIGGER_PROCESSOR, 0 );
     ADCSequenceStepConfigure( ADC_BASE, 0, 0, ADC_CTL_CH0 | ADC_CTL_END );
     ADCSequenceEnable( ADC_BASE, 0 );
-
 }
 /*-----------------------------------------------------------*/
 
-static void prvPDCWrite( char cAddress, char cData )
+static void prvPDCWrite( char cAddress,
+                         char cData )
 {
-	vTaskSuspendAll();
-	{
-		PDCWrite( cAddress, cData );
-	}
-	xTaskResumeAll();
+    vTaskSuspendAll();
+    {
+        PDCWrite( cAddress, cData );
+    }
+    xTaskResumeAll();
 }
 /*-----------------------------------------------------------*/
 
 void vSetErrorLED( void )
 {
-	vParTestSetLED( mainFAIL_LED, pdTRUE );
+    vParTestSetLED( mainFAIL_LED, pdTRUE );
 }
 /*-----------------------------------------------------------*/
 
 void vApplicationIdleHook( void )
 {
-	/* The co-routines are executed in the idle task using the idle task
-	hook. */
-	for( ;; )
-	{
-		/* Schedule the co-routines. */
-		vCoRoutineSchedule();
+    /* The co-routines are executed in the idle task using the idle task
+     * hook. */
+    for( ; ; )
+    {
+        /* Schedule the co-routines. */
+        vCoRoutineSchedule();
 
-		/* Run the register check function between each co-routine. */
-		vSetAndCheckRegisters();
+        /* Run the register check function between each co-routine. */
+        vSetAndCheckRegisters();
 
-		/* See if the comms task and co-routine has found any errors. */
-		if( uxGetCommsStatus() != pdPASS )
-		{
-			vParTestSetLED( mainFAIL_LED, pdTRUE );
-		}
-	}
+        /* See if the comms task and co-routine has found any errors. */
+        if( uxGetCommsStatus() != pdPASS )
+        {
+            vParTestSetLED( mainFAIL_LED, pdTRUE );
+        }
+    }
 }
 /*-----------------------------------------------------------*/

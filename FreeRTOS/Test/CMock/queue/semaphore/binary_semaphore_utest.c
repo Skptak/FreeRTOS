@@ -210,7 +210,7 @@ void test_macro_xSemaphoreGive_multiple_fail( void )
  * @brief Test xSemaphoreTake multiple times on a Binary Semaphore
  * @details Create a binary semaphore using xSemaphoreCreateBinary,
  * verify that an immediate call to xSemaphoreGive succeeds, a subsequent
- * call to xSemaphoreTake succeds, but a second call to xSemaphoreTake fails.
+ * call to xSemaphoreTake succeeds, but a second call to xSemaphoreTake fails.
  * @coverage xQueueSemaphoreTake
  */
 void test_macro_xSemaphoreTake_multiple_fail( void )

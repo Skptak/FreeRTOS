@@ -16,6 +16,7 @@
 *
 * Copyright (C) 2013 Renesas Electronics Corporation. All rights reserved.
 ***********************************************************************************************************************/
+
 /***********************************************************************************************************************
 * File Name    : r_private.h
 * Description  : Definitions internal to byte queue module
@@ -29,29 +30,29 @@
 #define BYTEQ_PRIVATE_H
 
 /***********************************************************************************************************************
-Includes   <System Includes> , "Project Includes"
+*  Includes   <System Includes> , "Project Includes"
 ***********************************************************************************************************************/
 #include "platform.h"
 
 
 /***********************************************************************************************************************
-Macro definitions
+*  Macro definitions
 ***********************************************************************************************************************/
 
 
 /*****************************************************************************
-Typedef definitions
-******************************************************************************/
+ * Typedef definitions
+ ******************************************************************************/
 
 /* QUEUE CONTROL BLOCK */
 
-typedef struct st_byteq_ctrl    // Byte Queue Control Block (for handle)
+typedef struct st_byteq_ctrl /* Byte Queue Control Block (for handle) */
 {
-    uint8_t     *buffer;        // pointer to buffer
-    uint16_t    size;           // buffer size
-    uint16_t    count;          // number data bytes in queue
-    uint16_t    in_index;       // index used by Put function to add data
-    uint16_t    out_index;      // index used by Get function to remove data
+    uint8_t * buffer;        /* pointer to buffer */
+    uint16_t size;           /* buffer size */
+    uint16_t count;          /* number data bytes in queue */
+    uint16_t in_index;       /* index used by Put function to add data */
+    uint16_t out_index;      /* index used by Get function to remove data */
 } byteq_ctrl_t;
 
 

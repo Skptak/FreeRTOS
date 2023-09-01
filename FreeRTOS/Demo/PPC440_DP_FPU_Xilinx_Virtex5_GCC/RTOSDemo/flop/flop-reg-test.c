@@ -73,151 +73,149 @@
 
 /*-----------------------------------------------------------*/
 
-#define flopNUMBER_OF_TASKS		2
-#define flopSTART_VALUE ( 0x0000000100000001LL )
+#define flopNUMBER_OF_TASKS    2
+#define flopSTART_VALUE        ( 0x0000000100000001LL )
 
 /*-----------------------------------------------------------*/
 
 /* The two test tasks as described at the top of this file. */
-static void vFlopTest1( void *pvParameters );
-static void vFlopTest2( void *pvParameters );
+static void vFlopTest1( void * pvParameters );
+static void vFlopTest2( void * pvParameters );
 
 /*-----------------------------------------------------------*/
 
 /* Buffers into which the flop registers will be saved.  There is a buffer for
-both tasks. */
+ * both tasks. */
 static volatile portDOUBLE dFlopRegisters[ flopNUMBER_OF_TASKS ][ portNO_FLOP_REGISTERS_TO_SAVE ];
 
 /* Variables that are incremented by the tasks to indicate that they are still
-running. */
+ * running. */
 static volatile unsigned long ulFlop1CycleCount = 0, ulFlop2CycleCount = 0;
 
 /*-----------------------------------------------------------*/
 
 void vStartFlopRegTests( void )
 {
-TaskHandle_t xTaskJustCreated;
-unsigned portBASE_TYPE x, y;
-portDOUBLE z = flopSTART_VALUE;
+    TaskHandle_t xTaskJustCreated;
+    unsigned portBASE_TYPE x, y;
+    portDOUBLE z = flopSTART_VALUE;
 
-	/* Fill the arrays into which the flop registers are to be saved with
-	known values.  These are the values that will be written to the flop
-	registers when the tasks start, and as the tasks do not perform any
-	flop operations the values should never change.  Each position in the
-	buffer contains a different value so the flop context of each task
-	will be different. */
-	for( x = 0; x < flopNUMBER_OF_TASKS; x++ )
-	{
-		for( y = 0; y < ( portNO_FLOP_REGISTERS_TO_SAVE - 1); y++ )
-		{
-			dFlopRegisters[ x ][ y ] = z;
-			z+=flopSTART_VALUE;
-		}
-	}
+    /* Fill the arrays into which the flop registers are to be saved with
+     * known values.  These are the values that will be written to the flop
+     * registers when the tasks start, and as the tasks do not perform any
+     * flop operations the values should never change.  Each position in the
+     * buffer contains a different value so the flop context of each task
+     * will be different. */
+    for( x = 0; x < flopNUMBER_OF_TASKS; x++ )
+    {
+        for( y = 0; y < ( portNO_FLOP_REGISTERS_TO_SAVE - 1 ); y++ )
+        {
+            dFlopRegisters[ x ][ y ] = z;
+            z += flopSTART_VALUE;
+        }
+    }
 
+    /* Create the first task. */
+    xTaskCreate( vFlopTest1, "flop1", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY, &xTaskJustCreated );
 
-	/* Create the first task. */
-	xTaskCreate( vFlopTest1, "flop1", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY, &xTaskJustCreated );
+    /* The task	tag value is a value that can be associated with a task, but
+     * is not used by the scheduler itself.  Its use is down to the application so
+     * it makes a convenient place in this case to store the pointer to the buffer
+     * into which the flop context of the task will be stored.  The first created
+     * task uses dFlopRegisters[ 0 ], the second dFlopRegisters[ 1 ]. */
+    vTaskSetApplicationTaskTag( xTaskJustCreated, ( void * ) &( dFlopRegisters[ 0 ][ 0 ] ) );
 
-	/* The task	tag value is a value that can be associated with a task, but
-	is not used by the scheduler itself.  Its use is down to the application so
-	it makes a convenient place in this case to store the pointer to the buffer
-	into which the flop context of the task will be stored.  The first created
-	task uses dFlopRegisters[ 0 ], the second dFlopRegisters[ 1 ]. */
-	vTaskSetApplicationTaskTag( xTaskJustCreated, ( void * ) &( dFlopRegisters[ 0 ][ 0 ] ) );
-
-	/* Do the same for the second task. */
-	xTaskCreate( vFlopTest2, "flop2", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY, &xTaskJustCreated );
-	vTaskSetApplicationTaskTag( xTaskJustCreated, ( void * ) &( dFlopRegisters[ 1 ][ 0 ] ) );
+    /* Do the same for the second task. */
+    xTaskCreate( vFlopTest2, "flop2", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY, &xTaskJustCreated );
+    vTaskSetApplicationTaskTag( xTaskJustCreated, ( void * ) &( dFlopRegisters[ 1 ][ 0 ] ) );
 }
 /*-----------------------------------------------------------*/
 
-static void vFlopTest1( void *pvParameters )
+static void vFlopTest1( void * pvParameters )
 {
-	/* Just to remove compiler warning. */
-	( void ) pvParameters;
+    /* Just to remove compiler warning. */
+    ( void ) pvParameters;
 
-	for( ;; )
-	{
-		/* The values from the buffer should have now been written to the flop
-		registers.  Clear the buffer to ensure the same values then get written
-		back the next time the task runs.  Being preempted during this memset
-		could cause the test to fail, hence the critical section. */
-		portENTER_CRITICAL();
-			memset( ( void * ) dFlopRegisters[ 0 ], 0x00, ( portNO_FLOP_REGISTERS_TO_SAVE * sizeof( portDOUBLE ) ) );
-		portEXIT_CRITICAL();
+    for( ; ; )
+    {
+        /* The values from the buffer should have now been written to the flop
+         * registers.  Clear the buffer to ensure the same values then get written
+         * back the next time the task runs.  Being preempted during this memset
+         * could cause the test to fail, hence the critical section. */
+        portENTER_CRITICAL();
+        memset( ( void * ) dFlopRegisters[ 0 ], 0x00, ( portNO_FLOP_REGISTERS_TO_SAVE * sizeof( portDOUBLE ) ) );
+        portEXIT_CRITICAL();
 
-		/* We don't have to do anything other than indicate that we are
-		still running. */
-		ulFlop1CycleCount++;
-		taskYIELD();
-	}
+        /* We don't have to do anything other than indicate that we are
+         * still running. */
+        ulFlop1CycleCount++;
+        taskYIELD();
+    }
 }
 /*-----------------------------------------------------------*/
 
-static void vFlopTest2( void *pvParameters )
+static void vFlopTest2( void * pvParameters )
 {
-	/* Just to remove compiler warning. */
-	( void ) pvParameters;
+    /* Just to remove compiler warning. */
+    ( void ) pvParameters;
 
-	for( ;; )
-	{
-		/* The values from the buffer should have now been written to the flop
-		registers.  Clear the buffer to ensure the same values then get written
-		back the next time the task runs. */
-		portENTER_CRITICAL();
-			memset( ( void * ) dFlopRegisters[ 1 ], 0x00, ( portNO_FLOP_REGISTERS_TO_SAVE * sizeof( portDOUBLE ) ) );
-		portEXIT_CRITICAL();
+    for( ; ; )
+    {
+        /* The values from the buffer should have now been written to the flop
+         * registers.  Clear the buffer to ensure the same values then get written
+         * back the next time the task runs. */
+        portENTER_CRITICAL();
+        memset( ( void * ) dFlopRegisters[ 1 ], 0x00, ( portNO_FLOP_REGISTERS_TO_SAVE * sizeof( portDOUBLE ) ) );
+        portEXIT_CRITICAL();
 
-		/* We don't have to do anything other than indicate that we are
-		still running. */
-		ulFlop2CycleCount++;
-		taskYIELD();
-	}
+        /* We don't have to do anything other than indicate that we are
+         * still running. */
+        ulFlop2CycleCount++;
+        taskYIELD();
+    }
 }
 /*-----------------------------------------------------------*/
 
 portBASE_TYPE xAreFlopRegisterTestsStillRunning( void )
 {
-portBASE_TYPE xReturn = pdPASS;
-unsigned portBASE_TYPE x, y;
-portDOUBLE z = flopSTART_VALUE;
-static unsigned long ulLastFlop1CycleCount = 0, ulLastFlop2CycleCount = 0;
+    portBASE_TYPE xReturn = pdPASS;
+    unsigned portBASE_TYPE x, y;
+    portDOUBLE z = flopSTART_VALUE;
+    static unsigned long ulLastFlop1CycleCount = 0, ulLastFlop2CycleCount = 0;
 
-	/* Called from the 'check' task.
+    /* Called from the 'check' task.
+     *
+     * The flop tasks cannot be currently running, check their saved registers
+     * are as expected.  The tests tasks do not perform any flop operations so
+     * their registers should be as per their initial setting. */
+    for( x = 0; x < flopNUMBER_OF_TASKS; x++ )
+    {
+        for( y = 0; y < ( portNO_FLOP_REGISTERS_TO_SAVE - 1 ); y++ )
+        {
+            if( dFlopRegisters[ x ][ y ] != z )
+            {
+                xReturn = pdFAIL;
+                break;
+            }
 
-	The flop tasks cannot be currently running, check their saved registers
-	are as expected.  The tests tasks do not perform any flop operations so
-	their registers should be as per their initial setting. */
-	for( x = 0; x < flopNUMBER_OF_TASKS; x++ )
-	{
-		for( y = 0; y < ( portNO_FLOP_REGISTERS_TO_SAVE - 1 ); y++ )
-		{
-			if( dFlopRegisters[ x ][ y ] != z )
-			{
-				xReturn = pdFAIL;
-				break;
-			}
+            z += flopSTART_VALUE;
+        }
+    }
 
-			z+=flopSTART_VALUE;
-		}
-	}
+    /* Check both tasks have actually been swapped in and out since this function
+     * last executed. */
+    if( ulFlop1CycleCount == ulLastFlop1CycleCount )
+    {
+        xReturn = pdFAIL;
+    }
 
-	/* Check both tasks have actually been swapped in and out since this function
-	last executed. */
-	if( ulFlop1CycleCount == ulLastFlop1CycleCount )
-	{
-		xReturn = pdFAIL;
-	}
+    if( ulFlop2CycleCount == ulLastFlop2CycleCount )
+    {
+        xReturn = pdFAIL;
+    }
 
-	if( ulFlop2CycleCount == ulLastFlop2CycleCount )
-	{
-		xReturn = pdFAIL;
-	}
+    ulLastFlop1CycleCount = ulFlop1CycleCount;
+    ulLastFlop2CycleCount = ulFlop2CycleCount;
 
-	ulLastFlop1CycleCount = ulFlop1CycleCount;
-	ulLastFlop2CycleCount = ulFlop2CycleCount;
-
-	return xReturn;
+    return xReturn;
 }
-

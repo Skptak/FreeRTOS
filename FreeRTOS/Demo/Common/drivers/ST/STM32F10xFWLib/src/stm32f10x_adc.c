@@ -1028,9 +1028,9 @@ void ADC_InjectedSequencerLengthConfig( ADC_TypeDef * ADCx,
 
     /* Get the old register value */
     tmpreg1 = ADCx->JSQR;
-    /* Clear the old injected sequnence lenght JL bits */
+    /* Clear the old injected sequnence length JL bits */
     tmpreg1 &= JSQR_JL_Reset;
-    /* Set the injected sequnence lenght JL bits */
+    /* Set the injected sequnence length JL bits */
     tmpreg2 = Length - 1;
     tmpreg1 |= ( u32 ) tmpreg2 << 20;
     /* Store the new register value */
@@ -1332,7 +1332,7 @@ ITStatus ADC_GetITStatus( ADC_TypeDef * ADCx,
 
 /*******************************************************************************
 * Function Name  : ADC_ClearITPendingBit
-* Description    : Clears the ADC’s interrupt pending bits.
+* Description    : Clears the ADCï¿½s interrupt pending bits.
 * Input          : - ADC_IT: specifies the ADC interrupt pending bit to clear.
 *                    This parameter can be any combination of the following values:
 *                       - ADC_IT_EOC: End of conversion interrupt mask

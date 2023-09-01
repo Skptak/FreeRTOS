@@ -20,8 +20,9 @@
 
 
 /** @file mec14xx_timers.c
- *MEC14xx Timers
+ * MEC14xx Timers
  */
+
 /** @defgroup MEC14xx Peripherals Timers
  *  @{
  */
@@ -34,20 +35,22 @@
 #include "MEC14xx/mec14xx_timers.h"
 
 
-// pairs of bytes (sleep reg, bit position)
-// sleep reg = 0 for EC_SLEEP_EN or 1 for EC_SLEEP_EN2
-//
-struct btmr_sleep_info_s {
+/* pairs of bytes (sleep reg, bit position) */
+/* sleep reg = 0 for EC_SLEEP_EN or 1 for EC_SLEEP_EN2 */
+/* */
+struct btmr_sleep_info_s
+{
     uint8_t slp_reg;
     uint8_t bit_pos;
 };
 
-static const struct btmr_sleep_info_s btmr_slp_info[BTMR_MAX_INSTANCE] = {
-    { 0, PCR_EC_TIMER0_SLP_BITPOS },
-    { 0, PCR_EC_TIMER1_SLP_BITPOS },
+static const struct btmr_sleep_info_s btmr_slp_info[ BTMR_MAX_INSTANCE ] =
+{
+    { 0, PCR_EC_TIMER0_SLP_BITPOS  },
+    { 0, PCR_EC_TIMER1_SLP_BITPOS  },
     { 1, PCR_EC2_TIMER2_SLP_BITPOS },
     { 1, PCR_EC2_TIMER3_SLP_BITPOS }
- };
+};
 
 
 #ifdef MEC14XX_BTIMER_CHECK_ID
@@ -62,33 +65,35 @@ static const struct btmr_sleep_info_s btmr_slp_info[BTMR_MAX_INSTANCE] = {
  *
  * @return uint8_t Non-zero(VALID), 0(Invalid)
  */
-static uint8_t btmr_valid(uint8_t tmr_id)
-{
-    if ( tmr_id < (BTMR_ID_MAX ) ) {
-        return true;
-    }
-    return false;
-}
+    static uint8_t btmr_valid( uint8_t tmr_id )
+    {
+        if( tmr_id < ( BTMR_ID_MAX ) )
+        {
+            return true;
+        }
 
-#else
+        return false;
+    }
+
+#else /* ifdef MEC14XX_BTIMER_CHECK_ID */
 
 /**
  * @brief - This version of tmr_valid skips checking always
  *        returning TRUE. Compiler may optimize it out.
  *
  */
-static uint8_t btmr_valid(uint8_t tmr_id)
-{
-    (void) tmr_id;
-    return true;
-}
+    static uint8_t btmr_valid( uint8_t tmr_id )
+    {
+        ( void ) tmr_id;
+        return true;
+    }
 
-#endif
+#endif /* ifdef MEC14XX_BTIMER_CHECK_ID */
 
-uint32_t btmr_get_hw_addr(uint8_t btmr_id)
+uint32_t btmr_get_hw_addr( uint8_t btmr_id )
 {
-    return (uint32_t)(BTMR0_BASE) +
-           ((uint32_t)(btmr_id) << (BTMR_INSTANCE_BITPOS));
+    return ( uint32_t ) ( BTMR0_BASE ) +
+           ( ( uint32_t ) ( btmr_id ) << ( BTMR_INSTANCE_BITPOS ) );
 }
 
 /**
@@ -100,23 +105,34 @@ uint32_t btmr_get_hw_addr(uint8_t btmr_id)
  * @param tmr_id zero based timer ID.
  * @param pwr_on boolean true=ON, false=OFF
  */
-void btmr_sleep_en(uint8_t tmr_id, uint8_t sleep_en)
+void btmr_sleep_en( uint8_t tmr_id,
+                    uint8_t sleep_en )
 {
     uint32_t sleep_mask;
     uint32_t volatile * p;
 
     sleep_mask = 0ul;
-    if ( btmr_valid(tmr_id) ) {
-        if (btmr_slp_info[tmr_id].slp_reg) {
-            p = (uint32_t volatile *)&(PCR->EC_SLEEP_EN2);
-        } else {
-            p = (uint32_t volatile *)&(PCR->EC_SLEEP_EN);
+
+    if( btmr_valid( tmr_id ) )
+    {
+        if( btmr_slp_info[ tmr_id ].slp_reg )
+        {
+            p = ( uint32_t volatile * ) &( PCR->EC_SLEEP_EN2 );
         }
-        sleep_mask = (1ul << btmr_slp_info[tmr_id].bit_pos);
-        if (sleep_en) {
-            *p |= (sleep_mask);
-        } else {
-            *p &= ~(sleep_mask);
+        else
+        {
+            p = ( uint32_t volatile * ) &( PCR->EC_SLEEP_EN );
+        }
+
+        sleep_mask = ( 1ul << btmr_slp_info[ tmr_id ].bit_pos );
+
+        if( sleep_en )
+        {
+            *p |= ( sleep_mask );
+        }
+        else
+        {
+            *p &= ~( sleep_mask );
         }
     }
 }
@@ -130,24 +146,28 @@ void btmr_sleep_en(uint8_t tmr_id, uint8_t sleep_en)
  * @note Soft reset set all registers to POR values.
  * Spins 256 times waiting on hardware to clear reset bit.
  */
-void btmr_reset(uint8_t tmr_id)
+void btmr_reset( uint8_t tmr_id )
 {
-   BTMR_TypeDef * p;
-   uint32_t wait_cnt;
+    BTMR_TypeDef * p;
+    uint32_t wait_cnt;
 
-   if (btmr_valid(tmr_id)) {
-      p = (BTMR_TypeDef *)btmr_get_hw_addr(tmr_id);
+    if( btmr_valid( tmr_id ) )
+    {
+        p = ( BTMR_TypeDef * ) btmr_get_hw_addr( tmr_id );
 
-      p->CONTROL = (BTMR_CNTL_SOFT_RESET);
+        p->CONTROL = ( BTMR_CNTL_SOFT_RESET );
 
-      wait_cnt = 256ul;
-      do {
-          if ( 0ul == (p->CONTROL & BTMR_CNTL_SOFT_RESET) ) {
-              break;
-          }
-      }
-      while ( wait_cnt-- );
-   }
+        wait_cnt = 256ul;
+
+        do
+        {
+            if( 0ul == ( p->CONTROL & BTMR_CNTL_SOFT_RESET ) )
+            {
+                break;
+            }
+        }
+        while( wait_cnt-- );
+    }
 }
 
 /**
@@ -159,39 +179,44 @@ void btmr_reset(uint8_t tmr_id)
  * @note performs a soft reset of the timer before
  *       configuration.
  */
-void btmr_init(uint8_t tmr_id,
-               uint16_t tmr_cntl,
-               uint16_t prescaler,
-               uint32_t initial_count,
-               uint32_t preload_count)
+void btmr_init( uint8_t tmr_id,
+                uint16_t tmr_cntl,
+                uint16_t prescaler,
+                uint32_t initial_count,
+                uint32_t preload_count )
 {
     BTMR_TypeDef * pTMR;
 
     pTMR = NULL;
 
-    if (btmr_valid(tmr_id)) {
-        btmr_reset(tmr_id);
+    if( btmr_valid( tmr_id ) )
+    {
+        btmr_reset( tmr_id );
 
-        pTMR = (BTMR_TypeDef *)btmr_get_hw_addr(tmr_id);
+        pTMR = ( BTMR_TypeDef * ) btmr_get_hw_addr( tmr_id );
 
-        // Ungate timer clocks and program prescale
-        pTMR->CONTROL = ((uint32_t)prescaler << 16) + (BTMR_CNTL_ENABLE);
+        /* Ungate timer clocks and program prescale */
+        pTMR->CONTROL = ( ( uint32_t ) prescaler << 16 ) + ( BTMR_CNTL_ENABLE );
 
-        // Program Preload & initial counter value
+        /* Program Preload & initial counter value */
         pTMR->PRELOAD = preload_count;
         pTMR->COUNT = initial_count;
 
-        // Program control register, interrupt enable, and clear status
-        if (tmr_cntl & BTMR_COUNT_UP) {
+        /* Program control register, interrupt enable, and clear status */
+        if( tmr_cntl & BTMR_COUNT_UP )
+        {
             pTMR->CONTROL |= BTMR_CNTL_COUNT_UP;
         }
-        if (tmr_cntl & BTMR_AUTO_RESTART) {
+
+        if( tmr_cntl & BTMR_AUTO_RESTART )
+        {
             pTMR->CONTROL |= BTMR_CNTL_AUTO_RESTART;
         }
 
-        if (tmr_cntl & BTMR_INT_EN) {
-            pTMR->INTEN = 0x01u;    // enable first
-            pTMR->STATUS = 0x01u;   // clear status
+        if( tmr_cntl & BTMR_INT_EN )
+        {
+            pTMR->INTEN = 0x01u;  /* enable first */
+            pTMR->STATUS = 0x01u; /* clear status */
         }
     }
 }
@@ -206,17 +231,22 @@ void btmr_init(uint8_t tmr_id,
  *            disable.
  * @note Write 0 or 1 to timer's INTEN register.
  */
-void btmr_ien(uint8_t tmr_id, uint8_t ien)
+void btmr_ien( uint8_t tmr_id,
+               uint8_t ien )
 {
     BTMR_TypeDef * p;
 
-    if (btmr_valid(tmr_id)) {
-        p = (BTMR_TypeDef *)btmr_get_hw_addr(tmr_id);
+    if( btmr_valid( tmr_id ) )
+    {
+        p = ( BTMR_TypeDef * ) btmr_get_hw_addr( tmr_id );
 
-        if (ien) {
-             p->INTEN = (BTMR_INTEN);
-        } else {
-             p->INTEN = (BTMR_INTDIS);
+        if( ien )
+        {
+            p->INTEN = ( BTMR_INTEN );
+        }
+        else
+        {
+            p->INTEN = ( BTMR_INTDIS );
         }
     }
 }
@@ -233,20 +263,24 @@ void btmr_ien(uint8_t tmr_id, uint8_t ien)
  * @note If timer interrupt status is set then clear it before
  *       returning.
  */
-uint8_t btmr_get_clr_ists(uint8_t tmr_id)
+uint8_t btmr_get_clr_ists( uint8_t tmr_id )
 {
     BTMR_TypeDef * p;
     uint8_t rc;
 
-    rc = (MEC14XX_FALSE);
-    if (btmr_valid(tmr_id)) {
-        p = (BTMR_TypeDef *)btmr_get_hw_addr(tmr_id);
+    rc = ( MEC14XX_FALSE );
 
-        if ( p->STATUS ) {
-            p->STATUS = (BTMR_STATUS_ACTIVE);
+    if( btmr_valid( tmr_id ) )
+    {
+        p = ( BTMR_TypeDef * ) btmr_get_hw_addr( tmr_id );
+
+        if( p->STATUS )
+        {
+            p->STATUS = ( BTMR_STATUS_ACTIVE );
             rc = true;
         }
     }
+
     return rc;
 }
 
@@ -257,14 +291,16 @@ uint8_t btmr_get_clr_ists(uint8_t tmr_id)
  * @param tmr_id zero based timer ID.
  * @note Hardware will only reload counter if timer is running.
  */
-void btmr_reload(uint8_t tmr_id)
+void btmr_reload( uint8_t tmr_id )
 {
     BTMR_TypeDef * p;
 
-    if ( btmr_valid(tmr_id) ) {
-        p = (BTMR_TypeDef *)btmr_get_hw_addr(tmr_id);
+    if( btmr_valid( tmr_id ) )
+    {
+        p = ( BTMR_TypeDef * ) btmr_get_hw_addr( tmr_id );
 
-        if (p->CONTROL & BTMR_CNTL_START) {
+        if( p->CONTROL & BTMR_CNTL_START )
+        {
             p->CONTROL |= BTMR_CNTL_RELOAD;
         }
     }
@@ -281,12 +317,14 @@ void btmr_reload(uint8_t tmr_id)
  *       hardware counter. If the timer is 16-bit only the lower
  *       16-bits of the count paramter are used.
  */
-void btmr_set_count(uint8_t tmr_id, uint32_t count)
+void btmr_set_count( uint8_t tmr_id,
+                     uint32_t count )
 {
     BTMR_TypeDef * p;
 
-    if (btmr_valid(tmr_id)) {
-        p = (BTMR_TypeDef *)btmr_get_hw_addr(tmr_id);
+    if( btmr_valid( tmr_id ) )
+    {
+        p = ( BTMR_TypeDef * ) btmr_get_hw_addr( tmr_id );
 
         p->COUNT = count;
     }
@@ -303,15 +341,17 @@ void btmr_set_count(uint8_t tmr_id, uint32_t count)
  *         upon the hardware.  On MEC1322 Timers 0-3 are 16-bit
  *         and Timers 4-5 are 32-bit.
  */
-uint32_t btmr_count(uint8_t tmr_id)
+uint32_t btmr_count( uint8_t tmr_id )
 {
     BTMR_TypeDef * p;
     uint32_t cnt;
 
     cnt = 0ul;
-    if ( btmr_valid(tmr_id) ) {
-        p = (BTMR_TypeDef *)btmr_get_hw_addr(tmr_id);
-        cnt = (uint32_t)(p->COUNT);
+
+    if( btmr_valid( tmr_id ) )
+    {
+        p = ( BTMR_TypeDef * ) btmr_get_hw_addr( tmr_id );
+        cnt = ( uint32_t ) ( p->COUNT );
     }
 
     return cnt;
@@ -324,12 +364,13 @@ uint32_t btmr_count(uint8_t tmr_id)
  *
  * @param tmr_id zero based timer ID.
  */
-void btmr_start(uint8_t btmr_id)
+void btmr_start( uint8_t btmr_id )
 {
     BTMR_TypeDef * p;
 
-    if ( btmr_valid(btmr_id) ) {
-        p = (BTMR_TypeDef *)btmr_get_hw_addr(btmr_id);
+    if( btmr_valid( btmr_id ) )
+    {
+        p = ( BTMR_TypeDef * ) btmr_get_hw_addr( btmr_id );
         p->CONTROL |= BTMR_CNTL_START;
     }
 }
@@ -343,13 +384,14 @@ void btmr_start(uint8_t btmr_id)
  * @note When a stopped timer is started again it will reload
  *       the count register from preload value.
  */
-void btmr_stop(uint8_t tmr_id)
+void btmr_stop( uint8_t tmr_id )
 {
     BTMR_TypeDef * p;
 
-    if (btmr_valid(tmr_id)) {
-        p = (BTMR_TypeDef *)btmr_get_hw_addr(tmr_id);
-        p->CONTROL &= ~(BTMR_CNTL_START);
+    if( btmr_valid( tmr_id ) )
+    {
+        p = ( BTMR_TypeDef * ) btmr_get_hw_addr( tmr_id );
+        p->CONTROL &= ~( BTMR_CNTL_START );
     }
 }
 
@@ -362,19 +404,24 @@ void btmr_stop(uint8_t tmr_id)
  *
  * @return uint8_t false(timer not started), true(timer started)
  */
-uint8_t btmr_is_stopped(uint8_t tmr_id)
+uint8_t btmr_is_stopped( uint8_t tmr_id )
 {
     BTMR_TypeDef * p;
     uint8_t rc;
 
-    rc = (MEC14XX_TRUE);
-    if (btmr_valid(tmr_id)) {
-        rc = (MEC14XX_FALSE);
-        p = (BTMR_TypeDef *)btmr_get_hw_addr(tmr_id);
-        if ((p->CONTROL & BTMR_CNTL_START) == 0) {
-            rc = (MEC14XX_TRUE);
+    rc = ( MEC14XX_TRUE );
+
+    if( btmr_valid( tmr_id ) )
+    {
+        rc = ( MEC14XX_FALSE );
+        p = ( BTMR_TypeDef * ) btmr_get_hw_addr( tmr_id );
+
+        if( ( p->CONTROL & BTMR_CNTL_START ) == 0 )
+        {
+            rc = ( MEC14XX_TRUE );
         }
     }
+
     return rc;
 }
 
@@ -389,13 +436,14 @@ uint8_t btmr_is_stopped(uint8_t tmr_id)
  *       unhalted, it will continue counting from the current
  *       count value.
  */
-void btmr_halt(uint8_t tmr_id)
+void btmr_halt( uint8_t tmr_id )
 {
     BTMR_TypeDef * p;
 
-    if ( btmr_valid(tmr_id) ) {
-        p = (BTMR_TypeDef *)btmr_get_hw_addr(tmr_id);
-        p->CONTROL |= (BTMR_CNTL_HALT);
+    if( btmr_valid( tmr_id ) )
+    {
+        p = ( BTMR_TypeDef * ) btmr_get_hw_addr( tmr_id );
+        p->CONTROL |= ( BTMR_CNTL_HALT );
     }
 }
 
@@ -407,17 +455,19 @@ void btmr_halt(uint8_t tmr_id)
  *
  * @param tmr_id zero based timer ID.
  */
-void btmr_unhalt(uint8_t tmr_id)
+void btmr_unhalt( uint8_t tmr_id )
 {
     BTMR_TypeDef * p;
 
-    if ( btmr_valid(tmr_id) ) {
-        p = (BTMR_TypeDef *)btmr_get_hw_addr(tmr_id);
-        p->CONTROL &= ~(BTMR_CNTL_HALT);
+    if( btmr_valid( tmr_id ) )
+    {
+        p = ( BTMR_TypeDef * ) btmr_get_hw_addr( tmr_id );
+        p->CONTROL &= ~( BTMR_CNTL_HALT );
     }
 }
 
 
 /* end mec14xx_timers.c */
+
 /**   @}
  */

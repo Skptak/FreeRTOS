@@ -21,6 +21,7 @@
 *
 * Copyright (C) 2014 Renesas Electronics Corporation. All rights reserved.
 *******************************************************************************/
+
 /*******************************************************************************
 * System Name  : RZ/T1 Init program
 * File Name    : loader_init2.c
@@ -33,23 +34,24 @@
 * Description  : Initialize the peripheral settings of RZ/T1
 * Limitation   : none
 *******************************************************************************/
+
 /*******************************************************************************
 * History      : DD.MM.YYYY Version  Description
 *              :                     First Release
 *******************************************************************************/
 #ifdef __ICCARM__
 
-#pragma section="VECTOR_RBLOCK"
-#pragma section="VECTOR_WBLOCK"
-#pragma section="USER_PRG_RBLOCK"
-#pragma section="USER_PRG_WBLOCK"
-#pragma section="USER_DATA_RBLOCK"
-#pragma section="USER_DATA_WBLOCK"
+    #pragma section="VECTOR_RBLOCK"
+    #pragma section="VECTOR_WBLOCK"
+    #pragma section="USER_PRG_RBLOCK"
+    #pragma section="USER_PRG_WBLOCK"
+    #pragma section="USER_DATA_RBLOCK"
+    #pragma section="USER_DATA_WBLOCK"
 
-#endif  // __ICCARM__
+#endif // __ICCARM__
 
 /*******************************************************************************
-Includes <System Includes> , "Project Includes"
+*  Includes <System Includes> , "Project Includes"
 *******************************************************************************/
 #include <stdint.h>
 #include <Renesas/ior7s910017.h>
@@ -63,32 +65,32 @@ Includes <System Includes> , "Project Includes"
 
 
 /*******************************************************************************
-Macro definitions
+*  Macro definitions
 *******************************************************************************/
 
 /*******************************************************************************
-Typedef definitions
+*  Typedef definitions
 *******************************************************************************/
 
 /*******************************************************************************
-Imported global variables and functions (from other files)
+*  Imported global variables and functions (from other files)
 *******************************************************************************/
-extern int _main(void);
-extern void bus_init(void);
-extern void set_low_vec(void);
-extern void cache_init(void);
-extern void __iar_data_init3(void);
+extern int _main( void );
+extern void bus_init( void );
+extern void set_low_vec( void );
+extern void cache_init( void );
+extern void __iar_data_init3( void );
 
 /*******************************************************************************
-Exported global variables and functions (to be accessed by other files)
+*  Exported global variables and functions (to be accessed by other files)
 *******************************************************************************/
 
 /*******************************************************************************
-Private variables and functions
+*  Private variables and functions
 *******************************************************************************/
-void loader_init2(void);
-void reset_check(void);
-void cpg_init(void);
+void loader_init2( void );
+void reset_check( void );
+void cpg_init( void );
 
 /*******************************************************************************
 * Function Name : loader_init2
@@ -96,7 +98,7 @@ void cpg_init(void);
 * Arguments    : none
 * Return Value : none
 *******************************************************************************/
-void loader_init2(void)
+void loader_init2( void )
 {
     /* Check the reset source */
     reset_check();
@@ -105,9 +107,10 @@ void loader_init2(void)
     cpg_init();
 
     /* Set ATCM access wait to 1-wait with optimization */
+
     /* Caution: ATCM_WAIT_0 is permitted if CPUCLK = 150MHz or 300MHz.
-                ATCM_WAIT_1_OPT is permitted if CPUCLK = 450MHz or 600MHz.*/
-    R_ATCM_WaitSet(ATCM_WAIT_1_OPT);
+     *          ATCM_WAIT_1_OPT is permitted if CPUCLK = 450MHz or 600MHz.*/
+    R_ATCM_WaitSet( ATCM_WAIT_1_OPT );
 
     /* Copy the variable data */
     __iar_data_init3();
@@ -120,11 +123,10 @@ void loader_init2(void)
 
     /* Jump to _main() */
     _main();
-
 }
 
 /*******************************************************************************
- End of function loader_init2
+*  End of function loader_init2
 *******************************************************************************/
 
 /*******************************************************************************
@@ -134,51 +136,47 @@ void loader_init2(void)
 * Arguments    : none
 * Return Value : none
 *******************************************************************************/
-void reset_check(void)
+void reset_check( void )
 {
     volatile uint8_t result;
     volatile uint32_t dummy;
 
     /* Check the reset status flag and execute the each sequence */
-    if (RST_SOURCE_ECM == SYSTEM.RSTSR0.LONG) // ECM reset is generated
+    if( RST_SOURCE_ECM == SYSTEM.RSTSR0.LONG ) /* ECM reset is generated */
     {
         /* Clear reset status flag */
-        r_rst_write_enable();              // Enable writing to the RSTSR0 register
-        SYSTEM.RSTSR0.LONG = 0x00000000;  // Clear reset factor flag
-        r_rst_write_disable();             // Disable writing to the RSTSR0 register
+        r_rst_write_enable();            /* Enable writing to the RSTSR0 register */
+        SYSTEM.RSTSR0.LONG = 0x00000000; /* Clear reset factor flag */
+        r_rst_write_disable();           /* Disable writing to the RSTSR0 register */
 
         /* Please coding the User program */
-
     }
-    else if (RST_SOURCE_SWR1 == SYSTEM.RSTSR0.LONG) // Software reset 1 is generated
+    else if( RST_SOURCE_SWR1 == SYSTEM.RSTSR0.LONG ) /* Software reset 1 is generated */
     {
         /* Clear reset status flag */
-        r_rst_write_enable();              // Enable writing to the RSTSR0 register
-        SYSTEM.RSTSR0.LONG = 0x00000000;  // Clear reset factor flag
-        r_rst_write_disable();             // Disable writing to the RSTSR0 register
+        r_rst_write_enable();            /* Enable writing to the RSTSR0 register */
+        SYSTEM.RSTSR0.LONG = 0x00000000; /* Clear reset factor flag */
+        r_rst_write_disable();           /* Disable writing to the RSTSR0 register */
 
         /* Please coding the User program */
-
     }
-    else if (RST_SOURCE_RES == SYSTEM.RSTSR0.LONG) // RES# pin reset is generated
+    else if( RST_SOURCE_RES == SYSTEM.RSTSR0.LONG ) /* RES# pin reset is generated */
     {
         /* Clear reset status flag */
-        r_rst_write_enable();              // Enable writing to the RSTSR0 register
-        SYSTEM.RSTSR0.LONG = 0x00000000;  // Clear reset factor flag
-        r_rst_write_disable();             // Disable writing to the RSTSR0 register
+        r_rst_write_enable();            /* Enable writing to the RSTSR0 register */
+        SYSTEM.RSTSR0.LONG = 0x00000000; /* Clear reset factor flag */
+        r_rst_write_disable();           /* Disable writing to the RSTSR0 register */
 
         /* Please coding the User program */
-
     }
-    else // Any reset is not generated
+    else /* Any reset is not generated */
     {
         /* Please coding the User program */
     }
-
 }
 
 /*******************************************************************************
- End of function reset_check
+*  End of function reset_check
 *******************************************************************************/
 
 /*******************************************************************************
@@ -187,7 +185,7 @@ void reset_check(void)
 * Arguments    : none
 * Return Value : none
 *******************************************************************************/
-void cpg_init(void)
+void cpg_init( void )
 {
     volatile uint32_t dummy;
 
@@ -220,14 +218,11 @@ void cpg_init(void)
 
     /* Disables writing to the registers related to CPG function */
     R_CPG_WriteDisable();
-
 }
 
 /*******************************************************************************
- End of function cpg_init
+*  End of function cpg_init
 *******************************************************************************/
 
 
 /* End of File */
-
-

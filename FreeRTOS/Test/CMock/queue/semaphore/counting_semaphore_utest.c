@@ -163,7 +163,7 @@ void test_macro_xSemaphoreGive_CountingSemaphore_100_50( void )
     /* Check the count */
     TEST_ASSERT_EQUAL( 100, uxSemaphoreGetCount( xSemaphore ) );
 
-    /* Veirfy that a subsequent call to xSemaphoreGive fails */
+    /* Verify that a subsequent call to xSemaphoreGive fails */
     TEST_ASSERT_EQUAL( pdFALSE, xSemaphoreGive( xSemaphore ) );
 
     /* Verify that an xSemaphoreTake operation succeeds */
@@ -199,7 +199,7 @@ void test_macro_xSemaphoreTake_CountingSemaphore_100_50( void )
     /* Check the count */
     TEST_ASSERT_EQUAL( 0, uxSemaphoreGetCount( xSemaphore ) );
 
-    /* Veirfy that a subsequent call to xSemaphoreGive fails */
+    /* Verify that a subsequent call to xSemaphoreGive fails */
     TEST_ASSERT_EQUAL( pdFALSE, xSemaphoreTake( xSemaphore, 0 ) );
 
     /* Verify that an xSemaphoreGive operation succeeds */

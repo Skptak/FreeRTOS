@@ -76,21 +76,22 @@
 
 #include "Cpu.h"
 
-#pragma CODE_SEG TickTimer_CODE        /* Code section for this module. */
+#pragma CODE_SEG TickTimer_CODE      /* Code section for this module. */
 
-#define TickTimer_SPT16Min 16000       /* Lower bound of interval for method SetPeriodTicks16 */
-#define TickTimer_SPT16Max 65535       /* Upper bound of interval for method SetPeriodTicks16 */
-#define TickTimer_SPT32Min 16000       /* Lower bound of interval for method SetPeriodTicks32 */
-#define TickTimer_SPT32Max 320000      /* Upper bound of interval for method SetPeriodTicks32 */
-#define TickTimer_SPUSMin  1000        /* Lower bound of interval for method SetPeriodUS */
-#define TickTimer_SPUSMax  20000       /* Upper bound of interval for method SetPeriodUS */
-#define TickTimer_SPMSMin  1           /* Lower bound of interval for method SetPeriodMS */
-#define TickTimer_SPMSMax  20          /* Upper bound of interval for method SetPeriodMS */
-#define TickTimer_SFHzMin  50          /* Lower bound of interval for method SetFreqHz */
-#define TickTimer_SFHzMax  1000        /* Upper bound of interval for method SetFreqHz */
+#define TickTimer_SPT16Min    16000  /* Lower bound of interval for method SetPeriodTicks16 */
+#define TickTimer_SPT16Max    65535  /* Upper bound of interval for method SetPeriodTicks16 */
+#define TickTimer_SPT32Min    16000  /* Lower bound of interval for method SetPeriodTicks32 */
+#define TickTimer_SPT32Max    320000 /* Upper bound of interval for method SetPeriodTicks32 */
+#define TickTimer_SPUSMin     1000   /* Lower bound of interval for method SetPeriodUS */
+#define TickTimer_SPUSMax     20000  /* Upper bound of interval for method SetPeriodUS */
+#define TickTimer_SPMSMin     1      /* Lower bound of interval for method SetPeriodMS */
+#define TickTimer_SPMSMax     20     /* Upper bound of interval for method SetPeriodMS */
+#define TickTimer_SFHzMin     50     /* Lower bound of interval for method SetFreqHz */
+#define TickTimer_SFHzMax     1000   /* Upper bound of interval for method SetFreqHz */
 
 
-byte TickTimer_Enable(void);
+byte TickTimer_Enable( void );
+
 /*
 ** ===================================================================
 **     Method      :  TickTimer_Enable (bean TimerInt)
@@ -107,7 +108,8 @@ byte TickTimer_Enable(void);
 ** ===================================================================
 */
 
-byte TickTimer_SetPeriodTicks16(word Ticks);
+byte TickTimer_SetPeriodTicks16( word Ticks );
+
 /*
 ** ===================================================================
 **     Method      :  TickTimer_SetPeriodTicks16 (bean TimerInt)
@@ -133,7 +135,8 @@ byte TickTimer_SetPeriodTicks16(word Ticks);
 ** ===================================================================
 */
 
-byte TickTimer_SetPeriodTicks32(dword Ticks);
+byte TickTimer_SetPeriodTicks32( dword Ticks );
+
 /*
 ** ===================================================================
 **     Method      :  TickTimer_SetPeriodTicks32 (bean TimerInt)
@@ -159,7 +162,8 @@ byte TickTimer_SetPeriodTicks32(dword Ticks);
 ** ===================================================================
 */
 
-byte TickTimer_SetPeriodUS(word Time);
+byte TickTimer_SetPeriodUS( word Time );
+
 /*
 ** ===================================================================
 **     Method      :  TickTimer_SetPeriodUS (bean TimerInt)
@@ -185,7 +189,8 @@ byte TickTimer_SetPeriodUS(word Time);
 ** ===================================================================
 */
 
-byte TickTimer_SetPeriodMS(word Time);
+byte TickTimer_SetPeriodMS( word Time );
+
 /*
 ** ===================================================================
 **     Method      :  TickTimer_SetPeriodMS (bean TimerInt)
@@ -211,7 +216,8 @@ byte TickTimer_SetPeriodMS(word Time);
 ** ===================================================================
 */
 
-byte TickTimer_SetFreqHz(word Freq);
+byte TickTimer_SetFreqHz( word Freq );
+
 /*
 ** ===================================================================
 **     Method      :  TickTimer_SetFreqHz (bean TimerInt)
@@ -238,8 +244,9 @@ byte TickTimer_SetFreqHz(word Freq);
 */
 
 #pragma CODE_SEG __NEAR_SEG NON_BANKED /* Interrupt section for this module. Placement will be in NON_BANKED area. */
-__interrupt void  TickTimer_Interrupt(void);
+__interrupt void TickTimer_Interrupt( void );
 #pragma CODE_SEG TickTimer_CODE        /* Code section for this module. */
+
 /*
 ** ===================================================================
 **     Method      :  TickTimer_Interrupt (bean TimerInt)
@@ -250,7 +257,8 @@ __interrupt void  TickTimer_Interrupt(void);
 ** ===================================================================
 */
 
-void TickTimer_Init(void);
+void TickTimer_Init( void );
+
 /*
 ** ===================================================================
 **     Method      :  TickTimer_Init (bean TimerInt)
@@ -261,11 +269,12 @@ void TickTimer_Init(void);
 ** ===================================================================
 */
 
-#pragma CODE_SEG DEFAULT               /* Change code section to DEFAULT. */
+#pragma CODE_SEG DEFAULT /* Change code section to DEFAULT. */
 
 /* END TickTimer. */
 
 #endif /* ifndef __TickTimer */
+
 /*
 ** ###################################################################
 **

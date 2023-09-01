@@ -274,7 +274,7 @@ struct pbuf * pbuf_alloc( pbuf_layer layer,
                     PBUF_POOL_IS_EMPTY();
                     /* free chain so far allocated */
                     pbuf_free( p );
-                    /* bail out unsuccesfully */
+                    /* bail out unsuccessfully */
                     return NULL;
                 }
 
@@ -534,7 +534,7 @@ void pbuf_realloc( struct pbuf * p,
  * @param header_size_increment Number of bytes to increment header size which
  * increases the size of the pbuf. New space is on the front.
  * (Using a negative value decreases the header size.)
- * If hdr_size_inc is 0, this function does nothing and returns succesful.
+ * If hdr_size_inc is 0, this function does nothing and returns successful.
  *
  * PBUF_ROM and PBUF_REF type buffers cannot have their sizes increased, so
  * the call will fail. A check is made that the increase in header size does
@@ -598,7 +598,7 @@ u8_t pbuf_header( struct pbuf * p,
                            ( void * ) p->payload, ( void * ) ( p + 1 ) ) );
             /* restore old payload pointer */
             p->payload = payload;
-            /* bail out unsuccesfully */
+            /* bail out unsuccessfully */
             return 1;
         }
 
@@ -615,7 +615,7 @@ u8_t pbuf_header( struct pbuf * p,
         else
         {
             /* cannot expand payload to front (yet!)
-             * bail out unsuccesfully */
+             * bail out unsuccessfully */
             return 1;
         }
     }

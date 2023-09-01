@@ -79,7 +79,7 @@ REDSTATUS RedImapBlockGet( uint8_t bMR,
             }
         #elif REDCONF_IMAP_INLINE == 1
             ret = RedImapIBlockGet( bMR, ulBlock, pfAllocated );
-        #else  /* if ( REDCONF_IMAP_INLINE == 1 ) && ( REDCONF_IMAP_EXTERNAL == 1 ) */
+        #else /* if ( REDCONF_IMAP_INLINE == 1 ) && ( REDCONF_IMAP_EXTERNAL == 1 ) */
             ret = RedImapEBlockGet( bMR, ulBlock, pfAllocated );
         #endif /* if ( REDCONF_IMAP_INLINE == 1 ) && ( REDCONF_IMAP_EXTERNAL == 1 ) */
     }
@@ -140,7 +140,7 @@ REDSTATUS RedImapBlockGet( uint8_t bMR,
                 }
             #elif REDCONF_IMAP_INLINE == 1
                 ret = RedImapIBlockSet( ulBlock, fAllocated );
-            #else  /* if ( REDCONF_IMAP_INLINE == 1 ) && ( REDCONF_IMAP_EXTERNAL == 1 ) */
+            #else /* if ( REDCONF_IMAP_INLINE == 1 ) && ( REDCONF_IMAP_EXTERNAL == 1 ) */
                 ret = RedImapEBlockSet( ulBlock, fAllocated );
             #endif /* if ( REDCONF_IMAP_INLINE == 1 ) && ( REDCONF_IMAP_EXTERNAL == 1 ) */
 

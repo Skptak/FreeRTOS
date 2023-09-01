@@ -16,40 +16,42 @@
 *
 * Copyright (C) 2013 Renesas Electronics Corporation. All rights reserved.
 ***********************************************************************************************************************/
+
 /***********************************************************************************************************************
 * File Name    : r_bsp_locking.c
 * Description  : This implements a locking mechanism that can be used by all code. The locking is done atomically so
 *                common resources can be accessed safely.
 ***********************************************************************************************************************/
+
 /**********************************************************************************************************************
-* History : DD.MM.YYYY Version  Description
-*         : 28.02.2019 2.00     Merged processing of all devices.
-*                               Added support for GNUC and ICCRX.
-*                               Fixed coding style.
-*         : 26.07.2019 2.01     Modified comment of API function to Doxygen style.
-*         : 10.12.2019 2.02     Modified comment.
-***********************************************************************************************************************/
+ * History : DD.MM.YYYY Version  Description
+ *         : 28.02.2019 2.00     Merged processing of all devices.
+ *                               Added support for GNUC and ICCRX.
+ *                               Fixed coding style.
+ *         : 26.07.2019 2.01     Modified comment of API function to Doxygen style.
+ *         : 10.12.2019 2.02     Modified comment.
+ ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-Includes   <System Includes> , "Project Includes"
+*  Includes   <System Includes> , "Project Includes"
 ***********************************************************************************************************************/
 /* Platform configuration. */
 #include "platform.h"
 
 /***********************************************************************************************************************
-Macro definitions
+*  Macro definitions
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-Typedef definitions
+*  Typedef definitions
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-Exported global variables (to be accessed by other files)
+*  Exported global variables (to be accessed by other files)
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-Private global variables and functions
+*  Private global variables and functions
 ***********************************************************************************************************************/
 
 /**********************************************************************************************************************
@@ -70,42 +72,42 @@ Private global variables and functions
  * semaphore or mutex. If used improperly locks can lead to deadlock in the user's system.
  * Users can override the default locking mechanisms.
  */
-bool R_BSP_SoftwareLock (BSP_CFG_USER_LOCKING_TYPE * const plock)
+bool R_BSP_SoftwareLock( BSP_CFG_USER_LOCKING_TYPE * const plock )
 {
-#if BSP_CFG_USER_LOCKING_ENABLED == 0
-    bool ret = false;
+    #if BSP_CFG_USER_LOCKING_ENABLED == 0
+        bool ret = false;
 
-    /* Variable used in trying to acquire lock. Using the xchg instruction makes this atomic */
-    int32_t is_locked = true;
+        /* Variable used in trying to acquire lock. Using the xchg instruction makes this atomic */
+        int32_t is_locked = true;
 
-    /* This example uses the RX MCU's atomic xchg() instruction. plock->lock is the lock we are trying to reserve.
-       The way this works is that 'is_locked' gets the value of the plock->lock and plock->lock gets the value of
-       'is_locked' which we just set to 'true'. Basically this is an atomic 'swap' command. If the lock had not yet been
-       reserved then its value would be 'false' and after the xchg() instruction finished 'is_locked' would have
-       'false'. If it had already been reserved then 'is_locked' would have 'true' after the xchg() instruction. Since
-       plock->lock was already 'true' and we just set it back to 'true' everything is ok. To see if we reserved the lock
-       we just need to check the value of 'is_locked' after this instruction finishes. */
+        /* This example uses the RX MCU's atomic xchg() instruction. plock->lock is the lock we are trying to reserve.
+         * The way this works is that 'is_locked' gets the value of the plock->lock and plock->lock gets the value of
+         * 'is_locked' which we just set to 'true'. Basically this is an atomic 'swap' command. If the lock had not yet been
+         * reserved then its value would be 'false' and after the xchg() instruction finished 'is_locked' would have
+         * 'false'. If it had already been reserved then 'is_locked' would have 'true' after the xchg() instruction. Since
+         * plock->lock was already 'true' and we just set it back to 'true' everything is ok. To see if we reserved the lock
+         * we just need to check the value of 'is_locked' after this instruction finishes. */
 
-    /* Try to acquire semaphore to obtain lock */
-    R_BSP_EXCHANGE(&is_locked, &plock->lock);
+        /* Try to acquire semaphore to obtain lock */
+        R_BSP_EXCHANGE( &is_locked, &plock->lock );
 
-    /* Check to see if semaphore was successfully taken */
-    if (false == is_locked)
-    {
-        /* Lock obtained, return success. */
-        ret = true;
-    }
-    else
-    {
-        /* Lock was not obtained, another task already has it. */
-        R_BSP_NOP();
-    }
+        /* Check to see if semaphore was successfully taken */
+        if( false == is_locked )
+        {
+            /* Lock obtained, return success. */
+            ret = true;
+        }
+        else
+        {
+            /* Lock was not obtained, another task already has it. */
+            R_BSP_NOP();
+        }
 
-    return ret;
-#else
-    /* User is going to handle the locking themselves. */
-    return BSP_CFG_USER_LOCKING_SW_LOCK_FUNCTION(plock);
-#endif
+        return ret;
+    #else /* if BSP_CFG_USER_LOCKING_ENABLED == 0 */
+        /* User is going to handle the locking themselves. */
+        return BSP_CFG_USER_LOCKING_SW_LOCK_FUNCTION( plock );
+    #endif /* if BSP_CFG_USER_LOCKING_ENABLED == 0 */
 } /* End of function R_BSP_SoftwareLock() */
 
 /**********************************************************************************************************************
@@ -117,17 +119,17 @@ bool R_BSP_SoftwareLock (BSP_CFG_USER_LOCKING_TYPE * const plock)
  * @retval false Failure, lock could not be released.
  * @details This function releases a lock that was previously acquired using the R_BSP_SoftwareLock() function.
  */
-bool R_BSP_SoftwareUnlock (BSP_CFG_USER_LOCKING_TYPE * const plock)
+bool R_BSP_SoftwareUnlock( BSP_CFG_USER_LOCKING_TYPE * const plock )
 {
-#if BSP_CFG_USER_LOCKING_ENABLED == 0
-    /* Set lock back to unlocked. */
-    plock->lock = false;
+    #if BSP_CFG_USER_LOCKING_ENABLED == 0
+        /* Set lock back to unlocked. */
+        plock->lock = false;
 
-    return true;
-#else
-    /* User is going to handle the locking themselves. */
-    return BSP_CFG_USER_LOCKING_SW_UNLOCK_FUNCTION(plock);
-#endif
+        return true;
+    #else
+        /* User is going to handle the locking themselves. */
+        return BSP_CFG_USER_LOCKING_SW_UNLOCK_FUNCTION( plock );
+    #endif
 } /* End of function R_BSP_SoftwareUnlock() */
 
 
@@ -149,15 +151,15 @@ bool R_BSP_SoftwareUnlock (BSP_CFG_USER_LOCKING_TYPE * const plock)
  * using. For example, if the user is not using the CRC peripheral then they could delete the BSP_LOCK_CRC entry. The
  * user will save 4-bytes per deleted entry.
  */
-bool R_BSP_HardwareLock (mcu_lock_t const hw_index)
+bool R_BSP_HardwareLock( mcu_lock_t const hw_index )
 {
-#if BSP_CFG_USER_LOCKING_ENABLED == 0
-    /* Pass actual lock to software lock function. */
-    return R_BSP_SoftwareLock(&g_bsp_Locks[hw_index]);
-#else
-    /* User is going to handle the locking themselves. */
-    return BSP_CFG_USER_LOCKING_HW_LOCK_FUNCTION(hw_index);
-#endif
+    #if BSP_CFG_USER_LOCKING_ENABLED == 0
+        /* Pass actual lock to software lock function. */
+        return R_BSP_SoftwareLock( &g_bsp_Locks[ hw_index ] );
+    #else
+        /* User is going to handle the locking themselves. */
+        return BSP_CFG_USER_LOCKING_HW_LOCK_FUNCTION( hw_index );
+    #endif
 } /* End of function R_BSP_HardwareLock() */
 
 /**********************************************************************************************************************
@@ -174,14 +176,13 @@ bool R_BSP_HardwareLock (mcu_lock_t const hw_index)
  * not using. For example, if the user is not using the CRC peripheral then they could delete the BSP_LOCK_CRC entry.
  * The user will save 4-bytes per deleted entry.
  */
-bool R_BSP_HardwareUnlock (mcu_lock_t const hw_index)
+bool R_BSP_HardwareUnlock( mcu_lock_t const hw_index )
 {
-#if BSP_CFG_USER_LOCKING_ENABLED == 0
-    /* Pass actual lock to software unlock function. */
-    return R_BSP_SoftwareUnlock(&g_bsp_Locks[hw_index]);
-#else
-    /* User is going to handle the locking themselves. */
-    return BSP_CFG_USER_LOCKING_HW_UNLOCK_FUNCTION(hw_index);
-#endif
+    #if BSP_CFG_USER_LOCKING_ENABLED == 0
+        /* Pass actual lock to software unlock function. */
+        return R_BSP_SoftwareUnlock( &g_bsp_Locks[ hw_index ] );
+    #else
+        /* User is going to handle the locking themselves. */
+        return BSP_CFG_USER_LOCKING_HW_UNLOCK_FUNCTION( hw_index );
+    #endif
 } /* End of function R_BSP_HardwareUnlock() */
-

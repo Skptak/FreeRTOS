@@ -31,12 +31,12 @@
 /* Altera - ALT_I2C */
 
 #ifndef __ALTERA_ALT_I2C_H__
-#define __ALTERA_ALT_I2C_H__
+    #define __ALTERA_ALT_I2C_H__
 
-#ifdef __cplusplus
-extern "C"
-{
-#endif  /* __cplusplus */
+    #ifdef __cplusplus
+        extern "C"
+        {
+    #endif /* __cplusplus */
 
 /*
  * Component : I2C Module - ALT_I2C
@@ -45,6 +45,7 @@ extern "C"
  * Registers in the I2C module
  *
  */
+
 /*
  * Register : Control Register - ic_con
  *
@@ -65,6 +66,7 @@ extern "C"
  *  [31:7] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Master Enable - master_mode
  *
@@ -83,35 +85,37 @@ extern "C"
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_I2C_CON_MST_MOD
  *
  * master disabled
  */
-#define ALT_I2C_CON_MST_MOD_E_DIS   0x0
+    #define ALT_I2C_CON_MST_MOD_E_DIS      0x0
+
 /*
  * Enumerated value for register field ALT_I2C_CON_MST_MOD
  *
  * master enabled
  */
-#define ALT_I2C_CON_MST_MOD_E_EN    0x1
+    #define ALT_I2C_CON_MST_MOD_E_EN       0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_I2C_CON_MST_MOD register field. */
-#define ALT_I2C_CON_MST_MOD_LSB        0
+    #define ALT_I2C_CON_MST_MOD_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_I2C_CON_MST_MOD register field. */
-#define ALT_I2C_CON_MST_MOD_MSB        0
+    #define ALT_I2C_CON_MST_MOD_MSB        0
 /* The width in bits of the ALT_I2C_CON_MST_MOD register field. */
-#define ALT_I2C_CON_MST_MOD_WIDTH      1
+    #define ALT_I2C_CON_MST_MOD_WIDTH      1
 /* The mask used to set the ALT_I2C_CON_MST_MOD register field value. */
-#define ALT_I2C_CON_MST_MOD_SET_MSK    0x00000001
+    #define ALT_I2C_CON_MST_MOD_SET_MSK    0x00000001
 /* The mask used to clear the ALT_I2C_CON_MST_MOD register field value. */
-#define ALT_I2C_CON_MST_MOD_CLR_MSK    0xfffffffe
+    #define ALT_I2C_CON_MST_MOD_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_I2C_CON_MST_MOD register field. */
-#define ALT_I2C_CON_MST_MOD_RESET      0x1
+    #define ALT_I2C_CON_MST_MOD_RESET      0x1
 /* Extracts the ALT_I2C_CON_MST_MOD field value from a register. */
-#define ALT_I2C_CON_MST_MOD_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_I2C_CON_MST_MOD_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_I2C_CON_MST_MOD register field value suitable for setting the register. */
-#define ALT_I2C_CON_MST_MOD_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_I2C_CON_MST_MOD_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
 /*
  * Field : Master Speed Control - speed
@@ -131,35 +135,37 @@ extern "C"
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_I2C_CON_SPEED
  *
  * standard mode (100 kbit/s)
  */
-#define ALT_I2C_CON_SPEED_E_STANDARD    0x1
+    #define ALT_I2C_CON_SPEED_E_STANDARD    0x1
+
 /*
  * Enumerated value for register field ALT_I2C_CON_SPEED
  *
  * fast mode (400 kbit/s)
  */
-#define ALT_I2C_CON_SPEED_E_FAST        0x2
+    #define ALT_I2C_CON_SPEED_E_FAST        0x2
 
 /* The Least Significant Bit (LSB) position of the ALT_I2C_CON_SPEED register field. */
-#define ALT_I2C_CON_SPEED_LSB        1
+    #define ALT_I2C_CON_SPEED_LSB           1
 /* The Most Significant Bit (MSB) position of the ALT_I2C_CON_SPEED register field. */
-#define ALT_I2C_CON_SPEED_MSB        2
+    #define ALT_I2C_CON_SPEED_MSB           2
 /* The width in bits of the ALT_I2C_CON_SPEED register field. */
-#define ALT_I2C_CON_SPEED_WIDTH      2
+    #define ALT_I2C_CON_SPEED_WIDTH         2
 /* The mask used to set the ALT_I2C_CON_SPEED register field value. */
-#define ALT_I2C_CON_SPEED_SET_MSK    0x00000006
+    #define ALT_I2C_CON_SPEED_SET_MSK       0x00000006
 /* The mask used to clear the ALT_I2C_CON_SPEED register field value. */
-#define ALT_I2C_CON_SPEED_CLR_MSK    0xfffffff9
+    #define ALT_I2C_CON_SPEED_CLR_MSK       0xfffffff9
 /* The reset value of the ALT_I2C_CON_SPEED register field. */
-#define ALT_I2C_CON_SPEED_RESET      0x2
+    #define ALT_I2C_CON_SPEED_RESET         0x2
 /* Extracts the ALT_I2C_CON_SPEED field value from a register. */
-#define ALT_I2C_CON_SPEED_GET(value) (((value) & 0x00000006) >> 1)
+    #define ALT_I2C_CON_SPEED_GET( value )    ( ( ( value ) & 0x00000006 ) >> 1 )
 /* Produces a ALT_I2C_CON_SPEED register field value suitable for setting the register. */
-#define ALT_I2C_CON_SPEED_SET(value) (((value) << 1) & 0x00000006)
+    #define ALT_I2C_CON_SPEED_SET( value )    ( ( ( value ) << 1 ) & 0x00000006 )
 
 /*
  * Field : Slave Address Size - ic_10bitaddr_slave
@@ -179,35 +185,37 @@ extern "C"
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_I2C_CON_IC_10BITADDR_SLV
  *
  * 7-bit addressing
  */
-#define ALT_I2C_CON_IC_10BITADDR_SLV_E_SLVADDR7BIT  0x0
+    #define ALT_I2C_CON_IC_10BITADDR_SLV_E_SLVADDR7BIT     0x0
+
 /*
  * Enumerated value for register field ALT_I2C_CON_IC_10BITADDR_SLV
  *
  * 10-bit addressing
  */
-#define ALT_I2C_CON_IC_10BITADDR_SLV_E_SLVADDR10BIT 0x1
+    #define ALT_I2C_CON_IC_10BITADDR_SLV_E_SLVADDR10BIT    0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_I2C_CON_IC_10BITADDR_SLV register field. */
-#define ALT_I2C_CON_IC_10BITADDR_SLV_LSB        3
+    #define ALT_I2C_CON_IC_10BITADDR_SLV_LSB               3
 /* The Most Significant Bit (MSB) position of the ALT_I2C_CON_IC_10BITADDR_SLV register field. */
-#define ALT_I2C_CON_IC_10BITADDR_SLV_MSB        3
+    #define ALT_I2C_CON_IC_10BITADDR_SLV_MSB               3
 /* The width in bits of the ALT_I2C_CON_IC_10BITADDR_SLV register field. */
-#define ALT_I2C_CON_IC_10BITADDR_SLV_WIDTH      1
+    #define ALT_I2C_CON_IC_10BITADDR_SLV_WIDTH             1
 /* The mask used to set the ALT_I2C_CON_IC_10BITADDR_SLV register field value. */
-#define ALT_I2C_CON_IC_10BITADDR_SLV_SET_MSK    0x00000008
+    #define ALT_I2C_CON_IC_10BITADDR_SLV_SET_MSK           0x00000008
 /* The mask used to clear the ALT_I2C_CON_IC_10BITADDR_SLV register field value. */
-#define ALT_I2C_CON_IC_10BITADDR_SLV_CLR_MSK    0xfffffff7
+    #define ALT_I2C_CON_IC_10BITADDR_SLV_CLR_MSK           0xfffffff7
 /* The reset value of the ALT_I2C_CON_IC_10BITADDR_SLV register field. */
-#define ALT_I2C_CON_IC_10BITADDR_SLV_RESET      0x1
+    #define ALT_I2C_CON_IC_10BITADDR_SLV_RESET             0x1
 /* Extracts the ALT_I2C_CON_IC_10BITADDR_SLV field value from a register. */
-#define ALT_I2C_CON_IC_10BITADDR_SLV_GET(value) (((value) & 0x00000008) >> 3)
+    #define ALT_I2C_CON_IC_10BITADDR_SLV_GET( value )    ( ( ( value ) & 0x00000008 ) >> 3 )
 /* Produces a ALT_I2C_CON_IC_10BITADDR_SLV register field value suitable for setting the register. */
-#define ALT_I2C_CON_IC_10BITADDR_SLV_SET(value) (((value) << 3) & 0x00000008)
+    #define ALT_I2C_CON_IC_10BITADDR_SLV_SET( value )    ( ( ( value ) << 3 ) & 0x00000008 )
 
 /*
  * Field : Master Address Size - ic_10bitaddr_master
@@ -225,35 +233,37 @@ extern "C"
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_I2C_CON_IC_10BITADDR_MST
  *
  * 7-bit addressing
  */
-#define ALT_I2C_CON_IC_10BITADDR_MST_E_MSTADDR7BIT  0x0
+    #define ALT_I2C_CON_IC_10BITADDR_MST_E_MSTADDR7BIT     0x0
+
 /*
  * Enumerated value for register field ALT_I2C_CON_IC_10BITADDR_MST
  *
  * 10-bit addressing
  */
-#define ALT_I2C_CON_IC_10BITADDR_MST_E_MSTADDR10BIT 0x1
+    #define ALT_I2C_CON_IC_10BITADDR_MST_E_MSTADDR10BIT    0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_I2C_CON_IC_10BITADDR_MST register field. */
-#define ALT_I2C_CON_IC_10BITADDR_MST_LSB        4
+    #define ALT_I2C_CON_IC_10BITADDR_MST_LSB               4
 /* The Most Significant Bit (MSB) position of the ALT_I2C_CON_IC_10BITADDR_MST register field. */
-#define ALT_I2C_CON_IC_10BITADDR_MST_MSB        4
+    #define ALT_I2C_CON_IC_10BITADDR_MST_MSB               4
 /* The width in bits of the ALT_I2C_CON_IC_10BITADDR_MST register field. */
-#define ALT_I2C_CON_IC_10BITADDR_MST_WIDTH      1
+    #define ALT_I2C_CON_IC_10BITADDR_MST_WIDTH             1
 /* The mask used to set the ALT_I2C_CON_IC_10BITADDR_MST register field value. */
-#define ALT_I2C_CON_IC_10BITADDR_MST_SET_MSK    0x00000010
+    #define ALT_I2C_CON_IC_10BITADDR_MST_SET_MSK           0x00000010
 /* The mask used to clear the ALT_I2C_CON_IC_10BITADDR_MST register field value. */
-#define ALT_I2C_CON_IC_10BITADDR_MST_CLR_MSK    0xffffffef
+    #define ALT_I2C_CON_IC_10BITADDR_MST_CLR_MSK           0xffffffef
 /* The reset value of the ALT_I2C_CON_IC_10BITADDR_MST register field. */
-#define ALT_I2C_CON_IC_10BITADDR_MST_RESET      0x1
+    #define ALT_I2C_CON_IC_10BITADDR_MST_RESET             0x1
 /* Extracts the ALT_I2C_CON_IC_10BITADDR_MST field value from a register. */
-#define ALT_I2C_CON_IC_10BITADDR_MST_GET(value) (((value) & 0x00000010) >> 4)
+    #define ALT_I2C_CON_IC_10BITADDR_MST_GET( value )    ( ( ( value ) & 0x00000010 ) >> 4 )
 /* Produces a ALT_I2C_CON_IC_10BITADDR_MST register field value suitable for setting the register. */
-#define ALT_I2C_CON_IC_10BITADDR_MST_SET(value) (((value) << 4) & 0x00000010)
+    #define ALT_I2C_CON_IC_10BITADDR_MST_SET( value )    ( ( ( value ) << 4 ) & 0x00000010 )
 
 /*
  * Field : Restart Enable - ic_restart_en
@@ -290,35 +300,37 @@ extern "C"
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_I2C_CON_IC_RESTART_EN
  *
  * restart master disable
  */
-#define ALT_I2C_CON_IC_RESTART_EN_E_DIS 0x0
+    #define ALT_I2C_CON_IC_RESTART_EN_E_DIS      0x0
+
 /*
  * Enumerated value for register field ALT_I2C_CON_IC_RESTART_EN
  *
  * restart master enable
  */
-#define ALT_I2C_CON_IC_RESTART_EN_E_EN  0x1
+    #define ALT_I2C_CON_IC_RESTART_EN_E_EN       0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_I2C_CON_IC_RESTART_EN register field. */
-#define ALT_I2C_CON_IC_RESTART_EN_LSB        5
+    #define ALT_I2C_CON_IC_RESTART_EN_LSB        5
 /* The Most Significant Bit (MSB) position of the ALT_I2C_CON_IC_RESTART_EN register field. */
-#define ALT_I2C_CON_IC_RESTART_EN_MSB        5
+    #define ALT_I2C_CON_IC_RESTART_EN_MSB        5
 /* The width in bits of the ALT_I2C_CON_IC_RESTART_EN register field. */
-#define ALT_I2C_CON_IC_RESTART_EN_WIDTH      1
+    #define ALT_I2C_CON_IC_RESTART_EN_WIDTH      1
 /* The mask used to set the ALT_I2C_CON_IC_RESTART_EN register field value. */
-#define ALT_I2C_CON_IC_RESTART_EN_SET_MSK    0x00000020
+    #define ALT_I2C_CON_IC_RESTART_EN_SET_MSK    0x00000020
 /* The mask used to clear the ALT_I2C_CON_IC_RESTART_EN register field value. */
-#define ALT_I2C_CON_IC_RESTART_EN_CLR_MSK    0xffffffdf
+    #define ALT_I2C_CON_IC_RESTART_EN_CLR_MSK    0xffffffdf
 /* The reset value of the ALT_I2C_CON_IC_RESTART_EN register field. */
-#define ALT_I2C_CON_IC_RESTART_EN_RESET      0x1
+    #define ALT_I2C_CON_IC_RESTART_EN_RESET      0x1
 /* Extracts the ALT_I2C_CON_IC_RESTART_EN field value from a register. */
-#define ALT_I2C_CON_IC_RESTART_EN_GET(value) (((value) & 0x00000020) >> 5)
+    #define ALT_I2C_CON_IC_RESTART_EN_GET( value )    ( ( ( value ) & 0x00000020 ) >> 5 )
 /* Produces a ALT_I2C_CON_IC_RESTART_EN register field value suitable for setting the register. */
-#define ALT_I2C_CON_IC_RESTART_EN_SET(value) (((value) << 5) & 0x00000020)
+    #define ALT_I2C_CON_IC_RESTART_EN_SET( value )    ( ( ( value ) << 5 ) & 0x00000020 )
 
 /*
  * Field : Slave Disable - ic_slave_disable
@@ -339,37 +351,40 @@ extern "C"
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_I2C_CON_IC_SLV_DIS
  *
  * slave disable
  */
-#define ALT_I2C_CON_IC_SLV_DIS_E_DIS    0x1
+    #define ALT_I2C_CON_IC_SLV_DIS_E_DIS      0x1
+
 /*
  * Enumerated value for register field ALT_I2C_CON_IC_SLV_DIS
  *
  * slave enable
  */
-#define ALT_I2C_CON_IC_SLV_DIS_E_EN     0x0
+    #define ALT_I2C_CON_IC_SLV_DIS_E_EN       0x0
 
 /* The Least Significant Bit (LSB) position of the ALT_I2C_CON_IC_SLV_DIS register field. */
-#define ALT_I2C_CON_IC_SLV_DIS_LSB        6
+    #define ALT_I2C_CON_IC_SLV_DIS_LSB        6
 /* The Most Significant Bit (MSB) position of the ALT_I2C_CON_IC_SLV_DIS register field. */
-#define ALT_I2C_CON_IC_SLV_DIS_MSB        6
+    #define ALT_I2C_CON_IC_SLV_DIS_MSB        6
 /* The width in bits of the ALT_I2C_CON_IC_SLV_DIS register field. */
-#define ALT_I2C_CON_IC_SLV_DIS_WIDTH      1
+    #define ALT_I2C_CON_IC_SLV_DIS_WIDTH      1
 /* The mask used to set the ALT_I2C_CON_IC_SLV_DIS register field value. */
-#define ALT_I2C_CON_IC_SLV_DIS_SET_MSK    0x00000040
+    #define ALT_I2C_CON_IC_SLV_DIS_SET_MSK    0x00000040
 /* The mask used to clear the ALT_I2C_CON_IC_SLV_DIS register field value. */
-#define ALT_I2C_CON_IC_SLV_DIS_CLR_MSK    0xffffffbf
+    #define ALT_I2C_CON_IC_SLV_DIS_CLR_MSK    0xffffffbf
 /* The reset value of the ALT_I2C_CON_IC_SLV_DIS register field. */
-#define ALT_I2C_CON_IC_SLV_DIS_RESET      0x1
+    #define ALT_I2C_CON_IC_SLV_DIS_RESET      0x1
 /* Extracts the ALT_I2C_CON_IC_SLV_DIS field value from a register. */
-#define ALT_I2C_CON_IC_SLV_DIS_GET(value) (((value) & 0x00000040) >> 6)
+    #define ALT_I2C_CON_IC_SLV_DIS_GET( value )    ( ( ( value ) & 0x00000040 ) >> 6 )
 /* Produces a ALT_I2C_CON_IC_SLV_DIS register field value suitable for setting the register. */
-#define ALT_I2C_CON_IC_SLV_DIS_SET(value) (((value) << 6) & 0x00000040)
+    #define ALT_I2C_CON_IC_SLV_DIS_SET( value )    ( ( ( value ) << 6 ) & 0x00000040 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -380,25 +395,25 @@ extern "C"
  *
  * The struct declaration for register ALT_I2C_CON.
  */
-struct ALT_I2C_CON_s
-{
-    uint32_t  master_mode         :  1;  /* Master Enable */
-    uint32_t  speed               :  2;  /* Master Speed Control */
-    uint32_t  ic_10bitaddr_slave  :  1;  /* Slave Address Size */
-    uint32_t  ic_10bitaddr_master :  1;  /* Master Address Size */
-    uint32_t  ic_restart_en       :  1;  /* Restart Enable */
-    uint32_t  ic_slave_disable    :  1;  /* Slave Disable */
-    uint32_t                      : 25;  /* *UNDEFINED* */
-};
+        struct ALT_I2C_CON_s
+        {
+            uint32_t master_mode         :  1;  /* Master Enable */
+            uint32_t speed               :  2;  /* Master Speed Control */
+            uint32_t ic_10bitaddr_slave  :  1;  /* Slave Address Size */
+            uint32_t ic_10bitaddr_master :  1;  /* Master Address Size */
+            uint32_t ic_restart_en       :  1;  /* Restart Enable */
+            uint32_t ic_slave_disable    :  1;  /* Slave Disable */
+            uint32_t                      : 25; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_I2C_CON. */
-typedef volatile struct ALT_I2C_CON_s  ALT_I2C_CON_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_I2C_CON_s ALT_I2C_CON_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_I2C_CON register from the beginning of the component. */
-#define ALT_I2C_CON_OFST        0x0
+    #define ALT_I2C_CON_OFST    0x0
 /* The address of the ALT_I2C_CON register. */
-#define ALT_I2C_CON_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_I2C_CON_OFST))
+    #define ALT_I2C_CON_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_I2C_CON_OFST ) )
 
 /*
  * Register : Target Address Register - ic_tar
@@ -424,6 +439,7 @@ typedef volatile struct ALT_I2C_CON_s  ALT_I2C_CON_t;
  *  [31:13] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Master Target Address - ic_tar
  *
@@ -438,21 +454,21 @@ typedef volatile struct ALT_I2C_CON_s  ALT_I2C_CON_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_TAR_IC_TAR register field. */
-#define ALT_I2C_TAR_IC_TAR_LSB        0
+    #define ALT_I2C_TAR_IC_TAR_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_I2C_TAR_IC_TAR register field. */
-#define ALT_I2C_TAR_IC_TAR_MSB        9
+    #define ALT_I2C_TAR_IC_TAR_MSB        9
 /* The width in bits of the ALT_I2C_TAR_IC_TAR register field. */
-#define ALT_I2C_TAR_IC_TAR_WIDTH      10
+    #define ALT_I2C_TAR_IC_TAR_WIDTH      10
 /* The mask used to set the ALT_I2C_TAR_IC_TAR register field value. */
-#define ALT_I2C_TAR_IC_TAR_SET_MSK    0x000003ff
+    #define ALT_I2C_TAR_IC_TAR_SET_MSK    0x000003ff
 /* The mask used to clear the ALT_I2C_TAR_IC_TAR register field value. */
-#define ALT_I2C_TAR_IC_TAR_CLR_MSK    0xfffffc00
+    #define ALT_I2C_TAR_IC_TAR_CLR_MSK    0xfffffc00
 /* The reset value of the ALT_I2C_TAR_IC_TAR register field. */
-#define ALT_I2C_TAR_IC_TAR_RESET      0x55
+    #define ALT_I2C_TAR_IC_TAR_RESET      0x55
 /* Extracts the ALT_I2C_TAR_IC_TAR field value from a register. */
-#define ALT_I2C_TAR_IC_TAR_GET(value) (((value) & 0x000003ff) >> 0)
+    #define ALT_I2C_TAR_IC_TAR_GET( value )    ( ( ( value ) & 0x000003ff ) >> 0 )
 /* Produces a ALT_I2C_TAR_IC_TAR register field value suitable for setting the register. */
-#define ALT_I2C_TAR_IC_TAR_SET(value) (((value) << 0) & 0x000003ff)
+    #define ALT_I2C_TAR_IC_TAR_SET( value )    ( ( ( value ) << 0 ) & 0x000003ff )
 
 /*
  * Field : General Call OR Start - gc_or_start
@@ -474,35 +490,37 @@ typedef volatile struct ALT_I2C_CON_s  ALT_I2C_CON_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_I2C_TAR_GC_OR_START
  *
  * General Call
  */
-#define ALT_I2C_TAR_GC_OR_START_E_GENCALL   0x0
+    #define ALT_I2C_TAR_GC_OR_START_E_GENCALL      0x0
+
 /*
  * Enumerated value for register field ALT_I2C_TAR_GC_OR_START
  *
  * START Byte
  */
-#define ALT_I2C_TAR_GC_OR_START_E_STARTBYTE 0x1
+    #define ALT_I2C_TAR_GC_OR_START_E_STARTBYTE    0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_I2C_TAR_GC_OR_START register field. */
-#define ALT_I2C_TAR_GC_OR_START_LSB        10
+    #define ALT_I2C_TAR_GC_OR_START_LSB            10
 /* The Most Significant Bit (MSB) position of the ALT_I2C_TAR_GC_OR_START register field. */
-#define ALT_I2C_TAR_GC_OR_START_MSB        10
+    #define ALT_I2C_TAR_GC_OR_START_MSB            10
 /* The width in bits of the ALT_I2C_TAR_GC_OR_START register field. */
-#define ALT_I2C_TAR_GC_OR_START_WIDTH      1
+    #define ALT_I2C_TAR_GC_OR_START_WIDTH          1
 /* The mask used to set the ALT_I2C_TAR_GC_OR_START register field value. */
-#define ALT_I2C_TAR_GC_OR_START_SET_MSK    0x00000400
+    #define ALT_I2C_TAR_GC_OR_START_SET_MSK        0x00000400
 /* The mask used to clear the ALT_I2C_TAR_GC_OR_START register field value. */
-#define ALT_I2C_TAR_GC_OR_START_CLR_MSK    0xfffffbff
+    #define ALT_I2C_TAR_GC_OR_START_CLR_MSK        0xfffffbff
 /* The reset value of the ALT_I2C_TAR_GC_OR_START register field. */
-#define ALT_I2C_TAR_GC_OR_START_RESET      0x0
+    #define ALT_I2C_TAR_GC_OR_START_RESET          0x0
 /* Extracts the ALT_I2C_TAR_GC_OR_START field value from a register. */
-#define ALT_I2C_TAR_GC_OR_START_GET(value) (((value) & 0x00000400) >> 10)
+    #define ALT_I2C_TAR_GC_OR_START_GET( value )    ( ( ( value ) & 0x00000400 ) >> 10 )
 /* Produces a ALT_I2C_TAR_GC_OR_START register field value suitable for setting the register. */
-#define ALT_I2C_TAR_GC_OR_START_SET(value) (((value) << 10) & 0x00000400)
+    #define ALT_I2C_TAR_GC_OR_START_SET( value )    ( ( ( value ) << 10 ) & 0x00000400 )
 
 /*
  * Field : Special - special
@@ -522,35 +540,37 @@ typedef volatile struct ALT_I2C_CON_s  ALT_I2C_CON_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_I2C_TAR_SPECIAL
  *
  * Ignore bit 10 gc_or_start and use ic_tar normally
  */
-#define ALT_I2C_TAR_SPECIAL_E_GENCALL   0x0
+    #define ALT_I2C_TAR_SPECIAL_E_GENCALL      0x0
+
 /*
  * Enumerated value for register field ALT_I2C_TAR_SPECIAL
  *
  * Perform special I2C command as specified in gc_or_start
  */
-#define ALT_I2C_TAR_SPECIAL_E_STARTBYTE 0x1
+    #define ALT_I2C_TAR_SPECIAL_E_STARTBYTE    0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_I2C_TAR_SPECIAL register field. */
-#define ALT_I2C_TAR_SPECIAL_LSB        11
+    #define ALT_I2C_TAR_SPECIAL_LSB            11
 /* The Most Significant Bit (MSB) position of the ALT_I2C_TAR_SPECIAL register field. */
-#define ALT_I2C_TAR_SPECIAL_MSB        11
+    #define ALT_I2C_TAR_SPECIAL_MSB            11
 /* The width in bits of the ALT_I2C_TAR_SPECIAL register field. */
-#define ALT_I2C_TAR_SPECIAL_WIDTH      1
+    #define ALT_I2C_TAR_SPECIAL_WIDTH          1
 /* The mask used to set the ALT_I2C_TAR_SPECIAL register field value. */
-#define ALT_I2C_TAR_SPECIAL_SET_MSK    0x00000800
+    #define ALT_I2C_TAR_SPECIAL_SET_MSK        0x00000800
 /* The mask used to clear the ALT_I2C_TAR_SPECIAL register field value. */
-#define ALT_I2C_TAR_SPECIAL_CLR_MSK    0xfffff7ff
+    #define ALT_I2C_TAR_SPECIAL_CLR_MSK        0xfffff7ff
 /* The reset value of the ALT_I2C_TAR_SPECIAL register field. */
-#define ALT_I2C_TAR_SPECIAL_RESET      0x0
+    #define ALT_I2C_TAR_SPECIAL_RESET          0x0
 /* Extracts the ALT_I2C_TAR_SPECIAL field value from a register. */
-#define ALT_I2C_TAR_SPECIAL_GET(value) (((value) & 0x00000800) >> 11)
+    #define ALT_I2C_TAR_SPECIAL_GET( value )    ( ( ( value ) & 0x00000800 ) >> 11 )
 /* Produces a ALT_I2C_TAR_SPECIAL register field value suitable for setting the register. */
-#define ALT_I2C_TAR_SPECIAL_SET(value) (((value) << 11) & 0x00000800)
+    #define ALT_I2C_TAR_SPECIAL_SET( value )    ( ( ( value ) << 11 ) & 0x00000800 )
 
 /*
  * Field : Master Addressing Bit Control - ic_10bitaddr_master
@@ -568,37 +588,40 @@ typedef volatile struct ALT_I2C_CON_s  ALT_I2C_CON_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_I2C_TAR_IC_10BITADDR_MST
  *
  * Master Address, 7bit
  */
-#define ALT_I2C_TAR_IC_10BITADDR_MST_E_START7   0x0
+    #define ALT_I2C_TAR_IC_10BITADDR_MST_E_START7     0x0
+
 /*
  * Enumerated value for register field ALT_I2C_TAR_IC_10BITADDR_MST
  *
  * Master Address, 10bit
  */
-#define ALT_I2C_TAR_IC_10BITADDR_MST_E_START10  0x1
+    #define ALT_I2C_TAR_IC_10BITADDR_MST_E_START10    0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_I2C_TAR_IC_10BITADDR_MST register field. */
-#define ALT_I2C_TAR_IC_10BITADDR_MST_LSB        12
+    #define ALT_I2C_TAR_IC_10BITADDR_MST_LSB          12
 /* The Most Significant Bit (MSB) position of the ALT_I2C_TAR_IC_10BITADDR_MST register field. */
-#define ALT_I2C_TAR_IC_10BITADDR_MST_MSB        12
+    #define ALT_I2C_TAR_IC_10BITADDR_MST_MSB          12
 /* The width in bits of the ALT_I2C_TAR_IC_10BITADDR_MST register field. */
-#define ALT_I2C_TAR_IC_10BITADDR_MST_WIDTH      1
+    #define ALT_I2C_TAR_IC_10BITADDR_MST_WIDTH        1
 /* The mask used to set the ALT_I2C_TAR_IC_10BITADDR_MST register field value. */
-#define ALT_I2C_TAR_IC_10BITADDR_MST_SET_MSK    0x00001000
+    #define ALT_I2C_TAR_IC_10BITADDR_MST_SET_MSK      0x00001000
 /* The mask used to clear the ALT_I2C_TAR_IC_10BITADDR_MST register field value. */
-#define ALT_I2C_TAR_IC_10BITADDR_MST_CLR_MSK    0xffffefff
+    #define ALT_I2C_TAR_IC_10BITADDR_MST_CLR_MSK      0xffffefff
 /* The reset value of the ALT_I2C_TAR_IC_10BITADDR_MST register field. */
-#define ALT_I2C_TAR_IC_10BITADDR_MST_RESET      0x1
+    #define ALT_I2C_TAR_IC_10BITADDR_MST_RESET        0x1
 /* Extracts the ALT_I2C_TAR_IC_10BITADDR_MST field value from a register. */
-#define ALT_I2C_TAR_IC_10BITADDR_MST_GET(value) (((value) & 0x00001000) >> 12)
+    #define ALT_I2C_TAR_IC_10BITADDR_MST_GET( value )    ( ( ( value ) & 0x00001000 ) >> 12 )
 /* Produces a ALT_I2C_TAR_IC_10BITADDR_MST register field value suitable for setting the register. */
-#define ALT_I2C_TAR_IC_10BITADDR_MST_SET(value) (((value) << 12) & 0x00001000)
+    #define ALT_I2C_TAR_IC_10BITADDR_MST_SET( value )    ( ( ( value ) << 12 ) & 0x00001000 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -609,23 +632,23 @@ typedef volatile struct ALT_I2C_CON_s  ALT_I2C_CON_t;
  *
  * The struct declaration for register ALT_I2C_TAR.
  */
-struct ALT_I2C_TAR_s
-{
-    uint32_t  ic_tar              : 10;  /* Master Target Address */
-    uint32_t  gc_or_start         :  1;  /* General Call OR Start */
-    uint32_t  special             :  1;  /* Special */
-    uint32_t  ic_10bitaddr_master :  1;  /* Master Addressing Bit Control */
-    uint32_t                      : 19;  /* *UNDEFINED* */
-};
+        struct ALT_I2C_TAR_s
+        {
+            uint32_t ic_tar              : 10;  /* Master Target Address */
+            uint32_t gc_or_start         :  1;  /* General Call OR Start */
+            uint32_t special             :  1;  /* Special */
+            uint32_t ic_10bitaddr_master :  1;  /* Master Addressing Bit Control */
+            uint32_t                      : 19; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_I2C_TAR. */
-typedef volatile struct ALT_I2C_TAR_s  ALT_I2C_TAR_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_I2C_TAR_s ALT_I2C_TAR_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_I2C_TAR register from the beginning of the component. */
-#define ALT_I2C_TAR_OFST        0x4
+    #define ALT_I2C_TAR_OFST    0x4
 /* The address of the ALT_I2C_TAR register. */
-#define ALT_I2C_TAR_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_I2C_TAR_OFST))
+    #define ALT_I2C_TAR_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_I2C_TAR_OFST ) )
 
 /*
  * Register : Slave Address Register - ic_sar
@@ -640,6 +663,7 @@ typedef volatile struct ALT_I2C_TAR_s  ALT_I2C_TAR_t;
  *  [31:10] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Slave Address - ic_sar
  *
@@ -660,23 +684,24 @@ typedef volatile struct ALT_I2C_TAR_s  ALT_I2C_TAR_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_SAR_IC_SAR register field. */
-#define ALT_I2C_SAR_IC_SAR_LSB        0
+    #define ALT_I2C_SAR_IC_SAR_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_I2C_SAR_IC_SAR register field. */
-#define ALT_I2C_SAR_IC_SAR_MSB        9
+    #define ALT_I2C_SAR_IC_SAR_MSB        9
 /* The width in bits of the ALT_I2C_SAR_IC_SAR register field. */
-#define ALT_I2C_SAR_IC_SAR_WIDTH      10
+    #define ALT_I2C_SAR_IC_SAR_WIDTH      10
 /* The mask used to set the ALT_I2C_SAR_IC_SAR register field value. */
-#define ALT_I2C_SAR_IC_SAR_SET_MSK    0x000003ff
+    #define ALT_I2C_SAR_IC_SAR_SET_MSK    0x000003ff
 /* The mask used to clear the ALT_I2C_SAR_IC_SAR register field value. */
-#define ALT_I2C_SAR_IC_SAR_CLR_MSK    0xfffffc00
+    #define ALT_I2C_SAR_IC_SAR_CLR_MSK    0xfffffc00
 /* The reset value of the ALT_I2C_SAR_IC_SAR register field. */
-#define ALT_I2C_SAR_IC_SAR_RESET      0x55
+    #define ALT_I2C_SAR_IC_SAR_RESET      0x55
 /* Extracts the ALT_I2C_SAR_IC_SAR field value from a register. */
-#define ALT_I2C_SAR_IC_SAR_GET(value) (((value) & 0x000003ff) >> 0)
+    #define ALT_I2C_SAR_IC_SAR_GET( value )    ( ( ( value ) & 0x000003ff ) >> 0 )
 /* Produces a ALT_I2C_SAR_IC_SAR register field value suitable for setting the register. */
-#define ALT_I2C_SAR_IC_SAR_SET(value) (((value) << 0) & 0x000003ff)
+    #define ALT_I2C_SAR_IC_SAR_SET( value )    ( ( ( value ) << 0 ) & 0x000003ff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -687,20 +712,20 @@ typedef volatile struct ALT_I2C_TAR_s  ALT_I2C_TAR_t;
  *
  * The struct declaration for register ALT_I2C_SAR.
  */
-struct ALT_I2C_SAR_s
-{
-    uint32_t  ic_sar : 10;  /* Slave Address */
-    uint32_t         : 22;  /* *UNDEFINED* */
-};
+        struct ALT_I2C_SAR_s
+        {
+            uint32_t ic_sar : 10;  /* Slave Address */
+            uint32_t         : 22; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_I2C_SAR. */
-typedef volatile struct ALT_I2C_SAR_s  ALT_I2C_SAR_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_I2C_SAR_s ALT_I2C_SAR_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_I2C_SAR register from the beginning of the component. */
-#define ALT_I2C_SAR_OFST        0x8
+    #define ALT_I2C_SAR_OFST    0x8
 /* The address of the ALT_I2C_SAR register. */
-#define ALT_I2C_SAR_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_I2C_SAR_OFST))
+    #define ALT_I2C_SAR_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_I2C_SAR_OFST ) )
 
 /*
  * Register : Tx Rx Data and Command Register - ic_data_cmd
@@ -719,6 +744,7 @@ typedef volatile struct ALT_I2C_SAR_s  ALT_I2C_SAR_t;
  *  [31:11] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Tx Rx Data - dat
  *
@@ -731,21 +757,21 @@ typedef volatile struct ALT_I2C_SAR_s  ALT_I2C_SAR_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_DATA_CMD_DAT register field. */
-#define ALT_I2C_DATA_CMD_DAT_LSB        0
+    #define ALT_I2C_DATA_CMD_DAT_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_I2C_DATA_CMD_DAT register field. */
-#define ALT_I2C_DATA_CMD_DAT_MSB        7
+    #define ALT_I2C_DATA_CMD_DAT_MSB        7
 /* The width in bits of the ALT_I2C_DATA_CMD_DAT register field. */
-#define ALT_I2C_DATA_CMD_DAT_WIDTH      8
+    #define ALT_I2C_DATA_CMD_DAT_WIDTH      8
 /* The mask used to set the ALT_I2C_DATA_CMD_DAT register field value. */
-#define ALT_I2C_DATA_CMD_DAT_SET_MSK    0x000000ff
+    #define ALT_I2C_DATA_CMD_DAT_SET_MSK    0x000000ff
 /* The mask used to clear the ALT_I2C_DATA_CMD_DAT register field value. */
-#define ALT_I2C_DATA_CMD_DAT_CLR_MSK    0xffffff00
+    #define ALT_I2C_DATA_CMD_DAT_CLR_MSK    0xffffff00
 /* The reset value of the ALT_I2C_DATA_CMD_DAT register field. */
-#define ALT_I2C_DATA_CMD_DAT_RESET      0x0
+    #define ALT_I2C_DATA_CMD_DAT_RESET      0x0
 /* Extracts the ALT_I2C_DATA_CMD_DAT field value from a register. */
-#define ALT_I2C_DATA_CMD_DAT_GET(value) (((value) & 0x000000ff) >> 0)
+    #define ALT_I2C_DATA_CMD_DAT_GET( value )    ( ( ( value ) & 0x000000ff ) >> 0 )
 /* Produces a ALT_I2C_DATA_CMD_DAT register field value suitable for setting the register. */
-#define ALT_I2C_DATA_CMD_DAT_SET(value) (((value) << 0) & 0x000000ff)
+    #define ALT_I2C_DATA_CMD_DAT_SET( value )    ( ( ( value ) << 0 ) & 0x000000ff )
 
 /*
  * Field : Master Read Write Control - cmd
@@ -777,35 +803,37 @@ typedef volatile struct ALT_I2C_SAR_s  ALT_I2C_SAR_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_I2C_DATA_CMD_CMD
  *
  * Master Read
  */
-#define ALT_I2C_DATA_CMD_CMD_E_RD   0x1
+    #define ALT_I2C_DATA_CMD_CMD_E_RD       0x1
+
 /*
  * Enumerated value for register field ALT_I2C_DATA_CMD_CMD
  *
  * Master Write
  */
-#define ALT_I2C_DATA_CMD_CMD_E_WR   0x0
+    #define ALT_I2C_DATA_CMD_CMD_E_WR       0x0
 
 /* The Least Significant Bit (LSB) position of the ALT_I2C_DATA_CMD_CMD register field. */
-#define ALT_I2C_DATA_CMD_CMD_LSB        8
+    #define ALT_I2C_DATA_CMD_CMD_LSB        8
 /* The Most Significant Bit (MSB) position of the ALT_I2C_DATA_CMD_CMD register field. */
-#define ALT_I2C_DATA_CMD_CMD_MSB        8
+    #define ALT_I2C_DATA_CMD_CMD_MSB        8
 /* The width in bits of the ALT_I2C_DATA_CMD_CMD register field. */
-#define ALT_I2C_DATA_CMD_CMD_WIDTH      1
+    #define ALT_I2C_DATA_CMD_CMD_WIDTH      1
 /* The mask used to set the ALT_I2C_DATA_CMD_CMD register field value. */
-#define ALT_I2C_DATA_CMD_CMD_SET_MSK    0x00000100
+    #define ALT_I2C_DATA_CMD_CMD_SET_MSK    0x00000100
 /* The mask used to clear the ALT_I2C_DATA_CMD_CMD register field value. */
-#define ALT_I2C_DATA_CMD_CMD_CLR_MSK    0xfffffeff
+    #define ALT_I2C_DATA_CMD_CMD_CLR_MSK    0xfffffeff
 /* The reset value of the ALT_I2C_DATA_CMD_CMD register field. */
-#define ALT_I2C_DATA_CMD_CMD_RESET      0x0
+    #define ALT_I2C_DATA_CMD_CMD_RESET      0x0
 /* Extracts the ALT_I2C_DATA_CMD_CMD field value from a register. */
-#define ALT_I2C_DATA_CMD_CMD_GET(value) (((value) & 0x00000100) >> 8)
+    #define ALT_I2C_DATA_CMD_CMD_GET( value )    ( ( ( value ) & 0x00000100 ) >> 8 )
 /* Produces a ALT_I2C_DATA_CMD_CMD register field value suitable for setting the register. */
-#define ALT_I2C_DATA_CMD_CMD_SET(value) (((value) << 8) & 0x00000100)
+    #define ALT_I2C_DATA_CMD_CMD_SET( value )    ( ( ( value ) << 8 ) & 0x00000100 )
 
 /*
  * Field : Generate Stop - stop
@@ -832,35 +860,37 @@ typedef volatile struct ALT_I2C_SAR_s  ALT_I2C_SAR_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_I2C_DATA_CMD_STOP
  *
  * Issue Stop
  */
-#define ALT_I2C_DATA_CMD_STOP_E_STOP    0x1
+    #define ALT_I2C_DATA_CMD_STOP_E_STOP       0x1
+
 /*
  * Enumerated value for register field ALT_I2C_DATA_CMD_STOP
  *
  * Do Not Issue Stop
  */
-#define ALT_I2C_DATA_CMD_STOP_E_NO_STOP 0x0
+    #define ALT_I2C_DATA_CMD_STOP_E_NO_STOP    0x0
 
 /* The Least Significant Bit (LSB) position of the ALT_I2C_DATA_CMD_STOP register field. */
-#define ALT_I2C_DATA_CMD_STOP_LSB        9
+    #define ALT_I2C_DATA_CMD_STOP_LSB          9
 /* The Most Significant Bit (MSB) position of the ALT_I2C_DATA_CMD_STOP register field. */
-#define ALT_I2C_DATA_CMD_STOP_MSB        9
+    #define ALT_I2C_DATA_CMD_STOP_MSB          9
 /* The width in bits of the ALT_I2C_DATA_CMD_STOP register field. */
-#define ALT_I2C_DATA_CMD_STOP_WIDTH      1
+    #define ALT_I2C_DATA_CMD_STOP_WIDTH        1
 /* The mask used to set the ALT_I2C_DATA_CMD_STOP register field value. */
-#define ALT_I2C_DATA_CMD_STOP_SET_MSK    0x00000200
+    #define ALT_I2C_DATA_CMD_STOP_SET_MSK      0x00000200
 /* The mask used to clear the ALT_I2C_DATA_CMD_STOP register field value. */
-#define ALT_I2C_DATA_CMD_STOP_CLR_MSK    0xfffffdff
+    #define ALT_I2C_DATA_CMD_STOP_CLR_MSK      0xfffffdff
 /* The reset value of the ALT_I2C_DATA_CMD_STOP register field. */
-#define ALT_I2C_DATA_CMD_STOP_RESET      0x0
+    #define ALT_I2C_DATA_CMD_STOP_RESET        0x0
 /* Extracts the ALT_I2C_DATA_CMD_STOP field value from a register. */
-#define ALT_I2C_DATA_CMD_STOP_GET(value) (((value) & 0x00000200) >> 9)
+    #define ALT_I2C_DATA_CMD_STOP_GET( value )    ( ( ( value ) & 0x00000200 ) >> 9 )
 /* Produces a ALT_I2C_DATA_CMD_STOP register field value suitable for setting the register. */
-#define ALT_I2C_DATA_CMD_STOP_SET(value) (((value) << 9) & 0x00000200)
+    #define ALT_I2C_DATA_CMD_STOP_SET( value )    ( ( ( value ) << 9 ) & 0x00000200 )
 
 /*
  * Field : Generate Restart - restart
@@ -885,37 +915,40 @@ typedef volatile struct ALT_I2C_SAR_s  ALT_I2C_SAR_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_I2C_DATA_CMD_RESTART
  *
  * Issue Restart
  */
-#define ALT_I2C_DATA_CMD_RESTART_E_RESTART                  0x1
+    #define ALT_I2C_DATA_CMD_RESTART_E_RESTART                  0x1
+
 /*
  * Enumerated value for register field ALT_I2C_DATA_CMD_RESTART
  *
  * Issue Restart On Direction Change
  */
-#define ALT_I2C_DATA_CMD_RESTART_E_RESTART_ON_DIR_CHANGE    0x0
+    #define ALT_I2C_DATA_CMD_RESTART_E_RESTART_ON_DIR_CHANGE    0x0
 
 /* The Least Significant Bit (LSB) position of the ALT_I2C_DATA_CMD_RESTART register field. */
-#define ALT_I2C_DATA_CMD_RESTART_LSB        10
+    #define ALT_I2C_DATA_CMD_RESTART_LSB                        10
 /* The Most Significant Bit (MSB) position of the ALT_I2C_DATA_CMD_RESTART register field. */
-#define ALT_I2C_DATA_CMD_RESTART_MSB        10
+    #define ALT_I2C_DATA_CMD_RESTART_MSB                        10
 /* The width in bits of the ALT_I2C_DATA_CMD_RESTART register field. */
-#define ALT_I2C_DATA_CMD_RESTART_WIDTH      1
+    #define ALT_I2C_DATA_CMD_RESTART_WIDTH                      1
 /* The mask used to set the ALT_I2C_DATA_CMD_RESTART register field value. */
-#define ALT_I2C_DATA_CMD_RESTART_SET_MSK    0x00000400
+    #define ALT_I2C_DATA_CMD_RESTART_SET_MSK                    0x00000400
 /* The mask used to clear the ALT_I2C_DATA_CMD_RESTART register field value. */
-#define ALT_I2C_DATA_CMD_RESTART_CLR_MSK    0xfffffbff
+    #define ALT_I2C_DATA_CMD_RESTART_CLR_MSK                    0xfffffbff
 /* The reset value of the ALT_I2C_DATA_CMD_RESTART register field. */
-#define ALT_I2C_DATA_CMD_RESTART_RESET      0x0
+    #define ALT_I2C_DATA_CMD_RESTART_RESET                      0x0
 /* Extracts the ALT_I2C_DATA_CMD_RESTART field value from a register. */
-#define ALT_I2C_DATA_CMD_RESTART_GET(value) (((value) & 0x00000400) >> 10)
+    #define ALT_I2C_DATA_CMD_RESTART_GET( value )    ( ( ( value ) & 0x00000400 ) >> 10 )
 /* Produces a ALT_I2C_DATA_CMD_RESTART register field value suitable for setting the register. */
-#define ALT_I2C_DATA_CMD_RESTART_SET(value) (((value) << 10) & 0x00000400)
+    #define ALT_I2C_DATA_CMD_RESTART_SET( value )    ( ( ( value ) << 10 ) & 0x00000400 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -926,23 +959,23 @@ typedef volatile struct ALT_I2C_SAR_s  ALT_I2C_SAR_t;
  *
  * The struct declaration for register ALT_I2C_DATA_CMD.
  */
-struct ALT_I2C_DATA_CMD_s
-{
-    uint32_t  dat     :  8;  /* Tx Rx Data */
-    uint32_t  cmd     :  1;  /* Master Read Write Control */
-    uint32_t  stop    :  1;  /* Generate Stop */
-    uint32_t  restart :  1;  /* Generate Restart */
-    uint32_t          : 21;  /* *UNDEFINED* */
-};
+        struct ALT_I2C_DATA_CMD_s
+        {
+            uint32_t dat     :  8;  /* Tx Rx Data */
+            uint32_t cmd     :  1;  /* Master Read Write Control */
+            uint32_t stop    :  1;  /* Generate Stop */
+            uint32_t restart :  1;  /* Generate Restart */
+            uint32_t          : 21; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_I2C_DATA_CMD. */
-typedef volatile struct ALT_I2C_DATA_CMD_s  ALT_I2C_DATA_CMD_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_I2C_DATA_CMD_s ALT_I2C_DATA_CMD_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_I2C_DATA_CMD register from the beginning of the component. */
-#define ALT_I2C_DATA_CMD_OFST        0x10
+    #define ALT_I2C_DATA_CMD_OFST    0x10
 /* The address of the ALT_I2C_DATA_CMD register. */
-#define ALT_I2C_DATA_CMD_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_I2C_DATA_CMD_OFST))
+    #define ALT_I2C_DATA_CMD_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_I2C_DATA_CMD_OFST ) )
 
 /*
  * Register : Std Spd Clock SCL HCNT Register - ic_ss_scl_hcnt
@@ -957,6 +990,7 @@ typedef volatile struct ALT_I2C_DATA_CMD_s  ALT_I2C_DATA_CMD_t;
  *  [31:16] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Std Spd SCL High Period - ic_ss_scl_hcnt
  *
@@ -976,23 +1010,24 @@ typedef volatile struct ALT_I2C_DATA_CMD_s  ALT_I2C_DATA_CMD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_SS_SCL_HCNT_IC_SS_SCL_HCNT register field. */
-#define ALT_I2C_SS_SCL_HCNT_IC_SS_SCL_HCNT_LSB        0
+    #define ALT_I2C_SS_SCL_HCNT_IC_SS_SCL_HCNT_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_I2C_SS_SCL_HCNT_IC_SS_SCL_HCNT register field. */
-#define ALT_I2C_SS_SCL_HCNT_IC_SS_SCL_HCNT_MSB        15
+    #define ALT_I2C_SS_SCL_HCNT_IC_SS_SCL_HCNT_MSB        15
 /* The width in bits of the ALT_I2C_SS_SCL_HCNT_IC_SS_SCL_HCNT register field. */
-#define ALT_I2C_SS_SCL_HCNT_IC_SS_SCL_HCNT_WIDTH      16
+    #define ALT_I2C_SS_SCL_HCNT_IC_SS_SCL_HCNT_WIDTH      16
 /* The mask used to set the ALT_I2C_SS_SCL_HCNT_IC_SS_SCL_HCNT register field value. */
-#define ALT_I2C_SS_SCL_HCNT_IC_SS_SCL_HCNT_SET_MSK    0x0000ffff
+    #define ALT_I2C_SS_SCL_HCNT_IC_SS_SCL_HCNT_SET_MSK    0x0000ffff
 /* The mask used to clear the ALT_I2C_SS_SCL_HCNT_IC_SS_SCL_HCNT register field value. */
-#define ALT_I2C_SS_SCL_HCNT_IC_SS_SCL_HCNT_CLR_MSK    0xffff0000
+    #define ALT_I2C_SS_SCL_HCNT_IC_SS_SCL_HCNT_CLR_MSK    0xffff0000
 /* The reset value of the ALT_I2C_SS_SCL_HCNT_IC_SS_SCL_HCNT register field. */
-#define ALT_I2C_SS_SCL_HCNT_IC_SS_SCL_HCNT_RESET      0x190
+    #define ALT_I2C_SS_SCL_HCNT_IC_SS_SCL_HCNT_RESET      0x190
 /* Extracts the ALT_I2C_SS_SCL_HCNT_IC_SS_SCL_HCNT field value from a register. */
-#define ALT_I2C_SS_SCL_HCNT_IC_SS_SCL_HCNT_GET(value) (((value) & 0x0000ffff) >> 0)
+    #define ALT_I2C_SS_SCL_HCNT_IC_SS_SCL_HCNT_GET( value )    ( ( ( value ) & 0x0000ffff ) >> 0 )
 /* Produces a ALT_I2C_SS_SCL_HCNT_IC_SS_SCL_HCNT register field value suitable for setting the register. */
-#define ALT_I2C_SS_SCL_HCNT_IC_SS_SCL_HCNT_SET(value) (((value) << 0) & 0x0000ffff)
+    #define ALT_I2C_SS_SCL_HCNT_IC_SS_SCL_HCNT_SET( value )    ( ( ( value ) << 0 ) & 0x0000ffff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -1003,20 +1038,20 @@ typedef volatile struct ALT_I2C_DATA_CMD_s  ALT_I2C_DATA_CMD_t;
  *
  * The struct declaration for register ALT_I2C_SS_SCL_HCNT.
  */
-struct ALT_I2C_SS_SCL_HCNT_s
-{
-    uint32_t  ic_ss_scl_hcnt : 16;  /* Std Spd SCL High Period */
-    uint32_t                 : 16;  /* *UNDEFINED* */
-};
+        struct ALT_I2C_SS_SCL_HCNT_s
+        {
+            uint32_t ic_ss_scl_hcnt : 16;  /* Std Spd SCL High Period */
+            uint32_t                 : 16; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_I2C_SS_SCL_HCNT. */
-typedef volatile struct ALT_I2C_SS_SCL_HCNT_s  ALT_I2C_SS_SCL_HCNT_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_I2C_SS_SCL_HCNT_s ALT_I2C_SS_SCL_HCNT_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_I2C_SS_SCL_HCNT register from the beginning of the component. */
-#define ALT_I2C_SS_SCL_HCNT_OFST        0x14
+    #define ALT_I2C_SS_SCL_HCNT_OFST    0x14
 /* The address of the ALT_I2C_SS_SCL_HCNT register. */
-#define ALT_I2C_SS_SCL_HCNT_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_I2C_SS_SCL_HCNT_OFST))
+    #define ALT_I2C_SS_SCL_HCNT_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_I2C_SS_SCL_HCNT_OFST ) )
 
 /*
  * Register : Std Spd Clock SCL LCNT Register - ic_ss_scl_lcnt
@@ -1031,6 +1066,7 @@ typedef volatile struct ALT_I2C_SS_SCL_HCNT_s  ALT_I2C_SS_SCL_HCNT_t;
  *  [31:16] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Std Spd SCL Low Period - ic_ss_scl_lcnt
  *
@@ -1046,23 +1082,24 @@ typedef volatile struct ALT_I2C_SS_SCL_HCNT_s  ALT_I2C_SS_SCL_HCNT_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_SS_SCL_LCNT_IC_SS_SCL_LCNT register field. */
-#define ALT_I2C_SS_SCL_LCNT_IC_SS_SCL_LCNT_LSB        0
+    #define ALT_I2C_SS_SCL_LCNT_IC_SS_SCL_LCNT_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_I2C_SS_SCL_LCNT_IC_SS_SCL_LCNT register field. */
-#define ALT_I2C_SS_SCL_LCNT_IC_SS_SCL_LCNT_MSB        15
+    #define ALT_I2C_SS_SCL_LCNT_IC_SS_SCL_LCNT_MSB        15
 /* The width in bits of the ALT_I2C_SS_SCL_LCNT_IC_SS_SCL_LCNT register field. */
-#define ALT_I2C_SS_SCL_LCNT_IC_SS_SCL_LCNT_WIDTH      16
+    #define ALT_I2C_SS_SCL_LCNT_IC_SS_SCL_LCNT_WIDTH      16
 /* The mask used to set the ALT_I2C_SS_SCL_LCNT_IC_SS_SCL_LCNT register field value. */
-#define ALT_I2C_SS_SCL_LCNT_IC_SS_SCL_LCNT_SET_MSK    0x0000ffff
+    #define ALT_I2C_SS_SCL_LCNT_IC_SS_SCL_LCNT_SET_MSK    0x0000ffff
 /* The mask used to clear the ALT_I2C_SS_SCL_LCNT_IC_SS_SCL_LCNT register field value. */
-#define ALT_I2C_SS_SCL_LCNT_IC_SS_SCL_LCNT_CLR_MSK    0xffff0000
+    #define ALT_I2C_SS_SCL_LCNT_IC_SS_SCL_LCNT_CLR_MSK    0xffff0000
 /* The reset value of the ALT_I2C_SS_SCL_LCNT_IC_SS_SCL_LCNT register field. */
-#define ALT_I2C_SS_SCL_LCNT_IC_SS_SCL_LCNT_RESET      0x1d6
+    #define ALT_I2C_SS_SCL_LCNT_IC_SS_SCL_LCNT_RESET      0x1d6
 /* Extracts the ALT_I2C_SS_SCL_LCNT_IC_SS_SCL_LCNT field value from a register. */
-#define ALT_I2C_SS_SCL_LCNT_IC_SS_SCL_LCNT_GET(value) (((value) & 0x0000ffff) >> 0)
+    #define ALT_I2C_SS_SCL_LCNT_IC_SS_SCL_LCNT_GET( value )    ( ( ( value ) & 0x0000ffff ) >> 0 )
 /* Produces a ALT_I2C_SS_SCL_LCNT_IC_SS_SCL_LCNT register field value suitable for setting the register. */
-#define ALT_I2C_SS_SCL_LCNT_IC_SS_SCL_LCNT_SET(value) (((value) << 0) & 0x0000ffff)
+    #define ALT_I2C_SS_SCL_LCNT_IC_SS_SCL_LCNT_SET( value )    ( ( ( value ) << 0 ) & 0x0000ffff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -1073,20 +1110,20 @@ typedef volatile struct ALT_I2C_SS_SCL_HCNT_s  ALT_I2C_SS_SCL_HCNT_t;
  *
  * The struct declaration for register ALT_I2C_SS_SCL_LCNT.
  */
-struct ALT_I2C_SS_SCL_LCNT_s
-{
-    uint32_t  ic_ss_scl_lcnt : 16;  /* Std Spd SCL Low Period */
-    uint32_t                 : 16;  /* *UNDEFINED* */
-};
+        struct ALT_I2C_SS_SCL_LCNT_s
+        {
+            uint32_t ic_ss_scl_lcnt : 16;  /* Std Spd SCL Low Period */
+            uint32_t                 : 16; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_I2C_SS_SCL_LCNT. */
-typedef volatile struct ALT_I2C_SS_SCL_LCNT_s  ALT_I2C_SS_SCL_LCNT_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_I2C_SS_SCL_LCNT_s ALT_I2C_SS_SCL_LCNT_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_I2C_SS_SCL_LCNT register from the beginning of the component. */
-#define ALT_I2C_SS_SCL_LCNT_OFST        0x18
+    #define ALT_I2C_SS_SCL_LCNT_OFST    0x18
 /* The address of the ALT_I2C_SS_SCL_LCNT register. */
-#define ALT_I2C_SS_SCL_LCNT_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_I2C_SS_SCL_LCNT_OFST))
+    #define ALT_I2C_SS_SCL_LCNT_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_I2C_SS_SCL_LCNT_OFST ) )
 
 /*
  * Register : Fast Spd Clock SCL HCNT Register - ic_fs_scl_hcnt
@@ -1101,6 +1138,7 @@ typedef volatile struct ALT_I2C_SS_SCL_LCNT_s  ALT_I2C_SS_SCL_LCNT_t;
  *  [31:16] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Fast Spd SCL High Period - ic_fs_scl_hcnt
  *
@@ -1118,23 +1156,24 @@ typedef volatile struct ALT_I2C_SS_SCL_LCNT_s  ALT_I2C_SS_SCL_LCNT_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_FS_SCL_HCNT_IC_FS_SCL_HCNT register field. */
-#define ALT_I2C_FS_SCL_HCNT_IC_FS_SCL_HCNT_LSB        0
+    #define ALT_I2C_FS_SCL_HCNT_IC_FS_SCL_HCNT_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_I2C_FS_SCL_HCNT_IC_FS_SCL_HCNT register field. */
-#define ALT_I2C_FS_SCL_HCNT_IC_FS_SCL_HCNT_MSB        15
+    #define ALT_I2C_FS_SCL_HCNT_IC_FS_SCL_HCNT_MSB        15
 /* The width in bits of the ALT_I2C_FS_SCL_HCNT_IC_FS_SCL_HCNT register field. */
-#define ALT_I2C_FS_SCL_HCNT_IC_FS_SCL_HCNT_WIDTH      16
+    #define ALT_I2C_FS_SCL_HCNT_IC_FS_SCL_HCNT_WIDTH      16
 /* The mask used to set the ALT_I2C_FS_SCL_HCNT_IC_FS_SCL_HCNT register field value. */
-#define ALT_I2C_FS_SCL_HCNT_IC_FS_SCL_HCNT_SET_MSK    0x0000ffff
+    #define ALT_I2C_FS_SCL_HCNT_IC_FS_SCL_HCNT_SET_MSK    0x0000ffff
 /* The mask used to clear the ALT_I2C_FS_SCL_HCNT_IC_FS_SCL_HCNT register field value. */
-#define ALT_I2C_FS_SCL_HCNT_IC_FS_SCL_HCNT_CLR_MSK    0xffff0000
+    #define ALT_I2C_FS_SCL_HCNT_IC_FS_SCL_HCNT_CLR_MSK    0xffff0000
 /* The reset value of the ALT_I2C_FS_SCL_HCNT_IC_FS_SCL_HCNT register field. */
-#define ALT_I2C_FS_SCL_HCNT_IC_FS_SCL_HCNT_RESET      0x3c
+    #define ALT_I2C_FS_SCL_HCNT_IC_FS_SCL_HCNT_RESET      0x3c
 /* Extracts the ALT_I2C_FS_SCL_HCNT_IC_FS_SCL_HCNT field value from a register. */
-#define ALT_I2C_FS_SCL_HCNT_IC_FS_SCL_HCNT_GET(value) (((value) & 0x0000ffff) >> 0)
+    #define ALT_I2C_FS_SCL_HCNT_IC_FS_SCL_HCNT_GET( value )    ( ( ( value ) & 0x0000ffff ) >> 0 )
 /* Produces a ALT_I2C_FS_SCL_HCNT_IC_FS_SCL_HCNT register field value suitable for setting the register. */
-#define ALT_I2C_FS_SCL_HCNT_IC_FS_SCL_HCNT_SET(value) (((value) << 0) & 0x0000ffff)
+    #define ALT_I2C_FS_SCL_HCNT_IC_FS_SCL_HCNT_SET( value )    ( ( ( value ) << 0 ) & 0x0000ffff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -1145,20 +1184,20 @@ typedef volatile struct ALT_I2C_SS_SCL_LCNT_s  ALT_I2C_SS_SCL_LCNT_t;
  *
  * The struct declaration for register ALT_I2C_FS_SCL_HCNT.
  */
-struct ALT_I2C_FS_SCL_HCNT_s
-{
-    uint32_t  ic_fs_scl_hcnt : 16;  /* Fast Spd SCL High Period */
-    uint32_t                 : 16;  /* *UNDEFINED* */
-};
+        struct ALT_I2C_FS_SCL_HCNT_s
+        {
+            uint32_t ic_fs_scl_hcnt : 16;  /* Fast Spd SCL High Period */
+            uint32_t                 : 16; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_I2C_FS_SCL_HCNT. */
-typedef volatile struct ALT_I2C_FS_SCL_HCNT_s  ALT_I2C_FS_SCL_HCNT_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_I2C_FS_SCL_HCNT_s ALT_I2C_FS_SCL_HCNT_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_I2C_FS_SCL_HCNT register from the beginning of the component. */
-#define ALT_I2C_FS_SCL_HCNT_OFST        0x1c
+    #define ALT_I2C_FS_SCL_HCNT_OFST    0x1c
 /* The address of the ALT_I2C_FS_SCL_HCNT register. */
-#define ALT_I2C_FS_SCL_HCNT_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_I2C_FS_SCL_HCNT_OFST))
+    #define ALT_I2C_FS_SCL_HCNT_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_I2C_FS_SCL_HCNT_OFST ) )
 
 /*
  * Register : Fast Spd Clock SCL LCNT Register - ic_fs_scl_lcnt
@@ -1173,6 +1212,7 @@ typedef volatile struct ALT_I2C_FS_SCL_HCNT_s  ALT_I2C_FS_SCL_HCNT_t;
  *  [31:16] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Fast Spd SCL Low Period - ic_fs_scl_lcnt
  *
@@ -1188,23 +1228,24 @@ typedef volatile struct ALT_I2C_FS_SCL_HCNT_s  ALT_I2C_FS_SCL_HCNT_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_FS_SCL_LCNT_IC_FS_SCL_LCNT register field. */
-#define ALT_I2C_FS_SCL_LCNT_IC_FS_SCL_LCNT_LSB        0
+    #define ALT_I2C_FS_SCL_LCNT_IC_FS_SCL_LCNT_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_I2C_FS_SCL_LCNT_IC_FS_SCL_LCNT register field. */
-#define ALT_I2C_FS_SCL_LCNT_IC_FS_SCL_LCNT_MSB        15
+    #define ALT_I2C_FS_SCL_LCNT_IC_FS_SCL_LCNT_MSB        15
 /* The width in bits of the ALT_I2C_FS_SCL_LCNT_IC_FS_SCL_LCNT register field. */
-#define ALT_I2C_FS_SCL_LCNT_IC_FS_SCL_LCNT_WIDTH      16
+    #define ALT_I2C_FS_SCL_LCNT_IC_FS_SCL_LCNT_WIDTH      16
 /* The mask used to set the ALT_I2C_FS_SCL_LCNT_IC_FS_SCL_LCNT register field value. */
-#define ALT_I2C_FS_SCL_LCNT_IC_FS_SCL_LCNT_SET_MSK    0x0000ffff
+    #define ALT_I2C_FS_SCL_LCNT_IC_FS_SCL_LCNT_SET_MSK    0x0000ffff
 /* The mask used to clear the ALT_I2C_FS_SCL_LCNT_IC_FS_SCL_LCNT register field value. */
-#define ALT_I2C_FS_SCL_LCNT_IC_FS_SCL_LCNT_CLR_MSK    0xffff0000
+    #define ALT_I2C_FS_SCL_LCNT_IC_FS_SCL_LCNT_CLR_MSK    0xffff0000
 /* The reset value of the ALT_I2C_FS_SCL_LCNT_IC_FS_SCL_LCNT register field. */
-#define ALT_I2C_FS_SCL_LCNT_IC_FS_SCL_LCNT_RESET      0x82
+    #define ALT_I2C_FS_SCL_LCNT_IC_FS_SCL_LCNT_RESET      0x82
 /* Extracts the ALT_I2C_FS_SCL_LCNT_IC_FS_SCL_LCNT field value from a register. */
-#define ALT_I2C_FS_SCL_LCNT_IC_FS_SCL_LCNT_GET(value) (((value) & 0x0000ffff) >> 0)
+    #define ALT_I2C_FS_SCL_LCNT_IC_FS_SCL_LCNT_GET( value )    ( ( ( value ) & 0x0000ffff ) >> 0 )
 /* Produces a ALT_I2C_FS_SCL_LCNT_IC_FS_SCL_LCNT register field value suitable for setting the register. */
-#define ALT_I2C_FS_SCL_LCNT_IC_FS_SCL_LCNT_SET(value) (((value) << 0) & 0x0000ffff)
+    #define ALT_I2C_FS_SCL_LCNT_IC_FS_SCL_LCNT_SET( value )    ( ( ( value ) << 0 ) & 0x0000ffff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -1215,20 +1256,20 @@ typedef volatile struct ALT_I2C_FS_SCL_HCNT_s  ALT_I2C_FS_SCL_HCNT_t;
  *
  * The struct declaration for register ALT_I2C_FS_SCL_LCNT.
  */
-struct ALT_I2C_FS_SCL_LCNT_s
-{
-    uint32_t  ic_fs_scl_lcnt : 16;  /* Fast Spd SCL Low Period */
-    uint32_t                 : 16;  /* *UNDEFINED* */
-};
+        struct ALT_I2C_FS_SCL_LCNT_s
+        {
+            uint32_t ic_fs_scl_lcnt : 16;  /* Fast Spd SCL Low Period */
+            uint32_t                 : 16; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_I2C_FS_SCL_LCNT. */
-typedef volatile struct ALT_I2C_FS_SCL_LCNT_s  ALT_I2C_FS_SCL_LCNT_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_I2C_FS_SCL_LCNT_s ALT_I2C_FS_SCL_LCNT_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_I2C_FS_SCL_LCNT register from the beginning of the component. */
-#define ALT_I2C_FS_SCL_LCNT_OFST        0x20
+    #define ALT_I2C_FS_SCL_LCNT_OFST    0x20
 /* The address of the ALT_I2C_FS_SCL_LCNT register. */
-#define ALT_I2C_FS_SCL_LCNT_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_I2C_FS_SCL_LCNT_OFST))
+    #define ALT_I2C_FS_SCL_LCNT_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_I2C_FS_SCL_LCNT_OFST ) )
 
 /*
  * Register : Interrupt Status Register - ic_intr_stat
@@ -1257,6 +1298,7 @@ typedef volatile struct ALT_I2C_FS_SCL_LCNT_s  ALT_I2C_FS_SCL_LCNT_t;
  *  [31:12] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Receiver Under - r_rx_under
  *
@@ -1269,21 +1311,21 @@ typedef volatile struct ALT_I2C_FS_SCL_LCNT_s  ALT_I2C_FS_SCL_LCNT_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_INTR_STAT_R_RX_UNDER register field. */
-#define ALT_I2C_INTR_STAT_R_RX_UNDER_LSB        0
+    #define ALT_I2C_INTR_STAT_R_RX_UNDER_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_I2C_INTR_STAT_R_RX_UNDER register field. */
-#define ALT_I2C_INTR_STAT_R_RX_UNDER_MSB        0
+    #define ALT_I2C_INTR_STAT_R_RX_UNDER_MSB        0
 /* The width in bits of the ALT_I2C_INTR_STAT_R_RX_UNDER register field. */
-#define ALT_I2C_INTR_STAT_R_RX_UNDER_WIDTH      1
+    #define ALT_I2C_INTR_STAT_R_RX_UNDER_WIDTH      1
 /* The mask used to set the ALT_I2C_INTR_STAT_R_RX_UNDER register field value. */
-#define ALT_I2C_INTR_STAT_R_RX_UNDER_SET_MSK    0x00000001
+    #define ALT_I2C_INTR_STAT_R_RX_UNDER_SET_MSK    0x00000001
 /* The mask used to clear the ALT_I2C_INTR_STAT_R_RX_UNDER register field value. */
-#define ALT_I2C_INTR_STAT_R_RX_UNDER_CLR_MSK    0xfffffffe
+    #define ALT_I2C_INTR_STAT_R_RX_UNDER_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_I2C_INTR_STAT_R_RX_UNDER register field. */
-#define ALT_I2C_INTR_STAT_R_RX_UNDER_RESET      0x0
+    #define ALT_I2C_INTR_STAT_R_RX_UNDER_RESET      0x0
 /* Extracts the ALT_I2C_INTR_STAT_R_RX_UNDER field value from a register. */
-#define ALT_I2C_INTR_STAT_R_RX_UNDER_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_I2C_INTR_STAT_R_RX_UNDER_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_I2C_INTR_STAT_R_RX_UNDER register field value suitable for setting the register. */
-#define ALT_I2C_INTR_STAT_R_RX_UNDER_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_I2C_INTR_STAT_R_RX_UNDER_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
 /*
  * Field : Receiver Over - r_rx_over
@@ -1298,21 +1340,21 @@ typedef volatile struct ALT_I2C_FS_SCL_LCNT_s  ALT_I2C_FS_SCL_LCNT_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_INTR_STAT_R_RX_OVER register field. */
-#define ALT_I2C_INTR_STAT_R_RX_OVER_LSB        1
+    #define ALT_I2C_INTR_STAT_R_RX_OVER_LSB        1
 /* The Most Significant Bit (MSB) position of the ALT_I2C_INTR_STAT_R_RX_OVER register field. */
-#define ALT_I2C_INTR_STAT_R_RX_OVER_MSB        1
+    #define ALT_I2C_INTR_STAT_R_RX_OVER_MSB        1
 /* The width in bits of the ALT_I2C_INTR_STAT_R_RX_OVER register field. */
-#define ALT_I2C_INTR_STAT_R_RX_OVER_WIDTH      1
+    #define ALT_I2C_INTR_STAT_R_RX_OVER_WIDTH      1
 /* The mask used to set the ALT_I2C_INTR_STAT_R_RX_OVER register field value. */
-#define ALT_I2C_INTR_STAT_R_RX_OVER_SET_MSK    0x00000002
+    #define ALT_I2C_INTR_STAT_R_RX_OVER_SET_MSK    0x00000002
 /* The mask used to clear the ALT_I2C_INTR_STAT_R_RX_OVER register field value. */
-#define ALT_I2C_INTR_STAT_R_RX_OVER_CLR_MSK    0xfffffffd
+    #define ALT_I2C_INTR_STAT_R_RX_OVER_CLR_MSK    0xfffffffd
 /* The reset value of the ALT_I2C_INTR_STAT_R_RX_OVER register field. */
-#define ALT_I2C_INTR_STAT_R_RX_OVER_RESET      0x0
+    #define ALT_I2C_INTR_STAT_R_RX_OVER_RESET      0x0
 /* Extracts the ALT_I2C_INTR_STAT_R_RX_OVER field value from a register. */
-#define ALT_I2C_INTR_STAT_R_RX_OVER_GET(value) (((value) & 0x00000002) >> 1)
+    #define ALT_I2C_INTR_STAT_R_RX_OVER_GET( value )    ( ( ( value ) & 0x00000002 ) >> 1 )
 /* Produces a ALT_I2C_INTR_STAT_R_RX_OVER register field value suitable for setting the register. */
-#define ALT_I2C_INTR_STAT_R_RX_OVER_SET(value) (((value) << 1) & 0x00000002)
+    #define ALT_I2C_INTR_STAT_R_RX_OVER_SET( value )    ( ( ( value ) << 1 ) & 0x00000002 )
 
 /*
  * Field : Receive Full - r_rx_full
@@ -1328,21 +1370,21 @@ typedef volatile struct ALT_I2C_FS_SCL_LCNT_s  ALT_I2C_FS_SCL_LCNT_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_INTR_STAT_R_RX_FULL register field. */
-#define ALT_I2C_INTR_STAT_R_RX_FULL_LSB        2
+    #define ALT_I2C_INTR_STAT_R_RX_FULL_LSB        2
 /* The Most Significant Bit (MSB) position of the ALT_I2C_INTR_STAT_R_RX_FULL register field. */
-#define ALT_I2C_INTR_STAT_R_RX_FULL_MSB        2
+    #define ALT_I2C_INTR_STAT_R_RX_FULL_MSB        2
 /* The width in bits of the ALT_I2C_INTR_STAT_R_RX_FULL register field. */
-#define ALT_I2C_INTR_STAT_R_RX_FULL_WIDTH      1
+    #define ALT_I2C_INTR_STAT_R_RX_FULL_WIDTH      1
 /* The mask used to set the ALT_I2C_INTR_STAT_R_RX_FULL register field value. */
-#define ALT_I2C_INTR_STAT_R_RX_FULL_SET_MSK    0x00000004
+    #define ALT_I2C_INTR_STAT_R_RX_FULL_SET_MSK    0x00000004
 /* The mask used to clear the ALT_I2C_INTR_STAT_R_RX_FULL register field value. */
-#define ALT_I2C_INTR_STAT_R_RX_FULL_CLR_MSK    0xfffffffb
+    #define ALT_I2C_INTR_STAT_R_RX_FULL_CLR_MSK    0xfffffffb
 /* The reset value of the ALT_I2C_INTR_STAT_R_RX_FULL register field. */
-#define ALT_I2C_INTR_STAT_R_RX_FULL_RESET      0x0
+    #define ALT_I2C_INTR_STAT_R_RX_FULL_RESET      0x0
 /* Extracts the ALT_I2C_INTR_STAT_R_RX_FULL field value from a register. */
-#define ALT_I2C_INTR_STAT_R_RX_FULL_GET(value) (((value) & 0x00000004) >> 2)
+    #define ALT_I2C_INTR_STAT_R_RX_FULL_GET( value )    ( ( ( value ) & 0x00000004 ) >> 2 )
 /* Produces a ALT_I2C_INTR_STAT_R_RX_FULL register field value suitable for setting the register. */
-#define ALT_I2C_INTR_STAT_R_RX_FULL_SET(value) (((value) << 2) & 0x00000004)
+    #define ALT_I2C_INTR_STAT_R_RX_FULL_SET( value )    ( ( ( value ) << 2 ) & 0x00000004 )
 
 /*
  * Field : Interrupt Transmit Over - r_tx_over
@@ -1356,21 +1398,21 @@ typedef volatile struct ALT_I2C_FS_SCL_LCNT_s  ALT_I2C_FS_SCL_LCNT_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_INTR_STAT_R_TX_OVER register field. */
-#define ALT_I2C_INTR_STAT_R_TX_OVER_LSB        3
+    #define ALT_I2C_INTR_STAT_R_TX_OVER_LSB        3
 /* The Most Significant Bit (MSB) position of the ALT_I2C_INTR_STAT_R_TX_OVER register field. */
-#define ALT_I2C_INTR_STAT_R_TX_OVER_MSB        3
+    #define ALT_I2C_INTR_STAT_R_TX_OVER_MSB        3
 /* The width in bits of the ALT_I2C_INTR_STAT_R_TX_OVER register field. */
-#define ALT_I2C_INTR_STAT_R_TX_OVER_WIDTH      1
+    #define ALT_I2C_INTR_STAT_R_TX_OVER_WIDTH      1
 /* The mask used to set the ALT_I2C_INTR_STAT_R_TX_OVER register field value. */
-#define ALT_I2C_INTR_STAT_R_TX_OVER_SET_MSK    0x00000008
+    #define ALT_I2C_INTR_STAT_R_TX_OVER_SET_MSK    0x00000008
 /* The mask used to clear the ALT_I2C_INTR_STAT_R_TX_OVER register field value. */
-#define ALT_I2C_INTR_STAT_R_TX_OVER_CLR_MSK    0xfffffff7
+    #define ALT_I2C_INTR_STAT_R_TX_OVER_CLR_MSK    0xfffffff7
 /* The reset value of the ALT_I2C_INTR_STAT_R_TX_OVER register field. */
-#define ALT_I2C_INTR_STAT_R_TX_OVER_RESET      0x0
+    #define ALT_I2C_INTR_STAT_R_TX_OVER_RESET      0x0
 /* Extracts the ALT_I2C_INTR_STAT_R_TX_OVER field value from a register. */
-#define ALT_I2C_INTR_STAT_R_TX_OVER_GET(value) (((value) & 0x00000008) >> 3)
+    #define ALT_I2C_INTR_STAT_R_TX_OVER_GET( value )    ( ( ( value ) & 0x00000008 ) >> 3 )
 /* Produces a ALT_I2C_INTR_STAT_R_TX_OVER register field value suitable for setting the register. */
-#define ALT_I2C_INTR_STAT_R_TX_OVER_SET(value) (((value) << 3) & 0x00000008)
+    #define ALT_I2C_INTR_STAT_R_TX_OVER_SET( value )    ( ( ( value ) << 3 ) & 0x00000008 )
 
 /*
  * Field : Interrupt Transmit Empty - r_tx_empty
@@ -1386,21 +1428,21 @@ typedef volatile struct ALT_I2C_FS_SCL_LCNT_s  ALT_I2C_FS_SCL_LCNT_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_INTR_STAT_R_TX_EMPTY register field. */
-#define ALT_I2C_INTR_STAT_R_TX_EMPTY_LSB        4
+    #define ALT_I2C_INTR_STAT_R_TX_EMPTY_LSB        4
 /* The Most Significant Bit (MSB) position of the ALT_I2C_INTR_STAT_R_TX_EMPTY register field. */
-#define ALT_I2C_INTR_STAT_R_TX_EMPTY_MSB        4
+    #define ALT_I2C_INTR_STAT_R_TX_EMPTY_MSB        4
 /* The width in bits of the ALT_I2C_INTR_STAT_R_TX_EMPTY register field. */
-#define ALT_I2C_INTR_STAT_R_TX_EMPTY_WIDTH      1
+    #define ALT_I2C_INTR_STAT_R_TX_EMPTY_WIDTH      1
 /* The mask used to set the ALT_I2C_INTR_STAT_R_TX_EMPTY register field value. */
-#define ALT_I2C_INTR_STAT_R_TX_EMPTY_SET_MSK    0x00000010
+    #define ALT_I2C_INTR_STAT_R_TX_EMPTY_SET_MSK    0x00000010
 /* The mask used to clear the ALT_I2C_INTR_STAT_R_TX_EMPTY register field value. */
-#define ALT_I2C_INTR_STAT_R_TX_EMPTY_CLR_MSK    0xffffffef
+    #define ALT_I2C_INTR_STAT_R_TX_EMPTY_CLR_MSK    0xffffffef
 /* The reset value of the ALT_I2C_INTR_STAT_R_TX_EMPTY register field. */
-#define ALT_I2C_INTR_STAT_R_TX_EMPTY_RESET      0x0
+    #define ALT_I2C_INTR_STAT_R_TX_EMPTY_RESET      0x0
 /* Extracts the ALT_I2C_INTR_STAT_R_TX_EMPTY field value from a register. */
-#define ALT_I2C_INTR_STAT_R_TX_EMPTY_GET(value) (((value) & 0x00000010) >> 4)
+    #define ALT_I2C_INTR_STAT_R_TX_EMPTY_GET( value )    ( ( ( value ) & 0x00000010 ) >> 4 )
 /* Produces a ALT_I2C_INTR_STAT_R_TX_EMPTY register field value suitable for setting the register. */
-#define ALT_I2C_INTR_STAT_R_TX_EMPTY_SET(value) (((value) << 4) & 0x00000010)
+    #define ALT_I2C_INTR_STAT_R_TX_EMPTY_SET( value )    ( ( ( value ) << 4 ) & 0x00000010 )
 
 /*
  * Field : Interrupt Read Request - r_rd_req
@@ -1417,21 +1459,21 @@ typedef volatile struct ALT_I2C_FS_SCL_LCNT_s  ALT_I2C_FS_SCL_LCNT_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_INTR_STAT_R_RD_REQ register field. */
-#define ALT_I2C_INTR_STAT_R_RD_REQ_LSB        5
+    #define ALT_I2C_INTR_STAT_R_RD_REQ_LSB        5
 /* The Most Significant Bit (MSB) position of the ALT_I2C_INTR_STAT_R_RD_REQ register field. */
-#define ALT_I2C_INTR_STAT_R_RD_REQ_MSB        5
+    #define ALT_I2C_INTR_STAT_R_RD_REQ_MSB        5
 /* The width in bits of the ALT_I2C_INTR_STAT_R_RD_REQ register field. */
-#define ALT_I2C_INTR_STAT_R_RD_REQ_WIDTH      1
+    #define ALT_I2C_INTR_STAT_R_RD_REQ_WIDTH      1
 /* The mask used to set the ALT_I2C_INTR_STAT_R_RD_REQ register field value. */
-#define ALT_I2C_INTR_STAT_R_RD_REQ_SET_MSK    0x00000020
+    #define ALT_I2C_INTR_STAT_R_RD_REQ_SET_MSK    0x00000020
 /* The mask used to clear the ALT_I2C_INTR_STAT_R_RD_REQ register field value. */
-#define ALT_I2C_INTR_STAT_R_RD_REQ_CLR_MSK    0xffffffdf
+    #define ALT_I2C_INTR_STAT_R_RD_REQ_CLR_MSK    0xffffffdf
 /* The reset value of the ALT_I2C_INTR_STAT_R_RD_REQ register field. */
-#define ALT_I2C_INTR_STAT_R_RD_REQ_RESET      0x0
+    #define ALT_I2C_INTR_STAT_R_RD_REQ_RESET      0x0
 /* Extracts the ALT_I2C_INTR_STAT_R_RD_REQ field value from a register. */
-#define ALT_I2C_INTR_STAT_R_RD_REQ_GET(value) (((value) & 0x00000020) >> 5)
+    #define ALT_I2C_INTR_STAT_R_RD_REQ_GET( value )    ( ( ( value ) & 0x00000020 ) >> 5 )
 /* Produces a ALT_I2C_INTR_STAT_R_RD_REQ register field value suitable for setting the register. */
-#define ALT_I2C_INTR_STAT_R_RD_REQ_SET(value) (((value) << 5) & 0x00000020)
+    #define ALT_I2C_INTR_STAT_R_RD_REQ_SET( value )    ( ( ( value ) << 5 ) & 0x00000020 )
 
 /*
  * Field : Interrupt TX Abort - r_tx_abrt
@@ -1451,21 +1493,21 @@ typedef volatile struct ALT_I2C_FS_SCL_LCNT_s  ALT_I2C_FS_SCL_LCNT_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_INTR_STAT_R_TX_ABRT register field. */
-#define ALT_I2C_INTR_STAT_R_TX_ABRT_LSB        6
+    #define ALT_I2C_INTR_STAT_R_TX_ABRT_LSB        6
 /* The Most Significant Bit (MSB) position of the ALT_I2C_INTR_STAT_R_TX_ABRT register field. */
-#define ALT_I2C_INTR_STAT_R_TX_ABRT_MSB        6
+    #define ALT_I2C_INTR_STAT_R_TX_ABRT_MSB        6
 /* The width in bits of the ALT_I2C_INTR_STAT_R_TX_ABRT register field. */
-#define ALT_I2C_INTR_STAT_R_TX_ABRT_WIDTH      1
+    #define ALT_I2C_INTR_STAT_R_TX_ABRT_WIDTH      1
 /* The mask used to set the ALT_I2C_INTR_STAT_R_TX_ABRT register field value. */
-#define ALT_I2C_INTR_STAT_R_TX_ABRT_SET_MSK    0x00000040
+    #define ALT_I2C_INTR_STAT_R_TX_ABRT_SET_MSK    0x00000040
 /* The mask used to clear the ALT_I2C_INTR_STAT_R_TX_ABRT register field value. */
-#define ALT_I2C_INTR_STAT_R_TX_ABRT_CLR_MSK    0xffffffbf
+    #define ALT_I2C_INTR_STAT_R_TX_ABRT_CLR_MSK    0xffffffbf
 /* The reset value of the ALT_I2C_INTR_STAT_R_TX_ABRT register field. */
-#define ALT_I2C_INTR_STAT_R_TX_ABRT_RESET      0x0
+    #define ALT_I2C_INTR_STAT_R_TX_ABRT_RESET      0x0
 /* Extracts the ALT_I2C_INTR_STAT_R_TX_ABRT field value from a register. */
-#define ALT_I2C_INTR_STAT_R_TX_ABRT_GET(value) (((value) & 0x00000040) >> 6)
+    #define ALT_I2C_INTR_STAT_R_TX_ABRT_GET( value )    ( ( ( value ) & 0x00000040 ) >> 6 )
 /* Produces a ALT_I2C_INTR_STAT_R_TX_ABRT register field value suitable for setting the register. */
-#define ALT_I2C_INTR_STAT_R_TX_ABRT_SET(value) (((value) << 6) & 0x00000040)
+    #define ALT_I2C_INTR_STAT_R_TX_ABRT_SET( value )    ( ( ( value ) << 6 ) & 0x00000040 )
 
 /*
  * Field : Interrupt RX Done - r_rx_done
@@ -1478,21 +1520,21 @@ typedef volatile struct ALT_I2C_FS_SCL_LCNT_s  ALT_I2C_FS_SCL_LCNT_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_INTR_STAT_R_RX_DONE register field. */
-#define ALT_I2C_INTR_STAT_R_RX_DONE_LSB        7
+    #define ALT_I2C_INTR_STAT_R_RX_DONE_LSB        7
 /* The Most Significant Bit (MSB) position of the ALT_I2C_INTR_STAT_R_RX_DONE register field. */
-#define ALT_I2C_INTR_STAT_R_RX_DONE_MSB        7
+    #define ALT_I2C_INTR_STAT_R_RX_DONE_MSB        7
 /* The width in bits of the ALT_I2C_INTR_STAT_R_RX_DONE register field. */
-#define ALT_I2C_INTR_STAT_R_RX_DONE_WIDTH      1
+    #define ALT_I2C_INTR_STAT_R_RX_DONE_WIDTH      1
 /* The mask used to set the ALT_I2C_INTR_STAT_R_RX_DONE register field value. */
-#define ALT_I2C_INTR_STAT_R_RX_DONE_SET_MSK    0x00000080
+    #define ALT_I2C_INTR_STAT_R_RX_DONE_SET_MSK    0x00000080
 /* The mask used to clear the ALT_I2C_INTR_STAT_R_RX_DONE register field value. */
-#define ALT_I2C_INTR_STAT_R_RX_DONE_CLR_MSK    0xffffff7f
+    #define ALT_I2C_INTR_STAT_R_RX_DONE_CLR_MSK    0xffffff7f
 /* The reset value of the ALT_I2C_INTR_STAT_R_RX_DONE register field. */
-#define ALT_I2C_INTR_STAT_R_RX_DONE_RESET      0x0
+    #define ALT_I2C_INTR_STAT_R_RX_DONE_RESET      0x0
 /* Extracts the ALT_I2C_INTR_STAT_R_RX_DONE field value from a register. */
-#define ALT_I2C_INTR_STAT_R_RX_DONE_GET(value) (((value) & 0x00000080) >> 7)
+    #define ALT_I2C_INTR_STAT_R_RX_DONE_GET( value )    ( ( ( value ) & 0x00000080 ) >> 7 )
 /* Produces a ALT_I2C_INTR_STAT_R_RX_DONE register field value suitable for setting the register. */
-#define ALT_I2C_INTR_STAT_R_RX_DONE_SET(value) (((value) << 7) & 0x00000080)
+    #define ALT_I2C_INTR_STAT_R_RX_DONE_SET( value )    ( ( ( value ) << 7 ) & 0x00000080 )
 
 /*
  * Field : Interrupt R_activity - r_activity
@@ -1516,21 +1558,21 @@ typedef volatile struct ALT_I2C_FS_SCL_LCNT_s  ALT_I2C_FS_SCL_LCNT_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_INTR_STAT_R_ACTIVITY register field. */
-#define ALT_I2C_INTR_STAT_R_ACTIVITY_LSB        8
+    #define ALT_I2C_INTR_STAT_R_ACTIVITY_LSB        8
 /* The Most Significant Bit (MSB) position of the ALT_I2C_INTR_STAT_R_ACTIVITY register field. */
-#define ALT_I2C_INTR_STAT_R_ACTIVITY_MSB        8
+    #define ALT_I2C_INTR_STAT_R_ACTIVITY_MSB        8
 /* The width in bits of the ALT_I2C_INTR_STAT_R_ACTIVITY register field. */
-#define ALT_I2C_INTR_STAT_R_ACTIVITY_WIDTH      1
+    #define ALT_I2C_INTR_STAT_R_ACTIVITY_WIDTH      1
 /* The mask used to set the ALT_I2C_INTR_STAT_R_ACTIVITY register field value. */
-#define ALT_I2C_INTR_STAT_R_ACTIVITY_SET_MSK    0x00000100
+    #define ALT_I2C_INTR_STAT_R_ACTIVITY_SET_MSK    0x00000100
 /* The mask used to clear the ALT_I2C_INTR_STAT_R_ACTIVITY register field value. */
-#define ALT_I2C_INTR_STAT_R_ACTIVITY_CLR_MSK    0xfffffeff
+    #define ALT_I2C_INTR_STAT_R_ACTIVITY_CLR_MSK    0xfffffeff
 /* The reset value of the ALT_I2C_INTR_STAT_R_ACTIVITY register field. */
-#define ALT_I2C_INTR_STAT_R_ACTIVITY_RESET      0x0
+    #define ALT_I2C_INTR_STAT_R_ACTIVITY_RESET      0x0
 /* Extracts the ALT_I2C_INTR_STAT_R_ACTIVITY field value from a register. */
-#define ALT_I2C_INTR_STAT_R_ACTIVITY_GET(value) (((value) & 0x00000100) >> 8)
+    #define ALT_I2C_INTR_STAT_R_ACTIVITY_GET( value )    ( ( ( value ) & 0x00000100 ) >> 8 )
 /* Produces a ALT_I2C_INTR_STAT_R_ACTIVITY register field value suitable for setting the register. */
-#define ALT_I2C_INTR_STAT_R_ACTIVITY_SET(value) (((value) << 8) & 0x00000100)
+    #define ALT_I2C_INTR_STAT_R_ACTIVITY_SET( value )    ( ( ( value ) << 8 ) & 0x00000100 )
 
 /*
  * Field : Interrupt Stop Detect - r_stop_det
@@ -1542,21 +1584,21 @@ typedef volatile struct ALT_I2C_FS_SCL_LCNT_s  ALT_I2C_FS_SCL_LCNT_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_INTR_STAT_R_STOP_DET register field. */
-#define ALT_I2C_INTR_STAT_R_STOP_DET_LSB        9
+    #define ALT_I2C_INTR_STAT_R_STOP_DET_LSB        9
 /* The Most Significant Bit (MSB) position of the ALT_I2C_INTR_STAT_R_STOP_DET register field. */
-#define ALT_I2C_INTR_STAT_R_STOP_DET_MSB        9
+    #define ALT_I2C_INTR_STAT_R_STOP_DET_MSB        9
 /* The width in bits of the ALT_I2C_INTR_STAT_R_STOP_DET register field. */
-#define ALT_I2C_INTR_STAT_R_STOP_DET_WIDTH      1
+    #define ALT_I2C_INTR_STAT_R_STOP_DET_WIDTH      1
 /* The mask used to set the ALT_I2C_INTR_STAT_R_STOP_DET register field value. */
-#define ALT_I2C_INTR_STAT_R_STOP_DET_SET_MSK    0x00000200
+    #define ALT_I2C_INTR_STAT_R_STOP_DET_SET_MSK    0x00000200
 /* The mask used to clear the ALT_I2C_INTR_STAT_R_STOP_DET register field value. */
-#define ALT_I2C_INTR_STAT_R_STOP_DET_CLR_MSK    0xfffffdff
+    #define ALT_I2C_INTR_STAT_R_STOP_DET_CLR_MSK    0xfffffdff
 /* The reset value of the ALT_I2C_INTR_STAT_R_STOP_DET register field. */
-#define ALT_I2C_INTR_STAT_R_STOP_DET_RESET      0x0
+    #define ALT_I2C_INTR_STAT_R_STOP_DET_RESET      0x0
 /* Extracts the ALT_I2C_INTR_STAT_R_STOP_DET field value from a register. */
-#define ALT_I2C_INTR_STAT_R_STOP_DET_GET(value) (((value) & 0x00000200) >> 9)
+    #define ALT_I2C_INTR_STAT_R_STOP_DET_GET( value )    ( ( ( value ) & 0x00000200 ) >> 9 )
 /* Produces a ALT_I2C_INTR_STAT_R_STOP_DET register field value suitable for setting the register. */
-#define ALT_I2C_INTR_STAT_R_STOP_DET_SET(value) (((value) << 9) & 0x00000200)
+    #define ALT_I2C_INTR_STAT_R_STOP_DET_SET( value )    ( ( ( value ) << 9 ) & 0x00000200 )
 
 /*
  * Field : Interrupt Start Detect - r_start_det
@@ -1568,21 +1610,21 @@ typedef volatile struct ALT_I2C_FS_SCL_LCNT_s  ALT_I2C_FS_SCL_LCNT_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_INTR_STAT_R_START_DET register field. */
-#define ALT_I2C_INTR_STAT_R_START_DET_LSB        10
+    #define ALT_I2C_INTR_STAT_R_START_DET_LSB        10
 /* The Most Significant Bit (MSB) position of the ALT_I2C_INTR_STAT_R_START_DET register field. */
-#define ALT_I2C_INTR_STAT_R_START_DET_MSB        10
+    #define ALT_I2C_INTR_STAT_R_START_DET_MSB        10
 /* The width in bits of the ALT_I2C_INTR_STAT_R_START_DET register field. */
-#define ALT_I2C_INTR_STAT_R_START_DET_WIDTH      1
+    #define ALT_I2C_INTR_STAT_R_START_DET_WIDTH      1
 /* The mask used to set the ALT_I2C_INTR_STAT_R_START_DET register field value. */
-#define ALT_I2C_INTR_STAT_R_START_DET_SET_MSK    0x00000400
+    #define ALT_I2C_INTR_STAT_R_START_DET_SET_MSK    0x00000400
 /* The mask used to clear the ALT_I2C_INTR_STAT_R_START_DET register field value. */
-#define ALT_I2C_INTR_STAT_R_START_DET_CLR_MSK    0xfffffbff
+    #define ALT_I2C_INTR_STAT_R_START_DET_CLR_MSK    0xfffffbff
 /* The reset value of the ALT_I2C_INTR_STAT_R_START_DET register field. */
-#define ALT_I2C_INTR_STAT_R_START_DET_RESET      0x0
+    #define ALT_I2C_INTR_STAT_R_START_DET_RESET      0x0
 /* Extracts the ALT_I2C_INTR_STAT_R_START_DET field value from a register. */
-#define ALT_I2C_INTR_STAT_R_START_DET_GET(value) (((value) & 0x00000400) >> 10)
+    #define ALT_I2C_INTR_STAT_R_START_DET_GET( value )    ( ( ( value ) & 0x00000400 ) >> 10 )
 /* Produces a ALT_I2C_INTR_STAT_R_START_DET register field value suitable for setting the register. */
-#define ALT_I2C_INTR_STAT_R_START_DET_SET(value) (((value) << 10) & 0x00000400)
+    #define ALT_I2C_INTR_STAT_R_START_DET_SET( value )    ( ( ( value ) << 10 ) & 0x00000400 )
 
 /*
  * Field : Interrupt General Call - r_gen_call
@@ -1596,23 +1638,24 @@ typedef volatile struct ALT_I2C_FS_SCL_LCNT_s  ALT_I2C_FS_SCL_LCNT_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_INTR_STAT_R_GEN_CALL register field. */
-#define ALT_I2C_INTR_STAT_R_GEN_CALL_LSB        11
+    #define ALT_I2C_INTR_STAT_R_GEN_CALL_LSB        11
 /* The Most Significant Bit (MSB) position of the ALT_I2C_INTR_STAT_R_GEN_CALL register field. */
-#define ALT_I2C_INTR_STAT_R_GEN_CALL_MSB        11
+    #define ALT_I2C_INTR_STAT_R_GEN_CALL_MSB        11
 /* The width in bits of the ALT_I2C_INTR_STAT_R_GEN_CALL register field. */
-#define ALT_I2C_INTR_STAT_R_GEN_CALL_WIDTH      1
+    #define ALT_I2C_INTR_STAT_R_GEN_CALL_WIDTH      1
 /* The mask used to set the ALT_I2C_INTR_STAT_R_GEN_CALL register field value. */
-#define ALT_I2C_INTR_STAT_R_GEN_CALL_SET_MSK    0x00000800
+    #define ALT_I2C_INTR_STAT_R_GEN_CALL_SET_MSK    0x00000800
 /* The mask used to clear the ALT_I2C_INTR_STAT_R_GEN_CALL register field value. */
-#define ALT_I2C_INTR_STAT_R_GEN_CALL_CLR_MSK    0xfffff7ff
+    #define ALT_I2C_INTR_STAT_R_GEN_CALL_CLR_MSK    0xfffff7ff
 /* The reset value of the ALT_I2C_INTR_STAT_R_GEN_CALL register field. */
-#define ALT_I2C_INTR_STAT_R_GEN_CALL_RESET      0x0
+    #define ALT_I2C_INTR_STAT_R_GEN_CALL_RESET      0x0
 /* Extracts the ALT_I2C_INTR_STAT_R_GEN_CALL field value from a register. */
-#define ALT_I2C_INTR_STAT_R_GEN_CALL_GET(value) (((value) & 0x00000800) >> 11)
+    #define ALT_I2C_INTR_STAT_R_GEN_CALL_GET( value )    ( ( ( value ) & 0x00000800 ) >> 11 )
 /* Produces a ALT_I2C_INTR_STAT_R_GEN_CALL register field value suitable for setting the register. */
-#define ALT_I2C_INTR_STAT_R_GEN_CALL_SET(value) (((value) << 11) & 0x00000800)
+    #define ALT_I2C_INTR_STAT_R_GEN_CALL_SET( value )    ( ( ( value ) << 11 ) & 0x00000800 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -1623,31 +1666,31 @@ typedef volatile struct ALT_I2C_FS_SCL_LCNT_s  ALT_I2C_FS_SCL_LCNT_t;
  *
  * The struct declaration for register ALT_I2C_INTR_STAT.
  */
-struct ALT_I2C_INTR_STAT_s
-{
-    const uint32_t  r_rx_under  :  1;  /* Receiver Under */
-    const uint32_t  r_rx_over   :  1;  /* Receiver Over */
-    const uint32_t  r_rx_full   :  1;  /* Receive Full */
-    const uint32_t  r_tx_over   :  1;  /* Interrupt Transmit Over */
-    const uint32_t  r_tx_empty  :  1;  /* Interrupt Transmit Empty */
-    const uint32_t  r_rd_req    :  1;  /* Interrupt Read Request */
-    const uint32_t  r_tx_abrt   :  1;  /* Interrupt TX Abort */
-    const uint32_t  r_rx_done   :  1;  /* Interrupt RX Done */
-    const uint32_t  r_activity  :  1;  /* Interrupt R_activity */
-    const uint32_t  r_stop_det  :  1;  /* Interrupt Stop Detect */
-    const uint32_t  r_start_det :  1;  /* Interrupt Start Detect */
-    const uint32_t  r_gen_call  :  1;  /* Interrupt General Call */
-    uint32_t                    : 20;  /* *UNDEFINED* */
-};
+        struct ALT_I2C_INTR_STAT_s
+        {
+            const uint32_t r_rx_under  :  1;  /* Receiver Under */
+            const uint32_t r_rx_over   :  1;  /* Receiver Over */
+            const uint32_t r_rx_full   :  1;  /* Receive Full */
+            const uint32_t r_tx_over   :  1;  /* Interrupt Transmit Over */
+            const uint32_t r_tx_empty  :  1;  /* Interrupt Transmit Empty */
+            const uint32_t r_rd_req    :  1;  /* Interrupt Read Request */
+            const uint32_t r_tx_abrt   :  1;  /* Interrupt TX Abort */
+            const uint32_t r_rx_done   :  1;  /* Interrupt RX Done */
+            const uint32_t r_activity  :  1;  /* Interrupt R_activity */
+            const uint32_t r_stop_det  :  1;  /* Interrupt Stop Detect */
+            const uint32_t r_start_det :  1;  /* Interrupt Start Detect */
+            const uint32_t r_gen_call  :  1;  /* Interrupt General Call */
+            uint32_t                    : 20; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_I2C_INTR_STAT. */
-typedef volatile struct ALT_I2C_INTR_STAT_s  ALT_I2C_INTR_STAT_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_I2C_INTR_STAT_s ALT_I2C_INTR_STAT_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_I2C_INTR_STAT register from the beginning of the component. */
-#define ALT_I2C_INTR_STAT_OFST        0x2c
+    #define ALT_I2C_INTR_STAT_OFST    0x2c
 /* The address of the ALT_I2C_INTR_STAT register. */
-#define ALT_I2C_INTR_STAT_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_I2C_INTR_STAT_OFST))
+    #define ALT_I2C_INTR_STAT_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_I2C_INTR_STAT_OFST ) )
 
 /*
  * Register : Interrupt Mask Register - ic_intr_mask
@@ -1673,6 +1716,7 @@ typedef volatile struct ALT_I2C_INTR_STAT_s  ALT_I2C_INTR_STAT_t;
  *  [31:12] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Mask RX Under - m_rx_under
  *
@@ -1685,21 +1729,21 @@ typedef volatile struct ALT_I2C_INTR_STAT_s  ALT_I2C_INTR_STAT_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_INTR_MSK_M_RX_UNDER register field. */
-#define ALT_I2C_INTR_MSK_M_RX_UNDER_LSB        0
+    #define ALT_I2C_INTR_MSK_M_RX_UNDER_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_I2C_INTR_MSK_M_RX_UNDER register field. */
-#define ALT_I2C_INTR_MSK_M_RX_UNDER_MSB        0
+    #define ALT_I2C_INTR_MSK_M_RX_UNDER_MSB        0
 /* The width in bits of the ALT_I2C_INTR_MSK_M_RX_UNDER register field. */
-#define ALT_I2C_INTR_MSK_M_RX_UNDER_WIDTH      1
+    #define ALT_I2C_INTR_MSK_M_RX_UNDER_WIDTH      1
 /* The mask used to set the ALT_I2C_INTR_MSK_M_RX_UNDER register field value. */
-#define ALT_I2C_INTR_MSK_M_RX_UNDER_SET_MSK    0x00000001
+    #define ALT_I2C_INTR_MSK_M_RX_UNDER_SET_MSK    0x00000001
 /* The mask used to clear the ALT_I2C_INTR_MSK_M_RX_UNDER register field value. */
-#define ALT_I2C_INTR_MSK_M_RX_UNDER_CLR_MSK    0xfffffffe
+    #define ALT_I2C_INTR_MSK_M_RX_UNDER_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_I2C_INTR_MSK_M_RX_UNDER register field. */
-#define ALT_I2C_INTR_MSK_M_RX_UNDER_RESET      0x1
+    #define ALT_I2C_INTR_MSK_M_RX_UNDER_RESET      0x1
 /* Extracts the ALT_I2C_INTR_MSK_M_RX_UNDER field value from a register. */
-#define ALT_I2C_INTR_MSK_M_RX_UNDER_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_I2C_INTR_MSK_M_RX_UNDER_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_I2C_INTR_MSK_M_RX_UNDER register field value suitable for setting the register. */
-#define ALT_I2C_INTR_MSK_M_RX_UNDER_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_I2C_INTR_MSK_M_RX_UNDER_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
 /*
  * Field : RX Buffer Over - m_rx_over
@@ -1714,21 +1758,21 @@ typedef volatile struct ALT_I2C_INTR_STAT_s  ALT_I2C_INTR_STAT_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_INTR_MSK_M_RX_OVER register field. */
-#define ALT_I2C_INTR_MSK_M_RX_OVER_LSB        1
+    #define ALT_I2C_INTR_MSK_M_RX_OVER_LSB        1
 /* The Most Significant Bit (MSB) position of the ALT_I2C_INTR_MSK_M_RX_OVER register field. */
-#define ALT_I2C_INTR_MSK_M_RX_OVER_MSB        1
+    #define ALT_I2C_INTR_MSK_M_RX_OVER_MSB        1
 /* The width in bits of the ALT_I2C_INTR_MSK_M_RX_OVER register field. */
-#define ALT_I2C_INTR_MSK_M_RX_OVER_WIDTH      1
+    #define ALT_I2C_INTR_MSK_M_RX_OVER_WIDTH      1
 /* The mask used to set the ALT_I2C_INTR_MSK_M_RX_OVER register field value. */
-#define ALT_I2C_INTR_MSK_M_RX_OVER_SET_MSK    0x00000002
+    #define ALT_I2C_INTR_MSK_M_RX_OVER_SET_MSK    0x00000002
 /* The mask used to clear the ALT_I2C_INTR_MSK_M_RX_OVER register field value. */
-#define ALT_I2C_INTR_MSK_M_RX_OVER_CLR_MSK    0xfffffffd
+    #define ALT_I2C_INTR_MSK_M_RX_OVER_CLR_MSK    0xfffffffd
 /* The reset value of the ALT_I2C_INTR_MSK_M_RX_OVER register field. */
-#define ALT_I2C_INTR_MSK_M_RX_OVER_RESET      0x1
+    #define ALT_I2C_INTR_MSK_M_RX_OVER_RESET      0x1
 /* Extracts the ALT_I2C_INTR_MSK_M_RX_OVER field value from a register. */
-#define ALT_I2C_INTR_MSK_M_RX_OVER_GET(value) (((value) & 0x00000002) >> 1)
+    #define ALT_I2C_INTR_MSK_M_RX_OVER_GET( value )    ( ( ( value ) & 0x00000002 ) >> 1 )
 /* Produces a ALT_I2C_INTR_MSK_M_RX_OVER register field value suitable for setting the register. */
-#define ALT_I2C_INTR_MSK_M_RX_OVER_SET(value) (((value) << 1) & 0x00000002)
+    #define ALT_I2C_INTR_MSK_M_RX_OVER_SET( value )    ( ( ( value ) << 1 ) & 0x00000002 )
 
 /*
  * Field : RX Buffer Full - m_rx_full
@@ -1744,21 +1788,21 @@ typedef volatile struct ALT_I2C_INTR_STAT_s  ALT_I2C_INTR_STAT_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_INTR_MSK_M_RX_FULL register field. */
-#define ALT_I2C_INTR_MSK_M_RX_FULL_LSB        2
+    #define ALT_I2C_INTR_MSK_M_RX_FULL_LSB        2
 /* The Most Significant Bit (MSB) position of the ALT_I2C_INTR_MSK_M_RX_FULL register field. */
-#define ALT_I2C_INTR_MSK_M_RX_FULL_MSB        2
+    #define ALT_I2C_INTR_MSK_M_RX_FULL_MSB        2
 /* The width in bits of the ALT_I2C_INTR_MSK_M_RX_FULL register field. */
-#define ALT_I2C_INTR_MSK_M_RX_FULL_WIDTH      1
+    #define ALT_I2C_INTR_MSK_M_RX_FULL_WIDTH      1
 /* The mask used to set the ALT_I2C_INTR_MSK_M_RX_FULL register field value. */
-#define ALT_I2C_INTR_MSK_M_RX_FULL_SET_MSK    0x00000004
+    #define ALT_I2C_INTR_MSK_M_RX_FULL_SET_MSK    0x00000004
 /* The mask used to clear the ALT_I2C_INTR_MSK_M_RX_FULL register field value. */
-#define ALT_I2C_INTR_MSK_M_RX_FULL_CLR_MSK    0xfffffffb
+    #define ALT_I2C_INTR_MSK_M_RX_FULL_CLR_MSK    0xfffffffb
 /* The reset value of the ALT_I2C_INTR_MSK_M_RX_FULL register field. */
-#define ALT_I2C_INTR_MSK_M_RX_FULL_RESET      0x1
+    #define ALT_I2C_INTR_MSK_M_RX_FULL_RESET      0x1
 /* Extracts the ALT_I2C_INTR_MSK_M_RX_FULL field value from a register. */
-#define ALT_I2C_INTR_MSK_M_RX_FULL_GET(value) (((value) & 0x00000004) >> 2)
+    #define ALT_I2C_INTR_MSK_M_RX_FULL_GET( value )    ( ( ( value ) & 0x00000004 ) >> 2 )
 /* Produces a ALT_I2C_INTR_MSK_M_RX_FULL register field value suitable for setting the register. */
-#define ALT_I2C_INTR_MSK_M_RX_FULL_SET(value) (((value) << 2) & 0x00000004)
+    #define ALT_I2C_INTR_MSK_M_RX_FULL_SET( value )    ( ( ( value ) << 2 ) & 0x00000004 )
 
 /*
  * Field : TX Buffer Over - m_tx_over
@@ -1772,21 +1816,21 @@ typedef volatile struct ALT_I2C_INTR_STAT_s  ALT_I2C_INTR_STAT_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_INTR_MSK_M_TX_OVER register field. */
-#define ALT_I2C_INTR_MSK_M_TX_OVER_LSB        3
+    #define ALT_I2C_INTR_MSK_M_TX_OVER_LSB        3
 /* The Most Significant Bit (MSB) position of the ALT_I2C_INTR_MSK_M_TX_OVER register field. */
-#define ALT_I2C_INTR_MSK_M_TX_OVER_MSB        3
+    #define ALT_I2C_INTR_MSK_M_TX_OVER_MSB        3
 /* The width in bits of the ALT_I2C_INTR_MSK_M_TX_OVER register field. */
-#define ALT_I2C_INTR_MSK_M_TX_OVER_WIDTH      1
+    #define ALT_I2C_INTR_MSK_M_TX_OVER_WIDTH      1
 /* The mask used to set the ALT_I2C_INTR_MSK_M_TX_OVER register field value. */
-#define ALT_I2C_INTR_MSK_M_TX_OVER_SET_MSK    0x00000008
+    #define ALT_I2C_INTR_MSK_M_TX_OVER_SET_MSK    0x00000008
 /* The mask used to clear the ALT_I2C_INTR_MSK_M_TX_OVER register field value. */
-#define ALT_I2C_INTR_MSK_M_TX_OVER_CLR_MSK    0xfffffff7
+    #define ALT_I2C_INTR_MSK_M_TX_OVER_CLR_MSK    0xfffffff7
 /* The reset value of the ALT_I2C_INTR_MSK_M_TX_OVER register field. */
-#define ALT_I2C_INTR_MSK_M_TX_OVER_RESET      0x1
+    #define ALT_I2C_INTR_MSK_M_TX_OVER_RESET      0x1
 /* Extracts the ALT_I2C_INTR_MSK_M_TX_OVER field value from a register. */
-#define ALT_I2C_INTR_MSK_M_TX_OVER_GET(value) (((value) & 0x00000008) >> 3)
+    #define ALT_I2C_INTR_MSK_M_TX_OVER_GET( value )    ( ( ( value ) & 0x00000008 ) >> 3 )
 /* Produces a ALT_I2C_INTR_MSK_M_TX_OVER register field value suitable for setting the register. */
-#define ALT_I2C_INTR_MSK_M_TX_OVER_SET(value) (((value) << 3) & 0x00000008)
+    #define ALT_I2C_INTR_MSK_M_TX_OVER_SET( value )    ( ( ( value ) << 3 ) & 0x00000008 )
 
 /*
  * Field : TX Buffer Empty - m_tx_empty
@@ -1803,21 +1847,21 @@ typedef volatile struct ALT_I2C_INTR_STAT_s  ALT_I2C_INTR_STAT_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_INTR_MSK_M_TX_EMPTY register field. */
-#define ALT_I2C_INTR_MSK_M_TX_EMPTY_LSB        4
+    #define ALT_I2C_INTR_MSK_M_TX_EMPTY_LSB        4
 /* The Most Significant Bit (MSB) position of the ALT_I2C_INTR_MSK_M_TX_EMPTY register field. */
-#define ALT_I2C_INTR_MSK_M_TX_EMPTY_MSB        4
+    #define ALT_I2C_INTR_MSK_M_TX_EMPTY_MSB        4
 /* The width in bits of the ALT_I2C_INTR_MSK_M_TX_EMPTY register field. */
-#define ALT_I2C_INTR_MSK_M_TX_EMPTY_WIDTH      1
+    #define ALT_I2C_INTR_MSK_M_TX_EMPTY_WIDTH      1
 /* The mask used to set the ALT_I2C_INTR_MSK_M_TX_EMPTY register field value. */
-#define ALT_I2C_INTR_MSK_M_TX_EMPTY_SET_MSK    0x00000010
+    #define ALT_I2C_INTR_MSK_M_TX_EMPTY_SET_MSK    0x00000010
 /* The mask used to clear the ALT_I2C_INTR_MSK_M_TX_EMPTY register field value. */
-#define ALT_I2C_INTR_MSK_M_TX_EMPTY_CLR_MSK    0xffffffef
+    #define ALT_I2C_INTR_MSK_M_TX_EMPTY_CLR_MSK    0xffffffef
 /* The reset value of the ALT_I2C_INTR_MSK_M_TX_EMPTY register field. */
-#define ALT_I2C_INTR_MSK_M_TX_EMPTY_RESET      0x1
+    #define ALT_I2C_INTR_MSK_M_TX_EMPTY_RESET      0x1
 /* Extracts the ALT_I2C_INTR_MSK_M_TX_EMPTY field value from a register. */
-#define ALT_I2C_INTR_MSK_M_TX_EMPTY_GET(value) (((value) & 0x00000010) >> 4)
+    #define ALT_I2C_INTR_MSK_M_TX_EMPTY_GET( value )    ( ( ( value ) & 0x00000010 ) >> 4 )
 /* Produces a ALT_I2C_INTR_MSK_M_TX_EMPTY register field value suitable for setting the register. */
-#define ALT_I2C_INTR_MSK_M_TX_EMPTY_SET(value) (((value) << 4) & 0x00000010)
+    #define ALT_I2C_INTR_MSK_M_TX_EMPTY_SET( value )    ( ( ( value ) << 4 ) & 0x00000010 )
 
 /*
  * Field : Read Request - m_rd_req
@@ -1834,21 +1878,21 @@ typedef volatile struct ALT_I2C_INTR_STAT_s  ALT_I2C_INTR_STAT_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_INTR_MSK_M_RD_REQ register field. */
-#define ALT_I2C_INTR_MSK_M_RD_REQ_LSB        5
+    #define ALT_I2C_INTR_MSK_M_RD_REQ_LSB        5
 /* The Most Significant Bit (MSB) position of the ALT_I2C_INTR_MSK_M_RD_REQ register field. */
-#define ALT_I2C_INTR_MSK_M_RD_REQ_MSB        5
+    #define ALT_I2C_INTR_MSK_M_RD_REQ_MSB        5
 /* The width in bits of the ALT_I2C_INTR_MSK_M_RD_REQ register field. */
-#define ALT_I2C_INTR_MSK_M_RD_REQ_WIDTH      1
+    #define ALT_I2C_INTR_MSK_M_RD_REQ_WIDTH      1
 /* The mask used to set the ALT_I2C_INTR_MSK_M_RD_REQ register field value. */
-#define ALT_I2C_INTR_MSK_M_RD_REQ_SET_MSK    0x00000020
+    #define ALT_I2C_INTR_MSK_M_RD_REQ_SET_MSK    0x00000020
 /* The mask used to clear the ALT_I2C_INTR_MSK_M_RD_REQ register field value. */
-#define ALT_I2C_INTR_MSK_M_RD_REQ_CLR_MSK    0xffffffdf
+    #define ALT_I2C_INTR_MSK_M_RD_REQ_CLR_MSK    0xffffffdf
 /* The reset value of the ALT_I2C_INTR_MSK_M_RD_REQ register field. */
-#define ALT_I2C_INTR_MSK_M_RD_REQ_RESET      0x1
+    #define ALT_I2C_INTR_MSK_M_RD_REQ_RESET      0x1
 /* Extracts the ALT_I2C_INTR_MSK_M_RD_REQ field value from a register. */
-#define ALT_I2C_INTR_MSK_M_RD_REQ_GET(value) (((value) & 0x00000020) >> 5)
+    #define ALT_I2C_INTR_MSK_M_RD_REQ_GET( value )    ( ( ( value ) & 0x00000020 ) >> 5 )
 /* Produces a ALT_I2C_INTR_MSK_M_RD_REQ register field value suitable for setting the register. */
-#define ALT_I2C_INTR_MSK_M_RD_REQ_SET(value) (((value) << 5) & 0x00000020)
+    #define ALT_I2C_INTR_MSK_M_RD_REQ_SET( value )    ( ( ( value ) << 5 ) & 0x00000020 )
 
 /*
  * Field : TX Abort - m_tx_abrt
@@ -1868,21 +1912,21 @@ typedef volatile struct ALT_I2C_INTR_STAT_s  ALT_I2C_INTR_STAT_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_INTR_MSK_M_TX_ABRT register field. */
-#define ALT_I2C_INTR_MSK_M_TX_ABRT_LSB        6
+    #define ALT_I2C_INTR_MSK_M_TX_ABRT_LSB        6
 /* The Most Significant Bit (MSB) position of the ALT_I2C_INTR_MSK_M_TX_ABRT register field. */
-#define ALT_I2C_INTR_MSK_M_TX_ABRT_MSB        6
+    #define ALT_I2C_INTR_MSK_M_TX_ABRT_MSB        6
 /* The width in bits of the ALT_I2C_INTR_MSK_M_TX_ABRT register field. */
-#define ALT_I2C_INTR_MSK_M_TX_ABRT_WIDTH      1
+    #define ALT_I2C_INTR_MSK_M_TX_ABRT_WIDTH      1
 /* The mask used to set the ALT_I2C_INTR_MSK_M_TX_ABRT register field value. */
-#define ALT_I2C_INTR_MSK_M_TX_ABRT_SET_MSK    0x00000040
+    #define ALT_I2C_INTR_MSK_M_TX_ABRT_SET_MSK    0x00000040
 /* The mask used to clear the ALT_I2C_INTR_MSK_M_TX_ABRT register field value. */
-#define ALT_I2C_INTR_MSK_M_TX_ABRT_CLR_MSK    0xffffffbf
+    #define ALT_I2C_INTR_MSK_M_TX_ABRT_CLR_MSK    0xffffffbf
 /* The reset value of the ALT_I2C_INTR_MSK_M_TX_ABRT register field. */
-#define ALT_I2C_INTR_MSK_M_TX_ABRT_RESET      0x1
+    #define ALT_I2C_INTR_MSK_M_TX_ABRT_RESET      0x1
 /* Extracts the ALT_I2C_INTR_MSK_M_TX_ABRT field value from a register. */
-#define ALT_I2C_INTR_MSK_M_TX_ABRT_GET(value) (((value) & 0x00000040) >> 6)
+    #define ALT_I2C_INTR_MSK_M_TX_ABRT_GET( value )    ( ( ( value ) & 0x00000040 ) >> 6 )
 /* Produces a ALT_I2C_INTR_MSK_M_TX_ABRT register field value suitable for setting the register. */
-#define ALT_I2C_INTR_MSK_M_TX_ABRT_SET(value) (((value) << 6) & 0x00000040)
+    #define ALT_I2C_INTR_MSK_M_TX_ABRT_SET( value )    ( ( ( value ) << 6 ) & 0x00000040 )
 
 /*
  * Field : RX Done - m_rx_done
@@ -1895,21 +1939,21 @@ typedef volatile struct ALT_I2C_INTR_STAT_s  ALT_I2C_INTR_STAT_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_INTR_MSK_M_RX_DONE register field. */
-#define ALT_I2C_INTR_MSK_M_RX_DONE_LSB        7
+    #define ALT_I2C_INTR_MSK_M_RX_DONE_LSB        7
 /* The Most Significant Bit (MSB) position of the ALT_I2C_INTR_MSK_M_RX_DONE register field. */
-#define ALT_I2C_INTR_MSK_M_RX_DONE_MSB        7
+    #define ALT_I2C_INTR_MSK_M_RX_DONE_MSB        7
 /* The width in bits of the ALT_I2C_INTR_MSK_M_RX_DONE register field. */
-#define ALT_I2C_INTR_MSK_M_RX_DONE_WIDTH      1
+    #define ALT_I2C_INTR_MSK_M_RX_DONE_WIDTH      1
 /* The mask used to set the ALT_I2C_INTR_MSK_M_RX_DONE register field value. */
-#define ALT_I2C_INTR_MSK_M_RX_DONE_SET_MSK    0x00000080
+    #define ALT_I2C_INTR_MSK_M_RX_DONE_SET_MSK    0x00000080
 /* The mask used to clear the ALT_I2C_INTR_MSK_M_RX_DONE register field value. */
-#define ALT_I2C_INTR_MSK_M_RX_DONE_CLR_MSK    0xffffff7f
+    #define ALT_I2C_INTR_MSK_M_RX_DONE_CLR_MSK    0xffffff7f
 /* The reset value of the ALT_I2C_INTR_MSK_M_RX_DONE register field. */
-#define ALT_I2C_INTR_MSK_M_RX_DONE_RESET      0x1
+    #define ALT_I2C_INTR_MSK_M_RX_DONE_RESET      0x1
 /* Extracts the ALT_I2C_INTR_MSK_M_RX_DONE field value from a register. */
-#define ALT_I2C_INTR_MSK_M_RX_DONE_GET(value) (((value) & 0x00000080) >> 7)
+    #define ALT_I2C_INTR_MSK_M_RX_DONE_GET( value )    ( ( ( value ) & 0x00000080 ) >> 7 )
 /* Produces a ALT_I2C_INTR_MSK_M_RX_DONE register field value suitable for setting the register. */
-#define ALT_I2C_INTR_MSK_M_RX_DONE_SET(value) (((value) << 7) & 0x00000080)
+    #define ALT_I2C_INTR_MSK_M_RX_DONE_SET( value )    ( ( ( value ) << 7 ) & 0x00000080 )
 
 /*
  * Field : Activity Bit - m_activity
@@ -1933,21 +1977,21 @@ typedef volatile struct ALT_I2C_INTR_STAT_s  ALT_I2C_INTR_STAT_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_INTR_MSK_M_ACTIVITY register field. */
-#define ALT_I2C_INTR_MSK_M_ACTIVITY_LSB        8
+    #define ALT_I2C_INTR_MSK_M_ACTIVITY_LSB        8
 /* The Most Significant Bit (MSB) position of the ALT_I2C_INTR_MSK_M_ACTIVITY register field. */
-#define ALT_I2C_INTR_MSK_M_ACTIVITY_MSB        8
+    #define ALT_I2C_INTR_MSK_M_ACTIVITY_MSB        8
 /* The width in bits of the ALT_I2C_INTR_MSK_M_ACTIVITY register field. */
-#define ALT_I2C_INTR_MSK_M_ACTIVITY_WIDTH      1
+    #define ALT_I2C_INTR_MSK_M_ACTIVITY_WIDTH      1
 /* The mask used to set the ALT_I2C_INTR_MSK_M_ACTIVITY register field value. */
-#define ALT_I2C_INTR_MSK_M_ACTIVITY_SET_MSK    0x00000100
+    #define ALT_I2C_INTR_MSK_M_ACTIVITY_SET_MSK    0x00000100
 /* The mask used to clear the ALT_I2C_INTR_MSK_M_ACTIVITY register field value. */
-#define ALT_I2C_INTR_MSK_M_ACTIVITY_CLR_MSK    0xfffffeff
+    #define ALT_I2C_INTR_MSK_M_ACTIVITY_CLR_MSK    0xfffffeff
 /* The reset value of the ALT_I2C_INTR_MSK_M_ACTIVITY register field. */
-#define ALT_I2C_INTR_MSK_M_ACTIVITY_RESET      0x0
+    #define ALT_I2C_INTR_MSK_M_ACTIVITY_RESET      0x0
 /* Extracts the ALT_I2C_INTR_MSK_M_ACTIVITY field value from a register. */
-#define ALT_I2C_INTR_MSK_M_ACTIVITY_GET(value) (((value) & 0x00000100) >> 8)
+    #define ALT_I2C_INTR_MSK_M_ACTIVITY_GET( value )    ( ( ( value ) & 0x00000100 ) >> 8 )
 /* Produces a ALT_I2C_INTR_MSK_M_ACTIVITY register field value suitable for setting the register. */
-#define ALT_I2C_INTR_MSK_M_ACTIVITY_SET(value) (((value) << 8) & 0x00000100)
+    #define ALT_I2C_INTR_MSK_M_ACTIVITY_SET( value )    ( ( ( value ) << 8 ) & 0x00000100 )
 
 /*
  * Field : Stop Detect - m_stop_det
@@ -1959,21 +2003,21 @@ typedef volatile struct ALT_I2C_INTR_STAT_s  ALT_I2C_INTR_STAT_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_INTR_MSK_M_STOP_DET register field. */
-#define ALT_I2C_INTR_MSK_M_STOP_DET_LSB        9
+    #define ALT_I2C_INTR_MSK_M_STOP_DET_LSB        9
 /* The Most Significant Bit (MSB) position of the ALT_I2C_INTR_MSK_M_STOP_DET register field. */
-#define ALT_I2C_INTR_MSK_M_STOP_DET_MSB        9
+    #define ALT_I2C_INTR_MSK_M_STOP_DET_MSB        9
 /* The width in bits of the ALT_I2C_INTR_MSK_M_STOP_DET register field. */
-#define ALT_I2C_INTR_MSK_M_STOP_DET_WIDTH      1
+    #define ALT_I2C_INTR_MSK_M_STOP_DET_WIDTH      1
 /* The mask used to set the ALT_I2C_INTR_MSK_M_STOP_DET register field value. */
-#define ALT_I2C_INTR_MSK_M_STOP_DET_SET_MSK    0x00000200
+    #define ALT_I2C_INTR_MSK_M_STOP_DET_SET_MSK    0x00000200
 /* The mask used to clear the ALT_I2C_INTR_MSK_M_STOP_DET register field value. */
-#define ALT_I2C_INTR_MSK_M_STOP_DET_CLR_MSK    0xfffffdff
+    #define ALT_I2C_INTR_MSK_M_STOP_DET_CLR_MSK    0xfffffdff
 /* The reset value of the ALT_I2C_INTR_MSK_M_STOP_DET register field. */
-#define ALT_I2C_INTR_MSK_M_STOP_DET_RESET      0x0
+    #define ALT_I2C_INTR_MSK_M_STOP_DET_RESET      0x0
 /* Extracts the ALT_I2C_INTR_MSK_M_STOP_DET field value from a register. */
-#define ALT_I2C_INTR_MSK_M_STOP_DET_GET(value) (((value) & 0x00000200) >> 9)
+    #define ALT_I2C_INTR_MSK_M_STOP_DET_GET( value )    ( ( ( value ) & 0x00000200 ) >> 9 )
 /* Produces a ALT_I2C_INTR_MSK_M_STOP_DET register field value suitable for setting the register. */
-#define ALT_I2C_INTR_MSK_M_STOP_DET_SET(value) (((value) << 9) & 0x00000200)
+    #define ALT_I2C_INTR_MSK_M_STOP_DET_SET( value )    ( ( ( value ) << 9 ) & 0x00000200 )
 
 /*
  * Field : Start Detect - m_start_det
@@ -1985,21 +2029,21 @@ typedef volatile struct ALT_I2C_INTR_STAT_s  ALT_I2C_INTR_STAT_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_INTR_MSK_M_START_DET register field. */
-#define ALT_I2C_INTR_MSK_M_START_DET_LSB        10
+    #define ALT_I2C_INTR_MSK_M_START_DET_LSB        10
 /* The Most Significant Bit (MSB) position of the ALT_I2C_INTR_MSK_M_START_DET register field. */
-#define ALT_I2C_INTR_MSK_M_START_DET_MSB        10
+    #define ALT_I2C_INTR_MSK_M_START_DET_MSB        10
 /* The width in bits of the ALT_I2C_INTR_MSK_M_START_DET register field. */
-#define ALT_I2C_INTR_MSK_M_START_DET_WIDTH      1
+    #define ALT_I2C_INTR_MSK_M_START_DET_WIDTH      1
 /* The mask used to set the ALT_I2C_INTR_MSK_M_START_DET register field value. */
-#define ALT_I2C_INTR_MSK_M_START_DET_SET_MSK    0x00000400
+    #define ALT_I2C_INTR_MSK_M_START_DET_SET_MSK    0x00000400
 /* The mask used to clear the ALT_I2C_INTR_MSK_M_START_DET register field value. */
-#define ALT_I2C_INTR_MSK_M_START_DET_CLR_MSK    0xfffffbff
+    #define ALT_I2C_INTR_MSK_M_START_DET_CLR_MSK    0xfffffbff
 /* The reset value of the ALT_I2C_INTR_MSK_M_START_DET register field. */
-#define ALT_I2C_INTR_MSK_M_START_DET_RESET      0x0
+    #define ALT_I2C_INTR_MSK_M_START_DET_RESET      0x0
 /* Extracts the ALT_I2C_INTR_MSK_M_START_DET field value from a register. */
-#define ALT_I2C_INTR_MSK_M_START_DET_GET(value) (((value) & 0x00000400) >> 10)
+    #define ALT_I2C_INTR_MSK_M_START_DET_GET( value )    ( ( ( value ) & 0x00000400 ) >> 10 )
 /* Produces a ALT_I2C_INTR_MSK_M_START_DET register field value suitable for setting the register. */
-#define ALT_I2C_INTR_MSK_M_START_DET_SET(value) (((value) << 10) & 0x00000400)
+    #define ALT_I2C_INTR_MSK_M_START_DET_SET( value )    ( ( ( value ) << 10 ) & 0x00000400 )
 
 /*
  * Field : General Call - m_gen_call
@@ -2013,23 +2057,24 @@ typedef volatile struct ALT_I2C_INTR_STAT_s  ALT_I2C_INTR_STAT_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_INTR_MSK_M_GEN_CALL register field. */
-#define ALT_I2C_INTR_MSK_M_GEN_CALL_LSB        11
+    #define ALT_I2C_INTR_MSK_M_GEN_CALL_LSB        11
 /* The Most Significant Bit (MSB) position of the ALT_I2C_INTR_MSK_M_GEN_CALL register field. */
-#define ALT_I2C_INTR_MSK_M_GEN_CALL_MSB        11
+    #define ALT_I2C_INTR_MSK_M_GEN_CALL_MSB        11
 /* The width in bits of the ALT_I2C_INTR_MSK_M_GEN_CALL register field. */
-#define ALT_I2C_INTR_MSK_M_GEN_CALL_WIDTH      1
+    #define ALT_I2C_INTR_MSK_M_GEN_CALL_WIDTH      1
 /* The mask used to set the ALT_I2C_INTR_MSK_M_GEN_CALL register field value. */
-#define ALT_I2C_INTR_MSK_M_GEN_CALL_SET_MSK    0x00000800
+    #define ALT_I2C_INTR_MSK_M_GEN_CALL_SET_MSK    0x00000800
 /* The mask used to clear the ALT_I2C_INTR_MSK_M_GEN_CALL register field value. */
-#define ALT_I2C_INTR_MSK_M_GEN_CALL_CLR_MSK    0xfffff7ff
+    #define ALT_I2C_INTR_MSK_M_GEN_CALL_CLR_MSK    0xfffff7ff
 /* The reset value of the ALT_I2C_INTR_MSK_M_GEN_CALL register field. */
-#define ALT_I2C_INTR_MSK_M_GEN_CALL_RESET      0x1
+    #define ALT_I2C_INTR_MSK_M_GEN_CALL_RESET      0x1
 /* Extracts the ALT_I2C_INTR_MSK_M_GEN_CALL field value from a register. */
-#define ALT_I2C_INTR_MSK_M_GEN_CALL_GET(value) (((value) & 0x00000800) >> 11)
+    #define ALT_I2C_INTR_MSK_M_GEN_CALL_GET( value )    ( ( ( value ) & 0x00000800 ) >> 11 )
 /* Produces a ALT_I2C_INTR_MSK_M_GEN_CALL register field value suitable for setting the register. */
-#define ALT_I2C_INTR_MSK_M_GEN_CALL_SET(value) (((value) << 11) & 0x00000800)
+    #define ALT_I2C_INTR_MSK_M_GEN_CALL_SET( value )    ( ( ( value ) << 11 ) & 0x00000800 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -2040,31 +2085,31 @@ typedef volatile struct ALT_I2C_INTR_STAT_s  ALT_I2C_INTR_STAT_t;
  *
  * The struct declaration for register ALT_I2C_INTR_MSK.
  */
-struct ALT_I2C_INTR_MSK_s
-{
-    uint32_t  m_rx_under  :  1;  /* Mask RX Under */
-    uint32_t  m_rx_over   :  1;  /* RX Buffer Over */
-    uint32_t  m_rx_full   :  1;  /* RX Buffer Full */
-    uint32_t  m_tx_over   :  1;  /* TX Buffer Over */
-    uint32_t  m_tx_empty  :  1;  /* TX Buffer Empty */
-    uint32_t  m_rd_req    :  1;  /* Read Request */
-    uint32_t  m_tx_abrt   :  1;  /* TX Abort */
-    uint32_t  m_rx_done   :  1;  /* RX Done */
-    uint32_t  m_activity  :  1;  /* Activity Bit */
-    uint32_t  m_stop_det  :  1;  /* Stop Detect */
-    uint32_t  m_start_det :  1;  /* Start Detect */
-    uint32_t  m_gen_call  :  1;  /* General Call */
-    uint32_t              : 20;  /* *UNDEFINED* */
-};
+        struct ALT_I2C_INTR_MSK_s
+        {
+            uint32_t m_rx_under  :  1;  /* Mask RX Under */
+            uint32_t m_rx_over   :  1;  /* RX Buffer Over */
+            uint32_t m_rx_full   :  1;  /* RX Buffer Full */
+            uint32_t m_tx_over   :  1;  /* TX Buffer Over */
+            uint32_t m_tx_empty  :  1;  /* TX Buffer Empty */
+            uint32_t m_rd_req    :  1;  /* Read Request */
+            uint32_t m_tx_abrt   :  1;  /* TX Abort */
+            uint32_t m_rx_done   :  1;  /* RX Done */
+            uint32_t m_activity  :  1;  /* Activity Bit */
+            uint32_t m_stop_det  :  1;  /* Stop Detect */
+            uint32_t m_start_det :  1;  /* Start Detect */
+            uint32_t m_gen_call  :  1;  /* General Call */
+            uint32_t              : 20; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_I2C_INTR_MSK. */
-typedef volatile struct ALT_I2C_INTR_MSK_s  ALT_I2C_INTR_MSK_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_I2C_INTR_MSK_s ALT_I2C_INTR_MSK_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_I2C_INTR_MSK register from the beginning of the component. */
-#define ALT_I2C_INTR_MSK_OFST        0x30
+    #define ALT_I2C_INTR_MSK_OFST    0x30
 /* The address of the ALT_I2C_INTR_MSK register. */
-#define ALT_I2C_INTR_MSK_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_I2C_INTR_MSK_OFST))
+    #define ALT_I2C_INTR_MSK_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_I2C_INTR_MSK_OFST ) )
 
 /*
  * Register : Raw Interrupt Status Register - ic_raw_intr_stat
@@ -2091,6 +2136,7 @@ typedef volatile struct ALT_I2C_INTR_MSK_s  ALT_I2C_INTR_MSK_t;
  *  [31:12] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : I2C Raw Interrupt RX Under - rx_under
  *
@@ -2103,21 +2149,21 @@ typedef volatile struct ALT_I2C_INTR_MSK_s  ALT_I2C_INTR_MSK_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_RAW_INTR_STAT_RX_UNDER register field. */
-#define ALT_I2C_RAW_INTR_STAT_RX_UNDER_LSB        0
+    #define ALT_I2C_RAW_INTR_STAT_RX_UNDER_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_I2C_RAW_INTR_STAT_RX_UNDER register field. */
-#define ALT_I2C_RAW_INTR_STAT_RX_UNDER_MSB        0
+    #define ALT_I2C_RAW_INTR_STAT_RX_UNDER_MSB        0
 /* The width in bits of the ALT_I2C_RAW_INTR_STAT_RX_UNDER register field. */
-#define ALT_I2C_RAW_INTR_STAT_RX_UNDER_WIDTH      1
+    #define ALT_I2C_RAW_INTR_STAT_RX_UNDER_WIDTH      1
 /* The mask used to set the ALT_I2C_RAW_INTR_STAT_RX_UNDER register field value. */
-#define ALT_I2C_RAW_INTR_STAT_RX_UNDER_SET_MSK    0x00000001
+    #define ALT_I2C_RAW_INTR_STAT_RX_UNDER_SET_MSK    0x00000001
 /* The mask used to clear the ALT_I2C_RAW_INTR_STAT_RX_UNDER register field value. */
-#define ALT_I2C_RAW_INTR_STAT_RX_UNDER_CLR_MSK    0xfffffffe
+    #define ALT_I2C_RAW_INTR_STAT_RX_UNDER_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_I2C_RAW_INTR_STAT_RX_UNDER register field. */
-#define ALT_I2C_RAW_INTR_STAT_RX_UNDER_RESET      0x0
+    #define ALT_I2C_RAW_INTR_STAT_RX_UNDER_RESET      0x0
 /* Extracts the ALT_I2C_RAW_INTR_STAT_RX_UNDER field value from a register. */
-#define ALT_I2C_RAW_INTR_STAT_RX_UNDER_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_I2C_RAW_INTR_STAT_RX_UNDER_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_I2C_RAW_INTR_STAT_RX_UNDER register field value suitable for setting the register. */
-#define ALT_I2C_RAW_INTR_STAT_RX_UNDER_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_I2C_RAW_INTR_STAT_RX_UNDER_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
 /*
  * Field : Raw Interrupt RX Over - rx_over
@@ -2132,21 +2178,21 @@ typedef volatile struct ALT_I2C_INTR_MSK_s  ALT_I2C_INTR_MSK_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_RAW_INTR_STAT_RX_OVER register field. */
-#define ALT_I2C_RAW_INTR_STAT_RX_OVER_LSB        1
+    #define ALT_I2C_RAW_INTR_STAT_RX_OVER_LSB        1
 /* The Most Significant Bit (MSB) position of the ALT_I2C_RAW_INTR_STAT_RX_OVER register field. */
-#define ALT_I2C_RAW_INTR_STAT_RX_OVER_MSB        1
+    #define ALT_I2C_RAW_INTR_STAT_RX_OVER_MSB        1
 /* The width in bits of the ALT_I2C_RAW_INTR_STAT_RX_OVER register field. */
-#define ALT_I2C_RAW_INTR_STAT_RX_OVER_WIDTH      1
+    #define ALT_I2C_RAW_INTR_STAT_RX_OVER_WIDTH      1
 /* The mask used to set the ALT_I2C_RAW_INTR_STAT_RX_OVER register field value. */
-#define ALT_I2C_RAW_INTR_STAT_RX_OVER_SET_MSK    0x00000002
+    #define ALT_I2C_RAW_INTR_STAT_RX_OVER_SET_MSK    0x00000002
 /* The mask used to clear the ALT_I2C_RAW_INTR_STAT_RX_OVER register field value. */
-#define ALT_I2C_RAW_INTR_STAT_RX_OVER_CLR_MSK    0xfffffffd
+    #define ALT_I2C_RAW_INTR_STAT_RX_OVER_CLR_MSK    0xfffffffd
 /* The reset value of the ALT_I2C_RAW_INTR_STAT_RX_OVER register field. */
-#define ALT_I2C_RAW_INTR_STAT_RX_OVER_RESET      0x0
+    #define ALT_I2C_RAW_INTR_STAT_RX_OVER_RESET      0x0
 /* Extracts the ALT_I2C_RAW_INTR_STAT_RX_OVER field value from a register. */
-#define ALT_I2C_RAW_INTR_STAT_RX_OVER_GET(value) (((value) & 0x00000002) >> 1)
+    #define ALT_I2C_RAW_INTR_STAT_RX_OVER_GET( value )    ( ( ( value ) & 0x00000002 ) >> 1 )
 /* Produces a ALT_I2C_RAW_INTR_STAT_RX_OVER register field value suitable for setting the register. */
-#define ALT_I2C_RAW_INTR_STAT_RX_OVER_SET(value) (((value) << 1) & 0x00000002)
+    #define ALT_I2C_RAW_INTR_STAT_RX_OVER_SET( value )    ( ( ( value ) << 1 ) & 0x00000002 )
 
 /*
  * Field : Raw Interrupt RX Full - rx_full
@@ -2162,21 +2208,21 @@ typedef volatile struct ALT_I2C_INTR_MSK_s  ALT_I2C_INTR_MSK_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_RAW_INTR_STAT_RX_FULL register field. */
-#define ALT_I2C_RAW_INTR_STAT_RX_FULL_LSB        2
+    #define ALT_I2C_RAW_INTR_STAT_RX_FULL_LSB        2
 /* The Most Significant Bit (MSB) position of the ALT_I2C_RAW_INTR_STAT_RX_FULL register field. */
-#define ALT_I2C_RAW_INTR_STAT_RX_FULL_MSB        2
+    #define ALT_I2C_RAW_INTR_STAT_RX_FULL_MSB        2
 /* The width in bits of the ALT_I2C_RAW_INTR_STAT_RX_FULL register field. */
-#define ALT_I2C_RAW_INTR_STAT_RX_FULL_WIDTH      1
+    #define ALT_I2C_RAW_INTR_STAT_RX_FULL_WIDTH      1
 /* The mask used to set the ALT_I2C_RAW_INTR_STAT_RX_FULL register field value. */
-#define ALT_I2C_RAW_INTR_STAT_RX_FULL_SET_MSK    0x00000004
+    #define ALT_I2C_RAW_INTR_STAT_RX_FULL_SET_MSK    0x00000004
 /* The mask used to clear the ALT_I2C_RAW_INTR_STAT_RX_FULL register field value. */
-#define ALT_I2C_RAW_INTR_STAT_RX_FULL_CLR_MSK    0xfffffffb
+    #define ALT_I2C_RAW_INTR_STAT_RX_FULL_CLR_MSK    0xfffffffb
 /* The reset value of the ALT_I2C_RAW_INTR_STAT_RX_FULL register field. */
-#define ALT_I2C_RAW_INTR_STAT_RX_FULL_RESET      0x0
+    #define ALT_I2C_RAW_INTR_STAT_RX_FULL_RESET      0x0
 /* Extracts the ALT_I2C_RAW_INTR_STAT_RX_FULL field value from a register. */
-#define ALT_I2C_RAW_INTR_STAT_RX_FULL_GET(value) (((value) & 0x00000004) >> 2)
+    #define ALT_I2C_RAW_INTR_STAT_RX_FULL_GET( value )    ( ( ( value ) & 0x00000004 ) >> 2 )
 /* Produces a ALT_I2C_RAW_INTR_STAT_RX_FULL register field value suitable for setting the register. */
-#define ALT_I2C_RAW_INTR_STAT_RX_FULL_SET(value) (((value) << 2) & 0x00000004)
+    #define ALT_I2C_RAW_INTR_STAT_RX_FULL_SET( value )    ( ( ( value ) << 2 ) & 0x00000004 )
 
 /*
  * Field : Raw Interrupt TX Over - tx_over
@@ -2190,21 +2236,21 @@ typedef volatile struct ALT_I2C_INTR_MSK_s  ALT_I2C_INTR_MSK_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_RAW_INTR_STAT_TX_OVER register field. */
-#define ALT_I2C_RAW_INTR_STAT_TX_OVER_LSB        3
+    #define ALT_I2C_RAW_INTR_STAT_TX_OVER_LSB        3
 /* The Most Significant Bit (MSB) position of the ALT_I2C_RAW_INTR_STAT_TX_OVER register field. */
-#define ALT_I2C_RAW_INTR_STAT_TX_OVER_MSB        3
+    #define ALT_I2C_RAW_INTR_STAT_TX_OVER_MSB        3
 /* The width in bits of the ALT_I2C_RAW_INTR_STAT_TX_OVER register field. */
-#define ALT_I2C_RAW_INTR_STAT_TX_OVER_WIDTH      1
+    #define ALT_I2C_RAW_INTR_STAT_TX_OVER_WIDTH      1
 /* The mask used to set the ALT_I2C_RAW_INTR_STAT_TX_OVER register field value. */
-#define ALT_I2C_RAW_INTR_STAT_TX_OVER_SET_MSK    0x00000008
+    #define ALT_I2C_RAW_INTR_STAT_TX_OVER_SET_MSK    0x00000008
 /* The mask used to clear the ALT_I2C_RAW_INTR_STAT_TX_OVER register field value. */
-#define ALT_I2C_RAW_INTR_STAT_TX_OVER_CLR_MSK    0xfffffff7
+    #define ALT_I2C_RAW_INTR_STAT_TX_OVER_CLR_MSK    0xfffffff7
 /* The reset value of the ALT_I2C_RAW_INTR_STAT_TX_OVER register field. */
-#define ALT_I2C_RAW_INTR_STAT_TX_OVER_RESET      0x0
+    #define ALT_I2C_RAW_INTR_STAT_TX_OVER_RESET      0x0
 /* Extracts the ALT_I2C_RAW_INTR_STAT_TX_OVER field value from a register. */
-#define ALT_I2C_RAW_INTR_STAT_TX_OVER_GET(value) (((value) & 0x00000008) >> 3)
+    #define ALT_I2C_RAW_INTR_STAT_TX_OVER_GET( value )    ( ( ( value ) & 0x00000008 ) >> 3 )
 /* Produces a ALT_I2C_RAW_INTR_STAT_TX_OVER register field value suitable for setting the register. */
-#define ALT_I2C_RAW_INTR_STAT_TX_OVER_SET(value) (((value) << 3) & 0x00000008)
+    #define ALT_I2C_RAW_INTR_STAT_TX_OVER_SET( value )    ( ( ( value ) << 3 ) & 0x00000008 )
 
 /*
  * Field : Raw Interrupt TX Empty - tx_empty
@@ -2221,21 +2267,21 @@ typedef volatile struct ALT_I2C_INTR_MSK_s  ALT_I2C_INTR_MSK_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_RAW_INTR_STAT_TX_EMPTY register field. */
-#define ALT_I2C_RAW_INTR_STAT_TX_EMPTY_LSB        4
+    #define ALT_I2C_RAW_INTR_STAT_TX_EMPTY_LSB        4
 /* The Most Significant Bit (MSB) position of the ALT_I2C_RAW_INTR_STAT_TX_EMPTY register field. */
-#define ALT_I2C_RAW_INTR_STAT_TX_EMPTY_MSB        4
+    #define ALT_I2C_RAW_INTR_STAT_TX_EMPTY_MSB        4
 /* The width in bits of the ALT_I2C_RAW_INTR_STAT_TX_EMPTY register field. */
-#define ALT_I2C_RAW_INTR_STAT_TX_EMPTY_WIDTH      1
+    #define ALT_I2C_RAW_INTR_STAT_TX_EMPTY_WIDTH      1
 /* The mask used to set the ALT_I2C_RAW_INTR_STAT_TX_EMPTY register field value. */
-#define ALT_I2C_RAW_INTR_STAT_TX_EMPTY_SET_MSK    0x00000010
+    #define ALT_I2C_RAW_INTR_STAT_TX_EMPTY_SET_MSK    0x00000010
 /* The mask used to clear the ALT_I2C_RAW_INTR_STAT_TX_EMPTY register field value. */
-#define ALT_I2C_RAW_INTR_STAT_TX_EMPTY_CLR_MSK    0xffffffef
+    #define ALT_I2C_RAW_INTR_STAT_TX_EMPTY_CLR_MSK    0xffffffef
 /* The reset value of the ALT_I2C_RAW_INTR_STAT_TX_EMPTY register field. */
-#define ALT_I2C_RAW_INTR_STAT_TX_EMPTY_RESET      0x0
+    #define ALT_I2C_RAW_INTR_STAT_TX_EMPTY_RESET      0x0
 /* Extracts the ALT_I2C_RAW_INTR_STAT_TX_EMPTY field value from a register. */
-#define ALT_I2C_RAW_INTR_STAT_TX_EMPTY_GET(value) (((value) & 0x00000010) >> 4)
+    #define ALT_I2C_RAW_INTR_STAT_TX_EMPTY_GET( value )    ( ( ( value ) & 0x00000010 ) >> 4 )
 /* Produces a ALT_I2C_RAW_INTR_STAT_TX_EMPTY register field value suitable for setting the register. */
-#define ALT_I2C_RAW_INTR_STAT_TX_EMPTY_SET(value) (((value) << 4) & 0x00000010)
+    #define ALT_I2C_RAW_INTR_STAT_TX_EMPTY_SET( value )    ( ( ( value ) << 4 ) & 0x00000010 )
 
 /*
  * Field : Raw Interrupt Read Request - rd_req
@@ -2252,21 +2298,21 @@ typedef volatile struct ALT_I2C_INTR_MSK_s  ALT_I2C_INTR_MSK_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_RAW_INTR_STAT_RD_REQ register field. */
-#define ALT_I2C_RAW_INTR_STAT_RD_REQ_LSB        5
+    #define ALT_I2C_RAW_INTR_STAT_RD_REQ_LSB        5
 /* The Most Significant Bit (MSB) position of the ALT_I2C_RAW_INTR_STAT_RD_REQ register field. */
-#define ALT_I2C_RAW_INTR_STAT_RD_REQ_MSB        5
+    #define ALT_I2C_RAW_INTR_STAT_RD_REQ_MSB        5
 /* The width in bits of the ALT_I2C_RAW_INTR_STAT_RD_REQ register field. */
-#define ALT_I2C_RAW_INTR_STAT_RD_REQ_WIDTH      1
+    #define ALT_I2C_RAW_INTR_STAT_RD_REQ_WIDTH      1
 /* The mask used to set the ALT_I2C_RAW_INTR_STAT_RD_REQ register field value. */
-#define ALT_I2C_RAW_INTR_STAT_RD_REQ_SET_MSK    0x00000020
+    #define ALT_I2C_RAW_INTR_STAT_RD_REQ_SET_MSK    0x00000020
 /* The mask used to clear the ALT_I2C_RAW_INTR_STAT_RD_REQ register field value. */
-#define ALT_I2C_RAW_INTR_STAT_RD_REQ_CLR_MSK    0xffffffdf
+    #define ALT_I2C_RAW_INTR_STAT_RD_REQ_CLR_MSK    0xffffffdf
 /* The reset value of the ALT_I2C_RAW_INTR_STAT_RD_REQ register field. */
-#define ALT_I2C_RAW_INTR_STAT_RD_REQ_RESET      0x0
+    #define ALT_I2C_RAW_INTR_STAT_RD_REQ_RESET      0x0
 /* Extracts the ALT_I2C_RAW_INTR_STAT_RD_REQ field value from a register. */
-#define ALT_I2C_RAW_INTR_STAT_RD_REQ_GET(value) (((value) & 0x00000020) >> 5)
+    #define ALT_I2C_RAW_INTR_STAT_RD_REQ_GET( value )    ( ( ( value ) & 0x00000020 ) >> 5 )
 /* Produces a ALT_I2C_RAW_INTR_STAT_RD_REQ register field value suitable for setting the register. */
-#define ALT_I2C_RAW_INTR_STAT_RD_REQ_SET(value) (((value) << 5) & 0x00000020)
+    #define ALT_I2C_RAW_INTR_STAT_RD_REQ_SET( value )    ( ( ( value ) << 5 ) & 0x00000020 )
 
 /*
  * Field : Raw Interrupt TX Abort - tx_abrt
@@ -2286,21 +2332,21 @@ typedef volatile struct ALT_I2C_INTR_MSK_s  ALT_I2C_INTR_MSK_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_RAW_INTR_STAT_TX_ABRT register field. */
-#define ALT_I2C_RAW_INTR_STAT_TX_ABRT_LSB        6
+    #define ALT_I2C_RAW_INTR_STAT_TX_ABRT_LSB        6
 /* The Most Significant Bit (MSB) position of the ALT_I2C_RAW_INTR_STAT_TX_ABRT register field. */
-#define ALT_I2C_RAW_INTR_STAT_TX_ABRT_MSB        6
+    #define ALT_I2C_RAW_INTR_STAT_TX_ABRT_MSB        6
 /* The width in bits of the ALT_I2C_RAW_INTR_STAT_TX_ABRT register field. */
-#define ALT_I2C_RAW_INTR_STAT_TX_ABRT_WIDTH      1
+    #define ALT_I2C_RAW_INTR_STAT_TX_ABRT_WIDTH      1
 /* The mask used to set the ALT_I2C_RAW_INTR_STAT_TX_ABRT register field value. */
-#define ALT_I2C_RAW_INTR_STAT_TX_ABRT_SET_MSK    0x00000040
+    #define ALT_I2C_RAW_INTR_STAT_TX_ABRT_SET_MSK    0x00000040
 /* The mask used to clear the ALT_I2C_RAW_INTR_STAT_TX_ABRT register field value. */
-#define ALT_I2C_RAW_INTR_STAT_TX_ABRT_CLR_MSK    0xffffffbf
+    #define ALT_I2C_RAW_INTR_STAT_TX_ABRT_CLR_MSK    0xffffffbf
 /* The reset value of the ALT_I2C_RAW_INTR_STAT_TX_ABRT register field. */
-#define ALT_I2C_RAW_INTR_STAT_TX_ABRT_RESET      0x0
+    #define ALT_I2C_RAW_INTR_STAT_TX_ABRT_RESET      0x0
 /* Extracts the ALT_I2C_RAW_INTR_STAT_TX_ABRT field value from a register. */
-#define ALT_I2C_RAW_INTR_STAT_TX_ABRT_GET(value) (((value) & 0x00000040) >> 6)
+    #define ALT_I2C_RAW_INTR_STAT_TX_ABRT_GET( value )    ( ( ( value ) & 0x00000040 ) >> 6 )
 /* Produces a ALT_I2C_RAW_INTR_STAT_TX_ABRT register field value suitable for setting the register. */
-#define ALT_I2C_RAW_INTR_STAT_TX_ABRT_SET(value) (((value) << 6) & 0x00000040)
+    #define ALT_I2C_RAW_INTR_STAT_TX_ABRT_SET( value )    ( ( ( value ) << 6 ) & 0x00000040 )
 
 /*
  * Field : Raw Interrupt RX Done - rx_done
@@ -2313,21 +2359,21 @@ typedef volatile struct ALT_I2C_INTR_MSK_s  ALT_I2C_INTR_MSK_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_RAW_INTR_STAT_RX_DONE register field. */
-#define ALT_I2C_RAW_INTR_STAT_RX_DONE_LSB        7
+    #define ALT_I2C_RAW_INTR_STAT_RX_DONE_LSB        7
 /* The Most Significant Bit (MSB) position of the ALT_I2C_RAW_INTR_STAT_RX_DONE register field. */
-#define ALT_I2C_RAW_INTR_STAT_RX_DONE_MSB        7
+    #define ALT_I2C_RAW_INTR_STAT_RX_DONE_MSB        7
 /* The width in bits of the ALT_I2C_RAW_INTR_STAT_RX_DONE register field. */
-#define ALT_I2C_RAW_INTR_STAT_RX_DONE_WIDTH      1
+    #define ALT_I2C_RAW_INTR_STAT_RX_DONE_WIDTH      1
 /* The mask used to set the ALT_I2C_RAW_INTR_STAT_RX_DONE register field value. */
-#define ALT_I2C_RAW_INTR_STAT_RX_DONE_SET_MSK    0x00000080
+    #define ALT_I2C_RAW_INTR_STAT_RX_DONE_SET_MSK    0x00000080
 /* The mask used to clear the ALT_I2C_RAW_INTR_STAT_RX_DONE register field value. */
-#define ALT_I2C_RAW_INTR_STAT_RX_DONE_CLR_MSK    0xffffff7f
+    #define ALT_I2C_RAW_INTR_STAT_RX_DONE_CLR_MSK    0xffffff7f
 /* The reset value of the ALT_I2C_RAW_INTR_STAT_RX_DONE register field. */
-#define ALT_I2C_RAW_INTR_STAT_RX_DONE_RESET      0x0
+    #define ALT_I2C_RAW_INTR_STAT_RX_DONE_RESET      0x0
 /* Extracts the ALT_I2C_RAW_INTR_STAT_RX_DONE field value from a register. */
-#define ALT_I2C_RAW_INTR_STAT_RX_DONE_GET(value) (((value) & 0x00000080) >> 7)
+    #define ALT_I2C_RAW_INTR_STAT_RX_DONE_GET( value )    ( ( ( value ) & 0x00000080 ) >> 7 )
 /* Produces a ALT_I2C_RAW_INTR_STAT_RX_DONE register field value suitable for setting the register. */
-#define ALT_I2C_RAW_INTR_STAT_RX_DONE_SET(value) (((value) << 7) & 0x00000080)
+    #define ALT_I2C_RAW_INTR_STAT_RX_DONE_SET( value )    ( ( ( value ) << 7 ) & 0x00000080 )
 
 /*
  * Field : Raw Interrupt Activity - activity
@@ -2351,21 +2397,21 @@ typedef volatile struct ALT_I2C_INTR_MSK_s  ALT_I2C_INTR_MSK_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_RAW_INTR_STAT_ACTIVITY register field. */
-#define ALT_I2C_RAW_INTR_STAT_ACTIVITY_LSB        8
+    #define ALT_I2C_RAW_INTR_STAT_ACTIVITY_LSB        8
 /* The Most Significant Bit (MSB) position of the ALT_I2C_RAW_INTR_STAT_ACTIVITY register field. */
-#define ALT_I2C_RAW_INTR_STAT_ACTIVITY_MSB        8
+    #define ALT_I2C_RAW_INTR_STAT_ACTIVITY_MSB        8
 /* The width in bits of the ALT_I2C_RAW_INTR_STAT_ACTIVITY register field. */
-#define ALT_I2C_RAW_INTR_STAT_ACTIVITY_WIDTH      1
+    #define ALT_I2C_RAW_INTR_STAT_ACTIVITY_WIDTH      1
 /* The mask used to set the ALT_I2C_RAW_INTR_STAT_ACTIVITY register field value. */
-#define ALT_I2C_RAW_INTR_STAT_ACTIVITY_SET_MSK    0x00000100
+    #define ALT_I2C_RAW_INTR_STAT_ACTIVITY_SET_MSK    0x00000100
 /* The mask used to clear the ALT_I2C_RAW_INTR_STAT_ACTIVITY register field value. */
-#define ALT_I2C_RAW_INTR_STAT_ACTIVITY_CLR_MSK    0xfffffeff
+    #define ALT_I2C_RAW_INTR_STAT_ACTIVITY_CLR_MSK    0xfffffeff
 /* The reset value of the ALT_I2C_RAW_INTR_STAT_ACTIVITY register field. */
-#define ALT_I2C_RAW_INTR_STAT_ACTIVITY_RESET      0x0
+    #define ALT_I2C_RAW_INTR_STAT_ACTIVITY_RESET      0x0
 /* Extracts the ALT_I2C_RAW_INTR_STAT_ACTIVITY field value from a register. */
-#define ALT_I2C_RAW_INTR_STAT_ACTIVITY_GET(value) (((value) & 0x00000100) >> 8)
+    #define ALT_I2C_RAW_INTR_STAT_ACTIVITY_GET( value )    ( ( ( value ) & 0x00000100 ) >> 8 )
 /* Produces a ALT_I2C_RAW_INTR_STAT_ACTIVITY register field value suitable for setting the register. */
-#define ALT_I2C_RAW_INTR_STAT_ACTIVITY_SET(value) (((value) << 8) & 0x00000100)
+    #define ALT_I2C_RAW_INTR_STAT_ACTIVITY_SET( value )    ( ( ( value ) << 8 ) & 0x00000100 )
 
 /*
  * Field : Raw Interrupt Stop Detect - stop_det
@@ -2377,21 +2423,21 @@ typedef volatile struct ALT_I2C_INTR_MSK_s  ALT_I2C_INTR_MSK_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_RAW_INTR_STAT_STOP_DET register field. */
-#define ALT_I2C_RAW_INTR_STAT_STOP_DET_LSB        9
+    #define ALT_I2C_RAW_INTR_STAT_STOP_DET_LSB        9
 /* The Most Significant Bit (MSB) position of the ALT_I2C_RAW_INTR_STAT_STOP_DET register field. */
-#define ALT_I2C_RAW_INTR_STAT_STOP_DET_MSB        9
+    #define ALT_I2C_RAW_INTR_STAT_STOP_DET_MSB        9
 /* The width in bits of the ALT_I2C_RAW_INTR_STAT_STOP_DET register field. */
-#define ALT_I2C_RAW_INTR_STAT_STOP_DET_WIDTH      1
+    #define ALT_I2C_RAW_INTR_STAT_STOP_DET_WIDTH      1
 /* The mask used to set the ALT_I2C_RAW_INTR_STAT_STOP_DET register field value. */
-#define ALT_I2C_RAW_INTR_STAT_STOP_DET_SET_MSK    0x00000200
+    #define ALT_I2C_RAW_INTR_STAT_STOP_DET_SET_MSK    0x00000200
 /* The mask used to clear the ALT_I2C_RAW_INTR_STAT_STOP_DET register field value. */
-#define ALT_I2C_RAW_INTR_STAT_STOP_DET_CLR_MSK    0xfffffdff
+    #define ALT_I2C_RAW_INTR_STAT_STOP_DET_CLR_MSK    0xfffffdff
 /* The reset value of the ALT_I2C_RAW_INTR_STAT_STOP_DET register field. */
-#define ALT_I2C_RAW_INTR_STAT_STOP_DET_RESET      0x0
+    #define ALT_I2C_RAW_INTR_STAT_STOP_DET_RESET      0x0
 /* Extracts the ALT_I2C_RAW_INTR_STAT_STOP_DET field value from a register. */
-#define ALT_I2C_RAW_INTR_STAT_STOP_DET_GET(value) (((value) & 0x00000200) >> 9)
+    #define ALT_I2C_RAW_INTR_STAT_STOP_DET_GET( value )    ( ( ( value ) & 0x00000200 ) >> 9 )
 /* Produces a ALT_I2C_RAW_INTR_STAT_STOP_DET register field value suitable for setting the register. */
-#define ALT_I2C_RAW_INTR_STAT_STOP_DET_SET(value) (((value) << 9) & 0x00000200)
+    #define ALT_I2C_RAW_INTR_STAT_STOP_DET_SET( value )    ( ( ( value ) << 9 ) & 0x00000200 )
 
 /*
  * Field : Raw Interrupt Start Detect - start_det
@@ -2403,21 +2449,21 @@ typedef volatile struct ALT_I2C_INTR_MSK_s  ALT_I2C_INTR_MSK_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_RAW_INTR_STAT_START_DET register field. */
-#define ALT_I2C_RAW_INTR_STAT_START_DET_LSB        10
+    #define ALT_I2C_RAW_INTR_STAT_START_DET_LSB        10
 /* The Most Significant Bit (MSB) position of the ALT_I2C_RAW_INTR_STAT_START_DET register field. */
-#define ALT_I2C_RAW_INTR_STAT_START_DET_MSB        10
+    #define ALT_I2C_RAW_INTR_STAT_START_DET_MSB        10
 /* The width in bits of the ALT_I2C_RAW_INTR_STAT_START_DET register field. */
-#define ALT_I2C_RAW_INTR_STAT_START_DET_WIDTH      1
+    #define ALT_I2C_RAW_INTR_STAT_START_DET_WIDTH      1
 /* The mask used to set the ALT_I2C_RAW_INTR_STAT_START_DET register field value. */
-#define ALT_I2C_RAW_INTR_STAT_START_DET_SET_MSK    0x00000400
+    #define ALT_I2C_RAW_INTR_STAT_START_DET_SET_MSK    0x00000400
 /* The mask used to clear the ALT_I2C_RAW_INTR_STAT_START_DET register field value. */
-#define ALT_I2C_RAW_INTR_STAT_START_DET_CLR_MSK    0xfffffbff
+    #define ALT_I2C_RAW_INTR_STAT_START_DET_CLR_MSK    0xfffffbff
 /* The reset value of the ALT_I2C_RAW_INTR_STAT_START_DET register field. */
-#define ALT_I2C_RAW_INTR_STAT_START_DET_RESET      0x0
+    #define ALT_I2C_RAW_INTR_STAT_START_DET_RESET      0x0
 /* Extracts the ALT_I2C_RAW_INTR_STAT_START_DET field value from a register. */
-#define ALT_I2C_RAW_INTR_STAT_START_DET_GET(value) (((value) & 0x00000400) >> 10)
+    #define ALT_I2C_RAW_INTR_STAT_START_DET_GET( value )    ( ( ( value ) & 0x00000400 ) >> 10 )
 /* Produces a ALT_I2C_RAW_INTR_STAT_START_DET register field value suitable for setting the register. */
-#define ALT_I2C_RAW_INTR_STAT_START_DET_SET(value) (((value) << 10) & 0x00000400)
+    #define ALT_I2C_RAW_INTR_STAT_START_DET_SET( value )    ( ( ( value ) << 10 ) & 0x00000400 )
 
 /*
  * Field : Raw Interrupt General Call - gen_call
@@ -2431,23 +2477,24 @@ typedef volatile struct ALT_I2C_INTR_MSK_s  ALT_I2C_INTR_MSK_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_RAW_INTR_STAT_GEN_CALL register field. */
-#define ALT_I2C_RAW_INTR_STAT_GEN_CALL_LSB        11
+    #define ALT_I2C_RAW_INTR_STAT_GEN_CALL_LSB        11
 /* The Most Significant Bit (MSB) position of the ALT_I2C_RAW_INTR_STAT_GEN_CALL register field. */
-#define ALT_I2C_RAW_INTR_STAT_GEN_CALL_MSB        11
+    #define ALT_I2C_RAW_INTR_STAT_GEN_CALL_MSB        11
 /* The width in bits of the ALT_I2C_RAW_INTR_STAT_GEN_CALL register field. */
-#define ALT_I2C_RAW_INTR_STAT_GEN_CALL_WIDTH      1
+    #define ALT_I2C_RAW_INTR_STAT_GEN_CALL_WIDTH      1
 /* The mask used to set the ALT_I2C_RAW_INTR_STAT_GEN_CALL register field value. */
-#define ALT_I2C_RAW_INTR_STAT_GEN_CALL_SET_MSK    0x00000800
+    #define ALT_I2C_RAW_INTR_STAT_GEN_CALL_SET_MSK    0x00000800
 /* The mask used to clear the ALT_I2C_RAW_INTR_STAT_GEN_CALL register field value. */
-#define ALT_I2C_RAW_INTR_STAT_GEN_CALL_CLR_MSK    0xfffff7ff
+    #define ALT_I2C_RAW_INTR_STAT_GEN_CALL_CLR_MSK    0xfffff7ff
 /* The reset value of the ALT_I2C_RAW_INTR_STAT_GEN_CALL register field. */
-#define ALT_I2C_RAW_INTR_STAT_GEN_CALL_RESET      0x0
+    #define ALT_I2C_RAW_INTR_STAT_GEN_CALL_RESET      0x0
 /* Extracts the ALT_I2C_RAW_INTR_STAT_GEN_CALL field value from a register. */
-#define ALT_I2C_RAW_INTR_STAT_GEN_CALL_GET(value) (((value) & 0x00000800) >> 11)
+    #define ALT_I2C_RAW_INTR_STAT_GEN_CALL_GET( value )    ( ( ( value ) & 0x00000800 ) >> 11 )
 /* Produces a ALT_I2C_RAW_INTR_STAT_GEN_CALL register field value suitable for setting the register. */
-#define ALT_I2C_RAW_INTR_STAT_GEN_CALL_SET(value) (((value) << 11) & 0x00000800)
+    #define ALT_I2C_RAW_INTR_STAT_GEN_CALL_SET( value )    ( ( ( value ) << 11 ) & 0x00000800 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -2458,31 +2505,31 @@ typedef volatile struct ALT_I2C_INTR_MSK_s  ALT_I2C_INTR_MSK_t;
  *
  * The struct declaration for register ALT_I2C_RAW_INTR_STAT.
  */
-struct ALT_I2C_RAW_INTR_STAT_s
-{
-    const uint32_t  rx_under  :  1;  /* I2C Raw Interrupt RX Under */
-    const uint32_t  rx_over   :  1;  /* Raw Interrupt RX Over */
-    const uint32_t  rx_full   :  1;  /* Raw Interrupt RX Full */
-    const uint32_t  tx_over   :  1;  /* Raw Interrupt TX Over */
-    const uint32_t  tx_empty  :  1;  /* Raw Interrupt TX Empty */
-    const uint32_t  rd_req    :  1;  /* Raw Interrupt Read Request */
-    const uint32_t  tx_abrt   :  1;  /* Raw Interrupt TX Abort */
-    const uint32_t  rx_done   :  1;  /* Raw Interrupt RX Done */
-    const uint32_t  activity  :  1;  /* Raw Interrupt Activity */
-    const uint32_t  stop_det  :  1;  /* Raw Interrupt Stop Detect */
-    const uint32_t  start_det :  1;  /* Raw Interrupt Start Detect */
-    const uint32_t  gen_call  :  1;  /* Raw Interrupt General Call */
-    uint32_t                  : 20;  /* *UNDEFINED* */
-};
+        struct ALT_I2C_RAW_INTR_STAT_s
+        {
+            const uint32_t rx_under  :  1;  /* I2C Raw Interrupt RX Under */
+            const uint32_t rx_over   :  1;  /* Raw Interrupt RX Over */
+            const uint32_t rx_full   :  1;  /* Raw Interrupt RX Full */
+            const uint32_t tx_over   :  1;  /* Raw Interrupt TX Over */
+            const uint32_t tx_empty  :  1;  /* Raw Interrupt TX Empty */
+            const uint32_t rd_req    :  1;  /* Raw Interrupt Read Request */
+            const uint32_t tx_abrt   :  1;  /* Raw Interrupt TX Abort */
+            const uint32_t rx_done   :  1;  /* Raw Interrupt RX Done */
+            const uint32_t activity  :  1;  /* Raw Interrupt Activity */
+            const uint32_t stop_det  :  1;  /* Raw Interrupt Stop Detect */
+            const uint32_t start_det :  1;  /* Raw Interrupt Start Detect */
+            const uint32_t gen_call  :  1;  /* Raw Interrupt General Call */
+            uint32_t                  : 20; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_I2C_RAW_INTR_STAT. */
-typedef volatile struct ALT_I2C_RAW_INTR_STAT_s  ALT_I2C_RAW_INTR_STAT_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_I2C_RAW_INTR_STAT_s ALT_I2C_RAW_INTR_STAT_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_I2C_RAW_INTR_STAT register from the beginning of the component. */
-#define ALT_I2C_RAW_INTR_STAT_OFST        0x34
+    #define ALT_I2C_RAW_INTR_STAT_OFST    0x34
 /* The address of the ALT_I2C_RAW_INTR_STAT register. */
-#define ALT_I2C_RAW_INTR_STAT_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_I2C_RAW_INTR_STAT_OFST))
+    #define ALT_I2C_RAW_INTR_STAT_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_I2C_RAW_INTR_STAT_OFST ) )
 
 /*
  * Register : Receive FIFO Threshold Register - ic_rx_tl
@@ -2497,6 +2544,7 @@ typedef volatile struct ALT_I2C_RAW_INTR_STAT_s  ALT_I2C_RAW_INTR_STAT_t;
  *  [31:8] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Receive FIFO Threshold Level - rx_tl
  *
@@ -2511,23 +2559,24 @@ typedef volatile struct ALT_I2C_RAW_INTR_STAT_s  ALT_I2C_RAW_INTR_STAT_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_RX_TL_RX_TL register field. */
-#define ALT_I2C_RX_TL_RX_TL_LSB        0
+    #define ALT_I2C_RX_TL_RX_TL_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_I2C_RX_TL_RX_TL register field. */
-#define ALT_I2C_RX_TL_RX_TL_MSB        7
+    #define ALT_I2C_RX_TL_RX_TL_MSB        7
 /* The width in bits of the ALT_I2C_RX_TL_RX_TL register field. */
-#define ALT_I2C_RX_TL_RX_TL_WIDTH      8
+    #define ALT_I2C_RX_TL_RX_TL_WIDTH      8
 /* The mask used to set the ALT_I2C_RX_TL_RX_TL register field value. */
-#define ALT_I2C_RX_TL_RX_TL_SET_MSK    0x000000ff
+    #define ALT_I2C_RX_TL_RX_TL_SET_MSK    0x000000ff
 /* The mask used to clear the ALT_I2C_RX_TL_RX_TL register field value. */
-#define ALT_I2C_RX_TL_RX_TL_CLR_MSK    0xffffff00
+    #define ALT_I2C_RX_TL_RX_TL_CLR_MSK    0xffffff00
 /* The reset value of the ALT_I2C_RX_TL_RX_TL register field. */
-#define ALT_I2C_RX_TL_RX_TL_RESET      0x0
+    #define ALT_I2C_RX_TL_RX_TL_RESET      0x0
 /* Extracts the ALT_I2C_RX_TL_RX_TL field value from a register. */
-#define ALT_I2C_RX_TL_RX_TL_GET(value) (((value) & 0x000000ff) >> 0)
+    #define ALT_I2C_RX_TL_RX_TL_GET( value )    ( ( ( value ) & 0x000000ff ) >> 0 )
 /* Produces a ALT_I2C_RX_TL_RX_TL register field value suitable for setting the register. */
-#define ALT_I2C_RX_TL_RX_TL_SET(value) (((value) << 0) & 0x000000ff)
+    #define ALT_I2C_RX_TL_RX_TL_SET( value )    ( ( ( value ) << 0 ) & 0x000000ff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -2538,20 +2587,20 @@ typedef volatile struct ALT_I2C_RAW_INTR_STAT_s  ALT_I2C_RAW_INTR_STAT_t;
  *
  * The struct declaration for register ALT_I2C_RX_TL.
  */
-struct ALT_I2C_RX_TL_s
-{
-    uint32_t  rx_tl :  8;  /* Receive FIFO Threshold Level */
-    uint32_t        : 24;  /* *UNDEFINED* */
-};
+        struct ALT_I2C_RX_TL_s
+        {
+            uint32_t rx_tl :  8;  /* Receive FIFO Threshold Level */
+            uint32_t        : 24; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_I2C_RX_TL. */
-typedef volatile struct ALT_I2C_RX_TL_s  ALT_I2C_RX_TL_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_I2C_RX_TL_s ALT_I2C_RX_TL_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_I2C_RX_TL register from the beginning of the component. */
-#define ALT_I2C_RX_TL_OFST        0x38
+    #define ALT_I2C_RX_TL_OFST    0x38
 /* The address of the ALT_I2C_RX_TL register. */
-#define ALT_I2C_RX_TL_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_I2C_RX_TL_OFST))
+    #define ALT_I2C_RX_TL_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_I2C_RX_TL_OFST ) )
 
 /*
  * Register : Transmit FIFO Threshold Level Register - ic_tx_tl
@@ -2566,6 +2615,7 @@ typedef volatile struct ALT_I2C_RX_TL_s  ALT_I2C_RX_TL_t;
  *  [31:8] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Transmit FIFO Threshold Level - tx_tl
  *
@@ -2580,23 +2630,24 @@ typedef volatile struct ALT_I2C_RX_TL_s  ALT_I2C_RX_TL_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_TX_TL_TX_TL register field. */
-#define ALT_I2C_TX_TL_TX_TL_LSB        0
+    #define ALT_I2C_TX_TL_TX_TL_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_I2C_TX_TL_TX_TL register field. */
-#define ALT_I2C_TX_TL_TX_TL_MSB        7
+    #define ALT_I2C_TX_TL_TX_TL_MSB        7
 /* The width in bits of the ALT_I2C_TX_TL_TX_TL register field. */
-#define ALT_I2C_TX_TL_TX_TL_WIDTH      8
+    #define ALT_I2C_TX_TL_TX_TL_WIDTH      8
 /* The mask used to set the ALT_I2C_TX_TL_TX_TL register field value. */
-#define ALT_I2C_TX_TL_TX_TL_SET_MSK    0x000000ff
+    #define ALT_I2C_TX_TL_TX_TL_SET_MSK    0x000000ff
 /* The mask used to clear the ALT_I2C_TX_TL_TX_TL register field value. */
-#define ALT_I2C_TX_TL_TX_TL_CLR_MSK    0xffffff00
+    #define ALT_I2C_TX_TL_TX_TL_CLR_MSK    0xffffff00
 /* The reset value of the ALT_I2C_TX_TL_TX_TL register field. */
-#define ALT_I2C_TX_TL_TX_TL_RESET      0x0
+    #define ALT_I2C_TX_TL_TX_TL_RESET      0x0
 /* Extracts the ALT_I2C_TX_TL_TX_TL field value from a register. */
-#define ALT_I2C_TX_TL_TX_TL_GET(value) (((value) & 0x000000ff) >> 0)
+    #define ALT_I2C_TX_TL_TX_TL_GET( value )    ( ( ( value ) & 0x000000ff ) >> 0 )
 /* Produces a ALT_I2C_TX_TL_TX_TL register field value suitable for setting the register. */
-#define ALT_I2C_TX_TL_TX_TL_SET(value) (((value) << 0) & 0x000000ff)
+    #define ALT_I2C_TX_TL_TX_TL_SET( value )    ( ( ( value ) << 0 ) & 0x000000ff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -2607,20 +2658,20 @@ typedef volatile struct ALT_I2C_RX_TL_s  ALT_I2C_RX_TL_t;
  *
  * The struct declaration for register ALT_I2C_TX_TL.
  */
-struct ALT_I2C_TX_TL_s
-{
-    uint32_t  tx_tl :  8;  /* Transmit FIFO Threshold Level */
-    uint32_t        : 24;  /* *UNDEFINED* */
-};
+        struct ALT_I2C_TX_TL_s
+        {
+            uint32_t tx_tl :  8;  /* Transmit FIFO Threshold Level */
+            uint32_t        : 24; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_I2C_TX_TL. */
-typedef volatile struct ALT_I2C_TX_TL_s  ALT_I2C_TX_TL_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_I2C_TX_TL_s ALT_I2C_TX_TL_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_I2C_TX_TL register from the beginning of the component. */
-#define ALT_I2C_TX_TL_OFST        0x3c
+    #define ALT_I2C_TX_TL_OFST    0x3c
 /* The address of the ALT_I2C_TX_TL register. */
-#define ALT_I2C_TX_TL_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_I2C_TX_TL_OFST))
+    #define ALT_I2C_TX_TL_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_I2C_TX_TL_OFST ) )
 
 /*
  * Register : Combined and Individual Interrupt Register - ic_clr_intr
@@ -2635,6 +2686,7 @@ typedef volatile struct ALT_I2C_TX_TL_s  ALT_I2C_TX_TL_t;
  *  [31:1] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Combined and Individual Interrupt Bits - clr_intr
  *
@@ -2647,23 +2699,24 @@ typedef volatile struct ALT_I2C_TX_TL_s  ALT_I2C_TX_TL_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_CLR_INTR_CLR_INTR register field. */
-#define ALT_I2C_CLR_INTR_CLR_INTR_LSB        0
+    #define ALT_I2C_CLR_INTR_CLR_INTR_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_I2C_CLR_INTR_CLR_INTR register field. */
-#define ALT_I2C_CLR_INTR_CLR_INTR_MSB        0
+    #define ALT_I2C_CLR_INTR_CLR_INTR_MSB        0
 /* The width in bits of the ALT_I2C_CLR_INTR_CLR_INTR register field. */
-#define ALT_I2C_CLR_INTR_CLR_INTR_WIDTH      1
+    #define ALT_I2C_CLR_INTR_CLR_INTR_WIDTH      1
 /* The mask used to set the ALT_I2C_CLR_INTR_CLR_INTR register field value. */
-#define ALT_I2C_CLR_INTR_CLR_INTR_SET_MSK    0x00000001
+    #define ALT_I2C_CLR_INTR_CLR_INTR_SET_MSK    0x00000001
 /* The mask used to clear the ALT_I2C_CLR_INTR_CLR_INTR register field value. */
-#define ALT_I2C_CLR_INTR_CLR_INTR_CLR_MSK    0xfffffffe
+    #define ALT_I2C_CLR_INTR_CLR_INTR_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_I2C_CLR_INTR_CLR_INTR register field. */
-#define ALT_I2C_CLR_INTR_CLR_INTR_RESET      0x0
+    #define ALT_I2C_CLR_INTR_CLR_INTR_RESET      0x0
 /* Extracts the ALT_I2C_CLR_INTR_CLR_INTR field value from a register. */
-#define ALT_I2C_CLR_INTR_CLR_INTR_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_I2C_CLR_INTR_CLR_INTR_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_I2C_CLR_INTR_CLR_INTR register field value suitable for setting the register. */
-#define ALT_I2C_CLR_INTR_CLR_INTR_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_I2C_CLR_INTR_CLR_INTR_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -2674,20 +2727,20 @@ typedef volatile struct ALT_I2C_TX_TL_s  ALT_I2C_TX_TL_t;
  *
  * The struct declaration for register ALT_I2C_CLR_INTR.
  */
-struct ALT_I2C_CLR_INTR_s
-{
-    const uint32_t  clr_intr :  1;  /* Combined and Individual Interrupt Bits */
-    uint32_t                 : 31;  /* *UNDEFINED* */
-};
+        struct ALT_I2C_CLR_INTR_s
+        {
+            const uint32_t clr_intr :  1;  /* Combined and Individual Interrupt Bits */
+            uint32_t                 : 31; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_I2C_CLR_INTR. */
-typedef volatile struct ALT_I2C_CLR_INTR_s  ALT_I2C_CLR_INTR_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_I2C_CLR_INTR_s ALT_I2C_CLR_INTR_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_I2C_CLR_INTR register from the beginning of the component. */
-#define ALT_I2C_CLR_INTR_OFST        0x40
+    #define ALT_I2C_CLR_INTR_OFST    0x40
 /* The address of the ALT_I2C_CLR_INTR register. */
-#define ALT_I2C_CLR_INTR_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_I2C_CLR_INTR_OFST))
+    #define ALT_I2C_CLR_INTR_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_I2C_CLR_INTR_OFST ) )
 
 /*
  * Register : Rx Under Interrupt Register - ic_clr_rx_under
@@ -2702,6 +2755,7 @@ typedef volatile struct ALT_I2C_CLR_INTR_s  ALT_I2C_CLR_INTR_t;
  *  [31:1] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Clear Rx Under Interrupt Bit - clr_rx_under
  *
@@ -2712,23 +2766,24 @@ typedef volatile struct ALT_I2C_CLR_INTR_s  ALT_I2C_CLR_INTR_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_CLR_RX_UNDER_CLR_RX_UNDER register field. */
-#define ALT_I2C_CLR_RX_UNDER_CLR_RX_UNDER_LSB        0
+    #define ALT_I2C_CLR_RX_UNDER_CLR_RX_UNDER_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_I2C_CLR_RX_UNDER_CLR_RX_UNDER register field. */
-#define ALT_I2C_CLR_RX_UNDER_CLR_RX_UNDER_MSB        0
+    #define ALT_I2C_CLR_RX_UNDER_CLR_RX_UNDER_MSB        0
 /* The width in bits of the ALT_I2C_CLR_RX_UNDER_CLR_RX_UNDER register field. */
-#define ALT_I2C_CLR_RX_UNDER_CLR_RX_UNDER_WIDTH      1
+    #define ALT_I2C_CLR_RX_UNDER_CLR_RX_UNDER_WIDTH      1
 /* The mask used to set the ALT_I2C_CLR_RX_UNDER_CLR_RX_UNDER register field value. */
-#define ALT_I2C_CLR_RX_UNDER_CLR_RX_UNDER_SET_MSK    0x00000001
+    #define ALT_I2C_CLR_RX_UNDER_CLR_RX_UNDER_SET_MSK    0x00000001
 /* The mask used to clear the ALT_I2C_CLR_RX_UNDER_CLR_RX_UNDER register field value. */
-#define ALT_I2C_CLR_RX_UNDER_CLR_RX_UNDER_CLR_MSK    0xfffffffe
+    #define ALT_I2C_CLR_RX_UNDER_CLR_RX_UNDER_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_I2C_CLR_RX_UNDER_CLR_RX_UNDER register field. */
-#define ALT_I2C_CLR_RX_UNDER_CLR_RX_UNDER_RESET      0x0
+    #define ALT_I2C_CLR_RX_UNDER_CLR_RX_UNDER_RESET      0x0
 /* Extracts the ALT_I2C_CLR_RX_UNDER_CLR_RX_UNDER field value from a register. */
-#define ALT_I2C_CLR_RX_UNDER_CLR_RX_UNDER_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_I2C_CLR_RX_UNDER_CLR_RX_UNDER_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_I2C_CLR_RX_UNDER_CLR_RX_UNDER register field value suitable for setting the register. */
-#define ALT_I2C_CLR_RX_UNDER_CLR_RX_UNDER_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_I2C_CLR_RX_UNDER_CLR_RX_UNDER_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -2739,20 +2794,20 @@ typedef volatile struct ALT_I2C_CLR_INTR_s  ALT_I2C_CLR_INTR_t;
  *
  * The struct declaration for register ALT_I2C_CLR_RX_UNDER.
  */
-struct ALT_I2C_CLR_RX_UNDER_s
-{
-    const uint32_t  clr_rx_under :  1;  /* Clear Rx Under Interrupt Bit */
-    uint32_t                     : 31;  /* *UNDEFINED* */
-};
+        struct ALT_I2C_CLR_RX_UNDER_s
+        {
+            const uint32_t clr_rx_under :  1;  /* Clear Rx Under Interrupt Bit */
+            uint32_t                     : 31; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_I2C_CLR_RX_UNDER. */
-typedef volatile struct ALT_I2C_CLR_RX_UNDER_s  ALT_I2C_CLR_RX_UNDER_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_I2C_CLR_RX_UNDER_s ALT_I2C_CLR_RX_UNDER_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_I2C_CLR_RX_UNDER register from the beginning of the component. */
-#define ALT_I2C_CLR_RX_UNDER_OFST        0x44
+    #define ALT_I2C_CLR_RX_UNDER_OFST    0x44
 /* The address of the ALT_I2C_CLR_RX_UNDER register. */
-#define ALT_I2C_CLR_RX_UNDER_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_I2C_CLR_RX_UNDER_OFST))
+    #define ALT_I2C_CLR_RX_UNDER_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_I2C_CLR_RX_UNDER_OFST ) )
 
 /*
  * Register : RX Over Interrupt Register - ic_clr_rx_over
@@ -2767,6 +2822,7 @@ typedef volatile struct ALT_I2C_CLR_RX_UNDER_s  ALT_I2C_CLR_RX_UNDER_t;
  *  [31:1] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : RX Over Interrupt Bit - clr_rx_over
  *
@@ -2777,23 +2833,24 @@ typedef volatile struct ALT_I2C_CLR_RX_UNDER_s  ALT_I2C_CLR_RX_UNDER_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_CLR_RX_OVER_CLR_RX_OVER register field. */
-#define ALT_I2C_CLR_RX_OVER_CLR_RX_OVER_LSB        0
+    #define ALT_I2C_CLR_RX_OVER_CLR_RX_OVER_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_I2C_CLR_RX_OVER_CLR_RX_OVER register field. */
-#define ALT_I2C_CLR_RX_OVER_CLR_RX_OVER_MSB        0
+    #define ALT_I2C_CLR_RX_OVER_CLR_RX_OVER_MSB        0
 /* The width in bits of the ALT_I2C_CLR_RX_OVER_CLR_RX_OVER register field. */
-#define ALT_I2C_CLR_RX_OVER_CLR_RX_OVER_WIDTH      1
+    #define ALT_I2C_CLR_RX_OVER_CLR_RX_OVER_WIDTH      1
 /* The mask used to set the ALT_I2C_CLR_RX_OVER_CLR_RX_OVER register field value. */
-#define ALT_I2C_CLR_RX_OVER_CLR_RX_OVER_SET_MSK    0x00000001
+    #define ALT_I2C_CLR_RX_OVER_CLR_RX_OVER_SET_MSK    0x00000001
 /* The mask used to clear the ALT_I2C_CLR_RX_OVER_CLR_RX_OVER register field value. */
-#define ALT_I2C_CLR_RX_OVER_CLR_RX_OVER_CLR_MSK    0xfffffffe
+    #define ALT_I2C_CLR_RX_OVER_CLR_RX_OVER_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_I2C_CLR_RX_OVER_CLR_RX_OVER register field. */
-#define ALT_I2C_CLR_RX_OVER_CLR_RX_OVER_RESET      0x0
+    #define ALT_I2C_CLR_RX_OVER_CLR_RX_OVER_RESET      0x0
 /* Extracts the ALT_I2C_CLR_RX_OVER_CLR_RX_OVER field value from a register. */
-#define ALT_I2C_CLR_RX_OVER_CLR_RX_OVER_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_I2C_CLR_RX_OVER_CLR_RX_OVER_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_I2C_CLR_RX_OVER_CLR_RX_OVER register field value suitable for setting the register. */
-#define ALT_I2C_CLR_RX_OVER_CLR_RX_OVER_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_I2C_CLR_RX_OVER_CLR_RX_OVER_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -2804,20 +2861,20 @@ typedef volatile struct ALT_I2C_CLR_RX_UNDER_s  ALT_I2C_CLR_RX_UNDER_t;
  *
  * The struct declaration for register ALT_I2C_CLR_RX_OVER.
  */
-struct ALT_I2C_CLR_RX_OVER_s
-{
-    const uint32_t  clr_rx_over :  1;  /* RX Over Interrupt Bit */
-    uint32_t                    : 31;  /* *UNDEFINED* */
-};
+        struct ALT_I2C_CLR_RX_OVER_s
+        {
+            const uint32_t clr_rx_over :  1;  /* RX Over Interrupt Bit */
+            uint32_t                    : 31; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_I2C_CLR_RX_OVER. */
-typedef volatile struct ALT_I2C_CLR_RX_OVER_s  ALT_I2C_CLR_RX_OVER_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_I2C_CLR_RX_OVER_s ALT_I2C_CLR_RX_OVER_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_I2C_CLR_RX_OVER register from the beginning of the component. */
-#define ALT_I2C_CLR_RX_OVER_OFST        0x48
+    #define ALT_I2C_CLR_RX_OVER_OFST    0x48
 /* The address of the ALT_I2C_CLR_RX_OVER register. */
-#define ALT_I2C_CLR_RX_OVER_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_I2C_CLR_RX_OVER_OFST))
+    #define ALT_I2C_CLR_RX_OVER_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_I2C_CLR_RX_OVER_OFST ) )
 
 /*
  * Register : TX Over Interrupt Register - ic_clr_tx_over
@@ -2832,6 +2889,7 @@ typedef volatile struct ALT_I2C_CLR_RX_OVER_s  ALT_I2C_CLR_RX_OVER_t;
  *  [31:1] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : TX Over Interrupt Bit - clr_tx_over
  *
@@ -2842,23 +2900,24 @@ typedef volatile struct ALT_I2C_CLR_RX_OVER_s  ALT_I2C_CLR_RX_OVER_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_CLR_TX_OVER_CLR_TX_OVER register field. */
-#define ALT_I2C_CLR_TX_OVER_CLR_TX_OVER_LSB        0
+    #define ALT_I2C_CLR_TX_OVER_CLR_TX_OVER_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_I2C_CLR_TX_OVER_CLR_TX_OVER register field. */
-#define ALT_I2C_CLR_TX_OVER_CLR_TX_OVER_MSB        0
+    #define ALT_I2C_CLR_TX_OVER_CLR_TX_OVER_MSB        0
 /* The width in bits of the ALT_I2C_CLR_TX_OVER_CLR_TX_OVER register field. */
-#define ALT_I2C_CLR_TX_OVER_CLR_TX_OVER_WIDTH      1
+    #define ALT_I2C_CLR_TX_OVER_CLR_TX_OVER_WIDTH      1
 /* The mask used to set the ALT_I2C_CLR_TX_OVER_CLR_TX_OVER register field value. */
-#define ALT_I2C_CLR_TX_OVER_CLR_TX_OVER_SET_MSK    0x00000001
+    #define ALT_I2C_CLR_TX_OVER_CLR_TX_OVER_SET_MSK    0x00000001
 /* The mask used to clear the ALT_I2C_CLR_TX_OVER_CLR_TX_OVER register field value. */
-#define ALT_I2C_CLR_TX_OVER_CLR_TX_OVER_CLR_MSK    0xfffffffe
+    #define ALT_I2C_CLR_TX_OVER_CLR_TX_OVER_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_I2C_CLR_TX_OVER_CLR_TX_OVER register field. */
-#define ALT_I2C_CLR_TX_OVER_CLR_TX_OVER_RESET      0x0
+    #define ALT_I2C_CLR_TX_OVER_CLR_TX_OVER_RESET      0x0
 /* Extracts the ALT_I2C_CLR_TX_OVER_CLR_TX_OVER field value from a register. */
-#define ALT_I2C_CLR_TX_OVER_CLR_TX_OVER_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_I2C_CLR_TX_OVER_CLR_TX_OVER_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_I2C_CLR_TX_OVER_CLR_TX_OVER register field value suitable for setting the register. */
-#define ALT_I2C_CLR_TX_OVER_CLR_TX_OVER_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_I2C_CLR_TX_OVER_CLR_TX_OVER_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -2869,20 +2928,20 @@ typedef volatile struct ALT_I2C_CLR_RX_OVER_s  ALT_I2C_CLR_RX_OVER_t;
  *
  * The struct declaration for register ALT_I2C_CLR_TX_OVER.
  */
-struct ALT_I2C_CLR_TX_OVER_s
-{
-    const uint32_t  clr_tx_over :  1;  /* TX Over Interrupt Bit */
-    uint32_t                    : 31;  /* *UNDEFINED* */
-};
+        struct ALT_I2C_CLR_TX_OVER_s
+        {
+            const uint32_t clr_tx_over :  1;  /* TX Over Interrupt Bit */
+            uint32_t                    : 31; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_I2C_CLR_TX_OVER. */
-typedef volatile struct ALT_I2C_CLR_TX_OVER_s  ALT_I2C_CLR_TX_OVER_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_I2C_CLR_TX_OVER_s ALT_I2C_CLR_TX_OVER_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_I2C_CLR_TX_OVER register from the beginning of the component. */
-#define ALT_I2C_CLR_TX_OVER_OFST        0x4c
+    #define ALT_I2C_CLR_TX_OVER_OFST    0x4c
 /* The address of the ALT_I2C_CLR_TX_OVER register. */
-#define ALT_I2C_CLR_TX_OVER_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_I2C_CLR_TX_OVER_OFST))
+    #define ALT_I2C_CLR_TX_OVER_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_I2C_CLR_TX_OVER_OFST ) )
 
 /*
  * Register : Interrupt Read Request Register - ic_clr_rd_req
@@ -2897,6 +2956,7 @@ typedef volatile struct ALT_I2C_CLR_TX_OVER_s  ALT_I2C_CLR_TX_OVER_t;
  *  [31:1] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Interrupt Register Read Request Bit - clr_rd_req
  *
@@ -2907,23 +2967,24 @@ typedef volatile struct ALT_I2C_CLR_TX_OVER_s  ALT_I2C_CLR_TX_OVER_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_CLR_RD_REQ_CLR_RD_REQ register field. */
-#define ALT_I2C_CLR_RD_REQ_CLR_RD_REQ_LSB        0
+    #define ALT_I2C_CLR_RD_REQ_CLR_RD_REQ_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_I2C_CLR_RD_REQ_CLR_RD_REQ register field. */
-#define ALT_I2C_CLR_RD_REQ_CLR_RD_REQ_MSB        0
+    #define ALT_I2C_CLR_RD_REQ_CLR_RD_REQ_MSB        0
 /* The width in bits of the ALT_I2C_CLR_RD_REQ_CLR_RD_REQ register field. */
-#define ALT_I2C_CLR_RD_REQ_CLR_RD_REQ_WIDTH      1
+    #define ALT_I2C_CLR_RD_REQ_CLR_RD_REQ_WIDTH      1
 /* The mask used to set the ALT_I2C_CLR_RD_REQ_CLR_RD_REQ register field value. */
-#define ALT_I2C_CLR_RD_REQ_CLR_RD_REQ_SET_MSK    0x00000001
+    #define ALT_I2C_CLR_RD_REQ_CLR_RD_REQ_SET_MSK    0x00000001
 /* The mask used to clear the ALT_I2C_CLR_RD_REQ_CLR_RD_REQ register field value. */
-#define ALT_I2C_CLR_RD_REQ_CLR_RD_REQ_CLR_MSK    0xfffffffe
+    #define ALT_I2C_CLR_RD_REQ_CLR_RD_REQ_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_I2C_CLR_RD_REQ_CLR_RD_REQ register field. */
-#define ALT_I2C_CLR_RD_REQ_CLR_RD_REQ_RESET      0x0
+    #define ALT_I2C_CLR_RD_REQ_CLR_RD_REQ_RESET      0x0
 /* Extracts the ALT_I2C_CLR_RD_REQ_CLR_RD_REQ field value from a register. */
-#define ALT_I2C_CLR_RD_REQ_CLR_RD_REQ_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_I2C_CLR_RD_REQ_CLR_RD_REQ_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_I2C_CLR_RD_REQ_CLR_RD_REQ register field value suitable for setting the register. */
-#define ALT_I2C_CLR_RD_REQ_CLR_RD_REQ_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_I2C_CLR_RD_REQ_CLR_RD_REQ_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -2934,20 +2995,20 @@ typedef volatile struct ALT_I2C_CLR_TX_OVER_s  ALT_I2C_CLR_TX_OVER_t;
  *
  * The struct declaration for register ALT_I2C_CLR_RD_REQ.
  */
-struct ALT_I2C_CLR_RD_REQ_s
-{
-    const uint32_t  clr_rd_req :  1;  /* Interrupt Register Read Request Bit */
-    uint32_t                   : 31;  /* *UNDEFINED* */
-};
+        struct ALT_I2C_CLR_RD_REQ_s
+        {
+            const uint32_t clr_rd_req :  1;  /* Interrupt Register Read Request Bit */
+            uint32_t                   : 31; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_I2C_CLR_RD_REQ. */
-typedef volatile struct ALT_I2C_CLR_RD_REQ_s  ALT_I2C_CLR_RD_REQ_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_I2C_CLR_RD_REQ_s ALT_I2C_CLR_RD_REQ_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_I2C_CLR_RD_REQ register from the beginning of the component. */
-#define ALT_I2C_CLR_RD_REQ_OFST        0x50
+    #define ALT_I2C_CLR_RD_REQ_OFST    0x50
 /* The address of the ALT_I2C_CLR_RD_REQ register. */
-#define ALT_I2C_CLR_RD_REQ_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_I2C_CLR_RD_REQ_OFST))
+    #define ALT_I2C_CLR_RD_REQ_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_I2C_CLR_RD_REQ_OFST ) )
 
 /*
  * Register : Tx Abort Interrupt Register - ic_clr_tx_abrt
@@ -2962,6 +3023,7 @@ typedef volatile struct ALT_I2C_CLR_RD_REQ_s  ALT_I2C_CLR_RD_REQ_t;
  *  [31:1] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Tx Abort Interrupt Bit - clr_tx_abort
  *
@@ -2975,23 +3037,24 @@ typedef volatile struct ALT_I2C_CLR_RD_REQ_s  ALT_I2C_CLR_RD_REQ_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_CLR_TX_ABRT_CLR_TX_ABT register field. */
-#define ALT_I2C_CLR_TX_ABRT_CLR_TX_ABT_LSB        0
+    #define ALT_I2C_CLR_TX_ABRT_CLR_TX_ABT_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_I2C_CLR_TX_ABRT_CLR_TX_ABT register field. */
-#define ALT_I2C_CLR_TX_ABRT_CLR_TX_ABT_MSB        0
+    #define ALT_I2C_CLR_TX_ABRT_CLR_TX_ABT_MSB        0
 /* The width in bits of the ALT_I2C_CLR_TX_ABRT_CLR_TX_ABT register field. */
-#define ALT_I2C_CLR_TX_ABRT_CLR_TX_ABT_WIDTH      1
+    #define ALT_I2C_CLR_TX_ABRT_CLR_TX_ABT_WIDTH      1
 /* The mask used to set the ALT_I2C_CLR_TX_ABRT_CLR_TX_ABT register field value. */
-#define ALT_I2C_CLR_TX_ABRT_CLR_TX_ABT_SET_MSK    0x00000001
+    #define ALT_I2C_CLR_TX_ABRT_CLR_TX_ABT_SET_MSK    0x00000001
 /* The mask used to clear the ALT_I2C_CLR_TX_ABRT_CLR_TX_ABT register field value. */
-#define ALT_I2C_CLR_TX_ABRT_CLR_TX_ABT_CLR_MSK    0xfffffffe
+    #define ALT_I2C_CLR_TX_ABRT_CLR_TX_ABT_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_I2C_CLR_TX_ABRT_CLR_TX_ABT register field. */
-#define ALT_I2C_CLR_TX_ABRT_CLR_TX_ABT_RESET      0x0
+    #define ALT_I2C_CLR_TX_ABRT_CLR_TX_ABT_RESET      0x0
 /* Extracts the ALT_I2C_CLR_TX_ABRT_CLR_TX_ABT field value from a register. */
-#define ALT_I2C_CLR_TX_ABRT_CLR_TX_ABT_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_I2C_CLR_TX_ABRT_CLR_TX_ABT_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_I2C_CLR_TX_ABRT_CLR_TX_ABT register field value suitable for setting the register. */
-#define ALT_I2C_CLR_TX_ABRT_CLR_TX_ABT_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_I2C_CLR_TX_ABRT_CLR_TX_ABT_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -3002,20 +3065,20 @@ typedef volatile struct ALT_I2C_CLR_RD_REQ_s  ALT_I2C_CLR_RD_REQ_t;
  *
  * The struct declaration for register ALT_I2C_CLR_TX_ABRT.
  */
-struct ALT_I2C_CLR_TX_ABRT_s
-{
-    const uint32_t  clr_tx_abort :  1;  /* Tx Abort Interrupt Bit */
-    uint32_t                     : 31;  /* *UNDEFINED* */
-};
+        struct ALT_I2C_CLR_TX_ABRT_s
+        {
+            const uint32_t clr_tx_abort :  1;  /* Tx Abort Interrupt Bit */
+            uint32_t                     : 31; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_I2C_CLR_TX_ABRT. */
-typedef volatile struct ALT_I2C_CLR_TX_ABRT_s  ALT_I2C_CLR_TX_ABRT_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_I2C_CLR_TX_ABRT_s ALT_I2C_CLR_TX_ABRT_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_I2C_CLR_TX_ABRT register from the beginning of the component. */
-#define ALT_I2C_CLR_TX_ABRT_OFST        0x54
+    #define ALT_I2C_CLR_TX_ABRT_OFST    0x54
 /* The address of the ALT_I2C_CLR_TX_ABRT register. */
-#define ALT_I2C_CLR_TX_ABRT_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_I2C_CLR_TX_ABRT_OFST))
+    #define ALT_I2C_CLR_TX_ABRT_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_I2C_CLR_TX_ABRT_OFST ) )
 
 /*
  * Register : Rx Done Interrupt Register - ic_clr_rx_done
@@ -3030,6 +3093,7 @@ typedef volatile struct ALT_I2C_CLR_TX_ABRT_s  ALT_I2C_CLR_TX_ABRT_t;
  *  [31:1] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : RX_DONE Interrupt Bit - clr_rx_done
  *
@@ -3040,23 +3104,24 @@ typedef volatile struct ALT_I2C_CLR_TX_ABRT_s  ALT_I2C_CLR_TX_ABRT_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_CLR_RX_DONE_CLR_RX_DONE register field. */
-#define ALT_I2C_CLR_RX_DONE_CLR_RX_DONE_LSB        0
+    #define ALT_I2C_CLR_RX_DONE_CLR_RX_DONE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_I2C_CLR_RX_DONE_CLR_RX_DONE register field. */
-#define ALT_I2C_CLR_RX_DONE_CLR_RX_DONE_MSB        0
+    #define ALT_I2C_CLR_RX_DONE_CLR_RX_DONE_MSB        0
 /* The width in bits of the ALT_I2C_CLR_RX_DONE_CLR_RX_DONE register field. */
-#define ALT_I2C_CLR_RX_DONE_CLR_RX_DONE_WIDTH      1
+    #define ALT_I2C_CLR_RX_DONE_CLR_RX_DONE_WIDTH      1
 /* The mask used to set the ALT_I2C_CLR_RX_DONE_CLR_RX_DONE register field value. */
-#define ALT_I2C_CLR_RX_DONE_CLR_RX_DONE_SET_MSK    0x00000001
+    #define ALT_I2C_CLR_RX_DONE_CLR_RX_DONE_SET_MSK    0x00000001
 /* The mask used to clear the ALT_I2C_CLR_RX_DONE_CLR_RX_DONE register field value. */
-#define ALT_I2C_CLR_RX_DONE_CLR_RX_DONE_CLR_MSK    0xfffffffe
+    #define ALT_I2C_CLR_RX_DONE_CLR_RX_DONE_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_I2C_CLR_RX_DONE_CLR_RX_DONE register field. */
-#define ALT_I2C_CLR_RX_DONE_CLR_RX_DONE_RESET      0x0
+    #define ALT_I2C_CLR_RX_DONE_CLR_RX_DONE_RESET      0x0
 /* Extracts the ALT_I2C_CLR_RX_DONE_CLR_RX_DONE field value from a register. */
-#define ALT_I2C_CLR_RX_DONE_CLR_RX_DONE_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_I2C_CLR_RX_DONE_CLR_RX_DONE_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_I2C_CLR_RX_DONE_CLR_RX_DONE register field value suitable for setting the register. */
-#define ALT_I2C_CLR_RX_DONE_CLR_RX_DONE_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_I2C_CLR_RX_DONE_CLR_RX_DONE_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -3067,20 +3132,20 @@ typedef volatile struct ALT_I2C_CLR_TX_ABRT_s  ALT_I2C_CLR_TX_ABRT_t;
  *
  * The struct declaration for register ALT_I2C_CLR_RX_DONE.
  */
-struct ALT_I2C_CLR_RX_DONE_s
-{
-    const uint32_t  clr_rx_done :  1;  /* RX_DONE Interrupt Bit */
-    uint32_t                    : 31;  /* *UNDEFINED* */
-};
+        struct ALT_I2C_CLR_RX_DONE_s
+        {
+            const uint32_t clr_rx_done :  1;  /* RX_DONE Interrupt Bit */
+            uint32_t                    : 31; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_I2C_CLR_RX_DONE. */
-typedef volatile struct ALT_I2C_CLR_RX_DONE_s  ALT_I2C_CLR_RX_DONE_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_I2C_CLR_RX_DONE_s ALT_I2C_CLR_RX_DONE_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_I2C_CLR_RX_DONE register from the beginning of the component. */
-#define ALT_I2C_CLR_RX_DONE_OFST        0x58
+    #define ALT_I2C_CLR_RX_DONE_OFST    0x58
 /* The address of the ALT_I2C_CLR_RX_DONE register. */
-#define ALT_I2C_CLR_RX_DONE_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_I2C_CLR_RX_DONE_OFST))
+    #define ALT_I2C_CLR_RX_DONE_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_I2C_CLR_RX_DONE_OFST ) )
 
 /*
  * Register : Activity Interrupt Register - ic_clr_activity
@@ -3095,6 +3160,7 @@ typedef volatile struct ALT_I2C_CLR_RX_DONE_s  ALT_I2C_CLR_RX_DONE_t;
  *  [31:1] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Activity Interrupt Bit - clr_activity
  *
@@ -3109,23 +3175,24 @@ typedef volatile struct ALT_I2C_CLR_RX_DONE_s  ALT_I2C_CLR_RX_DONE_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_CLR_ACTIVITY_CLR_ACTIVITY register field. */
-#define ALT_I2C_CLR_ACTIVITY_CLR_ACTIVITY_LSB        0
+    #define ALT_I2C_CLR_ACTIVITY_CLR_ACTIVITY_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_I2C_CLR_ACTIVITY_CLR_ACTIVITY register field. */
-#define ALT_I2C_CLR_ACTIVITY_CLR_ACTIVITY_MSB        0
+    #define ALT_I2C_CLR_ACTIVITY_CLR_ACTIVITY_MSB        0
 /* The width in bits of the ALT_I2C_CLR_ACTIVITY_CLR_ACTIVITY register field. */
-#define ALT_I2C_CLR_ACTIVITY_CLR_ACTIVITY_WIDTH      1
+    #define ALT_I2C_CLR_ACTIVITY_CLR_ACTIVITY_WIDTH      1
 /* The mask used to set the ALT_I2C_CLR_ACTIVITY_CLR_ACTIVITY register field value. */
-#define ALT_I2C_CLR_ACTIVITY_CLR_ACTIVITY_SET_MSK    0x00000001
+    #define ALT_I2C_CLR_ACTIVITY_CLR_ACTIVITY_SET_MSK    0x00000001
 /* The mask used to clear the ALT_I2C_CLR_ACTIVITY_CLR_ACTIVITY register field value. */
-#define ALT_I2C_CLR_ACTIVITY_CLR_ACTIVITY_CLR_MSK    0xfffffffe
+    #define ALT_I2C_CLR_ACTIVITY_CLR_ACTIVITY_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_I2C_CLR_ACTIVITY_CLR_ACTIVITY register field. */
-#define ALT_I2C_CLR_ACTIVITY_CLR_ACTIVITY_RESET      0x0
+    #define ALT_I2C_CLR_ACTIVITY_CLR_ACTIVITY_RESET      0x0
 /* Extracts the ALT_I2C_CLR_ACTIVITY_CLR_ACTIVITY field value from a register. */
-#define ALT_I2C_CLR_ACTIVITY_CLR_ACTIVITY_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_I2C_CLR_ACTIVITY_CLR_ACTIVITY_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_I2C_CLR_ACTIVITY_CLR_ACTIVITY register field value suitable for setting the register. */
-#define ALT_I2C_CLR_ACTIVITY_CLR_ACTIVITY_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_I2C_CLR_ACTIVITY_CLR_ACTIVITY_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -3136,20 +3203,20 @@ typedef volatile struct ALT_I2C_CLR_RX_DONE_s  ALT_I2C_CLR_RX_DONE_t;
  *
  * The struct declaration for register ALT_I2C_CLR_ACTIVITY.
  */
-struct ALT_I2C_CLR_ACTIVITY_s
-{
-    const uint32_t  clr_activity :  1;  /* Activity Interrupt Bit */
-    uint32_t                     : 31;  /* *UNDEFINED* */
-};
+        struct ALT_I2C_CLR_ACTIVITY_s
+        {
+            const uint32_t clr_activity :  1;  /* Activity Interrupt Bit */
+            uint32_t                     : 31; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_I2C_CLR_ACTIVITY. */
-typedef volatile struct ALT_I2C_CLR_ACTIVITY_s  ALT_I2C_CLR_ACTIVITY_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_I2C_CLR_ACTIVITY_s ALT_I2C_CLR_ACTIVITY_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_I2C_CLR_ACTIVITY register from the beginning of the component. */
-#define ALT_I2C_CLR_ACTIVITY_OFST        0x5c
+    #define ALT_I2C_CLR_ACTIVITY_OFST    0x5c
 /* The address of the ALT_I2C_CLR_ACTIVITY register. */
-#define ALT_I2C_CLR_ACTIVITY_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_I2C_CLR_ACTIVITY_OFST))
+    #define ALT_I2C_CLR_ACTIVITY_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_I2C_CLR_ACTIVITY_OFST ) )
 
 /*
  * Register : Stop Detect Interrupt Register - ic_clr_stop_det
@@ -3164,6 +3231,7 @@ typedef volatile struct ALT_I2C_CLR_ACTIVITY_s  ALT_I2C_CLR_ACTIVITY_t;
  *  [31:1] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Stop Detect Interrupt Bit - clr_stop_det
  *
@@ -3174,23 +3242,24 @@ typedef volatile struct ALT_I2C_CLR_ACTIVITY_s  ALT_I2C_CLR_ACTIVITY_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_CLR_STOP_DET_CLR_STOP_DET register field. */
-#define ALT_I2C_CLR_STOP_DET_CLR_STOP_DET_LSB        0
+    #define ALT_I2C_CLR_STOP_DET_CLR_STOP_DET_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_I2C_CLR_STOP_DET_CLR_STOP_DET register field. */
-#define ALT_I2C_CLR_STOP_DET_CLR_STOP_DET_MSB        0
+    #define ALT_I2C_CLR_STOP_DET_CLR_STOP_DET_MSB        0
 /* The width in bits of the ALT_I2C_CLR_STOP_DET_CLR_STOP_DET register field. */
-#define ALT_I2C_CLR_STOP_DET_CLR_STOP_DET_WIDTH      1
+    #define ALT_I2C_CLR_STOP_DET_CLR_STOP_DET_WIDTH      1
 /* The mask used to set the ALT_I2C_CLR_STOP_DET_CLR_STOP_DET register field value. */
-#define ALT_I2C_CLR_STOP_DET_CLR_STOP_DET_SET_MSK    0x00000001
+    #define ALT_I2C_CLR_STOP_DET_CLR_STOP_DET_SET_MSK    0x00000001
 /* The mask used to clear the ALT_I2C_CLR_STOP_DET_CLR_STOP_DET register field value. */
-#define ALT_I2C_CLR_STOP_DET_CLR_STOP_DET_CLR_MSK    0xfffffffe
+    #define ALT_I2C_CLR_STOP_DET_CLR_STOP_DET_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_I2C_CLR_STOP_DET_CLR_STOP_DET register field. */
-#define ALT_I2C_CLR_STOP_DET_CLR_STOP_DET_RESET      0x0
+    #define ALT_I2C_CLR_STOP_DET_CLR_STOP_DET_RESET      0x0
 /* Extracts the ALT_I2C_CLR_STOP_DET_CLR_STOP_DET field value from a register. */
-#define ALT_I2C_CLR_STOP_DET_CLR_STOP_DET_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_I2C_CLR_STOP_DET_CLR_STOP_DET_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_I2C_CLR_STOP_DET_CLR_STOP_DET register field value suitable for setting the register. */
-#define ALT_I2C_CLR_STOP_DET_CLR_STOP_DET_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_I2C_CLR_STOP_DET_CLR_STOP_DET_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -3201,20 +3270,20 @@ typedef volatile struct ALT_I2C_CLR_ACTIVITY_s  ALT_I2C_CLR_ACTIVITY_t;
  *
  * The struct declaration for register ALT_I2C_CLR_STOP_DET.
  */
-struct ALT_I2C_CLR_STOP_DET_s
-{
-    const uint32_t  clr_stop_det :  1;  /* Stop Detect Interrupt Bit */
-    uint32_t                     : 31;  /* *UNDEFINED* */
-};
+        struct ALT_I2C_CLR_STOP_DET_s
+        {
+            const uint32_t clr_stop_det :  1;  /* Stop Detect Interrupt Bit */
+            uint32_t                     : 31; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_I2C_CLR_STOP_DET. */
-typedef volatile struct ALT_I2C_CLR_STOP_DET_s  ALT_I2C_CLR_STOP_DET_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_I2C_CLR_STOP_DET_s ALT_I2C_CLR_STOP_DET_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_I2C_CLR_STOP_DET register from the beginning of the component. */
-#define ALT_I2C_CLR_STOP_DET_OFST        0x60
+    #define ALT_I2C_CLR_STOP_DET_OFST    0x60
 /* The address of the ALT_I2C_CLR_STOP_DET register. */
-#define ALT_I2C_CLR_STOP_DET_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_I2C_CLR_STOP_DET_OFST))
+    #define ALT_I2C_CLR_STOP_DET_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_I2C_CLR_STOP_DET_OFST ) )
 
 /*
  * Register : Start Detect Interrupt Register - ic_clr_start_det
@@ -3229,6 +3298,7 @@ typedef volatile struct ALT_I2C_CLR_STOP_DET_s  ALT_I2C_CLR_STOP_DET_t;
  *  [31:1] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Start Detect Interrupt Bit - clr_start_det
  *
@@ -3239,23 +3309,24 @@ typedef volatile struct ALT_I2C_CLR_STOP_DET_s  ALT_I2C_CLR_STOP_DET_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_CLR_START_DET_CLR_START_DET register field. */
-#define ALT_I2C_CLR_START_DET_CLR_START_DET_LSB        0
+    #define ALT_I2C_CLR_START_DET_CLR_START_DET_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_I2C_CLR_START_DET_CLR_START_DET register field. */
-#define ALT_I2C_CLR_START_DET_CLR_START_DET_MSB        0
+    #define ALT_I2C_CLR_START_DET_CLR_START_DET_MSB        0
 /* The width in bits of the ALT_I2C_CLR_START_DET_CLR_START_DET register field. */
-#define ALT_I2C_CLR_START_DET_CLR_START_DET_WIDTH      1
+    #define ALT_I2C_CLR_START_DET_CLR_START_DET_WIDTH      1
 /* The mask used to set the ALT_I2C_CLR_START_DET_CLR_START_DET register field value. */
-#define ALT_I2C_CLR_START_DET_CLR_START_DET_SET_MSK    0x00000001
+    #define ALT_I2C_CLR_START_DET_CLR_START_DET_SET_MSK    0x00000001
 /* The mask used to clear the ALT_I2C_CLR_START_DET_CLR_START_DET register field value. */
-#define ALT_I2C_CLR_START_DET_CLR_START_DET_CLR_MSK    0xfffffffe
+    #define ALT_I2C_CLR_START_DET_CLR_START_DET_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_I2C_CLR_START_DET_CLR_START_DET register field. */
-#define ALT_I2C_CLR_START_DET_CLR_START_DET_RESET      0x0
+    #define ALT_I2C_CLR_START_DET_CLR_START_DET_RESET      0x0
 /* Extracts the ALT_I2C_CLR_START_DET_CLR_START_DET field value from a register. */
-#define ALT_I2C_CLR_START_DET_CLR_START_DET_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_I2C_CLR_START_DET_CLR_START_DET_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_I2C_CLR_START_DET_CLR_START_DET register field value suitable for setting the register. */
-#define ALT_I2C_CLR_START_DET_CLR_START_DET_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_I2C_CLR_START_DET_CLR_START_DET_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -3266,20 +3337,20 @@ typedef volatile struct ALT_I2C_CLR_STOP_DET_s  ALT_I2C_CLR_STOP_DET_t;
  *
  * The struct declaration for register ALT_I2C_CLR_START_DET.
  */
-struct ALT_I2C_CLR_START_DET_s
-{
-    const uint32_t  clr_start_det :  1;  /* Start Detect Interrupt Bit */
-    uint32_t                      : 31;  /* *UNDEFINED* */
-};
+        struct ALT_I2C_CLR_START_DET_s
+        {
+            const uint32_t clr_start_det :  1;  /* Start Detect Interrupt Bit */
+            uint32_t                      : 31; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_I2C_CLR_START_DET. */
-typedef volatile struct ALT_I2C_CLR_START_DET_s  ALT_I2C_CLR_START_DET_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_I2C_CLR_START_DET_s ALT_I2C_CLR_START_DET_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_I2C_CLR_START_DET register from the beginning of the component. */
-#define ALT_I2C_CLR_START_DET_OFST        0x64
+    #define ALT_I2C_CLR_START_DET_OFST    0x64
 /* The address of the ALT_I2C_CLR_START_DET register. */
-#define ALT_I2C_CLR_START_DET_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_I2C_CLR_START_DET_OFST))
+    #define ALT_I2C_CLR_START_DET_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_I2C_CLR_START_DET_OFST ) )
 
 /*
  * Register : GEN CALL Interrupt Register - ic_clr_gen_call
@@ -3294,6 +3365,7 @@ typedef volatile struct ALT_I2C_CLR_START_DET_s  ALT_I2C_CLR_START_DET_t;
  *  [31:1] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : GEN CALL Interrupt Bit - clr_gen_call
  *
@@ -3304,23 +3376,24 @@ typedef volatile struct ALT_I2C_CLR_START_DET_s  ALT_I2C_CLR_START_DET_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_CLR_GEN_CALL_CLR_GEN_CALL register field. */
-#define ALT_I2C_CLR_GEN_CALL_CLR_GEN_CALL_LSB        0
+    #define ALT_I2C_CLR_GEN_CALL_CLR_GEN_CALL_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_I2C_CLR_GEN_CALL_CLR_GEN_CALL register field. */
-#define ALT_I2C_CLR_GEN_CALL_CLR_GEN_CALL_MSB        0
+    #define ALT_I2C_CLR_GEN_CALL_CLR_GEN_CALL_MSB        0
 /* The width in bits of the ALT_I2C_CLR_GEN_CALL_CLR_GEN_CALL register field. */
-#define ALT_I2C_CLR_GEN_CALL_CLR_GEN_CALL_WIDTH      1
+    #define ALT_I2C_CLR_GEN_CALL_CLR_GEN_CALL_WIDTH      1
 /* The mask used to set the ALT_I2C_CLR_GEN_CALL_CLR_GEN_CALL register field value. */
-#define ALT_I2C_CLR_GEN_CALL_CLR_GEN_CALL_SET_MSK    0x00000001
+    #define ALT_I2C_CLR_GEN_CALL_CLR_GEN_CALL_SET_MSK    0x00000001
 /* The mask used to clear the ALT_I2C_CLR_GEN_CALL_CLR_GEN_CALL register field value. */
-#define ALT_I2C_CLR_GEN_CALL_CLR_GEN_CALL_CLR_MSK    0xfffffffe
+    #define ALT_I2C_CLR_GEN_CALL_CLR_GEN_CALL_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_I2C_CLR_GEN_CALL_CLR_GEN_CALL register field. */
-#define ALT_I2C_CLR_GEN_CALL_CLR_GEN_CALL_RESET      0x0
+    #define ALT_I2C_CLR_GEN_CALL_CLR_GEN_CALL_RESET      0x0
 /* Extracts the ALT_I2C_CLR_GEN_CALL_CLR_GEN_CALL field value from a register. */
-#define ALT_I2C_CLR_GEN_CALL_CLR_GEN_CALL_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_I2C_CLR_GEN_CALL_CLR_GEN_CALL_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_I2C_CLR_GEN_CALL_CLR_GEN_CALL register field value suitable for setting the register. */
-#define ALT_I2C_CLR_GEN_CALL_CLR_GEN_CALL_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_I2C_CLR_GEN_CALL_CLR_GEN_CALL_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -3331,20 +3404,20 @@ typedef volatile struct ALT_I2C_CLR_START_DET_s  ALT_I2C_CLR_START_DET_t;
  *
  * The struct declaration for register ALT_I2C_CLR_GEN_CALL.
  */
-struct ALT_I2C_CLR_GEN_CALL_s
-{
-    const uint32_t  clr_gen_call :  1;  /* GEN CALL Interrupt Bit */
-    uint32_t                     : 31;  /* *UNDEFINED* */
-};
+        struct ALT_I2C_CLR_GEN_CALL_s
+        {
+            const uint32_t clr_gen_call :  1;  /* GEN CALL Interrupt Bit */
+            uint32_t                     : 31; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_I2C_CLR_GEN_CALL. */
-typedef volatile struct ALT_I2C_CLR_GEN_CALL_s  ALT_I2C_CLR_GEN_CALL_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_I2C_CLR_GEN_CALL_s ALT_I2C_CLR_GEN_CALL_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_I2C_CLR_GEN_CALL register from the beginning of the component. */
-#define ALT_I2C_CLR_GEN_CALL_OFST        0x68
+    #define ALT_I2C_CLR_GEN_CALL_OFST    0x68
 /* The address of the ALT_I2C_CLR_GEN_CALL register. */
-#define ALT_I2C_CLR_GEN_CALL_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_I2C_CLR_GEN_CALL_OFST))
+    #define ALT_I2C_CLR_GEN_CALL_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_I2C_CLR_GEN_CALL_OFST ) )
 
 /*
  * Register : Enable Register - ic_enable
@@ -3360,6 +3433,7 @@ typedef volatile struct ALT_I2C_CLR_GEN_CALL_s  ALT_I2C_CLR_GEN_CALL_t;
  *  [31:2] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Enable Bit - enable
  *
@@ -3409,35 +3483,37 @@ typedef volatile struct ALT_I2C_CLR_GEN_CALL_s  ALT_I2C_CLR_GEN_CALL_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_I2C_EN_EN
  *
  * Disables i2c. TX and RX FIFOs are held in an erased state
  */
-#define ALT_I2C_EN_EN_E_DIS 0x0
+    #define ALT_I2C_EN_EN_E_DIS      0x0
+
 /*
  * Enumerated value for register field ALT_I2C_EN_EN
  *
  * Enables i2c. Software can disable i2c while it is active
  */
-#define ALT_I2C_EN_EN_E_EN  0x1
+    #define ALT_I2C_EN_EN_E_EN       0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_I2C_EN_EN register field. */
-#define ALT_I2C_EN_EN_LSB        0
+    #define ALT_I2C_EN_EN_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_I2C_EN_EN register field. */
-#define ALT_I2C_EN_EN_MSB        0
+    #define ALT_I2C_EN_EN_MSB        0
 /* The width in bits of the ALT_I2C_EN_EN register field. */
-#define ALT_I2C_EN_EN_WIDTH      1
+    #define ALT_I2C_EN_EN_WIDTH      1
 /* The mask used to set the ALT_I2C_EN_EN register field value. */
-#define ALT_I2C_EN_EN_SET_MSK    0x00000001
+    #define ALT_I2C_EN_EN_SET_MSK    0x00000001
 /* The mask used to clear the ALT_I2C_EN_EN register field value. */
-#define ALT_I2C_EN_EN_CLR_MSK    0xfffffffe
+    #define ALT_I2C_EN_EN_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_I2C_EN_EN register field. */
-#define ALT_I2C_EN_EN_RESET      0x0
+    #define ALT_I2C_EN_EN_RESET      0x0
 /* Extracts the ALT_I2C_EN_EN field value from a register. */
-#define ALT_I2C_EN_EN_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_I2C_EN_EN_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_I2C_EN_EN register field value suitable for setting the register. */
-#define ALT_I2C_EN_EN_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_I2C_EN_EN_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
 /*
  * Field : TX abort Bit - txabort
@@ -3448,23 +3524,24 @@ typedef volatile struct ALT_I2C_CLR_GEN_CALL_s  ALT_I2C_CLR_GEN_CALL_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_EN_TXABT register field. */
-#define ALT_I2C_EN_TXABT_LSB        1
+    #define ALT_I2C_EN_TXABT_LSB        1
 /* The Most Significant Bit (MSB) position of the ALT_I2C_EN_TXABT register field. */
-#define ALT_I2C_EN_TXABT_MSB        1
+    #define ALT_I2C_EN_TXABT_MSB        1
 /* The width in bits of the ALT_I2C_EN_TXABT register field. */
-#define ALT_I2C_EN_TXABT_WIDTH      1
+    #define ALT_I2C_EN_TXABT_WIDTH      1
 /* The mask used to set the ALT_I2C_EN_TXABT register field value. */
-#define ALT_I2C_EN_TXABT_SET_MSK    0x00000002
+    #define ALT_I2C_EN_TXABT_SET_MSK    0x00000002
 /* The mask used to clear the ALT_I2C_EN_TXABT register field value. */
-#define ALT_I2C_EN_TXABT_CLR_MSK    0xfffffffd
+    #define ALT_I2C_EN_TXABT_CLR_MSK    0xfffffffd
 /* The reset value of the ALT_I2C_EN_TXABT register field. */
-#define ALT_I2C_EN_TXABT_RESET      0x0
+    #define ALT_I2C_EN_TXABT_RESET      0x0
 /* Extracts the ALT_I2C_EN_TXABT field value from a register. */
-#define ALT_I2C_EN_TXABT_GET(value) (((value) & 0x00000002) >> 1)
+    #define ALT_I2C_EN_TXABT_GET( value )    ( ( ( value ) & 0x00000002 ) >> 1 )
 /* Produces a ALT_I2C_EN_TXABT register field value suitable for setting the register. */
-#define ALT_I2C_EN_TXABT_SET(value) (((value) << 1) & 0x00000002)
+    #define ALT_I2C_EN_TXABT_SET( value )    ( ( ( value ) << 1 ) & 0x00000002 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -3475,21 +3552,21 @@ typedef volatile struct ALT_I2C_CLR_GEN_CALL_s  ALT_I2C_CLR_GEN_CALL_t;
  *
  * The struct declaration for register ALT_I2C_EN.
  */
-struct ALT_I2C_EN_s
-{
-    uint32_t  enable  :  1;  /* Enable Bit */
-    uint32_t  txabort :  1;  /* TX abort Bit */
-    uint32_t          : 30;  /* *UNDEFINED* */
-};
+        struct ALT_I2C_EN_s
+        {
+            uint32_t enable  :  1;  /* Enable Bit */
+            uint32_t txabort :  1;  /* TX abort Bit */
+            uint32_t          : 30; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_I2C_EN. */
-typedef volatile struct ALT_I2C_EN_s  ALT_I2C_EN_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_I2C_EN_s ALT_I2C_EN_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_I2C_EN register from the beginning of the component. */
-#define ALT_I2C_EN_OFST        0x6c
+    #define ALT_I2C_EN_OFST    0x6c
 /* The address of the ALT_I2C_EN register. */
-#define ALT_I2C_EN_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_I2C_EN_OFST))
+    #define ALT_I2C_EN_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_I2C_EN_OFST ) )
 
 /*
  * Register : Status Register - ic_status
@@ -3521,6 +3598,7 @@ typedef volatile struct ALT_I2C_EN_s  ALT_I2C_EN_t;
  *  [31:7] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Activity Status Bit - activity
  *
@@ -3530,21 +3608,21 @@ typedef volatile struct ALT_I2C_EN_s  ALT_I2C_EN_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_STAT_ACTIVITY register field. */
-#define ALT_I2C_STAT_ACTIVITY_LSB        0
+    #define ALT_I2C_STAT_ACTIVITY_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_I2C_STAT_ACTIVITY register field. */
-#define ALT_I2C_STAT_ACTIVITY_MSB        0
+    #define ALT_I2C_STAT_ACTIVITY_MSB        0
 /* The width in bits of the ALT_I2C_STAT_ACTIVITY register field. */
-#define ALT_I2C_STAT_ACTIVITY_WIDTH      1
+    #define ALT_I2C_STAT_ACTIVITY_WIDTH      1
 /* The mask used to set the ALT_I2C_STAT_ACTIVITY register field value. */
-#define ALT_I2C_STAT_ACTIVITY_SET_MSK    0x00000001
+    #define ALT_I2C_STAT_ACTIVITY_SET_MSK    0x00000001
 /* The mask used to clear the ALT_I2C_STAT_ACTIVITY register field value. */
-#define ALT_I2C_STAT_ACTIVITY_CLR_MSK    0xfffffffe
+    #define ALT_I2C_STAT_ACTIVITY_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_I2C_STAT_ACTIVITY register field. */
-#define ALT_I2C_STAT_ACTIVITY_RESET      0x0
+    #define ALT_I2C_STAT_ACTIVITY_RESET      0x0
 /* Extracts the ALT_I2C_STAT_ACTIVITY field value from a register. */
-#define ALT_I2C_STAT_ACTIVITY_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_I2C_STAT_ACTIVITY_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_I2C_STAT_ACTIVITY register field value suitable for setting the register. */
-#define ALT_I2C_STAT_ACTIVITY_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_I2C_STAT_ACTIVITY_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
 /*
  * Field : TX FIFO Not Full Bit - tfnf
@@ -3561,35 +3639,37 @@ typedef volatile struct ALT_I2C_EN_s  ALT_I2C_EN_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_I2C_STAT_TFNF
  *
  * Transmit FIFO is full
  */
-#define ALT_I2C_STAT_TFNF_E_FULL    0x0
+    #define ALT_I2C_STAT_TFNF_E_FULL       0x0
+
 /*
  * Enumerated value for register field ALT_I2C_STAT_TFNF
  *
  * Transmit FIFO is not full
  */
-#define ALT_I2C_STAT_TFNF_E_NOTFULL 0x1
+    #define ALT_I2C_STAT_TFNF_E_NOTFULL    0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_I2C_STAT_TFNF register field. */
-#define ALT_I2C_STAT_TFNF_LSB        1
+    #define ALT_I2C_STAT_TFNF_LSB          1
 /* The Most Significant Bit (MSB) position of the ALT_I2C_STAT_TFNF register field. */
-#define ALT_I2C_STAT_TFNF_MSB        1
+    #define ALT_I2C_STAT_TFNF_MSB          1
 /* The width in bits of the ALT_I2C_STAT_TFNF register field. */
-#define ALT_I2C_STAT_TFNF_WIDTH      1
+    #define ALT_I2C_STAT_TFNF_WIDTH        1
 /* The mask used to set the ALT_I2C_STAT_TFNF register field value. */
-#define ALT_I2C_STAT_TFNF_SET_MSK    0x00000002
+    #define ALT_I2C_STAT_TFNF_SET_MSK      0x00000002
 /* The mask used to clear the ALT_I2C_STAT_TFNF register field value. */
-#define ALT_I2C_STAT_TFNF_CLR_MSK    0xfffffffd
+    #define ALT_I2C_STAT_TFNF_CLR_MSK      0xfffffffd
 /* The reset value of the ALT_I2C_STAT_TFNF register field. */
-#define ALT_I2C_STAT_TFNF_RESET      0x1
+    #define ALT_I2C_STAT_TFNF_RESET        0x1
 /* Extracts the ALT_I2C_STAT_TFNF field value from a register. */
-#define ALT_I2C_STAT_TFNF_GET(value) (((value) & 0x00000002) >> 1)
+    #define ALT_I2C_STAT_TFNF_GET( value )    ( ( ( value ) & 0x00000002 ) >> 1 )
 /* Produces a ALT_I2C_STAT_TFNF register field value suitable for setting the register. */
-#define ALT_I2C_STAT_TFNF_SET(value) (((value) << 1) & 0x00000002)
+    #define ALT_I2C_STAT_TFNF_SET( value )    ( ( ( value ) << 1 ) & 0x00000002 )
 
 /*
  * Field : TX FIFO Empty Bit - tfe
@@ -3606,35 +3686,37 @@ typedef volatile struct ALT_I2C_EN_s  ALT_I2C_EN_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_I2C_STAT_TFE
  *
  * Transmit FIFO is not empty
  */
-#define ALT_I2C_STAT_TFE_E_NOTEMPTY 0x0
+    #define ALT_I2C_STAT_TFE_E_NOTEMPTY    0x0
+
 /*
  * Enumerated value for register field ALT_I2C_STAT_TFE
  *
  * Transmit FIFO is empty
  */
-#define ALT_I2C_STAT_TFE_E_EMPTY    0x1
+    #define ALT_I2C_STAT_TFE_E_EMPTY       0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_I2C_STAT_TFE register field. */
-#define ALT_I2C_STAT_TFE_LSB        2
+    #define ALT_I2C_STAT_TFE_LSB           2
 /* The Most Significant Bit (MSB) position of the ALT_I2C_STAT_TFE register field. */
-#define ALT_I2C_STAT_TFE_MSB        2
+    #define ALT_I2C_STAT_TFE_MSB           2
 /* The width in bits of the ALT_I2C_STAT_TFE register field. */
-#define ALT_I2C_STAT_TFE_WIDTH      1
+    #define ALT_I2C_STAT_TFE_WIDTH         1
 /* The mask used to set the ALT_I2C_STAT_TFE register field value. */
-#define ALT_I2C_STAT_TFE_SET_MSK    0x00000004
+    #define ALT_I2C_STAT_TFE_SET_MSK       0x00000004
 /* The mask used to clear the ALT_I2C_STAT_TFE register field value. */
-#define ALT_I2C_STAT_TFE_CLR_MSK    0xfffffffb
+    #define ALT_I2C_STAT_TFE_CLR_MSK       0xfffffffb
 /* The reset value of the ALT_I2C_STAT_TFE register field. */
-#define ALT_I2C_STAT_TFE_RESET      0x1
+    #define ALT_I2C_STAT_TFE_RESET         0x1
 /* Extracts the ALT_I2C_STAT_TFE field value from a register. */
-#define ALT_I2C_STAT_TFE_GET(value) (((value) & 0x00000004) >> 2)
+    #define ALT_I2C_STAT_TFE_GET( value )    ( ( ( value ) & 0x00000004 ) >> 2 )
 /* Produces a ALT_I2C_STAT_TFE register field value suitable for setting the register. */
-#define ALT_I2C_STAT_TFE_SET(value) (((value) << 2) & 0x00000004)
+    #define ALT_I2C_STAT_TFE_SET( value )    ( ( ( value ) << 2 ) & 0x00000004 )
 
 /*
  * Field : RX FIFO Empty Bit - rfne
@@ -3651,35 +3733,37 @@ typedef volatile struct ALT_I2C_EN_s  ALT_I2C_EN_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_I2C_STAT_RFNE
  *
  * Receive FIFO is empty
  */
-#define ALT_I2C_STAT_RFNE_E_EMPTY       0x0
+    #define ALT_I2C_STAT_RFNE_E_EMPTY       0x0
+
 /*
  * Enumerated value for register field ALT_I2C_STAT_RFNE
  *
  * Receive FIFO is not empty
  */
-#define ALT_I2C_STAT_RFNE_E_NOTEMPTY    0x1
+    #define ALT_I2C_STAT_RFNE_E_NOTEMPTY    0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_I2C_STAT_RFNE register field. */
-#define ALT_I2C_STAT_RFNE_LSB        3
+    #define ALT_I2C_STAT_RFNE_LSB           3
 /* The Most Significant Bit (MSB) position of the ALT_I2C_STAT_RFNE register field. */
-#define ALT_I2C_STAT_RFNE_MSB        3
+    #define ALT_I2C_STAT_RFNE_MSB           3
 /* The width in bits of the ALT_I2C_STAT_RFNE register field. */
-#define ALT_I2C_STAT_RFNE_WIDTH      1
+    #define ALT_I2C_STAT_RFNE_WIDTH         1
 /* The mask used to set the ALT_I2C_STAT_RFNE register field value. */
-#define ALT_I2C_STAT_RFNE_SET_MSK    0x00000008
+    #define ALT_I2C_STAT_RFNE_SET_MSK       0x00000008
 /* The mask used to clear the ALT_I2C_STAT_RFNE register field value. */
-#define ALT_I2C_STAT_RFNE_CLR_MSK    0xfffffff7
+    #define ALT_I2C_STAT_RFNE_CLR_MSK       0xfffffff7
 /* The reset value of the ALT_I2C_STAT_RFNE register field. */
-#define ALT_I2C_STAT_RFNE_RESET      0x0
+    #define ALT_I2C_STAT_RFNE_RESET         0x0
 /* Extracts the ALT_I2C_STAT_RFNE field value from a register. */
-#define ALT_I2C_STAT_RFNE_GET(value) (((value) & 0x00000008) >> 3)
+    #define ALT_I2C_STAT_RFNE_GET( value )    ( ( ( value ) & 0x00000008 ) >> 3 )
 /* Produces a ALT_I2C_STAT_RFNE register field value suitable for setting the register. */
-#define ALT_I2C_STAT_RFNE_SET(value) (((value) << 3) & 0x00000008)
+    #define ALT_I2C_STAT_RFNE_SET( value )    ( ( ( value ) << 3 ) & 0x00000008 )
 
 /*
  * Field : RX FIFO Full Bit - rff
@@ -3696,35 +3780,37 @@ typedef volatile struct ALT_I2C_EN_s  ALT_I2C_EN_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_I2C_STAT_RFF
  *
  * Receive FIFO is not full
  */
-#define ALT_I2C_STAT_RFF_E_NOTFULL  0x0
+    #define ALT_I2C_STAT_RFF_E_NOTFULL    0x0
+
 /*
  * Enumerated value for register field ALT_I2C_STAT_RFF
  *
  * Receive FIFO is full
  */
-#define ALT_I2C_STAT_RFF_E_FULL     0x1
+    #define ALT_I2C_STAT_RFF_E_FULL       0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_I2C_STAT_RFF register field. */
-#define ALT_I2C_STAT_RFF_LSB        4
+    #define ALT_I2C_STAT_RFF_LSB          4
 /* The Most Significant Bit (MSB) position of the ALT_I2C_STAT_RFF register field. */
-#define ALT_I2C_STAT_RFF_MSB        4
+    #define ALT_I2C_STAT_RFF_MSB          4
 /* The width in bits of the ALT_I2C_STAT_RFF register field. */
-#define ALT_I2C_STAT_RFF_WIDTH      1
+    #define ALT_I2C_STAT_RFF_WIDTH        1
 /* The mask used to set the ALT_I2C_STAT_RFF register field value. */
-#define ALT_I2C_STAT_RFF_SET_MSK    0x00000010
+    #define ALT_I2C_STAT_RFF_SET_MSK      0x00000010
 /* The mask used to clear the ALT_I2C_STAT_RFF register field value. */
-#define ALT_I2C_STAT_RFF_CLR_MSK    0xffffffef
+    #define ALT_I2C_STAT_RFF_CLR_MSK      0xffffffef
 /* The reset value of the ALT_I2C_STAT_RFF register field. */
-#define ALT_I2C_STAT_RFF_RESET      0x0
+    #define ALT_I2C_STAT_RFF_RESET        0x0
 /* Extracts the ALT_I2C_STAT_RFF field value from a register. */
-#define ALT_I2C_STAT_RFF_GET(value) (((value) & 0x00000010) >> 4)
+    #define ALT_I2C_STAT_RFF_GET( value )    ( ( ( value ) & 0x00000010 ) >> 4 )
 /* Produces a ALT_I2C_STAT_RFF register field value suitable for setting the register. */
-#define ALT_I2C_STAT_RFF_SET(value) (((value) << 4) & 0x00000010)
+    #define ALT_I2C_STAT_RFF_SET( value )    ( ( ( value ) << 4 ) & 0x00000010 )
 
 /*
  * Field : Master FSM Activity Status Bit - mst_activity
@@ -3745,35 +3831,37 @@ typedef volatile struct ALT_I2C_EN_s  ALT_I2C_EN_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_I2C_STAT_MST_ACTIVITY
  *
  * Master FSM is in IDLE state. Master part of i2c is not Active
  */
-#define ALT_I2C_STAT_MST_ACTIVITY_E_IDLE    0x0
+    #define ALT_I2C_STAT_MST_ACTIVITY_E_IDLE       0x0
+
 /*
  * Enumerated value for register field ALT_I2C_STAT_MST_ACTIVITY
  *
  * Master FSM is not in IDLE state. Master part of i2c is Active
  */
-#define ALT_I2C_STAT_MST_ACTIVITY_E_NOTIDLE 0x1
+    #define ALT_I2C_STAT_MST_ACTIVITY_E_NOTIDLE    0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_I2C_STAT_MST_ACTIVITY register field. */
-#define ALT_I2C_STAT_MST_ACTIVITY_LSB        5
+    #define ALT_I2C_STAT_MST_ACTIVITY_LSB          5
 /* The Most Significant Bit (MSB) position of the ALT_I2C_STAT_MST_ACTIVITY register field. */
-#define ALT_I2C_STAT_MST_ACTIVITY_MSB        5
+    #define ALT_I2C_STAT_MST_ACTIVITY_MSB          5
 /* The width in bits of the ALT_I2C_STAT_MST_ACTIVITY register field. */
-#define ALT_I2C_STAT_MST_ACTIVITY_WIDTH      1
+    #define ALT_I2C_STAT_MST_ACTIVITY_WIDTH        1
 /* The mask used to set the ALT_I2C_STAT_MST_ACTIVITY register field value. */
-#define ALT_I2C_STAT_MST_ACTIVITY_SET_MSK    0x00000020
+    #define ALT_I2C_STAT_MST_ACTIVITY_SET_MSK      0x00000020
 /* The mask used to clear the ALT_I2C_STAT_MST_ACTIVITY register field value. */
-#define ALT_I2C_STAT_MST_ACTIVITY_CLR_MSK    0xffffffdf
+    #define ALT_I2C_STAT_MST_ACTIVITY_CLR_MSK      0xffffffdf
 /* The reset value of the ALT_I2C_STAT_MST_ACTIVITY register field. */
-#define ALT_I2C_STAT_MST_ACTIVITY_RESET      0x0
+    #define ALT_I2C_STAT_MST_ACTIVITY_RESET        0x0
 /* Extracts the ALT_I2C_STAT_MST_ACTIVITY field value from a register. */
-#define ALT_I2C_STAT_MST_ACTIVITY_GET(value) (((value) & 0x00000020) >> 5)
+    #define ALT_I2C_STAT_MST_ACTIVITY_GET( value )    ( ( ( value ) & 0x00000020 ) >> 5 )
 /* Produces a ALT_I2C_STAT_MST_ACTIVITY register field value suitable for setting the register. */
-#define ALT_I2C_STAT_MST_ACTIVITY_SET(value) (((value) << 5) & 0x00000020)
+    #define ALT_I2C_STAT_MST_ACTIVITY_SET( value )    ( ( ( value ) << 5 ) & 0x00000020 )
 
 /*
  * Field : Slave FSM Activity Status Bit - slv_activity
@@ -3793,37 +3881,40 @@ typedef volatile struct ALT_I2C_EN_s  ALT_I2C_EN_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_I2C_STAT_SLV_ACTIVITY
  *
  * Slave FSM is in IDLE state so the Slave part of i2c is not Active
  */
-#define ALT_I2C_STAT_SLV_ACTIVITY_E_IDLE    0x0
+    #define ALT_I2C_STAT_SLV_ACTIVITY_E_IDLE       0x0
+
 /*
  * Enumerated value for register field ALT_I2C_STAT_SLV_ACTIVITY
  *
  * Slave FSM is not in IDLE state so the Slave part of i2c is Active
  */
-#define ALT_I2C_STAT_SLV_ACTIVITY_E_NOTIDLE 0x1
+    #define ALT_I2C_STAT_SLV_ACTIVITY_E_NOTIDLE    0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_I2C_STAT_SLV_ACTIVITY register field. */
-#define ALT_I2C_STAT_SLV_ACTIVITY_LSB        6
+    #define ALT_I2C_STAT_SLV_ACTIVITY_LSB          6
 /* The Most Significant Bit (MSB) position of the ALT_I2C_STAT_SLV_ACTIVITY register field. */
-#define ALT_I2C_STAT_SLV_ACTIVITY_MSB        6
+    #define ALT_I2C_STAT_SLV_ACTIVITY_MSB          6
 /* The width in bits of the ALT_I2C_STAT_SLV_ACTIVITY register field. */
-#define ALT_I2C_STAT_SLV_ACTIVITY_WIDTH      1
+    #define ALT_I2C_STAT_SLV_ACTIVITY_WIDTH        1
 /* The mask used to set the ALT_I2C_STAT_SLV_ACTIVITY register field value. */
-#define ALT_I2C_STAT_SLV_ACTIVITY_SET_MSK    0x00000040
+    #define ALT_I2C_STAT_SLV_ACTIVITY_SET_MSK      0x00000040
 /* The mask used to clear the ALT_I2C_STAT_SLV_ACTIVITY register field value. */
-#define ALT_I2C_STAT_SLV_ACTIVITY_CLR_MSK    0xffffffbf
+    #define ALT_I2C_STAT_SLV_ACTIVITY_CLR_MSK      0xffffffbf
 /* The reset value of the ALT_I2C_STAT_SLV_ACTIVITY register field. */
-#define ALT_I2C_STAT_SLV_ACTIVITY_RESET      0x0
+    #define ALT_I2C_STAT_SLV_ACTIVITY_RESET        0x0
 /* Extracts the ALT_I2C_STAT_SLV_ACTIVITY field value from a register. */
-#define ALT_I2C_STAT_SLV_ACTIVITY_GET(value) (((value) & 0x00000040) >> 6)
+    #define ALT_I2C_STAT_SLV_ACTIVITY_GET( value )    ( ( ( value ) & 0x00000040 ) >> 6 )
 /* Produces a ALT_I2C_STAT_SLV_ACTIVITY register field value suitable for setting the register. */
-#define ALT_I2C_STAT_SLV_ACTIVITY_SET(value) (((value) << 6) & 0x00000040)
+    #define ALT_I2C_STAT_SLV_ACTIVITY_SET( value )    ( ( ( value ) << 6 ) & 0x00000040 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -3834,26 +3925,26 @@ typedef volatile struct ALT_I2C_EN_s  ALT_I2C_EN_t;
  *
  * The struct declaration for register ALT_I2C_STAT.
  */
-struct ALT_I2C_STAT_s
-{
-    const uint32_t  activity     :  1;  /* Activity Status Bit */
-    const uint32_t  tfnf         :  1;  /* TX FIFO Not Full Bit */
-    const uint32_t  tfe          :  1;  /* TX FIFO Empty Bit */
-    const uint32_t  rfne         :  1;  /* RX FIFO Empty Bit */
-    const uint32_t  rff          :  1;  /* RX FIFO Full Bit */
-    const uint32_t  mst_activity :  1;  /* Master FSM Activity Status Bit */
-    const uint32_t  slv_activity :  1;  /* Slave FSM Activity Status Bit */
-    uint32_t                     : 25;  /* *UNDEFINED* */
-};
+        struct ALT_I2C_STAT_s
+        {
+            const uint32_t activity     :  1;  /* Activity Status Bit */
+            const uint32_t tfnf         :  1;  /* TX FIFO Not Full Bit */
+            const uint32_t tfe          :  1;  /* TX FIFO Empty Bit */
+            const uint32_t rfne         :  1;  /* RX FIFO Empty Bit */
+            const uint32_t rff          :  1;  /* RX FIFO Full Bit */
+            const uint32_t mst_activity :  1;  /* Master FSM Activity Status Bit */
+            const uint32_t slv_activity :  1;  /* Slave FSM Activity Status Bit */
+            uint32_t                     : 25; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_I2C_STAT. */
-typedef volatile struct ALT_I2C_STAT_s  ALT_I2C_STAT_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_I2C_STAT_s ALT_I2C_STAT_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_I2C_STAT register from the beginning of the component. */
-#define ALT_I2C_STAT_OFST        0x70
+    #define ALT_I2C_STAT_OFST    0x70
 /* The address of the ALT_I2C_STAT register. */
-#define ALT_I2C_STAT_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_I2C_STAT_OFST))
+    #define ALT_I2C_STAT_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_I2C_STAT_OFST ) )
 
 /*
  * Register : Transmit FIFO Level Register - ic_txflr
@@ -3876,6 +3967,7 @@ typedef volatile struct ALT_I2C_STAT_s  ALT_I2C_STAT_t;
  *  [31:7] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Transmit FIFO Level Bit - txflr
  *
@@ -3886,23 +3978,24 @@ typedef volatile struct ALT_I2C_STAT_s  ALT_I2C_STAT_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_TXFLR_TXFLR register field. */
-#define ALT_I2C_TXFLR_TXFLR_LSB        0
+    #define ALT_I2C_TXFLR_TXFLR_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_I2C_TXFLR_TXFLR register field. */
-#define ALT_I2C_TXFLR_TXFLR_MSB        6
+    #define ALT_I2C_TXFLR_TXFLR_MSB        6
 /* The width in bits of the ALT_I2C_TXFLR_TXFLR register field. */
-#define ALT_I2C_TXFLR_TXFLR_WIDTH      7
+    #define ALT_I2C_TXFLR_TXFLR_WIDTH      7
 /* The mask used to set the ALT_I2C_TXFLR_TXFLR register field value. */
-#define ALT_I2C_TXFLR_TXFLR_SET_MSK    0x0000007f
+    #define ALT_I2C_TXFLR_TXFLR_SET_MSK    0x0000007f
 /* The mask used to clear the ALT_I2C_TXFLR_TXFLR register field value. */
-#define ALT_I2C_TXFLR_TXFLR_CLR_MSK    0xffffff80
+    #define ALT_I2C_TXFLR_TXFLR_CLR_MSK    0xffffff80
 /* The reset value of the ALT_I2C_TXFLR_TXFLR register field. */
-#define ALT_I2C_TXFLR_TXFLR_RESET      0x0
+    #define ALT_I2C_TXFLR_TXFLR_RESET      0x0
 /* Extracts the ALT_I2C_TXFLR_TXFLR field value from a register. */
-#define ALT_I2C_TXFLR_TXFLR_GET(value) (((value) & 0x0000007f) >> 0)
+    #define ALT_I2C_TXFLR_TXFLR_GET( value )    ( ( ( value ) & 0x0000007f ) >> 0 )
 /* Produces a ALT_I2C_TXFLR_TXFLR register field value suitable for setting the register. */
-#define ALT_I2C_TXFLR_TXFLR_SET(value) (((value) << 0) & 0x0000007f)
+    #define ALT_I2C_TXFLR_TXFLR_SET( value )    ( ( ( value ) << 0 ) & 0x0000007f )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -3913,20 +4006,20 @@ typedef volatile struct ALT_I2C_STAT_s  ALT_I2C_STAT_t;
  *
  * The struct declaration for register ALT_I2C_TXFLR.
  */
-struct ALT_I2C_TXFLR_s
-{
-    const uint32_t  txflr :  7;  /* Transmit FIFO Level Bit */
-    uint32_t              : 25;  /* *UNDEFINED* */
-};
+        struct ALT_I2C_TXFLR_s
+        {
+            const uint32_t txflr :  7;  /* Transmit FIFO Level Bit */
+            uint32_t              : 25; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_I2C_TXFLR. */
-typedef volatile struct ALT_I2C_TXFLR_s  ALT_I2C_TXFLR_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_I2C_TXFLR_s ALT_I2C_TXFLR_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_I2C_TXFLR register from the beginning of the component. */
-#define ALT_I2C_TXFLR_OFST        0x74
+    #define ALT_I2C_TXFLR_OFST    0x74
 /* The address of the ALT_I2C_TXFLR register. */
-#define ALT_I2C_TXFLR_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_I2C_TXFLR_OFST))
+    #define ALT_I2C_TXFLR_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_I2C_TXFLR_OFST ) )
 
 /*
  * Register : Receive FIFO Level Register - ic_rxflr
@@ -3948,6 +4041,7 @@ typedef volatile struct ALT_I2C_TXFLR_s  ALT_I2C_TXFLR_t;
  *  [31:7] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Receive FIFO Level Bit - rxflr
  *
@@ -3958,23 +4052,24 @@ typedef volatile struct ALT_I2C_TXFLR_s  ALT_I2C_TXFLR_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_RXFLR_RXFLR register field. */
-#define ALT_I2C_RXFLR_RXFLR_LSB        0
+    #define ALT_I2C_RXFLR_RXFLR_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_I2C_RXFLR_RXFLR register field. */
-#define ALT_I2C_RXFLR_RXFLR_MSB        6
+    #define ALT_I2C_RXFLR_RXFLR_MSB        6
 /* The width in bits of the ALT_I2C_RXFLR_RXFLR register field. */
-#define ALT_I2C_RXFLR_RXFLR_WIDTH      7
+    #define ALT_I2C_RXFLR_RXFLR_WIDTH      7
 /* The mask used to set the ALT_I2C_RXFLR_RXFLR register field value. */
-#define ALT_I2C_RXFLR_RXFLR_SET_MSK    0x0000007f
+    #define ALT_I2C_RXFLR_RXFLR_SET_MSK    0x0000007f
 /* The mask used to clear the ALT_I2C_RXFLR_RXFLR register field value. */
-#define ALT_I2C_RXFLR_RXFLR_CLR_MSK    0xffffff80
+    #define ALT_I2C_RXFLR_RXFLR_CLR_MSK    0xffffff80
 /* The reset value of the ALT_I2C_RXFLR_RXFLR register field. */
-#define ALT_I2C_RXFLR_RXFLR_RESET      0x0
+    #define ALT_I2C_RXFLR_RXFLR_RESET      0x0
 /* Extracts the ALT_I2C_RXFLR_RXFLR field value from a register. */
-#define ALT_I2C_RXFLR_RXFLR_GET(value) (((value) & 0x0000007f) >> 0)
+    #define ALT_I2C_RXFLR_RXFLR_GET( value )    ( ( ( value ) & 0x0000007f ) >> 0 )
 /* Produces a ALT_I2C_RXFLR_RXFLR register field value suitable for setting the register. */
-#define ALT_I2C_RXFLR_RXFLR_SET(value) (((value) << 0) & 0x0000007f)
+    #define ALT_I2C_RXFLR_RXFLR_SET( value )    ( ( ( value ) << 0 ) & 0x0000007f )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -3985,20 +4080,20 @@ typedef volatile struct ALT_I2C_TXFLR_s  ALT_I2C_TXFLR_t;
  *
  * The struct declaration for register ALT_I2C_RXFLR.
  */
-struct ALT_I2C_RXFLR_s
-{
-    const uint32_t  rxflr :  7;  /* Receive FIFO Level Bit */
-    uint32_t              : 25;  /* *UNDEFINED* */
-};
+        struct ALT_I2C_RXFLR_s
+        {
+            const uint32_t rxflr :  7;  /* Receive FIFO Level Bit */
+            uint32_t              : 25; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_I2C_RXFLR. */
-typedef volatile struct ALT_I2C_RXFLR_s  ALT_I2C_RXFLR_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_I2C_RXFLR_s ALT_I2C_RXFLR_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_I2C_RXFLR register from the beginning of the component. */
-#define ALT_I2C_RXFLR_OFST        0x78
+    #define ALT_I2C_RXFLR_OFST    0x78
 /* The address of the ALT_I2C_RXFLR register. */
-#define ALT_I2C_RXFLR_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_I2C_RXFLR_OFST))
+    #define ALT_I2C_RXFLR_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_I2C_RXFLR_OFST ) )
 
 /*
  * Register : SDA Hold Register - ic_sda_hold
@@ -4016,6 +4111,7 @@ typedef volatile struct ALT_I2C_RXFLR_s  ALT_I2C_RXFLR_t;
  *  [31:16] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : SDA Hold Bit - ic_sda_hold
  *
@@ -4025,23 +4121,24 @@ typedef volatile struct ALT_I2C_RXFLR_s  ALT_I2C_RXFLR_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_SDA_HOLD_IC_SDA_HOLD register field. */
-#define ALT_I2C_SDA_HOLD_IC_SDA_HOLD_LSB        0
+    #define ALT_I2C_SDA_HOLD_IC_SDA_HOLD_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_I2C_SDA_HOLD_IC_SDA_HOLD register field. */
-#define ALT_I2C_SDA_HOLD_IC_SDA_HOLD_MSB        15
+    #define ALT_I2C_SDA_HOLD_IC_SDA_HOLD_MSB        15
 /* The width in bits of the ALT_I2C_SDA_HOLD_IC_SDA_HOLD register field. */
-#define ALT_I2C_SDA_HOLD_IC_SDA_HOLD_WIDTH      16
+    #define ALT_I2C_SDA_HOLD_IC_SDA_HOLD_WIDTH      16
 /* The mask used to set the ALT_I2C_SDA_HOLD_IC_SDA_HOLD register field value. */
-#define ALT_I2C_SDA_HOLD_IC_SDA_HOLD_SET_MSK    0x0000ffff
+    #define ALT_I2C_SDA_HOLD_IC_SDA_HOLD_SET_MSK    0x0000ffff
 /* The mask used to clear the ALT_I2C_SDA_HOLD_IC_SDA_HOLD register field value. */
-#define ALT_I2C_SDA_HOLD_IC_SDA_HOLD_CLR_MSK    0xffff0000
+    #define ALT_I2C_SDA_HOLD_IC_SDA_HOLD_CLR_MSK    0xffff0000
 /* The reset value of the ALT_I2C_SDA_HOLD_IC_SDA_HOLD register field. */
-#define ALT_I2C_SDA_HOLD_IC_SDA_HOLD_RESET      0x1
+    #define ALT_I2C_SDA_HOLD_IC_SDA_HOLD_RESET      0x1
 /* Extracts the ALT_I2C_SDA_HOLD_IC_SDA_HOLD field value from a register. */
-#define ALT_I2C_SDA_HOLD_IC_SDA_HOLD_GET(value) (((value) & 0x0000ffff) >> 0)
+    #define ALT_I2C_SDA_HOLD_IC_SDA_HOLD_GET( value )    ( ( ( value ) & 0x0000ffff ) >> 0 )
 /* Produces a ALT_I2C_SDA_HOLD_IC_SDA_HOLD register field value suitable for setting the register. */
-#define ALT_I2C_SDA_HOLD_IC_SDA_HOLD_SET(value) (((value) << 0) & 0x0000ffff)
+    #define ALT_I2C_SDA_HOLD_IC_SDA_HOLD_SET( value )    ( ( ( value ) << 0 ) & 0x0000ffff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -4052,20 +4149,20 @@ typedef volatile struct ALT_I2C_RXFLR_s  ALT_I2C_RXFLR_t;
  *
  * The struct declaration for register ALT_I2C_SDA_HOLD.
  */
-struct ALT_I2C_SDA_HOLD_s
-{
-    uint32_t  ic_sda_hold : 16;  /* SDA Hold Bit */
-    uint32_t              : 16;  /* *UNDEFINED* */
-};
+        struct ALT_I2C_SDA_HOLD_s
+        {
+            uint32_t ic_sda_hold : 16;  /* SDA Hold Bit */
+            uint32_t              : 16; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_I2C_SDA_HOLD. */
-typedef volatile struct ALT_I2C_SDA_HOLD_s  ALT_I2C_SDA_HOLD_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_I2C_SDA_HOLD_s ALT_I2C_SDA_HOLD_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_I2C_SDA_HOLD register from the beginning of the component. */
-#define ALT_I2C_SDA_HOLD_OFST        0x7c
+    #define ALT_I2C_SDA_HOLD_OFST    0x7c
 /* The address of the ALT_I2C_SDA_HOLD register. */
-#define ALT_I2C_SDA_HOLD_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_I2C_SDA_HOLD_OFST))
+    #define ALT_I2C_SDA_HOLD_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_I2C_SDA_HOLD_OFST ) )
 
 /*
  * Register : Transmit Abort Source Register - ic_tx_abrt_source
@@ -4103,6 +4200,7 @@ typedef volatile struct ALT_I2C_SDA_HOLD_s  ALT_I2C_SDA_HOLD_t;
  *  [31:16] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Master Abort 7 Bit Address - abrt_7b_addr_noack
  *
@@ -4113,21 +4211,21 @@ typedef volatile struct ALT_I2C_SDA_HOLD_s  ALT_I2C_SDA_HOLD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_TX_ABRT_SRC_ABRT_7B_ADDR_NOACK register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_7B_ADDR_NOACK_LSB        0
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_7B_ADDR_NOACK_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_I2C_TX_ABRT_SRC_ABRT_7B_ADDR_NOACK register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_7B_ADDR_NOACK_MSB        0
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_7B_ADDR_NOACK_MSB        0
 /* The width in bits of the ALT_I2C_TX_ABRT_SRC_ABRT_7B_ADDR_NOACK register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_7B_ADDR_NOACK_WIDTH      1
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_7B_ADDR_NOACK_WIDTH      1
 /* The mask used to set the ALT_I2C_TX_ABRT_SRC_ABRT_7B_ADDR_NOACK register field value. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_7B_ADDR_NOACK_SET_MSK    0x00000001
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_7B_ADDR_NOACK_SET_MSK    0x00000001
 /* The mask used to clear the ALT_I2C_TX_ABRT_SRC_ABRT_7B_ADDR_NOACK register field value. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_7B_ADDR_NOACK_CLR_MSK    0xfffffffe
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_7B_ADDR_NOACK_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_I2C_TX_ABRT_SRC_ABRT_7B_ADDR_NOACK register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_7B_ADDR_NOACK_RESET      0x0
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_7B_ADDR_NOACK_RESET      0x0
 /* Extracts the ALT_I2C_TX_ABRT_SRC_ABRT_7B_ADDR_NOACK field value from a register. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_7B_ADDR_NOACK_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_7B_ADDR_NOACK_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_I2C_TX_ABRT_SRC_ABRT_7B_ADDR_NOACK register field value suitable for setting the register. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_7B_ADDR_NOACK_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_7B_ADDR_NOACK_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
 /*
  * Field : Master Abort 10 Bit Address Byte 1 - abrt_10addr1_noack
@@ -4139,21 +4237,21 @@ typedef volatile struct ALT_I2C_SDA_HOLD_s  ALT_I2C_SDA_HOLD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_TX_ABRT_SRC_ABRT_10ADDR1_NOACK register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_10ADDR1_NOACK_LSB        1
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_10ADDR1_NOACK_LSB        1
 /* The Most Significant Bit (MSB) position of the ALT_I2C_TX_ABRT_SRC_ABRT_10ADDR1_NOACK register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_10ADDR1_NOACK_MSB        1
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_10ADDR1_NOACK_MSB        1
 /* The width in bits of the ALT_I2C_TX_ABRT_SRC_ABRT_10ADDR1_NOACK register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_10ADDR1_NOACK_WIDTH      1
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_10ADDR1_NOACK_WIDTH      1
 /* The mask used to set the ALT_I2C_TX_ABRT_SRC_ABRT_10ADDR1_NOACK register field value. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_10ADDR1_NOACK_SET_MSK    0x00000002
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_10ADDR1_NOACK_SET_MSK    0x00000002
 /* The mask used to clear the ALT_I2C_TX_ABRT_SRC_ABRT_10ADDR1_NOACK register field value. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_10ADDR1_NOACK_CLR_MSK    0xfffffffd
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_10ADDR1_NOACK_CLR_MSK    0xfffffffd
 /* The reset value of the ALT_I2C_TX_ABRT_SRC_ABRT_10ADDR1_NOACK register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_10ADDR1_NOACK_RESET      0x0
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_10ADDR1_NOACK_RESET      0x0
 /* Extracts the ALT_I2C_TX_ABRT_SRC_ABRT_10ADDR1_NOACK field value from a register. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_10ADDR1_NOACK_GET(value) (((value) & 0x00000002) >> 1)
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_10ADDR1_NOACK_GET( value )    ( ( ( value ) & 0x00000002 ) >> 1 )
 /* Produces a ALT_I2C_TX_ABRT_SRC_ABRT_10ADDR1_NOACK register field value suitable for setting the register. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_10ADDR1_NOACK_SET(value) (((value) << 1) & 0x00000002)
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_10ADDR1_NOACK_SET( value )    ( ( ( value ) << 1 ) & 0x00000002 )
 
 /*
  * Field : Master Abort 10 Bit Address Byte 2 - abrt_10addr2_noack
@@ -4166,21 +4264,21 @@ typedef volatile struct ALT_I2C_SDA_HOLD_s  ALT_I2C_SDA_HOLD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_TX_ABRT_SRC_ABRT_10ADDR2_NOACK register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_10ADDR2_NOACK_LSB        2
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_10ADDR2_NOACK_LSB        2
 /* The Most Significant Bit (MSB) position of the ALT_I2C_TX_ABRT_SRC_ABRT_10ADDR2_NOACK register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_10ADDR2_NOACK_MSB        2
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_10ADDR2_NOACK_MSB        2
 /* The width in bits of the ALT_I2C_TX_ABRT_SRC_ABRT_10ADDR2_NOACK register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_10ADDR2_NOACK_WIDTH      1
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_10ADDR2_NOACK_WIDTH      1
 /* The mask used to set the ALT_I2C_TX_ABRT_SRC_ABRT_10ADDR2_NOACK register field value. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_10ADDR2_NOACK_SET_MSK    0x00000004
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_10ADDR2_NOACK_SET_MSK    0x00000004
 /* The mask used to clear the ALT_I2C_TX_ABRT_SRC_ABRT_10ADDR2_NOACK register field value. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_10ADDR2_NOACK_CLR_MSK    0xfffffffb
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_10ADDR2_NOACK_CLR_MSK    0xfffffffb
 /* The reset value of the ALT_I2C_TX_ABRT_SRC_ABRT_10ADDR2_NOACK register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_10ADDR2_NOACK_RESET      0x0
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_10ADDR2_NOACK_RESET      0x0
 /* Extracts the ALT_I2C_TX_ABRT_SRC_ABRT_10ADDR2_NOACK field value from a register. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_10ADDR2_NOACK_GET(value) (((value) & 0x00000004) >> 2)
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_10ADDR2_NOACK_GET( value )    ( ( ( value ) & 0x00000004 ) >> 2 )
 /* Produces a ALT_I2C_TX_ABRT_SRC_ABRT_10ADDR2_NOACK register field value suitable for setting the register. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_10ADDR2_NOACK_SET(value) (((value) << 2) & 0x00000004)
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_10ADDR2_NOACK_SET( value )    ( ( ( value ) << 2 ) & 0x00000004 )
 
 /*
  * Field : Master Abort TX Noack Bit - abrt_txdata_noack
@@ -4193,21 +4291,21 @@ typedef volatile struct ALT_I2C_SDA_HOLD_s  ALT_I2C_SDA_HOLD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_TX_ABRT_SRC_ABRT_TXDATA_NOACK register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_TXDATA_NOACK_LSB        3
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_TXDATA_NOACK_LSB        3
 /* The Most Significant Bit (MSB) position of the ALT_I2C_TX_ABRT_SRC_ABRT_TXDATA_NOACK register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_TXDATA_NOACK_MSB        3
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_TXDATA_NOACK_MSB        3
 /* The width in bits of the ALT_I2C_TX_ABRT_SRC_ABRT_TXDATA_NOACK register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_TXDATA_NOACK_WIDTH      1
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_TXDATA_NOACK_WIDTH      1
 /* The mask used to set the ALT_I2C_TX_ABRT_SRC_ABRT_TXDATA_NOACK register field value. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_TXDATA_NOACK_SET_MSK    0x00000008
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_TXDATA_NOACK_SET_MSK    0x00000008
 /* The mask used to clear the ALT_I2C_TX_ABRT_SRC_ABRT_TXDATA_NOACK register field value. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_TXDATA_NOACK_CLR_MSK    0xfffffff7
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_TXDATA_NOACK_CLR_MSK    0xfffffff7
 /* The reset value of the ALT_I2C_TX_ABRT_SRC_ABRT_TXDATA_NOACK register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_TXDATA_NOACK_RESET      0x0
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_TXDATA_NOACK_RESET      0x0
 /* Extracts the ALT_I2C_TX_ABRT_SRC_ABRT_TXDATA_NOACK field value from a register. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_TXDATA_NOACK_GET(value) (((value) & 0x00000008) >> 3)
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_TXDATA_NOACK_GET( value )    ( ( ( value ) & 0x00000008 ) >> 3 )
 /* Produces a ALT_I2C_TX_ABRT_SRC_ABRT_TXDATA_NOACK register field value suitable for setting the register. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_TXDATA_NOACK_SET(value) (((value) << 3) & 0x00000008)
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_TXDATA_NOACK_SET( value )    ( ( ( value ) << 3 ) & 0x00000008 )
 
 /*
  * Field : Master Abort GC Noack Bit - abrt_gcall_noack
@@ -4219,21 +4317,21 @@ typedef volatile struct ALT_I2C_SDA_HOLD_s  ALT_I2C_SDA_HOLD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_TX_ABRT_SRC_ABRT_GCALL_NOACK register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_GCALL_NOACK_LSB        4
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_GCALL_NOACK_LSB        4
 /* The Most Significant Bit (MSB) position of the ALT_I2C_TX_ABRT_SRC_ABRT_GCALL_NOACK register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_GCALL_NOACK_MSB        4
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_GCALL_NOACK_MSB        4
 /* The width in bits of the ALT_I2C_TX_ABRT_SRC_ABRT_GCALL_NOACK register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_GCALL_NOACK_WIDTH      1
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_GCALL_NOACK_WIDTH      1
 /* The mask used to set the ALT_I2C_TX_ABRT_SRC_ABRT_GCALL_NOACK register field value. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_GCALL_NOACK_SET_MSK    0x00000010
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_GCALL_NOACK_SET_MSK    0x00000010
 /* The mask used to clear the ALT_I2C_TX_ABRT_SRC_ABRT_GCALL_NOACK register field value. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_GCALL_NOACK_CLR_MSK    0xffffffef
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_GCALL_NOACK_CLR_MSK    0xffffffef
 /* The reset value of the ALT_I2C_TX_ABRT_SRC_ABRT_GCALL_NOACK register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_GCALL_NOACK_RESET      0x0
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_GCALL_NOACK_RESET      0x0
 /* Extracts the ALT_I2C_TX_ABRT_SRC_ABRT_GCALL_NOACK field value from a register. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_GCALL_NOACK_GET(value) (((value) & 0x00000010) >> 4)
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_GCALL_NOACK_GET( value )    ( ( ( value ) & 0x00000010 ) >> 4 )
 /* Produces a ALT_I2C_TX_ABRT_SRC_ABRT_GCALL_NOACK register field value suitable for setting the register. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_GCALL_NOACK_SET(value) (((value) << 4) & 0x00000010)
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_GCALL_NOACK_SET( value )    ( ( ( value ) << 4 ) & 0x00000010 )
 
 /*
  * Field : Master Abort GC Read Bit - abrt_gcall_read
@@ -4246,21 +4344,21 @@ typedef volatile struct ALT_I2C_SDA_HOLD_s  ALT_I2C_SDA_HOLD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_TX_ABRT_SRC_ABRT_GCALL_RD register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_GCALL_RD_LSB        5
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_GCALL_RD_LSB        5
 /* The Most Significant Bit (MSB) position of the ALT_I2C_TX_ABRT_SRC_ABRT_GCALL_RD register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_GCALL_RD_MSB        5
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_GCALL_RD_MSB        5
 /* The width in bits of the ALT_I2C_TX_ABRT_SRC_ABRT_GCALL_RD register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_GCALL_RD_WIDTH      1
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_GCALL_RD_WIDTH      1
 /* The mask used to set the ALT_I2C_TX_ABRT_SRC_ABRT_GCALL_RD register field value. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_GCALL_RD_SET_MSK    0x00000020
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_GCALL_RD_SET_MSK    0x00000020
 /* The mask used to clear the ALT_I2C_TX_ABRT_SRC_ABRT_GCALL_RD register field value. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_GCALL_RD_CLR_MSK    0xffffffdf
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_GCALL_RD_CLR_MSK    0xffffffdf
 /* The reset value of the ALT_I2C_TX_ABRT_SRC_ABRT_GCALL_RD register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_GCALL_RD_RESET      0x0
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_GCALL_RD_RESET      0x0
 /* Extracts the ALT_I2C_TX_ABRT_SRC_ABRT_GCALL_RD field value from a register. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_GCALL_RD_GET(value) (((value) & 0x00000020) >> 5)
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_GCALL_RD_GET( value )    ( ( ( value ) & 0x00000020 ) >> 5 )
 /* Produces a ALT_I2C_TX_ABRT_SRC_ABRT_GCALL_RD register field value suitable for setting the register. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_GCALL_RD_SET(value) (((value) << 5) & 0x00000020)
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_GCALL_RD_SET( value )    ( ( ( value ) << 5 ) & 0x00000020 )
 
 /*
  * Field : Master HS MC Ack - abrt_hs_ackdet
@@ -4272,21 +4370,21 @@ typedef volatile struct ALT_I2C_SDA_HOLD_s  ALT_I2C_SDA_HOLD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_TX_ABRT_SRC_ABRT_HS_ACKDET register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_HS_ACKDET_LSB        6
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_HS_ACKDET_LSB        6
 /* The Most Significant Bit (MSB) position of the ALT_I2C_TX_ABRT_SRC_ABRT_HS_ACKDET register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_HS_ACKDET_MSB        6
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_HS_ACKDET_MSB        6
 /* The width in bits of the ALT_I2C_TX_ABRT_SRC_ABRT_HS_ACKDET register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_HS_ACKDET_WIDTH      1
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_HS_ACKDET_WIDTH      1
 /* The mask used to set the ALT_I2C_TX_ABRT_SRC_ABRT_HS_ACKDET register field value. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_HS_ACKDET_SET_MSK    0x00000040
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_HS_ACKDET_SET_MSK    0x00000040
 /* The mask used to clear the ALT_I2C_TX_ABRT_SRC_ABRT_HS_ACKDET register field value. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_HS_ACKDET_CLR_MSK    0xffffffbf
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_HS_ACKDET_CLR_MSK    0xffffffbf
 /* The reset value of the ALT_I2C_TX_ABRT_SRC_ABRT_HS_ACKDET register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_HS_ACKDET_RESET      0x0
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_HS_ACKDET_RESET      0x0
 /* Extracts the ALT_I2C_TX_ABRT_SRC_ABRT_HS_ACKDET field value from a register. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_HS_ACKDET_GET(value) (((value) & 0x00000040) >> 6)
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_HS_ACKDET_GET( value )    ( ( ( value ) & 0x00000040 ) >> 6 )
 /* Produces a ALT_I2C_TX_ABRT_SRC_ABRT_HS_ACKDET register field value suitable for setting the register. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_HS_ACKDET_SET(value) (((value) << 6) & 0x00000040)
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_HS_ACKDET_SET( value )    ( ( ( value ) << 6 ) & 0x00000040 )
 
 /*
  * Field : Master Abort START Byte - abrt_sbyte_ackdet
@@ -4298,21 +4396,21 @@ typedef volatile struct ALT_I2C_SDA_HOLD_s  ALT_I2C_SDA_HOLD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_TX_ABRT_SRC_ABRT_SBYTE_ACKDET register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_SBYTE_ACKDET_LSB        7
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_SBYTE_ACKDET_LSB        7
 /* The Most Significant Bit (MSB) position of the ALT_I2C_TX_ABRT_SRC_ABRT_SBYTE_ACKDET register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_SBYTE_ACKDET_MSB        7
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_SBYTE_ACKDET_MSB        7
 /* The width in bits of the ALT_I2C_TX_ABRT_SRC_ABRT_SBYTE_ACKDET register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_SBYTE_ACKDET_WIDTH      1
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_SBYTE_ACKDET_WIDTH      1
 /* The mask used to set the ALT_I2C_TX_ABRT_SRC_ABRT_SBYTE_ACKDET register field value. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_SBYTE_ACKDET_SET_MSK    0x00000080
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_SBYTE_ACKDET_SET_MSK    0x00000080
 /* The mask used to clear the ALT_I2C_TX_ABRT_SRC_ABRT_SBYTE_ACKDET register field value. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_SBYTE_ACKDET_CLR_MSK    0xffffff7f
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_SBYTE_ACKDET_CLR_MSK    0xffffff7f
 /* The reset value of the ALT_I2C_TX_ABRT_SRC_ABRT_SBYTE_ACKDET register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_SBYTE_ACKDET_RESET      0x0
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_SBYTE_ACKDET_RESET      0x0
 /* Extracts the ALT_I2C_TX_ABRT_SRC_ABRT_SBYTE_ACKDET field value from a register. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_SBYTE_ACKDET_GET(value) (((value) & 0x00000080) >> 7)
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_SBYTE_ACKDET_GET( value )    ( ( ( value ) & 0x00000080 ) >> 7 )
 /* Produces a ALT_I2C_TX_ABRT_SRC_ABRT_SBYTE_ACKDET register field value suitable for setting the register. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_SBYTE_ACKDET_SET(value) (((value) << 7) & 0x00000080)
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_SBYTE_ACKDET_SET( value )    ( ( ( value ) << 7 ) & 0x00000080 )
 
 /*
  * Field : Master HS Restart Disabled - abrt_hs_norstrt
@@ -4325,21 +4423,21 @@ typedef volatile struct ALT_I2C_SDA_HOLD_s  ALT_I2C_SDA_HOLD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_TX_ABRT_SRC_ABRT_HS_NORSTRT register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_HS_NORSTRT_LSB        8
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_HS_NORSTRT_LSB        8
 /* The Most Significant Bit (MSB) position of the ALT_I2C_TX_ABRT_SRC_ABRT_HS_NORSTRT register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_HS_NORSTRT_MSB        8
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_HS_NORSTRT_MSB        8
 /* The width in bits of the ALT_I2C_TX_ABRT_SRC_ABRT_HS_NORSTRT register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_HS_NORSTRT_WIDTH      1
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_HS_NORSTRT_WIDTH      1
 /* The mask used to set the ALT_I2C_TX_ABRT_SRC_ABRT_HS_NORSTRT register field value. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_HS_NORSTRT_SET_MSK    0x00000100
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_HS_NORSTRT_SET_MSK    0x00000100
 /* The mask used to clear the ALT_I2C_TX_ABRT_SRC_ABRT_HS_NORSTRT register field value. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_HS_NORSTRT_CLR_MSK    0xfffffeff
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_HS_NORSTRT_CLR_MSK    0xfffffeff
 /* The reset value of the ALT_I2C_TX_ABRT_SRC_ABRT_HS_NORSTRT register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_HS_NORSTRT_RESET      0x0
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_HS_NORSTRT_RESET      0x0
 /* Extracts the ALT_I2C_TX_ABRT_SRC_ABRT_HS_NORSTRT field value from a register. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_HS_NORSTRT_GET(value) (((value) & 0x00000100) >> 8)
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_HS_NORSTRT_GET( value )    ( ( ( value ) & 0x00000100 ) >> 8 )
 /* Produces a ALT_I2C_TX_ABRT_SRC_ABRT_HS_NORSTRT register field value suitable for setting the register. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_HS_NORSTRT_SET(value) (((value) << 8) & 0x00000100)
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_HS_NORSTRT_SET( value )    ( ( ( value ) << 8 ) & 0x00000100 )
 
 /*
  * Field : Master Abort START No Restart - abrt_sbyte_norstrt
@@ -4358,21 +4456,21 @@ typedef volatile struct ALT_I2C_SDA_HOLD_s  ALT_I2C_SDA_HOLD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_TX_ABRT_SRC_ABRT_SBYTE_NORSTRT register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_SBYTE_NORSTRT_LSB        9
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_SBYTE_NORSTRT_LSB        9
 /* The Most Significant Bit (MSB) position of the ALT_I2C_TX_ABRT_SRC_ABRT_SBYTE_NORSTRT register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_SBYTE_NORSTRT_MSB        9
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_SBYTE_NORSTRT_MSB        9
 /* The width in bits of the ALT_I2C_TX_ABRT_SRC_ABRT_SBYTE_NORSTRT register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_SBYTE_NORSTRT_WIDTH      1
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_SBYTE_NORSTRT_WIDTH      1
 /* The mask used to set the ALT_I2C_TX_ABRT_SRC_ABRT_SBYTE_NORSTRT register field value. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_SBYTE_NORSTRT_SET_MSK    0x00000200
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_SBYTE_NORSTRT_SET_MSK    0x00000200
 /* The mask used to clear the ALT_I2C_TX_ABRT_SRC_ABRT_SBYTE_NORSTRT register field value. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_SBYTE_NORSTRT_CLR_MSK    0xfffffdff
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_SBYTE_NORSTRT_CLR_MSK    0xfffffdff
 /* The reset value of the ALT_I2C_TX_ABRT_SRC_ABRT_SBYTE_NORSTRT register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_SBYTE_NORSTRT_RESET      0x0
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_SBYTE_NORSTRT_RESET      0x0
 /* Extracts the ALT_I2C_TX_ABRT_SRC_ABRT_SBYTE_NORSTRT field value from a register. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_SBYTE_NORSTRT_GET(value) (((value) & 0x00000200) >> 9)
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_SBYTE_NORSTRT_GET( value )    ( ( ( value ) & 0x00000200 ) >> 9 )
 /* Produces a ALT_I2C_TX_ABRT_SRC_ABRT_SBYTE_NORSTRT register field value suitable for setting the register. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_SBYTE_NORSTRT_SET(value) (((value) << 9) & 0x00000200)
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_SBYTE_NORSTRT_SET( value )    ( ( ( value ) << 9 ) & 0x00000200 )
 
 /*
  * Field : Master Abort 10 Bit No Restart - abrt_10b_rd_norstrt
@@ -4384,21 +4482,21 @@ typedef volatile struct ALT_I2C_SDA_HOLD_s  ALT_I2C_SDA_HOLD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_TX_ABRT_SRC_ABRT_10B_RD_NORSTRT register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_10B_RD_NORSTRT_LSB        10
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_10B_RD_NORSTRT_LSB        10
 /* The Most Significant Bit (MSB) position of the ALT_I2C_TX_ABRT_SRC_ABRT_10B_RD_NORSTRT register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_10B_RD_NORSTRT_MSB        10
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_10B_RD_NORSTRT_MSB        10
 /* The width in bits of the ALT_I2C_TX_ABRT_SRC_ABRT_10B_RD_NORSTRT register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_10B_RD_NORSTRT_WIDTH      1
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_10B_RD_NORSTRT_WIDTH      1
 /* The mask used to set the ALT_I2C_TX_ABRT_SRC_ABRT_10B_RD_NORSTRT register field value. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_10B_RD_NORSTRT_SET_MSK    0x00000400
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_10B_RD_NORSTRT_SET_MSK    0x00000400
 /* The mask used to clear the ALT_I2C_TX_ABRT_SRC_ABRT_10B_RD_NORSTRT register field value. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_10B_RD_NORSTRT_CLR_MSK    0xfffffbff
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_10B_RD_NORSTRT_CLR_MSK    0xfffffbff
 /* The reset value of the ALT_I2C_TX_ABRT_SRC_ABRT_10B_RD_NORSTRT register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_10B_RD_NORSTRT_RESET      0x0
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_10B_RD_NORSTRT_RESET      0x0
 /* Extracts the ALT_I2C_TX_ABRT_SRC_ABRT_10B_RD_NORSTRT field value from a register. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_10B_RD_NORSTRT_GET(value) (((value) & 0x00000400) >> 10)
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_10B_RD_NORSTRT_GET( value )    ( ( ( value ) & 0x00000400 ) >> 10 )
 /* Produces a ALT_I2C_TX_ABRT_SRC_ABRT_10B_RD_NORSTRT register field value suitable for setting the register. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_10B_RD_NORSTRT_SET(value) (((value) << 10) & 0x00000400)
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_10B_RD_NORSTRT_SET( value )    ( ( ( value ) << 10 ) & 0x00000400 )
 
 /*
  * Field : Master Oper Master Dis - abrt_master_dis
@@ -4410,21 +4508,21 @@ typedef volatile struct ALT_I2C_SDA_HOLD_s  ALT_I2C_SDA_HOLD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_TX_ABRT_SRC_ABRT_MST_DIS register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_MST_DIS_LSB        11
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_MST_DIS_LSB        11
 /* The Most Significant Bit (MSB) position of the ALT_I2C_TX_ABRT_SRC_ABRT_MST_DIS register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_MST_DIS_MSB        11
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_MST_DIS_MSB        11
 /* The width in bits of the ALT_I2C_TX_ABRT_SRC_ABRT_MST_DIS register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_MST_DIS_WIDTH      1
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_MST_DIS_WIDTH      1
 /* The mask used to set the ALT_I2C_TX_ABRT_SRC_ABRT_MST_DIS register field value. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_MST_DIS_SET_MSK    0x00000800
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_MST_DIS_SET_MSK    0x00000800
 /* The mask used to clear the ALT_I2C_TX_ABRT_SRC_ABRT_MST_DIS register field value. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_MST_DIS_CLR_MSK    0xfffff7ff
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_MST_DIS_CLR_MSK    0xfffff7ff
 /* The reset value of the ALT_I2C_TX_ABRT_SRC_ABRT_MST_DIS register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_MST_DIS_RESET      0x0
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_MST_DIS_RESET      0x0
 /* Extracts the ALT_I2C_TX_ABRT_SRC_ABRT_MST_DIS field value from a register. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_MST_DIS_GET(value) (((value) & 0x00000800) >> 11)
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_MST_DIS_GET( value )    ( ( ( value ) & 0x00000800 ) >> 11 )
 /* Produces a ALT_I2C_TX_ABRT_SRC_ABRT_MST_DIS register field value suitable for setting the register. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_MST_DIS_SET(value) (((value) << 11) & 0x00000800)
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_MST_DIS_SET( value )    ( ( ( value ) << 11 ) & 0x00000800 )
 
 /*
  * Field : Master Abort Arbitration Lost - arb_lost
@@ -4437,21 +4535,21 @@ typedef volatile struct ALT_I2C_SDA_HOLD_s  ALT_I2C_SDA_HOLD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_TX_ABRT_SRC_ARB_LOST register field. */
-#define ALT_I2C_TX_ABRT_SRC_ARB_LOST_LSB        12
+    #define ALT_I2C_TX_ABRT_SRC_ARB_LOST_LSB        12
 /* The Most Significant Bit (MSB) position of the ALT_I2C_TX_ABRT_SRC_ARB_LOST register field. */
-#define ALT_I2C_TX_ABRT_SRC_ARB_LOST_MSB        12
+    #define ALT_I2C_TX_ABRT_SRC_ARB_LOST_MSB        12
 /* The width in bits of the ALT_I2C_TX_ABRT_SRC_ARB_LOST register field. */
-#define ALT_I2C_TX_ABRT_SRC_ARB_LOST_WIDTH      1
+    #define ALT_I2C_TX_ABRT_SRC_ARB_LOST_WIDTH      1
 /* The mask used to set the ALT_I2C_TX_ABRT_SRC_ARB_LOST register field value. */
-#define ALT_I2C_TX_ABRT_SRC_ARB_LOST_SET_MSK    0x00001000
+    #define ALT_I2C_TX_ABRT_SRC_ARB_LOST_SET_MSK    0x00001000
 /* The mask used to clear the ALT_I2C_TX_ABRT_SRC_ARB_LOST register field value. */
-#define ALT_I2C_TX_ABRT_SRC_ARB_LOST_CLR_MSK    0xffffefff
+    #define ALT_I2C_TX_ABRT_SRC_ARB_LOST_CLR_MSK    0xffffefff
 /* The reset value of the ALT_I2C_TX_ABRT_SRC_ARB_LOST register field. */
-#define ALT_I2C_TX_ABRT_SRC_ARB_LOST_RESET      0x0
+    #define ALT_I2C_TX_ABRT_SRC_ARB_LOST_RESET      0x0
 /* Extracts the ALT_I2C_TX_ABRT_SRC_ARB_LOST field value from a register. */
-#define ALT_I2C_TX_ABRT_SRC_ARB_LOST_GET(value) (((value) & 0x00001000) >> 12)
+    #define ALT_I2C_TX_ABRT_SRC_ARB_LOST_GET( value )    ( ( ( value ) & 0x00001000 ) >> 12 )
 /* Produces a ALT_I2C_TX_ABRT_SRC_ARB_LOST register field value suitable for setting the register. */
-#define ALT_I2C_TX_ABRT_SRC_ARB_LOST_SET(value) (((value) << 12) & 0x00001000)
+    #define ALT_I2C_TX_ABRT_SRC_ARB_LOST_SET( value )    ( ( ( value ) << 12 ) & 0x00001000 )
 
 /*
  * Field : Slave Abort Flush TXFIFO - abrt_slvflush_txfifo
@@ -4464,21 +4562,21 @@ typedef volatile struct ALT_I2C_SDA_HOLD_s  ALT_I2C_SDA_HOLD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_TX_ABRT_SRC_ABRT_SLVFLUSH_TXFIFO register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_SLVFLUSH_TXFIFO_LSB        13
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_SLVFLUSH_TXFIFO_LSB        13
 /* The Most Significant Bit (MSB) position of the ALT_I2C_TX_ABRT_SRC_ABRT_SLVFLUSH_TXFIFO register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_SLVFLUSH_TXFIFO_MSB        13
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_SLVFLUSH_TXFIFO_MSB        13
 /* The width in bits of the ALT_I2C_TX_ABRT_SRC_ABRT_SLVFLUSH_TXFIFO register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_SLVFLUSH_TXFIFO_WIDTH      1
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_SLVFLUSH_TXFIFO_WIDTH      1
 /* The mask used to set the ALT_I2C_TX_ABRT_SRC_ABRT_SLVFLUSH_TXFIFO register field value. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_SLVFLUSH_TXFIFO_SET_MSK    0x00002000
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_SLVFLUSH_TXFIFO_SET_MSK    0x00002000
 /* The mask used to clear the ALT_I2C_TX_ABRT_SRC_ABRT_SLVFLUSH_TXFIFO register field value. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_SLVFLUSH_TXFIFO_CLR_MSK    0xffffdfff
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_SLVFLUSH_TXFIFO_CLR_MSK    0xffffdfff
 /* The reset value of the ALT_I2C_TX_ABRT_SRC_ABRT_SLVFLUSH_TXFIFO register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_SLVFLUSH_TXFIFO_RESET      0x0
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_SLVFLUSH_TXFIFO_RESET      0x0
 /* Extracts the ALT_I2C_TX_ABRT_SRC_ABRT_SLVFLUSH_TXFIFO field value from a register. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_SLVFLUSH_TXFIFO_GET(value) (((value) & 0x00002000) >> 13)
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_SLVFLUSH_TXFIFO_GET( value )    ( ( ( value ) & 0x00002000 ) >> 13 )
 /* Produces a ALT_I2C_TX_ABRT_SRC_ABRT_SLVFLUSH_TXFIFO register field value suitable for setting the register. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_SLVFLUSH_TXFIFO_SET(value) (((value) << 13) & 0x00002000)
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_SLVFLUSH_TXFIFO_SET( value )    ( ( ( value ) << 13 ) & 0x00002000 )
 
 /*
  * Field : Slave Abort Arbitration Lost - abrt_slv_arblost
@@ -4494,21 +4592,21 @@ typedef volatile struct ALT_I2C_SDA_HOLD_s  ALT_I2C_SDA_HOLD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_TX_ABRT_SRC_ABRT_SLV_ARBLOST register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_SLV_ARBLOST_LSB        14
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_SLV_ARBLOST_LSB        14
 /* The Most Significant Bit (MSB) position of the ALT_I2C_TX_ABRT_SRC_ABRT_SLV_ARBLOST register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_SLV_ARBLOST_MSB        14
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_SLV_ARBLOST_MSB        14
 /* The width in bits of the ALT_I2C_TX_ABRT_SRC_ABRT_SLV_ARBLOST register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_SLV_ARBLOST_WIDTH      1
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_SLV_ARBLOST_WIDTH      1
 /* The mask used to set the ALT_I2C_TX_ABRT_SRC_ABRT_SLV_ARBLOST register field value. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_SLV_ARBLOST_SET_MSK    0x00004000
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_SLV_ARBLOST_SET_MSK    0x00004000
 /* The mask used to clear the ALT_I2C_TX_ABRT_SRC_ABRT_SLV_ARBLOST register field value. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_SLV_ARBLOST_CLR_MSK    0xffffbfff
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_SLV_ARBLOST_CLR_MSK    0xffffbfff
 /* The reset value of the ALT_I2C_TX_ABRT_SRC_ABRT_SLV_ARBLOST register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_SLV_ARBLOST_RESET      0x0
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_SLV_ARBLOST_RESET      0x0
 /* Extracts the ALT_I2C_TX_ABRT_SRC_ABRT_SLV_ARBLOST field value from a register. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_SLV_ARBLOST_GET(value) (((value) & 0x00004000) >> 14)
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_SLV_ARBLOST_GET( value )    ( ( ( value ) & 0x00004000 ) >> 14 )
 /* Produces a ALT_I2C_TX_ABRT_SRC_ABRT_SLV_ARBLOST register field value suitable for setting the register. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_SLV_ARBLOST_SET(value) (((value) << 14) & 0x00004000)
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_SLV_ARBLOST_SET( value )    ( ( ( value ) << 14 ) & 0x00004000 )
 
 /*
  * Field : Slave Abort Read TX - abrt_slvrd_intx
@@ -4521,23 +4619,24 @@ typedef volatile struct ALT_I2C_SDA_HOLD_s  ALT_I2C_SDA_HOLD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_TX_ABRT_SRC_ABRT_SLVRD_INTX register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_SLVRD_INTX_LSB        15
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_SLVRD_INTX_LSB        15
 /* The Most Significant Bit (MSB) position of the ALT_I2C_TX_ABRT_SRC_ABRT_SLVRD_INTX register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_SLVRD_INTX_MSB        15
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_SLVRD_INTX_MSB        15
 /* The width in bits of the ALT_I2C_TX_ABRT_SRC_ABRT_SLVRD_INTX register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_SLVRD_INTX_WIDTH      1
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_SLVRD_INTX_WIDTH      1
 /* The mask used to set the ALT_I2C_TX_ABRT_SRC_ABRT_SLVRD_INTX register field value. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_SLVRD_INTX_SET_MSK    0x00008000
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_SLVRD_INTX_SET_MSK    0x00008000
 /* The mask used to clear the ALT_I2C_TX_ABRT_SRC_ABRT_SLVRD_INTX register field value. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_SLVRD_INTX_CLR_MSK    0xffff7fff
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_SLVRD_INTX_CLR_MSK    0xffff7fff
 /* The reset value of the ALT_I2C_TX_ABRT_SRC_ABRT_SLVRD_INTX register field. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_SLVRD_INTX_RESET      0x0
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_SLVRD_INTX_RESET      0x0
 /* Extracts the ALT_I2C_TX_ABRT_SRC_ABRT_SLVRD_INTX field value from a register. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_SLVRD_INTX_GET(value) (((value) & 0x00008000) >> 15)
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_SLVRD_INTX_GET( value )    ( ( ( value ) & 0x00008000 ) >> 15 )
 /* Produces a ALT_I2C_TX_ABRT_SRC_ABRT_SLVRD_INTX register field value suitable for setting the register. */
-#define ALT_I2C_TX_ABRT_SRC_ABRT_SLVRD_INTX_SET(value) (((value) << 15) & 0x00008000)
+    #define ALT_I2C_TX_ABRT_SRC_ABRT_SLVRD_INTX_SET( value )    ( ( ( value ) << 15 ) & 0x00008000 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -4548,35 +4647,35 @@ typedef volatile struct ALT_I2C_SDA_HOLD_s  ALT_I2C_SDA_HOLD_t;
  *
  * The struct declaration for register ALT_I2C_TX_ABRT_SRC.
  */
-struct ALT_I2C_TX_ABRT_SRC_s
-{
-    uint32_t  abrt_7b_addr_noack   :  1;  /* Master Abort 7 Bit Address */
-    uint32_t  abrt_10addr1_noack   :  1;  /* Master Abort 10 Bit Address Byte 1 */
-    uint32_t  abrt_10addr2_noack   :  1;  /* Master Abort 10 Bit Address Byte 2 */
-    uint32_t  abrt_txdata_noack    :  1;  /* Master Abort TX Noack Bit */
-    uint32_t  abrt_gcall_noack     :  1;  /* Master Abort GC Noack Bit */
-    uint32_t  abrt_gcall_read      :  1;  /* Master Abort GC Read Bit */
-    uint32_t  abrt_hs_ackdet       :  1;  /* Master HS MC Ack */
-    uint32_t  abrt_sbyte_ackdet    :  1;  /* Master Abort START Byte */
-    uint32_t  abrt_hs_norstrt      :  1;  /* Master HS Restart Disabled */
-    uint32_t  abrt_sbyte_norstrt   :  1;  /* Master Abort START No Restart */
-    uint32_t  abrt_10b_rd_norstrt  :  1;  /* Master Abort 10 Bit No Restart */
-    uint32_t  abrt_master_dis      :  1;  /* Master Oper Master Dis */
-    uint32_t  arb_lost             :  1;  /* Master Abort Arbitration Lost */
-    uint32_t  abrt_slvflush_txfifo :  1;  /* Slave Abort Flush TXFIFO */
-    uint32_t  abrt_slv_arblost     :  1;  /* Slave Abort Arbitration Lost */
-    uint32_t  abrt_slvrd_intx      :  1;  /* Slave Abort Read TX */
-    uint32_t                       : 16;  /* *UNDEFINED* */
-};
+        struct ALT_I2C_TX_ABRT_SRC_s
+        {
+            uint32_t abrt_7b_addr_noack   :  1;  /* Master Abort 7 Bit Address */
+            uint32_t abrt_10addr1_noack   :  1;  /* Master Abort 10 Bit Address Byte 1 */
+            uint32_t abrt_10addr2_noack   :  1;  /* Master Abort 10 Bit Address Byte 2 */
+            uint32_t abrt_txdata_noack    :  1;  /* Master Abort TX Noack Bit */
+            uint32_t abrt_gcall_noack     :  1;  /* Master Abort GC Noack Bit */
+            uint32_t abrt_gcall_read      :  1;  /* Master Abort GC Read Bit */
+            uint32_t abrt_hs_ackdet       :  1;  /* Master HS MC Ack */
+            uint32_t abrt_sbyte_ackdet    :  1;  /* Master Abort START Byte */
+            uint32_t abrt_hs_norstrt      :  1;  /* Master HS Restart Disabled */
+            uint32_t abrt_sbyte_norstrt   :  1;  /* Master Abort START No Restart */
+            uint32_t abrt_10b_rd_norstrt  :  1;  /* Master Abort 10 Bit No Restart */
+            uint32_t abrt_master_dis      :  1;  /* Master Oper Master Dis */
+            uint32_t arb_lost             :  1;  /* Master Abort Arbitration Lost */
+            uint32_t abrt_slvflush_txfifo :  1;  /* Slave Abort Flush TXFIFO */
+            uint32_t abrt_slv_arblost     :  1;  /* Slave Abort Arbitration Lost */
+            uint32_t abrt_slvrd_intx      :  1;  /* Slave Abort Read TX */
+            uint32_t                       : 16; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_I2C_TX_ABRT_SRC. */
-typedef volatile struct ALT_I2C_TX_ABRT_SRC_s  ALT_I2C_TX_ABRT_SRC_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_I2C_TX_ABRT_SRC_s ALT_I2C_TX_ABRT_SRC_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_I2C_TX_ABRT_SRC register from the beginning of the component. */
-#define ALT_I2C_TX_ABRT_SRC_OFST        0x80
+    #define ALT_I2C_TX_ABRT_SRC_OFST    0x80
 /* The address of the ALT_I2C_TX_ABRT_SRC register. */
-#define ALT_I2C_TX_ABRT_SRC_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_I2C_TX_ABRT_SRC_OFST))
+    #define ALT_I2C_TX_ABRT_SRC_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_I2C_TX_ABRT_SRC_OFST ) )
 
 /*
  * Register : Generate Slave Data NACK - ic_slv_data_nack_only
@@ -4592,6 +4691,7 @@ typedef volatile struct ALT_I2C_TX_ABRT_SRC_s  ALT_I2C_TX_ABRT_SRC_t;
  *  [31:1] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Generate Nack Bit - nack
  *
@@ -4607,37 +4707,40 @@ typedef volatile struct ALT_I2C_TX_ABRT_SRC_s  ALT_I2C_TX_ABRT_SRC_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_I2C_SLV_DATA_NACK_ONLY_NACK
  *
  * Generate NACK after data byte receive
  */
-#define ALT_I2C_SLV_DATA_NACK_ONLY_NACK_E_AFTERDBYTE    0x1
+    #define ALT_I2C_SLV_DATA_NACK_ONLY_NACK_E_AFTERDBYTE    0x1
+
 /*
  * Enumerated value for register field ALT_I2C_SLV_DATA_NACK_ONLY_NACK
  *
  * Generate NACK/ACK normally
  */
-#define ALT_I2C_SLV_DATA_NACK_ONLY_NACK_E_NORM          0x0
+    #define ALT_I2C_SLV_DATA_NACK_ONLY_NACK_E_NORM          0x0
 
 /* The Least Significant Bit (LSB) position of the ALT_I2C_SLV_DATA_NACK_ONLY_NACK register field. */
-#define ALT_I2C_SLV_DATA_NACK_ONLY_NACK_LSB        0
+    #define ALT_I2C_SLV_DATA_NACK_ONLY_NACK_LSB             0
 /* The Most Significant Bit (MSB) position of the ALT_I2C_SLV_DATA_NACK_ONLY_NACK register field. */
-#define ALT_I2C_SLV_DATA_NACK_ONLY_NACK_MSB        0
+    #define ALT_I2C_SLV_DATA_NACK_ONLY_NACK_MSB             0
 /* The width in bits of the ALT_I2C_SLV_DATA_NACK_ONLY_NACK register field. */
-#define ALT_I2C_SLV_DATA_NACK_ONLY_NACK_WIDTH      1
+    #define ALT_I2C_SLV_DATA_NACK_ONLY_NACK_WIDTH           1
 /* The mask used to set the ALT_I2C_SLV_DATA_NACK_ONLY_NACK register field value. */
-#define ALT_I2C_SLV_DATA_NACK_ONLY_NACK_SET_MSK    0x00000001
+    #define ALT_I2C_SLV_DATA_NACK_ONLY_NACK_SET_MSK         0x00000001
 /* The mask used to clear the ALT_I2C_SLV_DATA_NACK_ONLY_NACK register field value. */
-#define ALT_I2C_SLV_DATA_NACK_ONLY_NACK_CLR_MSK    0xfffffffe
+    #define ALT_I2C_SLV_DATA_NACK_ONLY_NACK_CLR_MSK         0xfffffffe
 /* The reset value of the ALT_I2C_SLV_DATA_NACK_ONLY_NACK register field. */
-#define ALT_I2C_SLV_DATA_NACK_ONLY_NACK_RESET      0x0
+    #define ALT_I2C_SLV_DATA_NACK_ONLY_NACK_RESET           0x0
 /* Extracts the ALT_I2C_SLV_DATA_NACK_ONLY_NACK field value from a register. */
-#define ALT_I2C_SLV_DATA_NACK_ONLY_NACK_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_I2C_SLV_DATA_NACK_ONLY_NACK_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_I2C_SLV_DATA_NACK_ONLY_NACK register field value suitable for setting the register. */
-#define ALT_I2C_SLV_DATA_NACK_ONLY_NACK_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_I2C_SLV_DATA_NACK_ONLY_NACK_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -4648,20 +4751,20 @@ typedef volatile struct ALT_I2C_TX_ABRT_SRC_s  ALT_I2C_TX_ABRT_SRC_t;
  *
  * The struct declaration for register ALT_I2C_SLV_DATA_NACK_ONLY.
  */
-struct ALT_I2C_SLV_DATA_NACK_ONLY_s
-{
-    uint32_t  nack :  1;  /* Generate Nack Bit */
-    uint32_t       : 31;  /* *UNDEFINED* */
-};
+        struct ALT_I2C_SLV_DATA_NACK_ONLY_s
+        {
+            uint32_t nack :  1;  /* Generate Nack Bit */
+            uint32_t       : 31; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_I2C_SLV_DATA_NACK_ONLY. */
-typedef volatile struct ALT_I2C_SLV_DATA_NACK_ONLY_s  ALT_I2C_SLV_DATA_NACK_ONLY_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_I2C_SLV_DATA_NACK_ONLY_s ALT_I2C_SLV_DATA_NACK_ONLY_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_I2C_SLV_DATA_NACK_ONLY register from the beginning of the component. */
-#define ALT_I2C_SLV_DATA_NACK_ONLY_OFST        0x84
+    #define ALT_I2C_SLV_DATA_NACK_ONLY_OFST    0x84
 /* The address of the ALT_I2C_SLV_DATA_NACK_ONLY register. */
-#define ALT_I2C_SLV_DATA_NACK_ONLY_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_I2C_SLV_DATA_NACK_ONLY_OFST))
+    #define ALT_I2C_SLV_DATA_NACK_ONLY_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_I2C_SLV_DATA_NACK_ONLY_OFST ) )
 
 /*
  * Register : DMA Control - ic_dma_cr
@@ -4679,6 +4782,7 @@ typedef volatile struct ALT_I2C_SLV_DATA_NACK_ONLY_s  ALT_I2C_SLV_DATA_NACK_ONLY
  *  [31:2] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Receive DMA Enable Bit - rdmae
  *
@@ -4694,35 +4798,37 @@ typedef volatile struct ALT_I2C_SLV_DATA_NACK_ONLY_s  ALT_I2C_SLV_DATA_NACK_ONLY
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_I2C_DMA_CR_RDMAE
  *
  * Receive DMA disable
  */
-#define ALT_I2C_DMA_CR_RDMAE_E_DIS  0x0
+    #define ALT_I2C_DMA_CR_RDMAE_E_DIS      0x0
+
 /*
  * Enumerated value for register field ALT_I2C_DMA_CR_RDMAE
  *
  * Receive DMA enabled
  */
-#define ALT_I2C_DMA_CR_RDMAE_E_EN   0x1
+    #define ALT_I2C_DMA_CR_RDMAE_E_EN       0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_I2C_DMA_CR_RDMAE register field. */
-#define ALT_I2C_DMA_CR_RDMAE_LSB        0
+    #define ALT_I2C_DMA_CR_RDMAE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_I2C_DMA_CR_RDMAE register field. */
-#define ALT_I2C_DMA_CR_RDMAE_MSB        0
+    #define ALT_I2C_DMA_CR_RDMAE_MSB        0
 /* The width in bits of the ALT_I2C_DMA_CR_RDMAE register field. */
-#define ALT_I2C_DMA_CR_RDMAE_WIDTH      1
+    #define ALT_I2C_DMA_CR_RDMAE_WIDTH      1
 /* The mask used to set the ALT_I2C_DMA_CR_RDMAE register field value. */
-#define ALT_I2C_DMA_CR_RDMAE_SET_MSK    0x00000001
+    #define ALT_I2C_DMA_CR_RDMAE_SET_MSK    0x00000001
 /* The mask used to clear the ALT_I2C_DMA_CR_RDMAE register field value. */
-#define ALT_I2C_DMA_CR_RDMAE_CLR_MSK    0xfffffffe
+    #define ALT_I2C_DMA_CR_RDMAE_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_I2C_DMA_CR_RDMAE register field. */
-#define ALT_I2C_DMA_CR_RDMAE_RESET      0x0
+    #define ALT_I2C_DMA_CR_RDMAE_RESET      0x0
 /* Extracts the ALT_I2C_DMA_CR_RDMAE field value from a register. */
-#define ALT_I2C_DMA_CR_RDMAE_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_I2C_DMA_CR_RDMAE_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_I2C_DMA_CR_RDMAE register field value suitable for setting the register. */
-#define ALT_I2C_DMA_CR_RDMAE_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_I2C_DMA_CR_RDMAE_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
 /*
  * Field : Transmit DMA Enable Bit - tdmae
@@ -4739,37 +4845,40 @@ typedef volatile struct ALT_I2C_SLV_DATA_NACK_ONLY_s  ALT_I2C_SLV_DATA_NACK_ONLY
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_I2C_DMA_CR_TDMAE
  *
  * Transmit DMA disable
  */
-#define ALT_I2C_DMA_CR_TDMAE_E_DIS  0x0
+    #define ALT_I2C_DMA_CR_TDMAE_E_DIS      0x0
+
 /*
  * Enumerated value for register field ALT_I2C_DMA_CR_TDMAE
  *
  * Transmit DMA enabled
  */
-#define ALT_I2C_DMA_CR_TDMAE_E_EN   0x1
+    #define ALT_I2C_DMA_CR_TDMAE_E_EN       0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_I2C_DMA_CR_TDMAE register field. */
-#define ALT_I2C_DMA_CR_TDMAE_LSB        1
+    #define ALT_I2C_DMA_CR_TDMAE_LSB        1
 /* The Most Significant Bit (MSB) position of the ALT_I2C_DMA_CR_TDMAE register field. */
-#define ALT_I2C_DMA_CR_TDMAE_MSB        1
+    #define ALT_I2C_DMA_CR_TDMAE_MSB        1
 /* The width in bits of the ALT_I2C_DMA_CR_TDMAE register field. */
-#define ALT_I2C_DMA_CR_TDMAE_WIDTH      1
+    #define ALT_I2C_DMA_CR_TDMAE_WIDTH      1
 /* The mask used to set the ALT_I2C_DMA_CR_TDMAE register field value. */
-#define ALT_I2C_DMA_CR_TDMAE_SET_MSK    0x00000002
+    #define ALT_I2C_DMA_CR_TDMAE_SET_MSK    0x00000002
 /* The mask used to clear the ALT_I2C_DMA_CR_TDMAE register field value. */
-#define ALT_I2C_DMA_CR_TDMAE_CLR_MSK    0xfffffffd
+    #define ALT_I2C_DMA_CR_TDMAE_CLR_MSK    0xfffffffd
 /* The reset value of the ALT_I2C_DMA_CR_TDMAE register field. */
-#define ALT_I2C_DMA_CR_TDMAE_RESET      0x0
+    #define ALT_I2C_DMA_CR_TDMAE_RESET      0x0
 /* Extracts the ALT_I2C_DMA_CR_TDMAE field value from a register. */
-#define ALT_I2C_DMA_CR_TDMAE_GET(value) (((value) & 0x00000002) >> 1)
+    #define ALT_I2C_DMA_CR_TDMAE_GET( value )    ( ( ( value ) & 0x00000002 ) >> 1 )
 /* Produces a ALT_I2C_DMA_CR_TDMAE register field value suitable for setting the register. */
-#define ALT_I2C_DMA_CR_TDMAE_SET(value) (((value) << 1) & 0x00000002)
+    #define ALT_I2C_DMA_CR_TDMAE_SET( value )    ( ( ( value ) << 1 ) & 0x00000002 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -4780,21 +4889,21 @@ typedef volatile struct ALT_I2C_SLV_DATA_NACK_ONLY_s  ALT_I2C_SLV_DATA_NACK_ONLY
  *
  * The struct declaration for register ALT_I2C_DMA_CR.
  */
-struct ALT_I2C_DMA_CR_s
-{
-    uint32_t  rdmae :  1;  /* Receive DMA Enable Bit */
-    uint32_t  tdmae :  1;  /* Transmit DMA Enable Bit */
-    uint32_t        : 30;  /* *UNDEFINED* */
-};
+        struct ALT_I2C_DMA_CR_s
+        {
+            uint32_t rdmae :  1;  /* Receive DMA Enable Bit */
+            uint32_t tdmae :  1;  /* Transmit DMA Enable Bit */
+            uint32_t        : 30; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_I2C_DMA_CR. */
-typedef volatile struct ALT_I2C_DMA_CR_s  ALT_I2C_DMA_CR_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_I2C_DMA_CR_s ALT_I2C_DMA_CR_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_I2C_DMA_CR register from the beginning of the component. */
-#define ALT_I2C_DMA_CR_OFST        0x88
+    #define ALT_I2C_DMA_CR_OFST    0x88
 /* The address of the ALT_I2C_DMA_CR register. */
-#define ALT_I2C_DMA_CR_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_I2C_DMA_CR_OFST))
+    #define ALT_I2C_DMA_CR_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_I2C_DMA_CR_OFST ) )
 
 /*
  * Register : DMA Transmit Data Level - ic_dma_tdlr
@@ -4809,6 +4918,7 @@ typedef volatile struct ALT_I2C_DMA_CR_s  ALT_I2C_DMA_CR_t;
  *  [31:6] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : DMA Transmit Data Level Bit - dmatdl
  *
@@ -4821,23 +4931,24 @@ typedef volatile struct ALT_I2C_DMA_CR_s  ALT_I2C_DMA_CR_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_DMA_TDLR_DMATDL register field. */
-#define ALT_I2C_DMA_TDLR_DMATDL_LSB        0
+    #define ALT_I2C_DMA_TDLR_DMATDL_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_I2C_DMA_TDLR_DMATDL register field. */
-#define ALT_I2C_DMA_TDLR_DMATDL_MSB        5
+    #define ALT_I2C_DMA_TDLR_DMATDL_MSB        5
 /* The width in bits of the ALT_I2C_DMA_TDLR_DMATDL register field. */
-#define ALT_I2C_DMA_TDLR_DMATDL_WIDTH      6
+    #define ALT_I2C_DMA_TDLR_DMATDL_WIDTH      6
 /* The mask used to set the ALT_I2C_DMA_TDLR_DMATDL register field value. */
-#define ALT_I2C_DMA_TDLR_DMATDL_SET_MSK    0x0000003f
+    #define ALT_I2C_DMA_TDLR_DMATDL_SET_MSK    0x0000003f
 /* The mask used to clear the ALT_I2C_DMA_TDLR_DMATDL register field value. */
-#define ALT_I2C_DMA_TDLR_DMATDL_CLR_MSK    0xffffffc0
+    #define ALT_I2C_DMA_TDLR_DMATDL_CLR_MSK    0xffffffc0
 /* The reset value of the ALT_I2C_DMA_TDLR_DMATDL register field. */
-#define ALT_I2C_DMA_TDLR_DMATDL_RESET      0x0
+    #define ALT_I2C_DMA_TDLR_DMATDL_RESET      0x0
 /* Extracts the ALT_I2C_DMA_TDLR_DMATDL field value from a register. */
-#define ALT_I2C_DMA_TDLR_DMATDL_GET(value) (((value) & 0x0000003f) >> 0)
+    #define ALT_I2C_DMA_TDLR_DMATDL_GET( value )    ( ( ( value ) & 0x0000003f ) >> 0 )
 /* Produces a ALT_I2C_DMA_TDLR_DMATDL register field value suitable for setting the register. */
-#define ALT_I2C_DMA_TDLR_DMATDL_SET(value) (((value) << 0) & 0x0000003f)
+    #define ALT_I2C_DMA_TDLR_DMATDL_SET( value )    ( ( ( value ) << 0 ) & 0x0000003f )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -4848,20 +4959,20 @@ typedef volatile struct ALT_I2C_DMA_CR_s  ALT_I2C_DMA_CR_t;
  *
  * The struct declaration for register ALT_I2C_DMA_TDLR.
  */
-struct ALT_I2C_DMA_TDLR_s
-{
-    uint32_t  dmatdl :  6;  /* DMA Transmit Data Level Bit */
-    uint32_t         : 26;  /* *UNDEFINED* */
-};
+        struct ALT_I2C_DMA_TDLR_s
+        {
+            uint32_t dmatdl :  6;  /* DMA Transmit Data Level Bit */
+            uint32_t         : 26; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_I2C_DMA_TDLR. */
-typedef volatile struct ALT_I2C_DMA_TDLR_s  ALT_I2C_DMA_TDLR_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_I2C_DMA_TDLR_s ALT_I2C_DMA_TDLR_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_I2C_DMA_TDLR register from the beginning of the component. */
-#define ALT_I2C_DMA_TDLR_OFST        0x8c
+    #define ALT_I2C_DMA_TDLR_OFST    0x8c
 /* The address of the ALT_I2C_DMA_TDLR register. */
-#define ALT_I2C_DMA_TDLR_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_I2C_DMA_TDLR_OFST))
+    #define ALT_I2C_DMA_TDLR_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_I2C_DMA_TDLR_OFST ) )
 
 /*
  * Register : Receive Data Level - ic_dma_rdlr
@@ -4876,6 +4987,7 @@ typedef volatile struct ALT_I2C_DMA_TDLR_s  ALT_I2C_DMA_TDLR_t;
  *  [31:6] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Receive Data Level Bits - dmardl
  *
@@ -4890,23 +5002,24 @@ typedef volatile struct ALT_I2C_DMA_TDLR_s  ALT_I2C_DMA_TDLR_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_DMA_RDLR_DMARDL register field. */
-#define ALT_I2C_DMA_RDLR_DMARDL_LSB        0
+    #define ALT_I2C_DMA_RDLR_DMARDL_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_I2C_DMA_RDLR_DMARDL register field. */
-#define ALT_I2C_DMA_RDLR_DMARDL_MSB        5
+    #define ALT_I2C_DMA_RDLR_DMARDL_MSB        5
 /* The width in bits of the ALT_I2C_DMA_RDLR_DMARDL register field. */
-#define ALT_I2C_DMA_RDLR_DMARDL_WIDTH      6
+    #define ALT_I2C_DMA_RDLR_DMARDL_WIDTH      6
 /* The mask used to set the ALT_I2C_DMA_RDLR_DMARDL register field value. */
-#define ALT_I2C_DMA_RDLR_DMARDL_SET_MSK    0x0000003f
+    #define ALT_I2C_DMA_RDLR_DMARDL_SET_MSK    0x0000003f
 /* The mask used to clear the ALT_I2C_DMA_RDLR_DMARDL register field value. */
-#define ALT_I2C_DMA_RDLR_DMARDL_CLR_MSK    0xffffffc0
+    #define ALT_I2C_DMA_RDLR_DMARDL_CLR_MSK    0xffffffc0
 /* The reset value of the ALT_I2C_DMA_RDLR_DMARDL register field. */
-#define ALT_I2C_DMA_RDLR_DMARDL_RESET      0x0
+    #define ALT_I2C_DMA_RDLR_DMARDL_RESET      0x0
 /* Extracts the ALT_I2C_DMA_RDLR_DMARDL field value from a register. */
-#define ALT_I2C_DMA_RDLR_DMARDL_GET(value) (((value) & 0x0000003f) >> 0)
+    #define ALT_I2C_DMA_RDLR_DMARDL_GET( value )    ( ( ( value ) & 0x0000003f ) >> 0 )
 /* Produces a ALT_I2C_DMA_RDLR_DMARDL register field value suitable for setting the register. */
-#define ALT_I2C_DMA_RDLR_DMARDL_SET(value) (((value) << 0) & 0x0000003f)
+    #define ALT_I2C_DMA_RDLR_DMARDL_SET( value )    ( ( ( value ) << 0 ) & 0x0000003f )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -4917,20 +5030,20 @@ typedef volatile struct ALT_I2C_DMA_TDLR_s  ALT_I2C_DMA_TDLR_t;
  *
  * The struct declaration for register ALT_I2C_DMA_RDLR.
  */
-struct ALT_I2C_DMA_RDLR_s
-{
-    uint32_t  dmardl :  6;  /* Receive Data Level Bits */
-    uint32_t         : 26;  /* *UNDEFINED* */
-};
+        struct ALT_I2C_DMA_RDLR_s
+        {
+            uint32_t dmardl :  6;  /* Receive Data Level Bits */
+            uint32_t         : 26; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_I2C_DMA_RDLR. */
-typedef volatile struct ALT_I2C_DMA_RDLR_s  ALT_I2C_DMA_RDLR_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_I2C_DMA_RDLR_s ALT_I2C_DMA_RDLR_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_I2C_DMA_RDLR register from the beginning of the component. */
-#define ALT_I2C_DMA_RDLR_OFST        0x90
+    #define ALT_I2C_DMA_RDLR_OFST    0x90
 /* The address of the ALT_I2C_DMA_RDLR register. */
-#define ALT_I2C_DMA_RDLR_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_I2C_DMA_RDLR_OFST))
+    #define ALT_I2C_DMA_RDLR_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_I2C_DMA_RDLR_OFST ) )
 
 /*
  * Register : SDA Setup Register - ic_sda_setup
@@ -4955,6 +5068,7 @@ typedef volatile struct ALT_I2C_DMA_RDLR_s  ALT_I2C_DMA_RDLR_t;
  *  [31:8] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : SDA Setup Value - sda_setup
  *
@@ -4965,23 +5079,24 @@ typedef volatile struct ALT_I2C_DMA_RDLR_s  ALT_I2C_DMA_RDLR_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_SDA_SETUP_SDA_SETUP register field. */
-#define ALT_I2C_SDA_SETUP_SDA_SETUP_LSB        0
+    #define ALT_I2C_SDA_SETUP_SDA_SETUP_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_I2C_SDA_SETUP_SDA_SETUP register field. */
-#define ALT_I2C_SDA_SETUP_SDA_SETUP_MSB        7
+    #define ALT_I2C_SDA_SETUP_SDA_SETUP_MSB        7
 /* The width in bits of the ALT_I2C_SDA_SETUP_SDA_SETUP register field. */
-#define ALT_I2C_SDA_SETUP_SDA_SETUP_WIDTH      8
+    #define ALT_I2C_SDA_SETUP_SDA_SETUP_WIDTH      8
 /* The mask used to set the ALT_I2C_SDA_SETUP_SDA_SETUP register field value. */
-#define ALT_I2C_SDA_SETUP_SDA_SETUP_SET_MSK    0x000000ff
+    #define ALT_I2C_SDA_SETUP_SDA_SETUP_SET_MSK    0x000000ff
 /* The mask used to clear the ALT_I2C_SDA_SETUP_SDA_SETUP register field value. */
-#define ALT_I2C_SDA_SETUP_SDA_SETUP_CLR_MSK    0xffffff00
+    #define ALT_I2C_SDA_SETUP_SDA_SETUP_CLR_MSK    0xffffff00
 /* The reset value of the ALT_I2C_SDA_SETUP_SDA_SETUP register field. */
-#define ALT_I2C_SDA_SETUP_SDA_SETUP_RESET      0x64
+    #define ALT_I2C_SDA_SETUP_SDA_SETUP_RESET      0x64
 /* Extracts the ALT_I2C_SDA_SETUP_SDA_SETUP field value from a register. */
-#define ALT_I2C_SDA_SETUP_SDA_SETUP_GET(value) (((value) & 0x000000ff) >> 0)
+    #define ALT_I2C_SDA_SETUP_SDA_SETUP_GET( value )    ( ( ( value ) & 0x000000ff ) >> 0 )
 /* Produces a ALT_I2C_SDA_SETUP_SDA_SETUP register field value suitable for setting the register. */
-#define ALT_I2C_SDA_SETUP_SDA_SETUP_SET(value) (((value) << 0) & 0x000000ff)
+    #define ALT_I2C_SDA_SETUP_SDA_SETUP_SET( value )    ( ( ( value ) << 0 ) & 0x000000ff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -4992,20 +5107,20 @@ typedef volatile struct ALT_I2C_DMA_RDLR_s  ALT_I2C_DMA_RDLR_t;
  *
  * The struct declaration for register ALT_I2C_SDA_SETUP.
  */
-struct ALT_I2C_SDA_SETUP_s
-{
-    uint32_t  sda_setup :  8;  /* SDA Setup Value */
-    uint32_t            : 24;  /* *UNDEFINED* */
-};
+        struct ALT_I2C_SDA_SETUP_s
+        {
+            uint32_t sda_setup :  8;  /* SDA Setup Value */
+            uint32_t            : 24; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_I2C_SDA_SETUP. */
-typedef volatile struct ALT_I2C_SDA_SETUP_s  ALT_I2C_SDA_SETUP_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_I2C_SDA_SETUP_s ALT_I2C_SDA_SETUP_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_I2C_SDA_SETUP register from the beginning of the component. */
-#define ALT_I2C_SDA_SETUP_OFST        0x94
+    #define ALT_I2C_SDA_SETUP_OFST    0x94
 /* The address of the ALT_I2C_SDA_SETUP register. */
-#define ALT_I2C_SDA_SETUP_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_I2C_SDA_SETUP_OFST))
+    #define ALT_I2C_SDA_SETUP_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_I2C_SDA_SETUP_OFST ) )
 
 /*
  * Register : ACK General Call - ic_ack_general_call
@@ -5021,6 +5136,7 @@ typedef volatile struct ALT_I2C_SDA_SETUP_s  ALT_I2C_SDA_SETUP_t;
  *  [31:1] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : ACK General Call Bit - ack_gen_call
  *
@@ -5037,37 +5153,40 @@ typedef volatile struct ALT_I2C_SDA_SETUP_s  ALT_I2C_SDA_SETUP_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_I2C_ACK_GENERAL_CALL_ACK_GEN_CALL
  *
  * I2C responds with a NACK
  */
-#define ALT_I2C_ACK_GENERAL_CALL_ACK_GEN_CALL_E_NACK    0x0
+    #define ALT_I2C_ACK_GENERAL_CALL_ACK_GEN_CALL_E_NACK     0x0
+
 /*
  * Enumerated value for register field ALT_I2C_ACK_GENERAL_CALL_ACK_GEN_CALL
  *
  * I2C responds with an ACK
  */
-#define ALT_I2C_ACK_GENERAL_CALL_ACK_GEN_CALL_E_ACK     0x1
+    #define ALT_I2C_ACK_GENERAL_CALL_ACK_GEN_CALL_E_ACK      0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_I2C_ACK_GENERAL_CALL_ACK_GEN_CALL register field. */
-#define ALT_I2C_ACK_GENERAL_CALL_ACK_GEN_CALL_LSB        0
+    #define ALT_I2C_ACK_GENERAL_CALL_ACK_GEN_CALL_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_I2C_ACK_GENERAL_CALL_ACK_GEN_CALL register field. */
-#define ALT_I2C_ACK_GENERAL_CALL_ACK_GEN_CALL_MSB        0
+    #define ALT_I2C_ACK_GENERAL_CALL_ACK_GEN_CALL_MSB        0
 /* The width in bits of the ALT_I2C_ACK_GENERAL_CALL_ACK_GEN_CALL register field. */
-#define ALT_I2C_ACK_GENERAL_CALL_ACK_GEN_CALL_WIDTH      1
+    #define ALT_I2C_ACK_GENERAL_CALL_ACK_GEN_CALL_WIDTH      1
 /* The mask used to set the ALT_I2C_ACK_GENERAL_CALL_ACK_GEN_CALL register field value. */
-#define ALT_I2C_ACK_GENERAL_CALL_ACK_GEN_CALL_SET_MSK    0x00000001
+    #define ALT_I2C_ACK_GENERAL_CALL_ACK_GEN_CALL_SET_MSK    0x00000001
 /* The mask used to clear the ALT_I2C_ACK_GENERAL_CALL_ACK_GEN_CALL register field value. */
-#define ALT_I2C_ACK_GENERAL_CALL_ACK_GEN_CALL_CLR_MSK    0xfffffffe
+    #define ALT_I2C_ACK_GENERAL_CALL_ACK_GEN_CALL_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_I2C_ACK_GENERAL_CALL_ACK_GEN_CALL register field. */
-#define ALT_I2C_ACK_GENERAL_CALL_ACK_GEN_CALL_RESET      0x1
+    #define ALT_I2C_ACK_GENERAL_CALL_ACK_GEN_CALL_RESET      0x1
 /* Extracts the ALT_I2C_ACK_GENERAL_CALL_ACK_GEN_CALL field value from a register. */
-#define ALT_I2C_ACK_GENERAL_CALL_ACK_GEN_CALL_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_I2C_ACK_GENERAL_CALL_ACK_GEN_CALL_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_I2C_ACK_GENERAL_CALL_ACK_GEN_CALL register field value suitable for setting the register. */
-#define ALT_I2C_ACK_GENERAL_CALL_ACK_GEN_CALL_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_I2C_ACK_GENERAL_CALL_ACK_GEN_CALL_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -5078,20 +5197,20 @@ typedef volatile struct ALT_I2C_SDA_SETUP_s  ALT_I2C_SDA_SETUP_t;
  *
  * The struct declaration for register ALT_I2C_ACK_GENERAL_CALL.
  */
-struct ALT_I2C_ACK_GENERAL_CALL_s
-{
-    uint32_t  ack_gen_call :  1;  /* ACK General Call Bit */
-    uint32_t               : 31;  /* *UNDEFINED* */
-};
+        struct ALT_I2C_ACK_GENERAL_CALL_s
+        {
+            uint32_t ack_gen_call :  1;  /* ACK General Call Bit */
+            uint32_t               : 31; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_I2C_ACK_GENERAL_CALL. */
-typedef volatile struct ALT_I2C_ACK_GENERAL_CALL_s  ALT_I2C_ACK_GENERAL_CALL_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_I2C_ACK_GENERAL_CALL_s ALT_I2C_ACK_GENERAL_CALL_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_I2C_ACK_GENERAL_CALL register from the beginning of the component. */
-#define ALT_I2C_ACK_GENERAL_CALL_OFST        0x98
+    #define ALT_I2C_ACK_GENERAL_CALL_OFST    0x98
 /* The address of the ALT_I2C_ACK_GENERAL_CALL register. */
-#define ALT_I2C_ACK_GENERAL_CALL_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_I2C_ACK_GENERAL_CALL_OFST))
+    #define ALT_I2C_ACK_GENERAL_CALL_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_I2C_ACK_GENERAL_CALL_OFST ) )
 
 /*
  * Register : Enable Status Register - ic_enable_status
@@ -5114,6 +5233,7 @@ typedef volatile struct ALT_I2C_ACK_GENERAL_CALL_s  ALT_I2C_ACK_GENERAL_CALL_t;
  *  [31:3] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Enable Status Bit - ic_en
  *
@@ -5127,21 +5247,21 @@ typedef volatile struct ALT_I2C_ACK_GENERAL_CALL_s  ALT_I2C_ACK_GENERAL_CALL_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_EN_STAT_IC_EN register field. */
-#define ALT_I2C_EN_STAT_IC_EN_LSB        0
+    #define ALT_I2C_EN_STAT_IC_EN_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_I2C_EN_STAT_IC_EN register field. */
-#define ALT_I2C_EN_STAT_IC_EN_MSB        0
+    #define ALT_I2C_EN_STAT_IC_EN_MSB        0
 /* The width in bits of the ALT_I2C_EN_STAT_IC_EN register field. */
-#define ALT_I2C_EN_STAT_IC_EN_WIDTH      1
+    #define ALT_I2C_EN_STAT_IC_EN_WIDTH      1
 /* The mask used to set the ALT_I2C_EN_STAT_IC_EN register field value. */
-#define ALT_I2C_EN_STAT_IC_EN_SET_MSK    0x00000001
+    #define ALT_I2C_EN_STAT_IC_EN_SET_MSK    0x00000001
 /* The mask used to clear the ALT_I2C_EN_STAT_IC_EN register field value. */
-#define ALT_I2C_EN_STAT_IC_EN_CLR_MSK    0xfffffffe
+    #define ALT_I2C_EN_STAT_IC_EN_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_I2C_EN_STAT_IC_EN register field. */
-#define ALT_I2C_EN_STAT_IC_EN_RESET      0x0
+    #define ALT_I2C_EN_STAT_IC_EN_RESET      0x0
 /* Extracts the ALT_I2C_EN_STAT_IC_EN field value from a register. */
-#define ALT_I2C_EN_STAT_IC_EN_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_I2C_EN_STAT_IC_EN_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_I2C_EN_STAT_IC_EN register field value suitable for setting the register. */
-#define ALT_I2C_EN_STAT_IC_EN_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_I2C_EN_STAT_IC_EN_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
 /*
  * Field : Slave Disabled While Busy Bit - slv_disabled_while_busy
@@ -5165,21 +5285,21 @@ typedef volatile struct ALT_I2C_ACK_GENERAL_CALL_s  ALT_I2C_ACK_GENERAL_CALL_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_EN_STAT_SLV_DISD_WHILE_BUSY register field. */
-#define ALT_I2C_EN_STAT_SLV_DISD_WHILE_BUSY_LSB        1
+    #define ALT_I2C_EN_STAT_SLV_DISD_WHILE_BUSY_LSB        1
 /* The Most Significant Bit (MSB) position of the ALT_I2C_EN_STAT_SLV_DISD_WHILE_BUSY register field. */
-#define ALT_I2C_EN_STAT_SLV_DISD_WHILE_BUSY_MSB        1
+    #define ALT_I2C_EN_STAT_SLV_DISD_WHILE_BUSY_MSB        1
 /* The width in bits of the ALT_I2C_EN_STAT_SLV_DISD_WHILE_BUSY register field. */
-#define ALT_I2C_EN_STAT_SLV_DISD_WHILE_BUSY_WIDTH      1
+    #define ALT_I2C_EN_STAT_SLV_DISD_WHILE_BUSY_WIDTH      1
 /* The mask used to set the ALT_I2C_EN_STAT_SLV_DISD_WHILE_BUSY register field value. */
-#define ALT_I2C_EN_STAT_SLV_DISD_WHILE_BUSY_SET_MSK    0x00000002
+    #define ALT_I2C_EN_STAT_SLV_DISD_WHILE_BUSY_SET_MSK    0x00000002
 /* The mask used to clear the ALT_I2C_EN_STAT_SLV_DISD_WHILE_BUSY register field value. */
-#define ALT_I2C_EN_STAT_SLV_DISD_WHILE_BUSY_CLR_MSK    0xfffffffd
+    #define ALT_I2C_EN_STAT_SLV_DISD_WHILE_BUSY_CLR_MSK    0xfffffffd
 /* The reset value of the ALT_I2C_EN_STAT_SLV_DISD_WHILE_BUSY register field. */
-#define ALT_I2C_EN_STAT_SLV_DISD_WHILE_BUSY_RESET      0x0
+    #define ALT_I2C_EN_STAT_SLV_DISD_WHILE_BUSY_RESET      0x0
 /* Extracts the ALT_I2C_EN_STAT_SLV_DISD_WHILE_BUSY field value from a register. */
-#define ALT_I2C_EN_STAT_SLV_DISD_WHILE_BUSY_GET(value) (((value) & 0x00000002) >> 1)
+    #define ALT_I2C_EN_STAT_SLV_DISD_WHILE_BUSY_GET( value )    ( ( ( value ) & 0x00000002 ) >> 1 )
 /* Produces a ALT_I2C_EN_STAT_SLV_DISD_WHILE_BUSY register field value suitable for setting the register. */
-#define ALT_I2C_EN_STAT_SLV_DISD_WHILE_BUSY_SET(value) (((value) << 1) & 0x00000002)
+    #define ALT_I2C_EN_STAT_SLV_DISD_WHILE_BUSY_SET( value )    ( ( ( value ) << 1 ) & 0x00000002 )
 
 /*
  * Field : Slave Received Data Lost Bit - slv_rx_data_lost
@@ -5200,23 +5320,24 @@ typedef volatile struct ALT_I2C_ACK_GENERAL_CALL_s  ALT_I2C_ACK_GENERAL_CALL_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_EN_STAT_SLV_RX_DATA_LOST register field. */
-#define ALT_I2C_EN_STAT_SLV_RX_DATA_LOST_LSB        2
+    #define ALT_I2C_EN_STAT_SLV_RX_DATA_LOST_LSB        2
 /* The Most Significant Bit (MSB) position of the ALT_I2C_EN_STAT_SLV_RX_DATA_LOST register field. */
-#define ALT_I2C_EN_STAT_SLV_RX_DATA_LOST_MSB        2
+    #define ALT_I2C_EN_STAT_SLV_RX_DATA_LOST_MSB        2
 /* The width in bits of the ALT_I2C_EN_STAT_SLV_RX_DATA_LOST register field. */
-#define ALT_I2C_EN_STAT_SLV_RX_DATA_LOST_WIDTH      1
+    #define ALT_I2C_EN_STAT_SLV_RX_DATA_LOST_WIDTH      1
 /* The mask used to set the ALT_I2C_EN_STAT_SLV_RX_DATA_LOST register field value. */
-#define ALT_I2C_EN_STAT_SLV_RX_DATA_LOST_SET_MSK    0x00000004
+    #define ALT_I2C_EN_STAT_SLV_RX_DATA_LOST_SET_MSK    0x00000004
 /* The mask used to clear the ALT_I2C_EN_STAT_SLV_RX_DATA_LOST register field value. */
-#define ALT_I2C_EN_STAT_SLV_RX_DATA_LOST_CLR_MSK    0xfffffffb
+    #define ALT_I2C_EN_STAT_SLV_RX_DATA_LOST_CLR_MSK    0xfffffffb
 /* The reset value of the ALT_I2C_EN_STAT_SLV_RX_DATA_LOST register field. */
-#define ALT_I2C_EN_STAT_SLV_RX_DATA_LOST_RESET      0x0
+    #define ALT_I2C_EN_STAT_SLV_RX_DATA_LOST_RESET      0x0
 /* Extracts the ALT_I2C_EN_STAT_SLV_RX_DATA_LOST field value from a register. */
-#define ALT_I2C_EN_STAT_SLV_RX_DATA_LOST_GET(value) (((value) & 0x00000004) >> 2)
+    #define ALT_I2C_EN_STAT_SLV_RX_DATA_LOST_GET( value )    ( ( ( value ) & 0x00000004 ) >> 2 )
 /* Produces a ALT_I2C_EN_STAT_SLV_RX_DATA_LOST register field value suitable for setting the register. */
-#define ALT_I2C_EN_STAT_SLV_RX_DATA_LOST_SET(value) (((value) << 2) & 0x00000004)
+    #define ALT_I2C_EN_STAT_SLV_RX_DATA_LOST_SET( value )    ( ( ( value ) << 2 ) & 0x00000004 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -5227,22 +5348,22 @@ typedef volatile struct ALT_I2C_ACK_GENERAL_CALL_s  ALT_I2C_ACK_GENERAL_CALL_t;
  *
  * The struct declaration for register ALT_I2C_EN_STAT.
  */
-struct ALT_I2C_EN_STAT_s
-{
-    const uint32_t  ic_en                   :  1;  /* Enable Status Bit */
-    const uint32_t  slv_disabled_while_busy :  1;  /* Slave Disabled While Busy Bit */
-    const uint32_t  slv_rx_data_lost        :  1;  /* Slave Received Data Lost Bit */
-    uint32_t                                : 29;  /* *UNDEFINED* */
-};
+        struct ALT_I2C_EN_STAT_s
+        {
+            const uint32_t ic_en                   :  1;  /* Enable Status Bit */
+            const uint32_t slv_disabled_while_busy :  1;  /* Slave Disabled While Busy Bit */
+            const uint32_t slv_rx_data_lost        :  1;  /* Slave Received Data Lost Bit */
+            uint32_t                                : 29; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_I2C_EN_STAT. */
-typedef volatile struct ALT_I2C_EN_STAT_s  ALT_I2C_EN_STAT_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_I2C_EN_STAT_s ALT_I2C_EN_STAT_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_I2C_EN_STAT register from the beginning of the component. */
-#define ALT_I2C_EN_STAT_OFST        0x9c
+    #define ALT_I2C_EN_STAT_OFST    0x9c
 /* The address of the ALT_I2C_EN_STAT register. */
-#define ALT_I2C_EN_STAT_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_I2C_EN_STAT_OFST))
+    #define ALT_I2C_EN_STAT_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_I2C_EN_STAT_OFST ) )
 
 /*
  * Register : SS and FS Spike Suppression Limit Register - ic_fs_spklen
@@ -5259,6 +5380,7 @@ typedef volatile struct ALT_I2C_EN_STAT_s  ALT_I2C_EN_STAT_t;
  *  [31:8] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Spike Suppression Limit Register - spklen
  *
@@ -5275,23 +5397,24 @@ typedef volatile struct ALT_I2C_EN_STAT_s  ALT_I2C_EN_STAT_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_FS_SPKLEN_SPKLEN register field. */
-#define ALT_I2C_FS_SPKLEN_SPKLEN_LSB        0
+    #define ALT_I2C_FS_SPKLEN_SPKLEN_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_I2C_FS_SPKLEN_SPKLEN register field. */
-#define ALT_I2C_FS_SPKLEN_SPKLEN_MSB        7
+    #define ALT_I2C_FS_SPKLEN_SPKLEN_MSB        7
 /* The width in bits of the ALT_I2C_FS_SPKLEN_SPKLEN register field. */
-#define ALT_I2C_FS_SPKLEN_SPKLEN_WIDTH      8
+    #define ALT_I2C_FS_SPKLEN_SPKLEN_WIDTH      8
 /* The mask used to set the ALT_I2C_FS_SPKLEN_SPKLEN register field value. */
-#define ALT_I2C_FS_SPKLEN_SPKLEN_SET_MSK    0x000000ff
+    #define ALT_I2C_FS_SPKLEN_SPKLEN_SET_MSK    0x000000ff
 /* The mask used to clear the ALT_I2C_FS_SPKLEN_SPKLEN register field value. */
-#define ALT_I2C_FS_SPKLEN_SPKLEN_CLR_MSK    0xffffff00
+    #define ALT_I2C_FS_SPKLEN_SPKLEN_CLR_MSK    0xffffff00
 /* The reset value of the ALT_I2C_FS_SPKLEN_SPKLEN register field. */
-#define ALT_I2C_FS_SPKLEN_SPKLEN_RESET      0x2
+    #define ALT_I2C_FS_SPKLEN_SPKLEN_RESET      0x2
 /* Extracts the ALT_I2C_FS_SPKLEN_SPKLEN field value from a register. */
-#define ALT_I2C_FS_SPKLEN_SPKLEN_GET(value) (((value) & 0x000000ff) >> 0)
+    #define ALT_I2C_FS_SPKLEN_SPKLEN_GET( value )    ( ( ( value ) & 0x000000ff ) >> 0 )
 /* Produces a ALT_I2C_FS_SPKLEN_SPKLEN register field value suitable for setting the register. */
-#define ALT_I2C_FS_SPKLEN_SPKLEN_SET(value) (((value) << 0) & 0x000000ff)
+    #define ALT_I2C_FS_SPKLEN_SPKLEN_SET( value )    ( ( ( value ) << 0 ) & 0x000000ff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -5302,20 +5425,20 @@ typedef volatile struct ALT_I2C_EN_STAT_s  ALT_I2C_EN_STAT_t;
  *
  * The struct declaration for register ALT_I2C_FS_SPKLEN.
  */
-struct ALT_I2C_FS_SPKLEN_s
-{
-    uint32_t  spklen :  8;  /* Spike Suppression Limit Register */
-    uint32_t         : 24;  /* *UNDEFINED* */
-};
+        struct ALT_I2C_FS_SPKLEN_s
+        {
+            uint32_t spklen :  8;  /* Spike Suppression Limit Register */
+            uint32_t         : 24; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_I2C_FS_SPKLEN. */
-typedef volatile struct ALT_I2C_FS_SPKLEN_s  ALT_I2C_FS_SPKLEN_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_I2C_FS_SPKLEN_s ALT_I2C_FS_SPKLEN_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_I2C_FS_SPKLEN register from the beginning of the component. */
-#define ALT_I2C_FS_SPKLEN_OFST        0xa0
+    #define ALT_I2C_FS_SPKLEN_OFST    0xa0
 /* The address of the ALT_I2C_FS_SPKLEN register. */
-#define ALT_I2C_FS_SPKLEN_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_I2C_FS_SPKLEN_OFST))
+    #define ALT_I2C_FS_SPKLEN_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_I2C_FS_SPKLEN_OFST ) )
 
 /*
  * Register : Component Parameter Register 1 - ic_comp_param_1
@@ -5338,6 +5461,7 @@ typedef volatile struct ALT_I2C_FS_SPKLEN_s  ALT_I2C_FS_SPKLEN_t;
  *  [31:24] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : APB Data Width Register - apb_data_width
  *
@@ -5352,29 +5476,30 @@ typedef volatile struct ALT_I2C_FS_SPKLEN_s  ALT_I2C_FS_SPKLEN_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_I2C_COMP_PARAM_1_APB_DATA_WIDTH
  *
  * APB Data Width is 32 Bits
  */
-#define ALT_I2C_COMP_PARAM_1_APB_DATA_WIDTH_E_WIDTH32BITS   0x2
+    #define ALT_I2C_COMP_PARAM_1_APB_DATA_WIDTH_E_WIDTH32BITS    0x2
 
 /* The Least Significant Bit (LSB) position of the ALT_I2C_COMP_PARAM_1_APB_DATA_WIDTH register field. */
-#define ALT_I2C_COMP_PARAM_1_APB_DATA_WIDTH_LSB        0
+    #define ALT_I2C_COMP_PARAM_1_APB_DATA_WIDTH_LSB              0
 /* The Most Significant Bit (MSB) position of the ALT_I2C_COMP_PARAM_1_APB_DATA_WIDTH register field. */
-#define ALT_I2C_COMP_PARAM_1_APB_DATA_WIDTH_MSB        1
+    #define ALT_I2C_COMP_PARAM_1_APB_DATA_WIDTH_MSB              1
 /* The width in bits of the ALT_I2C_COMP_PARAM_1_APB_DATA_WIDTH register field. */
-#define ALT_I2C_COMP_PARAM_1_APB_DATA_WIDTH_WIDTH      2
+    #define ALT_I2C_COMP_PARAM_1_APB_DATA_WIDTH_WIDTH            2
 /* The mask used to set the ALT_I2C_COMP_PARAM_1_APB_DATA_WIDTH register field value. */
-#define ALT_I2C_COMP_PARAM_1_APB_DATA_WIDTH_SET_MSK    0x00000003
+    #define ALT_I2C_COMP_PARAM_1_APB_DATA_WIDTH_SET_MSK          0x00000003
 /* The mask used to clear the ALT_I2C_COMP_PARAM_1_APB_DATA_WIDTH register field value. */
-#define ALT_I2C_COMP_PARAM_1_APB_DATA_WIDTH_CLR_MSK    0xfffffffc
+    #define ALT_I2C_COMP_PARAM_1_APB_DATA_WIDTH_CLR_MSK          0xfffffffc
 /* The reset value of the ALT_I2C_COMP_PARAM_1_APB_DATA_WIDTH register field. */
-#define ALT_I2C_COMP_PARAM_1_APB_DATA_WIDTH_RESET      0x2
+    #define ALT_I2C_COMP_PARAM_1_APB_DATA_WIDTH_RESET            0x2
 /* Extracts the ALT_I2C_COMP_PARAM_1_APB_DATA_WIDTH field value from a register. */
-#define ALT_I2C_COMP_PARAM_1_APB_DATA_WIDTH_GET(value) (((value) & 0x00000003) >> 0)
+    #define ALT_I2C_COMP_PARAM_1_APB_DATA_WIDTH_GET( value )    ( ( ( value ) & 0x00000003 ) >> 0 )
 /* Produces a ALT_I2C_COMP_PARAM_1_APB_DATA_WIDTH register field value suitable for setting the register. */
-#define ALT_I2C_COMP_PARAM_1_APB_DATA_WIDTH_SET(value) (((value) << 0) & 0x00000003)
+    #define ALT_I2C_COMP_PARAM_1_APB_DATA_WIDTH_SET( value )    ( ( ( value ) << 0 ) & 0x00000003 )
 
 /*
  * Field : Max Speed Mode - max_speed_mode
@@ -5390,29 +5515,30 @@ typedef volatile struct ALT_I2C_FS_SPKLEN_s  ALT_I2C_FS_SPKLEN_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_I2C_COMP_PARAM_1_MAX_SPEED_MOD
  *
  * Fast Mode (400 kbit/s)
  */
-#define ALT_I2C_COMP_PARAM_1_MAX_SPEED_MOD_E_FAST   0x2
+    #define ALT_I2C_COMP_PARAM_1_MAX_SPEED_MOD_E_FAST     0x2
 
 /* The Least Significant Bit (LSB) position of the ALT_I2C_COMP_PARAM_1_MAX_SPEED_MOD register field. */
-#define ALT_I2C_COMP_PARAM_1_MAX_SPEED_MOD_LSB        2
+    #define ALT_I2C_COMP_PARAM_1_MAX_SPEED_MOD_LSB        2
 /* The Most Significant Bit (MSB) position of the ALT_I2C_COMP_PARAM_1_MAX_SPEED_MOD register field. */
-#define ALT_I2C_COMP_PARAM_1_MAX_SPEED_MOD_MSB        3
+    #define ALT_I2C_COMP_PARAM_1_MAX_SPEED_MOD_MSB        3
 /* The width in bits of the ALT_I2C_COMP_PARAM_1_MAX_SPEED_MOD register field. */
-#define ALT_I2C_COMP_PARAM_1_MAX_SPEED_MOD_WIDTH      2
+    #define ALT_I2C_COMP_PARAM_1_MAX_SPEED_MOD_WIDTH      2
 /* The mask used to set the ALT_I2C_COMP_PARAM_1_MAX_SPEED_MOD register field value. */
-#define ALT_I2C_COMP_PARAM_1_MAX_SPEED_MOD_SET_MSK    0x0000000c
+    #define ALT_I2C_COMP_PARAM_1_MAX_SPEED_MOD_SET_MSK    0x0000000c
 /* The mask used to clear the ALT_I2C_COMP_PARAM_1_MAX_SPEED_MOD register field value. */
-#define ALT_I2C_COMP_PARAM_1_MAX_SPEED_MOD_CLR_MSK    0xfffffff3
+    #define ALT_I2C_COMP_PARAM_1_MAX_SPEED_MOD_CLR_MSK    0xfffffff3
 /* The reset value of the ALT_I2C_COMP_PARAM_1_MAX_SPEED_MOD register field. */
-#define ALT_I2C_COMP_PARAM_1_MAX_SPEED_MOD_RESET      0x2
+    #define ALT_I2C_COMP_PARAM_1_MAX_SPEED_MOD_RESET      0x2
 /* Extracts the ALT_I2C_COMP_PARAM_1_MAX_SPEED_MOD field value from a register. */
-#define ALT_I2C_COMP_PARAM_1_MAX_SPEED_MOD_GET(value) (((value) & 0x0000000c) >> 2)
+    #define ALT_I2C_COMP_PARAM_1_MAX_SPEED_MOD_GET( value )    ( ( ( value ) & 0x0000000c ) >> 2 )
 /* Produces a ALT_I2C_COMP_PARAM_1_MAX_SPEED_MOD register field value suitable for setting the register. */
-#define ALT_I2C_COMP_PARAM_1_MAX_SPEED_MOD_SET(value) (((value) << 2) & 0x0000000c)
+    #define ALT_I2C_COMP_PARAM_1_MAX_SPEED_MOD_SET( value )    ( ( ( value ) << 2 ) & 0x0000000c )
 
 /*
  * Field : CNT Registers Access - hc_count_values
@@ -5428,29 +5554,30 @@ typedef volatile struct ALT_I2C_FS_SPKLEN_s  ALT_I2C_FS_SPKLEN_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_I2C_COMP_PARAM_1_HC_COUNT_VALUES
  *
  * * CNT registers read/write
  */
-#define ALT_I2C_COMP_PARAM_1_HC_COUNT_VALUES_E_RDWR 0x0
+    #define ALT_I2C_COMP_PARAM_1_HC_COUNT_VALUES_E_RDWR     0x0
 
 /* The Least Significant Bit (LSB) position of the ALT_I2C_COMP_PARAM_1_HC_COUNT_VALUES register field. */
-#define ALT_I2C_COMP_PARAM_1_HC_COUNT_VALUES_LSB        4
+    #define ALT_I2C_COMP_PARAM_1_HC_COUNT_VALUES_LSB        4
 /* The Most Significant Bit (MSB) position of the ALT_I2C_COMP_PARAM_1_HC_COUNT_VALUES register field. */
-#define ALT_I2C_COMP_PARAM_1_HC_COUNT_VALUES_MSB        4
+    #define ALT_I2C_COMP_PARAM_1_HC_COUNT_VALUES_MSB        4
 /* The width in bits of the ALT_I2C_COMP_PARAM_1_HC_COUNT_VALUES register field. */
-#define ALT_I2C_COMP_PARAM_1_HC_COUNT_VALUES_WIDTH      1
+    #define ALT_I2C_COMP_PARAM_1_HC_COUNT_VALUES_WIDTH      1
 /* The mask used to set the ALT_I2C_COMP_PARAM_1_HC_COUNT_VALUES register field value. */
-#define ALT_I2C_COMP_PARAM_1_HC_COUNT_VALUES_SET_MSK    0x00000010
+    #define ALT_I2C_COMP_PARAM_1_HC_COUNT_VALUES_SET_MSK    0x00000010
 /* The mask used to clear the ALT_I2C_COMP_PARAM_1_HC_COUNT_VALUES register field value. */
-#define ALT_I2C_COMP_PARAM_1_HC_COUNT_VALUES_CLR_MSK    0xffffffef
+    #define ALT_I2C_COMP_PARAM_1_HC_COUNT_VALUES_CLR_MSK    0xffffffef
 /* The reset value of the ALT_I2C_COMP_PARAM_1_HC_COUNT_VALUES register field. */
-#define ALT_I2C_COMP_PARAM_1_HC_COUNT_VALUES_RESET      0x0
+    #define ALT_I2C_COMP_PARAM_1_HC_COUNT_VALUES_RESET      0x0
 /* Extracts the ALT_I2C_COMP_PARAM_1_HC_COUNT_VALUES field value from a register. */
-#define ALT_I2C_COMP_PARAM_1_HC_COUNT_VALUES_GET(value) (((value) & 0x00000010) >> 4)
+    #define ALT_I2C_COMP_PARAM_1_HC_COUNT_VALUES_GET( value )    ( ( ( value ) & 0x00000010 ) >> 4 )
 /* Produces a ALT_I2C_COMP_PARAM_1_HC_COUNT_VALUES register field value suitable for setting the register. */
-#define ALT_I2C_COMP_PARAM_1_HC_COUNT_VALUES_SET(value) (((value) << 4) & 0x00000010)
+    #define ALT_I2C_COMP_PARAM_1_HC_COUNT_VALUES_SET( value )    ( ( ( value ) << 4 ) & 0x00000010 )
 
 /*
  * Field : Intr IO - intr_io
@@ -5466,29 +5593,30 @@ typedef volatile struct ALT_I2C_FS_SPKLEN_s  ALT_I2C_FS_SPKLEN_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_I2C_COMP_PARAM_1_INTR_IO
  *
  * Combined Interrupt Output
  */
-#define ALT_I2C_COMP_PARAM_1_INTR_IO_E_COMBINED 0x1
+    #define ALT_I2C_COMP_PARAM_1_INTR_IO_E_COMBINED    0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_I2C_COMP_PARAM_1_INTR_IO register field. */
-#define ALT_I2C_COMP_PARAM_1_INTR_IO_LSB        5
+    #define ALT_I2C_COMP_PARAM_1_INTR_IO_LSB           5
 /* The Most Significant Bit (MSB) position of the ALT_I2C_COMP_PARAM_1_INTR_IO register field. */
-#define ALT_I2C_COMP_PARAM_1_INTR_IO_MSB        5
+    #define ALT_I2C_COMP_PARAM_1_INTR_IO_MSB           5
 /* The width in bits of the ALT_I2C_COMP_PARAM_1_INTR_IO register field. */
-#define ALT_I2C_COMP_PARAM_1_INTR_IO_WIDTH      1
+    #define ALT_I2C_COMP_PARAM_1_INTR_IO_WIDTH         1
 /* The mask used to set the ALT_I2C_COMP_PARAM_1_INTR_IO register field value. */
-#define ALT_I2C_COMP_PARAM_1_INTR_IO_SET_MSK    0x00000020
+    #define ALT_I2C_COMP_PARAM_1_INTR_IO_SET_MSK       0x00000020
 /* The mask used to clear the ALT_I2C_COMP_PARAM_1_INTR_IO register field value. */
-#define ALT_I2C_COMP_PARAM_1_INTR_IO_CLR_MSK    0xffffffdf
+    #define ALT_I2C_COMP_PARAM_1_INTR_IO_CLR_MSK       0xffffffdf
 /* The reset value of the ALT_I2C_COMP_PARAM_1_INTR_IO register field. */
-#define ALT_I2C_COMP_PARAM_1_INTR_IO_RESET      0x1
+    #define ALT_I2C_COMP_PARAM_1_INTR_IO_RESET         0x1
 /* Extracts the ALT_I2C_COMP_PARAM_1_INTR_IO field value from a register. */
-#define ALT_I2C_COMP_PARAM_1_INTR_IO_GET(value) (((value) & 0x00000020) >> 5)
+    #define ALT_I2C_COMP_PARAM_1_INTR_IO_GET( value )    ( ( ( value ) & 0x00000020 ) >> 5 )
 /* Produces a ALT_I2C_COMP_PARAM_1_INTR_IO register field value suitable for setting the register. */
-#define ALT_I2C_COMP_PARAM_1_INTR_IO_SET(value) (((value) << 5) & 0x00000020)
+    #define ALT_I2C_COMP_PARAM_1_INTR_IO_SET( value )    ( ( ( value ) << 5 ) & 0x00000020 )
 
 /*
  * Field : Has DMA - has_dma
@@ -5504,29 +5632,30 @@ typedef volatile struct ALT_I2C_FS_SPKLEN_s  ALT_I2C_FS_SPKLEN_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_I2C_COMP_PARAM_1_HAS_DMA
  *
  * Has DMA
  */
-#define ALT_I2C_COMP_PARAM_1_HAS_DMA_E_PRESENT  0x1
+    #define ALT_I2C_COMP_PARAM_1_HAS_DMA_E_PRESENT    0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_I2C_COMP_PARAM_1_HAS_DMA register field. */
-#define ALT_I2C_COMP_PARAM_1_HAS_DMA_LSB        6
+    #define ALT_I2C_COMP_PARAM_1_HAS_DMA_LSB          6
 /* The Most Significant Bit (MSB) position of the ALT_I2C_COMP_PARAM_1_HAS_DMA register field. */
-#define ALT_I2C_COMP_PARAM_1_HAS_DMA_MSB        6
+    #define ALT_I2C_COMP_PARAM_1_HAS_DMA_MSB          6
 /* The width in bits of the ALT_I2C_COMP_PARAM_1_HAS_DMA register field. */
-#define ALT_I2C_COMP_PARAM_1_HAS_DMA_WIDTH      1
+    #define ALT_I2C_COMP_PARAM_1_HAS_DMA_WIDTH        1
 /* The mask used to set the ALT_I2C_COMP_PARAM_1_HAS_DMA register field value. */
-#define ALT_I2C_COMP_PARAM_1_HAS_DMA_SET_MSK    0x00000040
+    #define ALT_I2C_COMP_PARAM_1_HAS_DMA_SET_MSK      0x00000040
 /* The mask used to clear the ALT_I2C_COMP_PARAM_1_HAS_DMA register field value. */
-#define ALT_I2C_COMP_PARAM_1_HAS_DMA_CLR_MSK    0xffffffbf
+    #define ALT_I2C_COMP_PARAM_1_HAS_DMA_CLR_MSK      0xffffffbf
 /* The reset value of the ALT_I2C_COMP_PARAM_1_HAS_DMA register field. */
-#define ALT_I2C_COMP_PARAM_1_HAS_DMA_RESET      0x1
+    #define ALT_I2C_COMP_PARAM_1_HAS_DMA_RESET        0x1
 /* Extracts the ALT_I2C_COMP_PARAM_1_HAS_DMA field value from a register. */
-#define ALT_I2C_COMP_PARAM_1_HAS_DMA_GET(value) (((value) & 0x00000040) >> 6)
+    #define ALT_I2C_COMP_PARAM_1_HAS_DMA_GET( value )    ( ( ( value ) & 0x00000040 ) >> 6 )
 /* Produces a ALT_I2C_COMP_PARAM_1_HAS_DMA register field value suitable for setting the register. */
-#define ALT_I2C_COMP_PARAM_1_HAS_DMA_SET(value) (((value) << 6) & 0x00000040)
+    #define ALT_I2C_COMP_PARAM_1_HAS_DMA_SET( value )    ( ( ( value ) << 6 ) & 0x00000040 )
 
 /*
  * Field : Add Encoded Params - add_encoded_params
@@ -5546,29 +5675,30 @@ typedef volatile struct ALT_I2C_FS_SPKLEN_s  ALT_I2C_FS_SPKLEN_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_I2C_COMP_PARAM_1_ADD_ENC_PARAMS
  *
  * Add Encoded Params
  */
-#define ALT_I2C_COMP_PARAM_1_ADD_ENC_PARAMS_E_ADDENCPARAMS  0x1
+    #define ALT_I2C_COMP_PARAM_1_ADD_ENC_PARAMS_E_ADDENCPARAMS    0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_I2C_COMP_PARAM_1_ADD_ENC_PARAMS register field. */
-#define ALT_I2C_COMP_PARAM_1_ADD_ENC_PARAMS_LSB        7
+    #define ALT_I2C_COMP_PARAM_1_ADD_ENC_PARAMS_LSB               7
 /* The Most Significant Bit (MSB) position of the ALT_I2C_COMP_PARAM_1_ADD_ENC_PARAMS register field. */
-#define ALT_I2C_COMP_PARAM_1_ADD_ENC_PARAMS_MSB        7
+    #define ALT_I2C_COMP_PARAM_1_ADD_ENC_PARAMS_MSB               7
 /* The width in bits of the ALT_I2C_COMP_PARAM_1_ADD_ENC_PARAMS register field. */
-#define ALT_I2C_COMP_PARAM_1_ADD_ENC_PARAMS_WIDTH      1
+    #define ALT_I2C_COMP_PARAM_1_ADD_ENC_PARAMS_WIDTH             1
 /* The mask used to set the ALT_I2C_COMP_PARAM_1_ADD_ENC_PARAMS register field value. */
-#define ALT_I2C_COMP_PARAM_1_ADD_ENC_PARAMS_SET_MSK    0x00000080
+    #define ALT_I2C_COMP_PARAM_1_ADD_ENC_PARAMS_SET_MSK           0x00000080
 /* The mask used to clear the ALT_I2C_COMP_PARAM_1_ADD_ENC_PARAMS register field value. */
-#define ALT_I2C_COMP_PARAM_1_ADD_ENC_PARAMS_CLR_MSK    0xffffff7f
+    #define ALT_I2C_COMP_PARAM_1_ADD_ENC_PARAMS_CLR_MSK           0xffffff7f
 /* The reset value of the ALT_I2C_COMP_PARAM_1_ADD_ENC_PARAMS register field. */
-#define ALT_I2C_COMP_PARAM_1_ADD_ENC_PARAMS_RESET      0x1
+    #define ALT_I2C_COMP_PARAM_1_ADD_ENC_PARAMS_RESET             0x1
 /* Extracts the ALT_I2C_COMP_PARAM_1_ADD_ENC_PARAMS field value from a register. */
-#define ALT_I2C_COMP_PARAM_1_ADD_ENC_PARAMS_GET(value) (((value) & 0x00000080) >> 7)
+    #define ALT_I2C_COMP_PARAM_1_ADD_ENC_PARAMS_GET( value )    ( ( ( value ) & 0x00000080 ) >> 7 )
 /* Produces a ALT_I2C_COMP_PARAM_1_ADD_ENC_PARAMS register field value suitable for setting the register. */
-#define ALT_I2C_COMP_PARAM_1_ADD_ENC_PARAMS_SET(value) (((value) << 7) & 0x00000080)
+    #define ALT_I2C_COMP_PARAM_1_ADD_ENC_PARAMS_SET( value )    ( ( ( value ) << 7 ) & 0x00000080 )
 
 /*
  * Field : Rx Buffer Depth - rx_buffer_depth
@@ -5584,29 +5714,30 @@ typedef volatile struct ALT_I2C_FS_SPKLEN_s  ALT_I2C_FS_SPKLEN_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_I2C_COMP_PARAM_1_RX_BUF_DEPTH
  *
  * Rx Fifo Depth 64 Entries
  */
-#define ALT_I2C_COMP_PARAM_1_RX_BUF_DEPTH_E_FIFO64BYTES 0x40
+    #define ALT_I2C_COMP_PARAM_1_RX_BUF_DEPTH_E_FIFO64BYTES    0x40
 
 /* The Least Significant Bit (LSB) position of the ALT_I2C_COMP_PARAM_1_RX_BUF_DEPTH register field. */
-#define ALT_I2C_COMP_PARAM_1_RX_BUF_DEPTH_LSB        8
+    #define ALT_I2C_COMP_PARAM_1_RX_BUF_DEPTH_LSB              8
 /* The Most Significant Bit (MSB) position of the ALT_I2C_COMP_PARAM_1_RX_BUF_DEPTH register field. */
-#define ALT_I2C_COMP_PARAM_1_RX_BUF_DEPTH_MSB        15
+    #define ALT_I2C_COMP_PARAM_1_RX_BUF_DEPTH_MSB              15
 /* The width in bits of the ALT_I2C_COMP_PARAM_1_RX_BUF_DEPTH register field. */
-#define ALT_I2C_COMP_PARAM_1_RX_BUF_DEPTH_WIDTH      8
+    #define ALT_I2C_COMP_PARAM_1_RX_BUF_DEPTH_WIDTH            8
 /* The mask used to set the ALT_I2C_COMP_PARAM_1_RX_BUF_DEPTH register field value. */
-#define ALT_I2C_COMP_PARAM_1_RX_BUF_DEPTH_SET_MSK    0x0000ff00
+    #define ALT_I2C_COMP_PARAM_1_RX_BUF_DEPTH_SET_MSK          0x0000ff00
 /* The mask used to clear the ALT_I2C_COMP_PARAM_1_RX_BUF_DEPTH register field value. */
-#define ALT_I2C_COMP_PARAM_1_RX_BUF_DEPTH_CLR_MSK    0xffff00ff
+    #define ALT_I2C_COMP_PARAM_1_RX_BUF_DEPTH_CLR_MSK          0xffff00ff
 /* The reset value of the ALT_I2C_COMP_PARAM_1_RX_BUF_DEPTH register field. */
-#define ALT_I2C_COMP_PARAM_1_RX_BUF_DEPTH_RESET      0x3f
+    #define ALT_I2C_COMP_PARAM_1_RX_BUF_DEPTH_RESET            0x3f
 /* Extracts the ALT_I2C_COMP_PARAM_1_RX_BUF_DEPTH field value from a register. */
-#define ALT_I2C_COMP_PARAM_1_RX_BUF_DEPTH_GET(value) (((value) & 0x0000ff00) >> 8)
+    #define ALT_I2C_COMP_PARAM_1_RX_BUF_DEPTH_GET( value )    ( ( ( value ) & 0x0000ff00 ) >> 8 )
 /* Produces a ALT_I2C_COMP_PARAM_1_RX_BUF_DEPTH register field value suitable for setting the register. */
-#define ALT_I2C_COMP_PARAM_1_RX_BUF_DEPTH_SET(value) (((value) << 8) & 0x0000ff00)
+    #define ALT_I2C_COMP_PARAM_1_RX_BUF_DEPTH_SET( value )    ( ( ( value ) << 8 ) & 0x0000ff00 )
 
 /*
  * Field : Tx Buffer Depth - tx_buffer_depth
@@ -5622,31 +5753,33 @@ typedef volatile struct ALT_I2C_FS_SPKLEN_s  ALT_I2C_FS_SPKLEN_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_I2C_COMP_PARAM_1_TX_BUF_DEPTH
  *
  * Tx Buffer Depth 64 Entries
  */
-#define ALT_I2C_COMP_PARAM_1_TX_BUF_DEPTH_E_FIFO64BYTES 0x40
+    #define ALT_I2C_COMP_PARAM_1_TX_BUF_DEPTH_E_FIFO64BYTES    0x40
 
 /* The Least Significant Bit (LSB) position of the ALT_I2C_COMP_PARAM_1_TX_BUF_DEPTH register field. */
-#define ALT_I2C_COMP_PARAM_1_TX_BUF_DEPTH_LSB        16
+    #define ALT_I2C_COMP_PARAM_1_TX_BUF_DEPTH_LSB              16
 /* The Most Significant Bit (MSB) position of the ALT_I2C_COMP_PARAM_1_TX_BUF_DEPTH register field. */
-#define ALT_I2C_COMP_PARAM_1_TX_BUF_DEPTH_MSB        23
+    #define ALT_I2C_COMP_PARAM_1_TX_BUF_DEPTH_MSB              23
 /* The width in bits of the ALT_I2C_COMP_PARAM_1_TX_BUF_DEPTH register field. */
-#define ALT_I2C_COMP_PARAM_1_TX_BUF_DEPTH_WIDTH      8
+    #define ALT_I2C_COMP_PARAM_1_TX_BUF_DEPTH_WIDTH            8
 /* The mask used to set the ALT_I2C_COMP_PARAM_1_TX_BUF_DEPTH register field value. */
-#define ALT_I2C_COMP_PARAM_1_TX_BUF_DEPTH_SET_MSK    0x00ff0000
+    #define ALT_I2C_COMP_PARAM_1_TX_BUF_DEPTH_SET_MSK          0x00ff0000
 /* The mask used to clear the ALT_I2C_COMP_PARAM_1_TX_BUF_DEPTH register field value. */
-#define ALT_I2C_COMP_PARAM_1_TX_BUF_DEPTH_CLR_MSK    0xff00ffff
+    #define ALT_I2C_COMP_PARAM_1_TX_BUF_DEPTH_CLR_MSK          0xff00ffff
 /* The reset value of the ALT_I2C_COMP_PARAM_1_TX_BUF_DEPTH register field. */
-#define ALT_I2C_COMP_PARAM_1_TX_BUF_DEPTH_RESET      0x3f
+    #define ALT_I2C_COMP_PARAM_1_TX_BUF_DEPTH_RESET            0x3f
 /* Extracts the ALT_I2C_COMP_PARAM_1_TX_BUF_DEPTH field value from a register. */
-#define ALT_I2C_COMP_PARAM_1_TX_BUF_DEPTH_GET(value) (((value) & 0x00ff0000) >> 16)
+    #define ALT_I2C_COMP_PARAM_1_TX_BUF_DEPTH_GET( value )    ( ( ( value ) & 0x00ff0000 ) >> 16 )
 /* Produces a ALT_I2C_COMP_PARAM_1_TX_BUF_DEPTH register field value suitable for setting the register. */
-#define ALT_I2C_COMP_PARAM_1_TX_BUF_DEPTH_SET(value) (((value) << 16) & 0x00ff0000)
+    #define ALT_I2C_COMP_PARAM_1_TX_BUF_DEPTH_SET( value )    ( ( ( value ) << 16 ) & 0x00ff0000 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -5657,27 +5790,27 @@ typedef volatile struct ALT_I2C_FS_SPKLEN_s  ALT_I2C_FS_SPKLEN_t;
  *
  * The struct declaration for register ALT_I2C_COMP_PARAM_1.
  */
-struct ALT_I2C_COMP_PARAM_1_s
-{
-    const uint32_t  apb_data_width     :  2;  /* APB Data Width Register */
-    const uint32_t  max_speed_mode     :  2;  /* Max Speed Mode */
-    const uint32_t  hc_count_values    :  1;  /* CNT Registers Access */
-    const uint32_t  intr_io            :  1;  /* Intr IO */
-    const uint32_t  has_dma            :  1;  /* Has DMA */
-    const uint32_t  add_encoded_params :  1;  /* Add Encoded Params */
-    const uint32_t  rx_buffer_depth    :  8;  /* Rx Buffer Depth */
-    const uint32_t  tx_buffer_depth    :  8;  /* Tx Buffer Depth */
-    uint32_t                           :  8;  /* *UNDEFINED* */
-};
+        struct ALT_I2C_COMP_PARAM_1_s
+        {
+            const uint32_t apb_data_width     :  2;  /* APB Data Width Register */
+            const uint32_t max_speed_mode     :  2;  /* Max Speed Mode */
+            const uint32_t hc_count_values    :  1;  /* CNT Registers Access */
+            const uint32_t intr_io            :  1;  /* Intr IO */
+            const uint32_t has_dma            :  1;  /* Has DMA */
+            const uint32_t add_encoded_params :  1;  /* Add Encoded Params */
+            const uint32_t rx_buffer_depth    :  8;  /* Rx Buffer Depth */
+            const uint32_t tx_buffer_depth    :  8;  /* Tx Buffer Depth */
+            uint32_t                           :  8; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_I2C_COMP_PARAM_1. */
-typedef volatile struct ALT_I2C_COMP_PARAM_1_s  ALT_I2C_COMP_PARAM_1_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_I2C_COMP_PARAM_1_s ALT_I2C_COMP_PARAM_1_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_I2C_COMP_PARAM_1 register from the beginning of the component. */
-#define ALT_I2C_COMP_PARAM_1_OFST        0xf4
+    #define ALT_I2C_COMP_PARAM_1_OFST    0xf4
 /* The address of the ALT_I2C_COMP_PARAM_1 register. */
-#define ALT_I2C_COMP_PARAM_1_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_I2C_COMP_PARAM_1_OFST))
+    #define ALT_I2C_COMP_PARAM_1_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_I2C_COMP_PARAM_1_OFST ) )
 
 /*
  * Register : Component Version Register - ic_comp_version
@@ -5691,6 +5824,7 @@ typedef volatile struct ALT_I2C_COMP_PARAM_1_s  ALT_I2C_COMP_PARAM_1_t;
  *  [31:0] | R      | 0x3132302a | Component Parameter Value
  *
  */
+
 /*
  * Field : Component Parameter Value - ic_comp_version
  *
@@ -5705,31 +5839,33 @@ typedef volatile struct ALT_I2C_COMP_PARAM_1_s  ALT_I2C_COMP_PARAM_1_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_I2C_COMP_VER_IC_COMP_VER
  *
  * Version 1.20a
  */
-#define ALT_I2C_COMP_VER_IC_COMP_VER_E_VER_1_20A    0x3132302a
+    #define ALT_I2C_COMP_VER_IC_COMP_VER_E_VER_1_20A    0x3132302a
 
 /* The Least Significant Bit (LSB) position of the ALT_I2C_COMP_VER_IC_COMP_VER register field. */
-#define ALT_I2C_COMP_VER_IC_COMP_VER_LSB        0
+    #define ALT_I2C_COMP_VER_IC_COMP_VER_LSB            0
 /* The Most Significant Bit (MSB) position of the ALT_I2C_COMP_VER_IC_COMP_VER register field. */
-#define ALT_I2C_COMP_VER_IC_COMP_VER_MSB        31
+    #define ALT_I2C_COMP_VER_IC_COMP_VER_MSB            31
 /* The width in bits of the ALT_I2C_COMP_VER_IC_COMP_VER register field. */
-#define ALT_I2C_COMP_VER_IC_COMP_VER_WIDTH      32
+    #define ALT_I2C_COMP_VER_IC_COMP_VER_WIDTH          32
 /* The mask used to set the ALT_I2C_COMP_VER_IC_COMP_VER register field value. */
-#define ALT_I2C_COMP_VER_IC_COMP_VER_SET_MSK    0xffffffff
+    #define ALT_I2C_COMP_VER_IC_COMP_VER_SET_MSK        0xffffffff
 /* The mask used to clear the ALT_I2C_COMP_VER_IC_COMP_VER register field value. */
-#define ALT_I2C_COMP_VER_IC_COMP_VER_CLR_MSK    0x00000000
+    #define ALT_I2C_COMP_VER_IC_COMP_VER_CLR_MSK        0x00000000
 /* The reset value of the ALT_I2C_COMP_VER_IC_COMP_VER register field. */
-#define ALT_I2C_COMP_VER_IC_COMP_VER_RESET      0x3132302a
+    #define ALT_I2C_COMP_VER_IC_COMP_VER_RESET          0x3132302a
 /* Extracts the ALT_I2C_COMP_VER_IC_COMP_VER field value from a register. */
-#define ALT_I2C_COMP_VER_IC_COMP_VER_GET(value) (((value) & 0xffffffff) >> 0)
+    #define ALT_I2C_COMP_VER_IC_COMP_VER_GET( value )    ( ( ( value ) & 0xffffffff ) >> 0 )
 /* Produces a ALT_I2C_COMP_VER_IC_COMP_VER register field value suitable for setting the register. */
-#define ALT_I2C_COMP_VER_IC_COMP_VER_SET(value) (((value) << 0) & 0xffffffff)
+    #define ALT_I2C_COMP_VER_IC_COMP_VER_SET( value )    ( ( ( value ) << 0 ) & 0xffffffff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -5740,19 +5876,19 @@ typedef volatile struct ALT_I2C_COMP_PARAM_1_s  ALT_I2C_COMP_PARAM_1_t;
  *
  * The struct declaration for register ALT_I2C_COMP_VER.
  */
-struct ALT_I2C_COMP_VER_s
-{
-    const uint32_t  ic_comp_version : 32;  /* Component Parameter Value */
-};
+        struct ALT_I2C_COMP_VER_s
+        {
+            const uint32_t ic_comp_version : 32; /* Component Parameter Value */
+        };
 
 /* The typedef declaration for register ALT_I2C_COMP_VER. */
-typedef volatile struct ALT_I2C_COMP_VER_s  ALT_I2C_COMP_VER_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_I2C_COMP_VER_s ALT_I2C_COMP_VER_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_I2C_COMP_VER register from the beginning of the component. */
-#define ALT_I2C_COMP_VER_OFST        0xf8
+    #define ALT_I2C_COMP_VER_OFST    0xf8
 /* The address of the ALT_I2C_COMP_VER register. */
-#define ALT_I2C_COMP_VER_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_I2C_COMP_VER_OFST))
+    #define ALT_I2C_COMP_VER_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_I2C_COMP_VER_OFST ) )
 
 /*
  * Register : Component Type Register - ic_comp_type
@@ -5766,6 +5902,7 @@ typedef volatile struct ALT_I2C_COMP_VER_s  ALT_I2C_COMP_VER_t;
  *  [31:0] | R      | 0x44570140 | Component Type Number
  *
  */
+
 /*
  * Field : Component Type Number - ic_comp_type
  *
@@ -5777,23 +5914,24 @@ typedef volatile struct ALT_I2C_COMP_VER_s  ALT_I2C_COMP_VER_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_I2C_COMP_TYPE_IC_COMP_TYPE register field. */
-#define ALT_I2C_COMP_TYPE_IC_COMP_TYPE_LSB        0
+    #define ALT_I2C_COMP_TYPE_IC_COMP_TYPE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_I2C_COMP_TYPE_IC_COMP_TYPE register field. */
-#define ALT_I2C_COMP_TYPE_IC_COMP_TYPE_MSB        31
+    #define ALT_I2C_COMP_TYPE_IC_COMP_TYPE_MSB        31
 /* The width in bits of the ALT_I2C_COMP_TYPE_IC_COMP_TYPE register field. */
-#define ALT_I2C_COMP_TYPE_IC_COMP_TYPE_WIDTH      32
+    #define ALT_I2C_COMP_TYPE_IC_COMP_TYPE_WIDTH      32
 /* The mask used to set the ALT_I2C_COMP_TYPE_IC_COMP_TYPE register field value. */
-#define ALT_I2C_COMP_TYPE_IC_COMP_TYPE_SET_MSK    0xffffffff
+    #define ALT_I2C_COMP_TYPE_IC_COMP_TYPE_SET_MSK    0xffffffff
 /* The mask used to clear the ALT_I2C_COMP_TYPE_IC_COMP_TYPE register field value. */
-#define ALT_I2C_COMP_TYPE_IC_COMP_TYPE_CLR_MSK    0x00000000
+    #define ALT_I2C_COMP_TYPE_IC_COMP_TYPE_CLR_MSK    0x00000000
 /* The reset value of the ALT_I2C_COMP_TYPE_IC_COMP_TYPE register field. */
-#define ALT_I2C_COMP_TYPE_IC_COMP_TYPE_RESET      0x44570140
+    #define ALT_I2C_COMP_TYPE_IC_COMP_TYPE_RESET      0x44570140
 /* Extracts the ALT_I2C_COMP_TYPE_IC_COMP_TYPE field value from a register. */
-#define ALT_I2C_COMP_TYPE_IC_COMP_TYPE_GET(value) (((value) & 0xffffffff) >> 0)
+    #define ALT_I2C_COMP_TYPE_IC_COMP_TYPE_GET( value )    ( ( ( value ) & 0xffffffff ) >> 0 )
 /* Produces a ALT_I2C_COMP_TYPE_IC_COMP_TYPE register field value suitable for setting the register. */
-#define ALT_I2C_COMP_TYPE_IC_COMP_TYPE_SET(value) (((value) << 0) & 0xffffffff)
+    #define ALT_I2C_COMP_TYPE_IC_COMP_TYPE_SET( value )    ( ( ( value ) << 0 ) & 0xffffffff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -5804,21 +5942,22 @@ typedef volatile struct ALT_I2C_COMP_VER_s  ALT_I2C_COMP_VER_t;
  *
  * The struct declaration for register ALT_I2C_COMP_TYPE.
  */
-struct ALT_I2C_COMP_TYPE_s
-{
-    const uint32_t  ic_comp_type : 32;  /* Component Type Number */
-};
+        struct ALT_I2C_COMP_TYPE_s
+        {
+            const uint32_t ic_comp_type : 32; /* Component Type Number */
+        };
 
 /* The typedef declaration for register ALT_I2C_COMP_TYPE. */
-typedef volatile struct ALT_I2C_COMP_TYPE_s  ALT_I2C_COMP_TYPE_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_I2C_COMP_TYPE_s ALT_I2C_COMP_TYPE_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_I2C_COMP_TYPE register from the beginning of the component. */
-#define ALT_I2C_COMP_TYPE_OFST        0xfc
+    #define ALT_I2C_COMP_TYPE_OFST    0xfc
 /* The address of the ALT_I2C_COMP_TYPE register. */
-#define ALT_I2C_COMP_TYPE_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_I2C_COMP_TYPE_OFST))
+    #define ALT_I2C_COMP_TYPE_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_I2C_COMP_TYPE_OFST ) )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -5829,112 +5968,111 @@ typedef volatile struct ALT_I2C_COMP_TYPE_s  ALT_I2C_COMP_TYPE_t;
  *
  * The struct declaration for register group ALT_I2C.
  */
-struct ALT_I2C_s
-{
-    volatile ALT_I2C_CON_t                 ic_con;                 /* ALT_I2C_CON */
-    volatile ALT_I2C_TAR_t                 ic_tar;                 /* ALT_I2C_TAR */
-    volatile ALT_I2C_SAR_t                 ic_sar;                 /* ALT_I2C_SAR */
-    volatile uint32_t                      _pad_0xc_0xf;           /* *UNDEFINED* */
-    volatile ALT_I2C_DATA_CMD_t            ic_data_cmd;            /* ALT_I2C_DATA_CMD */
-    volatile ALT_I2C_SS_SCL_HCNT_t         ic_ss_scl_hcnt;         /* ALT_I2C_SS_SCL_HCNT */
-    volatile ALT_I2C_SS_SCL_LCNT_t         ic_ss_scl_lcnt;         /* ALT_I2C_SS_SCL_LCNT */
-    volatile ALT_I2C_FS_SCL_HCNT_t         ic_fs_scl_hcnt;         /* ALT_I2C_FS_SCL_HCNT */
-    volatile ALT_I2C_FS_SCL_LCNT_t         ic_fs_scl_lcnt;         /* ALT_I2C_FS_SCL_LCNT */
-    volatile uint32_t                      _pad_0x24_0x2b[2];      /* *UNDEFINED* */
-    volatile ALT_I2C_INTR_STAT_t           ic_intr_stat;           /* ALT_I2C_INTR_STAT */
-    volatile ALT_I2C_INTR_MSK_t            ic_intr_mask;           /* ALT_I2C_INTR_MSK */
-    volatile ALT_I2C_RAW_INTR_STAT_t       ic_raw_intr_stat;       /* ALT_I2C_RAW_INTR_STAT */
-    volatile ALT_I2C_RX_TL_t               ic_rx_tl;               /* ALT_I2C_RX_TL */
-    volatile ALT_I2C_TX_TL_t               ic_tx_tl;               /* ALT_I2C_TX_TL */
-    volatile ALT_I2C_CLR_INTR_t            ic_clr_intr;            /* ALT_I2C_CLR_INTR */
-    volatile ALT_I2C_CLR_RX_UNDER_t        ic_clr_rx_under;        /* ALT_I2C_CLR_RX_UNDER */
-    volatile ALT_I2C_CLR_RX_OVER_t         ic_clr_rx_over;         /* ALT_I2C_CLR_RX_OVER */
-    volatile ALT_I2C_CLR_TX_OVER_t         ic_clr_tx_over;         /* ALT_I2C_CLR_TX_OVER */
-    volatile ALT_I2C_CLR_RD_REQ_t          ic_clr_rd_req;          /* ALT_I2C_CLR_RD_REQ */
-    volatile ALT_I2C_CLR_TX_ABRT_t         ic_clr_tx_abrt;         /* ALT_I2C_CLR_TX_ABRT */
-    volatile ALT_I2C_CLR_RX_DONE_t         ic_clr_rx_done;         /* ALT_I2C_CLR_RX_DONE */
-    volatile ALT_I2C_CLR_ACTIVITY_t        ic_clr_activity;        /* ALT_I2C_CLR_ACTIVITY */
-    volatile ALT_I2C_CLR_STOP_DET_t        ic_clr_stop_det;        /* ALT_I2C_CLR_STOP_DET */
-    volatile ALT_I2C_CLR_START_DET_t       ic_clr_start_det;       /* ALT_I2C_CLR_START_DET */
-    volatile ALT_I2C_CLR_GEN_CALL_t        ic_clr_gen_call;        /* ALT_I2C_CLR_GEN_CALL */
-    volatile ALT_I2C_EN_t                  ic_enable;              /* ALT_I2C_EN */
-    volatile ALT_I2C_STAT_t                ic_status;              /* ALT_I2C_STAT */
-    volatile ALT_I2C_TXFLR_t               ic_txflr;               /* ALT_I2C_TXFLR */
-    volatile ALT_I2C_RXFLR_t               ic_rxflr;               /* ALT_I2C_RXFLR */
-    volatile ALT_I2C_SDA_HOLD_t            ic_sda_hold;            /* ALT_I2C_SDA_HOLD */
-    volatile ALT_I2C_TX_ABRT_SRC_t         ic_tx_abrt_source;      /* ALT_I2C_TX_ABRT_SRC */
-    volatile ALT_I2C_SLV_DATA_NACK_ONLY_t  ic_slv_data_nack_only;  /* ALT_I2C_SLV_DATA_NACK_ONLY */
-    volatile ALT_I2C_DMA_CR_t              ic_dma_cr;              /* ALT_I2C_DMA_CR */
-    volatile ALT_I2C_DMA_TDLR_t            ic_dma_tdlr;            /* ALT_I2C_DMA_TDLR */
-    volatile ALT_I2C_DMA_RDLR_t            ic_dma_rdlr;            /* ALT_I2C_DMA_RDLR */
-    volatile ALT_I2C_SDA_SETUP_t           ic_sda_setup;           /* ALT_I2C_SDA_SETUP */
-    volatile ALT_I2C_ACK_GENERAL_CALL_t    ic_ack_general_call;    /* ALT_I2C_ACK_GENERAL_CALL */
-    volatile ALT_I2C_EN_STAT_t             ic_enable_status;       /* ALT_I2C_EN_STAT */
-    volatile ALT_I2C_FS_SPKLEN_t           ic_fs_spklen;           /* ALT_I2C_FS_SPKLEN */
-    volatile uint32_t                      _pad_0xa4_0xf3[20];     /* *UNDEFINED* */
-    volatile ALT_I2C_COMP_PARAM_1_t        ic_comp_param_1;        /* ALT_I2C_COMP_PARAM_1 */
-    volatile ALT_I2C_COMP_VER_t            ic_comp_version;        /* ALT_I2C_COMP_VER */
-    volatile ALT_I2C_COMP_TYPE_t           ic_comp_type;           /* ALT_I2C_COMP_TYPE */
-};
+        struct ALT_I2C_s
+        {
+            volatile ALT_I2C_CON_t ic_con;                               /* ALT_I2C_CON */
+            volatile ALT_I2C_TAR_t ic_tar;                               /* ALT_I2C_TAR */
+            volatile ALT_I2C_SAR_t ic_sar;                               /* ALT_I2C_SAR */
+            volatile uint32_t _pad_0xc_0xf;                              /* *UNDEFINED* */
+            volatile ALT_I2C_DATA_CMD_t ic_data_cmd;                     /* ALT_I2C_DATA_CMD */
+            volatile ALT_I2C_SS_SCL_HCNT_t ic_ss_scl_hcnt;               /* ALT_I2C_SS_SCL_HCNT */
+            volatile ALT_I2C_SS_SCL_LCNT_t ic_ss_scl_lcnt;               /* ALT_I2C_SS_SCL_LCNT */
+            volatile ALT_I2C_FS_SCL_HCNT_t ic_fs_scl_hcnt;               /* ALT_I2C_FS_SCL_HCNT */
+            volatile ALT_I2C_FS_SCL_LCNT_t ic_fs_scl_lcnt;               /* ALT_I2C_FS_SCL_LCNT */
+            volatile uint32_t _pad_0x24_0x2b[ 2 ];                       /* *UNDEFINED* */
+            volatile ALT_I2C_INTR_STAT_t ic_intr_stat;                   /* ALT_I2C_INTR_STAT */
+            volatile ALT_I2C_INTR_MSK_t ic_intr_mask;                    /* ALT_I2C_INTR_MSK */
+            volatile ALT_I2C_RAW_INTR_STAT_t ic_raw_intr_stat;           /* ALT_I2C_RAW_INTR_STAT */
+            volatile ALT_I2C_RX_TL_t ic_rx_tl;                           /* ALT_I2C_RX_TL */
+            volatile ALT_I2C_TX_TL_t ic_tx_tl;                           /* ALT_I2C_TX_TL */
+            volatile ALT_I2C_CLR_INTR_t ic_clr_intr;                     /* ALT_I2C_CLR_INTR */
+            volatile ALT_I2C_CLR_RX_UNDER_t ic_clr_rx_under;             /* ALT_I2C_CLR_RX_UNDER */
+            volatile ALT_I2C_CLR_RX_OVER_t ic_clr_rx_over;               /* ALT_I2C_CLR_RX_OVER */
+            volatile ALT_I2C_CLR_TX_OVER_t ic_clr_tx_over;               /* ALT_I2C_CLR_TX_OVER */
+            volatile ALT_I2C_CLR_RD_REQ_t ic_clr_rd_req;                 /* ALT_I2C_CLR_RD_REQ */
+            volatile ALT_I2C_CLR_TX_ABRT_t ic_clr_tx_abrt;               /* ALT_I2C_CLR_TX_ABRT */
+            volatile ALT_I2C_CLR_RX_DONE_t ic_clr_rx_done;               /* ALT_I2C_CLR_RX_DONE */
+            volatile ALT_I2C_CLR_ACTIVITY_t ic_clr_activity;             /* ALT_I2C_CLR_ACTIVITY */
+            volatile ALT_I2C_CLR_STOP_DET_t ic_clr_stop_det;             /* ALT_I2C_CLR_STOP_DET */
+            volatile ALT_I2C_CLR_START_DET_t ic_clr_start_det;           /* ALT_I2C_CLR_START_DET */
+            volatile ALT_I2C_CLR_GEN_CALL_t ic_clr_gen_call;             /* ALT_I2C_CLR_GEN_CALL */
+            volatile ALT_I2C_EN_t ic_enable;                             /* ALT_I2C_EN */
+            volatile ALT_I2C_STAT_t ic_status;                           /* ALT_I2C_STAT */
+            volatile ALT_I2C_TXFLR_t ic_txflr;                           /* ALT_I2C_TXFLR */
+            volatile ALT_I2C_RXFLR_t ic_rxflr;                           /* ALT_I2C_RXFLR */
+            volatile ALT_I2C_SDA_HOLD_t ic_sda_hold;                     /* ALT_I2C_SDA_HOLD */
+            volatile ALT_I2C_TX_ABRT_SRC_t ic_tx_abrt_source;            /* ALT_I2C_TX_ABRT_SRC */
+            volatile ALT_I2C_SLV_DATA_NACK_ONLY_t ic_slv_data_nack_only; /* ALT_I2C_SLV_DATA_NACK_ONLY */
+            volatile ALT_I2C_DMA_CR_t ic_dma_cr;                         /* ALT_I2C_DMA_CR */
+            volatile ALT_I2C_DMA_TDLR_t ic_dma_tdlr;                     /* ALT_I2C_DMA_TDLR */
+            volatile ALT_I2C_DMA_RDLR_t ic_dma_rdlr;                     /* ALT_I2C_DMA_RDLR */
+            volatile ALT_I2C_SDA_SETUP_t ic_sda_setup;                   /* ALT_I2C_SDA_SETUP */
+            volatile ALT_I2C_ACK_GENERAL_CALL_t ic_ack_general_call;     /* ALT_I2C_ACK_GENERAL_CALL */
+            volatile ALT_I2C_EN_STAT_t ic_enable_status;                 /* ALT_I2C_EN_STAT */
+            volatile ALT_I2C_FS_SPKLEN_t ic_fs_spklen;                   /* ALT_I2C_FS_SPKLEN */
+            volatile uint32_t _pad_0xa4_0xf3[ 20 ];                      /* *UNDEFINED* */
+            volatile ALT_I2C_COMP_PARAM_1_t ic_comp_param_1;             /* ALT_I2C_COMP_PARAM_1 */
+            volatile ALT_I2C_COMP_VER_t ic_comp_version;                 /* ALT_I2C_COMP_VER */
+            volatile ALT_I2C_COMP_TYPE_t ic_comp_type;                   /* ALT_I2C_COMP_TYPE */
+        };
 
 /* The typedef declaration for register group ALT_I2C. */
-typedef volatile struct ALT_I2C_s  ALT_I2C_t;
+        typedef volatile struct ALT_I2C_s ALT_I2C_t;
 /* The struct declaration for the raw register contents of register group ALT_I2C. */
-struct ALT_I2C_raw_s
-{
-    volatile uint32_t  ic_con;                 /* ALT_I2C_CON */
-    volatile uint32_t  ic_tar;                 /* ALT_I2C_TAR */
-    volatile uint32_t  ic_sar;                 /* ALT_I2C_SAR */
-    volatile uint32_t  _pad_0xc_0xf;           /* *UNDEFINED* */
-    volatile uint32_t  ic_data_cmd;            /* ALT_I2C_DATA_CMD */
-    volatile uint32_t  ic_ss_scl_hcnt;         /* ALT_I2C_SS_SCL_HCNT */
-    volatile uint32_t  ic_ss_scl_lcnt;         /* ALT_I2C_SS_SCL_LCNT */
-    volatile uint32_t  ic_fs_scl_hcnt;         /* ALT_I2C_FS_SCL_HCNT */
-    volatile uint32_t  ic_fs_scl_lcnt;         /* ALT_I2C_FS_SCL_LCNT */
-    volatile uint32_t  _pad_0x24_0x2b[2];      /* *UNDEFINED* */
-    volatile uint32_t  ic_intr_stat;           /* ALT_I2C_INTR_STAT */
-    volatile uint32_t  ic_intr_mask;           /* ALT_I2C_INTR_MSK */
-    volatile uint32_t  ic_raw_intr_stat;       /* ALT_I2C_RAW_INTR_STAT */
-    volatile uint32_t  ic_rx_tl;               /* ALT_I2C_RX_TL */
-    volatile uint32_t  ic_tx_tl;               /* ALT_I2C_TX_TL */
-    volatile uint32_t  ic_clr_intr;            /* ALT_I2C_CLR_INTR */
-    volatile uint32_t  ic_clr_rx_under;        /* ALT_I2C_CLR_RX_UNDER */
-    volatile uint32_t  ic_clr_rx_over;         /* ALT_I2C_CLR_RX_OVER */
-    volatile uint32_t  ic_clr_tx_over;         /* ALT_I2C_CLR_TX_OVER */
-    volatile uint32_t  ic_clr_rd_req;          /* ALT_I2C_CLR_RD_REQ */
-    volatile uint32_t  ic_clr_tx_abrt;         /* ALT_I2C_CLR_TX_ABRT */
-    volatile uint32_t  ic_clr_rx_done;         /* ALT_I2C_CLR_RX_DONE */
-    volatile uint32_t  ic_clr_activity;        /* ALT_I2C_CLR_ACTIVITY */
-    volatile uint32_t  ic_clr_stop_det;        /* ALT_I2C_CLR_STOP_DET */
-    volatile uint32_t  ic_clr_start_det;       /* ALT_I2C_CLR_START_DET */
-    volatile uint32_t  ic_clr_gen_call;        /* ALT_I2C_CLR_GEN_CALL */
-    volatile uint32_t  ic_enable;              /* ALT_I2C_EN */
-    volatile uint32_t  ic_status;              /* ALT_I2C_STAT */
-    volatile uint32_t  ic_txflr;               /* ALT_I2C_TXFLR */
-    volatile uint32_t  ic_rxflr;               /* ALT_I2C_RXFLR */
-    volatile uint32_t  ic_sda_hold;            /* ALT_I2C_SDA_HOLD */
-    volatile uint32_t  ic_tx_abrt_source;      /* ALT_I2C_TX_ABRT_SRC */
-    volatile uint32_t  ic_slv_data_nack_only;  /* ALT_I2C_SLV_DATA_NACK_ONLY */
-    volatile uint32_t  ic_dma_cr;              /* ALT_I2C_DMA_CR */
-    volatile uint32_t  ic_dma_tdlr;            /* ALT_I2C_DMA_TDLR */
-    volatile uint32_t  ic_dma_rdlr;            /* ALT_I2C_DMA_RDLR */
-    volatile uint32_t  ic_sda_setup;           /* ALT_I2C_SDA_SETUP */
-    volatile uint32_t  ic_ack_general_call;    /* ALT_I2C_ACK_GENERAL_CALL */
-    volatile uint32_t  ic_enable_status;       /* ALT_I2C_EN_STAT */
-    volatile uint32_t  ic_fs_spklen;           /* ALT_I2C_FS_SPKLEN */
-    volatile uint32_t  _pad_0xa4_0xf3[20];     /* *UNDEFINED* */
-    volatile uint32_t  ic_comp_param_1;        /* ALT_I2C_COMP_PARAM_1 */
-    volatile uint32_t  ic_comp_version;        /* ALT_I2C_COMP_VER */
-    volatile uint32_t  ic_comp_type;           /* ALT_I2C_COMP_TYPE */
-};
+        struct ALT_I2C_raw_s
+        {
+            volatile uint32_t ic_con;                /* ALT_I2C_CON */
+            volatile uint32_t ic_tar;                /* ALT_I2C_TAR */
+            volatile uint32_t ic_sar;                /* ALT_I2C_SAR */
+            volatile uint32_t _pad_0xc_0xf;          /* *UNDEFINED* */
+            volatile uint32_t ic_data_cmd;           /* ALT_I2C_DATA_CMD */
+            volatile uint32_t ic_ss_scl_hcnt;        /* ALT_I2C_SS_SCL_HCNT */
+            volatile uint32_t ic_ss_scl_lcnt;        /* ALT_I2C_SS_SCL_LCNT */
+            volatile uint32_t ic_fs_scl_hcnt;        /* ALT_I2C_FS_SCL_HCNT */
+            volatile uint32_t ic_fs_scl_lcnt;        /* ALT_I2C_FS_SCL_LCNT */
+            volatile uint32_t _pad_0x24_0x2b[ 2 ];   /* *UNDEFINED* */
+            volatile uint32_t ic_intr_stat;          /* ALT_I2C_INTR_STAT */
+            volatile uint32_t ic_intr_mask;          /* ALT_I2C_INTR_MSK */
+            volatile uint32_t ic_raw_intr_stat;      /* ALT_I2C_RAW_INTR_STAT */
+            volatile uint32_t ic_rx_tl;              /* ALT_I2C_RX_TL */
+            volatile uint32_t ic_tx_tl;              /* ALT_I2C_TX_TL */
+            volatile uint32_t ic_clr_intr;           /* ALT_I2C_CLR_INTR */
+            volatile uint32_t ic_clr_rx_under;       /* ALT_I2C_CLR_RX_UNDER */
+            volatile uint32_t ic_clr_rx_over;        /* ALT_I2C_CLR_RX_OVER */
+            volatile uint32_t ic_clr_tx_over;        /* ALT_I2C_CLR_TX_OVER */
+            volatile uint32_t ic_clr_rd_req;         /* ALT_I2C_CLR_RD_REQ */
+            volatile uint32_t ic_clr_tx_abrt;        /* ALT_I2C_CLR_TX_ABRT */
+            volatile uint32_t ic_clr_rx_done;        /* ALT_I2C_CLR_RX_DONE */
+            volatile uint32_t ic_clr_activity;       /* ALT_I2C_CLR_ACTIVITY */
+            volatile uint32_t ic_clr_stop_det;       /* ALT_I2C_CLR_STOP_DET */
+            volatile uint32_t ic_clr_start_det;      /* ALT_I2C_CLR_START_DET */
+            volatile uint32_t ic_clr_gen_call;       /* ALT_I2C_CLR_GEN_CALL */
+            volatile uint32_t ic_enable;             /* ALT_I2C_EN */
+            volatile uint32_t ic_status;             /* ALT_I2C_STAT */
+            volatile uint32_t ic_txflr;              /* ALT_I2C_TXFLR */
+            volatile uint32_t ic_rxflr;              /* ALT_I2C_RXFLR */
+            volatile uint32_t ic_sda_hold;           /* ALT_I2C_SDA_HOLD */
+            volatile uint32_t ic_tx_abrt_source;     /* ALT_I2C_TX_ABRT_SRC */
+            volatile uint32_t ic_slv_data_nack_only; /* ALT_I2C_SLV_DATA_NACK_ONLY */
+            volatile uint32_t ic_dma_cr;             /* ALT_I2C_DMA_CR */
+            volatile uint32_t ic_dma_tdlr;           /* ALT_I2C_DMA_TDLR */
+            volatile uint32_t ic_dma_rdlr;           /* ALT_I2C_DMA_RDLR */
+            volatile uint32_t ic_sda_setup;          /* ALT_I2C_SDA_SETUP */
+            volatile uint32_t ic_ack_general_call;   /* ALT_I2C_ACK_GENERAL_CALL */
+            volatile uint32_t ic_enable_status;      /* ALT_I2C_EN_STAT */
+            volatile uint32_t ic_fs_spklen;          /* ALT_I2C_FS_SPKLEN */
+            volatile uint32_t _pad_0xa4_0xf3[ 20 ];  /* *UNDEFINED* */
+            volatile uint32_t ic_comp_param_1;       /* ALT_I2C_COMP_PARAM_1 */
+            volatile uint32_t ic_comp_version;       /* ALT_I2C_COMP_VER */
+            volatile uint32_t ic_comp_type;          /* ALT_I2C_COMP_TYPE */
+        };
 
 /* The typedef declaration for the raw register contents of register group ALT_I2C. */
-typedef volatile struct ALT_I2C_raw_s  ALT_I2C_raw_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_I2C_raw_s ALT_I2C_raw_t;
+    #endif /* __ASSEMBLY__ */
 
 
-#ifdef __cplusplus
+    #ifdef __cplusplus
 }
-#endif  /* __cplusplus */
-#endif  /* __ALTERA_ALT_I2C_H__ */
-
+    #endif /* __cplusplus */
+#endif /* __ALTERA_ALT_I2C_H__ */

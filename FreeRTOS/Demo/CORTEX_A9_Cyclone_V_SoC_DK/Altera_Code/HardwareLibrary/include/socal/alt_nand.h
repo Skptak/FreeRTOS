@@ -31,12 +31,12 @@
 /* Altera - ALT_NAND */
 
 #ifndef __ALTERA_ALT_NAND_H__
-#define __ALTERA_ALT_NAND_H__
+    #define __ALTERA_ALT_NAND_H__
 
-#ifdef __cplusplus
-extern "C"
-{
-#endif  /* __cplusplus */
+    #ifdef __cplusplus
+        extern "C"
+        {
+    #endif /* __cplusplus */
 
 /*
  * Component : NAND Flash Controller Module Registers (AXI Slave) - ALT_NAND
@@ -46,6 +46,7 @@ extern "C"
  * slave
  *
  */
+
 /*
  * Register Group : Configuration registers - ALT_NAND_CFG
  * Configuration registers
@@ -54,6 +55,7 @@ extern "C"
  * basic operating modes of the controller
  *
  */
+
 /*
  * Register : device_reset
  *
@@ -71,6 +73,7 @@ extern "C"
  *  [31:4] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : bank0
  *
@@ -81,21 +84,21 @@ extern "C"
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_DEVICE_RST_BANK0 register field. */
-#define ALT_NAND_CFG_DEVICE_RST_BANK0_LSB        0
+    #define ALT_NAND_CFG_DEVICE_RST_BANK0_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_DEVICE_RST_BANK0 register field. */
-#define ALT_NAND_CFG_DEVICE_RST_BANK0_MSB        0
+    #define ALT_NAND_CFG_DEVICE_RST_BANK0_MSB        0
 /* The width in bits of the ALT_NAND_CFG_DEVICE_RST_BANK0 register field. */
-#define ALT_NAND_CFG_DEVICE_RST_BANK0_WIDTH      1
+    #define ALT_NAND_CFG_DEVICE_RST_BANK0_WIDTH      1
 /* The mask used to set the ALT_NAND_CFG_DEVICE_RST_BANK0 register field value. */
-#define ALT_NAND_CFG_DEVICE_RST_BANK0_SET_MSK    0x00000001
+    #define ALT_NAND_CFG_DEVICE_RST_BANK0_SET_MSK    0x00000001
 /* The mask used to clear the ALT_NAND_CFG_DEVICE_RST_BANK0 register field value. */
-#define ALT_NAND_CFG_DEVICE_RST_BANK0_CLR_MSK    0xfffffffe
+    #define ALT_NAND_CFG_DEVICE_RST_BANK0_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_NAND_CFG_DEVICE_RST_BANK0 register field. */
-#define ALT_NAND_CFG_DEVICE_RST_BANK0_RESET      0x0
+    #define ALT_NAND_CFG_DEVICE_RST_BANK0_RESET      0x0
 /* Extracts the ALT_NAND_CFG_DEVICE_RST_BANK0 field value from a register. */
-#define ALT_NAND_CFG_DEVICE_RST_BANK0_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_NAND_CFG_DEVICE_RST_BANK0_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_NAND_CFG_DEVICE_RST_BANK0 register field value suitable for setting the register. */
-#define ALT_NAND_CFG_DEVICE_RST_BANK0_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_NAND_CFG_DEVICE_RST_BANK0_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
 /*
  * Field : bank1
@@ -107,21 +110,21 @@ extern "C"
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_DEVICE_RST_BANK1 register field. */
-#define ALT_NAND_CFG_DEVICE_RST_BANK1_LSB        1
+    #define ALT_NAND_CFG_DEVICE_RST_BANK1_LSB        1
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_DEVICE_RST_BANK1 register field. */
-#define ALT_NAND_CFG_DEVICE_RST_BANK1_MSB        1
+    #define ALT_NAND_CFG_DEVICE_RST_BANK1_MSB        1
 /* The width in bits of the ALT_NAND_CFG_DEVICE_RST_BANK1 register field. */
-#define ALT_NAND_CFG_DEVICE_RST_BANK1_WIDTH      1
+    #define ALT_NAND_CFG_DEVICE_RST_BANK1_WIDTH      1
 /* The mask used to set the ALT_NAND_CFG_DEVICE_RST_BANK1 register field value. */
-#define ALT_NAND_CFG_DEVICE_RST_BANK1_SET_MSK    0x00000002
+    #define ALT_NAND_CFG_DEVICE_RST_BANK1_SET_MSK    0x00000002
 /* The mask used to clear the ALT_NAND_CFG_DEVICE_RST_BANK1 register field value. */
-#define ALT_NAND_CFG_DEVICE_RST_BANK1_CLR_MSK    0xfffffffd
+    #define ALT_NAND_CFG_DEVICE_RST_BANK1_CLR_MSK    0xfffffffd
 /* The reset value of the ALT_NAND_CFG_DEVICE_RST_BANK1 register field. */
-#define ALT_NAND_CFG_DEVICE_RST_BANK1_RESET      0x0
+    #define ALT_NAND_CFG_DEVICE_RST_BANK1_RESET      0x0
 /* Extracts the ALT_NAND_CFG_DEVICE_RST_BANK1 field value from a register. */
-#define ALT_NAND_CFG_DEVICE_RST_BANK1_GET(value) (((value) & 0x00000002) >> 1)
+    #define ALT_NAND_CFG_DEVICE_RST_BANK1_GET( value )    ( ( ( value ) & 0x00000002 ) >> 1 )
 /* Produces a ALT_NAND_CFG_DEVICE_RST_BANK1 register field value suitable for setting the register. */
-#define ALT_NAND_CFG_DEVICE_RST_BANK1_SET(value) (((value) << 1) & 0x00000002)
+    #define ALT_NAND_CFG_DEVICE_RST_BANK1_SET( value )    ( ( ( value ) << 1 ) & 0x00000002 )
 
 /*
  * Field : bank2
@@ -133,21 +136,21 @@ extern "C"
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_DEVICE_RST_BANK2 register field. */
-#define ALT_NAND_CFG_DEVICE_RST_BANK2_LSB        2
+    #define ALT_NAND_CFG_DEVICE_RST_BANK2_LSB        2
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_DEVICE_RST_BANK2 register field. */
-#define ALT_NAND_CFG_DEVICE_RST_BANK2_MSB        2
+    #define ALT_NAND_CFG_DEVICE_RST_BANK2_MSB        2
 /* The width in bits of the ALT_NAND_CFG_DEVICE_RST_BANK2 register field. */
-#define ALT_NAND_CFG_DEVICE_RST_BANK2_WIDTH      1
+    #define ALT_NAND_CFG_DEVICE_RST_BANK2_WIDTH      1
 /* The mask used to set the ALT_NAND_CFG_DEVICE_RST_BANK2 register field value. */
-#define ALT_NAND_CFG_DEVICE_RST_BANK2_SET_MSK    0x00000004
+    #define ALT_NAND_CFG_DEVICE_RST_BANK2_SET_MSK    0x00000004
 /* The mask used to clear the ALT_NAND_CFG_DEVICE_RST_BANK2 register field value. */
-#define ALT_NAND_CFG_DEVICE_RST_BANK2_CLR_MSK    0xfffffffb
+    #define ALT_NAND_CFG_DEVICE_RST_BANK2_CLR_MSK    0xfffffffb
 /* The reset value of the ALT_NAND_CFG_DEVICE_RST_BANK2 register field. */
-#define ALT_NAND_CFG_DEVICE_RST_BANK2_RESET      0x0
+    #define ALT_NAND_CFG_DEVICE_RST_BANK2_RESET      0x0
 /* Extracts the ALT_NAND_CFG_DEVICE_RST_BANK2 field value from a register. */
-#define ALT_NAND_CFG_DEVICE_RST_BANK2_GET(value) (((value) & 0x00000004) >> 2)
+    #define ALT_NAND_CFG_DEVICE_RST_BANK2_GET( value )    ( ( ( value ) & 0x00000004 ) >> 2 )
 /* Produces a ALT_NAND_CFG_DEVICE_RST_BANK2 register field value suitable for setting the register. */
-#define ALT_NAND_CFG_DEVICE_RST_BANK2_SET(value) (((value) << 2) & 0x00000004)
+    #define ALT_NAND_CFG_DEVICE_RST_BANK2_SET( value )    ( ( ( value ) << 2 ) & 0x00000004 )
 
 /*
  * Field : bank3
@@ -159,23 +162,24 @@ extern "C"
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_DEVICE_RST_BANK3 register field. */
-#define ALT_NAND_CFG_DEVICE_RST_BANK3_LSB        3
+    #define ALT_NAND_CFG_DEVICE_RST_BANK3_LSB        3
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_DEVICE_RST_BANK3 register field. */
-#define ALT_NAND_CFG_DEVICE_RST_BANK3_MSB        3
+    #define ALT_NAND_CFG_DEVICE_RST_BANK3_MSB        3
 /* The width in bits of the ALT_NAND_CFG_DEVICE_RST_BANK3 register field. */
-#define ALT_NAND_CFG_DEVICE_RST_BANK3_WIDTH      1
+    #define ALT_NAND_CFG_DEVICE_RST_BANK3_WIDTH      1
 /* The mask used to set the ALT_NAND_CFG_DEVICE_RST_BANK3 register field value. */
-#define ALT_NAND_CFG_DEVICE_RST_BANK3_SET_MSK    0x00000008
+    #define ALT_NAND_CFG_DEVICE_RST_BANK3_SET_MSK    0x00000008
 /* The mask used to clear the ALT_NAND_CFG_DEVICE_RST_BANK3 register field value. */
-#define ALT_NAND_CFG_DEVICE_RST_BANK3_CLR_MSK    0xfffffff7
+    #define ALT_NAND_CFG_DEVICE_RST_BANK3_CLR_MSK    0xfffffff7
 /* The reset value of the ALT_NAND_CFG_DEVICE_RST_BANK3 register field. */
-#define ALT_NAND_CFG_DEVICE_RST_BANK3_RESET      0x0
+    #define ALT_NAND_CFG_DEVICE_RST_BANK3_RESET      0x0
 /* Extracts the ALT_NAND_CFG_DEVICE_RST_BANK3 field value from a register. */
-#define ALT_NAND_CFG_DEVICE_RST_BANK3_GET(value) (((value) & 0x00000008) >> 3)
+    #define ALT_NAND_CFG_DEVICE_RST_BANK3_GET( value )    ( ( ( value ) & 0x00000008 ) >> 3 )
 /* Produces a ALT_NAND_CFG_DEVICE_RST_BANK3 register field value suitable for setting the register. */
-#define ALT_NAND_CFG_DEVICE_RST_BANK3_SET(value) (((value) << 3) & 0x00000008)
+    #define ALT_NAND_CFG_DEVICE_RST_BANK3_SET( value )    ( ( ( value ) << 3 ) & 0x00000008 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -186,21 +190,21 @@ extern "C"
  *
  * The struct declaration for register ALT_NAND_CFG_DEVICE_RST.
  */
-struct ALT_NAND_CFG_DEVICE_RST_s
-{
-    uint32_t  bank0 :  1;  /* ALT_NAND_CFG_DEVICE_RST_BANK0 */
-    uint32_t  bank1 :  1;  /* ALT_NAND_CFG_DEVICE_RST_BANK1 */
-    uint32_t  bank2 :  1;  /* ALT_NAND_CFG_DEVICE_RST_BANK2 */
-    uint32_t  bank3 :  1;  /* ALT_NAND_CFG_DEVICE_RST_BANK3 */
-    uint32_t        : 28;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_CFG_DEVICE_RST_s
+        {
+            uint32_t bank0 :  1;  /* ALT_NAND_CFG_DEVICE_RST_BANK0 */
+            uint32_t bank1 :  1;  /* ALT_NAND_CFG_DEVICE_RST_BANK1 */
+            uint32_t bank2 :  1;  /* ALT_NAND_CFG_DEVICE_RST_BANK2 */
+            uint32_t bank3 :  1;  /* ALT_NAND_CFG_DEVICE_RST_BANK3 */
+            uint32_t        : 28; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_CFG_DEVICE_RST. */
-typedef volatile struct ALT_NAND_CFG_DEVICE_RST_s  ALT_NAND_CFG_DEVICE_RST_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_CFG_DEVICE_RST_s ALT_NAND_CFG_DEVICE_RST_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_CFG_DEVICE_RST register from the beginning of the component. */
-#define ALT_NAND_CFG_DEVICE_RST_OFST        0x0
+    #define ALT_NAND_CFG_DEVICE_RST_OFST    0x0
 
 /*
  * Register : transfer_spare_reg
@@ -215,35 +219,37 @@ typedef volatile struct ALT_NAND_CFG_DEVICE_RST_s  ALT_NAND_CFG_DEVICE_RST_t;
  *  [31:1] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : flag
  *
  * On all read or write commands through Map 01, if this bit is set, data in spare
- * area of memory will be transfered to host along with main area of data. The main
- * area will be transfered followed by spare area.[list][*]1 - MAIN+SPARE [*]0 -
+ * area of memory will be transferred to host along with main area of data. The main
+ * area will be transferred followed by spare area.[list][*]1 - MAIN+SPARE [*]0 -
  * MAIN[/list]
  *
  * Field Access Macros:
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_TFR_SPARE_REG_FLAG register field. */
-#define ALT_NAND_CFG_TFR_SPARE_REG_FLAG_LSB        0
+    #define ALT_NAND_CFG_TFR_SPARE_REG_FLAG_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_TFR_SPARE_REG_FLAG register field. */
-#define ALT_NAND_CFG_TFR_SPARE_REG_FLAG_MSB        0
+    #define ALT_NAND_CFG_TFR_SPARE_REG_FLAG_MSB        0
 /* The width in bits of the ALT_NAND_CFG_TFR_SPARE_REG_FLAG register field. */
-#define ALT_NAND_CFG_TFR_SPARE_REG_FLAG_WIDTH      1
+    #define ALT_NAND_CFG_TFR_SPARE_REG_FLAG_WIDTH      1
 /* The mask used to set the ALT_NAND_CFG_TFR_SPARE_REG_FLAG register field value. */
-#define ALT_NAND_CFG_TFR_SPARE_REG_FLAG_SET_MSK    0x00000001
+    #define ALT_NAND_CFG_TFR_SPARE_REG_FLAG_SET_MSK    0x00000001
 /* The mask used to clear the ALT_NAND_CFG_TFR_SPARE_REG_FLAG register field value. */
-#define ALT_NAND_CFG_TFR_SPARE_REG_FLAG_CLR_MSK    0xfffffffe
+    #define ALT_NAND_CFG_TFR_SPARE_REG_FLAG_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_NAND_CFG_TFR_SPARE_REG_FLAG register field. */
-#define ALT_NAND_CFG_TFR_SPARE_REG_FLAG_RESET      0x0
+    #define ALT_NAND_CFG_TFR_SPARE_REG_FLAG_RESET      0x0
 /* Extracts the ALT_NAND_CFG_TFR_SPARE_REG_FLAG field value from a register. */
-#define ALT_NAND_CFG_TFR_SPARE_REG_FLAG_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_NAND_CFG_TFR_SPARE_REG_FLAG_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_NAND_CFG_TFR_SPARE_REG_FLAG register field value suitable for setting the register. */
-#define ALT_NAND_CFG_TFR_SPARE_REG_FLAG_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_NAND_CFG_TFR_SPARE_REG_FLAG_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -254,18 +260,18 @@ typedef volatile struct ALT_NAND_CFG_DEVICE_RST_s  ALT_NAND_CFG_DEVICE_RST_t;
  *
  * The struct declaration for register ALT_NAND_CFG_TFR_SPARE_REG.
  */
-struct ALT_NAND_CFG_TFR_SPARE_REG_s
-{
-    uint32_t  flag :  1;  /* ALT_NAND_CFG_TFR_SPARE_REG_FLAG */
-    uint32_t       : 31;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_CFG_TFR_SPARE_REG_s
+        {
+            uint32_t flag :  1;  /* ALT_NAND_CFG_TFR_SPARE_REG_FLAG */
+            uint32_t       : 31; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_CFG_TFR_SPARE_REG. */
-typedef volatile struct ALT_NAND_CFG_TFR_SPARE_REG_s  ALT_NAND_CFG_TFR_SPARE_REG_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_CFG_TFR_SPARE_REG_s ALT_NAND_CFG_TFR_SPARE_REG_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_CFG_TFR_SPARE_REG register from the beginning of the component. */
-#define ALT_NAND_CFG_TFR_SPARE_REG_OFST        0x10
+    #define ALT_NAND_CFG_TFR_SPARE_REG_OFST    0x10
 
 /*
  * Register : load_wait_cnt
@@ -280,6 +286,7 @@ typedef volatile struct ALT_NAND_CFG_TFR_SPARE_REG_s  ALT_NAND_CFG_TFR_SPARE_REG
  *  [31:16] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -295,23 +302,24 @@ typedef volatile struct ALT_NAND_CFG_TFR_SPARE_REG_s  ALT_NAND_CFG_TFR_SPARE_REG
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_LD_WAIT_CNT_VALUE register field. */
-#define ALT_NAND_CFG_LD_WAIT_CNT_VALUE_LSB        0
+    #define ALT_NAND_CFG_LD_WAIT_CNT_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_LD_WAIT_CNT_VALUE register field. */
-#define ALT_NAND_CFG_LD_WAIT_CNT_VALUE_MSB        15
+    #define ALT_NAND_CFG_LD_WAIT_CNT_VALUE_MSB        15
 /* The width in bits of the ALT_NAND_CFG_LD_WAIT_CNT_VALUE register field. */
-#define ALT_NAND_CFG_LD_WAIT_CNT_VALUE_WIDTH      16
+    #define ALT_NAND_CFG_LD_WAIT_CNT_VALUE_WIDTH      16
 /* The mask used to set the ALT_NAND_CFG_LD_WAIT_CNT_VALUE register field value. */
-#define ALT_NAND_CFG_LD_WAIT_CNT_VALUE_SET_MSK    0x0000ffff
+    #define ALT_NAND_CFG_LD_WAIT_CNT_VALUE_SET_MSK    0x0000ffff
 /* The mask used to clear the ALT_NAND_CFG_LD_WAIT_CNT_VALUE register field value. */
-#define ALT_NAND_CFG_LD_WAIT_CNT_VALUE_CLR_MSK    0xffff0000
+    #define ALT_NAND_CFG_LD_WAIT_CNT_VALUE_CLR_MSK    0xffff0000
 /* The reset value of the ALT_NAND_CFG_LD_WAIT_CNT_VALUE register field. */
-#define ALT_NAND_CFG_LD_WAIT_CNT_VALUE_RESET      0x1f4
+    #define ALT_NAND_CFG_LD_WAIT_CNT_VALUE_RESET      0x1f4
 /* Extracts the ALT_NAND_CFG_LD_WAIT_CNT_VALUE field value from a register. */
-#define ALT_NAND_CFG_LD_WAIT_CNT_VALUE_GET(value) (((value) & 0x0000ffff) >> 0)
+    #define ALT_NAND_CFG_LD_WAIT_CNT_VALUE_GET( value )    ( ( ( value ) & 0x0000ffff ) >> 0 )
 /* Produces a ALT_NAND_CFG_LD_WAIT_CNT_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_CFG_LD_WAIT_CNT_VALUE_SET(value) (((value) << 0) & 0x0000ffff)
+    #define ALT_NAND_CFG_LD_WAIT_CNT_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x0000ffff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -322,18 +330,18 @@ typedef volatile struct ALT_NAND_CFG_TFR_SPARE_REG_s  ALT_NAND_CFG_TFR_SPARE_REG
  *
  * The struct declaration for register ALT_NAND_CFG_LD_WAIT_CNT.
  */
-struct ALT_NAND_CFG_LD_WAIT_CNT_s
-{
-    uint32_t  value : 16;  /* ALT_NAND_CFG_LD_WAIT_CNT_VALUE */
-    uint32_t        : 16;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_CFG_LD_WAIT_CNT_s
+        {
+            uint32_t value : 16;  /* ALT_NAND_CFG_LD_WAIT_CNT_VALUE */
+            uint32_t        : 16; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_CFG_LD_WAIT_CNT. */
-typedef volatile struct ALT_NAND_CFG_LD_WAIT_CNT_s  ALT_NAND_CFG_LD_WAIT_CNT_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_CFG_LD_WAIT_CNT_s ALT_NAND_CFG_LD_WAIT_CNT_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_CFG_LD_WAIT_CNT register from the beginning of the component. */
-#define ALT_NAND_CFG_LD_WAIT_CNT_OFST        0x20
+    #define ALT_NAND_CFG_LD_WAIT_CNT_OFST    0x20
 
 /*
  * Register : program_wait_cnt
@@ -348,6 +356,7 @@ typedef volatile struct ALT_NAND_CFG_LD_WAIT_CNT_s  ALT_NAND_CFG_LD_WAIT_CNT_t;
  *  [31:16] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -364,23 +373,24 @@ typedef volatile struct ALT_NAND_CFG_LD_WAIT_CNT_s  ALT_NAND_CFG_LD_WAIT_CNT_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_PROGRAM_WAIT_CNT_VALUE register field. */
-#define ALT_NAND_CFG_PROGRAM_WAIT_CNT_VALUE_LSB        0
+    #define ALT_NAND_CFG_PROGRAM_WAIT_CNT_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_PROGRAM_WAIT_CNT_VALUE register field. */
-#define ALT_NAND_CFG_PROGRAM_WAIT_CNT_VALUE_MSB        15
+    #define ALT_NAND_CFG_PROGRAM_WAIT_CNT_VALUE_MSB        15
 /* The width in bits of the ALT_NAND_CFG_PROGRAM_WAIT_CNT_VALUE register field. */
-#define ALT_NAND_CFG_PROGRAM_WAIT_CNT_VALUE_WIDTH      16
+    #define ALT_NAND_CFG_PROGRAM_WAIT_CNT_VALUE_WIDTH      16
 /* The mask used to set the ALT_NAND_CFG_PROGRAM_WAIT_CNT_VALUE register field value. */
-#define ALT_NAND_CFG_PROGRAM_WAIT_CNT_VALUE_SET_MSK    0x0000ffff
+    #define ALT_NAND_CFG_PROGRAM_WAIT_CNT_VALUE_SET_MSK    0x0000ffff
 /* The mask used to clear the ALT_NAND_CFG_PROGRAM_WAIT_CNT_VALUE register field value. */
-#define ALT_NAND_CFG_PROGRAM_WAIT_CNT_VALUE_CLR_MSK    0xffff0000
+    #define ALT_NAND_CFG_PROGRAM_WAIT_CNT_VALUE_CLR_MSK    0xffff0000
 /* The reset value of the ALT_NAND_CFG_PROGRAM_WAIT_CNT_VALUE register field. */
-#define ALT_NAND_CFG_PROGRAM_WAIT_CNT_VALUE_RESET      0x1f4
+    #define ALT_NAND_CFG_PROGRAM_WAIT_CNT_VALUE_RESET      0x1f4
 /* Extracts the ALT_NAND_CFG_PROGRAM_WAIT_CNT_VALUE field value from a register. */
-#define ALT_NAND_CFG_PROGRAM_WAIT_CNT_VALUE_GET(value) (((value) & 0x0000ffff) >> 0)
+    #define ALT_NAND_CFG_PROGRAM_WAIT_CNT_VALUE_GET( value )    ( ( ( value ) & 0x0000ffff ) >> 0 )
 /* Produces a ALT_NAND_CFG_PROGRAM_WAIT_CNT_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_CFG_PROGRAM_WAIT_CNT_VALUE_SET(value) (((value) << 0) & 0x0000ffff)
+    #define ALT_NAND_CFG_PROGRAM_WAIT_CNT_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x0000ffff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -391,18 +401,18 @@ typedef volatile struct ALT_NAND_CFG_LD_WAIT_CNT_s  ALT_NAND_CFG_LD_WAIT_CNT_t;
  *
  * The struct declaration for register ALT_NAND_CFG_PROGRAM_WAIT_CNT.
  */
-struct ALT_NAND_CFG_PROGRAM_WAIT_CNT_s
-{
-    uint32_t  value : 16;  /* ALT_NAND_CFG_PROGRAM_WAIT_CNT_VALUE */
-    uint32_t        : 16;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_CFG_PROGRAM_WAIT_CNT_s
+        {
+            uint32_t value : 16;  /* ALT_NAND_CFG_PROGRAM_WAIT_CNT_VALUE */
+            uint32_t        : 16; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_CFG_PROGRAM_WAIT_CNT. */
-typedef volatile struct ALT_NAND_CFG_PROGRAM_WAIT_CNT_s  ALT_NAND_CFG_PROGRAM_WAIT_CNT_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_CFG_PROGRAM_WAIT_CNT_s ALT_NAND_CFG_PROGRAM_WAIT_CNT_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_CFG_PROGRAM_WAIT_CNT register from the beginning of the component. */
-#define ALT_NAND_CFG_PROGRAM_WAIT_CNT_OFST        0x30
+    #define ALT_NAND_CFG_PROGRAM_WAIT_CNT_OFST    0x30
 
 /*
  * Register : erase_wait_cnt
@@ -417,6 +427,7 @@ typedef volatile struct ALT_NAND_CFG_PROGRAM_WAIT_CNT_s  ALT_NAND_CFG_PROGRAM_WA
  *  [31:16] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -433,23 +444,24 @@ typedef volatile struct ALT_NAND_CFG_PROGRAM_WAIT_CNT_s  ALT_NAND_CFG_PROGRAM_WA
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_ERASE_WAIT_CNT_VALUE register field. */
-#define ALT_NAND_CFG_ERASE_WAIT_CNT_VALUE_LSB        0
+    #define ALT_NAND_CFG_ERASE_WAIT_CNT_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_ERASE_WAIT_CNT_VALUE register field. */
-#define ALT_NAND_CFG_ERASE_WAIT_CNT_VALUE_MSB        15
+    #define ALT_NAND_CFG_ERASE_WAIT_CNT_VALUE_MSB        15
 /* The width in bits of the ALT_NAND_CFG_ERASE_WAIT_CNT_VALUE register field. */
-#define ALT_NAND_CFG_ERASE_WAIT_CNT_VALUE_WIDTH      16
+    #define ALT_NAND_CFG_ERASE_WAIT_CNT_VALUE_WIDTH      16
 /* The mask used to set the ALT_NAND_CFG_ERASE_WAIT_CNT_VALUE register field value. */
-#define ALT_NAND_CFG_ERASE_WAIT_CNT_VALUE_SET_MSK    0x0000ffff
+    #define ALT_NAND_CFG_ERASE_WAIT_CNT_VALUE_SET_MSK    0x0000ffff
 /* The mask used to clear the ALT_NAND_CFG_ERASE_WAIT_CNT_VALUE register field value. */
-#define ALT_NAND_CFG_ERASE_WAIT_CNT_VALUE_CLR_MSK    0xffff0000
+    #define ALT_NAND_CFG_ERASE_WAIT_CNT_VALUE_CLR_MSK    0xffff0000
 /* The reset value of the ALT_NAND_CFG_ERASE_WAIT_CNT_VALUE register field. */
-#define ALT_NAND_CFG_ERASE_WAIT_CNT_VALUE_RESET      0x1f4
+    #define ALT_NAND_CFG_ERASE_WAIT_CNT_VALUE_RESET      0x1f4
 /* Extracts the ALT_NAND_CFG_ERASE_WAIT_CNT_VALUE field value from a register. */
-#define ALT_NAND_CFG_ERASE_WAIT_CNT_VALUE_GET(value) (((value) & 0x0000ffff) >> 0)
+    #define ALT_NAND_CFG_ERASE_WAIT_CNT_VALUE_GET( value )    ( ( ( value ) & 0x0000ffff ) >> 0 )
 /* Produces a ALT_NAND_CFG_ERASE_WAIT_CNT_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_CFG_ERASE_WAIT_CNT_VALUE_SET(value) (((value) << 0) & 0x0000ffff)
+    #define ALT_NAND_CFG_ERASE_WAIT_CNT_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x0000ffff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -460,18 +472,18 @@ typedef volatile struct ALT_NAND_CFG_PROGRAM_WAIT_CNT_s  ALT_NAND_CFG_PROGRAM_WA
  *
  * The struct declaration for register ALT_NAND_CFG_ERASE_WAIT_CNT.
  */
-struct ALT_NAND_CFG_ERASE_WAIT_CNT_s
-{
-    uint32_t  value : 16;  /* ALT_NAND_CFG_ERASE_WAIT_CNT_VALUE */
-    uint32_t        : 16;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_CFG_ERASE_WAIT_CNT_s
+        {
+            uint32_t value : 16;  /* ALT_NAND_CFG_ERASE_WAIT_CNT_VALUE */
+            uint32_t        : 16; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_CFG_ERASE_WAIT_CNT. */
-typedef volatile struct ALT_NAND_CFG_ERASE_WAIT_CNT_s  ALT_NAND_CFG_ERASE_WAIT_CNT_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_CFG_ERASE_WAIT_CNT_s ALT_NAND_CFG_ERASE_WAIT_CNT_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_CFG_ERASE_WAIT_CNT register from the beginning of the component. */
-#define ALT_NAND_CFG_ERASE_WAIT_CNT_OFST        0x40
+    #define ALT_NAND_CFG_ERASE_WAIT_CNT_OFST    0x40
 
 /*
  * Register : int_mon_cyccnt
@@ -486,6 +498,7 @@ typedef volatile struct ALT_NAND_CFG_ERASE_WAIT_CNT_s  ALT_NAND_CFG_ERASE_WAIT_C
  *  [31:16] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -497,23 +510,24 @@ typedef volatile struct ALT_NAND_CFG_ERASE_WAIT_CNT_s  ALT_NAND_CFG_ERASE_WAIT_C
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_INT_MON_CYCCNT_VALUE register field. */
-#define ALT_NAND_CFG_INT_MON_CYCCNT_VALUE_LSB        0
+    #define ALT_NAND_CFG_INT_MON_CYCCNT_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_INT_MON_CYCCNT_VALUE register field. */
-#define ALT_NAND_CFG_INT_MON_CYCCNT_VALUE_MSB        15
+    #define ALT_NAND_CFG_INT_MON_CYCCNT_VALUE_MSB        15
 /* The width in bits of the ALT_NAND_CFG_INT_MON_CYCCNT_VALUE register field. */
-#define ALT_NAND_CFG_INT_MON_CYCCNT_VALUE_WIDTH      16
+    #define ALT_NAND_CFG_INT_MON_CYCCNT_VALUE_WIDTH      16
 /* The mask used to set the ALT_NAND_CFG_INT_MON_CYCCNT_VALUE register field value. */
-#define ALT_NAND_CFG_INT_MON_CYCCNT_VALUE_SET_MSK    0x0000ffff
+    #define ALT_NAND_CFG_INT_MON_CYCCNT_VALUE_SET_MSK    0x0000ffff
 /* The mask used to clear the ALT_NAND_CFG_INT_MON_CYCCNT_VALUE register field value. */
-#define ALT_NAND_CFG_INT_MON_CYCCNT_VALUE_CLR_MSK    0xffff0000
+    #define ALT_NAND_CFG_INT_MON_CYCCNT_VALUE_CLR_MSK    0xffff0000
 /* The reset value of the ALT_NAND_CFG_INT_MON_CYCCNT_VALUE register field. */
-#define ALT_NAND_CFG_INT_MON_CYCCNT_VALUE_RESET      0x1f4
+    #define ALT_NAND_CFG_INT_MON_CYCCNT_VALUE_RESET      0x1f4
 /* Extracts the ALT_NAND_CFG_INT_MON_CYCCNT_VALUE field value from a register. */
-#define ALT_NAND_CFG_INT_MON_CYCCNT_VALUE_GET(value) (((value) & 0x0000ffff) >> 0)
+    #define ALT_NAND_CFG_INT_MON_CYCCNT_VALUE_GET( value )    ( ( ( value ) & 0x0000ffff ) >> 0 )
 /* Produces a ALT_NAND_CFG_INT_MON_CYCCNT_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_CFG_INT_MON_CYCCNT_VALUE_SET(value) (((value) << 0) & 0x0000ffff)
+    #define ALT_NAND_CFG_INT_MON_CYCCNT_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x0000ffff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -524,18 +538,18 @@ typedef volatile struct ALT_NAND_CFG_ERASE_WAIT_CNT_s  ALT_NAND_CFG_ERASE_WAIT_C
  *
  * The struct declaration for register ALT_NAND_CFG_INT_MON_CYCCNT.
  */
-struct ALT_NAND_CFG_INT_MON_CYCCNT_s
-{
-    uint32_t  value : 16;  /* ALT_NAND_CFG_INT_MON_CYCCNT_VALUE */
-    uint32_t        : 16;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_CFG_INT_MON_CYCCNT_s
+        {
+            uint32_t value : 16;  /* ALT_NAND_CFG_INT_MON_CYCCNT_VALUE */
+            uint32_t        : 16; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_CFG_INT_MON_CYCCNT. */
-typedef volatile struct ALT_NAND_CFG_INT_MON_CYCCNT_s  ALT_NAND_CFG_INT_MON_CYCCNT_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_CFG_INT_MON_CYCCNT_s ALT_NAND_CFG_INT_MON_CYCCNT_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_CFG_INT_MON_CYCCNT register from the beginning of the component. */
-#define ALT_NAND_CFG_INT_MON_CYCCNT_OFST        0x50
+    #define ALT_NAND_CFG_INT_MON_CYCCNT_OFST    0x50
 
 /*
  * Register : rb_pin_enabled
@@ -553,6 +567,7 @@ typedef volatile struct ALT_NAND_CFG_INT_MON_CYCCNT_s  ALT_NAND_CFG_INT_MON_CYCC
  *  [31:4] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : bank0
  *
@@ -564,21 +579,21 @@ typedef volatile struct ALT_NAND_CFG_INT_MON_CYCCNT_s  ALT_NAND_CFG_INT_MON_CYCC
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_RB_PIN_END_BANK0 register field. */
-#define ALT_NAND_CFG_RB_PIN_END_BANK0_LSB        0
+    #define ALT_NAND_CFG_RB_PIN_END_BANK0_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_RB_PIN_END_BANK0 register field. */
-#define ALT_NAND_CFG_RB_PIN_END_BANK0_MSB        0
+    #define ALT_NAND_CFG_RB_PIN_END_BANK0_MSB        0
 /* The width in bits of the ALT_NAND_CFG_RB_PIN_END_BANK0 register field. */
-#define ALT_NAND_CFG_RB_PIN_END_BANK0_WIDTH      1
+    #define ALT_NAND_CFG_RB_PIN_END_BANK0_WIDTH      1
 /* The mask used to set the ALT_NAND_CFG_RB_PIN_END_BANK0 register field value. */
-#define ALT_NAND_CFG_RB_PIN_END_BANK0_SET_MSK    0x00000001
+    #define ALT_NAND_CFG_RB_PIN_END_BANK0_SET_MSK    0x00000001
 /* The mask used to clear the ALT_NAND_CFG_RB_PIN_END_BANK0 register field value. */
-#define ALT_NAND_CFG_RB_PIN_END_BANK0_CLR_MSK    0xfffffffe
+    #define ALT_NAND_CFG_RB_PIN_END_BANK0_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_NAND_CFG_RB_PIN_END_BANK0 register field. */
-#define ALT_NAND_CFG_RB_PIN_END_BANK0_RESET      0x1
+    #define ALT_NAND_CFG_RB_PIN_END_BANK0_RESET      0x1
 /* Extracts the ALT_NAND_CFG_RB_PIN_END_BANK0 field value from a register. */
-#define ALT_NAND_CFG_RB_PIN_END_BANK0_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_NAND_CFG_RB_PIN_END_BANK0_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_NAND_CFG_RB_PIN_END_BANK0 register field value suitable for setting the register. */
-#define ALT_NAND_CFG_RB_PIN_END_BANK0_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_NAND_CFG_RB_PIN_END_BANK0_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
 /*
  * Field : bank1
@@ -591,21 +606,21 @@ typedef volatile struct ALT_NAND_CFG_INT_MON_CYCCNT_s  ALT_NAND_CFG_INT_MON_CYCC
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_RB_PIN_END_BANK1 register field. */
-#define ALT_NAND_CFG_RB_PIN_END_BANK1_LSB        1
+    #define ALT_NAND_CFG_RB_PIN_END_BANK1_LSB        1
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_RB_PIN_END_BANK1 register field. */
-#define ALT_NAND_CFG_RB_PIN_END_BANK1_MSB        1
+    #define ALT_NAND_CFG_RB_PIN_END_BANK1_MSB        1
 /* The width in bits of the ALT_NAND_CFG_RB_PIN_END_BANK1 register field. */
-#define ALT_NAND_CFG_RB_PIN_END_BANK1_WIDTH      1
+    #define ALT_NAND_CFG_RB_PIN_END_BANK1_WIDTH      1
 /* The mask used to set the ALT_NAND_CFG_RB_PIN_END_BANK1 register field value. */
-#define ALT_NAND_CFG_RB_PIN_END_BANK1_SET_MSK    0x00000002
+    #define ALT_NAND_CFG_RB_PIN_END_BANK1_SET_MSK    0x00000002
 /* The mask used to clear the ALT_NAND_CFG_RB_PIN_END_BANK1 register field value. */
-#define ALT_NAND_CFG_RB_PIN_END_BANK1_CLR_MSK    0xfffffffd
+    #define ALT_NAND_CFG_RB_PIN_END_BANK1_CLR_MSK    0xfffffffd
 /* The reset value of the ALT_NAND_CFG_RB_PIN_END_BANK1 register field. */
-#define ALT_NAND_CFG_RB_PIN_END_BANK1_RESET      0x0
+    #define ALT_NAND_CFG_RB_PIN_END_BANK1_RESET      0x0
 /* Extracts the ALT_NAND_CFG_RB_PIN_END_BANK1 field value from a register. */
-#define ALT_NAND_CFG_RB_PIN_END_BANK1_GET(value) (((value) & 0x00000002) >> 1)
+    #define ALT_NAND_CFG_RB_PIN_END_BANK1_GET( value )    ( ( ( value ) & 0x00000002 ) >> 1 )
 /* Produces a ALT_NAND_CFG_RB_PIN_END_BANK1 register field value suitable for setting the register. */
-#define ALT_NAND_CFG_RB_PIN_END_BANK1_SET(value) (((value) << 1) & 0x00000002)
+    #define ALT_NAND_CFG_RB_PIN_END_BANK1_SET( value )    ( ( ( value ) << 1 ) & 0x00000002 )
 
 /*
  * Field : bank2
@@ -618,21 +633,21 @@ typedef volatile struct ALT_NAND_CFG_INT_MON_CYCCNT_s  ALT_NAND_CFG_INT_MON_CYCC
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_RB_PIN_END_BANK2 register field. */
-#define ALT_NAND_CFG_RB_PIN_END_BANK2_LSB        2
+    #define ALT_NAND_CFG_RB_PIN_END_BANK2_LSB        2
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_RB_PIN_END_BANK2 register field. */
-#define ALT_NAND_CFG_RB_PIN_END_BANK2_MSB        2
+    #define ALT_NAND_CFG_RB_PIN_END_BANK2_MSB        2
 /* The width in bits of the ALT_NAND_CFG_RB_PIN_END_BANK2 register field. */
-#define ALT_NAND_CFG_RB_PIN_END_BANK2_WIDTH      1
+    #define ALT_NAND_CFG_RB_PIN_END_BANK2_WIDTH      1
 /* The mask used to set the ALT_NAND_CFG_RB_PIN_END_BANK2 register field value. */
-#define ALT_NAND_CFG_RB_PIN_END_BANK2_SET_MSK    0x00000004
+    #define ALT_NAND_CFG_RB_PIN_END_BANK2_SET_MSK    0x00000004
 /* The mask used to clear the ALT_NAND_CFG_RB_PIN_END_BANK2 register field value. */
-#define ALT_NAND_CFG_RB_PIN_END_BANK2_CLR_MSK    0xfffffffb
+    #define ALT_NAND_CFG_RB_PIN_END_BANK2_CLR_MSK    0xfffffffb
 /* The reset value of the ALT_NAND_CFG_RB_PIN_END_BANK2 register field. */
-#define ALT_NAND_CFG_RB_PIN_END_BANK2_RESET      0x0
+    #define ALT_NAND_CFG_RB_PIN_END_BANK2_RESET      0x0
 /* Extracts the ALT_NAND_CFG_RB_PIN_END_BANK2 field value from a register. */
-#define ALT_NAND_CFG_RB_PIN_END_BANK2_GET(value) (((value) & 0x00000004) >> 2)
+    #define ALT_NAND_CFG_RB_PIN_END_BANK2_GET( value )    ( ( ( value ) & 0x00000004 ) >> 2 )
 /* Produces a ALT_NAND_CFG_RB_PIN_END_BANK2 register field value suitable for setting the register. */
-#define ALT_NAND_CFG_RB_PIN_END_BANK2_SET(value) (((value) << 2) & 0x00000004)
+    #define ALT_NAND_CFG_RB_PIN_END_BANK2_SET( value )    ( ( ( value ) << 2 ) & 0x00000004 )
 
 /*
  * Field : bank3
@@ -645,23 +660,24 @@ typedef volatile struct ALT_NAND_CFG_INT_MON_CYCCNT_s  ALT_NAND_CFG_INT_MON_CYCC
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_RB_PIN_END_BANK3 register field. */
-#define ALT_NAND_CFG_RB_PIN_END_BANK3_LSB        3
+    #define ALT_NAND_CFG_RB_PIN_END_BANK3_LSB        3
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_RB_PIN_END_BANK3 register field. */
-#define ALT_NAND_CFG_RB_PIN_END_BANK3_MSB        3
+    #define ALT_NAND_CFG_RB_PIN_END_BANK3_MSB        3
 /* The width in bits of the ALT_NAND_CFG_RB_PIN_END_BANK3 register field. */
-#define ALT_NAND_CFG_RB_PIN_END_BANK3_WIDTH      1
+    #define ALT_NAND_CFG_RB_PIN_END_BANK3_WIDTH      1
 /* The mask used to set the ALT_NAND_CFG_RB_PIN_END_BANK3 register field value. */
-#define ALT_NAND_CFG_RB_PIN_END_BANK3_SET_MSK    0x00000008
+    #define ALT_NAND_CFG_RB_PIN_END_BANK3_SET_MSK    0x00000008
 /* The mask used to clear the ALT_NAND_CFG_RB_PIN_END_BANK3 register field value. */
-#define ALT_NAND_CFG_RB_PIN_END_BANK3_CLR_MSK    0xfffffff7
+    #define ALT_NAND_CFG_RB_PIN_END_BANK3_CLR_MSK    0xfffffff7
 /* The reset value of the ALT_NAND_CFG_RB_PIN_END_BANK3 register field. */
-#define ALT_NAND_CFG_RB_PIN_END_BANK3_RESET      0x0
+    #define ALT_NAND_CFG_RB_PIN_END_BANK3_RESET      0x0
 /* Extracts the ALT_NAND_CFG_RB_PIN_END_BANK3 field value from a register. */
-#define ALT_NAND_CFG_RB_PIN_END_BANK3_GET(value) (((value) & 0x00000008) >> 3)
+    #define ALT_NAND_CFG_RB_PIN_END_BANK3_GET( value )    ( ( ( value ) & 0x00000008 ) >> 3 )
 /* Produces a ALT_NAND_CFG_RB_PIN_END_BANK3 register field value suitable for setting the register. */
-#define ALT_NAND_CFG_RB_PIN_END_BANK3_SET(value) (((value) << 3) & 0x00000008)
+    #define ALT_NAND_CFG_RB_PIN_END_BANK3_SET( value )    ( ( ( value ) << 3 ) & 0x00000008 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -672,27 +688,27 @@ typedef volatile struct ALT_NAND_CFG_INT_MON_CYCCNT_s  ALT_NAND_CFG_INT_MON_CYCC
  *
  * The struct declaration for register ALT_NAND_CFG_RB_PIN_END.
  */
-struct ALT_NAND_CFG_RB_PIN_END_s
-{
-    uint32_t  bank0 :  1;  /* ALT_NAND_CFG_RB_PIN_END_BANK0 */
-    uint32_t  bank1 :  1;  /* ALT_NAND_CFG_RB_PIN_END_BANK1 */
-    uint32_t  bank2 :  1;  /* ALT_NAND_CFG_RB_PIN_END_BANK2 */
-    uint32_t  bank3 :  1;  /* ALT_NAND_CFG_RB_PIN_END_BANK3 */
-    uint32_t        : 28;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_CFG_RB_PIN_END_s
+        {
+            uint32_t bank0 :  1;  /* ALT_NAND_CFG_RB_PIN_END_BANK0 */
+            uint32_t bank1 :  1;  /* ALT_NAND_CFG_RB_PIN_END_BANK1 */
+            uint32_t bank2 :  1;  /* ALT_NAND_CFG_RB_PIN_END_BANK2 */
+            uint32_t bank3 :  1;  /* ALT_NAND_CFG_RB_PIN_END_BANK3 */
+            uint32_t        : 28; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_CFG_RB_PIN_END. */
-typedef volatile struct ALT_NAND_CFG_RB_PIN_END_s  ALT_NAND_CFG_RB_PIN_END_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_CFG_RB_PIN_END_s ALT_NAND_CFG_RB_PIN_END_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_CFG_RB_PIN_END register from the beginning of the component. */
-#define ALT_NAND_CFG_RB_PIN_END_OFST        0x60
+    #define ALT_NAND_CFG_RB_PIN_END_OFST    0x60
 
 /*
  * Register : multiplane_operation
  *
  * Multiplane transfer mode. Pipelined read, copyback, erase and program commands
- * are transfered in multiplane mode
+ * are transferred in multiplane mode
  *
  * Register Layout
  *
@@ -702,6 +718,7 @@ typedef volatile struct ALT_NAND_CFG_RB_PIN_END_s  ALT_NAND_CFG_RB_PIN_END_t;
  *  [31:1] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : flag
  *
@@ -712,23 +729,24 @@ typedef volatile struct ALT_NAND_CFG_RB_PIN_END_s  ALT_NAND_CFG_RB_PIN_END_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_MULTIPLANE_OP_FLAG register field. */
-#define ALT_NAND_CFG_MULTIPLANE_OP_FLAG_LSB        0
+    #define ALT_NAND_CFG_MULTIPLANE_OP_FLAG_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_MULTIPLANE_OP_FLAG register field. */
-#define ALT_NAND_CFG_MULTIPLANE_OP_FLAG_MSB        0
+    #define ALT_NAND_CFG_MULTIPLANE_OP_FLAG_MSB        0
 /* The width in bits of the ALT_NAND_CFG_MULTIPLANE_OP_FLAG register field. */
-#define ALT_NAND_CFG_MULTIPLANE_OP_FLAG_WIDTH      1
+    #define ALT_NAND_CFG_MULTIPLANE_OP_FLAG_WIDTH      1
 /* The mask used to set the ALT_NAND_CFG_MULTIPLANE_OP_FLAG register field value. */
-#define ALT_NAND_CFG_MULTIPLANE_OP_FLAG_SET_MSK    0x00000001
+    #define ALT_NAND_CFG_MULTIPLANE_OP_FLAG_SET_MSK    0x00000001
 /* The mask used to clear the ALT_NAND_CFG_MULTIPLANE_OP_FLAG register field value. */
-#define ALT_NAND_CFG_MULTIPLANE_OP_FLAG_CLR_MSK    0xfffffffe
+    #define ALT_NAND_CFG_MULTIPLANE_OP_FLAG_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_NAND_CFG_MULTIPLANE_OP_FLAG register field. */
-#define ALT_NAND_CFG_MULTIPLANE_OP_FLAG_RESET      0x0
+    #define ALT_NAND_CFG_MULTIPLANE_OP_FLAG_RESET      0x0
 /* Extracts the ALT_NAND_CFG_MULTIPLANE_OP_FLAG field value from a register. */
-#define ALT_NAND_CFG_MULTIPLANE_OP_FLAG_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_NAND_CFG_MULTIPLANE_OP_FLAG_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_NAND_CFG_MULTIPLANE_OP_FLAG register field value suitable for setting the register. */
-#define ALT_NAND_CFG_MULTIPLANE_OP_FLAG_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_NAND_CFG_MULTIPLANE_OP_FLAG_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -739,18 +757,18 @@ typedef volatile struct ALT_NAND_CFG_RB_PIN_END_s  ALT_NAND_CFG_RB_PIN_END_t;
  *
  * The struct declaration for register ALT_NAND_CFG_MULTIPLANE_OP.
  */
-struct ALT_NAND_CFG_MULTIPLANE_OP_s
-{
-    uint32_t  flag :  1;  /* ALT_NAND_CFG_MULTIPLANE_OP_FLAG */
-    uint32_t       : 31;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_CFG_MULTIPLANE_OP_s
+        {
+            uint32_t flag :  1;  /* ALT_NAND_CFG_MULTIPLANE_OP_FLAG */
+            uint32_t       : 31; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_CFG_MULTIPLANE_OP. */
-typedef volatile struct ALT_NAND_CFG_MULTIPLANE_OP_s  ALT_NAND_CFG_MULTIPLANE_OP_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_CFG_MULTIPLANE_OP_s ALT_NAND_CFG_MULTIPLANE_OP_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_CFG_MULTIPLANE_OP register from the beginning of the component. */
-#define ALT_NAND_CFG_MULTIPLANE_OP_OFST        0x70
+    #define ALT_NAND_CFG_MULTIPLANE_OP_OFST    0x70
 
 /*
  * Register : multiplane_read_enable
@@ -765,6 +783,7 @@ typedef volatile struct ALT_NAND_CFG_MULTIPLANE_OP_s  ALT_NAND_CFG_MULTIPLANE_OP
  *  [31:1] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : flag
  *
@@ -780,23 +799,24 @@ typedef volatile struct ALT_NAND_CFG_MULTIPLANE_OP_s  ALT_NAND_CFG_MULTIPLANE_OP
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_MULTIPLANE_RD_EN_FLAG register field. */
-#define ALT_NAND_CFG_MULTIPLANE_RD_EN_FLAG_LSB        0
+    #define ALT_NAND_CFG_MULTIPLANE_RD_EN_FLAG_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_MULTIPLANE_RD_EN_FLAG register field. */
-#define ALT_NAND_CFG_MULTIPLANE_RD_EN_FLAG_MSB        0
+    #define ALT_NAND_CFG_MULTIPLANE_RD_EN_FLAG_MSB        0
 /* The width in bits of the ALT_NAND_CFG_MULTIPLANE_RD_EN_FLAG register field. */
-#define ALT_NAND_CFG_MULTIPLANE_RD_EN_FLAG_WIDTH      1
+    #define ALT_NAND_CFG_MULTIPLANE_RD_EN_FLAG_WIDTH      1
 /* The mask used to set the ALT_NAND_CFG_MULTIPLANE_RD_EN_FLAG register field value. */
-#define ALT_NAND_CFG_MULTIPLANE_RD_EN_FLAG_SET_MSK    0x00000001
+    #define ALT_NAND_CFG_MULTIPLANE_RD_EN_FLAG_SET_MSK    0x00000001
 /* The mask used to clear the ALT_NAND_CFG_MULTIPLANE_RD_EN_FLAG register field value. */
-#define ALT_NAND_CFG_MULTIPLANE_RD_EN_FLAG_CLR_MSK    0xfffffffe
+    #define ALT_NAND_CFG_MULTIPLANE_RD_EN_FLAG_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_NAND_CFG_MULTIPLANE_RD_EN_FLAG register field. */
-#define ALT_NAND_CFG_MULTIPLANE_RD_EN_FLAG_RESET      0x0
+    #define ALT_NAND_CFG_MULTIPLANE_RD_EN_FLAG_RESET      0x0
 /* Extracts the ALT_NAND_CFG_MULTIPLANE_RD_EN_FLAG field value from a register. */
-#define ALT_NAND_CFG_MULTIPLANE_RD_EN_FLAG_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_NAND_CFG_MULTIPLANE_RD_EN_FLAG_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_NAND_CFG_MULTIPLANE_RD_EN_FLAG register field value suitable for setting the register. */
-#define ALT_NAND_CFG_MULTIPLANE_RD_EN_FLAG_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_NAND_CFG_MULTIPLANE_RD_EN_FLAG_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -807,18 +827,18 @@ typedef volatile struct ALT_NAND_CFG_MULTIPLANE_OP_s  ALT_NAND_CFG_MULTIPLANE_OP
  *
  * The struct declaration for register ALT_NAND_CFG_MULTIPLANE_RD_EN.
  */
-struct ALT_NAND_CFG_MULTIPLANE_RD_EN_s
-{
-    uint32_t  flag :  1;  /* ALT_NAND_CFG_MULTIPLANE_RD_EN_FLAG */
-    uint32_t       : 31;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_CFG_MULTIPLANE_RD_EN_s
+        {
+            uint32_t flag :  1;  /* ALT_NAND_CFG_MULTIPLANE_RD_EN_FLAG */
+            uint32_t       : 31; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_CFG_MULTIPLANE_RD_EN. */
-typedef volatile struct ALT_NAND_CFG_MULTIPLANE_RD_EN_s  ALT_NAND_CFG_MULTIPLANE_RD_EN_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_CFG_MULTIPLANE_RD_EN_s ALT_NAND_CFG_MULTIPLANE_RD_EN_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_CFG_MULTIPLANE_RD_EN register from the beginning of the component. */
-#define ALT_NAND_CFG_MULTIPLANE_RD_EN_OFST        0x80
+    #define ALT_NAND_CFG_MULTIPLANE_RD_EN_OFST    0x80
 
 /*
  * Register : copyback_disable
@@ -833,6 +853,7 @@ typedef volatile struct ALT_NAND_CFG_MULTIPLANE_RD_EN_s  ALT_NAND_CFG_MULTIPLANE
  *  [31:1] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : flag
  *
@@ -842,23 +863,24 @@ typedef volatile struct ALT_NAND_CFG_MULTIPLANE_RD_EN_s  ALT_NAND_CFG_MULTIPLANE
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_COPYBACK_DIS_FLAG register field. */
-#define ALT_NAND_CFG_COPYBACK_DIS_FLAG_LSB        0
+    #define ALT_NAND_CFG_COPYBACK_DIS_FLAG_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_COPYBACK_DIS_FLAG register field. */
-#define ALT_NAND_CFG_COPYBACK_DIS_FLAG_MSB        0
+    #define ALT_NAND_CFG_COPYBACK_DIS_FLAG_MSB        0
 /* The width in bits of the ALT_NAND_CFG_COPYBACK_DIS_FLAG register field. */
-#define ALT_NAND_CFG_COPYBACK_DIS_FLAG_WIDTH      1
+    #define ALT_NAND_CFG_COPYBACK_DIS_FLAG_WIDTH      1
 /* The mask used to set the ALT_NAND_CFG_COPYBACK_DIS_FLAG register field value. */
-#define ALT_NAND_CFG_COPYBACK_DIS_FLAG_SET_MSK    0x00000001
+    #define ALT_NAND_CFG_COPYBACK_DIS_FLAG_SET_MSK    0x00000001
 /* The mask used to clear the ALT_NAND_CFG_COPYBACK_DIS_FLAG register field value. */
-#define ALT_NAND_CFG_COPYBACK_DIS_FLAG_CLR_MSK    0xfffffffe
+    #define ALT_NAND_CFG_COPYBACK_DIS_FLAG_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_NAND_CFG_COPYBACK_DIS_FLAG register field. */
-#define ALT_NAND_CFG_COPYBACK_DIS_FLAG_RESET      0x0
+    #define ALT_NAND_CFG_COPYBACK_DIS_FLAG_RESET      0x0
 /* Extracts the ALT_NAND_CFG_COPYBACK_DIS_FLAG field value from a register. */
-#define ALT_NAND_CFG_COPYBACK_DIS_FLAG_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_NAND_CFG_COPYBACK_DIS_FLAG_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_NAND_CFG_COPYBACK_DIS_FLAG register field value suitable for setting the register. */
-#define ALT_NAND_CFG_COPYBACK_DIS_FLAG_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_NAND_CFG_COPYBACK_DIS_FLAG_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -869,18 +891,18 @@ typedef volatile struct ALT_NAND_CFG_MULTIPLANE_RD_EN_s  ALT_NAND_CFG_MULTIPLANE
  *
  * The struct declaration for register ALT_NAND_CFG_COPYBACK_DIS.
  */
-struct ALT_NAND_CFG_COPYBACK_DIS_s
-{
-    uint32_t  flag :  1;  /* ALT_NAND_CFG_COPYBACK_DIS_FLAG */
-    uint32_t       : 31;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_CFG_COPYBACK_DIS_s
+        {
+            uint32_t flag :  1;  /* ALT_NAND_CFG_COPYBACK_DIS_FLAG */
+            uint32_t       : 31; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_CFG_COPYBACK_DIS. */
-typedef volatile struct ALT_NAND_CFG_COPYBACK_DIS_s  ALT_NAND_CFG_COPYBACK_DIS_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_CFG_COPYBACK_DIS_s ALT_NAND_CFG_COPYBACK_DIS_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_CFG_COPYBACK_DIS register from the beginning of the component. */
-#define ALT_NAND_CFG_COPYBACK_DIS_OFST        0x90
+    #define ALT_NAND_CFG_COPYBACK_DIS_OFST    0x90
 
 /*
  * Register : cache_write_enable
@@ -895,6 +917,7 @@ typedef volatile struct ALT_NAND_CFG_COPYBACK_DIS_s  ALT_NAND_CFG_COPYBACK_DIS_t
  *  [31:1] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : flag
  *
@@ -904,23 +927,24 @@ typedef volatile struct ALT_NAND_CFG_COPYBACK_DIS_s  ALT_NAND_CFG_COPYBACK_DIS_t
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_CACHE_WR_EN_FLAG register field. */
-#define ALT_NAND_CFG_CACHE_WR_EN_FLAG_LSB        0
+    #define ALT_NAND_CFG_CACHE_WR_EN_FLAG_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_CACHE_WR_EN_FLAG register field. */
-#define ALT_NAND_CFG_CACHE_WR_EN_FLAG_MSB        0
+    #define ALT_NAND_CFG_CACHE_WR_EN_FLAG_MSB        0
 /* The width in bits of the ALT_NAND_CFG_CACHE_WR_EN_FLAG register field. */
-#define ALT_NAND_CFG_CACHE_WR_EN_FLAG_WIDTH      1
+    #define ALT_NAND_CFG_CACHE_WR_EN_FLAG_WIDTH      1
 /* The mask used to set the ALT_NAND_CFG_CACHE_WR_EN_FLAG register field value. */
-#define ALT_NAND_CFG_CACHE_WR_EN_FLAG_SET_MSK    0x00000001
+    #define ALT_NAND_CFG_CACHE_WR_EN_FLAG_SET_MSK    0x00000001
 /* The mask used to clear the ALT_NAND_CFG_CACHE_WR_EN_FLAG register field value. */
-#define ALT_NAND_CFG_CACHE_WR_EN_FLAG_CLR_MSK    0xfffffffe
+    #define ALT_NAND_CFG_CACHE_WR_EN_FLAG_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_NAND_CFG_CACHE_WR_EN_FLAG register field. */
-#define ALT_NAND_CFG_CACHE_WR_EN_FLAG_RESET      0x0
+    #define ALT_NAND_CFG_CACHE_WR_EN_FLAG_RESET      0x0
 /* Extracts the ALT_NAND_CFG_CACHE_WR_EN_FLAG field value from a register. */
-#define ALT_NAND_CFG_CACHE_WR_EN_FLAG_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_NAND_CFG_CACHE_WR_EN_FLAG_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_NAND_CFG_CACHE_WR_EN_FLAG register field value suitable for setting the register. */
-#define ALT_NAND_CFG_CACHE_WR_EN_FLAG_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_NAND_CFG_CACHE_WR_EN_FLAG_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -931,18 +955,18 @@ typedef volatile struct ALT_NAND_CFG_COPYBACK_DIS_s  ALT_NAND_CFG_COPYBACK_DIS_t
  *
  * The struct declaration for register ALT_NAND_CFG_CACHE_WR_EN.
  */
-struct ALT_NAND_CFG_CACHE_WR_EN_s
-{
-    uint32_t  flag :  1;  /* ALT_NAND_CFG_CACHE_WR_EN_FLAG */
-    uint32_t       : 31;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_CFG_CACHE_WR_EN_s
+        {
+            uint32_t flag :  1;  /* ALT_NAND_CFG_CACHE_WR_EN_FLAG */
+            uint32_t       : 31; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_CFG_CACHE_WR_EN. */
-typedef volatile struct ALT_NAND_CFG_CACHE_WR_EN_s  ALT_NAND_CFG_CACHE_WR_EN_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_CFG_CACHE_WR_EN_s ALT_NAND_CFG_CACHE_WR_EN_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_CFG_CACHE_WR_EN register from the beginning of the component. */
-#define ALT_NAND_CFG_CACHE_WR_EN_OFST        0xa0
+    #define ALT_NAND_CFG_CACHE_WR_EN_OFST    0xa0
 
 /*
  * Register : cache_read_enable
@@ -957,6 +981,7 @@ typedef volatile struct ALT_NAND_CFG_CACHE_WR_EN_s  ALT_NAND_CFG_CACHE_WR_EN_t;
  *  [31:1] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : flag
  *
@@ -966,23 +991,24 @@ typedef volatile struct ALT_NAND_CFG_CACHE_WR_EN_s  ALT_NAND_CFG_CACHE_WR_EN_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_CACHE_RD_EN_FLAG register field. */
-#define ALT_NAND_CFG_CACHE_RD_EN_FLAG_LSB        0
+    #define ALT_NAND_CFG_CACHE_RD_EN_FLAG_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_CACHE_RD_EN_FLAG register field. */
-#define ALT_NAND_CFG_CACHE_RD_EN_FLAG_MSB        0
+    #define ALT_NAND_CFG_CACHE_RD_EN_FLAG_MSB        0
 /* The width in bits of the ALT_NAND_CFG_CACHE_RD_EN_FLAG register field. */
-#define ALT_NAND_CFG_CACHE_RD_EN_FLAG_WIDTH      1
+    #define ALT_NAND_CFG_CACHE_RD_EN_FLAG_WIDTH      1
 /* The mask used to set the ALT_NAND_CFG_CACHE_RD_EN_FLAG register field value. */
-#define ALT_NAND_CFG_CACHE_RD_EN_FLAG_SET_MSK    0x00000001
+    #define ALT_NAND_CFG_CACHE_RD_EN_FLAG_SET_MSK    0x00000001
 /* The mask used to clear the ALT_NAND_CFG_CACHE_RD_EN_FLAG register field value. */
-#define ALT_NAND_CFG_CACHE_RD_EN_FLAG_CLR_MSK    0xfffffffe
+    #define ALT_NAND_CFG_CACHE_RD_EN_FLAG_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_NAND_CFG_CACHE_RD_EN_FLAG register field. */
-#define ALT_NAND_CFG_CACHE_RD_EN_FLAG_RESET      0x0
+    #define ALT_NAND_CFG_CACHE_RD_EN_FLAG_RESET      0x0
 /* Extracts the ALT_NAND_CFG_CACHE_RD_EN_FLAG field value from a register. */
-#define ALT_NAND_CFG_CACHE_RD_EN_FLAG_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_NAND_CFG_CACHE_RD_EN_FLAG_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_NAND_CFG_CACHE_RD_EN_FLAG register field value suitable for setting the register. */
-#define ALT_NAND_CFG_CACHE_RD_EN_FLAG_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_NAND_CFG_CACHE_RD_EN_FLAG_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -993,18 +1019,18 @@ typedef volatile struct ALT_NAND_CFG_CACHE_WR_EN_s  ALT_NAND_CFG_CACHE_WR_EN_t;
  *
  * The struct declaration for register ALT_NAND_CFG_CACHE_RD_EN.
  */
-struct ALT_NAND_CFG_CACHE_RD_EN_s
-{
-    uint32_t  flag :  1;  /* ALT_NAND_CFG_CACHE_RD_EN_FLAG */
-    uint32_t       : 31;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_CFG_CACHE_RD_EN_s
+        {
+            uint32_t flag :  1;  /* ALT_NAND_CFG_CACHE_RD_EN_FLAG */
+            uint32_t       : 31; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_CFG_CACHE_RD_EN. */
-typedef volatile struct ALT_NAND_CFG_CACHE_RD_EN_s  ALT_NAND_CFG_CACHE_RD_EN_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_CFG_CACHE_RD_EN_s ALT_NAND_CFG_CACHE_RD_EN_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_CFG_CACHE_RD_EN register from the beginning of the component. */
-#define ALT_NAND_CFG_CACHE_RD_EN_OFST        0xb0
+    #define ALT_NAND_CFG_CACHE_RD_EN_OFST    0xb0
 
 /*
  * Register : prefetch_mode
@@ -1021,6 +1047,7 @@ typedef volatile struct ALT_NAND_CFG_CACHE_RD_EN_s  ALT_NAND_CFG_CACHE_RD_EN_t;
  *  [31:16] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : prefetch_en
  *
@@ -1030,21 +1057,21 @@ typedef volatile struct ALT_NAND_CFG_CACHE_RD_EN_s  ALT_NAND_CFG_CACHE_RD_EN_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_PREFETCH_MOD_PREFETCH_EN register field. */
-#define ALT_NAND_CFG_PREFETCH_MOD_PREFETCH_EN_LSB        0
+    #define ALT_NAND_CFG_PREFETCH_MOD_PREFETCH_EN_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_PREFETCH_MOD_PREFETCH_EN register field. */
-#define ALT_NAND_CFG_PREFETCH_MOD_PREFETCH_EN_MSB        0
+    #define ALT_NAND_CFG_PREFETCH_MOD_PREFETCH_EN_MSB        0
 /* The width in bits of the ALT_NAND_CFG_PREFETCH_MOD_PREFETCH_EN register field. */
-#define ALT_NAND_CFG_PREFETCH_MOD_PREFETCH_EN_WIDTH      1
+    #define ALT_NAND_CFG_PREFETCH_MOD_PREFETCH_EN_WIDTH      1
 /* The mask used to set the ALT_NAND_CFG_PREFETCH_MOD_PREFETCH_EN register field value. */
-#define ALT_NAND_CFG_PREFETCH_MOD_PREFETCH_EN_SET_MSK    0x00000001
+    #define ALT_NAND_CFG_PREFETCH_MOD_PREFETCH_EN_SET_MSK    0x00000001
 /* The mask used to clear the ALT_NAND_CFG_PREFETCH_MOD_PREFETCH_EN register field value. */
-#define ALT_NAND_CFG_PREFETCH_MOD_PREFETCH_EN_CLR_MSK    0xfffffffe
+    #define ALT_NAND_CFG_PREFETCH_MOD_PREFETCH_EN_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_NAND_CFG_PREFETCH_MOD_PREFETCH_EN register field. */
-#define ALT_NAND_CFG_PREFETCH_MOD_PREFETCH_EN_RESET      0x1
+    #define ALT_NAND_CFG_PREFETCH_MOD_PREFETCH_EN_RESET      0x1
 /* Extracts the ALT_NAND_CFG_PREFETCH_MOD_PREFETCH_EN field value from a register. */
-#define ALT_NAND_CFG_PREFETCH_MOD_PREFETCH_EN_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_NAND_CFG_PREFETCH_MOD_PREFETCH_EN_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_NAND_CFG_PREFETCH_MOD_PREFETCH_EN register field value suitable for setting the register. */
-#define ALT_NAND_CFG_PREFETCH_MOD_PREFETCH_EN_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_NAND_CFG_PREFETCH_MOD_PREFETCH_EN_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
 /*
  * Field : prefetch_burst_length
@@ -1060,23 +1087,24 @@ typedef volatile struct ALT_NAND_CFG_CACHE_RD_EN_s  ALT_NAND_CFG_CACHE_RD_EN_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_PREFETCH_MOD_PREFETCH_BURST_LEN register field. */
-#define ALT_NAND_CFG_PREFETCH_MOD_PREFETCH_BURST_LEN_LSB        4
+    #define ALT_NAND_CFG_PREFETCH_MOD_PREFETCH_BURST_LEN_LSB        4
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_PREFETCH_MOD_PREFETCH_BURST_LEN register field. */
-#define ALT_NAND_CFG_PREFETCH_MOD_PREFETCH_BURST_LEN_MSB        15
+    #define ALT_NAND_CFG_PREFETCH_MOD_PREFETCH_BURST_LEN_MSB        15
 /* The width in bits of the ALT_NAND_CFG_PREFETCH_MOD_PREFETCH_BURST_LEN register field. */
-#define ALT_NAND_CFG_PREFETCH_MOD_PREFETCH_BURST_LEN_WIDTH      12
+    #define ALT_NAND_CFG_PREFETCH_MOD_PREFETCH_BURST_LEN_WIDTH      12
 /* The mask used to set the ALT_NAND_CFG_PREFETCH_MOD_PREFETCH_BURST_LEN register field value. */
-#define ALT_NAND_CFG_PREFETCH_MOD_PREFETCH_BURST_LEN_SET_MSK    0x0000fff0
+    #define ALT_NAND_CFG_PREFETCH_MOD_PREFETCH_BURST_LEN_SET_MSK    0x0000fff0
 /* The mask used to clear the ALT_NAND_CFG_PREFETCH_MOD_PREFETCH_BURST_LEN register field value. */
-#define ALT_NAND_CFG_PREFETCH_MOD_PREFETCH_BURST_LEN_CLR_MSK    0xffff000f
+    #define ALT_NAND_CFG_PREFETCH_MOD_PREFETCH_BURST_LEN_CLR_MSK    0xffff000f
 /* The reset value of the ALT_NAND_CFG_PREFETCH_MOD_PREFETCH_BURST_LEN register field. */
-#define ALT_NAND_CFG_PREFETCH_MOD_PREFETCH_BURST_LEN_RESET      0x0
+    #define ALT_NAND_CFG_PREFETCH_MOD_PREFETCH_BURST_LEN_RESET      0x0
 /* Extracts the ALT_NAND_CFG_PREFETCH_MOD_PREFETCH_BURST_LEN field value from a register. */
-#define ALT_NAND_CFG_PREFETCH_MOD_PREFETCH_BURST_LEN_GET(value) (((value) & 0x0000fff0) >> 4)
+    #define ALT_NAND_CFG_PREFETCH_MOD_PREFETCH_BURST_LEN_GET( value )    ( ( ( value ) & 0x0000fff0 ) >> 4 )
 /* Produces a ALT_NAND_CFG_PREFETCH_MOD_PREFETCH_BURST_LEN register field value suitable for setting the register. */
-#define ALT_NAND_CFG_PREFETCH_MOD_PREFETCH_BURST_LEN_SET(value) (((value) << 4) & 0x0000fff0)
+    #define ALT_NAND_CFG_PREFETCH_MOD_PREFETCH_BURST_LEN_SET( value )    ( ( ( value ) << 4 ) & 0x0000fff0 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -1087,20 +1115,20 @@ typedef volatile struct ALT_NAND_CFG_CACHE_RD_EN_s  ALT_NAND_CFG_CACHE_RD_EN_t;
  *
  * The struct declaration for register ALT_NAND_CFG_PREFETCH_MOD.
  */
-struct ALT_NAND_CFG_PREFETCH_MOD_s
-{
-    uint32_t  prefetch_en           :  1;  /* ALT_NAND_CFG_PREFETCH_MOD_PREFETCH_EN */
-    uint32_t                        :  3;  /* *UNDEFINED* */
-    uint32_t  prefetch_burst_length : 12;  /* ALT_NAND_CFG_PREFETCH_MOD_PREFETCH_BURST_LEN */
-    uint32_t                        : 16;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_CFG_PREFETCH_MOD_s
+        {
+            uint32_t prefetch_en           :  1;  /* ALT_NAND_CFG_PREFETCH_MOD_PREFETCH_EN */
+            uint32_t                        :  3; /* *UNDEFINED* */
+            uint32_t prefetch_burst_length : 12;  /* ALT_NAND_CFG_PREFETCH_MOD_PREFETCH_BURST_LEN */
+            uint32_t                        : 16; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_CFG_PREFETCH_MOD. */
-typedef volatile struct ALT_NAND_CFG_PREFETCH_MOD_s  ALT_NAND_CFG_PREFETCH_MOD_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_CFG_PREFETCH_MOD_s ALT_NAND_CFG_PREFETCH_MOD_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_CFG_PREFETCH_MOD register from the beginning of the component. */
-#define ALT_NAND_CFG_PREFETCH_MOD_OFST        0xc0
+    #define ALT_NAND_CFG_PREFETCH_MOD_OFST    0xc0
 
 /*
  * Register : chip_enable_dont_care
@@ -1115,6 +1143,7 @@ typedef volatile struct ALT_NAND_CFG_PREFETCH_MOD_s  ALT_NAND_CFG_PREFETCH_MOD_t
  *  [31:1] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : flag
  *
@@ -1125,23 +1154,24 @@ typedef volatile struct ALT_NAND_CFG_PREFETCH_MOD_s  ALT_NAND_CFG_PREFETCH_MOD_t
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_CHIP_EN_DONT_CARE_FLAG register field. */
-#define ALT_NAND_CFG_CHIP_EN_DONT_CARE_FLAG_LSB        0
+    #define ALT_NAND_CFG_CHIP_EN_DONT_CARE_FLAG_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_CHIP_EN_DONT_CARE_FLAG register field. */
-#define ALT_NAND_CFG_CHIP_EN_DONT_CARE_FLAG_MSB        0
+    #define ALT_NAND_CFG_CHIP_EN_DONT_CARE_FLAG_MSB        0
 /* The width in bits of the ALT_NAND_CFG_CHIP_EN_DONT_CARE_FLAG register field. */
-#define ALT_NAND_CFG_CHIP_EN_DONT_CARE_FLAG_WIDTH      1
+    #define ALT_NAND_CFG_CHIP_EN_DONT_CARE_FLAG_WIDTH      1
 /* The mask used to set the ALT_NAND_CFG_CHIP_EN_DONT_CARE_FLAG register field value. */
-#define ALT_NAND_CFG_CHIP_EN_DONT_CARE_FLAG_SET_MSK    0x00000001
+    #define ALT_NAND_CFG_CHIP_EN_DONT_CARE_FLAG_SET_MSK    0x00000001
 /* The mask used to clear the ALT_NAND_CFG_CHIP_EN_DONT_CARE_FLAG register field value. */
-#define ALT_NAND_CFG_CHIP_EN_DONT_CARE_FLAG_CLR_MSK    0xfffffffe
+    #define ALT_NAND_CFG_CHIP_EN_DONT_CARE_FLAG_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_NAND_CFG_CHIP_EN_DONT_CARE_FLAG register field. */
-#define ALT_NAND_CFG_CHIP_EN_DONT_CARE_FLAG_RESET      0x0
+    #define ALT_NAND_CFG_CHIP_EN_DONT_CARE_FLAG_RESET      0x0
 /* Extracts the ALT_NAND_CFG_CHIP_EN_DONT_CARE_FLAG field value from a register. */
-#define ALT_NAND_CFG_CHIP_EN_DONT_CARE_FLAG_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_NAND_CFG_CHIP_EN_DONT_CARE_FLAG_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_NAND_CFG_CHIP_EN_DONT_CARE_FLAG register field value suitable for setting the register. */
-#define ALT_NAND_CFG_CHIP_EN_DONT_CARE_FLAG_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_NAND_CFG_CHIP_EN_DONT_CARE_FLAG_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -1152,18 +1182,18 @@ typedef volatile struct ALT_NAND_CFG_PREFETCH_MOD_s  ALT_NAND_CFG_PREFETCH_MOD_t
  *
  * The struct declaration for register ALT_NAND_CFG_CHIP_EN_DONT_CARE.
  */
-struct ALT_NAND_CFG_CHIP_EN_DONT_CARE_s
-{
-    uint32_t  flag :  1;  /* ALT_NAND_CFG_CHIP_EN_DONT_CARE_FLAG */
-    uint32_t       : 31;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_CFG_CHIP_EN_DONT_CARE_s
+        {
+            uint32_t flag :  1;  /* ALT_NAND_CFG_CHIP_EN_DONT_CARE_FLAG */
+            uint32_t       : 31; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_CFG_CHIP_EN_DONT_CARE. */
-typedef volatile struct ALT_NAND_CFG_CHIP_EN_DONT_CARE_s  ALT_NAND_CFG_CHIP_EN_DONT_CARE_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_CFG_CHIP_EN_DONT_CARE_s ALT_NAND_CFG_CHIP_EN_DONT_CARE_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_CFG_CHIP_EN_DONT_CARE register from the beginning of the component. */
-#define ALT_NAND_CFG_CHIP_EN_DONT_CARE_OFST        0xd0
+    #define ALT_NAND_CFG_CHIP_EN_DONT_CARE_OFST    0xd0
 
 /*
  * Register : ecc_enable
@@ -1178,6 +1208,7 @@ typedef volatile struct ALT_NAND_CFG_CHIP_EN_DONT_CARE_s  ALT_NAND_CFG_CHIP_EN_D
  *  [31:1] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : flag
  *
@@ -1191,23 +1222,24 @@ typedef volatile struct ALT_NAND_CFG_CHIP_EN_DONT_CARE_s  ALT_NAND_CFG_CHIP_EN_D
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_ECC_EN_FLAG register field. */
-#define ALT_NAND_CFG_ECC_EN_FLAG_LSB        0
+    #define ALT_NAND_CFG_ECC_EN_FLAG_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_ECC_EN_FLAG register field. */
-#define ALT_NAND_CFG_ECC_EN_FLAG_MSB        0
+    #define ALT_NAND_CFG_ECC_EN_FLAG_MSB        0
 /* The width in bits of the ALT_NAND_CFG_ECC_EN_FLAG register field. */
-#define ALT_NAND_CFG_ECC_EN_FLAG_WIDTH      1
+    #define ALT_NAND_CFG_ECC_EN_FLAG_WIDTH      1
 /* The mask used to set the ALT_NAND_CFG_ECC_EN_FLAG register field value. */
-#define ALT_NAND_CFG_ECC_EN_FLAG_SET_MSK    0x00000001
+    #define ALT_NAND_CFG_ECC_EN_FLAG_SET_MSK    0x00000001
 /* The mask used to clear the ALT_NAND_CFG_ECC_EN_FLAG register field value. */
-#define ALT_NAND_CFG_ECC_EN_FLAG_CLR_MSK    0xfffffffe
+    #define ALT_NAND_CFG_ECC_EN_FLAG_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_NAND_CFG_ECC_EN_FLAG register field. */
-#define ALT_NAND_CFG_ECC_EN_FLAG_RESET      0x1
+    #define ALT_NAND_CFG_ECC_EN_FLAG_RESET      0x1
 /* Extracts the ALT_NAND_CFG_ECC_EN_FLAG field value from a register. */
-#define ALT_NAND_CFG_ECC_EN_FLAG_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_NAND_CFG_ECC_EN_FLAG_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_NAND_CFG_ECC_EN_FLAG register field value suitable for setting the register. */
-#define ALT_NAND_CFG_ECC_EN_FLAG_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_NAND_CFG_ECC_EN_FLAG_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -1218,18 +1250,18 @@ typedef volatile struct ALT_NAND_CFG_CHIP_EN_DONT_CARE_s  ALT_NAND_CFG_CHIP_EN_D
  *
  * The struct declaration for register ALT_NAND_CFG_ECC_EN.
  */
-struct ALT_NAND_CFG_ECC_EN_s
-{
-    uint32_t  flag :  1;  /* ALT_NAND_CFG_ECC_EN_FLAG */
-    uint32_t       : 31;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_CFG_ECC_EN_s
+        {
+            uint32_t flag :  1;  /* ALT_NAND_CFG_ECC_EN_FLAG */
+            uint32_t       : 31; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_CFG_ECC_EN. */
-typedef volatile struct ALT_NAND_CFG_ECC_EN_s  ALT_NAND_CFG_ECC_EN_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_CFG_ECC_EN_s ALT_NAND_CFG_ECC_EN_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_CFG_ECC_EN register from the beginning of the component. */
-#define ALT_NAND_CFG_ECC_EN_OFST        0xe0
+    #define ALT_NAND_CFG_ECC_EN_OFST    0xe0
 
 /*
  * Register : global_int_enable
@@ -1248,6 +1280,7 @@ typedef volatile struct ALT_NAND_CFG_ECC_EN_s  ALT_NAND_CFG_ECC_EN_t;
  *  [31:9] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : flag
  *
@@ -1257,21 +1290,21 @@ typedef volatile struct ALT_NAND_CFG_ECC_EN_s  ALT_NAND_CFG_ECC_EN_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_GLOB_INT_EN_FLAG register field. */
-#define ALT_NAND_CFG_GLOB_INT_EN_FLAG_LSB        0
+    #define ALT_NAND_CFG_GLOB_INT_EN_FLAG_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_GLOB_INT_EN_FLAG register field. */
-#define ALT_NAND_CFG_GLOB_INT_EN_FLAG_MSB        0
+    #define ALT_NAND_CFG_GLOB_INT_EN_FLAG_MSB        0
 /* The width in bits of the ALT_NAND_CFG_GLOB_INT_EN_FLAG register field. */
-#define ALT_NAND_CFG_GLOB_INT_EN_FLAG_WIDTH      1
+    #define ALT_NAND_CFG_GLOB_INT_EN_FLAG_WIDTH      1
 /* The mask used to set the ALT_NAND_CFG_GLOB_INT_EN_FLAG register field value. */
-#define ALT_NAND_CFG_GLOB_INT_EN_FLAG_SET_MSK    0x00000001
+    #define ALT_NAND_CFG_GLOB_INT_EN_FLAG_SET_MSK    0x00000001
 /* The mask used to clear the ALT_NAND_CFG_GLOB_INT_EN_FLAG register field value. */
-#define ALT_NAND_CFG_GLOB_INT_EN_FLAG_CLR_MSK    0xfffffffe
+    #define ALT_NAND_CFG_GLOB_INT_EN_FLAG_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_NAND_CFG_GLOB_INT_EN_FLAG register field. */
-#define ALT_NAND_CFG_GLOB_INT_EN_FLAG_RESET      0x0
+    #define ALT_NAND_CFG_GLOB_INT_EN_FLAG_RESET      0x0
 /* Extracts the ALT_NAND_CFG_GLOB_INT_EN_FLAG field value from a register. */
-#define ALT_NAND_CFG_GLOB_INT_EN_FLAG_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_NAND_CFG_GLOB_INT_EN_FLAG_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_NAND_CFG_GLOB_INT_EN_FLAG register field value suitable for setting the register. */
-#define ALT_NAND_CFG_GLOB_INT_EN_FLAG_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_NAND_CFG_GLOB_INT_EN_FLAG_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
 /*
  * Field : timeout_disable
@@ -1282,21 +1315,21 @@ typedef volatile struct ALT_NAND_CFG_ECC_EN_s  ALT_NAND_CFG_ECC_EN_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_GLOB_INT_EN_TMO_DIS register field. */
-#define ALT_NAND_CFG_GLOB_INT_EN_TMO_DIS_LSB        4
+    #define ALT_NAND_CFG_GLOB_INT_EN_TMO_DIS_LSB        4
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_GLOB_INT_EN_TMO_DIS register field. */
-#define ALT_NAND_CFG_GLOB_INT_EN_TMO_DIS_MSB        4
+    #define ALT_NAND_CFG_GLOB_INT_EN_TMO_DIS_MSB        4
 /* The width in bits of the ALT_NAND_CFG_GLOB_INT_EN_TMO_DIS register field. */
-#define ALT_NAND_CFG_GLOB_INT_EN_TMO_DIS_WIDTH      1
+    #define ALT_NAND_CFG_GLOB_INT_EN_TMO_DIS_WIDTH      1
 /* The mask used to set the ALT_NAND_CFG_GLOB_INT_EN_TMO_DIS register field value. */
-#define ALT_NAND_CFG_GLOB_INT_EN_TMO_DIS_SET_MSK    0x00000010
+    #define ALT_NAND_CFG_GLOB_INT_EN_TMO_DIS_SET_MSK    0x00000010
 /* The mask used to clear the ALT_NAND_CFG_GLOB_INT_EN_TMO_DIS register field value. */
-#define ALT_NAND_CFG_GLOB_INT_EN_TMO_DIS_CLR_MSK    0xffffffef
+    #define ALT_NAND_CFG_GLOB_INT_EN_TMO_DIS_CLR_MSK    0xffffffef
 /* The reset value of the ALT_NAND_CFG_GLOB_INT_EN_TMO_DIS register field. */
-#define ALT_NAND_CFG_GLOB_INT_EN_TMO_DIS_RESET      0x0
+    #define ALT_NAND_CFG_GLOB_INT_EN_TMO_DIS_RESET      0x0
 /* Extracts the ALT_NAND_CFG_GLOB_INT_EN_TMO_DIS field value from a register. */
-#define ALT_NAND_CFG_GLOB_INT_EN_TMO_DIS_GET(value) (((value) & 0x00000010) >> 4)
+    #define ALT_NAND_CFG_GLOB_INT_EN_TMO_DIS_GET( value )    ( ( ( value ) & 0x00000010 ) >> 4 )
 /* Produces a ALT_NAND_CFG_GLOB_INT_EN_TMO_DIS register field value suitable for setting the register. */
-#define ALT_NAND_CFG_GLOB_INT_EN_TMO_DIS_SET(value) (((value) << 4) & 0x00000010)
+    #define ALT_NAND_CFG_GLOB_INT_EN_TMO_DIS_SET( value )    ( ( ( value ) << 4 ) & 0x00000010 )
 
 /*
  * Field : error_rpt_disable
@@ -1307,23 +1340,24 @@ typedef volatile struct ALT_NAND_CFG_ECC_EN_s  ALT_NAND_CFG_ECC_EN_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_GLOB_INT_EN_ERROR_RPT_DIS register field. */
-#define ALT_NAND_CFG_GLOB_INT_EN_ERROR_RPT_DIS_LSB        8
+    #define ALT_NAND_CFG_GLOB_INT_EN_ERROR_RPT_DIS_LSB        8
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_GLOB_INT_EN_ERROR_RPT_DIS register field. */
-#define ALT_NAND_CFG_GLOB_INT_EN_ERROR_RPT_DIS_MSB        8
+    #define ALT_NAND_CFG_GLOB_INT_EN_ERROR_RPT_DIS_MSB        8
 /* The width in bits of the ALT_NAND_CFG_GLOB_INT_EN_ERROR_RPT_DIS register field. */
-#define ALT_NAND_CFG_GLOB_INT_EN_ERROR_RPT_DIS_WIDTH      1
+    #define ALT_NAND_CFG_GLOB_INT_EN_ERROR_RPT_DIS_WIDTH      1
 /* The mask used to set the ALT_NAND_CFG_GLOB_INT_EN_ERROR_RPT_DIS register field value. */
-#define ALT_NAND_CFG_GLOB_INT_EN_ERROR_RPT_DIS_SET_MSK    0x00000100
+    #define ALT_NAND_CFG_GLOB_INT_EN_ERROR_RPT_DIS_SET_MSK    0x00000100
 /* The mask used to clear the ALT_NAND_CFG_GLOB_INT_EN_ERROR_RPT_DIS register field value. */
-#define ALT_NAND_CFG_GLOB_INT_EN_ERROR_RPT_DIS_CLR_MSK    0xfffffeff
+    #define ALT_NAND_CFG_GLOB_INT_EN_ERROR_RPT_DIS_CLR_MSK    0xfffffeff
 /* The reset value of the ALT_NAND_CFG_GLOB_INT_EN_ERROR_RPT_DIS register field. */
-#define ALT_NAND_CFG_GLOB_INT_EN_ERROR_RPT_DIS_RESET      0x0
+    #define ALT_NAND_CFG_GLOB_INT_EN_ERROR_RPT_DIS_RESET      0x0
 /* Extracts the ALT_NAND_CFG_GLOB_INT_EN_ERROR_RPT_DIS field value from a register. */
-#define ALT_NAND_CFG_GLOB_INT_EN_ERROR_RPT_DIS_GET(value) (((value) & 0x00000100) >> 8)
+    #define ALT_NAND_CFG_GLOB_INT_EN_ERROR_RPT_DIS_GET( value )    ( ( ( value ) & 0x00000100 ) >> 8 )
 /* Produces a ALT_NAND_CFG_GLOB_INT_EN_ERROR_RPT_DIS register field value suitable for setting the register. */
-#define ALT_NAND_CFG_GLOB_INT_EN_ERROR_RPT_DIS_SET(value) (((value) << 8) & 0x00000100)
+    #define ALT_NAND_CFG_GLOB_INT_EN_ERROR_RPT_DIS_SET( value )    ( ( ( value ) << 8 ) & 0x00000100 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -1334,22 +1368,22 @@ typedef volatile struct ALT_NAND_CFG_ECC_EN_s  ALT_NAND_CFG_ECC_EN_t;
  *
  * The struct declaration for register ALT_NAND_CFG_GLOB_INT_EN.
  */
-struct ALT_NAND_CFG_GLOB_INT_EN_s
-{
-    uint32_t  flag              :  1;  /* ALT_NAND_CFG_GLOB_INT_EN_FLAG */
-    uint32_t                    :  3;  /* *UNDEFINED* */
-    uint32_t  timeout_disable   :  1;  /* ALT_NAND_CFG_GLOB_INT_EN_TMO_DIS */
-    uint32_t                    :  3;  /* *UNDEFINED* */
-    uint32_t  error_rpt_disable :  1;  /* ALT_NAND_CFG_GLOB_INT_EN_ERROR_RPT_DIS */
-    uint32_t                    : 23;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_CFG_GLOB_INT_EN_s
+        {
+            uint32_t flag              :  1;  /* ALT_NAND_CFG_GLOB_INT_EN_FLAG */
+            uint32_t                    :  3; /* *UNDEFINED* */
+            uint32_t timeout_disable   :  1;  /* ALT_NAND_CFG_GLOB_INT_EN_TMO_DIS */
+            uint32_t                    :  3; /* *UNDEFINED* */
+            uint32_t error_rpt_disable :  1;  /* ALT_NAND_CFG_GLOB_INT_EN_ERROR_RPT_DIS */
+            uint32_t                    : 23; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_CFG_GLOB_INT_EN. */
-typedef volatile struct ALT_NAND_CFG_GLOB_INT_EN_s  ALT_NAND_CFG_GLOB_INT_EN_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_CFG_GLOB_INT_EN_s ALT_NAND_CFG_GLOB_INT_EN_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_CFG_GLOB_INT_EN register from the beginning of the component. */
-#define ALT_NAND_CFG_GLOB_INT_EN_OFST        0xf0
+    #define ALT_NAND_CFG_GLOB_INT_EN_OFST    0xf0
 
 /*
  * Register : twhr2_and_we_2_re
@@ -1364,6 +1398,7 @@ typedef volatile struct ALT_NAND_CFG_GLOB_INT_EN_s  ALT_NAND_CFG_GLOB_INT_EN_t;
  *  [31:14] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : we_2_re
  *
@@ -1376,21 +1411,21 @@ typedef volatile struct ALT_NAND_CFG_GLOB_INT_EN_s  ALT_NAND_CFG_GLOB_INT_EN_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_TWHR2_AND_WE_2_RE_WE_2_RE register field. */
-#define ALT_NAND_CFG_TWHR2_AND_WE_2_RE_WE_2_RE_LSB        0
+    #define ALT_NAND_CFG_TWHR2_AND_WE_2_RE_WE_2_RE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_TWHR2_AND_WE_2_RE_WE_2_RE register field. */
-#define ALT_NAND_CFG_TWHR2_AND_WE_2_RE_WE_2_RE_MSB        5
+    #define ALT_NAND_CFG_TWHR2_AND_WE_2_RE_WE_2_RE_MSB        5
 /* The width in bits of the ALT_NAND_CFG_TWHR2_AND_WE_2_RE_WE_2_RE register field. */
-#define ALT_NAND_CFG_TWHR2_AND_WE_2_RE_WE_2_RE_WIDTH      6
+    #define ALT_NAND_CFG_TWHR2_AND_WE_2_RE_WE_2_RE_WIDTH      6
 /* The mask used to set the ALT_NAND_CFG_TWHR2_AND_WE_2_RE_WE_2_RE register field value. */
-#define ALT_NAND_CFG_TWHR2_AND_WE_2_RE_WE_2_RE_SET_MSK    0x0000003f
+    #define ALT_NAND_CFG_TWHR2_AND_WE_2_RE_WE_2_RE_SET_MSK    0x0000003f
 /* The mask used to clear the ALT_NAND_CFG_TWHR2_AND_WE_2_RE_WE_2_RE register field value. */
-#define ALT_NAND_CFG_TWHR2_AND_WE_2_RE_WE_2_RE_CLR_MSK    0xffffffc0
+    #define ALT_NAND_CFG_TWHR2_AND_WE_2_RE_WE_2_RE_CLR_MSK    0xffffffc0
 /* The reset value of the ALT_NAND_CFG_TWHR2_AND_WE_2_RE_WE_2_RE register field. */
-#define ALT_NAND_CFG_TWHR2_AND_WE_2_RE_WE_2_RE_RESET      0x32
+    #define ALT_NAND_CFG_TWHR2_AND_WE_2_RE_WE_2_RE_RESET      0x32
 /* Extracts the ALT_NAND_CFG_TWHR2_AND_WE_2_RE_WE_2_RE field value from a register. */
-#define ALT_NAND_CFG_TWHR2_AND_WE_2_RE_WE_2_RE_GET(value) (((value) & 0x0000003f) >> 0)
+    #define ALT_NAND_CFG_TWHR2_AND_WE_2_RE_WE_2_RE_GET( value )    ( ( ( value ) & 0x0000003f ) >> 0 )
 /* Produces a ALT_NAND_CFG_TWHR2_AND_WE_2_RE_WE_2_RE register field value suitable for setting the register. */
-#define ALT_NAND_CFG_TWHR2_AND_WE_2_RE_WE_2_RE_SET(value) (((value) << 0) & 0x0000003f)
+    #define ALT_NAND_CFG_TWHR2_AND_WE_2_RE_WE_2_RE_SET( value )    ( ( ( value ) << 0 ) & 0x0000003f )
 
 /*
  * Field : twhr2
@@ -1402,23 +1437,24 @@ typedef volatile struct ALT_NAND_CFG_GLOB_INT_EN_s  ALT_NAND_CFG_GLOB_INT_EN_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_TWHR2_AND_WE_2_RE_TWHR2 register field. */
-#define ALT_NAND_CFG_TWHR2_AND_WE_2_RE_TWHR2_LSB        8
+    #define ALT_NAND_CFG_TWHR2_AND_WE_2_RE_TWHR2_LSB        8
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_TWHR2_AND_WE_2_RE_TWHR2 register field. */
-#define ALT_NAND_CFG_TWHR2_AND_WE_2_RE_TWHR2_MSB        13
+    #define ALT_NAND_CFG_TWHR2_AND_WE_2_RE_TWHR2_MSB        13
 /* The width in bits of the ALT_NAND_CFG_TWHR2_AND_WE_2_RE_TWHR2 register field. */
-#define ALT_NAND_CFG_TWHR2_AND_WE_2_RE_TWHR2_WIDTH      6
+    #define ALT_NAND_CFG_TWHR2_AND_WE_2_RE_TWHR2_WIDTH      6
 /* The mask used to set the ALT_NAND_CFG_TWHR2_AND_WE_2_RE_TWHR2 register field value. */
-#define ALT_NAND_CFG_TWHR2_AND_WE_2_RE_TWHR2_SET_MSK    0x00003f00
+    #define ALT_NAND_CFG_TWHR2_AND_WE_2_RE_TWHR2_SET_MSK    0x00003f00
 /* The mask used to clear the ALT_NAND_CFG_TWHR2_AND_WE_2_RE_TWHR2 register field value. */
-#define ALT_NAND_CFG_TWHR2_AND_WE_2_RE_TWHR2_CLR_MSK    0xffffc0ff
+    #define ALT_NAND_CFG_TWHR2_AND_WE_2_RE_TWHR2_CLR_MSK    0xffffc0ff
 /* The reset value of the ALT_NAND_CFG_TWHR2_AND_WE_2_RE_TWHR2 register field. */
-#define ALT_NAND_CFG_TWHR2_AND_WE_2_RE_TWHR2_RESET      0x14
+    #define ALT_NAND_CFG_TWHR2_AND_WE_2_RE_TWHR2_RESET      0x14
 /* Extracts the ALT_NAND_CFG_TWHR2_AND_WE_2_RE_TWHR2 field value from a register. */
-#define ALT_NAND_CFG_TWHR2_AND_WE_2_RE_TWHR2_GET(value) (((value) & 0x00003f00) >> 8)
+    #define ALT_NAND_CFG_TWHR2_AND_WE_2_RE_TWHR2_GET( value )    ( ( ( value ) & 0x00003f00 ) >> 8 )
 /* Produces a ALT_NAND_CFG_TWHR2_AND_WE_2_RE_TWHR2 register field value suitable for setting the register. */
-#define ALT_NAND_CFG_TWHR2_AND_WE_2_RE_TWHR2_SET(value) (((value) << 8) & 0x00003f00)
+    #define ALT_NAND_CFG_TWHR2_AND_WE_2_RE_TWHR2_SET( value )    ( ( ( value ) << 8 ) & 0x00003f00 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -1429,20 +1465,20 @@ typedef volatile struct ALT_NAND_CFG_GLOB_INT_EN_s  ALT_NAND_CFG_GLOB_INT_EN_t;
  *
  * The struct declaration for register ALT_NAND_CFG_TWHR2_AND_WE_2_RE.
  */
-struct ALT_NAND_CFG_TWHR2_AND_WE_2_RE_s
-{
-    uint32_t  we_2_re :  6;  /* ALT_NAND_CFG_TWHR2_AND_WE_2_RE_WE_2_RE */
-    uint32_t          :  2;  /* *UNDEFINED* */
-    uint32_t  twhr2   :  6;  /* ALT_NAND_CFG_TWHR2_AND_WE_2_RE_TWHR2 */
-    uint32_t          : 18;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_CFG_TWHR2_AND_WE_2_RE_s
+        {
+            uint32_t we_2_re :  6;  /* ALT_NAND_CFG_TWHR2_AND_WE_2_RE_WE_2_RE */
+            uint32_t          :  2; /* *UNDEFINED* */
+            uint32_t twhr2   :  6;  /* ALT_NAND_CFG_TWHR2_AND_WE_2_RE_TWHR2 */
+            uint32_t          : 18; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_CFG_TWHR2_AND_WE_2_RE. */
-typedef volatile struct ALT_NAND_CFG_TWHR2_AND_WE_2_RE_s  ALT_NAND_CFG_TWHR2_AND_WE_2_RE_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_CFG_TWHR2_AND_WE_2_RE_s ALT_NAND_CFG_TWHR2_AND_WE_2_RE_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_CFG_TWHR2_AND_WE_2_RE register from the beginning of the component. */
-#define ALT_NAND_CFG_TWHR2_AND_WE_2_RE_OFST        0x100
+    #define ALT_NAND_CFG_TWHR2_AND_WE_2_RE_OFST    0x100
 
 /*
  * Register : tcwaw_and_addr_2_data
@@ -1457,6 +1493,7 @@ typedef volatile struct ALT_NAND_CFG_TWHR2_AND_WE_2_RE_s  ALT_NAND_CFG_TWHR2_AND
  *  [31:14] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : addr_2_data
  *
@@ -1469,21 +1506,21 @@ typedef volatile struct ALT_NAND_CFG_TWHR2_AND_WE_2_RE_s  ALT_NAND_CFG_TWHR2_AND
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_ADDR_2_DATA register field. */
-#define ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_ADDR_2_DATA_LSB        0
+    #define ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_ADDR_2_DATA_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_ADDR_2_DATA register field. */
-#define ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_ADDR_2_DATA_MSB        5
+    #define ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_ADDR_2_DATA_MSB        5
 /* The width in bits of the ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_ADDR_2_DATA register field. */
-#define ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_ADDR_2_DATA_WIDTH      6
+    #define ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_ADDR_2_DATA_WIDTH      6
 /* The mask used to set the ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_ADDR_2_DATA register field value. */
-#define ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_ADDR_2_DATA_SET_MSK    0x0000003f
+    #define ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_ADDR_2_DATA_SET_MSK    0x0000003f
 /* The mask used to clear the ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_ADDR_2_DATA register field value. */
-#define ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_ADDR_2_DATA_CLR_MSK    0xffffffc0
+    #define ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_ADDR_2_DATA_CLR_MSK    0xffffffc0
 /* The reset value of the ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_ADDR_2_DATA register field. */
-#define ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_ADDR_2_DATA_RESET      0x32
+    #define ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_ADDR_2_DATA_RESET      0x32
 /* Extracts the ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_ADDR_2_DATA field value from a register. */
-#define ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_ADDR_2_DATA_GET(value) (((value) & 0x0000003f) >> 0)
+    #define ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_ADDR_2_DATA_GET( value )    ( ( ( value ) & 0x0000003f ) >> 0 )
 /* Produces a ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_ADDR_2_DATA register field value suitable for setting the register. */
-#define ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_ADDR_2_DATA_SET(value) (((value) << 0) & 0x0000003f)
+    #define ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_ADDR_2_DATA_SET( value )    ( ( ( value ) << 0 ) & 0x0000003f )
 
 /*
  * Field : tcwaw
@@ -1496,23 +1533,24 @@ typedef volatile struct ALT_NAND_CFG_TWHR2_AND_WE_2_RE_s  ALT_NAND_CFG_TWHR2_AND
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_TCWAW register field. */
-#define ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_TCWAW_LSB        8
+    #define ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_TCWAW_LSB        8
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_TCWAW register field. */
-#define ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_TCWAW_MSB        13
+    #define ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_TCWAW_MSB        13
 /* The width in bits of the ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_TCWAW register field. */
-#define ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_TCWAW_WIDTH      6
+    #define ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_TCWAW_WIDTH      6
 /* The mask used to set the ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_TCWAW register field value. */
-#define ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_TCWAW_SET_MSK    0x00003f00
+    #define ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_TCWAW_SET_MSK    0x00003f00
 /* The mask used to clear the ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_TCWAW register field value. */
-#define ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_TCWAW_CLR_MSK    0xffffc0ff
+    #define ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_TCWAW_CLR_MSK    0xffffc0ff
 /* The reset value of the ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_TCWAW register field. */
-#define ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_TCWAW_RESET      0x14
+    #define ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_TCWAW_RESET      0x14
 /* Extracts the ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_TCWAW field value from a register. */
-#define ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_TCWAW_GET(value) (((value) & 0x00003f00) >> 8)
+    #define ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_TCWAW_GET( value )    ( ( ( value ) & 0x00003f00 ) >> 8 )
 /* Produces a ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_TCWAW register field value suitable for setting the register. */
-#define ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_TCWAW_SET(value) (((value) << 8) & 0x00003f00)
+    #define ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_TCWAW_SET( value )    ( ( ( value ) << 8 ) & 0x00003f00 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -1523,20 +1561,20 @@ typedef volatile struct ALT_NAND_CFG_TWHR2_AND_WE_2_RE_s  ALT_NAND_CFG_TWHR2_AND
  *
  * The struct declaration for register ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA.
  */
-struct ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_s
-{
-    uint32_t  addr_2_data :  6;  /* ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_ADDR_2_DATA */
-    uint32_t              :  2;  /* *UNDEFINED* */
-    uint32_t  tcwaw       :  6;  /* ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_TCWAW */
-    uint32_t              : 18;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_s
+        {
+            uint32_t addr_2_data :  6;  /* ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_ADDR_2_DATA */
+            uint32_t              :  2; /* *UNDEFINED* */
+            uint32_t tcwaw       :  6;  /* ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_TCWAW */
+            uint32_t              : 18; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA. */
-typedef volatile struct ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_s  ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_s ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA register from the beginning of the component. */
-#define ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_OFST        0x110
+    #define ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_OFST    0x110
 
 /*
  * Register : re_2_we
@@ -1551,6 +1589,7 @@ typedef volatile struct ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_s  ALT_NAND_CFG_TCWAW
  *  [31:6] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -1563,23 +1602,24 @@ typedef volatile struct ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_s  ALT_NAND_CFG_TCWAW
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_RE_2_WE_VALUE register field. */
-#define ALT_NAND_CFG_RE_2_WE_VALUE_LSB        0
+    #define ALT_NAND_CFG_RE_2_WE_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_RE_2_WE_VALUE register field. */
-#define ALT_NAND_CFG_RE_2_WE_VALUE_MSB        5
+    #define ALT_NAND_CFG_RE_2_WE_VALUE_MSB        5
 /* The width in bits of the ALT_NAND_CFG_RE_2_WE_VALUE register field. */
-#define ALT_NAND_CFG_RE_2_WE_VALUE_WIDTH      6
+    #define ALT_NAND_CFG_RE_2_WE_VALUE_WIDTH      6
 /* The mask used to set the ALT_NAND_CFG_RE_2_WE_VALUE register field value. */
-#define ALT_NAND_CFG_RE_2_WE_VALUE_SET_MSK    0x0000003f
+    #define ALT_NAND_CFG_RE_2_WE_VALUE_SET_MSK    0x0000003f
 /* The mask used to clear the ALT_NAND_CFG_RE_2_WE_VALUE register field value. */
-#define ALT_NAND_CFG_RE_2_WE_VALUE_CLR_MSK    0xffffffc0
+    #define ALT_NAND_CFG_RE_2_WE_VALUE_CLR_MSK    0xffffffc0
 /* The reset value of the ALT_NAND_CFG_RE_2_WE_VALUE register field. */
-#define ALT_NAND_CFG_RE_2_WE_VALUE_RESET      0x32
+    #define ALT_NAND_CFG_RE_2_WE_VALUE_RESET      0x32
 /* Extracts the ALT_NAND_CFG_RE_2_WE_VALUE field value from a register. */
-#define ALT_NAND_CFG_RE_2_WE_VALUE_GET(value) (((value) & 0x0000003f) >> 0)
+    #define ALT_NAND_CFG_RE_2_WE_VALUE_GET( value )    ( ( ( value ) & 0x0000003f ) >> 0 )
 /* Produces a ALT_NAND_CFG_RE_2_WE_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_CFG_RE_2_WE_VALUE_SET(value) (((value) << 0) & 0x0000003f)
+    #define ALT_NAND_CFG_RE_2_WE_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x0000003f )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -1590,18 +1630,18 @@ typedef volatile struct ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_s  ALT_NAND_CFG_TCWAW
  *
  * The struct declaration for register ALT_NAND_CFG_RE_2_WE.
  */
-struct ALT_NAND_CFG_RE_2_WE_s
-{
-    uint32_t  value :  6;  /* ALT_NAND_CFG_RE_2_WE_VALUE */
-    uint32_t        : 26;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_CFG_RE_2_WE_s
+        {
+            uint32_t value :  6;  /* ALT_NAND_CFG_RE_2_WE_VALUE */
+            uint32_t        : 26; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_CFG_RE_2_WE. */
-typedef volatile struct ALT_NAND_CFG_RE_2_WE_s  ALT_NAND_CFG_RE_2_WE_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_CFG_RE_2_WE_s ALT_NAND_CFG_RE_2_WE_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_CFG_RE_2_WE register from the beginning of the component. */
-#define ALT_NAND_CFG_RE_2_WE_OFST        0x120
+    #define ALT_NAND_CFG_RE_2_WE_OFST    0x120
 
 /*
  * Register : acc_clks
@@ -1616,6 +1656,7 @@ typedef volatile struct ALT_NAND_CFG_RE_2_WE_s  ALT_NAND_CFG_RE_2_WE_t;
  *  [31:4] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -1627,23 +1668,24 @@ typedef volatile struct ALT_NAND_CFG_RE_2_WE_s  ALT_NAND_CFG_RE_2_WE_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_ACC_CLKS_VALUE register field. */
-#define ALT_NAND_CFG_ACC_CLKS_VALUE_LSB        0
+    #define ALT_NAND_CFG_ACC_CLKS_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_ACC_CLKS_VALUE register field. */
-#define ALT_NAND_CFG_ACC_CLKS_VALUE_MSB        3
+    #define ALT_NAND_CFG_ACC_CLKS_VALUE_MSB        3
 /* The width in bits of the ALT_NAND_CFG_ACC_CLKS_VALUE register field. */
-#define ALT_NAND_CFG_ACC_CLKS_VALUE_WIDTH      4
+    #define ALT_NAND_CFG_ACC_CLKS_VALUE_WIDTH      4
 /* The mask used to set the ALT_NAND_CFG_ACC_CLKS_VALUE register field value. */
-#define ALT_NAND_CFG_ACC_CLKS_VALUE_SET_MSK    0x0000000f
+    #define ALT_NAND_CFG_ACC_CLKS_VALUE_SET_MSK    0x0000000f
 /* The mask used to clear the ALT_NAND_CFG_ACC_CLKS_VALUE register field value. */
-#define ALT_NAND_CFG_ACC_CLKS_VALUE_CLR_MSK    0xfffffff0
+    #define ALT_NAND_CFG_ACC_CLKS_VALUE_CLR_MSK    0xfffffff0
 /* The reset value of the ALT_NAND_CFG_ACC_CLKS_VALUE register field. */
-#define ALT_NAND_CFG_ACC_CLKS_VALUE_RESET      0x0
+    #define ALT_NAND_CFG_ACC_CLKS_VALUE_RESET      0x0
 /* Extracts the ALT_NAND_CFG_ACC_CLKS_VALUE field value from a register. */
-#define ALT_NAND_CFG_ACC_CLKS_VALUE_GET(value) (((value) & 0x0000000f) >> 0)
+    #define ALT_NAND_CFG_ACC_CLKS_VALUE_GET( value )    ( ( ( value ) & 0x0000000f ) >> 0 )
 /* Produces a ALT_NAND_CFG_ACC_CLKS_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_CFG_ACC_CLKS_VALUE_SET(value) (((value) << 0) & 0x0000000f)
+    #define ALT_NAND_CFG_ACC_CLKS_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x0000000f )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -1654,18 +1696,18 @@ typedef volatile struct ALT_NAND_CFG_RE_2_WE_s  ALT_NAND_CFG_RE_2_WE_t;
  *
  * The struct declaration for register ALT_NAND_CFG_ACC_CLKS.
  */
-struct ALT_NAND_CFG_ACC_CLKS_s
-{
-    uint32_t  value :  4;  /* ALT_NAND_CFG_ACC_CLKS_VALUE */
-    uint32_t        : 28;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_CFG_ACC_CLKS_s
+        {
+            uint32_t value :  4;  /* ALT_NAND_CFG_ACC_CLKS_VALUE */
+            uint32_t        : 28; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_CFG_ACC_CLKS. */
-typedef volatile struct ALT_NAND_CFG_ACC_CLKS_s  ALT_NAND_CFG_ACC_CLKS_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_CFG_ACC_CLKS_s ALT_NAND_CFG_ACC_CLKS_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_CFG_ACC_CLKS register from the beginning of the component. */
-#define ALT_NAND_CFG_ACC_CLKS_OFST        0x130
+    #define ALT_NAND_CFG_ACC_CLKS_OFST    0x130
 
 /*
  * Register : number_of_planes
@@ -1680,6 +1722,7 @@ typedef volatile struct ALT_NAND_CFG_ACC_CLKS_s  ALT_NAND_CFG_ACC_CLKS_t;
  *  [31:3] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -1694,23 +1737,24 @@ typedef volatile struct ALT_NAND_CFG_ACC_CLKS_s  ALT_NAND_CFG_ACC_CLKS_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_NUMBER_OF_PLANES_VALUE register field. */
-#define ALT_NAND_CFG_NUMBER_OF_PLANES_VALUE_LSB        0
+    #define ALT_NAND_CFG_NUMBER_OF_PLANES_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_NUMBER_OF_PLANES_VALUE register field. */
-#define ALT_NAND_CFG_NUMBER_OF_PLANES_VALUE_MSB        2
+    #define ALT_NAND_CFG_NUMBER_OF_PLANES_VALUE_MSB        2
 /* The width in bits of the ALT_NAND_CFG_NUMBER_OF_PLANES_VALUE register field. */
-#define ALT_NAND_CFG_NUMBER_OF_PLANES_VALUE_WIDTH      3
+    #define ALT_NAND_CFG_NUMBER_OF_PLANES_VALUE_WIDTH      3
 /* The mask used to set the ALT_NAND_CFG_NUMBER_OF_PLANES_VALUE register field value. */
-#define ALT_NAND_CFG_NUMBER_OF_PLANES_VALUE_SET_MSK    0x00000007
+    #define ALT_NAND_CFG_NUMBER_OF_PLANES_VALUE_SET_MSK    0x00000007
 /* The mask used to clear the ALT_NAND_CFG_NUMBER_OF_PLANES_VALUE register field value. */
-#define ALT_NAND_CFG_NUMBER_OF_PLANES_VALUE_CLR_MSK    0xfffffff8
+    #define ALT_NAND_CFG_NUMBER_OF_PLANES_VALUE_CLR_MSK    0xfffffff8
 /* The reset value of the ALT_NAND_CFG_NUMBER_OF_PLANES_VALUE register field. */
-#define ALT_NAND_CFG_NUMBER_OF_PLANES_VALUE_RESET      0x0
+    #define ALT_NAND_CFG_NUMBER_OF_PLANES_VALUE_RESET      0x0
 /* Extracts the ALT_NAND_CFG_NUMBER_OF_PLANES_VALUE field value from a register. */
-#define ALT_NAND_CFG_NUMBER_OF_PLANES_VALUE_GET(value) (((value) & 0x00000007) >> 0)
+    #define ALT_NAND_CFG_NUMBER_OF_PLANES_VALUE_GET( value )    ( ( ( value ) & 0x00000007 ) >> 0 )
 /* Produces a ALT_NAND_CFG_NUMBER_OF_PLANES_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_CFG_NUMBER_OF_PLANES_VALUE_SET(value) (((value) << 0) & 0x00000007)
+    #define ALT_NAND_CFG_NUMBER_OF_PLANES_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x00000007 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -1721,18 +1765,18 @@ typedef volatile struct ALT_NAND_CFG_ACC_CLKS_s  ALT_NAND_CFG_ACC_CLKS_t;
  *
  * The struct declaration for register ALT_NAND_CFG_NUMBER_OF_PLANES.
  */
-struct ALT_NAND_CFG_NUMBER_OF_PLANES_s
-{
-    uint32_t  value :  3;  /* ALT_NAND_CFG_NUMBER_OF_PLANES_VALUE */
-    uint32_t        : 29;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_CFG_NUMBER_OF_PLANES_s
+        {
+            uint32_t value :  3;  /* ALT_NAND_CFG_NUMBER_OF_PLANES_VALUE */
+            uint32_t        : 29; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_CFG_NUMBER_OF_PLANES. */
-typedef volatile struct ALT_NAND_CFG_NUMBER_OF_PLANES_s  ALT_NAND_CFG_NUMBER_OF_PLANES_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_CFG_NUMBER_OF_PLANES_s ALT_NAND_CFG_NUMBER_OF_PLANES_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_CFG_NUMBER_OF_PLANES register from the beginning of the component. */
-#define ALT_NAND_CFG_NUMBER_OF_PLANES_OFST        0x140
+    #define ALT_NAND_CFG_NUMBER_OF_PLANES_OFST    0x140
 
 /*
  * Register : pages_per_block
@@ -1747,6 +1791,7 @@ typedef volatile struct ALT_NAND_CFG_NUMBER_OF_PLANES_s  ALT_NAND_CFG_NUMBER_OF_
  *  [31:16] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -1759,23 +1804,24 @@ typedef volatile struct ALT_NAND_CFG_NUMBER_OF_PLANES_s  ALT_NAND_CFG_NUMBER_OF_
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_PAGES_PER_BLOCK_VALUE register field. */
-#define ALT_NAND_CFG_PAGES_PER_BLOCK_VALUE_LSB        0
+    #define ALT_NAND_CFG_PAGES_PER_BLOCK_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_PAGES_PER_BLOCK_VALUE register field. */
-#define ALT_NAND_CFG_PAGES_PER_BLOCK_VALUE_MSB        15
+    #define ALT_NAND_CFG_PAGES_PER_BLOCK_VALUE_MSB        15
 /* The width in bits of the ALT_NAND_CFG_PAGES_PER_BLOCK_VALUE register field. */
-#define ALT_NAND_CFG_PAGES_PER_BLOCK_VALUE_WIDTH      16
+    #define ALT_NAND_CFG_PAGES_PER_BLOCK_VALUE_WIDTH      16
 /* The mask used to set the ALT_NAND_CFG_PAGES_PER_BLOCK_VALUE register field value. */
-#define ALT_NAND_CFG_PAGES_PER_BLOCK_VALUE_SET_MSK    0x0000ffff
+    #define ALT_NAND_CFG_PAGES_PER_BLOCK_VALUE_SET_MSK    0x0000ffff
 /* The mask used to clear the ALT_NAND_CFG_PAGES_PER_BLOCK_VALUE register field value. */
-#define ALT_NAND_CFG_PAGES_PER_BLOCK_VALUE_CLR_MSK    0xffff0000
+    #define ALT_NAND_CFG_PAGES_PER_BLOCK_VALUE_CLR_MSK    0xffff0000
 /* The reset value of the ALT_NAND_CFG_PAGES_PER_BLOCK_VALUE register field. */
-#define ALT_NAND_CFG_PAGES_PER_BLOCK_VALUE_RESET      0x0
+    #define ALT_NAND_CFG_PAGES_PER_BLOCK_VALUE_RESET      0x0
 /* Extracts the ALT_NAND_CFG_PAGES_PER_BLOCK_VALUE field value from a register. */
-#define ALT_NAND_CFG_PAGES_PER_BLOCK_VALUE_GET(value) (((value) & 0x0000ffff) >> 0)
+    #define ALT_NAND_CFG_PAGES_PER_BLOCK_VALUE_GET( value )    ( ( ( value ) & 0x0000ffff ) >> 0 )
 /* Produces a ALT_NAND_CFG_PAGES_PER_BLOCK_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_CFG_PAGES_PER_BLOCK_VALUE_SET(value) (((value) << 0) & 0x0000ffff)
+    #define ALT_NAND_CFG_PAGES_PER_BLOCK_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x0000ffff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -1786,18 +1832,18 @@ typedef volatile struct ALT_NAND_CFG_NUMBER_OF_PLANES_s  ALT_NAND_CFG_NUMBER_OF_
  *
  * The struct declaration for register ALT_NAND_CFG_PAGES_PER_BLOCK.
  */
-struct ALT_NAND_CFG_PAGES_PER_BLOCK_s
-{
-    uint32_t  value : 16;  /* ALT_NAND_CFG_PAGES_PER_BLOCK_VALUE */
-    uint32_t        : 16;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_CFG_PAGES_PER_BLOCK_s
+        {
+            uint32_t value : 16;  /* ALT_NAND_CFG_PAGES_PER_BLOCK_VALUE */
+            uint32_t        : 16; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_CFG_PAGES_PER_BLOCK. */
-typedef volatile struct ALT_NAND_CFG_PAGES_PER_BLOCK_s  ALT_NAND_CFG_PAGES_PER_BLOCK_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_CFG_PAGES_PER_BLOCK_s ALT_NAND_CFG_PAGES_PER_BLOCK_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_CFG_PAGES_PER_BLOCK register from the beginning of the component. */
-#define ALT_NAND_CFG_PAGES_PER_BLOCK_OFST        0x150
+    #define ALT_NAND_CFG_PAGES_PER_BLOCK_OFST    0x150
 
 /*
  * Register : device_width
@@ -1812,6 +1858,7 @@ typedef volatile struct ALT_NAND_CFG_PAGES_PER_BLOCK_s  ALT_NAND_CFG_PAGES_PER_B
  *  [31:2] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -1824,23 +1871,24 @@ typedef volatile struct ALT_NAND_CFG_PAGES_PER_BLOCK_s  ALT_NAND_CFG_PAGES_PER_B
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_DEVICE_WIDTH_VALUE register field. */
-#define ALT_NAND_CFG_DEVICE_WIDTH_VALUE_LSB        0
+    #define ALT_NAND_CFG_DEVICE_WIDTH_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_DEVICE_WIDTH_VALUE register field. */
-#define ALT_NAND_CFG_DEVICE_WIDTH_VALUE_MSB        1
+    #define ALT_NAND_CFG_DEVICE_WIDTH_VALUE_MSB        1
 /* The width in bits of the ALT_NAND_CFG_DEVICE_WIDTH_VALUE register field. */
-#define ALT_NAND_CFG_DEVICE_WIDTH_VALUE_WIDTH      2
+    #define ALT_NAND_CFG_DEVICE_WIDTH_VALUE_WIDTH      2
 /* The mask used to set the ALT_NAND_CFG_DEVICE_WIDTH_VALUE register field value. */
-#define ALT_NAND_CFG_DEVICE_WIDTH_VALUE_SET_MSK    0x00000003
+    #define ALT_NAND_CFG_DEVICE_WIDTH_VALUE_SET_MSK    0x00000003
 /* The mask used to clear the ALT_NAND_CFG_DEVICE_WIDTH_VALUE register field value. */
-#define ALT_NAND_CFG_DEVICE_WIDTH_VALUE_CLR_MSK    0xfffffffc
+    #define ALT_NAND_CFG_DEVICE_WIDTH_VALUE_CLR_MSK    0xfffffffc
 /* The reset value of the ALT_NAND_CFG_DEVICE_WIDTH_VALUE register field. */
-#define ALT_NAND_CFG_DEVICE_WIDTH_VALUE_RESET      0x3
+    #define ALT_NAND_CFG_DEVICE_WIDTH_VALUE_RESET      0x3
 /* Extracts the ALT_NAND_CFG_DEVICE_WIDTH_VALUE field value from a register. */
-#define ALT_NAND_CFG_DEVICE_WIDTH_VALUE_GET(value) (((value) & 0x00000003) >> 0)
+    #define ALT_NAND_CFG_DEVICE_WIDTH_VALUE_GET( value )    ( ( ( value ) & 0x00000003 ) >> 0 )
 /* Produces a ALT_NAND_CFG_DEVICE_WIDTH_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_CFG_DEVICE_WIDTH_VALUE_SET(value) (((value) << 0) & 0x00000003)
+    #define ALT_NAND_CFG_DEVICE_WIDTH_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x00000003 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -1851,18 +1899,18 @@ typedef volatile struct ALT_NAND_CFG_PAGES_PER_BLOCK_s  ALT_NAND_CFG_PAGES_PER_B
  *
  * The struct declaration for register ALT_NAND_CFG_DEVICE_WIDTH.
  */
-struct ALT_NAND_CFG_DEVICE_WIDTH_s
-{
-    uint32_t  value :  2;  /* ALT_NAND_CFG_DEVICE_WIDTH_VALUE */
-    uint32_t        : 30;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_CFG_DEVICE_WIDTH_s
+        {
+            uint32_t value :  2;  /* ALT_NAND_CFG_DEVICE_WIDTH_VALUE */
+            uint32_t        : 30; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_CFG_DEVICE_WIDTH. */
-typedef volatile struct ALT_NAND_CFG_DEVICE_WIDTH_s  ALT_NAND_CFG_DEVICE_WIDTH_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_CFG_DEVICE_WIDTH_s ALT_NAND_CFG_DEVICE_WIDTH_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_CFG_DEVICE_WIDTH register from the beginning of the component. */
-#define ALT_NAND_CFG_DEVICE_WIDTH_OFST        0x160
+    #define ALT_NAND_CFG_DEVICE_WIDTH_OFST    0x160
 
 /*
  * Register : device_main_area_size
@@ -1877,6 +1925,7 @@ typedef volatile struct ALT_NAND_CFG_DEVICE_WIDTH_s  ALT_NAND_CFG_DEVICE_WIDTH_t
  *  [31:16] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -1889,23 +1938,24 @@ typedef volatile struct ALT_NAND_CFG_DEVICE_WIDTH_s  ALT_NAND_CFG_DEVICE_WIDTH_t
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_DEVICE_MAIN_AREA_SIZE_VALUE register field. */
-#define ALT_NAND_CFG_DEVICE_MAIN_AREA_SIZE_VALUE_LSB        0
+    #define ALT_NAND_CFG_DEVICE_MAIN_AREA_SIZE_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_DEVICE_MAIN_AREA_SIZE_VALUE register field. */
-#define ALT_NAND_CFG_DEVICE_MAIN_AREA_SIZE_VALUE_MSB        15
+    #define ALT_NAND_CFG_DEVICE_MAIN_AREA_SIZE_VALUE_MSB        15
 /* The width in bits of the ALT_NAND_CFG_DEVICE_MAIN_AREA_SIZE_VALUE register field. */
-#define ALT_NAND_CFG_DEVICE_MAIN_AREA_SIZE_VALUE_WIDTH      16
+    #define ALT_NAND_CFG_DEVICE_MAIN_AREA_SIZE_VALUE_WIDTH      16
 /* The mask used to set the ALT_NAND_CFG_DEVICE_MAIN_AREA_SIZE_VALUE register field value. */
-#define ALT_NAND_CFG_DEVICE_MAIN_AREA_SIZE_VALUE_SET_MSK    0x0000ffff
+    #define ALT_NAND_CFG_DEVICE_MAIN_AREA_SIZE_VALUE_SET_MSK    0x0000ffff
 /* The mask used to clear the ALT_NAND_CFG_DEVICE_MAIN_AREA_SIZE_VALUE register field value. */
-#define ALT_NAND_CFG_DEVICE_MAIN_AREA_SIZE_VALUE_CLR_MSK    0xffff0000
+    #define ALT_NAND_CFG_DEVICE_MAIN_AREA_SIZE_VALUE_CLR_MSK    0xffff0000
 /* The reset value of the ALT_NAND_CFG_DEVICE_MAIN_AREA_SIZE_VALUE register field. */
-#define ALT_NAND_CFG_DEVICE_MAIN_AREA_SIZE_VALUE_RESET      0x0
+    #define ALT_NAND_CFG_DEVICE_MAIN_AREA_SIZE_VALUE_RESET      0x0
 /* Extracts the ALT_NAND_CFG_DEVICE_MAIN_AREA_SIZE_VALUE field value from a register. */
-#define ALT_NAND_CFG_DEVICE_MAIN_AREA_SIZE_VALUE_GET(value) (((value) & 0x0000ffff) >> 0)
+    #define ALT_NAND_CFG_DEVICE_MAIN_AREA_SIZE_VALUE_GET( value )    ( ( ( value ) & 0x0000ffff ) >> 0 )
 /* Produces a ALT_NAND_CFG_DEVICE_MAIN_AREA_SIZE_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_CFG_DEVICE_MAIN_AREA_SIZE_VALUE_SET(value) (((value) << 0) & 0x0000ffff)
+    #define ALT_NAND_CFG_DEVICE_MAIN_AREA_SIZE_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x0000ffff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -1916,18 +1966,18 @@ typedef volatile struct ALT_NAND_CFG_DEVICE_WIDTH_s  ALT_NAND_CFG_DEVICE_WIDTH_t
  *
  * The struct declaration for register ALT_NAND_CFG_DEVICE_MAIN_AREA_SIZE.
  */
-struct ALT_NAND_CFG_DEVICE_MAIN_AREA_SIZE_s
-{
-    uint32_t  value : 16;  /* ALT_NAND_CFG_DEVICE_MAIN_AREA_SIZE_VALUE */
-    uint32_t        : 16;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_CFG_DEVICE_MAIN_AREA_SIZE_s
+        {
+            uint32_t value : 16;  /* ALT_NAND_CFG_DEVICE_MAIN_AREA_SIZE_VALUE */
+            uint32_t        : 16; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_CFG_DEVICE_MAIN_AREA_SIZE. */
-typedef volatile struct ALT_NAND_CFG_DEVICE_MAIN_AREA_SIZE_s  ALT_NAND_CFG_DEVICE_MAIN_AREA_SIZE_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_CFG_DEVICE_MAIN_AREA_SIZE_s ALT_NAND_CFG_DEVICE_MAIN_AREA_SIZE_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_CFG_DEVICE_MAIN_AREA_SIZE register from the beginning of the component. */
-#define ALT_NAND_CFG_DEVICE_MAIN_AREA_SIZE_OFST        0x170
+    #define ALT_NAND_CFG_DEVICE_MAIN_AREA_SIZE_OFST    0x170
 
 /*
  * Register : device_spare_area_size
@@ -1942,6 +1992,7 @@ typedef volatile struct ALT_NAND_CFG_DEVICE_MAIN_AREA_SIZE_s  ALT_NAND_CFG_DEVIC
  *  [31:16] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -1954,23 +2005,24 @@ typedef volatile struct ALT_NAND_CFG_DEVICE_MAIN_AREA_SIZE_s  ALT_NAND_CFG_DEVIC
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_DEVICE_SPARE_AREA_SIZE_VALUE register field. */
-#define ALT_NAND_CFG_DEVICE_SPARE_AREA_SIZE_VALUE_LSB        0
+    #define ALT_NAND_CFG_DEVICE_SPARE_AREA_SIZE_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_DEVICE_SPARE_AREA_SIZE_VALUE register field. */
-#define ALT_NAND_CFG_DEVICE_SPARE_AREA_SIZE_VALUE_MSB        15
+    #define ALT_NAND_CFG_DEVICE_SPARE_AREA_SIZE_VALUE_MSB        15
 /* The width in bits of the ALT_NAND_CFG_DEVICE_SPARE_AREA_SIZE_VALUE register field. */
-#define ALT_NAND_CFG_DEVICE_SPARE_AREA_SIZE_VALUE_WIDTH      16
+    #define ALT_NAND_CFG_DEVICE_SPARE_AREA_SIZE_VALUE_WIDTH      16
 /* The mask used to set the ALT_NAND_CFG_DEVICE_SPARE_AREA_SIZE_VALUE register field value. */
-#define ALT_NAND_CFG_DEVICE_SPARE_AREA_SIZE_VALUE_SET_MSK    0x0000ffff
+    #define ALT_NAND_CFG_DEVICE_SPARE_AREA_SIZE_VALUE_SET_MSK    0x0000ffff
 /* The mask used to clear the ALT_NAND_CFG_DEVICE_SPARE_AREA_SIZE_VALUE register field value. */
-#define ALT_NAND_CFG_DEVICE_SPARE_AREA_SIZE_VALUE_CLR_MSK    0xffff0000
+    #define ALT_NAND_CFG_DEVICE_SPARE_AREA_SIZE_VALUE_CLR_MSK    0xffff0000
 /* The reset value of the ALT_NAND_CFG_DEVICE_SPARE_AREA_SIZE_VALUE register field. */
-#define ALT_NAND_CFG_DEVICE_SPARE_AREA_SIZE_VALUE_RESET      0x0
+    #define ALT_NAND_CFG_DEVICE_SPARE_AREA_SIZE_VALUE_RESET      0x0
 /* Extracts the ALT_NAND_CFG_DEVICE_SPARE_AREA_SIZE_VALUE field value from a register. */
-#define ALT_NAND_CFG_DEVICE_SPARE_AREA_SIZE_VALUE_GET(value) (((value) & 0x0000ffff) >> 0)
+    #define ALT_NAND_CFG_DEVICE_SPARE_AREA_SIZE_VALUE_GET( value )    ( ( ( value ) & 0x0000ffff ) >> 0 )
 /* Produces a ALT_NAND_CFG_DEVICE_SPARE_AREA_SIZE_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_CFG_DEVICE_SPARE_AREA_SIZE_VALUE_SET(value) (((value) << 0) & 0x0000ffff)
+    #define ALT_NAND_CFG_DEVICE_SPARE_AREA_SIZE_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x0000ffff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -1981,18 +2033,18 @@ typedef volatile struct ALT_NAND_CFG_DEVICE_MAIN_AREA_SIZE_s  ALT_NAND_CFG_DEVIC
  *
  * The struct declaration for register ALT_NAND_CFG_DEVICE_SPARE_AREA_SIZE.
  */
-struct ALT_NAND_CFG_DEVICE_SPARE_AREA_SIZE_s
-{
-    uint32_t  value : 16;  /* ALT_NAND_CFG_DEVICE_SPARE_AREA_SIZE_VALUE */
-    uint32_t        : 16;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_CFG_DEVICE_SPARE_AREA_SIZE_s
+        {
+            uint32_t value : 16;  /* ALT_NAND_CFG_DEVICE_SPARE_AREA_SIZE_VALUE */
+            uint32_t        : 16; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_CFG_DEVICE_SPARE_AREA_SIZE. */
-typedef volatile struct ALT_NAND_CFG_DEVICE_SPARE_AREA_SIZE_s  ALT_NAND_CFG_DEVICE_SPARE_AREA_SIZE_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_CFG_DEVICE_SPARE_AREA_SIZE_s ALT_NAND_CFG_DEVICE_SPARE_AREA_SIZE_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_CFG_DEVICE_SPARE_AREA_SIZE register from the beginning of the component. */
-#define ALT_NAND_CFG_DEVICE_SPARE_AREA_SIZE_OFST        0x180
+    #define ALT_NAND_CFG_DEVICE_SPARE_AREA_SIZE_OFST    0x180
 
 /*
  * Register : two_row_addr_cycles
@@ -2007,6 +2059,7 @@ typedef volatile struct ALT_NAND_CFG_DEVICE_SPARE_AREA_SIZE_s  ALT_NAND_CFG_DEVI
  *  [31:1] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : flag
  *
@@ -2018,23 +2071,24 @@ typedef volatile struct ALT_NAND_CFG_DEVICE_SPARE_AREA_SIZE_s  ALT_NAND_CFG_DEVI
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_TWO_ROW_ADDR_CYCLES_FLAG register field. */
-#define ALT_NAND_CFG_TWO_ROW_ADDR_CYCLES_FLAG_LSB        0
+    #define ALT_NAND_CFG_TWO_ROW_ADDR_CYCLES_FLAG_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_TWO_ROW_ADDR_CYCLES_FLAG register field. */
-#define ALT_NAND_CFG_TWO_ROW_ADDR_CYCLES_FLAG_MSB        0
+    #define ALT_NAND_CFG_TWO_ROW_ADDR_CYCLES_FLAG_MSB        0
 /* The width in bits of the ALT_NAND_CFG_TWO_ROW_ADDR_CYCLES_FLAG register field. */
-#define ALT_NAND_CFG_TWO_ROW_ADDR_CYCLES_FLAG_WIDTH      1
+    #define ALT_NAND_CFG_TWO_ROW_ADDR_CYCLES_FLAG_WIDTH      1
 /* The mask used to set the ALT_NAND_CFG_TWO_ROW_ADDR_CYCLES_FLAG register field value. */
-#define ALT_NAND_CFG_TWO_ROW_ADDR_CYCLES_FLAG_SET_MSK    0x00000001
+    #define ALT_NAND_CFG_TWO_ROW_ADDR_CYCLES_FLAG_SET_MSK    0x00000001
 /* The mask used to clear the ALT_NAND_CFG_TWO_ROW_ADDR_CYCLES_FLAG register field value. */
-#define ALT_NAND_CFG_TWO_ROW_ADDR_CYCLES_FLAG_CLR_MSK    0xfffffffe
+    #define ALT_NAND_CFG_TWO_ROW_ADDR_CYCLES_FLAG_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_NAND_CFG_TWO_ROW_ADDR_CYCLES_FLAG register field. */
-#define ALT_NAND_CFG_TWO_ROW_ADDR_CYCLES_FLAG_RESET      0x0
+    #define ALT_NAND_CFG_TWO_ROW_ADDR_CYCLES_FLAG_RESET      0x0
 /* Extracts the ALT_NAND_CFG_TWO_ROW_ADDR_CYCLES_FLAG field value from a register. */
-#define ALT_NAND_CFG_TWO_ROW_ADDR_CYCLES_FLAG_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_NAND_CFG_TWO_ROW_ADDR_CYCLES_FLAG_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_NAND_CFG_TWO_ROW_ADDR_CYCLES_FLAG register field value suitable for setting the register. */
-#define ALT_NAND_CFG_TWO_ROW_ADDR_CYCLES_FLAG_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_NAND_CFG_TWO_ROW_ADDR_CYCLES_FLAG_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -2045,18 +2099,18 @@ typedef volatile struct ALT_NAND_CFG_DEVICE_SPARE_AREA_SIZE_s  ALT_NAND_CFG_DEVI
  *
  * The struct declaration for register ALT_NAND_CFG_TWO_ROW_ADDR_CYCLES.
  */
-struct ALT_NAND_CFG_TWO_ROW_ADDR_CYCLES_s
-{
-    uint32_t  flag :  1;  /* ALT_NAND_CFG_TWO_ROW_ADDR_CYCLES_FLAG */
-    uint32_t       : 31;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_CFG_TWO_ROW_ADDR_CYCLES_s
+        {
+            uint32_t flag :  1;  /* ALT_NAND_CFG_TWO_ROW_ADDR_CYCLES_FLAG */
+            uint32_t       : 31; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_CFG_TWO_ROW_ADDR_CYCLES. */
-typedef volatile struct ALT_NAND_CFG_TWO_ROW_ADDR_CYCLES_s  ALT_NAND_CFG_TWO_ROW_ADDR_CYCLES_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_CFG_TWO_ROW_ADDR_CYCLES_s ALT_NAND_CFG_TWO_ROW_ADDR_CYCLES_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_CFG_TWO_ROW_ADDR_CYCLES register from the beginning of the component. */
-#define ALT_NAND_CFG_TWO_ROW_ADDR_CYCLES_OFST        0x190
+    #define ALT_NAND_CFG_TWO_ROW_ADDR_CYCLES_OFST    0x190
 
 /*
  * Register : multiplane_addr_restrict
@@ -2071,6 +2125,7 @@ typedef volatile struct ALT_NAND_CFG_TWO_ROW_ADDR_CYCLES_s  ALT_NAND_CFG_TWO_ROW
  *  [31:1] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : flag
  *
@@ -2083,23 +2138,24 @@ typedef volatile struct ALT_NAND_CFG_TWO_ROW_ADDR_CYCLES_s  ALT_NAND_CFG_TWO_ROW
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_MULTIPLANE_ADDR_RESTRICT_FLAG register field. */
-#define ALT_NAND_CFG_MULTIPLANE_ADDR_RESTRICT_FLAG_LSB        0
+    #define ALT_NAND_CFG_MULTIPLANE_ADDR_RESTRICT_FLAG_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_MULTIPLANE_ADDR_RESTRICT_FLAG register field. */
-#define ALT_NAND_CFG_MULTIPLANE_ADDR_RESTRICT_FLAG_MSB        0
+    #define ALT_NAND_CFG_MULTIPLANE_ADDR_RESTRICT_FLAG_MSB        0
 /* The width in bits of the ALT_NAND_CFG_MULTIPLANE_ADDR_RESTRICT_FLAG register field. */
-#define ALT_NAND_CFG_MULTIPLANE_ADDR_RESTRICT_FLAG_WIDTH      1
+    #define ALT_NAND_CFG_MULTIPLANE_ADDR_RESTRICT_FLAG_WIDTH      1
 /* The mask used to set the ALT_NAND_CFG_MULTIPLANE_ADDR_RESTRICT_FLAG register field value. */
-#define ALT_NAND_CFG_MULTIPLANE_ADDR_RESTRICT_FLAG_SET_MSK    0x00000001
+    #define ALT_NAND_CFG_MULTIPLANE_ADDR_RESTRICT_FLAG_SET_MSK    0x00000001
 /* The mask used to clear the ALT_NAND_CFG_MULTIPLANE_ADDR_RESTRICT_FLAG register field value. */
-#define ALT_NAND_CFG_MULTIPLANE_ADDR_RESTRICT_FLAG_CLR_MSK    0xfffffffe
+    #define ALT_NAND_CFG_MULTIPLANE_ADDR_RESTRICT_FLAG_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_NAND_CFG_MULTIPLANE_ADDR_RESTRICT_FLAG register field. */
-#define ALT_NAND_CFG_MULTIPLANE_ADDR_RESTRICT_FLAG_RESET      0x0
+    #define ALT_NAND_CFG_MULTIPLANE_ADDR_RESTRICT_FLAG_RESET      0x0
 /* Extracts the ALT_NAND_CFG_MULTIPLANE_ADDR_RESTRICT_FLAG field value from a register. */
-#define ALT_NAND_CFG_MULTIPLANE_ADDR_RESTRICT_FLAG_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_NAND_CFG_MULTIPLANE_ADDR_RESTRICT_FLAG_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_NAND_CFG_MULTIPLANE_ADDR_RESTRICT_FLAG register field value suitable for setting the register. */
-#define ALT_NAND_CFG_MULTIPLANE_ADDR_RESTRICT_FLAG_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_NAND_CFG_MULTIPLANE_ADDR_RESTRICT_FLAG_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -2110,18 +2166,18 @@ typedef volatile struct ALT_NAND_CFG_TWO_ROW_ADDR_CYCLES_s  ALT_NAND_CFG_TWO_ROW
  *
  * The struct declaration for register ALT_NAND_CFG_MULTIPLANE_ADDR_RESTRICT.
  */
-struct ALT_NAND_CFG_MULTIPLANE_ADDR_RESTRICT_s
-{
-    uint32_t  flag :  1;  /* ALT_NAND_CFG_MULTIPLANE_ADDR_RESTRICT_FLAG */
-    uint32_t       : 31;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_CFG_MULTIPLANE_ADDR_RESTRICT_s
+        {
+            uint32_t flag :  1;  /* ALT_NAND_CFG_MULTIPLANE_ADDR_RESTRICT_FLAG */
+            uint32_t       : 31; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_CFG_MULTIPLANE_ADDR_RESTRICT. */
-typedef volatile struct ALT_NAND_CFG_MULTIPLANE_ADDR_RESTRICT_s  ALT_NAND_CFG_MULTIPLANE_ADDR_RESTRICT_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_CFG_MULTIPLANE_ADDR_RESTRICT_s ALT_NAND_CFG_MULTIPLANE_ADDR_RESTRICT_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_CFG_MULTIPLANE_ADDR_RESTRICT register from the beginning of the component. */
-#define ALT_NAND_CFG_MULTIPLANE_ADDR_RESTRICT_OFST        0x1a0
+    #define ALT_NAND_CFG_MULTIPLANE_ADDR_RESTRICT_OFST    0x1a0
 
 /*
  * Register : ecc_correction
@@ -2136,6 +2192,7 @@ typedef volatile struct ALT_NAND_CFG_MULTIPLANE_ADDR_RESTRICT_s  ALT_NAND_CFG_MU
  *  [31:8] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -2147,23 +2204,24 @@ typedef volatile struct ALT_NAND_CFG_MULTIPLANE_ADDR_RESTRICT_s  ALT_NAND_CFG_MU
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_ECC_CORRECTION_VALUE register field. */
-#define ALT_NAND_CFG_ECC_CORRECTION_VALUE_LSB        0
+    #define ALT_NAND_CFG_ECC_CORRECTION_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_ECC_CORRECTION_VALUE register field. */
-#define ALT_NAND_CFG_ECC_CORRECTION_VALUE_MSB        7
+    #define ALT_NAND_CFG_ECC_CORRECTION_VALUE_MSB        7
 /* The width in bits of the ALT_NAND_CFG_ECC_CORRECTION_VALUE register field. */
-#define ALT_NAND_CFG_ECC_CORRECTION_VALUE_WIDTH      8
+    #define ALT_NAND_CFG_ECC_CORRECTION_VALUE_WIDTH      8
 /* The mask used to set the ALT_NAND_CFG_ECC_CORRECTION_VALUE register field value. */
-#define ALT_NAND_CFG_ECC_CORRECTION_VALUE_SET_MSK    0x000000ff
+    #define ALT_NAND_CFG_ECC_CORRECTION_VALUE_SET_MSK    0x000000ff
 /* The mask used to clear the ALT_NAND_CFG_ECC_CORRECTION_VALUE register field value. */
-#define ALT_NAND_CFG_ECC_CORRECTION_VALUE_CLR_MSK    0xffffff00
+    #define ALT_NAND_CFG_ECC_CORRECTION_VALUE_CLR_MSK    0xffffff00
 /* The reset value of the ALT_NAND_CFG_ECC_CORRECTION_VALUE register field. */
-#define ALT_NAND_CFG_ECC_CORRECTION_VALUE_RESET      0x8
+    #define ALT_NAND_CFG_ECC_CORRECTION_VALUE_RESET      0x8
 /* Extracts the ALT_NAND_CFG_ECC_CORRECTION_VALUE field value from a register. */
-#define ALT_NAND_CFG_ECC_CORRECTION_VALUE_GET(value) (((value) & 0x000000ff) >> 0)
+    #define ALT_NAND_CFG_ECC_CORRECTION_VALUE_GET( value )    ( ( ( value ) & 0x000000ff ) >> 0 )
 /* Produces a ALT_NAND_CFG_ECC_CORRECTION_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_CFG_ECC_CORRECTION_VALUE_SET(value) (((value) << 0) & 0x000000ff)
+    #define ALT_NAND_CFG_ECC_CORRECTION_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x000000ff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -2174,18 +2232,18 @@ typedef volatile struct ALT_NAND_CFG_MULTIPLANE_ADDR_RESTRICT_s  ALT_NAND_CFG_MU
  *
  * The struct declaration for register ALT_NAND_CFG_ECC_CORRECTION.
  */
-struct ALT_NAND_CFG_ECC_CORRECTION_s
-{
-    uint32_t  value :  8;  /* ALT_NAND_CFG_ECC_CORRECTION_VALUE */
-    uint32_t        : 24;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_CFG_ECC_CORRECTION_s
+        {
+            uint32_t value :  8;  /* ALT_NAND_CFG_ECC_CORRECTION_VALUE */
+            uint32_t        : 24; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_CFG_ECC_CORRECTION. */
-typedef volatile struct ALT_NAND_CFG_ECC_CORRECTION_s  ALT_NAND_CFG_ECC_CORRECTION_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_CFG_ECC_CORRECTION_s ALT_NAND_CFG_ECC_CORRECTION_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_CFG_ECC_CORRECTION register from the beginning of the component. */
-#define ALT_NAND_CFG_ECC_CORRECTION_OFST        0x1b0
+    #define ALT_NAND_CFG_ECC_CORRECTION_OFST    0x1b0
 
 /*
  * Register : read_mode
@@ -2201,6 +2259,7 @@ typedef volatile struct ALT_NAND_CFG_ECC_CORRECTION_s  ALT_NAND_CFG_ECC_CORRECTI
  *  [31:4] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -2241,23 +2300,24 @@ typedef volatile struct ALT_NAND_CFG_ECC_CORRECTION_s  ALT_NAND_CFG_ECC_CORRECTI
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_RD_MOD_VALUE register field. */
-#define ALT_NAND_CFG_RD_MOD_VALUE_LSB        0
+    #define ALT_NAND_CFG_RD_MOD_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_RD_MOD_VALUE register field. */
-#define ALT_NAND_CFG_RD_MOD_VALUE_MSB        3
+    #define ALT_NAND_CFG_RD_MOD_VALUE_MSB        3
 /* The width in bits of the ALT_NAND_CFG_RD_MOD_VALUE register field. */
-#define ALT_NAND_CFG_RD_MOD_VALUE_WIDTH      4
+    #define ALT_NAND_CFG_RD_MOD_VALUE_WIDTH      4
 /* The mask used to set the ALT_NAND_CFG_RD_MOD_VALUE register field value. */
-#define ALT_NAND_CFG_RD_MOD_VALUE_SET_MSK    0x0000000f
+    #define ALT_NAND_CFG_RD_MOD_VALUE_SET_MSK    0x0000000f
 /* The mask used to clear the ALT_NAND_CFG_RD_MOD_VALUE register field value. */
-#define ALT_NAND_CFG_RD_MOD_VALUE_CLR_MSK    0xfffffff0
+    #define ALT_NAND_CFG_RD_MOD_VALUE_CLR_MSK    0xfffffff0
 /* The reset value of the ALT_NAND_CFG_RD_MOD_VALUE register field. */
-#define ALT_NAND_CFG_RD_MOD_VALUE_RESET      0x0
+    #define ALT_NAND_CFG_RD_MOD_VALUE_RESET      0x0
 /* Extracts the ALT_NAND_CFG_RD_MOD_VALUE field value from a register. */
-#define ALT_NAND_CFG_RD_MOD_VALUE_GET(value) (((value) & 0x0000000f) >> 0)
+    #define ALT_NAND_CFG_RD_MOD_VALUE_GET( value )    ( ( ( value ) & 0x0000000f ) >> 0 )
 /* Produces a ALT_NAND_CFG_RD_MOD_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_CFG_RD_MOD_VALUE_SET(value) (((value) << 0) & 0x0000000f)
+    #define ALT_NAND_CFG_RD_MOD_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x0000000f )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -2268,18 +2328,18 @@ typedef volatile struct ALT_NAND_CFG_ECC_CORRECTION_s  ALT_NAND_CFG_ECC_CORRECTI
  *
  * The struct declaration for register ALT_NAND_CFG_RD_MOD.
  */
-struct ALT_NAND_CFG_RD_MOD_s
-{
-    uint32_t  value :  4;  /* ALT_NAND_CFG_RD_MOD_VALUE */
-    uint32_t        : 28;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_CFG_RD_MOD_s
+        {
+            uint32_t value :  4;  /* ALT_NAND_CFG_RD_MOD_VALUE */
+            uint32_t        : 28; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_CFG_RD_MOD. */
-typedef volatile struct ALT_NAND_CFG_RD_MOD_s  ALT_NAND_CFG_RD_MOD_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_CFG_RD_MOD_s ALT_NAND_CFG_RD_MOD_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_CFG_RD_MOD register from the beginning of the component. */
-#define ALT_NAND_CFG_RD_MOD_OFST        0x1c0
+    #define ALT_NAND_CFG_RD_MOD_OFST    0x1c0
 
 /*
  * Register : write_mode
@@ -2295,6 +2355,7 @@ typedef volatile struct ALT_NAND_CFG_RD_MOD_s  ALT_NAND_CFG_RD_MOD_t;
  *  [31:4] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -2321,23 +2382,24 @@ typedef volatile struct ALT_NAND_CFG_RD_MOD_s  ALT_NAND_CFG_RD_MOD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_WR_MOD_VALUE register field. */
-#define ALT_NAND_CFG_WR_MOD_VALUE_LSB        0
+    #define ALT_NAND_CFG_WR_MOD_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_WR_MOD_VALUE register field. */
-#define ALT_NAND_CFG_WR_MOD_VALUE_MSB        3
+    #define ALT_NAND_CFG_WR_MOD_VALUE_MSB        3
 /* The width in bits of the ALT_NAND_CFG_WR_MOD_VALUE register field. */
-#define ALT_NAND_CFG_WR_MOD_VALUE_WIDTH      4
+    #define ALT_NAND_CFG_WR_MOD_VALUE_WIDTH      4
 /* The mask used to set the ALT_NAND_CFG_WR_MOD_VALUE register field value. */
-#define ALT_NAND_CFG_WR_MOD_VALUE_SET_MSK    0x0000000f
+    #define ALT_NAND_CFG_WR_MOD_VALUE_SET_MSK    0x0000000f
 /* The mask used to clear the ALT_NAND_CFG_WR_MOD_VALUE register field value. */
-#define ALT_NAND_CFG_WR_MOD_VALUE_CLR_MSK    0xfffffff0
+    #define ALT_NAND_CFG_WR_MOD_VALUE_CLR_MSK    0xfffffff0
 /* The reset value of the ALT_NAND_CFG_WR_MOD_VALUE register field. */
-#define ALT_NAND_CFG_WR_MOD_VALUE_RESET      0x0
+    #define ALT_NAND_CFG_WR_MOD_VALUE_RESET      0x0
 /* Extracts the ALT_NAND_CFG_WR_MOD_VALUE field value from a register. */
-#define ALT_NAND_CFG_WR_MOD_VALUE_GET(value) (((value) & 0x0000000f) >> 0)
+    #define ALT_NAND_CFG_WR_MOD_VALUE_GET( value )    ( ( ( value ) & 0x0000000f ) >> 0 )
 /* Produces a ALT_NAND_CFG_WR_MOD_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_CFG_WR_MOD_VALUE_SET(value) (((value) << 0) & 0x0000000f)
+    #define ALT_NAND_CFG_WR_MOD_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x0000000f )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -2348,18 +2410,18 @@ typedef volatile struct ALT_NAND_CFG_RD_MOD_s  ALT_NAND_CFG_RD_MOD_t;
  *
  * The struct declaration for register ALT_NAND_CFG_WR_MOD.
  */
-struct ALT_NAND_CFG_WR_MOD_s
-{
-    uint32_t  value :  4;  /* ALT_NAND_CFG_WR_MOD_VALUE */
-    uint32_t        : 28;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_CFG_WR_MOD_s
+        {
+            uint32_t value :  4;  /* ALT_NAND_CFG_WR_MOD_VALUE */
+            uint32_t        : 28; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_CFG_WR_MOD. */
-typedef volatile struct ALT_NAND_CFG_WR_MOD_s  ALT_NAND_CFG_WR_MOD_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_CFG_WR_MOD_s ALT_NAND_CFG_WR_MOD_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_CFG_WR_MOD register from the beginning of the component. */
-#define ALT_NAND_CFG_WR_MOD_OFST        0x1d0
+    #define ALT_NAND_CFG_WR_MOD_OFST    0x1d0
 
 /*
  * Register : copyback_mode
@@ -2374,6 +2436,7 @@ typedef volatile struct ALT_NAND_CFG_WR_MOD_s  ALT_NAND_CFG_WR_MOD_t;
  *  [31:4] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -2401,23 +2464,24 @@ typedef volatile struct ALT_NAND_CFG_WR_MOD_s  ALT_NAND_CFG_WR_MOD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_COPYBACK_MOD_VALUE register field. */
-#define ALT_NAND_CFG_COPYBACK_MOD_VALUE_LSB        0
+    #define ALT_NAND_CFG_COPYBACK_MOD_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_COPYBACK_MOD_VALUE register field. */
-#define ALT_NAND_CFG_COPYBACK_MOD_VALUE_MSB        3
+    #define ALT_NAND_CFG_COPYBACK_MOD_VALUE_MSB        3
 /* The width in bits of the ALT_NAND_CFG_COPYBACK_MOD_VALUE register field. */
-#define ALT_NAND_CFG_COPYBACK_MOD_VALUE_WIDTH      4
+    #define ALT_NAND_CFG_COPYBACK_MOD_VALUE_WIDTH      4
 /* The mask used to set the ALT_NAND_CFG_COPYBACK_MOD_VALUE register field value. */
-#define ALT_NAND_CFG_COPYBACK_MOD_VALUE_SET_MSK    0x0000000f
+    #define ALT_NAND_CFG_COPYBACK_MOD_VALUE_SET_MSK    0x0000000f
 /* The mask used to clear the ALT_NAND_CFG_COPYBACK_MOD_VALUE register field value. */
-#define ALT_NAND_CFG_COPYBACK_MOD_VALUE_CLR_MSK    0xfffffff0
+    #define ALT_NAND_CFG_COPYBACK_MOD_VALUE_CLR_MSK    0xfffffff0
 /* The reset value of the ALT_NAND_CFG_COPYBACK_MOD_VALUE register field. */
-#define ALT_NAND_CFG_COPYBACK_MOD_VALUE_RESET      0x0
+    #define ALT_NAND_CFG_COPYBACK_MOD_VALUE_RESET      0x0
 /* Extracts the ALT_NAND_CFG_COPYBACK_MOD_VALUE field value from a register. */
-#define ALT_NAND_CFG_COPYBACK_MOD_VALUE_GET(value) (((value) & 0x0000000f) >> 0)
+    #define ALT_NAND_CFG_COPYBACK_MOD_VALUE_GET( value )    ( ( ( value ) & 0x0000000f ) >> 0 )
 /* Produces a ALT_NAND_CFG_COPYBACK_MOD_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_CFG_COPYBACK_MOD_VALUE_SET(value) (((value) << 0) & 0x0000000f)
+    #define ALT_NAND_CFG_COPYBACK_MOD_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x0000000f )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -2428,18 +2492,18 @@ typedef volatile struct ALT_NAND_CFG_WR_MOD_s  ALT_NAND_CFG_WR_MOD_t;
  *
  * The struct declaration for register ALT_NAND_CFG_COPYBACK_MOD.
  */
-struct ALT_NAND_CFG_COPYBACK_MOD_s
-{
-    uint32_t  value :  4;  /* ALT_NAND_CFG_COPYBACK_MOD_VALUE */
-    uint32_t        : 28;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_CFG_COPYBACK_MOD_s
+        {
+            uint32_t value :  4;  /* ALT_NAND_CFG_COPYBACK_MOD_VALUE */
+            uint32_t        : 28; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_CFG_COPYBACK_MOD. */
-typedef volatile struct ALT_NAND_CFG_COPYBACK_MOD_s  ALT_NAND_CFG_COPYBACK_MOD_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_CFG_COPYBACK_MOD_s ALT_NAND_CFG_COPYBACK_MOD_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_CFG_COPYBACK_MOD register from the beginning of the component. */
-#define ALT_NAND_CFG_COPYBACK_MOD_OFST        0x1e0
+    #define ALT_NAND_CFG_COPYBACK_MOD_OFST    0x1e0
 
 /*
  * Register : rdwr_en_lo_cnt
@@ -2454,6 +2518,7 @@ typedef volatile struct ALT_NAND_CFG_COPYBACK_MOD_s  ALT_NAND_CFG_COPYBACK_MOD_t
  *  [31:5] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -2468,23 +2533,24 @@ typedef volatile struct ALT_NAND_CFG_COPYBACK_MOD_s  ALT_NAND_CFG_COPYBACK_MOD_t
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_RDWR_EN_LO_CNT_VALUE register field. */
-#define ALT_NAND_CFG_RDWR_EN_LO_CNT_VALUE_LSB        0
+    #define ALT_NAND_CFG_RDWR_EN_LO_CNT_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_RDWR_EN_LO_CNT_VALUE register field. */
-#define ALT_NAND_CFG_RDWR_EN_LO_CNT_VALUE_MSB        4
+    #define ALT_NAND_CFG_RDWR_EN_LO_CNT_VALUE_MSB        4
 /* The width in bits of the ALT_NAND_CFG_RDWR_EN_LO_CNT_VALUE register field. */
-#define ALT_NAND_CFG_RDWR_EN_LO_CNT_VALUE_WIDTH      5
+    #define ALT_NAND_CFG_RDWR_EN_LO_CNT_VALUE_WIDTH      5
 /* The mask used to set the ALT_NAND_CFG_RDWR_EN_LO_CNT_VALUE register field value. */
-#define ALT_NAND_CFG_RDWR_EN_LO_CNT_VALUE_SET_MSK    0x0000001f
+    #define ALT_NAND_CFG_RDWR_EN_LO_CNT_VALUE_SET_MSK    0x0000001f
 /* The mask used to clear the ALT_NAND_CFG_RDWR_EN_LO_CNT_VALUE register field value. */
-#define ALT_NAND_CFG_RDWR_EN_LO_CNT_VALUE_CLR_MSK    0xffffffe0
+    #define ALT_NAND_CFG_RDWR_EN_LO_CNT_VALUE_CLR_MSK    0xffffffe0
 /* The reset value of the ALT_NAND_CFG_RDWR_EN_LO_CNT_VALUE register field. */
-#define ALT_NAND_CFG_RDWR_EN_LO_CNT_VALUE_RESET      0x12
+    #define ALT_NAND_CFG_RDWR_EN_LO_CNT_VALUE_RESET      0x12
 /* Extracts the ALT_NAND_CFG_RDWR_EN_LO_CNT_VALUE field value from a register. */
-#define ALT_NAND_CFG_RDWR_EN_LO_CNT_VALUE_GET(value) (((value) & 0x0000001f) >> 0)
+    #define ALT_NAND_CFG_RDWR_EN_LO_CNT_VALUE_GET( value )    ( ( ( value ) & 0x0000001f ) >> 0 )
 /* Produces a ALT_NAND_CFG_RDWR_EN_LO_CNT_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_CFG_RDWR_EN_LO_CNT_VALUE_SET(value) (((value) << 0) & 0x0000001f)
+    #define ALT_NAND_CFG_RDWR_EN_LO_CNT_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x0000001f )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -2495,18 +2561,18 @@ typedef volatile struct ALT_NAND_CFG_COPYBACK_MOD_s  ALT_NAND_CFG_COPYBACK_MOD_t
  *
  * The struct declaration for register ALT_NAND_CFG_RDWR_EN_LO_CNT.
  */
-struct ALT_NAND_CFG_RDWR_EN_LO_CNT_s
-{
-    uint32_t  value :  5;  /* ALT_NAND_CFG_RDWR_EN_LO_CNT_VALUE */
-    uint32_t        : 27;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_CFG_RDWR_EN_LO_CNT_s
+        {
+            uint32_t value :  5;  /* ALT_NAND_CFG_RDWR_EN_LO_CNT_VALUE */
+            uint32_t        : 27; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_CFG_RDWR_EN_LO_CNT. */
-typedef volatile struct ALT_NAND_CFG_RDWR_EN_LO_CNT_s  ALT_NAND_CFG_RDWR_EN_LO_CNT_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_CFG_RDWR_EN_LO_CNT_s ALT_NAND_CFG_RDWR_EN_LO_CNT_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_CFG_RDWR_EN_LO_CNT register from the beginning of the component. */
-#define ALT_NAND_CFG_RDWR_EN_LO_CNT_OFST        0x1f0
+    #define ALT_NAND_CFG_RDWR_EN_LO_CNT_OFST    0x1f0
 
 /*
  * Register : rdwr_en_hi_cnt
@@ -2521,6 +2587,7 @@ typedef volatile struct ALT_NAND_CFG_RDWR_EN_LO_CNT_s  ALT_NAND_CFG_RDWR_EN_LO_C
  *  [31:5] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -2535,23 +2602,24 @@ typedef volatile struct ALT_NAND_CFG_RDWR_EN_LO_CNT_s  ALT_NAND_CFG_RDWR_EN_LO_C
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_RDWR_EN_HI_CNT_VALUE register field. */
-#define ALT_NAND_CFG_RDWR_EN_HI_CNT_VALUE_LSB        0
+    #define ALT_NAND_CFG_RDWR_EN_HI_CNT_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_RDWR_EN_HI_CNT_VALUE register field. */
-#define ALT_NAND_CFG_RDWR_EN_HI_CNT_VALUE_MSB        4
+    #define ALT_NAND_CFG_RDWR_EN_HI_CNT_VALUE_MSB        4
 /* The width in bits of the ALT_NAND_CFG_RDWR_EN_HI_CNT_VALUE register field. */
-#define ALT_NAND_CFG_RDWR_EN_HI_CNT_VALUE_WIDTH      5
+    #define ALT_NAND_CFG_RDWR_EN_HI_CNT_VALUE_WIDTH      5
 /* The mask used to set the ALT_NAND_CFG_RDWR_EN_HI_CNT_VALUE register field value. */
-#define ALT_NAND_CFG_RDWR_EN_HI_CNT_VALUE_SET_MSK    0x0000001f
+    #define ALT_NAND_CFG_RDWR_EN_HI_CNT_VALUE_SET_MSK    0x0000001f
 /* The mask used to clear the ALT_NAND_CFG_RDWR_EN_HI_CNT_VALUE register field value. */
-#define ALT_NAND_CFG_RDWR_EN_HI_CNT_VALUE_CLR_MSK    0xffffffe0
+    #define ALT_NAND_CFG_RDWR_EN_HI_CNT_VALUE_CLR_MSK    0xffffffe0
 /* The reset value of the ALT_NAND_CFG_RDWR_EN_HI_CNT_VALUE register field. */
-#define ALT_NAND_CFG_RDWR_EN_HI_CNT_VALUE_RESET      0xc
+    #define ALT_NAND_CFG_RDWR_EN_HI_CNT_VALUE_RESET      0xc
 /* Extracts the ALT_NAND_CFG_RDWR_EN_HI_CNT_VALUE field value from a register. */
-#define ALT_NAND_CFG_RDWR_EN_HI_CNT_VALUE_GET(value) (((value) & 0x0000001f) >> 0)
+    #define ALT_NAND_CFG_RDWR_EN_HI_CNT_VALUE_GET( value )    ( ( ( value ) & 0x0000001f ) >> 0 )
 /* Produces a ALT_NAND_CFG_RDWR_EN_HI_CNT_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_CFG_RDWR_EN_HI_CNT_VALUE_SET(value) (((value) << 0) & 0x0000001f)
+    #define ALT_NAND_CFG_RDWR_EN_HI_CNT_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x0000001f )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -2562,18 +2630,18 @@ typedef volatile struct ALT_NAND_CFG_RDWR_EN_LO_CNT_s  ALT_NAND_CFG_RDWR_EN_LO_C
  *
  * The struct declaration for register ALT_NAND_CFG_RDWR_EN_HI_CNT.
  */
-struct ALT_NAND_CFG_RDWR_EN_HI_CNT_s
-{
-    uint32_t  value :  5;  /* ALT_NAND_CFG_RDWR_EN_HI_CNT_VALUE */
-    uint32_t        : 27;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_CFG_RDWR_EN_HI_CNT_s
+        {
+            uint32_t value :  5;  /* ALT_NAND_CFG_RDWR_EN_HI_CNT_VALUE */
+            uint32_t        : 27; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_CFG_RDWR_EN_HI_CNT. */
-typedef volatile struct ALT_NAND_CFG_RDWR_EN_HI_CNT_s  ALT_NAND_CFG_RDWR_EN_HI_CNT_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_CFG_RDWR_EN_HI_CNT_s ALT_NAND_CFG_RDWR_EN_HI_CNT_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_CFG_RDWR_EN_HI_CNT register from the beginning of the component. */
-#define ALT_NAND_CFG_RDWR_EN_HI_CNT_OFST        0x200
+    #define ALT_NAND_CFG_RDWR_EN_HI_CNT_OFST    0x200
 
 /*
  * Register : max_rd_delay
@@ -2588,6 +2656,7 @@ typedef volatile struct ALT_NAND_CFG_RDWR_EN_HI_CNT_s  ALT_NAND_CFG_RDWR_EN_HI_C
  *  [31:4] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -2601,23 +2670,24 @@ typedef volatile struct ALT_NAND_CFG_RDWR_EN_HI_CNT_s  ALT_NAND_CFG_RDWR_EN_HI_C
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_MAX_RD_DELAY_VALUE register field. */
-#define ALT_NAND_CFG_MAX_RD_DELAY_VALUE_LSB        0
+    #define ALT_NAND_CFG_MAX_RD_DELAY_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_MAX_RD_DELAY_VALUE register field. */
-#define ALT_NAND_CFG_MAX_RD_DELAY_VALUE_MSB        3
+    #define ALT_NAND_CFG_MAX_RD_DELAY_VALUE_MSB        3
 /* The width in bits of the ALT_NAND_CFG_MAX_RD_DELAY_VALUE register field. */
-#define ALT_NAND_CFG_MAX_RD_DELAY_VALUE_WIDTH      4
+    #define ALT_NAND_CFG_MAX_RD_DELAY_VALUE_WIDTH      4
 /* The mask used to set the ALT_NAND_CFG_MAX_RD_DELAY_VALUE register field value. */
-#define ALT_NAND_CFG_MAX_RD_DELAY_VALUE_SET_MSK    0x0000000f
+    #define ALT_NAND_CFG_MAX_RD_DELAY_VALUE_SET_MSK    0x0000000f
 /* The mask used to clear the ALT_NAND_CFG_MAX_RD_DELAY_VALUE register field value. */
-#define ALT_NAND_CFG_MAX_RD_DELAY_VALUE_CLR_MSK    0xfffffff0
+    #define ALT_NAND_CFG_MAX_RD_DELAY_VALUE_CLR_MSK    0xfffffff0
 /* The reset value of the ALT_NAND_CFG_MAX_RD_DELAY_VALUE register field. */
-#define ALT_NAND_CFG_MAX_RD_DELAY_VALUE_RESET      0x0
+    #define ALT_NAND_CFG_MAX_RD_DELAY_VALUE_RESET      0x0
 /* Extracts the ALT_NAND_CFG_MAX_RD_DELAY_VALUE field value from a register. */
-#define ALT_NAND_CFG_MAX_RD_DELAY_VALUE_GET(value) (((value) & 0x0000000f) >> 0)
+    #define ALT_NAND_CFG_MAX_RD_DELAY_VALUE_GET( value )    ( ( ( value ) & 0x0000000f ) >> 0 )
 /* Produces a ALT_NAND_CFG_MAX_RD_DELAY_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_CFG_MAX_RD_DELAY_VALUE_SET(value) (((value) << 0) & 0x0000000f)
+    #define ALT_NAND_CFG_MAX_RD_DELAY_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x0000000f )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -2628,18 +2698,18 @@ typedef volatile struct ALT_NAND_CFG_RDWR_EN_HI_CNT_s  ALT_NAND_CFG_RDWR_EN_HI_C
  *
  * The struct declaration for register ALT_NAND_CFG_MAX_RD_DELAY.
  */
-struct ALT_NAND_CFG_MAX_RD_DELAY_s
-{
-    uint32_t  value :  4;  /* ALT_NAND_CFG_MAX_RD_DELAY_VALUE */
-    uint32_t        : 28;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_CFG_MAX_RD_DELAY_s
+        {
+            uint32_t value :  4;  /* ALT_NAND_CFG_MAX_RD_DELAY_VALUE */
+            uint32_t        : 28; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_CFG_MAX_RD_DELAY. */
-typedef volatile struct ALT_NAND_CFG_MAX_RD_DELAY_s  ALT_NAND_CFG_MAX_RD_DELAY_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_CFG_MAX_RD_DELAY_s ALT_NAND_CFG_MAX_RD_DELAY_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_CFG_MAX_RD_DELAY register from the beginning of the component. */
-#define ALT_NAND_CFG_MAX_RD_DELAY_OFST        0x210
+    #define ALT_NAND_CFG_MAX_RD_DELAY_OFST    0x210
 
 /*
  * Register : cs_setup_cnt
@@ -2654,6 +2724,7 @@ typedef volatile struct ALT_NAND_CFG_MAX_RD_DELAY_s  ALT_NAND_CFG_MAX_RD_DELAY_t
  *  [31:5] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -2669,23 +2740,24 @@ typedef volatile struct ALT_NAND_CFG_MAX_RD_DELAY_s  ALT_NAND_CFG_MAX_RD_DELAY_t
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_CS_SETUP_CNT_VALUE register field. */
-#define ALT_NAND_CFG_CS_SETUP_CNT_VALUE_LSB        0
+    #define ALT_NAND_CFG_CS_SETUP_CNT_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_CS_SETUP_CNT_VALUE register field. */
-#define ALT_NAND_CFG_CS_SETUP_CNT_VALUE_MSB        4
+    #define ALT_NAND_CFG_CS_SETUP_CNT_VALUE_MSB        4
 /* The width in bits of the ALT_NAND_CFG_CS_SETUP_CNT_VALUE register field. */
-#define ALT_NAND_CFG_CS_SETUP_CNT_VALUE_WIDTH      5
+    #define ALT_NAND_CFG_CS_SETUP_CNT_VALUE_WIDTH      5
 /* The mask used to set the ALT_NAND_CFG_CS_SETUP_CNT_VALUE register field value. */
-#define ALT_NAND_CFG_CS_SETUP_CNT_VALUE_SET_MSK    0x0000001f
+    #define ALT_NAND_CFG_CS_SETUP_CNT_VALUE_SET_MSK    0x0000001f
 /* The mask used to clear the ALT_NAND_CFG_CS_SETUP_CNT_VALUE register field value. */
-#define ALT_NAND_CFG_CS_SETUP_CNT_VALUE_CLR_MSK    0xffffffe0
+    #define ALT_NAND_CFG_CS_SETUP_CNT_VALUE_CLR_MSK    0xffffffe0
 /* The reset value of the ALT_NAND_CFG_CS_SETUP_CNT_VALUE register field. */
-#define ALT_NAND_CFG_CS_SETUP_CNT_VALUE_RESET      0x3
+    #define ALT_NAND_CFG_CS_SETUP_CNT_VALUE_RESET      0x3
 /* Extracts the ALT_NAND_CFG_CS_SETUP_CNT_VALUE field value from a register. */
-#define ALT_NAND_CFG_CS_SETUP_CNT_VALUE_GET(value) (((value) & 0x0000001f) >> 0)
+    #define ALT_NAND_CFG_CS_SETUP_CNT_VALUE_GET( value )    ( ( ( value ) & 0x0000001f ) >> 0 )
 /* Produces a ALT_NAND_CFG_CS_SETUP_CNT_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_CFG_CS_SETUP_CNT_VALUE_SET(value) (((value) << 0) & 0x0000001f)
+    #define ALT_NAND_CFG_CS_SETUP_CNT_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x0000001f )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -2696,18 +2768,18 @@ typedef volatile struct ALT_NAND_CFG_MAX_RD_DELAY_s  ALT_NAND_CFG_MAX_RD_DELAY_t
  *
  * The struct declaration for register ALT_NAND_CFG_CS_SETUP_CNT.
  */
-struct ALT_NAND_CFG_CS_SETUP_CNT_s
-{
-    uint32_t  value :  5;  /* ALT_NAND_CFG_CS_SETUP_CNT_VALUE */
-    uint32_t        : 27;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_CFG_CS_SETUP_CNT_s
+        {
+            uint32_t value :  5;  /* ALT_NAND_CFG_CS_SETUP_CNT_VALUE */
+            uint32_t        : 27; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_CFG_CS_SETUP_CNT. */
-typedef volatile struct ALT_NAND_CFG_CS_SETUP_CNT_s  ALT_NAND_CFG_CS_SETUP_CNT_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_CFG_CS_SETUP_CNT_s ALT_NAND_CFG_CS_SETUP_CNT_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_CFG_CS_SETUP_CNT register from the beginning of the component. */
-#define ALT_NAND_CFG_CS_SETUP_CNT_OFST        0x220
+    #define ALT_NAND_CFG_CS_SETUP_CNT_OFST    0x220
 
 /*
  * Register : spare_area_skip_bytes
@@ -2722,6 +2794,7 @@ typedef volatile struct ALT_NAND_CFG_CS_SETUP_CNT_s  ALT_NAND_CFG_CS_SETUP_CNT_t
  *  [31:6] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -2736,23 +2809,24 @@ typedef volatile struct ALT_NAND_CFG_CS_SETUP_CNT_s  ALT_NAND_CFG_CS_SETUP_CNT_t
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_SPARE_AREA_SKIP_BYTES_VALUE register field. */
-#define ALT_NAND_CFG_SPARE_AREA_SKIP_BYTES_VALUE_LSB        0
+    #define ALT_NAND_CFG_SPARE_AREA_SKIP_BYTES_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_SPARE_AREA_SKIP_BYTES_VALUE register field. */
-#define ALT_NAND_CFG_SPARE_AREA_SKIP_BYTES_VALUE_MSB        5
+    #define ALT_NAND_CFG_SPARE_AREA_SKIP_BYTES_VALUE_MSB        5
 /* The width in bits of the ALT_NAND_CFG_SPARE_AREA_SKIP_BYTES_VALUE register field. */
-#define ALT_NAND_CFG_SPARE_AREA_SKIP_BYTES_VALUE_WIDTH      6
+    #define ALT_NAND_CFG_SPARE_AREA_SKIP_BYTES_VALUE_WIDTH      6
 /* The mask used to set the ALT_NAND_CFG_SPARE_AREA_SKIP_BYTES_VALUE register field value. */
-#define ALT_NAND_CFG_SPARE_AREA_SKIP_BYTES_VALUE_SET_MSK    0x0000003f
+    #define ALT_NAND_CFG_SPARE_AREA_SKIP_BYTES_VALUE_SET_MSK    0x0000003f
 /* The mask used to clear the ALT_NAND_CFG_SPARE_AREA_SKIP_BYTES_VALUE register field value. */
-#define ALT_NAND_CFG_SPARE_AREA_SKIP_BYTES_VALUE_CLR_MSK    0xffffffc0
+    #define ALT_NAND_CFG_SPARE_AREA_SKIP_BYTES_VALUE_CLR_MSK    0xffffffc0
 /* The reset value of the ALT_NAND_CFG_SPARE_AREA_SKIP_BYTES_VALUE register field. */
-#define ALT_NAND_CFG_SPARE_AREA_SKIP_BYTES_VALUE_RESET      0x0
+    #define ALT_NAND_CFG_SPARE_AREA_SKIP_BYTES_VALUE_RESET      0x0
 /* Extracts the ALT_NAND_CFG_SPARE_AREA_SKIP_BYTES_VALUE field value from a register. */
-#define ALT_NAND_CFG_SPARE_AREA_SKIP_BYTES_VALUE_GET(value) (((value) & 0x0000003f) >> 0)
+    #define ALT_NAND_CFG_SPARE_AREA_SKIP_BYTES_VALUE_GET( value )    ( ( ( value ) & 0x0000003f ) >> 0 )
 /* Produces a ALT_NAND_CFG_SPARE_AREA_SKIP_BYTES_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_CFG_SPARE_AREA_SKIP_BYTES_VALUE_SET(value) (((value) << 0) & 0x0000003f)
+    #define ALT_NAND_CFG_SPARE_AREA_SKIP_BYTES_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x0000003f )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -2763,18 +2837,18 @@ typedef volatile struct ALT_NAND_CFG_CS_SETUP_CNT_s  ALT_NAND_CFG_CS_SETUP_CNT_t
  *
  * The struct declaration for register ALT_NAND_CFG_SPARE_AREA_SKIP_BYTES.
  */
-struct ALT_NAND_CFG_SPARE_AREA_SKIP_BYTES_s
-{
-    uint32_t  value :  6;  /* ALT_NAND_CFG_SPARE_AREA_SKIP_BYTES_VALUE */
-    uint32_t        : 26;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_CFG_SPARE_AREA_SKIP_BYTES_s
+        {
+            uint32_t value :  6;  /* ALT_NAND_CFG_SPARE_AREA_SKIP_BYTES_VALUE */
+            uint32_t        : 26; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_CFG_SPARE_AREA_SKIP_BYTES. */
-typedef volatile struct ALT_NAND_CFG_SPARE_AREA_SKIP_BYTES_s  ALT_NAND_CFG_SPARE_AREA_SKIP_BYTES_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_CFG_SPARE_AREA_SKIP_BYTES_s ALT_NAND_CFG_SPARE_AREA_SKIP_BYTES_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_CFG_SPARE_AREA_SKIP_BYTES register from the beginning of the component. */
-#define ALT_NAND_CFG_SPARE_AREA_SKIP_BYTES_OFST        0x230
+    #define ALT_NAND_CFG_SPARE_AREA_SKIP_BYTES_OFST    0x230
 
 /*
  * Register : spare_area_marker
@@ -2789,6 +2863,7 @@ typedef volatile struct ALT_NAND_CFG_SPARE_AREA_SKIP_BYTES_s  ALT_NAND_CFG_SPARE
  *  [31:16] | ???    | 0x0    | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -2800,23 +2875,24 @@ typedef volatile struct ALT_NAND_CFG_SPARE_AREA_SKIP_BYTES_s  ALT_NAND_CFG_SPARE
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_SPARE_AREA_MARKER_VALUE register field. */
-#define ALT_NAND_CFG_SPARE_AREA_MARKER_VALUE_LSB        0
+    #define ALT_NAND_CFG_SPARE_AREA_MARKER_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_SPARE_AREA_MARKER_VALUE register field. */
-#define ALT_NAND_CFG_SPARE_AREA_MARKER_VALUE_MSB        15
+    #define ALT_NAND_CFG_SPARE_AREA_MARKER_VALUE_MSB        15
 /* The width in bits of the ALT_NAND_CFG_SPARE_AREA_MARKER_VALUE register field. */
-#define ALT_NAND_CFG_SPARE_AREA_MARKER_VALUE_WIDTH      16
+    #define ALT_NAND_CFG_SPARE_AREA_MARKER_VALUE_WIDTH      16
 /* The mask used to set the ALT_NAND_CFG_SPARE_AREA_MARKER_VALUE register field value. */
-#define ALT_NAND_CFG_SPARE_AREA_MARKER_VALUE_SET_MSK    0x0000ffff
+    #define ALT_NAND_CFG_SPARE_AREA_MARKER_VALUE_SET_MSK    0x0000ffff
 /* The mask used to clear the ALT_NAND_CFG_SPARE_AREA_MARKER_VALUE register field value. */
-#define ALT_NAND_CFG_SPARE_AREA_MARKER_VALUE_CLR_MSK    0xffff0000
+    #define ALT_NAND_CFG_SPARE_AREA_MARKER_VALUE_CLR_MSK    0xffff0000
 /* The reset value of the ALT_NAND_CFG_SPARE_AREA_MARKER_VALUE register field. */
-#define ALT_NAND_CFG_SPARE_AREA_MARKER_VALUE_RESET      0xffff
+    #define ALT_NAND_CFG_SPARE_AREA_MARKER_VALUE_RESET      0xffff
 /* Extracts the ALT_NAND_CFG_SPARE_AREA_MARKER_VALUE field value from a register. */
-#define ALT_NAND_CFG_SPARE_AREA_MARKER_VALUE_GET(value) (((value) & 0x0000ffff) >> 0)
+    #define ALT_NAND_CFG_SPARE_AREA_MARKER_VALUE_GET( value )    ( ( ( value ) & 0x0000ffff ) >> 0 )
 /* Produces a ALT_NAND_CFG_SPARE_AREA_MARKER_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_CFG_SPARE_AREA_MARKER_VALUE_SET(value) (((value) << 0) & 0x0000ffff)
+    #define ALT_NAND_CFG_SPARE_AREA_MARKER_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x0000ffff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -2827,18 +2903,18 @@ typedef volatile struct ALT_NAND_CFG_SPARE_AREA_SKIP_BYTES_s  ALT_NAND_CFG_SPARE
  *
  * The struct declaration for register ALT_NAND_CFG_SPARE_AREA_MARKER.
  */
-struct ALT_NAND_CFG_SPARE_AREA_MARKER_s
-{
-    uint32_t  value : 16;  /* ALT_NAND_CFG_SPARE_AREA_MARKER_VALUE */
-    uint32_t        : 16;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_CFG_SPARE_AREA_MARKER_s
+        {
+            uint32_t value : 16;  /* ALT_NAND_CFG_SPARE_AREA_MARKER_VALUE */
+            uint32_t        : 16; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_CFG_SPARE_AREA_MARKER. */
-typedef volatile struct ALT_NAND_CFG_SPARE_AREA_MARKER_s  ALT_NAND_CFG_SPARE_AREA_MARKER_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_CFG_SPARE_AREA_MARKER_s ALT_NAND_CFG_SPARE_AREA_MARKER_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_CFG_SPARE_AREA_MARKER register from the beginning of the component. */
-#define ALT_NAND_CFG_SPARE_AREA_MARKER_OFST        0x240
+    #define ALT_NAND_CFG_SPARE_AREA_MARKER_OFST    0x240
 
 /*
  * Register : devices_connected
@@ -2853,6 +2929,7 @@ typedef volatile struct ALT_NAND_CFG_SPARE_AREA_MARKER_s  ALT_NAND_CFG_SPARE_ARE
  *  [31:3] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -2863,23 +2940,24 @@ typedef volatile struct ALT_NAND_CFG_SPARE_AREA_MARKER_s  ALT_NAND_CFG_SPARE_ARE
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_DEVICES_CONNECTED_VALUE register field. */
-#define ALT_NAND_CFG_DEVICES_CONNECTED_VALUE_LSB        0
+    #define ALT_NAND_CFG_DEVICES_CONNECTED_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_DEVICES_CONNECTED_VALUE register field. */
-#define ALT_NAND_CFG_DEVICES_CONNECTED_VALUE_MSB        2
+    #define ALT_NAND_CFG_DEVICES_CONNECTED_VALUE_MSB        2
 /* The width in bits of the ALT_NAND_CFG_DEVICES_CONNECTED_VALUE register field. */
-#define ALT_NAND_CFG_DEVICES_CONNECTED_VALUE_WIDTH      3
+    #define ALT_NAND_CFG_DEVICES_CONNECTED_VALUE_WIDTH      3
 /* The mask used to set the ALT_NAND_CFG_DEVICES_CONNECTED_VALUE register field value. */
-#define ALT_NAND_CFG_DEVICES_CONNECTED_VALUE_SET_MSK    0x00000007
+    #define ALT_NAND_CFG_DEVICES_CONNECTED_VALUE_SET_MSK    0x00000007
 /* The mask used to clear the ALT_NAND_CFG_DEVICES_CONNECTED_VALUE register field value. */
-#define ALT_NAND_CFG_DEVICES_CONNECTED_VALUE_CLR_MSK    0xfffffff8
+    #define ALT_NAND_CFG_DEVICES_CONNECTED_VALUE_CLR_MSK    0xfffffff8
 /* The reset value of the ALT_NAND_CFG_DEVICES_CONNECTED_VALUE register field. */
-#define ALT_NAND_CFG_DEVICES_CONNECTED_VALUE_RESET      0x0
+    #define ALT_NAND_CFG_DEVICES_CONNECTED_VALUE_RESET      0x0
 /* Extracts the ALT_NAND_CFG_DEVICES_CONNECTED_VALUE field value from a register. */
-#define ALT_NAND_CFG_DEVICES_CONNECTED_VALUE_GET(value) (((value) & 0x00000007) >> 0)
+    #define ALT_NAND_CFG_DEVICES_CONNECTED_VALUE_GET( value )    ( ( ( value ) & 0x00000007 ) >> 0 )
 /* Produces a ALT_NAND_CFG_DEVICES_CONNECTED_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_CFG_DEVICES_CONNECTED_VALUE_SET(value) (((value) << 0) & 0x00000007)
+    #define ALT_NAND_CFG_DEVICES_CONNECTED_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x00000007 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -2890,18 +2968,18 @@ typedef volatile struct ALT_NAND_CFG_SPARE_AREA_MARKER_s  ALT_NAND_CFG_SPARE_ARE
  *
  * The struct declaration for register ALT_NAND_CFG_DEVICES_CONNECTED.
  */
-struct ALT_NAND_CFG_DEVICES_CONNECTED_s
-{
-    uint32_t  value :  3;  /* ALT_NAND_CFG_DEVICES_CONNECTED_VALUE */
-    uint32_t        : 29;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_CFG_DEVICES_CONNECTED_s
+        {
+            uint32_t value :  3;  /* ALT_NAND_CFG_DEVICES_CONNECTED_VALUE */
+            uint32_t        : 29; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_CFG_DEVICES_CONNECTED. */
-typedef volatile struct ALT_NAND_CFG_DEVICES_CONNECTED_s  ALT_NAND_CFG_DEVICES_CONNECTED_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_CFG_DEVICES_CONNECTED_s ALT_NAND_CFG_DEVICES_CONNECTED_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_CFG_DEVICES_CONNECTED register from the beginning of the component. */
-#define ALT_NAND_CFG_DEVICES_CONNECTED_OFST        0x250
+    #define ALT_NAND_CFG_DEVICES_CONNECTED_OFST    0x250
 
 /*
  * Register : die_mask
@@ -2916,6 +2994,7 @@ typedef volatile struct ALT_NAND_CFG_DEVICES_CONNECTED_s  ALT_NAND_CFG_DEVICES_C
  *  [31:8] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -2930,23 +3009,24 @@ typedef volatile struct ALT_NAND_CFG_DEVICES_CONNECTED_s  ALT_NAND_CFG_DEVICES_C
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_DIE_MSK_VALUE register field. */
-#define ALT_NAND_CFG_DIE_MSK_VALUE_LSB        0
+    #define ALT_NAND_CFG_DIE_MSK_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_DIE_MSK_VALUE register field. */
-#define ALT_NAND_CFG_DIE_MSK_VALUE_MSB        7
+    #define ALT_NAND_CFG_DIE_MSK_VALUE_MSB        7
 /* The width in bits of the ALT_NAND_CFG_DIE_MSK_VALUE register field. */
-#define ALT_NAND_CFG_DIE_MSK_VALUE_WIDTH      8
+    #define ALT_NAND_CFG_DIE_MSK_VALUE_WIDTH      8
 /* The mask used to set the ALT_NAND_CFG_DIE_MSK_VALUE register field value. */
-#define ALT_NAND_CFG_DIE_MSK_VALUE_SET_MSK    0x000000ff
+    #define ALT_NAND_CFG_DIE_MSK_VALUE_SET_MSK    0x000000ff
 /* The mask used to clear the ALT_NAND_CFG_DIE_MSK_VALUE register field value. */
-#define ALT_NAND_CFG_DIE_MSK_VALUE_CLR_MSK    0xffffff00
+    #define ALT_NAND_CFG_DIE_MSK_VALUE_CLR_MSK    0xffffff00
 /* The reset value of the ALT_NAND_CFG_DIE_MSK_VALUE register field. */
-#define ALT_NAND_CFG_DIE_MSK_VALUE_RESET      0x0
+    #define ALT_NAND_CFG_DIE_MSK_VALUE_RESET      0x0
 /* Extracts the ALT_NAND_CFG_DIE_MSK_VALUE field value from a register. */
-#define ALT_NAND_CFG_DIE_MSK_VALUE_GET(value) (((value) & 0x000000ff) >> 0)
+    #define ALT_NAND_CFG_DIE_MSK_VALUE_GET( value )    ( ( ( value ) & 0x000000ff ) >> 0 )
 /* Produces a ALT_NAND_CFG_DIE_MSK_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_CFG_DIE_MSK_VALUE_SET(value) (((value) << 0) & 0x000000ff)
+    #define ALT_NAND_CFG_DIE_MSK_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x000000ff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -2957,18 +3037,18 @@ typedef volatile struct ALT_NAND_CFG_DEVICES_CONNECTED_s  ALT_NAND_CFG_DEVICES_C
  *
  * The struct declaration for register ALT_NAND_CFG_DIE_MSK.
  */
-struct ALT_NAND_CFG_DIE_MSK_s
-{
-    uint32_t  value :  8;  /* ALT_NAND_CFG_DIE_MSK_VALUE */
-    uint32_t        : 24;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_CFG_DIE_MSK_s
+        {
+            uint32_t value :  8;  /* ALT_NAND_CFG_DIE_MSK_VALUE */
+            uint32_t        : 24; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_CFG_DIE_MSK. */
-typedef volatile struct ALT_NAND_CFG_DIE_MSK_s  ALT_NAND_CFG_DIE_MSK_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_CFG_DIE_MSK_s ALT_NAND_CFG_DIE_MSK_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_CFG_DIE_MSK register from the beginning of the component. */
-#define ALT_NAND_CFG_DIE_MSK_OFST        0x260
+    #define ALT_NAND_CFG_DIE_MSK_OFST    0x260
 
 /*
  * Register : first_block_of_next_plane
@@ -2983,6 +3063,7 @@ typedef volatile struct ALT_NAND_CFG_DIE_MSK_s  ALT_NAND_CFG_DIE_MSK_t;
  *  [31:16] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -2996,23 +3077,24 @@ typedef volatile struct ALT_NAND_CFG_DIE_MSK_s  ALT_NAND_CFG_DIE_MSK_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_FIRST_BLOCK_OF_NEXT_PLANE_VALUE register field. */
-#define ALT_NAND_CFG_FIRST_BLOCK_OF_NEXT_PLANE_VALUE_LSB        0
+    #define ALT_NAND_CFG_FIRST_BLOCK_OF_NEXT_PLANE_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_FIRST_BLOCK_OF_NEXT_PLANE_VALUE register field. */
-#define ALT_NAND_CFG_FIRST_BLOCK_OF_NEXT_PLANE_VALUE_MSB        15
+    #define ALT_NAND_CFG_FIRST_BLOCK_OF_NEXT_PLANE_VALUE_MSB        15
 /* The width in bits of the ALT_NAND_CFG_FIRST_BLOCK_OF_NEXT_PLANE_VALUE register field. */
-#define ALT_NAND_CFG_FIRST_BLOCK_OF_NEXT_PLANE_VALUE_WIDTH      16
+    #define ALT_NAND_CFG_FIRST_BLOCK_OF_NEXT_PLANE_VALUE_WIDTH      16
 /* The mask used to set the ALT_NAND_CFG_FIRST_BLOCK_OF_NEXT_PLANE_VALUE register field value. */
-#define ALT_NAND_CFG_FIRST_BLOCK_OF_NEXT_PLANE_VALUE_SET_MSK    0x0000ffff
+    #define ALT_NAND_CFG_FIRST_BLOCK_OF_NEXT_PLANE_VALUE_SET_MSK    0x0000ffff
 /* The mask used to clear the ALT_NAND_CFG_FIRST_BLOCK_OF_NEXT_PLANE_VALUE register field value. */
-#define ALT_NAND_CFG_FIRST_BLOCK_OF_NEXT_PLANE_VALUE_CLR_MSK    0xffff0000
+    #define ALT_NAND_CFG_FIRST_BLOCK_OF_NEXT_PLANE_VALUE_CLR_MSK    0xffff0000
 /* The reset value of the ALT_NAND_CFG_FIRST_BLOCK_OF_NEXT_PLANE_VALUE register field. */
-#define ALT_NAND_CFG_FIRST_BLOCK_OF_NEXT_PLANE_VALUE_RESET      0x1
+    #define ALT_NAND_CFG_FIRST_BLOCK_OF_NEXT_PLANE_VALUE_RESET      0x1
 /* Extracts the ALT_NAND_CFG_FIRST_BLOCK_OF_NEXT_PLANE_VALUE field value from a register. */
-#define ALT_NAND_CFG_FIRST_BLOCK_OF_NEXT_PLANE_VALUE_GET(value) (((value) & 0x0000ffff) >> 0)
+    #define ALT_NAND_CFG_FIRST_BLOCK_OF_NEXT_PLANE_VALUE_GET( value )    ( ( ( value ) & 0x0000ffff ) >> 0 )
 /* Produces a ALT_NAND_CFG_FIRST_BLOCK_OF_NEXT_PLANE_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_CFG_FIRST_BLOCK_OF_NEXT_PLANE_VALUE_SET(value) (((value) << 0) & 0x0000ffff)
+    #define ALT_NAND_CFG_FIRST_BLOCK_OF_NEXT_PLANE_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x0000ffff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -3023,18 +3105,18 @@ typedef volatile struct ALT_NAND_CFG_DIE_MSK_s  ALT_NAND_CFG_DIE_MSK_t;
  *
  * The struct declaration for register ALT_NAND_CFG_FIRST_BLOCK_OF_NEXT_PLANE.
  */
-struct ALT_NAND_CFG_FIRST_BLOCK_OF_NEXT_PLANE_s
-{
-    uint32_t  value : 16;  /* ALT_NAND_CFG_FIRST_BLOCK_OF_NEXT_PLANE_VALUE */
-    uint32_t        : 16;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_CFG_FIRST_BLOCK_OF_NEXT_PLANE_s
+        {
+            uint32_t value : 16;  /* ALT_NAND_CFG_FIRST_BLOCK_OF_NEXT_PLANE_VALUE */
+            uint32_t        : 16; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_CFG_FIRST_BLOCK_OF_NEXT_PLANE. */
-typedef volatile struct ALT_NAND_CFG_FIRST_BLOCK_OF_NEXT_PLANE_s  ALT_NAND_CFG_FIRST_BLOCK_OF_NEXT_PLANE_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_CFG_FIRST_BLOCK_OF_NEXT_PLANE_s ALT_NAND_CFG_FIRST_BLOCK_OF_NEXT_PLANE_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_CFG_FIRST_BLOCK_OF_NEXT_PLANE register from the beginning of the component. */
-#define ALT_NAND_CFG_FIRST_BLOCK_OF_NEXT_PLANE_OFST        0x270
+    #define ALT_NAND_CFG_FIRST_BLOCK_OF_NEXT_PLANE_OFST    0x270
 
 /*
  * Register : write_protect
@@ -3050,6 +3132,7 @@ typedef volatile struct ALT_NAND_CFG_FIRST_BLOCK_OF_NEXT_PLANE_s  ALT_NAND_CFG_F
  *  [31:1] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : flag
  *
@@ -3062,23 +3145,24 @@ typedef volatile struct ALT_NAND_CFG_FIRST_BLOCK_OF_NEXT_PLANE_s  ALT_NAND_CFG_F
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_WR_PROTECT_FLAG register field. */
-#define ALT_NAND_CFG_WR_PROTECT_FLAG_LSB        0
+    #define ALT_NAND_CFG_WR_PROTECT_FLAG_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_WR_PROTECT_FLAG register field. */
-#define ALT_NAND_CFG_WR_PROTECT_FLAG_MSB        0
+    #define ALT_NAND_CFG_WR_PROTECT_FLAG_MSB        0
 /* The width in bits of the ALT_NAND_CFG_WR_PROTECT_FLAG register field. */
-#define ALT_NAND_CFG_WR_PROTECT_FLAG_WIDTH      1
+    #define ALT_NAND_CFG_WR_PROTECT_FLAG_WIDTH      1
 /* The mask used to set the ALT_NAND_CFG_WR_PROTECT_FLAG register field value. */
-#define ALT_NAND_CFG_WR_PROTECT_FLAG_SET_MSK    0x00000001
+    #define ALT_NAND_CFG_WR_PROTECT_FLAG_SET_MSK    0x00000001
 /* The mask used to clear the ALT_NAND_CFG_WR_PROTECT_FLAG register field value. */
-#define ALT_NAND_CFG_WR_PROTECT_FLAG_CLR_MSK    0xfffffffe
+    #define ALT_NAND_CFG_WR_PROTECT_FLAG_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_NAND_CFG_WR_PROTECT_FLAG register field. */
-#define ALT_NAND_CFG_WR_PROTECT_FLAG_RESET      0x1
+    #define ALT_NAND_CFG_WR_PROTECT_FLAG_RESET      0x1
 /* Extracts the ALT_NAND_CFG_WR_PROTECT_FLAG field value from a register. */
-#define ALT_NAND_CFG_WR_PROTECT_FLAG_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_NAND_CFG_WR_PROTECT_FLAG_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_NAND_CFG_WR_PROTECT_FLAG register field value suitable for setting the register. */
-#define ALT_NAND_CFG_WR_PROTECT_FLAG_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_NAND_CFG_WR_PROTECT_FLAG_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -3089,18 +3173,18 @@ typedef volatile struct ALT_NAND_CFG_FIRST_BLOCK_OF_NEXT_PLANE_s  ALT_NAND_CFG_F
  *
  * The struct declaration for register ALT_NAND_CFG_WR_PROTECT.
  */
-struct ALT_NAND_CFG_WR_PROTECT_s
-{
-    uint32_t  flag :  1;  /* ALT_NAND_CFG_WR_PROTECT_FLAG */
-    uint32_t       : 31;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_CFG_WR_PROTECT_s
+        {
+            uint32_t flag :  1;  /* ALT_NAND_CFG_WR_PROTECT_FLAG */
+            uint32_t       : 31; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_CFG_WR_PROTECT. */
-typedef volatile struct ALT_NAND_CFG_WR_PROTECT_s  ALT_NAND_CFG_WR_PROTECT_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_CFG_WR_PROTECT_s ALT_NAND_CFG_WR_PROTECT_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_CFG_WR_PROTECT register from the beginning of the component. */
-#define ALT_NAND_CFG_WR_PROTECT_OFST        0x280
+    #define ALT_NAND_CFG_WR_PROTECT_OFST    0x280
 
 /*
  * Register : re_2_re
@@ -3115,6 +3199,7 @@ typedef volatile struct ALT_NAND_CFG_WR_PROTECT_s  ALT_NAND_CFG_WR_PROTECT_t;
  *  [31:6] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -3127,23 +3212,24 @@ typedef volatile struct ALT_NAND_CFG_WR_PROTECT_s  ALT_NAND_CFG_WR_PROTECT_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_RE_2_RE_VALUE register field. */
-#define ALT_NAND_CFG_RE_2_RE_VALUE_LSB        0
+    #define ALT_NAND_CFG_RE_2_RE_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_RE_2_RE_VALUE register field. */
-#define ALT_NAND_CFG_RE_2_RE_VALUE_MSB        5
+    #define ALT_NAND_CFG_RE_2_RE_VALUE_MSB        5
 /* The width in bits of the ALT_NAND_CFG_RE_2_RE_VALUE register field. */
-#define ALT_NAND_CFG_RE_2_RE_VALUE_WIDTH      6
+    #define ALT_NAND_CFG_RE_2_RE_VALUE_WIDTH      6
 /* The mask used to set the ALT_NAND_CFG_RE_2_RE_VALUE register field value. */
-#define ALT_NAND_CFG_RE_2_RE_VALUE_SET_MSK    0x0000003f
+    #define ALT_NAND_CFG_RE_2_RE_VALUE_SET_MSK    0x0000003f
 /* The mask used to clear the ALT_NAND_CFG_RE_2_RE_VALUE register field value. */
-#define ALT_NAND_CFG_RE_2_RE_VALUE_CLR_MSK    0xffffffc0
+    #define ALT_NAND_CFG_RE_2_RE_VALUE_CLR_MSK    0xffffffc0
 /* The reset value of the ALT_NAND_CFG_RE_2_RE_VALUE register field. */
-#define ALT_NAND_CFG_RE_2_RE_VALUE_RESET      0x32
+    #define ALT_NAND_CFG_RE_2_RE_VALUE_RESET      0x32
 /* Extracts the ALT_NAND_CFG_RE_2_RE_VALUE field value from a register. */
-#define ALT_NAND_CFG_RE_2_RE_VALUE_GET(value) (((value) & 0x0000003f) >> 0)
+    #define ALT_NAND_CFG_RE_2_RE_VALUE_GET( value )    ( ( ( value ) & 0x0000003f ) >> 0 )
 /* Produces a ALT_NAND_CFG_RE_2_RE_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_CFG_RE_2_RE_VALUE_SET(value) (((value) << 0) & 0x0000003f)
+    #define ALT_NAND_CFG_RE_2_RE_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x0000003f )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -3154,18 +3240,18 @@ typedef volatile struct ALT_NAND_CFG_WR_PROTECT_s  ALT_NAND_CFG_WR_PROTECT_t;
  *
  * The struct declaration for register ALT_NAND_CFG_RE_2_RE.
  */
-struct ALT_NAND_CFG_RE_2_RE_s
-{
-    uint32_t  value :  6;  /* ALT_NAND_CFG_RE_2_RE_VALUE */
-    uint32_t        : 26;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_CFG_RE_2_RE_s
+        {
+            uint32_t value :  6;  /* ALT_NAND_CFG_RE_2_RE_VALUE */
+            uint32_t        : 26; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_CFG_RE_2_RE. */
-typedef volatile struct ALT_NAND_CFG_RE_2_RE_s  ALT_NAND_CFG_RE_2_RE_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_CFG_RE_2_RE_s ALT_NAND_CFG_RE_2_RE_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_CFG_RE_2_RE register from the beginning of the component. */
-#define ALT_NAND_CFG_RE_2_RE_OFST        0x290
+    #define ALT_NAND_CFG_RE_2_RE_OFST    0x290
 
 /*
  * Register : por_reset_count
@@ -3181,6 +3267,7 @@ typedef volatile struct ALT_NAND_CFG_RE_2_RE_s  ALT_NAND_CFG_RE_2_RE_t;
  *  [31:16] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -3192,23 +3279,24 @@ typedef volatile struct ALT_NAND_CFG_RE_2_RE_s  ALT_NAND_CFG_RE_2_RE_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_POR_RST_COUNT_VALUE register field. */
-#define ALT_NAND_CFG_POR_RST_COUNT_VALUE_LSB        0
+    #define ALT_NAND_CFG_POR_RST_COUNT_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_POR_RST_COUNT_VALUE register field. */
-#define ALT_NAND_CFG_POR_RST_COUNT_VALUE_MSB        15
+    #define ALT_NAND_CFG_POR_RST_COUNT_VALUE_MSB        15
 /* The width in bits of the ALT_NAND_CFG_POR_RST_COUNT_VALUE register field. */
-#define ALT_NAND_CFG_POR_RST_COUNT_VALUE_WIDTH      16
+    #define ALT_NAND_CFG_POR_RST_COUNT_VALUE_WIDTH      16
 /* The mask used to set the ALT_NAND_CFG_POR_RST_COUNT_VALUE register field value. */
-#define ALT_NAND_CFG_POR_RST_COUNT_VALUE_SET_MSK    0x0000ffff
+    #define ALT_NAND_CFG_POR_RST_COUNT_VALUE_SET_MSK    0x0000ffff
 /* The mask used to clear the ALT_NAND_CFG_POR_RST_COUNT_VALUE register field value. */
-#define ALT_NAND_CFG_POR_RST_COUNT_VALUE_CLR_MSK    0xffff0000
+    #define ALT_NAND_CFG_POR_RST_COUNT_VALUE_CLR_MSK    0xffff0000
 /* The reset value of the ALT_NAND_CFG_POR_RST_COUNT_VALUE register field. */
-#define ALT_NAND_CFG_POR_RST_COUNT_VALUE_RESET      0x13b
+    #define ALT_NAND_CFG_POR_RST_COUNT_VALUE_RESET      0x13b
 /* Extracts the ALT_NAND_CFG_POR_RST_COUNT_VALUE field value from a register. */
-#define ALT_NAND_CFG_POR_RST_COUNT_VALUE_GET(value) (((value) & 0x0000ffff) >> 0)
+    #define ALT_NAND_CFG_POR_RST_COUNT_VALUE_GET( value )    ( ( ( value ) & 0x0000ffff ) >> 0 )
 /* Produces a ALT_NAND_CFG_POR_RST_COUNT_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_CFG_POR_RST_COUNT_VALUE_SET(value) (((value) << 0) & 0x0000ffff)
+    #define ALT_NAND_CFG_POR_RST_COUNT_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x0000ffff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -3219,18 +3307,18 @@ typedef volatile struct ALT_NAND_CFG_RE_2_RE_s  ALT_NAND_CFG_RE_2_RE_t;
  *
  * The struct declaration for register ALT_NAND_CFG_POR_RST_COUNT.
  */
-struct ALT_NAND_CFG_POR_RST_COUNT_s
-{
-    uint32_t  value : 16;  /* ALT_NAND_CFG_POR_RST_COUNT_VALUE */
-    uint32_t        : 16;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_CFG_POR_RST_COUNT_s
+        {
+            uint32_t value : 16;  /* ALT_NAND_CFG_POR_RST_COUNT_VALUE */
+            uint32_t        : 16; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_CFG_POR_RST_COUNT. */
-typedef volatile struct ALT_NAND_CFG_POR_RST_COUNT_s  ALT_NAND_CFG_POR_RST_COUNT_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_CFG_POR_RST_COUNT_s ALT_NAND_CFG_POR_RST_COUNT_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_CFG_POR_RST_COUNT register from the beginning of the component. */
-#define ALT_NAND_CFG_POR_RST_COUNT_OFST        0x2a0
+    #define ALT_NAND_CFG_POR_RST_COUNT_OFST    0x2a0
 
 /*
  * Register : watchdog_reset_count
@@ -3246,6 +3334,7 @@ typedef volatile struct ALT_NAND_CFG_POR_RST_COUNT_s  ALT_NAND_CFG_POR_RST_COUNT
  *  [31:16] | ???    | 0x0    | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -3257,23 +3346,24 @@ typedef volatile struct ALT_NAND_CFG_POR_RST_COUNT_s  ALT_NAND_CFG_POR_RST_COUNT
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_CFG_WD_RST_COUNT_VALUE register field. */
-#define ALT_NAND_CFG_WD_RST_COUNT_VALUE_LSB        0
+    #define ALT_NAND_CFG_WD_RST_COUNT_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_CFG_WD_RST_COUNT_VALUE register field. */
-#define ALT_NAND_CFG_WD_RST_COUNT_VALUE_MSB        15
+    #define ALT_NAND_CFG_WD_RST_COUNT_VALUE_MSB        15
 /* The width in bits of the ALT_NAND_CFG_WD_RST_COUNT_VALUE register field. */
-#define ALT_NAND_CFG_WD_RST_COUNT_VALUE_WIDTH      16
+    #define ALT_NAND_CFG_WD_RST_COUNT_VALUE_WIDTH      16
 /* The mask used to set the ALT_NAND_CFG_WD_RST_COUNT_VALUE register field value. */
-#define ALT_NAND_CFG_WD_RST_COUNT_VALUE_SET_MSK    0x0000ffff
+    #define ALT_NAND_CFG_WD_RST_COUNT_VALUE_SET_MSK    0x0000ffff
 /* The mask used to clear the ALT_NAND_CFG_WD_RST_COUNT_VALUE register field value. */
-#define ALT_NAND_CFG_WD_RST_COUNT_VALUE_CLR_MSK    0xffff0000
+    #define ALT_NAND_CFG_WD_RST_COUNT_VALUE_CLR_MSK    0xffff0000
 /* The reset value of the ALT_NAND_CFG_WD_RST_COUNT_VALUE register field. */
-#define ALT_NAND_CFG_WD_RST_COUNT_VALUE_RESET      0x5b9a
+    #define ALT_NAND_CFG_WD_RST_COUNT_VALUE_RESET      0x5b9a
 /* Extracts the ALT_NAND_CFG_WD_RST_COUNT_VALUE field value from a register. */
-#define ALT_NAND_CFG_WD_RST_COUNT_VALUE_GET(value) (((value) & 0x0000ffff) >> 0)
+    #define ALT_NAND_CFG_WD_RST_COUNT_VALUE_GET( value )    ( ( ( value ) & 0x0000ffff ) >> 0 )
 /* Produces a ALT_NAND_CFG_WD_RST_COUNT_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_CFG_WD_RST_COUNT_VALUE_SET(value) (((value) << 0) & 0x0000ffff)
+    #define ALT_NAND_CFG_WD_RST_COUNT_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x0000ffff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -3284,20 +3374,21 @@ typedef volatile struct ALT_NAND_CFG_POR_RST_COUNT_s  ALT_NAND_CFG_POR_RST_COUNT
  *
  * The struct declaration for register ALT_NAND_CFG_WD_RST_COUNT.
  */
-struct ALT_NAND_CFG_WD_RST_COUNT_s
-{
-    uint32_t  value : 16;  /* ALT_NAND_CFG_WD_RST_COUNT_VALUE */
-    uint32_t        : 16;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_CFG_WD_RST_COUNT_s
+        {
+            uint32_t value : 16;  /* ALT_NAND_CFG_WD_RST_COUNT_VALUE */
+            uint32_t        : 16; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_CFG_WD_RST_COUNT. */
-typedef volatile struct ALT_NAND_CFG_WD_RST_COUNT_s  ALT_NAND_CFG_WD_RST_COUNT_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_CFG_WD_RST_COUNT_s ALT_NAND_CFG_WD_RST_COUNT_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_CFG_WD_RST_COUNT register from the beginning of the component. */
-#define ALT_NAND_CFG_WD_RST_COUNT_OFST        0x2b0
+    #define ALT_NAND_CFG_WD_RST_COUNT_OFST    0x2b0
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -3308,194 +3399,194 @@ typedef volatile struct ALT_NAND_CFG_WD_RST_COUNT_s  ALT_NAND_CFG_WD_RST_COUNT_t
  *
  * The struct declaration for register group ALT_NAND_CFG.
  */
-struct ALT_NAND_CFG_s
-{
-    volatile ALT_NAND_CFG_DEVICE_RST_t                 device_reset;               /* ALT_NAND_CFG_DEVICE_RST */
-    volatile uint32_t                                  _pad_0x4_0xf[3];            /* *UNDEFINED* */
-    volatile ALT_NAND_CFG_TFR_SPARE_REG_t              transfer_spare_reg;         /* ALT_NAND_CFG_TFR_SPARE_REG */
-    volatile uint32_t                                  _pad_0x14_0x1f[3];          /* *UNDEFINED* */
-    volatile ALT_NAND_CFG_LD_WAIT_CNT_t                load_wait_cnt;              /* ALT_NAND_CFG_LD_WAIT_CNT */
-    volatile uint32_t                                  _pad_0x24_0x2f[3];          /* *UNDEFINED* */
-    volatile ALT_NAND_CFG_PROGRAM_WAIT_CNT_t           program_wait_cnt;           /* ALT_NAND_CFG_PROGRAM_WAIT_CNT */
-    volatile uint32_t                                  _pad_0x34_0x3f[3];          /* *UNDEFINED* */
-    volatile ALT_NAND_CFG_ERASE_WAIT_CNT_t             erase_wait_cnt;             /* ALT_NAND_CFG_ERASE_WAIT_CNT */
-    volatile uint32_t                                  _pad_0x44_0x4f[3];          /* *UNDEFINED* */
-    volatile ALT_NAND_CFG_INT_MON_CYCCNT_t             int_mon_cyccnt;             /* ALT_NAND_CFG_INT_MON_CYCCNT */
-    volatile uint32_t                                  _pad_0x54_0x5f[3];          /* *UNDEFINED* */
-    volatile ALT_NAND_CFG_RB_PIN_END_t                 rb_pin_enabled;             /* ALT_NAND_CFG_RB_PIN_END */
-    volatile uint32_t                                  _pad_0x64_0x6f[3];          /* *UNDEFINED* */
-    volatile ALT_NAND_CFG_MULTIPLANE_OP_t              multiplane_operation;       /* ALT_NAND_CFG_MULTIPLANE_OP */
-    volatile uint32_t                                  _pad_0x74_0x7f[3];          /* *UNDEFINED* */
-    volatile ALT_NAND_CFG_MULTIPLANE_RD_EN_t           multiplane_read_enable;     /* ALT_NAND_CFG_MULTIPLANE_RD_EN */
-    volatile uint32_t                                  _pad_0x84_0x8f[3];          /* *UNDEFINED* */
-    volatile ALT_NAND_CFG_COPYBACK_DIS_t               copyback_disable;           /* ALT_NAND_CFG_COPYBACK_DIS */
-    volatile uint32_t                                  _pad_0x94_0x9f[3];          /* *UNDEFINED* */
-    volatile ALT_NAND_CFG_CACHE_WR_EN_t                cache_write_enable;         /* ALT_NAND_CFG_CACHE_WR_EN */
-    volatile uint32_t                                  _pad_0xa4_0xaf[3];          /* *UNDEFINED* */
-    volatile ALT_NAND_CFG_CACHE_RD_EN_t                cache_read_enable;          /* ALT_NAND_CFG_CACHE_RD_EN */
-    volatile uint32_t                                  _pad_0xb4_0xbf[3];          /* *UNDEFINED* */
-    volatile ALT_NAND_CFG_PREFETCH_MOD_t               prefetch_mode;              /* ALT_NAND_CFG_PREFETCH_MOD */
-    volatile uint32_t                                  _pad_0xc4_0xcf[3];          /* *UNDEFINED* */
-    volatile ALT_NAND_CFG_CHIP_EN_DONT_CARE_t          chip_enable_dont_care;      /* ALT_NAND_CFG_CHIP_EN_DONT_CARE */
-    volatile uint32_t                                  _pad_0xd4_0xdf[3];          /* *UNDEFINED* */
-    volatile ALT_NAND_CFG_ECC_EN_t                     ecc_enable;                 /* ALT_NAND_CFG_ECC_EN */
-    volatile uint32_t                                  _pad_0xe4_0xef[3];          /* *UNDEFINED* */
-    volatile ALT_NAND_CFG_GLOB_INT_EN_t                global_int_enable;          /* ALT_NAND_CFG_GLOB_INT_EN */
-    volatile uint32_t                                  _pad_0xf4_0xff[3];          /* *UNDEFINED* */
-    volatile ALT_NAND_CFG_TWHR2_AND_WE_2_RE_t          twhr2_and_we_2_re;          /* ALT_NAND_CFG_TWHR2_AND_WE_2_RE */
-    volatile uint32_t                                  _pad_0x104_0x10f[3];        /* *UNDEFINED* */
-    volatile ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_t      tcwaw_and_addr_2_data;      /* ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA */
-    volatile uint32_t                                  _pad_0x114_0x11f[3];        /* *UNDEFINED* */
-    volatile ALT_NAND_CFG_RE_2_WE_t                    re_2_we;                    /* ALT_NAND_CFG_RE_2_WE */
-    volatile uint32_t                                  _pad_0x124_0x12f[3];        /* *UNDEFINED* */
-    volatile ALT_NAND_CFG_ACC_CLKS_t                   acc_clks;                   /* ALT_NAND_CFG_ACC_CLKS */
-    volatile uint32_t                                  _pad_0x134_0x13f[3];        /* *UNDEFINED* */
-    volatile ALT_NAND_CFG_NUMBER_OF_PLANES_t           number_of_planes;           /* ALT_NAND_CFG_NUMBER_OF_PLANES */
-    volatile uint32_t                                  _pad_0x144_0x14f[3];        /* *UNDEFINED* */
-    volatile ALT_NAND_CFG_PAGES_PER_BLOCK_t            pages_per_block;            /* ALT_NAND_CFG_PAGES_PER_BLOCK */
-    volatile uint32_t                                  _pad_0x154_0x15f[3];        /* *UNDEFINED* */
-    volatile ALT_NAND_CFG_DEVICE_WIDTH_t               device_width;               /* ALT_NAND_CFG_DEVICE_WIDTH */
-    volatile uint32_t                                  _pad_0x164_0x16f[3];        /* *UNDEFINED* */
-    volatile ALT_NAND_CFG_DEVICE_MAIN_AREA_SIZE_t      device_main_area_size;      /* ALT_NAND_CFG_DEVICE_MAIN_AREA_SIZE */
-    volatile uint32_t                                  _pad_0x174_0x17f[3];        /* *UNDEFINED* */
-    volatile ALT_NAND_CFG_DEVICE_SPARE_AREA_SIZE_t     device_spare_area_size;     /* ALT_NAND_CFG_DEVICE_SPARE_AREA_SIZE */
-    volatile uint32_t                                  _pad_0x184_0x18f[3];        /* *UNDEFINED* */
-    volatile ALT_NAND_CFG_TWO_ROW_ADDR_CYCLES_t        two_row_addr_cycles;        /* ALT_NAND_CFG_TWO_ROW_ADDR_CYCLES */
-    volatile uint32_t                                  _pad_0x194_0x19f[3];        /* *UNDEFINED* */
-    volatile ALT_NAND_CFG_MULTIPLANE_ADDR_RESTRICT_t   multiplane_addr_restrict;   /* ALT_NAND_CFG_MULTIPLANE_ADDR_RESTRICT */
-    volatile uint32_t                                  _pad_0x1a4_0x1af[3];        /* *UNDEFINED* */
-    volatile ALT_NAND_CFG_ECC_CORRECTION_t             ecc_correction;             /* ALT_NAND_CFG_ECC_CORRECTION */
-    volatile uint32_t                                  _pad_0x1b4_0x1bf[3];        /* *UNDEFINED* */
-    volatile ALT_NAND_CFG_RD_MOD_t                     read_mode;                  /* ALT_NAND_CFG_RD_MOD */
-    volatile uint32_t                                  _pad_0x1c4_0x1cf[3];        /* *UNDEFINED* */
-    volatile ALT_NAND_CFG_WR_MOD_t                     write_mode;                 /* ALT_NAND_CFG_WR_MOD */
-    volatile uint32_t                                  _pad_0x1d4_0x1df[3];        /* *UNDEFINED* */
-    volatile ALT_NAND_CFG_COPYBACK_MOD_t               copyback_mode;              /* ALT_NAND_CFG_COPYBACK_MOD */
-    volatile uint32_t                                  _pad_0x1e4_0x1ef[3];        /* *UNDEFINED* */
-    volatile ALT_NAND_CFG_RDWR_EN_LO_CNT_t             rdwr_en_lo_cnt;             /* ALT_NAND_CFG_RDWR_EN_LO_CNT */
-    volatile uint32_t                                  _pad_0x1f4_0x1ff[3];        /* *UNDEFINED* */
-    volatile ALT_NAND_CFG_RDWR_EN_HI_CNT_t             rdwr_en_hi_cnt;             /* ALT_NAND_CFG_RDWR_EN_HI_CNT */
-    volatile uint32_t                                  _pad_0x204_0x20f[3];        /* *UNDEFINED* */
-    volatile ALT_NAND_CFG_MAX_RD_DELAY_t               max_rd_delay;               /* ALT_NAND_CFG_MAX_RD_DELAY */
-    volatile uint32_t                                  _pad_0x214_0x21f[3];        /* *UNDEFINED* */
-    volatile ALT_NAND_CFG_CS_SETUP_CNT_t               cs_setup_cnt;               /* ALT_NAND_CFG_CS_SETUP_CNT */
-    volatile uint32_t                                  _pad_0x224_0x22f[3];        /* *UNDEFINED* */
-    volatile ALT_NAND_CFG_SPARE_AREA_SKIP_BYTES_t      spare_area_skip_bytes;      /* ALT_NAND_CFG_SPARE_AREA_SKIP_BYTES */
-    volatile uint32_t                                  _pad_0x234_0x23f[3];        /* *UNDEFINED* */
-    volatile ALT_NAND_CFG_SPARE_AREA_MARKER_t          spare_area_marker;          /* ALT_NAND_CFG_SPARE_AREA_MARKER */
-    volatile uint32_t                                  _pad_0x244_0x24f[3];        /* *UNDEFINED* */
-    volatile ALT_NAND_CFG_DEVICES_CONNECTED_t          devices_connected;          /* ALT_NAND_CFG_DEVICES_CONNECTED */
-    volatile uint32_t                                  _pad_0x254_0x25f[3];        /* *UNDEFINED* */
-    volatile ALT_NAND_CFG_DIE_MSK_t                    die_mask;                   /* ALT_NAND_CFG_DIE_MSK */
-    volatile uint32_t                                  _pad_0x264_0x26f[3];        /* *UNDEFINED* */
-    volatile ALT_NAND_CFG_FIRST_BLOCK_OF_NEXT_PLANE_t  first_block_of_next_plane;  /* ALT_NAND_CFG_FIRST_BLOCK_OF_NEXT_PLANE */
-    volatile uint32_t                                  _pad_0x274_0x27f[3];        /* *UNDEFINED* */
-    volatile ALT_NAND_CFG_WR_PROTECT_t                 write_protect;              /* ALT_NAND_CFG_WR_PROTECT */
-    volatile uint32_t                                  _pad_0x284_0x28f[3];        /* *UNDEFINED* */
-    volatile ALT_NAND_CFG_RE_2_RE_t                    re_2_re;                    /* ALT_NAND_CFG_RE_2_RE */
-    volatile uint32_t                                  _pad_0x294_0x29f[3];        /* *UNDEFINED* */
-    volatile ALT_NAND_CFG_POR_RST_COUNT_t              por_reset_count;            /* ALT_NAND_CFG_POR_RST_COUNT */
-    volatile uint32_t                                  _pad_0x2a4_0x2af[3];        /* *UNDEFINED* */
-    volatile ALT_NAND_CFG_WD_RST_COUNT_t               watchdog_reset_count;       /* ALT_NAND_CFG_WD_RST_COUNT */
-};
+        struct ALT_NAND_CFG_s
+        {
+            volatile ALT_NAND_CFG_DEVICE_RST_t device_reset;                             /* ALT_NAND_CFG_DEVICE_RST */
+            volatile uint32_t _pad_0x4_0xf[ 3 ];                                         /* *UNDEFINED* */
+            volatile ALT_NAND_CFG_TFR_SPARE_REG_t transfer_spare_reg;                    /* ALT_NAND_CFG_TFR_SPARE_REG */
+            volatile uint32_t _pad_0x14_0x1f[ 3 ];                                       /* *UNDEFINED* */
+            volatile ALT_NAND_CFG_LD_WAIT_CNT_t load_wait_cnt;                           /* ALT_NAND_CFG_LD_WAIT_CNT */
+            volatile uint32_t _pad_0x24_0x2f[ 3 ];                                       /* *UNDEFINED* */
+            volatile ALT_NAND_CFG_PROGRAM_WAIT_CNT_t program_wait_cnt;                   /* ALT_NAND_CFG_PROGRAM_WAIT_CNT */
+            volatile uint32_t _pad_0x34_0x3f[ 3 ];                                       /* *UNDEFINED* */
+            volatile ALT_NAND_CFG_ERASE_WAIT_CNT_t erase_wait_cnt;                       /* ALT_NAND_CFG_ERASE_WAIT_CNT */
+            volatile uint32_t _pad_0x44_0x4f[ 3 ];                                       /* *UNDEFINED* */
+            volatile ALT_NAND_CFG_INT_MON_CYCCNT_t int_mon_cyccnt;                       /* ALT_NAND_CFG_INT_MON_CYCCNT */
+            volatile uint32_t _pad_0x54_0x5f[ 3 ];                                       /* *UNDEFINED* */
+            volatile ALT_NAND_CFG_RB_PIN_END_t rb_pin_enabled;                           /* ALT_NAND_CFG_RB_PIN_END */
+            volatile uint32_t _pad_0x64_0x6f[ 3 ];                                       /* *UNDEFINED* */
+            volatile ALT_NAND_CFG_MULTIPLANE_OP_t multiplane_operation;                  /* ALT_NAND_CFG_MULTIPLANE_OP */
+            volatile uint32_t _pad_0x74_0x7f[ 3 ];                                       /* *UNDEFINED* */
+            volatile ALT_NAND_CFG_MULTIPLANE_RD_EN_t multiplane_read_enable;             /* ALT_NAND_CFG_MULTIPLANE_RD_EN */
+            volatile uint32_t _pad_0x84_0x8f[ 3 ];                                       /* *UNDEFINED* */
+            volatile ALT_NAND_CFG_COPYBACK_DIS_t copyback_disable;                       /* ALT_NAND_CFG_COPYBACK_DIS */
+            volatile uint32_t _pad_0x94_0x9f[ 3 ];                                       /* *UNDEFINED* */
+            volatile ALT_NAND_CFG_CACHE_WR_EN_t cache_write_enable;                      /* ALT_NAND_CFG_CACHE_WR_EN */
+            volatile uint32_t _pad_0xa4_0xaf[ 3 ];                                       /* *UNDEFINED* */
+            volatile ALT_NAND_CFG_CACHE_RD_EN_t cache_read_enable;                       /* ALT_NAND_CFG_CACHE_RD_EN */
+            volatile uint32_t _pad_0xb4_0xbf[ 3 ];                                       /* *UNDEFINED* */
+            volatile ALT_NAND_CFG_PREFETCH_MOD_t prefetch_mode;                          /* ALT_NAND_CFG_PREFETCH_MOD */
+            volatile uint32_t _pad_0xc4_0xcf[ 3 ];                                       /* *UNDEFINED* */
+            volatile ALT_NAND_CFG_CHIP_EN_DONT_CARE_t chip_enable_dont_care;             /* ALT_NAND_CFG_CHIP_EN_DONT_CARE */
+            volatile uint32_t _pad_0xd4_0xdf[ 3 ];                                       /* *UNDEFINED* */
+            volatile ALT_NAND_CFG_ECC_EN_t ecc_enable;                                   /* ALT_NAND_CFG_ECC_EN */
+            volatile uint32_t _pad_0xe4_0xef[ 3 ];                                       /* *UNDEFINED* */
+            volatile ALT_NAND_CFG_GLOB_INT_EN_t global_int_enable;                       /* ALT_NAND_CFG_GLOB_INT_EN */
+            volatile uint32_t _pad_0xf4_0xff[ 3 ];                                       /* *UNDEFINED* */
+            volatile ALT_NAND_CFG_TWHR2_AND_WE_2_RE_t twhr2_and_we_2_re;                 /* ALT_NAND_CFG_TWHR2_AND_WE_2_RE */
+            volatile uint32_t _pad_0x104_0x10f[ 3 ];                                     /* *UNDEFINED* */
+            volatile ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA_t tcwaw_and_addr_2_data;         /* ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA */
+            volatile uint32_t _pad_0x114_0x11f[ 3 ];                                     /* *UNDEFINED* */
+            volatile ALT_NAND_CFG_RE_2_WE_t re_2_we;                                     /* ALT_NAND_CFG_RE_2_WE */
+            volatile uint32_t _pad_0x124_0x12f[ 3 ];                                     /* *UNDEFINED* */
+            volatile ALT_NAND_CFG_ACC_CLKS_t acc_clks;                                   /* ALT_NAND_CFG_ACC_CLKS */
+            volatile uint32_t _pad_0x134_0x13f[ 3 ];                                     /* *UNDEFINED* */
+            volatile ALT_NAND_CFG_NUMBER_OF_PLANES_t number_of_planes;                   /* ALT_NAND_CFG_NUMBER_OF_PLANES */
+            volatile uint32_t _pad_0x144_0x14f[ 3 ];                                     /* *UNDEFINED* */
+            volatile ALT_NAND_CFG_PAGES_PER_BLOCK_t pages_per_block;                     /* ALT_NAND_CFG_PAGES_PER_BLOCK */
+            volatile uint32_t _pad_0x154_0x15f[ 3 ];                                     /* *UNDEFINED* */
+            volatile ALT_NAND_CFG_DEVICE_WIDTH_t device_width;                           /* ALT_NAND_CFG_DEVICE_WIDTH */
+            volatile uint32_t _pad_0x164_0x16f[ 3 ];                                     /* *UNDEFINED* */
+            volatile ALT_NAND_CFG_DEVICE_MAIN_AREA_SIZE_t device_main_area_size;         /* ALT_NAND_CFG_DEVICE_MAIN_AREA_SIZE */
+            volatile uint32_t _pad_0x174_0x17f[ 3 ];                                     /* *UNDEFINED* */
+            volatile ALT_NAND_CFG_DEVICE_SPARE_AREA_SIZE_t device_spare_area_size;       /* ALT_NAND_CFG_DEVICE_SPARE_AREA_SIZE */
+            volatile uint32_t _pad_0x184_0x18f[ 3 ];                                     /* *UNDEFINED* */
+            volatile ALT_NAND_CFG_TWO_ROW_ADDR_CYCLES_t two_row_addr_cycles;             /* ALT_NAND_CFG_TWO_ROW_ADDR_CYCLES */
+            volatile uint32_t _pad_0x194_0x19f[ 3 ];                                     /* *UNDEFINED* */
+            volatile ALT_NAND_CFG_MULTIPLANE_ADDR_RESTRICT_t multiplane_addr_restrict;   /* ALT_NAND_CFG_MULTIPLANE_ADDR_RESTRICT */
+            volatile uint32_t _pad_0x1a4_0x1af[ 3 ];                                     /* *UNDEFINED* */
+            volatile ALT_NAND_CFG_ECC_CORRECTION_t ecc_correction;                       /* ALT_NAND_CFG_ECC_CORRECTION */
+            volatile uint32_t _pad_0x1b4_0x1bf[ 3 ];                                     /* *UNDEFINED* */
+            volatile ALT_NAND_CFG_RD_MOD_t read_mode;                                    /* ALT_NAND_CFG_RD_MOD */
+            volatile uint32_t _pad_0x1c4_0x1cf[ 3 ];                                     /* *UNDEFINED* */
+            volatile ALT_NAND_CFG_WR_MOD_t write_mode;                                   /* ALT_NAND_CFG_WR_MOD */
+            volatile uint32_t _pad_0x1d4_0x1df[ 3 ];                                     /* *UNDEFINED* */
+            volatile ALT_NAND_CFG_COPYBACK_MOD_t copyback_mode;                          /* ALT_NAND_CFG_COPYBACK_MOD */
+            volatile uint32_t _pad_0x1e4_0x1ef[ 3 ];                                     /* *UNDEFINED* */
+            volatile ALT_NAND_CFG_RDWR_EN_LO_CNT_t rdwr_en_lo_cnt;                       /* ALT_NAND_CFG_RDWR_EN_LO_CNT */
+            volatile uint32_t _pad_0x1f4_0x1ff[ 3 ];                                     /* *UNDEFINED* */
+            volatile ALT_NAND_CFG_RDWR_EN_HI_CNT_t rdwr_en_hi_cnt;                       /* ALT_NAND_CFG_RDWR_EN_HI_CNT */
+            volatile uint32_t _pad_0x204_0x20f[ 3 ];                                     /* *UNDEFINED* */
+            volatile ALT_NAND_CFG_MAX_RD_DELAY_t max_rd_delay;                           /* ALT_NAND_CFG_MAX_RD_DELAY */
+            volatile uint32_t _pad_0x214_0x21f[ 3 ];                                     /* *UNDEFINED* */
+            volatile ALT_NAND_CFG_CS_SETUP_CNT_t cs_setup_cnt;                           /* ALT_NAND_CFG_CS_SETUP_CNT */
+            volatile uint32_t _pad_0x224_0x22f[ 3 ];                                     /* *UNDEFINED* */
+            volatile ALT_NAND_CFG_SPARE_AREA_SKIP_BYTES_t spare_area_skip_bytes;         /* ALT_NAND_CFG_SPARE_AREA_SKIP_BYTES */
+            volatile uint32_t _pad_0x234_0x23f[ 3 ];                                     /* *UNDEFINED* */
+            volatile ALT_NAND_CFG_SPARE_AREA_MARKER_t spare_area_marker;                 /* ALT_NAND_CFG_SPARE_AREA_MARKER */
+            volatile uint32_t _pad_0x244_0x24f[ 3 ];                                     /* *UNDEFINED* */
+            volatile ALT_NAND_CFG_DEVICES_CONNECTED_t devices_connected;                 /* ALT_NAND_CFG_DEVICES_CONNECTED */
+            volatile uint32_t _pad_0x254_0x25f[ 3 ];                                     /* *UNDEFINED* */
+            volatile ALT_NAND_CFG_DIE_MSK_t die_mask;                                    /* ALT_NAND_CFG_DIE_MSK */
+            volatile uint32_t _pad_0x264_0x26f[ 3 ];                                     /* *UNDEFINED* */
+            volatile ALT_NAND_CFG_FIRST_BLOCK_OF_NEXT_PLANE_t first_block_of_next_plane; /* ALT_NAND_CFG_FIRST_BLOCK_OF_NEXT_PLANE */
+            volatile uint32_t _pad_0x274_0x27f[ 3 ];                                     /* *UNDEFINED* */
+            volatile ALT_NAND_CFG_WR_PROTECT_t write_protect;                            /* ALT_NAND_CFG_WR_PROTECT */
+            volatile uint32_t _pad_0x284_0x28f[ 3 ];                                     /* *UNDEFINED* */
+            volatile ALT_NAND_CFG_RE_2_RE_t re_2_re;                                     /* ALT_NAND_CFG_RE_2_RE */
+            volatile uint32_t _pad_0x294_0x29f[ 3 ];                                     /* *UNDEFINED* */
+            volatile ALT_NAND_CFG_POR_RST_COUNT_t por_reset_count;                       /* ALT_NAND_CFG_POR_RST_COUNT */
+            volatile uint32_t _pad_0x2a4_0x2af[ 3 ];                                     /* *UNDEFINED* */
+            volatile ALT_NAND_CFG_WD_RST_COUNT_t watchdog_reset_count;                   /* ALT_NAND_CFG_WD_RST_COUNT */
+        };
 
 /* The typedef declaration for register group ALT_NAND_CFG. */
-typedef volatile struct ALT_NAND_CFG_s  ALT_NAND_CFG_t;
+        typedef volatile struct ALT_NAND_CFG_s ALT_NAND_CFG_t;
 /* The struct declaration for the raw register contents of register group ALT_NAND_CFG. */
-struct ALT_NAND_CFG_raw_s
-{
-    volatile uint32_t  device_reset;               /* ALT_NAND_CFG_DEVICE_RST */
-    volatile uint32_t  _pad_0x4_0xf[3];            /* *UNDEFINED* */
-    volatile uint32_t  transfer_spare_reg;         /* ALT_NAND_CFG_TFR_SPARE_REG */
-    volatile uint32_t  _pad_0x14_0x1f[3];          /* *UNDEFINED* */
-    volatile uint32_t  load_wait_cnt;              /* ALT_NAND_CFG_LD_WAIT_CNT */
-    volatile uint32_t  _pad_0x24_0x2f[3];          /* *UNDEFINED* */
-    volatile uint32_t  program_wait_cnt;           /* ALT_NAND_CFG_PROGRAM_WAIT_CNT */
-    volatile uint32_t  _pad_0x34_0x3f[3];          /* *UNDEFINED* */
-    volatile uint32_t  erase_wait_cnt;             /* ALT_NAND_CFG_ERASE_WAIT_CNT */
-    volatile uint32_t  _pad_0x44_0x4f[3];          /* *UNDEFINED* */
-    volatile uint32_t  int_mon_cyccnt;             /* ALT_NAND_CFG_INT_MON_CYCCNT */
-    volatile uint32_t  _pad_0x54_0x5f[3];          /* *UNDEFINED* */
-    volatile uint32_t  rb_pin_enabled;             /* ALT_NAND_CFG_RB_PIN_END */
-    volatile uint32_t  _pad_0x64_0x6f[3];          /* *UNDEFINED* */
-    volatile uint32_t  multiplane_operation;       /* ALT_NAND_CFG_MULTIPLANE_OP */
-    volatile uint32_t  _pad_0x74_0x7f[3];          /* *UNDEFINED* */
-    volatile uint32_t  multiplane_read_enable;     /* ALT_NAND_CFG_MULTIPLANE_RD_EN */
-    volatile uint32_t  _pad_0x84_0x8f[3];          /* *UNDEFINED* */
-    volatile uint32_t  copyback_disable;           /* ALT_NAND_CFG_COPYBACK_DIS */
-    volatile uint32_t  _pad_0x94_0x9f[3];          /* *UNDEFINED* */
-    volatile uint32_t  cache_write_enable;         /* ALT_NAND_CFG_CACHE_WR_EN */
-    volatile uint32_t  _pad_0xa4_0xaf[3];          /* *UNDEFINED* */
-    volatile uint32_t  cache_read_enable;          /* ALT_NAND_CFG_CACHE_RD_EN */
-    volatile uint32_t  _pad_0xb4_0xbf[3];          /* *UNDEFINED* */
-    volatile uint32_t  prefetch_mode;              /* ALT_NAND_CFG_PREFETCH_MOD */
-    volatile uint32_t  _pad_0xc4_0xcf[3];          /* *UNDEFINED* */
-    volatile uint32_t  chip_enable_dont_care;      /* ALT_NAND_CFG_CHIP_EN_DONT_CARE */
-    volatile uint32_t  _pad_0xd4_0xdf[3];          /* *UNDEFINED* */
-    volatile uint32_t  ecc_enable;                 /* ALT_NAND_CFG_ECC_EN */
-    volatile uint32_t  _pad_0xe4_0xef[3];          /* *UNDEFINED* */
-    volatile uint32_t  global_int_enable;          /* ALT_NAND_CFG_GLOB_INT_EN */
-    volatile uint32_t  _pad_0xf4_0xff[3];          /* *UNDEFINED* */
-    volatile uint32_t  twhr2_and_we_2_re;          /* ALT_NAND_CFG_TWHR2_AND_WE_2_RE */
-    volatile uint32_t  _pad_0x104_0x10f[3];        /* *UNDEFINED* */
-    volatile uint32_t  tcwaw_and_addr_2_data;      /* ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA */
-    volatile uint32_t  _pad_0x114_0x11f[3];        /* *UNDEFINED* */
-    volatile uint32_t  re_2_we;                    /* ALT_NAND_CFG_RE_2_WE */
-    volatile uint32_t  _pad_0x124_0x12f[3];        /* *UNDEFINED* */
-    volatile uint32_t  acc_clks;                   /* ALT_NAND_CFG_ACC_CLKS */
-    volatile uint32_t  _pad_0x134_0x13f[3];        /* *UNDEFINED* */
-    volatile uint32_t  number_of_planes;           /* ALT_NAND_CFG_NUMBER_OF_PLANES */
-    volatile uint32_t  _pad_0x144_0x14f[3];        /* *UNDEFINED* */
-    volatile uint32_t  pages_per_block;            /* ALT_NAND_CFG_PAGES_PER_BLOCK */
-    volatile uint32_t  _pad_0x154_0x15f[3];        /* *UNDEFINED* */
-    volatile uint32_t  device_width;               /* ALT_NAND_CFG_DEVICE_WIDTH */
-    volatile uint32_t  _pad_0x164_0x16f[3];        /* *UNDEFINED* */
-    volatile uint32_t  device_main_area_size;      /* ALT_NAND_CFG_DEVICE_MAIN_AREA_SIZE */
-    volatile uint32_t  _pad_0x174_0x17f[3];        /* *UNDEFINED* */
-    volatile uint32_t  device_spare_area_size;     /* ALT_NAND_CFG_DEVICE_SPARE_AREA_SIZE */
-    volatile uint32_t  _pad_0x184_0x18f[3];        /* *UNDEFINED* */
-    volatile uint32_t  two_row_addr_cycles;        /* ALT_NAND_CFG_TWO_ROW_ADDR_CYCLES */
-    volatile uint32_t  _pad_0x194_0x19f[3];        /* *UNDEFINED* */
-    volatile uint32_t  multiplane_addr_restrict;   /* ALT_NAND_CFG_MULTIPLANE_ADDR_RESTRICT */
-    volatile uint32_t  _pad_0x1a4_0x1af[3];        /* *UNDEFINED* */
-    volatile uint32_t  ecc_correction;             /* ALT_NAND_CFG_ECC_CORRECTION */
-    volatile uint32_t  _pad_0x1b4_0x1bf[3];        /* *UNDEFINED* */
-    volatile uint32_t  read_mode;                  /* ALT_NAND_CFG_RD_MOD */
-    volatile uint32_t  _pad_0x1c4_0x1cf[3];        /* *UNDEFINED* */
-    volatile uint32_t  write_mode;                 /* ALT_NAND_CFG_WR_MOD */
-    volatile uint32_t  _pad_0x1d4_0x1df[3];        /* *UNDEFINED* */
-    volatile uint32_t  copyback_mode;              /* ALT_NAND_CFG_COPYBACK_MOD */
-    volatile uint32_t  _pad_0x1e4_0x1ef[3];        /* *UNDEFINED* */
-    volatile uint32_t  rdwr_en_lo_cnt;             /* ALT_NAND_CFG_RDWR_EN_LO_CNT */
-    volatile uint32_t  _pad_0x1f4_0x1ff[3];        /* *UNDEFINED* */
-    volatile uint32_t  rdwr_en_hi_cnt;             /* ALT_NAND_CFG_RDWR_EN_HI_CNT */
-    volatile uint32_t  _pad_0x204_0x20f[3];        /* *UNDEFINED* */
-    volatile uint32_t  max_rd_delay;               /* ALT_NAND_CFG_MAX_RD_DELAY */
-    volatile uint32_t  _pad_0x214_0x21f[3];        /* *UNDEFINED* */
-    volatile uint32_t  cs_setup_cnt;               /* ALT_NAND_CFG_CS_SETUP_CNT */
-    volatile uint32_t  _pad_0x224_0x22f[3];        /* *UNDEFINED* */
-    volatile uint32_t  spare_area_skip_bytes;      /* ALT_NAND_CFG_SPARE_AREA_SKIP_BYTES */
-    volatile uint32_t  _pad_0x234_0x23f[3];        /* *UNDEFINED* */
-    volatile uint32_t  spare_area_marker;          /* ALT_NAND_CFG_SPARE_AREA_MARKER */
-    volatile uint32_t  _pad_0x244_0x24f[3];        /* *UNDEFINED* */
-    volatile uint32_t  devices_connected;          /* ALT_NAND_CFG_DEVICES_CONNECTED */
-    volatile uint32_t  _pad_0x254_0x25f[3];        /* *UNDEFINED* */
-    volatile uint32_t  die_mask;                   /* ALT_NAND_CFG_DIE_MSK */
-    volatile uint32_t  _pad_0x264_0x26f[3];        /* *UNDEFINED* */
-    volatile uint32_t  first_block_of_next_plane;  /* ALT_NAND_CFG_FIRST_BLOCK_OF_NEXT_PLANE */
-    volatile uint32_t  _pad_0x274_0x27f[3];        /* *UNDEFINED* */
-    volatile uint32_t  write_protect;              /* ALT_NAND_CFG_WR_PROTECT */
-    volatile uint32_t  _pad_0x284_0x28f[3];        /* *UNDEFINED* */
-    volatile uint32_t  re_2_re;                    /* ALT_NAND_CFG_RE_2_RE */
-    volatile uint32_t  _pad_0x294_0x29f[3];        /* *UNDEFINED* */
-    volatile uint32_t  por_reset_count;            /* ALT_NAND_CFG_POR_RST_COUNT */
-    volatile uint32_t  _pad_0x2a4_0x2af[3];        /* *UNDEFINED* */
-    volatile uint32_t  watchdog_reset_count;       /* ALT_NAND_CFG_WD_RST_COUNT */
-};
+        struct ALT_NAND_CFG_raw_s
+        {
+            volatile uint32_t device_reset;              /* ALT_NAND_CFG_DEVICE_RST */
+            volatile uint32_t _pad_0x4_0xf[ 3 ];         /* *UNDEFINED* */
+            volatile uint32_t transfer_spare_reg;        /* ALT_NAND_CFG_TFR_SPARE_REG */
+            volatile uint32_t _pad_0x14_0x1f[ 3 ];       /* *UNDEFINED* */
+            volatile uint32_t load_wait_cnt;             /* ALT_NAND_CFG_LD_WAIT_CNT */
+            volatile uint32_t _pad_0x24_0x2f[ 3 ];       /* *UNDEFINED* */
+            volatile uint32_t program_wait_cnt;          /* ALT_NAND_CFG_PROGRAM_WAIT_CNT */
+            volatile uint32_t _pad_0x34_0x3f[ 3 ];       /* *UNDEFINED* */
+            volatile uint32_t erase_wait_cnt;            /* ALT_NAND_CFG_ERASE_WAIT_CNT */
+            volatile uint32_t _pad_0x44_0x4f[ 3 ];       /* *UNDEFINED* */
+            volatile uint32_t int_mon_cyccnt;            /* ALT_NAND_CFG_INT_MON_CYCCNT */
+            volatile uint32_t _pad_0x54_0x5f[ 3 ];       /* *UNDEFINED* */
+            volatile uint32_t rb_pin_enabled;            /* ALT_NAND_CFG_RB_PIN_END */
+            volatile uint32_t _pad_0x64_0x6f[ 3 ];       /* *UNDEFINED* */
+            volatile uint32_t multiplane_operation;      /* ALT_NAND_CFG_MULTIPLANE_OP */
+            volatile uint32_t _pad_0x74_0x7f[ 3 ];       /* *UNDEFINED* */
+            volatile uint32_t multiplane_read_enable;    /* ALT_NAND_CFG_MULTIPLANE_RD_EN */
+            volatile uint32_t _pad_0x84_0x8f[ 3 ];       /* *UNDEFINED* */
+            volatile uint32_t copyback_disable;          /* ALT_NAND_CFG_COPYBACK_DIS */
+            volatile uint32_t _pad_0x94_0x9f[ 3 ];       /* *UNDEFINED* */
+            volatile uint32_t cache_write_enable;        /* ALT_NAND_CFG_CACHE_WR_EN */
+            volatile uint32_t _pad_0xa4_0xaf[ 3 ];       /* *UNDEFINED* */
+            volatile uint32_t cache_read_enable;         /* ALT_NAND_CFG_CACHE_RD_EN */
+            volatile uint32_t _pad_0xb4_0xbf[ 3 ];       /* *UNDEFINED* */
+            volatile uint32_t prefetch_mode;             /* ALT_NAND_CFG_PREFETCH_MOD */
+            volatile uint32_t _pad_0xc4_0xcf[ 3 ];       /* *UNDEFINED* */
+            volatile uint32_t chip_enable_dont_care;     /* ALT_NAND_CFG_CHIP_EN_DONT_CARE */
+            volatile uint32_t _pad_0xd4_0xdf[ 3 ];       /* *UNDEFINED* */
+            volatile uint32_t ecc_enable;                /* ALT_NAND_CFG_ECC_EN */
+            volatile uint32_t _pad_0xe4_0xef[ 3 ];       /* *UNDEFINED* */
+            volatile uint32_t global_int_enable;         /* ALT_NAND_CFG_GLOB_INT_EN */
+            volatile uint32_t _pad_0xf4_0xff[ 3 ];       /* *UNDEFINED* */
+            volatile uint32_t twhr2_and_we_2_re;         /* ALT_NAND_CFG_TWHR2_AND_WE_2_RE */
+            volatile uint32_t _pad_0x104_0x10f[ 3 ];     /* *UNDEFINED* */
+            volatile uint32_t tcwaw_and_addr_2_data;     /* ALT_NAND_CFG_TCWAW_AND_ADDR_2_DATA */
+            volatile uint32_t _pad_0x114_0x11f[ 3 ];     /* *UNDEFINED* */
+            volatile uint32_t re_2_we;                   /* ALT_NAND_CFG_RE_2_WE */
+            volatile uint32_t _pad_0x124_0x12f[ 3 ];     /* *UNDEFINED* */
+            volatile uint32_t acc_clks;                  /* ALT_NAND_CFG_ACC_CLKS */
+            volatile uint32_t _pad_0x134_0x13f[ 3 ];     /* *UNDEFINED* */
+            volatile uint32_t number_of_planes;          /* ALT_NAND_CFG_NUMBER_OF_PLANES */
+            volatile uint32_t _pad_0x144_0x14f[ 3 ];     /* *UNDEFINED* */
+            volatile uint32_t pages_per_block;           /* ALT_NAND_CFG_PAGES_PER_BLOCK */
+            volatile uint32_t _pad_0x154_0x15f[ 3 ];     /* *UNDEFINED* */
+            volatile uint32_t device_width;              /* ALT_NAND_CFG_DEVICE_WIDTH */
+            volatile uint32_t _pad_0x164_0x16f[ 3 ];     /* *UNDEFINED* */
+            volatile uint32_t device_main_area_size;     /* ALT_NAND_CFG_DEVICE_MAIN_AREA_SIZE */
+            volatile uint32_t _pad_0x174_0x17f[ 3 ];     /* *UNDEFINED* */
+            volatile uint32_t device_spare_area_size;    /* ALT_NAND_CFG_DEVICE_SPARE_AREA_SIZE */
+            volatile uint32_t _pad_0x184_0x18f[ 3 ];     /* *UNDEFINED* */
+            volatile uint32_t two_row_addr_cycles;       /* ALT_NAND_CFG_TWO_ROW_ADDR_CYCLES */
+            volatile uint32_t _pad_0x194_0x19f[ 3 ];     /* *UNDEFINED* */
+            volatile uint32_t multiplane_addr_restrict;  /* ALT_NAND_CFG_MULTIPLANE_ADDR_RESTRICT */
+            volatile uint32_t _pad_0x1a4_0x1af[ 3 ];     /* *UNDEFINED* */
+            volatile uint32_t ecc_correction;            /* ALT_NAND_CFG_ECC_CORRECTION */
+            volatile uint32_t _pad_0x1b4_0x1bf[ 3 ];     /* *UNDEFINED* */
+            volatile uint32_t read_mode;                 /* ALT_NAND_CFG_RD_MOD */
+            volatile uint32_t _pad_0x1c4_0x1cf[ 3 ];     /* *UNDEFINED* */
+            volatile uint32_t write_mode;                /* ALT_NAND_CFG_WR_MOD */
+            volatile uint32_t _pad_0x1d4_0x1df[ 3 ];     /* *UNDEFINED* */
+            volatile uint32_t copyback_mode;             /* ALT_NAND_CFG_COPYBACK_MOD */
+            volatile uint32_t _pad_0x1e4_0x1ef[ 3 ];     /* *UNDEFINED* */
+            volatile uint32_t rdwr_en_lo_cnt;            /* ALT_NAND_CFG_RDWR_EN_LO_CNT */
+            volatile uint32_t _pad_0x1f4_0x1ff[ 3 ];     /* *UNDEFINED* */
+            volatile uint32_t rdwr_en_hi_cnt;            /* ALT_NAND_CFG_RDWR_EN_HI_CNT */
+            volatile uint32_t _pad_0x204_0x20f[ 3 ];     /* *UNDEFINED* */
+            volatile uint32_t max_rd_delay;              /* ALT_NAND_CFG_MAX_RD_DELAY */
+            volatile uint32_t _pad_0x214_0x21f[ 3 ];     /* *UNDEFINED* */
+            volatile uint32_t cs_setup_cnt;              /* ALT_NAND_CFG_CS_SETUP_CNT */
+            volatile uint32_t _pad_0x224_0x22f[ 3 ];     /* *UNDEFINED* */
+            volatile uint32_t spare_area_skip_bytes;     /* ALT_NAND_CFG_SPARE_AREA_SKIP_BYTES */
+            volatile uint32_t _pad_0x234_0x23f[ 3 ];     /* *UNDEFINED* */
+            volatile uint32_t spare_area_marker;         /* ALT_NAND_CFG_SPARE_AREA_MARKER */
+            volatile uint32_t _pad_0x244_0x24f[ 3 ];     /* *UNDEFINED* */
+            volatile uint32_t devices_connected;         /* ALT_NAND_CFG_DEVICES_CONNECTED */
+            volatile uint32_t _pad_0x254_0x25f[ 3 ];     /* *UNDEFINED* */
+            volatile uint32_t die_mask;                  /* ALT_NAND_CFG_DIE_MSK */
+            volatile uint32_t _pad_0x264_0x26f[ 3 ];     /* *UNDEFINED* */
+            volatile uint32_t first_block_of_next_plane; /* ALT_NAND_CFG_FIRST_BLOCK_OF_NEXT_PLANE */
+            volatile uint32_t _pad_0x274_0x27f[ 3 ];     /* *UNDEFINED* */
+            volatile uint32_t write_protect;             /* ALT_NAND_CFG_WR_PROTECT */
+            volatile uint32_t _pad_0x284_0x28f[ 3 ];     /* *UNDEFINED* */
+            volatile uint32_t re_2_re;                   /* ALT_NAND_CFG_RE_2_RE */
+            volatile uint32_t _pad_0x294_0x29f[ 3 ];     /* *UNDEFINED* */
+            volatile uint32_t por_reset_count;           /* ALT_NAND_CFG_POR_RST_COUNT */
+            volatile uint32_t _pad_0x2a4_0x2af[ 3 ];     /* *UNDEFINED* */
+            volatile uint32_t watchdog_reset_count;      /* ALT_NAND_CFG_WD_RST_COUNT */
+        };
 
 /* The typedef declaration for the raw register contents of register group ALT_NAND_CFG. */
-typedef volatile struct ALT_NAND_CFG_raw_s  ALT_NAND_CFG_raw_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_CFG_raw_s ALT_NAND_CFG_raw_t;
+    #endif /* __ASSEMBLY__ */
 
 
 /*
@@ -3506,6 +3597,7 @@ typedef volatile struct ALT_NAND_CFG_raw_s  ALT_NAND_CFG_raw_t;
  * following registers for software
  *
  */
+
 /*
  * Register : manufacturer_id
  *
@@ -3517,6 +3609,7 @@ typedef volatile struct ALT_NAND_CFG_raw_s  ALT_NAND_CFG_raw_t;
  *  [31:8] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -3526,23 +3619,24 @@ typedef volatile struct ALT_NAND_CFG_raw_s  ALT_NAND_CFG_raw_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_PARAM_MANUFACTURER_ID_VALUE register field. */
-#define ALT_NAND_PARAM_MANUFACTURER_ID_VALUE_LSB        0
+    #define ALT_NAND_PARAM_MANUFACTURER_ID_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_PARAM_MANUFACTURER_ID_VALUE register field. */
-#define ALT_NAND_PARAM_MANUFACTURER_ID_VALUE_MSB        7
+    #define ALT_NAND_PARAM_MANUFACTURER_ID_VALUE_MSB        7
 /* The width in bits of the ALT_NAND_PARAM_MANUFACTURER_ID_VALUE register field. */
-#define ALT_NAND_PARAM_MANUFACTURER_ID_VALUE_WIDTH      8
+    #define ALT_NAND_PARAM_MANUFACTURER_ID_VALUE_WIDTH      8
 /* The mask used to set the ALT_NAND_PARAM_MANUFACTURER_ID_VALUE register field value. */
-#define ALT_NAND_PARAM_MANUFACTURER_ID_VALUE_SET_MSK    0x000000ff
+    #define ALT_NAND_PARAM_MANUFACTURER_ID_VALUE_SET_MSK    0x000000ff
 /* The mask used to clear the ALT_NAND_PARAM_MANUFACTURER_ID_VALUE register field value. */
-#define ALT_NAND_PARAM_MANUFACTURER_ID_VALUE_CLR_MSK    0xffffff00
+    #define ALT_NAND_PARAM_MANUFACTURER_ID_VALUE_CLR_MSK    0xffffff00
 /* The reset value of the ALT_NAND_PARAM_MANUFACTURER_ID_VALUE register field. */
-#define ALT_NAND_PARAM_MANUFACTURER_ID_VALUE_RESET      0x0
+    #define ALT_NAND_PARAM_MANUFACTURER_ID_VALUE_RESET      0x0
 /* Extracts the ALT_NAND_PARAM_MANUFACTURER_ID_VALUE field value from a register. */
-#define ALT_NAND_PARAM_MANUFACTURER_ID_VALUE_GET(value) (((value) & 0x000000ff) >> 0)
+    #define ALT_NAND_PARAM_MANUFACTURER_ID_VALUE_GET( value )    ( ( ( value ) & 0x000000ff ) >> 0 )
 /* Produces a ALT_NAND_PARAM_MANUFACTURER_ID_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_PARAM_MANUFACTURER_ID_VALUE_SET(value) (((value) << 0) & 0x000000ff)
+    #define ALT_NAND_PARAM_MANUFACTURER_ID_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x000000ff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -3553,18 +3647,18 @@ typedef volatile struct ALT_NAND_CFG_raw_s  ALT_NAND_CFG_raw_t;
  *
  * The struct declaration for register ALT_NAND_PARAM_MANUFACTURER_ID.
  */
-struct ALT_NAND_PARAM_MANUFACTURER_ID_s
-{
-    uint32_t  value :  8;  /* ALT_NAND_PARAM_MANUFACTURER_ID_VALUE */
-    uint32_t        : 24;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_PARAM_MANUFACTURER_ID_s
+        {
+            uint32_t value :  8;  /* ALT_NAND_PARAM_MANUFACTURER_ID_VALUE */
+            uint32_t        : 24; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_PARAM_MANUFACTURER_ID. */
-typedef volatile struct ALT_NAND_PARAM_MANUFACTURER_ID_s  ALT_NAND_PARAM_MANUFACTURER_ID_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_PARAM_MANUFACTURER_ID_s ALT_NAND_PARAM_MANUFACTURER_ID_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_PARAM_MANUFACTURER_ID register from the beginning of the component. */
-#define ALT_NAND_PARAM_MANUFACTURER_ID_OFST        0x0
+    #define ALT_NAND_PARAM_MANUFACTURER_ID_OFST    0x0
 
 /*
  * Register : device_id
@@ -3577,6 +3671,7 @@ typedef volatile struct ALT_NAND_PARAM_MANUFACTURER_ID_s  ALT_NAND_PARAM_MANUFAC
  *  [31:8] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -3586,23 +3681,24 @@ typedef volatile struct ALT_NAND_PARAM_MANUFACTURER_ID_s  ALT_NAND_PARAM_MANUFAC
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_PARAM_DEVICE_ID_VALUE register field. */
-#define ALT_NAND_PARAM_DEVICE_ID_VALUE_LSB        0
+    #define ALT_NAND_PARAM_DEVICE_ID_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_PARAM_DEVICE_ID_VALUE register field. */
-#define ALT_NAND_PARAM_DEVICE_ID_VALUE_MSB        7
+    #define ALT_NAND_PARAM_DEVICE_ID_VALUE_MSB        7
 /* The width in bits of the ALT_NAND_PARAM_DEVICE_ID_VALUE register field. */
-#define ALT_NAND_PARAM_DEVICE_ID_VALUE_WIDTH      8
+    #define ALT_NAND_PARAM_DEVICE_ID_VALUE_WIDTH      8
 /* The mask used to set the ALT_NAND_PARAM_DEVICE_ID_VALUE register field value. */
-#define ALT_NAND_PARAM_DEVICE_ID_VALUE_SET_MSK    0x000000ff
+    #define ALT_NAND_PARAM_DEVICE_ID_VALUE_SET_MSK    0x000000ff
 /* The mask used to clear the ALT_NAND_PARAM_DEVICE_ID_VALUE register field value. */
-#define ALT_NAND_PARAM_DEVICE_ID_VALUE_CLR_MSK    0xffffff00
+    #define ALT_NAND_PARAM_DEVICE_ID_VALUE_CLR_MSK    0xffffff00
 /* The reset value of the ALT_NAND_PARAM_DEVICE_ID_VALUE register field. */
-#define ALT_NAND_PARAM_DEVICE_ID_VALUE_RESET      0x0
+    #define ALT_NAND_PARAM_DEVICE_ID_VALUE_RESET      0x0
 /* Extracts the ALT_NAND_PARAM_DEVICE_ID_VALUE field value from a register. */
-#define ALT_NAND_PARAM_DEVICE_ID_VALUE_GET(value) (((value) & 0x000000ff) >> 0)
+    #define ALT_NAND_PARAM_DEVICE_ID_VALUE_GET( value )    ( ( ( value ) & 0x000000ff ) >> 0 )
 /* Produces a ALT_NAND_PARAM_DEVICE_ID_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_PARAM_DEVICE_ID_VALUE_SET(value) (((value) << 0) & 0x000000ff)
+    #define ALT_NAND_PARAM_DEVICE_ID_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x000000ff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -3613,18 +3709,18 @@ typedef volatile struct ALT_NAND_PARAM_MANUFACTURER_ID_s  ALT_NAND_PARAM_MANUFAC
  *
  * The struct declaration for register ALT_NAND_PARAM_DEVICE_ID.
  */
-struct ALT_NAND_PARAM_DEVICE_ID_s
-{
-    const uint32_t  value :  8;  /* ALT_NAND_PARAM_DEVICE_ID_VALUE */
-    uint32_t              : 24;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_PARAM_DEVICE_ID_s
+        {
+            const uint32_t value :  8;  /* ALT_NAND_PARAM_DEVICE_ID_VALUE */
+            uint32_t              : 24; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_PARAM_DEVICE_ID. */
-typedef volatile struct ALT_NAND_PARAM_DEVICE_ID_s  ALT_NAND_PARAM_DEVICE_ID_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_PARAM_DEVICE_ID_s ALT_NAND_PARAM_DEVICE_ID_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_PARAM_DEVICE_ID register from the beginning of the component. */
-#define ALT_NAND_PARAM_DEVICE_ID_OFST        0x10
+    #define ALT_NAND_PARAM_DEVICE_ID_OFST    0x10
 
 /*
  * Register : device_param_0
@@ -3637,6 +3733,7 @@ typedef volatile struct ALT_NAND_PARAM_DEVICE_ID_s  ALT_NAND_PARAM_DEVICE_ID_t;
  *  [31:8] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -3647,23 +3744,24 @@ typedef volatile struct ALT_NAND_PARAM_DEVICE_ID_s  ALT_NAND_PARAM_DEVICE_ID_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_PARAM_DEVICE_PARAM_0_VALUE register field. */
-#define ALT_NAND_PARAM_DEVICE_PARAM_0_VALUE_LSB        0
+    #define ALT_NAND_PARAM_DEVICE_PARAM_0_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_PARAM_DEVICE_PARAM_0_VALUE register field. */
-#define ALT_NAND_PARAM_DEVICE_PARAM_0_VALUE_MSB        7
+    #define ALT_NAND_PARAM_DEVICE_PARAM_0_VALUE_MSB        7
 /* The width in bits of the ALT_NAND_PARAM_DEVICE_PARAM_0_VALUE register field. */
-#define ALT_NAND_PARAM_DEVICE_PARAM_0_VALUE_WIDTH      8
+    #define ALT_NAND_PARAM_DEVICE_PARAM_0_VALUE_WIDTH      8
 /* The mask used to set the ALT_NAND_PARAM_DEVICE_PARAM_0_VALUE register field value. */
-#define ALT_NAND_PARAM_DEVICE_PARAM_0_VALUE_SET_MSK    0x000000ff
+    #define ALT_NAND_PARAM_DEVICE_PARAM_0_VALUE_SET_MSK    0x000000ff
 /* The mask used to clear the ALT_NAND_PARAM_DEVICE_PARAM_0_VALUE register field value. */
-#define ALT_NAND_PARAM_DEVICE_PARAM_0_VALUE_CLR_MSK    0xffffff00
+    #define ALT_NAND_PARAM_DEVICE_PARAM_0_VALUE_CLR_MSK    0xffffff00
 /* The reset value of the ALT_NAND_PARAM_DEVICE_PARAM_0_VALUE register field. */
-#define ALT_NAND_PARAM_DEVICE_PARAM_0_VALUE_RESET      0x0
+    #define ALT_NAND_PARAM_DEVICE_PARAM_0_VALUE_RESET      0x0
 /* Extracts the ALT_NAND_PARAM_DEVICE_PARAM_0_VALUE field value from a register. */
-#define ALT_NAND_PARAM_DEVICE_PARAM_0_VALUE_GET(value) (((value) & 0x000000ff) >> 0)
+    #define ALT_NAND_PARAM_DEVICE_PARAM_0_VALUE_GET( value )    ( ( ( value ) & 0x000000ff ) >> 0 )
 /* Produces a ALT_NAND_PARAM_DEVICE_PARAM_0_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_PARAM_DEVICE_PARAM_0_VALUE_SET(value) (((value) << 0) & 0x000000ff)
+    #define ALT_NAND_PARAM_DEVICE_PARAM_0_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x000000ff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -3674,18 +3772,18 @@ typedef volatile struct ALT_NAND_PARAM_DEVICE_ID_s  ALT_NAND_PARAM_DEVICE_ID_t;
  *
  * The struct declaration for register ALT_NAND_PARAM_DEVICE_PARAM_0.
  */
-struct ALT_NAND_PARAM_DEVICE_PARAM_0_s
-{
-    const uint32_t  value :  8;  /* ALT_NAND_PARAM_DEVICE_PARAM_0_VALUE */
-    uint32_t              : 24;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_PARAM_DEVICE_PARAM_0_s
+        {
+            const uint32_t value :  8;  /* ALT_NAND_PARAM_DEVICE_PARAM_0_VALUE */
+            uint32_t              : 24; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_PARAM_DEVICE_PARAM_0. */
-typedef volatile struct ALT_NAND_PARAM_DEVICE_PARAM_0_s  ALT_NAND_PARAM_DEVICE_PARAM_0_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_PARAM_DEVICE_PARAM_0_s ALT_NAND_PARAM_DEVICE_PARAM_0_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_PARAM_DEVICE_PARAM_0 register from the beginning of the component. */
-#define ALT_NAND_PARAM_DEVICE_PARAM_0_OFST        0x20
+    #define ALT_NAND_PARAM_DEVICE_PARAM_0_OFST    0x20
 
 /*
  * Register : device_param_1
@@ -3698,6 +3796,7 @@ typedef volatile struct ALT_NAND_PARAM_DEVICE_PARAM_0_s  ALT_NAND_PARAM_DEVICE_P
  *  [31:8] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -3708,23 +3807,24 @@ typedef volatile struct ALT_NAND_PARAM_DEVICE_PARAM_0_s  ALT_NAND_PARAM_DEVICE_P
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_PARAM_DEVICE_PARAM_1_VALUE register field. */
-#define ALT_NAND_PARAM_DEVICE_PARAM_1_VALUE_LSB        0
+    #define ALT_NAND_PARAM_DEVICE_PARAM_1_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_PARAM_DEVICE_PARAM_1_VALUE register field. */
-#define ALT_NAND_PARAM_DEVICE_PARAM_1_VALUE_MSB        7
+    #define ALT_NAND_PARAM_DEVICE_PARAM_1_VALUE_MSB        7
 /* The width in bits of the ALT_NAND_PARAM_DEVICE_PARAM_1_VALUE register field. */
-#define ALT_NAND_PARAM_DEVICE_PARAM_1_VALUE_WIDTH      8
+    #define ALT_NAND_PARAM_DEVICE_PARAM_1_VALUE_WIDTH      8
 /* The mask used to set the ALT_NAND_PARAM_DEVICE_PARAM_1_VALUE register field value. */
-#define ALT_NAND_PARAM_DEVICE_PARAM_1_VALUE_SET_MSK    0x000000ff
+    #define ALT_NAND_PARAM_DEVICE_PARAM_1_VALUE_SET_MSK    0x000000ff
 /* The mask used to clear the ALT_NAND_PARAM_DEVICE_PARAM_1_VALUE register field value. */
-#define ALT_NAND_PARAM_DEVICE_PARAM_1_VALUE_CLR_MSK    0xffffff00
+    #define ALT_NAND_PARAM_DEVICE_PARAM_1_VALUE_CLR_MSK    0xffffff00
 /* The reset value of the ALT_NAND_PARAM_DEVICE_PARAM_1_VALUE register field. */
-#define ALT_NAND_PARAM_DEVICE_PARAM_1_VALUE_RESET      0x0
+    #define ALT_NAND_PARAM_DEVICE_PARAM_1_VALUE_RESET      0x0
 /* Extracts the ALT_NAND_PARAM_DEVICE_PARAM_1_VALUE field value from a register. */
-#define ALT_NAND_PARAM_DEVICE_PARAM_1_VALUE_GET(value) (((value) & 0x000000ff) >> 0)
+    #define ALT_NAND_PARAM_DEVICE_PARAM_1_VALUE_GET( value )    ( ( ( value ) & 0x000000ff ) >> 0 )
 /* Produces a ALT_NAND_PARAM_DEVICE_PARAM_1_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_PARAM_DEVICE_PARAM_1_VALUE_SET(value) (((value) << 0) & 0x000000ff)
+    #define ALT_NAND_PARAM_DEVICE_PARAM_1_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x000000ff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -3735,18 +3835,18 @@ typedef volatile struct ALT_NAND_PARAM_DEVICE_PARAM_0_s  ALT_NAND_PARAM_DEVICE_P
  *
  * The struct declaration for register ALT_NAND_PARAM_DEVICE_PARAM_1.
  */
-struct ALT_NAND_PARAM_DEVICE_PARAM_1_s
-{
-    const uint32_t  value :  8;  /* ALT_NAND_PARAM_DEVICE_PARAM_1_VALUE */
-    uint32_t              : 24;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_PARAM_DEVICE_PARAM_1_s
+        {
+            const uint32_t value :  8;  /* ALT_NAND_PARAM_DEVICE_PARAM_1_VALUE */
+            uint32_t              : 24; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_PARAM_DEVICE_PARAM_1. */
-typedef volatile struct ALT_NAND_PARAM_DEVICE_PARAM_1_s  ALT_NAND_PARAM_DEVICE_PARAM_1_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_PARAM_DEVICE_PARAM_1_s ALT_NAND_PARAM_DEVICE_PARAM_1_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_PARAM_DEVICE_PARAM_1 register from the beginning of the component. */
-#define ALT_NAND_PARAM_DEVICE_PARAM_1_OFST        0x30
+    #define ALT_NAND_PARAM_DEVICE_PARAM_1_OFST    0x30
 
 /*
  * Register : device_param_2
@@ -3759,6 +3859,7 @@ typedef volatile struct ALT_NAND_PARAM_DEVICE_PARAM_1_s  ALT_NAND_PARAM_DEVICE_P
  *  [31:8] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -3768,23 +3869,24 @@ typedef volatile struct ALT_NAND_PARAM_DEVICE_PARAM_1_s  ALT_NAND_PARAM_DEVICE_P
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_PARAM_DEVICE_PARAM_2_VALUE register field. */
-#define ALT_NAND_PARAM_DEVICE_PARAM_2_VALUE_LSB        0
+    #define ALT_NAND_PARAM_DEVICE_PARAM_2_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_PARAM_DEVICE_PARAM_2_VALUE register field. */
-#define ALT_NAND_PARAM_DEVICE_PARAM_2_VALUE_MSB        7
+    #define ALT_NAND_PARAM_DEVICE_PARAM_2_VALUE_MSB        7
 /* The width in bits of the ALT_NAND_PARAM_DEVICE_PARAM_2_VALUE register field. */
-#define ALT_NAND_PARAM_DEVICE_PARAM_2_VALUE_WIDTH      8
+    #define ALT_NAND_PARAM_DEVICE_PARAM_2_VALUE_WIDTH      8
 /* The mask used to set the ALT_NAND_PARAM_DEVICE_PARAM_2_VALUE register field value. */
-#define ALT_NAND_PARAM_DEVICE_PARAM_2_VALUE_SET_MSK    0x000000ff
+    #define ALT_NAND_PARAM_DEVICE_PARAM_2_VALUE_SET_MSK    0x000000ff
 /* The mask used to clear the ALT_NAND_PARAM_DEVICE_PARAM_2_VALUE register field value. */
-#define ALT_NAND_PARAM_DEVICE_PARAM_2_VALUE_CLR_MSK    0xffffff00
+    #define ALT_NAND_PARAM_DEVICE_PARAM_2_VALUE_CLR_MSK    0xffffff00
 /* The reset value of the ALT_NAND_PARAM_DEVICE_PARAM_2_VALUE register field. */
-#define ALT_NAND_PARAM_DEVICE_PARAM_2_VALUE_RESET      0x0
+    #define ALT_NAND_PARAM_DEVICE_PARAM_2_VALUE_RESET      0x0
 /* Extracts the ALT_NAND_PARAM_DEVICE_PARAM_2_VALUE field value from a register. */
-#define ALT_NAND_PARAM_DEVICE_PARAM_2_VALUE_GET(value) (((value) & 0x000000ff) >> 0)
+    #define ALT_NAND_PARAM_DEVICE_PARAM_2_VALUE_GET( value )    ( ( ( value ) & 0x000000ff ) >> 0 )
 /* Produces a ALT_NAND_PARAM_DEVICE_PARAM_2_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_PARAM_DEVICE_PARAM_2_VALUE_SET(value) (((value) << 0) & 0x000000ff)
+    #define ALT_NAND_PARAM_DEVICE_PARAM_2_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x000000ff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -3795,18 +3897,18 @@ typedef volatile struct ALT_NAND_PARAM_DEVICE_PARAM_1_s  ALT_NAND_PARAM_DEVICE_P
  *
  * The struct declaration for register ALT_NAND_PARAM_DEVICE_PARAM_2.
  */
-struct ALT_NAND_PARAM_DEVICE_PARAM_2_s
-{
-    const uint32_t  value :  8;  /* ALT_NAND_PARAM_DEVICE_PARAM_2_VALUE */
-    uint32_t              : 24;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_PARAM_DEVICE_PARAM_2_s
+        {
+            const uint32_t value :  8;  /* ALT_NAND_PARAM_DEVICE_PARAM_2_VALUE */
+            uint32_t              : 24; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_PARAM_DEVICE_PARAM_2. */
-typedef volatile struct ALT_NAND_PARAM_DEVICE_PARAM_2_s  ALT_NAND_PARAM_DEVICE_PARAM_2_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_PARAM_DEVICE_PARAM_2_s ALT_NAND_PARAM_DEVICE_PARAM_2_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_PARAM_DEVICE_PARAM_2 register from the beginning of the component. */
-#define ALT_NAND_PARAM_DEVICE_PARAM_2_OFST        0x40
+    #define ALT_NAND_PARAM_DEVICE_PARAM_2_OFST    0x40
 
 /*
  * Register : logical_page_data_size
@@ -3821,6 +3923,7 @@ typedef volatile struct ALT_NAND_PARAM_DEVICE_PARAM_2_s  ALT_NAND_PARAM_DEVICE_P
  *  [31:16] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -3832,23 +3935,24 @@ typedef volatile struct ALT_NAND_PARAM_DEVICE_PARAM_2_s  ALT_NAND_PARAM_DEVICE_P
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_PARAM_LOGICAL_PAGE_DATA_SIZE_VALUE register field. */
-#define ALT_NAND_PARAM_LOGICAL_PAGE_DATA_SIZE_VALUE_LSB        0
+    #define ALT_NAND_PARAM_LOGICAL_PAGE_DATA_SIZE_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_PARAM_LOGICAL_PAGE_DATA_SIZE_VALUE register field. */
-#define ALT_NAND_PARAM_LOGICAL_PAGE_DATA_SIZE_VALUE_MSB        15
+    #define ALT_NAND_PARAM_LOGICAL_PAGE_DATA_SIZE_VALUE_MSB        15
 /* The width in bits of the ALT_NAND_PARAM_LOGICAL_PAGE_DATA_SIZE_VALUE register field. */
-#define ALT_NAND_PARAM_LOGICAL_PAGE_DATA_SIZE_VALUE_WIDTH      16
+    #define ALT_NAND_PARAM_LOGICAL_PAGE_DATA_SIZE_VALUE_WIDTH      16
 /* The mask used to set the ALT_NAND_PARAM_LOGICAL_PAGE_DATA_SIZE_VALUE register field value. */
-#define ALT_NAND_PARAM_LOGICAL_PAGE_DATA_SIZE_VALUE_SET_MSK    0x0000ffff
+    #define ALT_NAND_PARAM_LOGICAL_PAGE_DATA_SIZE_VALUE_SET_MSK    0x0000ffff
 /* The mask used to clear the ALT_NAND_PARAM_LOGICAL_PAGE_DATA_SIZE_VALUE register field value. */
-#define ALT_NAND_PARAM_LOGICAL_PAGE_DATA_SIZE_VALUE_CLR_MSK    0xffff0000
+    #define ALT_NAND_PARAM_LOGICAL_PAGE_DATA_SIZE_VALUE_CLR_MSK    0xffff0000
 /* The reset value of the ALT_NAND_PARAM_LOGICAL_PAGE_DATA_SIZE_VALUE register field. */
-#define ALT_NAND_PARAM_LOGICAL_PAGE_DATA_SIZE_VALUE_RESET      0x0
+    #define ALT_NAND_PARAM_LOGICAL_PAGE_DATA_SIZE_VALUE_RESET      0x0
 /* Extracts the ALT_NAND_PARAM_LOGICAL_PAGE_DATA_SIZE_VALUE field value from a register. */
-#define ALT_NAND_PARAM_LOGICAL_PAGE_DATA_SIZE_VALUE_GET(value) (((value) & 0x0000ffff) >> 0)
+    #define ALT_NAND_PARAM_LOGICAL_PAGE_DATA_SIZE_VALUE_GET( value )    ( ( ( value ) & 0x0000ffff ) >> 0 )
 /* Produces a ALT_NAND_PARAM_LOGICAL_PAGE_DATA_SIZE_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_PARAM_LOGICAL_PAGE_DATA_SIZE_VALUE_SET(value) (((value) << 0) & 0x0000ffff)
+    #define ALT_NAND_PARAM_LOGICAL_PAGE_DATA_SIZE_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x0000ffff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -3859,18 +3963,18 @@ typedef volatile struct ALT_NAND_PARAM_DEVICE_PARAM_2_s  ALT_NAND_PARAM_DEVICE_P
  *
  * The struct declaration for register ALT_NAND_PARAM_LOGICAL_PAGE_DATA_SIZE.
  */
-struct ALT_NAND_PARAM_LOGICAL_PAGE_DATA_SIZE_s
-{
-    const uint32_t  value : 16;  /* ALT_NAND_PARAM_LOGICAL_PAGE_DATA_SIZE_VALUE */
-    uint32_t              : 16;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_PARAM_LOGICAL_PAGE_DATA_SIZE_s
+        {
+            const uint32_t value : 16;  /* ALT_NAND_PARAM_LOGICAL_PAGE_DATA_SIZE_VALUE */
+            uint32_t              : 16; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_PARAM_LOGICAL_PAGE_DATA_SIZE. */
-typedef volatile struct ALT_NAND_PARAM_LOGICAL_PAGE_DATA_SIZE_s  ALT_NAND_PARAM_LOGICAL_PAGE_DATA_SIZE_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_PARAM_LOGICAL_PAGE_DATA_SIZE_s ALT_NAND_PARAM_LOGICAL_PAGE_DATA_SIZE_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_PARAM_LOGICAL_PAGE_DATA_SIZE register from the beginning of the component. */
-#define ALT_NAND_PARAM_LOGICAL_PAGE_DATA_SIZE_OFST        0x50
+    #define ALT_NAND_PARAM_LOGICAL_PAGE_DATA_SIZE_OFST    0x50
 
 /*
  * Register : logical_page_spare_size
@@ -3885,6 +3989,7 @@ typedef volatile struct ALT_NAND_PARAM_LOGICAL_PAGE_DATA_SIZE_s  ALT_NAND_PARAM_
  *  [31:16] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -3896,23 +4001,24 @@ typedef volatile struct ALT_NAND_PARAM_LOGICAL_PAGE_DATA_SIZE_s  ALT_NAND_PARAM_
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_PARAM_LOGICAL_PAGE_SPARE_SIZE_VALUE register field. */
-#define ALT_NAND_PARAM_LOGICAL_PAGE_SPARE_SIZE_VALUE_LSB        0
+    #define ALT_NAND_PARAM_LOGICAL_PAGE_SPARE_SIZE_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_PARAM_LOGICAL_PAGE_SPARE_SIZE_VALUE register field. */
-#define ALT_NAND_PARAM_LOGICAL_PAGE_SPARE_SIZE_VALUE_MSB        15
+    #define ALT_NAND_PARAM_LOGICAL_PAGE_SPARE_SIZE_VALUE_MSB        15
 /* The width in bits of the ALT_NAND_PARAM_LOGICAL_PAGE_SPARE_SIZE_VALUE register field. */
-#define ALT_NAND_PARAM_LOGICAL_PAGE_SPARE_SIZE_VALUE_WIDTH      16
+    #define ALT_NAND_PARAM_LOGICAL_PAGE_SPARE_SIZE_VALUE_WIDTH      16
 /* The mask used to set the ALT_NAND_PARAM_LOGICAL_PAGE_SPARE_SIZE_VALUE register field value. */
-#define ALT_NAND_PARAM_LOGICAL_PAGE_SPARE_SIZE_VALUE_SET_MSK    0x0000ffff
+    #define ALT_NAND_PARAM_LOGICAL_PAGE_SPARE_SIZE_VALUE_SET_MSK    0x0000ffff
 /* The mask used to clear the ALT_NAND_PARAM_LOGICAL_PAGE_SPARE_SIZE_VALUE register field value. */
-#define ALT_NAND_PARAM_LOGICAL_PAGE_SPARE_SIZE_VALUE_CLR_MSK    0xffff0000
+    #define ALT_NAND_PARAM_LOGICAL_PAGE_SPARE_SIZE_VALUE_CLR_MSK    0xffff0000
 /* The reset value of the ALT_NAND_PARAM_LOGICAL_PAGE_SPARE_SIZE_VALUE register field. */
-#define ALT_NAND_PARAM_LOGICAL_PAGE_SPARE_SIZE_VALUE_RESET      0x0
+    #define ALT_NAND_PARAM_LOGICAL_PAGE_SPARE_SIZE_VALUE_RESET      0x0
 /* Extracts the ALT_NAND_PARAM_LOGICAL_PAGE_SPARE_SIZE_VALUE field value from a register. */
-#define ALT_NAND_PARAM_LOGICAL_PAGE_SPARE_SIZE_VALUE_GET(value) (((value) & 0x0000ffff) >> 0)
+    #define ALT_NAND_PARAM_LOGICAL_PAGE_SPARE_SIZE_VALUE_GET( value )    ( ( ( value ) & 0x0000ffff ) >> 0 )
 /* Produces a ALT_NAND_PARAM_LOGICAL_PAGE_SPARE_SIZE_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_PARAM_LOGICAL_PAGE_SPARE_SIZE_VALUE_SET(value) (((value) << 0) & 0x0000ffff)
+    #define ALT_NAND_PARAM_LOGICAL_PAGE_SPARE_SIZE_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x0000ffff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -3923,18 +4029,18 @@ typedef volatile struct ALT_NAND_PARAM_LOGICAL_PAGE_DATA_SIZE_s  ALT_NAND_PARAM_
  *
  * The struct declaration for register ALT_NAND_PARAM_LOGICAL_PAGE_SPARE_SIZE.
  */
-struct ALT_NAND_PARAM_LOGICAL_PAGE_SPARE_SIZE_s
-{
-    const uint32_t  value : 16;  /* ALT_NAND_PARAM_LOGICAL_PAGE_SPARE_SIZE_VALUE */
-    uint32_t              : 16;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_PARAM_LOGICAL_PAGE_SPARE_SIZE_s
+        {
+            const uint32_t value : 16;  /* ALT_NAND_PARAM_LOGICAL_PAGE_SPARE_SIZE_VALUE */
+            uint32_t              : 16; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_PARAM_LOGICAL_PAGE_SPARE_SIZE. */
-typedef volatile struct ALT_NAND_PARAM_LOGICAL_PAGE_SPARE_SIZE_s  ALT_NAND_PARAM_LOGICAL_PAGE_SPARE_SIZE_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_PARAM_LOGICAL_PAGE_SPARE_SIZE_s ALT_NAND_PARAM_LOGICAL_PAGE_SPARE_SIZE_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_PARAM_LOGICAL_PAGE_SPARE_SIZE register from the beginning of the component. */
-#define ALT_NAND_PARAM_LOGICAL_PAGE_SPARE_SIZE_OFST        0x60
+    #define ALT_NAND_PARAM_LOGICAL_PAGE_SPARE_SIZE_OFST    0x60
 
 /*
  * Register : revision
@@ -3949,6 +4055,7 @@ typedef volatile struct ALT_NAND_PARAM_LOGICAL_PAGE_SPARE_SIZE_s  ALT_NAND_PARAM
  *  [31:16] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -3958,23 +4065,24 @@ typedef volatile struct ALT_NAND_PARAM_LOGICAL_PAGE_SPARE_SIZE_s  ALT_NAND_PARAM
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_PARAM_REVISION_VALUE register field. */
-#define ALT_NAND_PARAM_REVISION_VALUE_LSB        0
+    #define ALT_NAND_PARAM_REVISION_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_PARAM_REVISION_VALUE register field. */
-#define ALT_NAND_PARAM_REVISION_VALUE_MSB        15
+    #define ALT_NAND_PARAM_REVISION_VALUE_MSB        15
 /* The width in bits of the ALT_NAND_PARAM_REVISION_VALUE register field. */
-#define ALT_NAND_PARAM_REVISION_VALUE_WIDTH      16
+    #define ALT_NAND_PARAM_REVISION_VALUE_WIDTH      16
 /* The mask used to set the ALT_NAND_PARAM_REVISION_VALUE register field value. */
-#define ALT_NAND_PARAM_REVISION_VALUE_SET_MSK    0x0000ffff
+    #define ALT_NAND_PARAM_REVISION_VALUE_SET_MSK    0x0000ffff
 /* The mask used to clear the ALT_NAND_PARAM_REVISION_VALUE register field value. */
-#define ALT_NAND_PARAM_REVISION_VALUE_CLR_MSK    0xffff0000
+    #define ALT_NAND_PARAM_REVISION_VALUE_CLR_MSK    0xffff0000
 /* The reset value of the ALT_NAND_PARAM_REVISION_VALUE register field. */
-#define ALT_NAND_PARAM_REVISION_VALUE_RESET      0x5
+    #define ALT_NAND_PARAM_REVISION_VALUE_RESET      0x5
 /* Extracts the ALT_NAND_PARAM_REVISION_VALUE field value from a register. */
-#define ALT_NAND_PARAM_REVISION_VALUE_GET(value) (((value) & 0x0000ffff) >> 0)
+    #define ALT_NAND_PARAM_REVISION_VALUE_GET( value )    ( ( ( value ) & 0x0000ffff ) >> 0 )
 /* Produces a ALT_NAND_PARAM_REVISION_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_PARAM_REVISION_VALUE_SET(value) (((value) << 0) & 0x0000ffff)
+    #define ALT_NAND_PARAM_REVISION_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x0000ffff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -3985,18 +4093,18 @@ typedef volatile struct ALT_NAND_PARAM_LOGICAL_PAGE_SPARE_SIZE_s  ALT_NAND_PARAM
  *
  * The struct declaration for register ALT_NAND_PARAM_REVISION.
  */
-struct ALT_NAND_PARAM_REVISION_s
-{
-    const uint32_t  value : 16;  /* ALT_NAND_PARAM_REVISION_VALUE */
-    uint32_t              : 16;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_PARAM_REVISION_s
+        {
+            const uint32_t value : 16;  /* ALT_NAND_PARAM_REVISION_VALUE */
+            uint32_t              : 16; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_PARAM_REVISION. */
-typedef volatile struct ALT_NAND_PARAM_REVISION_s  ALT_NAND_PARAM_REVISION_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_PARAM_REVISION_s ALT_NAND_PARAM_REVISION_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_PARAM_REVISION register from the beginning of the component. */
-#define ALT_NAND_PARAM_REVISION_OFST        0x70
+    #define ALT_NAND_PARAM_REVISION_OFST    0x70
 
 /*
  * Register : onfi_device_features
@@ -4011,6 +4119,7 @@ typedef volatile struct ALT_NAND_PARAM_REVISION_s  ALT_NAND_PARAM_REVISION_t;
  *  [31:16] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -4027,23 +4136,24 @@ typedef volatile struct ALT_NAND_PARAM_REVISION_s  ALT_NAND_PARAM_REVISION_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_PARAM_ONFI_DEV_FEATURES_VALUE register field. */
-#define ALT_NAND_PARAM_ONFI_DEV_FEATURES_VALUE_LSB        0
+    #define ALT_NAND_PARAM_ONFI_DEV_FEATURES_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_PARAM_ONFI_DEV_FEATURES_VALUE register field. */
-#define ALT_NAND_PARAM_ONFI_DEV_FEATURES_VALUE_MSB        15
+    #define ALT_NAND_PARAM_ONFI_DEV_FEATURES_VALUE_MSB        15
 /* The width in bits of the ALT_NAND_PARAM_ONFI_DEV_FEATURES_VALUE register field. */
-#define ALT_NAND_PARAM_ONFI_DEV_FEATURES_VALUE_WIDTH      16
+    #define ALT_NAND_PARAM_ONFI_DEV_FEATURES_VALUE_WIDTH      16
 /* The mask used to set the ALT_NAND_PARAM_ONFI_DEV_FEATURES_VALUE register field value. */
-#define ALT_NAND_PARAM_ONFI_DEV_FEATURES_VALUE_SET_MSK    0x0000ffff
+    #define ALT_NAND_PARAM_ONFI_DEV_FEATURES_VALUE_SET_MSK    0x0000ffff
 /* The mask used to clear the ALT_NAND_PARAM_ONFI_DEV_FEATURES_VALUE register field value. */
-#define ALT_NAND_PARAM_ONFI_DEV_FEATURES_VALUE_CLR_MSK    0xffff0000
+    #define ALT_NAND_PARAM_ONFI_DEV_FEATURES_VALUE_CLR_MSK    0xffff0000
 /* The reset value of the ALT_NAND_PARAM_ONFI_DEV_FEATURES_VALUE register field. */
-#define ALT_NAND_PARAM_ONFI_DEV_FEATURES_VALUE_RESET      0x0
+    #define ALT_NAND_PARAM_ONFI_DEV_FEATURES_VALUE_RESET      0x0
 /* Extracts the ALT_NAND_PARAM_ONFI_DEV_FEATURES_VALUE field value from a register. */
-#define ALT_NAND_PARAM_ONFI_DEV_FEATURES_VALUE_GET(value) (((value) & 0x0000ffff) >> 0)
+    #define ALT_NAND_PARAM_ONFI_DEV_FEATURES_VALUE_GET( value )    ( ( ( value ) & 0x0000ffff ) >> 0 )
 /* Produces a ALT_NAND_PARAM_ONFI_DEV_FEATURES_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_PARAM_ONFI_DEV_FEATURES_VALUE_SET(value) (((value) << 0) & 0x0000ffff)
+    #define ALT_NAND_PARAM_ONFI_DEV_FEATURES_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x0000ffff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -4054,18 +4164,18 @@ typedef volatile struct ALT_NAND_PARAM_REVISION_s  ALT_NAND_PARAM_REVISION_t;
  *
  * The struct declaration for register ALT_NAND_PARAM_ONFI_DEV_FEATURES.
  */
-struct ALT_NAND_PARAM_ONFI_DEV_FEATURES_s
-{
-    const uint32_t  value : 16;  /* ALT_NAND_PARAM_ONFI_DEV_FEATURES_VALUE */
-    uint32_t              : 16;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_PARAM_ONFI_DEV_FEATURES_s
+        {
+            const uint32_t value : 16;  /* ALT_NAND_PARAM_ONFI_DEV_FEATURES_VALUE */
+            uint32_t              : 16; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_PARAM_ONFI_DEV_FEATURES. */
-typedef volatile struct ALT_NAND_PARAM_ONFI_DEV_FEATURES_s  ALT_NAND_PARAM_ONFI_DEV_FEATURES_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_PARAM_ONFI_DEV_FEATURES_s ALT_NAND_PARAM_ONFI_DEV_FEATURES_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_PARAM_ONFI_DEV_FEATURES register from the beginning of the component. */
-#define ALT_NAND_PARAM_ONFI_DEV_FEATURES_OFST        0x80
+    #define ALT_NAND_PARAM_ONFI_DEV_FEATURES_OFST    0x80
 
 /*
  * Register : onfi_optional_commands
@@ -4080,6 +4190,7 @@ typedef volatile struct ALT_NAND_PARAM_ONFI_DEV_FEATURES_s  ALT_NAND_PARAM_ONFI_
  *  [31:16] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -4095,23 +4206,24 @@ typedef volatile struct ALT_NAND_PARAM_ONFI_DEV_FEATURES_s  ALT_NAND_PARAM_ONFI_
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_PARAM_ONFI_OPTIONAL_CMDS_VALUE register field. */
-#define ALT_NAND_PARAM_ONFI_OPTIONAL_CMDS_VALUE_LSB        0
+    #define ALT_NAND_PARAM_ONFI_OPTIONAL_CMDS_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_PARAM_ONFI_OPTIONAL_CMDS_VALUE register field. */
-#define ALT_NAND_PARAM_ONFI_OPTIONAL_CMDS_VALUE_MSB        15
+    #define ALT_NAND_PARAM_ONFI_OPTIONAL_CMDS_VALUE_MSB        15
 /* The width in bits of the ALT_NAND_PARAM_ONFI_OPTIONAL_CMDS_VALUE register field. */
-#define ALT_NAND_PARAM_ONFI_OPTIONAL_CMDS_VALUE_WIDTH      16
+    #define ALT_NAND_PARAM_ONFI_OPTIONAL_CMDS_VALUE_WIDTH      16
 /* The mask used to set the ALT_NAND_PARAM_ONFI_OPTIONAL_CMDS_VALUE register field value. */
-#define ALT_NAND_PARAM_ONFI_OPTIONAL_CMDS_VALUE_SET_MSK    0x0000ffff
+    #define ALT_NAND_PARAM_ONFI_OPTIONAL_CMDS_VALUE_SET_MSK    0x0000ffff
 /* The mask used to clear the ALT_NAND_PARAM_ONFI_OPTIONAL_CMDS_VALUE register field value. */
-#define ALT_NAND_PARAM_ONFI_OPTIONAL_CMDS_VALUE_CLR_MSK    0xffff0000
+    #define ALT_NAND_PARAM_ONFI_OPTIONAL_CMDS_VALUE_CLR_MSK    0xffff0000
 /* The reset value of the ALT_NAND_PARAM_ONFI_OPTIONAL_CMDS_VALUE register field. */
-#define ALT_NAND_PARAM_ONFI_OPTIONAL_CMDS_VALUE_RESET      0x0
+    #define ALT_NAND_PARAM_ONFI_OPTIONAL_CMDS_VALUE_RESET      0x0
 /* Extracts the ALT_NAND_PARAM_ONFI_OPTIONAL_CMDS_VALUE field value from a register. */
-#define ALT_NAND_PARAM_ONFI_OPTIONAL_CMDS_VALUE_GET(value) (((value) & 0x0000ffff) >> 0)
+    #define ALT_NAND_PARAM_ONFI_OPTIONAL_CMDS_VALUE_GET( value )    ( ( ( value ) & 0x0000ffff ) >> 0 )
 /* Produces a ALT_NAND_PARAM_ONFI_OPTIONAL_CMDS_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_PARAM_ONFI_OPTIONAL_CMDS_VALUE_SET(value) (((value) << 0) & 0x0000ffff)
+    #define ALT_NAND_PARAM_ONFI_OPTIONAL_CMDS_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x0000ffff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -4122,18 +4234,18 @@ typedef volatile struct ALT_NAND_PARAM_ONFI_DEV_FEATURES_s  ALT_NAND_PARAM_ONFI_
  *
  * The struct declaration for register ALT_NAND_PARAM_ONFI_OPTIONAL_CMDS.
  */
-struct ALT_NAND_PARAM_ONFI_OPTIONAL_CMDS_s
-{
-    const uint32_t  value : 16;  /* ALT_NAND_PARAM_ONFI_OPTIONAL_CMDS_VALUE */
-    uint32_t              : 16;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_PARAM_ONFI_OPTIONAL_CMDS_s
+        {
+            const uint32_t value : 16;  /* ALT_NAND_PARAM_ONFI_OPTIONAL_CMDS_VALUE */
+            uint32_t              : 16; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_PARAM_ONFI_OPTIONAL_CMDS. */
-typedef volatile struct ALT_NAND_PARAM_ONFI_OPTIONAL_CMDS_s  ALT_NAND_PARAM_ONFI_OPTIONAL_CMDS_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_PARAM_ONFI_OPTIONAL_CMDS_s ALT_NAND_PARAM_ONFI_OPTIONAL_CMDS_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_PARAM_ONFI_OPTIONAL_CMDS register from the beginning of the component. */
-#define ALT_NAND_PARAM_ONFI_OPTIONAL_CMDS_OFST        0x90
+    #define ALT_NAND_PARAM_ONFI_OPTIONAL_CMDS_OFST    0x90
 
 /*
  * Register : onfi_timing_mode
@@ -4148,6 +4260,7 @@ typedef volatile struct ALT_NAND_PARAM_ONFI_OPTIONAL_CMDS_s  ALT_NAND_PARAM_ONFI
  *  [31:6] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -4160,23 +4273,24 @@ typedef volatile struct ALT_NAND_PARAM_ONFI_OPTIONAL_CMDS_s  ALT_NAND_PARAM_ONFI
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_PARAM_ONFI_TIMING_MOD_VALUE register field. */
-#define ALT_NAND_PARAM_ONFI_TIMING_MOD_VALUE_LSB        0
+    #define ALT_NAND_PARAM_ONFI_TIMING_MOD_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_PARAM_ONFI_TIMING_MOD_VALUE register field. */
-#define ALT_NAND_PARAM_ONFI_TIMING_MOD_VALUE_MSB        5
+    #define ALT_NAND_PARAM_ONFI_TIMING_MOD_VALUE_MSB        5
 /* The width in bits of the ALT_NAND_PARAM_ONFI_TIMING_MOD_VALUE register field. */
-#define ALT_NAND_PARAM_ONFI_TIMING_MOD_VALUE_WIDTH      6
+    #define ALT_NAND_PARAM_ONFI_TIMING_MOD_VALUE_WIDTH      6
 /* The mask used to set the ALT_NAND_PARAM_ONFI_TIMING_MOD_VALUE register field value. */
-#define ALT_NAND_PARAM_ONFI_TIMING_MOD_VALUE_SET_MSK    0x0000003f
+    #define ALT_NAND_PARAM_ONFI_TIMING_MOD_VALUE_SET_MSK    0x0000003f
 /* The mask used to clear the ALT_NAND_PARAM_ONFI_TIMING_MOD_VALUE register field value. */
-#define ALT_NAND_PARAM_ONFI_TIMING_MOD_VALUE_CLR_MSK    0xffffffc0
+    #define ALT_NAND_PARAM_ONFI_TIMING_MOD_VALUE_CLR_MSK    0xffffffc0
 /* The reset value of the ALT_NAND_PARAM_ONFI_TIMING_MOD_VALUE register field. */
-#define ALT_NAND_PARAM_ONFI_TIMING_MOD_VALUE_RESET      0x0
+    #define ALT_NAND_PARAM_ONFI_TIMING_MOD_VALUE_RESET      0x0
 /* Extracts the ALT_NAND_PARAM_ONFI_TIMING_MOD_VALUE field value from a register. */
-#define ALT_NAND_PARAM_ONFI_TIMING_MOD_VALUE_GET(value) (((value) & 0x0000003f) >> 0)
+    #define ALT_NAND_PARAM_ONFI_TIMING_MOD_VALUE_GET( value )    ( ( ( value ) & 0x0000003f ) >> 0 )
 /* Produces a ALT_NAND_PARAM_ONFI_TIMING_MOD_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_PARAM_ONFI_TIMING_MOD_VALUE_SET(value) (((value) << 0) & 0x0000003f)
+    #define ALT_NAND_PARAM_ONFI_TIMING_MOD_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x0000003f )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -4187,18 +4301,18 @@ typedef volatile struct ALT_NAND_PARAM_ONFI_OPTIONAL_CMDS_s  ALT_NAND_PARAM_ONFI
  *
  * The struct declaration for register ALT_NAND_PARAM_ONFI_TIMING_MOD.
  */
-struct ALT_NAND_PARAM_ONFI_TIMING_MOD_s
-{
-    const uint32_t  value :  6;  /* ALT_NAND_PARAM_ONFI_TIMING_MOD_VALUE */
-    uint32_t              : 26;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_PARAM_ONFI_TIMING_MOD_s
+        {
+            const uint32_t value :  6;  /* ALT_NAND_PARAM_ONFI_TIMING_MOD_VALUE */
+            uint32_t              : 26; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_PARAM_ONFI_TIMING_MOD. */
-typedef volatile struct ALT_NAND_PARAM_ONFI_TIMING_MOD_s  ALT_NAND_PARAM_ONFI_TIMING_MOD_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_PARAM_ONFI_TIMING_MOD_s ALT_NAND_PARAM_ONFI_TIMING_MOD_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_PARAM_ONFI_TIMING_MOD register from the beginning of the component. */
-#define ALT_NAND_PARAM_ONFI_TIMING_MOD_OFST        0xa0
+    #define ALT_NAND_PARAM_ONFI_TIMING_MOD_OFST    0xa0
 
 /*
  * Register : onfi_pgm_cache_timing_mode
@@ -4213,6 +4327,7 @@ typedef volatile struct ALT_NAND_PARAM_ONFI_TIMING_MOD_s  ALT_NAND_PARAM_ONFI_TI
  *  [31:6] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -4225,23 +4340,24 @@ typedef volatile struct ALT_NAND_PARAM_ONFI_TIMING_MOD_s  ALT_NAND_PARAM_ONFI_TI
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_PARAM_ONFI_PGM_CACHE_TIMING_MOD_VALUE register field. */
-#define ALT_NAND_PARAM_ONFI_PGM_CACHE_TIMING_MOD_VALUE_LSB        0
+    #define ALT_NAND_PARAM_ONFI_PGM_CACHE_TIMING_MOD_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_PARAM_ONFI_PGM_CACHE_TIMING_MOD_VALUE register field. */
-#define ALT_NAND_PARAM_ONFI_PGM_CACHE_TIMING_MOD_VALUE_MSB        5
+    #define ALT_NAND_PARAM_ONFI_PGM_CACHE_TIMING_MOD_VALUE_MSB        5
 /* The width in bits of the ALT_NAND_PARAM_ONFI_PGM_CACHE_TIMING_MOD_VALUE register field. */
-#define ALT_NAND_PARAM_ONFI_PGM_CACHE_TIMING_MOD_VALUE_WIDTH      6
+    #define ALT_NAND_PARAM_ONFI_PGM_CACHE_TIMING_MOD_VALUE_WIDTH      6
 /* The mask used to set the ALT_NAND_PARAM_ONFI_PGM_CACHE_TIMING_MOD_VALUE register field value. */
-#define ALT_NAND_PARAM_ONFI_PGM_CACHE_TIMING_MOD_VALUE_SET_MSK    0x0000003f
+    #define ALT_NAND_PARAM_ONFI_PGM_CACHE_TIMING_MOD_VALUE_SET_MSK    0x0000003f
 /* The mask used to clear the ALT_NAND_PARAM_ONFI_PGM_CACHE_TIMING_MOD_VALUE register field value. */
-#define ALT_NAND_PARAM_ONFI_PGM_CACHE_TIMING_MOD_VALUE_CLR_MSK    0xffffffc0
+    #define ALT_NAND_PARAM_ONFI_PGM_CACHE_TIMING_MOD_VALUE_CLR_MSK    0xffffffc0
 /* The reset value of the ALT_NAND_PARAM_ONFI_PGM_CACHE_TIMING_MOD_VALUE register field. */
-#define ALT_NAND_PARAM_ONFI_PGM_CACHE_TIMING_MOD_VALUE_RESET      0x0
+    #define ALT_NAND_PARAM_ONFI_PGM_CACHE_TIMING_MOD_VALUE_RESET      0x0
 /* Extracts the ALT_NAND_PARAM_ONFI_PGM_CACHE_TIMING_MOD_VALUE field value from a register. */
-#define ALT_NAND_PARAM_ONFI_PGM_CACHE_TIMING_MOD_VALUE_GET(value) (((value) & 0x0000003f) >> 0)
+    #define ALT_NAND_PARAM_ONFI_PGM_CACHE_TIMING_MOD_VALUE_GET( value )    ( ( ( value ) & 0x0000003f ) >> 0 )
 /* Produces a ALT_NAND_PARAM_ONFI_PGM_CACHE_TIMING_MOD_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_PARAM_ONFI_PGM_CACHE_TIMING_MOD_VALUE_SET(value) (((value) << 0) & 0x0000003f)
+    #define ALT_NAND_PARAM_ONFI_PGM_CACHE_TIMING_MOD_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x0000003f )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -4252,18 +4368,18 @@ typedef volatile struct ALT_NAND_PARAM_ONFI_TIMING_MOD_s  ALT_NAND_PARAM_ONFI_TI
  *
  * The struct declaration for register ALT_NAND_PARAM_ONFI_PGM_CACHE_TIMING_MOD.
  */
-struct ALT_NAND_PARAM_ONFI_PGM_CACHE_TIMING_MOD_s
-{
-    const uint32_t  value :  6;  /* ALT_NAND_PARAM_ONFI_PGM_CACHE_TIMING_MOD_VALUE */
-    uint32_t              : 26;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_PARAM_ONFI_PGM_CACHE_TIMING_MOD_s
+        {
+            const uint32_t value :  6;  /* ALT_NAND_PARAM_ONFI_PGM_CACHE_TIMING_MOD_VALUE */
+            uint32_t              : 26; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_PARAM_ONFI_PGM_CACHE_TIMING_MOD. */
-typedef volatile struct ALT_NAND_PARAM_ONFI_PGM_CACHE_TIMING_MOD_s  ALT_NAND_PARAM_ONFI_PGM_CACHE_TIMING_MOD_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_PARAM_ONFI_PGM_CACHE_TIMING_MOD_s ALT_NAND_PARAM_ONFI_PGM_CACHE_TIMING_MOD_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_PARAM_ONFI_PGM_CACHE_TIMING_MOD register from the beginning of the component. */
-#define ALT_NAND_PARAM_ONFI_PGM_CACHE_TIMING_MOD_OFST        0xb0
+    #define ALT_NAND_PARAM_ONFI_PGM_CACHE_TIMING_MOD_OFST    0xb0
 
 /*
  * Register : onfi_device_no_of_luns
@@ -4280,6 +4396,7 @@ typedef volatile struct ALT_NAND_PARAM_ONFI_PGM_CACHE_TIMING_MOD_s  ALT_NAND_PAR
  *  [31:9] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : no_of_luns
  *
@@ -4289,21 +4406,21 @@ typedef volatile struct ALT_NAND_PARAM_ONFI_PGM_CACHE_TIMING_MOD_s  ALT_NAND_PAR
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_NO_OF_LUNS register field. */
-#define ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_NO_OF_LUNS_LSB        0
+    #define ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_NO_OF_LUNS_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_NO_OF_LUNS register field. */
-#define ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_NO_OF_LUNS_MSB        7
+    #define ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_NO_OF_LUNS_MSB        7
 /* The width in bits of the ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_NO_OF_LUNS register field. */
-#define ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_NO_OF_LUNS_WIDTH      8
+    #define ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_NO_OF_LUNS_WIDTH      8
 /* The mask used to set the ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_NO_OF_LUNS register field value. */
-#define ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_NO_OF_LUNS_SET_MSK    0x000000ff
+    #define ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_NO_OF_LUNS_SET_MSK    0x000000ff
 /* The mask used to clear the ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_NO_OF_LUNS register field value. */
-#define ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_NO_OF_LUNS_CLR_MSK    0xffffff00
+    #define ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_NO_OF_LUNS_CLR_MSK    0xffffff00
 /* The reset value of the ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_NO_OF_LUNS register field. */
-#define ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_NO_OF_LUNS_RESET      0x0
+    #define ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_NO_OF_LUNS_RESET      0x0
 /* Extracts the ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_NO_OF_LUNS field value from a register. */
-#define ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_NO_OF_LUNS_GET(value) (((value) & 0x000000ff) >> 0)
+    #define ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_NO_OF_LUNS_GET( value )    ( ( ( value ) & 0x000000ff ) >> 0 )
 /* Produces a ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_NO_OF_LUNS register field value suitable for setting the register. */
-#define ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_NO_OF_LUNS_SET(value) (((value) << 0) & 0x000000ff)
+    #define ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_NO_OF_LUNS_SET( value )    ( ( ( value ) << 0 ) & 0x000000ff )
 
 /*
  * Field : onfi_device
@@ -4315,23 +4432,24 @@ typedef volatile struct ALT_NAND_PARAM_ONFI_PGM_CACHE_TIMING_MOD_s  ALT_NAND_PAR
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_ONFI_DEVICE register field. */
-#define ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_ONFI_DEVICE_LSB        8
+    #define ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_ONFI_DEVICE_LSB        8
 /* The Most Significant Bit (MSB) position of the ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_ONFI_DEVICE register field. */
-#define ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_ONFI_DEVICE_MSB        8
+    #define ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_ONFI_DEVICE_MSB        8
 /* The width in bits of the ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_ONFI_DEVICE register field. */
-#define ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_ONFI_DEVICE_WIDTH      1
+    #define ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_ONFI_DEVICE_WIDTH      1
 /* The mask used to set the ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_ONFI_DEVICE register field value. */
-#define ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_ONFI_DEVICE_SET_MSK    0x00000100
+    #define ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_ONFI_DEVICE_SET_MSK    0x00000100
 /* The mask used to clear the ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_ONFI_DEVICE register field value. */
-#define ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_ONFI_DEVICE_CLR_MSK    0xfffffeff
+    #define ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_ONFI_DEVICE_CLR_MSK    0xfffffeff
 /* The reset value of the ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_ONFI_DEVICE register field. */
-#define ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_ONFI_DEVICE_RESET      0x0
+    #define ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_ONFI_DEVICE_RESET      0x0
 /* Extracts the ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_ONFI_DEVICE field value from a register. */
-#define ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_ONFI_DEVICE_GET(value) (((value) & 0x00000100) >> 8)
+    #define ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_ONFI_DEVICE_GET( value )    ( ( ( value ) & 0x00000100 ) >> 8 )
 /* Produces a ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_ONFI_DEVICE register field value suitable for setting the register. */
-#define ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_ONFI_DEVICE_SET(value) (((value) << 8) & 0x00000100)
+    #define ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_ONFI_DEVICE_SET( value )    ( ( ( value ) << 8 ) & 0x00000100 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -4342,19 +4460,19 @@ typedef volatile struct ALT_NAND_PARAM_ONFI_PGM_CACHE_TIMING_MOD_s  ALT_NAND_PAR
  *
  * The struct declaration for register ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS.
  */
-struct ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_s
-{
-    const uint32_t  no_of_luns  :  8;  /* ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_NO_OF_LUNS */
-    uint32_t        onfi_device :  1;  /* ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_ONFI_DEVICE */
-    uint32_t                    : 23;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_s
+        {
+            const uint32_t no_of_luns  :  8;  /* ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_NO_OF_LUNS */
+            uint32_t onfi_device :  1;        /* ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_ONFI_DEVICE */
+            uint32_t                    : 23; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS. */
-typedef volatile struct ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_s  ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_s ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS register from the beginning of the component. */
-#define ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_OFST        0xc0
+    #define ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_OFST    0xc0
 
 /*
  * Register : onfi_device_no_of_blocks_per_lun_l
@@ -4369,6 +4487,7 @@ typedef volatile struct ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_s  ALT_NAND_PARAM_ONF
  *  [31:16] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -4379,23 +4498,24 @@ typedef volatile struct ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_s  ALT_NAND_PARAM_ONF
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_L_VALUE register field. */
-#define ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_L_VALUE_LSB        0
+    #define ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_L_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_L_VALUE register field. */
-#define ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_L_VALUE_MSB        15
+    #define ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_L_VALUE_MSB        15
 /* The width in bits of the ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_L_VALUE register field. */
-#define ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_L_VALUE_WIDTH      16
+    #define ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_L_VALUE_WIDTH      16
 /* The mask used to set the ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_L_VALUE register field value. */
-#define ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_L_VALUE_SET_MSK    0x0000ffff
+    #define ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_L_VALUE_SET_MSK    0x0000ffff
 /* The mask used to clear the ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_L_VALUE register field value. */
-#define ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_L_VALUE_CLR_MSK    0xffff0000
+    #define ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_L_VALUE_CLR_MSK    0xffff0000
 /* The reset value of the ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_L_VALUE register field. */
-#define ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_L_VALUE_RESET      0x0
+    #define ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_L_VALUE_RESET      0x0
 /* Extracts the ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_L_VALUE field value from a register. */
-#define ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_L_VALUE_GET(value) (((value) & 0x0000ffff) >> 0)
+    #define ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_L_VALUE_GET( value )    ( ( ( value ) & 0x0000ffff ) >> 0 )
 /* Produces a ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_L_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_L_VALUE_SET(value) (((value) << 0) & 0x0000ffff)
+    #define ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_L_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x0000ffff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -4406,18 +4526,18 @@ typedef volatile struct ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_s  ALT_NAND_PARAM_ONF
  *
  * The struct declaration for register ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_L.
  */
-struct ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_L_s
-{
-    const uint32_t  value : 16;  /* ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_L_VALUE */
-    uint32_t              : 16;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_L_s
+        {
+            const uint32_t value : 16;  /* ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_L_VALUE */
+            uint32_t              : 16; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_L. */
-typedef volatile struct ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_L_s  ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_L_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_L_s ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_L_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_L register from the beginning of the component. */
-#define ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_L_OFST        0xd0
+    #define ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_L_OFST    0xd0
 
 /*
  * Register : onfi_device_no_of_blocks_per_lun_u
@@ -4432,6 +4552,7 @@ typedef volatile struct ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_L_s  ALT_NAND_PARAM
  *  [31:16] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -4442,23 +4563,24 @@ typedef volatile struct ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_L_s  ALT_NAND_PARAM
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U_VALUE register field. */
-#define ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U_VALUE_LSB        0
+    #define ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U_VALUE register field. */
-#define ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U_VALUE_MSB        15
+    #define ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U_VALUE_MSB        15
 /* The width in bits of the ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U_VALUE register field. */
-#define ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U_VALUE_WIDTH      16
+    #define ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U_VALUE_WIDTH      16
 /* The mask used to set the ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U_VALUE register field value. */
-#define ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U_VALUE_SET_MSK    0x0000ffff
+    #define ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U_VALUE_SET_MSK    0x0000ffff
 /* The mask used to clear the ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U_VALUE register field value. */
-#define ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U_VALUE_CLR_MSK    0xffff0000
+    #define ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U_VALUE_CLR_MSK    0xffff0000
 /* The reset value of the ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U_VALUE register field. */
-#define ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U_VALUE_RESET      0x0
+    #define ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U_VALUE_RESET      0x0
 /* Extracts the ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U_VALUE field value from a register. */
-#define ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U_VALUE_GET(value) (((value) & 0x0000ffff) >> 0)
+    #define ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U_VALUE_GET( value )    ( ( ( value ) & 0x0000ffff ) >> 0 )
 /* Produces a ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U_VALUE_SET(value) (((value) << 0) & 0x0000ffff)
+    #define ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x0000ffff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -4469,18 +4591,18 @@ typedef volatile struct ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_L_s  ALT_NAND_PARAM
  *
  * The struct declaration for register ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U.
  */
-struct ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U_s
-{
-    const uint32_t  value : 16;  /* ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U_VALUE */
-    uint32_t              : 16;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U_s
+        {
+            const uint32_t value : 16;  /* ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U_VALUE */
+            uint32_t              : 16; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U. */
-typedef volatile struct ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U_s  ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U_s ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U register from the beginning of the component. */
-#define ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U_OFST        0xe0
+    #define ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U_OFST    0xe0
 
 /*
  * Register : features
@@ -4504,6 +4626,7 @@ typedef volatile struct ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U_s  ALT_NAND_PARAM
  *  [31:14] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : n_banks
  *
@@ -4515,21 +4638,21 @@ typedef volatile struct ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U_s  ALT_NAND_PARAM
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_PARAM_FEATURES_N_BANKS register field. */
-#define ALT_NAND_PARAM_FEATURES_N_BANKS_LSB        0
+    #define ALT_NAND_PARAM_FEATURES_N_BANKS_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_PARAM_FEATURES_N_BANKS register field. */
-#define ALT_NAND_PARAM_FEATURES_N_BANKS_MSB        1
+    #define ALT_NAND_PARAM_FEATURES_N_BANKS_MSB        1
 /* The width in bits of the ALT_NAND_PARAM_FEATURES_N_BANKS register field. */
-#define ALT_NAND_PARAM_FEATURES_N_BANKS_WIDTH      2
+    #define ALT_NAND_PARAM_FEATURES_N_BANKS_WIDTH      2
 /* The mask used to set the ALT_NAND_PARAM_FEATURES_N_BANKS register field value. */
-#define ALT_NAND_PARAM_FEATURES_N_BANKS_SET_MSK    0x00000003
+    #define ALT_NAND_PARAM_FEATURES_N_BANKS_SET_MSK    0x00000003
 /* The mask used to clear the ALT_NAND_PARAM_FEATURES_N_BANKS register field value. */
-#define ALT_NAND_PARAM_FEATURES_N_BANKS_CLR_MSK    0xfffffffc
+    #define ALT_NAND_PARAM_FEATURES_N_BANKS_CLR_MSK    0xfffffffc
 /* The reset value of the ALT_NAND_PARAM_FEATURES_N_BANKS register field. */
-#define ALT_NAND_PARAM_FEATURES_N_BANKS_RESET      0x1
+    #define ALT_NAND_PARAM_FEATURES_N_BANKS_RESET      0x1
 /* Extracts the ALT_NAND_PARAM_FEATURES_N_BANKS field value from a register. */
-#define ALT_NAND_PARAM_FEATURES_N_BANKS_GET(value) (((value) & 0x00000003) >> 0)
+    #define ALT_NAND_PARAM_FEATURES_N_BANKS_GET( value )    ( ( ( value ) & 0x00000003 ) >> 0 )
 /* Produces a ALT_NAND_PARAM_FEATURES_N_BANKS register field value suitable for setting the register. */
-#define ALT_NAND_PARAM_FEATURES_N_BANKS_SET(value) (((value) << 0) & 0x00000003)
+    #define ALT_NAND_PARAM_FEATURES_N_BANKS_SET( value )    ( ( ( value ) << 0 ) & 0x00000003 )
 
 /*
  * Field : dma
@@ -4540,21 +4663,21 @@ typedef volatile struct ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U_s  ALT_NAND_PARAM
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_PARAM_FEATURES_DMA register field. */
-#define ALT_NAND_PARAM_FEATURES_DMA_LSB        6
+    #define ALT_NAND_PARAM_FEATURES_DMA_LSB        6
 /* The Most Significant Bit (MSB) position of the ALT_NAND_PARAM_FEATURES_DMA register field. */
-#define ALT_NAND_PARAM_FEATURES_DMA_MSB        6
+    #define ALT_NAND_PARAM_FEATURES_DMA_MSB        6
 /* The width in bits of the ALT_NAND_PARAM_FEATURES_DMA register field. */
-#define ALT_NAND_PARAM_FEATURES_DMA_WIDTH      1
+    #define ALT_NAND_PARAM_FEATURES_DMA_WIDTH      1
 /* The mask used to set the ALT_NAND_PARAM_FEATURES_DMA register field value. */
-#define ALT_NAND_PARAM_FEATURES_DMA_SET_MSK    0x00000040
+    #define ALT_NAND_PARAM_FEATURES_DMA_SET_MSK    0x00000040
 /* The mask used to clear the ALT_NAND_PARAM_FEATURES_DMA register field value. */
-#define ALT_NAND_PARAM_FEATURES_DMA_CLR_MSK    0xffffffbf
+    #define ALT_NAND_PARAM_FEATURES_DMA_CLR_MSK    0xffffffbf
 /* The reset value of the ALT_NAND_PARAM_FEATURES_DMA register field. */
-#define ALT_NAND_PARAM_FEATURES_DMA_RESET      0x1
+    #define ALT_NAND_PARAM_FEATURES_DMA_RESET      0x1
 /* Extracts the ALT_NAND_PARAM_FEATURES_DMA field value from a register. */
-#define ALT_NAND_PARAM_FEATURES_DMA_GET(value) (((value) & 0x00000040) >> 6)
+    #define ALT_NAND_PARAM_FEATURES_DMA_GET( value )    ( ( ( value ) & 0x00000040 ) >> 6 )
 /* Produces a ALT_NAND_PARAM_FEATURES_DMA register field value suitable for setting the register. */
-#define ALT_NAND_PARAM_FEATURES_DMA_SET(value) (((value) << 6) & 0x00000040)
+    #define ALT_NAND_PARAM_FEATURES_DMA_SET( value )    ( ( ( value ) << 6 ) & 0x00000040 )
 
 /*
  * Field : cmd_dma
@@ -4565,21 +4688,21 @@ typedef volatile struct ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U_s  ALT_NAND_PARAM
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_PARAM_FEATURES_CMD_DMA register field. */
-#define ALT_NAND_PARAM_FEATURES_CMD_DMA_LSB        7
+    #define ALT_NAND_PARAM_FEATURES_CMD_DMA_LSB        7
 /* The Most Significant Bit (MSB) position of the ALT_NAND_PARAM_FEATURES_CMD_DMA register field. */
-#define ALT_NAND_PARAM_FEATURES_CMD_DMA_MSB        7
+    #define ALT_NAND_PARAM_FEATURES_CMD_DMA_MSB        7
 /* The width in bits of the ALT_NAND_PARAM_FEATURES_CMD_DMA register field. */
-#define ALT_NAND_PARAM_FEATURES_CMD_DMA_WIDTH      1
+    #define ALT_NAND_PARAM_FEATURES_CMD_DMA_WIDTH      1
 /* The mask used to set the ALT_NAND_PARAM_FEATURES_CMD_DMA register field value. */
-#define ALT_NAND_PARAM_FEATURES_CMD_DMA_SET_MSK    0x00000080
+    #define ALT_NAND_PARAM_FEATURES_CMD_DMA_SET_MSK    0x00000080
 /* The mask used to clear the ALT_NAND_PARAM_FEATURES_CMD_DMA register field value. */
-#define ALT_NAND_PARAM_FEATURES_CMD_DMA_CLR_MSK    0xffffff7f
+    #define ALT_NAND_PARAM_FEATURES_CMD_DMA_CLR_MSK    0xffffff7f
 /* The reset value of the ALT_NAND_PARAM_FEATURES_CMD_DMA register field. */
-#define ALT_NAND_PARAM_FEATURES_CMD_DMA_RESET      0x0
+    #define ALT_NAND_PARAM_FEATURES_CMD_DMA_RESET      0x0
 /* Extracts the ALT_NAND_PARAM_FEATURES_CMD_DMA field value from a register. */
-#define ALT_NAND_PARAM_FEATURES_CMD_DMA_GET(value) (((value) & 0x00000080) >> 7)
+    #define ALT_NAND_PARAM_FEATURES_CMD_DMA_GET( value )    ( ( ( value ) & 0x00000080 ) >> 7 )
 /* Produces a ALT_NAND_PARAM_FEATURES_CMD_DMA register field value suitable for setting the register. */
-#define ALT_NAND_PARAM_FEATURES_CMD_DMA_SET(value) (((value) << 7) & 0x00000080)
+    #define ALT_NAND_PARAM_FEATURES_CMD_DMA_SET( value )    ( ( ( value ) << 7 ) & 0x00000080 )
 
 /*
  * Field : partition
@@ -4590,21 +4713,21 @@ typedef volatile struct ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U_s  ALT_NAND_PARAM
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_PARAM_FEATURES_PARTITION register field. */
-#define ALT_NAND_PARAM_FEATURES_PARTITION_LSB        8
+    #define ALT_NAND_PARAM_FEATURES_PARTITION_LSB        8
 /* The Most Significant Bit (MSB) position of the ALT_NAND_PARAM_FEATURES_PARTITION register field. */
-#define ALT_NAND_PARAM_FEATURES_PARTITION_MSB        8
+    #define ALT_NAND_PARAM_FEATURES_PARTITION_MSB        8
 /* The width in bits of the ALT_NAND_PARAM_FEATURES_PARTITION register field. */
-#define ALT_NAND_PARAM_FEATURES_PARTITION_WIDTH      1
+    #define ALT_NAND_PARAM_FEATURES_PARTITION_WIDTH      1
 /* The mask used to set the ALT_NAND_PARAM_FEATURES_PARTITION register field value. */
-#define ALT_NAND_PARAM_FEATURES_PARTITION_SET_MSK    0x00000100
+    #define ALT_NAND_PARAM_FEATURES_PARTITION_SET_MSK    0x00000100
 /* The mask used to clear the ALT_NAND_PARAM_FEATURES_PARTITION register field value. */
-#define ALT_NAND_PARAM_FEATURES_PARTITION_CLR_MSK    0xfffffeff
+    #define ALT_NAND_PARAM_FEATURES_PARTITION_CLR_MSK    0xfffffeff
 /* The reset value of the ALT_NAND_PARAM_FEATURES_PARTITION register field. */
-#define ALT_NAND_PARAM_FEATURES_PARTITION_RESET      0x0
+    #define ALT_NAND_PARAM_FEATURES_PARTITION_RESET      0x0
 /* Extracts the ALT_NAND_PARAM_FEATURES_PARTITION field value from a register. */
-#define ALT_NAND_PARAM_FEATURES_PARTITION_GET(value) (((value) & 0x00000100) >> 8)
+    #define ALT_NAND_PARAM_FEATURES_PARTITION_GET( value )    ( ( ( value ) & 0x00000100 ) >> 8 )
 /* Produces a ALT_NAND_PARAM_FEATURES_PARTITION register field value suitable for setting the register. */
-#define ALT_NAND_PARAM_FEATURES_PARTITION_SET(value) (((value) << 8) & 0x00000100)
+    #define ALT_NAND_PARAM_FEATURES_PARTITION_SET( value )    ( ( ( value ) << 8 ) & 0x00000100 )
 
 /*
  * Field : xdma_sideband
@@ -4615,21 +4738,21 @@ typedef volatile struct ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U_s  ALT_NAND_PARAM
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_PARAM_FEATURES_XDMA_SIDEBAND register field. */
-#define ALT_NAND_PARAM_FEATURES_XDMA_SIDEBAND_LSB        9
+    #define ALT_NAND_PARAM_FEATURES_XDMA_SIDEBAND_LSB        9
 /* The Most Significant Bit (MSB) position of the ALT_NAND_PARAM_FEATURES_XDMA_SIDEBAND register field. */
-#define ALT_NAND_PARAM_FEATURES_XDMA_SIDEBAND_MSB        9
+    #define ALT_NAND_PARAM_FEATURES_XDMA_SIDEBAND_MSB        9
 /* The width in bits of the ALT_NAND_PARAM_FEATURES_XDMA_SIDEBAND register field. */
-#define ALT_NAND_PARAM_FEATURES_XDMA_SIDEBAND_WIDTH      1
+    #define ALT_NAND_PARAM_FEATURES_XDMA_SIDEBAND_WIDTH      1
 /* The mask used to set the ALT_NAND_PARAM_FEATURES_XDMA_SIDEBAND register field value. */
-#define ALT_NAND_PARAM_FEATURES_XDMA_SIDEBAND_SET_MSK    0x00000200
+    #define ALT_NAND_PARAM_FEATURES_XDMA_SIDEBAND_SET_MSK    0x00000200
 /* The mask used to clear the ALT_NAND_PARAM_FEATURES_XDMA_SIDEBAND register field value. */
-#define ALT_NAND_PARAM_FEATURES_XDMA_SIDEBAND_CLR_MSK    0xfffffdff
+    #define ALT_NAND_PARAM_FEATURES_XDMA_SIDEBAND_CLR_MSK    0xfffffdff
 /* The reset value of the ALT_NAND_PARAM_FEATURES_XDMA_SIDEBAND register field. */
-#define ALT_NAND_PARAM_FEATURES_XDMA_SIDEBAND_RESET      0x0
+    #define ALT_NAND_PARAM_FEATURES_XDMA_SIDEBAND_RESET      0x0
 /* Extracts the ALT_NAND_PARAM_FEATURES_XDMA_SIDEBAND field value from a register. */
-#define ALT_NAND_PARAM_FEATURES_XDMA_SIDEBAND_GET(value) (((value) & 0x00000200) >> 9)
+    #define ALT_NAND_PARAM_FEATURES_XDMA_SIDEBAND_GET( value )    ( ( ( value ) & 0x00000200 ) >> 9 )
 /* Produces a ALT_NAND_PARAM_FEATURES_XDMA_SIDEBAND register field value suitable for setting the register. */
-#define ALT_NAND_PARAM_FEATURES_XDMA_SIDEBAND_SET(value) (((value) << 9) & 0x00000200)
+    #define ALT_NAND_PARAM_FEATURES_XDMA_SIDEBAND_SET( value )    ( ( ( value ) << 9 ) & 0x00000200 )
 
 /*
  * Field : gpreg
@@ -4640,21 +4763,21 @@ typedef volatile struct ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U_s  ALT_NAND_PARAM
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_PARAM_FEATURES_GPREG register field. */
-#define ALT_NAND_PARAM_FEATURES_GPREG_LSB        10
+    #define ALT_NAND_PARAM_FEATURES_GPREG_LSB        10
 /* The Most Significant Bit (MSB) position of the ALT_NAND_PARAM_FEATURES_GPREG register field. */
-#define ALT_NAND_PARAM_FEATURES_GPREG_MSB        10
+    #define ALT_NAND_PARAM_FEATURES_GPREG_MSB        10
 /* The width in bits of the ALT_NAND_PARAM_FEATURES_GPREG register field. */
-#define ALT_NAND_PARAM_FEATURES_GPREG_WIDTH      1
+    #define ALT_NAND_PARAM_FEATURES_GPREG_WIDTH      1
 /* The mask used to set the ALT_NAND_PARAM_FEATURES_GPREG register field value. */
-#define ALT_NAND_PARAM_FEATURES_GPREG_SET_MSK    0x00000400
+    #define ALT_NAND_PARAM_FEATURES_GPREG_SET_MSK    0x00000400
 /* The mask used to clear the ALT_NAND_PARAM_FEATURES_GPREG register field value. */
-#define ALT_NAND_PARAM_FEATURES_GPREG_CLR_MSK    0xfffffbff
+    #define ALT_NAND_PARAM_FEATURES_GPREG_CLR_MSK    0xfffffbff
 /* The reset value of the ALT_NAND_PARAM_FEATURES_GPREG register field. */
-#define ALT_NAND_PARAM_FEATURES_GPREG_RESET      0x0
+    #define ALT_NAND_PARAM_FEATURES_GPREG_RESET      0x0
 /* Extracts the ALT_NAND_PARAM_FEATURES_GPREG field value from a register. */
-#define ALT_NAND_PARAM_FEATURES_GPREG_GET(value) (((value) & 0x00000400) >> 10)
+    #define ALT_NAND_PARAM_FEATURES_GPREG_GET( value )    ( ( ( value ) & 0x00000400 ) >> 10 )
 /* Produces a ALT_NAND_PARAM_FEATURES_GPREG register field value suitable for setting the register. */
-#define ALT_NAND_PARAM_FEATURES_GPREG_SET(value) (((value) << 10) & 0x00000400)
+    #define ALT_NAND_PARAM_FEATURES_GPREG_SET( value )    ( ( ( value ) << 10 ) & 0x00000400 )
 
 /*
  * Field : index_addr
@@ -4665,21 +4788,21 @@ typedef volatile struct ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U_s  ALT_NAND_PARAM
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_PARAM_FEATURES_INDEX_ADDR register field. */
-#define ALT_NAND_PARAM_FEATURES_INDEX_ADDR_LSB        11
+    #define ALT_NAND_PARAM_FEATURES_INDEX_ADDR_LSB        11
 /* The Most Significant Bit (MSB) position of the ALT_NAND_PARAM_FEATURES_INDEX_ADDR register field. */
-#define ALT_NAND_PARAM_FEATURES_INDEX_ADDR_MSB        11
+    #define ALT_NAND_PARAM_FEATURES_INDEX_ADDR_MSB        11
 /* The width in bits of the ALT_NAND_PARAM_FEATURES_INDEX_ADDR register field. */
-#define ALT_NAND_PARAM_FEATURES_INDEX_ADDR_WIDTH      1
+    #define ALT_NAND_PARAM_FEATURES_INDEX_ADDR_WIDTH      1
 /* The mask used to set the ALT_NAND_PARAM_FEATURES_INDEX_ADDR register field value. */
-#define ALT_NAND_PARAM_FEATURES_INDEX_ADDR_SET_MSK    0x00000800
+    #define ALT_NAND_PARAM_FEATURES_INDEX_ADDR_SET_MSK    0x00000800
 /* The mask used to clear the ALT_NAND_PARAM_FEATURES_INDEX_ADDR register field value. */
-#define ALT_NAND_PARAM_FEATURES_INDEX_ADDR_CLR_MSK    0xfffff7ff
+    #define ALT_NAND_PARAM_FEATURES_INDEX_ADDR_CLR_MSK    0xfffff7ff
 /* The reset value of the ALT_NAND_PARAM_FEATURES_INDEX_ADDR register field. */
-#define ALT_NAND_PARAM_FEATURES_INDEX_ADDR_RESET      0x1
+    #define ALT_NAND_PARAM_FEATURES_INDEX_ADDR_RESET      0x1
 /* Extracts the ALT_NAND_PARAM_FEATURES_INDEX_ADDR field value from a register. */
-#define ALT_NAND_PARAM_FEATURES_INDEX_ADDR_GET(value) (((value) & 0x00000800) >> 11)
+    #define ALT_NAND_PARAM_FEATURES_INDEX_ADDR_GET( value )    ( ( ( value ) & 0x00000800 ) >> 11 )
 /* Produces a ALT_NAND_PARAM_FEATURES_INDEX_ADDR register field value suitable for setting the register. */
-#define ALT_NAND_PARAM_FEATURES_INDEX_ADDR_SET(value) (((value) << 11) & 0x00000800)
+    #define ALT_NAND_PARAM_FEATURES_INDEX_ADDR_SET( value )    ( ( ( value ) << 11 ) & 0x00000800 )
 
 /*
  * Field : dfi_intf
@@ -4690,21 +4813,21 @@ typedef volatile struct ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U_s  ALT_NAND_PARAM
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_PARAM_FEATURES_DFI_INTF register field. */
-#define ALT_NAND_PARAM_FEATURES_DFI_INTF_LSB        12
+    #define ALT_NAND_PARAM_FEATURES_DFI_INTF_LSB        12
 /* The Most Significant Bit (MSB) position of the ALT_NAND_PARAM_FEATURES_DFI_INTF register field. */
-#define ALT_NAND_PARAM_FEATURES_DFI_INTF_MSB        12
+    #define ALT_NAND_PARAM_FEATURES_DFI_INTF_MSB        12
 /* The width in bits of the ALT_NAND_PARAM_FEATURES_DFI_INTF register field. */
-#define ALT_NAND_PARAM_FEATURES_DFI_INTF_WIDTH      1
+    #define ALT_NAND_PARAM_FEATURES_DFI_INTF_WIDTH      1
 /* The mask used to set the ALT_NAND_PARAM_FEATURES_DFI_INTF register field value. */
-#define ALT_NAND_PARAM_FEATURES_DFI_INTF_SET_MSK    0x00001000
+    #define ALT_NAND_PARAM_FEATURES_DFI_INTF_SET_MSK    0x00001000
 /* The mask used to clear the ALT_NAND_PARAM_FEATURES_DFI_INTF register field value. */
-#define ALT_NAND_PARAM_FEATURES_DFI_INTF_CLR_MSK    0xffffefff
+    #define ALT_NAND_PARAM_FEATURES_DFI_INTF_CLR_MSK    0xffffefff
 /* The reset value of the ALT_NAND_PARAM_FEATURES_DFI_INTF register field. */
-#define ALT_NAND_PARAM_FEATURES_DFI_INTF_RESET      0x0
+    #define ALT_NAND_PARAM_FEATURES_DFI_INTF_RESET      0x0
 /* Extracts the ALT_NAND_PARAM_FEATURES_DFI_INTF field value from a register. */
-#define ALT_NAND_PARAM_FEATURES_DFI_INTF_GET(value) (((value) & 0x00001000) >> 12)
+    #define ALT_NAND_PARAM_FEATURES_DFI_INTF_GET( value )    ( ( ( value ) & 0x00001000 ) >> 12 )
 /* Produces a ALT_NAND_PARAM_FEATURES_DFI_INTF register field value suitable for setting the register. */
-#define ALT_NAND_PARAM_FEATURES_DFI_INTF_SET(value) (((value) << 12) & 0x00001000)
+    #define ALT_NAND_PARAM_FEATURES_DFI_INTF_SET( value )    ( ( ( value ) << 12 ) & 0x00001000 )
 
 /*
  * Field : lba
@@ -4715,23 +4838,24 @@ typedef volatile struct ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U_s  ALT_NAND_PARAM
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_PARAM_FEATURES_LBA register field. */
-#define ALT_NAND_PARAM_FEATURES_LBA_LSB        13
+    #define ALT_NAND_PARAM_FEATURES_LBA_LSB        13
 /* The Most Significant Bit (MSB) position of the ALT_NAND_PARAM_FEATURES_LBA register field. */
-#define ALT_NAND_PARAM_FEATURES_LBA_MSB        13
+    #define ALT_NAND_PARAM_FEATURES_LBA_MSB        13
 /* The width in bits of the ALT_NAND_PARAM_FEATURES_LBA register field. */
-#define ALT_NAND_PARAM_FEATURES_LBA_WIDTH      1
+    #define ALT_NAND_PARAM_FEATURES_LBA_WIDTH      1
 /* The mask used to set the ALT_NAND_PARAM_FEATURES_LBA register field value. */
-#define ALT_NAND_PARAM_FEATURES_LBA_SET_MSK    0x00002000
+    #define ALT_NAND_PARAM_FEATURES_LBA_SET_MSK    0x00002000
 /* The mask used to clear the ALT_NAND_PARAM_FEATURES_LBA register field value. */
-#define ALT_NAND_PARAM_FEATURES_LBA_CLR_MSK    0xffffdfff
+    #define ALT_NAND_PARAM_FEATURES_LBA_CLR_MSK    0xffffdfff
 /* The reset value of the ALT_NAND_PARAM_FEATURES_LBA register field. */
-#define ALT_NAND_PARAM_FEATURES_LBA_RESET      0x0
+    #define ALT_NAND_PARAM_FEATURES_LBA_RESET      0x0
 /* Extracts the ALT_NAND_PARAM_FEATURES_LBA field value from a register. */
-#define ALT_NAND_PARAM_FEATURES_LBA_GET(value) (((value) & 0x00002000) >> 13)
+    #define ALT_NAND_PARAM_FEATURES_LBA_GET( value )    ( ( ( value ) & 0x00002000 ) >> 13 )
 /* Produces a ALT_NAND_PARAM_FEATURES_LBA register field value suitable for setting the register. */
-#define ALT_NAND_PARAM_FEATURES_LBA_SET(value) (((value) << 13) & 0x00002000)
+    #define ALT_NAND_PARAM_FEATURES_LBA_SET( value )    ( ( ( value ) << 13 ) & 0x00002000 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -4742,29 +4866,30 @@ typedef volatile struct ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U_s  ALT_NAND_PARAM
  *
  * The struct declaration for register ALT_NAND_PARAM_FEATURES.
  */
-struct ALT_NAND_PARAM_FEATURES_s
-{
-    const uint32_t  n_banks       :  2;  /* ALT_NAND_PARAM_FEATURES_N_BANKS */
-    uint32_t                      :  4;  /* *UNDEFINED* */
-    const uint32_t  dma           :  1;  /* ALT_NAND_PARAM_FEATURES_DMA */
-    const uint32_t  cmd_dma       :  1;  /* ALT_NAND_PARAM_FEATURES_CMD_DMA */
-    const uint32_t  partition     :  1;  /* ALT_NAND_PARAM_FEATURES_PARTITION */
-    const uint32_t  xdma_sideband :  1;  /* ALT_NAND_PARAM_FEATURES_XDMA_SIDEBAND */
-    const uint32_t  gpreg         :  1;  /* ALT_NAND_PARAM_FEATURES_GPREG */
-    const uint32_t  index_addr    :  1;  /* ALT_NAND_PARAM_FEATURES_INDEX_ADDR */
-    const uint32_t  dfi_intf      :  1;  /* ALT_NAND_PARAM_FEATURES_DFI_INTF */
-    const uint32_t  lba           :  1;  /* ALT_NAND_PARAM_FEATURES_LBA */
-    uint32_t                      : 18;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_PARAM_FEATURES_s
+        {
+            const uint32_t n_banks       :  2;  /* ALT_NAND_PARAM_FEATURES_N_BANKS */
+            uint32_t                      :  4; /* *UNDEFINED* */
+            const uint32_t dma           :  1;  /* ALT_NAND_PARAM_FEATURES_DMA */
+            const uint32_t cmd_dma       :  1;  /* ALT_NAND_PARAM_FEATURES_CMD_DMA */
+            const uint32_t partition     :  1;  /* ALT_NAND_PARAM_FEATURES_PARTITION */
+            const uint32_t xdma_sideband :  1;  /* ALT_NAND_PARAM_FEATURES_XDMA_SIDEBAND */
+            const uint32_t gpreg         :  1;  /* ALT_NAND_PARAM_FEATURES_GPREG */
+            const uint32_t index_addr    :  1;  /* ALT_NAND_PARAM_FEATURES_INDEX_ADDR */
+            const uint32_t dfi_intf      :  1;  /* ALT_NAND_PARAM_FEATURES_DFI_INTF */
+            const uint32_t lba           :  1;  /* ALT_NAND_PARAM_FEATURES_LBA */
+            uint32_t                      : 18; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_PARAM_FEATURES. */
-typedef volatile struct ALT_NAND_PARAM_FEATURES_s  ALT_NAND_PARAM_FEATURES_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_PARAM_FEATURES_s ALT_NAND_PARAM_FEATURES_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_PARAM_FEATURES register from the beginning of the component. */
-#define ALT_NAND_PARAM_FEATURES_OFST        0xf0
+    #define ALT_NAND_PARAM_FEATURES_OFST    0xf0
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -4775,82 +4900,82 @@ typedef volatile struct ALT_NAND_PARAM_FEATURES_s  ALT_NAND_PARAM_FEATURES_t;
  *
  * The struct declaration for register group ALT_NAND_PARAM.
  */
-struct ALT_NAND_PARAM_s
-{
-    volatile ALT_NAND_PARAM_MANUFACTURER_ID_t            manufacturer_id;                     /* ALT_NAND_PARAM_MANUFACTURER_ID */
-    volatile uint32_t                                    _pad_0x4_0xf[3];                     /* *UNDEFINED* */
-    volatile ALT_NAND_PARAM_DEVICE_ID_t                  device_id;                           /* ALT_NAND_PARAM_DEVICE_ID */
-    volatile uint32_t                                    _pad_0x14_0x1f[3];                   /* *UNDEFINED* */
-    volatile ALT_NAND_PARAM_DEVICE_PARAM_0_t             device_param_0;                      /* ALT_NAND_PARAM_DEVICE_PARAM_0 */
-    volatile uint32_t                                    _pad_0x24_0x2f[3];                   /* *UNDEFINED* */
-    volatile ALT_NAND_PARAM_DEVICE_PARAM_1_t             device_param_1;                      /* ALT_NAND_PARAM_DEVICE_PARAM_1 */
-    volatile uint32_t                                    _pad_0x34_0x3f[3];                   /* *UNDEFINED* */
-    volatile ALT_NAND_PARAM_DEVICE_PARAM_2_t             device_param_2;                      /* ALT_NAND_PARAM_DEVICE_PARAM_2 */
-    volatile uint32_t                                    _pad_0x44_0x4f[3];                   /* *UNDEFINED* */
-    volatile ALT_NAND_PARAM_LOGICAL_PAGE_DATA_SIZE_t     logical_page_data_size;              /* ALT_NAND_PARAM_LOGICAL_PAGE_DATA_SIZE */
-    volatile uint32_t                                    _pad_0x54_0x5f[3];                   /* *UNDEFINED* */
-    volatile ALT_NAND_PARAM_LOGICAL_PAGE_SPARE_SIZE_t    logical_page_spare_size;             /* ALT_NAND_PARAM_LOGICAL_PAGE_SPARE_SIZE */
-    volatile uint32_t                                    _pad_0x64_0x6f[3];                   /* *UNDEFINED* */
-    volatile ALT_NAND_PARAM_REVISION_t                   revision;                            /* ALT_NAND_PARAM_REVISION */
-    volatile uint32_t                                    _pad_0x74_0x7f[3];                   /* *UNDEFINED* */
-    volatile ALT_NAND_PARAM_ONFI_DEV_FEATURES_t          onfi_device_features;                /* ALT_NAND_PARAM_ONFI_DEV_FEATURES */
-    volatile uint32_t                                    _pad_0x84_0x8f[3];                   /* *UNDEFINED* */
-    volatile ALT_NAND_PARAM_ONFI_OPTIONAL_CMDS_t         onfi_optional_commands;              /* ALT_NAND_PARAM_ONFI_OPTIONAL_CMDS */
-    volatile uint32_t                                    _pad_0x94_0x9f[3];                   /* *UNDEFINED* */
-    volatile ALT_NAND_PARAM_ONFI_TIMING_MOD_t            onfi_timing_mode;                    /* ALT_NAND_PARAM_ONFI_TIMING_MOD */
-    volatile uint32_t                                    _pad_0xa4_0xaf[3];                   /* *UNDEFINED* */
-    volatile ALT_NAND_PARAM_ONFI_PGM_CACHE_TIMING_MOD_t  onfi_pgm_cache_timing_mode;          /* ALT_NAND_PARAM_ONFI_PGM_CACHE_TIMING_MOD */
-    volatile uint32_t                                    _pad_0xb4_0xbf[3];                   /* *UNDEFINED* */
-    volatile ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_t        onfi_device_no_of_luns;              /* ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS */
-    volatile uint32_t                                    _pad_0xc4_0xcf[3];                   /* *UNDEFINED* */
-    volatile ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_L_t    onfi_device_no_of_blocks_per_lun_l;  /* ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_L */
-    volatile uint32_t                                    _pad_0xd4_0xdf[3];                   /* *UNDEFINED* */
-    volatile ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U_t    onfi_device_no_of_blocks_per_lun_u;  /* ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U */
-    volatile uint32_t                                    _pad_0xe4_0xef[3];                   /* *UNDEFINED* */
-    volatile ALT_NAND_PARAM_FEATURES_t                   features;                            /* ALT_NAND_PARAM_FEATURES */
-};
+        struct ALT_NAND_PARAM_s
+        {
+            volatile ALT_NAND_PARAM_MANUFACTURER_ID_t manufacturer_id;                            /* ALT_NAND_PARAM_MANUFACTURER_ID */
+            volatile uint32_t _pad_0x4_0xf[ 3 ];                                                  /* *UNDEFINED* */
+            volatile ALT_NAND_PARAM_DEVICE_ID_t device_id;                                        /* ALT_NAND_PARAM_DEVICE_ID */
+            volatile uint32_t _pad_0x14_0x1f[ 3 ];                                                /* *UNDEFINED* */
+            volatile ALT_NAND_PARAM_DEVICE_PARAM_0_t device_param_0;                              /* ALT_NAND_PARAM_DEVICE_PARAM_0 */
+            volatile uint32_t _pad_0x24_0x2f[ 3 ];                                                /* *UNDEFINED* */
+            volatile ALT_NAND_PARAM_DEVICE_PARAM_1_t device_param_1;                              /* ALT_NAND_PARAM_DEVICE_PARAM_1 */
+            volatile uint32_t _pad_0x34_0x3f[ 3 ];                                                /* *UNDEFINED* */
+            volatile ALT_NAND_PARAM_DEVICE_PARAM_2_t device_param_2;                              /* ALT_NAND_PARAM_DEVICE_PARAM_2 */
+            volatile uint32_t _pad_0x44_0x4f[ 3 ];                                                /* *UNDEFINED* */
+            volatile ALT_NAND_PARAM_LOGICAL_PAGE_DATA_SIZE_t logical_page_data_size;              /* ALT_NAND_PARAM_LOGICAL_PAGE_DATA_SIZE */
+            volatile uint32_t _pad_0x54_0x5f[ 3 ];                                                /* *UNDEFINED* */
+            volatile ALT_NAND_PARAM_LOGICAL_PAGE_SPARE_SIZE_t logical_page_spare_size;            /* ALT_NAND_PARAM_LOGICAL_PAGE_SPARE_SIZE */
+            volatile uint32_t _pad_0x64_0x6f[ 3 ];                                                /* *UNDEFINED* */
+            volatile ALT_NAND_PARAM_REVISION_t revision;                                          /* ALT_NAND_PARAM_REVISION */
+            volatile uint32_t _pad_0x74_0x7f[ 3 ];                                                /* *UNDEFINED* */
+            volatile ALT_NAND_PARAM_ONFI_DEV_FEATURES_t onfi_device_features;                     /* ALT_NAND_PARAM_ONFI_DEV_FEATURES */
+            volatile uint32_t _pad_0x84_0x8f[ 3 ];                                                /* *UNDEFINED* */
+            volatile ALT_NAND_PARAM_ONFI_OPTIONAL_CMDS_t onfi_optional_commands;                  /* ALT_NAND_PARAM_ONFI_OPTIONAL_CMDS */
+            volatile uint32_t _pad_0x94_0x9f[ 3 ];                                                /* *UNDEFINED* */
+            volatile ALT_NAND_PARAM_ONFI_TIMING_MOD_t onfi_timing_mode;                           /* ALT_NAND_PARAM_ONFI_TIMING_MOD */
+            volatile uint32_t _pad_0xa4_0xaf[ 3 ];                                                /* *UNDEFINED* */
+            volatile ALT_NAND_PARAM_ONFI_PGM_CACHE_TIMING_MOD_t onfi_pgm_cache_timing_mode;       /* ALT_NAND_PARAM_ONFI_PGM_CACHE_TIMING_MOD */
+            volatile uint32_t _pad_0xb4_0xbf[ 3 ];                                                /* *UNDEFINED* */
+            volatile ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS_t onfi_device_no_of_luns;                 /* ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS */
+            volatile uint32_t _pad_0xc4_0xcf[ 3 ];                                                /* *UNDEFINED* */
+            volatile ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_L_t onfi_device_no_of_blocks_per_lun_l; /* ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_L */
+            volatile uint32_t _pad_0xd4_0xdf[ 3 ];                                                /* *UNDEFINED* */
+            volatile ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U_t onfi_device_no_of_blocks_per_lun_u; /* ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U */
+            volatile uint32_t _pad_0xe4_0xef[ 3 ];                                                /* *UNDEFINED* */
+            volatile ALT_NAND_PARAM_FEATURES_t features;                                          /* ALT_NAND_PARAM_FEATURES */
+        };
 
 /* The typedef declaration for register group ALT_NAND_PARAM. */
-typedef volatile struct ALT_NAND_PARAM_s  ALT_NAND_PARAM_t;
+        typedef volatile struct ALT_NAND_PARAM_s ALT_NAND_PARAM_t;
 /* The struct declaration for the raw register contents of register group ALT_NAND_PARAM. */
-struct ALT_NAND_PARAM_raw_s
-{
-    volatile uint32_t  manufacturer_id;                     /* ALT_NAND_PARAM_MANUFACTURER_ID */
-    volatile uint32_t  _pad_0x4_0xf[3];                     /* *UNDEFINED* */
-    volatile uint32_t  device_id;                           /* ALT_NAND_PARAM_DEVICE_ID */
-    volatile uint32_t  _pad_0x14_0x1f[3];                   /* *UNDEFINED* */
-    volatile uint32_t  device_param_0;                      /* ALT_NAND_PARAM_DEVICE_PARAM_0 */
-    volatile uint32_t  _pad_0x24_0x2f[3];                   /* *UNDEFINED* */
-    volatile uint32_t  device_param_1;                      /* ALT_NAND_PARAM_DEVICE_PARAM_1 */
-    volatile uint32_t  _pad_0x34_0x3f[3];                   /* *UNDEFINED* */
-    volatile uint32_t  device_param_2;                      /* ALT_NAND_PARAM_DEVICE_PARAM_2 */
-    volatile uint32_t  _pad_0x44_0x4f[3];                   /* *UNDEFINED* */
-    volatile uint32_t  logical_page_data_size;              /* ALT_NAND_PARAM_LOGICAL_PAGE_DATA_SIZE */
-    volatile uint32_t  _pad_0x54_0x5f[3];                   /* *UNDEFINED* */
-    volatile uint32_t  logical_page_spare_size;             /* ALT_NAND_PARAM_LOGICAL_PAGE_SPARE_SIZE */
-    volatile uint32_t  _pad_0x64_0x6f[3];                   /* *UNDEFINED* */
-    volatile uint32_t  revision;                            /* ALT_NAND_PARAM_REVISION */
-    volatile uint32_t  _pad_0x74_0x7f[3];                   /* *UNDEFINED* */
-    volatile uint32_t  onfi_device_features;                /* ALT_NAND_PARAM_ONFI_DEV_FEATURES */
-    volatile uint32_t  _pad_0x84_0x8f[3];                   /* *UNDEFINED* */
-    volatile uint32_t  onfi_optional_commands;              /* ALT_NAND_PARAM_ONFI_OPTIONAL_CMDS */
-    volatile uint32_t  _pad_0x94_0x9f[3];                   /* *UNDEFINED* */
-    volatile uint32_t  onfi_timing_mode;                    /* ALT_NAND_PARAM_ONFI_TIMING_MOD */
-    volatile uint32_t  _pad_0xa4_0xaf[3];                   /* *UNDEFINED* */
-    volatile uint32_t  onfi_pgm_cache_timing_mode;          /* ALT_NAND_PARAM_ONFI_PGM_CACHE_TIMING_MOD */
-    volatile uint32_t  _pad_0xb4_0xbf[3];                   /* *UNDEFINED* */
-    volatile uint32_t  onfi_device_no_of_luns;              /* ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS */
-    volatile uint32_t  _pad_0xc4_0xcf[3];                   /* *UNDEFINED* */
-    volatile uint32_t  onfi_device_no_of_blocks_per_lun_l;  /* ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_L */
-    volatile uint32_t  _pad_0xd4_0xdf[3];                   /* *UNDEFINED* */
-    volatile uint32_t  onfi_device_no_of_blocks_per_lun_u;  /* ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U */
-    volatile uint32_t  _pad_0xe4_0xef[3];                   /* *UNDEFINED* */
-    volatile uint32_t  features;                            /* ALT_NAND_PARAM_FEATURES */
-};
+        struct ALT_NAND_PARAM_raw_s
+        {
+            volatile uint32_t manufacturer_id;                    /* ALT_NAND_PARAM_MANUFACTURER_ID */
+            volatile uint32_t _pad_0x4_0xf[ 3 ];                  /* *UNDEFINED* */
+            volatile uint32_t device_id;                          /* ALT_NAND_PARAM_DEVICE_ID */
+            volatile uint32_t _pad_0x14_0x1f[ 3 ];                /* *UNDEFINED* */
+            volatile uint32_t device_param_0;                     /* ALT_NAND_PARAM_DEVICE_PARAM_0 */
+            volatile uint32_t _pad_0x24_0x2f[ 3 ];                /* *UNDEFINED* */
+            volatile uint32_t device_param_1;                     /* ALT_NAND_PARAM_DEVICE_PARAM_1 */
+            volatile uint32_t _pad_0x34_0x3f[ 3 ];                /* *UNDEFINED* */
+            volatile uint32_t device_param_2;                     /* ALT_NAND_PARAM_DEVICE_PARAM_2 */
+            volatile uint32_t _pad_0x44_0x4f[ 3 ];                /* *UNDEFINED* */
+            volatile uint32_t logical_page_data_size;             /* ALT_NAND_PARAM_LOGICAL_PAGE_DATA_SIZE */
+            volatile uint32_t _pad_0x54_0x5f[ 3 ];                /* *UNDEFINED* */
+            volatile uint32_t logical_page_spare_size;            /* ALT_NAND_PARAM_LOGICAL_PAGE_SPARE_SIZE */
+            volatile uint32_t _pad_0x64_0x6f[ 3 ];                /* *UNDEFINED* */
+            volatile uint32_t revision;                           /* ALT_NAND_PARAM_REVISION */
+            volatile uint32_t _pad_0x74_0x7f[ 3 ];                /* *UNDEFINED* */
+            volatile uint32_t onfi_device_features;               /* ALT_NAND_PARAM_ONFI_DEV_FEATURES */
+            volatile uint32_t _pad_0x84_0x8f[ 3 ];                /* *UNDEFINED* */
+            volatile uint32_t onfi_optional_commands;             /* ALT_NAND_PARAM_ONFI_OPTIONAL_CMDS */
+            volatile uint32_t _pad_0x94_0x9f[ 3 ];                /* *UNDEFINED* */
+            volatile uint32_t onfi_timing_mode;                   /* ALT_NAND_PARAM_ONFI_TIMING_MOD */
+            volatile uint32_t _pad_0xa4_0xaf[ 3 ];                /* *UNDEFINED* */
+            volatile uint32_t onfi_pgm_cache_timing_mode;         /* ALT_NAND_PARAM_ONFI_PGM_CACHE_TIMING_MOD */
+            volatile uint32_t _pad_0xb4_0xbf[ 3 ];                /* *UNDEFINED* */
+            volatile uint32_t onfi_device_no_of_luns;             /* ALT_NAND_PARAM_ONFI_DEV_NO_OF_LUNS */
+            volatile uint32_t _pad_0xc4_0xcf[ 3 ];                /* *UNDEFINED* */
+            volatile uint32_t onfi_device_no_of_blocks_per_lun_l; /* ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_L */
+            volatile uint32_t _pad_0xd4_0xdf[ 3 ];                /* *UNDEFINED* */
+            volatile uint32_t onfi_device_no_of_blocks_per_lun_u; /* ALT_NAND_PARAM_ONFI_DEV_BLKS_PER_LUN_U */
+            volatile uint32_t _pad_0xe4_0xef[ 3 ];                /* *UNDEFINED* */
+            volatile uint32_t features;                           /* ALT_NAND_PARAM_FEATURES */
+        };
 
 /* The typedef declaration for the raw register contents of register group ALT_NAND_PARAM. */
-typedef volatile struct ALT_NAND_PARAM_raw_s  ALT_NAND_PARAM_raw_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_PARAM_raw_s ALT_NAND_PARAM_raw_t;
+    #endif /* __ASSEMBLY__ */
 
 
 /*
@@ -4860,6 +4985,7 @@ typedef volatile struct ALT_NAND_PARAM_raw_s  ALT_NAND_PARAM_raw_t;
  * Contains interrupt and status registers of controller accessible by software.
  *
  */
+
 /*
  * Register : transfer_mode
  *
@@ -4877,6 +5003,7 @@ typedef volatile struct ALT_NAND_PARAM_raw_s  ALT_NAND_PARAM_raw_t;
  *  [31:8] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value0
  *
@@ -4887,21 +5014,21 @@ typedef volatile struct ALT_NAND_PARAM_raw_s  ALT_NAND_PARAM_raw_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_TFR_MOD_VALUE0 register field. */
-#define ALT_NAND_STAT_TFR_MOD_VALUE0_LSB        0
+    #define ALT_NAND_STAT_TFR_MOD_VALUE0_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_TFR_MOD_VALUE0 register field. */
-#define ALT_NAND_STAT_TFR_MOD_VALUE0_MSB        1
+    #define ALT_NAND_STAT_TFR_MOD_VALUE0_MSB        1
 /* The width in bits of the ALT_NAND_STAT_TFR_MOD_VALUE0 register field. */
-#define ALT_NAND_STAT_TFR_MOD_VALUE0_WIDTH      2
+    #define ALT_NAND_STAT_TFR_MOD_VALUE0_WIDTH      2
 /* The mask used to set the ALT_NAND_STAT_TFR_MOD_VALUE0 register field value. */
-#define ALT_NAND_STAT_TFR_MOD_VALUE0_SET_MSK    0x00000003
+    #define ALT_NAND_STAT_TFR_MOD_VALUE0_SET_MSK    0x00000003
 /* The mask used to clear the ALT_NAND_STAT_TFR_MOD_VALUE0 register field value. */
-#define ALT_NAND_STAT_TFR_MOD_VALUE0_CLR_MSK    0xfffffffc
+    #define ALT_NAND_STAT_TFR_MOD_VALUE0_CLR_MSK    0xfffffffc
 /* The reset value of the ALT_NAND_STAT_TFR_MOD_VALUE0 register field. */
-#define ALT_NAND_STAT_TFR_MOD_VALUE0_RESET      0x0
+    #define ALT_NAND_STAT_TFR_MOD_VALUE0_RESET      0x0
 /* Extracts the ALT_NAND_STAT_TFR_MOD_VALUE0 field value from a register. */
-#define ALT_NAND_STAT_TFR_MOD_VALUE0_GET(value) (((value) & 0x00000003) >> 0)
+    #define ALT_NAND_STAT_TFR_MOD_VALUE0_GET( value )    ( ( ( value ) & 0x00000003 ) >> 0 )
 /* Produces a ALT_NAND_STAT_TFR_MOD_VALUE0 register field value suitable for setting the register. */
-#define ALT_NAND_STAT_TFR_MOD_VALUE0_SET(value) (((value) << 0) & 0x00000003)
+    #define ALT_NAND_STAT_TFR_MOD_VALUE0_SET( value )    ( ( ( value ) << 0 ) & 0x00000003 )
 
 /*
  * Field : value1
@@ -4913,21 +5040,21 @@ typedef volatile struct ALT_NAND_PARAM_raw_s  ALT_NAND_PARAM_raw_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_TFR_MOD_VALUE1 register field. */
-#define ALT_NAND_STAT_TFR_MOD_VALUE1_LSB        2
+    #define ALT_NAND_STAT_TFR_MOD_VALUE1_LSB        2
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_TFR_MOD_VALUE1 register field. */
-#define ALT_NAND_STAT_TFR_MOD_VALUE1_MSB        3
+    #define ALT_NAND_STAT_TFR_MOD_VALUE1_MSB        3
 /* The width in bits of the ALT_NAND_STAT_TFR_MOD_VALUE1 register field. */
-#define ALT_NAND_STAT_TFR_MOD_VALUE1_WIDTH      2
+    #define ALT_NAND_STAT_TFR_MOD_VALUE1_WIDTH      2
 /* The mask used to set the ALT_NAND_STAT_TFR_MOD_VALUE1 register field value. */
-#define ALT_NAND_STAT_TFR_MOD_VALUE1_SET_MSK    0x0000000c
+    #define ALT_NAND_STAT_TFR_MOD_VALUE1_SET_MSK    0x0000000c
 /* The mask used to clear the ALT_NAND_STAT_TFR_MOD_VALUE1 register field value. */
-#define ALT_NAND_STAT_TFR_MOD_VALUE1_CLR_MSK    0xfffffff3
+    #define ALT_NAND_STAT_TFR_MOD_VALUE1_CLR_MSK    0xfffffff3
 /* The reset value of the ALT_NAND_STAT_TFR_MOD_VALUE1 register field. */
-#define ALT_NAND_STAT_TFR_MOD_VALUE1_RESET      0x0
+    #define ALT_NAND_STAT_TFR_MOD_VALUE1_RESET      0x0
 /* Extracts the ALT_NAND_STAT_TFR_MOD_VALUE1 field value from a register. */
-#define ALT_NAND_STAT_TFR_MOD_VALUE1_GET(value) (((value) & 0x0000000c) >> 2)
+    #define ALT_NAND_STAT_TFR_MOD_VALUE1_GET( value )    ( ( ( value ) & 0x0000000c ) >> 2 )
 /* Produces a ALT_NAND_STAT_TFR_MOD_VALUE1 register field value suitable for setting the register. */
-#define ALT_NAND_STAT_TFR_MOD_VALUE1_SET(value) (((value) << 2) & 0x0000000c)
+    #define ALT_NAND_STAT_TFR_MOD_VALUE1_SET( value )    ( ( ( value ) << 2 ) & 0x0000000c )
 
 /*
  * Field : value2
@@ -4939,21 +5066,21 @@ typedef volatile struct ALT_NAND_PARAM_raw_s  ALT_NAND_PARAM_raw_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_TFR_MOD_VALUE2 register field. */
-#define ALT_NAND_STAT_TFR_MOD_VALUE2_LSB        4
+    #define ALT_NAND_STAT_TFR_MOD_VALUE2_LSB        4
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_TFR_MOD_VALUE2 register field. */
-#define ALT_NAND_STAT_TFR_MOD_VALUE2_MSB        5
+    #define ALT_NAND_STAT_TFR_MOD_VALUE2_MSB        5
 /* The width in bits of the ALT_NAND_STAT_TFR_MOD_VALUE2 register field. */
-#define ALT_NAND_STAT_TFR_MOD_VALUE2_WIDTH      2
+    #define ALT_NAND_STAT_TFR_MOD_VALUE2_WIDTH      2
 /* The mask used to set the ALT_NAND_STAT_TFR_MOD_VALUE2 register field value. */
-#define ALT_NAND_STAT_TFR_MOD_VALUE2_SET_MSK    0x00000030
+    #define ALT_NAND_STAT_TFR_MOD_VALUE2_SET_MSK    0x00000030
 /* The mask used to clear the ALT_NAND_STAT_TFR_MOD_VALUE2 register field value. */
-#define ALT_NAND_STAT_TFR_MOD_VALUE2_CLR_MSK    0xffffffcf
+    #define ALT_NAND_STAT_TFR_MOD_VALUE2_CLR_MSK    0xffffffcf
 /* The reset value of the ALT_NAND_STAT_TFR_MOD_VALUE2 register field. */
-#define ALT_NAND_STAT_TFR_MOD_VALUE2_RESET      0x0
+    #define ALT_NAND_STAT_TFR_MOD_VALUE2_RESET      0x0
 /* Extracts the ALT_NAND_STAT_TFR_MOD_VALUE2 field value from a register. */
-#define ALT_NAND_STAT_TFR_MOD_VALUE2_GET(value) (((value) & 0x00000030) >> 4)
+    #define ALT_NAND_STAT_TFR_MOD_VALUE2_GET( value )    ( ( ( value ) & 0x00000030 ) >> 4 )
 /* Produces a ALT_NAND_STAT_TFR_MOD_VALUE2 register field value suitable for setting the register. */
-#define ALT_NAND_STAT_TFR_MOD_VALUE2_SET(value) (((value) << 4) & 0x00000030)
+    #define ALT_NAND_STAT_TFR_MOD_VALUE2_SET( value )    ( ( ( value ) << 4 ) & 0x00000030 )
 
 /*
  * Field : value3
@@ -4965,23 +5092,24 @@ typedef volatile struct ALT_NAND_PARAM_raw_s  ALT_NAND_PARAM_raw_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_TFR_MOD_VALUE3 register field. */
-#define ALT_NAND_STAT_TFR_MOD_VALUE3_LSB        6
+    #define ALT_NAND_STAT_TFR_MOD_VALUE3_LSB        6
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_TFR_MOD_VALUE3 register field. */
-#define ALT_NAND_STAT_TFR_MOD_VALUE3_MSB        7
+    #define ALT_NAND_STAT_TFR_MOD_VALUE3_MSB        7
 /* The width in bits of the ALT_NAND_STAT_TFR_MOD_VALUE3 register field. */
-#define ALT_NAND_STAT_TFR_MOD_VALUE3_WIDTH      2
+    #define ALT_NAND_STAT_TFR_MOD_VALUE3_WIDTH      2
 /* The mask used to set the ALT_NAND_STAT_TFR_MOD_VALUE3 register field value. */
-#define ALT_NAND_STAT_TFR_MOD_VALUE3_SET_MSK    0x000000c0
+    #define ALT_NAND_STAT_TFR_MOD_VALUE3_SET_MSK    0x000000c0
 /* The mask used to clear the ALT_NAND_STAT_TFR_MOD_VALUE3 register field value. */
-#define ALT_NAND_STAT_TFR_MOD_VALUE3_CLR_MSK    0xffffff3f
+    #define ALT_NAND_STAT_TFR_MOD_VALUE3_CLR_MSK    0xffffff3f
 /* The reset value of the ALT_NAND_STAT_TFR_MOD_VALUE3 register field. */
-#define ALT_NAND_STAT_TFR_MOD_VALUE3_RESET      0x0
+    #define ALT_NAND_STAT_TFR_MOD_VALUE3_RESET      0x0
 /* Extracts the ALT_NAND_STAT_TFR_MOD_VALUE3 field value from a register. */
-#define ALT_NAND_STAT_TFR_MOD_VALUE3_GET(value) (((value) & 0x000000c0) >> 6)
+    #define ALT_NAND_STAT_TFR_MOD_VALUE3_GET( value )    ( ( ( value ) & 0x000000c0 ) >> 6 )
 /* Produces a ALT_NAND_STAT_TFR_MOD_VALUE3 register field value suitable for setting the register. */
-#define ALT_NAND_STAT_TFR_MOD_VALUE3_SET(value) (((value) << 6) & 0x000000c0)
+    #define ALT_NAND_STAT_TFR_MOD_VALUE3_SET( value )    ( ( ( value ) << 6 ) & 0x000000c0 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -4992,21 +5120,21 @@ typedef volatile struct ALT_NAND_PARAM_raw_s  ALT_NAND_PARAM_raw_t;
  *
  * The struct declaration for register ALT_NAND_STAT_TFR_MOD.
  */
-struct ALT_NAND_STAT_TFR_MOD_s
-{
-    const uint32_t  value0 :  2;  /* ALT_NAND_STAT_TFR_MOD_VALUE0 */
-    const uint32_t  value1 :  2;  /* ALT_NAND_STAT_TFR_MOD_VALUE1 */
-    const uint32_t  value2 :  2;  /* ALT_NAND_STAT_TFR_MOD_VALUE2 */
-    const uint32_t  value3 :  2;  /* ALT_NAND_STAT_TFR_MOD_VALUE3 */
-    uint32_t               : 24;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_STAT_TFR_MOD_s
+        {
+            const uint32_t value0 :  2;  /* ALT_NAND_STAT_TFR_MOD_VALUE0 */
+            const uint32_t value1 :  2;  /* ALT_NAND_STAT_TFR_MOD_VALUE1 */
+            const uint32_t value2 :  2;  /* ALT_NAND_STAT_TFR_MOD_VALUE2 */
+            const uint32_t value3 :  2;  /* ALT_NAND_STAT_TFR_MOD_VALUE3 */
+            uint32_t               : 24; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_STAT_TFR_MOD. */
-typedef volatile struct ALT_NAND_STAT_TFR_MOD_s  ALT_NAND_STAT_TFR_MOD_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_STAT_TFR_MOD_s ALT_NAND_STAT_TFR_MOD_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_STAT_TFR_MOD register from the beginning of the component. */
-#define ALT_NAND_STAT_TFR_MOD_OFST        0x0
+    #define ALT_NAND_STAT_TFR_MOD_OFST    0x0
 
 /*
  * Register : intr_status0
@@ -5036,6 +5164,7 @@ typedef volatile struct ALT_NAND_STAT_TFR_MOD_s  ALT_NAND_STAT_TFR_MOD_t;
  *  [31:16] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : ecc_uncor_err
  *
@@ -5045,21 +5174,21 @@ typedef volatile struct ALT_NAND_STAT_TFR_MOD_s  ALT_NAND_STAT_TFR_MOD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT0_ECC_UNCOR_ERR register field. */
-#define ALT_NAND_STAT_INTR_STAT0_ECC_UNCOR_ERR_LSB        0
+    #define ALT_NAND_STAT_INTR_STAT0_ECC_UNCOR_ERR_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT0_ECC_UNCOR_ERR register field. */
-#define ALT_NAND_STAT_INTR_STAT0_ECC_UNCOR_ERR_MSB        0
+    #define ALT_NAND_STAT_INTR_STAT0_ECC_UNCOR_ERR_MSB        0
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT0_ECC_UNCOR_ERR register field. */
-#define ALT_NAND_STAT_INTR_STAT0_ECC_UNCOR_ERR_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT0_ECC_UNCOR_ERR_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT0_ECC_UNCOR_ERR register field value. */
-#define ALT_NAND_STAT_INTR_STAT0_ECC_UNCOR_ERR_SET_MSK    0x00000001
+    #define ALT_NAND_STAT_INTR_STAT0_ECC_UNCOR_ERR_SET_MSK    0x00000001
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT0_ECC_UNCOR_ERR register field value. */
-#define ALT_NAND_STAT_INTR_STAT0_ECC_UNCOR_ERR_CLR_MSK    0xfffffffe
+    #define ALT_NAND_STAT_INTR_STAT0_ECC_UNCOR_ERR_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_NAND_STAT_INTR_STAT0_ECC_UNCOR_ERR register field. */
-#define ALT_NAND_STAT_INTR_STAT0_ECC_UNCOR_ERR_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT0_ECC_UNCOR_ERR_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT0_ECC_UNCOR_ERR field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT0_ECC_UNCOR_ERR_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_NAND_STAT_INTR_STAT0_ECC_UNCOR_ERR_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_NAND_STAT_INTR_STAT0_ECC_UNCOR_ERR register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT0_ECC_UNCOR_ERR_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_NAND_STAT_INTR_STAT0_ECC_UNCOR_ERR_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
 /*
  * Field : dma_cmd_comp
@@ -5070,21 +5199,21 @@ typedef volatile struct ALT_NAND_STAT_TFR_MOD_s  ALT_NAND_STAT_TFR_MOD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT0_DMA_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT0_DMA_CMD_COMP_LSB        2
+    #define ALT_NAND_STAT_INTR_STAT0_DMA_CMD_COMP_LSB        2
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT0_DMA_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT0_DMA_CMD_COMP_MSB        2
+    #define ALT_NAND_STAT_INTR_STAT0_DMA_CMD_COMP_MSB        2
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT0_DMA_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT0_DMA_CMD_COMP_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT0_DMA_CMD_COMP_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT0_DMA_CMD_COMP register field value. */
-#define ALT_NAND_STAT_INTR_STAT0_DMA_CMD_COMP_SET_MSK    0x00000004
+    #define ALT_NAND_STAT_INTR_STAT0_DMA_CMD_COMP_SET_MSK    0x00000004
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT0_DMA_CMD_COMP register field value. */
-#define ALT_NAND_STAT_INTR_STAT0_DMA_CMD_COMP_CLR_MSK    0xfffffffb
+    #define ALT_NAND_STAT_INTR_STAT0_DMA_CMD_COMP_CLR_MSK    0xfffffffb
 /* The reset value of the ALT_NAND_STAT_INTR_STAT0_DMA_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT0_DMA_CMD_COMP_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT0_DMA_CMD_COMP_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT0_DMA_CMD_COMP field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT0_DMA_CMD_COMP_GET(value) (((value) & 0x00000004) >> 2)
+    #define ALT_NAND_STAT_INTR_STAT0_DMA_CMD_COMP_GET( value )    ( ( ( value ) & 0x00000004 ) >> 2 )
 /* Produces a ALT_NAND_STAT_INTR_STAT0_DMA_CMD_COMP register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT0_DMA_CMD_COMP_SET(value) (((value) << 2) & 0x00000004)
+    #define ALT_NAND_STAT_INTR_STAT0_DMA_CMD_COMP_SET( value )    ( ( ( value ) << 2 ) & 0x00000004 )
 
 /*
  * Field : time_out
@@ -5096,21 +5225,21 @@ typedef volatile struct ALT_NAND_STAT_TFR_MOD_s  ALT_NAND_STAT_TFR_MOD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT0_TIME_OUT register field. */
-#define ALT_NAND_STAT_INTR_STAT0_TIME_OUT_LSB        3
+    #define ALT_NAND_STAT_INTR_STAT0_TIME_OUT_LSB        3
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT0_TIME_OUT register field. */
-#define ALT_NAND_STAT_INTR_STAT0_TIME_OUT_MSB        3
+    #define ALT_NAND_STAT_INTR_STAT0_TIME_OUT_MSB        3
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT0_TIME_OUT register field. */
-#define ALT_NAND_STAT_INTR_STAT0_TIME_OUT_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT0_TIME_OUT_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT0_TIME_OUT register field value. */
-#define ALT_NAND_STAT_INTR_STAT0_TIME_OUT_SET_MSK    0x00000008
+    #define ALT_NAND_STAT_INTR_STAT0_TIME_OUT_SET_MSK    0x00000008
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT0_TIME_OUT register field value. */
-#define ALT_NAND_STAT_INTR_STAT0_TIME_OUT_CLR_MSK    0xfffffff7
+    #define ALT_NAND_STAT_INTR_STAT0_TIME_OUT_CLR_MSK    0xfffffff7
 /* The reset value of the ALT_NAND_STAT_INTR_STAT0_TIME_OUT register field. */
-#define ALT_NAND_STAT_INTR_STAT0_TIME_OUT_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT0_TIME_OUT_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT0_TIME_OUT field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT0_TIME_OUT_GET(value) (((value) & 0x00000008) >> 3)
+    #define ALT_NAND_STAT_INTR_STAT0_TIME_OUT_GET( value )    ( ( ( value ) & 0x00000008 ) >> 3 )
 /* Produces a ALT_NAND_STAT_INTR_STAT0_TIME_OUT register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT0_TIME_OUT_SET(value) (((value) << 3) & 0x00000008)
+    #define ALT_NAND_STAT_INTR_STAT0_TIME_OUT_SET( value )    ( ( ( value ) << 3 ) & 0x00000008 )
 
 /*
  * Field : program_fail
@@ -5123,21 +5252,21 @@ typedef volatile struct ALT_NAND_STAT_TFR_MOD_s  ALT_NAND_STAT_TFR_MOD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT0_PROGRAM_FAIL register field. */
-#define ALT_NAND_STAT_INTR_STAT0_PROGRAM_FAIL_LSB        4
+    #define ALT_NAND_STAT_INTR_STAT0_PROGRAM_FAIL_LSB        4
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT0_PROGRAM_FAIL register field. */
-#define ALT_NAND_STAT_INTR_STAT0_PROGRAM_FAIL_MSB        4
+    #define ALT_NAND_STAT_INTR_STAT0_PROGRAM_FAIL_MSB        4
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT0_PROGRAM_FAIL register field. */
-#define ALT_NAND_STAT_INTR_STAT0_PROGRAM_FAIL_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT0_PROGRAM_FAIL_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT0_PROGRAM_FAIL register field value. */
-#define ALT_NAND_STAT_INTR_STAT0_PROGRAM_FAIL_SET_MSK    0x00000010
+    #define ALT_NAND_STAT_INTR_STAT0_PROGRAM_FAIL_SET_MSK    0x00000010
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT0_PROGRAM_FAIL register field value. */
-#define ALT_NAND_STAT_INTR_STAT0_PROGRAM_FAIL_CLR_MSK    0xffffffef
+    #define ALT_NAND_STAT_INTR_STAT0_PROGRAM_FAIL_CLR_MSK    0xffffffef
 /* The reset value of the ALT_NAND_STAT_INTR_STAT0_PROGRAM_FAIL register field. */
-#define ALT_NAND_STAT_INTR_STAT0_PROGRAM_FAIL_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT0_PROGRAM_FAIL_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT0_PROGRAM_FAIL field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT0_PROGRAM_FAIL_GET(value) (((value) & 0x00000010) >> 4)
+    #define ALT_NAND_STAT_INTR_STAT0_PROGRAM_FAIL_GET( value )    ( ( ( value ) & 0x00000010 ) >> 4 )
 /* Produces a ALT_NAND_STAT_INTR_STAT0_PROGRAM_FAIL register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT0_PROGRAM_FAIL_SET(value) (((value) << 4) & 0x00000010)
+    #define ALT_NAND_STAT_INTR_STAT0_PROGRAM_FAIL_SET( value )    ( ( ( value ) << 4 ) & 0x00000010 )
 
 /*
  * Field : erase_fail
@@ -5150,21 +5279,21 @@ typedef volatile struct ALT_NAND_STAT_TFR_MOD_s  ALT_NAND_STAT_TFR_MOD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT0_ERASE_FAIL register field. */
-#define ALT_NAND_STAT_INTR_STAT0_ERASE_FAIL_LSB        5
+    #define ALT_NAND_STAT_INTR_STAT0_ERASE_FAIL_LSB        5
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT0_ERASE_FAIL register field. */
-#define ALT_NAND_STAT_INTR_STAT0_ERASE_FAIL_MSB        5
+    #define ALT_NAND_STAT_INTR_STAT0_ERASE_FAIL_MSB        5
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT0_ERASE_FAIL register field. */
-#define ALT_NAND_STAT_INTR_STAT0_ERASE_FAIL_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT0_ERASE_FAIL_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT0_ERASE_FAIL register field value. */
-#define ALT_NAND_STAT_INTR_STAT0_ERASE_FAIL_SET_MSK    0x00000020
+    #define ALT_NAND_STAT_INTR_STAT0_ERASE_FAIL_SET_MSK    0x00000020
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT0_ERASE_FAIL register field value. */
-#define ALT_NAND_STAT_INTR_STAT0_ERASE_FAIL_CLR_MSK    0xffffffdf
+    #define ALT_NAND_STAT_INTR_STAT0_ERASE_FAIL_CLR_MSK    0xffffffdf
 /* The reset value of the ALT_NAND_STAT_INTR_STAT0_ERASE_FAIL register field. */
-#define ALT_NAND_STAT_INTR_STAT0_ERASE_FAIL_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT0_ERASE_FAIL_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT0_ERASE_FAIL field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT0_ERASE_FAIL_GET(value) (((value) & 0x00000020) >> 5)
+    #define ALT_NAND_STAT_INTR_STAT0_ERASE_FAIL_GET( value )    ( ( ( value ) & 0x00000020 ) >> 5 )
 /* Produces a ALT_NAND_STAT_INTR_STAT0_ERASE_FAIL register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT0_ERASE_FAIL_SET(value) (((value) << 5) & 0x00000020)
+    #define ALT_NAND_STAT_INTR_STAT0_ERASE_FAIL_SET( value )    ( ( ( value ) << 5 ) & 0x00000020 )
 
 /*
  * Field : load_comp
@@ -5175,21 +5304,21 @@ typedef volatile struct ALT_NAND_STAT_TFR_MOD_s  ALT_NAND_STAT_TFR_MOD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT0_LD_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT0_LD_COMP_LSB        6
+    #define ALT_NAND_STAT_INTR_STAT0_LD_COMP_LSB        6
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT0_LD_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT0_LD_COMP_MSB        6
+    #define ALT_NAND_STAT_INTR_STAT0_LD_COMP_MSB        6
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT0_LD_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT0_LD_COMP_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT0_LD_COMP_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT0_LD_COMP register field value. */
-#define ALT_NAND_STAT_INTR_STAT0_LD_COMP_SET_MSK    0x00000040
+    #define ALT_NAND_STAT_INTR_STAT0_LD_COMP_SET_MSK    0x00000040
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT0_LD_COMP register field value. */
-#define ALT_NAND_STAT_INTR_STAT0_LD_COMP_CLR_MSK    0xffffffbf
+    #define ALT_NAND_STAT_INTR_STAT0_LD_COMP_CLR_MSK    0xffffffbf
 /* The reset value of the ALT_NAND_STAT_INTR_STAT0_LD_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT0_LD_COMP_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT0_LD_COMP_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT0_LD_COMP field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT0_LD_COMP_GET(value) (((value) & 0x00000040) >> 6)
+    #define ALT_NAND_STAT_INTR_STAT0_LD_COMP_GET( value )    ( ( ( value ) & 0x00000040 ) >> 6 )
 /* Produces a ALT_NAND_STAT_INTR_STAT0_LD_COMP register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT0_LD_COMP_SET(value) (((value) << 6) & 0x00000040)
+    #define ALT_NAND_STAT_INTR_STAT0_LD_COMP_SET( value )    ( ( ( value ) << 6 ) & 0x00000040 )
 
 /*
  * Field : program_comp
@@ -5200,21 +5329,21 @@ typedef volatile struct ALT_NAND_STAT_TFR_MOD_s  ALT_NAND_STAT_TFR_MOD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT0_PROGRAM_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT0_PROGRAM_COMP_LSB        7
+    #define ALT_NAND_STAT_INTR_STAT0_PROGRAM_COMP_LSB        7
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT0_PROGRAM_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT0_PROGRAM_COMP_MSB        7
+    #define ALT_NAND_STAT_INTR_STAT0_PROGRAM_COMP_MSB        7
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT0_PROGRAM_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT0_PROGRAM_COMP_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT0_PROGRAM_COMP_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT0_PROGRAM_COMP register field value. */
-#define ALT_NAND_STAT_INTR_STAT0_PROGRAM_COMP_SET_MSK    0x00000080
+    #define ALT_NAND_STAT_INTR_STAT0_PROGRAM_COMP_SET_MSK    0x00000080
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT0_PROGRAM_COMP register field value. */
-#define ALT_NAND_STAT_INTR_STAT0_PROGRAM_COMP_CLR_MSK    0xffffff7f
+    #define ALT_NAND_STAT_INTR_STAT0_PROGRAM_COMP_CLR_MSK    0xffffff7f
 /* The reset value of the ALT_NAND_STAT_INTR_STAT0_PROGRAM_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT0_PROGRAM_COMP_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT0_PROGRAM_COMP_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT0_PROGRAM_COMP field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT0_PROGRAM_COMP_GET(value) (((value) & 0x00000080) >> 7)
+    #define ALT_NAND_STAT_INTR_STAT0_PROGRAM_COMP_GET( value )    ( ( ( value ) & 0x00000080 ) >> 7 )
 /* Produces a ALT_NAND_STAT_INTR_STAT0_PROGRAM_COMP register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT0_PROGRAM_COMP_SET(value) (((value) << 7) & 0x00000080)
+    #define ALT_NAND_STAT_INTR_STAT0_PROGRAM_COMP_SET( value )    ( ( ( value ) << 7 ) & 0x00000080 )
 
 /*
  * Field : erase_comp
@@ -5225,21 +5354,21 @@ typedef volatile struct ALT_NAND_STAT_TFR_MOD_s  ALT_NAND_STAT_TFR_MOD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT0_ERASE_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT0_ERASE_COMP_LSB        8
+    #define ALT_NAND_STAT_INTR_STAT0_ERASE_COMP_LSB        8
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT0_ERASE_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT0_ERASE_COMP_MSB        8
+    #define ALT_NAND_STAT_INTR_STAT0_ERASE_COMP_MSB        8
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT0_ERASE_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT0_ERASE_COMP_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT0_ERASE_COMP_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT0_ERASE_COMP register field value. */
-#define ALT_NAND_STAT_INTR_STAT0_ERASE_COMP_SET_MSK    0x00000100
+    #define ALT_NAND_STAT_INTR_STAT0_ERASE_COMP_SET_MSK    0x00000100
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT0_ERASE_COMP register field value. */
-#define ALT_NAND_STAT_INTR_STAT0_ERASE_COMP_CLR_MSK    0xfffffeff
+    #define ALT_NAND_STAT_INTR_STAT0_ERASE_COMP_CLR_MSK    0xfffffeff
 /* The reset value of the ALT_NAND_STAT_INTR_STAT0_ERASE_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT0_ERASE_COMP_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT0_ERASE_COMP_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT0_ERASE_COMP field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT0_ERASE_COMP_GET(value) (((value) & 0x00000100) >> 8)
+    #define ALT_NAND_STAT_INTR_STAT0_ERASE_COMP_GET( value )    ( ( ( value ) & 0x00000100 ) >> 8 )
 /* Produces a ALT_NAND_STAT_INTR_STAT0_ERASE_COMP register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT0_ERASE_COMP_SET(value) (((value) << 8) & 0x00000100)
+    #define ALT_NAND_STAT_INTR_STAT0_ERASE_COMP_SET( value )    ( ( ( value ) << 8 ) & 0x00000100 )
 
 /*
  * Field : pipe_cpybck_cmd_comp
@@ -5251,21 +5380,21 @@ typedef volatile struct ALT_NAND_STAT_TFR_MOD_s  ALT_NAND_STAT_TFR_MOD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT0_PIPE_CPYBCK_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT0_PIPE_CPYBCK_CMD_COMP_LSB        9
+    #define ALT_NAND_STAT_INTR_STAT0_PIPE_CPYBCK_CMD_COMP_LSB        9
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT0_PIPE_CPYBCK_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT0_PIPE_CPYBCK_CMD_COMP_MSB        9
+    #define ALT_NAND_STAT_INTR_STAT0_PIPE_CPYBCK_CMD_COMP_MSB        9
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT0_PIPE_CPYBCK_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT0_PIPE_CPYBCK_CMD_COMP_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT0_PIPE_CPYBCK_CMD_COMP_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT0_PIPE_CPYBCK_CMD_COMP register field value. */
-#define ALT_NAND_STAT_INTR_STAT0_PIPE_CPYBCK_CMD_COMP_SET_MSK    0x00000200
+    #define ALT_NAND_STAT_INTR_STAT0_PIPE_CPYBCK_CMD_COMP_SET_MSK    0x00000200
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT0_PIPE_CPYBCK_CMD_COMP register field value. */
-#define ALT_NAND_STAT_INTR_STAT0_PIPE_CPYBCK_CMD_COMP_CLR_MSK    0xfffffdff
+    #define ALT_NAND_STAT_INTR_STAT0_PIPE_CPYBCK_CMD_COMP_CLR_MSK    0xfffffdff
 /* The reset value of the ALT_NAND_STAT_INTR_STAT0_PIPE_CPYBCK_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT0_PIPE_CPYBCK_CMD_COMP_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT0_PIPE_CPYBCK_CMD_COMP_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT0_PIPE_CPYBCK_CMD_COMP field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT0_PIPE_CPYBCK_CMD_COMP_GET(value) (((value) & 0x00000200) >> 9)
+    #define ALT_NAND_STAT_INTR_STAT0_PIPE_CPYBCK_CMD_COMP_GET( value )    ( ( ( value ) & 0x00000200 ) >> 9 )
 /* Produces a ALT_NAND_STAT_INTR_STAT0_PIPE_CPYBCK_CMD_COMP register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT0_PIPE_CPYBCK_CMD_COMP_SET(value) (((value) << 9) & 0x00000200)
+    #define ALT_NAND_STAT_INTR_STAT0_PIPE_CPYBCK_CMD_COMP_SET( value )    ( ( ( value ) << 9 ) & 0x00000200 )
 
 /*
  * Field : locked_blk
@@ -5277,21 +5406,21 @@ typedef volatile struct ALT_NAND_STAT_TFR_MOD_s  ALT_NAND_STAT_TFR_MOD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT0_LOCKED_BLK register field. */
-#define ALT_NAND_STAT_INTR_STAT0_LOCKED_BLK_LSB        10
+    #define ALT_NAND_STAT_INTR_STAT0_LOCKED_BLK_LSB        10
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT0_LOCKED_BLK register field. */
-#define ALT_NAND_STAT_INTR_STAT0_LOCKED_BLK_MSB        10
+    #define ALT_NAND_STAT_INTR_STAT0_LOCKED_BLK_MSB        10
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT0_LOCKED_BLK register field. */
-#define ALT_NAND_STAT_INTR_STAT0_LOCKED_BLK_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT0_LOCKED_BLK_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT0_LOCKED_BLK register field value. */
-#define ALT_NAND_STAT_INTR_STAT0_LOCKED_BLK_SET_MSK    0x00000400
+    #define ALT_NAND_STAT_INTR_STAT0_LOCKED_BLK_SET_MSK    0x00000400
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT0_LOCKED_BLK register field value. */
-#define ALT_NAND_STAT_INTR_STAT0_LOCKED_BLK_CLR_MSK    0xfffffbff
+    #define ALT_NAND_STAT_INTR_STAT0_LOCKED_BLK_CLR_MSK    0xfffffbff
 /* The reset value of the ALT_NAND_STAT_INTR_STAT0_LOCKED_BLK register field. */
-#define ALT_NAND_STAT_INTR_STAT0_LOCKED_BLK_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT0_LOCKED_BLK_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT0_LOCKED_BLK field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT0_LOCKED_BLK_GET(value) (((value) & 0x00000400) >> 10)
+    #define ALT_NAND_STAT_INTR_STAT0_LOCKED_BLK_GET( value )    ( ( ( value ) & 0x00000400 ) >> 10 )
 /* Produces a ALT_NAND_STAT_INTR_STAT0_LOCKED_BLK register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT0_LOCKED_BLK_SET(value) (((value) << 10) & 0x00000400)
+    #define ALT_NAND_STAT_INTR_STAT0_LOCKED_BLK_SET( value )    ( ( ( value ) << 10 ) & 0x00000400 )
 
 /*
  * Field : unsup_cmd
@@ -5303,21 +5432,21 @@ typedef volatile struct ALT_NAND_STAT_TFR_MOD_s  ALT_NAND_STAT_TFR_MOD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT0_UNSUP_CMD register field. */
-#define ALT_NAND_STAT_INTR_STAT0_UNSUP_CMD_LSB        11
+    #define ALT_NAND_STAT_INTR_STAT0_UNSUP_CMD_LSB        11
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT0_UNSUP_CMD register field. */
-#define ALT_NAND_STAT_INTR_STAT0_UNSUP_CMD_MSB        11
+    #define ALT_NAND_STAT_INTR_STAT0_UNSUP_CMD_MSB        11
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT0_UNSUP_CMD register field. */
-#define ALT_NAND_STAT_INTR_STAT0_UNSUP_CMD_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT0_UNSUP_CMD_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT0_UNSUP_CMD register field value. */
-#define ALT_NAND_STAT_INTR_STAT0_UNSUP_CMD_SET_MSK    0x00000800
+    #define ALT_NAND_STAT_INTR_STAT0_UNSUP_CMD_SET_MSK    0x00000800
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT0_UNSUP_CMD register field value. */
-#define ALT_NAND_STAT_INTR_STAT0_UNSUP_CMD_CLR_MSK    0xfffff7ff
+    #define ALT_NAND_STAT_INTR_STAT0_UNSUP_CMD_CLR_MSK    0xfffff7ff
 /* The reset value of the ALT_NAND_STAT_INTR_STAT0_UNSUP_CMD register field. */
-#define ALT_NAND_STAT_INTR_STAT0_UNSUP_CMD_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT0_UNSUP_CMD_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT0_UNSUP_CMD field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT0_UNSUP_CMD_GET(value) (((value) & 0x00000800) >> 11)
+    #define ALT_NAND_STAT_INTR_STAT0_UNSUP_CMD_GET( value )    ( ( ( value ) & 0x00000800 ) >> 11 )
 /* Produces a ALT_NAND_STAT_INTR_STAT0_UNSUP_CMD register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT0_UNSUP_CMD_SET(value) (((value) << 11) & 0x00000800)
+    #define ALT_NAND_STAT_INTR_STAT0_UNSUP_CMD_SET( value )    ( ( ( value ) << 11 ) & 0x00000800 )
 
 /*
  * Field : INT_act
@@ -5328,21 +5457,21 @@ typedef volatile struct ALT_NAND_STAT_TFR_MOD_s  ALT_NAND_STAT_TFR_MOD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT0_INT_ACT register field. */
-#define ALT_NAND_STAT_INTR_STAT0_INT_ACT_LSB        12
+    #define ALT_NAND_STAT_INTR_STAT0_INT_ACT_LSB        12
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT0_INT_ACT register field. */
-#define ALT_NAND_STAT_INTR_STAT0_INT_ACT_MSB        12
+    #define ALT_NAND_STAT_INTR_STAT0_INT_ACT_MSB        12
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT0_INT_ACT register field. */
-#define ALT_NAND_STAT_INTR_STAT0_INT_ACT_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT0_INT_ACT_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT0_INT_ACT register field value. */
-#define ALT_NAND_STAT_INTR_STAT0_INT_ACT_SET_MSK    0x00001000
+    #define ALT_NAND_STAT_INTR_STAT0_INT_ACT_SET_MSK    0x00001000
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT0_INT_ACT register field value. */
-#define ALT_NAND_STAT_INTR_STAT0_INT_ACT_CLR_MSK    0xffffefff
+    #define ALT_NAND_STAT_INTR_STAT0_INT_ACT_CLR_MSK    0xffffefff
 /* The reset value of the ALT_NAND_STAT_INTR_STAT0_INT_ACT register field. */
-#define ALT_NAND_STAT_INTR_STAT0_INT_ACT_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT0_INT_ACT_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT0_INT_ACT field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT0_INT_ACT_GET(value) (((value) & 0x00001000) >> 12)
+    #define ALT_NAND_STAT_INTR_STAT0_INT_ACT_GET( value )    ( ( ( value ) & 0x00001000 ) >> 12 )
 /* Produces a ALT_NAND_STAT_INTR_STAT0_INT_ACT register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT0_INT_ACT_SET(value) (((value) << 12) & 0x00001000)
+    #define ALT_NAND_STAT_INTR_STAT0_INT_ACT_SET( value )    ( ( ( value ) << 12 ) & 0x00001000 )
 
 /*
  * Field : rst_comp
@@ -5353,21 +5482,21 @@ typedef volatile struct ALT_NAND_STAT_TFR_MOD_s  ALT_NAND_STAT_TFR_MOD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT0_RST_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT0_RST_COMP_LSB        13
+    #define ALT_NAND_STAT_INTR_STAT0_RST_COMP_LSB        13
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT0_RST_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT0_RST_COMP_MSB        13
+    #define ALT_NAND_STAT_INTR_STAT0_RST_COMP_MSB        13
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT0_RST_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT0_RST_COMP_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT0_RST_COMP_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT0_RST_COMP register field value. */
-#define ALT_NAND_STAT_INTR_STAT0_RST_COMP_SET_MSK    0x00002000
+    #define ALT_NAND_STAT_INTR_STAT0_RST_COMP_SET_MSK    0x00002000
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT0_RST_COMP register field value. */
-#define ALT_NAND_STAT_INTR_STAT0_RST_COMP_CLR_MSK    0xffffdfff
+    #define ALT_NAND_STAT_INTR_STAT0_RST_COMP_CLR_MSK    0xffffdfff
 /* The reset value of the ALT_NAND_STAT_INTR_STAT0_RST_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT0_RST_COMP_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT0_RST_COMP_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT0_RST_COMP field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT0_RST_COMP_GET(value) (((value) & 0x00002000) >> 13)
+    #define ALT_NAND_STAT_INTR_STAT0_RST_COMP_GET( value )    ( ( ( value ) & 0x00002000 ) >> 13 )
 /* Produces a ALT_NAND_STAT_INTR_STAT0_RST_COMP register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT0_RST_COMP_SET(value) (((value) << 13) & 0x00002000)
+    #define ALT_NAND_STAT_INTR_STAT0_RST_COMP_SET( value )    ( ( ( value ) << 13 ) & 0x00002000 )
 
 /*
  * Field : pipe_cmd_err
@@ -5380,21 +5509,21 @@ typedef volatile struct ALT_NAND_STAT_TFR_MOD_s  ALT_NAND_STAT_TFR_MOD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT0_PIPE_CMD_ERR register field. */
-#define ALT_NAND_STAT_INTR_STAT0_PIPE_CMD_ERR_LSB        14
+    #define ALT_NAND_STAT_INTR_STAT0_PIPE_CMD_ERR_LSB        14
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT0_PIPE_CMD_ERR register field. */
-#define ALT_NAND_STAT_INTR_STAT0_PIPE_CMD_ERR_MSB        14
+    #define ALT_NAND_STAT_INTR_STAT0_PIPE_CMD_ERR_MSB        14
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT0_PIPE_CMD_ERR register field. */
-#define ALT_NAND_STAT_INTR_STAT0_PIPE_CMD_ERR_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT0_PIPE_CMD_ERR_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT0_PIPE_CMD_ERR register field value. */
-#define ALT_NAND_STAT_INTR_STAT0_PIPE_CMD_ERR_SET_MSK    0x00004000
+    #define ALT_NAND_STAT_INTR_STAT0_PIPE_CMD_ERR_SET_MSK    0x00004000
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT0_PIPE_CMD_ERR register field value. */
-#define ALT_NAND_STAT_INTR_STAT0_PIPE_CMD_ERR_CLR_MSK    0xffffbfff
+    #define ALT_NAND_STAT_INTR_STAT0_PIPE_CMD_ERR_CLR_MSK    0xffffbfff
 /* The reset value of the ALT_NAND_STAT_INTR_STAT0_PIPE_CMD_ERR register field. */
-#define ALT_NAND_STAT_INTR_STAT0_PIPE_CMD_ERR_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT0_PIPE_CMD_ERR_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT0_PIPE_CMD_ERR field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT0_PIPE_CMD_ERR_GET(value) (((value) & 0x00004000) >> 14)
+    #define ALT_NAND_STAT_INTR_STAT0_PIPE_CMD_ERR_GET( value )    ( ( ( value ) & 0x00004000 ) >> 14 )
 /* Produces a ALT_NAND_STAT_INTR_STAT0_PIPE_CMD_ERR register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT0_PIPE_CMD_ERR_SET(value) (((value) << 14) & 0x00004000)
+    #define ALT_NAND_STAT_INTR_STAT0_PIPE_CMD_ERR_SET( value )    ( ( ( value ) << 14 ) & 0x00004000 )
 
 /*
  * Field : page_xfer_inc
@@ -5405,23 +5534,24 @@ typedef volatile struct ALT_NAND_STAT_TFR_MOD_s  ALT_NAND_STAT_TFR_MOD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT0_PAGE_XFER_INC register field. */
-#define ALT_NAND_STAT_INTR_STAT0_PAGE_XFER_INC_LSB        15
+    #define ALT_NAND_STAT_INTR_STAT0_PAGE_XFER_INC_LSB        15
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT0_PAGE_XFER_INC register field. */
-#define ALT_NAND_STAT_INTR_STAT0_PAGE_XFER_INC_MSB        15
+    #define ALT_NAND_STAT_INTR_STAT0_PAGE_XFER_INC_MSB        15
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT0_PAGE_XFER_INC register field. */
-#define ALT_NAND_STAT_INTR_STAT0_PAGE_XFER_INC_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT0_PAGE_XFER_INC_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT0_PAGE_XFER_INC register field value. */
-#define ALT_NAND_STAT_INTR_STAT0_PAGE_XFER_INC_SET_MSK    0x00008000
+    #define ALT_NAND_STAT_INTR_STAT0_PAGE_XFER_INC_SET_MSK    0x00008000
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT0_PAGE_XFER_INC register field value. */
-#define ALT_NAND_STAT_INTR_STAT0_PAGE_XFER_INC_CLR_MSK    0xffff7fff
+    #define ALT_NAND_STAT_INTR_STAT0_PAGE_XFER_INC_CLR_MSK    0xffff7fff
 /* The reset value of the ALT_NAND_STAT_INTR_STAT0_PAGE_XFER_INC register field. */
-#define ALT_NAND_STAT_INTR_STAT0_PAGE_XFER_INC_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT0_PAGE_XFER_INC_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT0_PAGE_XFER_INC field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT0_PAGE_XFER_INC_GET(value) (((value) & 0x00008000) >> 15)
+    #define ALT_NAND_STAT_INTR_STAT0_PAGE_XFER_INC_GET( value )    ( ( ( value ) & 0x00008000 ) >> 15 )
 /* Produces a ALT_NAND_STAT_INTR_STAT0_PAGE_XFER_INC register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT0_PAGE_XFER_INC_SET(value) (((value) << 15) & 0x00008000)
+    #define ALT_NAND_STAT_INTR_STAT0_PAGE_XFER_INC_SET( value )    ( ( ( value ) << 15 ) & 0x00008000 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -5432,33 +5562,33 @@ typedef volatile struct ALT_NAND_STAT_TFR_MOD_s  ALT_NAND_STAT_TFR_MOD_t;
  *
  * The struct declaration for register ALT_NAND_STAT_INTR_STAT0.
  */
-struct ALT_NAND_STAT_INTR_STAT0_s
-{
-    uint32_t  ecc_uncor_err        :  1;  /* ALT_NAND_STAT_INTR_STAT0_ECC_UNCOR_ERR */
-    uint32_t                       :  1;  /* *UNDEFINED* */
-    uint32_t  dma_cmd_comp         :  1;  /* ALT_NAND_STAT_INTR_STAT0_DMA_CMD_COMP */
-    uint32_t  time_out             :  1;  /* ALT_NAND_STAT_INTR_STAT0_TIME_OUT */
-    uint32_t  program_fail         :  1;  /* ALT_NAND_STAT_INTR_STAT0_PROGRAM_FAIL */
-    uint32_t  erase_fail           :  1;  /* ALT_NAND_STAT_INTR_STAT0_ERASE_FAIL */
-    uint32_t  load_comp            :  1;  /* ALT_NAND_STAT_INTR_STAT0_LD_COMP */
-    uint32_t  program_comp         :  1;  /* ALT_NAND_STAT_INTR_STAT0_PROGRAM_COMP */
-    uint32_t  erase_comp           :  1;  /* ALT_NAND_STAT_INTR_STAT0_ERASE_COMP */
-    uint32_t  pipe_cpybck_cmd_comp :  1;  /* ALT_NAND_STAT_INTR_STAT0_PIPE_CPYBCK_CMD_COMP */
-    uint32_t  locked_blk           :  1;  /* ALT_NAND_STAT_INTR_STAT0_LOCKED_BLK */
-    uint32_t  unsup_cmd            :  1;  /* ALT_NAND_STAT_INTR_STAT0_UNSUP_CMD */
-    uint32_t  INT_act              :  1;  /* ALT_NAND_STAT_INTR_STAT0_INT_ACT */
-    uint32_t  rst_comp             :  1;  /* ALT_NAND_STAT_INTR_STAT0_RST_COMP */
-    uint32_t  pipe_cmd_err         :  1;  /* ALT_NAND_STAT_INTR_STAT0_PIPE_CMD_ERR */
-    uint32_t  page_xfer_inc        :  1;  /* ALT_NAND_STAT_INTR_STAT0_PAGE_XFER_INC */
-    uint32_t                       : 16;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_STAT_INTR_STAT0_s
+        {
+            uint32_t ecc_uncor_err        :  1;  /* ALT_NAND_STAT_INTR_STAT0_ECC_UNCOR_ERR */
+            uint32_t                       :  1; /* *UNDEFINED* */
+            uint32_t dma_cmd_comp         :  1;  /* ALT_NAND_STAT_INTR_STAT0_DMA_CMD_COMP */
+            uint32_t time_out             :  1;  /* ALT_NAND_STAT_INTR_STAT0_TIME_OUT */
+            uint32_t program_fail         :  1;  /* ALT_NAND_STAT_INTR_STAT0_PROGRAM_FAIL */
+            uint32_t erase_fail           :  1;  /* ALT_NAND_STAT_INTR_STAT0_ERASE_FAIL */
+            uint32_t load_comp            :  1;  /* ALT_NAND_STAT_INTR_STAT0_LD_COMP */
+            uint32_t program_comp         :  1;  /* ALT_NAND_STAT_INTR_STAT0_PROGRAM_COMP */
+            uint32_t erase_comp           :  1;  /* ALT_NAND_STAT_INTR_STAT0_ERASE_COMP */
+            uint32_t pipe_cpybck_cmd_comp :  1;  /* ALT_NAND_STAT_INTR_STAT0_PIPE_CPYBCK_CMD_COMP */
+            uint32_t locked_blk           :  1;  /* ALT_NAND_STAT_INTR_STAT0_LOCKED_BLK */
+            uint32_t unsup_cmd            :  1;  /* ALT_NAND_STAT_INTR_STAT0_UNSUP_CMD */
+            uint32_t INT_act              :  1;  /* ALT_NAND_STAT_INTR_STAT0_INT_ACT */
+            uint32_t rst_comp             :  1;  /* ALT_NAND_STAT_INTR_STAT0_RST_COMP */
+            uint32_t pipe_cmd_err         :  1;  /* ALT_NAND_STAT_INTR_STAT0_PIPE_CMD_ERR */
+            uint32_t page_xfer_inc        :  1;  /* ALT_NAND_STAT_INTR_STAT0_PAGE_XFER_INC */
+            uint32_t                       : 16; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_STAT_INTR_STAT0. */
-typedef volatile struct ALT_NAND_STAT_INTR_STAT0_s  ALT_NAND_STAT_INTR_STAT0_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_STAT_INTR_STAT0_s ALT_NAND_STAT_INTR_STAT0_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_STAT_INTR_STAT0 register from the beginning of the component. */
-#define ALT_NAND_STAT_INTR_STAT0_OFST        0x10
+    #define ALT_NAND_STAT_INTR_STAT0_OFST    0x10
 
 /*
  * Register : intr_en0
@@ -5488,6 +5618,7 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT0_s  ALT_NAND_STAT_INTR_STAT0_t;
  *  [31:16] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : ecc_uncor_err
  *
@@ -5498,21 +5629,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT0_s  ALT_NAND_STAT_INTR_STAT0_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN0_ECC_UNCOR_ERR register field. */
-#define ALT_NAND_STAT_INTR_EN0_ECC_UNCOR_ERR_LSB        0
+    #define ALT_NAND_STAT_INTR_EN0_ECC_UNCOR_ERR_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN0_ECC_UNCOR_ERR register field. */
-#define ALT_NAND_STAT_INTR_EN0_ECC_UNCOR_ERR_MSB        0
+    #define ALT_NAND_STAT_INTR_EN0_ECC_UNCOR_ERR_MSB        0
 /* The width in bits of the ALT_NAND_STAT_INTR_EN0_ECC_UNCOR_ERR register field. */
-#define ALT_NAND_STAT_INTR_EN0_ECC_UNCOR_ERR_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN0_ECC_UNCOR_ERR_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN0_ECC_UNCOR_ERR register field value. */
-#define ALT_NAND_STAT_INTR_EN0_ECC_UNCOR_ERR_SET_MSK    0x00000001
+    #define ALT_NAND_STAT_INTR_EN0_ECC_UNCOR_ERR_SET_MSK    0x00000001
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN0_ECC_UNCOR_ERR register field value. */
-#define ALT_NAND_STAT_INTR_EN0_ECC_UNCOR_ERR_CLR_MSK    0xfffffffe
+    #define ALT_NAND_STAT_INTR_EN0_ECC_UNCOR_ERR_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_NAND_STAT_INTR_EN0_ECC_UNCOR_ERR register field. */
-#define ALT_NAND_STAT_INTR_EN0_ECC_UNCOR_ERR_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN0_ECC_UNCOR_ERR_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN0_ECC_UNCOR_ERR field value from a register. */
-#define ALT_NAND_STAT_INTR_EN0_ECC_UNCOR_ERR_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_NAND_STAT_INTR_EN0_ECC_UNCOR_ERR_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_NAND_STAT_INTR_EN0_ECC_UNCOR_ERR register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN0_ECC_UNCOR_ERR_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_NAND_STAT_INTR_EN0_ECC_UNCOR_ERR_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
 /*
  * Field : dma_cmd_comp
@@ -5523,21 +5654,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT0_s  ALT_NAND_STAT_INTR_STAT0_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN0_DMA_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN0_DMA_CMD_COMP_LSB        2
+    #define ALT_NAND_STAT_INTR_EN0_DMA_CMD_COMP_LSB        2
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN0_DMA_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN0_DMA_CMD_COMP_MSB        2
+    #define ALT_NAND_STAT_INTR_EN0_DMA_CMD_COMP_MSB        2
 /* The width in bits of the ALT_NAND_STAT_INTR_EN0_DMA_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN0_DMA_CMD_COMP_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN0_DMA_CMD_COMP_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN0_DMA_CMD_COMP register field value. */
-#define ALT_NAND_STAT_INTR_EN0_DMA_CMD_COMP_SET_MSK    0x00000004
+    #define ALT_NAND_STAT_INTR_EN0_DMA_CMD_COMP_SET_MSK    0x00000004
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN0_DMA_CMD_COMP register field value. */
-#define ALT_NAND_STAT_INTR_EN0_DMA_CMD_COMP_CLR_MSK    0xfffffffb
+    #define ALT_NAND_STAT_INTR_EN0_DMA_CMD_COMP_CLR_MSK    0xfffffffb
 /* The reset value of the ALT_NAND_STAT_INTR_EN0_DMA_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN0_DMA_CMD_COMP_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN0_DMA_CMD_COMP_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN0_DMA_CMD_COMP field value from a register. */
-#define ALT_NAND_STAT_INTR_EN0_DMA_CMD_COMP_GET(value) (((value) & 0x00000004) >> 2)
+    #define ALT_NAND_STAT_INTR_EN0_DMA_CMD_COMP_GET( value )    ( ( ( value ) & 0x00000004 ) >> 2 )
 /* Produces a ALT_NAND_STAT_INTR_EN0_DMA_CMD_COMP register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN0_DMA_CMD_COMP_SET(value) (((value) << 2) & 0x00000004)
+    #define ALT_NAND_STAT_INTR_EN0_DMA_CMD_COMP_SET( value )    ( ( ( value ) << 2 ) & 0x00000004 )
 
 /*
  * Field : time_out
@@ -5549,21 +5680,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT0_s  ALT_NAND_STAT_INTR_STAT0_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN0_TIME_OUT register field. */
-#define ALT_NAND_STAT_INTR_EN0_TIME_OUT_LSB        3
+    #define ALT_NAND_STAT_INTR_EN0_TIME_OUT_LSB        3
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN0_TIME_OUT register field. */
-#define ALT_NAND_STAT_INTR_EN0_TIME_OUT_MSB        3
+    #define ALT_NAND_STAT_INTR_EN0_TIME_OUT_MSB        3
 /* The width in bits of the ALT_NAND_STAT_INTR_EN0_TIME_OUT register field. */
-#define ALT_NAND_STAT_INTR_EN0_TIME_OUT_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN0_TIME_OUT_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN0_TIME_OUT register field value. */
-#define ALT_NAND_STAT_INTR_EN0_TIME_OUT_SET_MSK    0x00000008
+    #define ALT_NAND_STAT_INTR_EN0_TIME_OUT_SET_MSK    0x00000008
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN0_TIME_OUT register field value. */
-#define ALT_NAND_STAT_INTR_EN0_TIME_OUT_CLR_MSK    0xfffffff7
+    #define ALT_NAND_STAT_INTR_EN0_TIME_OUT_CLR_MSK    0xfffffff7
 /* The reset value of the ALT_NAND_STAT_INTR_EN0_TIME_OUT register field. */
-#define ALT_NAND_STAT_INTR_EN0_TIME_OUT_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN0_TIME_OUT_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN0_TIME_OUT field value from a register. */
-#define ALT_NAND_STAT_INTR_EN0_TIME_OUT_GET(value) (((value) & 0x00000008) >> 3)
+    #define ALT_NAND_STAT_INTR_EN0_TIME_OUT_GET( value )    ( ( ( value ) & 0x00000008 ) >> 3 )
 /* Produces a ALT_NAND_STAT_INTR_EN0_TIME_OUT register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN0_TIME_OUT_SET(value) (((value) << 3) & 0x00000008)
+    #define ALT_NAND_STAT_INTR_EN0_TIME_OUT_SET( value )    ( ( ( value ) << 3 ) & 0x00000008 )
 
 /*
  * Field : program_fail
@@ -5576,21 +5707,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT0_s  ALT_NAND_STAT_INTR_STAT0_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN0_PROGRAM_FAIL register field. */
-#define ALT_NAND_STAT_INTR_EN0_PROGRAM_FAIL_LSB        4
+    #define ALT_NAND_STAT_INTR_EN0_PROGRAM_FAIL_LSB        4
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN0_PROGRAM_FAIL register field. */
-#define ALT_NAND_STAT_INTR_EN0_PROGRAM_FAIL_MSB        4
+    #define ALT_NAND_STAT_INTR_EN0_PROGRAM_FAIL_MSB        4
 /* The width in bits of the ALT_NAND_STAT_INTR_EN0_PROGRAM_FAIL register field. */
-#define ALT_NAND_STAT_INTR_EN0_PROGRAM_FAIL_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN0_PROGRAM_FAIL_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN0_PROGRAM_FAIL register field value. */
-#define ALT_NAND_STAT_INTR_EN0_PROGRAM_FAIL_SET_MSK    0x00000010
+    #define ALT_NAND_STAT_INTR_EN0_PROGRAM_FAIL_SET_MSK    0x00000010
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN0_PROGRAM_FAIL register field value. */
-#define ALT_NAND_STAT_INTR_EN0_PROGRAM_FAIL_CLR_MSK    0xffffffef
+    #define ALT_NAND_STAT_INTR_EN0_PROGRAM_FAIL_CLR_MSK    0xffffffef
 /* The reset value of the ALT_NAND_STAT_INTR_EN0_PROGRAM_FAIL register field. */
-#define ALT_NAND_STAT_INTR_EN0_PROGRAM_FAIL_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN0_PROGRAM_FAIL_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN0_PROGRAM_FAIL field value from a register. */
-#define ALT_NAND_STAT_INTR_EN0_PROGRAM_FAIL_GET(value) (((value) & 0x00000010) >> 4)
+    #define ALT_NAND_STAT_INTR_EN0_PROGRAM_FAIL_GET( value )    ( ( ( value ) & 0x00000010 ) >> 4 )
 /* Produces a ALT_NAND_STAT_INTR_EN0_PROGRAM_FAIL register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN0_PROGRAM_FAIL_SET(value) (((value) << 4) & 0x00000010)
+    #define ALT_NAND_STAT_INTR_EN0_PROGRAM_FAIL_SET( value )    ( ( ( value ) << 4 ) & 0x00000010 )
 
 /*
  * Field : erase_fail
@@ -5603,21 +5734,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT0_s  ALT_NAND_STAT_INTR_STAT0_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN0_ERASE_FAIL register field. */
-#define ALT_NAND_STAT_INTR_EN0_ERASE_FAIL_LSB        5
+    #define ALT_NAND_STAT_INTR_EN0_ERASE_FAIL_LSB        5
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN0_ERASE_FAIL register field. */
-#define ALT_NAND_STAT_INTR_EN0_ERASE_FAIL_MSB        5
+    #define ALT_NAND_STAT_INTR_EN0_ERASE_FAIL_MSB        5
 /* The width in bits of the ALT_NAND_STAT_INTR_EN0_ERASE_FAIL register field. */
-#define ALT_NAND_STAT_INTR_EN0_ERASE_FAIL_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN0_ERASE_FAIL_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN0_ERASE_FAIL register field value. */
-#define ALT_NAND_STAT_INTR_EN0_ERASE_FAIL_SET_MSK    0x00000020
+    #define ALT_NAND_STAT_INTR_EN0_ERASE_FAIL_SET_MSK    0x00000020
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN0_ERASE_FAIL register field value. */
-#define ALT_NAND_STAT_INTR_EN0_ERASE_FAIL_CLR_MSK    0xffffffdf
+    #define ALT_NAND_STAT_INTR_EN0_ERASE_FAIL_CLR_MSK    0xffffffdf
 /* The reset value of the ALT_NAND_STAT_INTR_EN0_ERASE_FAIL register field. */
-#define ALT_NAND_STAT_INTR_EN0_ERASE_FAIL_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN0_ERASE_FAIL_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN0_ERASE_FAIL field value from a register. */
-#define ALT_NAND_STAT_INTR_EN0_ERASE_FAIL_GET(value) (((value) & 0x00000020) >> 5)
+    #define ALT_NAND_STAT_INTR_EN0_ERASE_FAIL_GET( value )    ( ( ( value ) & 0x00000020 ) >> 5 )
 /* Produces a ALT_NAND_STAT_INTR_EN0_ERASE_FAIL register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN0_ERASE_FAIL_SET(value) (((value) << 5) & 0x00000020)
+    #define ALT_NAND_STAT_INTR_EN0_ERASE_FAIL_SET( value )    ( ( ( value ) << 5 ) & 0x00000020 )
 
 /*
  * Field : load_comp
@@ -5628,21 +5759,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT0_s  ALT_NAND_STAT_INTR_STAT0_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN0_LD_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN0_LD_COMP_LSB        6
+    #define ALT_NAND_STAT_INTR_EN0_LD_COMP_LSB        6
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN0_LD_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN0_LD_COMP_MSB        6
+    #define ALT_NAND_STAT_INTR_EN0_LD_COMP_MSB        6
 /* The width in bits of the ALT_NAND_STAT_INTR_EN0_LD_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN0_LD_COMP_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN0_LD_COMP_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN0_LD_COMP register field value. */
-#define ALT_NAND_STAT_INTR_EN0_LD_COMP_SET_MSK    0x00000040
+    #define ALT_NAND_STAT_INTR_EN0_LD_COMP_SET_MSK    0x00000040
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN0_LD_COMP register field value. */
-#define ALT_NAND_STAT_INTR_EN0_LD_COMP_CLR_MSK    0xffffffbf
+    #define ALT_NAND_STAT_INTR_EN0_LD_COMP_CLR_MSK    0xffffffbf
 /* The reset value of the ALT_NAND_STAT_INTR_EN0_LD_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN0_LD_COMP_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN0_LD_COMP_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN0_LD_COMP field value from a register. */
-#define ALT_NAND_STAT_INTR_EN0_LD_COMP_GET(value) (((value) & 0x00000040) >> 6)
+    #define ALT_NAND_STAT_INTR_EN0_LD_COMP_GET( value )    ( ( ( value ) & 0x00000040 ) >> 6 )
 /* Produces a ALT_NAND_STAT_INTR_EN0_LD_COMP register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN0_LD_COMP_SET(value) (((value) << 6) & 0x00000040)
+    #define ALT_NAND_STAT_INTR_EN0_LD_COMP_SET( value )    ( ( ( value ) << 6 ) & 0x00000040 )
 
 /*
  * Field : program_comp
@@ -5653,21 +5784,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT0_s  ALT_NAND_STAT_INTR_STAT0_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN0_PROGRAM_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN0_PROGRAM_COMP_LSB        7
+    #define ALT_NAND_STAT_INTR_EN0_PROGRAM_COMP_LSB        7
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN0_PROGRAM_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN0_PROGRAM_COMP_MSB        7
+    #define ALT_NAND_STAT_INTR_EN0_PROGRAM_COMP_MSB        7
 /* The width in bits of the ALT_NAND_STAT_INTR_EN0_PROGRAM_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN0_PROGRAM_COMP_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN0_PROGRAM_COMP_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN0_PROGRAM_COMP register field value. */
-#define ALT_NAND_STAT_INTR_EN0_PROGRAM_COMP_SET_MSK    0x00000080
+    #define ALT_NAND_STAT_INTR_EN0_PROGRAM_COMP_SET_MSK    0x00000080
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN0_PROGRAM_COMP register field value. */
-#define ALT_NAND_STAT_INTR_EN0_PROGRAM_COMP_CLR_MSK    0xffffff7f
+    #define ALT_NAND_STAT_INTR_EN0_PROGRAM_COMP_CLR_MSK    0xffffff7f
 /* The reset value of the ALT_NAND_STAT_INTR_EN0_PROGRAM_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN0_PROGRAM_COMP_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN0_PROGRAM_COMP_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN0_PROGRAM_COMP field value from a register. */
-#define ALT_NAND_STAT_INTR_EN0_PROGRAM_COMP_GET(value) (((value) & 0x00000080) >> 7)
+    #define ALT_NAND_STAT_INTR_EN0_PROGRAM_COMP_GET( value )    ( ( ( value ) & 0x00000080 ) >> 7 )
 /* Produces a ALT_NAND_STAT_INTR_EN0_PROGRAM_COMP register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN0_PROGRAM_COMP_SET(value) (((value) << 7) & 0x00000080)
+    #define ALT_NAND_STAT_INTR_EN0_PROGRAM_COMP_SET( value )    ( ( ( value ) << 7 ) & 0x00000080 )
 
 /*
  * Field : erase_comp
@@ -5678,21 +5809,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT0_s  ALT_NAND_STAT_INTR_STAT0_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN0_ERASE_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN0_ERASE_COMP_LSB        8
+    #define ALT_NAND_STAT_INTR_EN0_ERASE_COMP_LSB        8
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN0_ERASE_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN0_ERASE_COMP_MSB        8
+    #define ALT_NAND_STAT_INTR_EN0_ERASE_COMP_MSB        8
 /* The width in bits of the ALT_NAND_STAT_INTR_EN0_ERASE_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN0_ERASE_COMP_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN0_ERASE_COMP_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN0_ERASE_COMP register field value. */
-#define ALT_NAND_STAT_INTR_EN0_ERASE_COMP_SET_MSK    0x00000100
+    #define ALT_NAND_STAT_INTR_EN0_ERASE_COMP_SET_MSK    0x00000100
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN0_ERASE_COMP register field value. */
-#define ALT_NAND_STAT_INTR_EN0_ERASE_COMP_CLR_MSK    0xfffffeff
+    #define ALT_NAND_STAT_INTR_EN0_ERASE_COMP_CLR_MSK    0xfffffeff
 /* The reset value of the ALT_NAND_STAT_INTR_EN0_ERASE_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN0_ERASE_COMP_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN0_ERASE_COMP_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN0_ERASE_COMP field value from a register. */
-#define ALT_NAND_STAT_INTR_EN0_ERASE_COMP_GET(value) (((value) & 0x00000100) >> 8)
+    #define ALT_NAND_STAT_INTR_EN0_ERASE_COMP_GET( value )    ( ( ( value ) & 0x00000100 ) >> 8 )
 /* Produces a ALT_NAND_STAT_INTR_EN0_ERASE_COMP register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN0_ERASE_COMP_SET(value) (((value) << 8) & 0x00000100)
+    #define ALT_NAND_STAT_INTR_EN0_ERASE_COMP_SET( value )    ( ( ( value ) << 8 ) & 0x00000100 )
 
 /*
  * Field : pipe_cpybck_cmd_comp
@@ -5704,21 +5835,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT0_s  ALT_NAND_STAT_INTR_STAT0_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN0_PIPE_CPYBCK_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN0_PIPE_CPYBCK_CMD_COMP_LSB        9
+    #define ALT_NAND_STAT_INTR_EN0_PIPE_CPYBCK_CMD_COMP_LSB        9
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN0_PIPE_CPYBCK_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN0_PIPE_CPYBCK_CMD_COMP_MSB        9
+    #define ALT_NAND_STAT_INTR_EN0_PIPE_CPYBCK_CMD_COMP_MSB        9
 /* The width in bits of the ALT_NAND_STAT_INTR_EN0_PIPE_CPYBCK_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN0_PIPE_CPYBCK_CMD_COMP_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN0_PIPE_CPYBCK_CMD_COMP_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN0_PIPE_CPYBCK_CMD_COMP register field value. */
-#define ALT_NAND_STAT_INTR_EN0_PIPE_CPYBCK_CMD_COMP_SET_MSK    0x00000200
+    #define ALT_NAND_STAT_INTR_EN0_PIPE_CPYBCK_CMD_COMP_SET_MSK    0x00000200
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN0_PIPE_CPYBCK_CMD_COMP register field value. */
-#define ALT_NAND_STAT_INTR_EN0_PIPE_CPYBCK_CMD_COMP_CLR_MSK    0xfffffdff
+    #define ALT_NAND_STAT_INTR_EN0_PIPE_CPYBCK_CMD_COMP_CLR_MSK    0xfffffdff
 /* The reset value of the ALT_NAND_STAT_INTR_EN0_PIPE_CPYBCK_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN0_PIPE_CPYBCK_CMD_COMP_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN0_PIPE_CPYBCK_CMD_COMP_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN0_PIPE_CPYBCK_CMD_COMP field value from a register. */
-#define ALT_NAND_STAT_INTR_EN0_PIPE_CPYBCK_CMD_COMP_GET(value) (((value) & 0x00000200) >> 9)
+    #define ALT_NAND_STAT_INTR_EN0_PIPE_CPYBCK_CMD_COMP_GET( value )    ( ( ( value ) & 0x00000200 ) >> 9 )
 /* Produces a ALT_NAND_STAT_INTR_EN0_PIPE_CPYBCK_CMD_COMP register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN0_PIPE_CPYBCK_CMD_COMP_SET(value) (((value) << 9) & 0x00000200)
+    #define ALT_NAND_STAT_INTR_EN0_PIPE_CPYBCK_CMD_COMP_SET( value )    ( ( ( value ) << 9 ) & 0x00000200 )
 
 /*
  * Field : locked_blk
@@ -5730,21 +5861,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT0_s  ALT_NAND_STAT_INTR_STAT0_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN0_LOCKED_BLK register field. */
-#define ALT_NAND_STAT_INTR_EN0_LOCKED_BLK_LSB        10
+    #define ALT_NAND_STAT_INTR_EN0_LOCKED_BLK_LSB        10
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN0_LOCKED_BLK register field. */
-#define ALT_NAND_STAT_INTR_EN0_LOCKED_BLK_MSB        10
+    #define ALT_NAND_STAT_INTR_EN0_LOCKED_BLK_MSB        10
 /* The width in bits of the ALT_NAND_STAT_INTR_EN0_LOCKED_BLK register field. */
-#define ALT_NAND_STAT_INTR_EN0_LOCKED_BLK_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN0_LOCKED_BLK_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN0_LOCKED_BLK register field value. */
-#define ALT_NAND_STAT_INTR_EN0_LOCKED_BLK_SET_MSK    0x00000400
+    #define ALT_NAND_STAT_INTR_EN0_LOCKED_BLK_SET_MSK    0x00000400
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN0_LOCKED_BLK register field value. */
-#define ALT_NAND_STAT_INTR_EN0_LOCKED_BLK_CLR_MSK    0xfffffbff
+    #define ALT_NAND_STAT_INTR_EN0_LOCKED_BLK_CLR_MSK    0xfffffbff
 /* The reset value of the ALT_NAND_STAT_INTR_EN0_LOCKED_BLK register field. */
-#define ALT_NAND_STAT_INTR_EN0_LOCKED_BLK_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN0_LOCKED_BLK_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN0_LOCKED_BLK field value from a register. */
-#define ALT_NAND_STAT_INTR_EN0_LOCKED_BLK_GET(value) (((value) & 0x00000400) >> 10)
+    #define ALT_NAND_STAT_INTR_EN0_LOCKED_BLK_GET( value )    ( ( ( value ) & 0x00000400 ) >> 10 )
 /* Produces a ALT_NAND_STAT_INTR_EN0_LOCKED_BLK register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN0_LOCKED_BLK_SET(value) (((value) << 10) & 0x00000400)
+    #define ALT_NAND_STAT_INTR_EN0_LOCKED_BLK_SET( value )    ( ( ( value ) << 10 ) & 0x00000400 )
 
 /*
  * Field : unsup_cmd
@@ -5756,21 +5887,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT0_s  ALT_NAND_STAT_INTR_STAT0_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN0_UNSUP_CMD register field. */
-#define ALT_NAND_STAT_INTR_EN0_UNSUP_CMD_LSB        11
+    #define ALT_NAND_STAT_INTR_EN0_UNSUP_CMD_LSB        11
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN0_UNSUP_CMD register field. */
-#define ALT_NAND_STAT_INTR_EN0_UNSUP_CMD_MSB        11
+    #define ALT_NAND_STAT_INTR_EN0_UNSUP_CMD_MSB        11
 /* The width in bits of the ALT_NAND_STAT_INTR_EN0_UNSUP_CMD register field. */
-#define ALT_NAND_STAT_INTR_EN0_UNSUP_CMD_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN0_UNSUP_CMD_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN0_UNSUP_CMD register field value. */
-#define ALT_NAND_STAT_INTR_EN0_UNSUP_CMD_SET_MSK    0x00000800
+    #define ALT_NAND_STAT_INTR_EN0_UNSUP_CMD_SET_MSK    0x00000800
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN0_UNSUP_CMD register field value. */
-#define ALT_NAND_STAT_INTR_EN0_UNSUP_CMD_CLR_MSK    0xfffff7ff
+    #define ALT_NAND_STAT_INTR_EN0_UNSUP_CMD_CLR_MSK    0xfffff7ff
 /* The reset value of the ALT_NAND_STAT_INTR_EN0_UNSUP_CMD register field. */
-#define ALT_NAND_STAT_INTR_EN0_UNSUP_CMD_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN0_UNSUP_CMD_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN0_UNSUP_CMD field value from a register. */
-#define ALT_NAND_STAT_INTR_EN0_UNSUP_CMD_GET(value) (((value) & 0x00000800) >> 11)
+    #define ALT_NAND_STAT_INTR_EN0_UNSUP_CMD_GET( value )    ( ( ( value ) & 0x00000800 ) >> 11 )
 /* Produces a ALT_NAND_STAT_INTR_EN0_UNSUP_CMD register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN0_UNSUP_CMD_SET(value) (((value) << 11) & 0x00000800)
+    #define ALT_NAND_STAT_INTR_EN0_UNSUP_CMD_SET( value )    ( ( ( value ) << 11 ) & 0x00000800 )
 
 /*
  * Field : INT_act
@@ -5781,21 +5912,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT0_s  ALT_NAND_STAT_INTR_STAT0_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN0_INT_ACT register field. */
-#define ALT_NAND_STAT_INTR_EN0_INT_ACT_LSB        12
+    #define ALT_NAND_STAT_INTR_EN0_INT_ACT_LSB        12
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN0_INT_ACT register field. */
-#define ALT_NAND_STAT_INTR_EN0_INT_ACT_MSB        12
+    #define ALT_NAND_STAT_INTR_EN0_INT_ACT_MSB        12
 /* The width in bits of the ALT_NAND_STAT_INTR_EN0_INT_ACT register field. */
-#define ALT_NAND_STAT_INTR_EN0_INT_ACT_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN0_INT_ACT_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN0_INT_ACT register field value. */
-#define ALT_NAND_STAT_INTR_EN0_INT_ACT_SET_MSK    0x00001000
+    #define ALT_NAND_STAT_INTR_EN0_INT_ACT_SET_MSK    0x00001000
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN0_INT_ACT register field value. */
-#define ALT_NAND_STAT_INTR_EN0_INT_ACT_CLR_MSK    0xffffefff
+    #define ALT_NAND_STAT_INTR_EN0_INT_ACT_CLR_MSK    0xffffefff
 /* The reset value of the ALT_NAND_STAT_INTR_EN0_INT_ACT register field. */
-#define ALT_NAND_STAT_INTR_EN0_INT_ACT_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN0_INT_ACT_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN0_INT_ACT field value from a register. */
-#define ALT_NAND_STAT_INTR_EN0_INT_ACT_GET(value) (((value) & 0x00001000) >> 12)
+    #define ALT_NAND_STAT_INTR_EN0_INT_ACT_GET( value )    ( ( ( value ) & 0x00001000 ) >> 12 )
 /* Produces a ALT_NAND_STAT_INTR_EN0_INT_ACT register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN0_INT_ACT_SET(value) (((value) << 12) & 0x00001000)
+    #define ALT_NAND_STAT_INTR_EN0_INT_ACT_SET( value )    ( ( ( value ) << 12 ) & 0x00001000 )
 
 /*
  * Field : rst_comp
@@ -5806,21 +5937,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT0_s  ALT_NAND_STAT_INTR_STAT0_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN0_RST_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN0_RST_COMP_LSB        13
+    #define ALT_NAND_STAT_INTR_EN0_RST_COMP_LSB        13
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN0_RST_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN0_RST_COMP_MSB        13
+    #define ALT_NAND_STAT_INTR_EN0_RST_COMP_MSB        13
 /* The width in bits of the ALT_NAND_STAT_INTR_EN0_RST_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN0_RST_COMP_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN0_RST_COMP_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN0_RST_COMP register field value. */
-#define ALT_NAND_STAT_INTR_EN0_RST_COMP_SET_MSK    0x00002000
+    #define ALT_NAND_STAT_INTR_EN0_RST_COMP_SET_MSK    0x00002000
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN0_RST_COMP register field value. */
-#define ALT_NAND_STAT_INTR_EN0_RST_COMP_CLR_MSK    0xffffdfff
+    #define ALT_NAND_STAT_INTR_EN0_RST_COMP_CLR_MSK    0xffffdfff
 /* The reset value of the ALT_NAND_STAT_INTR_EN0_RST_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN0_RST_COMP_RESET      0x1
+    #define ALT_NAND_STAT_INTR_EN0_RST_COMP_RESET      0x1
 /* Extracts the ALT_NAND_STAT_INTR_EN0_RST_COMP field value from a register. */
-#define ALT_NAND_STAT_INTR_EN0_RST_COMP_GET(value) (((value) & 0x00002000) >> 13)
+    #define ALT_NAND_STAT_INTR_EN0_RST_COMP_GET( value )    ( ( ( value ) & 0x00002000 ) >> 13 )
 /* Produces a ALT_NAND_STAT_INTR_EN0_RST_COMP register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN0_RST_COMP_SET(value) (((value) << 13) & 0x00002000)
+    #define ALT_NAND_STAT_INTR_EN0_RST_COMP_SET( value )    ( ( ( value ) << 13 ) & 0x00002000 )
 
 /*
  * Field : pipe_cmd_err
@@ -5833,21 +5964,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT0_s  ALT_NAND_STAT_INTR_STAT0_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN0_PIPE_CMD_ERR register field. */
-#define ALT_NAND_STAT_INTR_EN0_PIPE_CMD_ERR_LSB        14
+    #define ALT_NAND_STAT_INTR_EN0_PIPE_CMD_ERR_LSB        14
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN0_PIPE_CMD_ERR register field. */
-#define ALT_NAND_STAT_INTR_EN0_PIPE_CMD_ERR_MSB        14
+    #define ALT_NAND_STAT_INTR_EN0_PIPE_CMD_ERR_MSB        14
 /* The width in bits of the ALT_NAND_STAT_INTR_EN0_PIPE_CMD_ERR register field. */
-#define ALT_NAND_STAT_INTR_EN0_PIPE_CMD_ERR_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN0_PIPE_CMD_ERR_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN0_PIPE_CMD_ERR register field value. */
-#define ALT_NAND_STAT_INTR_EN0_PIPE_CMD_ERR_SET_MSK    0x00004000
+    #define ALT_NAND_STAT_INTR_EN0_PIPE_CMD_ERR_SET_MSK    0x00004000
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN0_PIPE_CMD_ERR register field value. */
-#define ALT_NAND_STAT_INTR_EN0_PIPE_CMD_ERR_CLR_MSK    0xffffbfff
+    #define ALT_NAND_STAT_INTR_EN0_PIPE_CMD_ERR_CLR_MSK    0xffffbfff
 /* The reset value of the ALT_NAND_STAT_INTR_EN0_PIPE_CMD_ERR register field. */
-#define ALT_NAND_STAT_INTR_EN0_PIPE_CMD_ERR_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN0_PIPE_CMD_ERR_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN0_PIPE_CMD_ERR field value from a register. */
-#define ALT_NAND_STAT_INTR_EN0_PIPE_CMD_ERR_GET(value) (((value) & 0x00004000) >> 14)
+    #define ALT_NAND_STAT_INTR_EN0_PIPE_CMD_ERR_GET( value )    ( ( ( value ) & 0x00004000 ) >> 14 )
 /* Produces a ALT_NAND_STAT_INTR_EN0_PIPE_CMD_ERR register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN0_PIPE_CMD_ERR_SET(value) (((value) << 14) & 0x00004000)
+    #define ALT_NAND_STAT_INTR_EN0_PIPE_CMD_ERR_SET( value )    ( ( ( value ) << 14 ) & 0x00004000 )
 
 /*
  * Field : page_xfer_inc
@@ -5858,23 +5989,24 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT0_s  ALT_NAND_STAT_INTR_STAT0_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN0_PAGE_XFER_INC register field. */
-#define ALT_NAND_STAT_INTR_EN0_PAGE_XFER_INC_LSB        15
+    #define ALT_NAND_STAT_INTR_EN0_PAGE_XFER_INC_LSB        15
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN0_PAGE_XFER_INC register field. */
-#define ALT_NAND_STAT_INTR_EN0_PAGE_XFER_INC_MSB        15
+    #define ALT_NAND_STAT_INTR_EN0_PAGE_XFER_INC_MSB        15
 /* The width in bits of the ALT_NAND_STAT_INTR_EN0_PAGE_XFER_INC register field. */
-#define ALT_NAND_STAT_INTR_EN0_PAGE_XFER_INC_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN0_PAGE_XFER_INC_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN0_PAGE_XFER_INC register field value. */
-#define ALT_NAND_STAT_INTR_EN0_PAGE_XFER_INC_SET_MSK    0x00008000
+    #define ALT_NAND_STAT_INTR_EN0_PAGE_XFER_INC_SET_MSK    0x00008000
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN0_PAGE_XFER_INC register field value. */
-#define ALT_NAND_STAT_INTR_EN0_PAGE_XFER_INC_CLR_MSK    0xffff7fff
+    #define ALT_NAND_STAT_INTR_EN0_PAGE_XFER_INC_CLR_MSK    0xffff7fff
 /* The reset value of the ALT_NAND_STAT_INTR_EN0_PAGE_XFER_INC register field. */
-#define ALT_NAND_STAT_INTR_EN0_PAGE_XFER_INC_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN0_PAGE_XFER_INC_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN0_PAGE_XFER_INC field value from a register. */
-#define ALT_NAND_STAT_INTR_EN0_PAGE_XFER_INC_GET(value) (((value) & 0x00008000) >> 15)
+    #define ALT_NAND_STAT_INTR_EN0_PAGE_XFER_INC_GET( value )    ( ( ( value ) & 0x00008000 ) >> 15 )
 /* Produces a ALT_NAND_STAT_INTR_EN0_PAGE_XFER_INC register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN0_PAGE_XFER_INC_SET(value) (((value) << 15) & 0x00008000)
+    #define ALT_NAND_STAT_INTR_EN0_PAGE_XFER_INC_SET( value )    ( ( ( value ) << 15 ) & 0x00008000 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -5885,33 +6017,33 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT0_s  ALT_NAND_STAT_INTR_STAT0_t;
  *
  * The struct declaration for register ALT_NAND_STAT_INTR_EN0.
  */
-struct ALT_NAND_STAT_INTR_EN0_s
-{
-    uint32_t  ecc_uncor_err        :  1;  /* ALT_NAND_STAT_INTR_EN0_ECC_UNCOR_ERR */
-    uint32_t                       :  1;  /* *UNDEFINED* */
-    uint32_t  dma_cmd_comp         :  1;  /* ALT_NAND_STAT_INTR_EN0_DMA_CMD_COMP */
-    uint32_t  time_out             :  1;  /* ALT_NAND_STAT_INTR_EN0_TIME_OUT */
-    uint32_t  program_fail         :  1;  /* ALT_NAND_STAT_INTR_EN0_PROGRAM_FAIL */
-    uint32_t  erase_fail           :  1;  /* ALT_NAND_STAT_INTR_EN0_ERASE_FAIL */
-    uint32_t  load_comp            :  1;  /* ALT_NAND_STAT_INTR_EN0_LD_COMP */
-    uint32_t  program_comp         :  1;  /* ALT_NAND_STAT_INTR_EN0_PROGRAM_COMP */
-    uint32_t  erase_comp           :  1;  /* ALT_NAND_STAT_INTR_EN0_ERASE_COMP */
-    uint32_t  pipe_cpybck_cmd_comp :  1;  /* ALT_NAND_STAT_INTR_EN0_PIPE_CPYBCK_CMD_COMP */
-    uint32_t  locked_blk           :  1;  /* ALT_NAND_STAT_INTR_EN0_LOCKED_BLK */
-    uint32_t  unsup_cmd            :  1;  /* ALT_NAND_STAT_INTR_EN0_UNSUP_CMD */
-    uint32_t  INT_act              :  1;  /* ALT_NAND_STAT_INTR_EN0_INT_ACT */
-    uint32_t  rst_comp             :  1;  /* ALT_NAND_STAT_INTR_EN0_RST_COMP */
-    uint32_t  pipe_cmd_err         :  1;  /* ALT_NAND_STAT_INTR_EN0_PIPE_CMD_ERR */
-    uint32_t  page_xfer_inc        :  1;  /* ALT_NAND_STAT_INTR_EN0_PAGE_XFER_INC */
-    uint32_t                       : 16;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_STAT_INTR_EN0_s
+        {
+            uint32_t ecc_uncor_err        :  1;  /* ALT_NAND_STAT_INTR_EN0_ECC_UNCOR_ERR */
+            uint32_t                       :  1; /* *UNDEFINED* */
+            uint32_t dma_cmd_comp         :  1;  /* ALT_NAND_STAT_INTR_EN0_DMA_CMD_COMP */
+            uint32_t time_out             :  1;  /* ALT_NAND_STAT_INTR_EN0_TIME_OUT */
+            uint32_t program_fail         :  1;  /* ALT_NAND_STAT_INTR_EN0_PROGRAM_FAIL */
+            uint32_t erase_fail           :  1;  /* ALT_NAND_STAT_INTR_EN0_ERASE_FAIL */
+            uint32_t load_comp            :  1;  /* ALT_NAND_STAT_INTR_EN0_LD_COMP */
+            uint32_t program_comp         :  1;  /* ALT_NAND_STAT_INTR_EN0_PROGRAM_COMP */
+            uint32_t erase_comp           :  1;  /* ALT_NAND_STAT_INTR_EN0_ERASE_COMP */
+            uint32_t pipe_cpybck_cmd_comp :  1;  /* ALT_NAND_STAT_INTR_EN0_PIPE_CPYBCK_CMD_COMP */
+            uint32_t locked_blk           :  1;  /* ALT_NAND_STAT_INTR_EN0_LOCKED_BLK */
+            uint32_t unsup_cmd            :  1;  /* ALT_NAND_STAT_INTR_EN0_UNSUP_CMD */
+            uint32_t INT_act              :  1;  /* ALT_NAND_STAT_INTR_EN0_INT_ACT */
+            uint32_t rst_comp             :  1;  /* ALT_NAND_STAT_INTR_EN0_RST_COMP */
+            uint32_t pipe_cmd_err         :  1;  /* ALT_NAND_STAT_INTR_EN0_PIPE_CMD_ERR */
+            uint32_t page_xfer_inc        :  1;  /* ALT_NAND_STAT_INTR_EN0_PAGE_XFER_INC */
+            uint32_t                       : 16; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_STAT_INTR_EN0. */
-typedef volatile struct ALT_NAND_STAT_INTR_EN0_s  ALT_NAND_STAT_INTR_EN0_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_STAT_INTR_EN0_s ALT_NAND_STAT_INTR_EN0_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_STAT_INTR_EN0 register from the beginning of the component. */
-#define ALT_NAND_STAT_INTR_EN0_OFST        0x20
+    #define ALT_NAND_STAT_INTR_EN0_OFST    0x20
 
 /*
  * Register : page_cnt0
@@ -5926,6 +6058,7 @@ typedef volatile struct ALT_NAND_STAT_INTR_EN0_s  ALT_NAND_STAT_INTR_EN0_t;
  *  [31:8] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -5936,23 +6069,24 @@ typedef volatile struct ALT_NAND_STAT_INTR_EN0_s  ALT_NAND_STAT_INTR_EN0_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_PAGE_CNT0_VALUE register field. */
-#define ALT_NAND_STAT_PAGE_CNT0_VALUE_LSB        0
+    #define ALT_NAND_STAT_PAGE_CNT0_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_PAGE_CNT0_VALUE register field. */
-#define ALT_NAND_STAT_PAGE_CNT0_VALUE_MSB        7
+    #define ALT_NAND_STAT_PAGE_CNT0_VALUE_MSB        7
 /* The width in bits of the ALT_NAND_STAT_PAGE_CNT0_VALUE register field. */
-#define ALT_NAND_STAT_PAGE_CNT0_VALUE_WIDTH      8
+    #define ALT_NAND_STAT_PAGE_CNT0_VALUE_WIDTH      8
 /* The mask used to set the ALT_NAND_STAT_PAGE_CNT0_VALUE register field value. */
-#define ALT_NAND_STAT_PAGE_CNT0_VALUE_SET_MSK    0x000000ff
+    #define ALT_NAND_STAT_PAGE_CNT0_VALUE_SET_MSK    0x000000ff
 /* The mask used to clear the ALT_NAND_STAT_PAGE_CNT0_VALUE register field value. */
-#define ALT_NAND_STAT_PAGE_CNT0_VALUE_CLR_MSK    0xffffff00
+    #define ALT_NAND_STAT_PAGE_CNT0_VALUE_CLR_MSK    0xffffff00
 /* The reset value of the ALT_NAND_STAT_PAGE_CNT0_VALUE register field. */
-#define ALT_NAND_STAT_PAGE_CNT0_VALUE_RESET      0x0
+    #define ALT_NAND_STAT_PAGE_CNT0_VALUE_RESET      0x0
 /* Extracts the ALT_NAND_STAT_PAGE_CNT0_VALUE field value from a register. */
-#define ALT_NAND_STAT_PAGE_CNT0_VALUE_GET(value) (((value) & 0x000000ff) >> 0)
+    #define ALT_NAND_STAT_PAGE_CNT0_VALUE_GET( value )    ( ( ( value ) & 0x000000ff ) >> 0 )
 /* Produces a ALT_NAND_STAT_PAGE_CNT0_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_STAT_PAGE_CNT0_VALUE_SET(value) (((value) << 0) & 0x000000ff)
+    #define ALT_NAND_STAT_PAGE_CNT0_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x000000ff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -5963,18 +6097,18 @@ typedef volatile struct ALT_NAND_STAT_INTR_EN0_s  ALT_NAND_STAT_INTR_EN0_t;
  *
  * The struct declaration for register ALT_NAND_STAT_PAGE_CNT0.
  */
-struct ALT_NAND_STAT_PAGE_CNT0_s
-{
-    const uint32_t  value :  8;  /* ALT_NAND_STAT_PAGE_CNT0_VALUE */
-    uint32_t              : 24;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_STAT_PAGE_CNT0_s
+        {
+            const uint32_t value :  8;  /* ALT_NAND_STAT_PAGE_CNT0_VALUE */
+            uint32_t              : 24; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_STAT_PAGE_CNT0. */
-typedef volatile struct ALT_NAND_STAT_PAGE_CNT0_s  ALT_NAND_STAT_PAGE_CNT0_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_STAT_PAGE_CNT0_s ALT_NAND_STAT_PAGE_CNT0_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_STAT_PAGE_CNT0 register from the beginning of the component. */
-#define ALT_NAND_STAT_PAGE_CNT0_OFST        0x30
+    #define ALT_NAND_STAT_PAGE_CNT0_OFST    0x30
 
 /*
  * Register : err_page_addr0
@@ -5989,6 +6123,7 @@ typedef volatile struct ALT_NAND_STAT_PAGE_CNT0_s  ALT_NAND_STAT_PAGE_CNT0_t;
  *  [31:16] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -5998,23 +6133,24 @@ typedef volatile struct ALT_NAND_STAT_PAGE_CNT0_s  ALT_NAND_STAT_PAGE_CNT0_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_ERR_PAGE_ADDR0_VALUE register field. */
-#define ALT_NAND_STAT_ERR_PAGE_ADDR0_VALUE_LSB        0
+    #define ALT_NAND_STAT_ERR_PAGE_ADDR0_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_ERR_PAGE_ADDR0_VALUE register field. */
-#define ALT_NAND_STAT_ERR_PAGE_ADDR0_VALUE_MSB        15
+    #define ALT_NAND_STAT_ERR_PAGE_ADDR0_VALUE_MSB        15
 /* The width in bits of the ALT_NAND_STAT_ERR_PAGE_ADDR0_VALUE register field. */
-#define ALT_NAND_STAT_ERR_PAGE_ADDR0_VALUE_WIDTH      16
+    #define ALT_NAND_STAT_ERR_PAGE_ADDR0_VALUE_WIDTH      16
 /* The mask used to set the ALT_NAND_STAT_ERR_PAGE_ADDR0_VALUE register field value. */
-#define ALT_NAND_STAT_ERR_PAGE_ADDR0_VALUE_SET_MSK    0x0000ffff
+    #define ALT_NAND_STAT_ERR_PAGE_ADDR0_VALUE_SET_MSK    0x0000ffff
 /* The mask used to clear the ALT_NAND_STAT_ERR_PAGE_ADDR0_VALUE register field value. */
-#define ALT_NAND_STAT_ERR_PAGE_ADDR0_VALUE_CLR_MSK    0xffff0000
+    #define ALT_NAND_STAT_ERR_PAGE_ADDR0_VALUE_CLR_MSK    0xffff0000
 /* The reset value of the ALT_NAND_STAT_ERR_PAGE_ADDR0_VALUE register field. */
-#define ALT_NAND_STAT_ERR_PAGE_ADDR0_VALUE_RESET      0x0
+    #define ALT_NAND_STAT_ERR_PAGE_ADDR0_VALUE_RESET      0x0
 /* Extracts the ALT_NAND_STAT_ERR_PAGE_ADDR0_VALUE field value from a register. */
-#define ALT_NAND_STAT_ERR_PAGE_ADDR0_VALUE_GET(value) (((value) & 0x0000ffff) >> 0)
+    #define ALT_NAND_STAT_ERR_PAGE_ADDR0_VALUE_GET( value )    ( ( ( value ) & 0x0000ffff ) >> 0 )
 /* Produces a ALT_NAND_STAT_ERR_PAGE_ADDR0_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_STAT_ERR_PAGE_ADDR0_VALUE_SET(value) (((value) << 0) & 0x0000ffff)
+    #define ALT_NAND_STAT_ERR_PAGE_ADDR0_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x0000ffff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -6025,18 +6161,18 @@ typedef volatile struct ALT_NAND_STAT_PAGE_CNT0_s  ALT_NAND_STAT_PAGE_CNT0_t;
  *
  * The struct declaration for register ALT_NAND_STAT_ERR_PAGE_ADDR0.
  */
-struct ALT_NAND_STAT_ERR_PAGE_ADDR0_s
-{
-    const uint32_t  value : 16;  /* ALT_NAND_STAT_ERR_PAGE_ADDR0_VALUE */
-    uint32_t              : 16;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_STAT_ERR_PAGE_ADDR0_s
+        {
+            const uint32_t value : 16;  /* ALT_NAND_STAT_ERR_PAGE_ADDR0_VALUE */
+            uint32_t              : 16; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_STAT_ERR_PAGE_ADDR0. */
-typedef volatile struct ALT_NAND_STAT_ERR_PAGE_ADDR0_s  ALT_NAND_STAT_ERR_PAGE_ADDR0_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_STAT_ERR_PAGE_ADDR0_s ALT_NAND_STAT_ERR_PAGE_ADDR0_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_STAT_ERR_PAGE_ADDR0 register from the beginning of the component. */
-#define ALT_NAND_STAT_ERR_PAGE_ADDR0_OFST        0x40
+    #define ALT_NAND_STAT_ERR_PAGE_ADDR0_OFST    0x40
 
 /*
  * Register : err_block_addr0
@@ -6051,6 +6187,7 @@ typedef volatile struct ALT_NAND_STAT_ERR_PAGE_ADDR0_s  ALT_NAND_STAT_ERR_PAGE_A
  *  [31:16] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -6061,23 +6198,24 @@ typedef volatile struct ALT_NAND_STAT_ERR_PAGE_ADDR0_s  ALT_NAND_STAT_ERR_PAGE_A
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_ERR_BLOCK_ADDR0_VALUE register field. */
-#define ALT_NAND_STAT_ERR_BLOCK_ADDR0_VALUE_LSB        0
+    #define ALT_NAND_STAT_ERR_BLOCK_ADDR0_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_ERR_BLOCK_ADDR0_VALUE register field. */
-#define ALT_NAND_STAT_ERR_BLOCK_ADDR0_VALUE_MSB        15
+    #define ALT_NAND_STAT_ERR_BLOCK_ADDR0_VALUE_MSB        15
 /* The width in bits of the ALT_NAND_STAT_ERR_BLOCK_ADDR0_VALUE register field. */
-#define ALT_NAND_STAT_ERR_BLOCK_ADDR0_VALUE_WIDTH      16
+    #define ALT_NAND_STAT_ERR_BLOCK_ADDR0_VALUE_WIDTH      16
 /* The mask used to set the ALT_NAND_STAT_ERR_BLOCK_ADDR0_VALUE register field value. */
-#define ALT_NAND_STAT_ERR_BLOCK_ADDR0_VALUE_SET_MSK    0x0000ffff
+    #define ALT_NAND_STAT_ERR_BLOCK_ADDR0_VALUE_SET_MSK    0x0000ffff
 /* The mask used to clear the ALT_NAND_STAT_ERR_BLOCK_ADDR0_VALUE register field value. */
-#define ALT_NAND_STAT_ERR_BLOCK_ADDR0_VALUE_CLR_MSK    0xffff0000
+    #define ALT_NAND_STAT_ERR_BLOCK_ADDR0_VALUE_CLR_MSK    0xffff0000
 /* The reset value of the ALT_NAND_STAT_ERR_BLOCK_ADDR0_VALUE register field. */
-#define ALT_NAND_STAT_ERR_BLOCK_ADDR0_VALUE_RESET      0x0
+    #define ALT_NAND_STAT_ERR_BLOCK_ADDR0_VALUE_RESET      0x0
 /* Extracts the ALT_NAND_STAT_ERR_BLOCK_ADDR0_VALUE field value from a register. */
-#define ALT_NAND_STAT_ERR_BLOCK_ADDR0_VALUE_GET(value) (((value) & 0x0000ffff) >> 0)
+    #define ALT_NAND_STAT_ERR_BLOCK_ADDR0_VALUE_GET( value )    ( ( ( value ) & 0x0000ffff ) >> 0 )
 /* Produces a ALT_NAND_STAT_ERR_BLOCK_ADDR0_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_STAT_ERR_BLOCK_ADDR0_VALUE_SET(value) (((value) << 0) & 0x0000ffff)
+    #define ALT_NAND_STAT_ERR_BLOCK_ADDR0_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x0000ffff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -6088,18 +6226,18 @@ typedef volatile struct ALT_NAND_STAT_ERR_PAGE_ADDR0_s  ALT_NAND_STAT_ERR_PAGE_A
  *
  * The struct declaration for register ALT_NAND_STAT_ERR_BLOCK_ADDR0.
  */
-struct ALT_NAND_STAT_ERR_BLOCK_ADDR0_s
-{
-    const uint32_t  value : 16;  /* ALT_NAND_STAT_ERR_BLOCK_ADDR0_VALUE */
-    uint32_t              : 16;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_STAT_ERR_BLOCK_ADDR0_s
+        {
+            const uint32_t value : 16;  /* ALT_NAND_STAT_ERR_BLOCK_ADDR0_VALUE */
+            uint32_t              : 16; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_STAT_ERR_BLOCK_ADDR0. */
-typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR0_s  ALT_NAND_STAT_ERR_BLOCK_ADDR0_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR0_s ALT_NAND_STAT_ERR_BLOCK_ADDR0_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_STAT_ERR_BLOCK_ADDR0 register from the beginning of the component. */
-#define ALT_NAND_STAT_ERR_BLOCK_ADDR0_OFST        0x50
+    #define ALT_NAND_STAT_ERR_BLOCK_ADDR0_OFST    0x50
 
 /*
  * Register : intr_status1
@@ -6129,6 +6267,7 @@ typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR0_s  ALT_NAND_STAT_ERR_BLOCK
  *  [31:16] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : ecc_uncor_err
  *
@@ -6138,21 +6277,21 @@ typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR0_s  ALT_NAND_STAT_ERR_BLOCK
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT1_ECC_UNCOR_ERR register field. */
-#define ALT_NAND_STAT_INTR_STAT1_ECC_UNCOR_ERR_LSB        0
+    #define ALT_NAND_STAT_INTR_STAT1_ECC_UNCOR_ERR_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT1_ECC_UNCOR_ERR register field. */
-#define ALT_NAND_STAT_INTR_STAT1_ECC_UNCOR_ERR_MSB        0
+    #define ALT_NAND_STAT_INTR_STAT1_ECC_UNCOR_ERR_MSB        0
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT1_ECC_UNCOR_ERR register field. */
-#define ALT_NAND_STAT_INTR_STAT1_ECC_UNCOR_ERR_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT1_ECC_UNCOR_ERR_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT1_ECC_UNCOR_ERR register field value. */
-#define ALT_NAND_STAT_INTR_STAT1_ECC_UNCOR_ERR_SET_MSK    0x00000001
+    #define ALT_NAND_STAT_INTR_STAT1_ECC_UNCOR_ERR_SET_MSK    0x00000001
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT1_ECC_UNCOR_ERR register field value. */
-#define ALT_NAND_STAT_INTR_STAT1_ECC_UNCOR_ERR_CLR_MSK    0xfffffffe
+    #define ALT_NAND_STAT_INTR_STAT1_ECC_UNCOR_ERR_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_NAND_STAT_INTR_STAT1_ECC_UNCOR_ERR register field. */
-#define ALT_NAND_STAT_INTR_STAT1_ECC_UNCOR_ERR_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT1_ECC_UNCOR_ERR_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT1_ECC_UNCOR_ERR field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT1_ECC_UNCOR_ERR_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_NAND_STAT_INTR_STAT1_ECC_UNCOR_ERR_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_NAND_STAT_INTR_STAT1_ECC_UNCOR_ERR register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT1_ECC_UNCOR_ERR_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_NAND_STAT_INTR_STAT1_ECC_UNCOR_ERR_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
 /*
  * Field : dma_cmd_comp
@@ -6163,21 +6302,21 @@ typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR0_s  ALT_NAND_STAT_ERR_BLOCK
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT1_DMA_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT1_DMA_CMD_COMP_LSB        2
+    #define ALT_NAND_STAT_INTR_STAT1_DMA_CMD_COMP_LSB        2
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT1_DMA_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT1_DMA_CMD_COMP_MSB        2
+    #define ALT_NAND_STAT_INTR_STAT1_DMA_CMD_COMP_MSB        2
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT1_DMA_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT1_DMA_CMD_COMP_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT1_DMA_CMD_COMP_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT1_DMA_CMD_COMP register field value. */
-#define ALT_NAND_STAT_INTR_STAT1_DMA_CMD_COMP_SET_MSK    0x00000004
+    #define ALT_NAND_STAT_INTR_STAT1_DMA_CMD_COMP_SET_MSK    0x00000004
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT1_DMA_CMD_COMP register field value. */
-#define ALT_NAND_STAT_INTR_STAT1_DMA_CMD_COMP_CLR_MSK    0xfffffffb
+    #define ALT_NAND_STAT_INTR_STAT1_DMA_CMD_COMP_CLR_MSK    0xfffffffb
 /* The reset value of the ALT_NAND_STAT_INTR_STAT1_DMA_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT1_DMA_CMD_COMP_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT1_DMA_CMD_COMP_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT1_DMA_CMD_COMP field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT1_DMA_CMD_COMP_GET(value) (((value) & 0x00000004) >> 2)
+    #define ALT_NAND_STAT_INTR_STAT1_DMA_CMD_COMP_GET( value )    ( ( ( value ) & 0x00000004 ) >> 2 )
 /* Produces a ALT_NAND_STAT_INTR_STAT1_DMA_CMD_COMP register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT1_DMA_CMD_COMP_SET(value) (((value) << 2) & 0x00000004)
+    #define ALT_NAND_STAT_INTR_STAT1_DMA_CMD_COMP_SET( value )    ( ( ( value ) << 2 ) & 0x00000004 )
 
 /*
  * Field : time_out
@@ -6189,21 +6328,21 @@ typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR0_s  ALT_NAND_STAT_ERR_BLOCK
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT1_TIME_OUT register field. */
-#define ALT_NAND_STAT_INTR_STAT1_TIME_OUT_LSB        3
+    #define ALT_NAND_STAT_INTR_STAT1_TIME_OUT_LSB        3
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT1_TIME_OUT register field. */
-#define ALT_NAND_STAT_INTR_STAT1_TIME_OUT_MSB        3
+    #define ALT_NAND_STAT_INTR_STAT1_TIME_OUT_MSB        3
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT1_TIME_OUT register field. */
-#define ALT_NAND_STAT_INTR_STAT1_TIME_OUT_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT1_TIME_OUT_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT1_TIME_OUT register field value. */
-#define ALT_NAND_STAT_INTR_STAT1_TIME_OUT_SET_MSK    0x00000008
+    #define ALT_NAND_STAT_INTR_STAT1_TIME_OUT_SET_MSK    0x00000008
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT1_TIME_OUT register field value. */
-#define ALT_NAND_STAT_INTR_STAT1_TIME_OUT_CLR_MSK    0xfffffff7
+    #define ALT_NAND_STAT_INTR_STAT1_TIME_OUT_CLR_MSK    0xfffffff7
 /* The reset value of the ALT_NAND_STAT_INTR_STAT1_TIME_OUT register field. */
-#define ALT_NAND_STAT_INTR_STAT1_TIME_OUT_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT1_TIME_OUT_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT1_TIME_OUT field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT1_TIME_OUT_GET(value) (((value) & 0x00000008) >> 3)
+    #define ALT_NAND_STAT_INTR_STAT1_TIME_OUT_GET( value )    ( ( ( value ) & 0x00000008 ) >> 3 )
 /* Produces a ALT_NAND_STAT_INTR_STAT1_TIME_OUT register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT1_TIME_OUT_SET(value) (((value) << 3) & 0x00000008)
+    #define ALT_NAND_STAT_INTR_STAT1_TIME_OUT_SET( value )    ( ( ( value ) << 3 ) & 0x00000008 )
 
 /*
  * Field : program_fail
@@ -6216,21 +6355,21 @@ typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR0_s  ALT_NAND_STAT_ERR_BLOCK
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT1_PROGRAM_FAIL register field. */
-#define ALT_NAND_STAT_INTR_STAT1_PROGRAM_FAIL_LSB        4
+    #define ALT_NAND_STAT_INTR_STAT1_PROGRAM_FAIL_LSB        4
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT1_PROGRAM_FAIL register field. */
-#define ALT_NAND_STAT_INTR_STAT1_PROGRAM_FAIL_MSB        4
+    #define ALT_NAND_STAT_INTR_STAT1_PROGRAM_FAIL_MSB        4
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT1_PROGRAM_FAIL register field. */
-#define ALT_NAND_STAT_INTR_STAT1_PROGRAM_FAIL_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT1_PROGRAM_FAIL_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT1_PROGRAM_FAIL register field value. */
-#define ALT_NAND_STAT_INTR_STAT1_PROGRAM_FAIL_SET_MSK    0x00000010
+    #define ALT_NAND_STAT_INTR_STAT1_PROGRAM_FAIL_SET_MSK    0x00000010
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT1_PROGRAM_FAIL register field value. */
-#define ALT_NAND_STAT_INTR_STAT1_PROGRAM_FAIL_CLR_MSK    0xffffffef
+    #define ALT_NAND_STAT_INTR_STAT1_PROGRAM_FAIL_CLR_MSK    0xffffffef
 /* The reset value of the ALT_NAND_STAT_INTR_STAT1_PROGRAM_FAIL register field. */
-#define ALT_NAND_STAT_INTR_STAT1_PROGRAM_FAIL_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT1_PROGRAM_FAIL_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT1_PROGRAM_FAIL field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT1_PROGRAM_FAIL_GET(value) (((value) & 0x00000010) >> 4)
+    #define ALT_NAND_STAT_INTR_STAT1_PROGRAM_FAIL_GET( value )    ( ( ( value ) & 0x00000010 ) >> 4 )
 /* Produces a ALT_NAND_STAT_INTR_STAT1_PROGRAM_FAIL register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT1_PROGRAM_FAIL_SET(value) (((value) << 4) & 0x00000010)
+    #define ALT_NAND_STAT_INTR_STAT1_PROGRAM_FAIL_SET( value )    ( ( ( value ) << 4 ) & 0x00000010 )
 
 /*
  * Field : erase_fail
@@ -6243,21 +6382,21 @@ typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR0_s  ALT_NAND_STAT_ERR_BLOCK
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT1_ERASE_FAIL register field. */
-#define ALT_NAND_STAT_INTR_STAT1_ERASE_FAIL_LSB        5
+    #define ALT_NAND_STAT_INTR_STAT1_ERASE_FAIL_LSB        5
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT1_ERASE_FAIL register field. */
-#define ALT_NAND_STAT_INTR_STAT1_ERASE_FAIL_MSB        5
+    #define ALT_NAND_STAT_INTR_STAT1_ERASE_FAIL_MSB        5
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT1_ERASE_FAIL register field. */
-#define ALT_NAND_STAT_INTR_STAT1_ERASE_FAIL_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT1_ERASE_FAIL_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT1_ERASE_FAIL register field value. */
-#define ALT_NAND_STAT_INTR_STAT1_ERASE_FAIL_SET_MSK    0x00000020
+    #define ALT_NAND_STAT_INTR_STAT1_ERASE_FAIL_SET_MSK    0x00000020
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT1_ERASE_FAIL register field value. */
-#define ALT_NAND_STAT_INTR_STAT1_ERASE_FAIL_CLR_MSK    0xffffffdf
+    #define ALT_NAND_STAT_INTR_STAT1_ERASE_FAIL_CLR_MSK    0xffffffdf
 /* The reset value of the ALT_NAND_STAT_INTR_STAT1_ERASE_FAIL register field. */
-#define ALT_NAND_STAT_INTR_STAT1_ERASE_FAIL_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT1_ERASE_FAIL_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT1_ERASE_FAIL field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT1_ERASE_FAIL_GET(value) (((value) & 0x00000020) >> 5)
+    #define ALT_NAND_STAT_INTR_STAT1_ERASE_FAIL_GET( value )    ( ( ( value ) & 0x00000020 ) >> 5 )
 /* Produces a ALT_NAND_STAT_INTR_STAT1_ERASE_FAIL register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT1_ERASE_FAIL_SET(value) (((value) << 5) & 0x00000020)
+    #define ALT_NAND_STAT_INTR_STAT1_ERASE_FAIL_SET( value )    ( ( ( value ) << 5 ) & 0x00000020 )
 
 /*
  * Field : load_comp
@@ -6268,21 +6407,21 @@ typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR0_s  ALT_NAND_STAT_ERR_BLOCK
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT1_LD_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT1_LD_COMP_LSB        6
+    #define ALT_NAND_STAT_INTR_STAT1_LD_COMP_LSB        6
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT1_LD_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT1_LD_COMP_MSB        6
+    #define ALT_NAND_STAT_INTR_STAT1_LD_COMP_MSB        6
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT1_LD_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT1_LD_COMP_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT1_LD_COMP_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT1_LD_COMP register field value. */
-#define ALT_NAND_STAT_INTR_STAT1_LD_COMP_SET_MSK    0x00000040
+    #define ALT_NAND_STAT_INTR_STAT1_LD_COMP_SET_MSK    0x00000040
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT1_LD_COMP register field value. */
-#define ALT_NAND_STAT_INTR_STAT1_LD_COMP_CLR_MSK    0xffffffbf
+    #define ALT_NAND_STAT_INTR_STAT1_LD_COMP_CLR_MSK    0xffffffbf
 /* The reset value of the ALT_NAND_STAT_INTR_STAT1_LD_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT1_LD_COMP_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT1_LD_COMP_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT1_LD_COMP field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT1_LD_COMP_GET(value) (((value) & 0x00000040) >> 6)
+    #define ALT_NAND_STAT_INTR_STAT1_LD_COMP_GET( value )    ( ( ( value ) & 0x00000040 ) >> 6 )
 /* Produces a ALT_NAND_STAT_INTR_STAT1_LD_COMP register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT1_LD_COMP_SET(value) (((value) << 6) & 0x00000040)
+    #define ALT_NAND_STAT_INTR_STAT1_LD_COMP_SET( value )    ( ( ( value ) << 6 ) & 0x00000040 )
 
 /*
  * Field : program_comp
@@ -6293,21 +6432,21 @@ typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR0_s  ALT_NAND_STAT_ERR_BLOCK
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT1_PROGRAM_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT1_PROGRAM_COMP_LSB        7
+    #define ALT_NAND_STAT_INTR_STAT1_PROGRAM_COMP_LSB        7
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT1_PROGRAM_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT1_PROGRAM_COMP_MSB        7
+    #define ALT_NAND_STAT_INTR_STAT1_PROGRAM_COMP_MSB        7
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT1_PROGRAM_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT1_PROGRAM_COMP_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT1_PROGRAM_COMP_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT1_PROGRAM_COMP register field value. */
-#define ALT_NAND_STAT_INTR_STAT1_PROGRAM_COMP_SET_MSK    0x00000080
+    #define ALT_NAND_STAT_INTR_STAT1_PROGRAM_COMP_SET_MSK    0x00000080
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT1_PROGRAM_COMP register field value. */
-#define ALT_NAND_STAT_INTR_STAT1_PROGRAM_COMP_CLR_MSK    0xffffff7f
+    #define ALT_NAND_STAT_INTR_STAT1_PROGRAM_COMP_CLR_MSK    0xffffff7f
 /* The reset value of the ALT_NAND_STAT_INTR_STAT1_PROGRAM_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT1_PROGRAM_COMP_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT1_PROGRAM_COMP_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT1_PROGRAM_COMP field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT1_PROGRAM_COMP_GET(value) (((value) & 0x00000080) >> 7)
+    #define ALT_NAND_STAT_INTR_STAT1_PROGRAM_COMP_GET( value )    ( ( ( value ) & 0x00000080 ) >> 7 )
 /* Produces a ALT_NAND_STAT_INTR_STAT1_PROGRAM_COMP register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT1_PROGRAM_COMP_SET(value) (((value) << 7) & 0x00000080)
+    #define ALT_NAND_STAT_INTR_STAT1_PROGRAM_COMP_SET( value )    ( ( ( value ) << 7 ) & 0x00000080 )
 
 /*
  * Field : erase_comp
@@ -6318,21 +6457,21 @@ typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR0_s  ALT_NAND_STAT_ERR_BLOCK
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT1_ERASE_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT1_ERASE_COMP_LSB        8
+    #define ALT_NAND_STAT_INTR_STAT1_ERASE_COMP_LSB        8
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT1_ERASE_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT1_ERASE_COMP_MSB        8
+    #define ALT_NAND_STAT_INTR_STAT1_ERASE_COMP_MSB        8
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT1_ERASE_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT1_ERASE_COMP_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT1_ERASE_COMP_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT1_ERASE_COMP register field value. */
-#define ALT_NAND_STAT_INTR_STAT1_ERASE_COMP_SET_MSK    0x00000100
+    #define ALT_NAND_STAT_INTR_STAT1_ERASE_COMP_SET_MSK    0x00000100
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT1_ERASE_COMP register field value. */
-#define ALT_NAND_STAT_INTR_STAT1_ERASE_COMP_CLR_MSK    0xfffffeff
+    #define ALT_NAND_STAT_INTR_STAT1_ERASE_COMP_CLR_MSK    0xfffffeff
 /* The reset value of the ALT_NAND_STAT_INTR_STAT1_ERASE_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT1_ERASE_COMP_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT1_ERASE_COMP_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT1_ERASE_COMP field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT1_ERASE_COMP_GET(value) (((value) & 0x00000100) >> 8)
+    #define ALT_NAND_STAT_INTR_STAT1_ERASE_COMP_GET( value )    ( ( ( value ) & 0x00000100 ) >> 8 )
 /* Produces a ALT_NAND_STAT_INTR_STAT1_ERASE_COMP register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT1_ERASE_COMP_SET(value) (((value) << 8) & 0x00000100)
+    #define ALT_NAND_STAT_INTR_STAT1_ERASE_COMP_SET( value )    ( ( ( value ) << 8 ) & 0x00000100 )
 
 /*
  * Field : pipe_cpybck_cmd_comp
@@ -6344,21 +6483,21 @@ typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR0_s  ALT_NAND_STAT_ERR_BLOCK
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT1_PIPE_CPYBCK_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT1_PIPE_CPYBCK_CMD_COMP_LSB        9
+    #define ALT_NAND_STAT_INTR_STAT1_PIPE_CPYBCK_CMD_COMP_LSB        9
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT1_PIPE_CPYBCK_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT1_PIPE_CPYBCK_CMD_COMP_MSB        9
+    #define ALT_NAND_STAT_INTR_STAT1_PIPE_CPYBCK_CMD_COMP_MSB        9
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT1_PIPE_CPYBCK_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT1_PIPE_CPYBCK_CMD_COMP_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT1_PIPE_CPYBCK_CMD_COMP_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT1_PIPE_CPYBCK_CMD_COMP register field value. */
-#define ALT_NAND_STAT_INTR_STAT1_PIPE_CPYBCK_CMD_COMP_SET_MSK    0x00000200
+    #define ALT_NAND_STAT_INTR_STAT1_PIPE_CPYBCK_CMD_COMP_SET_MSK    0x00000200
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT1_PIPE_CPYBCK_CMD_COMP register field value. */
-#define ALT_NAND_STAT_INTR_STAT1_PIPE_CPYBCK_CMD_COMP_CLR_MSK    0xfffffdff
+    #define ALT_NAND_STAT_INTR_STAT1_PIPE_CPYBCK_CMD_COMP_CLR_MSK    0xfffffdff
 /* The reset value of the ALT_NAND_STAT_INTR_STAT1_PIPE_CPYBCK_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT1_PIPE_CPYBCK_CMD_COMP_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT1_PIPE_CPYBCK_CMD_COMP_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT1_PIPE_CPYBCK_CMD_COMP field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT1_PIPE_CPYBCK_CMD_COMP_GET(value) (((value) & 0x00000200) >> 9)
+    #define ALT_NAND_STAT_INTR_STAT1_PIPE_CPYBCK_CMD_COMP_GET( value )    ( ( ( value ) & 0x00000200 ) >> 9 )
 /* Produces a ALT_NAND_STAT_INTR_STAT1_PIPE_CPYBCK_CMD_COMP register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT1_PIPE_CPYBCK_CMD_COMP_SET(value) (((value) << 9) & 0x00000200)
+    #define ALT_NAND_STAT_INTR_STAT1_PIPE_CPYBCK_CMD_COMP_SET( value )    ( ( ( value ) << 9 ) & 0x00000200 )
 
 /*
  * Field : locked_blk
@@ -6370,21 +6509,21 @@ typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR0_s  ALT_NAND_STAT_ERR_BLOCK
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT1_LOCKED_BLK register field. */
-#define ALT_NAND_STAT_INTR_STAT1_LOCKED_BLK_LSB        10
+    #define ALT_NAND_STAT_INTR_STAT1_LOCKED_BLK_LSB        10
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT1_LOCKED_BLK register field. */
-#define ALT_NAND_STAT_INTR_STAT1_LOCKED_BLK_MSB        10
+    #define ALT_NAND_STAT_INTR_STAT1_LOCKED_BLK_MSB        10
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT1_LOCKED_BLK register field. */
-#define ALT_NAND_STAT_INTR_STAT1_LOCKED_BLK_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT1_LOCKED_BLK_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT1_LOCKED_BLK register field value. */
-#define ALT_NAND_STAT_INTR_STAT1_LOCKED_BLK_SET_MSK    0x00000400
+    #define ALT_NAND_STAT_INTR_STAT1_LOCKED_BLK_SET_MSK    0x00000400
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT1_LOCKED_BLK register field value. */
-#define ALT_NAND_STAT_INTR_STAT1_LOCKED_BLK_CLR_MSK    0xfffffbff
+    #define ALT_NAND_STAT_INTR_STAT1_LOCKED_BLK_CLR_MSK    0xfffffbff
 /* The reset value of the ALT_NAND_STAT_INTR_STAT1_LOCKED_BLK register field. */
-#define ALT_NAND_STAT_INTR_STAT1_LOCKED_BLK_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT1_LOCKED_BLK_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT1_LOCKED_BLK field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT1_LOCKED_BLK_GET(value) (((value) & 0x00000400) >> 10)
+    #define ALT_NAND_STAT_INTR_STAT1_LOCKED_BLK_GET( value )    ( ( ( value ) & 0x00000400 ) >> 10 )
 /* Produces a ALT_NAND_STAT_INTR_STAT1_LOCKED_BLK register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT1_LOCKED_BLK_SET(value) (((value) << 10) & 0x00000400)
+    #define ALT_NAND_STAT_INTR_STAT1_LOCKED_BLK_SET( value )    ( ( ( value ) << 10 ) & 0x00000400 )
 
 /*
  * Field : unsup_cmd
@@ -6396,21 +6535,21 @@ typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR0_s  ALT_NAND_STAT_ERR_BLOCK
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT1_UNSUP_CMD register field. */
-#define ALT_NAND_STAT_INTR_STAT1_UNSUP_CMD_LSB        11
+    #define ALT_NAND_STAT_INTR_STAT1_UNSUP_CMD_LSB        11
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT1_UNSUP_CMD register field. */
-#define ALT_NAND_STAT_INTR_STAT1_UNSUP_CMD_MSB        11
+    #define ALT_NAND_STAT_INTR_STAT1_UNSUP_CMD_MSB        11
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT1_UNSUP_CMD register field. */
-#define ALT_NAND_STAT_INTR_STAT1_UNSUP_CMD_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT1_UNSUP_CMD_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT1_UNSUP_CMD register field value. */
-#define ALT_NAND_STAT_INTR_STAT1_UNSUP_CMD_SET_MSK    0x00000800
+    #define ALT_NAND_STAT_INTR_STAT1_UNSUP_CMD_SET_MSK    0x00000800
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT1_UNSUP_CMD register field value. */
-#define ALT_NAND_STAT_INTR_STAT1_UNSUP_CMD_CLR_MSK    0xfffff7ff
+    #define ALT_NAND_STAT_INTR_STAT1_UNSUP_CMD_CLR_MSK    0xfffff7ff
 /* The reset value of the ALT_NAND_STAT_INTR_STAT1_UNSUP_CMD register field. */
-#define ALT_NAND_STAT_INTR_STAT1_UNSUP_CMD_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT1_UNSUP_CMD_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT1_UNSUP_CMD field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT1_UNSUP_CMD_GET(value) (((value) & 0x00000800) >> 11)
+    #define ALT_NAND_STAT_INTR_STAT1_UNSUP_CMD_GET( value )    ( ( ( value ) & 0x00000800 ) >> 11 )
 /* Produces a ALT_NAND_STAT_INTR_STAT1_UNSUP_CMD register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT1_UNSUP_CMD_SET(value) (((value) << 11) & 0x00000800)
+    #define ALT_NAND_STAT_INTR_STAT1_UNSUP_CMD_SET( value )    ( ( ( value ) << 11 ) & 0x00000800 )
 
 /*
  * Field : INT_act
@@ -6421,21 +6560,21 @@ typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR0_s  ALT_NAND_STAT_ERR_BLOCK
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT1_INT_ACT register field. */
-#define ALT_NAND_STAT_INTR_STAT1_INT_ACT_LSB        12
+    #define ALT_NAND_STAT_INTR_STAT1_INT_ACT_LSB        12
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT1_INT_ACT register field. */
-#define ALT_NAND_STAT_INTR_STAT1_INT_ACT_MSB        12
+    #define ALT_NAND_STAT_INTR_STAT1_INT_ACT_MSB        12
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT1_INT_ACT register field. */
-#define ALT_NAND_STAT_INTR_STAT1_INT_ACT_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT1_INT_ACT_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT1_INT_ACT register field value. */
-#define ALT_NAND_STAT_INTR_STAT1_INT_ACT_SET_MSK    0x00001000
+    #define ALT_NAND_STAT_INTR_STAT1_INT_ACT_SET_MSK    0x00001000
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT1_INT_ACT register field value. */
-#define ALT_NAND_STAT_INTR_STAT1_INT_ACT_CLR_MSK    0xffffefff
+    #define ALT_NAND_STAT_INTR_STAT1_INT_ACT_CLR_MSK    0xffffefff
 /* The reset value of the ALT_NAND_STAT_INTR_STAT1_INT_ACT register field. */
-#define ALT_NAND_STAT_INTR_STAT1_INT_ACT_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT1_INT_ACT_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT1_INT_ACT field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT1_INT_ACT_GET(value) (((value) & 0x00001000) >> 12)
+    #define ALT_NAND_STAT_INTR_STAT1_INT_ACT_GET( value )    ( ( ( value ) & 0x00001000 ) >> 12 )
 /* Produces a ALT_NAND_STAT_INTR_STAT1_INT_ACT register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT1_INT_ACT_SET(value) (((value) << 12) & 0x00001000)
+    #define ALT_NAND_STAT_INTR_STAT1_INT_ACT_SET( value )    ( ( ( value ) << 12 ) & 0x00001000 )
 
 /*
  * Field : rst_comp
@@ -6447,21 +6586,21 @@ typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR0_s  ALT_NAND_STAT_ERR_BLOCK
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT1_RST_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT1_RST_COMP_LSB        13
+    #define ALT_NAND_STAT_INTR_STAT1_RST_COMP_LSB        13
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT1_RST_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT1_RST_COMP_MSB        13
+    #define ALT_NAND_STAT_INTR_STAT1_RST_COMP_MSB        13
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT1_RST_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT1_RST_COMP_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT1_RST_COMP_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT1_RST_COMP register field value. */
-#define ALT_NAND_STAT_INTR_STAT1_RST_COMP_SET_MSK    0x00002000
+    #define ALT_NAND_STAT_INTR_STAT1_RST_COMP_SET_MSK    0x00002000
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT1_RST_COMP register field value. */
-#define ALT_NAND_STAT_INTR_STAT1_RST_COMP_CLR_MSK    0xffffdfff
+    #define ALT_NAND_STAT_INTR_STAT1_RST_COMP_CLR_MSK    0xffffdfff
 /* The reset value of the ALT_NAND_STAT_INTR_STAT1_RST_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT1_RST_COMP_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT1_RST_COMP_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT1_RST_COMP field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT1_RST_COMP_GET(value) (((value) & 0x00002000) >> 13)
+    #define ALT_NAND_STAT_INTR_STAT1_RST_COMP_GET( value )    ( ( ( value ) & 0x00002000 ) >> 13 )
 /* Produces a ALT_NAND_STAT_INTR_STAT1_RST_COMP register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT1_RST_COMP_SET(value) (((value) << 13) & 0x00002000)
+    #define ALT_NAND_STAT_INTR_STAT1_RST_COMP_SET( value )    ( ( ( value ) << 13 ) & 0x00002000 )
 
 /*
  * Field : pipe_cmd_err
@@ -6474,21 +6613,21 @@ typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR0_s  ALT_NAND_STAT_ERR_BLOCK
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT1_PIPE_CMD_ERR register field. */
-#define ALT_NAND_STAT_INTR_STAT1_PIPE_CMD_ERR_LSB        14
+    #define ALT_NAND_STAT_INTR_STAT1_PIPE_CMD_ERR_LSB        14
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT1_PIPE_CMD_ERR register field. */
-#define ALT_NAND_STAT_INTR_STAT1_PIPE_CMD_ERR_MSB        14
+    #define ALT_NAND_STAT_INTR_STAT1_PIPE_CMD_ERR_MSB        14
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT1_PIPE_CMD_ERR register field. */
-#define ALT_NAND_STAT_INTR_STAT1_PIPE_CMD_ERR_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT1_PIPE_CMD_ERR_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT1_PIPE_CMD_ERR register field value. */
-#define ALT_NAND_STAT_INTR_STAT1_PIPE_CMD_ERR_SET_MSK    0x00004000
+    #define ALT_NAND_STAT_INTR_STAT1_PIPE_CMD_ERR_SET_MSK    0x00004000
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT1_PIPE_CMD_ERR register field value. */
-#define ALT_NAND_STAT_INTR_STAT1_PIPE_CMD_ERR_CLR_MSK    0xffffbfff
+    #define ALT_NAND_STAT_INTR_STAT1_PIPE_CMD_ERR_CLR_MSK    0xffffbfff
 /* The reset value of the ALT_NAND_STAT_INTR_STAT1_PIPE_CMD_ERR register field. */
-#define ALT_NAND_STAT_INTR_STAT1_PIPE_CMD_ERR_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT1_PIPE_CMD_ERR_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT1_PIPE_CMD_ERR field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT1_PIPE_CMD_ERR_GET(value) (((value) & 0x00004000) >> 14)
+    #define ALT_NAND_STAT_INTR_STAT1_PIPE_CMD_ERR_GET( value )    ( ( ( value ) & 0x00004000 ) >> 14 )
 /* Produces a ALT_NAND_STAT_INTR_STAT1_PIPE_CMD_ERR register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT1_PIPE_CMD_ERR_SET(value) (((value) << 14) & 0x00004000)
+    #define ALT_NAND_STAT_INTR_STAT1_PIPE_CMD_ERR_SET( value )    ( ( ( value ) << 14 ) & 0x00004000 )
 
 /*
  * Field : page_xfer_inc
@@ -6499,23 +6638,24 @@ typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR0_s  ALT_NAND_STAT_ERR_BLOCK
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT1_PAGE_XFER_INC register field. */
-#define ALT_NAND_STAT_INTR_STAT1_PAGE_XFER_INC_LSB        15
+    #define ALT_NAND_STAT_INTR_STAT1_PAGE_XFER_INC_LSB        15
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT1_PAGE_XFER_INC register field. */
-#define ALT_NAND_STAT_INTR_STAT1_PAGE_XFER_INC_MSB        15
+    #define ALT_NAND_STAT_INTR_STAT1_PAGE_XFER_INC_MSB        15
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT1_PAGE_XFER_INC register field. */
-#define ALT_NAND_STAT_INTR_STAT1_PAGE_XFER_INC_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT1_PAGE_XFER_INC_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT1_PAGE_XFER_INC register field value. */
-#define ALT_NAND_STAT_INTR_STAT1_PAGE_XFER_INC_SET_MSK    0x00008000
+    #define ALT_NAND_STAT_INTR_STAT1_PAGE_XFER_INC_SET_MSK    0x00008000
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT1_PAGE_XFER_INC register field value. */
-#define ALT_NAND_STAT_INTR_STAT1_PAGE_XFER_INC_CLR_MSK    0xffff7fff
+    #define ALT_NAND_STAT_INTR_STAT1_PAGE_XFER_INC_CLR_MSK    0xffff7fff
 /* The reset value of the ALT_NAND_STAT_INTR_STAT1_PAGE_XFER_INC register field. */
-#define ALT_NAND_STAT_INTR_STAT1_PAGE_XFER_INC_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT1_PAGE_XFER_INC_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT1_PAGE_XFER_INC field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT1_PAGE_XFER_INC_GET(value) (((value) & 0x00008000) >> 15)
+    #define ALT_NAND_STAT_INTR_STAT1_PAGE_XFER_INC_GET( value )    ( ( ( value ) & 0x00008000 ) >> 15 )
 /* Produces a ALT_NAND_STAT_INTR_STAT1_PAGE_XFER_INC register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT1_PAGE_XFER_INC_SET(value) (((value) << 15) & 0x00008000)
+    #define ALT_NAND_STAT_INTR_STAT1_PAGE_XFER_INC_SET( value )    ( ( ( value ) << 15 ) & 0x00008000 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -6526,33 +6666,33 @@ typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR0_s  ALT_NAND_STAT_ERR_BLOCK
  *
  * The struct declaration for register ALT_NAND_STAT_INTR_STAT1.
  */
-struct ALT_NAND_STAT_INTR_STAT1_s
-{
-    uint32_t  ecc_uncor_err        :  1;  /* ALT_NAND_STAT_INTR_STAT1_ECC_UNCOR_ERR */
-    uint32_t                       :  1;  /* *UNDEFINED* */
-    uint32_t  dma_cmd_comp         :  1;  /* ALT_NAND_STAT_INTR_STAT1_DMA_CMD_COMP */
-    uint32_t  time_out             :  1;  /* ALT_NAND_STAT_INTR_STAT1_TIME_OUT */
-    uint32_t  program_fail         :  1;  /* ALT_NAND_STAT_INTR_STAT1_PROGRAM_FAIL */
-    uint32_t  erase_fail           :  1;  /* ALT_NAND_STAT_INTR_STAT1_ERASE_FAIL */
-    uint32_t  load_comp            :  1;  /* ALT_NAND_STAT_INTR_STAT1_LD_COMP */
-    uint32_t  program_comp         :  1;  /* ALT_NAND_STAT_INTR_STAT1_PROGRAM_COMP */
-    uint32_t  erase_comp           :  1;  /* ALT_NAND_STAT_INTR_STAT1_ERASE_COMP */
-    uint32_t  pipe_cpybck_cmd_comp :  1;  /* ALT_NAND_STAT_INTR_STAT1_PIPE_CPYBCK_CMD_COMP */
-    uint32_t  locked_blk           :  1;  /* ALT_NAND_STAT_INTR_STAT1_LOCKED_BLK */
-    uint32_t  unsup_cmd            :  1;  /* ALT_NAND_STAT_INTR_STAT1_UNSUP_CMD */
-    uint32_t  INT_act              :  1;  /* ALT_NAND_STAT_INTR_STAT1_INT_ACT */
-    uint32_t  rst_comp             :  1;  /* ALT_NAND_STAT_INTR_STAT1_RST_COMP */
-    uint32_t  pipe_cmd_err         :  1;  /* ALT_NAND_STAT_INTR_STAT1_PIPE_CMD_ERR */
-    uint32_t  page_xfer_inc        :  1;  /* ALT_NAND_STAT_INTR_STAT1_PAGE_XFER_INC */
-    uint32_t                       : 16;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_STAT_INTR_STAT1_s
+        {
+            uint32_t ecc_uncor_err        :  1;  /* ALT_NAND_STAT_INTR_STAT1_ECC_UNCOR_ERR */
+            uint32_t                       :  1; /* *UNDEFINED* */
+            uint32_t dma_cmd_comp         :  1;  /* ALT_NAND_STAT_INTR_STAT1_DMA_CMD_COMP */
+            uint32_t time_out             :  1;  /* ALT_NAND_STAT_INTR_STAT1_TIME_OUT */
+            uint32_t program_fail         :  1;  /* ALT_NAND_STAT_INTR_STAT1_PROGRAM_FAIL */
+            uint32_t erase_fail           :  1;  /* ALT_NAND_STAT_INTR_STAT1_ERASE_FAIL */
+            uint32_t load_comp            :  1;  /* ALT_NAND_STAT_INTR_STAT1_LD_COMP */
+            uint32_t program_comp         :  1;  /* ALT_NAND_STAT_INTR_STAT1_PROGRAM_COMP */
+            uint32_t erase_comp           :  1;  /* ALT_NAND_STAT_INTR_STAT1_ERASE_COMP */
+            uint32_t pipe_cpybck_cmd_comp :  1;  /* ALT_NAND_STAT_INTR_STAT1_PIPE_CPYBCK_CMD_COMP */
+            uint32_t locked_blk           :  1;  /* ALT_NAND_STAT_INTR_STAT1_LOCKED_BLK */
+            uint32_t unsup_cmd            :  1;  /* ALT_NAND_STAT_INTR_STAT1_UNSUP_CMD */
+            uint32_t INT_act              :  1;  /* ALT_NAND_STAT_INTR_STAT1_INT_ACT */
+            uint32_t rst_comp             :  1;  /* ALT_NAND_STAT_INTR_STAT1_RST_COMP */
+            uint32_t pipe_cmd_err         :  1;  /* ALT_NAND_STAT_INTR_STAT1_PIPE_CMD_ERR */
+            uint32_t page_xfer_inc        :  1;  /* ALT_NAND_STAT_INTR_STAT1_PAGE_XFER_INC */
+            uint32_t                       : 16; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_STAT_INTR_STAT1. */
-typedef volatile struct ALT_NAND_STAT_INTR_STAT1_s  ALT_NAND_STAT_INTR_STAT1_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_STAT_INTR_STAT1_s ALT_NAND_STAT_INTR_STAT1_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_STAT_INTR_STAT1 register from the beginning of the component. */
-#define ALT_NAND_STAT_INTR_STAT1_OFST        0x60
+    #define ALT_NAND_STAT_INTR_STAT1_OFST    0x60
 
 /*
  * Register : intr_en1
@@ -6582,6 +6722,7 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT1_s  ALT_NAND_STAT_INTR_STAT1_t;
  *  [31:16] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : ecc_uncor_err
  *
@@ -6592,21 +6733,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT1_s  ALT_NAND_STAT_INTR_STAT1_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN1_ECC_UNCOR_ERR register field. */
-#define ALT_NAND_STAT_INTR_EN1_ECC_UNCOR_ERR_LSB        0
+    #define ALT_NAND_STAT_INTR_EN1_ECC_UNCOR_ERR_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN1_ECC_UNCOR_ERR register field. */
-#define ALT_NAND_STAT_INTR_EN1_ECC_UNCOR_ERR_MSB        0
+    #define ALT_NAND_STAT_INTR_EN1_ECC_UNCOR_ERR_MSB        0
 /* The width in bits of the ALT_NAND_STAT_INTR_EN1_ECC_UNCOR_ERR register field. */
-#define ALT_NAND_STAT_INTR_EN1_ECC_UNCOR_ERR_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN1_ECC_UNCOR_ERR_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN1_ECC_UNCOR_ERR register field value. */
-#define ALT_NAND_STAT_INTR_EN1_ECC_UNCOR_ERR_SET_MSK    0x00000001
+    #define ALT_NAND_STAT_INTR_EN1_ECC_UNCOR_ERR_SET_MSK    0x00000001
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN1_ECC_UNCOR_ERR register field value. */
-#define ALT_NAND_STAT_INTR_EN1_ECC_UNCOR_ERR_CLR_MSK    0xfffffffe
+    #define ALT_NAND_STAT_INTR_EN1_ECC_UNCOR_ERR_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_NAND_STAT_INTR_EN1_ECC_UNCOR_ERR register field. */
-#define ALT_NAND_STAT_INTR_EN1_ECC_UNCOR_ERR_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN1_ECC_UNCOR_ERR_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN1_ECC_UNCOR_ERR field value from a register. */
-#define ALT_NAND_STAT_INTR_EN1_ECC_UNCOR_ERR_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_NAND_STAT_INTR_EN1_ECC_UNCOR_ERR_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_NAND_STAT_INTR_EN1_ECC_UNCOR_ERR register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN1_ECC_UNCOR_ERR_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_NAND_STAT_INTR_EN1_ECC_UNCOR_ERR_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
 /*
  * Field : dma_cmd_comp
@@ -6617,21 +6758,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT1_s  ALT_NAND_STAT_INTR_STAT1_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN1_DMA_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN1_DMA_CMD_COMP_LSB        2
+    #define ALT_NAND_STAT_INTR_EN1_DMA_CMD_COMP_LSB        2
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN1_DMA_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN1_DMA_CMD_COMP_MSB        2
+    #define ALT_NAND_STAT_INTR_EN1_DMA_CMD_COMP_MSB        2
 /* The width in bits of the ALT_NAND_STAT_INTR_EN1_DMA_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN1_DMA_CMD_COMP_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN1_DMA_CMD_COMP_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN1_DMA_CMD_COMP register field value. */
-#define ALT_NAND_STAT_INTR_EN1_DMA_CMD_COMP_SET_MSK    0x00000004
+    #define ALT_NAND_STAT_INTR_EN1_DMA_CMD_COMP_SET_MSK    0x00000004
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN1_DMA_CMD_COMP register field value. */
-#define ALT_NAND_STAT_INTR_EN1_DMA_CMD_COMP_CLR_MSK    0xfffffffb
+    #define ALT_NAND_STAT_INTR_EN1_DMA_CMD_COMP_CLR_MSK    0xfffffffb
 /* The reset value of the ALT_NAND_STAT_INTR_EN1_DMA_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN1_DMA_CMD_COMP_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN1_DMA_CMD_COMP_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN1_DMA_CMD_COMP field value from a register. */
-#define ALT_NAND_STAT_INTR_EN1_DMA_CMD_COMP_GET(value) (((value) & 0x00000004) >> 2)
+    #define ALT_NAND_STAT_INTR_EN1_DMA_CMD_COMP_GET( value )    ( ( ( value ) & 0x00000004 ) >> 2 )
 /* Produces a ALT_NAND_STAT_INTR_EN1_DMA_CMD_COMP register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN1_DMA_CMD_COMP_SET(value) (((value) << 2) & 0x00000004)
+    #define ALT_NAND_STAT_INTR_EN1_DMA_CMD_COMP_SET( value )    ( ( ( value ) << 2 ) & 0x00000004 )
 
 /*
  * Field : time_out
@@ -6643,21 +6784,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT1_s  ALT_NAND_STAT_INTR_STAT1_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN1_TIME_OUT register field. */
-#define ALT_NAND_STAT_INTR_EN1_TIME_OUT_LSB        3
+    #define ALT_NAND_STAT_INTR_EN1_TIME_OUT_LSB        3
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN1_TIME_OUT register field. */
-#define ALT_NAND_STAT_INTR_EN1_TIME_OUT_MSB        3
+    #define ALT_NAND_STAT_INTR_EN1_TIME_OUT_MSB        3
 /* The width in bits of the ALT_NAND_STAT_INTR_EN1_TIME_OUT register field. */
-#define ALT_NAND_STAT_INTR_EN1_TIME_OUT_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN1_TIME_OUT_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN1_TIME_OUT register field value. */
-#define ALT_NAND_STAT_INTR_EN1_TIME_OUT_SET_MSK    0x00000008
+    #define ALT_NAND_STAT_INTR_EN1_TIME_OUT_SET_MSK    0x00000008
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN1_TIME_OUT register field value. */
-#define ALT_NAND_STAT_INTR_EN1_TIME_OUT_CLR_MSK    0xfffffff7
+    #define ALT_NAND_STAT_INTR_EN1_TIME_OUT_CLR_MSK    0xfffffff7
 /* The reset value of the ALT_NAND_STAT_INTR_EN1_TIME_OUT register field. */
-#define ALT_NAND_STAT_INTR_EN1_TIME_OUT_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN1_TIME_OUT_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN1_TIME_OUT field value from a register. */
-#define ALT_NAND_STAT_INTR_EN1_TIME_OUT_GET(value) (((value) & 0x00000008) >> 3)
+    #define ALT_NAND_STAT_INTR_EN1_TIME_OUT_GET( value )    ( ( ( value ) & 0x00000008 ) >> 3 )
 /* Produces a ALT_NAND_STAT_INTR_EN1_TIME_OUT register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN1_TIME_OUT_SET(value) (((value) << 3) & 0x00000008)
+    #define ALT_NAND_STAT_INTR_EN1_TIME_OUT_SET( value )    ( ( ( value ) << 3 ) & 0x00000008 )
 
 /*
  * Field : program_fail
@@ -6670,21 +6811,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT1_s  ALT_NAND_STAT_INTR_STAT1_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN1_PROGRAM_FAIL register field. */
-#define ALT_NAND_STAT_INTR_EN1_PROGRAM_FAIL_LSB        4
+    #define ALT_NAND_STAT_INTR_EN1_PROGRAM_FAIL_LSB        4
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN1_PROGRAM_FAIL register field. */
-#define ALT_NAND_STAT_INTR_EN1_PROGRAM_FAIL_MSB        4
+    #define ALT_NAND_STAT_INTR_EN1_PROGRAM_FAIL_MSB        4
 /* The width in bits of the ALT_NAND_STAT_INTR_EN1_PROGRAM_FAIL register field. */
-#define ALT_NAND_STAT_INTR_EN1_PROGRAM_FAIL_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN1_PROGRAM_FAIL_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN1_PROGRAM_FAIL register field value. */
-#define ALT_NAND_STAT_INTR_EN1_PROGRAM_FAIL_SET_MSK    0x00000010
+    #define ALT_NAND_STAT_INTR_EN1_PROGRAM_FAIL_SET_MSK    0x00000010
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN1_PROGRAM_FAIL register field value. */
-#define ALT_NAND_STAT_INTR_EN1_PROGRAM_FAIL_CLR_MSK    0xffffffef
+    #define ALT_NAND_STAT_INTR_EN1_PROGRAM_FAIL_CLR_MSK    0xffffffef
 /* The reset value of the ALT_NAND_STAT_INTR_EN1_PROGRAM_FAIL register field. */
-#define ALT_NAND_STAT_INTR_EN1_PROGRAM_FAIL_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN1_PROGRAM_FAIL_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN1_PROGRAM_FAIL field value from a register. */
-#define ALT_NAND_STAT_INTR_EN1_PROGRAM_FAIL_GET(value) (((value) & 0x00000010) >> 4)
+    #define ALT_NAND_STAT_INTR_EN1_PROGRAM_FAIL_GET( value )    ( ( ( value ) & 0x00000010 ) >> 4 )
 /* Produces a ALT_NAND_STAT_INTR_EN1_PROGRAM_FAIL register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN1_PROGRAM_FAIL_SET(value) (((value) << 4) & 0x00000010)
+    #define ALT_NAND_STAT_INTR_EN1_PROGRAM_FAIL_SET( value )    ( ( ( value ) << 4 ) & 0x00000010 )
 
 /*
  * Field : erase_fail
@@ -6697,21 +6838,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT1_s  ALT_NAND_STAT_INTR_STAT1_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN1_ERASE_FAIL register field. */
-#define ALT_NAND_STAT_INTR_EN1_ERASE_FAIL_LSB        5
+    #define ALT_NAND_STAT_INTR_EN1_ERASE_FAIL_LSB        5
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN1_ERASE_FAIL register field. */
-#define ALT_NAND_STAT_INTR_EN1_ERASE_FAIL_MSB        5
+    #define ALT_NAND_STAT_INTR_EN1_ERASE_FAIL_MSB        5
 /* The width in bits of the ALT_NAND_STAT_INTR_EN1_ERASE_FAIL register field. */
-#define ALT_NAND_STAT_INTR_EN1_ERASE_FAIL_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN1_ERASE_FAIL_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN1_ERASE_FAIL register field value. */
-#define ALT_NAND_STAT_INTR_EN1_ERASE_FAIL_SET_MSK    0x00000020
+    #define ALT_NAND_STAT_INTR_EN1_ERASE_FAIL_SET_MSK    0x00000020
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN1_ERASE_FAIL register field value. */
-#define ALT_NAND_STAT_INTR_EN1_ERASE_FAIL_CLR_MSK    0xffffffdf
+    #define ALT_NAND_STAT_INTR_EN1_ERASE_FAIL_CLR_MSK    0xffffffdf
 /* The reset value of the ALT_NAND_STAT_INTR_EN1_ERASE_FAIL register field. */
-#define ALT_NAND_STAT_INTR_EN1_ERASE_FAIL_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN1_ERASE_FAIL_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN1_ERASE_FAIL field value from a register. */
-#define ALT_NAND_STAT_INTR_EN1_ERASE_FAIL_GET(value) (((value) & 0x00000020) >> 5)
+    #define ALT_NAND_STAT_INTR_EN1_ERASE_FAIL_GET( value )    ( ( ( value ) & 0x00000020 ) >> 5 )
 /* Produces a ALT_NAND_STAT_INTR_EN1_ERASE_FAIL register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN1_ERASE_FAIL_SET(value) (((value) << 5) & 0x00000020)
+    #define ALT_NAND_STAT_INTR_EN1_ERASE_FAIL_SET( value )    ( ( ( value ) << 5 ) & 0x00000020 )
 
 /*
  * Field : load_comp
@@ -6722,21 +6863,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT1_s  ALT_NAND_STAT_INTR_STAT1_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN1_LD_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN1_LD_COMP_LSB        6
+    #define ALT_NAND_STAT_INTR_EN1_LD_COMP_LSB        6
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN1_LD_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN1_LD_COMP_MSB        6
+    #define ALT_NAND_STAT_INTR_EN1_LD_COMP_MSB        6
 /* The width in bits of the ALT_NAND_STAT_INTR_EN1_LD_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN1_LD_COMP_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN1_LD_COMP_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN1_LD_COMP register field value. */
-#define ALT_NAND_STAT_INTR_EN1_LD_COMP_SET_MSK    0x00000040
+    #define ALT_NAND_STAT_INTR_EN1_LD_COMP_SET_MSK    0x00000040
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN1_LD_COMP register field value. */
-#define ALT_NAND_STAT_INTR_EN1_LD_COMP_CLR_MSK    0xffffffbf
+    #define ALT_NAND_STAT_INTR_EN1_LD_COMP_CLR_MSK    0xffffffbf
 /* The reset value of the ALT_NAND_STAT_INTR_EN1_LD_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN1_LD_COMP_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN1_LD_COMP_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN1_LD_COMP field value from a register. */
-#define ALT_NAND_STAT_INTR_EN1_LD_COMP_GET(value) (((value) & 0x00000040) >> 6)
+    #define ALT_NAND_STAT_INTR_EN1_LD_COMP_GET( value )    ( ( ( value ) & 0x00000040 ) >> 6 )
 /* Produces a ALT_NAND_STAT_INTR_EN1_LD_COMP register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN1_LD_COMP_SET(value) (((value) << 6) & 0x00000040)
+    #define ALT_NAND_STAT_INTR_EN1_LD_COMP_SET( value )    ( ( ( value ) << 6 ) & 0x00000040 )
 
 /*
  * Field : program_comp
@@ -6747,21 +6888,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT1_s  ALT_NAND_STAT_INTR_STAT1_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN1_PROGRAM_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN1_PROGRAM_COMP_LSB        7
+    #define ALT_NAND_STAT_INTR_EN1_PROGRAM_COMP_LSB        7
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN1_PROGRAM_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN1_PROGRAM_COMP_MSB        7
+    #define ALT_NAND_STAT_INTR_EN1_PROGRAM_COMP_MSB        7
 /* The width in bits of the ALT_NAND_STAT_INTR_EN1_PROGRAM_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN1_PROGRAM_COMP_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN1_PROGRAM_COMP_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN1_PROGRAM_COMP register field value. */
-#define ALT_NAND_STAT_INTR_EN1_PROGRAM_COMP_SET_MSK    0x00000080
+    #define ALT_NAND_STAT_INTR_EN1_PROGRAM_COMP_SET_MSK    0x00000080
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN1_PROGRAM_COMP register field value. */
-#define ALT_NAND_STAT_INTR_EN1_PROGRAM_COMP_CLR_MSK    0xffffff7f
+    #define ALT_NAND_STAT_INTR_EN1_PROGRAM_COMP_CLR_MSK    0xffffff7f
 /* The reset value of the ALT_NAND_STAT_INTR_EN1_PROGRAM_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN1_PROGRAM_COMP_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN1_PROGRAM_COMP_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN1_PROGRAM_COMP field value from a register. */
-#define ALT_NAND_STAT_INTR_EN1_PROGRAM_COMP_GET(value) (((value) & 0x00000080) >> 7)
+    #define ALT_NAND_STAT_INTR_EN1_PROGRAM_COMP_GET( value )    ( ( ( value ) & 0x00000080 ) >> 7 )
 /* Produces a ALT_NAND_STAT_INTR_EN1_PROGRAM_COMP register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN1_PROGRAM_COMP_SET(value) (((value) << 7) & 0x00000080)
+    #define ALT_NAND_STAT_INTR_EN1_PROGRAM_COMP_SET( value )    ( ( ( value ) << 7 ) & 0x00000080 )
 
 /*
  * Field : erase_comp
@@ -6772,21 +6913,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT1_s  ALT_NAND_STAT_INTR_STAT1_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN1_ERASE_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN1_ERASE_COMP_LSB        8
+    #define ALT_NAND_STAT_INTR_EN1_ERASE_COMP_LSB        8
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN1_ERASE_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN1_ERASE_COMP_MSB        8
+    #define ALT_NAND_STAT_INTR_EN1_ERASE_COMP_MSB        8
 /* The width in bits of the ALT_NAND_STAT_INTR_EN1_ERASE_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN1_ERASE_COMP_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN1_ERASE_COMP_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN1_ERASE_COMP register field value. */
-#define ALT_NAND_STAT_INTR_EN1_ERASE_COMP_SET_MSK    0x00000100
+    #define ALT_NAND_STAT_INTR_EN1_ERASE_COMP_SET_MSK    0x00000100
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN1_ERASE_COMP register field value. */
-#define ALT_NAND_STAT_INTR_EN1_ERASE_COMP_CLR_MSK    0xfffffeff
+    #define ALT_NAND_STAT_INTR_EN1_ERASE_COMP_CLR_MSK    0xfffffeff
 /* The reset value of the ALT_NAND_STAT_INTR_EN1_ERASE_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN1_ERASE_COMP_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN1_ERASE_COMP_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN1_ERASE_COMP field value from a register. */
-#define ALT_NAND_STAT_INTR_EN1_ERASE_COMP_GET(value) (((value) & 0x00000100) >> 8)
+    #define ALT_NAND_STAT_INTR_EN1_ERASE_COMP_GET( value )    ( ( ( value ) & 0x00000100 ) >> 8 )
 /* Produces a ALT_NAND_STAT_INTR_EN1_ERASE_COMP register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN1_ERASE_COMP_SET(value) (((value) << 8) & 0x00000100)
+    #define ALT_NAND_STAT_INTR_EN1_ERASE_COMP_SET( value )    ( ( ( value ) << 8 ) & 0x00000100 )
 
 /*
  * Field : pipe_cpybck_cmd_comp
@@ -6798,21 +6939,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT1_s  ALT_NAND_STAT_INTR_STAT1_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN1_PIPE_CPYBCK_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN1_PIPE_CPYBCK_CMD_COMP_LSB        9
+    #define ALT_NAND_STAT_INTR_EN1_PIPE_CPYBCK_CMD_COMP_LSB        9
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN1_PIPE_CPYBCK_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN1_PIPE_CPYBCK_CMD_COMP_MSB        9
+    #define ALT_NAND_STAT_INTR_EN1_PIPE_CPYBCK_CMD_COMP_MSB        9
 /* The width in bits of the ALT_NAND_STAT_INTR_EN1_PIPE_CPYBCK_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN1_PIPE_CPYBCK_CMD_COMP_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN1_PIPE_CPYBCK_CMD_COMP_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN1_PIPE_CPYBCK_CMD_COMP register field value. */
-#define ALT_NAND_STAT_INTR_EN1_PIPE_CPYBCK_CMD_COMP_SET_MSK    0x00000200
+    #define ALT_NAND_STAT_INTR_EN1_PIPE_CPYBCK_CMD_COMP_SET_MSK    0x00000200
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN1_PIPE_CPYBCK_CMD_COMP register field value. */
-#define ALT_NAND_STAT_INTR_EN1_PIPE_CPYBCK_CMD_COMP_CLR_MSK    0xfffffdff
+    #define ALT_NAND_STAT_INTR_EN1_PIPE_CPYBCK_CMD_COMP_CLR_MSK    0xfffffdff
 /* The reset value of the ALT_NAND_STAT_INTR_EN1_PIPE_CPYBCK_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN1_PIPE_CPYBCK_CMD_COMP_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN1_PIPE_CPYBCK_CMD_COMP_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN1_PIPE_CPYBCK_CMD_COMP field value from a register. */
-#define ALT_NAND_STAT_INTR_EN1_PIPE_CPYBCK_CMD_COMP_GET(value) (((value) & 0x00000200) >> 9)
+    #define ALT_NAND_STAT_INTR_EN1_PIPE_CPYBCK_CMD_COMP_GET( value )    ( ( ( value ) & 0x00000200 ) >> 9 )
 /* Produces a ALT_NAND_STAT_INTR_EN1_PIPE_CPYBCK_CMD_COMP register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN1_PIPE_CPYBCK_CMD_COMP_SET(value) (((value) << 9) & 0x00000200)
+    #define ALT_NAND_STAT_INTR_EN1_PIPE_CPYBCK_CMD_COMP_SET( value )    ( ( ( value ) << 9 ) & 0x00000200 )
 
 /*
  * Field : locked_blk
@@ -6824,21 +6965,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT1_s  ALT_NAND_STAT_INTR_STAT1_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN1_LOCKED_BLK register field. */
-#define ALT_NAND_STAT_INTR_EN1_LOCKED_BLK_LSB        10
+    #define ALT_NAND_STAT_INTR_EN1_LOCKED_BLK_LSB        10
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN1_LOCKED_BLK register field. */
-#define ALT_NAND_STAT_INTR_EN1_LOCKED_BLK_MSB        10
+    #define ALT_NAND_STAT_INTR_EN1_LOCKED_BLK_MSB        10
 /* The width in bits of the ALT_NAND_STAT_INTR_EN1_LOCKED_BLK register field. */
-#define ALT_NAND_STAT_INTR_EN1_LOCKED_BLK_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN1_LOCKED_BLK_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN1_LOCKED_BLK register field value. */
-#define ALT_NAND_STAT_INTR_EN1_LOCKED_BLK_SET_MSK    0x00000400
+    #define ALT_NAND_STAT_INTR_EN1_LOCKED_BLK_SET_MSK    0x00000400
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN1_LOCKED_BLK register field value. */
-#define ALT_NAND_STAT_INTR_EN1_LOCKED_BLK_CLR_MSK    0xfffffbff
+    #define ALT_NAND_STAT_INTR_EN1_LOCKED_BLK_CLR_MSK    0xfffffbff
 /* The reset value of the ALT_NAND_STAT_INTR_EN1_LOCKED_BLK register field. */
-#define ALT_NAND_STAT_INTR_EN1_LOCKED_BLK_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN1_LOCKED_BLK_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN1_LOCKED_BLK field value from a register. */
-#define ALT_NAND_STAT_INTR_EN1_LOCKED_BLK_GET(value) (((value) & 0x00000400) >> 10)
+    #define ALT_NAND_STAT_INTR_EN1_LOCKED_BLK_GET( value )    ( ( ( value ) & 0x00000400 ) >> 10 )
 /* Produces a ALT_NAND_STAT_INTR_EN1_LOCKED_BLK register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN1_LOCKED_BLK_SET(value) (((value) << 10) & 0x00000400)
+    #define ALT_NAND_STAT_INTR_EN1_LOCKED_BLK_SET( value )    ( ( ( value ) << 10 ) & 0x00000400 )
 
 /*
  * Field : unsup_cmd
@@ -6850,21 +6991,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT1_s  ALT_NAND_STAT_INTR_STAT1_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN1_UNSUP_CMD register field. */
-#define ALT_NAND_STAT_INTR_EN1_UNSUP_CMD_LSB        11
+    #define ALT_NAND_STAT_INTR_EN1_UNSUP_CMD_LSB        11
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN1_UNSUP_CMD register field. */
-#define ALT_NAND_STAT_INTR_EN1_UNSUP_CMD_MSB        11
+    #define ALT_NAND_STAT_INTR_EN1_UNSUP_CMD_MSB        11
 /* The width in bits of the ALT_NAND_STAT_INTR_EN1_UNSUP_CMD register field. */
-#define ALT_NAND_STAT_INTR_EN1_UNSUP_CMD_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN1_UNSUP_CMD_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN1_UNSUP_CMD register field value. */
-#define ALT_NAND_STAT_INTR_EN1_UNSUP_CMD_SET_MSK    0x00000800
+    #define ALT_NAND_STAT_INTR_EN1_UNSUP_CMD_SET_MSK    0x00000800
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN1_UNSUP_CMD register field value. */
-#define ALT_NAND_STAT_INTR_EN1_UNSUP_CMD_CLR_MSK    0xfffff7ff
+    #define ALT_NAND_STAT_INTR_EN1_UNSUP_CMD_CLR_MSK    0xfffff7ff
 /* The reset value of the ALT_NAND_STAT_INTR_EN1_UNSUP_CMD register field. */
-#define ALT_NAND_STAT_INTR_EN1_UNSUP_CMD_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN1_UNSUP_CMD_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN1_UNSUP_CMD field value from a register. */
-#define ALT_NAND_STAT_INTR_EN1_UNSUP_CMD_GET(value) (((value) & 0x00000800) >> 11)
+    #define ALT_NAND_STAT_INTR_EN1_UNSUP_CMD_GET( value )    ( ( ( value ) & 0x00000800 ) >> 11 )
 /* Produces a ALT_NAND_STAT_INTR_EN1_UNSUP_CMD register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN1_UNSUP_CMD_SET(value) (((value) << 11) & 0x00000800)
+    #define ALT_NAND_STAT_INTR_EN1_UNSUP_CMD_SET( value )    ( ( ( value ) << 11 ) & 0x00000800 )
 
 /*
  * Field : INT_act
@@ -6875,21 +7016,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT1_s  ALT_NAND_STAT_INTR_STAT1_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN1_INT_ACT register field. */
-#define ALT_NAND_STAT_INTR_EN1_INT_ACT_LSB        12
+    #define ALT_NAND_STAT_INTR_EN1_INT_ACT_LSB        12
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN1_INT_ACT register field. */
-#define ALT_NAND_STAT_INTR_EN1_INT_ACT_MSB        12
+    #define ALT_NAND_STAT_INTR_EN1_INT_ACT_MSB        12
 /* The width in bits of the ALT_NAND_STAT_INTR_EN1_INT_ACT register field. */
-#define ALT_NAND_STAT_INTR_EN1_INT_ACT_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN1_INT_ACT_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN1_INT_ACT register field value. */
-#define ALT_NAND_STAT_INTR_EN1_INT_ACT_SET_MSK    0x00001000
+    #define ALT_NAND_STAT_INTR_EN1_INT_ACT_SET_MSK    0x00001000
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN1_INT_ACT register field value. */
-#define ALT_NAND_STAT_INTR_EN1_INT_ACT_CLR_MSK    0xffffefff
+    #define ALT_NAND_STAT_INTR_EN1_INT_ACT_CLR_MSK    0xffffefff
 /* The reset value of the ALT_NAND_STAT_INTR_EN1_INT_ACT register field. */
-#define ALT_NAND_STAT_INTR_EN1_INT_ACT_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN1_INT_ACT_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN1_INT_ACT field value from a register. */
-#define ALT_NAND_STAT_INTR_EN1_INT_ACT_GET(value) (((value) & 0x00001000) >> 12)
+    #define ALT_NAND_STAT_INTR_EN1_INT_ACT_GET( value )    ( ( ( value ) & 0x00001000 ) >> 12 )
 /* Produces a ALT_NAND_STAT_INTR_EN1_INT_ACT register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN1_INT_ACT_SET(value) (((value) << 12) & 0x00001000)
+    #define ALT_NAND_STAT_INTR_EN1_INT_ACT_SET( value )    ( ( ( value ) << 12 ) & 0x00001000 )
 
 /*
  * Field : rst_comp
@@ -6900,21 +7041,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT1_s  ALT_NAND_STAT_INTR_STAT1_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN1_RST_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN1_RST_COMP_LSB        13
+    #define ALT_NAND_STAT_INTR_EN1_RST_COMP_LSB        13
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN1_RST_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN1_RST_COMP_MSB        13
+    #define ALT_NAND_STAT_INTR_EN1_RST_COMP_MSB        13
 /* The width in bits of the ALT_NAND_STAT_INTR_EN1_RST_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN1_RST_COMP_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN1_RST_COMP_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN1_RST_COMP register field value. */
-#define ALT_NAND_STAT_INTR_EN1_RST_COMP_SET_MSK    0x00002000
+    #define ALT_NAND_STAT_INTR_EN1_RST_COMP_SET_MSK    0x00002000
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN1_RST_COMP register field value. */
-#define ALT_NAND_STAT_INTR_EN1_RST_COMP_CLR_MSK    0xffffdfff
+    #define ALT_NAND_STAT_INTR_EN1_RST_COMP_CLR_MSK    0xffffdfff
 /* The reset value of the ALT_NAND_STAT_INTR_EN1_RST_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN1_RST_COMP_RESET      0x1
+    #define ALT_NAND_STAT_INTR_EN1_RST_COMP_RESET      0x1
 /* Extracts the ALT_NAND_STAT_INTR_EN1_RST_COMP field value from a register. */
-#define ALT_NAND_STAT_INTR_EN1_RST_COMP_GET(value) (((value) & 0x00002000) >> 13)
+    #define ALT_NAND_STAT_INTR_EN1_RST_COMP_GET( value )    ( ( ( value ) & 0x00002000 ) >> 13 )
 /* Produces a ALT_NAND_STAT_INTR_EN1_RST_COMP register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN1_RST_COMP_SET(value) (((value) << 13) & 0x00002000)
+    #define ALT_NAND_STAT_INTR_EN1_RST_COMP_SET( value )    ( ( ( value ) << 13 ) & 0x00002000 )
 
 /*
  * Field : pipe_cmd_err
@@ -6927,21 +7068,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT1_s  ALT_NAND_STAT_INTR_STAT1_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN1_PIPE_CMD_ERR register field. */
-#define ALT_NAND_STAT_INTR_EN1_PIPE_CMD_ERR_LSB        14
+    #define ALT_NAND_STAT_INTR_EN1_PIPE_CMD_ERR_LSB        14
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN1_PIPE_CMD_ERR register field. */
-#define ALT_NAND_STAT_INTR_EN1_PIPE_CMD_ERR_MSB        14
+    #define ALT_NAND_STAT_INTR_EN1_PIPE_CMD_ERR_MSB        14
 /* The width in bits of the ALT_NAND_STAT_INTR_EN1_PIPE_CMD_ERR register field. */
-#define ALT_NAND_STAT_INTR_EN1_PIPE_CMD_ERR_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN1_PIPE_CMD_ERR_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN1_PIPE_CMD_ERR register field value. */
-#define ALT_NAND_STAT_INTR_EN1_PIPE_CMD_ERR_SET_MSK    0x00004000
+    #define ALT_NAND_STAT_INTR_EN1_PIPE_CMD_ERR_SET_MSK    0x00004000
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN1_PIPE_CMD_ERR register field value. */
-#define ALT_NAND_STAT_INTR_EN1_PIPE_CMD_ERR_CLR_MSK    0xffffbfff
+    #define ALT_NAND_STAT_INTR_EN1_PIPE_CMD_ERR_CLR_MSK    0xffffbfff
 /* The reset value of the ALT_NAND_STAT_INTR_EN1_PIPE_CMD_ERR register field. */
-#define ALT_NAND_STAT_INTR_EN1_PIPE_CMD_ERR_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN1_PIPE_CMD_ERR_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN1_PIPE_CMD_ERR field value from a register. */
-#define ALT_NAND_STAT_INTR_EN1_PIPE_CMD_ERR_GET(value) (((value) & 0x00004000) >> 14)
+    #define ALT_NAND_STAT_INTR_EN1_PIPE_CMD_ERR_GET( value )    ( ( ( value ) & 0x00004000 ) >> 14 )
 /* Produces a ALT_NAND_STAT_INTR_EN1_PIPE_CMD_ERR register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN1_PIPE_CMD_ERR_SET(value) (((value) << 14) & 0x00004000)
+    #define ALT_NAND_STAT_INTR_EN1_PIPE_CMD_ERR_SET( value )    ( ( ( value ) << 14 ) & 0x00004000 )
 
 /*
  * Field : page_xfer_inc
@@ -6952,23 +7093,24 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT1_s  ALT_NAND_STAT_INTR_STAT1_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN1_PAGE_XFER_INC register field. */
-#define ALT_NAND_STAT_INTR_EN1_PAGE_XFER_INC_LSB        15
+    #define ALT_NAND_STAT_INTR_EN1_PAGE_XFER_INC_LSB        15
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN1_PAGE_XFER_INC register field. */
-#define ALT_NAND_STAT_INTR_EN1_PAGE_XFER_INC_MSB        15
+    #define ALT_NAND_STAT_INTR_EN1_PAGE_XFER_INC_MSB        15
 /* The width in bits of the ALT_NAND_STAT_INTR_EN1_PAGE_XFER_INC register field. */
-#define ALT_NAND_STAT_INTR_EN1_PAGE_XFER_INC_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN1_PAGE_XFER_INC_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN1_PAGE_XFER_INC register field value. */
-#define ALT_NAND_STAT_INTR_EN1_PAGE_XFER_INC_SET_MSK    0x00008000
+    #define ALT_NAND_STAT_INTR_EN1_PAGE_XFER_INC_SET_MSK    0x00008000
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN1_PAGE_XFER_INC register field value. */
-#define ALT_NAND_STAT_INTR_EN1_PAGE_XFER_INC_CLR_MSK    0xffff7fff
+    #define ALT_NAND_STAT_INTR_EN1_PAGE_XFER_INC_CLR_MSK    0xffff7fff
 /* The reset value of the ALT_NAND_STAT_INTR_EN1_PAGE_XFER_INC register field. */
-#define ALT_NAND_STAT_INTR_EN1_PAGE_XFER_INC_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN1_PAGE_XFER_INC_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN1_PAGE_XFER_INC field value from a register. */
-#define ALT_NAND_STAT_INTR_EN1_PAGE_XFER_INC_GET(value) (((value) & 0x00008000) >> 15)
+    #define ALT_NAND_STAT_INTR_EN1_PAGE_XFER_INC_GET( value )    ( ( ( value ) & 0x00008000 ) >> 15 )
 /* Produces a ALT_NAND_STAT_INTR_EN1_PAGE_XFER_INC register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN1_PAGE_XFER_INC_SET(value) (((value) << 15) & 0x00008000)
+    #define ALT_NAND_STAT_INTR_EN1_PAGE_XFER_INC_SET( value )    ( ( ( value ) << 15 ) & 0x00008000 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -6979,33 +7121,33 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT1_s  ALT_NAND_STAT_INTR_STAT1_t;
  *
  * The struct declaration for register ALT_NAND_STAT_INTR_EN1.
  */
-struct ALT_NAND_STAT_INTR_EN1_s
-{
-    uint32_t  ecc_uncor_err        :  1;  /* ALT_NAND_STAT_INTR_EN1_ECC_UNCOR_ERR */
-    uint32_t                       :  1;  /* *UNDEFINED* */
-    uint32_t  dma_cmd_comp         :  1;  /* ALT_NAND_STAT_INTR_EN1_DMA_CMD_COMP */
-    uint32_t  time_out             :  1;  /* ALT_NAND_STAT_INTR_EN1_TIME_OUT */
-    uint32_t  program_fail         :  1;  /* ALT_NAND_STAT_INTR_EN1_PROGRAM_FAIL */
-    uint32_t  erase_fail           :  1;  /* ALT_NAND_STAT_INTR_EN1_ERASE_FAIL */
-    uint32_t  load_comp            :  1;  /* ALT_NAND_STAT_INTR_EN1_LD_COMP */
-    uint32_t  program_comp         :  1;  /* ALT_NAND_STAT_INTR_EN1_PROGRAM_COMP */
-    uint32_t  erase_comp           :  1;  /* ALT_NAND_STAT_INTR_EN1_ERASE_COMP */
-    uint32_t  pipe_cpybck_cmd_comp :  1;  /* ALT_NAND_STAT_INTR_EN1_PIPE_CPYBCK_CMD_COMP */
-    uint32_t  locked_blk           :  1;  /* ALT_NAND_STAT_INTR_EN1_LOCKED_BLK */
-    uint32_t  unsup_cmd            :  1;  /* ALT_NAND_STAT_INTR_EN1_UNSUP_CMD */
-    uint32_t  INT_act              :  1;  /* ALT_NAND_STAT_INTR_EN1_INT_ACT */
-    uint32_t  rst_comp             :  1;  /* ALT_NAND_STAT_INTR_EN1_RST_COMP */
-    uint32_t  pipe_cmd_err         :  1;  /* ALT_NAND_STAT_INTR_EN1_PIPE_CMD_ERR */
-    uint32_t  page_xfer_inc        :  1;  /* ALT_NAND_STAT_INTR_EN1_PAGE_XFER_INC */
-    uint32_t                       : 16;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_STAT_INTR_EN1_s
+        {
+            uint32_t ecc_uncor_err        :  1;  /* ALT_NAND_STAT_INTR_EN1_ECC_UNCOR_ERR */
+            uint32_t                       :  1; /* *UNDEFINED* */
+            uint32_t dma_cmd_comp         :  1;  /* ALT_NAND_STAT_INTR_EN1_DMA_CMD_COMP */
+            uint32_t time_out             :  1;  /* ALT_NAND_STAT_INTR_EN1_TIME_OUT */
+            uint32_t program_fail         :  1;  /* ALT_NAND_STAT_INTR_EN1_PROGRAM_FAIL */
+            uint32_t erase_fail           :  1;  /* ALT_NAND_STAT_INTR_EN1_ERASE_FAIL */
+            uint32_t load_comp            :  1;  /* ALT_NAND_STAT_INTR_EN1_LD_COMP */
+            uint32_t program_comp         :  1;  /* ALT_NAND_STAT_INTR_EN1_PROGRAM_COMP */
+            uint32_t erase_comp           :  1;  /* ALT_NAND_STAT_INTR_EN1_ERASE_COMP */
+            uint32_t pipe_cpybck_cmd_comp :  1;  /* ALT_NAND_STAT_INTR_EN1_PIPE_CPYBCK_CMD_COMP */
+            uint32_t locked_blk           :  1;  /* ALT_NAND_STAT_INTR_EN1_LOCKED_BLK */
+            uint32_t unsup_cmd            :  1;  /* ALT_NAND_STAT_INTR_EN1_UNSUP_CMD */
+            uint32_t INT_act              :  1;  /* ALT_NAND_STAT_INTR_EN1_INT_ACT */
+            uint32_t rst_comp             :  1;  /* ALT_NAND_STAT_INTR_EN1_RST_COMP */
+            uint32_t pipe_cmd_err         :  1;  /* ALT_NAND_STAT_INTR_EN1_PIPE_CMD_ERR */
+            uint32_t page_xfer_inc        :  1;  /* ALT_NAND_STAT_INTR_EN1_PAGE_XFER_INC */
+            uint32_t                       : 16; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_STAT_INTR_EN1. */
-typedef volatile struct ALT_NAND_STAT_INTR_EN1_s  ALT_NAND_STAT_INTR_EN1_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_STAT_INTR_EN1_s ALT_NAND_STAT_INTR_EN1_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_STAT_INTR_EN1 register from the beginning of the component. */
-#define ALT_NAND_STAT_INTR_EN1_OFST        0x70
+    #define ALT_NAND_STAT_INTR_EN1_OFST    0x70
 
 /*
  * Register : page_cnt1
@@ -7020,6 +7162,7 @@ typedef volatile struct ALT_NAND_STAT_INTR_EN1_s  ALT_NAND_STAT_INTR_EN1_t;
  *  [31:8] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -7030,23 +7173,24 @@ typedef volatile struct ALT_NAND_STAT_INTR_EN1_s  ALT_NAND_STAT_INTR_EN1_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_PAGE_CNT1_VALUE register field. */
-#define ALT_NAND_STAT_PAGE_CNT1_VALUE_LSB        0
+    #define ALT_NAND_STAT_PAGE_CNT1_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_PAGE_CNT1_VALUE register field. */
-#define ALT_NAND_STAT_PAGE_CNT1_VALUE_MSB        7
+    #define ALT_NAND_STAT_PAGE_CNT1_VALUE_MSB        7
 /* The width in bits of the ALT_NAND_STAT_PAGE_CNT1_VALUE register field. */
-#define ALT_NAND_STAT_PAGE_CNT1_VALUE_WIDTH      8
+    #define ALT_NAND_STAT_PAGE_CNT1_VALUE_WIDTH      8
 /* The mask used to set the ALT_NAND_STAT_PAGE_CNT1_VALUE register field value. */
-#define ALT_NAND_STAT_PAGE_CNT1_VALUE_SET_MSK    0x000000ff
+    #define ALT_NAND_STAT_PAGE_CNT1_VALUE_SET_MSK    0x000000ff
 /* The mask used to clear the ALT_NAND_STAT_PAGE_CNT1_VALUE register field value. */
-#define ALT_NAND_STAT_PAGE_CNT1_VALUE_CLR_MSK    0xffffff00
+    #define ALT_NAND_STAT_PAGE_CNT1_VALUE_CLR_MSK    0xffffff00
 /* The reset value of the ALT_NAND_STAT_PAGE_CNT1_VALUE register field. */
-#define ALT_NAND_STAT_PAGE_CNT1_VALUE_RESET      0x0
+    #define ALT_NAND_STAT_PAGE_CNT1_VALUE_RESET      0x0
 /* Extracts the ALT_NAND_STAT_PAGE_CNT1_VALUE field value from a register. */
-#define ALT_NAND_STAT_PAGE_CNT1_VALUE_GET(value) (((value) & 0x000000ff) >> 0)
+    #define ALT_NAND_STAT_PAGE_CNT1_VALUE_GET( value )    ( ( ( value ) & 0x000000ff ) >> 0 )
 /* Produces a ALT_NAND_STAT_PAGE_CNT1_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_STAT_PAGE_CNT1_VALUE_SET(value) (((value) << 0) & 0x000000ff)
+    #define ALT_NAND_STAT_PAGE_CNT1_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x000000ff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -7057,18 +7201,18 @@ typedef volatile struct ALT_NAND_STAT_INTR_EN1_s  ALT_NAND_STAT_INTR_EN1_t;
  *
  * The struct declaration for register ALT_NAND_STAT_PAGE_CNT1.
  */
-struct ALT_NAND_STAT_PAGE_CNT1_s
-{
-    const uint32_t  value :  8;  /* ALT_NAND_STAT_PAGE_CNT1_VALUE */
-    uint32_t              : 24;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_STAT_PAGE_CNT1_s
+        {
+            const uint32_t value :  8;  /* ALT_NAND_STAT_PAGE_CNT1_VALUE */
+            uint32_t              : 24; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_STAT_PAGE_CNT1. */
-typedef volatile struct ALT_NAND_STAT_PAGE_CNT1_s  ALT_NAND_STAT_PAGE_CNT1_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_STAT_PAGE_CNT1_s ALT_NAND_STAT_PAGE_CNT1_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_STAT_PAGE_CNT1 register from the beginning of the component. */
-#define ALT_NAND_STAT_PAGE_CNT1_OFST        0x80
+    #define ALT_NAND_STAT_PAGE_CNT1_OFST    0x80
 
 /*
  * Register : err_page_addr1
@@ -7083,6 +7227,7 @@ typedef volatile struct ALT_NAND_STAT_PAGE_CNT1_s  ALT_NAND_STAT_PAGE_CNT1_t;
  *  [31:16] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -7092,23 +7237,24 @@ typedef volatile struct ALT_NAND_STAT_PAGE_CNT1_s  ALT_NAND_STAT_PAGE_CNT1_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_ERR_PAGE_ADDR1_VALUE register field. */
-#define ALT_NAND_STAT_ERR_PAGE_ADDR1_VALUE_LSB        0
+    #define ALT_NAND_STAT_ERR_PAGE_ADDR1_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_ERR_PAGE_ADDR1_VALUE register field. */
-#define ALT_NAND_STAT_ERR_PAGE_ADDR1_VALUE_MSB        15
+    #define ALT_NAND_STAT_ERR_PAGE_ADDR1_VALUE_MSB        15
 /* The width in bits of the ALT_NAND_STAT_ERR_PAGE_ADDR1_VALUE register field. */
-#define ALT_NAND_STAT_ERR_PAGE_ADDR1_VALUE_WIDTH      16
+    #define ALT_NAND_STAT_ERR_PAGE_ADDR1_VALUE_WIDTH      16
 /* The mask used to set the ALT_NAND_STAT_ERR_PAGE_ADDR1_VALUE register field value. */
-#define ALT_NAND_STAT_ERR_PAGE_ADDR1_VALUE_SET_MSK    0x0000ffff
+    #define ALT_NAND_STAT_ERR_PAGE_ADDR1_VALUE_SET_MSK    0x0000ffff
 /* The mask used to clear the ALT_NAND_STAT_ERR_PAGE_ADDR1_VALUE register field value. */
-#define ALT_NAND_STAT_ERR_PAGE_ADDR1_VALUE_CLR_MSK    0xffff0000
+    #define ALT_NAND_STAT_ERR_PAGE_ADDR1_VALUE_CLR_MSK    0xffff0000
 /* The reset value of the ALT_NAND_STAT_ERR_PAGE_ADDR1_VALUE register field. */
-#define ALT_NAND_STAT_ERR_PAGE_ADDR1_VALUE_RESET      0x0
+    #define ALT_NAND_STAT_ERR_PAGE_ADDR1_VALUE_RESET      0x0
 /* Extracts the ALT_NAND_STAT_ERR_PAGE_ADDR1_VALUE field value from a register. */
-#define ALT_NAND_STAT_ERR_PAGE_ADDR1_VALUE_GET(value) (((value) & 0x0000ffff) >> 0)
+    #define ALT_NAND_STAT_ERR_PAGE_ADDR1_VALUE_GET( value )    ( ( ( value ) & 0x0000ffff ) >> 0 )
 /* Produces a ALT_NAND_STAT_ERR_PAGE_ADDR1_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_STAT_ERR_PAGE_ADDR1_VALUE_SET(value) (((value) << 0) & 0x0000ffff)
+    #define ALT_NAND_STAT_ERR_PAGE_ADDR1_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x0000ffff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -7119,18 +7265,18 @@ typedef volatile struct ALT_NAND_STAT_PAGE_CNT1_s  ALT_NAND_STAT_PAGE_CNT1_t;
  *
  * The struct declaration for register ALT_NAND_STAT_ERR_PAGE_ADDR1.
  */
-struct ALT_NAND_STAT_ERR_PAGE_ADDR1_s
-{
-    const uint32_t  value : 16;  /* ALT_NAND_STAT_ERR_PAGE_ADDR1_VALUE */
-    uint32_t              : 16;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_STAT_ERR_PAGE_ADDR1_s
+        {
+            const uint32_t value : 16;  /* ALT_NAND_STAT_ERR_PAGE_ADDR1_VALUE */
+            uint32_t              : 16; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_STAT_ERR_PAGE_ADDR1. */
-typedef volatile struct ALT_NAND_STAT_ERR_PAGE_ADDR1_s  ALT_NAND_STAT_ERR_PAGE_ADDR1_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_STAT_ERR_PAGE_ADDR1_s ALT_NAND_STAT_ERR_PAGE_ADDR1_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_STAT_ERR_PAGE_ADDR1 register from the beginning of the component. */
-#define ALT_NAND_STAT_ERR_PAGE_ADDR1_OFST        0x90
+    #define ALT_NAND_STAT_ERR_PAGE_ADDR1_OFST    0x90
 
 /*
  * Register : err_block_addr1
@@ -7145,6 +7291,7 @@ typedef volatile struct ALT_NAND_STAT_ERR_PAGE_ADDR1_s  ALT_NAND_STAT_ERR_PAGE_A
  *  [31:16] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -7155,23 +7302,24 @@ typedef volatile struct ALT_NAND_STAT_ERR_PAGE_ADDR1_s  ALT_NAND_STAT_ERR_PAGE_A
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_ERR_BLOCK_ADDR1_VALUE register field. */
-#define ALT_NAND_STAT_ERR_BLOCK_ADDR1_VALUE_LSB        0
+    #define ALT_NAND_STAT_ERR_BLOCK_ADDR1_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_ERR_BLOCK_ADDR1_VALUE register field. */
-#define ALT_NAND_STAT_ERR_BLOCK_ADDR1_VALUE_MSB        15
+    #define ALT_NAND_STAT_ERR_BLOCK_ADDR1_VALUE_MSB        15
 /* The width in bits of the ALT_NAND_STAT_ERR_BLOCK_ADDR1_VALUE register field. */
-#define ALT_NAND_STAT_ERR_BLOCK_ADDR1_VALUE_WIDTH      16
+    #define ALT_NAND_STAT_ERR_BLOCK_ADDR1_VALUE_WIDTH      16
 /* The mask used to set the ALT_NAND_STAT_ERR_BLOCK_ADDR1_VALUE register field value. */
-#define ALT_NAND_STAT_ERR_BLOCK_ADDR1_VALUE_SET_MSK    0x0000ffff
+    #define ALT_NAND_STAT_ERR_BLOCK_ADDR1_VALUE_SET_MSK    0x0000ffff
 /* The mask used to clear the ALT_NAND_STAT_ERR_BLOCK_ADDR1_VALUE register field value. */
-#define ALT_NAND_STAT_ERR_BLOCK_ADDR1_VALUE_CLR_MSK    0xffff0000
+    #define ALT_NAND_STAT_ERR_BLOCK_ADDR1_VALUE_CLR_MSK    0xffff0000
 /* The reset value of the ALT_NAND_STAT_ERR_BLOCK_ADDR1_VALUE register field. */
-#define ALT_NAND_STAT_ERR_BLOCK_ADDR1_VALUE_RESET      0x0
+    #define ALT_NAND_STAT_ERR_BLOCK_ADDR1_VALUE_RESET      0x0
 /* Extracts the ALT_NAND_STAT_ERR_BLOCK_ADDR1_VALUE field value from a register. */
-#define ALT_NAND_STAT_ERR_BLOCK_ADDR1_VALUE_GET(value) (((value) & 0x0000ffff) >> 0)
+    #define ALT_NAND_STAT_ERR_BLOCK_ADDR1_VALUE_GET( value )    ( ( ( value ) & 0x0000ffff ) >> 0 )
 /* Produces a ALT_NAND_STAT_ERR_BLOCK_ADDR1_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_STAT_ERR_BLOCK_ADDR1_VALUE_SET(value) (((value) << 0) & 0x0000ffff)
+    #define ALT_NAND_STAT_ERR_BLOCK_ADDR1_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x0000ffff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -7182,18 +7330,18 @@ typedef volatile struct ALT_NAND_STAT_ERR_PAGE_ADDR1_s  ALT_NAND_STAT_ERR_PAGE_A
  *
  * The struct declaration for register ALT_NAND_STAT_ERR_BLOCK_ADDR1.
  */
-struct ALT_NAND_STAT_ERR_BLOCK_ADDR1_s
-{
-    const uint32_t  value : 16;  /* ALT_NAND_STAT_ERR_BLOCK_ADDR1_VALUE */
-    uint32_t              : 16;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_STAT_ERR_BLOCK_ADDR1_s
+        {
+            const uint32_t value : 16;  /* ALT_NAND_STAT_ERR_BLOCK_ADDR1_VALUE */
+            uint32_t              : 16; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_STAT_ERR_BLOCK_ADDR1. */
-typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR1_s  ALT_NAND_STAT_ERR_BLOCK_ADDR1_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR1_s ALT_NAND_STAT_ERR_BLOCK_ADDR1_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_STAT_ERR_BLOCK_ADDR1 register from the beginning of the component. */
-#define ALT_NAND_STAT_ERR_BLOCK_ADDR1_OFST        0xa0
+    #define ALT_NAND_STAT_ERR_BLOCK_ADDR1_OFST    0xa0
 
 /*
  * Register : intr_status2
@@ -7223,6 +7371,7 @@ typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR1_s  ALT_NAND_STAT_ERR_BLOCK
  *  [31:16] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : ecc_uncor_err
  *
@@ -7232,21 +7381,21 @@ typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR1_s  ALT_NAND_STAT_ERR_BLOCK
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT2_ECC_UNCOR_ERR register field. */
-#define ALT_NAND_STAT_INTR_STAT2_ECC_UNCOR_ERR_LSB        0
+    #define ALT_NAND_STAT_INTR_STAT2_ECC_UNCOR_ERR_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT2_ECC_UNCOR_ERR register field. */
-#define ALT_NAND_STAT_INTR_STAT2_ECC_UNCOR_ERR_MSB        0
+    #define ALT_NAND_STAT_INTR_STAT2_ECC_UNCOR_ERR_MSB        0
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT2_ECC_UNCOR_ERR register field. */
-#define ALT_NAND_STAT_INTR_STAT2_ECC_UNCOR_ERR_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT2_ECC_UNCOR_ERR_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT2_ECC_UNCOR_ERR register field value. */
-#define ALT_NAND_STAT_INTR_STAT2_ECC_UNCOR_ERR_SET_MSK    0x00000001
+    #define ALT_NAND_STAT_INTR_STAT2_ECC_UNCOR_ERR_SET_MSK    0x00000001
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT2_ECC_UNCOR_ERR register field value. */
-#define ALT_NAND_STAT_INTR_STAT2_ECC_UNCOR_ERR_CLR_MSK    0xfffffffe
+    #define ALT_NAND_STAT_INTR_STAT2_ECC_UNCOR_ERR_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_NAND_STAT_INTR_STAT2_ECC_UNCOR_ERR register field. */
-#define ALT_NAND_STAT_INTR_STAT2_ECC_UNCOR_ERR_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT2_ECC_UNCOR_ERR_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT2_ECC_UNCOR_ERR field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT2_ECC_UNCOR_ERR_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_NAND_STAT_INTR_STAT2_ECC_UNCOR_ERR_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_NAND_STAT_INTR_STAT2_ECC_UNCOR_ERR register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT2_ECC_UNCOR_ERR_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_NAND_STAT_INTR_STAT2_ECC_UNCOR_ERR_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
 /*
  * Field : dma_cmd_comp
@@ -7257,21 +7406,21 @@ typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR1_s  ALT_NAND_STAT_ERR_BLOCK
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT2_DMA_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT2_DMA_CMD_COMP_LSB        2
+    #define ALT_NAND_STAT_INTR_STAT2_DMA_CMD_COMP_LSB        2
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT2_DMA_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT2_DMA_CMD_COMP_MSB        2
+    #define ALT_NAND_STAT_INTR_STAT2_DMA_CMD_COMP_MSB        2
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT2_DMA_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT2_DMA_CMD_COMP_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT2_DMA_CMD_COMP_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT2_DMA_CMD_COMP register field value. */
-#define ALT_NAND_STAT_INTR_STAT2_DMA_CMD_COMP_SET_MSK    0x00000004
+    #define ALT_NAND_STAT_INTR_STAT2_DMA_CMD_COMP_SET_MSK    0x00000004
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT2_DMA_CMD_COMP register field value. */
-#define ALT_NAND_STAT_INTR_STAT2_DMA_CMD_COMP_CLR_MSK    0xfffffffb
+    #define ALT_NAND_STAT_INTR_STAT2_DMA_CMD_COMP_CLR_MSK    0xfffffffb
 /* The reset value of the ALT_NAND_STAT_INTR_STAT2_DMA_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT2_DMA_CMD_COMP_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT2_DMA_CMD_COMP_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT2_DMA_CMD_COMP field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT2_DMA_CMD_COMP_GET(value) (((value) & 0x00000004) >> 2)
+    #define ALT_NAND_STAT_INTR_STAT2_DMA_CMD_COMP_GET( value )    ( ( ( value ) & 0x00000004 ) >> 2 )
 /* Produces a ALT_NAND_STAT_INTR_STAT2_DMA_CMD_COMP register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT2_DMA_CMD_COMP_SET(value) (((value) << 2) & 0x00000004)
+    #define ALT_NAND_STAT_INTR_STAT2_DMA_CMD_COMP_SET( value )    ( ( ( value ) << 2 ) & 0x00000004 )
 
 /*
  * Field : time_out
@@ -7283,21 +7432,21 @@ typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR1_s  ALT_NAND_STAT_ERR_BLOCK
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT2_TIME_OUT register field. */
-#define ALT_NAND_STAT_INTR_STAT2_TIME_OUT_LSB        3
+    #define ALT_NAND_STAT_INTR_STAT2_TIME_OUT_LSB        3
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT2_TIME_OUT register field. */
-#define ALT_NAND_STAT_INTR_STAT2_TIME_OUT_MSB        3
+    #define ALT_NAND_STAT_INTR_STAT2_TIME_OUT_MSB        3
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT2_TIME_OUT register field. */
-#define ALT_NAND_STAT_INTR_STAT2_TIME_OUT_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT2_TIME_OUT_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT2_TIME_OUT register field value. */
-#define ALT_NAND_STAT_INTR_STAT2_TIME_OUT_SET_MSK    0x00000008
+    #define ALT_NAND_STAT_INTR_STAT2_TIME_OUT_SET_MSK    0x00000008
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT2_TIME_OUT register field value. */
-#define ALT_NAND_STAT_INTR_STAT2_TIME_OUT_CLR_MSK    0xfffffff7
+    #define ALT_NAND_STAT_INTR_STAT2_TIME_OUT_CLR_MSK    0xfffffff7
 /* The reset value of the ALT_NAND_STAT_INTR_STAT2_TIME_OUT register field. */
-#define ALT_NAND_STAT_INTR_STAT2_TIME_OUT_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT2_TIME_OUT_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT2_TIME_OUT field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT2_TIME_OUT_GET(value) (((value) & 0x00000008) >> 3)
+    #define ALT_NAND_STAT_INTR_STAT2_TIME_OUT_GET( value )    ( ( ( value ) & 0x00000008 ) >> 3 )
 /* Produces a ALT_NAND_STAT_INTR_STAT2_TIME_OUT register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT2_TIME_OUT_SET(value) (((value) << 3) & 0x00000008)
+    #define ALT_NAND_STAT_INTR_STAT2_TIME_OUT_SET( value )    ( ( ( value ) << 3 ) & 0x00000008 )
 
 /*
  * Field : program_fail
@@ -7310,21 +7459,21 @@ typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR1_s  ALT_NAND_STAT_ERR_BLOCK
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT2_PROGRAM_FAIL register field. */
-#define ALT_NAND_STAT_INTR_STAT2_PROGRAM_FAIL_LSB        4
+    #define ALT_NAND_STAT_INTR_STAT2_PROGRAM_FAIL_LSB        4
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT2_PROGRAM_FAIL register field. */
-#define ALT_NAND_STAT_INTR_STAT2_PROGRAM_FAIL_MSB        4
+    #define ALT_NAND_STAT_INTR_STAT2_PROGRAM_FAIL_MSB        4
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT2_PROGRAM_FAIL register field. */
-#define ALT_NAND_STAT_INTR_STAT2_PROGRAM_FAIL_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT2_PROGRAM_FAIL_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT2_PROGRAM_FAIL register field value. */
-#define ALT_NAND_STAT_INTR_STAT2_PROGRAM_FAIL_SET_MSK    0x00000010
+    #define ALT_NAND_STAT_INTR_STAT2_PROGRAM_FAIL_SET_MSK    0x00000010
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT2_PROGRAM_FAIL register field value. */
-#define ALT_NAND_STAT_INTR_STAT2_PROGRAM_FAIL_CLR_MSK    0xffffffef
+    #define ALT_NAND_STAT_INTR_STAT2_PROGRAM_FAIL_CLR_MSK    0xffffffef
 /* The reset value of the ALT_NAND_STAT_INTR_STAT2_PROGRAM_FAIL register field. */
-#define ALT_NAND_STAT_INTR_STAT2_PROGRAM_FAIL_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT2_PROGRAM_FAIL_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT2_PROGRAM_FAIL field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT2_PROGRAM_FAIL_GET(value) (((value) & 0x00000010) >> 4)
+    #define ALT_NAND_STAT_INTR_STAT2_PROGRAM_FAIL_GET( value )    ( ( ( value ) & 0x00000010 ) >> 4 )
 /* Produces a ALT_NAND_STAT_INTR_STAT2_PROGRAM_FAIL register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT2_PROGRAM_FAIL_SET(value) (((value) << 4) & 0x00000010)
+    #define ALT_NAND_STAT_INTR_STAT2_PROGRAM_FAIL_SET( value )    ( ( ( value ) << 4 ) & 0x00000010 )
 
 /*
  * Field : erase_fail
@@ -7337,21 +7486,21 @@ typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR1_s  ALT_NAND_STAT_ERR_BLOCK
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT2_ERASE_FAIL register field. */
-#define ALT_NAND_STAT_INTR_STAT2_ERASE_FAIL_LSB        5
+    #define ALT_NAND_STAT_INTR_STAT2_ERASE_FAIL_LSB        5
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT2_ERASE_FAIL register field. */
-#define ALT_NAND_STAT_INTR_STAT2_ERASE_FAIL_MSB        5
+    #define ALT_NAND_STAT_INTR_STAT2_ERASE_FAIL_MSB        5
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT2_ERASE_FAIL register field. */
-#define ALT_NAND_STAT_INTR_STAT2_ERASE_FAIL_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT2_ERASE_FAIL_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT2_ERASE_FAIL register field value. */
-#define ALT_NAND_STAT_INTR_STAT2_ERASE_FAIL_SET_MSK    0x00000020
+    #define ALT_NAND_STAT_INTR_STAT2_ERASE_FAIL_SET_MSK    0x00000020
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT2_ERASE_FAIL register field value. */
-#define ALT_NAND_STAT_INTR_STAT2_ERASE_FAIL_CLR_MSK    0xffffffdf
+    #define ALT_NAND_STAT_INTR_STAT2_ERASE_FAIL_CLR_MSK    0xffffffdf
 /* The reset value of the ALT_NAND_STAT_INTR_STAT2_ERASE_FAIL register field. */
-#define ALT_NAND_STAT_INTR_STAT2_ERASE_FAIL_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT2_ERASE_FAIL_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT2_ERASE_FAIL field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT2_ERASE_FAIL_GET(value) (((value) & 0x00000020) >> 5)
+    #define ALT_NAND_STAT_INTR_STAT2_ERASE_FAIL_GET( value )    ( ( ( value ) & 0x00000020 ) >> 5 )
 /* Produces a ALT_NAND_STAT_INTR_STAT2_ERASE_FAIL register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT2_ERASE_FAIL_SET(value) (((value) << 5) & 0x00000020)
+    #define ALT_NAND_STAT_INTR_STAT2_ERASE_FAIL_SET( value )    ( ( ( value ) << 5 ) & 0x00000020 )
 
 /*
  * Field : load_comp
@@ -7362,21 +7511,21 @@ typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR1_s  ALT_NAND_STAT_ERR_BLOCK
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT2_LD_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT2_LD_COMP_LSB        6
+    #define ALT_NAND_STAT_INTR_STAT2_LD_COMP_LSB        6
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT2_LD_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT2_LD_COMP_MSB        6
+    #define ALT_NAND_STAT_INTR_STAT2_LD_COMP_MSB        6
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT2_LD_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT2_LD_COMP_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT2_LD_COMP_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT2_LD_COMP register field value. */
-#define ALT_NAND_STAT_INTR_STAT2_LD_COMP_SET_MSK    0x00000040
+    #define ALT_NAND_STAT_INTR_STAT2_LD_COMP_SET_MSK    0x00000040
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT2_LD_COMP register field value. */
-#define ALT_NAND_STAT_INTR_STAT2_LD_COMP_CLR_MSK    0xffffffbf
+    #define ALT_NAND_STAT_INTR_STAT2_LD_COMP_CLR_MSK    0xffffffbf
 /* The reset value of the ALT_NAND_STAT_INTR_STAT2_LD_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT2_LD_COMP_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT2_LD_COMP_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT2_LD_COMP field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT2_LD_COMP_GET(value) (((value) & 0x00000040) >> 6)
+    #define ALT_NAND_STAT_INTR_STAT2_LD_COMP_GET( value )    ( ( ( value ) & 0x00000040 ) >> 6 )
 /* Produces a ALT_NAND_STAT_INTR_STAT2_LD_COMP register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT2_LD_COMP_SET(value) (((value) << 6) & 0x00000040)
+    #define ALT_NAND_STAT_INTR_STAT2_LD_COMP_SET( value )    ( ( ( value ) << 6 ) & 0x00000040 )
 
 /*
  * Field : program_comp
@@ -7387,21 +7536,21 @@ typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR1_s  ALT_NAND_STAT_ERR_BLOCK
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT2_PROGRAM_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT2_PROGRAM_COMP_LSB        7
+    #define ALT_NAND_STAT_INTR_STAT2_PROGRAM_COMP_LSB        7
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT2_PROGRAM_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT2_PROGRAM_COMP_MSB        7
+    #define ALT_NAND_STAT_INTR_STAT2_PROGRAM_COMP_MSB        7
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT2_PROGRAM_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT2_PROGRAM_COMP_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT2_PROGRAM_COMP_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT2_PROGRAM_COMP register field value. */
-#define ALT_NAND_STAT_INTR_STAT2_PROGRAM_COMP_SET_MSK    0x00000080
+    #define ALT_NAND_STAT_INTR_STAT2_PROGRAM_COMP_SET_MSK    0x00000080
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT2_PROGRAM_COMP register field value. */
-#define ALT_NAND_STAT_INTR_STAT2_PROGRAM_COMP_CLR_MSK    0xffffff7f
+    #define ALT_NAND_STAT_INTR_STAT2_PROGRAM_COMP_CLR_MSK    0xffffff7f
 /* The reset value of the ALT_NAND_STAT_INTR_STAT2_PROGRAM_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT2_PROGRAM_COMP_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT2_PROGRAM_COMP_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT2_PROGRAM_COMP field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT2_PROGRAM_COMP_GET(value) (((value) & 0x00000080) >> 7)
+    #define ALT_NAND_STAT_INTR_STAT2_PROGRAM_COMP_GET( value )    ( ( ( value ) & 0x00000080 ) >> 7 )
 /* Produces a ALT_NAND_STAT_INTR_STAT2_PROGRAM_COMP register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT2_PROGRAM_COMP_SET(value) (((value) << 7) & 0x00000080)
+    #define ALT_NAND_STAT_INTR_STAT2_PROGRAM_COMP_SET( value )    ( ( ( value ) << 7 ) & 0x00000080 )
 
 /*
  * Field : erase_comp
@@ -7412,21 +7561,21 @@ typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR1_s  ALT_NAND_STAT_ERR_BLOCK
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT2_ERASE_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT2_ERASE_COMP_LSB        8
+    #define ALT_NAND_STAT_INTR_STAT2_ERASE_COMP_LSB        8
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT2_ERASE_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT2_ERASE_COMP_MSB        8
+    #define ALT_NAND_STAT_INTR_STAT2_ERASE_COMP_MSB        8
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT2_ERASE_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT2_ERASE_COMP_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT2_ERASE_COMP_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT2_ERASE_COMP register field value. */
-#define ALT_NAND_STAT_INTR_STAT2_ERASE_COMP_SET_MSK    0x00000100
+    #define ALT_NAND_STAT_INTR_STAT2_ERASE_COMP_SET_MSK    0x00000100
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT2_ERASE_COMP register field value. */
-#define ALT_NAND_STAT_INTR_STAT2_ERASE_COMP_CLR_MSK    0xfffffeff
+    #define ALT_NAND_STAT_INTR_STAT2_ERASE_COMP_CLR_MSK    0xfffffeff
 /* The reset value of the ALT_NAND_STAT_INTR_STAT2_ERASE_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT2_ERASE_COMP_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT2_ERASE_COMP_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT2_ERASE_COMP field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT2_ERASE_COMP_GET(value) (((value) & 0x00000100) >> 8)
+    #define ALT_NAND_STAT_INTR_STAT2_ERASE_COMP_GET( value )    ( ( ( value ) & 0x00000100 ) >> 8 )
 /* Produces a ALT_NAND_STAT_INTR_STAT2_ERASE_COMP register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT2_ERASE_COMP_SET(value) (((value) << 8) & 0x00000100)
+    #define ALT_NAND_STAT_INTR_STAT2_ERASE_COMP_SET( value )    ( ( ( value ) << 8 ) & 0x00000100 )
 
 /*
  * Field : pipe_cpybck_cmd_comp
@@ -7438,21 +7587,21 @@ typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR1_s  ALT_NAND_STAT_ERR_BLOCK
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT2_PIPE_CPYBCK_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT2_PIPE_CPYBCK_CMD_COMP_LSB        9
+    #define ALT_NAND_STAT_INTR_STAT2_PIPE_CPYBCK_CMD_COMP_LSB        9
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT2_PIPE_CPYBCK_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT2_PIPE_CPYBCK_CMD_COMP_MSB        9
+    #define ALT_NAND_STAT_INTR_STAT2_PIPE_CPYBCK_CMD_COMP_MSB        9
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT2_PIPE_CPYBCK_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT2_PIPE_CPYBCK_CMD_COMP_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT2_PIPE_CPYBCK_CMD_COMP_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT2_PIPE_CPYBCK_CMD_COMP register field value. */
-#define ALT_NAND_STAT_INTR_STAT2_PIPE_CPYBCK_CMD_COMP_SET_MSK    0x00000200
+    #define ALT_NAND_STAT_INTR_STAT2_PIPE_CPYBCK_CMD_COMP_SET_MSK    0x00000200
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT2_PIPE_CPYBCK_CMD_COMP register field value. */
-#define ALT_NAND_STAT_INTR_STAT2_PIPE_CPYBCK_CMD_COMP_CLR_MSK    0xfffffdff
+    #define ALT_NAND_STAT_INTR_STAT2_PIPE_CPYBCK_CMD_COMP_CLR_MSK    0xfffffdff
 /* The reset value of the ALT_NAND_STAT_INTR_STAT2_PIPE_CPYBCK_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT2_PIPE_CPYBCK_CMD_COMP_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT2_PIPE_CPYBCK_CMD_COMP_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT2_PIPE_CPYBCK_CMD_COMP field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT2_PIPE_CPYBCK_CMD_COMP_GET(value) (((value) & 0x00000200) >> 9)
+    #define ALT_NAND_STAT_INTR_STAT2_PIPE_CPYBCK_CMD_COMP_GET( value )    ( ( ( value ) & 0x00000200 ) >> 9 )
 /* Produces a ALT_NAND_STAT_INTR_STAT2_PIPE_CPYBCK_CMD_COMP register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT2_PIPE_CPYBCK_CMD_COMP_SET(value) (((value) << 9) & 0x00000200)
+    #define ALT_NAND_STAT_INTR_STAT2_PIPE_CPYBCK_CMD_COMP_SET( value )    ( ( ( value ) << 9 ) & 0x00000200 )
 
 /*
  * Field : locked_blk
@@ -7464,21 +7613,21 @@ typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR1_s  ALT_NAND_STAT_ERR_BLOCK
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT2_LOCKED_BLK register field. */
-#define ALT_NAND_STAT_INTR_STAT2_LOCKED_BLK_LSB        10
+    #define ALT_NAND_STAT_INTR_STAT2_LOCKED_BLK_LSB        10
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT2_LOCKED_BLK register field. */
-#define ALT_NAND_STAT_INTR_STAT2_LOCKED_BLK_MSB        10
+    #define ALT_NAND_STAT_INTR_STAT2_LOCKED_BLK_MSB        10
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT2_LOCKED_BLK register field. */
-#define ALT_NAND_STAT_INTR_STAT2_LOCKED_BLK_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT2_LOCKED_BLK_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT2_LOCKED_BLK register field value. */
-#define ALT_NAND_STAT_INTR_STAT2_LOCKED_BLK_SET_MSK    0x00000400
+    #define ALT_NAND_STAT_INTR_STAT2_LOCKED_BLK_SET_MSK    0x00000400
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT2_LOCKED_BLK register field value. */
-#define ALT_NAND_STAT_INTR_STAT2_LOCKED_BLK_CLR_MSK    0xfffffbff
+    #define ALT_NAND_STAT_INTR_STAT2_LOCKED_BLK_CLR_MSK    0xfffffbff
 /* The reset value of the ALT_NAND_STAT_INTR_STAT2_LOCKED_BLK register field. */
-#define ALT_NAND_STAT_INTR_STAT2_LOCKED_BLK_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT2_LOCKED_BLK_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT2_LOCKED_BLK field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT2_LOCKED_BLK_GET(value) (((value) & 0x00000400) >> 10)
+    #define ALT_NAND_STAT_INTR_STAT2_LOCKED_BLK_GET( value )    ( ( ( value ) & 0x00000400 ) >> 10 )
 /* Produces a ALT_NAND_STAT_INTR_STAT2_LOCKED_BLK register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT2_LOCKED_BLK_SET(value) (((value) << 10) & 0x00000400)
+    #define ALT_NAND_STAT_INTR_STAT2_LOCKED_BLK_SET( value )    ( ( ( value ) << 10 ) & 0x00000400 )
 
 /*
  * Field : unsup_cmd
@@ -7490,21 +7639,21 @@ typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR1_s  ALT_NAND_STAT_ERR_BLOCK
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT2_UNSUP_CMD register field. */
-#define ALT_NAND_STAT_INTR_STAT2_UNSUP_CMD_LSB        11
+    #define ALT_NAND_STAT_INTR_STAT2_UNSUP_CMD_LSB        11
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT2_UNSUP_CMD register field. */
-#define ALT_NAND_STAT_INTR_STAT2_UNSUP_CMD_MSB        11
+    #define ALT_NAND_STAT_INTR_STAT2_UNSUP_CMD_MSB        11
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT2_UNSUP_CMD register field. */
-#define ALT_NAND_STAT_INTR_STAT2_UNSUP_CMD_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT2_UNSUP_CMD_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT2_UNSUP_CMD register field value. */
-#define ALT_NAND_STAT_INTR_STAT2_UNSUP_CMD_SET_MSK    0x00000800
+    #define ALT_NAND_STAT_INTR_STAT2_UNSUP_CMD_SET_MSK    0x00000800
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT2_UNSUP_CMD register field value. */
-#define ALT_NAND_STAT_INTR_STAT2_UNSUP_CMD_CLR_MSK    0xfffff7ff
+    #define ALT_NAND_STAT_INTR_STAT2_UNSUP_CMD_CLR_MSK    0xfffff7ff
 /* The reset value of the ALT_NAND_STAT_INTR_STAT2_UNSUP_CMD register field. */
-#define ALT_NAND_STAT_INTR_STAT2_UNSUP_CMD_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT2_UNSUP_CMD_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT2_UNSUP_CMD field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT2_UNSUP_CMD_GET(value) (((value) & 0x00000800) >> 11)
+    #define ALT_NAND_STAT_INTR_STAT2_UNSUP_CMD_GET( value )    ( ( ( value ) & 0x00000800 ) >> 11 )
 /* Produces a ALT_NAND_STAT_INTR_STAT2_UNSUP_CMD register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT2_UNSUP_CMD_SET(value) (((value) << 11) & 0x00000800)
+    #define ALT_NAND_STAT_INTR_STAT2_UNSUP_CMD_SET( value )    ( ( ( value ) << 11 ) & 0x00000800 )
 
 /*
  * Field : INT_act
@@ -7515,21 +7664,21 @@ typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR1_s  ALT_NAND_STAT_ERR_BLOCK
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT2_INT_ACT register field. */
-#define ALT_NAND_STAT_INTR_STAT2_INT_ACT_LSB        12
+    #define ALT_NAND_STAT_INTR_STAT2_INT_ACT_LSB        12
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT2_INT_ACT register field. */
-#define ALT_NAND_STAT_INTR_STAT2_INT_ACT_MSB        12
+    #define ALT_NAND_STAT_INTR_STAT2_INT_ACT_MSB        12
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT2_INT_ACT register field. */
-#define ALT_NAND_STAT_INTR_STAT2_INT_ACT_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT2_INT_ACT_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT2_INT_ACT register field value. */
-#define ALT_NAND_STAT_INTR_STAT2_INT_ACT_SET_MSK    0x00001000
+    #define ALT_NAND_STAT_INTR_STAT2_INT_ACT_SET_MSK    0x00001000
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT2_INT_ACT register field value. */
-#define ALT_NAND_STAT_INTR_STAT2_INT_ACT_CLR_MSK    0xffffefff
+    #define ALT_NAND_STAT_INTR_STAT2_INT_ACT_CLR_MSK    0xffffefff
 /* The reset value of the ALT_NAND_STAT_INTR_STAT2_INT_ACT register field. */
-#define ALT_NAND_STAT_INTR_STAT2_INT_ACT_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT2_INT_ACT_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT2_INT_ACT field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT2_INT_ACT_GET(value) (((value) & 0x00001000) >> 12)
+    #define ALT_NAND_STAT_INTR_STAT2_INT_ACT_GET( value )    ( ( ( value ) & 0x00001000 ) >> 12 )
 /* Produces a ALT_NAND_STAT_INTR_STAT2_INT_ACT register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT2_INT_ACT_SET(value) (((value) << 12) & 0x00001000)
+    #define ALT_NAND_STAT_INTR_STAT2_INT_ACT_SET( value )    ( ( ( value ) << 12 ) & 0x00001000 )
 
 /*
  * Field : rst_comp
@@ -7541,21 +7690,21 @@ typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR1_s  ALT_NAND_STAT_ERR_BLOCK
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT2_RST_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT2_RST_COMP_LSB        13
+    #define ALT_NAND_STAT_INTR_STAT2_RST_COMP_LSB        13
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT2_RST_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT2_RST_COMP_MSB        13
+    #define ALT_NAND_STAT_INTR_STAT2_RST_COMP_MSB        13
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT2_RST_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT2_RST_COMP_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT2_RST_COMP_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT2_RST_COMP register field value. */
-#define ALT_NAND_STAT_INTR_STAT2_RST_COMP_SET_MSK    0x00002000
+    #define ALT_NAND_STAT_INTR_STAT2_RST_COMP_SET_MSK    0x00002000
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT2_RST_COMP register field value. */
-#define ALT_NAND_STAT_INTR_STAT2_RST_COMP_CLR_MSK    0xffffdfff
+    #define ALT_NAND_STAT_INTR_STAT2_RST_COMP_CLR_MSK    0xffffdfff
 /* The reset value of the ALT_NAND_STAT_INTR_STAT2_RST_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT2_RST_COMP_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT2_RST_COMP_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT2_RST_COMP field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT2_RST_COMP_GET(value) (((value) & 0x00002000) >> 13)
+    #define ALT_NAND_STAT_INTR_STAT2_RST_COMP_GET( value )    ( ( ( value ) & 0x00002000 ) >> 13 )
 /* Produces a ALT_NAND_STAT_INTR_STAT2_RST_COMP register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT2_RST_COMP_SET(value) (((value) << 13) & 0x00002000)
+    #define ALT_NAND_STAT_INTR_STAT2_RST_COMP_SET( value )    ( ( ( value ) << 13 ) & 0x00002000 )
 
 /*
  * Field : pipe_cmd_err
@@ -7568,21 +7717,21 @@ typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR1_s  ALT_NAND_STAT_ERR_BLOCK
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT2_PIPE_CMD_ERR register field. */
-#define ALT_NAND_STAT_INTR_STAT2_PIPE_CMD_ERR_LSB        14
+    #define ALT_NAND_STAT_INTR_STAT2_PIPE_CMD_ERR_LSB        14
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT2_PIPE_CMD_ERR register field. */
-#define ALT_NAND_STAT_INTR_STAT2_PIPE_CMD_ERR_MSB        14
+    #define ALT_NAND_STAT_INTR_STAT2_PIPE_CMD_ERR_MSB        14
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT2_PIPE_CMD_ERR register field. */
-#define ALT_NAND_STAT_INTR_STAT2_PIPE_CMD_ERR_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT2_PIPE_CMD_ERR_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT2_PIPE_CMD_ERR register field value. */
-#define ALT_NAND_STAT_INTR_STAT2_PIPE_CMD_ERR_SET_MSK    0x00004000
+    #define ALT_NAND_STAT_INTR_STAT2_PIPE_CMD_ERR_SET_MSK    0x00004000
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT2_PIPE_CMD_ERR register field value. */
-#define ALT_NAND_STAT_INTR_STAT2_PIPE_CMD_ERR_CLR_MSK    0xffffbfff
+    #define ALT_NAND_STAT_INTR_STAT2_PIPE_CMD_ERR_CLR_MSK    0xffffbfff
 /* The reset value of the ALT_NAND_STAT_INTR_STAT2_PIPE_CMD_ERR register field. */
-#define ALT_NAND_STAT_INTR_STAT2_PIPE_CMD_ERR_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT2_PIPE_CMD_ERR_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT2_PIPE_CMD_ERR field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT2_PIPE_CMD_ERR_GET(value) (((value) & 0x00004000) >> 14)
+    #define ALT_NAND_STAT_INTR_STAT2_PIPE_CMD_ERR_GET( value )    ( ( ( value ) & 0x00004000 ) >> 14 )
 /* Produces a ALT_NAND_STAT_INTR_STAT2_PIPE_CMD_ERR register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT2_PIPE_CMD_ERR_SET(value) (((value) << 14) & 0x00004000)
+    #define ALT_NAND_STAT_INTR_STAT2_PIPE_CMD_ERR_SET( value )    ( ( ( value ) << 14 ) & 0x00004000 )
 
 /*
  * Field : page_xfer_inc
@@ -7593,23 +7742,24 @@ typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR1_s  ALT_NAND_STAT_ERR_BLOCK
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT2_PAGE_XFER_INC register field. */
-#define ALT_NAND_STAT_INTR_STAT2_PAGE_XFER_INC_LSB        15
+    #define ALT_NAND_STAT_INTR_STAT2_PAGE_XFER_INC_LSB        15
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT2_PAGE_XFER_INC register field. */
-#define ALT_NAND_STAT_INTR_STAT2_PAGE_XFER_INC_MSB        15
+    #define ALT_NAND_STAT_INTR_STAT2_PAGE_XFER_INC_MSB        15
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT2_PAGE_XFER_INC register field. */
-#define ALT_NAND_STAT_INTR_STAT2_PAGE_XFER_INC_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT2_PAGE_XFER_INC_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT2_PAGE_XFER_INC register field value. */
-#define ALT_NAND_STAT_INTR_STAT2_PAGE_XFER_INC_SET_MSK    0x00008000
+    #define ALT_NAND_STAT_INTR_STAT2_PAGE_XFER_INC_SET_MSK    0x00008000
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT2_PAGE_XFER_INC register field value. */
-#define ALT_NAND_STAT_INTR_STAT2_PAGE_XFER_INC_CLR_MSK    0xffff7fff
+    #define ALT_NAND_STAT_INTR_STAT2_PAGE_XFER_INC_CLR_MSK    0xffff7fff
 /* The reset value of the ALT_NAND_STAT_INTR_STAT2_PAGE_XFER_INC register field. */
-#define ALT_NAND_STAT_INTR_STAT2_PAGE_XFER_INC_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT2_PAGE_XFER_INC_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT2_PAGE_XFER_INC field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT2_PAGE_XFER_INC_GET(value) (((value) & 0x00008000) >> 15)
+    #define ALT_NAND_STAT_INTR_STAT2_PAGE_XFER_INC_GET( value )    ( ( ( value ) & 0x00008000 ) >> 15 )
 /* Produces a ALT_NAND_STAT_INTR_STAT2_PAGE_XFER_INC register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT2_PAGE_XFER_INC_SET(value) (((value) << 15) & 0x00008000)
+    #define ALT_NAND_STAT_INTR_STAT2_PAGE_XFER_INC_SET( value )    ( ( ( value ) << 15 ) & 0x00008000 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -7620,33 +7770,33 @@ typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR1_s  ALT_NAND_STAT_ERR_BLOCK
  *
  * The struct declaration for register ALT_NAND_STAT_INTR_STAT2.
  */
-struct ALT_NAND_STAT_INTR_STAT2_s
-{
-    uint32_t  ecc_uncor_err        :  1;  /* ALT_NAND_STAT_INTR_STAT2_ECC_UNCOR_ERR */
-    uint32_t                       :  1;  /* *UNDEFINED* */
-    uint32_t  dma_cmd_comp         :  1;  /* ALT_NAND_STAT_INTR_STAT2_DMA_CMD_COMP */
-    uint32_t  time_out             :  1;  /* ALT_NAND_STAT_INTR_STAT2_TIME_OUT */
-    uint32_t  program_fail         :  1;  /* ALT_NAND_STAT_INTR_STAT2_PROGRAM_FAIL */
-    uint32_t  erase_fail           :  1;  /* ALT_NAND_STAT_INTR_STAT2_ERASE_FAIL */
-    uint32_t  load_comp            :  1;  /* ALT_NAND_STAT_INTR_STAT2_LD_COMP */
-    uint32_t  program_comp         :  1;  /* ALT_NAND_STAT_INTR_STAT2_PROGRAM_COMP */
-    uint32_t  erase_comp           :  1;  /* ALT_NAND_STAT_INTR_STAT2_ERASE_COMP */
-    uint32_t  pipe_cpybck_cmd_comp :  1;  /* ALT_NAND_STAT_INTR_STAT2_PIPE_CPYBCK_CMD_COMP */
-    uint32_t  locked_blk           :  1;  /* ALT_NAND_STAT_INTR_STAT2_LOCKED_BLK */
-    uint32_t  unsup_cmd            :  1;  /* ALT_NAND_STAT_INTR_STAT2_UNSUP_CMD */
-    uint32_t  INT_act              :  1;  /* ALT_NAND_STAT_INTR_STAT2_INT_ACT */
-    uint32_t  rst_comp             :  1;  /* ALT_NAND_STAT_INTR_STAT2_RST_COMP */
-    uint32_t  pipe_cmd_err         :  1;  /* ALT_NAND_STAT_INTR_STAT2_PIPE_CMD_ERR */
-    uint32_t  page_xfer_inc        :  1;  /* ALT_NAND_STAT_INTR_STAT2_PAGE_XFER_INC */
-    uint32_t                       : 16;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_STAT_INTR_STAT2_s
+        {
+            uint32_t ecc_uncor_err        :  1;  /* ALT_NAND_STAT_INTR_STAT2_ECC_UNCOR_ERR */
+            uint32_t                       :  1; /* *UNDEFINED* */
+            uint32_t dma_cmd_comp         :  1;  /* ALT_NAND_STAT_INTR_STAT2_DMA_CMD_COMP */
+            uint32_t time_out             :  1;  /* ALT_NAND_STAT_INTR_STAT2_TIME_OUT */
+            uint32_t program_fail         :  1;  /* ALT_NAND_STAT_INTR_STAT2_PROGRAM_FAIL */
+            uint32_t erase_fail           :  1;  /* ALT_NAND_STAT_INTR_STAT2_ERASE_FAIL */
+            uint32_t load_comp            :  1;  /* ALT_NAND_STAT_INTR_STAT2_LD_COMP */
+            uint32_t program_comp         :  1;  /* ALT_NAND_STAT_INTR_STAT2_PROGRAM_COMP */
+            uint32_t erase_comp           :  1;  /* ALT_NAND_STAT_INTR_STAT2_ERASE_COMP */
+            uint32_t pipe_cpybck_cmd_comp :  1;  /* ALT_NAND_STAT_INTR_STAT2_PIPE_CPYBCK_CMD_COMP */
+            uint32_t locked_blk           :  1;  /* ALT_NAND_STAT_INTR_STAT2_LOCKED_BLK */
+            uint32_t unsup_cmd            :  1;  /* ALT_NAND_STAT_INTR_STAT2_UNSUP_CMD */
+            uint32_t INT_act              :  1;  /* ALT_NAND_STAT_INTR_STAT2_INT_ACT */
+            uint32_t rst_comp             :  1;  /* ALT_NAND_STAT_INTR_STAT2_RST_COMP */
+            uint32_t pipe_cmd_err         :  1;  /* ALT_NAND_STAT_INTR_STAT2_PIPE_CMD_ERR */
+            uint32_t page_xfer_inc        :  1;  /* ALT_NAND_STAT_INTR_STAT2_PAGE_XFER_INC */
+            uint32_t                       : 16; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_STAT_INTR_STAT2. */
-typedef volatile struct ALT_NAND_STAT_INTR_STAT2_s  ALT_NAND_STAT_INTR_STAT2_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_STAT_INTR_STAT2_s ALT_NAND_STAT_INTR_STAT2_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_STAT_INTR_STAT2 register from the beginning of the component. */
-#define ALT_NAND_STAT_INTR_STAT2_OFST        0xb0
+    #define ALT_NAND_STAT_INTR_STAT2_OFST    0xb0
 
 /*
  * Register : intr_en2
@@ -7676,6 +7826,7 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT2_s  ALT_NAND_STAT_INTR_STAT2_t;
  *  [31:16] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : ecc_uncor_err
  *
@@ -7686,21 +7837,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT2_s  ALT_NAND_STAT_INTR_STAT2_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN2_ECC_UNCOR_ERR register field. */
-#define ALT_NAND_STAT_INTR_EN2_ECC_UNCOR_ERR_LSB        0
+    #define ALT_NAND_STAT_INTR_EN2_ECC_UNCOR_ERR_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN2_ECC_UNCOR_ERR register field. */
-#define ALT_NAND_STAT_INTR_EN2_ECC_UNCOR_ERR_MSB        0
+    #define ALT_NAND_STAT_INTR_EN2_ECC_UNCOR_ERR_MSB        0
 /* The width in bits of the ALT_NAND_STAT_INTR_EN2_ECC_UNCOR_ERR register field. */
-#define ALT_NAND_STAT_INTR_EN2_ECC_UNCOR_ERR_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN2_ECC_UNCOR_ERR_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN2_ECC_UNCOR_ERR register field value. */
-#define ALT_NAND_STAT_INTR_EN2_ECC_UNCOR_ERR_SET_MSK    0x00000001
+    #define ALT_NAND_STAT_INTR_EN2_ECC_UNCOR_ERR_SET_MSK    0x00000001
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN2_ECC_UNCOR_ERR register field value. */
-#define ALT_NAND_STAT_INTR_EN2_ECC_UNCOR_ERR_CLR_MSK    0xfffffffe
+    #define ALT_NAND_STAT_INTR_EN2_ECC_UNCOR_ERR_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_NAND_STAT_INTR_EN2_ECC_UNCOR_ERR register field. */
-#define ALT_NAND_STAT_INTR_EN2_ECC_UNCOR_ERR_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN2_ECC_UNCOR_ERR_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN2_ECC_UNCOR_ERR field value from a register. */
-#define ALT_NAND_STAT_INTR_EN2_ECC_UNCOR_ERR_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_NAND_STAT_INTR_EN2_ECC_UNCOR_ERR_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_NAND_STAT_INTR_EN2_ECC_UNCOR_ERR register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN2_ECC_UNCOR_ERR_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_NAND_STAT_INTR_EN2_ECC_UNCOR_ERR_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
 /*
  * Field : dma_cmd_comp
@@ -7711,21 +7862,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT2_s  ALT_NAND_STAT_INTR_STAT2_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN2_DMA_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN2_DMA_CMD_COMP_LSB        2
+    #define ALT_NAND_STAT_INTR_EN2_DMA_CMD_COMP_LSB        2
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN2_DMA_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN2_DMA_CMD_COMP_MSB        2
+    #define ALT_NAND_STAT_INTR_EN2_DMA_CMD_COMP_MSB        2
 /* The width in bits of the ALT_NAND_STAT_INTR_EN2_DMA_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN2_DMA_CMD_COMP_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN2_DMA_CMD_COMP_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN2_DMA_CMD_COMP register field value. */
-#define ALT_NAND_STAT_INTR_EN2_DMA_CMD_COMP_SET_MSK    0x00000004
+    #define ALT_NAND_STAT_INTR_EN2_DMA_CMD_COMP_SET_MSK    0x00000004
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN2_DMA_CMD_COMP register field value. */
-#define ALT_NAND_STAT_INTR_EN2_DMA_CMD_COMP_CLR_MSK    0xfffffffb
+    #define ALT_NAND_STAT_INTR_EN2_DMA_CMD_COMP_CLR_MSK    0xfffffffb
 /* The reset value of the ALT_NAND_STAT_INTR_EN2_DMA_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN2_DMA_CMD_COMP_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN2_DMA_CMD_COMP_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN2_DMA_CMD_COMP field value from a register. */
-#define ALT_NAND_STAT_INTR_EN2_DMA_CMD_COMP_GET(value) (((value) & 0x00000004) >> 2)
+    #define ALT_NAND_STAT_INTR_EN2_DMA_CMD_COMP_GET( value )    ( ( ( value ) & 0x00000004 ) >> 2 )
 /* Produces a ALT_NAND_STAT_INTR_EN2_DMA_CMD_COMP register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN2_DMA_CMD_COMP_SET(value) (((value) << 2) & 0x00000004)
+    #define ALT_NAND_STAT_INTR_EN2_DMA_CMD_COMP_SET( value )    ( ( ( value ) << 2 ) & 0x00000004 )
 
 /*
  * Field : time_out
@@ -7737,21 +7888,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT2_s  ALT_NAND_STAT_INTR_STAT2_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN2_TIME_OUT register field. */
-#define ALT_NAND_STAT_INTR_EN2_TIME_OUT_LSB        3
+    #define ALT_NAND_STAT_INTR_EN2_TIME_OUT_LSB        3
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN2_TIME_OUT register field. */
-#define ALT_NAND_STAT_INTR_EN2_TIME_OUT_MSB        3
+    #define ALT_NAND_STAT_INTR_EN2_TIME_OUT_MSB        3
 /* The width in bits of the ALT_NAND_STAT_INTR_EN2_TIME_OUT register field. */
-#define ALT_NAND_STAT_INTR_EN2_TIME_OUT_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN2_TIME_OUT_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN2_TIME_OUT register field value. */
-#define ALT_NAND_STAT_INTR_EN2_TIME_OUT_SET_MSK    0x00000008
+    #define ALT_NAND_STAT_INTR_EN2_TIME_OUT_SET_MSK    0x00000008
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN2_TIME_OUT register field value. */
-#define ALT_NAND_STAT_INTR_EN2_TIME_OUT_CLR_MSK    0xfffffff7
+    #define ALT_NAND_STAT_INTR_EN2_TIME_OUT_CLR_MSK    0xfffffff7
 /* The reset value of the ALT_NAND_STAT_INTR_EN2_TIME_OUT register field. */
-#define ALT_NAND_STAT_INTR_EN2_TIME_OUT_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN2_TIME_OUT_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN2_TIME_OUT field value from a register. */
-#define ALT_NAND_STAT_INTR_EN2_TIME_OUT_GET(value) (((value) & 0x00000008) >> 3)
+    #define ALT_NAND_STAT_INTR_EN2_TIME_OUT_GET( value )    ( ( ( value ) & 0x00000008 ) >> 3 )
 /* Produces a ALT_NAND_STAT_INTR_EN2_TIME_OUT register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN2_TIME_OUT_SET(value) (((value) << 3) & 0x00000008)
+    #define ALT_NAND_STAT_INTR_EN2_TIME_OUT_SET( value )    ( ( ( value ) << 3 ) & 0x00000008 )
 
 /*
  * Field : program_fail
@@ -7764,21 +7915,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT2_s  ALT_NAND_STAT_INTR_STAT2_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN2_PROGRAM_FAIL register field. */
-#define ALT_NAND_STAT_INTR_EN2_PROGRAM_FAIL_LSB        4
+    #define ALT_NAND_STAT_INTR_EN2_PROGRAM_FAIL_LSB        4
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN2_PROGRAM_FAIL register field. */
-#define ALT_NAND_STAT_INTR_EN2_PROGRAM_FAIL_MSB        4
+    #define ALT_NAND_STAT_INTR_EN2_PROGRAM_FAIL_MSB        4
 /* The width in bits of the ALT_NAND_STAT_INTR_EN2_PROGRAM_FAIL register field. */
-#define ALT_NAND_STAT_INTR_EN2_PROGRAM_FAIL_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN2_PROGRAM_FAIL_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN2_PROGRAM_FAIL register field value. */
-#define ALT_NAND_STAT_INTR_EN2_PROGRAM_FAIL_SET_MSK    0x00000010
+    #define ALT_NAND_STAT_INTR_EN2_PROGRAM_FAIL_SET_MSK    0x00000010
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN2_PROGRAM_FAIL register field value. */
-#define ALT_NAND_STAT_INTR_EN2_PROGRAM_FAIL_CLR_MSK    0xffffffef
+    #define ALT_NAND_STAT_INTR_EN2_PROGRAM_FAIL_CLR_MSK    0xffffffef
 /* The reset value of the ALT_NAND_STAT_INTR_EN2_PROGRAM_FAIL register field. */
-#define ALT_NAND_STAT_INTR_EN2_PROGRAM_FAIL_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN2_PROGRAM_FAIL_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN2_PROGRAM_FAIL field value from a register. */
-#define ALT_NAND_STAT_INTR_EN2_PROGRAM_FAIL_GET(value) (((value) & 0x00000010) >> 4)
+    #define ALT_NAND_STAT_INTR_EN2_PROGRAM_FAIL_GET( value )    ( ( ( value ) & 0x00000010 ) >> 4 )
 /* Produces a ALT_NAND_STAT_INTR_EN2_PROGRAM_FAIL register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN2_PROGRAM_FAIL_SET(value) (((value) << 4) & 0x00000010)
+    #define ALT_NAND_STAT_INTR_EN2_PROGRAM_FAIL_SET( value )    ( ( ( value ) << 4 ) & 0x00000010 )
 
 /*
  * Field : erase_fail
@@ -7791,21 +7942,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT2_s  ALT_NAND_STAT_INTR_STAT2_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN2_ERASE_FAIL register field. */
-#define ALT_NAND_STAT_INTR_EN2_ERASE_FAIL_LSB        5
+    #define ALT_NAND_STAT_INTR_EN2_ERASE_FAIL_LSB        5
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN2_ERASE_FAIL register field. */
-#define ALT_NAND_STAT_INTR_EN2_ERASE_FAIL_MSB        5
+    #define ALT_NAND_STAT_INTR_EN2_ERASE_FAIL_MSB        5
 /* The width in bits of the ALT_NAND_STAT_INTR_EN2_ERASE_FAIL register field. */
-#define ALT_NAND_STAT_INTR_EN2_ERASE_FAIL_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN2_ERASE_FAIL_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN2_ERASE_FAIL register field value. */
-#define ALT_NAND_STAT_INTR_EN2_ERASE_FAIL_SET_MSK    0x00000020
+    #define ALT_NAND_STAT_INTR_EN2_ERASE_FAIL_SET_MSK    0x00000020
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN2_ERASE_FAIL register field value. */
-#define ALT_NAND_STAT_INTR_EN2_ERASE_FAIL_CLR_MSK    0xffffffdf
+    #define ALT_NAND_STAT_INTR_EN2_ERASE_FAIL_CLR_MSK    0xffffffdf
 /* The reset value of the ALT_NAND_STAT_INTR_EN2_ERASE_FAIL register field. */
-#define ALT_NAND_STAT_INTR_EN2_ERASE_FAIL_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN2_ERASE_FAIL_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN2_ERASE_FAIL field value from a register. */
-#define ALT_NAND_STAT_INTR_EN2_ERASE_FAIL_GET(value) (((value) & 0x00000020) >> 5)
+    #define ALT_NAND_STAT_INTR_EN2_ERASE_FAIL_GET( value )    ( ( ( value ) & 0x00000020 ) >> 5 )
 /* Produces a ALT_NAND_STAT_INTR_EN2_ERASE_FAIL register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN2_ERASE_FAIL_SET(value) (((value) << 5) & 0x00000020)
+    #define ALT_NAND_STAT_INTR_EN2_ERASE_FAIL_SET( value )    ( ( ( value ) << 5 ) & 0x00000020 )
 
 /*
  * Field : load_comp
@@ -7816,21 +7967,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT2_s  ALT_NAND_STAT_INTR_STAT2_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN2_LD_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN2_LD_COMP_LSB        6
+    #define ALT_NAND_STAT_INTR_EN2_LD_COMP_LSB        6
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN2_LD_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN2_LD_COMP_MSB        6
+    #define ALT_NAND_STAT_INTR_EN2_LD_COMP_MSB        6
 /* The width in bits of the ALT_NAND_STAT_INTR_EN2_LD_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN2_LD_COMP_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN2_LD_COMP_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN2_LD_COMP register field value. */
-#define ALT_NAND_STAT_INTR_EN2_LD_COMP_SET_MSK    0x00000040
+    #define ALT_NAND_STAT_INTR_EN2_LD_COMP_SET_MSK    0x00000040
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN2_LD_COMP register field value. */
-#define ALT_NAND_STAT_INTR_EN2_LD_COMP_CLR_MSK    0xffffffbf
+    #define ALT_NAND_STAT_INTR_EN2_LD_COMP_CLR_MSK    0xffffffbf
 /* The reset value of the ALT_NAND_STAT_INTR_EN2_LD_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN2_LD_COMP_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN2_LD_COMP_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN2_LD_COMP field value from a register. */
-#define ALT_NAND_STAT_INTR_EN2_LD_COMP_GET(value) (((value) & 0x00000040) >> 6)
+    #define ALT_NAND_STAT_INTR_EN2_LD_COMP_GET( value )    ( ( ( value ) & 0x00000040 ) >> 6 )
 /* Produces a ALT_NAND_STAT_INTR_EN2_LD_COMP register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN2_LD_COMP_SET(value) (((value) << 6) & 0x00000040)
+    #define ALT_NAND_STAT_INTR_EN2_LD_COMP_SET( value )    ( ( ( value ) << 6 ) & 0x00000040 )
 
 /*
  * Field : program_comp
@@ -7841,21 +7992,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT2_s  ALT_NAND_STAT_INTR_STAT2_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN2_PROGRAM_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN2_PROGRAM_COMP_LSB        7
+    #define ALT_NAND_STAT_INTR_EN2_PROGRAM_COMP_LSB        7
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN2_PROGRAM_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN2_PROGRAM_COMP_MSB        7
+    #define ALT_NAND_STAT_INTR_EN2_PROGRAM_COMP_MSB        7
 /* The width in bits of the ALT_NAND_STAT_INTR_EN2_PROGRAM_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN2_PROGRAM_COMP_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN2_PROGRAM_COMP_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN2_PROGRAM_COMP register field value. */
-#define ALT_NAND_STAT_INTR_EN2_PROGRAM_COMP_SET_MSK    0x00000080
+    #define ALT_NAND_STAT_INTR_EN2_PROGRAM_COMP_SET_MSK    0x00000080
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN2_PROGRAM_COMP register field value. */
-#define ALT_NAND_STAT_INTR_EN2_PROGRAM_COMP_CLR_MSK    0xffffff7f
+    #define ALT_NAND_STAT_INTR_EN2_PROGRAM_COMP_CLR_MSK    0xffffff7f
 /* The reset value of the ALT_NAND_STAT_INTR_EN2_PROGRAM_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN2_PROGRAM_COMP_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN2_PROGRAM_COMP_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN2_PROGRAM_COMP field value from a register. */
-#define ALT_NAND_STAT_INTR_EN2_PROGRAM_COMP_GET(value) (((value) & 0x00000080) >> 7)
+    #define ALT_NAND_STAT_INTR_EN2_PROGRAM_COMP_GET( value )    ( ( ( value ) & 0x00000080 ) >> 7 )
 /* Produces a ALT_NAND_STAT_INTR_EN2_PROGRAM_COMP register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN2_PROGRAM_COMP_SET(value) (((value) << 7) & 0x00000080)
+    #define ALT_NAND_STAT_INTR_EN2_PROGRAM_COMP_SET( value )    ( ( ( value ) << 7 ) & 0x00000080 )
 
 /*
  * Field : erase_comp
@@ -7866,21 +8017,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT2_s  ALT_NAND_STAT_INTR_STAT2_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN2_ERASE_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN2_ERASE_COMP_LSB        8
+    #define ALT_NAND_STAT_INTR_EN2_ERASE_COMP_LSB        8
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN2_ERASE_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN2_ERASE_COMP_MSB        8
+    #define ALT_NAND_STAT_INTR_EN2_ERASE_COMP_MSB        8
 /* The width in bits of the ALT_NAND_STAT_INTR_EN2_ERASE_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN2_ERASE_COMP_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN2_ERASE_COMP_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN2_ERASE_COMP register field value. */
-#define ALT_NAND_STAT_INTR_EN2_ERASE_COMP_SET_MSK    0x00000100
+    #define ALT_NAND_STAT_INTR_EN2_ERASE_COMP_SET_MSK    0x00000100
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN2_ERASE_COMP register field value. */
-#define ALT_NAND_STAT_INTR_EN2_ERASE_COMP_CLR_MSK    0xfffffeff
+    #define ALT_NAND_STAT_INTR_EN2_ERASE_COMP_CLR_MSK    0xfffffeff
 /* The reset value of the ALT_NAND_STAT_INTR_EN2_ERASE_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN2_ERASE_COMP_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN2_ERASE_COMP_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN2_ERASE_COMP field value from a register. */
-#define ALT_NAND_STAT_INTR_EN2_ERASE_COMP_GET(value) (((value) & 0x00000100) >> 8)
+    #define ALT_NAND_STAT_INTR_EN2_ERASE_COMP_GET( value )    ( ( ( value ) & 0x00000100 ) >> 8 )
 /* Produces a ALT_NAND_STAT_INTR_EN2_ERASE_COMP register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN2_ERASE_COMP_SET(value) (((value) << 8) & 0x00000100)
+    #define ALT_NAND_STAT_INTR_EN2_ERASE_COMP_SET( value )    ( ( ( value ) << 8 ) & 0x00000100 )
 
 /*
  * Field : pipe_cpybck_cmd_comp
@@ -7892,21 +8043,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT2_s  ALT_NAND_STAT_INTR_STAT2_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN2_PIPE_CPYBCK_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN2_PIPE_CPYBCK_CMD_COMP_LSB        9
+    #define ALT_NAND_STAT_INTR_EN2_PIPE_CPYBCK_CMD_COMP_LSB        9
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN2_PIPE_CPYBCK_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN2_PIPE_CPYBCK_CMD_COMP_MSB        9
+    #define ALT_NAND_STAT_INTR_EN2_PIPE_CPYBCK_CMD_COMP_MSB        9
 /* The width in bits of the ALT_NAND_STAT_INTR_EN2_PIPE_CPYBCK_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN2_PIPE_CPYBCK_CMD_COMP_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN2_PIPE_CPYBCK_CMD_COMP_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN2_PIPE_CPYBCK_CMD_COMP register field value. */
-#define ALT_NAND_STAT_INTR_EN2_PIPE_CPYBCK_CMD_COMP_SET_MSK    0x00000200
+    #define ALT_NAND_STAT_INTR_EN2_PIPE_CPYBCK_CMD_COMP_SET_MSK    0x00000200
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN2_PIPE_CPYBCK_CMD_COMP register field value. */
-#define ALT_NAND_STAT_INTR_EN2_PIPE_CPYBCK_CMD_COMP_CLR_MSK    0xfffffdff
+    #define ALT_NAND_STAT_INTR_EN2_PIPE_CPYBCK_CMD_COMP_CLR_MSK    0xfffffdff
 /* The reset value of the ALT_NAND_STAT_INTR_EN2_PIPE_CPYBCK_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN2_PIPE_CPYBCK_CMD_COMP_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN2_PIPE_CPYBCK_CMD_COMP_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN2_PIPE_CPYBCK_CMD_COMP field value from a register. */
-#define ALT_NAND_STAT_INTR_EN2_PIPE_CPYBCK_CMD_COMP_GET(value) (((value) & 0x00000200) >> 9)
+    #define ALT_NAND_STAT_INTR_EN2_PIPE_CPYBCK_CMD_COMP_GET( value )    ( ( ( value ) & 0x00000200 ) >> 9 )
 /* Produces a ALT_NAND_STAT_INTR_EN2_PIPE_CPYBCK_CMD_COMP register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN2_PIPE_CPYBCK_CMD_COMP_SET(value) (((value) << 9) & 0x00000200)
+    #define ALT_NAND_STAT_INTR_EN2_PIPE_CPYBCK_CMD_COMP_SET( value )    ( ( ( value ) << 9 ) & 0x00000200 )
 
 /*
  * Field : locked_blk
@@ -7918,21 +8069,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT2_s  ALT_NAND_STAT_INTR_STAT2_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN2_LOCKED_BLK register field. */
-#define ALT_NAND_STAT_INTR_EN2_LOCKED_BLK_LSB        10
+    #define ALT_NAND_STAT_INTR_EN2_LOCKED_BLK_LSB        10
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN2_LOCKED_BLK register field. */
-#define ALT_NAND_STAT_INTR_EN2_LOCKED_BLK_MSB        10
+    #define ALT_NAND_STAT_INTR_EN2_LOCKED_BLK_MSB        10
 /* The width in bits of the ALT_NAND_STAT_INTR_EN2_LOCKED_BLK register field. */
-#define ALT_NAND_STAT_INTR_EN2_LOCKED_BLK_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN2_LOCKED_BLK_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN2_LOCKED_BLK register field value. */
-#define ALT_NAND_STAT_INTR_EN2_LOCKED_BLK_SET_MSK    0x00000400
+    #define ALT_NAND_STAT_INTR_EN2_LOCKED_BLK_SET_MSK    0x00000400
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN2_LOCKED_BLK register field value. */
-#define ALT_NAND_STAT_INTR_EN2_LOCKED_BLK_CLR_MSK    0xfffffbff
+    #define ALT_NAND_STAT_INTR_EN2_LOCKED_BLK_CLR_MSK    0xfffffbff
 /* The reset value of the ALT_NAND_STAT_INTR_EN2_LOCKED_BLK register field. */
-#define ALT_NAND_STAT_INTR_EN2_LOCKED_BLK_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN2_LOCKED_BLK_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN2_LOCKED_BLK field value from a register. */
-#define ALT_NAND_STAT_INTR_EN2_LOCKED_BLK_GET(value) (((value) & 0x00000400) >> 10)
+    #define ALT_NAND_STAT_INTR_EN2_LOCKED_BLK_GET( value )    ( ( ( value ) & 0x00000400 ) >> 10 )
 /* Produces a ALT_NAND_STAT_INTR_EN2_LOCKED_BLK register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN2_LOCKED_BLK_SET(value) (((value) << 10) & 0x00000400)
+    #define ALT_NAND_STAT_INTR_EN2_LOCKED_BLK_SET( value )    ( ( ( value ) << 10 ) & 0x00000400 )
 
 /*
  * Field : unsup_cmd
@@ -7944,21 +8095,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT2_s  ALT_NAND_STAT_INTR_STAT2_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN2_UNSUP_CMD register field. */
-#define ALT_NAND_STAT_INTR_EN2_UNSUP_CMD_LSB        11
+    #define ALT_NAND_STAT_INTR_EN2_UNSUP_CMD_LSB        11
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN2_UNSUP_CMD register field. */
-#define ALT_NAND_STAT_INTR_EN2_UNSUP_CMD_MSB        11
+    #define ALT_NAND_STAT_INTR_EN2_UNSUP_CMD_MSB        11
 /* The width in bits of the ALT_NAND_STAT_INTR_EN2_UNSUP_CMD register field. */
-#define ALT_NAND_STAT_INTR_EN2_UNSUP_CMD_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN2_UNSUP_CMD_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN2_UNSUP_CMD register field value. */
-#define ALT_NAND_STAT_INTR_EN2_UNSUP_CMD_SET_MSK    0x00000800
+    #define ALT_NAND_STAT_INTR_EN2_UNSUP_CMD_SET_MSK    0x00000800
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN2_UNSUP_CMD register field value. */
-#define ALT_NAND_STAT_INTR_EN2_UNSUP_CMD_CLR_MSK    0xfffff7ff
+    #define ALT_NAND_STAT_INTR_EN2_UNSUP_CMD_CLR_MSK    0xfffff7ff
 /* The reset value of the ALT_NAND_STAT_INTR_EN2_UNSUP_CMD register field. */
-#define ALT_NAND_STAT_INTR_EN2_UNSUP_CMD_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN2_UNSUP_CMD_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN2_UNSUP_CMD field value from a register. */
-#define ALT_NAND_STAT_INTR_EN2_UNSUP_CMD_GET(value) (((value) & 0x00000800) >> 11)
+    #define ALT_NAND_STAT_INTR_EN2_UNSUP_CMD_GET( value )    ( ( ( value ) & 0x00000800 ) >> 11 )
 /* Produces a ALT_NAND_STAT_INTR_EN2_UNSUP_CMD register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN2_UNSUP_CMD_SET(value) (((value) << 11) & 0x00000800)
+    #define ALT_NAND_STAT_INTR_EN2_UNSUP_CMD_SET( value )    ( ( ( value ) << 11 ) & 0x00000800 )
 
 /*
  * Field : INT_act
@@ -7969,21 +8120,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT2_s  ALT_NAND_STAT_INTR_STAT2_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN2_INT_ACT register field. */
-#define ALT_NAND_STAT_INTR_EN2_INT_ACT_LSB        12
+    #define ALT_NAND_STAT_INTR_EN2_INT_ACT_LSB        12
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN2_INT_ACT register field. */
-#define ALT_NAND_STAT_INTR_EN2_INT_ACT_MSB        12
+    #define ALT_NAND_STAT_INTR_EN2_INT_ACT_MSB        12
 /* The width in bits of the ALT_NAND_STAT_INTR_EN2_INT_ACT register field. */
-#define ALT_NAND_STAT_INTR_EN2_INT_ACT_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN2_INT_ACT_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN2_INT_ACT register field value. */
-#define ALT_NAND_STAT_INTR_EN2_INT_ACT_SET_MSK    0x00001000
+    #define ALT_NAND_STAT_INTR_EN2_INT_ACT_SET_MSK    0x00001000
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN2_INT_ACT register field value. */
-#define ALT_NAND_STAT_INTR_EN2_INT_ACT_CLR_MSK    0xffffefff
+    #define ALT_NAND_STAT_INTR_EN2_INT_ACT_CLR_MSK    0xffffefff
 /* The reset value of the ALT_NAND_STAT_INTR_EN2_INT_ACT register field. */
-#define ALT_NAND_STAT_INTR_EN2_INT_ACT_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN2_INT_ACT_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN2_INT_ACT field value from a register. */
-#define ALT_NAND_STAT_INTR_EN2_INT_ACT_GET(value) (((value) & 0x00001000) >> 12)
+    #define ALT_NAND_STAT_INTR_EN2_INT_ACT_GET( value )    ( ( ( value ) & 0x00001000 ) >> 12 )
 /* Produces a ALT_NAND_STAT_INTR_EN2_INT_ACT register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN2_INT_ACT_SET(value) (((value) << 12) & 0x00001000)
+    #define ALT_NAND_STAT_INTR_EN2_INT_ACT_SET( value )    ( ( ( value ) << 12 ) & 0x00001000 )
 
 /*
  * Field : rst_comp
@@ -7994,21 +8145,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT2_s  ALT_NAND_STAT_INTR_STAT2_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN2_RST_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN2_RST_COMP_LSB        13
+    #define ALT_NAND_STAT_INTR_EN2_RST_COMP_LSB        13
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN2_RST_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN2_RST_COMP_MSB        13
+    #define ALT_NAND_STAT_INTR_EN2_RST_COMP_MSB        13
 /* The width in bits of the ALT_NAND_STAT_INTR_EN2_RST_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN2_RST_COMP_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN2_RST_COMP_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN2_RST_COMP register field value. */
-#define ALT_NAND_STAT_INTR_EN2_RST_COMP_SET_MSK    0x00002000
+    #define ALT_NAND_STAT_INTR_EN2_RST_COMP_SET_MSK    0x00002000
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN2_RST_COMP register field value. */
-#define ALT_NAND_STAT_INTR_EN2_RST_COMP_CLR_MSK    0xffffdfff
+    #define ALT_NAND_STAT_INTR_EN2_RST_COMP_CLR_MSK    0xffffdfff
 /* The reset value of the ALT_NAND_STAT_INTR_EN2_RST_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN2_RST_COMP_RESET      0x1
+    #define ALT_NAND_STAT_INTR_EN2_RST_COMP_RESET      0x1
 /* Extracts the ALT_NAND_STAT_INTR_EN2_RST_COMP field value from a register. */
-#define ALT_NAND_STAT_INTR_EN2_RST_COMP_GET(value) (((value) & 0x00002000) >> 13)
+    #define ALT_NAND_STAT_INTR_EN2_RST_COMP_GET( value )    ( ( ( value ) & 0x00002000 ) >> 13 )
 /* Produces a ALT_NAND_STAT_INTR_EN2_RST_COMP register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN2_RST_COMP_SET(value) (((value) << 13) & 0x00002000)
+    #define ALT_NAND_STAT_INTR_EN2_RST_COMP_SET( value )    ( ( ( value ) << 13 ) & 0x00002000 )
 
 /*
  * Field : pipe_cmd_err
@@ -8021,21 +8172,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT2_s  ALT_NAND_STAT_INTR_STAT2_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN2_PIPE_CMD_ERR register field. */
-#define ALT_NAND_STAT_INTR_EN2_PIPE_CMD_ERR_LSB        14
+    #define ALT_NAND_STAT_INTR_EN2_PIPE_CMD_ERR_LSB        14
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN2_PIPE_CMD_ERR register field. */
-#define ALT_NAND_STAT_INTR_EN2_PIPE_CMD_ERR_MSB        14
+    #define ALT_NAND_STAT_INTR_EN2_PIPE_CMD_ERR_MSB        14
 /* The width in bits of the ALT_NAND_STAT_INTR_EN2_PIPE_CMD_ERR register field. */
-#define ALT_NAND_STAT_INTR_EN2_PIPE_CMD_ERR_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN2_PIPE_CMD_ERR_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN2_PIPE_CMD_ERR register field value. */
-#define ALT_NAND_STAT_INTR_EN2_PIPE_CMD_ERR_SET_MSK    0x00004000
+    #define ALT_NAND_STAT_INTR_EN2_PIPE_CMD_ERR_SET_MSK    0x00004000
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN2_PIPE_CMD_ERR register field value. */
-#define ALT_NAND_STAT_INTR_EN2_PIPE_CMD_ERR_CLR_MSK    0xffffbfff
+    #define ALT_NAND_STAT_INTR_EN2_PIPE_CMD_ERR_CLR_MSK    0xffffbfff
 /* The reset value of the ALT_NAND_STAT_INTR_EN2_PIPE_CMD_ERR register field. */
-#define ALT_NAND_STAT_INTR_EN2_PIPE_CMD_ERR_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN2_PIPE_CMD_ERR_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN2_PIPE_CMD_ERR field value from a register. */
-#define ALT_NAND_STAT_INTR_EN2_PIPE_CMD_ERR_GET(value) (((value) & 0x00004000) >> 14)
+    #define ALT_NAND_STAT_INTR_EN2_PIPE_CMD_ERR_GET( value )    ( ( ( value ) & 0x00004000 ) >> 14 )
 /* Produces a ALT_NAND_STAT_INTR_EN2_PIPE_CMD_ERR register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN2_PIPE_CMD_ERR_SET(value) (((value) << 14) & 0x00004000)
+    #define ALT_NAND_STAT_INTR_EN2_PIPE_CMD_ERR_SET( value )    ( ( ( value ) << 14 ) & 0x00004000 )
 
 /*
  * Field : page_xfer_inc
@@ -8046,23 +8197,24 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT2_s  ALT_NAND_STAT_INTR_STAT2_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN2_PAGE_XFER_INC register field. */
-#define ALT_NAND_STAT_INTR_EN2_PAGE_XFER_INC_LSB        15
+    #define ALT_NAND_STAT_INTR_EN2_PAGE_XFER_INC_LSB        15
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN2_PAGE_XFER_INC register field. */
-#define ALT_NAND_STAT_INTR_EN2_PAGE_XFER_INC_MSB        15
+    #define ALT_NAND_STAT_INTR_EN2_PAGE_XFER_INC_MSB        15
 /* The width in bits of the ALT_NAND_STAT_INTR_EN2_PAGE_XFER_INC register field. */
-#define ALT_NAND_STAT_INTR_EN2_PAGE_XFER_INC_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN2_PAGE_XFER_INC_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN2_PAGE_XFER_INC register field value. */
-#define ALT_NAND_STAT_INTR_EN2_PAGE_XFER_INC_SET_MSK    0x00008000
+    #define ALT_NAND_STAT_INTR_EN2_PAGE_XFER_INC_SET_MSK    0x00008000
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN2_PAGE_XFER_INC register field value. */
-#define ALT_NAND_STAT_INTR_EN2_PAGE_XFER_INC_CLR_MSK    0xffff7fff
+    #define ALT_NAND_STAT_INTR_EN2_PAGE_XFER_INC_CLR_MSK    0xffff7fff
 /* The reset value of the ALT_NAND_STAT_INTR_EN2_PAGE_XFER_INC register field. */
-#define ALT_NAND_STAT_INTR_EN2_PAGE_XFER_INC_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN2_PAGE_XFER_INC_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN2_PAGE_XFER_INC field value from a register. */
-#define ALT_NAND_STAT_INTR_EN2_PAGE_XFER_INC_GET(value) (((value) & 0x00008000) >> 15)
+    #define ALT_NAND_STAT_INTR_EN2_PAGE_XFER_INC_GET( value )    ( ( ( value ) & 0x00008000 ) >> 15 )
 /* Produces a ALT_NAND_STAT_INTR_EN2_PAGE_XFER_INC register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN2_PAGE_XFER_INC_SET(value) (((value) << 15) & 0x00008000)
+    #define ALT_NAND_STAT_INTR_EN2_PAGE_XFER_INC_SET( value )    ( ( ( value ) << 15 ) & 0x00008000 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -8073,33 +8225,33 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT2_s  ALT_NAND_STAT_INTR_STAT2_t;
  *
  * The struct declaration for register ALT_NAND_STAT_INTR_EN2.
  */
-struct ALT_NAND_STAT_INTR_EN2_s
-{
-    uint32_t  ecc_uncor_err        :  1;  /* ALT_NAND_STAT_INTR_EN2_ECC_UNCOR_ERR */
-    uint32_t                       :  1;  /* *UNDEFINED* */
-    uint32_t  dma_cmd_comp         :  1;  /* ALT_NAND_STAT_INTR_EN2_DMA_CMD_COMP */
-    uint32_t  time_out             :  1;  /* ALT_NAND_STAT_INTR_EN2_TIME_OUT */
-    uint32_t  program_fail         :  1;  /* ALT_NAND_STAT_INTR_EN2_PROGRAM_FAIL */
-    uint32_t  erase_fail           :  1;  /* ALT_NAND_STAT_INTR_EN2_ERASE_FAIL */
-    uint32_t  load_comp            :  1;  /* ALT_NAND_STAT_INTR_EN2_LD_COMP */
-    uint32_t  program_comp         :  1;  /* ALT_NAND_STAT_INTR_EN2_PROGRAM_COMP */
-    uint32_t  erase_comp           :  1;  /* ALT_NAND_STAT_INTR_EN2_ERASE_COMP */
-    uint32_t  pipe_cpybck_cmd_comp :  1;  /* ALT_NAND_STAT_INTR_EN2_PIPE_CPYBCK_CMD_COMP */
-    uint32_t  locked_blk           :  1;  /* ALT_NAND_STAT_INTR_EN2_LOCKED_BLK */
-    uint32_t  unsup_cmd            :  1;  /* ALT_NAND_STAT_INTR_EN2_UNSUP_CMD */
-    uint32_t  INT_act              :  1;  /* ALT_NAND_STAT_INTR_EN2_INT_ACT */
-    uint32_t  rst_comp             :  1;  /* ALT_NAND_STAT_INTR_EN2_RST_COMP */
-    uint32_t  pipe_cmd_err         :  1;  /* ALT_NAND_STAT_INTR_EN2_PIPE_CMD_ERR */
-    uint32_t  page_xfer_inc        :  1;  /* ALT_NAND_STAT_INTR_EN2_PAGE_XFER_INC */
-    uint32_t                       : 16;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_STAT_INTR_EN2_s
+        {
+            uint32_t ecc_uncor_err        :  1;  /* ALT_NAND_STAT_INTR_EN2_ECC_UNCOR_ERR */
+            uint32_t                       :  1; /* *UNDEFINED* */
+            uint32_t dma_cmd_comp         :  1;  /* ALT_NAND_STAT_INTR_EN2_DMA_CMD_COMP */
+            uint32_t time_out             :  1;  /* ALT_NAND_STAT_INTR_EN2_TIME_OUT */
+            uint32_t program_fail         :  1;  /* ALT_NAND_STAT_INTR_EN2_PROGRAM_FAIL */
+            uint32_t erase_fail           :  1;  /* ALT_NAND_STAT_INTR_EN2_ERASE_FAIL */
+            uint32_t load_comp            :  1;  /* ALT_NAND_STAT_INTR_EN2_LD_COMP */
+            uint32_t program_comp         :  1;  /* ALT_NAND_STAT_INTR_EN2_PROGRAM_COMP */
+            uint32_t erase_comp           :  1;  /* ALT_NAND_STAT_INTR_EN2_ERASE_COMP */
+            uint32_t pipe_cpybck_cmd_comp :  1;  /* ALT_NAND_STAT_INTR_EN2_PIPE_CPYBCK_CMD_COMP */
+            uint32_t locked_blk           :  1;  /* ALT_NAND_STAT_INTR_EN2_LOCKED_BLK */
+            uint32_t unsup_cmd            :  1;  /* ALT_NAND_STAT_INTR_EN2_UNSUP_CMD */
+            uint32_t INT_act              :  1;  /* ALT_NAND_STAT_INTR_EN2_INT_ACT */
+            uint32_t rst_comp             :  1;  /* ALT_NAND_STAT_INTR_EN2_RST_COMP */
+            uint32_t pipe_cmd_err         :  1;  /* ALT_NAND_STAT_INTR_EN2_PIPE_CMD_ERR */
+            uint32_t page_xfer_inc        :  1;  /* ALT_NAND_STAT_INTR_EN2_PAGE_XFER_INC */
+            uint32_t                       : 16; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_STAT_INTR_EN2. */
-typedef volatile struct ALT_NAND_STAT_INTR_EN2_s  ALT_NAND_STAT_INTR_EN2_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_STAT_INTR_EN2_s ALT_NAND_STAT_INTR_EN2_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_STAT_INTR_EN2 register from the beginning of the component. */
-#define ALT_NAND_STAT_INTR_EN2_OFST        0xc0
+    #define ALT_NAND_STAT_INTR_EN2_OFST    0xc0
 
 /*
  * Register : page_cnt2
@@ -8114,6 +8266,7 @@ typedef volatile struct ALT_NAND_STAT_INTR_EN2_s  ALT_NAND_STAT_INTR_EN2_t;
  *  [31:8] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -8124,23 +8277,24 @@ typedef volatile struct ALT_NAND_STAT_INTR_EN2_s  ALT_NAND_STAT_INTR_EN2_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_PAGE_CNT2_VALUE register field. */
-#define ALT_NAND_STAT_PAGE_CNT2_VALUE_LSB        0
+    #define ALT_NAND_STAT_PAGE_CNT2_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_PAGE_CNT2_VALUE register field. */
-#define ALT_NAND_STAT_PAGE_CNT2_VALUE_MSB        7
+    #define ALT_NAND_STAT_PAGE_CNT2_VALUE_MSB        7
 /* The width in bits of the ALT_NAND_STAT_PAGE_CNT2_VALUE register field. */
-#define ALT_NAND_STAT_PAGE_CNT2_VALUE_WIDTH      8
+    #define ALT_NAND_STAT_PAGE_CNT2_VALUE_WIDTH      8
 /* The mask used to set the ALT_NAND_STAT_PAGE_CNT2_VALUE register field value. */
-#define ALT_NAND_STAT_PAGE_CNT2_VALUE_SET_MSK    0x000000ff
+    #define ALT_NAND_STAT_PAGE_CNT2_VALUE_SET_MSK    0x000000ff
 /* The mask used to clear the ALT_NAND_STAT_PAGE_CNT2_VALUE register field value. */
-#define ALT_NAND_STAT_PAGE_CNT2_VALUE_CLR_MSK    0xffffff00
+    #define ALT_NAND_STAT_PAGE_CNT2_VALUE_CLR_MSK    0xffffff00
 /* The reset value of the ALT_NAND_STAT_PAGE_CNT2_VALUE register field. */
-#define ALT_NAND_STAT_PAGE_CNT2_VALUE_RESET      0x0
+    #define ALT_NAND_STAT_PAGE_CNT2_VALUE_RESET      0x0
 /* Extracts the ALT_NAND_STAT_PAGE_CNT2_VALUE field value from a register. */
-#define ALT_NAND_STAT_PAGE_CNT2_VALUE_GET(value) (((value) & 0x000000ff) >> 0)
+    #define ALT_NAND_STAT_PAGE_CNT2_VALUE_GET( value )    ( ( ( value ) & 0x000000ff ) >> 0 )
 /* Produces a ALT_NAND_STAT_PAGE_CNT2_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_STAT_PAGE_CNT2_VALUE_SET(value) (((value) << 0) & 0x000000ff)
+    #define ALT_NAND_STAT_PAGE_CNT2_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x000000ff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -8151,18 +8305,18 @@ typedef volatile struct ALT_NAND_STAT_INTR_EN2_s  ALT_NAND_STAT_INTR_EN2_t;
  *
  * The struct declaration for register ALT_NAND_STAT_PAGE_CNT2.
  */
-struct ALT_NAND_STAT_PAGE_CNT2_s
-{
-    const uint32_t  value :  8;  /* ALT_NAND_STAT_PAGE_CNT2_VALUE */
-    uint32_t              : 24;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_STAT_PAGE_CNT2_s
+        {
+            const uint32_t value :  8;  /* ALT_NAND_STAT_PAGE_CNT2_VALUE */
+            uint32_t              : 24; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_STAT_PAGE_CNT2. */
-typedef volatile struct ALT_NAND_STAT_PAGE_CNT2_s  ALT_NAND_STAT_PAGE_CNT2_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_STAT_PAGE_CNT2_s ALT_NAND_STAT_PAGE_CNT2_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_STAT_PAGE_CNT2 register from the beginning of the component. */
-#define ALT_NAND_STAT_PAGE_CNT2_OFST        0xd0
+    #define ALT_NAND_STAT_PAGE_CNT2_OFST    0xd0
 
 /*
  * Register : err_page_addr2
@@ -8177,6 +8331,7 @@ typedef volatile struct ALT_NAND_STAT_PAGE_CNT2_s  ALT_NAND_STAT_PAGE_CNT2_t;
  *  [31:16] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -8186,23 +8341,24 @@ typedef volatile struct ALT_NAND_STAT_PAGE_CNT2_s  ALT_NAND_STAT_PAGE_CNT2_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_ERR_PAGE_ADDR2_VALUE register field. */
-#define ALT_NAND_STAT_ERR_PAGE_ADDR2_VALUE_LSB        0
+    #define ALT_NAND_STAT_ERR_PAGE_ADDR2_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_ERR_PAGE_ADDR2_VALUE register field. */
-#define ALT_NAND_STAT_ERR_PAGE_ADDR2_VALUE_MSB        15
+    #define ALT_NAND_STAT_ERR_PAGE_ADDR2_VALUE_MSB        15
 /* The width in bits of the ALT_NAND_STAT_ERR_PAGE_ADDR2_VALUE register field. */
-#define ALT_NAND_STAT_ERR_PAGE_ADDR2_VALUE_WIDTH      16
+    #define ALT_NAND_STAT_ERR_PAGE_ADDR2_VALUE_WIDTH      16
 /* The mask used to set the ALT_NAND_STAT_ERR_PAGE_ADDR2_VALUE register field value. */
-#define ALT_NAND_STAT_ERR_PAGE_ADDR2_VALUE_SET_MSK    0x0000ffff
+    #define ALT_NAND_STAT_ERR_PAGE_ADDR2_VALUE_SET_MSK    0x0000ffff
 /* The mask used to clear the ALT_NAND_STAT_ERR_PAGE_ADDR2_VALUE register field value. */
-#define ALT_NAND_STAT_ERR_PAGE_ADDR2_VALUE_CLR_MSK    0xffff0000
+    #define ALT_NAND_STAT_ERR_PAGE_ADDR2_VALUE_CLR_MSK    0xffff0000
 /* The reset value of the ALT_NAND_STAT_ERR_PAGE_ADDR2_VALUE register field. */
-#define ALT_NAND_STAT_ERR_PAGE_ADDR2_VALUE_RESET      0x0
+    #define ALT_NAND_STAT_ERR_PAGE_ADDR2_VALUE_RESET      0x0
 /* Extracts the ALT_NAND_STAT_ERR_PAGE_ADDR2_VALUE field value from a register. */
-#define ALT_NAND_STAT_ERR_PAGE_ADDR2_VALUE_GET(value) (((value) & 0x0000ffff) >> 0)
+    #define ALT_NAND_STAT_ERR_PAGE_ADDR2_VALUE_GET( value )    ( ( ( value ) & 0x0000ffff ) >> 0 )
 /* Produces a ALT_NAND_STAT_ERR_PAGE_ADDR2_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_STAT_ERR_PAGE_ADDR2_VALUE_SET(value) (((value) << 0) & 0x0000ffff)
+    #define ALT_NAND_STAT_ERR_PAGE_ADDR2_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x0000ffff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -8213,18 +8369,18 @@ typedef volatile struct ALT_NAND_STAT_PAGE_CNT2_s  ALT_NAND_STAT_PAGE_CNT2_t;
  *
  * The struct declaration for register ALT_NAND_STAT_ERR_PAGE_ADDR2.
  */
-struct ALT_NAND_STAT_ERR_PAGE_ADDR2_s
-{
-    const uint32_t  value : 16;  /* ALT_NAND_STAT_ERR_PAGE_ADDR2_VALUE */
-    uint32_t              : 16;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_STAT_ERR_PAGE_ADDR2_s
+        {
+            const uint32_t value : 16;  /* ALT_NAND_STAT_ERR_PAGE_ADDR2_VALUE */
+            uint32_t              : 16; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_STAT_ERR_PAGE_ADDR2. */
-typedef volatile struct ALT_NAND_STAT_ERR_PAGE_ADDR2_s  ALT_NAND_STAT_ERR_PAGE_ADDR2_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_STAT_ERR_PAGE_ADDR2_s ALT_NAND_STAT_ERR_PAGE_ADDR2_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_STAT_ERR_PAGE_ADDR2 register from the beginning of the component. */
-#define ALT_NAND_STAT_ERR_PAGE_ADDR2_OFST        0xe0
+    #define ALT_NAND_STAT_ERR_PAGE_ADDR2_OFST    0xe0
 
 /*
  * Register : err_block_addr2
@@ -8239,6 +8395,7 @@ typedef volatile struct ALT_NAND_STAT_ERR_PAGE_ADDR2_s  ALT_NAND_STAT_ERR_PAGE_A
  *  [31:16] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -8249,23 +8406,24 @@ typedef volatile struct ALT_NAND_STAT_ERR_PAGE_ADDR2_s  ALT_NAND_STAT_ERR_PAGE_A
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_ERR_BLOCK_ADDR2_VALUE register field. */
-#define ALT_NAND_STAT_ERR_BLOCK_ADDR2_VALUE_LSB        0
+    #define ALT_NAND_STAT_ERR_BLOCK_ADDR2_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_ERR_BLOCK_ADDR2_VALUE register field. */
-#define ALT_NAND_STAT_ERR_BLOCK_ADDR2_VALUE_MSB        15
+    #define ALT_NAND_STAT_ERR_BLOCK_ADDR2_VALUE_MSB        15
 /* The width in bits of the ALT_NAND_STAT_ERR_BLOCK_ADDR2_VALUE register field. */
-#define ALT_NAND_STAT_ERR_BLOCK_ADDR2_VALUE_WIDTH      16
+    #define ALT_NAND_STAT_ERR_BLOCK_ADDR2_VALUE_WIDTH      16
 /* The mask used to set the ALT_NAND_STAT_ERR_BLOCK_ADDR2_VALUE register field value. */
-#define ALT_NAND_STAT_ERR_BLOCK_ADDR2_VALUE_SET_MSK    0x0000ffff
+    #define ALT_NAND_STAT_ERR_BLOCK_ADDR2_VALUE_SET_MSK    0x0000ffff
 /* The mask used to clear the ALT_NAND_STAT_ERR_BLOCK_ADDR2_VALUE register field value. */
-#define ALT_NAND_STAT_ERR_BLOCK_ADDR2_VALUE_CLR_MSK    0xffff0000
+    #define ALT_NAND_STAT_ERR_BLOCK_ADDR2_VALUE_CLR_MSK    0xffff0000
 /* The reset value of the ALT_NAND_STAT_ERR_BLOCK_ADDR2_VALUE register field. */
-#define ALT_NAND_STAT_ERR_BLOCK_ADDR2_VALUE_RESET      0x0
+    #define ALT_NAND_STAT_ERR_BLOCK_ADDR2_VALUE_RESET      0x0
 /* Extracts the ALT_NAND_STAT_ERR_BLOCK_ADDR2_VALUE field value from a register. */
-#define ALT_NAND_STAT_ERR_BLOCK_ADDR2_VALUE_GET(value) (((value) & 0x0000ffff) >> 0)
+    #define ALT_NAND_STAT_ERR_BLOCK_ADDR2_VALUE_GET( value )    ( ( ( value ) & 0x0000ffff ) >> 0 )
 /* Produces a ALT_NAND_STAT_ERR_BLOCK_ADDR2_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_STAT_ERR_BLOCK_ADDR2_VALUE_SET(value) (((value) << 0) & 0x0000ffff)
+    #define ALT_NAND_STAT_ERR_BLOCK_ADDR2_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x0000ffff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -8276,18 +8434,18 @@ typedef volatile struct ALT_NAND_STAT_ERR_PAGE_ADDR2_s  ALT_NAND_STAT_ERR_PAGE_A
  *
  * The struct declaration for register ALT_NAND_STAT_ERR_BLOCK_ADDR2.
  */
-struct ALT_NAND_STAT_ERR_BLOCK_ADDR2_s
-{
-    const uint32_t  value : 16;  /* ALT_NAND_STAT_ERR_BLOCK_ADDR2_VALUE */
-    uint32_t              : 16;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_STAT_ERR_BLOCK_ADDR2_s
+        {
+            const uint32_t value : 16;  /* ALT_NAND_STAT_ERR_BLOCK_ADDR2_VALUE */
+            uint32_t              : 16; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_STAT_ERR_BLOCK_ADDR2. */
-typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR2_s  ALT_NAND_STAT_ERR_BLOCK_ADDR2_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR2_s ALT_NAND_STAT_ERR_BLOCK_ADDR2_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_STAT_ERR_BLOCK_ADDR2 register from the beginning of the component. */
-#define ALT_NAND_STAT_ERR_BLOCK_ADDR2_OFST        0xf0
+    #define ALT_NAND_STAT_ERR_BLOCK_ADDR2_OFST    0xf0
 
 /*
  * Register : intr_status3
@@ -8317,6 +8475,7 @@ typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR2_s  ALT_NAND_STAT_ERR_BLOCK
  *  [31:16] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : ecc_uncor_err
  *
@@ -8326,21 +8485,21 @@ typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR2_s  ALT_NAND_STAT_ERR_BLOCK
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT3_ECC_UNCOR_ERR register field. */
-#define ALT_NAND_STAT_INTR_STAT3_ECC_UNCOR_ERR_LSB        0
+    #define ALT_NAND_STAT_INTR_STAT3_ECC_UNCOR_ERR_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT3_ECC_UNCOR_ERR register field. */
-#define ALT_NAND_STAT_INTR_STAT3_ECC_UNCOR_ERR_MSB        0
+    #define ALT_NAND_STAT_INTR_STAT3_ECC_UNCOR_ERR_MSB        0
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT3_ECC_UNCOR_ERR register field. */
-#define ALT_NAND_STAT_INTR_STAT3_ECC_UNCOR_ERR_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT3_ECC_UNCOR_ERR_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT3_ECC_UNCOR_ERR register field value. */
-#define ALT_NAND_STAT_INTR_STAT3_ECC_UNCOR_ERR_SET_MSK    0x00000001
+    #define ALT_NAND_STAT_INTR_STAT3_ECC_UNCOR_ERR_SET_MSK    0x00000001
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT3_ECC_UNCOR_ERR register field value. */
-#define ALT_NAND_STAT_INTR_STAT3_ECC_UNCOR_ERR_CLR_MSK    0xfffffffe
+    #define ALT_NAND_STAT_INTR_STAT3_ECC_UNCOR_ERR_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_NAND_STAT_INTR_STAT3_ECC_UNCOR_ERR register field. */
-#define ALT_NAND_STAT_INTR_STAT3_ECC_UNCOR_ERR_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT3_ECC_UNCOR_ERR_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT3_ECC_UNCOR_ERR field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT3_ECC_UNCOR_ERR_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_NAND_STAT_INTR_STAT3_ECC_UNCOR_ERR_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_NAND_STAT_INTR_STAT3_ECC_UNCOR_ERR register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT3_ECC_UNCOR_ERR_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_NAND_STAT_INTR_STAT3_ECC_UNCOR_ERR_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
 /*
  * Field : dma_cmd_comp
@@ -8351,21 +8510,21 @@ typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR2_s  ALT_NAND_STAT_ERR_BLOCK
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT3_DMA_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT3_DMA_CMD_COMP_LSB        2
+    #define ALT_NAND_STAT_INTR_STAT3_DMA_CMD_COMP_LSB        2
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT3_DMA_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT3_DMA_CMD_COMP_MSB        2
+    #define ALT_NAND_STAT_INTR_STAT3_DMA_CMD_COMP_MSB        2
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT3_DMA_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT3_DMA_CMD_COMP_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT3_DMA_CMD_COMP_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT3_DMA_CMD_COMP register field value. */
-#define ALT_NAND_STAT_INTR_STAT3_DMA_CMD_COMP_SET_MSK    0x00000004
+    #define ALT_NAND_STAT_INTR_STAT3_DMA_CMD_COMP_SET_MSK    0x00000004
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT3_DMA_CMD_COMP register field value. */
-#define ALT_NAND_STAT_INTR_STAT3_DMA_CMD_COMP_CLR_MSK    0xfffffffb
+    #define ALT_NAND_STAT_INTR_STAT3_DMA_CMD_COMP_CLR_MSK    0xfffffffb
 /* The reset value of the ALT_NAND_STAT_INTR_STAT3_DMA_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT3_DMA_CMD_COMP_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT3_DMA_CMD_COMP_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT3_DMA_CMD_COMP field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT3_DMA_CMD_COMP_GET(value) (((value) & 0x00000004) >> 2)
+    #define ALT_NAND_STAT_INTR_STAT3_DMA_CMD_COMP_GET( value )    ( ( ( value ) & 0x00000004 ) >> 2 )
 /* Produces a ALT_NAND_STAT_INTR_STAT3_DMA_CMD_COMP register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT3_DMA_CMD_COMP_SET(value) (((value) << 2) & 0x00000004)
+    #define ALT_NAND_STAT_INTR_STAT3_DMA_CMD_COMP_SET( value )    ( ( ( value ) << 2 ) & 0x00000004 )
 
 /*
  * Field : time_out
@@ -8377,21 +8536,21 @@ typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR2_s  ALT_NAND_STAT_ERR_BLOCK
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT3_TIME_OUT register field. */
-#define ALT_NAND_STAT_INTR_STAT3_TIME_OUT_LSB        3
+    #define ALT_NAND_STAT_INTR_STAT3_TIME_OUT_LSB        3
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT3_TIME_OUT register field. */
-#define ALT_NAND_STAT_INTR_STAT3_TIME_OUT_MSB        3
+    #define ALT_NAND_STAT_INTR_STAT3_TIME_OUT_MSB        3
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT3_TIME_OUT register field. */
-#define ALT_NAND_STAT_INTR_STAT3_TIME_OUT_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT3_TIME_OUT_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT3_TIME_OUT register field value. */
-#define ALT_NAND_STAT_INTR_STAT3_TIME_OUT_SET_MSK    0x00000008
+    #define ALT_NAND_STAT_INTR_STAT3_TIME_OUT_SET_MSK    0x00000008
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT3_TIME_OUT register field value. */
-#define ALT_NAND_STAT_INTR_STAT3_TIME_OUT_CLR_MSK    0xfffffff7
+    #define ALT_NAND_STAT_INTR_STAT3_TIME_OUT_CLR_MSK    0xfffffff7
 /* The reset value of the ALT_NAND_STAT_INTR_STAT3_TIME_OUT register field. */
-#define ALT_NAND_STAT_INTR_STAT3_TIME_OUT_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT3_TIME_OUT_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT3_TIME_OUT field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT3_TIME_OUT_GET(value) (((value) & 0x00000008) >> 3)
+    #define ALT_NAND_STAT_INTR_STAT3_TIME_OUT_GET( value )    ( ( ( value ) & 0x00000008 ) >> 3 )
 /* Produces a ALT_NAND_STAT_INTR_STAT3_TIME_OUT register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT3_TIME_OUT_SET(value) (((value) << 3) & 0x00000008)
+    #define ALT_NAND_STAT_INTR_STAT3_TIME_OUT_SET( value )    ( ( ( value ) << 3 ) & 0x00000008 )
 
 /*
  * Field : program_fail
@@ -8404,21 +8563,21 @@ typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR2_s  ALT_NAND_STAT_ERR_BLOCK
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT3_PROGRAM_FAIL register field. */
-#define ALT_NAND_STAT_INTR_STAT3_PROGRAM_FAIL_LSB        4
+    #define ALT_NAND_STAT_INTR_STAT3_PROGRAM_FAIL_LSB        4
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT3_PROGRAM_FAIL register field. */
-#define ALT_NAND_STAT_INTR_STAT3_PROGRAM_FAIL_MSB        4
+    #define ALT_NAND_STAT_INTR_STAT3_PROGRAM_FAIL_MSB        4
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT3_PROGRAM_FAIL register field. */
-#define ALT_NAND_STAT_INTR_STAT3_PROGRAM_FAIL_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT3_PROGRAM_FAIL_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT3_PROGRAM_FAIL register field value. */
-#define ALT_NAND_STAT_INTR_STAT3_PROGRAM_FAIL_SET_MSK    0x00000010
+    #define ALT_NAND_STAT_INTR_STAT3_PROGRAM_FAIL_SET_MSK    0x00000010
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT3_PROGRAM_FAIL register field value. */
-#define ALT_NAND_STAT_INTR_STAT3_PROGRAM_FAIL_CLR_MSK    0xffffffef
+    #define ALT_NAND_STAT_INTR_STAT3_PROGRAM_FAIL_CLR_MSK    0xffffffef
 /* The reset value of the ALT_NAND_STAT_INTR_STAT3_PROGRAM_FAIL register field. */
-#define ALT_NAND_STAT_INTR_STAT3_PROGRAM_FAIL_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT3_PROGRAM_FAIL_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT3_PROGRAM_FAIL field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT3_PROGRAM_FAIL_GET(value) (((value) & 0x00000010) >> 4)
+    #define ALT_NAND_STAT_INTR_STAT3_PROGRAM_FAIL_GET( value )    ( ( ( value ) & 0x00000010 ) >> 4 )
 /* Produces a ALT_NAND_STAT_INTR_STAT3_PROGRAM_FAIL register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT3_PROGRAM_FAIL_SET(value) (((value) << 4) & 0x00000010)
+    #define ALT_NAND_STAT_INTR_STAT3_PROGRAM_FAIL_SET( value )    ( ( ( value ) << 4 ) & 0x00000010 )
 
 /*
  * Field : erase_fail
@@ -8431,21 +8590,21 @@ typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR2_s  ALT_NAND_STAT_ERR_BLOCK
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT3_ERASE_FAIL register field. */
-#define ALT_NAND_STAT_INTR_STAT3_ERASE_FAIL_LSB        5
+    #define ALT_NAND_STAT_INTR_STAT3_ERASE_FAIL_LSB        5
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT3_ERASE_FAIL register field. */
-#define ALT_NAND_STAT_INTR_STAT3_ERASE_FAIL_MSB        5
+    #define ALT_NAND_STAT_INTR_STAT3_ERASE_FAIL_MSB        5
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT3_ERASE_FAIL register field. */
-#define ALT_NAND_STAT_INTR_STAT3_ERASE_FAIL_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT3_ERASE_FAIL_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT3_ERASE_FAIL register field value. */
-#define ALT_NAND_STAT_INTR_STAT3_ERASE_FAIL_SET_MSK    0x00000020
+    #define ALT_NAND_STAT_INTR_STAT3_ERASE_FAIL_SET_MSK    0x00000020
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT3_ERASE_FAIL register field value. */
-#define ALT_NAND_STAT_INTR_STAT3_ERASE_FAIL_CLR_MSK    0xffffffdf
+    #define ALT_NAND_STAT_INTR_STAT3_ERASE_FAIL_CLR_MSK    0xffffffdf
 /* The reset value of the ALT_NAND_STAT_INTR_STAT3_ERASE_FAIL register field. */
-#define ALT_NAND_STAT_INTR_STAT3_ERASE_FAIL_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT3_ERASE_FAIL_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT3_ERASE_FAIL field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT3_ERASE_FAIL_GET(value) (((value) & 0x00000020) >> 5)
+    #define ALT_NAND_STAT_INTR_STAT3_ERASE_FAIL_GET( value )    ( ( ( value ) & 0x00000020 ) >> 5 )
 /* Produces a ALT_NAND_STAT_INTR_STAT3_ERASE_FAIL register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT3_ERASE_FAIL_SET(value) (((value) << 5) & 0x00000020)
+    #define ALT_NAND_STAT_INTR_STAT3_ERASE_FAIL_SET( value )    ( ( ( value ) << 5 ) & 0x00000020 )
 
 /*
  * Field : load_comp
@@ -8456,21 +8615,21 @@ typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR2_s  ALT_NAND_STAT_ERR_BLOCK
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT3_LD_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT3_LD_COMP_LSB        6
+    #define ALT_NAND_STAT_INTR_STAT3_LD_COMP_LSB        6
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT3_LD_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT3_LD_COMP_MSB        6
+    #define ALT_NAND_STAT_INTR_STAT3_LD_COMP_MSB        6
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT3_LD_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT3_LD_COMP_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT3_LD_COMP_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT3_LD_COMP register field value. */
-#define ALT_NAND_STAT_INTR_STAT3_LD_COMP_SET_MSK    0x00000040
+    #define ALT_NAND_STAT_INTR_STAT3_LD_COMP_SET_MSK    0x00000040
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT3_LD_COMP register field value. */
-#define ALT_NAND_STAT_INTR_STAT3_LD_COMP_CLR_MSK    0xffffffbf
+    #define ALT_NAND_STAT_INTR_STAT3_LD_COMP_CLR_MSK    0xffffffbf
 /* The reset value of the ALT_NAND_STAT_INTR_STAT3_LD_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT3_LD_COMP_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT3_LD_COMP_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT3_LD_COMP field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT3_LD_COMP_GET(value) (((value) & 0x00000040) >> 6)
+    #define ALT_NAND_STAT_INTR_STAT3_LD_COMP_GET( value )    ( ( ( value ) & 0x00000040 ) >> 6 )
 /* Produces a ALT_NAND_STAT_INTR_STAT3_LD_COMP register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT3_LD_COMP_SET(value) (((value) << 6) & 0x00000040)
+    #define ALT_NAND_STAT_INTR_STAT3_LD_COMP_SET( value )    ( ( ( value ) << 6 ) & 0x00000040 )
 
 /*
  * Field : program_comp
@@ -8481,21 +8640,21 @@ typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR2_s  ALT_NAND_STAT_ERR_BLOCK
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT3_PROGRAM_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT3_PROGRAM_COMP_LSB        7
+    #define ALT_NAND_STAT_INTR_STAT3_PROGRAM_COMP_LSB        7
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT3_PROGRAM_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT3_PROGRAM_COMP_MSB        7
+    #define ALT_NAND_STAT_INTR_STAT3_PROGRAM_COMP_MSB        7
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT3_PROGRAM_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT3_PROGRAM_COMP_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT3_PROGRAM_COMP_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT3_PROGRAM_COMP register field value. */
-#define ALT_NAND_STAT_INTR_STAT3_PROGRAM_COMP_SET_MSK    0x00000080
+    #define ALT_NAND_STAT_INTR_STAT3_PROGRAM_COMP_SET_MSK    0x00000080
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT3_PROGRAM_COMP register field value. */
-#define ALT_NAND_STAT_INTR_STAT3_PROGRAM_COMP_CLR_MSK    0xffffff7f
+    #define ALT_NAND_STAT_INTR_STAT3_PROGRAM_COMP_CLR_MSK    0xffffff7f
 /* The reset value of the ALT_NAND_STAT_INTR_STAT3_PROGRAM_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT3_PROGRAM_COMP_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT3_PROGRAM_COMP_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT3_PROGRAM_COMP field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT3_PROGRAM_COMP_GET(value) (((value) & 0x00000080) >> 7)
+    #define ALT_NAND_STAT_INTR_STAT3_PROGRAM_COMP_GET( value )    ( ( ( value ) & 0x00000080 ) >> 7 )
 /* Produces a ALT_NAND_STAT_INTR_STAT3_PROGRAM_COMP register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT3_PROGRAM_COMP_SET(value) (((value) << 7) & 0x00000080)
+    #define ALT_NAND_STAT_INTR_STAT3_PROGRAM_COMP_SET( value )    ( ( ( value ) << 7 ) & 0x00000080 )
 
 /*
  * Field : erase_comp
@@ -8506,21 +8665,21 @@ typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR2_s  ALT_NAND_STAT_ERR_BLOCK
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT3_ERASE_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT3_ERASE_COMP_LSB        8
+    #define ALT_NAND_STAT_INTR_STAT3_ERASE_COMP_LSB        8
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT3_ERASE_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT3_ERASE_COMP_MSB        8
+    #define ALT_NAND_STAT_INTR_STAT3_ERASE_COMP_MSB        8
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT3_ERASE_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT3_ERASE_COMP_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT3_ERASE_COMP_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT3_ERASE_COMP register field value. */
-#define ALT_NAND_STAT_INTR_STAT3_ERASE_COMP_SET_MSK    0x00000100
+    #define ALT_NAND_STAT_INTR_STAT3_ERASE_COMP_SET_MSK    0x00000100
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT3_ERASE_COMP register field value. */
-#define ALT_NAND_STAT_INTR_STAT3_ERASE_COMP_CLR_MSK    0xfffffeff
+    #define ALT_NAND_STAT_INTR_STAT3_ERASE_COMP_CLR_MSK    0xfffffeff
 /* The reset value of the ALT_NAND_STAT_INTR_STAT3_ERASE_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT3_ERASE_COMP_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT3_ERASE_COMP_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT3_ERASE_COMP field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT3_ERASE_COMP_GET(value) (((value) & 0x00000100) >> 8)
+    #define ALT_NAND_STAT_INTR_STAT3_ERASE_COMP_GET( value )    ( ( ( value ) & 0x00000100 ) >> 8 )
 /* Produces a ALT_NAND_STAT_INTR_STAT3_ERASE_COMP register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT3_ERASE_COMP_SET(value) (((value) << 8) & 0x00000100)
+    #define ALT_NAND_STAT_INTR_STAT3_ERASE_COMP_SET( value )    ( ( ( value ) << 8 ) & 0x00000100 )
 
 /*
  * Field : pipe_cpybck_cmd_comp
@@ -8532,21 +8691,21 @@ typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR2_s  ALT_NAND_STAT_ERR_BLOCK
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT3_PIPE_CPYBCK_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT3_PIPE_CPYBCK_CMD_COMP_LSB        9
+    #define ALT_NAND_STAT_INTR_STAT3_PIPE_CPYBCK_CMD_COMP_LSB        9
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT3_PIPE_CPYBCK_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT3_PIPE_CPYBCK_CMD_COMP_MSB        9
+    #define ALT_NAND_STAT_INTR_STAT3_PIPE_CPYBCK_CMD_COMP_MSB        9
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT3_PIPE_CPYBCK_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT3_PIPE_CPYBCK_CMD_COMP_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT3_PIPE_CPYBCK_CMD_COMP_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT3_PIPE_CPYBCK_CMD_COMP register field value. */
-#define ALT_NAND_STAT_INTR_STAT3_PIPE_CPYBCK_CMD_COMP_SET_MSK    0x00000200
+    #define ALT_NAND_STAT_INTR_STAT3_PIPE_CPYBCK_CMD_COMP_SET_MSK    0x00000200
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT3_PIPE_CPYBCK_CMD_COMP register field value. */
-#define ALT_NAND_STAT_INTR_STAT3_PIPE_CPYBCK_CMD_COMP_CLR_MSK    0xfffffdff
+    #define ALT_NAND_STAT_INTR_STAT3_PIPE_CPYBCK_CMD_COMP_CLR_MSK    0xfffffdff
 /* The reset value of the ALT_NAND_STAT_INTR_STAT3_PIPE_CPYBCK_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT3_PIPE_CPYBCK_CMD_COMP_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT3_PIPE_CPYBCK_CMD_COMP_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT3_PIPE_CPYBCK_CMD_COMP field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT3_PIPE_CPYBCK_CMD_COMP_GET(value) (((value) & 0x00000200) >> 9)
+    #define ALT_NAND_STAT_INTR_STAT3_PIPE_CPYBCK_CMD_COMP_GET( value )    ( ( ( value ) & 0x00000200 ) >> 9 )
 /* Produces a ALT_NAND_STAT_INTR_STAT3_PIPE_CPYBCK_CMD_COMP register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT3_PIPE_CPYBCK_CMD_COMP_SET(value) (((value) << 9) & 0x00000200)
+    #define ALT_NAND_STAT_INTR_STAT3_PIPE_CPYBCK_CMD_COMP_SET( value )    ( ( ( value ) << 9 ) & 0x00000200 )
 
 /*
  * Field : locked_blk
@@ -8558,21 +8717,21 @@ typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR2_s  ALT_NAND_STAT_ERR_BLOCK
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT3_LOCKED_BLK register field. */
-#define ALT_NAND_STAT_INTR_STAT3_LOCKED_BLK_LSB        10
+    #define ALT_NAND_STAT_INTR_STAT3_LOCKED_BLK_LSB        10
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT3_LOCKED_BLK register field. */
-#define ALT_NAND_STAT_INTR_STAT3_LOCKED_BLK_MSB        10
+    #define ALT_NAND_STAT_INTR_STAT3_LOCKED_BLK_MSB        10
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT3_LOCKED_BLK register field. */
-#define ALT_NAND_STAT_INTR_STAT3_LOCKED_BLK_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT3_LOCKED_BLK_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT3_LOCKED_BLK register field value. */
-#define ALT_NAND_STAT_INTR_STAT3_LOCKED_BLK_SET_MSK    0x00000400
+    #define ALT_NAND_STAT_INTR_STAT3_LOCKED_BLK_SET_MSK    0x00000400
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT3_LOCKED_BLK register field value. */
-#define ALT_NAND_STAT_INTR_STAT3_LOCKED_BLK_CLR_MSK    0xfffffbff
+    #define ALT_NAND_STAT_INTR_STAT3_LOCKED_BLK_CLR_MSK    0xfffffbff
 /* The reset value of the ALT_NAND_STAT_INTR_STAT3_LOCKED_BLK register field. */
-#define ALT_NAND_STAT_INTR_STAT3_LOCKED_BLK_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT3_LOCKED_BLK_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT3_LOCKED_BLK field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT3_LOCKED_BLK_GET(value) (((value) & 0x00000400) >> 10)
+    #define ALT_NAND_STAT_INTR_STAT3_LOCKED_BLK_GET( value )    ( ( ( value ) & 0x00000400 ) >> 10 )
 /* Produces a ALT_NAND_STAT_INTR_STAT3_LOCKED_BLK register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT3_LOCKED_BLK_SET(value) (((value) << 10) & 0x00000400)
+    #define ALT_NAND_STAT_INTR_STAT3_LOCKED_BLK_SET( value )    ( ( ( value ) << 10 ) & 0x00000400 )
 
 /*
  * Field : unsup_cmd
@@ -8584,21 +8743,21 @@ typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR2_s  ALT_NAND_STAT_ERR_BLOCK
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT3_UNSUP_CMD register field. */
-#define ALT_NAND_STAT_INTR_STAT3_UNSUP_CMD_LSB        11
+    #define ALT_NAND_STAT_INTR_STAT3_UNSUP_CMD_LSB        11
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT3_UNSUP_CMD register field. */
-#define ALT_NAND_STAT_INTR_STAT3_UNSUP_CMD_MSB        11
+    #define ALT_NAND_STAT_INTR_STAT3_UNSUP_CMD_MSB        11
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT3_UNSUP_CMD register field. */
-#define ALT_NAND_STAT_INTR_STAT3_UNSUP_CMD_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT3_UNSUP_CMD_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT3_UNSUP_CMD register field value. */
-#define ALT_NAND_STAT_INTR_STAT3_UNSUP_CMD_SET_MSK    0x00000800
+    #define ALT_NAND_STAT_INTR_STAT3_UNSUP_CMD_SET_MSK    0x00000800
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT3_UNSUP_CMD register field value. */
-#define ALT_NAND_STAT_INTR_STAT3_UNSUP_CMD_CLR_MSK    0xfffff7ff
+    #define ALT_NAND_STAT_INTR_STAT3_UNSUP_CMD_CLR_MSK    0xfffff7ff
 /* The reset value of the ALT_NAND_STAT_INTR_STAT3_UNSUP_CMD register field. */
-#define ALT_NAND_STAT_INTR_STAT3_UNSUP_CMD_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT3_UNSUP_CMD_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT3_UNSUP_CMD field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT3_UNSUP_CMD_GET(value) (((value) & 0x00000800) >> 11)
+    #define ALT_NAND_STAT_INTR_STAT3_UNSUP_CMD_GET( value )    ( ( ( value ) & 0x00000800 ) >> 11 )
 /* Produces a ALT_NAND_STAT_INTR_STAT3_UNSUP_CMD register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT3_UNSUP_CMD_SET(value) (((value) << 11) & 0x00000800)
+    #define ALT_NAND_STAT_INTR_STAT3_UNSUP_CMD_SET( value )    ( ( ( value ) << 11 ) & 0x00000800 )
 
 /*
  * Field : INT_act
@@ -8609,21 +8768,21 @@ typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR2_s  ALT_NAND_STAT_ERR_BLOCK
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT3_INT_ACT register field. */
-#define ALT_NAND_STAT_INTR_STAT3_INT_ACT_LSB        12
+    #define ALT_NAND_STAT_INTR_STAT3_INT_ACT_LSB        12
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT3_INT_ACT register field. */
-#define ALT_NAND_STAT_INTR_STAT3_INT_ACT_MSB        12
+    #define ALT_NAND_STAT_INTR_STAT3_INT_ACT_MSB        12
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT3_INT_ACT register field. */
-#define ALT_NAND_STAT_INTR_STAT3_INT_ACT_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT3_INT_ACT_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT3_INT_ACT register field value. */
-#define ALT_NAND_STAT_INTR_STAT3_INT_ACT_SET_MSK    0x00001000
+    #define ALT_NAND_STAT_INTR_STAT3_INT_ACT_SET_MSK    0x00001000
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT3_INT_ACT register field value. */
-#define ALT_NAND_STAT_INTR_STAT3_INT_ACT_CLR_MSK    0xffffefff
+    #define ALT_NAND_STAT_INTR_STAT3_INT_ACT_CLR_MSK    0xffffefff
 /* The reset value of the ALT_NAND_STAT_INTR_STAT3_INT_ACT register field. */
-#define ALT_NAND_STAT_INTR_STAT3_INT_ACT_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT3_INT_ACT_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT3_INT_ACT field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT3_INT_ACT_GET(value) (((value) & 0x00001000) >> 12)
+    #define ALT_NAND_STAT_INTR_STAT3_INT_ACT_GET( value )    ( ( ( value ) & 0x00001000 ) >> 12 )
 /* Produces a ALT_NAND_STAT_INTR_STAT3_INT_ACT register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT3_INT_ACT_SET(value) (((value) << 12) & 0x00001000)
+    #define ALT_NAND_STAT_INTR_STAT3_INT_ACT_SET( value )    ( ( ( value ) << 12 ) & 0x00001000 )
 
 /*
  * Field : rst_comp
@@ -8635,21 +8794,21 @@ typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR2_s  ALT_NAND_STAT_ERR_BLOCK
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT3_RST_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT3_RST_COMP_LSB        13
+    #define ALT_NAND_STAT_INTR_STAT3_RST_COMP_LSB        13
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT3_RST_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT3_RST_COMP_MSB        13
+    #define ALT_NAND_STAT_INTR_STAT3_RST_COMP_MSB        13
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT3_RST_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT3_RST_COMP_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT3_RST_COMP_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT3_RST_COMP register field value. */
-#define ALT_NAND_STAT_INTR_STAT3_RST_COMP_SET_MSK    0x00002000
+    #define ALT_NAND_STAT_INTR_STAT3_RST_COMP_SET_MSK    0x00002000
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT3_RST_COMP register field value. */
-#define ALT_NAND_STAT_INTR_STAT3_RST_COMP_CLR_MSK    0xffffdfff
+    #define ALT_NAND_STAT_INTR_STAT3_RST_COMP_CLR_MSK    0xffffdfff
 /* The reset value of the ALT_NAND_STAT_INTR_STAT3_RST_COMP register field. */
-#define ALT_NAND_STAT_INTR_STAT3_RST_COMP_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT3_RST_COMP_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT3_RST_COMP field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT3_RST_COMP_GET(value) (((value) & 0x00002000) >> 13)
+    #define ALT_NAND_STAT_INTR_STAT3_RST_COMP_GET( value )    ( ( ( value ) & 0x00002000 ) >> 13 )
 /* Produces a ALT_NAND_STAT_INTR_STAT3_RST_COMP register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT3_RST_COMP_SET(value) (((value) << 13) & 0x00002000)
+    #define ALT_NAND_STAT_INTR_STAT3_RST_COMP_SET( value )    ( ( ( value ) << 13 ) & 0x00002000 )
 
 /*
  * Field : pipe_cmd_err
@@ -8662,21 +8821,21 @@ typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR2_s  ALT_NAND_STAT_ERR_BLOCK
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT3_PIPE_CMD_ERR register field. */
-#define ALT_NAND_STAT_INTR_STAT3_PIPE_CMD_ERR_LSB        14
+    #define ALT_NAND_STAT_INTR_STAT3_PIPE_CMD_ERR_LSB        14
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT3_PIPE_CMD_ERR register field. */
-#define ALT_NAND_STAT_INTR_STAT3_PIPE_CMD_ERR_MSB        14
+    #define ALT_NAND_STAT_INTR_STAT3_PIPE_CMD_ERR_MSB        14
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT3_PIPE_CMD_ERR register field. */
-#define ALT_NAND_STAT_INTR_STAT3_PIPE_CMD_ERR_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT3_PIPE_CMD_ERR_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT3_PIPE_CMD_ERR register field value. */
-#define ALT_NAND_STAT_INTR_STAT3_PIPE_CMD_ERR_SET_MSK    0x00004000
+    #define ALT_NAND_STAT_INTR_STAT3_PIPE_CMD_ERR_SET_MSK    0x00004000
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT3_PIPE_CMD_ERR register field value. */
-#define ALT_NAND_STAT_INTR_STAT3_PIPE_CMD_ERR_CLR_MSK    0xffffbfff
+    #define ALT_NAND_STAT_INTR_STAT3_PIPE_CMD_ERR_CLR_MSK    0xffffbfff
 /* The reset value of the ALT_NAND_STAT_INTR_STAT3_PIPE_CMD_ERR register field. */
-#define ALT_NAND_STAT_INTR_STAT3_PIPE_CMD_ERR_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT3_PIPE_CMD_ERR_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT3_PIPE_CMD_ERR field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT3_PIPE_CMD_ERR_GET(value) (((value) & 0x00004000) >> 14)
+    #define ALT_NAND_STAT_INTR_STAT3_PIPE_CMD_ERR_GET( value )    ( ( ( value ) & 0x00004000 ) >> 14 )
 /* Produces a ALT_NAND_STAT_INTR_STAT3_PIPE_CMD_ERR register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT3_PIPE_CMD_ERR_SET(value) (((value) << 14) & 0x00004000)
+    #define ALT_NAND_STAT_INTR_STAT3_PIPE_CMD_ERR_SET( value )    ( ( ( value ) << 14 ) & 0x00004000 )
 
 /*
  * Field : page_xfer_inc
@@ -8687,23 +8846,24 @@ typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR2_s  ALT_NAND_STAT_ERR_BLOCK
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_STAT3_PAGE_XFER_INC register field. */
-#define ALT_NAND_STAT_INTR_STAT3_PAGE_XFER_INC_LSB        15
+    #define ALT_NAND_STAT_INTR_STAT3_PAGE_XFER_INC_LSB        15
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_STAT3_PAGE_XFER_INC register field. */
-#define ALT_NAND_STAT_INTR_STAT3_PAGE_XFER_INC_MSB        15
+    #define ALT_NAND_STAT_INTR_STAT3_PAGE_XFER_INC_MSB        15
 /* The width in bits of the ALT_NAND_STAT_INTR_STAT3_PAGE_XFER_INC register field. */
-#define ALT_NAND_STAT_INTR_STAT3_PAGE_XFER_INC_WIDTH      1
+    #define ALT_NAND_STAT_INTR_STAT3_PAGE_XFER_INC_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_STAT3_PAGE_XFER_INC register field value. */
-#define ALT_NAND_STAT_INTR_STAT3_PAGE_XFER_INC_SET_MSK    0x00008000
+    #define ALT_NAND_STAT_INTR_STAT3_PAGE_XFER_INC_SET_MSK    0x00008000
 /* The mask used to clear the ALT_NAND_STAT_INTR_STAT3_PAGE_XFER_INC register field value. */
-#define ALT_NAND_STAT_INTR_STAT3_PAGE_XFER_INC_CLR_MSK    0xffff7fff
+    #define ALT_NAND_STAT_INTR_STAT3_PAGE_XFER_INC_CLR_MSK    0xffff7fff
 /* The reset value of the ALT_NAND_STAT_INTR_STAT3_PAGE_XFER_INC register field. */
-#define ALT_NAND_STAT_INTR_STAT3_PAGE_XFER_INC_RESET      0x0
+    #define ALT_NAND_STAT_INTR_STAT3_PAGE_XFER_INC_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_STAT3_PAGE_XFER_INC field value from a register. */
-#define ALT_NAND_STAT_INTR_STAT3_PAGE_XFER_INC_GET(value) (((value) & 0x00008000) >> 15)
+    #define ALT_NAND_STAT_INTR_STAT3_PAGE_XFER_INC_GET( value )    ( ( ( value ) & 0x00008000 ) >> 15 )
 /* Produces a ALT_NAND_STAT_INTR_STAT3_PAGE_XFER_INC register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_STAT3_PAGE_XFER_INC_SET(value) (((value) << 15) & 0x00008000)
+    #define ALT_NAND_STAT_INTR_STAT3_PAGE_XFER_INC_SET( value )    ( ( ( value ) << 15 ) & 0x00008000 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -8714,33 +8874,33 @@ typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR2_s  ALT_NAND_STAT_ERR_BLOCK
  *
  * The struct declaration for register ALT_NAND_STAT_INTR_STAT3.
  */
-struct ALT_NAND_STAT_INTR_STAT3_s
-{
-    uint32_t  ecc_uncor_err        :  1;  /* ALT_NAND_STAT_INTR_STAT3_ECC_UNCOR_ERR */
-    uint32_t                       :  1;  /* *UNDEFINED* */
-    uint32_t  dma_cmd_comp         :  1;  /* ALT_NAND_STAT_INTR_STAT3_DMA_CMD_COMP */
-    uint32_t  time_out             :  1;  /* ALT_NAND_STAT_INTR_STAT3_TIME_OUT */
-    uint32_t  program_fail         :  1;  /* ALT_NAND_STAT_INTR_STAT3_PROGRAM_FAIL */
-    uint32_t  erase_fail           :  1;  /* ALT_NAND_STAT_INTR_STAT3_ERASE_FAIL */
-    uint32_t  load_comp            :  1;  /* ALT_NAND_STAT_INTR_STAT3_LD_COMP */
-    uint32_t  program_comp         :  1;  /* ALT_NAND_STAT_INTR_STAT3_PROGRAM_COMP */
-    uint32_t  erase_comp           :  1;  /* ALT_NAND_STAT_INTR_STAT3_ERASE_COMP */
-    uint32_t  pipe_cpybck_cmd_comp :  1;  /* ALT_NAND_STAT_INTR_STAT3_PIPE_CPYBCK_CMD_COMP */
-    uint32_t  locked_blk           :  1;  /* ALT_NAND_STAT_INTR_STAT3_LOCKED_BLK */
-    uint32_t  unsup_cmd            :  1;  /* ALT_NAND_STAT_INTR_STAT3_UNSUP_CMD */
-    uint32_t  INT_act              :  1;  /* ALT_NAND_STAT_INTR_STAT3_INT_ACT */
-    uint32_t  rst_comp             :  1;  /* ALT_NAND_STAT_INTR_STAT3_RST_COMP */
-    uint32_t  pipe_cmd_err         :  1;  /* ALT_NAND_STAT_INTR_STAT3_PIPE_CMD_ERR */
-    uint32_t  page_xfer_inc        :  1;  /* ALT_NAND_STAT_INTR_STAT3_PAGE_XFER_INC */
-    uint32_t                       : 16;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_STAT_INTR_STAT3_s
+        {
+            uint32_t ecc_uncor_err        :  1;  /* ALT_NAND_STAT_INTR_STAT3_ECC_UNCOR_ERR */
+            uint32_t                       :  1; /* *UNDEFINED* */
+            uint32_t dma_cmd_comp         :  1;  /* ALT_NAND_STAT_INTR_STAT3_DMA_CMD_COMP */
+            uint32_t time_out             :  1;  /* ALT_NAND_STAT_INTR_STAT3_TIME_OUT */
+            uint32_t program_fail         :  1;  /* ALT_NAND_STAT_INTR_STAT3_PROGRAM_FAIL */
+            uint32_t erase_fail           :  1;  /* ALT_NAND_STAT_INTR_STAT3_ERASE_FAIL */
+            uint32_t load_comp            :  1;  /* ALT_NAND_STAT_INTR_STAT3_LD_COMP */
+            uint32_t program_comp         :  1;  /* ALT_NAND_STAT_INTR_STAT3_PROGRAM_COMP */
+            uint32_t erase_comp           :  1;  /* ALT_NAND_STAT_INTR_STAT3_ERASE_COMP */
+            uint32_t pipe_cpybck_cmd_comp :  1;  /* ALT_NAND_STAT_INTR_STAT3_PIPE_CPYBCK_CMD_COMP */
+            uint32_t locked_blk           :  1;  /* ALT_NAND_STAT_INTR_STAT3_LOCKED_BLK */
+            uint32_t unsup_cmd            :  1;  /* ALT_NAND_STAT_INTR_STAT3_UNSUP_CMD */
+            uint32_t INT_act              :  1;  /* ALT_NAND_STAT_INTR_STAT3_INT_ACT */
+            uint32_t rst_comp             :  1;  /* ALT_NAND_STAT_INTR_STAT3_RST_COMP */
+            uint32_t pipe_cmd_err         :  1;  /* ALT_NAND_STAT_INTR_STAT3_PIPE_CMD_ERR */
+            uint32_t page_xfer_inc        :  1;  /* ALT_NAND_STAT_INTR_STAT3_PAGE_XFER_INC */
+            uint32_t                       : 16; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_STAT_INTR_STAT3. */
-typedef volatile struct ALT_NAND_STAT_INTR_STAT3_s  ALT_NAND_STAT_INTR_STAT3_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_STAT_INTR_STAT3_s ALT_NAND_STAT_INTR_STAT3_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_STAT_INTR_STAT3 register from the beginning of the component. */
-#define ALT_NAND_STAT_INTR_STAT3_OFST        0x100
+    #define ALT_NAND_STAT_INTR_STAT3_OFST    0x100
 
 /*
  * Register : intr_en3
@@ -8770,6 +8930,7 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT3_s  ALT_NAND_STAT_INTR_STAT3_t;
  *  [31:16] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : ecc_uncor_err
  *
@@ -8780,21 +8941,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT3_s  ALT_NAND_STAT_INTR_STAT3_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN3_ECC_UNCOR_ERR register field. */
-#define ALT_NAND_STAT_INTR_EN3_ECC_UNCOR_ERR_LSB        0
+    #define ALT_NAND_STAT_INTR_EN3_ECC_UNCOR_ERR_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN3_ECC_UNCOR_ERR register field. */
-#define ALT_NAND_STAT_INTR_EN3_ECC_UNCOR_ERR_MSB        0
+    #define ALT_NAND_STAT_INTR_EN3_ECC_UNCOR_ERR_MSB        0
 /* The width in bits of the ALT_NAND_STAT_INTR_EN3_ECC_UNCOR_ERR register field. */
-#define ALT_NAND_STAT_INTR_EN3_ECC_UNCOR_ERR_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN3_ECC_UNCOR_ERR_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN3_ECC_UNCOR_ERR register field value. */
-#define ALT_NAND_STAT_INTR_EN3_ECC_UNCOR_ERR_SET_MSK    0x00000001
+    #define ALT_NAND_STAT_INTR_EN3_ECC_UNCOR_ERR_SET_MSK    0x00000001
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN3_ECC_UNCOR_ERR register field value. */
-#define ALT_NAND_STAT_INTR_EN3_ECC_UNCOR_ERR_CLR_MSK    0xfffffffe
+    #define ALT_NAND_STAT_INTR_EN3_ECC_UNCOR_ERR_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_NAND_STAT_INTR_EN3_ECC_UNCOR_ERR register field. */
-#define ALT_NAND_STAT_INTR_EN3_ECC_UNCOR_ERR_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN3_ECC_UNCOR_ERR_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN3_ECC_UNCOR_ERR field value from a register. */
-#define ALT_NAND_STAT_INTR_EN3_ECC_UNCOR_ERR_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_NAND_STAT_INTR_EN3_ECC_UNCOR_ERR_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_NAND_STAT_INTR_EN3_ECC_UNCOR_ERR register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN3_ECC_UNCOR_ERR_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_NAND_STAT_INTR_EN3_ECC_UNCOR_ERR_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
 /*
  * Field : dma_cmd_comp
@@ -8805,21 +8966,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT3_s  ALT_NAND_STAT_INTR_STAT3_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN3_DMA_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN3_DMA_CMD_COMP_LSB        2
+    #define ALT_NAND_STAT_INTR_EN3_DMA_CMD_COMP_LSB        2
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN3_DMA_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN3_DMA_CMD_COMP_MSB        2
+    #define ALT_NAND_STAT_INTR_EN3_DMA_CMD_COMP_MSB        2
 /* The width in bits of the ALT_NAND_STAT_INTR_EN3_DMA_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN3_DMA_CMD_COMP_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN3_DMA_CMD_COMP_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN3_DMA_CMD_COMP register field value. */
-#define ALT_NAND_STAT_INTR_EN3_DMA_CMD_COMP_SET_MSK    0x00000004
+    #define ALT_NAND_STAT_INTR_EN3_DMA_CMD_COMP_SET_MSK    0x00000004
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN3_DMA_CMD_COMP register field value. */
-#define ALT_NAND_STAT_INTR_EN3_DMA_CMD_COMP_CLR_MSK    0xfffffffb
+    #define ALT_NAND_STAT_INTR_EN3_DMA_CMD_COMP_CLR_MSK    0xfffffffb
 /* The reset value of the ALT_NAND_STAT_INTR_EN3_DMA_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN3_DMA_CMD_COMP_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN3_DMA_CMD_COMP_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN3_DMA_CMD_COMP field value from a register. */
-#define ALT_NAND_STAT_INTR_EN3_DMA_CMD_COMP_GET(value) (((value) & 0x00000004) >> 2)
+    #define ALT_NAND_STAT_INTR_EN3_DMA_CMD_COMP_GET( value )    ( ( ( value ) & 0x00000004 ) >> 2 )
 /* Produces a ALT_NAND_STAT_INTR_EN3_DMA_CMD_COMP register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN3_DMA_CMD_COMP_SET(value) (((value) << 2) & 0x00000004)
+    #define ALT_NAND_STAT_INTR_EN3_DMA_CMD_COMP_SET( value )    ( ( ( value ) << 2 ) & 0x00000004 )
 
 /*
  * Field : time_out
@@ -8831,21 +8992,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT3_s  ALT_NAND_STAT_INTR_STAT3_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN3_TIME_OUT register field. */
-#define ALT_NAND_STAT_INTR_EN3_TIME_OUT_LSB        3
+    #define ALT_NAND_STAT_INTR_EN3_TIME_OUT_LSB        3
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN3_TIME_OUT register field. */
-#define ALT_NAND_STAT_INTR_EN3_TIME_OUT_MSB        3
+    #define ALT_NAND_STAT_INTR_EN3_TIME_OUT_MSB        3
 /* The width in bits of the ALT_NAND_STAT_INTR_EN3_TIME_OUT register field. */
-#define ALT_NAND_STAT_INTR_EN3_TIME_OUT_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN3_TIME_OUT_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN3_TIME_OUT register field value. */
-#define ALT_NAND_STAT_INTR_EN3_TIME_OUT_SET_MSK    0x00000008
+    #define ALT_NAND_STAT_INTR_EN3_TIME_OUT_SET_MSK    0x00000008
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN3_TIME_OUT register field value. */
-#define ALT_NAND_STAT_INTR_EN3_TIME_OUT_CLR_MSK    0xfffffff7
+    #define ALT_NAND_STAT_INTR_EN3_TIME_OUT_CLR_MSK    0xfffffff7
 /* The reset value of the ALT_NAND_STAT_INTR_EN3_TIME_OUT register field. */
-#define ALT_NAND_STAT_INTR_EN3_TIME_OUT_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN3_TIME_OUT_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN3_TIME_OUT field value from a register. */
-#define ALT_NAND_STAT_INTR_EN3_TIME_OUT_GET(value) (((value) & 0x00000008) >> 3)
+    #define ALT_NAND_STAT_INTR_EN3_TIME_OUT_GET( value )    ( ( ( value ) & 0x00000008 ) >> 3 )
 /* Produces a ALT_NAND_STAT_INTR_EN3_TIME_OUT register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN3_TIME_OUT_SET(value) (((value) << 3) & 0x00000008)
+    #define ALT_NAND_STAT_INTR_EN3_TIME_OUT_SET( value )    ( ( ( value ) << 3 ) & 0x00000008 )
 
 /*
  * Field : program_fail
@@ -8858,21 +9019,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT3_s  ALT_NAND_STAT_INTR_STAT3_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN3_PROGRAM_FAIL register field. */
-#define ALT_NAND_STAT_INTR_EN3_PROGRAM_FAIL_LSB        4
+    #define ALT_NAND_STAT_INTR_EN3_PROGRAM_FAIL_LSB        4
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN3_PROGRAM_FAIL register field. */
-#define ALT_NAND_STAT_INTR_EN3_PROGRAM_FAIL_MSB        4
+    #define ALT_NAND_STAT_INTR_EN3_PROGRAM_FAIL_MSB        4
 /* The width in bits of the ALT_NAND_STAT_INTR_EN3_PROGRAM_FAIL register field. */
-#define ALT_NAND_STAT_INTR_EN3_PROGRAM_FAIL_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN3_PROGRAM_FAIL_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN3_PROGRAM_FAIL register field value. */
-#define ALT_NAND_STAT_INTR_EN3_PROGRAM_FAIL_SET_MSK    0x00000010
+    #define ALT_NAND_STAT_INTR_EN3_PROGRAM_FAIL_SET_MSK    0x00000010
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN3_PROGRAM_FAIL register field value. */
-#define ALT_NAND_STAT_INTR_EN3_PROGRAM_FAIL_CLR_MSK    0xffffffef
+    #define ALT_NAND_STAT_INTR_EN3_PROGRAM_FAIL_CLR_MSK    0xffffffef
 /* The reset value of the ALT_NAND_STAT_INTR_EN3_PROGRAM_FAIL register field. */
-#define ALT_NAND_STAT_INTR_EN3_PROGRAM_FAIL_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN3_PROGRAM_FAIL_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN3_PROGRAM_FAIL field value from a register. */
-#define ALT_NAND_STAT_INTR_EN3_PROGRAM_FAIL_GET(value) (((value) & 0x00000010) >> 4)
+    #define ALT_NAND_STAT_INTR_EN3_PROGRAM_FAIL_GET( value )    ( ( ( value ) & 0x00000010 ) >> 4 )
 /* Produces a ALT_NAND_STAT_INTR_EN3_PROGRAM_FAIL register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN3_PROGRAM_FAIL_SET(value) (((value) << 4) & 0x00000010)
+    #define ALT_NAND_STAT_INTR_EN3_PROGRAM_FAIL_SET( value )    ( ( ( value ) << 4 ) & 0x00000010 )
 
 /*
  * Field : erase_fail
@@ -8885,21 +9046,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT3_s  ALT_NAND_STAT_INTR_STAT3_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN3_ERASE_FAIL register field. */
-#define ALT_NAND_STAT_INTR_EN3_ERASE_FAIL_LSB        5
+    #define ALT_NAND_STAT_INTR_EN3_ERASE_FAIL_LSB        5
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN3_ERASE_FAIL register field. */
-#define ALT_NAND_STAT_INTR_EN3_ERASE_FAIL_MSB        5
+    #define ALT_NAND_STAT_INTR_EN3_ERASE_FAIL_MSB        5
 /* The width in bits of the ALT_NAND_STAT_INTR_EN3_ERASE_FAIL register field. */
-#define ALT_NAND_STAT_INTR_EN3_ERASE_FAIL_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN3_ERASE_FAIL_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN3_ERASE_FAIL register field value. */
-#define ALT_NAND_STAT_INTR_EN3_ERASE_FAIL_SET_MSK    0x00000020
+    #define ALT_NAND_STAT_INTR_EN3_ERASE_FAIL_SET_MSK    0x00000020
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN3_ERASE_FAIL register field value. */
-#define ALT_NAND_STAT_INTR_EN3_ERASE_FAIL_CLR_MSK    0xffffffdf
+    #define ALT_NAND_STAT_INTR_EN3_ERASE_FAIL_CLR_MSK    0xffffffdf
 /* The reset value of the ALT_NAND_STAT_INTR_EN3_ERASE_FAIL register field. */
-#define ALT_NAND_STAT_INTR_EN3_ERASE_FAIL_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN3_ERASE_FAIL_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN3_ERASE_FAIL field value from a register. */
-#define ALT_NAND_STAT_INTR_EN3_ERASE_FAIL_GET(value) (((value) & 0x00000020) >> 5)
+    #define ALT_NAND_STAT_INTR_EN3_ERASE_FAIL_GET( value )    ( ( ( value ) & 0x00000020 ) >> 5 )
 /* Produces a ALT_NAND_STAT_INTR_EN3_ERASE_FAIL register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN3_ERASE_FAIL_SET(value) (((value) << 5) & 0x00000020)
+    #define ALT_NAND_STAT_INTR_EN3_ERASE_FAIL_SET( value )    ( ( ( value ) << 5 ) & 0x00000020 )
 
 /*
  * Field : load_comp
@@ -8910,21 +9071,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT3_s  ALT_NAND_STAT_INTR_STAT3_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN3_LD_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN3_LD_COMP_LSB        6
+    #define ALT_NAND_STAT_INTR_EN3_LD_COMP_LSB        6
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN3_LD_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN3_LD_COMP_MSB        6
+    #define ALT_NAND_STAT_INTR_EN3_LD_COMP_MSB        6
 /* The width in bits of the ALT_NAND_STAT_INTR_EN3_LD_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN3_LD_COMP_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN3_LD_COMP_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN3_LD_COMP register field value. */
-#define ALT_NAND_STAT_INTR_EN3_LD_COMP_SET_MSK    0x00000040
+    #define ALT_NAND_STAT_INTR_EN3_LD_COMP_SET_MSK    0x00000040
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN3_LD_COMP register field value. */
-#define ALT_NAND_STAT_INTR_EN3_LD_COMP_CLR_MSK    0xffffffbf
+    #define ALT_NAND_STAT_INTR_EN3_LD_COMP_CLR_MSK    0xffffffbf
 /* The reset value of the ALT_NAND_STAT_INTR_EN3_LD_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN3_LD_COMP_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN3_LD_COMP_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN3_LD_COMP field value from a register. */
-#define ALT_NAND_STAT_INTR_EN3_LD_COMP_GET(value) (((value) & 0x00000040) >> 6)
+    #define ALT_NAND_STAT_INTR_EN3_LD_COMP_GET( value )    ( ( ( value ) & 0x00000040 ) >> 6 )
 /* Produces a ALT_NAND_STAT_INTR_EN3_LD_COMP register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN3_LD_COMP_SET(value) (((value) << 6) & 0x00000040)
+    #define ALT_NAND_STAT_INTR_EN3_LD_COMP_SET( value )    ( ( ( value ) << 6 ) & 0x00000040 )
 
 /*
  * Field : program_comp
@@ -8935,21 +9096,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT3_s  ALT_NAND_STAT_INTR_STAT3_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN3_PROGRAM_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN3_PROGRAM_COMP_LSB        7
+    #define ALT_NAND_STAT_INTR_EN3_PROGRAM_COMP_LSB        7
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN3_PROGRAM_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN3_PROGRAM_COMP_MSB        7
+    #define ALT_NAND_STAT_INTR_EN3_PROGRAM_COMP_MSB        7
 /* The width in bits of the ALT_NAND_STAT_INTR_EN3_PROGRAM_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN3_PROGRAM_COMP_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN3_PROGRAM_COMP_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN3_PROGRAM_COMP register field value. */
-#define ALT_NAND_STAT_INTR_EN3_PROGRAM_COMP_SET_MSK    0x00000080
+    #define ALT_NAND_STAT_INTR_EN3_PROGRAM_COMP_SET_MSK    0x00000080
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN3_PROGRAM_COMP register field value. */
-#define ALT_NAND_STAT_INTR_EN3_PROGRAM_COMP_CLR_MSK    0xffffff7f
+    #define ALT_NAND_STAT_INTR_EN3_PROGRAM_COMP_CLR_MSK    0xffffff7f
 /* The reset value of the ALT_NAND_STAT_INTR_EN3_PROGRAM_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN3_PROGRAM_COMP_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN3_PROGRAM_COMP_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN3_PROGRAM_COMP field value from a register. */
-#define ALT_NAND_STAT_INTR_EN3_PROGRAM_COMP_GET(value) (((value) & 0x00000080) >> 7)
+    #define ALT_NAND_STAT_INTR_EN3_PROGRAM_COMP_GET( value )    ( ( ( value ) & 0x00000080 ) >> 7 )
 /* Produces a ALT_NAND_STAT_INTR_EN3_PROGRAM_COMP register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN3_PROGRAM_COMP_SET(value) (((value) << 7) & 0x00000080)
+    #define ALT_NAND_STAT_INTR_EN3_PROGRAM_COMP_SET( value )    ( ( ( value ) << 7 ) & 0x00000080 )
 
 /*
  * Field : erase_comp
@@ -8960,21 +9121,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT3_s  ALT_NAND_STAT_INTR_STAT3_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN3_ERASE_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN3_ERASE_COMP_LSB        8
+    #define ALT_NAND_STAT_INTR_EN3_ERASE_COMP_LSB        8
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN3_ERASE_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN3_ERASE_COMP_MSB        8
+    #define ALT_NAND_STAT_INTR_EN3_ERASE_COMP_MSB        8
 /* The width in bits of the ALT_NAND_STAT_INTR_EN3_ERASE_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN3_ERASE_COMP_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN3_ERASE_COMP_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN3_ERASE_COMP register field value. */
-#define ALT_NAND_STAT_INTR_EN3_ERASE_COMP_SET_MSK    0x00000100
+    #define ALT_NAND_STAT_INTR_EN3_ERASE_COMP_SET_MSK    0x00000100
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN3_ERASE_COMP register field value. */
-#define ALT_NAND_STAT_INTR_EN3_ERASE_COMP_CLR_MSK    0xfffffeff
+    #define ALT_NAND_STAT_INTR_EN3_ERASE_COMP_CLR_MSK    0xfffffeff
 /* The reset value of the ALT_NAND_STAT_INTR_EN3_ERASE_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN3_ERASE_COMP_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN3_ERASE_COMP_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN3_ERASE_COMP field value from a register. */
-#define ALT_NAND_STAT_INTR_EN3_ERASE_COMP_GET(value) (((value) & 0x00000100) >> 8)
+    #define ALT_NAND_STAT_INTR_EN3_ERASE_COMP_GET( value )    ( ( ( value ) & 0x00000100 ) >> 8 )
 /* Produces a ALT_NAND_STAT_INTR_EN3_ERASE_COMP register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN3_ERASE_COMP_SET(value) (((value) << 8) & 0x00000100)
+    #define ALT_NAND_STAT_INTR_EN3_ERASE_COMP_SET( value )    ( ( ( value ) << 8 ) & 0x00000100 )
 
 /*
  * Field : pipe_cpybck_cmd_comp
@@ -8986,21 +9147,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT3_s  ALT_NAND_STAT_INTR_STAT3_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN3_PIPE_CPYBCK_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN3_PIPE_CPYBCK_CMD_COMP_LSB        9
+    #define ALT_NAND_STAT_INTR_EN3_PIPE_CPYBCK_CMD_COMP_LSB        9
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN3_PIPE_CPYBCK_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN3_PIPE_CPYBCK_CMD_COMP_MSB        9
+    #define ALT_NAND_STAT_INTR_EN3_PIPE_CPYBCK_CMD_COMP_MSB        9
 /* The width in bits of the ALT_NAND_STAT_INTR_EN3_PIPE_CPYBCK_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN3_PIPE_CPYBCK_CMD_COMP_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN3_PIPE_CPYBCK_CMD_COMP_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN3_PIPE_CPYBCK_CMD_COMP register field value. */
-#define ALT_NAND_STAT_INTR_EN3_PIPE_CPYBCK_CMD_COMP_SET_MSK    0x00000200
+    #define ALT_NAND_STAT_INTR_EN3_PIPE_CPYBCK_CMD_COMP_SET_MSK    0x00000200
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN3_PIPE_CPYBCK_CMD_COMP register field value. */
-#define ALT_NAND_STAT_INTR_EN3_PIPE_CPYBCK_CMD_COMP_CLR_MSK    0xfffffdff
+    #define ALT_NAND_STAT_INTR_EN3_PIPE_CPYBCK_CMD_COMP_CLR_MSK    0xfffffdff
 /* The reset value of the ALT_NAND_STAT_INTR_EN3_PIPE_CPYBCK_CMD_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN3_PIPE_CPYBCK_CMD_COMP_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN3_PIPE_CPYBCK_CMD_COMP_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN3_PIPE_CPYBCK_CMD_COMP field value from a register. */
-#define ALT_NAND_STAT_INTR_EN3_PIPE_CPYBCK_CMD_COMP_GET(value) (((value) & 0x00000200) >> 9)
+    #define ALT_NAND_STAT_INTR_EN3_PIPE_CPYBCK_CMD_COMP_GET( value )    ( ( ( value ) & 0x00000200 ) >> 9 )
 /* Produces a ALT_NAND_STAT_INTR_EN3_PIPE_CPYBCK_CMD_COMP register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN3_PIPE_CPYBCK_CMD_COMP_SET(value) (((value) << 9) & 0x00000200)
+    #define ALT_NAND_STAT_INTR_EN3_PIPE_CPYBCK_CMD_COMP_SET( value )    ( ( ( value ) << 9 ) & 0x00000200 )
 
 /*
  * Field : locked_blk
@@ -9012,21 +9173,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT3_s  ALT_NAND_STAT_INTR_STAT3_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN3_LOCKED_BLK register field. */
-#define ALT_NAND_STAT_INTR_EN3_LOCKED_BLK_LSB        10
+    #define ALT_NAND_STAT_INTR_EN3_LOCKED_BLK_LSB        10
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN3_LOCKED_BLK register field. */
-#define ALT_NAND_STAT_INTR_EN3_LOCKED_BLK_MSB        10
+    #define ALT_NAND_STAT_INTR_EN3_LOCKED_BLK_MSB        10
 /* The width in bits of the ALT_NAND_STAT_INTR_EN3_LOCKED_BLK register field. */
-#define ALT_NAND_STAT_INTR_EN3_LOCKED_BLK_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN3_LOCKED_BLK_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN3_LOCKED_BLK register field value. */
-#define ALT_NAND_STAT_INTR_EN3_LOCKED_BLK_SET_MSK    0x00000400
+    #define ALT_NAND_STAT_INTR_EN3_LOCKED_BLK_SET_MSK    0x00000400
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN3_LOCKED_BLK register field value. */
-#define ALT_NAND_STAT_INTR_EN3_LOCKED_BLK_CLR_MSK    0xfffffbff
+    #define ALT_NAND_STAT_INTR_EN3_LOCKED_BLK_CLR_MSK    0xfffffbff
 /* The reset value of the ALT_NAND_STAT_INTR_EN3_LOCKED_BLK register field. */
-#define ALT_NAND_STAT_INTR_EN3_LOCKED_BLK_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN3_LOCKED_BLK_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN3_LOCKED_BLK field value from a register. */
-#define ALT_NAND_STAT_INTR_EN3_LOCKED_BLK_GET(value) (((value) & 0x00000400) >> 10)
+    #define ALT_NAND_STAT_INTR_EN3_LOCKED_BLK_GET( value )    ( ( ( value ) & 0x00000400 ) >> 10 )
 /* Produces a ALT_NAND_STAT_INTR_EN3_LOCKED_BLK register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN3_LOCKED_BLK_SET(value) (((value) << 10) & 0x00000400)
+    #define ALT_NAND_STAT_INTR_EN3_LOCKED_BLK_SET( value )    ( ( ( value ) << 10 ) & 0x00000400 )
 
 /*
  * Field : unsup_cmd
@@ -9038,21 +9199,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT3_s  ALT_NAND_STAT_INTR_STAT3_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN3_UNSUP_CMD register field. */
-#define ALT_NAND_STAT_INTR_EN3_UNSUP_CMD_LSB        11
+    #define ALT_NAND_STAT_INTR_EN3_UNSUP_CMD_LSB        11
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN3_UNSUP_CMD register field. */
-#define ALT_NAND_STAT_INTR_EN3_UNSUP_CMD_MSB        11
+    #define ALT_NAND_STAT_INTR_EN3_UNSUP_CMD_MSB        11
 /* The width in bits of the ALT_NAND_STAT_INTR_EN3_UNSUP_CMD register field. */
-#define ALT_NAND_STAT_INTR_EN3_UNSUP_CMD_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN3_UNSUP_CMD_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN3_UNSUP_CMD register field value. */
-#define ALT_NAND_STAT_INTR_EN3_UNSUP_CMD_SET_MSK    0x00000800
+    #define ALT_NAND_STAT_INTR_EN3_UNSUP_CMD_SET_MSK    0x00000800
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN3_UNSUP_CMD register field value. */
-#define ALT_NAND_STAT_INTR_EN3_UNSUP_CMD_CLR_MSK    0xfffff7ff
+    #define ALT_NAND_STAT_INTR_EN3_UNSUP_CMD_CLR_MSK    0xfffff7ff
 /* The reset value of the ALT_NAND_STAT_INTR_EN3_UNSUP_CMD register field. */
-#define ALT_NAND_STAT_INTR_EN3_UNSUP_CMD_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN3_UNSUP_CMD_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN3_UNSUP_CMD field value from a register. */
-#define ALT_NAND_STAT_INTR_EN3_UNSUP_CMD_GET(value) (((value) & 0x00000800) >> 11)
+    #define ALT_NAND_STAT_INTR_EN3_UNSUP_CMD_GET( value )    ( ( ( value ) & 0x00000800 ) >> 11 )
 /* Produces a ALT_NAND_STAT_INTR_EN3_UNSUP_CMD register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN3_UNSUP_CMD_SET(value) (((value) << 11) & 0x00000800)
+    #define ALT_NAND_STAT_INTR_EN3_UNSUP_CMD_SET( value )    ( ( ( value ) << 11 ) & 0x00000800 )
 
 /*
  * Field : INT_act
@@ -9063,21 +9224,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT3_s  ALT_NAND_STAT_INTR_STAT3_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN3_INT_ACT register field. */
-#define ALT_NAND_STAT_INTR_EN3_INT_ACT_LSB        12
+    #define ALT_NAND_STAT_INTR_EN3_INT_ACT_LSB        12
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN3_INT_ACT register field. */
-#define ALT_NAND_STAT_INTR_EN3_INT_ACT_MSB        12
+    #define ALT_NAND_STAT_INTR_EN3_INT_ACT_MSB        12
 /* The width in bits of the ALT_NAND_STAT_INTR_EN3_INT_ACT register field. */
-#define ALT_NAND_STAT_INTR_EN3_INT_ACT_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN3_INT_ACT_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN3_INT_ACT register field value. */
-#define ALT_NAND_STAT_INTR_EN3_INT_ACT_SET_MSK    0x00001000
+    #define ALT_NAND_STAT_INTR_EN3_INT_ACT_SET_MSK    0x00001000
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN3_INT_ACT register field value. */
-#define ALT_NAND_STAT_INTR_EN3_INT_ACT_CLR_MSK    0xffffefff
+    #define ALT_NAND_STAT_INTR_EN3_INT_ACT_CLR_MSK    0xffffefff
 /* The reset value of the ALT_NAND_STAT_INTR_EN3_INT_ACT register field. */
-#define ALT_NAND_STAT_INTR_EN3_INT_ACT_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN3_INT_ACT_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN3_INT_ACT field value from a register. */
-#define ALT_NAND_STAT_INTR_EN3_INT_ACT_GET(value) (((value) & 0x00001000) >> 12)
+    #define ALT_NAND_STAT_INTR_EN3_INT_ACT_GET( value )    ( ( ( value ) & 0x00001000 ) >> 12 )
 /* Produces a ALT_NAND_STAT_INTR_EN3_INT_ACT register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN3_INT_ACT_SET(value) (((value) << 12) & 0x00001000)
+    #define ALT_NAND_STAT_INTR_EN3_INT_ACT_SET( value )    ( ( ( value ) << 12 ) & 0x00001000 )
 
 /*
  * Field : rst_comp
@@ -9088,21 +9249,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT3_s  ALT_NAND_STAT_INTR_STAT3_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN3_RST_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN3_RST_COMP_LSB        13
+    #define ALT_NAND_STAT_INTR_EN3_RST_COMP_LSB        13
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN3_RST_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN3_RST_COMP_MSB        13
+    #define ALT_NAND_STAT_INTR_EN3_RST_COMP_MSB        13
 /* The width in bits of the ALT_NAND_STAT_INTR_EN3_RST_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN3_RST_COMP_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN3_RST_COMP_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN3_RST_COMP register field value. */
-#define ALT_NAND_STAT_INTR_EN3_RST_COMP_SET_MSK    0x00002000
+    #define ALT_NAND_STAT_INTR_EN3_RST_COMP_SET_MSK    0x00002000
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN3_RST_COMP register field value. */
-#define ALT_NAND_STAT_INTR_EN3_RST_COMP_CLR_MSK    0xffffdfff
+    #define ALT_NAND_STAT_INTR_EN3_RST_COMP_CLR_MSK    0xffffdfff
 /* The reset value of the ALT_NAND_STAT_INTR_EN3_RST_COMP register field. */
-#define ALT_NAND_STAT_INTR_EN3_RST_COMP_RESET      0x1
+    #define ALT_NAND_STAT_INTR_EN3_RST_COMP_RESET      0x1
 /* Extracts the ALT_NAND_STAT_INTR_EN3_RST_COMP field value from a register. */
-#define ALT_NAND_STAT_INTR_EN3_RST_COMP_GET(value) (((value) & 0x00002000) >> 13)
+    #define ALT_NAND_STAT_INTR_EN3_RST_COMP_GET( value )    ( ( ( value ) & 0x00002000 ) >> 13 )
 /* Produces a ALT_NAND_STAT_INTR_EN3_RST_COMP register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN3_RST_COMP_SET(value) (((value) << 13) & 0x00002000)
+    #define ALT_NAND_STAT_INTR_EN3_RST_COMP_SET( value )    ( ( ( value ) << 13 ) & 0x00002000 )
 
 /*
  * Field : pipe_cmd_err
@@ -9115,21 +9276,21 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT3_s  ALT_NAND_STAT_INTR_STAT3_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN3_PIPE_CMD_ERR register field. */
-#define ALT_NAND_STAT_INTR_EN3_PIPE_CMD_ERR_LSB        14
+    #define ALT_NAND_STAT_INTR_EN3_PIPE_CMD_ERR_LSB        14
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN3_PIPE_CMD_ERR register field. */
-#define ALT_NAND_STAT_INTR_EN3_PIPE_CMD_ERR_MSB        14
+    #define ALT_NAND_STAT_INTR_EN3_PIPE_CMD_ERR_MSB        14
 /* The width in bits of the ALT_NAND_STAT_INTR_EN3_PIPE_CMD_ERR register field. */
-#define ALT_NAND_STAT_INTR_EN3_PIPE_CMD_ERR_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN3_PIPE_CMD_ERR_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN3_PIPE_CMD_ERR register field value. */
-#define ALT_NAND_STAT_INTR_EN3_PIPE_CMD_ERR_SET_MSK    0x00004000
+    #define ALT_NAND_STAT_INTR_EN3_PIPE_CMD_ERR_SET_MSK    0x00004000
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN3_PIPE_CMD_ERR register field value. */
-#define ALT_NAND_STAT_INTR_EN3_PIPE_CMD_ERR_CLR_MSK    0xffffbfff
+    #define ALT_NAND_STAT_INTR_EN3_PIPE_CMD_ERR_CLR_MSK    0xffffbfff
 /* The reset value of the ALT_NAND_STAT_INTR_EN3_PIPE_CMD_ERR register field. */
-#define ALT_NAND_STAT_INTR_EN3_PIPE_CMD_ERR_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN3_PIPE_CMD_ERR_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN3_PIPE_CMD_ERR field value from a register. */
-#define ALT_NAND_STAT_INTR_EN3_PIPE_CMD_ERR_GET(value) (((value) & 0x00004000) >> 14)
+    #define ALT_NAND_STAT_INTR_EN3_PIPE_CMD_ERR_GET( value )    ( ( ( value ) & 0x00004000 ) >> 14 )
 /* Produces a ALT_NAND_STAT_INTR_EN3_PIPE_CMD_ERR register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN3_PIPE_CMD_ERR_SET(value) (((value) << 14) & 0x00004000)
+    #define ALT_NAND_STAT_INTR_EN3_PIPE_CMD_ERR_SET( value )    ( ( ( value ) << 14 ) & 0x00004000 )
 
 /*
  * Field : page_xfer_inc
@@ -9140,23 +9301,24 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT3_s  ALT_NAND_STAT_INTR_STAT3_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_INTR_EN3_PAGE_XFER_INC register field. */
-#define ALT_NAND_STAT_INTR_EN3_PAGE_XFER_INC_LSB        15
+    #define ALT_NAND_STAT_INTR_EN3_PAGE_XFER_INC_LSB        15
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_INTR_EN3_PAGE_XFER_INC register field. */
-#define ALT_NAND_STAT_INTR_EN3_PAGE_XFER_INC_MSB        15
+    #define ALT_NAND_STAT_INTR_EN3_PAGE_XFER_INC_MSB        15
 /* The width in bits of the ALT_NAND_STAT_INTR_EN3_PAGE_XFER_INC register field. */
-#define ALT_NAND_STAT_INTR_EN3_PAGE_XFER_INC_WIDTH      1
+    #define ALT_NAND_STAT_INTR_EN3_PAGE_XFER_INC_WIDTH      1
 /* The mask used to set the ALT_NAND_STAT_INTR_EN3_PAGE_XFER_INC register field value. */
-#define ALT_NAND_STAT_INTR_EN3_PAGE_XFER_INC_SET_MSK    0x00008000
+    #define ALT_NAND_STAT_INTR_EN3_PAGE_XFER_INC_SET_MSK    0x00008000
 /* The mask used to clear the ALT_NAND_STAT_INTR_EN3_PAGE_XFER_INC register field value. */
-#define ALT_NAND_STAT_INTR_EN3_PAGE_XFER_INC_CLR_MSK    0xffff7fff
+    #define ALT_NAND_STAT_INTR_EN3_PAGE_XFER_INC_CLR_MSK    0xffff7fff
 /* The reset value of the ALT_NAND_STAT_INTR_EN3_PAGE_XFER_INC register field. */
-#define ALT_NAND_STAT_INTR_EN3_PAGE_XFER_INC_RESET      0x0
+    #define ALT_NAND_STAT_INTR_EN3_PAGE_XFER_INC_RESET      0x0
 /* Extracts the ALT_NAND_STAT_INTR_EN3_PAGE_XFER_INC field value from a register. */
-#define ALT_NAND_STAT_INTR_EN3_PAGE_XFER_INC_GET(value) (((value) & 0x00008000) >> 15)
+    #define ALT_NAND_STAT_INTR_EN3_PAGE_XFER_INC_GET( value )    ( ( ( value ) & 0x00008000 ) >> 15 )
 /* Produces a ALT_NAND_STAT_INTR_EN3_PAGE_XFER_INC register field value suitable for setting the register. */
-#define ALT_NAND_STAT_INTR_EN3_PAGE_XFER_INC_SET(value) (((value) << 15) & 0x00008000)
+    #define ALT_NAND_STAT_INTR_EN3_PAGE_XFER_INC_SET( value )    ( ( ( value ) << 15 ) & 0x00008000 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -9167,33 +9329,33 @@ typedef volatile struct ALT_NAND_STAT_INTR_STAT3_s  ALT_NAND_STAT_INTR_STAT3_t;
  *
  * The struct declaration for register ALT_NAND_STAT_INTR_EN3.
  */
-struct ALT_NAND_STAT_INTR_EN3_s
-{
-    uint32_t  ecc_uncor_err        :  1;  /* ALT_NAND_STAT_INTR_EN3_ECC_UNCOR_ERR */
-    uint32_t                       :  1;  /* *UNDEFINED* */
-    uint32_t  dma_cmd_comp         :  1;  /* ALT_NAND_STAT_INTR_EN3_DMA_CMD_COMP */
-    uint32_t  time_out             :  1;  /* ALT_NAND_STAT_INTR_EN3_TIME_OUT */
-    uint32_t  program_fail         :  1;  /* ALT_NAND_STAT_INTR_EN3_PROGRAM_FAIL */
-    uint32_t  erase_fail           :  1;  /* ALT_NAND_STAT_INTR_EN3_ERASE_FAIL */
-    uint32_t  load_comp            :  1;  /* ALT_NAND_STAT_INTR_EN3_LD_COMP */
-    uint32_t  program_comp         :  1;  /* ALT_NAND_STAT_INTR_EN3_PROGRAM_COMP */
-    uint32_t  erase_comp           :  1;  /* ALT_NAND_STAT_INTR_EN3_ERASE_COMP */
-    uint32_t  pipe_cpybck_cmd_comp :  1;  /* ALT_NAND_STAT_INTR_EN3_PIPE_CPYBCK_CMD_COMP */
-    uint32_t  locked_blk           :  1;  /* ALT_NAND_STAT_INTR_EN3_LOCKED_BLK */
-    uint32_t  unsup_cmd            :  1;  /* ALT_NAND_STAT_INTR_EN3_UNSUP_CMD */
-    uint32_t  INT_act              :  1;  /* ALT_NAND_STAT_INTR_EN3_INT_ACT */
-    uint32_t  rst_comp             :  1;  /* ALT_NAND_STAT_INTR_EN3_RST_COMP */
-    uint32_t  pipe_cmd_err         :  1;  /* ALT_NAND_STAT_INTR_EN3_PIPE_CMD_ERR */
-    uint32_t  page_xfer_inc        :  1;  /* ALT_NAND_STAT_INTR_EN3_PAGE_XFER_INC */
-    uint32_t                       : 16;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_STAT_INTR_EN3_s
+        {
+            uint32_t ecc_uncor_err        :  1;  /* ALT_NAND_STAT_INTR_EN3_ECC_UNCOR_ERR */
+            uint32_t                       :  1; /* *UNDEFINED* */
+            uint32_t dma_cmd_comp         :  1;  /* ALT_NAND_STAT_INTR_EN3_DMA_CMD_COMP */
+            uint32_t time_out             :  1;  /* ALT_NAND_STAT_INTR_EN3_TIME_OUT */
+            uint32_t program_fail         :  1;  /* ALT_NAND_STAT_INTR_EN3_PROGRAM_FAIL */
+            uint32_t erase_fail           :  1;  /* ALT_NAND_STAT_INTR_EN3_ERASE_FAIL */
+            uint32_t load_comp            :  1;  /* ALT_NAND_STAT_INTR_EN3_LD_COMP */
+            uint32_t program_comp         :  1;  /* ALT_NAND_STAT_INTR_EN3_PROGRAM_COMP */
+            uint32_t erase_comp           :  1;  /* ALT_NAND_STAT_INTR_EN3_ERASE_COMP */
+            uint32_t pipe_cpybck_cmd_comp :  1;  /* ALT_NAND_STAT_INTR_EN3_PIPE_CPYBCK_CMD_COMP */
+            uint32_t locked_blk           :  1;  /* ALT_NAND_STAT_INTR_EN3_LOCKED_BLK */
+            uint32_t unsup_cmd            :  1;  /* ALT_NAND_STAT_INTR_EN3_UNSUP_CMD */
+            uint32_t INT_act              :  1;  /* ALT_NAND_STAT_INTR_EN3_INT_ACT */
+            uint32_t rst_comp             :  1;  /* ALT_NAND_STAT_INTR_EN3_RST_COMP */
+            uint32_t pipe_cmd_err         :  1;  /* ALT_NAND_STAT_INTR_EN3_PIPE_CMD_ERR */
+            uint32_t page_xfer_inc        :  1;  /* ALT_NAND_STAT_INTR_EN3_PAGE_XFER_INC */
+            uint32_t                       : 16; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_STAT_INTR_EN3. */
-typedef volatile struct ALT_NAND_STAT_INTR_EN3_s  ALT_NAND_STAT_INTR_EN3_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_STAT_INTR_EN3_s ALT_NAND_STAT_INTR_EN3_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_STAT_INTR_EN3 register from the beginning of the component. */
-#define ALT_NAND_STAT_INTR_EN3_OFST        0x110
+    #define ALT_NAND_STAT_INTR_EN3_OFST    0x110
 
 /*
  * Register : page_cnt3
@@ -9208,6 +9370,7 @@ typedef volatile struct ALT_NAND_STAT_INTR_EN3_s  ALT_NAND_STAT_INTR_EN3_t;
  *  [31:8] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -9218,23 +9381,24 @@ typedef volatile struct ALT_NAND_STAT_INTR_EN3_s  ALT_NAND_STAT_INTR_EN3_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_PAGE_CNT3_VALUE register field. */
-#define ALT_NAND_STAT_PAGE_CNT3_VALUE_LSB        0
+    #define ALT_NAND_STAT_PAGE_CNT3_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_PAGE_CNT3_VALUE register field. */
-#define ALT_NAND_STAT_PAGE_CNT3_VALUE_MSB        7
+    #define ALT_NAND_STAT_PAGE_CNT3_VALUE_MSB        7
 /* The width in bits of the ALT_NAND_STAT_PAGE_CNT3_VALUE register field. */
-#define ALT_NAND_STAT_PAGE_CNT3_VALUE_WIDTH      8
+    #define ALT_NAND_STAT_PAGE_CNT3_VALUE_WIDTH      8
 /* The mask used to set the ALT_NAND_STAT_PAGE_CNT3_VALUE register field value. */
-#define ALT_NAND_STAT_PAGE_CNT3_VALUE_SET_MSK    0x000000ff
+    #define ALT_NAND_STAT_PAGE_CNT3_VALUE_SET_MSK    0x000000ff
 /* The mask used to clear the ALT_NAND_STAT_PAGE_CNT3_VALUE register field value. */
-#define ALT_NAND_STAT_PAGE_CNT3_VALUE_CLR_MSK    0xffffff00
+    #define ALT_NAND_STAT_PAGE_CNT3_VALUE_CLR_MSK    0xffffff00
 /* The reset value of the ALT_NAND_STAT_PAGE_CNT3_VALUE register field. */
-#define ALT_NAND_STAT_PAGE_CNT3_VALUE_RESET      0x0
+    #define ALT_NAND_STAT_PAGE_CNT3_VALUE_RESET      0x0
 /* Extracts the ALT_NAND_STAT_PAGE_CNT3_VALUE field value from a register. */
-#define ALT_NAND_STAT_PAGE_CNT3_VALUE_GET(value) (((value) & 0x000000ff) >> 0)
+    #define ALT_NAND_STAT_PAGE_CNT3_VALUE_GET( value )    ( ( ( value ) & 0x000000ff ) >> 0 )
 /* Produces a ALT_NAND_STAT_PAGE_CNT3_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_STAT_PAGE_CNT3_VALUE_SET(value) (((value) << 0) & 0x000000ff)
+    #define ALT_NAND_STAT_PAGE_CNT3_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x000000ff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -9245,18 +9409,18 @@ typedef volatile struct ALT_NAND_STAT_INTR_EN3_s  ALT_NAND_STAT_INTR_EN3_t;
  *
  * The struct declaration for register ALT_NAND_STAT_PAGE_CNT3.
  */
-struct ALT_NAND_STAT_PAGE_CNT3_s
-{
-    const uint32_t  value :  8;  /* ALT_NAND_STAT_PAGE_CNT3_VALUE */
-    uint32_t              : 24;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_STAT_PAGE_CNT3_s
+        {
+            const uint32_t value :  8;  /* ALT_NAND_STAT_PAGE_CNT3_VALUE */
+            uint32_t              : 24; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_STAT_PAGE_CNT3. */
-typedef volatile struct ALT_NAND_STAT_PAGE_CNT3_s  ALT_NAND_STAT_PAGE_CNT3_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_STAT_PAGE_CNT3_s ALT_NAND_STAT_PAGE_CNT3_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_STAT_PAGE_CNT3 register from the beginning of the component. */
-#define ALT_NAND_STAT_PAGE_CNT3_OFST        0x120
+    #define ALT_NAND_STAT_PAGE_CNT3_OFST    0x120
 
 /*
  * Register : err_page_addr3
@@ -9271,6 +9435,7 @@ typedef volatile struct ALT_NAND_STAT_PAGE_CNT3_s  ALT_NAND_STAT_PAGE_CNT3_t;
  *  [31:16] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -9280,23 +9445,24 @@ typedef volatile struct ALT_NAND_STAT_PAGE_CNT3_s  ALT_NAND_STAT_PAGE_CNT3_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_ERR_PAGE_ADDR3_VALUE register field. */
-#define ALT_NAND_STAT_ERR_PAGE_ADDR3_VALUE_LSB        0
+    #define ALT_NAND_STAT_ERR_PAGE_ADDR3_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_ERR_PAGE_ADDR3_VALUE register field. */
-#define ALT_NAND_STAT_ERR_PAGE_ADDR3_VALUE_MSB        15
+    #define ALT_NAND_STAT_ERR_PAGE_ADDR3_VALUE_MSB        15
 /* The width in bits of the ALT_NAND_STAT_ERR_PAGE_ADDR3_VALUE register field. */
-#define ALT_NAND_STAT_ERR_PAGE_ADDR3_VALUE_WIDTH      16
+    #define ALT_NAND_STAT_ERR_PAGE_ADDR3_VALUE_WIDTH      16
 /* The mask used to set the ALT_NAND_STAT_ERR_PAGE_ADDR3_VALUE register field value. */
-#define ALT_NAND_STAT_ERR_PAGE_ADDR3_VALUE_SET_MSK    0x0000ffff
+    #define ALT_NAND_STAT_ERR_PAGE_ADDR3_VALUE_SET_MSK    0x0000ffff
 /* The mask used to clear the ALT_NAND_STAT_ERR_PAGE_ADDR3_VALUE register field value. */
-#define ALT_NAND_STAT_ERR_PAGE_ADDR3_VALUE_CLR_MSK    0xffff0000
+    #define ALT_NAND_STAT_ERR_PAGE_ADDR3_VALUE_CLR_MSK    0xffff0000
 /* The reset value of the ALT_NAND_STAT_ERR_PAGE_ADDR3_VALUE register field. */
-#define ALT_NAND_STAT_ERR_PAGE_ADDR3_VALUE_RESET      0x0
+    #define ALT_NAND_STAT_ERR_PAGE_ADDR3_VALUE_RESET      0x0
 /* Extracts the ALT_NAND_STAT_ERR_PAGE_ADDR3_VALUE field value from a register. */
-#define ALT_NAND_STAT_ERR_PAGE_ADDR3_VALUE_GET(value) (((value) & 0x0000ffff) >> 0)
+    #define ALT_NAND_STAT_ERR_PAGE_ADDR3_VALUE_GET( value )    ( ( ( value ) & 0x0000ffff ) >> 0 )
 /* Produces a ALT_NAND_STAT_ERR_PAGE_ADDR3_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_STAT_ERR_PAGE_ADDR3_VALUE_SET(value) (((value) << 0) & 0x0000ffff)
+    #define ALT_NAND_STAT_ERR_PAGE_ADDR3_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x0000ffff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -9307,18 +9473,18 @@ typedef volatile struct ALT_NAND_STAT_PAGE_CNT3_s  ALT_NAND_STAT_PAGE_CNT3_t;
  *
  * The struct declaration for register ALT_NAND_STAT_ERR_PAGE_ADDR3.
  */
-struct ALT_NAND_STAT_ERR_PAGE_ADDR3_s
-{
-    const uint32_t  value : 16;  /* ALT_NAND_STAT_ERR_PAGE_ADDR3_VALUE */
-    uint32_t              : 16;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_STAT_ERR_PAGE_ADDR3_s
+        {
+            const uint32_t value : 16;  /* ALT_NAND_STAT_ERR_PAGE_ADDR3_VALUE */
+            uint32_t              : 16; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_STAT_ERR_PAGE_ADDR3. */
-typedef volatile struct ALT_NAND_STAT_ERR_PAGE_ADDR3_s  ALT_NAND_STAT_ERR_PAGE_ADDR3_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_STAT_ERR_PAGE_ADDR3_s ALT_NAND_STAT_ERR_PAGE_ADDR3_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_STAT_ERR_PAGE_ADDR3 register from the beginning of the component. */
-#define ALT_NAND_STAT_ERR_PAGE_ADDR3_OFST        0x130
+    #define ALT_NAND_STAT_ERR_PAGE_ADDR3_OFST    0x130
 
 /*
  * Register : err_block_addr3
@@ -9333,6 +9499,7 @@ typedef volatile struct ALT_NAND_STAT_ERR_PAGE_ADDR3_s  ALT_NAND_STAT_ERR_PAGE_A
  *  [31:16] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -9343,23 +9510,24 @@ typedef volatile struct ALT_NAND_STAT_ERR_PAGE_ADDR3_s  ALT_NAND_STAT_ERR_PAGE_A
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_STAT_ERR_BLOCK_ADDR3_VALUE register field. */
-#define ALT_NAND_STAT_ERR_BLOCK_ADDR3_VALUE_LSB        0
+    #define ALT_NAND_STAT_ERR_BLOCK_ADDR3_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_STAT_ERR_BLOCK_ADDR3_VALUE register field. */
-#define ALT_NAND_STAT_ERR_BLOCK_ADDR3_VALUE_MSB        15
+    #define ALT_NAND_STAT_ERR_BLOCK_ADDR3_VALUE_MSB        15
 /* The width in bits of the ALT_NAND_STAT_ERR_BLOCK_ADDR3_VALUE register field. */
-#define ALT_NAND_STAT_ERR_BLOCK_ADDR3_VALUE_WIDTH      16
+    #define ALT_NAND_STAT_ERR_BLOCK_ADDR3_VALUE_WIDTH      16
 /* The mask used to set the ALT_NAND_STAT_ERR_BLOCK_ADDR3_VALUE register field value. */
-#define ALT_NAND_STAT_ERR_BLOCK_ADDR3_VALUE_SET_MSK    0x0000ffff
+    #define ALT_NAND_STAT_ERR_BLOCK_ADDR3_VALUE_SET_MSK    0x0000ffff
 /* The mask used to clear the ALT_NAND_STAT_ERR_BLOCK_ADDR3_VALUE register field value. */
-#define ALT_NAND_STAT_ERR_BLOCK_ADDR3_VALUE_CLR_MSK    0xffff0000
+    #define ALT_NAND_STAT_ERR_BLOCK_ADDR3_VALUE_CLR_MSK    0xffff0000
 /* The reset value of the ALT_NAND_STAT_ERR_BLOCK_ADDR3_VALUE register field. */
-#define ALT_NAND_STAT_ERR_BLOCK_ADDR3_VALUE_RESET      0x0
+    #define ALT_NAND_STAT_ERR_BLOCK_ADDR3_VALUE_RESET      0x0
 /* Extracts the ALT_NAND_STAT_ERR_BLOCK_ADDR3_VALUE field value from a register. */
-#define ALT_NAND_STAT_ERR_BLOCK_ADDR3_VALUE_GET(value) (((value) & 0x0000ffff) >> 0)
+    #define ALT_NAND_STAT_ERR_BLOCK_ADDR3_VALUE_GET( value )    ( ( ( value ) & 0x0000ffff ) >> 0 )
 /* Produces a ALT_NAND_STAT_ERR_BLOCK_ADDR3_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_STAT_ERR_BLOCK_ADDR3_VALUE_SET(value) (((value) << 0) & 0x0000ffff)
+    #define ALT_NAND_STAT_ERR_BLOCK_ADDR3_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x0000ffff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -9370,20 +9538,21 @@ typedef volatile struct ALT_NAND_STAT_ERR_PAGE_ADDR3_s  ALT_NAND_STAT_ERR_PAGE_A
  *
  * The struct declaration for register ALT_NAND_STAT_ERR_BLOCK_ADDR3.
  */
-struct ALT_NAND_STAT_ERR_BLOCK_ADDR3_s
-{
-    const uint32_t  value : 16;  /* ALT_NAND_STAT_ERR_BLOCK_ADDR3_VALUE */
-    uint32_t              : 16;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_STAT_ERR_BLOCK_ADDR3_s
+        {
+            const uint32_t value : 16;  /* ALT_NAND_STAT_ERR_BLOCK_ADDR3_VALUE */
+            uint32_t              : 16; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_STAT_ERR_BLOCK_ADDR3. */
-typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR3_s  ALT_NAND_STAT_ERR_BLOCK_ADDR3_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR3_s ALT_NAND_STAT_ERR_BLOCK_ADDR3_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_STAT_ERR_BLOCK_ADDR3 register from the beginning of the component. */
-#define ALT_NAND_STAT_ERR_BLOCK_ADDR3_OFST        0x140
+    #define ALT_NAND_STAT_ERR_BLOCK_ADDR3_OFST    0x140
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -9394,102 +9563,102 @@ typedef volatile struct ALT_NAND_STAT_ERR_BLOCK_ADDR3_s  ALT_NAND_STAT_ERR_BLOCK
  *
  * The struct declaration for register group ALT_NAND_STAT.
  */
-struct ALT_NAND_STAT_s
-{
-    volatile ALT_NAND_STAT_TFR_MOD_t          transfer_mode;        /* ALT_NAND_STAT_TFR_MOD */
-    volatile uint32_t                         _pad_0x4_0xf[3];      /* *UNDEFINED* */
-    volatile ALT_NAND_STAT_INTR_STAT0_t       intr_status0;         /* ALT_NAND_STAT_INTR_STAT0 */
-    volatile uint32_t                         _pad_0x14_0x1f[3];    /* *UNDEFINED* */
-    volatile ALT_NAND_STAT_INTR_EN0_t         intr_en0;             /* ALT_NAND_STAT_INTR_EN0 */
-    volatile uint32_t                         _pad_0x24_0x2f[3];    /* *UNDEFINED* */
-    volatile ALT_NAND_STAT_PAGE_CNT0_t        page_cnt0;            /* ALT_NAND_STAT_PAGE_CNT0 */
-    volatile uint32_t                         _pad_0x34_0x3f[3];    /* *UNDEFINED* */
-    volatile ALT_NAND_STAT_ERR_PAGE_ADDR0_t   err_page_addr0;       /* ALT_NAND_STAT_ERR_PAGE_ADDR0 */
-    volatile uint32_t                         _pad_0x44_0x4f[3];    /* *UNDEFINED* */
-    volatile ALT_NAND_STAT_ERR_BLOCK_ADDR0_t  err_block_addr0;      /* ALT_NAND_STAT_ERR_BLOCK_ADDR0 */
-    volatile uint32_t                         _pad_0x54_0x5f[3];    /* *UNDEFINED* */
-    volatile ALT_NAND_STAT_INTR_STAT1_t       intr_status1;         /* ALT_NAND_STAT_INTR_STAT1 */
-    volatile uint32_t                         _pad_0x64_0x6f[3];    /* *UNDEFINED* */
-    volatile ALT_NAND_STAT_INTR_EN1_t         intr_en1;             /* ALT_NAND_STAT_INTR_EN1 */
-    volatile uint32_t                         _pad_0x74_0x7f[3];    /* *UNDEFINED* */
-    volatile ALT_NAND_STAT_PAGE_CNT1_t        page_cnt1;            /* ALT_NAND_STAT_PAGE_CNT1 */
-    volatile uint32_t                         _pad_0x84_0x8f[3];    /* *UNDEFINED* */
-    volatile ALT_NAND_STAT_ERR_PAGE_ADDR1_t   err_page_addr1;       /* ALT_NAND_STAT_ERR_PAGE_ADDR1 */
-    volatile uint32_t                         _pad_0x94_0x9f[3];    /* *UNDEFINED* */
-    volatile ALT_NAND_STAT_ERR_BLOCK_ADDR1_t  err_block_addr1;      /* ALT_NAND_STAT_ERR_BLOCK_ADDR1 */
-    volatile uint32_t                         _pad_0xa4_0xaf[3];    /* *UNDEFINED* */
-    volatile ALT_NAND_STAT_INTR_STAT2_t       intr_status2;         /* ALT_NAND_STAT_INTR_STAT2 */
-    volatile uint32_t                         _pad_0xb4_0xbf[3];    /* *UNDEFINED* */
-    volatile ALT_NAND_STAT_INTR_EN2_t         intr_en2;             /* ALT_NAND_STAT_INTR_EN2 */
-    volatile uint32_t                         _pad_0xc4_0xcf[3];    /* *UNDEFINED* */
-    volatile ALT_NAND_STAT_PAGE_CNT2_t        page_cnt2;            /* ALT_NAND_STAT_PAGE_CNT2 */
-    volatile uint32_t                         _pad_0xd4_0xdf[3];    /* *UNDEFINED* */
-    volatile ALT_NAND_STAT_ERR_PAGE_ADDR2_t   err_page_addr2;       /* ALT_NAND_STAT_ERR_PAGE_ADDR2 */
-    volatile uint32_t                         _pad_0xe4_0xef[3];    /* *UNDEFINED* */
-    volatile ALT_NAND_STAT_ERR_BLOCK_ADDR2_t  err_block_addr2;      /* ALT_NAND_STAT_ERR_BLOCK_ADDR2 */
-    volatile uint32_t                         _pad_0xf4_0xff[3];    /* *UNDEFINED* */
-    volatile ALT_NAND_STAT_INTR_STAT3_t       intr_status3;         /* ALT_NAND_STAT_INTR_STAT3 */
-    volatile uint32_t                         _pad_0x104_0x10f[3];  /* *UNDEFINED* */
-    volatile ALT_NAND_STAT_INTR_EN3_t         intr_en3;             /* ALT_NAND_STAT_INTR_EN3 */
-    volatile uint32_t                         _pad_0x114_0x11f[3];  /* *UNDEFINED* */
-    volatile ALT_NAND_STAT_PAGE_CNT3_t        page_cnt3;            /* ALT_NAND_STAT_PAGE_CNT3 */
-    volatile uint32_t                         _pad_0x124_0x12f[3];  /* *UNDEFINED* */
-    volatile ALT_NAND_STAT_ERR_PAGE_ADDR3_t   err_page_addr3;       /* ALT_NAND_STAT_ERR_PAGE_ADDR3 */
-    volatile uint32_t                         _pad_0x134_0x13f[3];  /* *UNDEFINED* */
-    volatile ALT_NAND_STAT_ERR_BLOCK_ADDR3_t  err_block_addr3;      /* ALT_NAND_STAT_ERR_BLOCK_ADDR3 */
-};
+        struct ALT_NAND_STAT_s
+        {
+            volatile ALT_NAND_STAT_TFR_MOD_t transfer_mode;           /* ALT_NAND_STAT_TFR_MOD */
+            volatile uint32_t _pad_0x4_0xf[ 3 ];                      /* *UNDEFINED* */
+            volatile ALT_NAND_STAT_INTR_STAT0_t intr_status0;         /* ALT_NAND_STAT_INTR_STAT0 */
+            volatile uint32_t _pad_0x14_0x1f[ 3 ];                    /* *UNDEFINED* */
+            volatile ALT_NAND_STAT_INTR_EN0_t intr_en0;               /* ALT_NAND_STAT_INTR_EN0 */
+            volatile uint32_t _pad_0x24_0x2f[ 3 ];                    /* *UNDEFINED* */
+            volatile ALT_NAND_STAT_PAGE_CNT0_t page_cnt0;             /* ALT_NAND_STAT_PAGE_CNT0 */
+            volatile uint32_t _pad_0x34_0x3f[ 3 ];                    /* *UNDEFINED* */
+            volatile ALT_NAND_STAT_ERR_PAGE_ADDR0_t err_page_addr0;   /* ALT_NAND_STAT_ERR_PAGE_ADDR0 */
+            volatile uint32_t _pad_0x44_0x4f[ 3 ];                    /* *UNDEFINED* */
+            volatile ALT_NAND_STAT_ERR_BLOCK_ADDR0_t err_block_addr0; /* ALT_NAND_STAT_ERR_BLOCK_ADDR0 */
+            volatile uint32_t _pad_0x54_0x5f[ 3 ];                    /* *UNDEFINED* */
+            volatile ALT_NAND_STAT_INTR_STAT1_t intr_status1;         /* ALT_NAND_STAT_INTR_STAT1 */
+            volatile uint32_t _pad_0x64_0x6f[ 3 ];                    /* *UNDEFINED* */
+            volatile ALT_NAND_STAT_INTR_EN1_t intr_en1;               /* ALT_NAND_STAT_INTR_EN1 */
+            volatile uint32_t _pad_0x74_0x7f[ 3 ];                    /* *UNDEFINED* */
+            volatile ALT_NAND_STAT_PAGE_CNT1_t page_cnt1;             /* ALT_NAND_STAT_PAGE_CNT1 */
+            volatile uint32_t _pad_0x84_0x8f[ 3 ];                    /* *UNDEFINED* */
+            volatile ALT_NAND_STAT_ERR_PAGE_ADDR1_t err_page_addr1;   /* ALT_NAND_STAT_ERR_PAGE_ADDR1 */
+            volatile uint32_t _pad_0x94_0x9f[ 3 ];                    /* *UNDEFINED* */
+            volatile ALT_NAND_STAT_ERR_BLOCK_ADDR1_t err_block_addr1; /* ALT_NAND_STAT_ERR_BLOCK_ADDR1 */
+            volatile uint32_t _pad_0xa4_0xaf[ 3 ];                    /* *UNDEFINED* */
+            volatile ALT_NAND_STAT_INTR_STAT2_t intr_status2;         /* ALT_NAND_STAT_INTR_STAT2 */
+            volatile uint32_t _pad_0xb4_0xbf[ 3 ];                    /* *UNDEFINED* */
+            volatile ALT_NAND_STAT_INTR_EN2_t intr_en2;               /* ALT_NAND_STAT_INTR_EN2 */
+            volatile uint32_t _pad_0xc4_0xcf[ 3 ];                    /* *UNDEFINED* */
+            volatile ALT_NAND_STAT_PAGE_CNT2_t page_cnt2;             /* ALT_NAND_STAT_PAGE_CNT2 */
+            volatile uint32_t _pad_0xd4_0xdf[ 3 ];                    /* *UNDEFINED* */
+            volatile ALT_NAND_STAT_ERR_PAGE_ADDR2_t err_page_addr2;   /* ALT_NAND_STAT_ERR_PAGE_ADDR2 */
+            volatile uint32_t _pad_0xe4_0xef[ 3 ];                    /* *UNDEFINED* */
+            volatile ALT_NAND_STAT_ERR_BLOCK_ADDR2_t err_block_addr2; /* ALT_NAND_STAT_ERR_BLOCK_ADDR2 */
+            volatile uint32_t _pad_0xf4_0xff[ 3 ];                    /* *UNDEFINED* */
+            volatile ALT_NAND_STAT_INTR_STAT3_t intr_status3;         /* ALT_NAND_STAT_INTR_STAT3 */
+            volatile uint32_t _pad_0x104_0x10f[ 3 ];                  /* *UNDEFINED* */
+            volatile ALT_NAND_STAT_INTR_EN3_t intr_en3;               /* ALT_NAND_STAT_INTR_EN3 */
+            volatile uint32_t _pad_0x114_0x11f[ 3 ];                  /* *UNDEFINED* */
+            volatile ALT_NAND_STAT_PAGE_CNT3_t page_cnt3;             /* ALT_NAND_STAT_PAGE_CNT3 */
+            volatile uint32_t _pad_0x124_0x12f[ 3 ];                  /* *UNDEFINED* */
+            volatile ALT_NAND_STAT_ERR_PAGE_ADDR3_t err_page_addr3;   /* ALT_NAND_STAT_ERR_PAGE_ADDR3 */
+            volatile uint32_t _pad_0x134_0x13f[ 3 ];                  /* *UNDEFINED* */
+            volatile ALT_NAND_STAT_ERR_BLOCK_ADDR3_t err_block_addr3; /* ALT_NAND_STAT_ERR_BLOCK_ADDR3 */
+        };
 
 /* The typedef declaration for register group ALT_NAND_STAT. */
-typedef volatile struct ALT_NAND_STAT_s  ALT_NAND_STAT_t;
+        typedef volatile struct ALT_NAND_STAT_s ALT_NAND_STAT_t;
 /* The struct declaration for the raw register contents of register group ALT_NAND_STAT. */
-struct ALT_NAND_STAT_raw_s
-{
-    volatile uint32_t  transfer_mode;        /* ALT_NAND_STAT_TFR_MOD */
-    volatile uint32_t  _pad_0x4_0xf[3];      /* *UNDEFINED* */
-    volatile uint32_t  intr_status0;         /* ALT_NAND_STAT_INTR_STAT0 */
-    volatile uint32_t  _pad_0x14_0x1f[3];    /* *UNDEFINED* */
-    volatile uint32_t  intr_en0;             /* ALT_NAND_STAT_INTR_EN0 */
-    volatile uint32_t  _pad_0x24_0x2f[3];    /* *UNDEFINED* */
-    volatile uint32_t  page_cnt0;            /* ALT_NAND_STAT_PAGE_CNT0 */
-    volatile uint32_t  _pad_0x34_0x3f[3];    /* *UNDEFINED* */
-    volatile uint32_t  err_page_addr0;       /* ALT_NAND_STAT_ERR_PAGE_ADDR0 */
-    volatile uint32_t  _pad_0x44_0x4f[3];    /* *UNDEFINED* */
-    volatile uint32_t  err_block_addr0;      /* ALT_NAND_STAT_ERR_BLOCK_ADDR0 */
-    volatile uint32_t  _pad_0x54_0x5f[3];    /* *UNDEFINED* */
-    volatile uint32_t  intr_status1;         /* ALT_NAND_STAT_INTR_STAT1 */
-    volatile uint32_t  _pad_0x64_0x6f[3];    /* *UNDEFINED* */
-    volatile uint32_t  intr_en1;             /* ALT_NAND_STAT_INTR_EN1 */
-    volatile uint32_t  _pad_0x74_0x7f[3];    /* *UNDEFINED* */
-    volatile uint32_t  page_cnt1;            /* ALT_NAND_STAT_PAGE_CNT1 */
-    volatile uint32_t  _pad_0x84_0x8f[3];    /* *UNDEFINED* */
-    volatile uint32_t  err_page_addr1;       /* ALT_NAND_STAT_ERR_PAGE_ADDR1 */
-    volatile uint32_t  _pad_0x94_0x9f[3];    /* *UNDEFINED* */
-    volatile uint32_t  err_block_addr1;      /* ALT_NAND_STAT_ERR_BLOCK_ADDR1 */
-    volatile uint32_t  _pad_0xa4_0xaf[3];    /* *UNDEFINED* */
-    volatile uint32_t  intr_status2;         /* ALT_NAND_STAT_INTR_STAT2 */
-    volatile uint32_t  _pad_0xb4_0xbf[3];    /* *UNDEFINED* */
-    volatile uint32_t  intr_en2;             /* ALT_NAND_STAT_INTR_EN2 */
-    volatile uint32_t  _pad_0xc4_0xcf[3];    /* *UNDEFINED* */
-    volatile uint32_t  page_cnt2;            /* ALT_NAND_STAT_PAGE_CNT2 */
-    volatile uint32_t  _pad_0xd4_0xdf[3];    /* *UNDEFINED* */
-    volatile uint32_t  err_page_addr2;       /* ALT_NAND_STAT_ERR_PAGE_ADDR2 */
-    volatile uint32_t  _pad_0xe4_0xef[3];    /* *UNDEFINED* */
-    volatile uint32_t  err_block_addr2;      /* ALT_NAND_STAT_ERR_BLOCK_ADDR2 */
-    volatile uint32_t  _pad_0xf4_0xff[3];    /* *UNDEFINED* */
-    volatile uint32_t  intr_status3;         /* ALT_NAND_STAT_INTR_STAT3 */
-    volatile uint32_t  _pad_0x104_0x10f[3];  /* *UNDEFINED* */
-    volatile uint32_t  intr_en3;             /* ALT_NAND_STAT_INTR_EN3 */
-    volatile uint32_t  _pad_0x114_0x11f[3];  /* *UNDEFINED* */
-    volatile uint32_t  page_cnt3;            /* ALT_NAND_STAT_PAGE_CNT3 */
-    volatile uint32_t  _pad_0x124_0x12f[3];  /* *UNDEFINED* */
-    volatile uint32_t  err_page_addr3;       /* ALT_NAND_STAT_ERR_PAGE_ADDR3 */
-    volatile uint32_t  _pad_0x134_0x13f[3];  /* *UNDEFINED* */
-    volatile uint32_t  err_block_addr3;      /* ALT_NAND_STAT_ERR_BLOCK_ADDR3 */
-};
+        struct ALT_NAND_STAT_raw_s
+        {
+            volatile uint32_t transfer_mode;         /* ALT_NAND_STAT_TFR_MOD */
+            volatile uint32_t _pad_0x4_0xf[ 3 ];     /* *UNDEFINED* */
+            volatile uint32_t intr_status0;          /* ALT_NAND_STAT_INTR_STAT0 */
+            volatile uint32_t _pad_0x14_0x1f[ 3 ];   /* *UNDEFINED* */
+            volatile uint32_t intr_en0;              /* ALT_NAND_STAT_INTR_EN0 */
+            volatile uint32_t _pad_0x24_0x2f[ 3 ];   /* *UNDEFINED* */
+            volatile uint32_t page_cnt0;             /* ALT_NAND_STAT_PAGE_CNT0 */
+            volatile uint32_t _pad_0x34_0x3f[ 3 ];   /* *UNDEFINED* */
+            volatile uint32_t err_page_addr0;        /* ALT_NAND_STAT_ERR_PAGE_ADDR0 */
+            volatile uint32_t _pad_0x44_0x4f[ 3 ];   /* *UNDEFINED* */
+            volatile uint32_t err_block_addr0;       /* ALT_NAND_STAT_ERR_BLOCK_ADDR0 */
+            volatile uint32_t _pad_0x54_0x5f[ 3 ];   /* *UNDEFINED* */
+            volatile uint32_t intr_status1;          /* ALT_NAND_STAT_INTR_STAT1 */
+            volatile uint32_t _pad_0x64_0x6f[ 3 ];   /* *UNDEFINED* */
+            volatile uint32_t intr_en1;              /* ALT_NAND_STAT_INTR_EN1 */
+            volatile uint32_t _pad_0x74_0x7f[ 3 ];   /* *UNDEFINED* */
+            volatile uint32_t page_cnt1;             /* ALT_NAND_STAT_PAGE_CNT1 */
+            volatile uint32_t _pad_0x84_0x8f[ 3 ];   /* *UNDEFINED* */
+            volatile uint32_t err_page_addr1;        /* ALT_NAND_STAT_ERR_PAGE_ADDR1 */
+            volatile uint32_t _pad_0x94_0x9f[ 3 ];   /* *UNDEFINED* */
+            volatile uint32_t err_block_addr1;       /* ALT_NAND_STAT_ERR_BLOCK_ADDR1 */
+            volatile uint32_t _pad_0xa4_0xaf[ 3 ];   /* *UNDEFINED* */
+            volatile uint32_t intr_status2;          /* ALT_NAND_STAT_INTR_STAT2 */
+            volatile uint32_t _pad_0xb4_0xbf[ 3 ];   /* *UNDEFINED* */
+            volatile uint32_t intr_en2;              /* ALT_NAND_STAT_INTR_EN2 */
+            volatile uint32_t _pad_0xc4_0xcf[ 3 ];   /* *UNDEFINED* */
+            volatile uint32_t page_cnt2;             /* ALT_NAND_STAT_PAGE_CNT2 */
+            volatile uint32_t _pad_0xd4_0xdf[ 3 ];   /* *UNDEFINED* */
+            volatile uint32_t err_page_addr2;        /* ALT_NAND_STAT_ERR_PAGE_ADDR2 */
+            volatile uint32_t _pad_0xe4_0xef[ 3 ];   /* *UNDEFINED* */
+            volatile uint32_t err_block_addr2;       /* ALT_NAND_STAT_ERR_BLOCK_ADDR2 */
+            volatile uint32_t _pad_0xf4_0xff[ 3 ];   /* *UNDEFINED* */
+            volatile uint32_t intr_status3;          /* ALT_NAND_STAT_INTR_STAT3 */
+            volatile uint32_t _pad_0x104_0x10f[ 3 ]; /* *UNDEFINED* */
+            volatile uint32_t intr_en3;              /* ALT_NAND_STAT_INTR_EN3 */
+            volatile uint32_t _pad_0x114_0x11f[ 3 ]; /* *UNDEFINED* */
+            volatile uint32_t page_cnt3;             /* ALT_NAND_STAT_PAGE_CNT3 */
+            volatile uint32_t _pad_0x124_0x12f[ 3 ]; /* *UNDEFINED* */
+            volatile uint32_t err_page_addr3;        /* ALT_NAND_STAT_ERR_PAGE_ADDR3 */
+            volatile uint32_t _pad_0x134_0x13f[ 3 ]; /* *UNDEFINED* */
+            volatile uint32_t err_block_addr3;       /* ALT_NAND_STAT_ERR_BLOCK_ADDR3 */
+        };
 
 /* The typedef declaration for the raw register contents of register group ALT_NAND_STAT. */
-typedef volatile struct ALT_NAND_STAT_raw_s  ALT_NAND_STAT_raw_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_STAT_raw_s ALT_NAND_STAT_raw_t;
+    #endif /* __ASSEMBLY__ */
 
 
 /*
@@ -9498,6 +9667,7 @@ typedef volatile struct ALT_NAND_STAT_raw_s  ALT_NAND_STAT_raw_t;
  *
  *
  */
+
 /*
  * Register : ECCCorInfo_b01
  *
@@ -9516,6 +9686,7 @@ typedef volatile struct ALT_NAND_STAT_raw_s  ALT_NAND_STAT_raw_t;
  *  [31:16] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : max_errors_b0
  *
@@ -9527,21 +9698,21 @@ typedef volatile struct ALT_NAND_STAT_raw_s  ALT_NAND_STAT_raw_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_ECC_ECCCORINFO_B01_MAX_ERRORS_B0 register field. */
-#define ALT_NAND_ECC_ECCCORINFO_B01_MAX_ERRORS_B0_LSB        0
+    #define ALT_NAND_ECC_ECCCORINFO_B01_MAX_ERRORS_B0_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_ECC_ECCCORINFO_B01_MAX_ERRORS_B0 register field. */
-#define ALT_NAND_ECC_ECCCORINFO_B01_MAX_ERRORS_B0_MSB        6
+    #define ALT_NAND_ECC_ECCCORINFO_B01_MAX_ERRORS_B0_MSB        6
 /* The width in bits of the ALT_NAND_ECC_ECCCORINFO_B01_MAX_ERRORS_B0 register field. */
-#define ALT_NAND_ECC_ECCCORINFO_B01_MAX_ERRORS_B0_WIDTH      7
+    #define ALT_NAND_ECC_ECCCORINFO_B01_MAX_ERRORS_B0_WIDTH      7
 /* The mask used to set the ALT_NAND_ECC_ECCCORINFO_B01_MAX_ERRORS_B0 register field value. */
-#define ALT_NAND_ECC_ECCCORINFO_B01_MAX_ERRORS_B0_SET_MSK    0x0000007f
+    #define ALT_NAND_ECC_ECCCORINFO_B01_MAX_ERRORS_B0_SET_MSK    0x0000007f
 /* The mask used to clear the ALT_NAND_ECC_ECCCORINFO_B01_MAX_ERRORS_B0 register field value. */
-#define ALT_NAND_ECC_ECCCORINFO_B01_MAX_ERRORS_B0_CLR_MSK    0xffffff80
+    #define ALT_NAND_ECC_ECCCORINFO_B01_MAX_ERRORS_B0_CLR_MSK    0xffffff80
 /* The reset value of the ALT_NAND_ECC_ECCCORINFO_B01_MAX_ERRORS_B0 register field. */
-#define ALT_NAND_ECC_ECCCORINFO_B01_MAX_ERRORS_B0_RESET      0x0
+    #define ALT_NAND_ECC_ECCCORINFO_B01_MAX_ERRORS_B0_RESET      0x0
 /* Extracts the ALT_NAND_ECC_ECCCORINFO_B01_MAX_ERRORS_B0 field value from a register. */
-#define ALT_NAND_ECC_ECCCORINFO_B01_MAX_ERRORS_B0_GET(value) (((value) & 0x0000007f) >> 0)
+    #define ALT_NAND_ECC_ECCCORINFO_B01_MAX_ERRORS_B0_GET( value )    ( ( ( value ) & 0x0000007f ) >> 0 )
 /* Produces a ALT_NAND_ECC_ECCCORINFO_B01_MAX_ERRORS_B0 register field value suitable for setting the register. */
-#define ALT_NAND_ECC_ECCCORINFO_B01_MAX_ERRORS_B0_SET(value) (((value) << 0) & 0x0000007f)
+    #define ALT_NAND_ECC_ECCCORINFO_B01_MAX_ERRORS_B0_SET( value )    ( ( ( value ) << 0 ) & 0x0000007f )
 
 /*
  * Field : uncor_err_b0
@@ -9553,21 +9724,21 @@ typedef volatile struct ALT_NAND_STAT_raw_s  ALT_NAND_STAT_raw_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_ECC_ECCCORINFO_B01_UNCOR_ERR_B0 register field. */
-#define ALT_NAND_ECC_ECCCORINFO_B01_UNCOR_ERR_B0_LSB        7
+    #define ALT_NAND_ECC_ECCCORINFO_B01_UNCOR_ERR_B0_LSB        7
 /* The Most Significant Bit (MSB) position of the ALT_NAND_ECC_ECCCORINFO_B01_UNCOR_ERR_B0 register field. */
-#define ALT_NAND_ECC_ECCCORINFO_B01_UNCOR_ERR_B0_MSB        7
+    #define ALT_NAND_ECC_ECCCORINFO_B01_UNCOR_ERR_B0_MSB        7
 /* The width in bits of the ALT_NAND_ECC_ECCCORINFO_B01_UNCOR_ERR_B0 register field. */
-#define ALT_NAND_ECC_ECCCORINFO_B01_UNCOR_ERR_B0_WIDTH      1
+    #define ALT_NAND_ECC_ECCCORINFO_B01_UNCOR_ERR_B0_WIDTH      1
 /* The mask used to set the ALT_NAND_ECC_ECCCORINFO_B01_UNCOR_ERR_B0 register field value. */
-#define ALT_NAND_ECC_ECCCORINFO_B01_UNCOR_ERR_B0_SET_MSK    0x00000080
+    #define ALT_NAND_ECC_ECCCORINFO_B01_UNCOR_ERR_B0_SET_MSK    0x00000080
 /* The mask used to clear the ALT_NAND_ECC_ECCCORINFO_B01_UNCOR_ERR_B0 register field value. */
-#define ALT_NAND_ECC_ECCCORINFO_B01_UNCOR_ERR_B0_CLR_MSK    0xffffff7f
+    #define ALT_NAND_ECC_ECCCORINFO_B01_UNCOR_ERR_B0_CLR_MSK    0xffffff7f
 /* The reset value of the ALT_NAND_ECC_ECCCORINFO_B01_UNCOR_ERR_B0 register field. */
-#define ALT_NAND_ECC_ECCCORINFO_B01_UNCOR_ERR_B0_RESET      0x0
+    #define ALT_NAND_ECC_ECCCORINFO_B01_UNCOR_ERR_B0_RESET      0x0
 /* Extracts the ALT_NAND_ECC_ECCCORINFO_B01_UNCOR_ERR_B0 field value from a register. */
-#define ALT_NAND_ECC_ECCCORINFO_B01_UNCOR_ERR_B0_GET(value) (((value) & 0x00000080) >> 7)
+    #define ALT_NAND_ECC_ECCCORINFO_B01_UNCOR_ERR_B0_GET( value )    ( ( ( value ) & 0x00000080 ) >> 7 )
 /* Produces a ALT_NAND_ECC_ECCCORINFO_B01_UNCOR_ERR_B0 register field value suitable for setting the register. */
-#define ALT_NAND_ECC_ECCCORINFO_B01_UNCOR_ERR_B0_SET(value) (((value) << 7) & 0x00000080)
+    #define ALT_NAND_ECC_ECCCORINFO_B01_UNCOR_ERR_B0_SET( value )    ( ( ( value ) << 7 ) & 0x00000080 )
 
 /*
  * Field : max_errors_b1
@@ -9580,21 +9751,21 @@ typedef volatile struct ALT_NAND_STAT_raw_s  ALT_NAND_STAT_raw_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_ECC_ECCCORINFO_B01_MAX_ERRORS_B1 register field. */
-#define ALT_NAND_ECC_ECCCORINFO_B01_MAX_ERRORS_B1_LSB        8
+    #define ALT_NAND_ECC_ECCCORINFO_B01_MAX_ERRORS_B1_LSB        8
 /* The Most Significant Bit (MSB) position of the ALT_NAND_ECC_ECCCORINFO_B01_MAX_ERRORS_B1 register field. */
-#define ALT_NAND_ECC_ECCCORINFO_B01_MAX_ERRORS_B1_MSB        14
+    #define ALT_NAND_ECC_ECCCORINFO_B01_MAX_ERRORS_B1_MSB        14
 /* The width in bits of the ALT_NAND_ECC_ECCCORINFO_B01_MAX_ERRORS_B1 register field. */
-#define ALT_NAND_ECC_ECCCORINFO_B01_MAX_ERRORS_B1_WIDTH      7
+    #define ALT_NAND_ECC_ECCCORINFO_B01_MAX_ERRORS_B1_WIDTH      7
 /* The mask used to set the ALT_NAND_ECC_ECCCORINFO_B01_MAX_ERRORS_B1 register field value. */
-#define ALT_NAND_ECC_ECCCORINFO_B01_MAX_ERRORS_B1_SET_MSK    0x00007f00
+    #define ALT_NAND_ECC_ECCCORINFO_B01_MAX_ERRORS_B1_SET_MSK    0x00007f00
 /* The mask used to clear the ALT_NAND_ECC_ECCCORINFO_B01_MAX_ERRORS_B1 register field value. */
-#define ALT_NAND_ECC_ECCCORINFO_B01_MAX_ERRORS_B1_CLR_MSK    0xffff80ff
+    #define ALT_NAND_ECC_ECCCORINFO_B01_MAX_ERRORS_B1_CLR_MSK    0xffff80ff
 /* The reset value of the ALT_NAND_ECC_ECCCORINFO_B01_MAX_ERRORS_B1 register field. */
-#define ALT_NAND_ECC_ECCCORINFO_B01_MAX_ERRORS_B1_RESET      0x0
+    #define ALT_NAND_ECC_ECCCORINFO_B01_MAX_ERRORS_B1_RESET      0x0
 /* Extracts the ALT_NAND_ECC_ECCCORINFO_B01_MAX_ERRORS_B1 field value from a register. */
-#define ALT_NAND_ECC_ECCCORINFO_B01_MAX_ERRORS_B1_GET(value) (((value) & 0x00007f00) >> 8)
+    #define ALT_NAND_ECC_ECCCORINFO_B01_MAX_ERRORS_B1_GET( value )    ( ( ( value ) & 0x00007f00 ) >> 8 )
 /* Produces a ALT_NAND_ECC_ECCCORINFO_B01_MAX_ERRORS_B1 register field value suitable for setting the register. */
-#define ALT_NAND_ECC_ECCCORINFO_B01_MAX_ERRORS_B1_SET(value) (((value) << 8) & 0x00007f00)
+    #define ALT_NAND_ECC_ECCCORINFO_B01_MAX_ERRORS_B1_SET( value )    ( ( ( value ) << 8 ) & 0x00007f00 )
 
 /*
  * Field : uncor_err_b1
@@ -9606,23 +9777,24 @@ typedef volatile struct ALT_NAND_STAT_raw_s  ALT_NAND_STAT_raw_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_ECC_ECCCORINFO_B01_UNCOR_ERR_B1 register field. */
-#define ALT_NAND_ECC_ECCCORINFO_B01_UNCOR_ERR_B1_LSB        15
+    #define ALT_NAND_ECC_ECCCORINFO_B01_UNCOR_ERR_B1_LSB        15
 /* The Most Significant Bit (MSB) position of the ALT_NAND_ECC_ECCCORINFO_B01_UNCOR_ERR_B1 register field. */
-#define ALT_NAND_ECC_ECCCORINFO_B01_UNCOR_ERR_B1_MSB        15
+    #define ALT_NAND_ECC_ECCCORINFO_B01_UNCOR_ERR_B1_MSB        15
 /* The width in bits of the ALT_NAND_ECC_ECCCORINFO_B01_UNCOR_ERR_B1 register field. */
-#define ALT_NAND_ECC_ECCCORINFO_B01_UNCOR_ERR_B1_WIDTH      1
+    #define ALT_NAND_ECC_ECCCORINFO_B01_UNCOR_ERR_B1_WIDTH      1
 /* The mask used to set the ALT_NAND_ECC_ECCCORINFO_B01_UNCOR_ERR_B1 register field value. */
-#define ALT_NAND_ECC_ECCCORINFO_B01_UNCOR_ERR_B1_SET_MSK    0x00008000
+    #define ALT_NAND_ECC_ECCCORINFO_B01_UNCOR_ERR_B1_SET_MSK    0x00008000
 /* The mask used to clear the ALT_NAND_ECC_ECCCORINFO_B01_UNCOR_ERR_B1 register field value. */
-#define ALT_NAND_ECC_ECCCORINFO_B01_UNCOR_ERR_B1_CLR_MSK    0xffff7fff
+    #define ALT_NAND_ECC_ECCCORINFO_B01_UNCOR_ERR_B1_CLR_MSK    0xffff7fff
 /* The reset value of the ALT_NAND_ECC_ECCCORINFO_B01_UNCOR_ERR_B1 register field. */
-#define ALT_NAND_ECC_ECCCORINFO_B01_UNCOR_ERR_B1_RESET      0x0
+    #define ALT_NAND_ECC_ECCCORINFO_B01_UNCOR_ERR_B1_RESET      0x0
 /* Extracts the ALT_NAND_ECC_ECCCORINFO_B01_UNCOR_ERR_B1 field value from a register. */
-#define ALT_NAND_ECC_ECCCORINFO_B01_UNCOR_ERR_B1_GET(value) (((value) & 0x00008000) >> 15)
+    #define ALT_NAND_ECC_ECCCORINFO_B01_UNCOR_ERR_B1_GET( value )    ( ( ( value ) & 0x00008000 ) >> 15 )
 /* Produces a ALT_NAND_ECC_ECCCORINFO_B01_UNCOR_ERR_B1 register field value suitable for setting the register. */
-#define ALT_NAND_ECC_ECCCORINFO_B01_UNCOR_ERR_B1_SET(value) (((value) << 15) & 0x00008000)
+    #define ALT_NAND_ECC_ECCCORINFO_B01_UNCOR_ERR_B1_SET( value )    ( ( ( value ) << 15 ) & 0x00008000 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -9633,21 +9805,21 @@ typedef volatile struct ALT_NAND_STAT_raw_s  ALT_NAND_STAT_raw_t;
  *
  * The struct declaration for register ALT_NAND_ECC_ECCCORINFO_B01.
  */
-struct ALT_NAND_ECC_ECCCORINFO_B01_s
-{
-    const uint32_t  max_errors_b0 :  7;  /* ALT_NAND_ECC_ECCCORINFO_B01_MAX_ERRORS_B0 */
-    const uint32_t  uncor_err_b0  :  1;  /* ALT_NAND_ECC_ECCCORINFO_B01_UNCOR_ERR_B0 */
-    const uint32_t  max_errors_b1 :  7;  /* ALT_NAND_ECC_ECCCORINFO_B01_MAX_ERRORS_B1 */
-    const uint32_t  uncor_err_b1  :  1;  /* ALT_NAND_ECC_ECCCORINFO_B01_UNCOR_ERR_B1 */
-    uint32_t                      : 16;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_ECC_ECCCORINFO_B01_s
+        {
+            const uint32_t max_errors_b0 :  7;  /* ALT_NAND_ECC_ECCCORINFO_B01_MAX_ERRORS_B0 */
+            const uint32_t uncor_err_b0  :  1;  /* ALT_NAND_ECC_ECCCORINFO_B01_UNCOR_ERR_B0 */
+            const uint32_t max_errors_b1 :  7;  /* ALT_NAND_ECC_ECCCORINFO_B01_MAX_ERRORS_B1 */
+            const uint32_t uncor_err_b1  :  1;  /* ALT_NAND_ECC_ECCCORINFO_B01_UNCOR_ERR_B1 */
+            uint32_t                      : 16; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_ECC_ECCCORINFO_B01. */
-typedef volatile struct ALT_NAND_ECC_ECCCORINFO_B01_s  ALT_NAND_ECC_ECCCORINFO_B01_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_ECC_ECCCORINFO_B01_s ALT_NAND_ECC_ECCCORINFO_B01_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_ECC_ECCCORINFO_B01 register from the beginning of the component. */
-#define ALT_NAND_ECC_ECCCORINFO_B01_OFST        0x0
+    #define ALT_NAND_ECC_ECCCORINFO_B01_OFST    0x0
 
 /*
  * Register : ECCCorInfo_b23
@@ -9667,6 +9839,7 @@ typedef volatile struct ALT_NAND_ECC_ECCCORINFO_B01_s  ALT_NAND_ECC_ECCCORINFO_B
  *  [31:16] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : max_errors_b2
  *
@@ -9678,21 +9851,21 @@ typedef volatile struct ALT_NAND_ECC_ECCCORINFO_B01_s  ALT_NAND_ECC_ECCCORINFO_B
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_ECC_ECCCORINFO_B23_MAX_ERRORS_B2 register field. */
-#define ALT_NAND_ECC_ECCCORINFO_B23_MAX_ERRORS_B2_LSB        0
+    #define ALT_NAND_ECC_ECCCORINFO_B23_MAX_ERRORS_B2_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_ECC_ECCCORINFO_B23_MAX_ERRORS_B2 register field. */
-#define ALT_NAND_ECC_ECCCORINFO_B23_MAX_ERRORS_B2_MSB        6
+    #define ALT_NAND_ECC_ECCCORINFO_B23_MAX_ERRORS_B2_MSB        6
 /* The width in bits of the ALT_NAND_ECC_ECCCORINFO_B23_MAX_ERRORS_B2 register field. */
-#define ALT_NAND_ECC_ECCCORINFO_B23_MAX_ERRORS_B2_WIDTH      7
+    #define ALT_NAND_ECC_ECCCORINFO_B23_MAX_ERRORS_B2_WIDTH      7
 /* The mask used to set the ALT_NAND_ECC_ECCCORINFO_B23_MAX_ERRORS_B2 register field value. */
-#define ALT_NAND_ECC_ECCCORINFO_B23_MAX_ERRORS_B2_SET_MSK    0x0000007f
+    #define ALT_NAND_ECC_ECCCORINFO_B23_MAX_ERRORS_B2_SET_MSK    0x0000007f
 /* The mask used to clear the ALT_NAND_ECC_ECCCORINFO_B23_MAX_ERRORS_B2 register field value. */
-#define ALT_NAND_ECC_ECCCORINFO_B23_MAX_ERRORS_B2_CLR_MSK    0xffffff80
+    #define ALT_NAND_ECC_ECCCORINFO_B23_MAX_ERRORS_B2_CLR_MSK    0xffffff80
 /* The reset value of the ALT_NAND_ECC_ECCCORINFO_B23_MAX_ERRORS_B2 register field. */
-#define ALT_NAND_ECC_ECCCORINFO_B23_MAX_ERRORS_B2_RESET      0x0
+    #define ALT_NAND_ECC_ECCCORINFO_B23_MAX_ERRORS_B2_RESET      0x0
 /* Extracts the ALT_NAND_ECC_ECCCORINFO_B23_MAX_ERRORS_B2 field value from a register. */
-#define ALT_NAND_ECC_ECCCORINFO_B23_MAX_ERRORS_B2_GET(value) (((value) & 0x0000007f) >> 0)
+    #define ALT_NAND_ECC_ECCCORINFO_B23_MAX_ERRORS_B2_GET( value )    ( ( ( value ) & 0x0000007f ) >> 0 )
 /* Produces a ALT_NAND_ECC_ECCCORINFO_B23_MAX_ERRORS_B2 register field value suitable for setting the register. */
-#define ALT_NAND_ECC_ECCCORINFO_B23_MAX_ERRORS_B2_SET(value) (((value) << 0) & 0x0000007f)
+    #define ALT_NAND_ECC_ECCCORINFO_B23_MAX_ERRORS_B2_SET( value )    ( ( ( value ) << 0 ) & 0x0000007f )
 
 /*
  * Field : uncor_err_b2
@@ -9704,21 +9877,21 @@ typedef volatile struct ALT_NAND_ECC_ECCCORINFO_B01_s  ALT_NAND_ECC_ECCCORINFO_B
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_ECC_ECCCORINFO_B23_UNCOR_ERR_B2 register field. */
-#define ALT_NAND_ECC_ECCCORINFO_B23_UNCOR_ERR_B2_LSB        7
+    #define ALT_NAND_ECC_ECCCORINFO_B23_UNCOR_ERR_B2_LSB        7
 /* The Most Significant Bit (MSB) position of the ALT_NAND_ECC_ECCCORINFO_B23_UNCOR_ERR_B2 register field. */
-#define ALT_NAND_ECC_ECCCORINFO_B23_UNCOR_ERR_B2_MSB        7
+    #define ALT_NAND_ECC_ECCCORINFO_B23_UNCOR_ERR_B2_MSB        7
 /* The width in bits of the ALT_NAND_ECC_ECCCORINFO_B23_UNCOR_ERR_B2 register field. */
-#define ALT_NAND_ECC_ECCCORINFO_B23_UNCOR_ERR_B2_WIDTH      1
+    #define ALT_NAND_ECC_ECCCORINFO_B23_UNCOR_ERR_B2_WIDTH      1
 /* The mask used to set the ALT_NAND_ECC_ECCCORINFO_B23_UNCOR_ERR_B2 register field value. */
-#define ALT_NAND_ECC_ECCCORINFO_B23_UNCOR_ERR_B2_SET_MSK    0x00000080
+    #define ALT_NAND_ECC_ECCCORINFO_B23_UNCOR_ERR_B2_SET_MSK    0x00000080
 /* The mask used to clear the ALT_NAND_ECC_ECCCORINFO_B23_UNCOR_ERR_B2 register field value. */
-#define ALT_NAND_ECC_ECCCORINFO_B23_UNCOR_ERR_B2_CLR_MSK    0xffffff7f
+    #define ALT_NAND_ECC_ECCCORINFO_B23_UNCOR_ERR_B2_CLR_MSK    0xffffff7f
 /* The reset value of the ALT_NAND_ECC_ECCCORINFO_B23_UNCOR_ERR_B2 register field. */
-#define ALT_NAND_ECC_ECCCORINFO_B23_UNCOR_ERR_B2_RESET      0x0
+    #define ALT_NAND_ECC_ECCCORINFO_B23_UNCOR_ERR_B2_RESET      0x0
 /* Extracts the ALT_NAND_ECC_ECCCORINFO_B23_UNCOR_ERR_B2 field value from a register. */
-#define ALT_NAND_ECC_ECCCORINFO_B23_UNCOR_ERR_B2_GET(value) (((value) & 0x00000080) >> 7)
+    #define ALT_NAND_ECC_ECCCORINFO_B23_UNCOR_ERR_B2_GET( value )    ( ( ( value ) & 0x00000080 ) >> 7 )
 /* Produces a ALT_NAND_ECC_ECCCORINFO_B23_UNCOR_ERR_B2 register field value suitable for setting the register. */
-#define ALT_NAND_ECC_ECCCORINFO_B23_UNCOR_ERR_B2_SET(value) (((value) << 7) & 0x00000080)
+    #define ALT_NAND_ECC_ECCCORINFO_B23_UNCOR_ERR_B2_SET( value )    ( ( ( value ) << 7 ) & 0x00000080 )
 
 /*
  * Field : max_errors_b3
@@ -9731,21 +9904,21 @@ typedef volatile struct ALT_NAND_ECC_ECCCORINFO_B01_s  ALT_NAND_ECC_ECCCORINFO_B
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_ECC_ECCCORINFO_B23_MAX_ERRORS_B3 register field. */
-#define ALT_NAND_ECC_ECCCORINFO_B23_MAX_ERRORS_B3_LSB        8
+    #define ALT_NAND_ECC_ECCCORINFO_B23_MAX_ERRORS_B3_LSB        8
 /* The Most Significant Bit (MSB) position of the ALT_NAND_ECC_ECCCORINFO_B23_MAX_ERRORS_B3 register field. */
-#define ALT_NAND_ECC_ECCCORINFO_B23_MAX_ERRORS_B3_MSB        14
+    #define ALT_NAND_ECC_ECCCORINFO_B23_MAX_ERRORS_B3_MSB        14
 /* The width in bits of the ALT_NAND_ECC_ECCCORINFO_B23_MAX_ERRORS_B3 register field. */
-#define ALT_NAND_ECC_ECCCORINFO_B23_MAX_ERRORS_B3_WIDTH      7
+    #define ALT_NAND_ECC_ECCCORINFO_B23_MAX_ERRORS_B3_WIDTH      7
 /* The mask used to set the ALT_NAND_ECC_ECCCORINFO_B23_MAX_ERRORS_B3 register field value. */
-#define ALT_NAND_ECC_ECCCORINFO_B23_MAX_ERRORS_B3_SET_MSK    0x00007f00
+    #define ALT_NAND_ECC_ECCCORINFO_B23_MAX_ERRORS_B3_SET_MSK    0x00007f00
 /* The mask used to clear the ALT_NAND_ECC_ECCCORINFO_B23_MAX_ERRORS_B3 register field value. */
-#define ALT_NAND_ECC_ECCCORINFO_B23_MAX_ERRORS_B3_CLR_MSK    0xffff80ff
+    #define ALT_NAND_ECC_ECCCORINFO_B23_MAX_ERRORS_B3_CLR_MSK    0xffff80ff
 /* The reset value of the ALT_NAND_ECC_ECCCORINFO_B23_MAX_ERRORS_B3 register field. */
-#define ALT_NAND_ECC_ECCCORINFO_B23_MAX_ERRORS_B3_RESET      0x0
+    #define ALT_NAND_ECC_ECCCORINFO_B23_MAX_ERRORS_B3_RESET      0x0
 /* Extracts the ALT_NAND_ECC_ECCCORINFO_B23_MAX_ERRORS_B3 field value from a register. */
-#define ALT_NAND_ECC_ECCCORINFO_B23_MAX_ERRORS_B3_GET(value) (((value) & 0x00007f00) >> 8)
+    #define ALT_NAND_ECC_ECCCORINFO_B23_MAX_ERRORS_B3_GET( value )    ( ( ( value ) & 0x00007f00 ) >> 8 )
 /* Produces a ALT_NAND_ECC_ECCCORINFO_B23_MAX_ERRORS_B3 register field value suitable for setting the register. */
-#define ALT_NAND_ECC_ECCCORINFO_B23_MAX_ERRORS_B3_SET(value) (((value) << 8) & 0x00007f00)
+    #define ALT_NAND_ECC_ECCCORINFO_B23_MAX_ERRORS_B3_SET( value )    ( ( ( value ) << 8 ) & 0x00007f00 )
 
 /*
  * Field : uncor_err_b3
@@ -9757,23 +9930,24 @@ typedef volatile struct ALT_NAND_ECC_ECCCORINFO_B01_s  ALT_NAND_ECC_ECCCORINFO_B
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_ECC_ECCCORINFO_B23_UNCOR_ERR_B3 register field. */
-#define ALT_NAND_ECC_ECCCORINFO_B23_UNCOR_ERR_B3_LSB        15
+    #define ALT_NAND_ECC_ECCCORINFO_B23_UNCOR_ERR_B3_LSB        15
 /* The Most Significant Bit (MSB) position of the ALT_NAND_ECC_ECCCORINFO_B23_UNCOR_ERR_B3 register field. */
-#define ALT_NAND_ECC_ECCCORINFO_B23_UNCOR_ERR_B3_MSB        15
+    #define ALT_NAND_ECC_ECCCORINFO_B23_UNCOR_ERR_B3_MSB        15
 /* The width in bits of the ALT_NAND_ECC_ECCCORINFO_B23_UNCOR_ERR_B3 register field. */
-#define ALT_NAND_ECC_ECCCORINFO_B23_UNCOR_ERR_B3_WIDTH      1
+    #define ALT_NAND_ECC_ECCCORINFO_B23_UNCOR_ERR_B3_WIDTH      1
 /* The mask used to set the ALT_NAND_ECC_ECCCORINFO_B23_UNCOR_ERR_B3 register field value. */
-#define ALT_NAND_ECC_ECCCORINFO_B23_UNCOR_ERR_B3_SET_MSK    0x00008000
+    #define ALT_NAND_ECC_ECCCORINFO_B23_UNCOR_ERR_B3_SET_MSK    0x00008000
 /* The mask used to clear the ALT_NAND_ECC_ECCCORINFO_B23_UNCOR_ERR_B3 register field value. */
-#define ALT_NAND_ECC_ECCCORINFO_B23_UNCOR_ERR_B3_CLR_MSK    0xffff7fff
+    #define ALT_NAND_ECC_ECCCORINFO_B23_UNCOR_ERR_B3_CLR_MSK    0xffff7fff
 /* The reset value of the ALT_NAND_ECC_ECCCORINFO_B23_UNCOR_ERR_B3 register field. */
-#define ALT_NAND_ECC_ECCCORINFO_B23_UNCOR_ERR_B3_RESET      0x0
+    #define ALT_NAND_ECC_ECCCORINFO_B23_UNCOR_ERR_B3_RESET      0x0
 /* Extracts the ALT_NAND_ECC_ECCCORINFO_B23_UNCOR_ERR_B3 field value from a register. */
-#define ALT_NAND_ECC_ECCCORINFO_B23_UNCOR_ERR_B3_GET(value) (((value) & 0x00008000) >> 15)
+    #define ALT_NAND_ECC_ECCCORINFO_B23_UNCOR_ERR_B3_GET( value )    ( ( ( value ) & 0x00008000 ) >> 15 )
 /* Produces a ALT_NAND_ECC_ECCCORINFO_B23_UNCOR_ERR_B3 register field value suitable for setting the register. */
-#define ALT_NAND_ECC_ECCCORINFO_B23_UNCOR_ERR_B3_SET(value) (((value) << 15) & 0x00008000)
+    #define ALT_NAND_ECC_ECCCORINFO_B23_UNCOR_ERR_B3_SET( value )    ( ( ( value ) << 15 ) & 0x00008000 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -9784,23 +9958,24 @@ typedef volatile struct ALT_NAND_ECC_ECCCORINFO_B01_s  ALT_NAND_ECC_ECCCORINFO_B
  *
  * The struct declaration for register ALT_NAND_ECC_ECCCORINFO_B23.
  */
-struct ALT_NAND_ECC_ECCCORINFO_B23_s
-{
-    const uint32_t  max_errors_b2 :  7;  /* ALT_NAND_ECC_ECCCORINFO_B23_MAX_ERRORS_B2 */
-    const uint32_t  uncor_err_b2  :  1;  /* ALT_NAND_ECC_ECCCORINFO_B23_UNCOR_ERR_B2 */
-    const uint32_t  max_errors_b3 :  7;  /* ALT_NAND_ECC_ECCCORINFO_B23_MAX_ERRORS_B3 */
-    const uint32_t  uncor_err_b3  :  1;  /* ALT_NAND_ECC_ECCCORINFO_B23_UNCOR_ERR_B3 */
-    uint32_t                      : 16;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_ECC_ECCCORINFO_B23_s
+        {
+            const uint32_t max_errors_b2 :  7;  /* ALT_NAND_ECC_ECCCORINFO_B23_MAX_ERRORS_B2 */
+            const uint32_t uncor_err_b2  :  1;  /* ALT_NAND_ECC_ECCCORINFO_B23_UNCOR_ERR_B2 */
+            const uint32_t max_errors_b3 :  7;  /* ALT_NAND_ECC_ECCCORINFO_B23_MAX_ERRORS_B3 */
+            const uint32_t uncor_err_b3  :  1;  /* ALT_NAND_ECC_ECCCORINFO_B23_UNCOR_ERR_B3 */
+            uint32_t                      : 16; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_ECC_ECCCORINFO_B23. */
-typedef volatile struct ALT_NAND_ECC_ECCCORINFO_B23_s  ALT_NAND_ECC_ECCCORINFO_B23_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_ECC_ECCCORINFO_B23_s ALT_NAND_ECC_ECCCORINFO_B23_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_ECC_ECCCORINFO_B23 register from the beginning of the component. */
-#define ALT_NAND_ECC_ECCCORINFO_B23_OFST        0x10
+    #define ALT_NAND_ECC_ECCCORINFO_B23_OFST    0x10
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -9811,26 +9986,26 @@ typedef volatile struct ALT_NAND_ECC_ECCCORINFO_B23_s  ALT_NAND_ECC_ECCCORINFO_B
  *
  * The struct declaration for register group ALT_NAND_ECC.
  */
-struct ALT_NAND_ECC_s
-{
-    volatile ALT_NAND_ECC_ECCCORINFO_B01_t  ECCCorInfo_b01;   /* ALT_NAND_ECC_ECCCORINFO_B01 */
-    volatile uint32_t                       _pad_0x4_0xf[3];  /* *UNDEFINED* */
-    volatile ALT_NAND_ECC_ECCCORINFO_B23_t  ECCCorInfo_b23;   /* ALT_NAND_ECC_ECCCORINFO_B23 */
-};
+        struct ALT_NAND_ECC_s
+        {
+            volatile ALT_NAND_ECC_ECCCORINFO_B01_t ECCCorInfo_b01; /* ALT_NAND_ECC_ECCCORINFO_B01 */
+            volatile uint32_t _pad_0x4_0xf[ 3 ];                   /* *UNDEFINED* */
+            volatile ALT_NAND_ECC_ECCCORINFO_B23_t ECCCorInfo_b23; /* ALT_NAND_ECC_ECCCORINFO_B23 */
+        };
 
 /* The typedef declaration for register group ALT_NAND_ECC. */
-typedef volatile struct ALT_NAND_ECC_s  ALT_NAND_ECC_t;
+        typedef volatile struct ALT_NAND_ECC_s ALT_NAND_ECC_t;
 /* The struct declaration for the raw register contents of register group ALT_NAND_ECC. */
-struct ALT_NAND_ECC_raw_s
-{
-    volatile uint32_t  ECCCorInfo_b01;   /* ALT_NAND_ECC_ECCCORINFO_B01 */
-    volatile uint32_t  _pad_0x4_0xf[3];  /* *UNDEFINED* */
-    volatile uint32_t  ECCCorInfo_b23;   /* ALT_NAND_ECC_ECCCORINFO_B23 */
-};
+        struct ALT_NAND_ECC_raw_s
+        {
+            volatile uint32_t ECCCorInfo_b01;    /* ALT_NAND_ECC_ECCCORINFO_B01 */
+            volatile uint32_t _pad_0x4_0xf[ 3 ]; /* *UNDEFINED* */
+            volatile uint32_t ECCCorInfo_b23;    /* ALT_NAND_ECC_ECCCORINFO_B23 */
+        };
 
 /* The typedef declaration for the raw register contents of register group ALT_NAND_ECC. */
-typedef volatile struct ALT_NAND_ECC_raw_s  ALT_NAND_ECC_raw_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_ECC_raw_s ALT_NAND_ECC_raw_t;
+    #endif /* __ASSEMBLY__ */
 
 
 /*
@@ -9839,6 +10014,7 @@ typedef volatile struct ALT_NAND_ECC_raw_s  ALT_NAND_ECC_raw_t;
  *
  *
  */
+
 /*
  * Register : dma_enable
  *
@@ -9850,6 +10026,7 @@ typedef volatile struct ALT_NAND_ECC_raw_s  ALT_NAND_ECC_raw_t;
  *  [31:1] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : flag
  *
@@ -9859,23 +10036,24 @@ typedef volatile struct ALT_NAND_ECC_raw_s  ALT_NAND_ECC_raw_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_DMA_DMA_EN_FLAG register field. */
-#define ALT_NAND_DMA_DMA_EN_FLAG_LSB        0
+    #define ALT_NAND_DMA_DMA_EN_FLAG_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_DMA_DMA_EN_FLAG register field. */
-#define ALT_NAND_DMA_DMA_EN_FLAG_MSB        0
+    #define ALT_NAND_DMA_DMA_EN_FLAG_MSB        0
 /* The width in bits of the ALT_NAND_DMA_DMA_EN_FLAG register field. */
-#define ALT_NAND_DMA_DMA_EN_FLAG_WIDTH      1
+    #define ALT_NAND_DMA_DMA_EN_FLAG_WIDTH      1
 /* The mask used to set the ALT_NAND_DMA_DMA_EN_FLAG register field value. */
-#define ALT_NAND_DMA_DMA_EN_FLAG_SET_MSK    0x00000001
+    #define ALT_NAND_DMA_DMA_EN_FLAG_SET_MSK    0x00000001
 /* The mask used to clear the ALT_NAND_DMA_DMA_EN_FLAG register field value. */
-#define ALT_NAND_DMA_DMA_EN_FLAG_CLR_MSK    0xfffffffe
+    #define ALT_NAND_DMA_DMA_EN_FLAG_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_NAND_DMA_DMA_EN_FLAG register field. */
-#define ALT_NAND_DMA_DMA_EN_FLAG_RESET      0x0
+    #define ALT_NAND_DMA_DMA_EN_FLAG_RESET      0x0
 /* Extracts the ALT_NAND_DMA_DMA_EN_FLAG field value from a register. */
-#define ALT_NAND_DMA_DMA_EN_FLAG_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_NAND_DMA_DMA_EN_FLAG_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_NAND_DMA_DMA_EN_FLAG register field value suitable for setting the register. */
-#define ALT_NAND_DMA_DMA_EN_FLAG_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_NAND_DMA_DMA_EN_FLAG_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -9886,18 +10064,18 @@ typedef volatile struct ALT_NAND_ECC_raw_s  ALT_NAND_ECC_raw_t;
  *
  * The struct declaration for register ALT_NAND_DMA_DMA_EN.
  */
-struct ALT_NAND_DMA_DMA_EN_s
-{
-    uint32_t  flag :  1;  /* ALT_NAND_DMA_DMA_EN_FLAG */
-    uint32_t       : 31;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_DMA_DMA_EN_s
+        {
+            uint32_t flag :  1;  /* ALT_NAND_DMA_DMA_EN_FLAG */
+            uint32_t       : 31; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_DMA_DMA_EN. */
-typedef volatile struct ALT_NAND_DMA_DMA_EN_s  ALT_NAND_DMA_DMA_EN_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_DMA_DMA_EN_s ALT_NAND_DMA_DMA_EN_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_DMA_DMA_EN register from the beginning of the component. */
-#define ALT_NAND_DMA_DMA_EN_OFST        0x0
+    #define ALT_NAND_DMA_DMA_EN_OFST    0x0
 
 /*
  * Register : dma_intr
@@ -9912,6 +10090,7 @@ typedef volatile struct ALT_NAND_DMA_DMA_EN_s  ALT_NAND_DMA_DMA_EN_t;
  *  [31:1] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : target_error
  *
@@ -9922,23 +10101,24 @@ typedef volatile struct ALT_NAND_DMA_DMA_EN_s  ALT_NAND_DMA_DMA_EN_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_DMA_DMA_INTR_TGT_ERROR register field. */
-#define ALT_NAND_DMA_DMA_INTR_TGT_ERROR_LSB        0
+    #define ALT_NAND_DMA_DMA_INTR_TGT_ERROR_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_DMA_DMA_INTR_TGT_ERROR register field. */
-#define ALT_NAND_DMA_DMA_INTR_TGT_ERROR_MSB        0
+    #define ALT_NAND_DMA_DMA_INTR_TGT_ERROR_MSB        0
 /* The width in bits of the ALT_NAND_DMA_DMA_INTR_TGT_ERROR register field. */
-#define ALT_NAND_DMA_DMA_INTR_TGT_ERROR_WIDTH      1
+    #define ALT_NAND_DMA_DMA_INTR_TGT_ERROR_WIDTH      1
 /* The mask used to set the ALT_NAND_DMA_DMA_INTR_TGT_ERROR register field value. */
-#define ALT_NAND_DMA_DMA_INTR_TGT_ERROR_SET_MSK    0x00000001
+    #define ALT_NAND_DMA_DMA_INTR_TGT_ERROR_SET_MSK    0x00000001
 /* The mask used to clear the ALT_NAND_DMA_DMA_INTR_TGT_ERROR register field value. */
-#define ALT_NAND_DMA_DMA_INTR_TGT_ERROR_CLR_MSK    0xfffffffe
+    #define ALT_NAND_DMA_DMA_INTR_TGT_ERROR_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_NAND_DMA_DMA_INTR_TGT_ERROR register field. */
-#define ALT_NAND_DMA_DMA_INTR_TGT_ERROR_RESET      0x0
+    #define ALT_NAND_DMA_DMA_INTR_TGT_ERROR_RESET      0x0
 /* Extracts the ALT_NAND_DMA_DMA_INTR_TGT_ERROR field value from a register. */
-#define ALT_NAND_DMA_DMA_INTR_TGT_ERROR_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_NAND_DMA_DMA_INTR_TGT_ERROR_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_NAND_DMA_DMA_INTR_TGT_ERROR register field value suitable for setting the register. */
-#define ALT_NAND_DMA_DMA_INTR_TGT_ERROR_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_NAND_DMA_DMA_INTR_TGT_ERROR_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -9949,18 +10129,18 @@ typedef volatile struct ALT_NAND_DMA_DMA_EN_s  ALT_NAND_DMA_DMA_EN_t;
  *
  * The struct declaration for register ALT_NAND_DMA_DMA_INTR.
  */
-struct ALT_NAND_DMA_DMA_INTR_s
-{
-    uint32_t  target_error :  1;  /* ALT_NAND_DMA_DMA_INTR_TGT_ERROR */
-    uint32_t               : 31;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_DMA_DMA_INTR_s
+        {
+            uint32_t target_error :  1;  /* ALT_NAND_DMA_DMA_INTR_TGT_ERROR */
+            uint32_t               : 31; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_DMA_DMA_INTR. */
-typedef volatile struct ALT_NAND_DMA_DMA_INTR_s  ALT_NAND_DMA_DMA_INTR_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_DMA_DMA_INTR_s ALT_NAND_DMA_DMA_INTR_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_DMA_DMA_INTR register from the beginning of the component. */
-#define ALT_NAND_DMA_DMA_INTR_OFST        0x20
+    #define ALT_NAND_DMA_DMA_INTR_OFST    0x20
 
 /*
  * Register : dma_intr_en
@@ -9975,6 +10155,7 @@ typedef volatile struct ALT_NAND_DMA_DMA_INTR_s  ALT_NAND_DMA_DMA_INTR_t;
  *  [31:1] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : target_error
  *
@@ -9985,23 +10166,24 @@ typedef volatile struct ALT_NAND_DMA_DMA_INTR_s  ALT_NAND_DMA_DMA_INTR_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_DMA_DMA_INTR_EN_TGT_ERROR register field. */
-#define ALT_NAND_DMA_DMA_INTR_EN_TGT_ERROR_LSB        0
+    #define ALT_NAND_DMA_DMA_INTR_EN_TGT_ERROR_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_DMA_DMA_INTR_EN_TGT_ERROR register field. */
-#define ALT_NAND_DMA_DMA_INTR_EN_TGT_ERROR_MSB        0
+    #define ALT_NAND_DMA_DMA_INTR_EN_TGT_ERROR_MSB        0
 /* The width in bits of the ALT_NAND_DMA_DMA_INTR_EN_TGT_ERROR register field. */
-#define ALT_NAND_DMA_DMA_INTR_EN_TGT_ERROR_WIDTH      1
+    #define ALT_NAND_DMA_DMA_INTR_EN_TGT_ERROR_WIDTH      1
 /* The mask used to set the ALT_NAND_DMA_DMA_INTR_EN_TGT_ERROR register field value. */
-#define ALT_NAND_DMA_DMA_INTR_EN_TGT_ERROR_SET_MSK    0x00000001
+    #define ALT_NAND_DMA_DMA_INTR_EN_TGT_ERROR_SET_MSK    0x00000001
 /* The mask used to clear the ALT_NAND_DMA_DMA_INTR_EN_TGT_ERROR register field value. */
-#define ALT_NAND_DMA_DMA_INTR_EN_TGT_ERROR_CLR_MSK    0xfffffffe
+    #define ALT_NAND_DMA_DMA_INTR_EN_TGT_ERROR_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_NAND_DMA_DMA_INTR_EN_TGT_ERROR register field. */
-#define ALT_NAND_DMA_DMA_INTR_EN_TGT_ERROR_RESET      0x0
+    #define ALT_NAND_DMA_DMA_INTR_EN_TGT_ERROR_RESET      0x0
 /* Extracts the ALT_NAND_DMA_DMA_INTR_EN_TGT_ERROR field value from a register. */
-#define ALT_NAND_DMA_DMA_INTR_EN_TGT_ERROR_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_NAND_DMA_DMA_INTR_EN_TGT_ERROR_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_NAND_DMA_DMA_INTR_EN_TGT_ERROR register field value suitable for setting the register. */
-#define ALT_NAND_DMA_DMA_INTR_EN_TGT_ERROR_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_NAND_DMA_DMA_INTR_EN_TGT_ERROR_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -10012,18 +10194,18 @@ typedef volatile struct ALT_NAND_DMA_DMA_INTR_s  ALT_NAND_DMA_DMA_INTR_t;
  *
  * The struct declaration for register ALT_NAND_DMA_DMA_INTR_EN.
  */
-struct ALT_NAND_DMA_DMA_INTR_EN_s
-{
-    uint32_t  target_error :  1;  /* ALT_NAND_DMA_DMA_INTR_EN_TGT_ERROR */
-    uint32_t               : 31;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_DMA_DMA_INTR_EN_s
+        {
+            uint32_t target_error :  1;  /* ALT_NAND_DMA_DMA_INTR_EN_TGT_ERROR */
+            uint32_t               : 31; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_DMA_DMA_INTR_EN. */
-typedef volatile struct ALT_NAND_DMA_DMA_INTR_EN_s  ALT_NAND_DMA_DMA_INTR_EN_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_DMA_DMA_INTR_EN_s ALT_NAND_DMA_DMA_INTR_EN_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_DMA_DMA_INTR_EN register from the beginning of the component. */
-#define ALT_NAND_DMA_DMA_INTR_EN_OFST        0x30
+    #define ALT_NAND_DMA_DMA_INTR_EN_OFST    0x30
 
 /*
  * Register : target_err_addr_lo
@@ -10039,6 +10221,7 @@ typedef volatile struct ALT_NAND_DMA_DMA_INTR_EN_s  ALT_NAND_DMA_DMA_INTR_EN_t;
  *  [31:16] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -10048,23 +10231,24 @@ typedef volatile struct ALT_NAND_DMA_DMA_INTR_EN_s  ALT_NAND_DMA_DMA_INTR_EN_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_DMA_TGT_ERR_ADDR_LO_VALUE register field. */
-#define ALT_NAND_DMA_TGT_ERR_ADDR_LO_VALUE_LSB        0
+    #define ALT_NAND_DMA_TGT_ERR_ADDR_LO_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_DMA_TGT_ERR_ADDR_LO_VALUE register field. */
-#define ALT_NAND_DMA_TGT_ERR_ADDR_LO_VALUE_MSB        15
+    #define ALT_NAND_DMA_TGT_ERR_ADDR_LO_VALUE_MSB        15
 /* The width in bits of the ALT_NAND_DMA_TGT_ERR_ADDR_LO_VALUE register field. */
-#define ALT_NAND_DMA_TGT_ERR_ADDR_LO_VALUE_WIDTH      16
+    #define ALT_NAND_DMA_TGT_ERR_ADDR_LO_VALUE_WIDTH      16
 /* The mask used to set the ALT_NAND_DMA_TGT_ERR_ADDR_LO_VALUE register field value. */
-#define ALT_NAND_DMA_TGT_ERR_ADDR_LO_VALUE_SET_MSK    0x0000ffff
+    #define ALT_NAND_DMA_TGT_ERR_ADDR_LO_VALUE_SET_MSK    0x0000ffff
 /* The mask used to clear the ALT_NAND_DMA_TGT_ERR_ADDR_LO_VALUE register field value. */
-#define ALT_NAND_DMA_TGT_ERR_ADDR_LO_VALUE_CLR_MSK    0xffff0000
+    #define ALT_NAND_DMA_TGT_ERR_ADDR_LO_VALUE_CLR_MSK    0xffff0000
 /* The reset value of the ALT_NAND_DMA_TGT_ERR_ADDR_LO_VALUE register field. */
-#define ALT_NAND_DMA_TGT_ERR_ADDR_LO_VALUE_RESET      0x0
+    #define ALT_NAND_DMA_TGT_ERR_ADDR_LO_VALUE_RESET      0x0
 /* Extracts the ALT_NAND_DMA_TGT_ERR_ADDR_LO_VALUE field value from a register. */
-#define ALT_NAND_DMA_TGT_ERR_ADDR_LO_VALUE_GET(value) (((value) & 0x0000ffff) >> 0)
+    #define ALT_NAND_DMA_TGT_ERR_ADDR_LO_VALUE_GET( value )    ( ( ( value ) & 0x0000ffff ) >> 0 )
 /* Produces a ALT_NAND_DMA_TGT_ERR_ADDR_LO_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_DMA_TGT_ERR_ADDR_LO_VALUE_SET(value) (((value) << 0) & 0x0000ffff)
+    #define ALT_NAND_DMA_TGT_ERR_ADDR_LO_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x0000ffff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -10075,18 +10259,18 @@ typedef volatile struct ALT_NAND_DMA_DMA_INTR_EN_s  ALT_NAND_DMA_DMA_INTR_EN_t;
  *
  * The struct declaration for register ALT_NAND_DMA_TGT_ERR_ADDR_LO.
  */
-struct ALT_NAND_DMA_TGT_ERR_ADDR_LO_s
-{
-    const uint32_t  value : 16;  /* ALT_NAND_DMA_TGT_ERR_ADDR_LO_VALUE */
-    uint32_t              : 16;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_DMA_TGT_ERR_ADDR_LO_s
+        {
+            const uint32_t value : 16;  /* ALT_NAND_DMA_TGT_ERR_ADDR_LO_VALUE */
+            uint32_t              : 16; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_DMA_TGT_ERR_ADDR_LO. */
-typedef volatile struct ALT_NAND_DMA_TGT_ERR_ADDR_LO_s  ALT_NAND_DMA_TGT_ERR_ADDR_LO_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_DMA_TGT_ERR_ADDR_LO_s ALT_NAND_DMA_TGT_ERR_ADDR_LO_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_DMA_TGT_ERR_ADDR_LO register from the beginning of the component. */
-#define ALT_NAND_DMA_TGT_ERR_ADDR_LO_OFST        0x40
+    #define ALT_NAND_DMA_TGT_ERR_ADDR_LO_OFST    0x40
 
 /*
  * Register : target_err_addr_hi
@@ -10102,6 +10286,7 @@ typedef volatile struct ALT_NAND_DMA_TGT_ERR_ADDR_LO_s  ALT_NAND_DMA_TGT_ERR_ADD
  *  [31:16] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -10111,23 +10296,24 @@ typedef volatile struct ALT_NAND_DMA_TGT_ERR_ADDR_LO_s  ALT_NAND_DMA_TGT_ERR_ADD
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_DMA_TGT_ERR_ADDR_HI_VALUE register field. */
-#define ALT_NAND_DMA_TGT_ERR_ADDR_HI_VALUE_LSB        0
+    #define ALT_NAND_DMA_TGT_ERR_ADDR_HI_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_DMA_TGT_ERR_ADDR_HI_VALUE register field. */
-#define ALT_NAND_DMA_TGT_ERR_ADDR_HI_VALUE_MSB        15
+    #define ALT_NAND_DMA_TGT_ERR_ADDR_HI_VALUE_MSB        15
 /* The width in bits of the ALT_NAND_DMA_TGT_ERR_ADDR_HI_VALUE register field. */
-#define ALT_NAND_DMA_TGT_ERR_ADDR_HI_VALUE_WIDTH      16
+    #define ALT_NAND_DMA_TGT_ERR_ADDR_HI_VALUE_WIDTH      16
 /* The mask used to set the ALT_NAND_DMA_TGT_ERR_ADDR_HI_VALUE register field value. */
-#define ALT_NAND_DMA_TGT_ERR_ADDR_HI_VALUE_SET_MSK    0x0000ffff
+    #define ALT_NAND_DMA_TGT_ERR_ADDR_HI_VALUE_SET_MSK    0x0000ffff
 /* The mask used to clear the ALT_NAND_DMA_TGT_ERR_ADDR_HI_VALUE register field value. */
-#define ALT_NAND_DMA_TGT_ERR_ADDR_HI_VALUE_CLR_MSK    0xffff0000
+    #define ALT_NAND_DMA_TGT_ERR_ADDR_HI_VALUE_CLR_MSK    0xffff0000
 /* The reset value of the ALT_NAND_DMA_TGT_ERR_ADDR_HI_VALUE register field. */
-#define ALT_NAND_DMA_TGT_ERR_ADDR_HI_VALUE_RESET      0x0
+    #define ALT_NAND_DMA_TGT_ERR_ADDR_HI_VALUE_RESET      0x0
 /* Extracts the ALT_NAND_DMA_TGT_ERR_ADDR_HI_VALUE field value from a register. */
-#define ALT_NAND_DMA_TGT_ERR_ADDR_HI_VALUE_GET(value) (((value) & 0x0000ffff) >> 0)
+    #define ALT_NAND_DMA_TGT_ERR_ADDR_HI_VALUE_GET( value )    ( ( ( value ) & 0x0000ffff ) >> 0 )
 /* Produces a ALT_NAND_DMA_TGT_ERR_ADDR_HI_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_DMA_TGT_ERR_ADDR_HI_VALUE_SET(value) (((value) << 0) & 0x0000ffff)
+    #define ALT_NAND_DMA_TGT_ERR_ADDR_HI_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x0000ffff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -10138,18 +10324,18 @@ typedef volatile struct ALT_NAND_DMA_TGT_ERR_ADDR_LO_s  ALT_NAND_DMA_TGT_ERR_ADD
  *
  * The struct declaration for register ALT_NAND_DMA_TGT_ERR_ADDR_HI.
  */
-struct ALT_NAND_DMA_TGT_ERR_ADDR_HI_s
-{
-    const uint32_t  value : 16;  /* ALT_NAND_DMA_TGT_ERR_ADDR_HI_VALUE */
-    uint32_t              : 16;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_DMA_TGT_ERR_ADDR_HI_s
+        {
+            const uint32_t value : 16;  /* ALT_NAND_DMA_TGT_ERR_ADDR_HI_VALUE */
+            uint32_t              : 16; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_DMA_TGT_ERR_ADDR_HI. */
-typedef volatile struct ALT_NAND_DMA_TGT_ERR_ADDR_HI_s  ALT_NAND_DMA_TGT_ERR_ADDR_HI_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_DMA_TGT_ERR_ADDR_HI_s ALT_NAND_DMA_TGT_ERR_ADDR_HI_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_DMA_TGT_ERR_ADDR_HI register from the beginning of the component. */
-#define ALT_NAND_DMA_TGT_ERR_ADDR_HI_OFST        0x50
+    #define ALT_NAND_DMA_TGT_ERR_ADDR_HI_OFST    0x50
 
 /*
  * Register : flash_burst_length
@@ -10165,6 +10351,7 @@ typedef volatile struct ALT_NAND_DMA_TGT_ERR_ADDR_HI_s  ALT_NAND_DMA_TGT_ERR_ADD
  *  [31:8] | RW     | 0x0   | ALT_NAND_DMA_FLSH_BURST_LEN_RSVD
  *
  */
+
 /*
  * Field : value
  *
@@ -10181,21 +10368,21 @@ typedef volatile struct ALT_NAND_DMA_TGT_ERR_ADDR_HI_s  ALT_NAND_DMA_TGT_ERR_ADD
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_DMA_FLSH_BURST_LEN_VALUE register field. */
-#define ALT_NAND_DMA_FLSH_BURST_LEN_VALUE_LSB        0
+    #define ALT_NAND_DMA_FLSH_BURST_LEN_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_DMA_FLSH_BURST_LEN_VALUE register field. */
-#define ALT_NAND_DMA_FLSH_BURST_LEN_VALUE_MSB        1
+    #define ALT_NAND_DMA_FLSH_BURST_LEN_VALUE_MSB        1
 /* The width in bits of the ALT_NAND_DMA_FLSH_BURST_LEN_VALUE register field. */
-#define ALT_NAND_DMA_FLSH_BURST_LEN_VALUE_WIDTH      2
+    #define ALT_NAND_DMA_FLSH_BURST_LEN_VALUE_WIDTH      2
 /* The mask used to set the ALT_NAND_DMA_FLSH_BURST_LEN_VALUE register field value. */
-#define ALT_NAND_DMA_FLSH_BURST_LEN_VALUE_SET_MSK    0x00000003
+    #define ALT_NAND_DMA_FLSH_BURST_LEN_VALUE_SET_MSK    0x00000003
 /* The mask used to clear the ALT_NAND_DMA_FLSH_BURST_LEN_VALUE register field value. */
-#define ALT_NAND_DMA_FLSH_BURST_LEN_VALUE_CLR_MSK    0xfffffffc
+    #define ALT_NAND_DMA_FLSH_BURST_LEN_VALUE_CLR_MSK    0xfffffffc
 /* The reset value of the ALT_NAND_DMA_FLSH_BURST_LEN_VALUE register field. */
-#define ALT_NAND_DMA_FLSH_BURST_LEN_VALUE_RESET      0x1
+    #define ALT_NAND_DMA_FLSH_BURST_LEN_VALUE_RESET      0x1
 /* Extracts the ALT_NAND_DMA_FLSH_BURST_LEN_VALUE field value from a register. */
-#define ALT_NAND_DMA_FLSH_BURST_LEN_VALUE_GET(value) (((value) & 0x00000003) >> 0)
+    #define ALT_NAND_DMA_FLSH_BURST_LEN_VALUE_GET( value )    ( ( ( value ) & 0x00000003 ) >> 0 )
 /* Produces a ALT_NAND_DMA_FLSH_BURST_LEN_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_DMA_FLSH_BURST_LEN_VALUE_SET(value) (((value) << 0) & 0x00000003)
+    #define ALT_NAND_DMA_FLSH_BURST_LEN_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x00000003 )
 
 /*
  * Field : continous_burst
@@ -10208,21 +10395,21 @@ typedef volatile struct ALT_NAND_DMA_TGT_ERR_ADDR_HI_s  ALT_NAND_DMA_TGT_ERR_ADD
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_DMA_FLSH_BURST_LEN_CONTINOUS_BURST register field. */
-#define ALT_NAND_DMA_FLSH_BURST_LEN_CONTINOUS_BURST_LSB        4
+    #define ALT_NAND_DMA_FLSH_BURST_LEN_CONTINOUS_BURST_LSB        4
 /* The Most Significant Bit (MSB) position of the ALT_NAND_DMA_FLSH_BURST_LEN_CONTINOUS_BURST register field. */
-#define ALT_NAND_DMA_FLSH_BURST_LEN_CONTINOUS_BURST_MSB        4
+    #define ALT_NAND_DMA_FLSH_BURST_LEN_CONTINOUS_BURST_MSB        4
 /* The width in bits of the ALT_NAND_DMA_FLSH_BURST_LEN_CONTINOUS_BURST register field. */
-#define ALT_NAND_DMA_FLSH_BURST_LEN_CONTINOUS_BURST_WIDTH      1
+    #define ALT_NAND_DMA_FLSH_BURST_LEN_CONTINOUS_BURST_WIDTH      1
 /* The mask used to set the ALT_NAND_DMA_FLSH_BURST_LEN_CONTINOUS_BURST register field value. */
-#define ALT_NAND_DMA_FLSH_BURST_LEN_CONTINOUS_BURST_SET_MSK    0x00000010
+    #define ALT_NAND_DMA_FLSH_BURST_LEN_CONTINOUS_BURST_SET_MSK    0x00000010
 /* The mask used to clear the ALT_NAND_DMA_FLSH_BURST_LEN_CONTINOUS_BURST register field value. */
-#define ALT_NAND_DMA_FLSH_BURST_LEN_CONTINOUS_BURST_CLR_MSK    0xffffffef
+    #define ALT_NAND_DMA_FLSH_BURST_LEN_CONTINOUS_BURST_CLR_MSK    0xffffffef
 /* The reset value of the ALT_NAND_DMA_FLSH_BURST_LEN_CONTINOUS_BURST register field. */
-#define ALT_NAND_DMA_FLSH_BURST_LEN_CONTINOUS_BURST_RESET      0x0
+    #define ALT_NAND_DMA_FLSH_BURST_LEN_CONTINOUS_BURST_RESET      0x0
 /* Extracts the ALT_NAND_DMA_FLSH_BURST_LEN_CONTINOUS_BURST field value from a register. */
-#define ALT_NAND_DMA_FLSH_BURST_LEN_CONTINOUS_BURST_GET(value) (((value) & 0x00000010) >> 4)
+    #define ALT_NAND_DMA_FLSH_BURST_LEN_CONTINOUS_BURST_GET( value )    ( ( ( value ) & 0x00000010 ) >> 4 )
 /* Produces a ALT_NAND_DMA_FLSH_BURST_LEN_CONTINOUS_BURST register field value suitable for setting the register. */
-#define ALT_NAND_DMA_FLSH_BURST_LEN_CONTINOUS_BURST_SET(value) (((value) << 4) & 0x00000010)
+    #define ALT_NAND_DMA_FLSH_BURST_LEN_CONTINOUS_BURST_SET( value )    ( ( ( value ) << 4 ) & 0x00000010 )
 
 /*
  * Field : reserved
@@ -10233,23 +10420,24 @@ typedef volatile struct ALT_NAND_DMA_TGT_ERR_ADDR_HI_s  ALT_NAND_DMA_TGT_ERR_ADD
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_DMA_FLSH_BURST_LEN_RSVD register field. */
-#define ALT_NAND_DMA_FLSH_BURST_LEN_RSVD_LSB        8
+    #define ALT_NAND_DMA_FLSH_BURST_LEN_RSVD_LSB        8
 /* The Most Significant Bit (MSB) position of the ALT_NAND_DMA_FLSH_BURST_LEN_RSVD register field. */
-#define ALT_NAND_DMA_FLSH_BURST_LEN_RSVD_MSB        31
+    #define ALT_NAND_DMA_FLSH_BURST_LEN_RSVD_MSB        31
 /* The width in bits of the ALT_NAND_DMA_FLSH_BURST_LEN_RSVD register field. */
-#define ALT_NAND_DMA_FLSH_BURST_LEN_RSVD_WIDTH      24
+    #define ALT_NAND_DMA_FLSH_BURST_LEN_RSVD_WIDTH      24
 /* The mask used to set the ALT_NAND_DMA_FLSH_BURST_LEN_RSVD register field value. */
-#define ALT_NAND_DMA_FLSH_BURST_LEN_RSVD_SET_MSK    0xffffff00
+    #define ALT_NAND_DMA_FLSH_BURST_LEN_RSVD_SET_MSK    0xffffff00
 /* The mask used to clear the ALT_NAND_DMA_FLSH_BURST_LEN_RSVD register field value. */
-#define ALT_NAND_DMA_FLSH_BURST_LEN_RSVD_CLR_MSK    0x000000ff
+    #define ALT_NAND_DMA_FLSH_BURST_LEN_RSVD_CLR_MSK    0x000000ff
 /* The reset value of the ALT_NAND_DMA_FLSH_BURST_LEN_RSVD register field. */
-#define ALT_NAND_DMA_FLSH_BURST_LEN_RSVD_RESET      0x0
+    #define ALT_NAND_DMA_FLSH_BURST_LEN_RSVD_RESET      0x0
 /* Extracts the ALT_NAND_DMA_FLSH_BURST_LEN_RSVD field value from a register. */
-#define ALT_NAND_DMA_FLSH_BURST_LEN_RSVD_GET(value) (((value) & 0xffffff00) >> 8)
+    #define ALT_NAND_DMA_FLSH_BURST_LEN_RSVD_GET( value )    ( ( ( value ) & 0xffffff00 ) >> 8 )
 /* Produces a ALT_NAND_DMA_FLSH_BURST_LEN_RSVD register field value suitable for setting the register. */
-#define ALT_NAND_DMA_FLSH_BURST_LEN_RSVD_SET(value) (((value) << 8) & 0xffffff00)
+    #define ALT_NAND_DMA_FLSH_BURST_LEN_RSVD_SET( value )    ( ( ( value ) << 8 ) & 0xffffff00 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -10260,21 +10448,21 @@ typedef volatile struct ALT_NAND_DMA_TGT_ERR_ADDR_HI_s  ALT_NAND_DMA_TGT_ERR_ADD
  *
  * The struct declaration for register ALT_NAND_DMA_FLSH_BURST_LEN.
  */
-struct ALT_NAND_DMA_FLSH_BURST_LEN_s
-{
-    uint32_t  value           :  2;  /* ALT_NAND_DMA_FLSH_BURST_LEN_VALUE */
-    uint32_t                  :  2;  /* *UNDEFINED* */
-    uint32_t  continous_burst :  1;  /* ALT_NAND_DMA_FLSH_BURST_LEN_CONTINOUS_BURST */
-    uint32_t                  :  3;  /* *UNDEFINED* */
-    uint32_t  reserved        : 24;  /* ALT_NAND_DMA_FLSH_BURST_LEN_RSVD */
-};
+        struct ALT_NAND_DMA_FLSH_BURST_LEN_s
+        {
+            uint32_t value           :  2;  /* ALT_NAND_DMA_FLSH_BURST_LEN_VALUE */
+            uint32_t                  :  2; /* *UNDEFINED* */
+            uint32_t continous_burst :  1;  /* ALT_NAND_DMA_FLSH_BURST_LEN_CONTINOUS_BURST */
+            uint32_t                  :  3; /* *UNDEFINED* */
+            uint32_t reserved        : 24;  /* ALT_NAND_DMA_FLSH_BURST_LEN_RSVD */
+        };
 
 /* The typedef declaration for register ALT_NAND_DMA_FLSH_BURST_LEN. */
-typedef volatile struct ALT_NAND_DMA_FLSH_BURST_LEN_s  ALT_NAND_DMA_FLSH_BURST_LEN_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_DMA_FLSH_BURST_LEN_s ALT_NAND_DMA_FLSH_BURST_LEN_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_DMA_FLSH_BURST_LEN register from the beginning of the component. */
-#define ALT_NAND_DMA_FLSH_BURST_LEN_OFST        0x70
+    #define ALT_NAND_DMA_FLSH_BURST_LEN_OFST    0x70
 
 /*
  * Register : chip_interleave_enable_and_allow_int_reads
@@ -10289,6 +10477,7 @@ typedef volatile struct ALT_NAND_DMA_FLSH_BURST_LEN_s  ALT_NAND_DMA_FLSH_BURST_L
  *  [31:5] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : chip_interleave_enable
  *
@@ -10300,21 +10489,21 @@ typedef volatile struct ALT_NAND_DMA_FLSH_BURST_LEN_s  ALT_NAND_DMA_FLSH_BURST_L
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_DMA_INTRLV_CHIP_INTRLV_EN register field. */
-#define ALT_NAND_DMA_INTRLV_CHIP_INTRLV_EN_LSB        0
+    #define ALT_NAND_DMA_INTRLV_CHIP_INTRLV_EN_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_DMA_INTRLV_CHIP_INTRLV_EN register field. */
-#define ALT_NAND_DMA_INTRLV_CHIP_INTRLV_EN_MSB        0
+    #define ALT_NAND_DMA_INTRLV_CHIP_INTRLV_EN_MSB        0
 /* The width in bits of the ALT_NAND_DMA_INTRLV_CHIP_INTRLV_EN register field. */
-#define ALT_NAND_DMA_INTRLV_CHIP_INTRLV_EN_WIDTH      1
+    #define ALT_NAND_DMA_INTRLV_CHIP_INTRLV_EN_WIDTH      1
 /* The mask used to set the ALT_NAND_DMA_INTRLV_CHIP_INTRLV_EN register field value. */
-#define ALT_NAND_DMA_INTRLV_CHIP_INTRLV_EN_SET_MSK    0x00000001
+    #define ALT_NAND_DMA_INTRLV_CHIP_INTRLV_EN_SET_MSK    0x00000001
 /* The mask used to clear the ALT_NAND_DMA_INTRLV_CHIP_INTRLV_EN register field value. */
-#define ALT_NAND_DMA_INTRLV_CHIP_INTRLV_EN_CLR_MSK    0xfffffffe
+    #define ALT_NAND_DMA_INTRLV_CHIP_INTRLV_EN_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_NAND_DMA_INTRLV_CHIP_INTRLV_EN register field. */
-#define ALT_NAND_DMA_INTRLV_CHIP_INTRLV_EN_RESET      0x0
+    #define ALT_NAND_DMA_INTRLV_CHIP_INTRLV_EN_RESET      0x0
 /* Extracts the ALT_NAND_DMA_INTRLV_CHIP_INTRLV_EN field value from a register. */
-#define ALT_NAND_DMA_INTRLV_CHIP_INTRLV_EN_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_NAND_DMA_INTRLV_CHIP_INTRLV_EN_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_NAND_DMA_INTRLV_CHIP_INTRLV_EN register field value suitable for setting the register. */
-#define ALT_NAND_DMA_INTRLV_CHIP_INTRLV_EN_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_NAND_DMA_INTRLV_CHIP_INTRLV_EN_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
 /*
  * Field : allow_int_reads_within_luns
@@ -10331,23 +10520,24 @@ typedef volatile struct ALT_NAND_DMA_FLSH_BURST_LEN_s  ALT_NAND_DMA_FLSH_BURST_L
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_DMA_INTRLV_ALLOW_INT_RDS_WITHIN_LUNS register field. */
-#define ALT_NAND_DMA_INTRLV_ALLOW_INT_RDS_WITHIN_LUNS_LSB        4
+    #define ALT_NAND_DMA_INTRLV_ALLOW_INT_RDS_WITHIN_LUNS_LSB        4
 /* The Most Significant Bit (MSB) position of the ALT_NAND_DMA_INTRLV_ALLOW_INT_RDS_WITHIN_LUNS register field. */
-#define ALT_NAND_DMA_INTRLV_ALLOW_INT_RDS_WITHIN_LUNS_MSB        4
+    #define ALT_NAND_DMA_INTRLV_ALLOW_INT_RDS_WITHIN_LUNS_MSB        4
 /* The width in bits of the ALT_NAND_DMA_INTRLV_ALLOW_INT_RDS_WITHIN_LUNS register field. */
-#define ALT_NAND_DMA_INTRLV_ALLOW_INT_RDS_WITHIN_LUNS_WIDTH      1
+    #define ALT_NAND_DMA_INTRLV_ALLOW_INT_RDS_WITHIN_LUNS_WIDTH      1
 /* The mask used to set the ALT_NAND_DMA_INTRLV_ALLOW_INT_RDS_WITHIN_LUNS register field value. */
-#define ALT_NAND_DMA_INTRLV_ALLOW_INT_RDS_WITHIN_LUNS_SET_MSK    0x00000010
+    #define ALT_NAND_DMA_INTRLV_ALLOW_INT_RDS_WITHIN_LUNS_SET_MSK    0x00000010
 /* The mask used to clear the ALT_NAND_DMA_INTRLV_ALLOW_INT_RDS_WITHIN_LUNS register field value. */
-#define ALT_NAND_DMA_INTRLV_ALLOW_INT_RDS_WITHIN_LUNS_CLR_MSK    0xffffffef
+    #define ALT_NAND_DMA_INTRLV_ALLOW_INT_RDS_WITHIN_LUNS_CLR_MSK    0xffffffef
 /* The reset value of the ALT_NAND_DMA_INTRLV_ALLOW_INT_RDS_WITHIN_LUNS register field. */
-#define ALT_NAND_DMA_INTRLV_ALLOW_INT_RDS_WITHIN_LUNS_RESET      0x1
+    #define ALT_NAND_DMA_INTRLV_ALLOW_INT_RDS_WITHIN_LUNS_RESET      0x1
 /* Extracts the ALT_NAND_DMA_INTRLV_ALLOW_INT_RDS_WITHIN_LUNS field value from a register. */
-#define ALT_NAND_DMA_INTRLV_ALLOW_INT_RDS_WITHIN_LUNS_GET(value) (((value) & 0x00000010) >> 4)
+    #define ALT_NAND_DMA_INTRLV_ALLOW_INT_RDS_WITHIN_LUNS_GET( value )    ( ( ( value ) & 0x00000010 ) >> 4 )
 /* Produces a ALT_NAND_DMA_INTRLV_ALLOW_INT_RDS_WITHIN_LUNS register field value suitable for setting the register. */
-#define ALT_NAND_DMA_INTRLV_ALLOW_INT_RDS_WITHIN_LUNS_SET(value) (((value) << 4) & 0x00000010)
+    #define ALT_NAND_DMA_INTRLV_ALLOW_INT_RDS_WITHIN_LUNS_SET( value )    ( ( ( value ) << 4 ) & 0x00000010 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -10358,20 +10548,20 @@ typedef volatile struct ALT_NAND_DMA_FLSH_BURST_LEN_s  ALT_NAND_DMA_FLSH_BURST_L
  *
  * The struct declaration for register ALT_NAND_DMA_INTRLV.
  */
-struct ALT_NAND_DMA_INTRLV_s
-{
-    uint32_t  chip_interleave_enable      :  1;  /* ALT_NAND_DMA_INTRLV_CHIP_INTRLV_EN */
-    uint32_t                              :  3;  /* *UNDEFINED* */
-    uint32_t  allow_int_reads_within_luns :  1;  /* ALT_NAND_DMA_INTRLV_ALLOW_INT_RDS_WITHIN_LUNS */
-    uint32_t                              : 27;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_DMA_INTRLV_s
+        {
+            uint32_t chip_interleave_enable      :  1;  /* ALT_NAND_DMA_INTRLV_CHIP_INTRLV_EN */
+            uint32_t                              :  3; /* *UNDEFINED* */
+            uint32_t allow_int_reads_within_luns :  1;  /* ALT_NAND_DMA_INTRLV_ALLOW_INT_RDS_WITHIN_LUNS */
+            uint32_t                              : 27; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_DMA_INTRLV. */
-typedef volatile struct ALT_NAND_DMA_INTRLV_s  ALT_NAND_DMA_INTRLV_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_DMA_INTRLV_s ALT_NAND_DMA_INTRLV_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_DMA_INTRLV register from the beginning of the component. */
-#define ALT_NAND_DMA_INTRLV_OFST        0x80
+    #define ALT_NAND_DMA_INTRLV_OFST    0x80
 
 /*
  * Register : no_of_blocks_per_lun
@@ -10384,6 +10574,7 @@ typedef volatile struct ALT_NAND_DMA_INTRLV_s  ALT_NAND_DMA_INTRLV_t;
  *  [31:4] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -10399,23 +10590,24 @@ typedef volatile struct ALT_NAND_DMA_INTRLV_s  ALT_NAND_DMA_INTRLV_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_DMA_NO_OF_BLOCKS_PER_LUN_VALUE register field. */
-#define ALT_NAND_DMA_NO_OF_BLOCKS_PER_LUN_VALUE_LSB        0
+    #define ALT_NAND_DMA_NO_OF_BLOCKS_PER_LUN_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_DMA_NO_OF_BLOCKS_PER_LUN_VALUE register field. */
-#define ALT_NAND_DMA_NO_OF_BLOCKS_PER_LUN_VALUE_MSB        3
+    #define ALT_NAND_DMA_NO_OF_BLOCKS_PER_LUN_VALUE_MSB        3
 /* The width in bits of the ALT_NAND_DMA_NO_OF_BLOCKS_PER_LUN_VALUE register field. */
-#define ALT_NAND_DMA_NO_OF_BLOCKS_PER_LUN_VALUE_WIDTH      4
+    #define ALT_NAND_DMA_NO_OF_BLOCKS_PER_LUN_VALUE_WIDTH      4
 /* The mask used to set the ALT_NAND_DMA_NO_OF_BLOCKS_PER_LUN_VALUE register field value. */
-#define ALT_NAND_DMA_NO_OF_BLOCKS_PER_LUN_VALUE_SET_MSK    0x0000000f
+    #define ALT_NAND_DMA_NO_OF_BLOCKS_PER_LUN_VALUE_SET_MSK    0x0000000f
 /* The mask used to clear the ALT_NAND_DMA_NO_OF_BLOCKS_PER_LUN_VALUE register field value. */
-#define ALT_NAND_DMA_NO_OF_BLOCKS_PER_LUN_VALUE_CLR_MSK    0xfffffff0
+    #define ALT_NAND_DMA_NO_OF_BLOCKS_PER_LUN_VALUE_CLR_MSK    0xfffffff0
 /* The reset value of the ALT_NAND_DMA_NO_OF_BLOCKS_PER_LUN_VALUE register field. */
-#define ALT_NAND_DMA_NO_OF_BLOCKS_PER_LUN_VALUE_RESET      0xf
+    #define ALT_NAND_DMA_NO_OF_BLOCKS_PER_LUN_VALUE_RESET      0xf
 /* Extracts the ALT_NAND_DMA_NO_OF_BLOCKS_PER_LUN_VALUE field value from a register. */
-#define ALT_NAND_DMA_NO_OF_BLOCKS_PER_LUN_VALUE_GET(value) (((value) & 0x0000000f) >> 0)
+    #define ALT_NAND_DMA_NO_OF_BLOCKS_PER_LUN_VALUE_GET( value )    ( ( ( value ) & 0x0000000f ) >> 0 )
 /* Produces a ALT_NAND_DMA_NO_OF_BLOCKS_PER_LUN_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_DMA_NO_OF_BLOCKS_PER_LUN_VALUE_SET(value) (((value) << 0) & 0x0000000f)
+    #define ALT_NAND_DMA_NO_OF_BLOCKS_PER_LUN_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x0000000f )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -10426,18 +10618,18 @@ typedef volatile struct ALT_NAND_DMA_INTRLV_s  ALT_NAND_DMA_INTRLV_t;
  *
  * The struct declaration for register ALT_NAND_DMA_NO_OF_BLOCKS_PER_LUN.
  */
-struct ALT_NAND_DMA_NO_OF_BLOCKS_PER_LUN_s
-{
-    uint32_t  value :  4;  /* ALT_NAND_DMA_NO_OF_BLOCKS_PER_LUN_VALUE */
-    uint32_t        : 28;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_DMA_NO_OF_BLOCKS_PER_LUN_s
+        {
+            uint32_t value :  4;  /* ALT_NAND_DMA_NO_OF_BLOCKS_PER_LUN_VALUE */
+            uint32_t        : 28; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_DMA_NO_OF_BLOCKS_PER_LUN. */
-typedef volatile struct ALT_NAND_DMA_NO_OF_BLOCKS_PER_LUN_s  ALT_NAND_DMA_NO_OF_BLOCKS_PER_LUN_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_DMA_NO_OF_BLOCKS_PER_LUN_s ALT_NAND_DMA_NO_OF_BLOCKS_PER_LUN_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_DMA_NO_OF_BLOCKS_PER_LUN register from the beginning of the component. */
-#define ALT_NAND_DMA_NO_OF_BLOCKS_PER_LUN_OFST        0x90
+    #define ALT_NAND_DMA_NO_OF_BLOCKS_PER_LUN_OFST    0x90
 
 /*
  * Register : lun_status_cmd
@@ -10452,6 +10644,7 @@ typedef volatile struct ALT_NAND_DMA_NO_OF_BLOCKS_PER_LUN_s  ALT_NAND_DMA_NO_OF_
  *  [31:16] | ???    | 0x0    | *UNDEFINED*
  *
  */
+
 /*
  * Field : value
  *
@@ -10462,23 +10655,24 @@ typedef volatile struct ALT_NAND_DMA_NO_OF_BLOCKS_PER_LUN_s  ALT_NAND_DMA_NO_OF_
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_NAND_DMA_LUN_STAT_CMD_VALUE register field. */
-#define ALT_NAND_DMA_LUN_STAT_CMD_VALUE_LSB        0
+    #define ALT_NAND_DMA_LUN_STAT_CMD_VALUE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_NAND_DMA_LUN_STAT_CMD_VALUE register field. */
-#define ALT_NAND_DMA_LUN_STAT_CMD_VALUE_MSB        15
+    #define ALT_NAND_DMA_LUN_STAT_CMD_VALUE_MSB        15
 /* The width in bits of the ALT_NAND_DMA_LUN_STAT_CMD_VALUE register field. */
-#define ALT_NAND_DMA_LUN_STAT_CMD_VALUE_WIDTH      16
+    #define ALT_NAND_DMA_LUN_STAT_CMD_VALUE_WIDTH      16
 /* The mask used to set the ALT_NAND_DMA_LUN_STAT_CMD_VALUE register field value. */
-#define ALT_NAND_DMA_LUN_STAT_CMD_VALUE_SET_MSK    0x0000ffff
+    #define ALT_NAND_DMA_LUN_STAT_CMD_VALUE_SET_MSK    0x0000ffff
 /* The mask used to clear the ALT_NAND_DMA_LUN_STAT_CMD_VALUE register field value. */
-#define ALT_NAND_DMA_LUN_STAT_CMD_VALUE_CLR_MSK    0xffff0000
+    #define ALT_NAND_DMA_LUN_STAT_CMD_VALUE_CLR_MSK    0xffff0000
 /* The reset value of the ALT_NAND_DMA_LUN_STAT_CMD_VALUE register field. */
-#define ALT_NAND_DMA_LUN_STAT_CMD_VALUE_RESET      0x7878
+    #define ALT_NAND_DMA_LUN_STAT_CMD_VALUE_RESET      0x7878
 /* Extracts the ALT_NAND_DMA_LUN_STAT_CMD_VALUE field value from a register. */
-#define ALT_NAND_DMA_LUN_STAT_CMD_VALUE_GET(value) (((value) & 0x0000ffff) >> 0)
+    #define ALT_NAND_DMA_LUN_STAT_CMD_VALUE_GET( value )    ( ( ( value ) & 0x0000ffff ) >> 0 )
 /* Produces a ALT_NAND_DMA_LUN_STAT_CMD_VALUE register field value suitable for setting the register. */
-#define ALT_NAND_DMA_LUN_STAT_CMD_VALUE_SET(value) (((value) << 0) & 0x0000ffff)
+    #define ALT_NAND_DMA_LUN_STAT_CMD_VALUE_SET( value )    ( ( ( value ) << 0 ) & 0x0000ffff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -10489,20 +10683,21 @@ typedef volatile struct ALT_NAND_DMA_NO_OF_BLOCKS_PER_LUN_s  ALT_NAND_DMA_NO_OF_
  *
  * The struct declaration for register ALT_NAND_DMA_LUN_STAT_CMD.
  */
-struct ALT_NAND_DMA_LUN_STAT_CMD_s
-{
-    uint32_t  value : 16;  /* ALT_NAND_DMA_LUN_STAT_CMD_VALUE */
-    uint32_t        : 16;  /* *UNDEFINED* */
-};
+        struct ALT_NAND_DMA_LUN_STAT_CMD_s
+        {
+            uint32_t value : 16;  /* ALT_NAND_DMA_LUN_STAT_CMD_VALUE */
+            uint32_t        : 16; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_NAND_DMA_LUN_STAT_CMD. */
-typedef volatile struct ALT_NAND_DMA_LUN_STAT_CMD_s  ALT_NAND_DMA_LUN_STAT_CMD_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_DMA_LUN_STAT_CMD_s ALT_NAND_DMA_LUN_STAT_CMD_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_NAND_DMA_LUN_STAT_CMD register from the beginning of the component. */
-#define ALT_NAND_DMA_LUN_STAT_CMD_OFST        0xa0
+    #define ALT_NAND_DMA_LUN_STAT_CMD_OFST    0xa0
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -10513,57 +10708,58 @@ typedef volatile struct ALT_NAND_DMA_LUN_STAT_CMD_s  ALT_NAND_DMA_LUN_STAT_CMD_t
  *
  * The struct declaration for register group ALT_NAND_DMA.
  */
-struct ALT_NAND_DMA_s
-{
-    volatile ALT_NAND_DMA_DMA_EN_t                dma_enable;                                  /* ALT_NAND_DMA_DMA_EN */
-    volatile uint32_t                             _pad_0x4_0x1f[7];                            /* *UNDEFINED* */
-    volatile ALT_NAND_DMA_DMA_INTR_t              dma_intr;                                    /* ALT_NAND_DMA_DMA_INTR */
-    volatile uint32_t                             _pad_0x24_0x2f[3];                           /* *UNDEFINED* */
-    volatile ALT_NAND_DMA_DMA_INTR_EN_t           dma_intr_en;                                 /* ALT_NAND_DMA_DMA_INTR_EN */
-    volatile uint32_t                             _pad_0x34_0x3f[3];                           /* *UNDEFINED* */
-    volatile ALT_NAND_DMA_TGT_ERR_ADDR_LO_t       target_err_addr_lo;                          /* ALT_NAND_DMA_TGT_ERR_ADDR_LO */
-    volatile uint32_t                             _pad_0x44_0x4f[3];                           /* *UNDEFINED* */
-    volatile ALT_NAND_DMA_TGT_ERR_ADDR_HI_t       target_err_addr_hi;                          /* ALT_NAND_DMA_TGT_ERR_ADDR_HI */
-    volatile uint32_t                             _pad_0x54_0x6f[7];                           /* *UNDEFINED* */
-    volatile ALT_NAND_DMA_FLSH_BURST_LEN_t        flash_burst_length;                          /* ALT_NAND_DMA_FLSH_BURST_LEN */
-    volatile uint32_t                             _pad_0x74_0x7f[3];                           /* *UNDEFINED* */
-    volatile ALT_NAND_DMA_INTRLV_t                chip_interleave_enable_and_allow_int_reads;  /* ALT_NAND_DMA_INTRLV */
-    volatile uint32_t                             _pad_0x84_0x8f[3];                           /* *UNDEFINED* */
-    volatile ALT_NAND_DMA_NO_OF_BLOCKS_PER_LUN_t  no_of_blocks_per_lun;                        /* ALT_NAND_DMA_NO_OF_BLOCKS_PER_LUN */
-    volatile uint32_t                             _pad_0x94_0x9f[3];                           /* *UNDEFINED* */
-    volatile ALT_NAND_DMA_LUN_STAT_CMD_t          lun_status_cmd;                              /* ALT_NAND_DMA_LUN_STAT_CMD */
-};
+        struct ALT_NAND_DMA_s
+        {
+            volatile ALT_NAND_DMA_DMA_EN_t dma_enable;                                 /* ALT_NAND_DMA_DMA_EN */
+            volatile uint32_t _pad_0x4_0x1f[ 7 ];                                      /* *UNDEFINED* */
+            volatile ALT_NAND_DMA_DMA_INTR_t dma_intr;                                 /* ALT_NAND_DMA_DMA_INTR */
+            volatile uint32_t _pad_0x24_0x2f[ 3 ];                                     /* *UNDEFINED* */
+            volatile ALT_NAND_DMA_DMA_INTR_EN_t dma_intr_en;                           /* ALT_NAND_DMA_DMA_INTR_EN */
+            volatile uint32_t _pad_0x34_0x3f[ 3 ];                                     /* *UNDEFINED* */
+            volatile ALT_NAND_DMA_TGT_ERR_ADDR_LO_t target_err_addr_lo;                /* ALT_NAND_DMA_TGT_ERR_ADDR_LO */
+            volatile uint32_t _pad_0x44_0x4f[ 3 ];                                     /* *UNDEFINED* */
+            volatile ALT_NAND_DMA_TGT_ERR_ADDR_HI_t target_err_addr_hi;                /* ALT_NAND_DMA_TGT_ERR_ADDR_HI */
+            volatile uint32_t _pad_0x54_0x6f[ 7 ];                                     /* *UNDEFINED* */
+            volatile ALT_NAND_DMA_FLSH_BURST_LEN_t flash_burst_length;                 /* ALT_NAND_DMA_FLSH_BURST_LEN */
+            volatile uint32_t _pad_0x74_0x7f[ 3 ];                                     /* *UNDEFINED* */
+            volatile ALT_NAND_DMA_INTRLV_t chip_interleave_enable_and_allow_int_reads; /* ALT_NAND_DMA_INTRLV */
+            volatile uint32_t _pad_0x84_0x8f[ 3 ];                                     /* *UNDEFINED* */
+            volatile ALT_NAND_DMA_NO_OF_BLOCKS_PER_LUN_t no_of_blocks_per_lun;         /* ALT_NAND_DMA_NO_OF_BLOCKS_PER_LUN */
+            volatile uint32_t _pad_0x94_0x9f[ 3 ];                                     /* *UNDEFINED* */
+            volatile ALT_NAND_DMA_LUN_STAT_CMD_t lun_status_cmd;                       /* ALT_NAND_DMA_LUN_STAT_CMD */
+        };
 
 /* The typedef declaration for register group ALT_NAND_DMA. */
-typedef volatile struct ALT_NAND_DMA_s  ALT_NAND_DMA_t;
+        typedef volatile struct ALT_NAND_DMA_s ALT_NAND_DMA_t;
 /* The struct declaration for the raw register contents of register group ALT_NAND_DMA. */
-struct ALT_NAND_DMA_raw_s
-{
-    volatile uint32_t  dma_enable;                                  /* ALT_NAND_DMA_DMA_EN */
-    volatile uint32_t  _pad_0x4_0x1f[7];                            /* *UNDEFINED* */
-    volatile uint32_t  dma_intr;                                    /* ALT_NAND_DMA_DMA_INTR */
-    volatile uint32_t  _pad_0x24_0x2f[3];                           /* *UNDEFINED* */
-    volatile uint32_t  dma_intr_en;                                 /* ALT_NAND_DMA_DMA_INTR_EN */
-    volatile uint32_t  _pad_0x34_0x3f[3];                           /* *UNDEFINED* */
-    volatile uint32_t  target_err_addr_lo;                          /* ALT_NAND_DMA_TGT_ERR_ADDR_LO */
-    volatile uint32_t  _pad_0x44_0x4f[3];                           /* *UNDEFINED* */
-    volatile uint32_t  target_err_addr_hi;                          /* ALT_NAND_DMA_TGT_ERR_ADDR_HI */
-    volatile uint32_t  _pad_0x54_0x6f[7];                           /* *UNDEFINED* */
-    volatile uint32_t  flash_burst_length;                          /* ALT_NAND_DMA_FLSH_BURST_LEN */
-    volatile uint32_t  _pad_0x74_0x7f[3];                           /* *UNDEFINED* */
-    volatile uint32_t  chip_interleave_enable_and_allow_int_reads;  /* ALT_NAND_DMA_INTRLV */
-    volatile uint32_t  _pad_0x84_0x8f[3];                           /* *UNDEFINED* */
-    volatile uint32_t  no_of_blocks_per_lun;                        /* ALT_NAND_DMA_NO_OF_BLOCKS_PER_LUN */
-    volatile uint32_t  _pad_0x94_0x9f[3];                           /* *UNDEFINED* */
-    volatile uint32_t  lun_status_cmd;                              /* ALT_NAND_DMA_LUN_STAT_CMD */
-};
+        struct ALT_NAND_DMA_raw_s
+        {
+            volatile uint32_t dma_enable;                                 /* ALT_NAND_DMA_DMA_EN */
+            volatile uint32_t _pad_0x4_0x1f[ 7 ];                         /* *UNDEFINED* */
+            volatile uint32_t dma_intr;                                   /* ALT_NAND_DMA_DMA_INTR */
+            volatile uint32_t _pad_0x24_0x2f[ 3 ];                        /* *UNDEFINED* */
+            volatile uint32_t dma_intr_en;                                /* ALT_NAND_DMA_DMA_INTR_EN */
+            volatile uint32_t _pad_0x34_0x3f[ 3 ];                        /* *UNDEFINED* */
+            volatile uint32_t target_err_addr_lo;                         /* ALT_NAND_DMA_TGT_ERR_ADDR_LO */
+            volatile uint32_t _pad_0x44_0x4f[ 3 ];                        /* *UNDEFINED* */
+            volatile uint32_t target_err_addr_hi;                         /* ALT_NAND_DMA_TGT_ERR_ADDR_HI */
+            volatile uint32_t _pad_0x54_0x6f[ 7 ];                        /* *UNDEFINED* */
+            volatile uint32_t flash_burst_length;                         /* ALT_NAND_DMA_FLSH_BURST_LEN */
+            volatile uint32_t _pad_0x74_0x7f[ 3 ];                        /* *UNDEFINED* */
+            volatile uint32_t chip_interleave_enable_and_allow_int_reads; /* ALT_NAND_DMA_INTRLV */
+            volatile uint32_t _pad_0x84_0x8f[ 3 ];                        /* *UNDEFINED* */
+            volatile uint32_t no_of_blocks_per_lun;                       /* ALT_NAND_DMA_NO_OF_BLOCKS_PER_LUN */
+            volatile uint32_t _pad_0x94_0x9f[ 3 ];                        /* *UNDEFINED* */
+            volatile uint32_t lun_status_cmd;                             /* ALT_NAND_DMA_LUN_STAT_CMD */
+        };
 
 /* The typedef declaration for the raw register contents of register group ALT_NAND_DMA. */
-typedef volatile struct ALT_NAND_DMA_raw_s  ALT_NAND_DMA_raw_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_DMA_raw_s ALT_NAND_DMA_raw_t;
+    #endif /* __ASSEMBLY__ */
 
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -10574,44 +10770,43 @@ typedef volatile struct ALT_NAND_DMA_raw_s  ALT_NAND_DMA_raw_t;
  *
  * The struct declaration for register group ALT_NAND.
  */
-struct ALT_NAND_s
-{
-    volatile ALT_NAND_CFG_t    config;                /* ALT_NAND_CFG */
-    volatile uint32_t          _pad_0x2b4_0x2ff[19];  /* *UNDEFINED* */
-    volatile ALT_NAND_PARAM_t  param;                 /* ALT_NAND_PARAM */
-    volatile uint32_t          _pad_0x3f4_0x3ff[3];   /* *UNDEFINED* */
-    volatile ALT_NAND_STAT_t   status;                /* ALT_NAND_STAT */
-    volatile uint32_t          _pad_0x544_0x64f[67];  /* *UNDEFINED* */
-    volatile ALT_NAND_ECC_t    ecc;                   /* ALT_NAND_ECC */
-    volatile uint32_t          _pad_0x664_0x6ff[39];  /* *UNDEFINED* */
-    volatile ALT_NAND_DMA_t    dma;                   /* ALT_NAND_DMA */
-    volatile uint32_t          _pad_0x7a4_0x800[23];  /* *UNDEFINED* */
-};
+        struct ALT_NAND_s
+        {
+            volatile ALT_NAND_CFG_t config;           /* ALT_NAND_CFG */
+            volatile uint32_t _pad_0x2b4_0x2ff[ 19 ]; /* *UNDEFINED* */
+            volatile ALT_NAND_PARAM_t param;          /* ALT_NAND_PARAM */
+            volatile uint32_t _pad_0x3f4_0x3ff[ 3 ];  /* *UNDEFINED* */
+            volatile ALT_NAND_STAT_t status;          /* ALT_NAND_STAT */
+            volatile uint32_t _pad_0x544_0x64f[ 67 ]; /* *UNDEFINED* */
+            volatile ALT_NAND_ECC_t ecc;              /* ALT_NAND_ECC */
+            volatile uint32_t _pad_0x664_0x6ff[ 39 ]; /* *UNDEFINED* */
+            volatile ALT_NAND_DMA_t dma;              /* ALT_NAND_DMA */
+            volatile uint32_t _pad_0x7a4_0x800[ 23 ]; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register group ALT_NAND. */
-typedef volatile struct ALT_NAND_s  ALT_NAND_t;
+        typedef volatile struct ALT_NAND_s ALT_NAND_t;
 /* The struct declaration for the raw register contents of register group ALT_NAND. */
-struct ALT_NAND_raw_s
-{
-    volatile ALT_NAND_CFG_raw_t    config;                /* ALT_NAND_CFG */
-    volatile uint32_t              _pad_0x2b4_0x2ff[19];  /* *UNDEFINED* */
-    volatile ALT_NAND_PARAM_raw_t  param;                 /* ALT_NAND_PARAM */
-    volatile uint32_t              _pad_0x3f4_0x3ff[3];   /* *UNDEFINED* */
-    volatile ALT_NAND_STAT_raw_t   status;                /* ALT_NAND_STAT */
-    volatile uint32_t              _pad_0x544_0x64f[67];  /* *UNDEFINED* */
-    volatile ALT_NAND_ECC_raw_t    ecc;                   /* ALT_NAND_ECC */
-    volatile uint32_t              _pad_0x664_0x6ff[39];  /* *UNDEFINED* */
-    volatile ALT_NAND_DMA_raw_t    dma;                   /* ALT_NAND_DMA */
-    volatile uint32_t              _pad_0x7a4_0x800[23];  /* *UNDEFINED* */
-};
+        struct ALT_NAND_raw_s
+        {
+            volatile ALT_NAND_CFG_raw_t config;       /* ALT_NAND_CFG */
+            volatile uint32_t _pad_0x2b4_0x2ff[ 19 ]; /* *UNDEFINED* */
+            volatile ALT_NAND_PARAM_raw_t param;      /* ALT_NAND_PARAM */
+            volatile uint32_t _pad_0x3f4_0x3ff[ 3 ];  /* *UNDEFINED* */
+            volatile ALT_NAND_STAT_raw_t status;      /* ALT_NAND_STAT */
+            volatile uint32_t _pad_0x544_0x64f[ 67 ]; /* *UNDEFINED* */
+            volatile ALT_NAND_ECC_raw_t ecc;          /* ALT_NAND_ECC */
+            volatile uint32_t _pad_0x664_0x6ff[ 39 ]; /* *UNDEFINED* */
+            volatile ALT_NAND_DMA_raw_t dma;          /* ALT_NAND_DMA */
+            volatile uint32_t _pad_0x7a4_0x800[ 23 ]; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for the raw register contents of register group ALT_NAND. */
-typedef volatile struct ALT_NAND_raw_s  ALT_NAND_raw_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_NAND_raw_s ALT_NAND_raw_t;
+    #endif /* __ASSEMBLY__ */
 
 
-#ifdef __cplusplus
+    #ifdef __cplusplus
 }
-#endif  /* __cplusplus */
-#endif  /* __ALTERA_ALT_NAND_H__ */
-
+    #endif /* __cplusplus */
+#endif /* __ALTERA_ALT_NAND_H__ */

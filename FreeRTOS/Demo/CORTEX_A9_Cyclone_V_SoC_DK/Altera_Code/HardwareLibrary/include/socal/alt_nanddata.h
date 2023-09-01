@@ -31,12 +31,12 @@
 /* Altera - ALT_NANDDATA */
 
 #ifndef __ALTERA_ALT_NANDDATA_H__
-#define __ALTERA_ALT_NANDDATA_H__
+    #define __ALTERA_ALT_NANDDATA_H__
 
-#ifdef __cplusplus
-extern "C"
-{
-#endif  /* __cplusplus */
+    #ifdef __cplusplus
+        extern "C"
+        {
+    #endif /* __cplusplus */
 
 /*
  * Component : NAND Controller Module Data (AXI Slave) - ALT_NANDDATA
@@ -45,8 +45,7 @@ extern "C"
  *
  */
 
-#ifdef __cplusplus
+    #ifdef __cplusplus
 }
-#endif  /* __cplusplus */
-#endif  /* __ALTERA_ALT_NANDDATA_H__ */
-
+    #endif /* __cplusplus */
+#endif /* __ALTERA_ALT_NANDDATA_H__ */

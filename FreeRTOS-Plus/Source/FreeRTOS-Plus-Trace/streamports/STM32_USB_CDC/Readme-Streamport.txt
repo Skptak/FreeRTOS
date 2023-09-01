@@ -90,4 +90,4 @@ remaining capacity in the trace buffer (if this goes down to zero, data is lost)
 
 #define USB_PERF_DIAGNOSTICS 1
 
-If you need assistence, feel free to contact support@percepio.com.
+If you need assistance, feel free to contact support@percepio.com.

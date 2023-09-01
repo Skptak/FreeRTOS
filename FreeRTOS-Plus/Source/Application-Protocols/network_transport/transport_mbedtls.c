@@ -210,12 +210,12 @@ static TlsTransportStatus_t tlsHandshake( NetworkContext_t * pNetworkContext,
  * @brief Initialize mbedTLS.
  *
  * @param[out] entropyContext mbed TLS entropy context for generation of random numbers.
- * @param[out] ctrDrgbContext mbed TLS CTR DRBG context for generation of random numbers.
+ * @param[out] ctrDrbgContext mbed TLS CTR DRBG context for generation of random numbers.
  *
  * @return #TLS_TRANSPORT_SUCCESS, or #TLS_TRANSPORT_INTERNAL_ERROR.
  */
 static TlsTransportStatus_t initMbedtls( mbedtls_entropy_context * pEntropyContext,
-                                         mbedtls_ctr_drbg_context * pCtrDrgbContext );
+                                         mbedtls_ctr_drbg_context * pCtrDrbgContext );
 
 /*-----------------------------------------------------------*/
 
@@ -240,7 +240,7 @@ static void sslContextFree( SSLContext_t * pSslContext )
     mbedtls_x509_crt_free( &( pSslContext->clientCert ) );
     mbedtls_pk_free( &( pSslContext->privKey ) );
     mbedtls_entropy_free( &( pSslContext->entropyContext ) );
-    mbedtls_ctr_drbg_free( &( pSslContext->ctrDrgbContext ) );
+    mbedtls_ctr_drbg_free( &( pSslContext->ctrDrbgContext ) );
     mbedtls_ssl_config_free( &( pSslContext->config ) );
 }
 /*-----------------------------------------------------------*/
@@ -321,7 +321,7 @@ static int32_t setPrivateKey( SSLContext_t * pSslContext,
                                              privateKeySize,
                                              NULL, 0,
                                              mbedtls_ctr_drbg_random,
-                                             &( pSslContext->ctrDrgbContext ) );
+                                             &( pSslContext->ctrDrbgContext ) );
     #endif /* if MBEDTLS_VERSION_NUMBER < 0x03000000 */
 
     if( mbedtlsError != 0 )
@@ -351,7 +351,7 @@ static int32_t setCredentials( SSLContext_t * pSslContext,
                                MBEDTLS_SSL_VERIFY_REQUIRED );
     mbedtls_ssl_conf_rng( &( pSslContext->config ),
                           mbedtls_ctr_drbg_random,
-                          &( pSslContext->ctrDrgbContext ) );
+                          &( pSslContext->ctrDrbgContext ) );
     mbedtls_ssl_conf_cert_profile( &( pSslContext->config ),
                                    &( pSslContext->certProfile ) );
 
@@ -575,7 +575,7 @@ static TlsTransportStatus_t tlsHandshake( NetworkContext_t * pNetworkContext,
 /*-----------------------------------------------------------*/
 
 static TlsTransportStatus_t initMbedtls( mbedtls_entropy_context * pEntropyContext,
-                                         mbedtls_ctr_drbg_context * pCtrDrgbContext )
+                                         mbedtls_ctr_drbg_context * pCtrDrbgContext )
 {
     TlsTransportStatus_t returnStatus = TLS_TRANSPORT_SUCCESS;
     int32_t mbedtlsError = 0;
@@ -587,7 +587,7 @@ static TlsTransportStatus_t initMbedtls( mbedtls_entropy_context * pEntropyConte
 
     /* Initialize contexts for random number generation. */
     mbedtls_entropy_init( pEntropyContext );
-    mbedtls_ctr_drbg_init( pCtrDrgbContext );
+    mbedtls_ctr_drbg_init( pCtrDrbgContext );
 
     if( mbedtlsError != 0 )
     {
@@ -600,7 +600,7 @@ static TlsTransportStatus_t initMbedtls( mbedtls_entropy_context * pEntropyConte
     if( returnStatus == TLS_TRANSPORT_SUCCESS )
     {
         /* Seed the random number generator. */
-        mbedtlsError = mbedtls_ctr_drbg_seed( pCtrDrgbContext,
+        mbedtlsError = mbedtls_ctr_drbg_seed( pCtrDrbgContext,
                                               mbedtls_entropy_func,
                                               pEntropyContext,
                                               NULL,
@@ -687,7 +687,7 @@ TlsTransportStatus_t TLS_FreeRTOS_Connect( NetworkContext_t * pNetworkContext,
         isSocketConnected = pdTRUE;
 
         returnStatus = initMbedtls( &( pTlsTransportParams->sslContext.entropyContext ),
-                                    &( pTlsTransportParams->sslContext.ctrDrgbContext ) );
+                                    &( pTlsTransportParams->sslContext.ctrDrbgContext ) );
     }
 
     /* Initialize TLS contexts and set credentials. */

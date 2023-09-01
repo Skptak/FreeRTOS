@@ -27,13 +27,13 @@
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-Pragma directive
+*  Pragma directive
 ***********************************************************************************************************************/
 /* Start user code for pragma. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
 
 /***********************************************************************************************************************
-Includes
+*  Includes
 ***********************************************************************************************************************/
 #include "r_cg_macrodriver.h"
 #include "r_cg_icu.h"
@@ -42,7 +42,7 @@ Includes
 #include "r_cg_userdefine.h"
 
 /***********************************************************************************************************************
-Global variables and functions
+*  Global variables and functions
 ***********************************************************************************************************************/
 /* Start user code for global. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
@@ -53,32 +53,32 @@ Global variables and functions
 * Arguments    : None
 * Return Value : None
 ***********************************************************************************************************************/
-void R_ICU_Create(void)
+void R_ICU_Create( void )
 {
     /* Disable IRQ interrupts */
-    ICU.IER[0x08].BYTE = _00_ICU_IRQ0_DISABLE | _00_ICU_IRQ1_DISABLE | _00_ICU_IRQ2_DISABLE | _00_ICU_IRQ3_DISABLE |
-                         _00_ICU_IRQ4_DISABLE | _00_ICU_IRQ5_DISABLE | _00_ICU_IRQ6_DISABLE | _00_ICU_IRQ7_DISABLE;
-    ICU.IER[0x09].BYTE = _00_ICU_IRQ8_DISABLE | _00_ICU_IRQ9_DISABLE | _00_ICU_IRQ10_DISABLE | _00_ICU_IRQ11_DISABLE |
-                         _00_ICU_IRQ12_DISABLE | _00_ICU_IRQ13_DISABLE | _00_ICU_IRQ14_DISABLE | _00_ICU_IRQ15_DISABLE;
+    ICU.IER[ 0x08 ].BYTE = _00_ICU_IRQ0_DISABLE | _00_ICU_IRQ1_DISABLE | _00_ICU_IRQ2_DISABLE | _00_ICU_IRQ3_DISABLE |
+                           _00_ICU_IRQ4_DISABLE | _00_ICU_IRQ5_DISABLE | _00_ICU_IRQ6_DISABLE | _00_ICU_IRQ7_DISABLE;
+    ICU.IER[ 0x09 ].BYTE = _00_ICU_IRQ8_DISABLE | _00_ICU_IRQ9_DISABLE | _00_ICU_IRQ10_DISABLE | _00_ICU_IRQ11_DISABLE |
+                           _00_ICU_IRQ12_DISABLE | _00_ICU_IRQ13_DISABLE | _00_ICU_IRQ14_DISABLE | _00_ICU_IRQ15_DISABLE;
 
     /* Disable group interrupts */
-    IEN(ICU,GROUPBL0) = 0U;
+    IEN( ICU, GROUPBL0 ) = 0U;
 
     /* Set IRQ settings */
-    ICU.IRQCR[2].BYTE = _04_ICU_IRQ_EDGE_FALLING;
-    ICU.IRQCR[5].BYTE = _04_ICU_IRQ_EDGE_FALLING;
+    ICU.IRQCR[ 2 ].BYTE = _04_ICU_IRQ_EDGE_FALLING;
+    ICU.IRQCR[ 5 ].BYTE = _04_ICU_IRQ_EDGE_FALLING;
 
     /* Set IRQ2 priority level */
-    IPR(ICU,IRQ2) = _0F_ICU_PRIORITY_LEVEL15;
+    IPR( ICU, IRQ2 ) = _0F_ICU_PRIORITY_LEVEL15;
 
     /* Set IRQ5 priority level */
-    IPR(ICU,IRQ5) = _0F_ICU_PRIORITY_LEVEL15;
+    IPR( ICU, IRQ5 ) = _0F_ICU_PRIORITY_LEVEL15;
 
     /* Set Group BL0 priority level */
-    IPR(ICU,GROUPBL0) = _0F_ICU_PRIORITY_LEVEL15;
+    IPR( ICU, GROUPBL0 ) = _0F_ICU_PRIORITY_LEVEL15;
 
     /* Enable group BL0 interrupt */
-    IEN(ICU,GROUPBL0) = 1U;
+    IEN( ICU, GROUPBL0 ) = 1U;
 
     /* Set IRQ2 pin */
     MPC.P12PFS.BYTE = 0x40U;
@@ -90,52 +90,57 @@ void R_ICU_Create(void)
     PORT1.PDR.BYTE &= 0xDFU;
     PORT1.PMR.BYTE &= 0xDFU;
 }
+
 /***********************************************************************************************************************
 * Function Name: R_ICU_IRQ2_Start
 * Description  : This function enables IRQ2 interrupt.
 * Arguments    : None
 * Return Value : None
 ***********************************************************************************************************************/
-void R_ICU_IRQ2_Start(void)
+void R_ICU_IRQ2_Start( void )
 {
     /* Enable IRQ2 interrupt */
-    IEN(ICU,IRQ2) = 1U;
+    IEN( ICU, IRQ2 ) = 1U;
 }
+
 /***********************************************************************************************************************
 * Function Name: R_ICU_IRQ2_Stop
 * Description  : This function disables IRQ2 interrupt.
 * Arguments    : None
 * Return Value : None
 ***********************************************************************************************************************/
-void R_ICU_IRQ2_Stop(void)
+void R_ICU_IRQ2_Stop( void )
 {
     /* Disable IRQ2 interrupt */
-    IEN(ICU,IRQ2) = 0U;
+    IEN( ICU, IRQ2 ) = 0U;
 }
+
 /***********************************************************************************************************************
 * Function Name: R_ICU_IRQ5_Start
 * Description  : This function enables IRQ5 interrupt.
 * Arguments    : None
 * Return Value : None
 ***********************************************************************************************************************/
-void R_ICU_IRQ5_Start(void)
+void R_ICU_IRQ5_Start( void )
 {
     /* Enable IRQ5 interrupt */
-    IEN(ICU,IRQ5) = 1U;
+    IEN( ICU, IRQ5 ) = 1U;
 }
+
 /***********************************************************************************************************************
 * Function Name: R_ICU_IRQ5_Stop
 * Description  : This function disables IRQ5 interrupt.
 * Arguments    : None
 * Return Value : None
 ***********************************************************************************************************************/
-void R_ICU_IRQ5_Stop(void)
+void R_ICU_IRQ5_Stop( void )
 {
     /* Disable IRQ5 interrupt */
-    IEN(ICU,IRQ5) = 0U;
+    IEN( ICU, IRQ5 ) = 0U;
 }
 
 /* Start user code for adding. Do not edit comment generated here */
+
 /*******************************************************************************
 * Function Name: R_ICU_IRQIsFallingEdge
 * Description  : This function returns 1 if the specified ICU_IRQ is set to
@@ -143,17 +148,16 @@ void R_ICU_IRQ5_Stop(void)
 * Arguments    : uint8_t irq_no
 * Return Value : 1 if falling edge triggered, 0 if not
 *******************************************************************************/
-uint8_t R_ICU_IRQIsFallingEdge (const uint8_t irq_no)
+uint8_t R_ICU_IRQIsFallingEdge( const uint8_t irq_no )
 {
     uint8_t falling_edge_trig = 0x0;
 
-    if (ICU.IRQCR[irq_no].BYTE & _04_ICU_IRQ_EDGE_FALLING)
+    if( ICU.IRQCR[ irq_no ].BYTE & _04_ICU_IRQ_EDGE_FALLING )
     {
         falling_edge_trig = 1;
     }
 
     return falling_edge_trig;
-
 }
 
 /*******************************************************************************
@@ -169,21 +173,22 @@ uint8_t R_ICU_IRQIsFallingEdge (const uint8_t irq_no)
 *                clearing
 * Return Value : None
 *******************************************************************************/
-void R_ICU_IRQSetFallingEdge (const uint8_t irq_no, const uint8_t set_f_edge)
+void R_ICU_IRQSetFallingEdge( const uint8_t irq_no,
+                              const uint8_t set_f_edge )
 {
-    if (1 == set_f_edge)
+    if( 1 == set_f_edge )
     {
-        ICU.IRQCR[irq_no].BYTE |= _04_ICU_IRQ_EDGE_FALLING;
+        ICU.IRQCR[ irq_no ].BYTE |= _04_ICU_IRQ_EDGE_FALLING;
     }
     else
     {
-        ICU.IRQCR[irq_no].BYTE &= (uint8_t) ~_04_ICU_IRQ_EDGE_FALLING;
+        ICU.IRQCR[ irq_no ].BYTE &= ( uint8_t ) ~_04_ICU_IRQ_EDGE_FALLING;
     }
 }
 
 /******************************************************************************
-* End of function R_ICU_IRQSetFallingEdge
-*******************************************************************************/
+ * End of function R_ICU_IRQSetFallingEdge
+ *******************************************************************************/
 
 /*******************************************************************************
 * Function Name: R_ICU_IRQSetRisingEdge
@@ -194,21 +199,22 @@ void R_ICU_IRQSetFallingEdge (const uint8_t irq_no, const uint8_t set_f_edge)
 *                clearing
 * Return Value : None
 *******************************************************************************/
-void R_ICU_IRQSetRisingEdge (const uint8_t irq_no, const uint8_t set_r_edge)
+void R_ICU_IRQSetRisingEdge( const uint8_t irq_no,
+                             const uint8_t set_r_edge )
 {
-    if (1 == set_r_edge)
+    if( 1 == set_r_edge )
     {
-        ICU.IRQCR[irq_no].BYTE |= _08_ICU_IRQ_EDGE_RISING;
+        ICU.IRQCR[ irq_no ].BYTE |= _08_ICU_IRQ_EDGE_RISING;
     }
     else
     {
-        ICU.IRQCR[irq_no].BYTE &= (uint8_t) ~_08_ICU_IRQ_EDGE_RISING;
+        ICU.IRQCR[ irq_no ].BYTE &= ( uint8_t ) ~_08_ICU_IRQ_EDGE_RISING;
     }
 }
 
 /******************************************************************************
-* End of function R_ICU_IRQSetRisingEdge
-*******************************************************************************/
+ * End of function R_ICU_IRQSetRisingEdge
+ *******************************************************************************/
 
 
 /* End user code. Do not edit comment generated here */

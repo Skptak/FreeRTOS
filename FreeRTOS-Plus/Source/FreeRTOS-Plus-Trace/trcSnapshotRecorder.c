@@ -402,7 +402,7 @@
             RecorderDataPtr->numEvents = 0;
             RecorderDataPtr->bufferIsFull = 0;
             traceErrorMessage = 0;
-            RecorderDataPtr->internalErrorOccured = 0;
+            RecorderDataPtr->internalErrorOccurred = 0;
             ( void ) memset( RecorderDataPtr->eventData, 0, RecorderDataPtr->maxEvents * 4 );
             handle_of_last_logged_task = 0;
             trcCRITICAL_SECTION_END();
@@ -520,7 +520,7 @@
 
             if( RecorderDataPtr != 0 )
             {
-                RecorderDataPtr->internalErrorOccured = 0;
+                RecorderDataPtr->internalErrorOccurred = 0;
             }
         }
 
@@ -870,7 +870,7 @@
                 trcCRITICAL_SECTION_END();
             }
 
-        #else  /* if ( TRC_CFG_INCLUDE_ISR_TRACING == 1 ) */
+        #else /* if ( TRC_CFG_INCLUDE_ISR_TRACING == 1 ) */
 
 /* ISR tracing is turned off */
             void prvTraceIncreaseISRActive( void )
@@ -1868,17 +1868,17 @@
 
 
             /* Finally, the 12-byte "start markers" are initialized, allowing for
-             * Tracealyzer to find the trace data in a larger RAM dump.
-             *
-             * The start and end markers must be unique, but without proper precautions there
-             * might be a risk of accidental duplicates of the start/end markers, e.g., due to
-             * compiler optimizations.
-             *
-             * The below initialization of the start marker is therefore made in reverse order
-             * and the fields are volatile to ensure this assignment order. This to avoid any
-             * chance of accidental duplicates of this elsewhere in memory.
-             *
-             * Moreover, the fields are set byte-by-byte to avoid endian issues.*/
+            * Tracealyzer to find the trace data in a larger RAM dump.
+            *
+            * The start and end markers must be unique, but without proper precautions there
+            * might be a risk of accidental duplicates of the start/end markers, e.g., due to
+            * compiler optimizations.
+            *
+            * The below initialization of the start marker is therefore made in reverse order
+            * and the fields are volatile to ensure this assignment order. This to avoid any
+            * chance of accidental duplicates of this elsewhere in memory.
+            *
+            * Moreover, the fields are set byte-by-byte to avoid endian issues.*/
 
             RecorderDataPtr->startmarker11 = 0xF4;
             RecorderDataPtr->startmarker10 = 0xF3;
@@ -1897,7 +1897,7 @@
             {
                 /* An error was detected before vTraceEnable was called, make sure this is stored in the trace data. */
                 prvStrncpy( RecorderDataPtr->systemInfo, traceErrorMessage, 80 );
-                RecorderDataPtr->internalErrorOccured = 1;
+                RecorderDataPtr->internalErrorOccurred = 1;
                 prvTraceStop();
             }
 
@@ -2833,7 +2833,7 @@
                 if( RecorderDataPtr != 0 )
                 {
                     prvStrncpy( RecorderDataPtr->systemInfo, traceErrorMessage, 80 );
-                    RecorderDataPtr->internalErrorOccured = 1;
+                    RecorderDataPtr->internalErrorOccurred = 1;
                 }
             }
         }
@@ -3263,14 +3263,14 @@
                         if( TRC_REG_DEMCR == 0 )
                         {
                             /* This function is called on Cortex-M3, M4 and M7 devices to initialize
-                            *  the DWT unit, assumed present. The DWT cycle counter is used for timestamping.
-                            *
-                            *  If the below error is produced, the DWT unit does not seem to be available.
-                            *
-                            *  In that case, define the macro TRC_CFG_ARM_CM_USE_SYSTICK in your build
-                            *  to use SysTick timestamping instead, or define your own timestamping by
-                            *  setting TRC_CFG_HARDWARE_PORT to TRC_HARDWARE_PORT_APPLICATION_DEFINED
-                            *  and make the necessary definitions, as explained in trcHardwarePort.h.*/
+                             *  the DWT unit, assumed present. The DWT cycle counter is used for timestamping.
+                             *
+                             *  If the below error is produced, the DWT unit does not seem to be available.
+                             *
+                             *  In that case, define the macro TRC_CFG_ARM_CM_USE_SYSTICK in your build
+                             *  to use SysTick timestamping instead, or define your own timestamping by
+                             *  setting TRC_CFG_HARDWARE_PORT to TRC_HARDWARE_PORT_APPLICATION_DEFINED
+                             *  and make the necessary definitions, as explained in trcHardwarePort.h.*/
 
                             prvTraceError( "DWT unit not available, see code comment." );
                             break;
@@ -3280,14 +3280,14 @@
                         if( TRC_REG_DWT_CTRL & TRC_DWT_CTRL_NOCYCCNT )
                         {
                             /* This function is called on Cortex-M3, M4 and M7 devices to initialize
-                            *  the DWT unit, assumed present. The DWT cycle counter is used for timestamping.
-                            *
-                            *  If the below error is produced, the cycle counter does not seem to be available.
-                            *
-                            *  In that case, define the macro TRC_CFG_ARM_CM_USE_SYSTICK in your build
-                            *  to use SysTick timestamping instead, or define your own timestamping by
-                            *  setting TRC_CFG_HARDWARE_PORT to TRC_HARDWARE_PORT_APPLICATION_DEFINED
-                            *  and make the necessary definitions, as explained in trcHardwarePort.h.*/
+                             *  the DWT unit, assumed present. The DWT cycle counter is used for timestamping.
+                             *
+                             *  If the below error is produced, the cycle counter does not seem to be available.
+                             *
+                             *  In that case, define the macro TRC_CFG_ARM_CM_USE_SYSTICK in your build
+                             *  to use SysTick timestamping instead, or define your own timestamping by
+                             *  setting TRC_CFG_HARDWARE_PORT to TRC_HARDWARE_PORT_APPLICATION_DEFINED
+                             *  and make the necessary definitions, as explained in trcHardwarePort.h.*/
 
                             prvTraceError( "DWT_CYCCNT not available, see code comment." );
                             break;

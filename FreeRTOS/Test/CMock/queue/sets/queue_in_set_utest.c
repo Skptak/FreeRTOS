@@ -463,7 +463,7 @@ void test_macro_xQueueSendFromISR_in_set_locked_and_low_priority_pending( void )
 
 /**
  * @brief Test xQueueSendFromISR with a lower priority task waiting on a queue in a Queue Set
- * @details Test xQueueSendFromISR on a Queeu in a Queue Set with a lower priority task waiting and
+ * @details Test xQueueSendFromISR on a Queue in a Queue Set with a lower priority task waiting and
  *  verify that xHigherPriorityTaskWoken is not modified.
  * @coverage xQueueGenericSendFromISR
  */

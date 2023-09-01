@@ -538,7 +538,7 @@ static BaseType_t prvCellularSocketRegisterCallback( CellularSocketHandle_t cell
 
         if( socketStatus != CELLULAR_SUCCESS )
         {
-            LogError( ( "Failed to SocketRegisterSocketOpenCallbac. Socket status %d.", socketStatus ) );
+            LogError( ( "Failed to SocketRegisterSocketOpenCallback. Socket status %d.", socketStatus ) );
             retRegCallback = TCP_SOCKETS_ERRNO_ERROR;
         }
     }

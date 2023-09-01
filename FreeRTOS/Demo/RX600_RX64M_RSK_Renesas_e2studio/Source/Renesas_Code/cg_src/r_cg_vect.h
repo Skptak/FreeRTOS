@@ -34,55 +34,55 @@
 #define _VECT_H
 
 /***********************************************************************************************************************
-Macro definitions (Register bit)
+*  Macro definitions (Register bit)
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-Macro definitions
+*  Macro definitions
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-Typedef definitions
+*  Typedef definitions
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-Global functions
+*  Global functions
 ***********************************************************************************************************************/
 /* Undefined */
 #pragma interrupt (r_undefined_exception)
-void r_undefined_exception(void);
+void r_undefined_exception( void );
 
 /* Reserved */
 #pragma interrupt (r_reserved_exception)
-void r_reserved_exception(void);
+void r_reserved_exception( void );
 
 /* NMI */
 #pragma interrupt (r_nmi_exception)
-void r_nmi_exception(void);
+void r_nmi_exception( void );
 
 /* ICU GROUPBE0 */
 #pragma interrupt (r_icua_group_be0_interrupt(vect=106))
-void r_icua_group_be0_interrupt(void);
+void r_icua_group_be0_interrupt( void );
 
 /* ICU GROUPBL0 */
 #pragma interrupt (r_icua_group_bl0_interrupt(vect=110))
-void r_icua_group_bl0_interrupt(void);
+void r_icua_group_bl0_interrupt( void );
 
 /* ICU GROUPBL1 */
 #pragma interrupt (r_icua_group_bl1_interrupt(vect=111))
-void r_icua_group_bl1_interrupt(void);
+void r_icua_group_bl1_interrupt( void );
 
 /* ICU GROUPAL0 */
 #pragma interrupt (r_icua_group_al0_interrupt(vect=112))
-void r_icua_group_al0_interrupt(void);
+void r_icua_group_al0_interrupt( void );
 
 /* ICU GROUPAL1 */
 #pragma interrupt (r_icua_group_al1_interrupt(vect=113))
-void r_icua_group_al1_interrupt(void);
+void r_icua_group_al1_interrupt( void );
 
 /*;<<VECTOR DATA START (POWER ON RESET)>> */
 /*;Power On Reset PC */
-extern void PowerON_Reset(void);
+extern void PowerON_Reset( void );
 /*;<<VECTOR DATA END (POWER ON RESET)>> */
 
-#endif
+#endif /* ifndef _VECT_H */

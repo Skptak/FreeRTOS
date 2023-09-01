@@ -30,11 +30,12 @@
 *
 ******************************************************************************/
 /****************************************************************************/
+
 /**
  *
  * @file xusbps_sinit.c
-* @addtogroup usbps_v2_4
-* @{
+ * @addtogroup usbps_v2_4
+ * @{
  *
  * The implementation of the XUsbPs driver's static initialzation
  * functionality.
@@ -68,32 +69,35 @@ extern XUsbPs_Config XUsbPs_ConfigTable[];
 /************************** Function Prototypes *****************************/
 
 /****************************************************************************/
+
 /**
-*
-* Looks up the controller configuration based on the unique controller ID. A
-* table contains the configuration info for each controller in the system.
-*
-* @param	DeviceID is the ID of the controller to look up the
-*		configuration for.
-*
-* @return
-*		A pointer to the configuration found or NULL if the specified
-*		controller ID was not found.
-*
-******************************************************************************/
-XUsbPs_Config *XUsbPs_LookupConfig(u16 DeviceID)
+ *
+ * Looks up the controller configuration based on the unique controller ID. A
+ * table contains the configuration info for each controller in the system.
+ *
+ * @param	DeviceID is the ID of the controller to look up the
+ *		configuration for.
+ *
+ * @return
+ *		A pointer to the configuration found or NULL if the specified
+ *		controller ID was not found.
+ *
+ ******************************************************************************/
+XUsbPs_Config * XUsbPs_LookupConfig( u16 DeviceID )
 {
-	XUsbPs_Config *CfgPtr = NULL;
+    XUsbPs_Config * CfgPtr = NULL;
 
-	int Index;
+    int Index;
 
-	for (Index = 0; Index < XPAR_XUSBPS_NUM_INSTANCES; Index++) {
-		if (XUsbPs_ConfigTable[Index].DeviceID == DeviceID) {
-			CfgPtr = &XUsbPs_ConfigTable[Index];
-			break;
-		}
-	}
+    for( Index = 0; Index < XPAR_XUSBPS_NUM_INSTANCES; Index++ )
+    {
+        if( XUsbPs_ConfigTable[ Index ].DeviceID == DeviceID )
+        {
+            CfgPtr = &XUsbPs_ConfigTable[ Index ];
+            break;
+        }
+    }
 
-	return CfgPtr;
+    return CfgPtr;
 }
 /** @} */

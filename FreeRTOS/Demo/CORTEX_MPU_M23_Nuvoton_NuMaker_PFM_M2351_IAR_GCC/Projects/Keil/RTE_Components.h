@@ -1,4 +1,3 @@
-
 /*
  * Auto generated Run-Time-Environment Component Configuration File
  *      *** Do not modify ! ***
@@ -14,7 +13,7 @@
 /*
  * Define the Device Header File:
  */
-#define CMSIS_device_header "M2351.h"
+#define CMSIS_device_header    "M2351.h"
 
 
 #endif /* RTE_COMPONENTS_H */

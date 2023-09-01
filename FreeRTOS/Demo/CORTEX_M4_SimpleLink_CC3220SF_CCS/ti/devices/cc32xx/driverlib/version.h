@@ -34,44 +34,44 @@
  *  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
-//*****************************************************************************
-//
-//  version.h
-//
-//  Contains Driverlib version details
-//
-//*****************************************************************************
+/****************************************************************************** */
+/* */
+/*  version.h */
+/* */
+/*  Contains Driverlib version details */
+/* */
+/****************************************************************************** */
 
 #ifndef __DRIVERLIB_VERSION_H__
-#define __DRIVERLIB_VERSION_H__
+    #define __DRIVERLIB_VERSION_H__
 
-//*****************************************************************************
-//
-// If building with a C++ compiler, make all of the definitions in this header
-// have a C binding.
-//
-//*****************************************************************************
-#ifdef __cplusplus
-extern "C"
-{
-#endif
+/****************************************************************************** */
+/* */
+/* If building with a C++ compiler, make all of the definitions in this header */
+/* have a C binding. */
+/* */
+/****************************************************************************** */
+    #ifdef __cplusplus
+        extern "C"
+        {
+    #endif
 
-#define DRIVERLIB_MAJOR_VERSION_NUM      1
-#define DRIVERLIB_MINOR_VERSION_NUM      50
-#define DRIVERLIB_PATCH_VERSION_NUM      3_1
-#define DRIVERLIB_BUILD_VERSION_NUM      00
-#define DRIVERLIB_RELEASE_DAY            30
-#define DRIVERLIB_RELEASE_MONTH          3
-#define DRIVERLIB_RELEASE_YEAR           2016
+    #define DRIVERLIB_MAJOR_VERSION_NUM    1
+    #define DRIVERLIB_MINOR_VERSION_NUM    50
+    #define DRIVERLIB_PATCH_VERSION_NUM    3_1
+    #define DRIVERLIB_BUILD_VERSION_NUM    00
+    #define DRIVERLIB_RELEASE_DAY          30
+    #define DRIVERLIB_RELEASE_MONTH        3
+    #define DRIVERLIB_RELEASE_YEAR         2016
 
 
-//*****************************************************************************
-//
-// Mark the end of the C bindings section for C++ compilers.
-//
-//*****************************************************************************
-#ifdef __cplusplus
+/****************************************************************************** */
+/* */
+/* Mark the end of the C bindings section for C++ compilers. */
+/* */
+/****************************************************************************** */
+    #ifdef __cplusplus
 }
-#endif
+    #endif
 
 #endif // __DRIVERLIB_VERSION_H__

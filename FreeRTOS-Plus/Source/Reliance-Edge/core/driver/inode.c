@@ -370,7 +370,7 @@ REDSTATUS RedInodeMount( CINODE * pInode,
  *  @return A negated ::REDSTATUS code indicating the operation result.
  *
  *  @retval 0           Operation was successful.
- *  @retval -RED_EINVAL @p pInode is not a mounted cachde inode.
+ *  @retval -RED_EINVAL @p pInode is not a mounted cached inode.
  *  @retval -RED_EIO    A disk I/O error occurred.
  */
     REDSTATUS RedInodeLinkDec( CINODE * pInode )
@@ -548,7 +548,7 @@ void RedInodePut( CINODE * pInode,
                         }
                     }
                 }
-            #else  /* if ( REDCONF_READ_ONLY == 0 ) && ( REDCONF_INODE_TIMESTAMPS == 1 ) */
+            #else /* if ( REDCONF_READ_ONLY == 0 ) && ( REDCONF_INODE_TIMESTAMPS == 1 ) */
                 ( void ) bTimeFields;
             #endif /* if ( REDCONF_READ_ONLY == 0 ) && ( REDCONF_INODE_TIMESTAMPS == 1 ) */
 

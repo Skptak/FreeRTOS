@@ -32,17 +32,17 @@
  */
 typedef struct AN_I2C_MESSAGE
 {
-	long lMessageLength;					/*< How many bytes of data to send or received - excluding the buffer address. */
-	unsigned char ucSlaveAddress;			/*< The slave address of the WIZnet on the I2C bus. */
-	unsigned char ucBufferAddressLowByte;	/*< The address within the WIZnet device to which data should be read from / written to. */
-	unsigned char ucBufferAddressHighByte;	/*< As above, high byte. */
-	SemaphoreHandle_t xMessageCompleteSemaphore;	/*< Contains a reference to a semaphore if the application tasks wants notifying when the message has been transacted. */
-	unsigned char *pucBuffer;				/*< Pointer to the buffer from where data will be read for transmission, or into which received data will be placed. */
+    long lMessageLength;                         /*< How many bytes of data to send or received - excluding the buffer address. */
+    unsigned char ucSlaveAddress;                /*< The slave address of the WIZnet on the I2C bus. */
+    unsigned char ucBufferAddressLowByte;        /*< The address within the WIZnet device to which data should be read from / written to. */
+    unsigned char ucBufferAddressHighByte;       /*< As above, high byte. */
+    SemaphoreHandle_t xMessageCompleteSemaphore; /*< Contains a reference to a semaphore if the application tasks wants notifying when the message has been transacted. */
+    unsigned char * pucBuffer;                   /*< Pointer to the buffer from where data will be read for transmission, or into which received data will be placed. */
 } xI2CMessage;
 
 /* Constants to use as the ulDirection parameter of i2cMessage(). */
-#define i2cWRITE				( ( unsigned long ) 0 )
-#define i2cREAD					( ( unsigned long ) 1 )
+#define i2cWRITE    ( ( unsigned long ) 0 )
+#define i2cREAD     ( ( unsigned long ) 1 )
 
 /**
  * Must be called once before any calls to i2cMessage.
@@ -74,7 +74,12 @@ void i2cInit( void );
  *						 become available should one not be available
  *						 immediately.
  */
-void i2cMessage( const unsigned char * const pucMessage, long lMessageLength, unsigned char ucSlaveAddress, unsigned short usBufferAddress, unsigned long ulDirection, SemaphoreHandle_t xMessageCompleteSemaphore, TickType_t xBlockTime );
+void i2cMessage( const unsigned char * const pucMessage,
+                 long lMessageLength,
+                 unsigned char ucSlaveAddress,
+                 unsigned short usBufferAddress,
+                 unsigned long ulDirection,
+                 SemaphoreHandle_t xMessageCompleteSemaphore,
+                 TickType_t xBlockTime );
 
-#endif
-
+#endif /* ifndef I2C_H */

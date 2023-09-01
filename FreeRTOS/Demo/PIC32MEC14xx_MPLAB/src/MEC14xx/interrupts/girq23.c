@@ -19,8 +19,9 @@
 *****************************************************************************/
 
 /** @file girq23.c
- *Interrupt service routines for MIPS using vanilla GCC and MCHP XC32
+ * Interrupt service routines for MIPS using vanilla GCC and MCHP XC32
  */
+
 /** @defgroup MEC14xx ISR
  *  @{
  */
@@ -34,7 +35,7 @@
 #include "MEC14xx/mec14xx_trace_func.h"
 
 
-typedef void (* GIRQ23_FPVU8)(uint8_t);
+typedef void (* GIRQ23_FPVU8)( uint8_t );
 
 #if GIRQ23_DISAGG == 0
 
@@ -78,178 +79,164 @@ typedef void (* GIRQ23_FPVU8)(uint8_t);
  *
  */
 
-extern void vPortIncrementTick(void);
+    extern void vPortIncrementTick( void );
 
-void girq23_dflt_handler(uint8_t inum)
-{
-    JTVIC_GIRQ->REGS[MEC14xx_GIRQ23_ID].EN_CLR = (1ul << inum);
-    JTVIC_GIRQ->REGS[MEC14xx_GIRQ23_ID].SOURCE = (1ul << inum);
-}
+    void girq23_dflt_handler( uint8_t inum )
+    {
+        JTVIC_GIRQ->REGS[ MEC14xx_GIRQ23_ID ].EN_CLR = ( 1ul << inum );
+        JTVIC_GIRQ->REGS[ MEC14xx_GIRQ23_ID ].SOURCE = ( 1ul << inum );
+    }
 
-void __attribute__((weak)) rtos_tmr_handler(uint8_t inum)
-{
-    (void) inum;
+    void __attribute__( ( weak ) ) rtos_tmr_handler( uint8_t inum )
+    {
+        ( void ) inum;
 
-    JTVIC_GIRQ->REGS[MEC14xx_GIRQ23_ID].SOURCE = (1ul << 4);
-}
+        JTVIC_GIRQ->REGS[ MEC14xx_GIRQ23_ID ].SOURCE = ( 1ul << 4 );
+    }
 
-const GIRQ23_FPVU8 girq23_htable[GIRQ23_NUM_SOURCES] =
-{
-    girq23_dflt_handler,    /* btmr0_handler, */
-    girq23_dflt_handler,    /* btmr1_handler, */
-    girq23_dflt_handler,    /* btmr2_handler, */
-    girq23_dflt_handler,    /* btmr3_handler, */
-    vPortIncrementTick,
-    girq23_dflt_handler,    /* hib_tmr_handler, */
-    girq23_dflt_handler,    /* week_tmr_handler, */
-    girq23_dflt_handler,    /* week_tmr_handler, */
-    girq23_dflt_handler,    /* week_tmr_handler, */
-    girq23_dflt_handler,    /* week_tmr_handler, */
-    girq23_dflt_handler,    /* week_tmr_handler, */
-    girq23_dflt_handler,    /* vci_handler, */
-    girq23_dflt_handler,    /* vci_handler, */
-    girq23_dflt_handler,    /* vci_handler, */
-};
+    const GIRQ23_FPVU8 girq23_htable[ GIRQ23_NUM_SOURCES ] =
+    {
+        girq23_dflt_handler, /* btmr0_handler, */
+        girq23_dflt_handler, /* btmr1_handler, */
+        girq23_dflt_handler, /* btmr2_handler, */
+        girq23_dflt_handler, /* btmr3_handler, */
+        vPortIncrementTick,
+        girq23_dflt_handler, /* hib_tmr_handler, */
+        girq23_dflt_handler, /* week_tmr_handler, */
+        girq23_dflt_handler, /* week_tmr_handler, */
+        girq23_dflt_handler, /* week_tmr_handler, */
+        girq23_dflt_handler, /* week_tmr_handler, */
+        girq23_dflt_handler, /* week_tmr_handler, */
+        girq23_dflt_handler, /* vci_handler, */
+        girq23_dflt_handler, /* vci_handler, */
+        girq23_dflt_handler, /* vci_handler, */
+    };
 
 /* Called by FreeRTOS vPortTickInterruptHandler(girq23_isr)
  * after saving FreeRTOS context
  */
-void girq23_handler(void)
-{
-    uint32_t d;
-    uint8_t bitpos;
-
-    d = JTVIC_GIRQ->REGS[MEC14xx_GIRQ23_ID].RESULT & (GIRQ23_SRC_MASK);
-    while ( 0 != d )
+    void girq23_handler( void )
     {
-        bitpos = 31 - ((uint8_t)__builtin_clz(d) & 0x1F);
-        (girq23_htable[bitpos])(bitpos);
-        d &= ~(1ul << bitpos);
+        uint32_t d;
+        uint8_t bitpos;
+
+        d = JTVIC_GIRQ->REGS[ MEC14xx_GIRQ23_ID ].RESULT & ( GIRQ23_SRC_MASK );
+
+        while( 0 != d )
+        {
+            bitpos = 31 - ( ( uint8_t ) __builtin_clz( d ) & 0x1F );
+            ( girq23_htable[ bitpos ] )( bitpos );
+            d &= ~( 1ul << bitpos );
+        }
     }
-}
 
-void __attribute__((weak, interrupt, nomips16, section(".girqs")))
-girq23_isr(void)
-{
-    uint32_t d;
-    uint8_t bitpos;
-
-    d = JTVIC_GIRQ->REGS[MEC14xx_GIRQ23_ID].RESULT & (GIRQ23_SRC_MASK);
-    while ( 0 != d )
+    void __attribute__( ( weak, interrupt, nomips16, section( ".girqs" ) ) ) girq23_isr( void )
     {
-        bitpos = 31 - ((uint8_t)__builtin_clz(d) & 0x1F);
-        (girq23_htable[bitpos])(bitpos);
-        d &= ~(1ul << bitpos);
-    }
-}
+        uint32_t d;
+        uint8_t bitpos;
 
-#else
+        d = JTVIC_GIRQ->REGS[ MEC14xx_GIRQ23_ID ].RESULT & ( GIRQ23_SRC_MASK );
+
+        while( 0 != d )
+        {
+            bitpos = 31 - ( ( uint8_t ) __builtin_clz( d ) & 0x1F );
+            ( girq23_htable[ bitpos ] )( bitpos );
+            d &= ~( 1ul << bitpos );
+        }
+    }
+
+#else /* if GIRQ23_DISAGG == 0 */
 
 
 /* 16-bit Basic Timer 0 */
-void __attribute__((weak, interrupt, nomips16))
-girq23_b0(void)
-{
-    JTVIC_GIRQ->REGS[MEC14xx_GIRQ23_ID].SOURCE = (1ul << 0);
-}
+    void __attribute__( ( weak, interrupt, nomips16 ) ) girq23_b0( void )
+    {
+        JTVIC_GIRQ->REGS[ MEC14xx_GIRQ23_ID ].SOURCE = ( 1ul << 0 );
+    }
 
 /* 16-bit Basic Timer 1 */
-void __attribute__((weak, interrupt, nomips16))
-girq23_b1(void)
-{
-    jtvic_dis_clr_source(MEC14xx_GIRQ23_ID, 1, TRUE);
-}
+    void __attribute__( ( weak, interrupt, nomips16 ) ) girq23_b1( void )
+    {
+        jtvic_dis_clr_source( MEC14xx_GIRQ23_ID, 1, TRUE );
+    }
 
 /* 16-bit Basic Timer 2 */
-void __attribute__((weak, interrupt, nomips16))
-girq23_b2(void)
-{
-    jtvic_dis_clr_source(MEC14xx_GIRQ23_ID, 2, TRUE);
-}
+    void __attribute__( ( weak, interrupt, nomips16 ) ) girq23_b2( void )
+    {
+        jtvic_dis_clr_source( MEC14xx_GIRQ23_ID, 2, TRUE );
+    }
 
 /* 16-bit Basic Timer 3 */
-void __attribute__((weak, interrupt, nomips16))
-girq23_b3(void)
-{
-    jtvic_dis_clr_source(MEC14xx_GIRQ23_ID, 3, TRUE);
-}
+    void __attribute__( ( weak, interrupt, nomips16 ) ) girq23_b3( void )
+    {
+        jtvic_dis_clr_source( MEC14xx_GIRQ23_ID, 3, TRUE );
+    }
 
 /* RTOS Timer  */
-void __attribute__((weak, interrupt, nomips16))
-girq23_b4(void)
-{
-    JTVIC_GIRQ->REGS[MEC14xx_GIRQ23_ID].SOURCE = (1ul << 4);
-
-}
+    void __attribute__( ( weak, interrupt, nomips16 ) ) girq23_b4( void )
+    {
+        JTVIC_GIRQ->REGS[ MEC14xx_GIRQ23_ID ].SOURCE = ( 1ul << 4 );
+    }
 
 /* Hibernation Timer */
-void __attribute__((weak, interrupt, nomips16))
-girq23_b5(void)
-{
-    jtvic_dis_clr_source(MEC14xx_GIRQ23_ID, 5, TRUE);
-}
+    void __attribute__( ( weak, interrupt, nomips16 ) ) girq23_b5( void )
+    {
+        jtvic_dis_clr_source( MEC14xx_GIRQ23_ID, 5, TRUE );
+    }
 
 /* Week Alarm */
-void __attribute__((weak, interrupt, nomips16))
-girq23_b6(void)
-{
-    jtvic_dis_clr_source(MEC14xx_GIRQ23_ID, 6, TRUE);
-}
+    void __attribute__( ( weak, interrupt, nomips16 ) ) girq23_b6( void )
+    {
+        jtvic_dis_clr_source( MEC14xx_GIRQ23_ID, 6, TRUE );
+    }
 
 /* Sub-Week Alarm */
-void __attribute__((weak, interrupt, nomips16))
-girq23_b7(void)
-{
-    jtvic_dis_clr_source(MEC14xx_GIRQ23_ID, 7, TRUE);
-}
+    void __attribute__( ( weak, interrupt, nomips16 ) ) girq23_b7( void )
+    {
+        jtvic_dis_clr_source( MEC14xx_GIRQ23_ID, 7, TRUE );
+    }
 
 /* Week Alarm One Second */
-void __attribute__((weak, interrupt, nomips16))
-girq23_b8(void)
-{
-    jtvic_dis_clr_source(MEC14xx_GIRQ23_ID, 8, TRUE);
-}
+    void __attribute__( ( weak, interrupt, nomips16 ) ) girq23_b8( void )
+    {
+        jtvic_dis_clr_source( MEC14xx_GIRQ23_ID, 8, TRUE );
+    }
 
 /* Week Alarm Sub Second */
-void __attribute__((weak, interrupt, nomips16))
-girq23_b9(void)
-{
-    jtvic_dis_clr_source(MEC14xx_GIRQ23_ID, 9, TRUE);
-}
+    void __attribute__( ( weak, interrupt, nomips16 ) ) girq23_b9( void )
+    {
+        jtvic_dis_clr_source( MEC14xx_GIRQ23_ID, 9, TRUE );
+    }
 
 /* Week Alarm System Power Present Pin */
-void __attribute__((weak, interrupt, nomips16))
-girq23_b10(void)
-{
-    jtvic_dis_clr_source(MEC14xx_GIRQ23_ID, 10, TRUE);
-}
+    void __attribute__( ( weak, interrupt, nomips16 ) ) girq23_b10( void )
+    {
+        jtvic_dis_clr_source( MEC14xx_GIRQ23_ID, 10, TRUE );
+    }
 
 /* VCI OVRD Input  */
-void __attribute__((weak, interrupt, nomips16))
-girq23_b11(void)
-{
-    jtvic_dis_clr_source(MEC14xx_GIRQ23_ID, 11, TRUE);
-}
+    void __attribute__( ( weak, interrupt, nomips16 ) ) girq23_b11( void )
+    {
+        jtvic_dis_clr_source( MEC14xx_GIRQ23_ID, 11, TRUE );
+    }
 
 /* VCI IN0 */
-void __attribute__((weak, interrupt, nomips16))
-girq23_b12(void)
-{
-    jtvic_dis_clr_source(MEC14xx_GIRQ23_ID, 12, TRUE);
-}
+    void __attribute__( ( weak, interrupt, nomips16 ) ) girq23_b12( void )
+    {
+        jtvic_dis_clr_source( MEC14xx_GIRQ23_ID, 12, TRUE );
+    }
 
 /* VCI IN1 */
-void __attribute__((weak, interrupt, nomips16))
-girq23_b13(void)
-{
-    jtvic_dis_clr_source(MEC14xx_GIRQ23_ID, 13, TRUE);
-}
+    void __attribute__( ( weak, interrupt, nomips16 ) ) girq23_b13( void )
+    {
+        jtvic_dis_clr_source( MEC14xx_GIRQ23_ID, 13, TRUE );
+    }
 
 
-#endif
+#endif /* if GIRQ23_DISAGG == 0 */
 
 
 /* end girq23.c */
+
 /**   @}
  */
-

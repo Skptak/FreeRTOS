@@ -39,7 +39,7 @@
  *         Global Variables
  *------------------------------------------------------------------------------*/
 
-static uint32_t _dwRandNext=1 ;
+static uint32_t _dwRandNext = 1;
 
 /*------------------------------------------------------------------------------
  *         Exported Functions
@@ -52,7 +52,7 @@ static uint32_t _dwRandNext=1 ;
  */
 extern void srand( uint32_t dwSeed )
 {
-    _dwRandNext = dwSeed ;
+    _dwRandNext = dwSeed;
 }
 
 /**
@@ -60,8 +60,7 @@ extern void srand( uint32_t dwSeed )
  */
 extern uint32_t rand( void )
 {
-    _dwRandNext = _dwRandNext * 1103515245 + 12345 ;
+    _dwRandNext = _dwRandNext * 1103515245 + 12345;
 
-    return (uint32_t)(_dwRandNext/131072) % 65536 ;
+    return ( uint32_t ) ( _dwRandNext / 131072 ) % 65536;
 }
-

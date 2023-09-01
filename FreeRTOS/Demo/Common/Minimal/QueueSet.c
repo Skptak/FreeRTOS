@@ -195,7 +195,7 @@
     static volatile BaseType_t xSetupComplete = pdFALSE;
 
 /* The value sent to the queue from the ISR is file scope so the
- * xAreQueeuSetTasksStillRunning() function can check it is incrementing as
+ * xAreQueueSetTasksStillRunning() function can check it is incrementing as
  * expected. */
     static volatile uint32_t ulISRTxValue = queuesetINITIAL_ISR_TX_VALUE;
 

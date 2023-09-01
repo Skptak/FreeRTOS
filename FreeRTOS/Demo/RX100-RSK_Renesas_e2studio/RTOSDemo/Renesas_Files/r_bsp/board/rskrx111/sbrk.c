@@ -16,18 +16,21 @@
 *
 * Copyright (C) 2012 Renesas Electronics Corporation. All rights reserved.
 ***********************************************************************************************************************/
+
 /***********************************************************************************************************************
 * File Name	   : sbrk.c
 * Device(s)    : RX
 * Description  : Configures the MCU heap memory.  The size of the heap is defined by the macro HEAPSIZE below.
 ***********************************************************************************************************************/
+
 /***********************************************************************************************************************
 * History : DD.MM.YYYY Version  Description
 *         : 26.10.2011 1.00     First Release
 *         : 12.03.2012 1.10     Heap size is now defined in r_bsp_config.h, not sbrk.h.
 ***********************************************************************************************************************/
+
 /***********************************************************************************************************************
-Includes   <System Includes> , "Project Includes"
+*  Includes   <System Includes> , "Project Includes"
 ***********************************************************************************************************************/
 /* Provides standard definitions used in this file */
 #include <stddef.h>
@@ -39,31 +42,31 @@ Includes   <System Includes> , "Project Includes"
 #include "platform.h"
 
 /***********************************************************************************************************************
-Macro definitions
+*  Macro definitions
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-Function Prototypes
+*  Function Prototypes
 ***********************************************************************************************************************/
 /* Memory allocation function prototype declaration */
-int8_t  *sbrk(size_t size);
+int8_t * sbrk( size_t size );
 
 /***********************************************************************************************************************
-Global Variables
+*  Global Variables
 ***********************************************************************************************************************/
-//const size_t _sbrk_size=      /* Specifies the minimum unit of */
+/*const size_t _sbrk_size=      / * Specifies the minimum unit of * / */
 /* the defined heap area */
-extern int8_t *_s1ptr;
+extern int8_t * _s1ptr;
 
 union HEAP_TYPE
 {
-    int32_t  dummy;             /* Dummy for 4-byte boundary */
-    int8_t heap[HEAP_BYTES];    /* Declaration of the area managed by sbrk*/
+    int32_t dummy;             /* Dummy for 4-byte boundary */
+    int8_t heap[ HEAP_BYTES ]; /* Declaration of the area managed by sbrk*/
 };
 /* Declare memory heap area */
 static union HEAP_TYPE heap_area;
 /* End address allocated by sbrk    */
-static int8_t *brk=(int8_t *)&heap_area;
+static int8_t * brk = ( int8_t * ) &heap_area;
 
 /***********************************************************************************************************************
 * Function name: sbrk
@@ -73,14 +76,14 @@ static int8_t *brk=(int8_t *)&heap_area;
 * Return value : Start address of allocated area (pass)
 *                -1 (failure)
 ***********************************************************************************************************************/
-int8_t  *sbrk(size_t size)
+int8_t * sbrk( size_t size )
 {
-    int8_t  *p;
+    int8_t * p;
 
-    if (brk+size > heap_area.heap+HEAP_BYTES)
+    if( brk + size > heap_area.heap + HEAP_BYTES )
     {
         /* Empty area size  */
-        p = (int8_t *)-1;
+        p = ( int8_t * ) -1;
     }
     else
     {

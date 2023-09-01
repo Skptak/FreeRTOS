@@ -31,14 +31,14 @@
                         if( TRC_REG_DEMCR == 0 )
                         {
                             /* This function is called on Cortex-M3, M4 and M7 devices to initialize
-                            *  the DWT unit, assumed present. The DWT cycle counter is used for timestamping.
-                            *
-                            *  If the below error is produced, the DWT unit does not seem to be available.
-                            *
-                            *  In that case, define the macro TRC_CFG_ARM_CM_USE_SYSTICK in your build
-                            *  to use SysTick timestamping instead, or define your own timestamping by
-                            *  setting TRC_CFG_HARDWARE_PORT to TRC_HARDWARE_PORT_APPLICATION_DEFINED
-                            *  and make the necessary definitions, as explained in trcHardwarePort.h.*/
+                             *  the DWT unit, assumed present. The DWT cycle counter is used for timestamping.
+                             *
+                             *  If the below error is produced, the DWT unit does not seem to be available.
+                             *
+                             *  In that case, define the macro TRC_CFG_ARM_CM_USE_SYSTICK in your build
+                             *  to use SysTick timestamping instead, or define your own timestamping by
+                             *  setting TRC_CFG_HARDWARE_PORT to TRC_HARDWARE_PORT_APPLICATION_DEFINED
+                             *  and make the necessary definitions, as explained in trcHardwarePort.h.*/
 
                             xTraceError( TRC_ERROR_DWT_NOT_SUPPORTED );
                             break;
@@ -48,14 +48,14 @@
                         if( TRC_REG_DWT_CTRL & TRC_DWT_CTRL_NOCYCCNT )
                         {
                             /* This function is called on Cortex-M3, M4 and M7 devices to initialize
-                            *  the DWT unit, assumed present. The DWT cycle counter is used for timestamping.
-                            *
-                            *  If the below error is produced, the cycle counter does not seem to be available.
-                            *
-                            *  In that case, define the macro TRC_CFG_ARM_CM_USE_SYSTICK in your build
-                            *  to use SysTick timestamping instead, or define your own timestamping by
-                            *  setting TRC_CFG_HARDWARE_PORT to TRC_HARDWARE_PORT_APPLICATION_DEFINED
-                            *  and make the necessary definitions, as explained in trcHardwarePort.h.*/
+                             *  the DWT unit, assumed present. The DWT cycle counter is used for timestamping.
+                             *
+                             *  If the below error is produced, the cycle counter does not seem to be available.
+                             *
+                             *  In that case, define the macro TRC_CFG_ARM_CM_USE_SYSTICK in your build
+                             *  to use SysTick timestamping instead, or define your own timestamping by
+                             *  setting TRC_CFG_HARDWARE_PORT to TRC_HARDWARE_PORT_APPLICATION_DEFINED
+                             *  and make the necessary definitions, as explained in trcHardwarePort.h.*/
 
                             xTraceError( TRC_ERROR_DWT_CYCCNT_NOT_SUPPORTED );
                             break;

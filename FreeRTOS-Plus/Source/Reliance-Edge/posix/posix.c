@@ -43,8 +43,8 @@
 
 
 /*-------------------------------------------------------------------
-*   File Descriptors
-*  -------------------------------------------------------------------*/
+ *   File Descriptors
+ *  -------------------------------------------------------------------*/
 
     #define FD_GEN_BITS    11U /* File descriptor bits for mount generation. */
     #define FD_VOL_BITS    8U  /* File descriptor bits for volume number. */
@@ -76,8 +76,8 @@
     #define FD_MIN    ( 3 )
 
 /*-------------------------------------------------------------------
-*   Handles
-*  -------------------------------------------------------------------*/
+ *   Handles
+ *  -------------------------------------------------------------------*/
 
 /*  Mask of all RED_O_* values.
  */
@@ -93,18 +93,18 @@
  */
     typedef struct sREDHANDLE
     {
-        uint32_t ulInode;       /**< Inode number; 0 if handle is available. */
-        uint8_t bVolNum;        /**< Volume containing the inode. */
-        uint8_t bFlags;         /**< Handle flags (type and mode). */
-        uint64_t ullOffset;     /**< File or directory offset. */
+        uint32_t ulInode;     /**< Inode number; 0 if handle is available. */
+        uint8_t bVolNum;      /**< Volume containing the inode. */
+        uint8_t bFlags;       /**< Handle flags (type and mode). */
+        uint64_t ullOffset;   /**< File or directory offset. */
         #if REDCONF_API_POSIX_READDIR == 1
-            REDDIRENT dirent;   /**< Dirent structure returned by red_readdir(). */
+            REDDIRENT dirent; /**< Dirent structure returned by red_readdir(). */
         #endif
     } REDHANDLE;
 
 /*-------------------------------------------------------------------
-*   Tasks
-*  -------------------------------------------------------------------*/
+ *   Tasks
+ *  -------------------------------------------------------------------*/
 
     #if REDCONF_TASK_COUNT > 1U
 
@@ -118,8 +118,8 @@
     #endif
 
 /*-------------------------------------------------------------------
-*   Local Prototypes
-*  -------------------------------------------------------------------*/
+ *   Local Prototypes
+ *  -------------------------------------------------------------------*/
 
     #if ( REDCONF_READ_ONLY == 0 ) && ( ( REDCONF_API_POSIX_UNLINK == 1 ) || ( REDCONF_API_POSIX_RMDIR == 1 ) )
         static REDSTATUS UnlinkSub( const char * pszPath,
@@ -155,13 +155,13 @@
     static int32_t PosixReturn( REDSTATUS iError );
 
 /*-------------------------------------------------------------------
-*   Globals
-*  -------------------------------------------------------------------*/
+ *   Globals
+ *  -------------------------------------------------------------------*/
 
-    static bool gfPosixInited;                          /* Whether driver is initialized. */
-    static REDHANDLE gaHandle[ REDCONF_HANDLE_COUNT ];  /* Array of all handles. */
+    static bool gfPosixInited;                         /* Whether driver is initialized. */
+    static REDHANDLE gaHandle[ REDCONF_HANDLE_COUNT ]; /* Array of all handles. */
     #if REDCONF_TASK_COUNT > 1U
-        static TASKSLOT gaTask[ REDCONF_TASK_COUNT ];   /* Array of task slots. */
+        static TASKSLOT gaTask[ REDCONF_TASK_COUNT ];  /* Array of task slots. */
     #endif
 
 /*  Array of volume mount "generations".  These are incremented for a volume
@@ -174,8 +174,8 @@
 
 
 /*-------------------------------------------------------------------
-*   Public API
-*  -------------------------------------------------------------------*/
+ *   Public API
+ *  -------------------------------------------------------------------*/
 
 /** @brief Initialize the Reliance Edge file system driver.
  *
@@ -827,7 +827,7 @@
     int32_t red_open( const char * pszPath,
                       uint32_t ulOpenMode )
     {
-        int32_t iFildes = -1;   /* Init'd to quiet warnings. */
+        int32_t iFildes = -1; /* Init'd to quiet warnings. */
         REDSTATUS ret;
 
         #if REDCONF_READ_ONLY == 1
@@ -1696,7 +1696,7 @@
                        REDWHENCE whence )
     {
         REDSTATUS ret;
-        int64_t llReturn = -1;  /* Init'd to quiet warnings. */
+        int64_t llReturn = -1; /* Init'd to quiet warnings. */
 
         ret = PosixEnter();
 
@@ -2263,8 +2263,8 @@
 /** @} */
 
 /*-------------------------------------------------------------------
-*   Helper Functions
-*  -------------------------------------------------------------------*/
+ *   Helper Functions
+ *  -------------------------------------------------------------------*/
 
     #if ( REDCONF_READ_ONLY == 0 ) && ( ( REDCONF_API_POSIX_UNLINK == 1 ) || ( REDCONF_API_POSIX_RMDIR == 1 ) )
 
@@ -2447,7 +2447,7 @@
                 {
                     bool fCreated = false;
                     uint16_t uMode = 0U;
-                    uint32_t ulInode = 0U;      /* Init'd to quiet warnings. */
+                    uint32_t ulInode = 0U; /* Init'd to quiet warnings. */
 
                     #if REDCONF_VOLUME_COUNT > 1U
                         ret = RedCoreVolSetCurrent( bVolNum );

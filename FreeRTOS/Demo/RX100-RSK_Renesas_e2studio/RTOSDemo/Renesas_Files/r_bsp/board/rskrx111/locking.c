@@ -16,18 +16,20 @@
 *
 * Copyright (C) 2011 Renesas Electronics Corporation. All rights reserved.
 ***********************************************************************************************************************/
+
 /***********************************************************************************************************************
 * File Name	   : locking.c
 * Description  : This implements a locking mechanism that can be used by all code. The locking is done atomically so
 *                common resources can be accessed safely.
 ***********************************************************************************************************************/
+
 /**********************************************************************************************************************
-* History : DD.MM.YYYY Version  Description
-*         : 07.03.2012 1.00     First Release
-***********************************************************************************************************************/
+ * History : DD.MM.YYYY Version  Description
+ *         : 07.03.2012 1.00     First Release
+ ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-Includes   <System Includes> , "Project Includes"
+*  Includes   <System Includes> , "Project Includes"
 ***********************************************************************************************************************/
 /* Fixed-size integer typedefs. */
 #include <stdint.h>
@@ -39,19 +41,19 @@ Includes   <System Includes> , "Project Includes"
 #include "platform.h"
 
 /***********************************************************************************************************************
-Macro definitions
+*  Macro definitions
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-Typedef definitions
+*  Typedef definitions
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-Exported global variables (to be accessed by other files)
+*  Exported global variables (to be accessed by other files)
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-Private global variables and functions
+*  Private global variables and functions
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
@@ -64,7 +66,7 @@ Private global variables and functions
 *                false -
 *                    Lock was not acquired.
 ***********************************************************************************************************************/
-bool R_BSP_Lock(bsp_lock_t * plock)
+bool R_BSP_Lock( bsp_lock_t * plock )
 {
     bool ret = false;
 
@@ -72,18 +74,18 @@ bool R_BSP_Lock(bsp_lock_t * plock)
     int32_t is_locked = true;
 
     /* This example uses the RX MCU's atomic xchg() instruction. plock->lock is the lock we are trying to reserve.
-       The way this works is that 'is_locked' gets the value of the plock->lock and plock->lock gets the value of
-       'is_locked' which we just set to 'true'. Basically this is an atomic 'swap' command. If the lock had not yet been
-       reserved then its value would be 'false' and after the xchg() instruction finished 'is_locked' would have
-       'false'. If it had already been reserved then 'is_locked' would have 'true' after the xchg() instruction. Since
-       plock->lock was already 'true' and we just set it back to 'true' everything is ok. To see if we reserved the lock
-       we just need to check the value of 'is_locked' after this instruction finishes. */
+     * The way this works is that 'is_locked' gets the value of the plock->lock and plock->lock gets the value of
+     * 'is_locked' which we just set to 'true'. Basically this is an atomic 'swap' command. If the lock had not yet been
+     * reserved then its value would be 'false' and after the xchg() instruction finished 'is_locked' would have
+     * 'false'. If it had already been reserved then 'is_locked' would have 'true' after the xchg() instruction. Since
+     * plock->lock was already 'true' and we just set it back to 'true' everything is ok. To see if we reserved the lock
+     * we just need to check the value of 'is_locked' after this instruction finishes. */
 
     /* Try to acquire semaphore to obtain lock */
-    xchg(&is_locked, &plock->lock);
+    xchg( &is_locked, &plock->lock );
 
     /* Check to see if semaphore was successfully taken */
-    if (is_locked == false)
+    if( is_locked == false )
     {
         /* Lock obtained, return success. */
         ret = true;
@@ -107,12 +109,10 @@ bool R_BSP_Lock(bsp_lock_t * plock)
 *                false -
 *                    Lock was not released.
 ***********************************************************************************************************************/
-bool R_BSP_Unlock(bsp_lock_t * plock)
+bool R_BSP_Unlock( bsp_lock_t * plock )
 {
     /* Set lock back to unlocked. */
     plock->lock = false;
 
     return true;
 } /* End of function R_BSP_Unlock() */
-
-

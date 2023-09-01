@@ -27,13 +27,13 @@
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-Pragma directive
+*  Pragma directive
 ***********************************************************************************************************************/
 /* Start user code for pragma. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
 
 /***********************************************************************************************************************
-Includes
+*  Includes
 ***********************************************************************************************************************/
 #include "r_cg_macrodriver.h"
 #include "r_cg_cgc.h"
@@ -42,39 +42,42 @@ Includes
 #include "r_cg_userdefine.h"
 
 /***********************************************************************************************************************
-Global variables and functions
+*  Global variables and functions
 ***********************************************************************************************************************/
 /* Start user code for global. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
 
 
-void R_MAIN_UserInit(void);
+void R_MAIN_UserInit( void );
+
 /***********************************************************************************************************************
 * Function Name: main
 * Description  : This function implements main function.
 * Arguments    : None
 * Return Value : None
 ***********************************************************************************************************************/
-void main(void)
+void main( void )
 {
     R_MAIN_UserInit();
+
     /* Start user code. Do not edit comment generated here */
-    while (1U)
+    while( 1U )
     {
-        ;
     }
+
     /* End user code. Do not edit comment generated here */
 }
+
 /***********************************************************************************************************************
 * Function Name: R_MAIN_UserInit
 * Description  : This function adds user code before implementing main function.
 * Arguments    : None
 * Return Value : None
 ***********************************************************************************************************************/
-void R_MAIN_UserInit(void)
+void R_MAIN_UserInit( void )
 {
     /* Start user code. Do not edit comment generated here */
-    uint16_t protect_dummy = (uint16_t)(SYSTEM.PRCR.WORD & 0x000FU);
+    uint16_t protect_dummy = ( uint16_t ) ( SYSTEM.PRCR.WORD & 0x000FU );
 
     /* Disable protect bit */
     SYSTEM.PRCR.WORD = 0xA50FU;
@@ -82,7 +85,7 @@ void R_MAIN_UserInit(void)
     SYSTEM.VBATTCR.BYTE = 0x81U;
 
     /* Restore the previous state of the protect register */
-    SYSTEM.PRCR.WORD = (uint16_t)(0xA500U | protect_dummy);
+    SYSTEM.PRCR.WORD = ( uint16_t ) ( 0xA500U | protect_dummy );
     /* End user code. Do not edit comment generated here */
 }
 

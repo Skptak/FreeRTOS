@@ -749,7 +749,7 @@ void I2C_PECPositionConfig( I2C_TypeDef * I2Cx,
 /*******************************************************************************
 * Function Name  : I2C_CalculatePEC
 * Description    : Enables or disables the PEC value calculation of the
-*                  transfered bytes.
+*                  transferred bytes.
 * Input          : - I2Cx: where x can be 1 or 2 to select the I2C peripheral.
 *                  - NewState: new state of the I2Cx PEC value calculation.
 *                    This parameter can be: ENABLE or DISABLE.
@@ -977,8 +977,8 @@ ErrorStatus I2C_CheckEvent( I2C_TypeDef * I2Cx,
 *                       - I2C_FLAG_STOPF: Stop detection flag (Slave mode)
 *                       - I2C_FLAG_ADD10: 10-bit header sent flag (Master mode)
 *                       - I2C_FLAG_BTF: Byte transfer finished flag
-*                       - I2C_FLAG_ADDR: Address sent flag (Master mode) “ADSL”
-*                                        Address matched flag (Slave mode)”ENDAD”
+*                       - I2C_FLAG_ADDR: Address sent flag (Master mode) ï¿½ADSLï¿½
+*                                        Address matched flag (Slave mode)ï¿½ENDADï¿½
 *                       - I2C_FLAG_SB: Start bit flag (Master mode)
 * Output         : None
 * Return         : The new state of I2C_FLAG (SET or RESET).
@@ -1036,8 +1036,8 @@ FlagStatus I2C_GetFlagStatus( I2C_TypeDef * I2Cx,
 *                       - I2C_FLAG_STOPF: Stop detection flag (Slave mode)
 *                       - I2C_FLAG_ADD10: 10-bit header sent flag (Master mode)
 *                       - I2C_FLAG_BTF: Byte transfer finished flag
-*                       - I2C_FLAG_ADDR: Address sent flag (Master mode) “ADSL”
-*                                        Address matched flag (Slave mode)”ENDAD”
+*                       - I2C_FLAG_ADDR: Address sent flag (Master mode) ï¿½ADSLï¿½
+*                                        Address matched flag (Slave mode)ï¿½ENDADï¿½
 *                       - I2C_FLAG_SB: Start bit flag (Master mode)
 * Output         : None
 * Return         : None
@@ -1107,8 +1107,8 @@ void I2C_ClearFlag( I2C_TypeDef * I2Cx,
 *                       - I2C_IT_STOPF: Stop detection flag (Slave mode)
 *                       - I2C_IT_ADD10: 10-bit header sent flag (Master mode)
 *                       - I2C_IT_BTF: Byte transfer finished flag
-*                       - I2C_IT_ADDR: Address sent flag (Master mode) “ADSL”
-*                                        Address matched flag (Slave mode)”ENDAD”
+*                       - I2C_IT_ADDR: Address sent flag (Master mode) ï¿½ADSLï¿½
+*                                        Address matched flag (Slave mode)ï¿½ENDADï¿½
 *                       - I2C_IT_SB: Start bit flag (Master mode)
 * Output         : None
 * Return         : The new state of I2C_IT (SET or RESET).
@@ -1152,7 +1152,7 @@ ITStatus I2C_GetITStatus( I2C_TypeDef * I2Cx,
 
 /*******************************************************************************
 * Function Name  : I2C_ClearITPendingBit
-* Description    : Clears the I2Cx’s interrupt pending bits.
+* Description    : Clears the I2Cxï¿½s interrupt pending bits.
 * Input          : - I2Cx: where x can be 1 or 2 to select the I2C peripheral.
 *                  - I2C_IT: specifies the interrupt pending to clear.
 *                    This parameter can be one of the following values:
@@ -1166,8 +1166,8 @@ ITStatus I2C_GetITStatus( I2C_TypeDef * I2Cx,
 *                       - I2C_IT_STOPF: Stop detection flag (Slave mode)
 *                       - I2C_IT_ADD10: 10-bit header sent flag (Master mode)
 *                       - I2C_IT_BTF: Byte transfer finished flag
-*                       - I2C_IT_ADDR: Address sent flag (Master mode) “ADSL”
-*                                        Address matched flag (Slave mode)”ENDAD”
+*                       - I2C_IT_ADDR: Address sent flag (Master mode) ï¿½ADSLï¿½
+*                                        Address matched flag (Slave mode)ï¿½ENDADï¿½
 *                       - I2C_IT_SB: Start bit flag (Master mode)
 * Output         : None
 * Return         : None

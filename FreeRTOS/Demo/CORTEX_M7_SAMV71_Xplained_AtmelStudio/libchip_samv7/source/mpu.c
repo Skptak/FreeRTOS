@@ -68,8 +68,9 @@
 
 /*----------------------------------------------------------------------------
  *        Exported functions
-
+ *
  *----------------------------------------------------------------------------*/
+
 /**
  * \brief Enables the MPU module.
  *
@@ -77,7 +78,7 @@
  */
 void MPU_Enable( uint32_t dwMPUEnable )
 {
-	MPU->CTRL = dwMPUEnable ;
+    MPU->CTRL = dwMPUEnable;
 }
 
 /**
@@ -87,7 +88,7 @@ void MPU_Enable( uint32_t dwMPUEnable )
  */
 void MPU_SetRegionNum( uint32_t dwRegionNum )
 {
-	MPU->RNR = dwRegionNum;
+    MPU->RNR = dwRegionNum;
 }
 
 /**
@@ -95,7 +96,7 @@ void MPU_SetRegionNum( uint32_t dwRegionNum )
  */
 extern void MPU_DisableRegion( void )
 {
-	MPU->RASR &= 0xfffffffe;
+    MPU->RASR &= 0xfffffffe;
 }
 
 /**
@@ -104,10 +105,11 @@ extern void MPU_DisableRegion( void )
  * \param dwRegionBaseAddr  Memory region base address.
  * \param dwRegionAttr  Memory region attributes.
  */
-void MPU_SetRegion( uint32_t dwRegionBaseAddr, uint32_t dwRegionAttr )
+void MPU_SetRegion( uint32_t dwRegionBaseAddr,
+                    uint32_t dwRegionAttr )
 {
-	MPU->RBAR = dwRegionBaseAddr;
-	MPU->RASR = dwRegionAttr;
+    MPU->RBAR = dwRegionBaseAddr;
+    MPU->RASR = dwRegionAttr;
 }
 
 
@@ -116,19 +118,24 @@ void MPU_SetRegion( uint32_t dwRegionBaseAddr, uint32_t dwRegionAttr )
  */
 uint32_t MPU_CalMPURegionSize( uint32_t dwActualSizeInBytes )
 {
-	uint32_t dwRegionSize = 32;
-	uint32_t dwReturnValue = 4;
+    uint32_t dwRegionSize = 32;
+    uint32_t dwReturnValue = 4;
 
-	while( dwReturnValue < 31 ) {
-		if( dwActualSizeInBytes <= dwRegionSize ) {
-			break;
-		} else {
-			dwReturnValue++;
-		}
-		dwRegionSize <<= 1;
-	}
+    while( dwReturnValue < 31 )
+    {
+        if( dwActualSizeInBytes <= dwRegionSize )
+        {
+            break;
+        }
+        else
+        {
+            dwReturnValue++;
+        }
 
-	return ( dwReturnValue << 1 );
+        dwRegionSize <<= 1;
+    }
+
+    return( dwReturnValue << 1 );
 }
 
 
@@ -137,32 +144,31 @@ uint32_t MPU_CalMPURegionSize( uint32_t dwActualSizeInBytes )
  *
  *  \return Unused (ANSI-C compatibility).
  */
-void MPU_UpdateRegions( uint32_t dwRegionNum, uint32_t dwRegionBaseAddr,
-		uint32_t dwRegionAttr)
+void MPU_UpdateRegions( uint32_t dwRegionNum,
+                        uint32_t dwRegionBaseAddr,
+                        uint32_t dwRegionAttr )
 {
+    /* Disable interrupt */
+    __disable_irq();
 
-	/* Disable interrupt */
-	__disable_irq();
+    /* Clean up data and instruction buffer */
+    __DSB();
+    __ISB();
 
-	/* Clean up data and instruction buffer */
-	__DSB();
-	__ISB();
+    /* Set active region */
+    MPU_SetRegionNum( dwRegionNum );
 
-	/* Set active region */
-	MPU_SetRegionNum(dwRegionNum);
+    /* Disable region */
+    MPU_DisableRegion();
 
-	/* Disable region */
-	MPU_DisableRegion();
+    /* Update region attribute */
+    MPU_SetRegion( dwRegionBaseAddr, dwRegionAttr );
 
-	/* Update region attribute */
-	MPU_SetRegion( dwRegionBaseAddr, dwRegionAttr);
+    /* Clean up data and instruction buffer to make the new region taking
+     * effect at once */
+    __DSB();
+    __ISB();
 
-	/* Clean up data and instruction buffer to make the new region taking
-	   effect at once */
-	__DSB();
-	__ISB();
-
-	/* Enable the interrupt */
-	__enable_irq();
+    /* Enable the interrupt */
+    __enable_irq();
 }
-

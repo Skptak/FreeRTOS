@@ -27,13 +27,13 @@
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-Pragma directive
+*  Pragma directive
 ***********************************************************************************************************************/
 /* Start user code for pragma. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
 
 /***********************************************************************************************************************
-Includes
+*  Includes
 ***********************************************************************************************************************/
 #include "r_cg_macrodriver.h"
 #include "r_cg_cgc.h"
@@ -42,7 +42,7 @@ Includes
 #include "r_cg_userdefine.h"
 
 /***********************************************************************************************************************
-Global variables and functions
+*  Global variables and functions
 ***********************************************************************************************************************/
 /* Start user code for global. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
@@ -53,7 +53,7 @@ Global variables and functions
 * Arguments    : None
 * Return Value : None
 ***********************************************************************************************************************/
-void R_CGC_Create(void)
+void R_CGC_Create( void )
 {
     uint32_t sckcr_dummy;
     uint32_t w_count;
@@ -67,36 +67,46 @@ void R_CGC_Create(void)
     SYSTEM.MOSCCR.BIT.MOSTP = 0U;
 
     /* Wait for main clock oscillator wait counter overflow */
-    while (1U != SYSTEM.OSCOVFSR.BIT.MOOVF);
+    while( 1U != SYSTEM.OSCOVFSR.BIT.MOOVF )
+    {
+    }
 
     /* Set system clock */
     sckcr_dummy = _00000000_CGC_PCLKD_DIV_1 | _00000100_CGC_PCLKB_DIV_2 | _00000000_CGC_PCLKA_DIV_1 |
                   _00010000_CGC_BCLK_DIV_2 | _00000000_CGC_ICLK_DIV_1 | _10000000_CGC_FCLK_DIV_2;
     SYSTEM.SCKCR.LONG = sckcr_dummy;
 
-    while (SYSTEM.SCKCR.LONG != sckcr_dummy);
+    while( SYSTEM.SCKCR.LONG != sckcr_dummy )
+    {
+    }
 
     /* Set PLL circuit */
     SYSTEM.PLLCR.WORD = _0001_CGC_PLL_FREQ_DIV_2 | _1A00_CGC_PLL_FREQ_MUL_13_5;
     SYSTEM.PLLCR2.BIT.PLLEN = 0U;
 
     /* Wait for PLL wait counter overflow */
-    while (1U != SYSTEM.OSCOVFSR.BIT.PLOVF);
+    while( 1U != SYSTEM.OSCOVFSR.BIT.PLOVF )
+    {
+    }
 
     /* Stop sub-clock */
     SYSTEM.SOSCCR.BIT.SOSTP = 1U;
 
     /* Wait for the register modification to complete */
-    while (1U != SYSTEM.SOSCCR.BIT.SOSTP);
+    while( 1U != SYSTEM.SOSCCR.BIT.SOSTP )
+    {
+    }
 
     /* Stop sub-clock */
     RTC.RCR3.BIT.RTCEN = 0U;
 
     /* Wait for the register modification to complete */
-    while (0U != RTC.RCR3.BIT.RTCEN);
+    while( 0U != RTC.RCR3.BIT.RTCEN )
+    {
+    }
 
     /* Wait for 5 sub-clock cycles */
-    for (w_count = 0U; w_count < _007B_CGC_SUBSTPWT_WAIT; w_count++)
+    for( w_count = 0U; w_count < _007B_CGC_SUBSTPWT_WAIT; w_count++ )
     {
         nop();
     }
@@ -105,16 +115,20 @@ void R_CGC_Create(void)
     RTC.RCR3.BIT.RTCDV = 1U;
 
     /* Wait for the register modification to complete */
-    while (1U != RTC.RCR3.BIT.RTCDV);
+    while( 1U != RTC.RCR3.BIT.RTCDV )
+    {
+    }
 
     /* Set sub-clock */
     SYSTEM.SOSCCR.BIT.SOSTP = 0U;
 
     /* Wait for the register modification to complete */
-    while (0U != SYSTEM.SOSCCR.BIT.SOSTP);
+    while( 0U != SYSTEM.SOSCCR.BIT.SOSTP )
+    {
+    }
 
     /* Wait for sub-clock to be stable */
-    for (w_count = 0U; w_count < _00061A81_CGC_SUBOSCWT_WAIT; w_count++)
+    for( w_count = 0U; w_count < _00061A81_CGC_SUBOSCWT_WAIT; w_count++ )
     {
         nop();
     }
@@ -130,7 +144,9 @@ void R_CGC_Create(void)
     /* Set clock source */
     SYSTEM.SCKCR3.WORD = _0400_CGC_CLOCKSOURCE_PLL;
 
-    while (SYSTEM.SCKCR3.WORD != _0400_CGC_CLOCKSOURCE_PLL);
+    while( SYSTEM.SCKCR3.WORD != _0400_CGC_CLOCKSOURCE_PLL )
+    {
+    }
 
     /* Set LOCO */
     SYSTEM.LOCOCR.BIT.LCSTP = 1U;

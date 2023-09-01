@@ -57,7 +57,7 @@
 
 /* clang-format off */
 
-#if defined(__GNUC__) || defined (__DOXYGEN__)
+#if defined( __GNUC__ ) || defined( __DOXYGEN__ )
 
 /**
  * \brief Enter a critical region
@@ -77,12 +77,13 @@
  *
  */
 
-#define ENTER_CRITICAL(UNUSED) __asm__ __volatile__ (   \
-   "in __tmp_reg__, __SREG__"                    "\n\t" \
-   "cli"                                         "\n\t" \
-   "push __tmp_reg__"                            "\n\t" \
-   ::: "memory"                                         \
-   )
+    #define ENTER_CRITICAL( UNUSED )                                                                                                                     \
+    __asm__ __volatile__ (                                                                                                                               \
+        "in __tmp_reg__, __SREG__"                    "\n\t"                                                                                             \
+                                                      "cli"                                         "\n\t"                                               \
+                                                                                                    "push __tmp_reg__"                            "\n\t" \
+        ::: "memory"                                                                                                                                     \
+        )
 
 /**
  * \brief Exit a critical region
@@ -99,26 +100,27 @@
  *
  */
 
-#define EXIT_CRITICAL(UNUSED)  __asm__ __volatile__ (   \
-   "pop __tmp_reg__"                             "\n\t" \
-   "out __SREG__, __tmp_reg__"                   "\n\t" \
-   ::: "memory"                                         \
-   )
+    #define EXIT_CRITICAL( UNUSED )                                                                        \
+    __asm__ __volatile__ (                                                                                 \
+        "pop __tmp_reg__"                             "\n\t"                                               \
+                                                      "out __SREG__, __tmp_reg__"                   "\n\t" \
+        ::: "memory"                                                                                       \
+        )
 
-#define DISABLE_INTERRUPTS()        __asm__ __volatile__ ( "cli" ::: "memory")
-#define ENABLE_INTERRUPTS()         __asm__ __volatile__ ( "sei" ::: "memory")
+    #define DISABLE_INTERRUPTS()    __asm__ __volatile__ ( "cli" ::: "memory" )
+    #define ENABLE_INTERRUPTS()     __asm__ __volatile__ ( "sei" ::: "memory" )
 
-#elif defined(__ICCAVR__)
+#elif defined( __ICCAVR__ )
 
-#define ENTER_CRITICAL(P)  unsigned char P = __save_interrupt();__disable_interrupt();
-#define EXIT_CRITICAL(P)  __restore_interrupt(P);
+    #define ENTER_CRITICAL( P )     unsigned char P = __save_interrupt(); __disable_interrupt();
+    #define EXIT_CRITICAL( P )      __restore_interrupt( P );
 
-#define DISABLE_INTERRUPTS()   __disable_interrupt();
-#define ENABLE_INTERRUPTS()    __enable_interrupt();
+    #define DISABLE_INTERRUPTS()    __disable_interrupt();
+    #define ENABLE_INTERRUPTS()     __enable_interrupt();
 
-#else
-#  error Unsupported compiler.
-#endif
+#else /* if defined( __GNUC__ ) || defined( __DOXYGEN__ ) */
+    #error Unsupported compiler.
+#endif /* if defined( __GNUC__ ) || defined( __DOXYGEN__ ) */
 
 /* clang-format on */
 

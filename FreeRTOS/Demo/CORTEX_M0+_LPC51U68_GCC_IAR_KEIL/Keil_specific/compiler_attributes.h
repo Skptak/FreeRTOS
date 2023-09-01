@@ -25,12 +25,12 @@
  */
 
 /* Placing variable at specified address.
-todo:
-this is commented out intentionally, as it doesn't seem to work.
-Clean up is needed*/
+ * todo:
+ * this is commented out intentionally, as it doesn't seem to work.
+ * Clean up is needed*/
 
 /* Attribute to place the second FreeRTOS heap in another memory bank, if present.
-   This is defined as empty, as the linker file (LPC51U68_flash.scf) provided only
-   one bank as heap. Could still have two FreeRTOS heap regions, as long as they fit.
-*/
+ * This is defined as empty, as the linker file (LPC51U68_flash.scf) provided only
+ * one bank as heap. Could still have two FreeRTOS heap regions, as long as they fit.
+ */
 #define COMPILER_ATTRIBUTE_PLACE_IN_2ND_MEMORY_BANK

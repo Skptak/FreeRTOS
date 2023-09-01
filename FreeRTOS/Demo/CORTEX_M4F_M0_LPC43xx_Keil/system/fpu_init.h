@@ -24,6 +24,6 @@
 #ifndef __FPU_INIT_H
 #define __FPU_INIT_H
 
-void fpuInit(void);
+void fpuInit( void );
 
 #endif /* __FPU_INIT_H */

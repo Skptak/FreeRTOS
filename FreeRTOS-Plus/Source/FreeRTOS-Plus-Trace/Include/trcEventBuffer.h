@@ -66,7 +66,7 @@
  *
  * Trace event buffer options specifies the buffer behavior regarding
  * old data, the alternatives are TRC_EVENT_BUFFER_OPTION_SKIP and
- * TRC_EVENT_BUFFER_OPTION_OVERWRITE (mutal exclusive).
+ * TRC_EVENT_BUFFER_OPTION_OVERWRITE (mutual exclusive).
  *
  * @param[out] pxTraceEventBuffer Pointer to uninitialized trace event buffer.
  * @param[in] uiOptions Trace event buffer options.
@@ -104,7 +104,7 @@
  *
  * This routine will attempt to transfer all existing data in the trace event
  * buffer through the streamport. New data pushed to the trace event buffer
- * during the execution of this routine will not be transfered to
+ * during the execution of this routine will not be transferred to
  *
  * @param[in] pxTraceEventBuffer Pointer to initialized trace event buffer.
  * @param[out] piBytesWritten Bytes written.

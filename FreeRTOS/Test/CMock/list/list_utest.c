@@ -887,7 +887,7 @@ void test_macro_listGET_OWNER_OF_HEAD_ENTRY( void )
 /*!
  * @brief test macro listIS_CONTAINED_WITHIN normal case
  * @details This test ensures that the macro is returning whether the list item
- *          is contained witin the list
+ *          is contained within the list
  */
 void test_macro_listIS_CONTAINED_WITHIN( void )
 {

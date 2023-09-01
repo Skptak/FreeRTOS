@@ -25,46 +25,45 @@
  */
 
 /* Layout of pins connected to GPIO on Xilinx FPGA evaluation board
-*/
+ */
 
 #include <machine/sfradr.h>
 
 #ifndef DEMOGPIO_H
-#define DEMOGPIO_H
+    #define DEMOGPIO_H
 
-typedef struct DemoBoardGpioPins
-{
-	/* Leds on board */
-	unsigned leds:8;
+    typedef struct DemoBoardGpioPins
+    {
+        /* Leds on board */
+        unsigned leds : 8;
 
-	/* 7 segment display */
-	unsigned digit:7;
+        /* 7 segment display */
+        unsigned digit : 7;
 
-	/* Decimal point */
-	unsigned dp:1;
+        /* Decimal point */
+        unsigned dp : 1;
 
-	/* Select anode for digit and decimal pt to light up */
-	unsigned an:4;
+        /* Select anode for digit and decimal pt to light up */
+        unsigned an : 4;
 
-	/* Unused */
-	unsigned _fill:12;
+        /* Unused */
+        unsigned _fill : 12;
+    } DemoBoardGpioPins;
 
-} DemoBoardGpioPins;
+    typedef struct DemoBoardGpio
+    {
+        volatile DemoBoardGpioPins out;
+        volatile DemoBoardGpioPins in;
+        volatile DemoBoardGpioPins dir;
+        volatile unsigned _fill;
+    } DemoBoardGpio;
 
-typedef struct DemoBoardGpio
-{
-	volatile DemoBoardGpioPins out;
-	volatile DemoBoardGpioPins in;
-	volatile DemoBoardGpioPins dir;
-	volatile unsigned _fill;
-} DemoBoardGpio;
+    #ifdef SFRADR_GPIO1
+        #define gpio    ( ( DemoBoardGpio * ) SFRADR_GPIO1 )
+    #endif
 
-#ifdef SFRADR_GPIO1
-#define gpio ((DemoBoardGpio*)SFRADR_GPIO1)
-#endif
+#endif /* ifndef DEMOGPIO_H */
 
-#endif
-
-// Local Variables:
-// tab-width:4
-// End:
+/* Local Variables: */
+/* tab-width:4 */
+/* End: */

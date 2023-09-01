@@ -27,13 +27,13 @@
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-Pragma directive
+*  Pragma directive
 ***********************************************************************************************************************/
 /* Start user code for pragma. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
 
 /***********************************************************************************************************************
-Includes
+*  Includes
 ***********************************************************************************************************************/
 #include "r_cg_macrodriver.h"
 #include "r_cg_cgc.h"
@@ -45,20 +45,20 @@ Includes
 #include "r_cg_userdefine.h"
 
 /***********************************************************************************************************************
-Global variables and functions
+*  Global variables and functions
 ***********************************************************************************************************************/
 /* Start user code for global. Do not edit comment generated here */
 
-#define CPG_WRITE_ENABLE        (0x0000A501)
-#define CPG_WRITE_DISABLE       (0x0000A500)
+#define CPG_WRITE_ENABLE           ( 0x0000A501 )
+#define CPG_WRITE_DISABLE          ( 0x0000A500 )
 
-#define CPG_CMT0_CLOCK_PCLKD_32 (1)
-#define CPG_CMT0_CMI0_ENABLE    (1)
-#define CPG_CMT0_CONST_100_US   (0xEA)
-#define CPG_CMT0_START          (1)
-#define CPG_CMT0_STOP           (0)
+#define CPG_CMT0_CLOCK_PCLKD_32    ( 1 )
+#define CPG_CMT0_CMI0_ENABLE       ( 1 )
+#define CPG_CMT0_CONST_100_US      ( 0xEA )
+#define CPG_CMT0_START             ( 1 )
+#define CPG_CMT0_STOP              ( 0 )
 
-#define CPG_CMT_REG_CLEAR       (0x0000)
+#define CPG_CMT_REG_CLEAR          ( 0x0000 )
 
 /* End user code. Do not edit comment generated here */
 
@@ -68,7 +68,7 @@ Global variables and functions
 * Arguments    : None
 * Return Value : None
 ***********************************************************************************************************************/
-void R_CGC_Create(void)
+void R_CGC_Create( void )
 {
     uint16_t w_count;
 
@@ -86,7 +86,7 @@ void R_CGC_Create(void)
     SYSTEM.PLL1CR2.BIT.PLL1EN = 1U;
 
     /* Wait 100us for PLL1 stabilization */
-    for (w_count = 0U; w_count < _CGC_PLL_WAIT_CYCLE; w_count++)
+    for( w_count = 0U; w_count < _CGC_PLL_WAIT_CYCLE; w_count++ )
     {
         nop();
     }
@@ -107,20 +107,19 @@ void R_CGC_Create(void)
 * Arguments    : none
 * Return Value : none
 ***********************************************************************************************************************/
-void R_CPG_WriteEnable(void)
+void R_CPG_WriteEnable( void )
 {
     volatile uint32_t dummy = 0;
 
-    UNUSED_VARIABLE(dummy);
+    UNUSED_VARIABLE( dummy );
 
     /* Enables writing to the CPG register */
     SYSTEM.PRCR.LONG = CPG_WRITE_ENABLE;
     dummy = SYSTEM.PRCR.LONG;
-
 }
 
 /***********************************************************************************************************************
- End of function R_CPG_WriteEnable
+*  End of function R_CPG_WriteEnable
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
@@ -130,20 +129,19 @@ void R_CPG_WriteEnable(void)
 * Arguments    : none
 * Return Value : none
 ***********************************************************************************************************************/
-void R_CPG_WriteDisable(void)
+void R_CPG_WriteDisable( void )
 {
     volatile uint32_t dummy = 0;
 
-    UNUSED_VARIABLE(dummy);
+    UNUSED_VARIABLE( dummy );
 
     /* Disables writing to the CPG register */
     SYSTEM.PRCR.LONG = CPG_WRITE_DISABLE;
     dummy = SYSTEM.PRCR.LONG;
-
 }
 
 /***********************************************************************************************************************
- End of function R_CPG_WriteDisable
+*  End of function R_CPG_WriteDisable
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
@@ -152,14 +150,13 @@ void R_CPG_WriteDisable(void)
 * Arguments    : none
 * Return Value : none
 ***********************************************************************************************************************/
-void R_CPG_PLLWait(void)
+void R_CPG_PLLWait( void )
 {
-
     /* Enables writing to the registers related to Reset and Low-Power function */
     r_rst_write_enable();
 
     /* Release from the CMT0 module-stop state  */
-    MSTP(CMT0) = 0;
+    MSTP( CMT0 ) = 0;
 
     /* Disables writing to the registers related to Reset and Low-Power function */
     r_rst_write_disable();
@@ -179,7 +176,7 @@ void R_CPG_PLLWait(void)
     CMT.CMSTR0.BIT.STR0 = CPG_CMT0_START;
 
     /* Wait for 100us (IRQ21 is generated) */
-    while ( !(VIC.RAIS0.BIT.RAI21) )
+    while( !( VIC.RAIS0.BIT.RAI21 ) )
     {
         /* Wait */
     }
@@ -199,14 +196,14 @@ void R_CPG_PLLWait(void)
     r_rst_write_enable();
 
     /* Set CMT0 to module-stop state */
-    MSTP(CMT0) = 1;
+    MSTP( CMT0 ) = 1;
 
     /* Disables writing to the registers related to Reset and Low-Power function */
     r_rst_write_disable();
 }
 
 /***********************************************************************************************************************
- End of function R_CPG_PLLWait
+*  End of function R_CPG_PLLWait
 ***********************************************************************************************************************/
 
 /* End user code. Do not edit comment generated here */

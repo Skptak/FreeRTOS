@@ -36,27 +36,30 @@
 
 extern void vMain( void );
 
-void main(void)
+void main( void )
 {
-  /*** Processor Expert internal initialization. DON'T REMOVE THIS CODE!!! ***/
-  PE_low_level_init();
-  /*** End of Processor Expert internal initialization.                    ***/
+    /*** Processor Expert internal initialization. DON'T REMOVE THIS CODE!!! ***/
+    PE_low_level_init();
+    /*** End of Processor Expert internal initialization.                    ***/
 
-  /*Write your code here*/
+    /*Write your code here*/
 
-  /* Just jump to the real main(). */
-  __asm
-  {
-  	 jmp vMain
-  }
+    /* Just jump to the real main(). */
+    __asm
+    {
+        jmp vMain
+    }
 
+    /*** Processor Expert end of main routine. DON'T MODIFY THIS CODE!!! ***/
+    for( ; ; )
+    {
+    }
 
-  /*** Processor Expert end of main routine. DON'T MODIFY THIS CODE!!! ***/
-    for(;;);
-  /*** Processor Expert end of main routine. DON'T WRITE CODE BELOW!!! ***/
+    /*** Processor Expert end of main routine. DON'T WRITE CODE BELOW!!! ***/
 } /*** End of main routine. DO NOT MODIFY THIS TEXT!!! ***/
 
 /* END RTOSDemo */
+
 /*
 ** ###################################################################
 **

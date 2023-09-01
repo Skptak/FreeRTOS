@@ -245,7 +245,7 @@ struct tcp_pcb
 #define TF_ACK_NOW      ( u8_t ) 0x02U /* Immediate ACK. */
 #define TF_INFR         ( u8_t ) 0x04U /* In fast recovery. */
 #define TF_RESET        ( u8_t ) 0x08U /* Connection was reset. */
-#define TF_CLOSED       ( u8_t ) 0x10U /* Connection was sucessfully closed. */
+#define TF_CLOSED       ( u8_t ) 0x10U /* Connection was successfully closed. */
 #define TF_GOT_FIN      ( u8_t ) 0x20U /* Connection was closed by the remote end. */
 #define TF_NODELAY      ( u8_t ) 0x40U /* Disable Nagle algorithm */
 

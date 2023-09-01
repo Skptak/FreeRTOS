@@ -31,12 +31,12 @@
 /* Altera - ALT_MPUSCU */
 
 #ifndef __ALTERA_ALT_MPUSCU_H__
-#define __ALTERA_ALT_MPUSCU_H__
+    #define __ALTERA_ALT_MPUSCU_H__
 
-#ifdef __cplusplus
-extern "C"
-{
-#endif  /* __cplusplus */
+    #ifdef __cplusplus
+        extern "C"
+        {
+    #endif /* __cplusplus */
 
 /*
  * Component : MPU SCU Module Address Space - ALT_MPUSCU
@@ -48,6 +48,7 @@ extern "C"
  * here[/url] to access the ARM documentation for the Cortex-A9 MPCore.
  *
  */
+
 /*
  * Register : Empty - reg
  *
@@ -60,6 +61,7 @@ extern "C"
  *  [31:0] | RW     | Unknown | Empty
  *
  */
+
 /*
  * Field : Empty - fld
  *
@@ -69,23 +71,24 @@ extern "C"
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_MPUSCU_REG_FLD register field. */
-#define ALT_MPUSCU_REG_FLD_LSB        0
+    #define ALT_MPUSCU_REG_FLD_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_MPUSCU_REG_FLD register field. */
-#define ALT_MPUSCU_REG_FLD_MSB        31
+    #define ALT_MPUSCU_REG_FLD_MSB        31
 /* The width in bits of the ALT_MPUSCU_REG_FLD register field. */
-#define ALT_MPUSCU_REG_FLD_WIDTH      32
+    #define ALT_MPUSCU_REG_FLD_WIDTH      32
 /* The mask used to set the ALT_MPUSCU_REG_FLD register field value. */
-#define ALT_MPUSCU_REG_FLD_SET_MSK    0xffffffff
+    #define ALT_MPUSCU_REG_FLD_SET_MSK    0xffffffff
 /* The mask used to clear the ALT_MPUSCU_REG_FLD register field value. */
-#define ALT_MPUSCU_REG_FLD_CLR_MSK    0x00000000
+    #define ALT_MPUSCU_REG_FLD_CLR_MSK    0x00000000
 /* The reset value of the ALT_MPUSCU_REG_FLD register field is UNKNOWN. */
-#define ALT_MPUSCU_REG_FLD_RESET      0x0
+    #define ALT_MPUSCU_REG_FLD_RESET      0x0
 /* Extracts the ALT_MPUSCU_REG_FLD field value from a register. */
-#define ALT_MPUSCU_REG_FLD_GET(value) (((value) & 0xffffffff) >> 0)
+    #define ALT_MPUSCU_REG_FLD_GET( value )    ( ( ( value ) & 0xffffffff ) >> 0 )
 /* Produces a ALT_MPUSCU_REG_FLD register field value suitable for setting the register. */
-#define ALT_MPUSCU_REG_FLD_SET(value) (((value) << 0) & 0xffffffff)
+    #define ALT_MPUSCU_REG_FLD_SET( value )    ( ( ( value ) << 0 ) & 0xffffffff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -96,19 +99,20 @@ extern "C"
  *
  * The struct declaration for register ALT_MPUSCU_REG.
  */
-struct ALT_MPUSCU_REG_s
-{
-    uint32_t  fld : 32;  /* Empty */
-};
+        struct ALT_MPUSCU_REG_s
+        {
+            uint32_t fld : 32; /* Empty */
+        };
 
 /* The typedef declaration for register ALT_MPUSCU_REG. */
-typedef volatile struct ALT_MPUSCU_REG_s  ALT_MPUSCU_REG_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_MPUSCU_REG_s ALT_MPUSCU_REG_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_MPUSCU_REG register from the beginning of the component. */
-#define ALT_MPUSCU_REG_OFST        0x0
+    #define ALT_MPUSCU_REG_OFST    0x0
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -119,26 +123,25 @@ typedef volatile struct ALT_MPUSCU_REG_s  ALT_MPUSCU_REG_t;
  *
  * The struct declaration for register group ALT_MPUSCU.
  */
-struct ALT_MPUSCU_s
-{
-    volatile ALT_MPUSCU_REG_t  reg;  /* ALT_MPUSCU_REG */
-};
+        struct ALT_MPUSCU_s
+        {
+            volatile ALT_MPUSCU_REG_t reg; /* ALT_MPUSCU_REG */
+        };
 
 /* The typedef declaration for register group ALT_MPUSCU. */
-typedef volatile struct ALT_MPUSCU_s  ALT_MPUSCU_t;
+        typedef volatile struct ALT_MPUSCU_s ALT_MPUSCU_t;
 /* The struct declaration for the raw register contents of register group ALT_MPUSCU. */
-struct ALT_MPUSCU_raw_s
-{
-    volatile uint32_t  reg;  /* ALT_MPUSCU_REG */
-};
+        struct ALT_MPUSCU_raw_s
+        {
+            volatile uint32_t reg; /* ALT_MPUSCU_REG */
+        };
 
 /* The typedef declaration for the raw register contents of register group ALT_MPUSCU. */
-typedef volatile struct ALT_MPUSCU_raw_s  ALT_MPUSCU_raw_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_MPUSCU_raw_s ALT_MPUSCU_raw_t;
+    #endif /* __ASSEMBLY__ */
 
 
-#ifdef __cplusplus
+    #ifdef __cplusplus
 }
-#endif  /* __cplusplus */
-#endif  /* __ALTERA_ALT_MPUSCU_H__ */
-
+    #endif /* __cplusplus */
+#endif /* __ALTERA_ALT_MPUSCU_H__ */

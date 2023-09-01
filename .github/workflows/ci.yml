@@ -39,39 +39,7 @@ jobs:
       - name: Check Formatting of Files
         uses: FreeRTOS/CI-CD-Github-Actions/formatting@v2
         with:
-          exclude-dirs: Demo, Test, FreeRTOS-Plus
-          exclude-files: '*.patch'
-
-      - name: Check Formatting of FreeRTOS Common Demo Files
-        uses: FreeRTOS/CI-CD-Github-Actions/formatting@v2
-        with:
-          path: FreeRTOS/Demo/Common
-          exclude-files: '*.patch'
-
-      - name: Check Formatting of FreeRTOS Test Files
-        uses: FreeRTOS/CI-CD-Github-Actions/formatting@v2
-        with:
-          path: FreeRTOS/Test
-          exclude-files: '*.patch'
-
-      - name: Check Formatting of FreeRTOS-Plus-TCP Files
-        uses: FreeRTOS/CI-CD-Github-Actions/formatting@v2
-        with:
-          path: FreeRTOS-Plus
-          exclude-dirs: Demo, Test, ThirdParty, VisualStudio_StaticProjects
-          exclude-files: '*.patch'
-
-      - name: Check Formatting of FreeRTOS-Plus-TCP Demo Files
-        uses: FreeRTOS/CI-CD-Github-Actions/formatting@v2
-        with:
-          path: FreeRTOS-Plus/Demo
-          exclude-files: '*.patch'
-
-      - name: Check Formatting of FreeRTOS-Plus-TCP Test Files
-        uses: FreeRTOS/CI-CD-Github-Actions/formatting@v2
-        with:
-          path: FreeRTOS-Plus/Test
-          exclude-files: '*.patch'
+          exclude-files: RTOSDemo.tra
 
   spell-check:
     runs-on: ubuntu-latest
@@ -80,6 +48,8 @@ jobs:
         uses: actions/checkout@v3
       - name: Run spellings check
         uses: FreeRTOS/CI-CD-GitHub-Actions/spellings@v2
+        with:
+          exclude-dirs: Demo
 
 #    link-verifier:
 #      runs-on: ubuntu-latest

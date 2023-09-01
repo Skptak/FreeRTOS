@@ -72,13 +72,14 @@
 
 #include "Cpu.h"
 
-#pragma CODE_SEG TickTimer_CODE        /* Code section for this module. */
+#pragma CODE_SEG TickTimer_CODE   /* Code section for this module. */
 
-#define TickTimer_SFHzMin  100         /* Lower bound of interval for method SetFreqHz */
-#define TickTimer_SFHzMax  1000        /* Upper bound of interval for method SetFreqHz */
+#define TickTimer_SFHzMin    100  /* Lower bound of interval for method SetFreqHz */
+#define TickTimer_SFHzMax    1000 /* Upper bound of interval for method SetFreqHz */
 
 
-byte TickTimer_Enable(void);
+byte TickTimer_Enable( void );
+
 /*
 ** ===================================================================
 **     Method      :  TickTimer_Enable (bean TimerInt)
@@ -95,7 +96,8 @@ byte TickTimer_Enable(void);
 ** ===================================================================
 */
 
-byte TickTimer_SetFreqHz(word Freq);
+byte TickTimer_SetFreqHz( word Freq );
+
 /*
 ** ===================================================================
 **     Method      :  TickTimer_SetFreqHz (bean TimerInt)
@@ -122,8 +124,9 @@ byte TickTimer_SetFreqHz(word Freq);
 */
 
 #pragma CODE_SEG __NEAR_SEG NON_BANKED /* Interrupt section for this module. Placement will be in NON_BANKED area. */
-__interrupt void  TickTimer_Interrupt(void);
+__interrupt void TickTimer_Interrupt( void );
 #pragma CODE_SEG TickTimer_CODE        /* Code section for this module. */
+
 /*
 ** ===================================================================
 **     Method      :  TickTimer_Interrupt (bean TimerInt)
@@ -134,7 +137,8 @@ __interrupt void  TickTimer_Interrupt(void);
 ** ===================================================================
 */
 
-void TickTimer_Init(void);
+void TickTimer_Init( void );
+
 /*
 ** ===================================================================
 **     Method      :  TickTimer_Init (bean TimerInt)
@@ -145,11 +149,12 @@ void TickTimer_Init(void);
 ** ===================================================================
 */
 
-#pragma CODE_SEG DEFAULT               /* Change code section to DEFAULT. */
+#pragma CODE_SEG DEFAULT /* Change code section to DEFAULT. */
 
 /* END TickTimer. */
 
 #endif /* ifndef __TickTimer */
+
 /*
 ** ###################################################################
 **

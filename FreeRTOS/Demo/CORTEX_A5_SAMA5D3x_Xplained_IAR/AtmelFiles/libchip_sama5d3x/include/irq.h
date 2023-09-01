@@ -42,34 +42,33 @@
  */
 
 #ifndef IRQ_H
-#define IRQ_H
+    #define IRQ_H
 
 /*------------------------------------------------------------------------------
  *         Headers
  *------------------------------------------------------------------------------*/
 
-#include "chip.h"
+    #include "chip.h"
 
-#include <stdint.h>
+    #include <stdint.h>
 
 /*------------------------------------------------------------------------------
  *         Global functions
  *------------------------------------------------------------------------------*/
 
- #ifdef __cplusplus
- extern "C" {
-#endif
-extern uint32_t IRQ_ConfigureIT(uint32_t source,
-                            uint32_t mode,         // mode for AIC, priority for NVIC
-                            void( *handler )( void )); // ISR
+    #ifdef __cplusplus
+    extern "C" {
+    #endif
+    extern uint32_t IRQ_ConfigureIT( uint32_t source,
+                                     uint32_t mode,                /* mode for AIC, priority for NVIC */
+                                     void ( * handler )( void ) ); /* ISR */
 
-extern void IRQ_EnableIT(uint32_t source);
+    extern void IRQ_EnableIT( uint32_t source );
 
-extern void IRQ_DisableIT(uint32_t source);
+    extern void IRQ_DisableIT( uint32_t source );
 
-#ifdef __cplusplus
+    #ifdef __cplusplus
 }
-#endif
+    #endif
 
 #endif //#ifndef IRQ_H
-

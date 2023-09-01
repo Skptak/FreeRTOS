@@ -32,7 +32,8 @@
 #include "IO_Map.h"
 #include "PE_Timer.h"
 
-void vTaskTickInterrupt(void);
+void vTaskTickInterrupt( void );
+
 /*
 ** ===================================================================
 **     Event       :  vTaskTickInterrupt (module Events)
@@ -48,7 +49,8 @@ void vTaskTickInterrupt(void);
 */
 
 
-void ButtonInterrupt_OnInterrupt(void);
+void ButtonInterrupt_OnInterrupt( void );
+
 /*
 ** ===================================================================
 **     Event       :  ButtonInterrupt_OnInterrupt (module Events)

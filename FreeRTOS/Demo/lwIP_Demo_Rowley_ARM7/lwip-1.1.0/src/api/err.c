@@ -34,26 +34,26 @@
 
 #ifdef LWIP_DEBUG
 
-static char *err_strerr[] = {"Ok.",
-           "Out of memory error.",
-           "Buffer error.",
-           "Connection aborted.",
-           "Connection reset.",
-           "Connection closed.",
-           "Not connected.",
-           "Illegal value.",
-           "Illegal argument.",
-           "Routing problem.",
-           "Address in use."
-};
+    static char * err_strerr[] =
+    {
+        "Ok.",
+        "Out of memory error.",
+        "Buffer error.",
+        "Connection aborted.",
+        "Connection reset.",
+        "Connection closed.",
+        "Not connected.",
+        "Illegal value.",
+        "Illegal argument.",
+        "Routing problem.",
+        "Address in use."
+    };
 
 
-char *
-lwip_strerr(err_t err)
-{
-  return err_strerr[-err];
-
-}
+    char * lwip_strerr( err_t err )
+    {
+        return err_strerr[ -err ];
+    }
 
 
 #endif /* LWIP_DEBUG */

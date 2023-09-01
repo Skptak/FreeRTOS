@@ -35,12 +35,12 @@
 
 
 /*------------------------------------------------------------------------------
-*   Porting Note:
-*
-*   Several example implementations of this module for FreeRTOS are available.
-*   If you are lucky, you can use one of these implementations; otherwise, these
-*   can serve as examples of how to implement this service.
-*  ------------------------------------------------------------------------------*/
+ *   Porting Note:
+ *
+ *   Several example implementations of this module for FreeRTOS are available.
+ *   If you are lucky, you can use one of these implementations; otherwise, these
+ *   can serve as examples of how to implement this service.
+ *  ------------------------------------------------------------------------------*/
 
 /** @brief The F_DRIVER example implementation.
  *
@@ -51,7 +51,7 @@
  *  pointed at the F_DRIVERINIT function.  This can be done in this module or in
  *  another C file.
  *
- *  The disadantage of using the FreeRTOS F_DRIVER functions is that they only
+ *  The disadvantage of using the FreeRTOS F_DRIVER functions is that they only
  *  support single-sector reads and writes.  Reliance Edge will issue
  *  multi-sector requests, and servicing these one sector at a time will
  *  significantly slow down the file system.
@@ -1551,7 +1551,7 @@ REDSTATUS RedOsBDevRead( uint8_t bVolNum,
         }
     #endif /* REDCONF_READ_ONLY == 0 */
 
-#else  /* if BDEV_EXAMPLE_IMPLEMENTATION == BDEV_F_DRIVER */
+#else /* if BDEV_EXAMPLE_IMPLEMENTATION == BDEV_F_DRIVER */
 
     #error "Invalid BDEV_EXAMPLE_IMPLEMENTATION value"
 

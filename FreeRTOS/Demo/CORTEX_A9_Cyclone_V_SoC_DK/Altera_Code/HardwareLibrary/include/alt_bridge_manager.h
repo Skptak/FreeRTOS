@@ -33,16 +33,17 @@
 ******************************************************************************/
 
 #ifndef __ALT_BRG_MGR_H__
-#define __ALT_BRG_MGR_H__
+    #define __ALT_BRG_MGR_H__
 
-#include "hwlib.h"
+    #include "hwlib.h"
 
-#ifdef __cplusplus
-extern "C"
-{
-#endif  /* __cplusplus */
+    #ifdef __cplusplus
+        extern "C"
+        {
+    #endif /* __cplusplus */
 
 /******************************************************************************/
+
 /*! \addtogroup ALT_BRIDGE The AXI Bridge Manager
  *
  * The functions in this group manage access, configuration, and control of the
@@ -52,61 +53,63 @@ extern "C"
  */
 
 /******************************************************************************/
+
 /*!
  * This type definition enumerates the AXI bridge interfaces between the FPGA
  * and HPS.
  */
-typedef enum ALT_BRIDGE_e
-{
-    ALT_BRIDGE_F2H,             /*!< FPGA-to-HPS AXI bridge providing a
-                                 *   high-performance, statically configurable
-                                 *   width interface that gives the FPGA the
-                                 *   ability to:
-                                 *   * master transactions to slaves in the HPS
-                                 *   * have full visibility into the HPS address space
-                                 *   * access the coherent memory interface (ACP)
-                                 *
-                                 *   The width (32/64/128 bits) of this bridge
-                                 *   is statically configurable at design time
-                                 *   using \e Quartus.
-                                 */
-    ALT_BRIDGE_H2F,             /*!< HPS-to-FPGA AXI bridge providing a
-                                 *   statically configurable width,
-                                 *   high-performance master interface to the
-                                 *   FPGA fabric. The bridge provides a 1GB
-                                 *   address space and gives any master in the
-                                 *   HPS system access to logic, peripherals,
-                                 *   and memory implemented in the FPGA.
-                                 */
-    ALT_BRIDGE_LWH2F            /*!< Lightweight HPS-to-FPGA AXI bridge
-                                 *   providing a secondary, fixed-width, smaller
-                                 *   address space, lower-performance master
-                                 *   interface to the FPGA fabric. The bridge
-                                 *   provides a 2MB address space and gives any
-                                 *   master in the HPS access to logic,
-                                 *   peripherals, and memory implemented in the
-                                 *   FPGA fabric. The bridge master exposed to
-                                 *   the FPGA fabric has a fixed data width of
-                                 *   32 bits.
-                                 *
-                                 *   The bridge provides clock crossing logic to
-                                 *   allow the logic in the FPGA to run
-                                 *   asynchronous to the HPS. The bridge
-                                 *   simplifies the process of connecting the
-                                 *   HPS to soft logic. Soft logic can even be
-                                 *   designed to support only a subset of the
-                                 *   full AXI protocol that the bridge
-                                 *   supports. Use the lightweight HPS-to-FPGA
-                                 *   bridge for high-latency, low-bandwidth
-                                 *   traffic, such as memory-mapped register
-                                 *   accesses of FPGA peripherals. This approach
-                                 *   diverts traffic from the high-performance
-                                 *   HPS-to-FPGA bridge, which can improve
-                                 *   overall performance.
-                                 */
-} ALT_BRIDGE_t;
+    typedef enum ALT_BRIDGE_e
+    {
+        ALT_BRIDGE_F2H,  /*!< FPGA-to-HPS AXI bridge providing a
+                          *   high-performance, statically configurable
+                          *   width interface that gives the FPGA the
+                          *   ability to:
+                          *   * master transactions to slaves in the HPS
+                          *   * have full visibility into the HPS address space
+                          *   * access the coherent memory interface (ACP)
+                          *
+                          *   The width (32/64/128 bits) of this bridge
+                          *   is statically configurable at design time
+                          *   using \e Quartus.
+                          */
+        ALT_BRIDGE_H2F,  /*!< HPS-to-FPGA AXI bridge providing a
+                          *   statically configurable width,
+                          *   high-performance master interface to the
+                          *   FPGA fabric. The bridge provides a 1GB
+                          *   address space and gives any master in the
+                          *   HPS system access to logic, peripherals,
+                          *   and memory implemented in the FPGA.
+                          */
+        ALT_BRIDGE_LWH2F /*!< Lightweight HPS-to-FPGA AXI bridge
+                          *   providing a secondary, fixed-width, smaller
+                          *   address space, lower-performance master
+                          *   interface to the FPGA fabric. The bridge
+                          *   provides a 2MB address space and gives any
+                          *   master in the HPS access to logic,
+                          *   peripherals, and memory implemented in the
+                          *   FPGA fabric. The bridge master exposed to
+                          *   the FPGA fabric has a fixed data width of
+                          *   32 bits.
+                          *
+                          *   The bridge provides clock crossing logic to
+                          *   allow the logic in the FPGA to run
+                          *   asynchronous to the HPS. The bridge
+                          *   simplifies the process of connecting the
+                          *   HPS to soft logic. Soft logic can even be
+                          *   designed to support only a subset of the
+                          *   full AXI protocol that the bridge
+                          *   supports. Use the lightweight HPS-to-FPGA
+                          *   bridge for high-latency, low-bandwidth
+                          *   traffic, such as memory-mapped register
+                          *   accesses of FPGA peripherals. This approach
+                          *   diverts traffic from the high-performance
+                          *   HPS-to-FPGA bridge, which can improve
+                          *   overall performance.
+                          */
+    } ALT_BRIDGE_t;
 
 /******************************************************************************/
+
 /*!
  * Type definition for a callback function prototype used by the
  * alt_bridge_init() bridge initialization function to determine whether the
@@ -135,9 +138,10 @@ typedef enum ALT_BRIDGE_e
  *                              bridge interface transactions indication before
  *                              the response timeout period expired.
  */
-typedef ALT_STATUS_CODE (*alt_bridge_fpga_is_ready_t)(void* user_arg);
+    typedef ALT_STATUS_CODE (* alt_bridge_fpga_is_ready_t)( void * user_arg );
 
 /******************************************************************************/
+
 /*!
  * Initialize the bridge for bus transactions by bringing up the interface in a
  * safe, controlled sequence.
@@ -177,14 +181,15 @@ typedef ALT_STATUS_CODE (*alt_bridge_fpga_is_ready_t)(void* user_arg);
  *              A user defined argument value for passing support data to the \e
  *              fpga_is_ready callback function.
  *
- * \retval      ALT_E_SUCCESS   The operation was succesful.
+ * \retval      ALT_E_SUCCESS   The operation was successful.
  * \retval      ALT_E_ERROR     The operation failed.
  */
-ALT_STATUS_CODE alt_bridge_init(ALT_BRIDGE_t bridge,
-                                alt_bridge_fpga_is_ready_t fpga_is_ready,
-                                void* user_arg);
+    ALT_STATUS_CODE alt_bridge_init( ALT_BRIDGE_t bridge,
+                                     alt_bridge_fpga_is_ready_t fpga_is_ready,
+                                     void * user_arg );
 
 /******************************************************************************/
+
 /*!
  * Type definition for a callback function prototype used by the
  * alt_bridge_uninit() function to conduct a handshake protocol with the FPGA
@@ -216,9 +221,10 @@ ALT_STATUS_CODE alt_bridge_init(ALT_BRIDGE_t bridge,
  * \retval      ALT_E_TMO       The handshake notification protocol failed
  *                              because a response timeout period expired.
  */
-typedef ALT_STATUS_CODE (*alt_bridge_teardown_handshake_t)(void* user_arg);
+    typedef ALT_STATUS_CODE (* alt_bridge_teardown_handshake_t)( void * user_arg );
 
 /******************************************************************************/
+
 /*!
  * Uninitialize the bridge by tearing down the interface in a safe and
  * controlled sequence.
@@ -257,13 +263,13 @@ typedef ALT_STATUS_CODE (*alt_bridge_teardown_handshake_t)(void* user_arg);
  * \retval      ALT_E_SUCCESS   The operation was successful.
  * \retval      ALT_E_ERROR     The operation failed.
  */
-ALT_STATUS_CODE alt_bridge_uninit(ALT_BRIDGE_t bridge,
-                                  alt_bridge_teardown_handshake_t handshake,
-                                  void* user_arg);
+    ALT_STATUS_CODE alt_bridge_uninit( ALT_BRIDGE_t bridge,
+                                       alt_bridge_teardown_handshake_t handshake,
+                                       void * user_arg );
 
 /*! @} */
 
-#ifdef __cplusplus
+    #ifdef __cplusplus
 }
-#endif  /* __cplusplus */
-#endif  /* __ALT_BRG_MGR_H__ */
+    #endif /* __cplusplus */
+#endif /* __ALT_BRG_MGR_H__ */

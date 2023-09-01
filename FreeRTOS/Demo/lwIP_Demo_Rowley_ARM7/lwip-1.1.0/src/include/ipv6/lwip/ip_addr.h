@@ -34,26 +34,31 @@
 
 #include "lwip/arch.h"
 
-#define IP_ADDR_ANY 0
+#define IP_ADDR_ANY    0
 
-struct ip_addr {
-  u32_t addr[4];
+struct ip_addr
+{
+    u32_t addr[ 4 ];
 };
 
-#define IP6_ADDR(ipaddr, a,b,c,d,e,f,g,h) do { (ipaddr)->addr[0] = htonl((u32_t)((a & 0xffff) << 16) | (b & 0xffff)); \
-                                               (ipaddr)->addr[1] = htonl(((c & 0xffff) << 16) | (d & 0xffff)); \
-                                               (ipaddr)->addr[2] = htonl(((e & 0xffff) << 16) | (f & 0xffff)); \
-                                               (ipaddr)->addr[3] = htonl(((g & 0xffff) << 16) | (h & 0xffff)); } while(0)
+#define IP6_ADDR( ipaddr, a, b, c, d, e, f, g, h )                                             \
+    do { ( ipaddr )->addr[ 0 ] = htonl( ( u32_t ) ( ( a & 0xffff ) << 16 ) | ( b & 0xffff ) ); \
+         ( ipaddr )->addr[ 1 ] = htonl( ( ( c & 0xffff ) << 16 ) | ( d & 0xffff ) );           \
+         ( ipaddr )->addr[ 2 ] = htonl( ( ( e & 0xffff ) << 16 ) | ( f & 0xffff ) );           \
+         ( ipaddr )->addr[ 3 ] = htonl( ( ( g & 0xffff ) << 16 ) | ( h & 0xffff ) ); } while( 0 )
 
-int ip_addr_netcmp(struct ip_addr *addr1, struct ip_addr *addr2,
-        struct ip_addr *mask);
-int ip_addr_cmp(struct ip_addr *addr1, struct ip_addr *addr2);
-void ip_addr_set(struct ip_addr *dest, struct ip_addr *src);
-int ip_addr_isany(struct ip_addr *addr);
+int ip_addr_netcmp( struct ip_addr * addr1,
+                    struct ip_addr * addr2,
+                    struct ip_addr * mask );
+int ip_addr_cmp( struct ip_addr * addr1,
+                 struct ip_addr * addr2 );
+void ip_addr_set( struct ip_addr * dest,
+                  struct ip_addr * src );
+int ip_addr_isany( struct ip_addr * addr );
 
 
 #if IP_DEBUG
-void ip_addr_debug_print(struct ip_addr *addr);
+    void ip_addr_debug_print( struct ip_addr * addr );
 #endif /* IP_DEBUG */
 
 #endif /* __LWIP_IP_ADDR_H__ */

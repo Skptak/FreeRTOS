@@ -529,7 +529,7 @@
                                           const char * fmt,
                                           ... );
             #else
-                #define xTracePrintF( chn, fmt, ... )    ( ( void ) ( chn ), ( void ) ( fmt ), TRC_SUCCESS )/* Comma operator is used to avoid "unused variable" compiler warnings in a single statement */
+                #define xTracePrintF( chn, fmt, ... )    ( ( void ) ( chn ), ( void ) ( fmt ), TRC_SUCCESS ) /* Comma operator is used to avoid "unused variable" compiler warnings in a single statement */
             #endif
 
             #if ( TRC_CFG_SCHEDULING_ONLY == 0 ) && ( TRC_CFG_INCLUDE_USER_EVENTS == 1 )
@@ -551,7 +551,7 @@
                                            const char * formatStr,
                                            va_list vl );
             #else
-                #define xTraceVPrintF( chn, formatStr, vl )    ( ( void ) ( chn ), ( void ) ( formatStr ), ( void ) ( vl ), TRC_SUCCESS )/* Comma operator is used to avoid "unused variable" compiler warnings in a single statement */
+                #define xTraceVPrintF( chn, formatStr, vl )    ( ( void ) ( chn ), ( void ) ( formatStr ), ( void ) ( vl ), TRC_SUCCESS ) /* Comma operator is used to avoid "unused variable" compiler warnings in a single statement */
             #endif
 
             #if ( TRC_CFG_SCHEDULING_ONLY == 0 ) && ( TRC_CFG_INCLUDE_USER_EVENTS == 1 )
@@ -902,7 +902,7 @@
                                                        traceObjectClass objectClass,
                                                        uint32_t objectNumber,
                                                        uint32_t param );
-            #else  /* if ( TRC_CFG_SCHEDULING_ONLY == 0 ) */
+            #else /* if ( TRC_CFG_SCHEDULING_ONLY == 0 ) */
 
                 #define prvTraceStoreKernelCall( eventcode, objectClass, byteParam )                     {}
                 #define prvTraceStoreKernelCallWithNumericParamOnly( evtcode, param )                    {}
@@ -1058,7 +1058,7 @@
  * @param[in] channel Channel
  */
                 void vTraceUBEvent( traceUBChannel channel );
-            #else  /* if ( ( TRC_CFG_INCLUDE_USER_EVENTS == 1 ) && ( TRC_CFG_SCHEDULING_ONLY == 0 ) ) && ( TRC_CFG_USE_SEPARATE_USER_EVENT_BUFFER == 1 ) */
+            #else /* if ( ( TRC_CFG_INCLUDE_USER_EVENTS == 1 ) && ( TRC_CFG_SCHEDULING_ONLY == 0 ) ) && ( TRC_CFG_USE_SEPARATE_USER_EVENT_BUFFER == 1 ) */
                 #define xTraceRegisterChannelFormat( eventLabel, formatStr )    ( ( void ) ( eventLabel ), ( void ) ( formatStr ), 0 )
                 #define vTraceUBData( label, ... )                              ( void ) ( label )
             #endif /*(TRC_CFG_USE_SEPARATE_USER_EVENT_BUFFER == 1)*/
@@ -1414,7 +1414,7 @@
                  * one of the Nxxx constants was too small. The systemInfo string will then
                  * contain an error message that is displayed when attempting to view the
                  * trace file. */
-                uint32_t internalErrorOccured;
+                uint32_t internalErrorOccurred;
 
                 /* 0xF2F2F2F2 - for control only */
                 int32_t debugMarker2;

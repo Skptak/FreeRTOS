@@ -21,6 +21,7 @@
 *
 * Copyright (C) 2014 Renesas Electronics Corporation. All rights reserved.
 *******************************************************************************/
+
 /*******************************************************************************
 * File Name    : rskrx113def.h
 * Device(s)    : R5F51138AxFP
@@ -35,27 +36,26 @@
 #define RSKRX113_H
 
 /*******************************************************************************
-User Defines
+*  User Defines
 *******************************************************************************/
 /* General Values */
-#define LED_ON          (0)
-#define LED_OFF         (1)
-#define SET_BIT_HIGH    (1)
-#define SET_BIT_LOW     (0)
-#define SET_BYTE_HIGH   (0xFF)
-#define SET_BYTE_LOW    (0x00)
+#define LED_ON           ( 0 )
+#define LED_OFF          ( 1 )
+#define SET_BIT_HIGH     ( 1 )
+#define SET_BIT_LOW      ( 0 )
+#define SET_BYTE_HIGH    ( 0xFF )
+#define SET_BYTE_LOW     ( 0x00 )
 
 /* Switches */
-#define SW1             (PORTJ.PIDR.BIT.B0)
-#define SW2             (PORT3.PIDR.BIT.B2)
-#define SW3             (PORT2.PIDR.BIT.B7)
+#define SW1              ( PORTJ.PIDR.BIT.B0 )
+#define SW2              ( PORT3.PIDR.BIT.B2 )
+#define SW3              ( PORT2.PIDR.BIT.B7 )
 
 /* LED port settings */
-#define LED0            (PORT2.PODR.BIT.B2)
-#define LED1            (PORT2.PODR.BIT.B3)
-#define LED2            (PORT2.PODR.BIT.B4)
-#define LED3            (PORT2.PODR.BIT.B5)
+#define LED0             ( PORT2.PODR.BIT.B2 )
+#define LED1             ( PORT2.PODR.BIT.B3 )
+#define LED2             ( PORT2.PODR.BIT.B4 )
+#define LED3             ( PORT2.PODR.BIT.B5 )
 
 
-#endif
-
+#endif /* ifndef RSKRX113_H */

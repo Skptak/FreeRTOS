@@ -28,33 +28,32 @@
 #define CG_USER_DEF_H
 
 /***********************************************************************************************************************
-Includes
+*  Includes
 ***********************************************************************************************************************/
 /* Start user code for include. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
 
 /***********************************************************************************************************************
-Macro definitions (Register bit)
+*  Macro definitions (Register bit)
 ***********************************************************************************************************************/
 /* Start user code for register. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
 
 /***********************************************************************************************************************
-Macro definitions
+*  Macro definitions
 ***********************************************************************************************************************/
 /* Start user code for macro define. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
 
 /***********************************************************************************************************************
-Typedef definitions
+*  Typedef definitions
 ***********************************************************************************************************************/
 /* Start user code for type define. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
 
 /***********************************************************************************************************************
-Global functions
+*  Global functions
 ***********************************************************************************************************************/
 /* Start user code for function. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
-#endif
-
+#endif /* ifndef CG_USER_DEF_H */

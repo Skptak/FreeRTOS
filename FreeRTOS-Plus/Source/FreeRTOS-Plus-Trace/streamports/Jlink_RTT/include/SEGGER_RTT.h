@@ -79,12 +79,12 @@
 /* */
     typedef struct
     {
-        const char * sName;         /* Optional name. Standard names so far are: "Terminal", "SysView", "J-Scope_t4i4" */
-        char * pBuffer;             /* Pointer to start of buffer */
-        unsigned SizeOfBuffer;      /* Buffer size in bytes. Note that one byte is lost, as this implementation does not fill up the buffer in order to avoid the problem of being unable to distinguish between full and empty. */
-        unsigned WrOff;             /* Position of next item to be written by either target. */
-        volatile unsigned RdOff;    /* Position of next item to be read by host. Must be volatile since it may be modified by host. */
-        unsigned Flags;             /* Contains configuration flags */
+        const char * sName;      /* Optional name. Standard names so far are: "Terminal", "SysView", "J-Scope_t4i4" */
+        char * pBuffer;          /* Pointer to start of buffer */
+        unsigned SizeOfBuffer;   /* Buffer size in bytes. Note that one byte is lost, as this implementation does not fill up the buffer in order to avoid the problem of being unable to distinguish between full and empty. */
+        unsigned WrOff;          /* Position of next item to be written by either target. */
+        volatile unsigned RdOff; /* Position of next item to be read by host. Must be volatile since it may be modified by host. */
+        unsigned Flags;          /* Contains configuration flags */
     } SEGGER_RTT_BUFFER_UP;
 
 /* */
@@ -93,12 +93,12 @@
 /* */
     typedef struct
     {
-        const char * sName;         /* Optional name. Standard names so far are: "Terminal", "SysView", "J-Scope_t4i4" */
-        char * pBuffer;             /* Pointer to start of buffer */
-        unsigned SizeOfBuffer;      /* Buffer size in bytes. Note that one byte is lost, as this implementation does not fill up the buffer in order to avoid the problem of being unable to distinguish between full and empty. */
-        volatile unsigned WrOff;    /* Position of next item to be written by host. Must be volatile since it may be modified by host. */
-        unsigned RdOff;             /* Position of next item to be read by target (down-buffer). */
-        unsigned Flags;             /* Contains configuration flags */
+        const char * sName;      /* Optional name. Standard names so far are: "Terminal", "SysView", "J-Scope_t4i4" */
+        char * pBuffer;          /* Pointer to start of buffer */
+        unsigned SizeOfBuffer;   /* Buffer size in bytes. Note that one byte is lost, as this implementation does not fill up the buffer in order to avoid the problem of being unable to distinguish between full and empty. */
+        volatile unsigned WrOff; /* Position of next item to be written by host. Must be volatile since it may be modified by host. */
+        unsigned RdOff;          /* Position of next item to be read by target (down-buffer). */
+        unsigned Flags;          /* Contains configuration flags */
     } SEGGER_RTT_BUFFER_DOWN;
 
 /* */

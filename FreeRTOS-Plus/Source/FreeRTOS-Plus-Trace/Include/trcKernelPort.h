@@ -272,7 +272,7 @@
 
             #endif
 
-        #else  /* if ( TRC_CFG_SCHEDULING_ONLY == 0 ) */
+        #else /* if ( TRC_CFG_SCHEDULING_ONLY == 0 ) */
 
 /**
  * @brief Disabled by TRC_CFG_SCHEDULING_ONLY
@@ -381,7 +381,7 @@
  * Future versions of FreeRTOS should not need this fix, as we have submitted
  * a correction of queue.c with individual trace macros for each function.
  */
-            #define isQueueReceiveHookActuallyPeek    ( __LINE__ > 1674 )/* Half way between the closes trace points */
+            #define isQueueReceiveHookActuallyPeek    ( __LINE__ > 1674 ) /* Half way between the closes trace points */
 
         #elif ( TRC_CFG_FREERTOS_VERSION <= TRC_FREERTOS_VERSION_9_0_0 )
 
@@ -395,7 +395,7 @@
 /**
  * @brief Is never a peek for this FreeRTOS version
  */
-            #define isQueueReceiveHookActuallyPeek    ( __LINE__ < 0 )/* instead of pdFALSE to fix a warning of "constant condition" */
+            #define isQueueReceiveHookActuallyPeek    ( __LINE__ < 0 ) /* instead of pdFALSE to fix a warning of "constant condition" */
 
         #endif /* if ( TRC_CFG_FREERTOS_VERSION == TRC_FREERTOS_VERSION_9_0_1 ) */
 
@@ -486,7 +486,7 @@
 /**
  * @internal Retrieve upper 16-bit of queue number
  *
- * @param[in] pvQueuevQueue handle
+ * @param[in] pvQueue Queue handle
  *
  * @returns uint16_t Upper 16-bit of queue number
  */
@@ -947,15 +947,15 @@
 
 /* Send/Give operations, from ISR */
             #define EVENTGROUP_SEND_FROM_ISR_TRCSUCCESS \
-    ( EVENTGROUP_RECEIVE_TRCSUCCESS + 8UL )                                     /*0x30*/
+    ( EVENTGROUP_RECEIVE_TRCSUCCESS + 8UL ) /*0x30*/
 
 /* Receive/Take operations, from ISR */
             #define EVENTGROUP_RECEIVE_FROM_ISR_TRCSUCCESS \
-    ( EVENTGROUP_SEND_FROM_ISR_TRCSUCCESS + 8UL )                               /*0x38*/
+    ( EVENTGROUP_SEND_FROM_ISR_TRCSUCCESS + 8UL ) /*0x38*/
 
 /* "Failed" event type versions of above (timeout, failed allocation, etc) */
             #define EVENTGROUP_KSE_TRCFAILED \
-    ( EVENTGROUP_RECEIVE_FROM_ISR_TRCSUCCESS + 8UL )                            /*0x40*/
+    ( EVENTGROUP_RECEIVE_FROM_ISR_TRCSUCCESS + 8UL ) /*0x40*/
 
 /* Failed create calls - memory allocation failed */
             #define EVENTGROUP_CREATE_OBJ_TRCFAILED       ( EVENTGROUP_KSE_TRCFAILED ) /*0x40*/
@@ -971,11 +971,11 @@
 
 /* Failed non-blocking receive/take - queue empty */
             #define EVENTGROUP_RECEIVE_FROM_ISR_TRCFAILED \
-    ( EVENTGROUP_SEND_FROM_ISR_TRCFAILED + 8UL )                                /*0x60*/
+    ( EVENTGROUP_SEND_FROM_ISR_TRCFAILED + 8UL ) /*0x60*/
 
 /* Events when blocking on receive/take */
             #define EVENTGROUP_RECEIVE_TRCBLOCK \
-    ( EVENTGROUP_RECEIVE_FROM_ISR_TRCFAILED + 8UL )                             /*0x68*/
+    ( EVENTGROUP_RECEIVE_FROM_ISR_TRCFAILED + 8UL ) /*0x68*/
 
 /* Events when blocking on send/give */
             #define EVENTGROUP_SEND_TRCBLOCK             ( EVENTGROUP_RECEIVE_TRCBLOCK + 8UL ) /*0x70*/
@@ -1105,7 +1105,7 @@
 /* peek block on mutex:			0xDE	*/
 
 /* Events on queue peek (receive) */
-            #define EVENTGROUP_PEEK_TRCFAILED    ( EVENTGROUP_PEEK_TRCBLOCK + 3UL )/*0xDF*/
+            #define EVENTGROUP_PEEK_TRCFAILED    ( EVENTGROUP_PEEK_TRCBLOCK + 3UL ) /*0xDF*/
 /* peek failed on queue:		0xDF	*/
 /* peek failed on semaphore:	0xE0	*/
 /* peek failed on mutex:		0xE1	*/
@@ -1269,7 +1269,7 @@
     if( uxSchedulerSuspended == ( unsigned portBASE_TYPE ) pdTRUE || uxPendedTicks == 0 ) { trcKERNEL_HOOKS_INCREMENT_TICK(); } \
     if( uxSchedulerSuspended == ( unsigned portBASE_TYPE ) pdFALSE ) { trcKERNEL_HOOKS_NEW_TIME( DIV_NEW_TIME, xTickCount + 1 ); }
 
-            #else  /* if ( TRC_CFG_FREERTOS_VERSION >= TRC_FREERTOS_VERSION_10_3_0 ) */
+            #else /* if ( TRC_CFG_FREERTOS_VERSION >= TRC_FREERTOS_VERSION_10_3_0 ) */
 
                 #define traceTASK_INCREMENT_TICK( xTickCount )                                                                  \
     if( uxSchedulerSuspended == ( unsigned portBASE_TYPE ) pdTRUE || uxMissedTicks == 0 ) { trcKERNEL_HOOKS_INCREMENT_TICK(); } \
@@ -1711,7 +1711,7 @@
     else{                                                                                                      \
         trcKERNEL_HOOKS_KERNEL_SERVICE_WITH_PARAM( TRACE_TASK_NOTIFY_TAKE_TRCFAILED, TASK, pxCurrentTCB, xTicksToWait ); }
 
-                #else  /* if ( TRC_CFG_FREERTOS_VERSION < TRC_FREERTOS_VERSION_9_0_0 ) */
+                #else /* if ( TRC_CFG_FREERTOS_VERSION < TRC_FREERTOS_VERSION_9_0_0 ) */
 
                     #define traceTASK_NOTIFY_TAKE( index )                                                     \
     if( pxCurrentTCB->ucNotifyState[ index ] == taskNOTIFICATION_RECEIVED ) {                                  \
@@ -1760,7 +1760,7 @@
         prvTraceStoreKernelCallWithParam( TRACE_TASK_NOTIFY_WAIT_TRCFAILED, TRACE_CLASS_TASK, TRACE_GET_TASK_NUMBER( pxCurrentTCB ), xTicksToWait ); \
     }
 
-                #else  /* if ( TRC_CFG_FREERTOS_VERSION < TRC_FREERTOS_VERSION_9_0_0 ) */
+                #else /* if ( TRC_CFG_FREERTOS_VERSION < TRC_FREERTOS_VERSION_9_0_0 ) */
 
                     #define traceTASK_NOTIFY_WAIT( index )                                                                                           \
     if( TRACE_GET_OBJECT_FILTER( TASK, pxCurrentTCB ) & CurrentFilterMask )                                                                          \
@@ -2177,7 +2177,7 @@
     if( uxSchedulerSuspended == ( unsigned portBASE_TYPE ) pdTRUE || uxPendedTicks == 0 ) { xTraceTimestampSetOsTickCount( xTickCount + 1 ); } \
     OS_TICK_EVENT( uxSchedulerSuspended, xTickCount + 1 )
 
-            #else  /* if TRC_CFG_FREERTOS_VERSION >= TRC_FREERTOS_VERSION_10_3_0 */
+            #else /* if TRC_CFG_FREERTOS_VERSION >= TRC_FREERTOS_VERSION_10_3_0 */
 
                 #define traceTASK_INCREMENT_TICK( xTickCount )                                                                                 \
     if( uxSchedulerSuspended == ( unsigned portBASE_TYPE ) pdTRUE || uxMissedTicks == 0 ) { xTraceTimestampSetOsTickCount( xTickCount + 1 ); } \
@@ -2272,7 +2272,7 @@
         xTraceObjectRegisterWithoutHandle( PSF_EVENT_MUTEX_RECURSIVE_CREATE, ( void * ) pxNewQueue, "", 0 ); \
         break;
 
-                #else  /* if ( TRC_CFG_FREERTOS_VERSION >= TRC_FREERTOS_VERSION_9_0_0 ) */
+                #else /* if ( TRC_CFG_FREERTOS_VERSION >= TRC_FREERTOS_VERSION_9_0_0 ) */
 
                     #define traceQUEUE_CREATE_HELPER()
 
@@ -2302,7 +2302,7 @@
         prvTraceStoreEvent_HandleParam( PSF_EVENT_MUTEX_RECURSIVE_CREATE_FAILED, 0, 0 ); \
         break;
 
-                #else  /* if ( TRC_CFG_FREERTOS_VERSION >= TRC_FREERTOS_VERSION_9_0_0 ) */
+                #else /* if ( TRC_CFG_FREERTOS_VERSION >= TRC_FREERTOS_VERSION_9_0_0 ) */
 
                     #define traceQUEUE_CREATE_FAILED_HELPER()
 
@@ -2356,7 +2356,7 @@
                     #define traceCREATE_COUNTING_SEMAPHORE() \
     xTraceObjectRegisterWithoutHandle( PSF_EVENT_SEMAPHORE_COUNTING_CREATE, ( void * ) xHandle, "", uxCountValue )
 
-                #else  /* if ( TRC_CFG_FREERTOS_VERSION >= TRC_FREERTOS_VERSION_8_X_X ) */
+                #else /* if ( TRC_CFG_FREERTOS_VERSION >= TRC_FREERTOS_VERSION_8_X_X ) */
 
                     #define traceCREATE_COUNTING_SEMAPHORE() \
     xTraceObjectRegisterWithoutHandle( PSF_EVENT_SEMAPHORE_COUNTING_CREATE, ( void * ) pxHandle, "", uxCountValue )
@@ -2379,7 +2379,7 @@
                     #define traceCREATE_COUNTING_SEMAPHORE_FAILED() \
     prvTraceStoreEvent_HandleParam( PSF_EVENT_SEMAPHORE_COUNTING_CREATE_FAILED, 0, uxCountValue )
 
-                #else  /* if ( TRC_CFG_FREERTOS_VERSION >= TRC_FREERTOS_VERSION_8_X_X ) */
+                #else /* if ( TRC_CFG_FREERTOS_VERSION >= TRC_FREERTOS_VERSION_8_X_X ) */
 
                     #define traceCREATE_COUNTING_SEMAPHORE_FAILED() \
     prvTraceStoreEvent_HandleParam( PSF_EVENT_SEMAPHORE_COUNTING_CREATE_FAILED, 0, uxCountValue )
@@ -2734,7 +2734,7 @@
     case tmrCOMMAND_CHANGE_PERIOD_FROM_ISR:                                                                                                                                               \
         prvTraceStoreEvent_HandleParam( ( xReturn == pdPASS ) ? PSF_EVENT_TIMER_CHANGEPERIOD_FROMISR : PSF_EVENT_TIMER_CHANGEPERIOD_FROMISR_FAILED, ( void * ) ( tmr ), xOptionalValue ); \
         break;
-                    #else  /* if ( TRC_CFG_FREERTOS_VERSION >= TRC_FREERTOS_VERSION_8_X_X ) */
+                    #else /* if ( TRC_CFG_FREERTOS_VERSION >= TRC_FREERTOS_VERSION_8_X_X ) */
 
                         #define traceTIMER_COMMAND_SEND_8_0_CASES( tmr )
 
@@ -2974,7 +2974,7 @@
 
         #endif /* if ( TRC_CFG_RECORDER_MODE == TRC_RECORDER_MODE_STREAMING ) */
 
-    #else  /* if ( defined( TRC_USE_TRACEALYZER_RECORDER ) ) && ( TRC_USE_TRACEALYZER_RECORDER == 1 ) */
+    #else /* if ( defined( TRC_USE_TRACEALYZER_RECORDER ) ) && ( TRC_USE_TRACEALYZER_RECORDER == 1 ) */
 
 /* When recorder is disabled */
         #define vTraceSetQueueName( object, name )

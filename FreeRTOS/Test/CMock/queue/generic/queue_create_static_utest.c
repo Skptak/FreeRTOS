@@ -147,7 +147,7 @@ void test_macro_xQueueCreateStatic_nullQueueStorage_oneItem_zeroLength( void )
     /* Verify that new queue is empty */
     TEST_ASSERT_EQUAL( 0, uxQueueMessagesWaiting( xQueue ) );
 
-    /* Valdiate that the queue has 1 space remaining */
+    /* Validate that the queue has 1 space remaining */
     TEST_ASSERT_EQUAL( 1, uxQueueSpacesAvailable( xQueue ) );
 
     /* Send a test value */

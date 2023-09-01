@@ -29,44 +29,44 @@
 #define INTERRUPT_HANDLERS_H
 
 /***********************************************************************************************************************
-Macro definitions (Register bit)
+*  Macro definitions (Register bit)
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-Macro definitions
+*  Macro definitions
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-Typedef definitions
+*  Typedef definitions
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-Global functions
+*  Global functions
 ***********************************************************************************************************************/
 
 /* Undefined */
-void r_undefined_exception(void) __attribute__ ((interrupt));
+void r_undefined_exception( void ) __attribute__( ( interrupt ) );
 
 /* Access Exception */
-void r_access_exception(void) __attribute__ ((interrupt));
+void r_access_exception( void ) __attribute__( ( interrupt ) );
 
 /* Privileged Instruction Exception */
-void r_privileged_exception(void) __attribute__ ((interrupt));
+void r_privileged_exception( void ) __attribute__( ( interrupt ) );
 
 /* Floating Point Exception */
-void r_floatingpoint_exception(void) __attribute__ ((interrupt));
+void r_floatingpoint_exception( void ) __attribute__( ( interrupt ) );
 
 /* NMI */
-void r_nmi_exception(void) __attribute__ ((interrupt));
+void r_nmi_exception( void ) __attribute__( ( interrupt ) );
 
 /* BRK */
-void r_brk_exception(void) __attribute__ ((interrupt));
+void r_brk_exception( void ) __attribute__( ( interrupt ) );
 
 /* Hardware Vectors */
-void PowerON_Reset(void) __attribute__ ((interrupt));
+void PowerON_Reset( void ) __attribute__( ( interrupt ) );
 
 /* Idle Vectors */
-void r_undefined_exception(void) __attribute__ ((interrupt));
-void r_reserved_exception(void) __attribute__ ((interrupt));
+void r_undefined_exception( void ) __attribute__( ( interrupt ) );
+void r_reserved_exception( void ) __attribute__( ( interrupt ) );
 
-#endif
+#endif /* ifndef INTERRUPT_HANDLERS_H */

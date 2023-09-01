@@ -30,6 +30,7 @@
 * 97-12-04 Guy Lancaster <glanca@gesn.com>, Global Election Systems Inc.
 *   Original derived from BSD codes.
 *****************************************************************************/
+
 /*
  * magic.h - PPP Magic Number definitions.
  *
@@ -58,7 +59,7 @@
 ************************** PUBLIC FUNCTIONS **********************************
 *****************************************************************************/
 
-void magicInit(void);   /* Initialize the magic number generator */
-u32_t magic(void);  /* Returns the next magic number */
+void magicInit( void ); /* Initialize the magic number generator */
+u32_t magic( void );    /* Returns the next magic number */
 
 #endif /* MAGIC_H */

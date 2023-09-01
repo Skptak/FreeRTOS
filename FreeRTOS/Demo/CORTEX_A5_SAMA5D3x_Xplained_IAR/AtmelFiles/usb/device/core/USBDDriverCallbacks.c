@@ -62,10 +62,10 @@
  * Indicates that the current configuration of the device has changed.
  * \param cfgnum  New device configuration index.
  */
-WEAK void USBDDriverCallbacks_ConfigurationChanged(uint8_t cfgnum)
+WEAK void USBDDriverCallbacks_ConfigurationChanged( uint8_t cfgnum )
 {
     cfgnum = cfgnum;
-    TRACE_INFO_WP("cfgChanged%d ", cfgnum);
+    TRACE_INFO_WP( "cfgChanged%d ", cfgnum );
 }
 
 /**
@@ -73,12 +73,12 @@ WEAK void USBDDriverCallbacks_ConfigurationChanged(uint8_t cfgnum)
  * \param interface  Number of the interface whose setting has changed.
  * \param setting  New interface setting.
  */
-WEAK void USBDDriverCallbacks_InterfaceSettingChanged(
-    uint8_t interface,
-    uint8_t setting)
+WEAK void USBDDriverCallbacks_InterfaceSettingChanged( uint8_t interface,
+                                                       uint8_t setting )
 {
-    interface = interface; setting = setting;
-    TRACE_INFO_WP("ifSettingChanged%d.%d ", interface, setting);
+    interface = interface;
+    setting = setting;
+    TRACE_INFO_WP( "ifSettingChanged%d.%d ", interface, setting );
 }
 
 /**@}*/

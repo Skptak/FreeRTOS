@@ -171,7 +171,7 @@
     #else
         #error "Alignment not supported for this compiler."
     #endif
-#else  /* if SEGGER_RTT_ALIGNMENT || SEGGER_RTT_BUFFER_ALIGNMENT */
+#else /* if SEGGER_RTT_ALIGNMENT || SEGGER_RTT_BUFFER_ALIGNMENT */
     #define SEGGER_RTT_ALIGN( Var, Alignment )    Var
 #endif /* if SEGGER_RTT_ALIGNMENT || SEGGER_RTT_BUFFER_ALIGNMENT */
 
@@ -187,7 +187,7 @@
     #else
         #error "Section placement not supported for this compiler."
     #endif
-#else  /* if defined( SEGGER_RTT_SECTION ) || defined( SEGGER_RTT_BUFFER_SECTION ) */
+#else /* if defined( SEGGER_RTT_SECTION ) || defined( SEGGER_RTT_BUFFER_SECTION ) */
     #define SEGGER_RTT_PUT_SECTION( Var, Section )    Var
 #endif /* if defined( SEGGER_RTT_SECTION ) || defined( SEGGER_RTT_BUFFER_SECTION ) */
 
@@ -336,7 +336,7 @@ static unsigned _WriteBlocking( SEGGER_RTT_BUFFER_UP * pRing,
 
     do
     {
-        RdOff = pRing->RdOff;                     /* May be changed by host (debug probe) in the meantime */
+        RdOff = pRing->RdOff; /* May be changed by host (debug probe) in the meantime */
 
         if( RdOff > WrOff )
         {
@@ -784,7 +784,7 @@ unsigned SEGGER_RTT_WriteSkipNoLock( unsigned BufferIndex,
                 } while( --NumBytes );
 
                 pRing->WrOff = WrOff + NumBytes;
-            #else  /* if 1 */
+            #else /* if 1 */
                 memcpy( pRing->pBuffer + WrOff, pData, NumBytes );
                 pRing->WrOff = WrOff + NumBytes;
             #endif /* if 1 */
@@ -1040,7 +1040,7 @@ int SEGGER_RTT_GetKey( void )
  *       SEGGER_RTT_WaitKey
  *
  *  Function description
- *    Waits until at least one character is avaible in the SEGGER RTT buffer.
+ *    Waits until at least one character is available in the SEGGER RTT buffer.
  *    Once a character is available, it is read and this function returns.
  *
  *  Return value
@@ -1558,7 +1558,7 @@ int SEGGER_RTT_SetTerminal( char TerminalId )
             _ActiveTerminal = TerminalId;
             _WriteBlocking( pRing, ac, 2u );
         }
-        else                                                                            /* Skipping mode or trim mode? => We cannot trim this command so handling is the same for both modes */
+        else /* Skipping mode or trim mode? => We cannot trim this command so handling is the same for both modes */
         {
             Avail = _GetAvailWriteSpace( pRing );
 
@@ -1615,9 +1615,9 @@ int SEGGER_RTT_TerminalOut( char TerminalId,
     /* Validate terminal ID. */
     /* */
     if( TerminalId < ( char ) sizeof( _aTerminalId ) ) /* We only support a certain number of channels */
-    { /* */
-      /* Get "to-host" ring buffer. */
-      /* */
+    {                                                  /* */
+        /* Get "to-host" ring buffer. */
+        /* */
         pRing = &_SEGGER_RTT.aUp[ 0 ];
         /* */
         /* Need to be able to change terminal, write data, change back. */

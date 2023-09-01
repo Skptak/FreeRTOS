@@ -37,14 +37,14 @@
 
 #ifndef _LCD_FONT_10x14_
 #define _LCD_FONT_10x14_
+
 /** \addtogroup font_10x14
  *  @{
  */
 
 #include <stdint.h>
 
-extern const uint8_t pCharset10x14[] ;
+extern const uint8_t pCharset10x14[];
 
 /** @}*/
 #endif /* #ifdef _LCD_FONT_10x14_ */
-

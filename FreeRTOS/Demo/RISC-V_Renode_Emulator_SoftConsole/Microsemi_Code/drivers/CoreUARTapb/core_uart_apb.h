@@ -7,108 +7,109 @@
  * SVN $Revision: 9082 $
  * SVN $Date: 2017-04-28 11:51:36 +0530 (Fri, 28 Apr 2017) $
  */
+
 /*=========================================================================*//**
-  @mainpage CoreUARTapb Bare Metal Driver.
-
-  @section intro_sec Introduction
-  CoreUARTapb is an implementation of the Universal Asynchronous
-  Receiver/Transmitter aimed at a minimal FPGA tile usage within an Microsemi
-  FPGA. The CoreUARTapb bare metal software driver is designed for use in
-  systems with no operating system.
-
-  The CoreUARTapb driver provides functions for basic polled transmitting and
-  receiving operations. It also provides functions allowing use of the
-  CoreUARTapb in interrupt-driven mode, but leaves the management of interrupts
-  to the calling application, as interrupt enabling and disabling cannot be
-  controlled through the CoreUARTapb registers. The CoreUARTapb driver is
-  provided as C source code.
-
-  @section driver_configuration Driver Configuration
-  Your application software should configure the CoreUARTapb driver, through
-  calls to the UART_init() function for each CoreUARTapb instance in the
-  hardware design. The configuration parameters include the CoreUARTapb
-  hardware instance base address and other runtime parameters, such as baud
-  rate, bit width, and parity. No CoreUARTapb hardware configuration parameters
-  are needed by the driver, apart from the CoreUARTapb hardware instance base
-  address. Hence, no additional configuration files are required to use the driver.
-
-  A CoreUARTapb hardware instance can be generated with fixed baud value,
-  character size and parity configuration settings as part of the hardware flow.
-  The baud_value and line_config parameter values passed to the UART_init()
-  function will not have any effect if fixed values were selected for the
-  baud value, character size and parity in the hardware configuration of
-  CoreUARTapb. When fixed values are selected for these hardware configuration
-  parameters, the driver cannot overwrite the fixed values in the CoreUARTapb
-  control registers, CTRL1 and CTRL2.
-
-  @section theory_op Theory of Operation
-  The CoreUARTapb software driver is designed to allow the control of multiple
-  instances of CoreUARTapb. Each instance of CoreUARTapb in the hardware design
-  is associated with a single instance of the UART_instance_t structure in the
-  software. You need to allocate memory for one unique UART_instance_t
-  structure instance for each CoreUARTapb hardware instance. The contents of
-  these data structures are initialized during calls to function UART_init().
-  A pointer to the structure is passed to subsequent driver functions in order
-  to identify the CoreUARTapb hardware instance you wish to perform the
-  requested operation on.
-
-  Note: Do not attempt to directly manipulate the content of UART_instance_t
-  structures. This structure is only intended to be modified by the driver
-  function.
-
-  The driver can be used to transmit and receive data once initialized.
-  Transmit can be performed using the UART_send() function. This function
-  is blocking, meaning that it will only return once the data passed to
-  the function has been sent to the CoreUARTapb hardware. Data received
-  by the CoreUARTapb hardware can be read by the user application using
-  the UART_get_rx() function.
-
-  The function UART_fill_tx_fifo() is also provided to be used as part of
-  interrupt-driven transmit. This function fills the CoreUARTapb hardware
-  transmit FIFO with the content of a data buffer passed as a parameter before
-  returning. The control of the interrupts must be implemented outside the
-  driver as the CoreUARTapb hardware does not provide the ability to enable
-  or disable its interrupt sources.
-
-  The function UART_polled_tx_string() is provided to transmit a NULL
-  terminated string in polled mode. This function is blocking, meaning that it
-  will only return once the data passed to the function has been sent to the
-  CoreUARTapb hardware.
-
-  The function UART_get_rx_status() returns the error status of the CoreUARTapb
-  receiver. This can be used by applications to take appropriate action in case
-  of receiver errors.
-*//*=========================================================================*/
+ * @mainpage CoreUARTapb Bare Metal Driver.
+ *
+ * @section intro_sec Introduction
+ * CoreUARTapb is an implementation of the Universal Asynchronous
+ * Receiver/Transmitter aimed at a minimal FPGA tile usage within an Microsemi
+ * FPGA. The CoreUARTapb bare metal software driver is designed for use in
+ * systems with no operating system.
+ *
+ * The CoreUARTapb driver provides functions for basic polled transmitting and
+ * receiving operations. It also provides functions allowing use of the
+ * CoreUARTapb in interrupt-driven mode, but leaves the management of interrupts
+ * to the calling application, as interrupt enabling and disabling cannot be
+ * controlled through the CoreUARTapb registers. The CoreUARTapb driver is
+ * provided as C source code.
+ *
+ * @section driver_configuration Driver Configuration
+ * Your application software should configure the CoreUARTapb driver, through
+ * calls to the UART_init() function for each CoreUARTapb instance in the
+ * hardware design. The configuration parameters include the CoreUARTapb
+ * hardware instance base address and other runtime parameters, such as baud
+ * rate, bit width, and parity. No CoreUARTapb hardware configuration parameters
+ * are needed by the driver, apart from the CoreUARTapb hardware instance base
+ * address. Hence, no additional configuration files are required to use the driver.
+ *
+ * A CoreUARTapb hardware instance can be generated with fixed baud value,
+ * character size and parity configuration settings as part of the hardware flow.
+ * The baud_value and line_config parameter values passed to the UART_init()
+ * function will not have any effect if fixed values were selected for the
+ * baud value, character size and parity in the hardware configuration of
+ * CoreUARTapb. When fixed values are selected for these hardware configuration
+ * parameters, the driver cannot overwrite the fixed values in the CoreUARTapb
+ * control registers, CTRL1 and CTRL2.
+ *
+ * @section theory_op Theory of Operation
+ * The CoreUARTapb software driver is designed to allow the control of multiple
+ * instances of CoreUARTapb. Each instance of CoreUARTapb in the hardware design
+ * is associated with a single instance of the UART_instance_t structure in the
+ * software. You need to allocate memory for one unique UART_instance_t
+ * structure instance for each CoreUARTapb hardware instance. The contents of
+ * these data structures are initialized during calls to function UART_init().
+ * A pointer to the structure is passed to subsequent driver functions in order
+ * to identify the CoreUARTapb hardware instance you wish to perform the
+ * requested operation on.
+ *
+ * Note: Do not attempt to directly manipulate the content of UART_instance_t
+ * structures. This structure is only intended to be modified by the driver
+ * function.
+ *
+ * The driver can be used to transmit and receive data once initialized.
+ * Transmit can be performed using the UART_send() function. This function
+ * is blocking, meaning that it will only return once the data passed to
+ * the function has been sent to the CoreUARTapb hardware. Data received
+ * by the CoreUARTapb hardware can be read by the user application using
+ * the UART_get_rx() function.
+ *
+ * The function UART_fill_tx_fifo() is also provided to be used as part of
+ * interrupt-driven transmit. This function fills the CoreUARTapb hardware
+ * transmit FIFO with the content of a data buffer passed as a parameter before
+ * returning. The control of the interrupts must be implemented outside the
+ * driver as the CoreUARTapb hardware does not provide the ability to enable
+ * or disable its interrupt sources.
+ *
+ * The function UART_polled_tx_string() is provided to transmit a NULL
+ * terminated string in polled mode. This function is blocking, meaning that it
+ * will only return once the data passed to the function has been sent to the
+ * CoreUARTapb hardware.
+ *
+ * The function UART_get_rx_status() returns the error status of the CoreUARTapb
+ * receiver. This can be used by applications to take appropriate action in case
+ * of receiver errors.
+ *//*=========================================================================*/
 #ifndef __CORE_UART_APB_H
-#define __CORE_UART_APB_H 1
+    #define __CORE_UART_APB_H    1
 
-#include "cpu_types.h"
+    #include "cpu_types.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+    #ifdef __cplusplus
+    extern "C" {
+    #endif
 
 /***************************************************************************//**
  * Data bits length defines:
  */
-#define DATA_7_BITS     0x00u
-#define DATA_8_BITS     0x01u
+    #define DATA_7_BITS                0x00u
+    #define DATA_8_BITS                0x01u
 
 /***************************************************************************//**
  * Parity defines:
  */
-#define NO_PARITY       0x00u
-#define EVEN_PARITY     0x02u
-#define ODD_PARITY      0x06u
+    #define NO_PARITY                  0x00u
+    #define EVEN_PARITY                0x02u
+    #define ODD_PARITY                 0x06u
 
 /***************************************************************************//**
  * Error Status definitions:
  */
-#define UART_APB_PARITY_ERROR    0x01u
-#define UART_APB_OVERFLOW_ERROR  0x02u
-#define UART_APB_FRAMING_ERROR   0x04u
-#define UART_APB_NO_ERROR        0x00u
-#define UART_APB_INVALID_PARAM   0xFFu
+    #define UART_APB_PARITY_ERROR      0x01u
+    #define UART_APB_OVERFLOW_ERROR    0x02u
+    #define UART_APB_FRAMING_ERROR     0x04u
+    #define UART_APB_NO_ERROR          0x00u
+    #define UART_APB_INVALID_PARAM     0xFFu
 
 /***************************************************************************//**
  * UART_instance_t
@@ -119,11 +120,11 @@ extern "C" {
  * identify which UART should perform the requested operation. The 'status'
  * element in the structure is used to provide sticky status information.
  */
-typedef struct
-{
-    addr_t      base_address;
-    uint8_t     status;
-} UART_instance_t;
+    typedef struct
+    {
+        addr_t base_address;
+        uint8_t status;
+    } UART_instance_t;
 
 /***************************************************************************//**
  * The function UART_init() initializes the UART with the configuration passed
@@ -167,18 +168,14 @@ typedef struct
  *   int main()
  *   {
  *      UART_init(&g_uart, COREUARTAPB0_BASE_ADDR,
-                  BAUD_VALUE_57600, (DATA_8_BITS | EVEN_PARITY));
+ *                BAUD_VALUE_57600, (DATA_8_BITS | EVEN_PARITY));
  *   }
  * @endcode
  */
-void
-UART_init
-(
-    UART_instance_t * this_uart,
-    addr_t base_addr,
-    uint16_t baud_value,
-    uint8_t line_config
-);
+    void UART_init( UART_instance_t * this_uart,
+                    addr_t base_addr,
+                    uint16_t baud_value,
+                    uint8_t line_config );
 
 /***************************************************************************//**
  * The function UART_send() is used to transmit data. It transfers the contents
@@ -208,13 +205,9 @@ UART_init
  *   UART_send(&g_uart,(const uint8_t *)&testmsg1,sizeof(testmsg1));
  * @endcode
  */
-void
-UART_send
-(
-    UART_instance_t * this_uart,
-    const uint8_t * tx_buffer,
-    size_t tx_size
-);
+    void UART_send( UART_instance_t * this_uart,
+                    const uint8_t * tx_buffer,
+                    size_t tx_size );
 
 /***************************************************************************//**
  * The function UART_fill_tx_fifo() fills the UART's transmitter hardware FIFO
@@ -253,13 +246,9 @@ UART_send
  *   }
  * @endcode
  */
-size_t
-UART_fill_tx_fifo
-(
-    UART_instance_t * this_uart,
-    const uint8_t * tx_buffer,
-    size_t tx_size
-);
+    size_t UART_fill_tx_fifo( UART_instance_t * this_uart,
+                              const uint8_t * tx_buffer,
+                              size_t tx_size );
 
 /***************************************************************************//**
  * The function UART_get_rx() reads the content of the UART's receiver hardware
@@ -305,13 +294,9 @@ UART_fill_tx_fifo
  *   rx_size = UART_get_rx( &g_uart, rx_data, sizeof(rx_data) );
  * @endcode
  */
-size_t
-UART_get_rx
-(
-    UART_instance_t * this_uart,
-    uint8_t * rx_buffer,
-    size_t buff_size
-);
+    size_t UART_get_rx( UART_instance_t * this_uart,
+                        uint8_t * rx_buffer,
+                        size_t buff_size );
 
 /***************************************************************************//**
  * The function UART_polled_tx_string() is used to transmit a NULL ('\0')
@@ -340,12 +325,8 @@ UART_get_rx
  *   UART_polled_tx_string(&g_uart,(const uint8_t *)&testmsg1);
  * @endcode
  */
-void
-UART_polled_tx_string
-(
-    UART_instance_t * this_uart,
-    const uint8_t * p_sz_string
-);
+    void UART_polled_tx_string( UART_instance_t * this_uart,
+                                const uint8_t * p_sz_string );
 
 /***************************************************************************//**
  * The UART_get_rx_status() function returns the receiver error status of the
@@ -394,14 +375,10 @@ UART_polled_tx_string
  *   }
  * @endcode
  */
-uint8_t
-UART_get_rx_status
-(
-    UART_instance_t * this_uart
-);
+    uint8_t UART_get_rx_status( UART_instance_t * this_uart );
 
-#ifdef __cplusplus
+    #ifdef __cplusplus
 }
-#endif
+    #endif
 
 #endif /* __CORE_UART_APB_H */

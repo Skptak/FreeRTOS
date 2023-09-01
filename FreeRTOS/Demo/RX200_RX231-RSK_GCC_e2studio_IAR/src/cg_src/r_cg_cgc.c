@@ -27,13 +27,13 @@
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-Pragma directive
+*  Pragma directive
 ***********************************************************************************************************************/
 /* Start user code for pragma. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
 
 /***********************************************************************************************************************
-Includes
+*  Includes
 ***********************************************************************************************************************/
 #include "r_cg_macrodriver.h"
 #include "r_cg_cgc.h"
@@ -43,11 +43,11 @@ Includes
 #include "r_cg_userdefine.h"
 
 /***********************************************************************************************************************
-Global variables and functions
+*  Global variables and functions
 ***********************************************************************************************************************/
 /* Start user code for global. Do not edit comment generated here */
 
-#if defined(RSK_RX231)
+#if defined( RSK_RX231 )
 
 /* End user code. Do not edit comment generated here */
 
@@ -57,143 +57,169 @@ Global variables and functions
 * Arguments    : None
 * Return Value : None
 ***********************************************************************************************************************/
-void R_CGC_Create(void)
-{
-    uint32_t sckcr_dummy;
-    uint32_t w_count;
-    volatile uint32_t memorywaitcycle;
-
-    /* Set main clock control registers */
-    SYSTEM.MOFCR.BYTE = _00_CGC_MAINOSC_RESONATOR | _00_CGC_MAINOSC_UNDER10M;
-    SYSTEM.MOSCWTCR.BYTE = _04_CGC_OSC_WAIT_CYCLE_8192;
-
-    /* Set main clock operation */
-    SYSTEM.MOSCCR.BIT.MOSTP = 0U;
-
-    /* Wait for main clock oscillator wait counter overflow */
-    while (1U != SYSTEM.OSCOVFSR.BIT.MOOVF);
-
-    /* Set system clock */
-    sckcr_dummy = _00000000_CGC_PCLKD_DIV_1 | _00000100_CGC_PCLKB_DIV_2 | _00000000_CGC_PCLKA_DIV_1 |
-                  _00010000_CGC_BCLK_DIV_2 | _00000000_CGC_ICLK_DIV_1 | _10000000_CGC_FCLK_DIV_2;
-    SYSTEM.SCKCR.LONG = sckcr_dummy;
-
-    while (SYSTEM.SCKCR.LONG != sckcr_dummy);
-
-    /* Set PLL circuit */
-    SYSTEM.PLLCR.WORD = _0001_CGC_PLL_FREQ_DIV_2 | _1A00_CGC_PLL_FREQ_MUL_13_5;
-    SYSTEM.PLLCR2.BIT.PLLEN = 0U;
-
-    /* Wait for PLL wait counter overflow */
-    while (1U != SYSTEM.OSCOVFSR.BIT.PLOVF);
-
-    /* Stop sub-clock */
-    SYSTEM.SOSCCR.BIT.SOSTP = 1U;
-
-    /* Wait for the register modification to complete */
-    while (1U != SYSTEM.SOSCCR.BIT.SOSTP);
-
-    /* Stop sub-clock */
-    RTC.RCR3.BIT.RTCEN = 0U;
-
-    /* Wait for the register modification to complete */
-    while (0U != RTC.RCR3.BIT.RTCEN);
-
-    /* Wait for 5 sub-clock cycles */
-    for (w_count = 0U; w_count < _007B_CGC_SUBSTPWT_WAIT; w_count++)
+    void R_CGC_Create( void )
     {
-        nop();
+        uint32_t sckcr_dummy;
+        uint32_t w_count;
+        volatile uint32_t memorywaitcycle;
+
+        /* Set main clock control registers */
+        SYSTEM.MOFCR.BYTE = _00_CGC_MAINOSC_RESONATOR | _00_CGC_MAINOSC_UNDER10M;
+        SYSTEM.MOSCWTCR.BYTE = _04_CGC_OSC_WAIT_CYCLE_8192;
+
+        /* Set main clock operation */
+        SYSTEM.MOSCCR.BIT.MOSTP = 0U;
+
+        /* Wait for main clock oscillator wait counter overflow */
+        while( 1U != SYSTEM.OSCOVFSR.BIT.MOOVF )
+        {
+        }
+
+        /* Set system clock */
+        sckcr_dummy = _00000000_CGC_PCLKD_DIV_1 | _00000100_CGC_PCLKB_DIV_2 | _00000000_CGC_PCLKA_DIV_1 |
+                      _00010000_CGC_BCLK_DIV_2 | _00000000_CGC_ICLK_DIV_1 | _10000000_CGC_FCLK_DIV_2;
+        SYSTEM.SCKCR.LONG = sckcr_dummy;
+
+        while( SYSTEM.SCKCR.LONG != sckcr_dummy )
+        {
+        }
+
+        /* Set PLL circuit */
+        SYSTEM.PLLCR.WORD = _0001_CGC_PLL_FREQ_DIV_2 | _1A00_CGC_PLL_FREQ_MUL_13_5;
+        SYSTEM.PLLCR2.BIT.PLLEN = 0U;
+
+        /* Wait for PLL wait counter overflow */
+        while( 1U != SYSTEM.OSCOVFSR.BIT.PLOVF )
+        {
+        }
+
+        /* Stop sub-clock */
+        SYSTEM.SOSCCR.BIT.SOSTP = 1U;
+
+        /* Wait for the register modification to complete */
+        while( 1U != SYSTEM.SOSCCR.BIT.SOSTP )
+        {
+        }
+
+        /* Stop sub-clock */
+        RTC.RCR3.BIT.RTCEN = 0U;
+
+        /* Wait for the register modification to complete */
+        while( 0U != RTC.RCR3.BIT.RTCEN )
+        {
+        }
+
+        /* Wait for 5 sub-clock cycles */
+        for( w_count = 0U; w_count < _007B_CGC_SUBSTPWT_WAIT; w_count++ )
+        {
+            nop();
+        }
+
+        /* Set sub-clock drive capacity */
+        RTC.RCR3.BIT.RTCDV = 1U;
+
+        /* Wait for the register modification to complete */
+        while( 1U != RTC.RCR3.BIT.RTCDV )
+        {
+        }
+
+        /* Set sub-clock */
+        SYSTEM.SOSCCR.BIT.SOSTP = 0U;
+
+        /* Wait for the register modification to complete */
+        while( 0U != SYSTEM.SOSCCR.BIT.SOSTP )
+        {
+        }
+
+        /* Wait for sub-clock to be stable */
+        for( w_count = 0U; w_count < _00061A81_CGC_SUBOSCWT_WAIT; w_count++ )
+        {
+            nop();
+        }
+
+        /* Set BCLK */
+        SYSTEM.SCKCR.BIT.PSTOP1 = 1U;
+
+        /* Set memory wait cycle setting register */
+        SYSTEM.MEMWAIT.BIT.MEMWAIT = 1U;
+        memorywaitcycle = SYSTEM.MEMWAIT.BYTE;
+        memorywaitcycle++;
+
+        /* Set clock source */
+        SYSTEM.SCKCR3.WORD = _0400_CGC_CLOCKSOURCE_PLL;
+
+        while( SYSTEM.SCKCR3.WORD != _0400_CGC_CLOCKSOURCE_PLL )
+        {
+        }
+
+        /* Set LOCO */
+        SYSTEM.LOCOCR.BIT.LCSTP = 1U;
     }
-
-    /* Set sub-clock drive capacity */
-    RTC.RCR3.BIT.RTCDV = 1U;
-
-    /* Wait for the register modification to complete */
-    while (1U != RTC.RCR3.BIT.RTCDV);
-
-    /* Set sub-clock */
-    SYSTEM.SOSCCR.BIT.SOSTP = 0U;
-
-    /* Wait for the register modification to complete */
-    while (0U != SYSTEM.SOSCCR.BIT.SOSTP);
-
-    /* Wait for sub-clock to be stable */
-    for (w_count = 0U; w_count < _00061A81_CGC_SUBOSCWT_WAIT; w_count++)
-    {
-        nop();
-    }
-
-    /* Set BCLK */
-    SYSTEM.SCKCR.BIT.PSTOP1 = 1U;
-
-    /* Set memory wait cycle setting register */
-    SYSTEM.MEMWAIT.BIT.MEMWAIT = 1U;
-    memorywaitcycle = SYSTEM.MEMWAIT.BYTE;
-    memorywaitcycle++;
-
-    /* Set clock source */
-    SYSTEM.SCKCR3.WORD = _0400_CGC_CLOCKSOURCE_PLL;
-
-    while (SYSTEM.SCKCR3.WORD != _0400_CGC_CLOCKSOURCE_PLL);
-
-    /* Set LOCO */
-    SYSTEM.LOCOCR.BIT.LCSTP = 1U;
-}
 
 /* Start user code for adding. Do not edit comment generated here */
 
-#elif defined(TB_RX231)
+#elif defined( TB_RX231 )
 
-void R_CGC_Create(void)
-{
-    uint32_t sckcr_dummy;
-    volatile uint32_t memorywaitcycle;
+    void R_CGC_Create( void )
+    {
+        uint32_t sckcr_dummy;
+        volatile uint32_t memorywaitcycle;
 
 
-    /* Set system clock */
-    sckcr_dummy = _00000000_CGC_PCLKD_DIV_1 | _00000100_CGC_PCLKB_DIV_2 | _00000000_CGC_PCLKA_DIV_1 |
-                  _00010000_CGC_BCLK_DIV_2 | _00000000_CGC_ICLK_DIV_1 | _10000000_CGC_FCLK_DIV_2;
-    SYSTEM.SCKCR.LONG = sckcr_dummy;
+        /* Set system clock */
+        sckcr_dummy = _00000000_CGC_PCLKD_DIV_1 | _00000100_CGC_PCLKB_DIV_2 | _00000000_CGC_PCLKA_DIV_1 |
+                      _00010000_CGC_BCLK_DIV_2 | _00000000_CGC_ICLK_DIV_1 | _10000000_CGC_FCLK_DIV_2;
+        SYSTEM.SCKCR.LONG = sckcr_dummy;
 
-    while (SYSTEM.SCKCR.LONG != sckcr_dummy);
+        while( SYSTEM.SCKCR.LONG != sckcr_dummy )
+        {
+        }
 
-    /* Disable sub-clock */
-    SYSTEM.SOSCCR.BIT.SOSTP = 1U;
+        /* Disable sub-clock */
+        SYSTEM.SOSCCR.BIT.SOSTP = 1U;
 
-    /* Wait for the register modification to complete */
-    while (1U != SYSTEM.SOSCCR.BIT.SOSTP);
+        /* Wait for the register modification to complete */
+        while( 1U != SYSTEM.SOSCCR.BIT.SOSTP )
+        {
+        }
 
-    /* Disable sub-clock */
-    RTC.RCR3.BIT.RTCEN = 0U;
+        /* Disable sub-clock */
+        RTC.RCR3.BIT.RTCEN = 0U;
 
-    /* Wait for the register modification to complete */
-    while (0U != RTC.RCR3.BIT.RTCEN);
+        /* Wait for the register modification to complete */
+        while( 0U != RTC.RCR3.BIT.RTCEN )
+        {
+        }
 
-    /* Set HOCO */
-    SYSTEM.HOCOCR.BIT.HCSTP = 1U;
-    SYSTEM.HOCOCR2.BYTE = _03_CGC_HOCO_CLK_54;
-    SYSTEM.HOCOCR.BIT.HCSTP = 0U;
+        /* Set HOCO */
+        SYSTEM.HOCOCR.BIT.HCSTP = 1U;
+        SYSTEM.HOCOCR2.BYTE = _03_CGC_HOCO_CLK_54;
+        SYSTEM.HOCOCR.BIT.HCSTP = 0U;
 
-    /* Wait for HOCO wait counter overflow */
-    while (1U != SYSTEM.OSCOVFSR.BIT.HCOVF);
+        /* Wait for HOCO wait counter overflow */
+        while( 1U != SYSTEM.OSCOVFSR.BIT.HCOVF )
+        {
+        }
 
-    /* Set BCLK */
-    SYSTEM.SCKCR.BIT.PSTOP1 = 1U;
+        /* Set BCLK */
+        SYSTEM.SCKCR.BIT.PSTOP1 = 1U;
 
-    /* Set memory wait cycle setting register */
-    SYSTEM.MEMWAIT.BIT.MEMWAIT = 1U;
-    memorywaitcycle = SYSTEM.MEMWAIT.BYTE;
-    memorywaitcycle++;
+        /* Set memory wait cycle setting register */
+        SYSTEM.MEMWAIT.BIT.MEMWAIT = 1U;
+        memorywaitcycle = SYSTEM.MEMWAIT.BYTE;
+        memorywaitcycle++;
 
-    /* Set clock source */
-    SYSTEM.SCKCR3.WORD = _0100_CGC_CLOCKSOURCE_HOCO;
+        /* Set clock source */
+        SYSTEM.SCKCR3.WORD = _0100_CGC_CLOCKSOURCE_HOCO;
 
-    while (SYSTEM.SCKCR3.WORD != _0100_CGC_CLOCKSOURCE_HOCO);
+        while( SYSTEM.SCKCR3.WORD != _0100_CGC_CLOCKSOURCE_HOCO )
+        {
+        }
 
-    /* Set LOCO */
-    SYSTEM.LOCOCR.BIT.LCSTP = 1U;
-}
+        /* Set LOCO */
+        SYSTEM.LOCOCR.BIT.LCSTP = 1U;
+    }
 
-#endif
+#endif /* if defined( RSK_RX231 ) */
 
 /* End user code. Do not edit comment generated here */

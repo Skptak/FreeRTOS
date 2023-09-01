@@ -107,7 +107,7 @@ uint64_t RedRand64( uint64_t * pullSeed )
 
     *pullSeedPtr = ullN;
 
-    /*  The linear congruential generator used above produces good psuedo-random
+    /*  The linear congruential generator used above produces good pseudo-random
      *  64-bit number sequences, however, as with any LCG, the period of the
      *  lower order bits is much shorter resulting in alternately odd/even pairs
      *  in bit zero.

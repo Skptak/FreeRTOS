@@ -62,8 +62,9 @@
 
 /*----------------------------------------------------------------------------
  *        Exported functions
-
+ *
  *----------------------------------------------------------------------------*/
+
 /**
  * \brief Enables the MPU module.
  *
@@ -71,7 +72,7 @@
  */
 void MPU_Enable( uint32_t dwMPUEnable )
 {
-    MPU->CTRL = dwMPUEnable ;
+    MPU->CTRL = dwMPUEnable;
 }
 
 /**
@@ -98,7 +99,8 @@ extern void MPU_DisableRegion( void )
  * \param dwRegionBaseAddr  Memory region base address.
  * \param dwRegionAttr  Memory region attributes.
  */
-void MPU_SetRegion( uint32_t dwRegionBaseAddr, uint32_t dwRegionAttr )
+void MPU_SetRegion( uint32_t dwRegionBaseAddr,
+                    uint32_t dwRegionAttr )
 {
     MPU->RBAR = dwRegionBaseAddr;
     MPU->RASR = dwRegionAttr;
@@ -127,7 +129,7 @@ uint32_t MPU_CalMPURegionSize( uint32_t dwActualSizeInBytes )
         dwRegionSize <<= 1;
     }
 
-    return ( dwReturnValue << 1 );
+    return( dwReturnValue << 1 );
 }
 
 
@@ -136,12 +138,17 @@ uint32_t MPU_CalMPURegionSize( uint32_t dwActualSizeInBytes )
  *
  *  \return Unused (ANSI-C compatibility).
  */
-void MPU_UpdateRegions( uint32_t dwRegionNum, uint32_t dwRegionBaseAddr,
-        uint32_t dwRegionAttr)
+void MPU_UpdateRegions( uint32_t dwRegionNum,
+                        uint32_t dwRegionBaseAddr,
+                        uint32_t dwRegionAttr )
 {
     /* Raise privilege, the MPU register could be set only in privilege mode */
-    asm volatile(" swi 0x00 ");
-    while (!dwRaisePriDone);
+    asm volatile ( " swi 0x00 " );
+
+    while( !dwRaisePriDone )
+    {
+    }
+
     dwRaisePriDone = 0;
 
     /* Disable interrupt */
@@ -152,16 +159,16 @@ void MPU_UpdateRegions( uint32_t dwRegionNum, uint32_t dwRegionBaseAddr,
     __ISB();
 
     /* Set active region */
-    MPU_SetRegionNum(dwRegionNum);
+    MPU_SetRegionNum( dwRegionNum );
 
     /* Disable region */
     MPU_DisableRegion();
 
     /* Update region attribute */
-    MPU_SetRegion( dwRegionBaseAddr, dwRegionAttr);
+    MPU_SetRegion( dwRegionBaseAddr, dwRegionAttr );
 
     /* Clean up data and instruction buffer to make the new region taking
-       effect at once */
+     * effect at once */
     __DSB();
     __ISB();
 
@@ -169,6 +176,5 @@ void MPU_UpdateRegions( uint32_t dwRegionNum, uint32_t dwRegionBaseAddr,
     __enable_irq();
 
     /* Reset to thread mode */
-    __set_CONTROL(USER_MODE);
+    __set_CONTROL( USER_MODE );
 }
-

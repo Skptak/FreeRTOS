@@ -1031,7 +1031,7 @@ REDSTATUS RedCoreVolUnmount( void )
  *  @retval -RED_ENOSPC         The file system does not have enough space to
  *                              modify the parent directory to perform the
  *                              deletion.
- *  @retval -RED_ENOTEMPTY      The inode refered to by @p pszName is a
+ *  @retval -RED_ENOTEMPTY      The inode referred to by @p pszName is a
  *                              directory which is not empty.
  */
     REDSTATUS RedCoreUnlink( uint32_t ulPInode,
@@ -1091,7 +1091,7 @@ REDSTATUS RedCoreVolUnmount( void )
  *  @retval -RED_ENOSPC         The file system does not have enough space to
  *                              modify the parent directory to perform the
  *                              deletion.
- *  @retval -RED_ENOTEMPTY      The inode refered to by @p pszName is a
+ *  @retval -RED_ENOTEMPTY      The inode referred to by @p pszName is a
  *                              directory which is not empty.
  */
     static REDSTATUS CoreUnlink( uint32_t ulPInode,
@@ -1421,7 +1421,7 @@ REDSTATUS RedCoreVolUnmount( void )
                         }
 
                         if( ( ret == 0 ) && ( DstInode.ulInode != SrcInode.ulInode ) )
-                    #else  /* if REDCONF_RENAME_ATOMIC == 1 */
+                    #else /* if REDCONF_RENAME_ATOMIC == 1 */
                         if( ret == 0 )
                     #endif /* if REDCONF_RENAME_ATOMIC == 1 */
                     {

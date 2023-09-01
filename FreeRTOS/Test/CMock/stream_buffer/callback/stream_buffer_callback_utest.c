@@ -366,7 +366,7 @@ void test_xStreamBufferCreate_NoCallback( void )
 }
 
 /**
- * @brief Tests succesful creation of dynamic stream buffer with callbacks.
+ * @brief Tests successful creation of dynamic stream buffer with callbacks.
  */
 void test_xStreamBufferCreate_WithCallback( void )
 {

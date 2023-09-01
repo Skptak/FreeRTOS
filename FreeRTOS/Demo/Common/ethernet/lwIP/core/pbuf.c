@@ -306,7 +306,7 @@ struct pbuf * pbuf_alloc( pbuf_layer l,
                     #endif /* PBUF_STATS */
                     /* free chain so far allocated */
                     pbuf_free( p );
-                    /* bail out unsuccesfully */
+                    /* bail out unsuccessfully */
                     return NULL;
                 }
 
@@ -504,7 +504,7 @@ void pbuf_realloc( struct pbuf * p,
  * @param hdr_size_inc Number of bytes to increment header size which
  * increases the size of the pbuf. New space is on the front.
  * (Using a negative value decreases the header size.)
- * If hdr_size_inc is 0, this function does nothing and returns succesful.
+ * If hdr_size_inc is 0, this function does nothing and returns successful.
  *
  * PBUF_ROM and PBUF_REF type buffers cannot have their sizes increased, so
  * the call will fail. A check is made that the increase in header size does
@@ -543,7 +543,7 @@ u8_t pbuf_header( struct pbuf * p,
                                            ( void * ) ( p + 1 ) ) ); \
             /* restore old payload pointer */
             p->payload = payload;
-            /* bail out unsuccesfully */
+            /* bail out unsuccessfully */
             return 1;
         }
 
@@ -560,7 +560,7 @@ u8_t pbuf_header( struct pbuf * p,
         else
         {
             /* cannot expand payload to front (yet!)
-             * bail out unsuccesfully */
+             * bail out unsuccessfully */
             return 1;
         }
     }
@@ -1021,9 +1021,9 @@ struct pbuf * pbuf_take( struct pbuf * p )
                 q->tot_len = p->tot_len;
                 q->len = p->len;
 
-                /* in case p was the first pbuf, it is no longer refered to by
+                /* in case p was the first pbuf, it is no longer referred to by
                  * our caller, as the caller MUST do p = pbuf_take(p);
-                 * in case p was not the first pbuf, it is no longer refered to
+                 * in case p was not the first pbuf, it is no longer referred to
                  * by prev. we can safely free the pbuf here.
                  * (note that we have set p->next to NULL already so that
                  * we will not free the rest of the chain by accident.)

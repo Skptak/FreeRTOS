@@ -1,4 +1,5 @@
 /* Generated configuration header file - do not edit */
+
 /***********************************************************************************************************************
 * DISCLAIMER
 * This software is supplied by Renesas Electronics Corporation and is only intended for use with Renesas products. No
@@ -17,10 +18,12 @@
 *
 * Copyright (C) 2013 Renesas Electronics Corporation. All rights reserved.
 ***********************************************************************************************************************/
+
 /***********************************************************************************************************************
 * File Name    : r_gpio_rx_config.h
 * Description  : Configures the GPIO module.
 ***********************************************************************************************************************/
+
 /***********************************************************************************************************************
 * History : DD.MM.YYYY Version Description
 *         : 17.07.2013 1.00    First Release
@@ -29,19 +32,18 @@
 #define GPIO_RX_CONFIG_HEADER_FILE
 
 /***********************************************************************************************************************
-Configuration Options
+*  Configuration Options
 ***********************************************************************************************************************/
+
 /* SPECIFY WHETHER TO INCLUDE CODE FOR API PARAMETER CHECKING
-   Available settings:
-   BSP_CFG_PARAM_CHECKING_ENABLE:
-       Utilizes the system default setting
-   1:
-       Includes parameter checking
-   0:
-       Compiles out parameter checking
-*/
-#define GPIO_CFG_PARAM_CHECKING_ENABLE      (BSP_CFG_PARAM_CHECKING_ENABLE)
+ * Available settings:
+ * BSP_CFG_PARAM_CHECKING_ENABLE:
+ *     Utilizes the system default setting
+ * 1:
+ *     Includes parameter checking
+ * 0:
+ *     Compiles out parameter checking
+ */
+#define GPIO_CFG_PARAM_CHECKING_ENABLE    ( BSP_CFG_PARAM_CHECKING_ENABLE )
 
 #endif /* GPIO_RX_CONFIG_HEADER_FILE */
-
-

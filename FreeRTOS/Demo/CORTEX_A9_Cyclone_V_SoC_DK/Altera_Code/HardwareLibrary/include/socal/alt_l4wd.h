@@ -31,12 +31,12 @@
 /* Altera - ALT_L4WD */
 
 #ifndef __ALTERA_ALT_L4WD_H__
-#define __ALTERA_ALT_L4WD_H__
+    #define __ALTERA_ALT_L4WD_H__
 
-#ifdef __cplusplus
-extern "C"
-{
-#endif  /* __cplusplus */
+    #ifdef __cplusplus
+        extern "C"
+        {
+    #endif /* __cplusplus */
 
 /*
  * Component : L4 Watchdog Module - ALT_L4WD
@@ -45,6 +45,7 @@ extern "C"
  * Registers in the L4 Watchdog module
  *
  */
+
 /*
  * Register : Control Register - wdt_cr
  *
@@ -59,6 +60,7 @@ extern "C"
  *  [31:2] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Enable - wdt_en
  *
@@ -77,35 +79,37 @@ extern "C"
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_L4WD_CR_WDT_EN
  *
  * Watchdog disabled
  */
-#define ALT_L4WD_CR_WDT_EN_E_DISD   0x0
+    #define ALT_L4WD_CR_WDT_EN_E_DISD     0x0
+
 /*
  * Enumerated value for register field ALT_L4WD_CR_WDT_EN
  *
  * Watchdog enabled
  */
-#define ALT_L4WD_CR_WDT_EN_E_END    0x1
+    #define ALT_L4WD_CR_WDT_EN_E_END      0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_L4WD_CR_WDT_EN register field. */
-#define ALT_L4WD_CR_WDT_EN_LSB        0
+    #define ALT_L4WD_CR_WDT_EN_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_L4WD_CR_WDT_EN register field. */
-#define ALT_L4WD_CR_WDT_EN_MSB        0
+    #define ALT_L4WD_CR_WDT_EN_MSB        0
 /* The width in bits of the ALT_L4WD_CR_WDT_EN register field. */
-#define ALT_L4WD_CR_WDT_EN_WIDTH      1
+    #define ALT_L4WD_CR_WDT_EN_WIDTH      1
 /* The mask used to set the ALT_L4WD_CR_WDT_EN register field value. */
-#define ALT_L4WD_CR_WDT_EN_SET_MSK    0x00000001
+    #define ALT_L4WD_CR_WDT_EN_SET_MSK    0x00000001
 /* The mask used to clear the ALT_L4WD_CR_WDT_EN register field value. */
-#define ALT_L4WD_CR_WDT_EN_CLR_MSK    0xfffffffe
+    #define ALT_L4WD_CR_WDT_EN_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_L4WD_CR_WDT_EN register field. */
-#define ALT_L4WD_CR_WDT_EN_RESET      0x0
+    #define ALT_L4WD_CR_WDT_EN_RESET      0x0
 /* Extracts the ALT_L4WD_CR_WDT_EN field value from a register. */
-#define ALT_L4WD_CR_WDT_EN_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_L4WD_CR_WDT_EN_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_L4WD_CR_WDT_EN register field value suitable for setting the register. */
-#define ALT_L4WD_CR_WDT_EN_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_L4WD_CR_WDT_EN_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
 /*
  * Field : Response Mode - rmod
@@ -124,38 +128,41 @@ extern "C"
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_L4WD_CR_RMOD
  *
  * Generate a warm reset request
  */
-#define ALT_L4WD_CR_RMOD_E_RST      0x0
+    #define ALT_L4WD_CR_RMOD_E_RST       0x0
+
 /*
  * Enumerated value for register field ALT_L4WD_CR_RMOD
  *
  * First generate an interrupt, and if it is not cleared by the time a second
  * timeout occurs, then generate a warm reset request.
  */
-#define ALT_L4WD_CR_RMOD_E_IRQRST   0x1
+    #define ALT_L4WD_CR_RMOD_E_IRQRST    0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_L4WD_CR_RMOD register field. */
-#define ALT_L4WD_CR_RMOD_LSB        1
+    #define ALT_L4WD_CR_RMOD_LSB         1
 /* The Most Significant Bit (MSB) position of the ALT_L4WD_CR_RMOD register field. */
-#define ALT_L4WD_CR_RMOD_MSB        1
+    #define ALT_L4WD_CR_RMOD_MSB         1
 /* The width in bits of the ALT_L4WD_CR_RMOD register field. */
-#define ALT_L4WD_CR_RMOD_WIDTH      1
+    #define ALT_L4WD_CR_RMOD_WIDTH       1
 /* The mask used to set the ALT_L4WD_CR_RMOD register field value. */
-#define ALT_L4WD_CR_RMOD_SET_MSK    0x00000002
+    #define ALT_L4WD_CR_RMOD_SET_MSK     0x00000002
 /* The mask used to clear the ALT_L4WD_CR_RMOD register field value. */
-#define ALT_L4WD_CR_RMOD_CLR_MSK    0xfffffffd
+    #define ALT_L4WD_CR_RMOD_CLR_MSK     0xfffffffd
 /* The reset value of the ALT_L4WD_CR_RMOD register field. */
-#define ALT_L4WD_CR_RMOD_RESET      0x1
+    #define ALT_L4WD_CR_RMOD_RESET       0x1
 /* Extracts the ALT_L4WD_CR_RMOD field value from a register. */
-#define ALT_L4WD_CR_RMOD_GET(value) (((value) & 0x00000002) >> 1)
+    #define ALT_L4WD_CR_RMOD_GET( value )    ( ( ( value ) & 0x00000002 ) >> 1 )
 /* Produces a ALT_L4WD_CR_RMOD register field value suitable for setting the register. */
-#define ALT_L4WD_CR_RMOD_SET(value) (((value) << 1) & 0x00000002)
+    #define ALT_L4WD_CR_RMOD_SET( value )    ( ( ( value ) << 1 ) & 0x00000002 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -166,21 +173,21 @@ extern "C"
  *
  * The struct declaration for register ALT_L4WD_CR.
  */
-struct ALT_L4WD_CR_s
-{
-    uint32_t  wdt_en :  1;  /* Enable */
-    uint32_t  rmod   :  1;  /* Response Mode */
-    uint32_t         : 30;  /* *UNDEFINED* */
-};
+        struct ALT_L4WD_CR_s
+        {
+            uint32_t wdt_en :  1;  /* Enable */
+            uint32_t rmod   :  1;  /* Response Mode */
+            uint32_t         : 30; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_L4WD_CR. */
-typedef volatile struct ALT_L4WD_CR_s  ALT_L4WD_CR_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_L4WD_CR_s ALT_L4WD_CR_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_L4WD_CR register from the beginning of the component. */
-#define ALT_L4WD_CR_OFST        0x0
+    #define ALT_L4WD_CR_OFST    0x0
 /* The address of the ALT_L4WD_CR register. */
-#define ALT_L4WD_CR_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_L4WD_CR_OFST))
+    #define ALT_L4WD_CR_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_L4WD_CR_OFST ) )
 
 /*
  * Register : Timeout Range Register - wdt_torr
@@ -196,6 +203,7 @@ typedef volatile struct ALT_L4WD_CR_s  ALT_L4WD_CR_t;
  *  [31:8] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Timeout Period - top
  *
@@ -229,119 +237,135 @@ typedef volatile struct ALT_L4WD_CR_s  ALT_L4WD_CR_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_L4WD_TORR_TOP
  *
  * Timeout = 65536  osc1_clk
  */
-#define ALT_L4WD_TORR_TOP_E_TMO64K  0x0
+    #define ALT_L4WD_TORR_TOP_E_TMO64K     0x0
+
 /*
  * Enumerated value for register field ALT_L4WD_TORR_TOP
  *
  * Timeout = 131072 osc1_clk
  */
-#define ALT_L4WD_TORR_TOP_E_TMO128K 0x1
+    #define ALT_L4WD_TORR_TOP_E_TMO128K    0x1
+
 /*
  * Enumerated value for register field ALT_L4WD_TORR_TOP
  *
  * Timeout = 262144 osc1_clk
  */
-#define ALT_L4WD_TORR_TOP_E_TMO256K 0x2
+    #define ALT_L4WD_TORR_TOP_E_TMO256K    0x2
+
 /*
  * Enumerated value for register field ALT_L4WD_TORR_TOP
  *
  * Timeout = 524288 osc1_clk
  */
-#define ALT_L4WD_TORR_TOP_E_TMO512K 0x3
+    #define ALT_L4WD_TORR_TOP_E_TMO512K    0x3
+
 /*
  * Enumerated value for register field ALT_L4WD_TORR_TOP
  *
  * Timeout = 1048576 osc1_clk
  */
-#define ALT_L4WD_TORR_TOP_E_TMO1M   0x4
+    #define ALT_L4WD_TORR_TOP_E_TMO1M      0x4
+
 /*
  * Enumerated value for register field ALT_L4WD_TORR_TOP
  *
  * Timeout = 2097152 osc1_clk
  */
-#define ALT_L4WD_TORR_TOP_E_TMO2M   0x5
+    #define ALT_L4WD_TORR_TOP_E_TMO2M      0x5
+
 /*
  * Enumerated value for register field ALT_L4WD_TORR_TOP
  *
  * Timeout = 4194304 osc1_clk
  */
-#define ALT_L4WD_TORR_TOP_E_TMO4M   0x6
+    #define ALT_L4WD_TORR_TOP_E_TMO4M      0x6
+
 /*
  * Enumerated value for register field ALT_L4WD_TORR_TOP
  *
  * Timeout = 8388608 osc1_clk
  */
-#define ALT_L4WD_TORR_TOP_E_TMO8M   0x7
+    #define ALT_L4WD_TORR_TOP_E_TMO8M      0x7
+
 /*
  * Enumerated value for register field ALT_L4WD_TORR_TOP
  *
  * Timeout = 16777216 osc1_clk
  */
-#define ALT_L4WD_TORR_TOP_E_TMO16M  0x8
+    #define ALT_L4WD_TORR_TOP_E_TMO16M     0x8
+
 /*
  * Enumerated value for register field ALT_L4WD_TORR_TOP
  *
  * Timeout = 33554432 osc1_clk
  */
-#define ALT_L4WD_TORR_TOP_E_TMO32M  0x9
+    #define ALT_L4WD_TORR_TOP_E_TMO32M     0x9
+
 /*
  * Enumerated value for register field ALT_L4WD_TORR_TOP
  *
  * Timeout = 67108864 osc1_clk
  */
-#define ALT_L4WD_TORR_TOP_E_TMO64M  0xa
+    #define ALT_L4WD_TORR_TOP_E_TMO64M     0xa
+
 /*
  * Enumerated value for register field ALT_L4WD_TORR_TOP
  *
  * Timeout = 134217728 osc1_clk
  */
-#define ALT_L4WD_TORR_TOP_E_TMO128M 0xb
+    #define ALT_L4WD_TORR_TOP_E_TMO128M    0xb
+
 /*
  * Enumerated value for register field ALT_L4WD_TORR_TOP
  *
  * Timeout = 268435456 osc1_clk
  */
-#define ALT_L4WD_TORR_TOP_E_TMO256M 0xc
+    #define ALT_L4WD_TORR_TOP_E_TMO256M    0xc
+
 /*
  * Enumerated value for register field ALT_L4WD_TORR_TOP
  *
  * Timeout = 536870912 osc1_clk
  */
-#define ALT_L4WD_TORR_TOP_E_TMO512M 0xd
+    #define ALT_L4WD_TORR_TOP_E_TMO512M    0xd
+
 /*
  * Enumerated value for register field ALT_L4WD_TORR_TOP
  *
  * Timeout = 1073741824 osc1_clk
  */
-#define ALT_L4WD_TORR_TOP_E_TMO1G   0xe
+    #define ALT_L4WD_TORR_TOP_E_TMO1G      0xe
+
 /*
  * Enumerated value for register field ALT_L4WD_TORR_TOP
  *
  * Timeout = 2147483648 osc1_clk
  */
-#define ALT_L4WD_TORR_TOP_E_TMO2G   0xf
+    #define ALT_L4WD_TORR_TOP_E_TMO2G      0xf
 
 /* The Least Significant Bit (LSB) position of the ALT_L4WD_TORR_TOP register field. */
-#define ALT_L4WD_TORR_TOP_LSB        0
+    #define ALT_L4WD_TORR_TOP_LSB          0
 /* The Most Significant Bit (MSB) position of the ALT_L4WD_TORR_TOP register field. */
-#define ALT_L4WD_TORR_TOP_MSB        3
+    #define ALT_L4WD_TORR_TOP_MSB          3
 /* The width in bits of the ALT_L4WD_TORR_TOP register field. */
-#define ALT_L4WD_TORR_TOP_WIDTH      4
+    #define ALT_L4WD_TORR_TOP_WIDTH        4
 /* The mask used to set the ALT_L4WD_TORR_TOP register field value. */
-#define ALT_L4WD_TORR_TOP_SET_MSK    0x0000000f
+    #define ALT_L4WD_TORR_TOP_SET_MSK      0x0000000f
 /* The mask used to clear the ALT_L4WD_TORR_TOP register field value. */
-#define ALT_L4WD_TORR_TOP_CLR_MSK    0xfffffff0
+    #define ALT_L4WD_TORR_TOP_CLR_MSK      0xfffffff0
 /* The reset value of the ALT_L4WD_TORR_TOP register field. */
-#define ALT_L4WD_TORR_TOP_RESET      0xf
+    #define ALT_L4WD_TORR_TOP_RESET        0xf
 /* Extracts the ALT_L4WD_TORR_TOP field value from a register. */
-#define ALT_L4WD_TORR_TOP_GET(value) (((value) & 0x0000000f) >> 0)
+    #define ALT_L4WD_TORR_TOP_GET( value )    ( ( ( value ) & 0x0000000f ) >> 0 )
 /* Produces a ALT_L4WD_TORR_TOP register field value suitable for setting the register. */
-#define ALT_L4WD_TORR_TOP_SET(value) (((value) << 0) & 0x0000000f)
+    #define ALT_L4WD_TORR_TOP_SET( value )    ( ( ( value ) << 0 ) & 0x0000000f )
 
 /*
  * Field : Timeout Period for Initialization - top_init
@@ -379,121 +403,138 @@ typedef volatile struct ALT_L4WD_CR_s  ALT_L4WD_CR_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_L4WD_TORR_TOP_INIT
  *
  * Timeout = 65536  osc1_clk
  */
-#define ALT_L4WD_TORR_TOP_INIT_E_TMO64K     0x0
+    #define ALT_L4WD_TORR_TOP_INIT_E_TMO64K     0x0
+
 /*
  * Enumerated value for register field ALT_L4WD_TORR_TOP_INIT
  *
  * Timeout = 131072 osc1_clk
  */
-#define ALT_L4WD_TORR_TOP_INIT_E_TMO128K    0x1
+    #define ALT_L4WD_TORR_TOP_INIT_E_TMO128K    0x1
+
 /*
  * Enumerated value for register field ALT_L4WD_TORR_TOP_INIT
  *
  * Timeout = 262144 osc1_clk
  */
-#define ALT_L4WD_TORR_TOP_INIT_E_TMO256K    0x2
+    #define ALT_L4WD_TORR_TOP_INIT_E_TMO256K    0x2
+
 /*
  * Enumerated value for register field ALT_L4WD_TORR_TOP_INIT
  *
  * Timeout = 524288 osc1_clk
  */
-#define ALT_L4WD_TORR_TOP_INIT_E_TMO512K    0x3
+    #define ALT_L4WD_TORR_TOP_INIT_E_TMO512K    0x3
+
 /*
  * Enumerated value for register field ALT_L4WD_TORR_TOP_INIT
  *
  * Timeout = 1048576 osc1_clk
  */
-#define ALT_L4WD_TORR_TOP_INIT_E_TMO1M      0x4
+    #define ALT_L4WD_TORR_TOP_INIT_E_TMO1M      0x4
+
 /*
  * Enumerated value for register field ALT_L4WD_TORR_TOP_INIT
  *
  * Timeout = 2097152 osc1_clk
  */
-#define ALT_L4WD_TORR_TOP_INIT_E_TMO2M      0x5
+    #define ALT_L4WD_TORR_TOP_INIT_E_TMO2M      0x5
+
 /*
  * Enumerated value for register field ALT_L4WD_TORR_TOP_INIT
  *
  * Timeout = 4194304 osc1_clk
  */
-#define ALT_L4WD_TORR_TOP_INIT_E_TMO4M      0x6
+    #define ALT_L4WD_TORR_TOP_INIT_E_TMO4M      0x6
+
 /*
  * Enumerated value for register field ALT_L4WD_TORR_TOP_INIT
  *
  * Timeout = 8388608 osc1_clk
  */
-#define ALT_L4WD_TORR_TOP_INIT_E_TMO8M      0x7
+    #define ALT_L4WD_TORR_TOP_INIT_E_TMO8M      0x7
+
 /*
  * Enumerated value for register field ALT_L4WD_TORR_TOP_INIT
  *
  * Timeout = 16777216 osc1_clk
  */
-#define ALT_L4WD_TORR_TOP_INIT_E_TMO16M     0x8
+    #define ALT_L4WD_TORR_TOP_INIT_E_TMO16M     0x8
+
 /*
  * Enumerated value for register field ALT_L4WD_TORR_TOP_INIT
  *
  * Timeout = 33554432 osc1_clk
  */
-#define ALT_L4WD_TORR_TOP_INIT_E_TMO32M     0x9
+    #define ALT_L4WD_TORR_TOP_INIT_E_TMO32M     0x9
+
 /*
  * Enumerated value for register field ALT_L4WD_TORR_TOP_INIT
  *
  * Timeout = 67108864 osc1_clk
  */
-#define ALT_L4WD_TORR_TOP_INIT_E_TMO64M     0xa
+    #define ALT_L4WD_TORR_TOP_INIT_E_TMO64M     0xa
+
 /*
  * Enumerated value for register field ALT_L4WD_TORR_TOP_INIT
  *
  * Timeout = 134217728 osc1_clk
  */
-#define ALT_L4WD_TORR_TOP_INIT_E_TMO128M    0xb
+    #define ALT_L4WD_TORR_TOP_INIT_E_TMO128M    0xb
+
 /*
  * Enumerated value for register field ALT_L4WD_TORR_TOP_INIT
  *
  * Timeout = 268435456 osc1_clk
  */
-#define ALT_L4WD_TORR_TOP_INIT_E_TMO256M    0xc
+    #define ALT_L4WD_TORR_TOP_INIT_E_TMO256M    0xc
+
 /*
  * Enumerated value for register field ALT_L4WD_TORR_TOP_INIT
  *
  * Timeout = 536870912 osc1_clk
  */
-#define ALT_L4WD_TORR_TOP_INIT_E_TMO512M    0xd
+    #define ALT_L4WD_TORR_TOP_INIT_E_TMO512M    0xd
+
 /*
  * Enumerated value for register field ALT_L4WD_TORR_TOP_INIT
  *
  * Timeout = 1073741824 osc1_clk
  */
-#define ALT_L4WD_TORR_TOP_INIT_E_TMO1G      0xe
+    #define ALT_L4WD_TORR_TOP_INIT_E_TMO1G      0xe
+
 /*
  * Enumerated value for register field ALT_L4WD_TORR_TOP_INIT
  *
  * Timeout = 2147483648 osc1_clk
  */
-#define ALT_L4WD_TORR_TOP_INIT_E_TMO2G      0xf
+    #define ALT_L4WD_TORR_TOP_INIT_E_TMO2G      0xf
 
 /* The Least Significant Bit (LSB) position of the ALT_L4WD_TORR_TOP_INIT register field. */
-#define ALT_L4WD_TORR_TOP_INIT_LSB        4
+    #define ALT_L4WD_TORR_TOP_INIT_LSB          4
 /* The Most Significant Bit (MSB) position of the ALT_L4WD_TORR_TOP_INIT register field. */
-#define ALT_L4WD_TORR_TOP_INIT_MSB        7
+    #define ALT_L4WD_TORR_TOP_INIT_MSB          7
 /* The width in bits of the ALT_L4WD_TORR_TOP_INIT register field. */
-#define ALT_L4WD_TORR_TOP_INIT_WIDTH      4
+    #define ALT_L4WD_TORR_TOP_INIT_WIDTH        4
 /* The mask used to set the ALT_L4WD_TORR_TOP_INIT register field value. */
-#define ALT_L4WD_TORR_TOP_INIT_SET_MSK    0x000000f0
+    #define ALT_L4WD_TORR_TOP_INIT_SET_MSK      0x000000f0
 /* The mask used to clear the ALT_L4WD_TORR_TOP_INIT register field value. */
-#define ALT_L4WD_TORR_TOP_INIT_CLR_MSK    0xffffff0f
+    #define ALT_L4WD_TORR_TOP_INIT_CLR_MSK      0xffffff0f
 /* The reset value of the ALT_L4WD_TORR_TOP_INIT register field. */
-#define ALT_L4WD_TORR_TOP_INIT_RESET      0xf
+    #define ALT_L4WD_TORR_TOP_INIT_RESET        0xf
 /* Extracts the ALT_L4WD_TORR_TOP_INIT field value from a register. */
-#define ALT_L4WD_TORR_TOP_INIT_GET(value) (((value) & 0x000000f0) >> 4)
+    #define ALT_L4WD_TORR_TOP_INIT_GET( value )    ( ( ( value ) & 0x000000f0 ) >> 4 )
 /* Produces a ALT_L4WD_TORR_TOP_INIT register field value suitable for setting the register. */
-#define ALT_L4WD_TORR_TOP_INIT_SET(value) (((value) << 4) & 0x000000f0)
+    #define ALT_L4WD_TORR_TOP_INIT_SET( value )    ( ( ( value ) << 4 ) & 0x000000f0 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -504,21 +545,21 @@ typedef volatile struct ALT_L4WD_CR_s  ALT_L4WD_CR_t;
  *
  * The struct declaration for register ALT_L4WD_TORR.
  */
-struct ALT_L4WD_TORR_s
-{
-    uint32_t  top      :  4;  /* Timeout Period */
-    uint32_t  top_init :  4;  /* Timeout Period for Initialization */
-    uint32_t           : 24;  /* *UNDEFINED* */
-};
+        struct ALT_L4WD_TORR_s
+        {
+            uint32_t top      :  4;  /* Timeout Period */
+            uint32_t top_init :  4;  /* Timeout Period for Initialization */
+            uint32_t           : 24; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_L4WD_TORR. */
-typedef volatile struct ALT_L4WD_TORR_s  ALT_L4WD_TORR_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_L4WD_TORR_s ALT_L4WD_TORR_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_L4WD_TORR register from the beginning of the component. */
-#define ALT_L4WD_TORR_OFST        0x4
+    #define ALT_L4WD_TORR_OFST    0x4
 /* The address of the ALT_L4WD_TORR register. */
-#define ALT_L4WD_TORR_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_L4WD_TORR_OFST))
+    #define ALT_L4WD_TORR_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_L4WD_TORR_OFST ) )
 
 /*
  * Register : Current Counter Value Register - wdt_ccvr
@@ -532,6 +573,7 @@ typedef volatile struct ALT_L4WD_TORR_s  ALT_L4WD_TORR_t;
  *  [31:0] | R      | 0x7fffffff | Current Counter Value
  *
  */
+
 /*
  * Field : Current Counter Value - wdt_ccvr
  *
@@ -541,23 +583,24 @@ typedef volatile struct ALT_L4WD_TORR_s  ALT_L4WD_TORR_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_L4WD_CCVR_WDT_CCVR register field. */
-#define ALT_L4WD_CCVR_WDT_CCVR_LSB        0
+    #define ALT_L4WD_CCVR_WDT_CCVR_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_L4WD_CCVR_WDT_CCVR register field. */
-#define ALT_L4WD_CCVR_WDT_CCVR_MSB        31
+    #define ALT_L4WD_CCVR_WDT_CCVR_MSB        31
 /* The width in bits of the ALT_L4WD_CCVR_WDT_CCVR register field. */
-#define ALT_L4WD_CCVR_WDT_CCVR_WIDTH      32
+    #define ALT_L4WD_CCVR_WDT_CCVR_WIDTH      32
 /* The mask used to set the ALT_L4WD_CCVR_WDT_CCVR register field value. */
-#define ALT_L4WD_CCVR_WDT_CCVR_SET_MSK    0xffffffff
+    #define ALT_L4WD_CCVR_WDT_CCVR_SET_MSK    0xffffffff
 /* The mask used to clear the ALT_L4WD_CCVR_WDT_CCVR register field value. */
-#define ALT_L4WD_CCVR_WDT_CCVR_CLR_MSK    0x00000000
+    #define ALT_L4WD_CCVR_WDT_CCVR_CLR_MSK    0x00000000
 /* The reset value of the ALT_L4WD_CCVR_WDT_CCVR register field. */
-#define ALT_L4WD_CCVR_WDT_CCVR_RESET      0x7fffffff
+    #define ALT_L4WD_CCVR_WDT_CCVR_RESET      0x7fffffff
 /* Extracts the ALT_L4WD_CCVR_WDT_CCVR field value from a register. */
-#define ALT_L4WD_CCVR_WDT_CCVR_GET(value) (((value) & 0xffffffff) >> 0)
+    #define ALT_L4WD_CCVR_WDT_CCVR_GET( value )    ( ( ( value ) & 0xffffffff ) >> 0 )
 /* Produces a ALT_L4WD_CCVR_WDT_CCVR register field value suitable for setting the register. */
-#define ALT_L4WD_CCVR_WDT_CCVR_SET(value) (((value) << 0) & 0xffffffff)
+    #define ALT_L4WD_CCVR_WDT_CCVR_SET( value )    ( ( ( value ) << 0 ) & 0xffffffff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -568,19 +611,19 @@ typedef volatile struct ALT_L4WD_TORR_s  ALT_L4WD_TORR_t;
  *
  * The struct declaration for register ALT_L4WD_CCVR.
  */
-struct ALT_L4WD_CCVR_s
-{
-    const uint32_t  wdt_ccvr : 32;  /* Current Counter Value */
-};
+        struct ALT_L4WD_CCVR_s
+        {
+            const uint32_t wdt_ccvr : 32; /* Current Counter Value */
+        };
 
 /* The typedef declaration for register ALT_L4WD_CCVR. */
-typedef volatile struct ALT_L4WD_CCVR_s  ALT_L4WD_CCVR_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_L4WD_CCVR_s ALT_L4WD_CCVR_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_L4WD_CCVR register from the beginning of the component. */
-#define ALT_L4WD_CCVR_OFST        0x8
+    #define ALT_L4WD_CCVR_OFST    0x8
 /* The address of the ALT_L4WD_CCVR register. */
-#define ALT_L4WD_CCVR_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_L4WD_CCVR_OFST))
+    #define ALT_L4WD_CCVR_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_L4WD_CCVR_OFST ) )
 
 /*
  * Register : Counter Restart Register - wdt_crr
@@ -595,6 +638,7 @@ typedef volatile struct ALT_L4WD_CCVR_s  ALT_L4WD_CCVR_t;
  *  [31:8] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Counter Restart Register - wdt_crr
  *
@@ -611,31 +655,33 @@ typedef volatile struct ALT_L4WD_CCVR_s  ALT_L4WD_CCVR_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_L4WD_CRR_WDT_CRR
  *
  * Value to write to restart watchdog timer
  */
-#define ALT_L4WD_CRR_WDT_CRR_E_KICK 0x76
+    #define ALT_L4WD_CRR_WDT_CRR_E_KICK     0x76
 
 /* The Least Significant Bit (LSB) position of the ALT_L4WD_CRR_WDT_CRR register field. */
-#define ALT_L4WD_CRR_WDT_CRR_LSB        0
+    #define ALT_L4WD_CRR_WDT_CRR_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_L4WD_CRR_WDT_CRR register field. */
-#define ALT_L4WD_CRR_WDT_CRR_MSB        7
+    #define ALT_L4WD_CRR_WDT_CRR_MSB        7
 /* The width in bits of the ALT_L4WD_CRR_WDT_CRR register field. */
-#define ALT_L4WD_CRR_WDT_CRR_WIDTH      8
+    #define ALT_L4WD_CRR_WDT_CRR_WIDTH      8
 /* The mask used to set the ALT_L4WD_CRR_WDT_CRR register field value. */
-#define ALT_L4WD_CRR_WDT_CRR_SET_MSK    0x000000ff
+    #define ALT_L4WD_CRR_WDT_CRR_SET_MSK    0x000000ff
 /* The mask used to clear the ALT_L4WD_CRR_WDT_CRR register field value. */
-#define ALT_L4WD_CRR_WDT_CRR_CLR_MSK    0xffffff00
+    #define ALT_L4WD_CRR_WDT_CRR_CLR_MSK    0xffffff00
 /* The reset value of the ALT_L4WD_CRR_WDT_CRR register field. */
-#define ALT_L4WD_CRR_WDT_CRR_RESET      0x0
+    #define ALT_L4WD_CRR_WDT_CRR_RESET      0x0
 /* Extracts the ALT_L4WD_CRR_WDT_CRR field value from a register. */
-#define ALT_L4WD_CRR_WDT_CRR_GET(value) (((value) & 0x000000ff) >> 0)
+    #define ALT_L4WD_CRR_WDT_CRR_GET( value )    ( ( ( value ) & 0x000000ff ) >> 0 )
 /* Produces a ALT_L4WD_CRR_WDT_CRR register field value suitable for setting the register. */
-#define ALT_L4WD_CRR_WDT_CRR_SET(value) (((value) << 0) & 0x000000ff)
+    #define ALT_L4WD_CRR_WDT_CRR_SET( value )    ( ( ( value ) << 0 ) & 0x000000ff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -646,20 +692,20 @@ typedef volatile struct ALT_L4WD_CCVR_s  ALT_L4WD_CCVR_t;
  *
  * The struct declaration for register ALT_L4WD_CRR.
  */
-struct ALT_L4WD_CRR_s
-{
-    uint32_t  wdt_crr :  8;  /* Counter Restart Register */
-    uint32_t          : 24;  /* *UNDEFINED* */
-};
+        struct ALT_L4WD_CRR_s
+        {
+            uint32_t wdt_crr :  8;  /* Counter Restart Register */
+            uint32_t          : 24; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_L4WD_CRR. */
-typedef volatile struct ALT_L4WD_CRR_s  ALT_L4WD_CRR_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_L4WD_CRR_s ALT_L4WD_CRR_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_L4WD_CRR register from the beginning of the component. */
-#define ALT_L4WD_CRR_OFST        0xc
+    #define ALT_L4WD_CRR_OFST    0xc
 /* The address of the ALT_L4WD_CRR register. */
-#define ALT_L4WD_CRR_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_L4WD_CRR_OFST))
+    #define ALT_L4WD_CRR_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_L4WD_CRR_OFST ) )
 
 /*
  * Register : Interrupt Status Register. - wdt_stat
@@ -674,6 +720,7 @@ typedef volatile struct ALT_L4WD_CRR_s  ALT_L4WD_CRR_t;
  *  [31:1] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Interrupt Status - wdt_stat
  *
@@ -689,37 +736,40 @@ typedef volatile struct ALT_L4WD_CRR_s  ALT_L4WD_CRR_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_L4WD_STAT_WDT_STAT
  *
  * Interrupt is active
  */
-#define ALT_L4WD_STAT_WDT_STAT_E_ACT    0x1
+    #define ALT_L4WD_STAT_WDT_STAT_E_ACT      0x1
+
 /*
  * Enumerated value for register field ALT_L4WD_STAT_WDT_STAT
  *
  * Interrupt is inactive
  */
-#define ALT_L4WD_STAT_WDT_STAT_E_INACT  0x0
+    #define ALT_L4WD_STAT_WDT_STAT_E_INACT    0x0
 
 /* The Least Significant Bit (LSB) position of the ALT_L4WD_STAT_WDT_STAT register field. */
-#define ALT_L4WD_STAT_WDT_STAT_LSB        0
+    #define ALT_L4WD_STAT_WDT_STAT_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_L4WD_STAT_WDT_STAT register field. */
-#define ALT_L4WD_STAT_WDT_STAT_MSB        0
+    #define ALT_L4WD_STAT_WDT_STAT_MSB        0
 /* The width in bits of the ALT_L4WD_STAT_WDT_STAT register field. */
-#define ALT_L4WD_STAT_WDT_STAT_WIDTH      1
+    #define ALT_L4WD_STAT_WDT_STAT_WIDTH      1
 /* The mask used to set the ALT_L4WD_STAT_WDT_STAT register field value. */
-#define ALT_L4WD_STAT_WDT_STAT_SET_MSK    0x00000001
+    #define ALT_L4WD_STAT_WDT_STAT_SET_MSK    0x00000001
 /* The mask used to clear the ALT_L4WD_STAT_WDT_STAT register field value. */
-#define ALT_L4WD_STAT_WDT_STAT_CLR_MSK    0xfffffffe
+    #define ALT_L4WD_STAT_WDT_STAT_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_L4WD_STAT_WDT_STAT register field. */
-#define ALT_L4WD_STAT_WDT_STAT_RESET      0x0
+    #define ALT_L4WD_STAT_WDT_STAT_RESET      0x0
 /* Extracts the ALT_L4WD_STAT_WDT_STAT field value from a register. */
-#define ALT_L4WD_STAT_WDT_STAT_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_L4WD_STAT_WDT_STAT_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_L4WD_STAT_WDT_STAT register field value suitable for setting the register. */
-#define ALT_L4WD_STAT_WDT_STAT_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_L4WD_STAT_WDT_STAT_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -730,20 +780,20 @@ typedef volatile struct ALT_L4WD_CRR_s  ALT_L4WD_CRR_t;
  *
  * The struct declaration for register ALT_L4WD_STAT.
  */
-struct ALT_L4WD_STAT_s
-{
-    const uint32_t  wdt_stat :  1;  /* Interrupt Status */
-    uint32_t                 : 31;  /* *UNDEFINED* */
-};
+        struct ALT_L4WD_STAT_s
+        {
+            const uint32_t wdt_stat :  1;  /* Interrupt Status */
+            uint32_t                 : 31; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_L4WD_STAT. */
-typedef volatile struct ALT_L4WD_STAT_s  ALT_L4WD_STAT_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_L4WD_STAT_s ALT_L4WD_STAT_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_L4WD_STAT register from the beginning of the component. */
-#define ALT_L4WD_STAT_OFST        0x10
+    #define ALT_L4WD_STAT_OFST    0x10
 /* The address of the ALT_L4WD_STAT register. */
-#define ALT_L4WD_STAT_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_L4WD_STAT_OFST))
+    #define ALT_L4WD_STAT_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_L4WD_STAT_OFST ) )
 
 /*
  * Register : Interrupt Clear Register - wdt_eoi
@@ -758,6 +808,7 @@ typedef volatile struct ALT_L4WD_STAT_s  ALT_L4WD_STAT_t;
  *  [31:1] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Interrupt Clear - wdt_eoi
  *
@@ -768,23 +819,24 @@ typedef volatile struct ALT_L4WD_STAT_s  ALT_L4WD_STAT_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_L4WD_EOI_WDT_EOI register field. */
-#define ALT_L4WD_EOI_WDT_EOI_LSB        0
+    #define ALT_L4WD_EOI_WDT_EOI_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_L4WD_EOI_WDT_EOI register field. */
-#define ALT_L4WD_EOI_WDT_EOI_MSB        0
+    #define ALT_L4WD_EOI_WDT_EOI_MSB        0
 /* The width in bits of the ALT_L4WD_EOI_WDT_EOI register field. */
-#define ALT_L4WD_EOI_WDT_EOI_WIDTH      1
+    #define ALT_L4WD_EOI_WDT_EOI_WIDTH      1
 /* The mask used to set the ALT_L4WD_EOI_WDT_EOI register field value. */
-#define ALT_L4WD_EOI_WDT_EOI_SET_MSK    0x00000001
+    #define ALT_L4WD_EOI_WDT_EOI_SET_MSK    0x00000001
 /* The mask used to clear the ALT_L4WD_EOI_WDT_EOI register field value. */
-#define ALT_L4WD_EOI_WDT_EOI_CLR_MSK    0xfffffffe
+    #define ALT_L4WD_EOI_WDT_EOI_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_L4WD_EOI_WDT_EOI register field. */
-#define ALT_L4WD_EOI_WDT_EOI_RESET      0x0
+    #define ALT_L4WD_EOI_WDT_EOI_RESET      0x0
 /* Extracts the ALT_L4WD_EOI_WDT_EOI field value from a register. */
-#define ALT_L4WD_EOI_WDT_EOI_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_L4WD_EOI_WDT_EOI_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_L4WD_EOI_WDT_EOI register field value suitable for setting the register. */
-#define ALT_L4WD_EOI_WDT_EOI_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_L4WD_EOI_WDT_EOI_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -795,20 +847,20 @@ typedef volatile struct ALT_L4WD_STAT_s  ALT_L4WD_STAT_t;
  *
  * The struct declaration for register ALT_L4WD_EOI.
  */
-struct ALT_L4WD_EOI_s
-{
-    const uint32_t  wdt_eoi :  1;  /* Interrupt Clear */
-    uint32_t                : 31;  /* *UNDEFINED* */
-};
+        struct ALT_L4WD_EOI_s
+        {
+            const uint32_t wdt_eoi :  1;  /* Interrupt Clear */
+            uint32_t                : 31; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_L4WD_EOI. */
-typedef volatile struct ALT_L4WD_EOI_s  ALT_L4WD_EOI_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_L4WD_EOI_s ALT_L4WD_EOI_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_L4WD_EOI register from the beginning of the component. */
-#define ALT_L4WD_EOI_OFST        0x14
+    #define ALT_L4WD_EOI_OFST    0x14
 /* The address of the ALT_L4WD_EOI register. */
-#define ALT_L4WD_EOI_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_L4WD_EOI_OFST))
+    #define ALT_L4WD_EOI_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_L4WD_EOI_OFST ) )
 
 /*
  * Register : Component Parameters Register 5 - cp_wdt_user_top_max
@@ -823,6 +875,7 @@ typedef volatile struct ALT_L4WD_EOI_s  ALT_L4WD_EOI_t;
  *  [31:0] | R      | 0x0   | Component Parameters 5
  *
  */
+
 /*
  * Field : Component Parameters 5 - cp_wdt_user_top_max
  *
@@ -832,23 +885,24 @@ typedef volatile struct ALT_L4WD_EOI_s  ALT_L4WD_EOI_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_L4WD_CP_WDT_USER_TOP_MAX_VAL register field. */
-#define ALT_L4WD_CP_WDT_USER_TOP_MAX_VAL_LSB        0
+    #define ALT_L4WD_CP_WDT_USER_TOP_MAX_VAL_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_L4WD_CP_WDT_USER_TOP_MAX_VAL register field. */
-#define ALT_L4WD_CP_WDT_USER_TOP_MAX_VAL_MSB        31
+    #define ALT_L4WD_CP_WDT_USER_TOP_MAX_VAL_MSB        31
 /* The width in bits of the ALT_L4WD_CP_WDT_USER_TOP_MAX_VAL register field. */
-#define ALT_L4WD_CP_WDT_USER_TOP_MAX_VAL_WIDTH      32
+    #define ALT_L4WD_CP_WDT_USER_TOP_MAX_VAL_WIDTH      32
 /* The mask used to set the ALT_L4WD_CP_WDT_USER_TOP_MAX_VAL register field value. */
-#define ALT_L4WD_CP_WDT_USER_TOP_MAX_VAL_SET_MSK    0xffffffff
+    #define ALT_L4WD_CP_WDT_USER_TOP_MAX_VAL_SET_MSK    0xffffffff
 /* The mask used to clear the ALT_L4WD_CP_WDT_USER_TOP_MAX_VAL register field value. */
-#define ALT_L4WD_CP_WDT_USER_TOP_MAX_VAL_CLR_MSK    0x00000000
+    #define ALT_L4WD_CP_WDT_USER_TOP_MAX_VAL_CLR_MSK    0x00000000
 /* The reset value of the ALT_L4WD_CP_WDT_USER_TOP_MAX_VAL register field. */
-#define ALT_L4WD_CP_WDT_USER_TOP_MAX_VAL_RESET      0x0
+    #define ALT_L4WD_CP_WDT_USER_TOP_MAX_VAL_RESET      0x0
 /* Extracts the ALT_L4WD_CP_WDT_USER_TOP_MAX_VAL field value from a register. */
-#define ALT_L4WD_CP_WDT_USER_TOP_MAX_VAL_GET(value) (((value) & 0xffffffff) >> 0)
+    #define ALT_L4WD_CP_WDT_USER_TOP_MAX_VAL_GET( value )    ( ( ( value ) & 0xffffffff ) >> 0 )
 /* Produces a ALT_L4WD_CP_WDT_USER_TOP_MAX_VAL register field value suitable for setting the register. */
-#define ALT_L4WD_CP_WDT_USER_TOP_MAX_VAL_SET(value) (((value) << 0) & 0xffffffff)
+    #define ALT_L4WD_CP_WDT_USER_TOP_MAX_VAL_SET( value )    ( ( ( value ) << 0 ) & 0xffffffff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -859,19 +913,19 @@ typedef volatile struct ALT_L4WD_EOI_s  ALT_L4WD_EOI_t;
  *
  * The struct declaration for register ALT_L4WD_CP_WDT_USER_TOP_MAX.
  */
-struct ALT_L4WD_CP_WDT_USER_TOP_MAX_s
-{
-    const uint32_t  cp_wdt_user_top_max : 32;  /* Component Parameters 5 */
-};
+        struct ALT_L4WD_CP_WDT_USER_TOP_MAX_s
+        {
+            const uint32_t cp_wdt_user_top_max : 32; /* Component Parameters 5 */
+        };
 
 /* The typedef declaration for register ALT_L4WD_CP_WDT_USER_TOP_MAX. */
-typedef volatile struct ALT_L4WD_CP_WDT_USER_TOP_MAX_s  ALT_L4WD_CP_WDT_USER_TOP_MAX_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_L4WD_CP_WDT_USER_TOP_MAX_s ALT_L4WD_CP_WDT_USER_TOP_MAX_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_L4WD_CP_WDT_USER_TOP_MAX register from the beginning of the component. */
-#define ALT_L4WD_CP_WDT_USER_TOP_MAX_OFST        0xe4
+    #define ALT_L4WD_CP_WDT_USER_TOP_MAX_OFST    0xe4
 /* The address of the ALT_L4WD_CP_WDT_USER_TOP_MAX register. */
-#define ALT_L4WD_CP_WDT_USER_TOP_MAX_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_L4WD_CP_WDT_USER_TOP_MAX_OFST))
+    #define ALT_L4WD_CP_WDT_USER_TOP_MAX_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_L4WD_CP_WDT_USER_TOP_MAX_OFST ) )
 
 /*
  * Register : Component Parameters Register 4 - cp_wdt_user_top_init_max
@@ -886,6 +940,7 @@ typedef volatile struct ALT_L4WD_CP_WDT_USER_TOP_MAX_s  ALT_L4WD_CP_WDT_USER_TOP
  *  [31:0] | R      | 0x0   | Component Parameters 4
  *
  */
+
 /*
  * Field : Component Parameters 4 - cp_wdt_user_top_init_max
  *
@@ -895,23 +950,24 @@ typedef volatile struct ALT_L4WD_CP_WDT_USER_TOP_MAX_s  ALT_L4WD_CP_WDT_USER_TOP
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_L4WD_CP_WDT_USER_TOP_INIT_MAX_VAL register field. */
-#define ALT_L4WD_CP_WDT_USER_TOP_INIT_MAX_VAL_LSB        0
+    #define ALT_L4WD_CP_WDT_USER_TOP_INIT_MAX_VAL_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_L4WD_CP_WDT_USER_TOP_INIT_MAX_VAL register field. */
-#define ALT_L4WD_CP_WDT_USER_TOP_INIT_MAX_VAL_MSB        31
+    #define ALT_L4WD_CP_WDT_USER_TOP_INIT_MAX_VAL_MSB        31
 /* The width in bits of the ALT_L4WD_CP_WDT_USER_TOP_INIT_MAX_VAL register field. */
-#define ALT_L4WD_CP_WDT_USER_TOP_INIT_MAX_VAL_WIDTH      32
+    #define ALT_L4WD_CP_WDT_USER_TOP_INIT_MAX_VAL_WIDTH      32
 /* The mask used to set the ALT_L4WD_CP_WDT_USER_TOP_INIT_MAX_VAL register field value. */
-#define ALT_L4WD_CP_WDT_USER_TOP_INIT_MAX_VAL_SET_MSK    0xffffffff
+    #define ALT_L4WD_CP_WDT_USER_TOP_INIT_MAX_VAL_SET_MSK    0xffffffff
 /* The mask used to clear the ALT_L4WD_CP_WDT_USER_TOP_INIT_MAX_VAL register field value. */
-#define ALT_L4WD_CP_WDT_USER_TOP_INIT_MAX_VAL_CLR_MSK    0x00000000
+    #define ALT_L4WD_CP_WDT_USER_TOP_INIT_MAX_VAL_CLR_MSK    0x00000000
 /* The reset value of the ALT_L4WD_CP_WDT_USER_TOP_INIT_MAX_VAL register field. */
-#define ALT_L4WD_CP_WDT_USER_TOP_INIT_MAX_VAL_RESET      0x0
+    #define ALT_L4WD_CP_WDT_USER_TOP_INIT_MAX_VAL_RESET      0x0
 /* Extracts the ALT_L4WD_CP_WDT_USER_TOP_INIT_MAX_VAL field value from a register. */
-#define ALT_L4WD_CP_WDT_USER_TOP_INIT_MAX_VAL_GET(value) (((value) & 0xffffffff) >> 0)
+    #define ALT_L4WD_CP_WDT_USER_TOP_INIT_MAX_VAL_GET( value )    ( ( ( value ) & 0xffffffff ) >> 0 )
 /* Produces a ALT_L4WD_CP_WDT_USER_TOP_INIT_MAX_VAL register field value suitable for setting the register. */
-#define ALT_L4WD_CP_WDT_USER_TOP_INIT_MAX_VAL_SET(value) (((value) << 0) & 0xffffffff)
+    #define ALT_L4WD_CP_WDT_USER_TOP_INIT_MAX_VAL_SET( value )    ( ( ( value ) << 0 ) & 0xffffffff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -922,19 +978,19 @@ typedef volatile struct ALT_L4WD_CP_WDT_USER_TOP_MAX_s  ALT_L4WD_CP_WDT_USER_TOP
  *
  * The struct declaration for register ALT_L4WD_CP_WDT_USER_TOP_INIT_MAX.
  */
-struct ALT_L4WD_CP_WDT_USER_TOP_INIT_MAX_s
-{
-    const uint32_t  cp_wdt_user_top_init_max : 32;  /* Component Parameters 4 */
-};
+        struct ALT_L4WD_CP_WDT_USER_TOP_INIT_MAX_s
+        {
+            const uint32_t cp_wdt_user_top_init_max : 32; /* Component Parameters 4 */
+        };
 
 /* The typedef declaration for register ALT_L4WD_CP_WDT_USER_TOP_INIT_MAX. */
-typedef volatile struct ALT_L4WD_CP_WDT_USER_TOP_INIT_MAX_s  ALT_L4WD_CP_WDT_USER_TOP_INIT_MAX_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_L4WD_CP_WDT_USER_TOP_INIT_MAX_s ALT_L4WD_CP_WDT_USER_TOP_INIT_MAX_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_L4WD_CP_WDT_USER_TOP_INIT_MAX register from the beginning of the component. */
-#define ALT_L4WD_CP_WDT_USER_TOP_INIT_MAX_OFST        0xe8
+    #define ALT_L4WD_CP_WDT_USER_TOP_INIT_MAX_OFST    0xe8
 /* The address of the ALT_L4WD_CP_WDT_USER_TOP_INIT_MAX register. */
-#define ALT_L4WD_CP_WDT_USER_TOP_INIT_MAX_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_L4WD_CP_WDT_USER_TOP_INIT_MAX_OFST))
+    #define ALT_L4WD_CP_WDT_USER_TOP_INIT_MAX_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_L4WD_CP_WDT_USER_TOP_INIT_MAX_OFST ) )
 
 /*
  * Register : Component Parameters Register 3 - cd_wdt_top_rst
@@ -949,6 +1005,7 @@ typedef volatile struct ALT_L4WD_CP_WDT_USER_TOP_INIT_MAX_s  ALT_L4WD_CP_WDT_USE
  *  [31:0] | R      | 0xff  | Component Parameters  3
  *
  */
+
 /*
  * Field : Component Parameters  3 - cd_wdt_top_rst
  *
@@ -958,23 +1015,24 @@ typedef volatile struct ALT_L4WD_CP_WDT_USER_TOP_INIT_MAX_s  ALT_L4WD_CP_WDT_USE
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_L4WD_CD_WDT_TOP_RST_CD_WDT_TOP_RST register field. */
-#define ALT_L4WD_CD_WDT_TOP_RST_CD_WDT_TOP_RST_LSB        0
+    #define ALT_L4WD_CD_WDT_TOP_RST_CD_WDT_TOP_RST_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_L4WD_CD_WDT_TOP_RST_CD_WDT_TOP_RST register field. */
-#define ALT_L4WD_CD_WDT_TOP_RST_CD_WDT_TOP_RST_MSB        31
+    #define ALT_L4WD_CD_WDT_TOP_RST_CD_WDT_TOP_RST_MSB        31
 /* The width in bits of the ALT_L4WD_CD_WDT_TOP_RST_CD_WDT_TOP_RST register field. */
-#define ALT_L4WD_CD_WDT_TOP_RST_CD_WDT_TOP_RST_WIDTH      32
+    #define ALT_L4WD_CD_WDT_TOP_RST_CD_WDT_TOP_RST_WIDTH      32
 /* The mask used to set the ALT_L4WD_CD_WDT_TOP_RST_CD_WDT_TOP_RST register field value. */
-#define ALT_L4WD_CD_WDT_TOP_RST_CD_WDT_TOP_RST_SET_MSK    0xffffffff
+    #define ALT_L4WD_CD_WDT_TOP_RST_CD_WDT_TOP_RST_SET_MSK    0xffffffff
 /* The mask used to clear the ALT_L4WD_CD_WDT_TOP_RST_CD_WDT_TOP_RST register field value. */
-#define ALT_L4WD_CD_WDT_TOP_RST_CD_WDT_TOP_RST_CLR_MSK    0x00000000
+    #define ALT_L4WD_CD_WDT_TOP_RST_CD_WDT_TOP_RST_CLR_MSK    0x00000000
 /* The reset value of the ALT_L4WD_CD_WDT_TOP_RST_CD_WDT_TOP_RST register field. */
-#define ALT_L4WD_CD_WDT_TOP_RST_CD_WDT_TOP_RST_RESET      0xff
+    #define ALT_L4WD_CD_WDT_TOP_RST_CD_WDT_TOP_RST_RESET      0xff
 /* Extracts the ALT_L4WD_CD_WDT_TOP_RST_CD_WDT_TOP_RST field value from a register. */
-#define ALT_L4WD_CD_WDT_TOP_RST_CD_WDT_TOP_RST_GET(value) (((value) & 0xffffffff) >> 0)
+    #define ALT_L4WD_CD_WDT_TOP_RST_CD_WDT_TOP_RST_GET( value )    ( ( ( value ) & 0xffffffff ) >> 0 )
 /* Produces a ALT_L4WD_CD_WDT_TOP_RST_CD_WDT_TOP_RST register field value suitable for setting the register. */
-#define ALT_L4WD_CD_WDT_TOP_RST_CD_WDT_TOP_RST_SET(value) (((value) << 0) & 0xffffffff)
+    #define ALT_L4WD_CD_WDT_TOP_RST_CD_WDT_TOP_RST_SET( value )    ( ( ( value ) << 0 ) & 0xffffffff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -985,19 +1043,19 @@ typedef volatile struct ALT_L4WD_CP_WDT_USER_TOP_INIT_MAX_s  ALT_L4WD_CP_WDT_USE
  *
  * The struct declaration for register ALT_L4WD_CD_WDT_TOP_RST.
  */
-struct ALT_L4WD_CD_WDT_TOP_RST_s
-{
-    const uint32_t  cd_wdt_top_rst : 32;  /* Component Parameters  3 */
-};
+        struct ALT_L4WD_CD_WDT_TOP_RST_s
+        {
+            const uint32_t cd_wdt_top_rst : 32; /* Component Parameters  3 */
+        };
 
 /* The typedef declaration for register ALT_L4WD_CD_WDT_TOP_RST. */
-typedef volatile struct ALT_L4WD_CD_WDT_TOP_RST_s  ALT_L4WD_CD_WDT_TOP_RST_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_L4WD_CD_WDT_TOP_RST_s ALT_L4WD_CD_WDT_TOP_RST_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_L4WD_CD_WDT_TOP_RST register from the beginning of the component. */
-#define ALT_L4WD_CD_WDT_TOP_RST_OFST        0xec
+    #define ALT_L4WD_CD_WDT_TOP_RST_OFST    0xec
 /* The address of the ALT_L4WD_CD_WDT_TOP_RST register. */
-#define ALT_L4WD_CD_WDT_TOP_RST_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_L4WD_CD_WDT_TOP_RST_OFST))
+    #define ALT_L4WD_CD_WDT_TOP_RST_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_L4WD_CD_WDT_TOP_RST_OFST ) )
 
 /*
  * Register : Component Parameters  Register 2 - cp_wdt_cnt_rst
@@ -1012,6 +1070,7 @@ typedef volatile struct ALT_L4WD_CD_WDT_TOP_RST_s  ALT_L4WD_CD_WDT_TOP_RST_t;
  *  [31:0] | R      | 0x7fffffff | Component Parameters  2
  *
  */
+
 /*
  * Field : Component Parameters  2 - cp_wdt_cnt_rst
  *
@@ -1022,23 +1081,24 @@ typedef volatile struct ALT_L4WD_CD_WDT_TOP_RST_s  ALT_L4WD_CD_WDT_TOP_RST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_L4WD_CP_WDT_CNT_RST_CP_WDT_CNT_RST register field. */
-#define ALT_L4WD_CP_WDT_CNT_RST_CP_WDT_CNT_RST_LSB        0
+    #define ALT_L4WD_CP_WDT_CNT_RST_CP_WDT_CNT_RST_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_L4WD_CP_WDT_CNT_RST_CP_WDT_CNT_RST register field. */
-#define ALT_L4WD_CP_WDT_CNT_RST_CP_WDT_CNT_RST_MSB        31
+    #define ALT_L4WD_CP_WDT_CNT_RST_CP_WDT_CNT_RST_MSB        31
 /* The width in bits of the ALT_L4WD_CP_WDT_CNT_RST_CP_WDT_CNT_RST register field. */
-#define ALT_L4WD_CP_WDT_CNT_RST_CP_WDT_CNT_RST_WIDTH      32
+    #define ALT_L4WD_CP_WDT_CNT_RST_CP_WDT_CNT_RST_WIDTH      32
 /* The mask used to set the ALT_L4WD_CP_WDT_CNT_RST_CP_WDT_CNT_RST register field value. */
-#define ALT_L4WD_CP_WDT_CNT_RST_CP_WDT_CNT_RST_SET_MSK    0xffffffff
+    #define ALT_L4WD_CP_WDT_CNT_RST_CP_WDT_CNT_RST_SET_MSK    0xffffffff
 /* The mask used to clear the ALT_L4WD_CP_WDT_CNT_RST_CP_WDT_CNT_RST register field value. */
-#define ALT_L4WD_CP_WDT_CNT_RST_CP_WDT_CNT_RST_CLR_MSK    0x00000000
+    #define ALT_L4WD_CP_WDT_CNT_RST_CP_WDT_CNT_RST_CLR_MSK    0x00000000
 /* The reset value of the ALT_L4WD_CP_WDT_CNT_RST_CP_WDT_CNT_RST register field. */
-#define ALT_L4WD_CP_WDT_CNT_RST_CP_WDT_CNT_RST_RESET      0x7fffffff
+    #define ALT_L4WD_CP_WDT_CNT_RST_CP_WDT_CNT_RST_RESET      0x7fffffff
 /* Extracts the ALT_L4WD_CP_WDT_CNT_RST_CP_WDT_CNT_RST field value from a register. */
-#define ALT_L4WD_CP_WDT_CNT_RST_CP_WDT_CNT_RST_GET(value) (((value) & 0xffffffff) >> 0)
+    #define ALT_L4WD_CP_WDT_CNT_RST_CP_WDT_CNT_RST_GET( value )    ( ( ( value ) & 0xffffffff ) >> 0 )
 /* Produces a ALT_L4WD_CP_WDT_CNT_RST_CP_WDT_CNT_RST register field value suitable for setting the register. */
-#define ALT_L4WD_CP_WDT_CNT_RST_CP_WDT_CNT_RST_SET(value) (((value) << 0) & 0xffffffff)
+    #define ALT_L4WD_CP_WDT_CNT_RST_CP_WDT_CNT_RST_SET( value )    ( ( ( value ) << 0 ) & 0xffffffff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -1049,19 +1109,19 @@ typedef volatile struct ALT_L4WD_CD_WDT_TOP_RST_s  ALT_L4WD_CD_WDT_TOP_RST_t;
  *
  * The struct declaration for register ALT_L4WD_CP_WDT_CNT_RST.
  */
-struct ALT_L4WD_CP_WDT_CNT_RST_s
-{
-    const uint32_t  cp_wdt_cnt_rst : 32;  /* Component Parameters  2 */
-};
+        struct ALT_L4WD_CP_WDT_CNT_RST_s
+        {
+            const uint32_t cp_wdt_cnt_rst : 32; /* Component Parameters  2 */
+        };
 
 /* The typedef declaration for register ALT_L4WD_CP_WDT_CNT_RST. */
-typedef volatile struct ALT_L4WD_CP_WDT_CNT_RST_s  ALT_L4WD_CP_WDT_CNT_RST_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_L4WD_CP_WDT_CNT_RST_s ALT_L4WD_CP_WDT_CNT_RST_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_L4WD_CP_WDT_CNT_RST register from the beginning of the component. */
-#define ALT_L4WD_CP_WDT_CNT_RST_OFST        0xf0
+    #define ALT_L4WD_CP_WDT_CNT_RST_OFST    0xf0
 /* The address of the ALT_L4WD_CP_WDT_CNT_RST register. */
-#define ALT_L4WD_CP_WDT_CNT_RST_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_L4WD_CP_WDT_CNT_RST_OFST))
+    #define ALT_L4WD_CP_WDT_CNT_RST_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_L4WD_CP_WDT_CNT_RST_OFST ) )
 
 /*
  * Register : Component Parameters Register 1 - wdt_comp_param_1
@@ -1090,6 +1150,7 @@ typedef volatile struct ALT_L4WD_CP_WDT_CNT_RST_s  ALT_L4WD_CP_WDT_CNT_RST_t;
  *  [31:29] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Always Enable - cp_wdt_always_en
  *
@@ -1104,29 +1165,30 @@ typedef volatile struct ALT_L4WD_CP_WDT_CNT_RST_s  ALT_L4WD_CP_WDT_CNT_RST_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_L4WD_COMP_PARAM_1_CP_WDT_ALWAYS_EN
  *
  * Watchdog disabled on reset
  */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_ALWAYS_EN_E_DISD   0x0
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_ALWAYS_EN_E_DISD     0x0
 
 /* The Least Significant Bit (LSB) position of the ALT_L4WD_COMP_PARAM_1_CP_WDT_ALWAYS_EN register field. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_ALWAYS_EN_LSB        0
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_ALWAYS_EN_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_L4WD_COMP_PARAM_1_CP_WDT_ALWAYS_EN register field. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_ALWAYS_EN_MSB        0
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_ALWAYS_EN_MSB        0
 /* The width in bits of the ALT_L4WD_COMP_PARAM_1_CP_WDT_ALWAYS_EN register field. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_ALWAYS_EN_WIDTH      1
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_ALWAYS_EN_WIDTH      1
 /* The mask used to set the ALT_L4WD_COMP_PARAM_1_CP_WDT_ALWAYS_EN register field value. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_ALWAYS_EN_SET_MSK    0x00000001
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_ALWAYS_EN_SET_MSK    0x00000001
 /* The mask used to clear the ALT_L4WD_COMP_PARAM_1_CP_WDT_ALWAYS_EN register field value. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_ALWAYS_EN_CLR_MSK    0xfffffffe
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_ALWAYS_EN_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_L4WD_COMP_PARAM_1_CP_WDT_ALWAYS_EN register field. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_ALWAYS_EN_RESET      0x0
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_ALWAYS_EN_RESET      0x0
 /* Extracts the ALT_L4WD_COMP_PARAM_1_CP_WDT_ALWAYS_EN field value from a register. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_ALWAYS_EN_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_ALWAYS_EN_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_L4WD_COMP_PARAM_1_CP_WDT_ALWAYS_EN register field value suitable for setting the register. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_ALWAYS_EN_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_ALWAYS_EN_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
 /*
  * Field : Default Mode - cp_wdt_dflt_rmod
@@ -1143,29 +1205,30 @@ typedef volatile struct ALT_L4WD_CP_WDT_CNT_RST_s  ALT_L4WD_CP_WDT_CNT_RST_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RMOD
  *
  * Generate a warm reset request (don't generate an interrupt first)
  */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RMOD_E_RSTREQ 0x0
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RMOD_E_RSTREQ    0x0
 
 /* The Least Significant Bit (LSB) position of the ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RMOD register field. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RMOD_LSB        1
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RMOD_LSB         1
 /* The Most Significant Bit (MSB) position of the ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RMOD register field. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RMOD_MSB        1
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RMOD_MSB         1
 /* The width in bits of the ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RMOD register field. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RMOD_WIDTH      1
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RMOD_WIDTH       1
 /* The mask used to set the ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RMOD register field value. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RMOD_SET_MSK    0x00000002
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RMOD_SET_MSK     0x00000002
 /* The mask used to clear the ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RMOD register field value. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RMOD_CLR_MSK    0xfffffffd
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RMOD_CLR_MSK     0xfffffffd
 /* The reset value of the ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RMOD register field. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RMOD_RESET      0x0
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RMOD_RESET       0x0
 /* Extracts the ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RMOD field value from a register. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RMOD_GET(value) (((value) & 0x00000002) >> 1)
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RMOD_GET( value )    ( ( ( value ) & 0x00000002 ) >> 1 )
 /* Produces a ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RMOD register field value suitable for setting the register. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RMOD_SET(value) (((value) << 1) & 0x00000002)
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RMOD_SET( value )    ( ( ( value ) << 1 ) & 0x00000002 )
 
 /*
  * Field : Dual Timeout Period - cp_wdt_dual_top
@@ -1182,29 +1245,30 @@ typedef volatile struct ALT_L4WD_CP_WDT_CNT_RST_s  ALT_L4WD_CP_WDT_CNT_RST_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_L4WD_COMP_PARAM_1_CP_WDT_DUAL_TOP
  *
  * Second timeout period is present
  */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_DUAL_TOP_E_DUALTOP 0x1
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_DUAL_TOP_E_DUALTOP    0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_L4WD_COMP_PARAM_1_CP_WDT_DUAL_TOP register field. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_DUAL_TOP_LSB        2
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_DUAL_TOP_LSB          2
 /* The Most Significant Bit (MSB) position of the ALT_L4WD_COMP_PARAM_1_CP_WDT_DUAL_TOP register field. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_DUAL_TOP_MSB        2
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_DUAL_TOP_MSB          2
 /* The width in bits of the ALT_L4WD_COMP_PARAM_1_CP_WDT_DUAL_TOP register field. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_DUAL_TOP_WIDTH      1
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_DUAL_TOP_WIDTH        1
 /* The mask used to set the ALT_L4WD_COMP_PARAM_1_CP_WDT_DUAL_TOP register field value. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_DUAL_TOP_SET_MSK    0x00000004
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_DUAL_TOP_SET_MSK      0x00000004
 /* The mask used to clear the ALT_L4WD_COMP_PARAM_1_CP_WDT_DUAL_TOP register field value. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_DUAL_TOP_CLR_MSK    0xfffffffb
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_DUAL_TOP_CLR_MSK      0xfffffffb
 /* The reset value of the ALT_L4WD_COMP_PARAM_1_CP_WDT_DUAL_TOP register field. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_DUAL_TOP_RESET      0x1
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_DUAL_TOP_RESET        0x1
 /* Extracts the ALT_L4WD_COMP_PARAM_1_CP_WDT_DUAL_TOP field value from a register. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_DUAL_TOP_GET(value) (((value) & 0x00000004) >> 2)
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_DUAL_TOP_GET( value )    ( ( ( value ) & 0x00000004 ) >> 2 )
 /* Produces a ALT_L4WD_COMP_PARAM_1_CP_WDT_DUAL_TOP register field value suitable for setting the register. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_DUAL_TOP_SET(value) (((value) << 2) & 0x00000004)
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_DUAL_TOP_SET( value )    ( ( ( value ) << 2 ) & 0x00000004 )
 
 /*
  * Field : Hardcode Response Mode - cp_wdt_hc_rmod
@@ -1221,29 +1285,30 @@ typedef volatile struct ALT_L4WD_CP_WDT_CNT_RST_s  ALT_L4WD_CP_WDT_CNT_RST_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RMOD
  *
  * Output response mode is programmable.
  */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RMOD_E_PGML 0x0
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RMOD_E_PGML     0x0
 
 /* The Least Significant Bit (LSB) position of the ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RMOD register field. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RMOD_LSB        3
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RMOD_LSB        3
 /* The Most Significant Bit (MSB) position of the ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RMOD register field. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RMOD_MSB        3
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RMOD_MSB        3
 /* The width in bits of the ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RMOD register field. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RMOD_WIDTH      1
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RMOD_WIDTH      1
 /* The mask used to set the ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RMOD register field value. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RMOD_SET_MSK    0x00000008
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RMOD_SET_MSK    0x00000008
 /* The mask used to clear the ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RMOD register field value. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RMOD_CLR_MSK    0xfffffff7
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RMOD_CLR_MSK    0xfffffff7
 /* The reset value of the ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RMOD register field. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RMOD_RESET      0x0
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RMOD_RESET      0x0
 /* Extracts the ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RMOD field value from a register. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RMOD_GET(value) (((value) & 0x00000008) >> 3)
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RMOD_GET( value )    ( ( ( value ) & 0x00000008 ) >> 3 )
 /* Produces a ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RMOD register field value suitable for setting the register. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RMOD_SET(value) (((value) << 3) & 0x00000008)
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RMOD_SET( value )    ( ( ( value ) << 3 ) & 0x00000008 )
 
 /*
  * Field : Hardcode Reset Pulse Length - cp_wdt_hc_rpl
@@ -1259,29 +1324,30 @@ typedef volatile struct ALT_L4WD_CP_WDT_CNT_RST_s  ALT_L4WD_CP_WDT_CNT_RST_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RPL
  *
  * Reset pulse length is hardcoded.
  */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RPL_E_HARDCODED 0x1
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RPL_E_HARDCODED    0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RPL register field. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RPL_LSB        4
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RPL_LSB            4
 /* The Most Significant Bit (MSB) position of the ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RPL register field. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RPL_MSB        4
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RPL_MSB            4
 /* The width in bits of the ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RPL register field. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RPL_WIDTH      1
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RPL_WIDTH          1
 /* The mask used to set the ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RPL register field value. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RPL_SET_MSK    0x00000010
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RPL_SET_MSK        0x00000010
 /* The mask used to clear the ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RPL register field value. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RPL_CLR_MSK    0xffffffef
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RPL_CLR_MSK        0xffffffef
 /* The reset value of the ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RPL register field. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RPL_RESET      0x1
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RPL_RESET          0x1
 /* Extracts the ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RPL field value from a register. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RPL_GET(value) (((value) & 0x00000010) >> 4)
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RPL_GET( value )    ( ( ( value ) & 0x00000010 ) >> 4 )
 /* Produces a ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RPL register field value suitable for setting the register. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RPL_SET(value) (((value) << 4) & 0x00000010)
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_RPL_SET( value )    ( ( ( value ) << 4 ) & 0x00000010 )
 
 /*
  * Field : Hardcode Timeout Period - cp_wdt_hc_top
@@ -1297,29 +1363,30 @@ typedef volatile struct ALT_L4WD_CP_WDT_CNT_RST_s  ALT_L4WD_CP_WDT_CNT_RST_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_TOP
  *
  * Timeout period is programmable.
  */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_TOP_E_PGML  0x0
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_TOP_E_PGML     0x0
 
 /* The Least Significant Bit (LSB) position of the ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_TOP register field. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_TOP_LSB        5
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_TOP_LSB        5
 /* The Most Significant Bit (MSB) position of the ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_TOP register field. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_TOP_MSB        5
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_TOP_MSB        5
 /* The width in bits of the ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_TOP register field. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_TOP_WIDTH      1
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_TOP_WIDTH      1
 /* The mask used to set the ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_TOP register field value. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_TOP_SET_MSK    0x00000020
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_TOP_SET_MSK    0x00000020
 /* The mask used to clear the ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_TOP register field value. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_TOP_CLR_MSK    0xffffffdf
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_TOP_CLR_MSK    0xffffffdf
 /* The reset value of the ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_TOP register field. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_TOP_RESET      0x0
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_TOP_RESET      0x0
 /* Extracts the ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_TOP field value from a register. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_TOP_GET(value) (((value) & 0x00000020) >> 5)
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_TOP_GET( value )    ( ( ( value ) & 0x00000020 ) >> 5 )
 /* Produces a ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_TOP register field value suitable for setting the register. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_TOP_SET(value) (((value) << 5) & 0x00000020)
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_HC_TOP_SET( value )    ( ( ( value ) << 5 ) & 0x00000020 )
 
 /*
  * Field : Use Pre-defined (Fixed) Timeout Values - cp_wdt_use_fix_top
@@ -1337,29 +1404,30 @@ typedef volatile struct ALT_L4WD_CP_WDT_CNT_RST_s  ALT_L4WD_CP_WDT_CNT_RST_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_L4WD_COMP_PARAM_1_CP_WDT_USE_FIX_TOP
  *
  * Use pre-defined (fixed) timeout values (range from 2**16 to 2**31)
  */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_USE_FIX_TOP_E_PREDEFINED   0x1
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_USE_FIX_TOP_E_PREDEFINED    0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_L4WD_COMP_PARAM_1_CP_WDT_USE_FIX_TOP register field. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_USE_FIX_TOP_LSB        6
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_USE_FIX_TOP_LSB             6
 /* The Most Significant Bit (MSB) position of the ALT_L4WD_COMP_PARAM_1_CP_WDT_USE_FIX_TOP register field. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_USE_FIX_TOP_MSB        6
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_USE_FIX_TOP_MSB             6
 /* The width in bits of the ALT_L4WD_COMP_PARAM_1_CP_WDT_USE_FIX_TOP register field. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_USE_FIX_TOP_WIDTH      1
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_USE_FIX_TOP_WIDTH           1
 /* The mask used to set the ALT_L4WD_COMP_PARAM_1_CP_WDT_USE_FIX_TOP register field value. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_USE_FIX_TOP_SET_MSK    0x00000040
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_USE_FIX_TOP_SET_MSK         0x00000040
 /* The mask used to clear the ALT_L4WD_COMP_PARAM_1_CP_WDT_USE_FIX_TOP register field value. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_USE_FIX_TOP_CLR_MSK    0xffffffbf
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_USE_FIX_TOP_CLR_MSK         0xffffffbf
 /* The reset value of the ALT_L4WD_COMP_PARAM_1_CP_WDT_USE_FIX_TOP register field. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_USE_FIX_TOP_RESET      0x1
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_USE_FIX_TOP_RESET           0x1
 /* Extracts the ALT_L4WD_COMP_PARAM_1_CP_WDT_USE_FIX_TOP field value from a register. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_USE_FIX_TOP_GET(value) (((value) & 0x00000040) >> 6)
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_USE_FIX_TOP_GET( value )    ( ( ( value ) & 0x00000040 ) >> 6 )
 /* Produces a ALT_L4WD_COMP_PARAM_1_CP_WDT_USE_FIX_TOP register field value suitable for setting the register. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_USE_FIX_TOP_SET(value) (((value) << 6) & 0x00000040)
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_USE_FIX_TOP_SET( value )    ( ( ( value ) << 6 ) & 0x00000040 )
 
 /*
  * Field : Include Pause Input - cp_wdt_pause
@@ -1373,21 +1441,21 @@ typedef volatile struct ALT_L4WD_CP_WDT_CNT_RST_s  ALT_L4WD_CP_WDT_CNT_RST_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_L4WD_COMP_PARAM_1_CP_WDT_PAUSE register field. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_PAUSE_LSB        7
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_PAUSE_LSB        7
 /* The Most Significant Bit (MSB) position of the ALT_L4WD_COMP_PARAM_1_CP_WDT_PAUSE register field. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_PAUSE_MSB        7
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_PAUSE_MSB        7
 /* The width in bits of the ALT_L4WD_COMP_PARAM_1_CP_WDT_PAUSE register field. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_PAUSE_WIDTH      1
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_PAUSE_WIDTH      1
 /* The mask used to set the ALT_L4WD_COMP_PARAM_1_CP_WDT_PAUSE register field value. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_PAUSE_SET_MSK    0x00000080
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_PAUSE_SET_MSK    0x00000080
 /* The mask used to clear the ALT_L4WD_COMP_PARAM_1_CP_WDT_PAUSE register field value. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_PAUSE_CLR_MSK    0xffffff7f
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_PAUSE_CLR_MSK    0xffffff7f
 /* The reset value of the ALT_L4WD_COMP_PARAM_1_CP_WDT_PAUSE register field. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_PAUSE_RESET      0x0
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_PAUSE_RESET      0x0
 /* Extracts the ALT_L4WD_COMP_PARAM_1_CP_WDT_PAUSE field value from a register. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_PAUSE_GET(value) (((value) & 0x00000080) >> 7)
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_PAUSE_GET( value )    ( ( ( value ) & 0x00000080 ) >> 7 )
 /* Produces a ALT_L4WD_COMP_PARAM_1_CP_WDT_PAUSE register field value suitable for setting the register. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_PAUSE_SET(value) (((value) << 7) & 0x00000080)
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_PAUSE_SET( value )    ( ( ( value ) << 7 ) & 0x00000080 )
 
 /*
  * Field : APB Data Width - cp_wdt_apb_data_width
@@ -1403,29 +1471,30 @@ typedef volatile struct ALT_L4WD_CP_WDT_CNT_RST_s  ALT_L4WD_CP_WDT_CNT_RST_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_L4WD_COMP_PARAM_1_CP_WDT_APB_DATA_WIDTH
  *
  * APB Data Width is 32 Bits
  */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_APB_DATA_WIDTH_E_WIDTH32BITS   0x2
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_APB_DATA_WIDTH_E_WIDTH32BITS    0x2
 
 /* The Least Significant Bit (LSB) position of the ALT_L4WD_COMP_PARAM_1_CP_WDT_APB_DATA_WIDTH register field. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_APB_DATA_WIDTH_LSB        8
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_APB_DATA_WIDTH_LSB              8
 /* The Most Significant Bit (MSB) position of the ALT_L4WD_COMP_PARAM_1_CP_WDT_APB_DATA_WIDTH register field. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_APB_DATA_WIDTH_MSB        9
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_APB_DATA_WIDTH_MSB              9
 /* The width in bits of the ALT_L4WD_COMP_PARAM_1_CP_WDT_APB_DATA_WIDTH register field. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_APB_DATA_WIDTH_WIDTH      2
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_APB_DATA_WIDTH_WIDTH            2
 /* The mask used to set the ALT_L4WD_COMP_PARAM_1_CP_WDT_APB_DATA_WIDTH register field value. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_APB_DATA_WIDTH_SET_MSK    0x00000300
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_APB_DATA_WIDTH_SET_MSK          0x00000300
 /* The mask used to clear the ALT_L4WD_COMP_PARAM_1_CP_WDT_APB_DATA_WIDTH register field value. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_APB_DATA_WIDTH_CLR_MSK    0xfffffcff
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_APB_DATA_WIDTH_CLR_MSK          0xfffffcff
 /* The reset value of the ALT_L4WD_COMP_PARAM_1_CP_WDT_APB_DATA_WIDTH register field. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_APB_DATA_WIDTH_RESET      0x2
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_APB_DATA_WIDTH_RESET            0x2
 /* Extracts the ALT_L4WD_COMP_PARAM_1_CP_WDT_APB_DATA_WIDTH field value from a register. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_APB_DATA_WIDTH_GET(value) (((value) & 0x00000300) >> 8)
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_APB_DATA_WIDTH_GET( value )    ( ( ( value ) & 0x00000300 ) >> 8 )
 /* Produces a ALT_L4WD_COMP_PARAM_1_CP_WDT_APB_DATA_WIDTH register field value suitable for setting the register. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_APB_DATA_WIDTH_SET(value) (((value) << 8) & 0x00000300)
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_APB_DATA_WIDTH_SET( value )    ( ( ( value ) << 8 ) & 0x00000300 )
 
 /*
  * Field : Default Reset Pulse Length - cp_wdt_dflt_rpl
@@ -1441,29 +1510,30 @@ typedef volatile struct ALT_L4WD_CP_WDT_CNT_RST_s  ALT_L4WD_CP_WDT_CNT_RST_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RPL
  *
  * Reset pulse length of 2 cycles.
  */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RPL_E_PULSE2CYCLES    0x0
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RPL_E_PULSE2CYCLES    0x0
 
 /* The Least Significant Bit (LSB) position of the ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RPL register field. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RPL_LSB        10
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RPL_LSB               10
 /* The Most Significant Bit (MSB) position of the ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RPL register field. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RPL_MSB        12
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RPL_MSB               12
 /* The width in bits of the ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RPL register field. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RPL_WIDTH      3
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RPL_WIDTH             3
 /* The mask used to set the ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RPL register field value. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RPL_SET_MSK    0x00001c00
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RPL_SET_MSK           0x00001c00
 /* The mask used to clear the ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RPL register field value. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RPL_CLR_MSK    0xffffe3ff
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RPL_CLR_MSK           0xffffe3ff
 /* The reset value of the ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RPL register field. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RPL_RESET      0x0
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RPL_RESET             0x0
 /* Extracts the ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RPL field value from a register. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RPL_GET(value) (((value) & 0x00001c00) >> 10)
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RPL_GET( value )    ( ( ( value ) & 0x00001c00 ) >> 10 )
 /* Produces a ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RPL register field value suitable for setting the register. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RPL_SET(value) (((value) << 10) & 0x00001c00)
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_RPL_SET( value )    ( ( ( value ) << 10 ) & 0x00001c00 )
 
 /*
  * Field : Default Timeout Period - cp_wdt_dflt_top
@@ -1479,29 +1549,30 @@ typedef volatile struct ALT_L4WD_CP_WDT_CNT_RST_s  ALT_L4WD_CP_WDT_CNT_RST_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP
  *
  * Timeout period is 15 (2**31 cycles).
  */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP_E_TMO15   0xf
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP_E_TMO15    0xf
 
 /* The Least Significant Bit (LSB) position of the ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP register field. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP_LSB        16
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP_LSB        16
 /* The Most Significant Bit (MSB) position of the ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP register field. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP_MSB        19
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP_MSB        19
 /* The width in bits of the ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP register field. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP_WIDTH      4
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP_WIDTH      4
 /* The mask used to set the ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP register field value. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP_SET_MSK    0x000f0000
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP_SET_MSK    0x000f0000
 /* The mask used to clear the ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP register field value. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP_CLR_MSK    0xfff0ffff
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP_CLR_MSK    0xfff0ffff
 /* The reset value of the ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP register field. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP_RESET      0xf
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP_RESET      0xf
 /* Extracts the ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP field value from a register. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP_GET(value) (((value) & 0x000f0000) >> 16)
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP_GET( value )    ( ( ( value ) & 0x000f0000 ) >> 16 )
 /* Produces a ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP register field value suitable for setting the register. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP_SET(value) (((value) << 16) & 0x000f0000)
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP_SET( value )    ( ( ( value ) << 16 ) & 0x000f0000 )
 
 /*
  * Field : Default Initial Timeout Period - cp_wdt_dflt_top_init
@@ -1517,29 +1588,30 @@ typedef volatile struct ALT_L4WD_CP_WDT_CNT_RST_s  ALT_L4WD_CP_WDT_CNT_RST_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP_INIT
  *
  * Initial timeout period is 15 (2**31 cycles).
  */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP_INIT_E_TMO15  0xf
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP_INIT_E_TMO15    0xf
 
 /* The Least Significant Bit (LSB) position of the ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP_INIT register field. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP_INIT_LSB        20
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP_INIT_LSB        20
 /* The Most Significant Bit (MSB) position of the ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP_INIT register field. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP_INIT_MSB        23
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP_INIT_MSB        23
 /* The width in bits of the ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP_INIT register field. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP_INIT_WIDTH      4
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP_INIT_WIDTH      4
 /* The mask used to set the ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP_INIT register field value. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP_INIT_SET_MSK    0x00f00000
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP_INIT_SET_MSK    0x00f00000
 /* The mask used to clear the ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP_INIT register field value. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP_INIT_CLR_MSK    0xff0fffff
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP_INIT_CLR_MSK    0xff0fffff
 /* The reset value of the ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP_INIT register field. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP_INIT_RESET      0xf
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP_INIT_RESET      0xf
 /* Extracts the ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP_INIT field value from a register. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP_INIT_GET(value) (((value) & 0x00f00000) >> 20)
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP_INIT_GET( value )    ( ( ( value ) & 0x00f00000 ) >> 20 )
 /* Produces a ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP_INIT register field value suitable for setting the register. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP_INIT_SET(value) (((value) << 20) & 0x00f00000)
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_DFLT_TOP_INIT_SET( value )    ( ( ( value ) << 20 ) & 0x00f00000 )
 
 /*
  * Field : Counter Width in Bits - cp_wdt_cnt_width
@@ -1555,31 +1627,33 @@ typedef volatile struct ALT_L4WD_CP_WDT_CNT_RST_s  ALT_L4WD_CP_WDT_CNT_RST_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_L4WD_COMP_PARAM_1_CP_WDT_CNT_WIDTH
  *
  * Counter width is 32 bits
  */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_CNT_WIDTH_E_WIDTH32BITS    0x10
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_CNT_WIDTH_E_WIDTH32BITS    0x10
 
 /* The Least Significant Bit (LSB) position of the ALT_L4WD_COMP_PARAM_1_CP_WDT_CNT_WIDTH register field. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_CNT_WIDTH_LSB        24
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_CNT_WIDTH_LSB              24
 /* The Most Significant Bit (MSB) position of the ALT_L4WD_COMP_PARAM_1_CP_WDT_CNT_WIDTH register field. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_CNT_WIDTH_MSB        28
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_CNT_WIDTH_MSB              28
 /* The width in bits of the ALT_L4WD_COMP_PARAM_1_CP_WDT_CNT_WIDTH register field. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_CNT_WIDTH_WIDTH      5
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_CNT_WIDTH_WIDTH            5
 /* The mask used to set the ALT_L4WD_COMP_PARAM_1_CP_WDT_CNT_WIDTH register field value. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_CNT_WIDTH_SET_MSK    0x1f000000
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_CNT_WIDTH_SET_MSK          0x1f000000
 /* The mask used to clear the ALT_L4WD_COMP_PARAM_1_CP_WDT_CNT_WIDTH register field value. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_CNT_WIDTH_CLR_MSK    0xe0ffffff
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_CNT_WIDTH_CLR_MSK          0xe0ffffff
 /* The reset value of the ALT_L4WD_COMP_PARAM_1_CP_WDT_CNT_WIDTH register field. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_CNT_WIDTH_RESET      0x10
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_CNT_WIDTH_RESET            0x10
 /* Extracts the ALT_L4WD_COMP_PARAM_1_CP_WDT_CNT_WIDTH field value from a register. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_CNT_WIDTH_GET(value) (((value) & 0x1f000000) >> 24)
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_CNT_WIDTH_GET( value )    ( ( ( value ) & 0x1f000000 ) >> 24 )
 /* Produces a ALT_L4WD_COMP_PARAM_1_CP_WDT_CNT_WIDTH register field value suitable for setting the register. */
-#define ALT_L4WD_COMP_PARAM_1_CP_WDT_CNT_WIDTH_SET(value) (((value) << 24) & 0x1f000000)
+    #define ALT_L4WD_COMP_PARAM_1_CP_WDT_CNT_WIDTH_SET( value )    ( ( ( value ) << 24 ) & 0x1f000000 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -1590,33 +1664,33 @@ typedef volatile struct ALT_L4WD_CP_WDT_CNT_RST_s  ALT_L4WD_CP_WDT_CNT_RST_t;
  *
  * The struct declaration for register ALT_L4WD_COMP_PARAM_1.
  */
-struct ALT_L4WD_COMP_PARAM_1_s
-{
-    const uint32_t  cp_wdt_always_en      :  1;  /* Always Enable */
-    const uint32_t  cp_wdt_dflt_rmod      :  1;  /* Default Mode */
-    const uint32_t  cp_wdt_dual_top       :  1;  /* Dual Timeout Period */
-    const uint32_t  cp_wdt_hc_rmod        :  1;  /* Hardcode Response Mode */
-    const uint32_t  cp_wdt_hc_rpl         :  1;  /* Hardcode Reset Pulse Length */
-    const uint32_t  cp_wdt_hc_top         :  1;  /* Hardcode Timeout Period */
-    const uint32_t  cp_wdt_use_fix_top    :  1;  /* Use Pre-defined (Fixed) Timeout Values */
-    const uint32_t  cp_wdt_pause          :  1;  /* Include Pause Input */
-    const uint32_t  cp_wdt_apb_data_width :  2;  /* APB Data Width */
-    const uint32_t  cp_wdt_dflt_rpl       :  3;  /* Default Reset Pulse Length */
-    uint32_t                              :  3;  /* *UNDEFINED* */
-    const uint32_t  cp_wdt_dflt_top       :  4;  /* Default Timeout Period */
-    const uint32_t  cp_wdt_dflt_top_init  :  4;  /* Default Initial Timeout Period */
-    const uint32_t  cp_wdt_cnt_width      :  5;  /* Counter Width in Bits */
-    uint32_t                              :  3;  /* *UNDEFINED* */
-};
+        struct ALT_L4WD_COMP_PARAM_1_s
+        {
+            const uint32_t cp_wdt_always_en      :  1;  /* Always Enable */
+            const uint32_t cp_wdt_dflt_rmod      :  1;  /* Default Mode */
+            const uint32_t cp_wdt_dual_top       :  1;  /* Dual Timeout Period */
+            const uint32_t cp_wdt_hc_rmod        :  1;  /* Hardcode Response Mode */
+            const uint32_t cp_wdt_hc_rpl         :  1;  /* Hardcode Reset Pulse Length */
+            const uint32_t cp_wdt_hc_top         :  1;  /* Hardcode Timeout Period */
+            const uint32_t cp_wdt_use_fix_top    :  1;  /* Use Pre-defined (Fixed) Timeout Values */
+            const uint32_t cp_wdt_pause          :  1;  /* Include Pause Input */
+            const uint32_t cp_wdt_apb_data_width :  2;  /* APB Data Width */
+            const uint32_t cp_wdt_dflt_rpl       :  3;  /* Default Reset Pulse Length */
+            uint32_t                              :  3; /* *UNDEFINED* */
+            const uint32_t cp_wdt_dflt_top       :  4;  /* Default Timeout Period */
+            const uint32_t cp_wdt_dflt_top_init  :  4;  /* Default Initial Timeout Period */
+            const uint32_t cp_wdt_cnt_width      :  5;  /* Counter Width in Bits */
+            uint32_t                              :  3; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_L4WD_COMP_PARAM_1. */
-typedef volatile struct ALT_L4WD_COMP_PARAM_1_s  ALT_L4WD_COMP_PARAM_1_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_L4WD_COMP_PARAM_1_s ALT_L4WD_COMP_PARAM_1_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_L4WD_COMP_PARAM_1 register from the beginning of the component. */
-#define ALT_L4WD_COMP_PARAM_1_OFST        0xf4
+    #define ALT_L4WD_COMP_PARAM_1_OFST    0xf4
 /* The address of the ALT_L4WD_COMP_PARAM_1 register. */
-#define ALT_L4WD_COMP_PARAM_1_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_L4WD_COMP_PARAM_1_OFST))
+    #define ALT_L4WD_COMP_PARAM_1_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_L4WD_COMP_PARAM_1_OFST ) )
 
 /*
  * Register : Component Version Register - wdt_comp_version
@@ -1628,6 +1702,7 @@ typedef volatile struct ALT_L4WD_COMP_PARAM_1_s  ALT_L4WD_COMP_PARAM_1_t;
  *  [31:0] | R      | 0x3130362a | Component Version
  *
  */
+
 /*
  * Field : Component Version - wdt_comp_version
  *
@@ -1638,23 +1713,24 @@ typedef volatile struct ALT_L4WD_COMP_PARAM_1_s  ALT_L4WD_COMP_PARAM_1_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_L4WD_COMP_VER_WDT_COMP_VER register field. */
-#define ALT_L4WD_COMP_VER_WDT_COMP_VER_LSB        0
+    #define ALT_L4WD_COMP_VER_WDT_COMP_VER_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_L4WD_COMP_VER_WDT_COMP_VER register field. */
-#define ALT_L4WD_COMP_VER_WDT_COMP_VER_MSB        31
+    #define ALT_L4WD_COMP_VER_WDT_COMP_VER_MSB        31
 /* The width in bits of the ALT_L4WD_COMP_VER_WDT_COMP_VER register field. */
-#define ALT_L4WD_COMP_VER_WDT_COMP_VER_WIDTH      32
+    #define ALT_L4WD_COMP_VER_WDT_COMP_VER_WIDTH      32
 /* The mask used to set the ALT_L4WD_COMP_VER_WDT_COMP_VER register field value. */
-#define ALT_L4WD_COMP_VER_WDT_COMP_VER_SET_MSK    0xffffffff
+    #define ALT_L4WD_COMP_VER_WDT_COMP_VER_SET_MSK    0xffffffff
 /* The mask used to clear the ALT_L4WD_COMP_VER_WDT_COMP_VER register field value. */
-#define ALT_L4WD_COMP_VER_WDT_COMP_VER_CLR_MSK    0x00000000
+    #define ALT_L4WD_COMP_VER_WDT_COMP_VER_CLR_MSK    0x00000000
 /* The reset value of the ALT_L4WD_COMP_VER_WDT_COMP_VER register field. */
-#define ALT_L4WD_COMP_VER_WDT_COMP_VER_RESET      0x3130362a
+    #define ALT_L4WD_COMP_VER_WDT_COMP_VER_RESET      0x3130362a
 /* Extracts the ALT_L4WD_COMP_VER_WDT_COMP_VER field value from a register. */
-#define ALT_L4WD_COMP_VER_WDT_COMP_VER_GET(value) (((value) & 0xffffffff) >> 0)
+    #define ALT_L4WD_COMP_VER_WDT_COMP_VER_GET( value )    ( ( ( value ) & 0xffffffff ) >> 0 )
 /* Produces a ALT_L4WD_COMP_VER_WDT_COMP_VER register field value suitable for setting the register. */
-#define ALT_L4WD_COMP_VER_WDT_COMP_VER_SET(value) (((value) << 0) & 0xffffffff)
+    #define ALT_L4WD_COMP_VER_WDT_COMP_VER_SET( value )    ( ( ( value ) << 0 ) & 0xffffffff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -1665,19 +1741,19 @@ typedef volatile struct ALT_L4WD_COMP_PARAM_1_s  ALT_L4WD_COMP_PARAM_1_t;
  *
  * The struct declaration for register ALT_L4WD_COMP_VER.
  */
-struct ALT_L4WD_COMP_VER_s
-{
-    const uint32_t  wdt_comp_version : 32;  /* Component Version */
-};
+        struct ALT_L4WD_COMP_VER_s
+        {
+            const uint32_t wdt_comp_version : 32; /* Component Version */
+        };
 
 /* The typedef declaration for register ALT_L4WD_COMP_VER. */
-typedef volatile struct ALT_L4WD_COMP_VER_s  ALT_L4WD_COMP_VER_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_L4WD_COMP_VER_s ALT_L4WD_COMP_VER_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_L4WD_COMP_VER register from the beginning of the component. */
-#define ALT_L4WD_COMP_VER_OFST        0xf8
+    #define ALT_L4WD_COMP_VER_OFST    0xf8
 /* The address of the ALT_L4WD_COMP_VER register. */
-#define ALT_L4WD_COMP_VER_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_L4WD_COMP_VER_OFST))
+    #define ALT_L4WD_COMP_VER_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_L4WD_COMP_VER_OFST ) )
 
 /*
  * Register : Component Type Register - wdt_comp_type
@@ -1689,6 +1765,7 @@ typedef volatile struct ALT_L4WD_COMP_VER_s  ALT_L4WD_COMP_VER_t;
  *  [31:0] | R      | 0x44570120 | Component Type
  *
  */
+
 /*
  * Field : Component Type - wdt_comp_type
  *
@@ -1698,23 +1775,24 @@ typedef volatile struct ALT_L4WD_COMP_VER_s  ALT_L4WD_COMP_VER_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_L4WD_COMP_TYPE_WDT_COMP_TYPE register field. */
-#define ALT_L4WD_COMP_TYPE_WDT_COMP_TYPE_LSB        0
+    #define ALT_L4WD_COMP_TYPE_WDT_COMP_TYPE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_L4WD_COMP_TYPE_WDT_COMP_TYPE register field. */
-#define ALT_L4WD_COMP_TYPE_WDT_COMP_TYPE_MSB        31
+    #define ALT_L4WD_COMP_TYPE_WDT_COMP_TYPE_MSB        31
 /* The width in bits of the ALT_L4WD_COMP_TYPE_WDT_COMP_TYPE register field. */
-#define ALT_L4WD_COMP_TYPE_WDT_COMP_TYPE_WIDTH      32
+    #define ALT_L4WD_COMP_TYPE_WDT_COMP_TYPE_WIDTH      32
 /* The mask used to set the ALT_L4WD_COMP_TYPE_WDT_COMP_TYPE register field value. */
-#define ALT_L4WD_COMP_TYPE_WDT_COMP_TYPE_SET_MSK    0xffffffff
+    #define ALT_L4WD_COMP_TYPE_WDT_COMP_TYPE_SET_MSK    0xffffffff
 /* The mask used to clear the ALT_L4WD_COMP_TYPE_WDT_COMP_TYPE register field value. */
-#define ALT_L4WD_COMP_TYPE_WDT_COMP_TYPE_CLR_MSK    0x00000000
+    #define ALT_L4WD_COMP_TYPE_WDT_COMP_TYPE_CLR_MSK    0x00000000
 /* The reset value of the ALT_L4WD_COMP_TYPE_WDT_COMP_TYPE register field. */
-#define ALT_L4WD_COMP_TYPE_WDT_COMP_TYPE_RESET      0x44570120
+    #define ALT_L4WD_COMP_TYPE_WDT_COMP_TYPE_RESET      0x44570120
 /* Extracts the ALT_L4WD_COMP_TYPE_WDT_COMP_TYPE field value from a register. */
-#define ALT_L4WD_COMP_TYPE_WDT_COMP_TYPE_GET(value) (((value) & 0xffffffff) >> 0)
+    #define ALT_L4WD_COMP_TYPE_WDT_COMP_TYPE_GET( value )    ( ( ( value ) & 0xffffffff ) >> 0 )
 /* Produces a ALT_L4WD_COMP_TYPE_WDT_COMP_TYPE register field value suitable for setting the register. */
-#define ALT_L4WD_COMP_TYPE_WDT_COMP_TYPE_SET(value) (((value) << 0) & 0xffffffff)
+    #define ALT_L4WD_COMP_TYPE_WDT_COMP_TYPE_SET( value )    ( ( ( value ) << 0 ) & 0xffffffff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -1725,21 +1803,22 @@ typedef volatile struct ALT_L4WD_COMP_VER_s  ALT_L4WD_COMP_VER_t;
  *
  * The struct declaration for register ALT_L4WD_COMP_TYPE.
  */
-struct ALT_L4WD_COMP_TYPE_s
-{
-    const uint32_t  wdt_comp_type : 32;  /* Component Type */
-};
+        struct ALT_L4WD_COMP_TYPE_s
+        {
+            const uint32_t wdt_comp_type : 32; /* Component Type */
+        };
 
 /* The typedef declaration for register ALT_L4WD_COMP_TYPE. */
-typedef volatile struct ALT_L4WD_COMP_TYPE_s  ALT_L4WD_COMP_TYPE_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_L4WD_COMP_TYPE_s ALT_L4WD_COMP_TYPE_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_L4WD_COMP_TYPE register from the beginning of the component. */
-#define ALT_L4WD_COMP_TYPE_OFST        0xfc
+    #define ALT_L4WD_COMP_TYPE_OFST    0xfc
 /* The address of the ALT_L4WD_COMP_TYPE register. */
-#define ALT_L4WD_COMP_TYPE_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_L4WD_COMP_TYPE_OFST))
+    #define ALT_L4WD_COMP_TYPE_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_L4WD_COMP_TYPE_OFST ) )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -1750,52 +1829,51 @@ typedef volatile struct ALT_L4WD_COMP_TYPE_s  ALT_L4WD_COMP_TYPE_t;
  *
  * The struct declaration for register group ALT_L4WD.
  */
-struct ALT_L4WD_s
-{
-    volatile ALT_L4WD_CR_t                        wdt_cr;                    /* ALT_L4WD_CR */
-    volatile ALT_L4WD_TORR_t                      wdt_torr;                  /* ALT_L4WD_TORR */
-    volatile ALT_L4WD_CCVR_t                      wdt_ccvr;                  /* ALT_L4WD_CCVR */
-    volatile ALT_L4WD_CRR_t                       wdt_crr;                   /* ALT_L4WD_CRR */
-    volatile ALT_L4WD_STAT_t                      wdt_stat;                  /* ALT_L4WD_STAT */
-    volatile ALT_L4WD_EOI_t                       wdt_eoi;                   /* ALT_L4WD_EOI */
-    volatile uint32_t                             _pad_0x18_0xe3[51];        /* *UNDEFINED* */
-    volatile ALT_L4WD_CP_WDT_USER_TOP_MAX_t       cp_wdt_user_top_max;       /* ALT_L4WD_CP_WDT_USER_TOP_MAX */
-    volatile ALT_L4WD_CP_WDT_USER_TOP_INIT_MAX_t  cp_wdt_user_top_init_max;  /* ALT_L4WD_CP_WDT_USER_TOP_INIT_MAX */
-    volatile ALT_L4WD_CD_WDT_TOP_RST_t            cd_wdt_top_rst;            /* ALT_L4WD_CD_WDT_TOP_RST */
-    volatile ALT_L4WD_CP_WDT_CNT_RST_t            cp_wdt_cnt_rst;            /* ALT_L4WD_CP_WDT_CNT_RST */
-    volatile ALT_L4WD_COMP_PARAM_1_t              wdt_comp_param_1;          /* ALT_L4WD_COMP_PARAM_1 */
-    volatile ALT_L4WD_COMP_VER_t                  wdt_comp_version;          /* ALT_L4WD_COMP_VER */
-    volatile ALT_L4WD_COMP_TYPE_t                 wdt_comp_type;             /* ALT_L4WD_COMP_TYPE */
-};
+        struct ALT_L4WD_s
+        {
+            volatile ALT_L4WD_CR_t wdt_cr;                                         /* ALT_L4WD_CR */
+            volatile ALT_L4WD_TORR_t wdt_torr;                                     /* ALT_L4WD_TORR */
+            volatile ALT_L4WD_CCVR_t wdt_ccvr;                                     /* ALT_L4WD_CCVR */
+            volatile ALT_L4WD_CRR_t wdt_crr;                                       /* ALT_L4WD_CRR */
+            volatile ALT_L4WD_STAT_t wdt_stat;                                     /* ALT_L4WD_STAT */
+            volatile ALT_L4WD_EOI_t wdt_eoi;                                       /* ALT_L4WD_EOI */
+            volatile uint32_t _pad_0x18_0xe3[ 51 ];                                /* *UNDEFINED* */
+            volatile ALT_L4WD_CP_WDT_USER_TOP_MAX_t cp_wdt_user_top_max;           /* ALT_L4WD_CP_WDT_USER_TOP_MAX */
+            volatile ALT_L4WD_CP_WDT_USER_TOP_INIT_MAX_t cp_wdt_user_top_init_max; /* ALT_L4WD_CP_WDT_USER_TOP_INIT_MAX */
+            volatile ALT_L4WD_CD_WDT_TOP_RST_t cd_wdt_top_rst;                     /* ALT_L4WD_CD_WDT_TOP_RST */
+            volatile ALT_L4WD_CP_WDT_CNT_RST_t cp_wdt_cnt_rst;                     /* ALT_L4WD_CP_WDT_CNT_RST */
+            volatile ALT_L4WD_COMP_PARAM_1_t wdt_comp_param_1;                     /* ALT_L4WD_COMP_PARAM_1 */
+            volatile ALT_L4WD_COMP_VER_t wdt_comp_version;                         /* ALT_L4WD_COMP_VER */
+            volatile ALT_L4WD_COMP_TYPE_t wdt_comp_type;                           /* ALT_L4WD_COMP_TYPE */
+        };
 
 /* The typedef declaration for register group ALT_L4WD. */
-typedef volatile struct ALT_L4WD_s  ALT_L4WD_t;
+        typedef volatile struct ALT_L4WD_s ALT_L4WD_t;
 /* The struct declaration for the raw register contents of register group ALT_L4WD. */
-struct ALT_L4WD_raw_s
-{
-    volatile uint32_t  wdt_cr;                    /* ALT_L4WD_CR */
-    volatile uint32_t  wdt_torr;                  /* ALT_L4WD_TORR */
-    volatile uint32_t  wdt_ccvr;                  /* ALT_L4WD_CCVR */
-    volatile uint32_t  wdt_crr;                   /* ALT_L4WD_CRR */
-    volatile uint32_t  wdt_stat;                  /* ALT_L4WD_STAT */
-    volatile uint32_t  wdt_eoi;                   /* ALT_L4WD_EOI */
-    volatile uint32_t  _pad_0x18_0xe3[51];        /* *UNDEFINED* */
-    volatile uint32_t  cp_wdt_user_top_max;       /* ALT_L4WD_CP_WDT_USER_TOP_MAX */
-    volatile uint32_t  cp_wdt_user_top_init_max;  /* ALT_L4WD_CP_WDT_USER_TOP_INIT_MAX */
-    volatile uint32_t  cd_wdt_top_rst;            /* ALT_L4WD_CD_WDT_TOP_RST */
-    volatile uint32_t  cp_wdt_cnt_rst;            /* ALT_L4WD_CP_WDT_CNT_RST */
-    volatile uint32_t  wdt_comp_param_1;          /* ALT_L4WD_COMP_PARAM_1 */
-    volatile uint32_t  wdt_comp_version;          /* ALT_L4WD_COMP_VER */
-    volatile uint32_t  wdt_comp_type;             /* ALT_L4WD_COMP_TYPE */
-};
+        struct ALT_L4WD_raw_s
+        {
+            volatile uint32_t wdt_cr;                   /* ALT_L4WD_CR */
+            volatile uint32_t wdt_torr;                 /* ALT_L4WD_TORR */
+            volatile uint32_t wdt_ccvr;                 /* ALT_L4WD_CCVR */
+            volatile uint32_t wdt_crr;                  /* ALT_L4WD_CRR */
+            volatile uint32_t wdt_stat;                 /* ALT_L4WD_STAT */
+            volatile uint32_t wdt_eoi;                  /* ALT_L4WD_EOI */
+            volatile uint32_t _pad_0x18_0xe3[ 51 ];     /* *UNDEFINED* */
+            volatile uint32_t cp_wdt_user_top_max;      /* ALT_L4WD_CP_WDT_USER_TOP_MAX */
+            volatile uint32_t cp_wdt_user_top_init_max; /* ALT_L4WD_CP_WDT_USER_TOP_INIT_MAX */
+            volatile uint32_t cd_wdt_top_rst;           /* ALT_L4WD_CD_WDT_TOP_RST */
+            volatile uint32_t cp_wdt_cnt_rst;           /* ALT_L4WD_CP_WDT_CNT_RST */
+            volatile uint32_t wdt_comp_param_1;         /* ALT_L4WD_COMP_PARAM_1 */
+            volatile uint32_t wdt_comp_version;         /* ALT_L4WD_COMP_VER */
+            volatile uint32_t wdt_comp_type;            /* ALT_L4WD_COMP_TYPE */
+        };
 
 /* The typedef declaration for the raw register contents of register group ALT_L4WD. */
-typedef volatile struct ALT_L4WD_raw_s  ALT_L4WD_raw_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_L4WD_raw_s ALT_L4WD_raw_t;
+    #endif /* __ASSEMBLY__ */
 
 
-#ifdef __cplusplus
+    #ifdef __cplusplus
 }
-#endif  /* __cplusplus */
-#endif  /* __ALTERA_ALT_L4WD_H__ */
-
+    #endif /* __cplusplus */
+#endif /* __ALTERA_ALT_L4WD_H__ */

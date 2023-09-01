@@ -27,19 +27,20 @@
 #define __PE_Const_H
 
 /* Constants for detecting running mode */
-#define HIGH_SPEED        0            /* High speed */
-#define LOW_SPEED         1            /* Low speed */
-#define SLOW_SPEED        2            /* Slow speed */
+#define HIGH_SPEED     0               /* High speed */
+#define LOW_SPEED      1               /* Low speed */
+#define SLOW_SPEED     2               /* Slow speed */
 
 /* Reset cause constants */
-#define RSTSRC_POR        1            /* Power-on reset        */
-#define RSTSRC_PIN        8            /* External reset bit    */
-#define RSTSRC_COP        4            /* COP reset             */
-#define RSTSRC_ILOP       2            /* Illegal opcode reset  */
-#define RSTSRC_ILAD       16           /* Illegal address reset */
-#define RSTSRC_LVI        32           /* Low voltage inhibit reset */
+#define RSTSRC_POR     1               /* Power-on reset        */
+#define RSTSRC_PIN     8               /* External reset bit    */
+#define RSTSRC_COP     4               /* COP reset             */
+#define RSTSRC_ILOP    2               /* Illegal opcode reset  */
+#define RSTSRC_ILAD    16              /* Illegal address reset */
+#define RSTSRC_LVI     32              /* Low voltage inhibit reset */
 
 #endif /* _PE_Const_H */
+
 /*
 ** ###################################################################
 **

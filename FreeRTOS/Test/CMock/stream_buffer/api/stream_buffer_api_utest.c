@@ -1187,7 +1187,7 @@ void test_xStreamBufferReset_while_blocked( void )
 /**
  * @brief Validates that a receiver task is able to receive data after lowering the stream buffer trigger level.
  */
-void test_xStreamBufferSetTrigerLevel_success( void )
+void test_xStreamBufferSetTriggerLevel_success( void )
 {
     uint8_t data[ TEST_STREAM_BUFFER_SIZE ] = { 0xAA };
     BaseType_t status;
@@ -1222,7 +1222,7 @@ void test_xStreamBufferSetTrigerLevel_success( void )
 /**
  * @brief Validate setting trigger level with invalid parameters fails.
  */
-void test_xStreamBufferSetTrigerLevel_larger_than_buffer_size( void )
+void test_xStreamBufferSetTriggerLevel_larger_than_buffer_size( void )
 {
     BaseType_t status;
 
@@ -1240,7 +1240,7 @@ void test_xStreamBufferSetTrigerLevel_larger_than_buffer_size( void )
 /**
  * @brief Set the trigger level to 0 should pass but internally set trigger level to 1.
  */
-void test_xStreamBufferSetTrigerLevel_zero( void )
+void test_xStreamBufferSetTriggerLevel_zero( void )
 {
     BaseType_t status;
 

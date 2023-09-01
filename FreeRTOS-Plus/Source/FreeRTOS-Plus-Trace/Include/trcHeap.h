@@ -123,7 +123,7 @@
 }
                 #endif
 
-            #else  /* if ( TRC_USE_HEAPS == 1 ) */
+            #else /* if ( TRC_USE_HEAPS == 1 ) */
 
                 #define xTraceHeapCreate( szName, uxCurrent, uxHighWaterMark, uxMax, pxHeapHandle )    ( ( void ) szName, ( void ) uxCurrent, ( void ) uxHighWaterMark, ( void ) uxMax, pxHeapHandle != 0 ? TRC_SUCCESS : TRC_FAIL )
 

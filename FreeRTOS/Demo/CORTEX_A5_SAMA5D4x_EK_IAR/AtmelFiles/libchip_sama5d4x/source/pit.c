@@ -51,7 +51,7 @@
  * Related files :\n
  * \ref pit.c\n
  * \ref pit.h.\n
-*/
+ */
 /*@{*/
 /*@}*/
 
@@ -61,6 +61,7 @@
  * Implementation of PIT (Periodic Interval Timer) controller.
  *
  */
+
 /*------------------------------------------------------------------------------
  *         Headers
  *------------------------------------------------------------------------------*/
@@ -70,7 +71,7 @@
  *         Exported functions
  *------------------------------------------------------------------------------*/
 
- /**
+/**
  * \brief Initialize the Periodic Interval Timer to generate a tick at the
  * specified period, given the current master clock frequency.
  *
@@ -78,9 +79,10 @@
  *  \param pit_frequency  Master clock frequency in MHz.
  */
 
-void PIT_Init(uint32_t period, uint32_t pit_frequency)
+void PIT_Init( uint32_t period,
+               uint32_t pit_frequency )
 {
-    PIT->PIT_MR = period? (period * pit_frequency + 8) >> 4 : 0;
+    PIT->PIT_MR = period ? ( period * pit_frequency + 8 ) >> 4 : 0;
     PIT->PIT_MR |= PIT_MR_PITEN;
 }
 
@@ -89,17 +91,18 @@ void PIT_Init(uint32_t period, uint32_t pit_frequency)
  *
  *  \param piv  PIV value to set.
  */
-void PIT_SetPIV(uint32_t piv)
+void PIT_SetPIV( uint32_t piv )
 {
-    uint32_t dwMr = PIT->PIT_MR & (~PIT_MR_PIV_Msk);
-    PIT->PIT_MR = dwMr | PIT_MR_PIV(piv);
+    uint32_t dwMr = PIT->PIT_MR & ( ~PIT_MR_PIV_Msk );
+
+    PIT->PIT_MR = dwMr | PIT_MR_PIV( piv );
 }
 
 /**
  * \brief Enables the PIT if this is not already the case.
  *
  */
-void PIT_Enable(void)
+void PIT_Enable( void )
 {
     PIT->PIT_MR |= PIT_MR_PITEN;
 }
@@ -108,7 +111,7 @@ void PIT_Enable(void)
  * \brief Disnables the PIT when PIV value is reached.
  *
  */
-void PIT_Disable(void)
+void PIT_Disable( void )
 {
     PIT->PIT_MR &= ~PIT_MR_PITEN;
 }
@@ -117,7 +120,7 @@ void PIT_Disable(void)
  * \brief Enable the PIT periodic interrupt.
  *
  */
-void PIT_EnableIT(void)
+void PIT_EnableIT( void )
 {
     PIT->PIT_MR |= PIT_MR_PITIEN;
 }
@@ -126,7 +129,7 @@ void PIT_EnableIT(void)
  * \brief Disables the PIT periodic interrupt.
  *
  */
-void PIT_DisableIT(void)
+void PIT_DisableIT( void )
 {
     PIT->PIT_MR &= ~PIT_MR_PITIEN;
 }
@@ -136,7 +139,7 @@ void PIT_DisableIT(void)
  *
  * \return PIT_MR value.
  */
-uint32_t PIT_GetMode(void)
+uint32_t PIT_GetMode( void )
 {
     return PIT->PIT_MR;
 }
@@ -146,7 +149,7 @@ uint32_t PIT_GetMode(void)
  *
  * \return PIT_SR value.
  */
-uint32_t PIT_GetStatus(void)
+uint32_t PIT_GetStatus( void )
 {
     return PIT->PIT_SR;
 }
@@ -157,7 +160,7 @@ uint32_t PIT_GetStatus(void)
  *
  * \return PIT_PIIR value.
  */
-uint32_t PIT_GetPIIR(void)
+uint32_t PIT_GetPIIR( void )
 {
     return PIT->PIT_PIIR;
 }
@@ -167,8 +170,7 @@ uint32_t PIT_GetPIIR(void)
  *
  * \return PITC_PIVR value.
  */
-uint32_t PIT_GetPIVR(void)
+uint32_t PIT_GetPIVR( void )
 {
     return PIT->PIT_PIVR;
 }
-

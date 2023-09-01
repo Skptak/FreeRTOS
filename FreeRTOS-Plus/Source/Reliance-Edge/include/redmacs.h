@@ -80,7 +80,7 @@
     #define BLOCK_SIZE_P2    15U
 #elif REDCONF_BLOCK_SIZE == 65536U
     #define BLOCK_SIZE_P2    16U
-#else  /* if   REDCONF_BLOCK_SIZE == 256U */
+#else /* if   REDCONF_BLOCK_SIZE == 256U */
     #error "REDCONF_BLOCK_SIZE must be a power of two value between 256 and 65536"
 #endif /* if   REDCONF_BLOCK_SIZE == 256U */
 

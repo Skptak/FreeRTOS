@@ -380,7 +380,7 @@ REDSTATUS RedInodeDataRead( CINODE * pInode,
 /** @brief Change the size of an inode.
  *
  *  @param pInode   A pointer to the cached inode structure.
- *  @praam ullSize  The new file size for the inode.
+ *  @param ullSize  The new file size for the inode.
  *
  *  @return A negated ::REDSTATUS code indicating the operation result.
  *

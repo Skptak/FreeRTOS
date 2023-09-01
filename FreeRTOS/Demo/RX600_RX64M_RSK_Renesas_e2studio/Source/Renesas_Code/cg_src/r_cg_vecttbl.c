@@ -32,25 +32,26 @@
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-Pragma directive
+*  Pragma directive
 ***********************************************************************************************************************/
 /* Start user code for pragma. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
 
 /***********************************************************************************************************************
-Includes
+*  Includes
 ***********************************************************************************************************************/
 #include "r_cg_macrodriver.h"
 #include "r_cg_vect.h"
 #include "r_cg_userdefine.h"
 
 /***********************************************************************************************************************
-Global variables and functions
+*  Global variables and functions
 ***********************************************************************************************************************/
 
 #pragma section C FIXEDVECT
 
-void (*const Fixed_Vectors[])(void) = {
+void( *const Fixed_Vectors[] )( void ) =
+{
 /*;0xffffffd0  Exception(Supervisor Instruction) */
     r_undefined_exception,
 /*;0xffffffd4  Reserved */
@@ -82,7 +83,8 @@ void (*const Fixed_Vectors[])(void) = {
 
 /* ID codes (Default) */
 #pragma address id_code=0xffffffa0
-const unsigned long id_code[4] = {
+const unsigned long id_code[ 4 ] =
+{
     0xffffffff,
     0xffffffff,
     0xffffffff,

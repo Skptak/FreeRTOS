@@ -195,7 +195,7 @@ typedef struct
         uint16_t uDindirEntry; /**< Which double indirect entry to traverse to reach ulLogicalBlock. */
     #endif
     #if REDCONF_DIRECT_POINTERS < INODE_ENTRIES
-        uint16_t uIndirEntry;   /**< Which indirect entry to traverse to reach ulLogicalBlock. */
+        uint16_t uIndirEntry; /**< Which indirect entry to traverse to reach ulLogicalBlock. */
     #endif
 } CINODE;
 

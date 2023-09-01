@@ -61,7 +61,7 @@
 
 #include "Cpu.h"
 
-#pragma CODE_SEG Byte1_CODE            /* Code section for this module. */
+#pragma CODE_SEG Byte1_CODE /* Code section for this module. */
 
 /*
 ** ===================================================================
@@ -78,7 +78,8 @@
 **     Returns     : Nothing
 ** ===================================================================
 */
-void Byte1_PutBit(byte BitNum, byte Value);
+void Byte1_PutBit( byte BitNum,
+                   byte Value );
 
 /*
 ** ===================================================================
@@ -93,13 +94,14 @@ void Byte1_PutBit(byte BitNum, byte Value);
 **     Returns     : Nothing
 ** ===================================================================
 */
-void Byte1_NegBit(byte BitNum);
+void Byte1_NegBit( byte BitNum );
 
-#pragma CODE_SEG DEFAULT               /* Change code section to DEFAULT. */
+#pragma CODE_SEG DEFAULT /* Change code section to DEFAULT. */
 
 /* END Byte1. */
 
 #endif /* __Byte1_H*/
+
 /*
 ** ###################################################################
 **

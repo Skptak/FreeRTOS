@@ -31,12 +31,12 @@
 /* Altera - ALT_SPIM */
 
 #ifndef __ALTERA_ALT_SPIM_H__
-#define __ALTERA_ALT_SPIM_H__
+    #define __ALTERA_ALT_SPIM_H__
 
-#ifdef __cplusplus
-extern "C"
-{
-#endif  /* __cplusplus */
+    #ifdef __cplusplus
+        extern "C"
+        {
+    #endif /* __cplusplus */
 
 /*
  * Component : SPI Master Module - ALT_SPIM
@@ -45,6 +45,7 @@ extern "C"
  * Registers in the SPI Master module
  *
  */
+
 /*
  * Register : Control Register 0 - ctrlr0
  *
@@ -67,6 +68,7 @@ extern "C"
  *  [31:16] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Data Frame Size - dfs
  *
@@ -91,65 +93,72 @@ extern "C"
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_SPIM_CTLR0_DFS
  *
  * 4-bit serial data transfer
  */
-#define ALT_SPIM_CTLR0_DFS_E_WIDTH4BIT  0x3
+    #define ALT_SPIM_CTLR0_DFS_E_WIDTH4BIT     0x3
+
 /*
  * Enumerated value for register field ALT_SPIM_CTLR0_DFS
  *
  * 5-bit serial data transfer
  */
-#define ALT_SPIM_CTLR0_DFS_E_WIDTH5BIT  0x4
+    #define ALT_SPIM_CTLR0_DFS_E_WIDTH5BIT     0x4
+
 /*
  * Enumerated value for register field ALT_SPIM_CTLR0_DFS
  *
  * 6-bit serial data transfer
  */
-#define ALT_SPIM_CTLR0_DFS_E_WIDTH6BIT  0x5
+    #define ALT_SPIM_CTLR0_DFS_E_WIDTH6BIT     0x5
+
 /*
  * Enumerated value for register field ALT_SPIM_CTLR0_DFS
  *
  * 7-bit serial data transfer
  */
-#define ALT_SPIM_CTLR0_DFS_E_WIDTH7BIT  0x6
+    #define ALT_SPIM_CTLR0_DFS_E_WIDTH7BIT     0x6
+
 /*
  * Enumerated value for register field ALT_SPIM_CTLR0_DFS
  *
  * 8-bit serial data transfer
  */
-#define ALT_SPIM_CTLR0_DFS_E_WIDTH8BIT  0x7
+    #define ALT_SPIM_CTLR0_DFS_E_WIDTH8BIT     0x7
+
 /*
  * Enumerated value for register field ALT_SPIM_CTLR0_DFS
  *
  * 9-bit serial data transfer
  */
-#define ALT_SPIM_CTLR0_DFS_E_WIDTH9BIT  0x8
+    #define ALT_SPIM_CTLR0_DFS_E_WIDTH9BIT     0x8
+
 /*
  * Enumerated value for register field ALT_SPIM_CTLR0_DFS
  *
  * 10-bit serial data transfer
  */
-#define ALT_SPIM_CTLR0_DFS_E_WIDTH10BIT 0x9
+    #define ALT_SPIM_CTLR0_DFS_E_WIDTH10BIT    0x9
 
 /* The Least Significant Bit (LSB) position of the ALT_SPIM_CTLR0_DFS register field. */
-#define ALT_SPIM_CTLR0_DFS_LSB        0
+    #define ALT_SPIM_CTLR0_DFS_LSB             0
 /* The Most Significant Bit (MSB) position of the ALT_SPIM_CTLR0_DFS register field. */
-#define ALT_SPIM_CTLR0_DFS_MSB        3
+    #define ALT_SPIM_CTLR0_DFS_MSB             3
 /* The width in bits of the ALT_SPIM_CTLR0_DFS register field. */
-#define ALT_SPIM_CTLR0_DFS_WIDTH      4
+    #define ALT_SPIM_CTLR0_DFS_WIDTH           4
 /* The mask used to set the ALT_SPIM_CTLR0_DFS register field value. */
-#define ALT_SPIM_CTLR0_DFS_SET_MSK    0x0000000f
+    #define ALT_SPIM_CTLR0_DFS_SET_MSK         0x0000000f
 /* The mask used to clear the ALT_SPIM_CTLR0_DFS register field value. */
-#define ALT_SPIM_CTLR0_DFS_CLR_MSK    0xfffffff0
+    #define ALT_SPIM_CTLR0_DFS_CLR_MSK         0xfffffff0
 /* The reset value of the ALT_SPIM_CTLR0_DFS register field. */
-#define ALT_SPIM_CTLR0_DFS_RESET      0x7
+    #define ALT_SPIM_CTLR0_DFS_RESET           0x7
 /* Extracts the ALT_SPIM_CTLR0_DFS field value from a register. */
-#define ALT_SPIM_CTLR0_DFS_GET(value) (((value) & 0x0000000f) >> 0)
+    #define ALT_SPIM_CTLR0_DFS_GET( value )    ( ( ( value ) & 0x0000000f ) >> 0 )
 /* Produces a ALT_SPIM_CTLR0_DFS register field value suitable for setting the register. */
-#define ALT_SPIM_CTLR0_DFS_SET(value) (((value) << 0) & 0x0000000f)
+    #define ALT_SPIM_CTLR0_DFS_SET( value )    ( ( ( value ) << 0 ) & 0x0000000f )
 
 /*
  * Field : Frame Format - frf
@@ -167,41 +176,44 @@ extern "C"
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_SPIM_CTLR0_FRF
  *
  * Motorola SPI
  */
-#define ALT_SPIM_CTLR0_FRF_E_MOTSPI 0x0
+    #define ALT_SPIM_CTLR0_FRF_E_MOTSPI    0x0
+
 /*
  * Enumerated value for register field ALT_SPIM_CTLR0_FRF
  *
  * Texas Instruments  SSP
  */
-#define ALT_SPIM_CTLR0_FRF_E_TISSP  0x1
+    #define ALT_SPIM_CTLR0_FRF_E_TISSP     0x1
+
 /*
  * Enumerated value for register field ALT_SPIM_CTLR0_FRF
  *
  * National Semi Microwire
  */
-#define ALT_SPIM_CTLR0_FRF_E_NATMW  0x2
+    #define ALT_SPIM_CTLR0_FRF_E_NATMW     0x2
 
 /* The Least Significant Bit (LSB) position of the ALT_SPIM_CTLR0_FRF register field. */
-#define ALT_SPIM_CTLR0_FRF_LSB        4
+    #define ALT_SPIM_CTLR0_FRF_LSB         4
 /* The Most Significant Bit (MSB) position of the ALT_SPIM_CTLR0_FRF register field. */
-#define ALT_SPIM_CTLR0_FRF_MSB        5
+    #define ALT_SPIM_CTLR0_FRF_MSB         5
 /* The width in bits of the ALT_SPIM_CTLR0_FRF register field. */
-#define ALT_SPIM_CTLR0_FRF_WIDTH      2
+    #define ALT_SPIM_CTLR0_FRF_WIDTH       2
 /* The mask used to set the ALT_SPIM_CTLR0_FRF register field value. */
-#define ALT_SPIM_CTLR0_FRF_SET_MSK    0x00000030
+    #define ALT_SPIM_CTLR0_FRF_SET_MSK     0x00000030
 /* The mask used to clear the ALT_SPIM_CTLR0_FRF register field value. */
-#define ALT_SPIM_CTLR0_FRF_CLR_MSK    0xffffffcf
+    #define ALT_SPIM_CTLR0_FRF_CLR_MSK     0xffffffcf
 /* The reset value of the ALT_SPIM_CTLR0_FRF register field. */
-#define ALT_SPIM_CTLR0_FRF_RESET      0x0
+    #define ALT_SPIM_CTLR0_FRF_RESET       0x0
 /* Extracts the ALT_SPIM_CTLR0_FRF field value from a register. */
-#define ALT_SPIM_CTLR0_FRF_GET(value) (((value) & 0x00000030) >> 4)
+    #define ALT_SPIM_CTLR0_FRF_GET( value )    ( ( ( value ) & 0x00000030 ) >> 4 )
 /* Produces a ALT_SPIM_CTLR0_FRF register field value suitable for setting the register. */
-#define ALT_SPIM_CTLR0_FRF_SET(value) (((value) << 4) & 0x00000030)
+    #define ALT_SPIM_CTLR0_FRF_SET( value )    ( ( ( value ) << 4 ) & 0x00000030 )
 
 /*
  * Field : Serial Clock Phase - scph
@@ -222,35 +234,37 @@ extern "C"
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_SPIM_CTLR0_SCPH
  *
  * Serial clock toggles in middle of first data bit
  */
-#define ALT_SPIM_CTLR0_SCPH_E_MIDBIT    0x0
+    #define ALT_SPIM_CTLR0_SCPH_E_MIDBIT      0x0
+
 /*
  * Enumerated value for register field ALT_SPIM_CTLR0_SCPH
  *
  * Serial clock toggles at start of first data bit
  */
-#define ALT_SPIM_CTLR0_SCPH_E_STARTBIT  0x1
+    #define ALT_SPIM_CTLR0_SCPH_E_STARTBIT    0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_SPIM_CTLR0_SCPH register field. */
-#define ALT_SPIM_CTLR0_SCPH_LSB        6
+    #define ALT_SPIM_CTLR0_SCPH_LSB           6
 /* The Most Significant Bit (MSB) position of the ALT_SPIM_CTLR0_SCPH register field. */
-#define ALT_SPIM_CTLR0_SCPH_MSB        6
+    #define ALT_SPIM_CTLR0_SCPH_MSB           6
 /* The width in bits of the ALT_SPIM_CTLR0_SCPH register field. */
-#define ALT_SPIM_CTLR0_SCPH_WIDTH      1
+    #define ALT_SPIM_CTLR0_SCPH_WIDTH         1
 /* The mask used to set the ALT_SPIM_CTLR0_SCPH register field value. */
-#define ALT_SPIM_CTLR0_SCPH_SET_MSK    0x00000040
+    #define ALT_SPIM_CTLR0_SCPH_SET_MSK       0x00000040
 /* The mask used to clear the ALT_SPIM_CTLR0_SCPH register field value. */
-#define ALT_SPIM_CTLR0_SCPH_CLR_MSK    0xffffffbf
+    #define ALT_SPIM_CTLR0_SCPH_CLR_MSK       0xffffffbf
 /* The reset value of the ALT_SPIM_CTLR0_SCPH register field. */
-#define ALT_SPIM_CTLR0_SCPH_RESET      0x0
+    #define ALT_SPIM_CTLR0_SCPH_RESET         0x0
 /* Extracts the ALT_SPIM_CTLR0_SCPH field value from a register. */
-#define ALT_SPIM_CTLR0_SCPH_GET(value) (((value) & 0x00000040) >> 6)
+    #define ALT_SPIM_CTLR0_SCPH_GET( value )    ( ( ( value ) & 0x00000040 ) >> 6 )
 /* Produces a ALT_SPIM_CTLR0_SCPH register field value suitable for setting the register. */
-#define ALT_SPIM_CTLR0_SCPH_SET(value) (((value) << 6) & 0x00000040)
+    #define ALT_SPIM_CTLR0_SCPH_SET( value )    ( ( ( value ) << 6 ) & 0x00000040 )
 
 /*
  * Field : Serial Clock Polarity - scpol
@@ -269,35 +283,37 @@ extern "C"
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_SPIM_CTLR0_SCPOL
  *
  * Inactive state of serial clock is low
  */
-#define ALT_SPIM_CTLR0_SCPOL_E_INACTLOW     0x0
+    #define ALT_SPIM_CTLR0_SCPOL_E_INACTLOW     0x0
+
 /*
  * Enumerated value for register field ALT_SPIM_CTLR0_SCPOL
  *
  * Inactive state of serial clock is high
  */
-#define ALT_SPIM_CTLR0_SCPOL_E_INACTHIGH    0x1
+    #define ALT_SPIM_CTLR0_SCPOL_E_INACTHIGH    0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_SPIM_CTLR0_SCPOL register field. */
-#define ALT_SPIM_CTLR0_SCPOL_LSB        7
+    #define ALT_SPIM_CTLR0_SCPOL_LSB            7
 /* The Most Significant Bit (MSB) position of the ALT_SPIM_CTLR0_SCPOL register field. */
-#define ALT_SPIM_CTLR0_SCPOL_MSB        7
+    #define ALT_SPIM_CTLR0_SCPOL_MSB            7
 /* The width in bits of the ALT_SPIM_CTLR0_SCPOL register field. */
-#define ALT_SPIM_CTLR0_SCPOL_WIDTH      1
+    #define ALT_SPIM_CTLR0_SCPOL_WIDTH          1
 /* The mask used to set the ALT_SPIM_CTLR0_SCPOL register field value. */
-#define ALT_SPIM_CTLR0_SCPOL_SET_MSK    0x00000080
+    #define ALT_SPIM_CTLR0_SCPOL_SET_MSK        0x00000080
 /* The mask used to clear the ALT_SPIM_CTLR0_SCPOL register field value. */
-#define ALT_SPIM_CTLR0_SCPOL_CLR_MSK    0xffffff7f
+    #define ALT_SPIM_CTLR0_SCPOL_CLR_MSK        0xffffff7f
 /* The reset value of the ALT_SPIM_CTLR0_SCPOL register field. */
-#define ALT_SPIM_CTLR0_SCPOL_RESET      0x0
+    #define ALT_SPIM_CTLR0_SCPOL_RESET          0x0
 /* Extracts the ALT_SPIM_CTLR0_SCPOL field value from a register. */
-#define ALT_SPIM_CTLR0_SCPOL_GET(value) (((value) & 0x00000080) >> 7)
+    #define ALT_SPIM_CTLR0_SCPOL_GET( value )    ( ( ( value ) & 0x00000080 ) >> 7 )
 /* Produces a ALT_SPIM_CTLR0_SCPOL register field value suitable for setting the register. */
-#define ALT_SPIM_CTLR0_SCPOL_SET(value) (((value) << 7) & 0x00000080)
+    #define ALT_SPIM_CTLR0_SCPOL_SET( value )    ( ( ( value ) << 7 ) & 0x00000080 )
 
 /*
  * Field : Transfer Mode - tmod
@@ -325,47 +341,51 @@ extern "C"
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_SPIM_CTLR0_TMOD
  *
  * Transmit & and Receive
  */
-#define ALT_SPIM_CTLR0_TMOD_E_TXRX      0x0
+    #define ALT_SPIM_CTLR0_TMOD_E_TXRX      0x0
+
 /*
  * Enumerated value for register field ALT_SPIM_CTLR0_TMOD
  *
  * Transmit Only
  */
-#define ALT_SPIM_CTLR0_TMOD_E_TXONLY    0x1
+    #define ALT_SPIM_CTLR0_TMOD_E_TXONLY    0x1
+
 /*
  * Enumerated value for register field ALT_SPIM_CTLR0_TMOD
  *
  * Receive Only
  */
-#define ALT_SPIM_CTLR0_TMOD_E_RXONLY    0x2
+    #define ALT_SPIM_CTLR0_TMOD_E_RXONLY    0x2
+
 /*
  * Enumerated value for register field ALT_SPIM_CTLR0_TMOD
  *
  * EEPROM Read
  */
-#define ALT_SPIM_CTLR0_TMOD_E_EERD      0x3
+    #define ALT_SPIM_CTLR0_TMOD_E_EERD      0x3
 
 /* The Least Significant Bit (LSB) position of the ALT_SPIM_CTLR0_TMOD register field. */
-#define ALT_SPIM_CTLR0_TMOD_LSB        8
+    #define ALT_SPIM_CTLR0_TMOD_LSB         8
 /* The Most Significant Bit (MSB) position of the ALT_SPIM_CTLR0_TMOD register field. */
-#define ALT_SPIM_CTLR0_TMOD_MSB        9
+    #define ALT_SPIM_CTLR0_TMOD_MSB         9
 /* The width in bits of the ALT_SPIM_CTLR0_TMOD register field. */
-#define ALT_SPIM_CTLR0_TMOD_WIDTH      2
+    #define ALT_SPIM_CTLR0_TMOD_WIDTH       2
 /* The mask used to set the ALT_SPIM_CTLR0_TMOD register field value. */
-#define ALT_SPIM_CTLR0_TMOD_SET_MSK    0x00000300
+    #define ALT_SPIM_CTLR0_TMOD_SET_MSK     0x00000300
 /* The mask used to clear the ALT_SPIM_CTLR0_TMOD register field value. */
-#define ALT_SPIM_CTLR0_TMOD_CLR_MSK    0xfffffcff
+    #define ALT_SPIM_CTLR0_TMOD_CLR_MSK     0xfffffcff
 /* The reset value of the ALT_SPIM_CTLR0_TMOD register field. */
-#define ALT_SPIM_CTLR0_TMOD_RESET      0x0
+    #define ALT_SPIM_CTLR0_TMOD_RESET       0x0
 /* Extracts the ALT_SPIM_CTLR0_TMOD field value from a register. */
-#define ALT_SPIM_CTLR0_TMOD_GET(value) (((value) & 0x00000300) >> 8)
+    #define ALT_SPIM_CTLR0_TMOD_GET( value )    ( ( ( value ) & 0x00000300 ) >> 8 )
 /* Produces a ALT_SPIM_CTLR0_TMOD register field value suitable for setting the register. */
-#define ALT_SPIM_CTLR0_TMOD_SET(value) (((value) << 8) & 0x00000300)
+    #define ALT_SPIM_CTLR0_TMOD_SET( value )    ( ( ( value ) << 8 ) & 0x00000300 )
 
 /*
  * Field : Shift Register Loop - srl
@@ -383,35 +403,37 @@ extern "C"
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_SPIM_CTLR0_SRL
  *
  * Normal Mode Operation
  */
-#define ALT_SPIM_CTLR0_SRL_E_NORMMOD    0x0
+    #define ALT_SPIM_CTLR0_SRL_E_NORMMOD    0x0
+
 /*
  * Enumerated value for register field ALT_SPIM_CTLR0_SRL
  *
  * Test Mode Operation
  */
-#define ALT_SPIM_CTLR0_SRL_E_TESTMOD    0x1
+    #define ALT_SPIM_CTLR0_SRL_E_TESTMOD    0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_SPIM_CTLR0_SRL register field. */
-#define ALT_SPIM_CTLR0_SRL_LSB        11
+    #define ALT_SPIM_CTLR0_SRL_LSB          11
 /* The Most Significant Bit (MSB) position of the ALT_SPIM_CTLR0_SRL register field. */
-#define ALT_SPIM_CTLR0_SRL_MSB        11
+    #define ALT_SPIM_CTLR0_SRL_MSB          11
 /* The width in bits of the ALT_SPIM_CTLR0_SRL register field. */
-#define ALT_SPIM_CTLR0_SRL_WIDTH      1
+    #define ALT_SPIM_CTLR0_SRL_WIDTH        1
 /* The mask used to set the ALT_SPIM_CTLR0_SRL register field value. */
-#define ALT_SPIM_CTLR0_SRL_SET_MSK    0x00000800
+    #define ALT_SPIM_CTLR0_SRL_SET_MSK      0x00000800
 /* The mask used to clear the ALT_SPIM_CTLR0_SRL register field value. */
-#define ALT_SPIM_CTLR0_SRL_CLR_MSK    0xfffff7ff
+    #define ALT_SPIM_CTLR0_SRL_CLR_MSK      0xfffff7ff
 /* The reset value of the ALT_SPIM_CTLR0_SRL register field. */
-#define ALT_SPIM_CTLR0_SRL_RESET      0x0
+    #define ALT_SPIM_CTLR0_SRL_RESET        0x0
 /* Extracts the ALT_SPIM_CTLR0_SRL field value from a register. */
-#define ALT_SPIM_CTLR0_SRL_GET(value) (((value) & 0x00000800) >> 11)
+    #define ALT_SPIM_CTLR0_SRL_GET( value )    ( ( ( value ) & 0x00000800 ) >> 11 )
 /* Produces a ALT_SPIM_CTLR0_SRL register field value suitable for setting the register. */
-#define ALT_SPIM_CTLR0_SRL_SET(value) (((value) << 11) & 0x00000800)
+    #define ALT_SPIM_CTLR0_SRL_SET( value )    ( ( ( value ) << 11 ) & 0x00000800 )
 
 /*
  * Field : Control Frame Size - cfs
@@ -423,23 +445,24 @@ extern "C"
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_SPIM_CTLR0_CFS register field. */
-#define ALT_SPIM_CTLR0_CFS_LSB        12
+    #define ALT_SPIM_CTLR0_CFS_LSB        12
 /* The Most Significant Bit (MSB) position of the ALT_SPIM_CTLR0_CFS register field. */
-#define ALT_SPIM_CTLR0_CFS_MSB        15
+    #define ALT_SPIM_CTLR0_CFS_MSB        15
 /* The width in bits of the ALT_SPIM_CTLR0_CFS register field. */
-#define ALT_SPIM_CTLR0_CFS_WIDTH      4
+    #define ALT_SPIM_CTLR0_CFS_WIDTH      4
 /* The mask used to set the ALT_SPIM_CTLR0_CFS register field value. */
-#define ALT_SPIM_CTLR0_CFS_SET_MSK    0x0000f000
+    #define ALT_SPIM_CTLR0_CFS_SET_MSK    0x0000f000
 /* The mask used to clear the ALT_SPIM_CTLR0_CFS register field value. */
-#define ALT_SPIM_CTLR0_CFS_CLR_MSK    0xffff0fff
+    #define ALT_SPIM_CTLR0_CFS_CLR_MSK    0xffff0fff
 /* The reset value of the ALT_SPIM_CTLR0_CFS register field. */
-#define ALT_SPIM_CTLR0_CFS_RESET      0x0
+    #define ALT_SPIM_CTLR0_CFS_RESET      0x0
 /* Extracts the ALT_SPIM_CTLR0_CFS field value from a register. */
-#define ALT_SPIM_CTLR0_CFS_GET(value) (((value) & 0x0000f000) >> 12)
+    #define ALT_SPIM_CTLR0_CFS_GET( value )    ( ( ( value ) & 0x0000f000 ) >> 12 )
 /* Produces a ALT_SPIM_CTLR0_CFS register field value suitable for setting the register. */
-#define ALT_SPIM_CTLR0_CFS_SET(value) (((value) << 12) & 0x0000f000)
+    #define ALT_SPIM_CTLR0_CFS_SET( value )    ( ( ( value ) << 12 ) & 0x0000f000 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -450,27 +473,27 @@ extern "C"
  *
  * The struct declaration for register ALT_SPIM_CTLR0.
  */
-struct ALT_SPIM_CTLR0_s
-{
-    uint32_t  dfs   :  4;  /* Data Frame Size */
-    uint32_t  frf   :  2;  /* Frame Format */
-    uint32_t  scph  :  1;  /* Serial Clock Phase */
-    uint32_t  scpol :  1;  /* Serial Clock Polarity */
-    uint32_t  tmod  :  2;  /* Transfer Mode */
-    uint32_t        :  1;  /* *UNDEFINED* */
-    uint32_t  srl   :  1;  /* Shift Register Loop */
-    uint32_t  cfs   :  4;  /* Control Frame Size */
-    uint32_t        : 16;  /* *UNDEFINED* */
-};
+        struct ALT_SPIM_CTLR0_s
+        {
+            uint32_t dfs   :  4;  /* Data Frame Size */
+            uint32_t frf   :  2;  /* Frame Format */
+            uint32_t scph  :  1;  /* Serial Clock Phase */
+            uint32_t scpol :  1;  /* Serial Clock Polarity */
+            uint32_t tmod  :  2;  /* Transfer Mode */
+            uint32_t        :  1; /* *UNDEFINED* */
+            uint32_t srl   :  1;  /* Shift Register Loop */
+            uint32_t cfs   :  4;  /* Control Frame Size */
+            uint32_t        : 16; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_SPIM_CTLR0. */
-typedef volatile struct ALT_SPIM_CTLR0_s  ALT_SPIM_CTLR0_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_SPIM_CTLR0_s ALT_SPIM_CTLR0_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_SPIM_CTLR0 register from the beginning of the component. */
-#define ALT_SPIM_CTLR0_OFST        0x0
+    #define ALT_SPIM_CTLR0_OFST    0x0
 /* The address of the ALT_SPIM_CTLR0 register. */
-#define ALT_SPIM_CTLR0_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_SPIM_CTLR0_OFST))
+    #define ALT_SPIM_CTLR0_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_SPIM_CTLR0_OFST ) )
 
 /*
  * Register : Control Register 1 - ctrlr1
@@ -488,6 +511,7 @@ typedef volatile struct ALT_SPIM_CTLR0_s  ALT_SPIM_CTLR0_t;
  *  [31:16] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Number of Data Frames - ndf
  *
@@ -501,23 +525,24 @@ typedef volatile struct ALT_SPIM_CTLR0_s  ALT_SPIM_CTLR0_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_SPIM_CTLR1_NDF register field. */
-#define ALT_SPIM_CTLR1_NDF_LSB        0
+    #define ALT_SPIM_CTLR1_NDF_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_SPIM_CTLR1_NDF register field. */
-#define ALT_SPIM_CTLR1_NDF_MSB        15
+    #define ALT_SPIM_CTLR1_NDF_MSB        15
 /* The width in bits of the ALT_SPIM_CTLR1_NDF register field. */
-#define ALT_SPIM_CTLR1_NDF_WIDTH      16
+    #define ALT_SPIM_CTLR1_NDF_WIDTH      16
 /* The mask used to set the ALT_SPIM_CTLR1_NDF register field value. */
-#define ALT_SPIM_CTLR1_NDF_SET_MSK    0x0000ffff
+    #define ALT_SPIM_CTLR1_NDF_SET_MSK    0x0000ffff
 /* The mask used to clear the ALT_SPIM_CTLR1_NDF register field value. */
-#define ALT_SPIM_CTLR1_NDF_CLR_MSK    0xffff0000
+    #define ALT_SPIM_CTLR1_NDF_CLR_MSK    0xffff0000
 /* The reset value of the ALT_SPIM_CTLR1_NDF register field. */
-#define ALT_SPIM_CTLR1_NDF_RESET      0x0
+    #define ALT_SPIM_CTLR1_NDF_RESET      0x0
 /* Extracts the ALT_SPIM_CTLR1_NDF field value from a register. */
-#define ALT_SPIM_CTLR1_NDF_GET(value) (((value) & 0x0000ffff) >> 0)
+    #define ALT_SPIM_CTLR1_NDF_GET( value )    ( ( ( value ) & 0x0000ffff ) >> 0 )
 /* Produces a ALT_SPIM_CTLR1_NDF register field value suitable for setting the register. */
-#define ALT_SPIM_CTLR1_NDF_SET(value) (((value) << 0) & 0x0000ffff)
+    #define ALT_SPIM_CTLR1_NDF_SET( value )    ( ( ( value ) << 0 ) & 0x0000ffff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -528,20 +553,20 @@ typedef volatile struct ALT_SPIM_CTLR0_s  ALT_SPIM_CTLR0_t;
  *
  * The struct declaration for register ALT_SPIM_CTLR1.
  */
-struct ALT_SPIM_CTLR1_s
-{
-    uint32_t  ndf : 16;  /* Number of Data Frames */
-    uint32_t      : 16;  /* *UNDEFINED* */
-};
+        struct ALT_SPIM_CTLR1_s
+        {
+            uint32_t ndf : 16;  /* Number of Data Frames */
+            uint32_t      : 16; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_SPIM_CTLR1. */
-typedef volatile struct ALT_SPIM_CTLR1_s  ALT_SPIM_CTLR1_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_SPIM_CTLR1_s ALT_SPIM_CTLR1_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_SPIM_CTLR1 register from the beginning of the component. */
-#define ALT_SPIM_CTLR1_OFST        0x4
+    #define ALT_SPIM_CTLR1_OFST    0x4
 /* The address of the ALT_SPIM_CTLR1 register. */
-#define ALT_SPIM_CTLR1_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_SPIM_CTLR1_OFST))
+    #define ALT_SPIM_CTLR1_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_SPIM_CTLR1_OFST ) )
 
 /*
  * Register : Enable Register - spienr
@@ -556,6 +581,7 @@ typedef volatile struct ALT_SPIM_CTLR1_s  ALT_SPIM_CTLR1_t;
  *  [31:1] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Enable - spi_en
  *
@@ -574,37 +600,40 @@ typedef volatile struct ALT_SPIM_CTLR1_s  ALT_SPIM_CTLR1_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_SPIM_SPIENR_SPI_EN
  *
  * Disables serial transfer operations
  */
-#define ALT_SPIM_SPIENR_SPI_EN_E_DISD   0x0
+    #define ALT_SPIM_SPIENR_SPI_EN_E_DISD     0x0
+
 /*
  * Enumerated value for register field ALT_SPIM_SPIENR_SPI_EN
  *
  * Enables serial transfer operations
  */
-#define ALT_SPIM_SPIENR_SPI_EN_E_END    0x1
+    #define ALT_SPIM_SPIENR_SPI_EN_E_END      0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_SPIM_SPIENR_SPI_EN register field. */
-#define ALT_SPIM_SPIENR_SPI_EN_LSB        0
+    #define ALT_SPIM_SPIENR_SPI_EN_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_SPIM_SPIENR_SPI_EN register field. */
-#define ALT_SPIM_SPIENR_SPI_EN_MSB        0
+    #define ALT_SPIM_SPIENR_SPI_EN_MSB        0
 /* The width in bits of the ALT_SPIM_SPIENR_SPI_EN register field. */
-#define ALT_SPIM_SPIENR_SPI_EN_WIDTH      1
+    #define ALT_SPIM_SPIENR_SPI_EN_WIDTH      1
 /* The mask used to set the ALT_SPIM_SPIENR_SPI_EN register field value. */
-#define ALT_SPIM_SPIENR_SPI_EN_SET_MSK    0x00000001
+    #define ALT_SPIM_SPIENR_SPI_EN_SET_MSK    0x00000001
 /* The mask used to clear the ALT_SPIM_SPIENR_SPI_EN register field value. */
-#define ALT_SPIM_SPIENR_SPI_EN_CLR_MSK    0xfffffffe
+    #define ALT_SPIM_SPIENR_SPI_EN_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_SPIM_SPIENR_SPI_EN register field. */
-#define ALT_SPIM_SPIENR_SPI_EN_RESET      0x0
+    #define ALT_SPIM_SPIENR_SPI_EN_RESET      0x0
 /* Extracts the ALT_SPIM_SPIENR_SPI_EN field value from a register. */
-#define ALT_SPIM_SPIENR_SPI_EN_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_SPIM_SPIENR_SPI_EN_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_SPIM_SPIENR_SPI_EN register field value suitable for setting the register. */
-#define ALT_SPIM_SPIENR_SPI_EN_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_SPIM_SPIENR_SPI_EN_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -615,20 +644,20 @@ typedef volatile struct ALT_SPIM_CTLR1_s  ALT_SPIM_CTLR1_t;
  *
  * The struct declaration for register ALT_SPIM_SPIENR.
  */
-struct ALT_SPIM_SPIENR_s
-{
-    uint32_t  spi_en :  1;  /* Enable */
-    uint32_t         : 31;  /* *UNDEFINED* */
-};
+        struct ALT_SPIM_SPIENR_s
+        {
+            uint32_t spi_en :  1;  /* Enable */
+            uint32_t         : 31; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_SPIM_SPIENR. */
-typedef volatile struct ALT_SPIM_SPIENR_s  ALT_SPIM_SPIENR_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_SPIM_SPIENR_s ALT_SPIM_SPIENR_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_SPIM_SPIENR register from the beginning of the component. */
-#define ALT_SPIM_SPIENR_OFST        0x8
+    #define ALT_SPIM_SPIENR_OFST    0x8
 /* The address of the ALT_SPIM_SPIENR register. */
-#define ALT_SPIM_SPIENR_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_SPIM_SPIENR_OFST))
+    #define ALT_SPIM_SPIENR_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_SPIM_SPIENR_OFST ) )
 
 /*
  * Register : Microwire Control Register - mwcr
@@ -648,6 +677,7 @@ typedef volatile struct ALT_SPIM_SPIENR_s  ALT_SPIM_SPIENR_t;
  *  [31:3] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Microwire Transfer Mode - mwmod
  *
@@ -666,35 +696,37 @@ typedef volatile struct ALT_SPIM_SPIENR_s  ALT_SPIM_SPIENR_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_SPIM_MWCR_MWMOD
  *
  * non-sequential transfer
  */
-#define ALT_SPIM_MWCR_MWMOD_E_NONSEQ    0x0
+    #define ALT_SPIM_MWCR_MWMOD_E_NONSEQ    0x0
+
 /*
  * Enumerated value for register field ALT_SPIM_MWCR_MWMOD
  *
  * sequential transfer
  */
-#define ALT_SPIM_MWCR_MWMOD_E_SEQ       0x1
+    #define ALT_SPIM_MWCR_MWMOD_E_SEQ       0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_SPIM_MWCR_MWMOD register field. */
-#define ALT_SPIM_MWCR_MWMOD_LSB        0
+    #define ALT_SPIM_MWCR_MWMOD_LSB         0
 /* The Most Significant Bit (MSB) position of the ALT_SPIM_MWCR_MWMOD register field. */
-#define ALT_SPIM_MWCR_MWMOD_MSB        0
+    #define ALT_SPIM_MWCR_MWMOD_MSB         0
 /* The width in bits of the ALT_SPIM_MWCR_MWMOD register field. */
-#define ALT_SPIM_MWCR_MWMOD_WIDTH      1
+    #define ALT_SPIM_MWCR_MWMOD_WIDTH       1
 /* The mask used to set the ALT_SPIM_MWCR_MWMOD register field value. */
-#define ALT_SPIM_MWCR_MWMOD_SET_MSK    0x00000001
+    #define ALT_SPIM_MWCR_MWMOD_SET_MSK     0x00000001
 /* The mask used to clear the ALT_SPIM_MWCR_MWMOD register field value. */
-#define ALT_SPIM_MWCR_MWMOD_CLR_MSK    0xfffffffe
+    #define ALT_SPIM_MWCR_MWMOD_CLR_MSK     0xfffffffe
 /* The reset value of the ALT_SPIM_MWCR_MWMOD register field. */
-#define ALT_SPIM_MWCR_MWMOD_RESET      0x0
+    #define ALT_SPIM_MWCR_MWMOD_RESET       0x0
 /* Extracts the ALT_SPIM_MWCR_MWMOD field value from a register. */
-#define ALT_SPIM_MWCR_MWMOD_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_SPIM_MWCR_MWMOD_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_SPIM_MWCR_MWMOD register field value suitable for setting the register. */
-#define ALT_SPIM_MWCR_MWMOD_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_SPIM_MWCR_MWMOD_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
 /*
  * Field : Microwire Control - mdd
@@ -712,35 +744,37 @@ typedef volatile struct ALT_SPIM_SPIENR_s  ALT_SPIM_SPIENR_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_SPIM_MWCR_MDD
  *
  * SPI Master receives data
  */
-#define ALT_SPIM_MWCR_MDD_E_RXMOD   0x0
+    #define ALT_SPIM_MWCR_MDD_E_RXMOD    0x0
+
 /*
  * Enumerated value for register field ALT_SPIM_MWCR_MDD
  *
  * SPI Master transmits data
  */
-#define ALT_SPIM_MWCR_MDD_E_TXMOD   0x1
+    #define ALT_SPIM_MWCR_MDD_E_TXMOD    0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_SPIM_MWCR_MDD register field. */
-#define ALT_SPIM_MWCR_MDD_LSB        1
+    #define ALT_SPIM_MWCR_MDD_LSB        1
 /* The Most Significant Bit (MSB) position of the ALT_SPIM_MWCR_MDD register field. */
-#define ALT_SPIM_MWCR_MDD_MSB        1
+    #define ALT_SPIM_MWCR_MDD_MSB        1
 /* The width in bits of the ALT_SPIM_MWCR_MDD register field. */
-#define ALT_SPIM_MWCR_MDD_WIDTH      1
+    #define ALT_SPIM_MWCR_MDD_WIDTH      1
 /* The mask used to set the ALT_SPIM_MWCR_MDD register field value. */
-#define ALT_SPIM_MWCR_MDD_SET_MSK    0x00000002
+    #define ALT_SPIM_MWCR_MDD_SET_MSK    0x00000002
 /* The mask used to clear the ALT_SPIM_MWCR_MDD register field value. */
-#define ALT_SPIM_MWCR_MDD_CLR_MSK    0xfffffffd
+    #define ALT_SPIM_MWCR_MDD_CLR_MSK    0xfffffffd
 /* The reset value of the ALT_SPIM_MWCR_MDD register field. */
-#define ALT_SPIM_MWCR_MDD_RESET      0x0
+    #define ALT_SPIM_MWCR_MDD_RESET      0x0
 /* Extracts the ALT_SPIM_MWCR_MDD field value from a register. */
-#define ALT_SPIM_MWCR_MDD_GET(value) (((value) & 0x00000002) >> 1)
+    #define ALT_SPIM_MWCR_MDD_GET( value )    ( ( ( value ) & 0x00000002 ) >> 1 )
 /* Produces a ALT_SPIM_MWCR_MDD register field value suitable for setting the register. */
-#define ALT_SPIM_MWCR_MDD_SET(value) (((value) << 1) & 0x00000002)
+    #define ALT_SPIM_MWCR_MDD_SET( value )    ( ( ( value ) << 1 ) & 0x00000002 )
 
 /*
  * Field : Microwire Handshaking - mhs
@@ -760,37 +794,40 @@ typedef volatile struct ALT_SPIM_SPIENR_s  ALT_SPIM_SPIENR_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_SPIM_MWCR_MHS
  *
  * Handshaking interface is disabled
  */
-#define ALT_SPIM_MWCR_MHS_E_DISD    0x0
+    #define ALT_SPIM_MWCR_MHS_E_DISD     0x0
+
 /*
  * Enumerated value for register field ALT_SPIM_MWCR_MHS
  *
  * Handshaking interface is enabled
  */
-#define ALT_SPIM_MWCR_MHS_E_END     0x1
+    #define ALT_SPIM_MWCR_MHS_E_END      0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_SPIM_MWCR_MHS register field. */
-#define ALT_SPIM_MWCR_MHS_LSB        2
+    #define ALT_SPIM_MWCR_MHS_LSB        2
 /* The Most Significant Bit (MSB) position of the ALT_SPIM_MWCR_MHS register field. */
-#define ALT_SPIM_MWCR_MHS_MSB        2
+    #define ALT_SPIM_MWCR_MHS_MSB        2
 /* The width in bits of the ALT_SPIM_MWCR_MHS register field. */
-#define ALT_SPIM_MWCR_MHS_WIDTH      1
+    #define ALT_SPIM_MWCR_MHS_WIDTH      1
 /* The mask used to set the ALT_SPIM_MWCR_MHS register field value. */
-#define ALT_SPIM_MWCR_MHS_SET_MSK    0x00000004
+    #define ALT_SPIM_MWCR_MHS_SET_MSK    0x00000004
 /* The mask used to clear the ALT_SPIM_MWCR_MHS register field value. */
-#define ALT_SPIM_MWCR_MHS_CLR_MSK    0xfffffffb
+    #define ALT_SPIM_MWCR_MHS_CLR_MSK    0xfffffffb
 /* The reset value of the ALT_SPIM_MWCR_MHS register field. */
-#define ALT_SPIM_MWCR_MHS_RESET      0x0
+    #define ALT_SPIM_MWCR_MHS_RESET      0x0
 /* Extracts the ALT_SPIM_MWCR_MHS field value from a register. */
-#define ALT_SPIM_MWCR_MHS_GET(value) (((value) & 0x00000004) >> 2)
+    #define ALT_SPIM_MWCR_MHS_GET( value )    ( ( ( value ) & 0x00000004 ) >> 2 )
 /* Produces a ALT_SPIM_MWCR_MHS register field value suitable for setting the register. */
-#define ALT_SPIM_MWCR_MHS_SET(value) (((value) << 2) & 0x00000004)
+    #define ALT_SPIM_MWCR_MHS_SET( value )    ( ( ( value ) << 2 ) & 0x00000004 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -801,22 +838,22 @@ typedef volatile struct ALT_SPIM_SPIENR_s  ALT_SPIM_SPIENR_t;
  *
  * The struct declaration for register ALT_SPIM_MWCR.
  */
-struct ALT_SPIM_MWCR_s
-{
-    uint32_t  mwmod :  1;  /* Microwire Transfer Mode */
-    uint32_t  mdd   :  1;  /* Microwire Control */
-    uint32_t  mhs   :  1;  /* Microwire Handshaking */
-    uint32_t        : 29;  /* *UNDEFINED* */
-};
+        struct ALT_SPIM_MWCR_s
+        {
+            uint32_t mwmod :  1;  /* Microwire Transfer Mode */
+            uint32_t mdd   :  1;  /* Microwire Control */
+            uint32_t mhs   :  1;  /* Microwire Handshaking */
+            uint32_t        : 29; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_SPIM_MWCR. */
-typedef volatile struct ALT_SPIM_MWCR_s  ALT_SPIM_MWCR_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_SPIM_MWCR_s ALT_SPIM_MWCR_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_SPIM_MWCR register from the beginning of the component. */
-#define ALT_SPIM_MWCR_OFST        0xc
+    #define ALT_SPIM_MWCR_OFST    0xc
 /* The address of the ALT_SPIM_MWCR register. */
-#define ALT_SPIM_MWCR_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_SPIM_MWCR_OFST))
+    #define ALT_SPIM_MWCR_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_SPIM_MWCR_OFST ) )
 
 /*
  * Register : Slave Enable Register - ser
@@ -833,6 +870,7 @@ typedef volatile struct ALT_SPIM_MWCR_s  ALT_SPIM_MWCR_t;
  *  [31:4] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Slave Select Enable Flag - ser
  *
@@ -855,37 +893,40 @@ typedef volatile struct ALT_SPIM_MWCR_s  ALT_SPIM_MWCR_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_SPIM_SER_SER
  *
  * Slave x Not Selected
  */
-#define ALT_SPIM_SER_SER_E_NOTSELECTED  0x0
+    #define ALT_SPIM_SER_SER_E_NOTSELECTED    0x0
+
 /*
  * Enumerated value for register field ALT_SPIM_SER_SER
  *
  * Slave x Selected
  */
-#define ALT_SPIM_SER_SER_E_SELECTED     0x1
+    #define ALT_SPIM_SER_SER_E_SELECTED       0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_SPIM_SER_SER register field. */
-#define ALT_SPIM_SER_SER_LSB        0
+    #define ALT_SPIM_SER_SER_LSB              0
 /* The Most Significant Bit (MSB) position of the ALT_SPIM_SER_SER register field. */
-#define ALT_SPIM_SER_SER_MSB        3
+    #define ALT_SPIM_SER_SER_MSB              3
 /* The width in bits of the ALT_SPIM_SER_SER register field. */
-#define ALT_SPIM_SER_SER_WIDTH      4
+    #define ALT_SPIM_SER_SER_WIDTH            4
 /* The mask used to set the ALT_SPIM_SER_SER register field value. */
-#define ALT_SPIM_SER_SER_SET_MSK    0x0000000f
+    #define ALT_SPIM_SER_SER_SET_MSK          0x0000000f
 /* The mask used to clear the ALT_SPIM_SER_SER register field value. */
-#define ALT_SPIM_SER_SER_CLR_MSK    0xfffffff0
+    #define ALT_SPIM_SER_SER_CLR_MSK          0xfffffff0
 /* The reset value of the ALT_SPIM_SER_SER register field. */
-#define ALT_SPIM_SER_SER_RESET      0x0
+    #define ALT_SPIM_SER_SER_RESET            0x0
 /* Extracts the ALT_SPIM_SER_SER field value from a register. */
-#define ALT_SPIM_SER_SER_GET(value) (((value) & 0x0000000f) >> 0)
+    #define ALT_SPIM_SER_SER_GET( value )    ( ( ( value ) & 0x0000000f ) >> 0 )
 /* Produces a ALT_SPIM_SER_SER register field value suitable for setting the register. */
-#define ALT_SPIM_SER_SER_SET(value) (((value) << 0) & 0x0000000f)
+    #define ALT_SPIM_SER_SER_SET( value )    ( ( ( value ) << 0 ) & 0x0000000f )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -896,20 +937,20 @@ typedef volatile struct ALT_SPIM_MWCR_s  ALT_SPIM_MWCR_t;
  *
  * The struct declaration for register ALT_SPIM_SER.
  */
-struct ALT_SPIM_SER_s
-{
-    uint32_t  ser :  4;  /* Slave Select Enable Flag */
-    uint32_t      : 28;  /* *UNDEFINED* */
-};
+        struct ALT_SPIM_SER_s
+        {
+            uint32_t ser :  4;  /* Slave Select Enable Flag */
+            uint32_t      : 28; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_SPIM_SER. */
-typedef volatile struct ALT_SPIM_SER_s  ALT_SPIM_SER_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_SPIM_SER_s ALT_SPIM_SER_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_SPIM_SER register from the beginning of the component. */
-#define ALT_SPIM_SER_OFST        0x10
+    #define ALT_SPIM_SER_OFST    0x10
 /* The address of the ALT_SPIM_SER register. */
-#define ALT_SPIM_SER_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_SPIM_SER_OFST))
+    #define ALT_SPIM_SER_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_SPIM_SER_OFST ) )
 
 /*
  * Register : Baud Rate Select Register - baudr
@@ -927,6 +968,7 @@ typedef volatile struct ALT_SPIM_SER_s  ALT_SPIM_SER_t;
  *  [31:16] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : SPI Clock Divider - sckdv
  *
@@ -947,23 +989,24 @@ typedef volatile struct ALT_SPIM_SER_s  ALT_SPIM_SER_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_SPIM_BAUDR_SCKDV register field. */
-#define ALT_SPIM_BAUDR_SCKDV_LSB        0
+    #define ALT_SPIM_BAUDR_SCKDV_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_SPIM_BAUDR_SCKDV register field. */
-#define ALT_SPIM_BAUDR_SCKDV_MSB        15
+    #define ALT_SPIM_BAUDR_SCKDV_MSB        15
 /* The width in bits of the ALT_SPIM_BAUDR_SCKDV register field. */
-#define ALT_SPIM_BAUDR_SCKDV_WIDTH      16
+    #define ALT_SPIM_BAUDR_SCKDV_WIDTH      16
 /* The mask used to set the ALT_SPIM_BAUDR_SCKDV register field value. */
-#define ALT_SPIM_BAUDR_SCKDV_SET_MSK    0x0000ffff
+    #define ALT_SPIM_BAUDR_SCKDV_SET_MSK    0x0000ffff
 /* The mask used to clear the ALT_SPIM_BAUDR_SCKDV register field value. */
-#define ALT_SPIM_BAUDR_SCKDV_CLR_MSK    0xffff0000
+    #define ALT_SPIM_BAUDR_SCKDV_CLR_MSK    0xffff0000
 /* The reset value of the ALT_SPIM_BAUDR_SCKDV register field. */
-#define ALT_SPIM_BAUDR_SCKDV_RESET      0x0
+    #define ALT_SPIM_BAUDR_SCKDV_RESET      0x0
 /* Extracts the ALT_SPIM_BAUDR_SCKDV field value from a register. */
-#define ALT_SPIM_BAUDR_SCKDV_GET(value) (((value) & 0x0000ffff) >> 0)
+    #define ALT_SPIM_BAUDR_SCKDV_GET( value )    ( ( ( value ) & 0x0000ffff ) >> 0 )
 /* Produces a ALT_SPIM_BAUDR_SCKDV register field value suitable for setting the register. */
-#define ALT_SPIM_BAUDR_SCKDV_SET(value) (((value) << 0) & 0x0000ffff)
+    #define ALT_SPIM_BAUDR_SCKDV_SET( value )    ( ( ( value ) << 0 ) & 0x0000ffff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -974,20 +1017,20 @@ typedef volatile struct ALT_SPIM_SER_s  ALT_SPIM_SER_t;
  *
  * The struct declaration for register ALT_SPIM_BAUDR.
  */
-struct ALT_SPIM_BAUDR_s
-{
-    uint32_t  sckdv : 16;  /* SPI Clock Divider */
-    uint32_t        : 16;  /* *UNDEFINED* */
-};
+        struct ALT_SPIM_BAUDR_s
+        {
+            uint32_t sckdv : 16;  /* SPI Clock Divider */
+            uint32_t        : 16; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_SPIM_BAUDR. */
-typedef volatile struct ALT_SPIM_BAUDR_s  ALT_SPIM_BAUDR_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_SPIM_BAUDR_s ALT_SPIM_BAUDR_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_SPIM_BAUDR register from the beginning of the component. */
-#define ALT_SPIM_BAUDR_OFST        0x14
+    #define ALT_SPIM_BAUDR_OFST    0x14
 /* The address of the ALT_SPIM_BAUDR register. */
-#define ALT_SPIM_BAUDR_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_SPIM_BAUDR_OFST))
+    #define ALT_SPIM_BAUDR_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_SPIM_BAUDR_OFST ) )
 
 /*
  * Register : Transmit FIFO Threshold Level Register - txftlr
@@ -1004,6 +1047,7 @@ typedef volatile struct ALT_SPIM_BAUDR_s  ALT_SPIM_BAUDR_t;
  *  [31:8] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Transmit FIFO Threshold Level - tft
  *
@@ -1015,23 +1059,24 @@ typedef volatile struct ALT_SPIM_BAUDR_s  ALT_SPIM_BAUDR_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_SPIM_TXFTLR_TFT register field. */
-#define ALT_SPIM_TXFTLR_TFT_LSB        0
+    #define ALT_SPIM_TXFTLR_TFT_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_SPIM_TXFTLR_TFT register field. */
-#define ALT_SPIM_TXFTLR_TFT_MSB        7
+    #define ALT_SPIM_TXFTLR_TFT_MSB        7
 /* The width in bits of the ALT_SPIM_TXFTLR_TFT register field. */
-#define ALT_SPIM_TXFTLR_TFT_WIDTH      8
+    #define ALT_SPIM_TXFTLR_TFT_WIDTH      8
 /* The mask used to set the ALT_SPIM_TXFTLR_TFT register field value. */
-#define ALT_SPIM_TXFTLR_TFT_SET_MSK    0x000000ff
+    #define ALT_SPIM_TXFTLR_TFT_SET_MSK    0x000000ff
 /* The mask used to clear the ALT_SPIM_TXFTLR_TFT register field value. */
-#define ALT_SPIM_TXFTLR_TFT_CLR_MSK    0xffffff00
+    #define ALT_SPIM_TXFTLR_TFT_CLR_MSK    0xffffff00
 /* The reset value of the ALT_SPIM_TXFTLR_TFT register field. */
-#define ALT_SPIM_TXFTLR_TFT_RESET      0x0
+    #define ALT_SPIM_TXFTLR_TFT_RESET      0x0
 /* Extracts the ALT_SPIM_TXFTLR_TFT field value from a register. */
-#define ALT_SPIM_TXFTLR_TFT_GET(value) (((value) & 0x000000ff) >> 0)
+    #define ALT_SPIM_TXFTLR_TFT_GET( value )    ( ( ( value ) & 0x000000ff ) >> 0 )
 /* Produces a ALT_SPIM_TXFTLR_TFT register field value suitable for setting the register. */
-#define ALT_SPIM_TXFTLR_TFT_SET(value) (((value) << 0) & 0x000000ff)
+    #define ALT_SPIM_TXFTLR_TFT_SET( value )    ( ( ( value ) << 0 ) & 0x000000ff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -1042,20 +1087,20 @@ typedef volatile struct ALT_SPIM_BAUDR_s  ALT_SPIM_BAUDR_t;
  *
  * The struct declaration for register ALT_SPIM_TXFTLR.
  */
-struct ALT_SPIM_TXFTLR_s
-{
-    uint32_t  tft :  8;  /* Transmit FIFO Threshold Level */
-    uint32_t      : 24;  /* *UNDEFINED* */
-};
+        struct ALT_SPIM_TXFTLR_s
+        {
+            uint32_t tft :  8;  /* Transmit FIFO Threshold Level */
+            uint32_t      : 24; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_SPIM_TXFTLR. */
-typedef volatile struct ALT_SPIM_TXFTLR_s  ALT_SPIM_TXFTLR_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_SPIM_TXFTLR_s ALT_SPIM_TXFTLR_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_SPIM_TXFTLR register from the beginning of the component. */
-#define ALT_SPIM_TXFTLR_OFST        0x18
+    #define ALT_SPIM_TXFTLR_OFST    0x18
 /* The address of the ALT_SPIM_TXFTLR register. */
-#define ALT_SPIM_TXFTLR_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_SPIM_TXFTLR_OFST))
+    #define ALT_SPIM_TXFTLR_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_SPIM_TXFTLR_OFST ) )
 
 /*
  * Register : Receive FIFO Threshold Level Register - rxftlr
@@ -1072,6 +1117,7 @@ typedef volatile struct ALT_SPIM_TXFTLR_s  ALT_SPIM_TXFTLR_t;
  *  [31:8] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Receive FIFO Threshold Level - rft
  *
@@ -1083,23 +1129,24 @@ typedef volatile struct ALT_SPIM_TXFTLR_s  ALT_SPIM_TXFTLR_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_SPIM_RXFTLR_RFT register field. */
-#define ALT_SPIM_RXFTLR_RFT_LSB        0
+    #define ALT_SPIM_RXFTLR_RFT_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_SPIM_RXFTLR_RFT register field. */
-#define ALT_SPIM_RXFTLR_RFT_MSB        7
+    #define ALT_SPIM_RXFTLR_RFT_MSB        7
 /* The width in bits of the ALT_SPIM_RXFTLR_RFT register field. */
-#define ALT_SPIM_RXFTLR_RFT_WIDTH      8
+    #define ALT_SPIM_RXFTLR_RFT_WIDTH      8
 /* The mask used to set the ALT_SPIM_RXFTLR_RFT register field value. */
-#define ALT_SPIM_RXFTLR_RFT_SET_MSK    0x000000ff
+    #define ALT_SPIM_RXFTLR_RFT_SET_MSK    0x000000ff
 /* The mask used to clear the ALT_SPIM_RXFTLR_RFT register field value. */
-#define ALT_SPIM_RXFTLR_RFT_CLR_MSK    0xffffff00
+    #define ALT_SPIM_RXFTLR_RFT_CLR_MSK    0xffffff00
 /* The reset value of the ALT_SPIM_RXFTLR_RFT register field. */
-#define ALT_SPIM_RXFTLR_RFT_RESET      0x0
+    #define ALT_SPIM_RXFTLR_RFT_RESET      0x0
 /* Extracts the ALT_SPIM_RXFTLR_RFT field value from a register. */
-#define ALT_SPIM_RXFTLR_RFT_GET(value) (((value) & 0x000000ff) >> 0)
+    #define ALT_SPIM_RXFTLR_RFT_GET( value )    ( ( ( value ) & 0x000000ff ) >> 0 )
 /* Produces a ALT_SPIM_RXFTLR_RFT register field value suitable for setting the register. */
-#define ALT_SPIM_RXFTLR_RFT_SET(value) (((value) << 0) & 0x000000ff)
+    #define ALT_SPIM_RXFTLR_RFT_SET( value )    ( ( ( value ) << 0 ) & 0x000000ff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -1110,20 +1157,20 @@ typedef volatile struct ALT_SPIM_TXFTLR_s  ALT_SPIM_TXFTLR_t;
  *
  * The struct declaration for register ALT_SPIM_RXFTLR.
  */
-struct ALT_SPIM_RXFTLR_s
-{
-    uint32_t  rft :  8;  /* Receive FIFO Threshold Level */
-    uint32_t      : 24;  /* *UNDEFINED* */
-};
+        struct ALT_SPIM_RXFTLR_s
+        {
+            uint32_t rft :  8;  /* Receive FIFO Threshold Level */
+            uint32_t      : 24; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_SPIM_RXFTLR. */
-typedef volatile struct ALT_SPIM_RXFTLR_s  ALT_SPIM_RXFTLR_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_SPIM_RXFTLR_s ALT_SPIM_RXFTLR_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_SPIM_RXFTLR register from the beginning of the component. */
-#define ALT_SPIM_RXFTLR_OFST        0x1c
+    #define ALT_SPIM_RXFTLR_OFST    0x1c
 /* The address of the ALT_SPIM_RXFTLR register. */
-#define ALT_SPIM_RXFTLR_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_SPIM_RXFTLR_OFST))
+    #define ALT_SPIM_RXFTLR_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_SPIM_RXFTLR_OFST ) )
 
 /*
  * Register : Transmit FIFO Level Register - txflr
@@ -1139,6 +1186,7 @@ typedef volatile struct ALT_SPIM_RXFTLR_s  ALT_SPIM_RXFTLR_t;
  *  [31:9] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Transmit FIFO Level - txtfl
  *
@@ -1148,23 +1196,24 @@ typedef volatile struct ALT_SPIM_RXFTLR_s  ALT_SPIM_RXFTLR_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_SPIM_TXFLR_TXTFL register field. */
-#define ALT_SPIM_TXFLR_TXTFL_LSB        0
+    #define ALT_SPIM_TXFLR_TXTFL_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_SPIM_TXFLR_TXTFL register field. */
-#define ALT_SPIM_TXFLR_TXTFL_MSB        8
+    #define ALT_SPIM_TXFLR_TXTFL_MSB        8
 /* The width in bits of the ALT_SPIM_TXFLR_TXTFL register field. */
-#define ALT_SPIM_TXFLR_TXTFL_WIDTH      9
+    #define ALT_SPIM_TXFLR_TXTFL_WIDTH      9
 /* The mask used to set the ALT_SPIM_TXFLR_TXTFL register field value. */
-#define ALT_SPIM_TXFLR_TXTFL_SET_MSK    0x000001ff
+    #define ALT_SPIM_TXFLR_TXTFL_SET_MSK    0x000001ff
 /* The mask used to clear the ALT_SPIM_TXFLR_TXTFL register field value. */
-#define ALT_SPIM_TXFLR_TXTFL_CLR_MSK    0xfffffe00
+    #define ALT_SPIM_TXFLR_TXTFL_CLR_MSK    0xfffffe00
 /* The reset value of the ALT_SPIM_TXFLR_TXTFL register field. */
-#define ALT_SPIM_TXFLR_TXTFL_RESET      0x0
+    #define ALT_SPIM_TXFLR_TXTFL_RESET      0x0
 /* Extracts the ALT_SPIM_TXFLR_TXTFL field value from a register. */
-#define ALT_SPIM_TXFLR_TXTFL_GET(value) (((value) & 0x000001ff) >> 0)
+    #define ALT_SPIM_TXFLR_TXTFL_GET( value )    ( ( ( value ) & 0x000001ff ) >> 0 )
 /* Produces a ALT_SPIM_TXFLR_TXTFL register field value suitable for setting the register. */
-#define ALT_SPIM_TXFLR_TXTFL_SET(value) (((value) << 0) & 0x000001ff)
+    #define ALT_SPIM_TXFLR_TXTFL_SET( value )    ( ( ( value ) << 0 ) & 0x000001ff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -1175,20 +1224,20 @@ typedef volatile struct ALT_SPIM_RXFTLR_s  ALT_SPIM_RXFTLR_t;
  *
  * The struct declaration for register ALT_SPIM_TXFLR.
  */
-struct ALT_SPIM_TXFLR_s
-{
-    const uint32_t  txtfl :  9;  /* Transmit FIFO Level */
-    uint32_t              : 23;  /* *UNDEFINED* */
-};
+        struct ALT_SPIM_TXFLR_s
+        {
+            const uint32_t txtfl :  9;  /* Transmit FIFO Level */
+            uint32_t              : 23; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_SPIM_TXFLR. */
-typedef volatile struct ALT_SPIM_TXFLR_s  ALT_SPIM_TXFLR_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_SPIM_TXFLR_s ALT_SPIM_TXFLR_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_SPIM_TXFLR register from the beginning of the component. */
-#define ALT_SPIM_TXFLR_OFST        0x20
+    #define ALT_SPIM_TXFLR_OFST    0x20
 /* The address of the ALT_SPIM_TXFLR register. */
-#define ALT_SPIM_TXFLR_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_SPIM_TXFLR_OFST))
+    #define ALT_SPIM_TXFLR_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_SPIM_TXFLR_OFST ) )
 
 /*
  * Register : Receive FIFO Level Register - rxflr
@@ -1204,6 +1253,7 @@ typedef volatile struct ALT_SPIM_TXFLR_s  ALT_SPIM_TXFLR_t;
  *  [31:9] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Receive FIFO Level - rxtfl
  *
@@ -1213,23 +1263,24 @@ typedef volatile struct ALT_SPIM_TXFLR_s  ALT_SPIM_TXFLR_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_SPIM_RXFLR_RXTFL register field. */
-#define ALT_SPIM_RXFLR_RXTFL_LSB        0
+    #define ALT_SPIM_RXFLR_RXTFL_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_SPIM_RXFLR_RXTFL register field. */
-#define ALT_SPIM_RXFLR_RXTFL_MSB        8
+    #define ALT_SPIM_RXFLR_RXTFL_MSB        8
 /* The width in bits of the ALT_SPIM_RXFLR_RXTFL register field. */
-#define ALT_SPIM_RXFLR_RXTFL_WIDTH      9
+    #define ALT_SPIM_RXFLR_RXTFL_WIDTH      9
 /* The mask used to set the ALT_SPIM_RXFLR_RXTFL register field value. */
-#define ALT_SPIM_RXFLR_RXTFL_SET_MSK    0x000001ff
+    #define ALT_SPIM_RXFLR_RXTFL_SET_MSK    0x000001ff
 /* The mask used to clear the ALT_SPIM_RXFLR_RXTFL register field value. */
-#define ALT_SPIM_RXFLR_RXTFL_CLR_MSK    0xfffffe00
+    #define ALT_SPIM_RXFLR_RXTFL_CLR_MSK    0xfffffe00
 /* The reset value of the ALT_SPIM_RXFLR_RXTFL register field. */
-#define ALT_SPIM_RXFLR_RXTFL_RESET      0x0
+    #define ALT_SPIM_RXFLR_RXTFL_RESET      0x0
 /* Extracts the ALT_SPIM_RXFLR_RXTFL field value from a register. */
-#define ALT_SPIM_RXFLR_RXTFL_GET(value) (((value) & 0x000001ff) >> 0)
+    #define ALT_SPIM_RXFLR_RXTFL_GET( value )    ( ( ( value ) & 0x000001ff ) >> 0 )
 /* Produces a ALT_SPIM_RXFLR_RXTFL register field value suitable for setting the register. */
-#define ALT_SPIM_RXFLR_RXTFL_SET(value) (((value) << 0) & 0x000001ff)
+    #define ALT_SPIM_RXFLR_RXTFL_SET( value )    ( ( ( value ) << 0 ) & 0x000001ff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -1240,20 +1291,20 @@ typedef volatile struct ALT_SPIM_TXFLR_s  ALT_SPIM_TXFLR_t;
  *
  * The struct declaration for register ALT_SPIM_RXFLR.
  */
-struct ALT_SPIM_RXFLR_s
-{
-    const uint32_t  rxtfl :  9;  /* Receive FIFO Level */
-    uint32_t              : 23;  /* *UNDEFINED* */
-};
+        struct ALT_SPIM_RXFLR_s
+        {
+            const uint32_t rxtfl :  9;  /* Receive FIFO Level */
+            uint32_t              : 23; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_SPIM_RXFLR. */
-typedef volatile struct ALT_SPIM_RXFLR_s  ALT_SPIM_RXFLR_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_SPIM_RXFLR_s ALT_SPIM_RXFLR_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_SPIM_RXFLR register from the beginning of the component. */
-#define ALT_SPIM_RXFLR_OFST        0x24
+    #define ALT_SPIM_RXFLR_OFST    0x24
 /* The address of the ALT_SPIM_RXFLR register. */
-#define ALT_SPIM_RXFLR_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_SPIM_RXFLR_OFST))
+    #define ALT_SPIM_RXFLR_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_SPIM_RXFLR_OFST ) )
 
 /*
  * Register : Status Register - sr
@@ -1274,6 +1325,7 @@ typedef volatile struct ALT_SPIM_RXFLR_s  ALT_SPIM_RXFLR_t;
  *  [31:5] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : SPI Busy Flag - busy
  *
@@ -1289,35 +1341,37 @@ typedef volatile struct ALT_SPIM_RXFLR_s  ALT_SPIM_RXFLR_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_SPIM_SR_BUSY
  *
  * SPI Master is inactive (idle or disabled)
  */
-#define ALT_SPIM_SR_BUSY_E_INACT    0x0
+    #define ALT_SPIM_SR_BUSY_E_INACT    0x0
+
 /*
  * Enumerated value for register field ALT_SPIM_SR_BUSY
  *
  * SPI Master is actively transferring data
  */
-#define ALT_SPIM_SR_BUSY_E_ACT      0x1
+    #define ALT_SPIM_SR_BUSY_E_ACT      0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_SPIM_SR_BUSY register field. */
-#define ALT_SPIM_SR_BUSY_LSB        0
+    #define ALT_SPIM_SR_BUSY_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_SPIM_SR_BUSY register field. */
-#define ALT_SPIM_SR_BUSY_MSB        0
+    #define ALT_SPIM_SR_BUSY_MSB        0
 /* The width in bits of the ALT_SPIM_SR_BUSY register field. */
-#define ALT_SPIM_SR_BUSY_WIDTH      1
+    #define ALT_SPIM_SR_BUSY_WIDTH      1
 /* The mask used to set the ALT_SPIM_SR_BUSY register field value. */
-#define ALT_SPIM_SR_BUSY_SET_MSK    0x00000001
+    #define ALT_SPIM_SR_BUSY_SET_MSK    0x00000001
 /* The mask used to clear the ALT_SPIM_SR_BUSY register field value. */
-#define ALT_SPIM_SR_BUSY_CLR_MSK    0xfffffffe
+    #define ALT_SPIM_SR_BUSY_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_SPIM_SR_BUSY register field. */
-#define ALT_SPIM_SR_BUSY_RESET      0x0
+    #define ALT_SPIM_SR_BUSY_RESET      0x0
 /* Extracts the ALT_SPIM_SR_BUSY field value from a register. */
-#define ALT_SPIM_SR_BUSY_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_SPIM_SR_BUSY_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_SPIM_SR_BUSY register field value suitable for setting the register. */
-#define ALT_SPIM_SR_BUSY_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_SPIM_SR_BUSY_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
 /*
  * Field : Transmit FIFO Not Full - tfnf
@@ -1334,35 +1388,37 @@ typedef volatile struct ALT_SPIM_RXFLR_s  ALT_SPIM_RXFLR_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_SPIM_SR_TFNF
  *
  * Transmit FIFO is full
  */
-#define ALT_SPIM_SR_TFNF_E_FULL     0x0
+    #define ALT_SPIM_SR_TFNF_E_FULL       0x0
+
 /*
  * Enumerated value for register field ALT_SPIM_SR_TFNF
  *
  * Transmit FIFO is not full
  */
-#define ALT_SPIM_SR_TFNF_E_NOTFULL  0x1
+    #define ALT_SPIM_SR_TFNF_E_NOTFULL    0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_SPIM_SR_TFNF register field. */
-#define ALT_SPIM_SR_TFNF_LSB        1
+    #define ALT_SPIM_SR_TFNF_LSB          1
 /* The Most Significant Bit (MSB) position of the ALT_SPIM_SR_TFNF register field. */
-#define ALT_SPIM_SR_TFNF_MSB        1
+    #define ALT_SPIM_SR_TFNF_MSB          1
 /* The width in bits of the ALT_SPIM_SR_TFNF register field. */
-#define ALT_SPIM_SR_TFNF_WIDTH      1
+    #define ALT_SPIM_SR_TFNF_WIDTH        1
 /* The mask used to set the ALT_SPIM_SR_TFNF register field value. */
-#define ALT_SPIM_SR_TFNF_SET_MSK    0x00000002
+    #define ALT_SPIM_SR_TFNF_SET_MSK      0x00000002
 /* The mask used to clear the ALT_SPIM_SR_TFNF register field value. */
-#define ALT_SPIM_SR_TFNF_CLR_MSK    0xfffffffd
+    #define ALT_SPIM_SR_TFNF_CLR_MSK      0xfffffffd
 /* The reset value of the ALT_SPIM_SR_TFNF register field. */
-#define ALT_SPIM_SR_TFNF_RESET      0x1
+    #define ALT_SPIM_SR_TFNF_RESET        0x1
 /* Extracts the ALT_SPIM_SR_TFNF field value from a register. */
-#define ALT_SPIM_SR_TFNF_GET(value) (((value) & 0x00000002) >> 1)
+    #define ALT_SPIM_SR_TFNF_GET( value )    ( ( ( value ) & 0x00000002 ) >> 1 )
 /* Produces a ALT_SPIM_SR_TFNF register field value suitable for setting the register. */
-#define ALT_SPIM_SR_TFNF_SET(value) (((value) << 1) & 0x00000002)
+    #define ALT_SPIM_SR_TFNF_SET( value )    ( ( ( value ) << 1 ) & 0x00000002 )
 
 /*
  * Field : Transmit FIFO Empty - tfe
@@ -1379,35 +1435,37 @@ typedef volatile struct ALT_SPIM_RXFLR_s  ALT_SPIM_RXFLR_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_SPIM_SR_TFE
  *
  * Transmit FIFO is empty
  */
-#define ALT_SPIM_SR_TFE_E_EMPTY     0x1
+    #define ALT_SPIM_SR_TFE_E_EMPTY       0x1
+
 /*
  * Enumerated value for register field ALT_SPIM_SR_TFE
  *
  * Transmit FIFO is not empty
  */
-#define ALT_SPIM_SR_TFE_E_NOTEMPTY  0x0
+    #define ALT_SPIM_SR_TFE_E_NOTEMPTY    0x0
 
 /* The Least Significant Bit (LSB) position of the ALT_SPIM_SR_TFE register field. */
-#define ALT_SPIM_SR_TFE_LSB        2
+    #define ALT_SPIM_SR_TFE_LSB           2
 /* The Most Significant Bit (MSB) position of the ALT_SPIM_SR_TFE register field. */
-#define ALT_SPIM_SR_TFE_MSB        2
+    #define ALT_SPIM_SR_TFE_MSB           2
 /* The width in bits of the ALT_SPIM_SR_TFE register field. */
-#define ALT_SPIM_SR_TFE_WIDTH      1
+    #define ALT_SPIM_SR_TFE_WIDTH         1
 /* The mask used to set the ALT_SPIM_SR_TFE register field value. */
-#define ALT_SPIM_SR_TFE_SET_MSK    0x00000004
+    #define ALT_SPIM_SR_TFE_SET_MSK       0x00000004
 /* The mask used to clear the ALT_SPIM_SR_TFE register field value. */
-#define ALT_SPIM_SR_TFE_CLR_MSK    0xfffffffb
+    #define ALT_SPIM_SR_TFE_CLR_MSK       0xfffffffb
 /* The reset value of the ALT_SPIM_SR_TFE register field. */
-#define ALT_SPIM_SR_TFE_RESET      0x1
+    #define ALT_SPIM_SR_TFE_RESET         0x1
 /* Extracts the ALT_SPIM_SR_TFE field value from a register. */
-#define ALT_SPIM_SR_TFE_GET(value) (((value) & 0x00000004) >> 2)
+    #define ALT_SPIM_SR_TFE_GET( value )    ( ( ( value ) & 0x00000004 ) >> 2 )
 /* Produces a ALT_SPIM_SR_TFE register field value suitable for setting the register. */
-#define ALT_SPIM_SR_TFE_SET(value) (((value) << 2) & 0x00000004)
+    #define ALT_SPIM_SR_TFE_SET( value )    ( ( ( value ) << 2 ) & 0x00000004 )
 
 /*
  * Field : Receive FIFO Not Empty - rfne
@@ -1424,35 +1482,37 @@ typedef volatile struct ALT_SPIM_RXFLR_s  ALT_SPIM_RXFLR_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_SPIM_SR_RFNE
  *
  * Receive FIFO is empty
  */
-#define ALT_SPIM_SR_RFNE_E_EMPTY    0x0
+    #define ALT_SPIM_SR_RFNE_E_EMPTY       0x0
+
 /*
  * Enumerated value for register field ALT_SPIM_SR_RFNE
  *
  * Receive FIFO is not empty
  */
-#define ALT_SPIM_SR_RFNE_E_NOTEMPTY 0x1
+    #define ALT_SPIM_SR_RFNE_E_NOTEMPTY    0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_SPIM_SR_RFNE register field. */
-#define ALT_SPIM_SR_RFNE_LSB        3
+    #define ALT_SPIM_SR_RFNE_LSB           3
 /* The Most Significant Bit (MSB) position of the ALT_SPIM_SR_RFNE register field. */
-#define ALT_SPIM_SR_RFNE_MSB        3
+    #define ALT_SPIM_SR_RFNE_MSB           3
 /* The width in bits of the ALT_SPIM_SR_RFNE register field. */
-#define ALT_SPIM_SR_RFNE_WIDTH      1
+    #define ALT_SPIM_SR_RFNE_WIDTH         1
 /* The mask used to set the ALT_SPIM_SR_RFNE register field value. */
-#define ALT_SPIM_SR_RFNE_SET_MSK    0x00000008
+    #define ALT_SPIM_SR_RFNE_SET_MSK       0x00000008
 /* The mask used to clear the ALT_SPIM_SR_RFNE register field value. */
-#define ALT_SPIM_SR_RFNE_CLR_MSK    0xfffffff7
+    #define ALT_SPIM_SR_RFNE_CLR_MSK       0xfffffff7
 /* The reset value of the ALT_SPIM_SR_RFNE register field. */
-#define ALT_SPIM_SR_RFNE_RESET      0x0
+    #define ALT_SPIM_SR_RFNE_RESET         0x0
 /* Extracts the ALT_SPIM_SR_RFNE field value from a register. */
-#define ALT_SPIM_SR_RFNE_GET(value) (((value) & 0x00000008) >> 3)
+    #define ALT_SPIM_SR_RFNE_GET( value )    ( ( ( value ) & 0x00000008 ) >> 3 )
 /* Produces a ALT_SPIM_SR_RFNE register field value suitable for setting the register. */
-#define ALT_SPIM_SR_RFNE_SET(value) (((value) << 3) & 0x00000008)
+    #define ALT_SPIM_SR_RFNE_SET( value )    ( ( ( value ) << 3 ) & 0x00000008 )
 
 /*
  * Field : Receive FIFO Full - rff
@@ -1469,37 +1529,40 @@ typedef volatile struct ALT_SPIM_RXFLR_s  ALT_SPIM_RXFLR_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_SPIM_SR_RFF
  *
  * Receive FIFO is not full
  */
-#define ALT_SPIM_SR_RFF_E_NOTFULL   0x0
+    #define ALT_SPIM_SR_RFF_E_NOTFULL    0x0
+
 /*
  * Enumerated value for register field ALT_SPIM_SR_RFF
  *
  * Receive FIFO is full
  */
-#define ALT_SPIM_SR_RFF_E_FULL      0x1
+    #define ALT_SPIM_SR_RFF_E_FULL       0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_SPIM_SR_RFF register field. */
-#define ALT_SPIM_SR_RFF_LSB        4
+    #define ALT_SPIM_SR_RFF_LSB          4
 /* The Most Significant Bit (MSB) position of the ALT_SPIM_SR_RFF register field. */
-#define ALT_SPIM_SR_RFF_MSB        4
+    #define ALT_SPIM_SR_RFF_MSB          4
 /* The width in bits of the ALT_SPIM_SR_RFF register field. */
-#define ALT_SPIM_SR_RFF_WIDTH      1
+    #define ALT_SPIM_SR_RFF_WIDTH        1
 /* The mask used to set the ALT_SPIM_SR_RFF register field value. */
-#define ALT_SPIM_SR_RFF_SET_MSK    0x00000010
+    #define ALT_SPIM_SR_RFF_SET_MSK      0x00000010
 /* The mask used to clear the ALT_SPIM_SR_RFF register field value. */
-#define ALT_SPIM_SR_RFF_CLR_MSK    0xffffffef
+    #define ALT_SPIM_SR_RFF_CLR_MSK      0xffffffef
 /* The reset value of the ALT_SPIM_SR_RFF register field. */
-#define ALT_SPIM_SR_RFF_RESET      0x0
+    #define ALT_SPIM_SR_RFF_RESET        0x0
 /* Extracts the ALT_SPIM_SR_RFF field value from a register. */
-#define ALT_SPIM_SR_RFF_GET(value) (((value) & 0x00000010) >> 4)
+    #define ALT_SPIM_SR_RFF_GET( value )    ( ( ( value ) & 0x00000010 ) >> 4 )
 /* Produces a ALT_SPIM_SR_RFF register field value suitable for setting the register. */
-#define ALT_SPIM_SR_RFF_SET(value) (((value) << 4) & 0x00000010)
+    #define ALT_SPIM_SR_RFF_SET( value )    ( ( ( value ) << 4 ) & 0x00000010 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -1510,24 +1573,24 @@ typedef volatile struct ALT_SPIM_RXFLR_s  ALT_SPIM_RXFLR_t;
  *
  * The struct declaration for register ALT_SPIM_SR.
  */
-struct ALT_SPIM_SR_s
-{
-    const uint32_t  busy :  1;  /* SPI Busy Flag */
-    const uint32_t  tfnf :  1;  /* Transmit FIFO Not Full */
-    const uint32_t  tfe  :  1;  /* Transmit FIFO Empty */
-    const uint32_t  rfne :  1;  /* Receive FIFO Not Empty */
-    const uint32_t  rff  :  1;  /* Receive FIFO Full */
-    uint32_t             : 27;  /* *UNDEFINED* */
-};
+        struct ALT_SPIM_SR_s
+        {
+            const uint32_t busy :  1;  /* SPI Busy Flag */
+            const uint32_t tfnf :  1;  /* Transmit FIFO Not Full */
+            const uint32_t tfe  :  1;  /* Transmit FIFO Empty */
+            const uint32_t rfne :  1;  /* Receive FIFO Not Empty */
+            const uint32_t rff  :  1;  /* Receive FIFO Full */
+            uint32_t             : 27; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_SPIM_SR. */
-typedef volatile struct ALT_SPIM_SR_s  ALT_SPIM_SR_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_SPIM_SR_s ALT_SPIM_SR_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_SPIM_SR register from the beginning of the component. */
-#define ALT_SPIM_SR_OFST        0x28
+    #define ALT_SPIM_SR_OFST    0x28
 /* The address of the ALT_SPIM_SR register. */
-#define ALT_SPIM_SR_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_SPIM_SR_OFST))
+    #define ALT_SPIM_SR_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_SPIM_SR_OFST ) )
 
 /*
  * Register : Interrupt Mask Register - imr
@@ -1546,6 +1609,7 @@ typedef volatile struct ALT_SPIM_SR_s  ALT_SPIM_SR_t;
  *  [31:5] | ???    | 0x1   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Transmit FIFO Empty Interrupt Mask - txeim
  *
@@ -1561,35 +1625,37 @@ typedef volatile struct ALT_SPIM_SR_s  ALT_SPIM_SR_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_SPIM_IMR_TXEIM
  *
  * spi_txe_intr interrupt is masked (disabled)
  */
-#define ALT_SPIM_IMR_TXEIM_E_MSKED  0x0
+    #define ALT_SPIM_IMR_TXEIM_E_MSKED    0x0
+
 /*
  * Enumerated value for register field ALT_SPIM_IMR_TXEIM
  *
  * spi_txe_intr interrupt is enabled
  */
-#define ALT_SPIM_IMR_TXEIM_E_END    0x1
+    #define ALT_SPIM_IMR_TXEIM_E_END      0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_SPIM_IMR_TXEIM register field. */
-#define ALT_SPIM_IMR_TXEIM_LSB        0
+    #define ALT_SPIM_IMR_TXEIM_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_SPIM_IMR_TXEIM register field. */
-#define ALT_SPIM_IMR_TXEIM_MSB        0
+    #define ALT_SPIM_IMR_TXEIM_MSB        0
 /* The width in bits of the ALT_SPIM_IMR_TXEIM register field. */
-#define ALT_SPIM_IMR_TXEIM_WIDTH      1
+    #define ALT_SPIM_IMR_TXEIM_WIDTH      1
 /* The mask used to set the ALT_SPIM_IMR_TXEIM register field value. */
-#define ALT_SPIM_IMR_TXEIM_SET_MSK    0x00000001
+    #define ALT_SPIM_IMR_TXEIM_SET_MSK    0x00000001
 /* The mask used to clear the ALT_SPIM_IMR_TXEIM register field value. */
-#define ALT_SPIM_IMR_TXEIM_CLR_MSK    0xfffffffe
+    #define ALT_SPIM_IMR_TXEIM_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_SPIM_IMR_TXEIM register field. */
-#define ALT_SPIM_IMR_TXEIM_RESET      0x1
+    #define ALT_SPIM_IMR_TXEIM_RESET      0x1
 /* Extracts the ALT_SPIM_IMR_TXEIM field value from a register. */
-#define ALT_SPIM_IMR_TXEIM_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_SPIM_IMR_TXEIM_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_SPIM_IMR_TXEIM register field value suitable for setting the register. */
-#define ALT_SPIM_IMR_TXEIM_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_SPIM_IMR_TXEIM_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
 /*
  * Field : Transmit FIFO Overflow Interrupt Mask - txoim
@@ -1606,35 +1672,37 @@ typedef volatile struct ALT_SPIM_SR_s  ALT_SPIM_SR_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_SPIM_IMR_TXOIM
  *
  * spi_txo_intr interrupt is masked (disabled)
  */
-#define ALT_SPIM_IMR_TXOIM_E_MSKED  0x0
+    #define ALT_SPIM_IMR_TXOIM_E_MSKED    0x0
+
 /*
  * Enumerated value for register field ALT_SPIM_IMR_TXOIM
  *
  * spi_txo_intr interrupt is enabled
  */
-#define ALT_SPIM_IMR_TXOIM_E_END    0x1
+    #define ALT_SPIM_IMR_TXOIM_E_END      0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_SPIM_IMR_TXOIM register field. */
-#define ALT_SPIM_IMR_TXOIM_LSB        1
+    #define ALT_SPIM_IMR_TXOIM_LSB        1
 /* The Most Significant Bit (MSB) position of the ALT_SPIM_IMR_TXOIM register field. */
-#define ALT_SPIM_IMR_TXOIM_MSB        1
+    #define ALT_SPIM_IMR_TXOIM_MSB        1
 /* The width in bits of the ALT_SPIM_IMR_TXOIM register field. */
-#define ALT_SPIM_IMR_TXOIM_WIDTH      1
+    #define ALT_SPIM_IMR_TXOIM_WIDTH      1
 /* The mask used to set the ALT_SPIM_IMR_TXOIM register field value. */
-#define ALT_SPIM_IMR_TXOIM_SET_MSK    0x00000002
+    #define ALT_SPIM_IMR_TXOIM_SET_MSK    0x00000002
 /* The mask used to clear the ALT_SPIM_IMR_TXOIM register field value. */
-#define ALT_SPIM_IMR_TXOIM_CLR_MSK    0xfffffffd
+    #define ALT_SPIM_IMR_TXOIM_CLR_MSK    0xfffffffd
 /* The reset value of the ALT_SPIM_IMR_TXOIM register field. */
-#define ALT_SPIM_IMR_TXOIM_RESET      0x1
+    #define ALT_SPIM_IMR_TXOIM_RESET      0x1
 /* Extracts the ALT_SPIM_IMR_TXOIM field value from a register. */
-#define ALT_SPIM_IMR_TXOIM_GET(value) (((value) & 0x00000002) >> 1)
+    #define ALT_SPIM_IMR_TXOIM_GET( value )    ( ( ( value ) & 0x00000002 ) >> 1 )
 /* Produces a ALT_SPIM_IMR_TXOIM register field value suitable for setting the register. */
-#define ALT_SPIM_IMR_TXOIM_SET(value) (((value) << 1) & 0x00000002)
+    #define ALT_SPIM_IMR_TXOIM_SET( value )    ( ( ( value ) << 1 ) & 0x00000002 )
 
 /*
  * Field : Receive FIFO Underflow Interrupt Mask - rxuim
@@ -1651,35 +1719,37 @@ typedef volatile struct ALT_SPIM_SR_s  ALT_SPIM_SR_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_SPIM_IMR_RXUIM
  *
  * spi_rxu_intr interrupt is masked (disabled)
  */
-#define ALT_SPIM_IMR_RXUIM_E_MSKED  0x0
+    #define ALT_SPIM_IMR_RXUIM_E_MSKED    0x0
+
 /*
  * Enumerated value for register field ALT_SPIM_IMR_RXUIM
  *
  * spi_rxu_intr interrupt is enabled
  */
-#define ALT_SPIM_IMR_RXUIM_E_END    0x1
+    #define ALT_SPIM_IMR_RXUIM_E_END      0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_SPIM_IMR_RXUIM register field. */
-#define ALT_SPIM_IMR_RXUIM_LSB        2
+    #define ALT_SPIM_IMR_RXUIM_LSB        2
 /* The Most Significant Bit (MSB) position of the ALT_SPIM_IMR_RXUIM register field. */
-#define ALT_SPIM_IMR_RXUIM_MSB        2
+    #define ALT_SPIM_IMR_RXUIM_MSB        2
 /* The width in bits of the ALT_SPIM_IMR_RXUIM register field. */
-#define ALT_SPIM_IMR_RXUIM_WIDTH      1
+    #define ALT_SPIM_IMR_RXUIM_WIDTH      1
 /* The mask used to set the ALT_SPIM_IMR_RXUIM register field value. */
-#define ALT_SPIM_IMR_RXUIM_SET_MSK    0x00000004
+    #define ALT_SPIM_IMR_RXUIM_SET_MSK    0x00000004
 /* The mask used to clear the ALT_SPIM_IMR_RXUIM register field value. */
-#define ALT_SPIM_IMR_RXUIM_CLR_MSK    0xfffffffb
+    #define ALT_SPIM_IMR_RXUIM_CLR_MSK    0xfffffffb
 /* The reset value of the ALT_SPIM_IMR_RXUIM register field. */
-#define ALT_SPIM_IMR_RXUIM_RESET      0x1
+    #define ALT_SPIM_IMR_RXUIM_RESET      0x1
 /* Extracts the ALT_SPIM_IMR_RXUIM field value from a register. */
-#define ALT_SPIM_IMR_RXUIM_GET(value) (((value) & 0x00000004) >> 2)
+    #define ALT_SPIM_IMR_RXUIM_GET( value )    ( ( ( value ) & 0x00000004 ) >> 2 )
 /* Produces a ALT_SPIM_IMR_RXUIM register field value suitable for setting the register. */
-#define ALT_SPIM_IMR_RXUIM_SET(value) (((value) << 2) & 0x00000004)
+    #define ALT_SPIM_IMR_RXUIM_SET( value )    ( ( ( value ) << 2 ) & 0x00000004 )
 
 /*
  * Field : Receive FIFO Overflow Interrupt Mask - rxoim
@@ -1696,35 +1766,37 @@ typedef volatile struct ALT_SPIM_SR_s  ALT_SPIM_SR_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_SPIM_IMR_RXOIM
  *
  * spi_rxo_intr interrupt is masked (disabled)
  */
-#define ALT_SPIM_IMR_RXOIM_E_MSKED  0x0
+    #define ALT_SPIM_IMR_RXOIM_E_MSKED    0x0
+
 /*
  * Enumerated value for register field ALT_SPIM_IMR_RXOIM
  *
  * spi_rxo_intr interrupt is enabled
  */
-#define ALT_SPIM_IMR_RXOIM_E_END    0x1
+    #define ALT_SPIM_IMR_RXOIM_E_END      0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_SPIM_IMR_RXOIM register field. */
-#define ALT_SPIM_IMR_RXOIM_LSB        3
+    #define ALT_SPIM_IMR_RXOIM_LSB        3
 /* The Most Significant Bit (MSB) position of the ALT_SPIM_IMR_RXOIM register field. */
-#define ALT_SPIM_IMR_RXOIM_MSB        3
+    #define ALT_SPIM_IMR_RXOIM_MSB        3
 /* The width in bits of the ALT_SPIM_IMR_RXOIM register field. */
-#define ALT_SPIM_IMR_RXOIM_WIDTH      1
+    #define ALT_SPIM_IMR_RXOIM_WIDTH      1
 /* The mask used to set the ALT_SPIM_IMR_RXOIM register field value. */
-#define ALT_SPIM_IMR_RXOIM_SET_MSK    0x00000008
+    #define ALT_SPIM_IMR_RXOIM_SET_MSK    0x00000008
 /* The mask used to clear the ALT_SPIM_IMR_RXOIM register field value. */
-#define ALT_SPIM_IMR_RXOIM_CLR_MSK    0xfffffff7
+    #define ALT_SPIM_IMR_RXOIM_CLR_MSK    0xfffffff7
 /* The reset value of the ALT_SPIM_IMR_RXOIM register field. */
-#define ALT_SPIM_IMR_RXOIM_RESET      0x1
+    #define ALT_SPIM_IMR_RXOIM_RESET      0x1
 /* Extracts the ALT_SPIM_IMR_RXOIM field value from a register. */
-#define ALT_SPIM_IMR_RXOIM_GET(value) (((value) & 0x00000008) >> 3)
+    #define ALT_SPIM_IMR_RXOIM_GET( value )    ( ( ( value ) & 0x00000008 ) >> 3 )
 /* Produces a ALT_SPIM_IMR_RXOIM register field value suitable for setting the register. */
-#define ALT_SPIM_IMR_RXOIM_SET(value) (((value) << 3) & 0x00000008)
+    #define ALT_SPIM_IMR_RXOIM_SET( value )    ( ( ( value ) << 3 ) & 0x00000008 )
 
 /*
  * Field : Receive FIFO Full Interrupt Mask - rxfim
@@ -1741,37 +1813,40 @@ typedef volatile struct ALT_SPIM_SR_s  ALT_SPIM_SR_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_SPIM_IMR_RXFIM
  *
  * spi_rxf_intr interrupt is masked (disabled)
  */
-#define ALT_SPIM_IMR_RXFIM_E_MSKED  0x0
+    #define ALT_SPIM_IMR_RXFIM_E_MSKED    0x0
+
 /*
  * Enumerated value for register field ALT_SPIM_IMR_RXFIM
  *
  * spi_rxf_intr interrupt is enabled
  */
-#define ALT_SPIM_IMR_RXFIM_E_END    0x1
+    #define ALT_SPIM_IMR_RXFIM_E_END      0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_SPIM_IMR_RXFIM register field. */
-#define ALT_SPIM_IMR_RXFIM_LSB        4
+    #define ALT_SPIM_IMR_RXFIM_LSB        4
 /* The Most Significant Bit (MSB) position of the ALT_SPIM_IMR_RXFIM register field. */
-#define ALT_SPIM_IMR_RXFIM_MSB        4
+    #define ALT_SPIM_IMR_RXFIM_MSB        4
 /* The width in bits of the ALT_SPIM_IMR_RXFIM register field. */
-#define ALT_SPIM_IMR_RXFIM_WIDTH      1
+    #define ALT_SPIM_IMR_RXFIM_WIDTH      1
 /* The mask used to set the ALT_SPIM_IMR_RXFIM register field value. */
-#define ALT_SPIM_IMR_RXFIM_SET_MSK    0x00000010
+    #define ALT_SPIM_IMR_RXFIM_SET_MSK    0x00000010
 /* The mask used to clear the ALT_SPIM_IMR_RXFIM register field value. */
-#define ALT_SPIM_IMR_RXFIM_CLR_MSK    0xffffffef
+    #define ALT_SPIM_IMR_RXFIM_CLR_MSK    0xffffffef
 /* The reset value of the ALT_SPIM_IMR_RXFIM register field. */
-#define ALT_SPIM_IMR_RXFIM_RESET      0x1
+    #define ALT_SPIM_IMR_RXFIM_RESET      0x1
 /* Extracts the ALT_SPIM_IMR_RXFIM field value from a register. */
-#define ALT_SPIM_IMR_RXFIM_GET(value) (((value) & 0x00000010) >> 4)
+    #define ALT_SPIM_IMR_RXFIM_GET( value )    ( ( ( value ) & 0x00000010 ) >> 4 )
 /* Produces a ALT_SPIM_IMR_RXFIM register field value suitable for setting the register. */
-#define ALT_SPIM_IMR_RXFIM_SET(value) (((value) << 4) & 0x00000010)
+    #define ALT_SPIM_IMR_RXFIM_SET( value )    ( ( ( value ) << 4 ) & 0x00000010 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -1782,24 +1857,24 @@ typedef volatile struct ALT_SPIM_SR_s  ALT_SPIM_SR_t;
  *
  * The struct declaration for register ALT_SPIM_IMR.
  */
-struct ALT_SPIM_IMR_s
-{
-    uint32_t  txeim :  1;  /* Transmit FIFO Empty Interrupt Mask */
-    uint32_t  txoim :  1;  /* Transmit FIFO Overflow Interrupt Mask */
-    uint32_t  rxuim :  1;  /* Receive FIFO Underflow Interrupt Mask */
-    uint32_t  rxoim :  1;  /* Receive FIFO Overflow Interrupt Mask */
-    uint32_t  rxfim :  1;  /* Receive FIFO Full Interrupt Mask */
-    uint32_t        : 27;  /* *UNDEFINED* */
-};
+        struct ALT_SPIM_IMR_s
+        {
+            uint32_t txeim :  1;  /* Transmit FIFO Empty Interrupt Mask */
+            uint32_t txoim :  1;  /* Transmit FIFO Overflow Interrupt Mask */
+            uint32_t rxuim :  1;  /* Receive FIFO Underflow Interrupt Mask */
+            uint32_t rxoim :  1;  /* Receive FIFO Overflow Interrupt Mask */
+            uint32_t rxfim :  1;  /* Receive FIFO Full Interrupt Mask */
+            uint32_t        : 27; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_SPIM_IMR. */
-typedef volatile struct ALT_SPIM_IMR_s  ALT_SPIM_IMR_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_SPIM_IMR_s ALT_SPIM_IMR_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_SPIM_IMR register from the beginning of the component. */
-#define ALT_SPIM_IMR_OFST        0x2c
+    #define ALT_SPIM_IMR_OFST    0x2c
 /* The address of the ALT_SPIM_IMR register. */
-#define ALT_SPIM_IMR_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_SPIM_IMR_OFST))
+    #define ALT_SPIM_IMR_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_SPIM_IMR_OFST ) )
 
 /*
  * Register : Interrupt Status Register - isr
@@ -1820,6 +1895,7 @@ typedef volatile struct ALT_SPIM_IMR_s  ALT_SPIM_IMR_t;
  *  [31:6] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Transmit FIFO Empty Interrupt Status - txeis
  *
@@ -1836,35 +1912,37 @@ typedef volatile struct ALT_SPIM_IMR_s  ALT_SPIM_IMR_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_SPIM_ISR_TXEIS
  *
  * spi_txe_intr interrupt is not active after masking
  */
-#define ALT_SPIM_ISR_TXEIS_E_INACT  0x0
+    #define ALT_SPIM_ISR_TXEIS_E_INACT    0x0
+
 /*
  * Enumerated value for register field ALT_SPIM_ISR_TXEIS
  *
  * spi_txe_intr interrupt is active after masking
  */
-#define ALT_SPIM_ISR_TXEIS_E_ACT    0x1
+    #define ALT_SPIM_ISR_TXEIS_E_ACT      0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_SPIM_ISR_TXEIS register field. */
-#define ALT_SPIM_ISR_TXEIS_LSB        0
+    #define ALT_SPIM_ISR_TXEIS_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_SPIM_ISR_TXEIS register field. */
-#define ALT_SPIM_ISR_TXEIS_MSB        0
+    #define ALT_SPIM_ISR_TXEIS_MSB        0
 /* The width in bits of the ALT_SPIM_ISR_TXEIS register field. */
-#define ALT_SPIM_ISR_TXEIS_WIDTH      1
+    #define ALT_SPIM_ISR_TXEIS_WIDTH      1
 /* The mask used to set the ALT_SPIM_ISR_TXEIS register field value. */
-#define ALT_SPIM_ISR_TXEIS_SET_MSK    0x00000001
+    #define ALT_SPIM_ISR_TXEIS_SET_MSK    0x00000001
 /* The mask used to clear the ALT_SPIM_ISR_TXEIS register field value. */
-#define ALT_SPIM_ISR_TXEIS_CLR_MSK    0xfffffffe
+    #define ALT_SPIM_ISR_TXEIS_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_SPIM_ISR_TXEIS register field. */
-#define ALT_SPIM_ISR_TXEIS_RESET      0x0
+    #define ALT_SPIM_ISR_TXEIS_RESET      0x0
 /* Extracts the ALT_SPIM_ISR_TXEIS field value from a register. */
-#define ALT_SPIM_ISR_TXEIS_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_SPIM_ISR_TXEIS_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_SPIM_ISR_TXEIS register field value suitable for setting the register. */
-#define ALT_SPIM_ISR_TXEIS_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_SPIM_ISR_TXEIS_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
 /*
  * Field : Transmit FIFO Overflow Interrupt Status - txois
@@ -1882,35 +1960,37 @@ typedef volatile struct ALT_SPIM_IMR_s  ALT_SPIM_IMR_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_SPIM_ISR_TXOIS
  *
  * spi_txo_intr interrupt is not active after masking
  */
-#define ALT_SPIM_ISR_TXOIS_E_INACT  0x0
+    #define ALT_SPIM_ISR_TXOIS_E_INACT    0x0
+
 /*
  * Enumerated value for register field ALT_SPIM_ISR_TXOIS
  *
  * spi_txo_intr interrupt is active after masking
  */
-#define ALT_SPIM_ISR_TXOIS_E_ACT    0x1
+    #define ALT_SPIM_ISR_TXOIS_E_ACT      0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_SPIM_ISR_TXOIS register field. */
-#define ALT_SPIM_ISR_TXOIS_LSB        1
+    #define ALT_SPIM_ISR_TXOIS_LSB        1
 /* The Most Significant Bit (MSB) position of the ALT_SPIM_ISR_TXOIS register field. */
-#define ALT_SPIM_ISR_TXOIS_MSB        1
+    #define ALT_SPIM_ISR_TXOIS_MSB        1
 /* The width in bits of the ALT_SPIM_ISR_TXOIS register field. */
-#define ALT_SPIM_ISR_TXOIS_WIDTH      1
+    #define ALT_SPIM_ISR_TXOIS_WIDTH      1
 /* The mask used to set the ALT_SPIM_ISR_TXOIS register field value. */
-#define ALT_SPIM_ISR_TXOIS_SET_MSK    0x00000002
+    #define ALT_SPIM_ISR_TXOIS_SET_MSK    0x00000002
 /* The mask used to clear the ALT_SPIM_ISR_TXOIS register field value. */
-#define ALT_SPIM_ISR_TXOIS_CLR_MSK    0xfffffffd
+    #define ALT_SPIM_ISR_TXOIS_CLR_MSK    0xfffffffd
 /* The reset value of the ALT_SPIM_ISR_TXOIS register field. */
-#define ALT_SPIM_ISR_TXOIS_RESET      0x0
+    #define ALT_SPIM_ISR_TXOIS_RESET      0x0
 /* Extracts the ALT_SPIM_ISR_TXOIS field value from a register. */
-#define ALT_SPIM_ISR_TXOIS_GET(value) (((value) & 0x00000002) >> 1)
+    #define ALT_SPIM_ISR_TXOIS_GET( value )    ( ( ( value ) & 0x00000002 ) >> 1 )
 /* Produces a ALT_SPIM_ISR_TXOIS register field value suitable for setting the register. */
-#define ALT_SPIM_ISR_TXOIS_SET(value) (((value) << 1) & 0x00000002)
+    #define ALT_SPIM_ISR_TXOIS_SET( value )    ( ( ( value ) << 1 ) & 0x00000002 )
 
 /*
  * Field : Receive FIFO Underflow Interrupt Status - rxuis
@@ -1928,35 +2008,37 @@ typedef volatile struct ALT_SPIM_IMR_s  ALT_SPIM_IMR_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_SPIM_ISR_RXUIS
  *
  * spi_rxu_intr interrupt is not active after masking
  */
-#define ALT_SPIM_ISR_RXUIS_E_INACT  0x0
+    #define ALT_SPIM_ISR_RXUIS_E_INACT    0x0
+
 /*
  * Enumerated value for register field ALT_SPIM_ISR_RXUIS
  *
  * spi_rxu_intr interrupt is active after masking
  */
-#define ALT_SPIM_ISR_RXUIS_E_ACT    0x1
+    #define ALT_SPIM_ISR_RXUIS_E_ACT      0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_SPIM_ISR_RXUIS register field. */
-#define ALT_SPIM_ISR_RXUIS_LSB        2
+    #define ALT_SPIM_ISR_RXUIS_LSB        2
 /* The Most Significant Bit (MSB) position of the ALT_SPIM_ISR_RXUIS register field. */
-#define ALT_SPIM_ISR_RXUIS_MSB        2
+    #define ALT_SPIM_ISR_RXUIS_MSB        2
 /* The width in bits of the ALT_SPIM_ISR_RXUIS register field. */
-#define ALT_SPIM_ISR_RXUIS_WIDTH      1
+    #define ALT_SPIM_ISR_RXUIS_WIDTH      1
 /* The mask used to set the ALT_SPIM_ISR_RXUIS register field value. */
-#define ALT_SPIM_ISR_RXUIS_SET_MSK    0x00000004
+    #define ALT_SPIM_ISR_RXUIS_SET_MSK    0x00000004
 /* The mask used to clear the ALT_SPIM_ISR_RXUIS register field value. */
-#define ALT_SPIM_ISR_RXUIS_CLR_MSK    0xfffffffb
+    #define ALT_SPIM_ISR_RXUIS_CLR_MSK    0xfffffffb
 /* The reset value of the ALT_SPIM_ISR_RXUIS register field. */
-#define ALT_SPIM_ISR_RXUIS_RESET      0x0
+    #define ALT_SPIM_ISR_RXUIS_RESET      0x0
 /* Extracts the ALT_SPIM_ISR_RXUIS field value from a register. */
-#define ALT_SPIM_ISR_RXUIS_GET(value) (((value) & 0x00000004) >> 2)
+    #define ALT_SPIM_ISR_RXUIS_GET( value )    ( ( ( value ) & 0x00000004 ) >> 2 )
 /* Produces a ALT_SPIM_ISR_RXUIS register field value suitable for setting the register. */
-#define ALT_SPIM_ISR_RXUIS_SET(value) (((value) << 2) & 0x00000004)
+    #define ALT_SPIM_ISR_RXUIS_SET( value )    ( ( ( value ) << 2 ) & 0x00000004 )
 
 /*
  * Field : Receive FIFO Overflow Interrupt Status - rxois
@@ -1974,35 +2056,37 @@ typedef volatile struct ALT_SPIM_IMR_s  ALT_SPIM_IMR_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_SPIM_ISR_RXOIS
  *
  * spi_rxo_intr interrupt is not active after masking
  */
-#define ALT_SPIM_ISR_RXOIS_E_INACT  0x0
+    #define ALT_SPIM_ISR_RXOIS_E_INACT    0x0
+
 /*
  * Enumerated value for register field ALT_SPIM_ISR_RXOIS
  *
  * spi_rxo_intr interrupt is active after masking
  */
-#define ALT_SPIM_ISR_RXOIS_E_ACT    0x1
+    #define ALT_SPIM_ISR_RXOIS_E_ACT      0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_SPIM_ISR_RXOIS register field. */
-#define ALT_SPIM_ISR_RXOIS_LSB        3
+    #define ALT_SPIM_ISR_RXOIS_LSB        3
 /* The Most Significant Bit (MSB) position of the ALT_SPIM_ISR_RXOIS register field. */
-#define ALT_SPIM_ISR_RXOIS_MSB        3
+    #define ALT_SPIM_ISR_RXOIS_MSB        3
 /* The width in bits of the ALT_SPIM_ISR_RXOIS register field. */
-#define ALT_SPIM_ISR_RXOIS_WIDTH      1
+    #define ALT_SPIM_ISR_RXOIS_WIDTH      1
 /* The mask used to set the ALT_SPIM_ISR_RXOIS register field value. */
-#define ALT_SPIM_ISR_RXOIS_SET_MSK    0x00000008
+    #define ALT_SPIM_ISR_RXOIS_SET_MSK    0x00000008
 /* The mask used to clear the ALT_SPIM_ISR_RXOIS register field value. */
-#define ALT_SPIM_ISR_RXOIS_CLR_MSK    0xfffffff7
+    #define ALT_SPIM_ISR_RXOIS_CLR_MSK    0xfffffff7
 /* The reset value of the ALT_SPIM_ISR_RXOIS register field. */
-#define ALT_SPIM_ISR_RXOIS_RESET      0x0
+    #define ALT_SPIM_ISR_RXOIS_RESET      0x0
 /* Extracts the ALT_SPIM_ISR_RXOIS field value from a register. */
-#define ALT_SPIM_ISR_RXOIS_GET(value) (((value) & 0x00000008) >> 3)
+    #define ALT_SPIM_ISR_RXOIS_GET( value )    ( ( ( value ) & 0x00000008 ) >> 3 )
 /* Produces a ALT_SPIM_ISR_RXOIS register field value suitable for setting the register. */
-#define ALT_SPIM_ISR_RXOIS_SET(value) (((value) << 3) & 0x00000008)
+    #define ALT_SPIM_ISR_RXOIS_SET( value )    ( ( ( value ) << 3 ) & 0x00000008 )
 
 /*
  * Field : Receive FIFO Full Interrupt Status - rxfis
@@ -2020,35 +2104,37 @@ typedef volatile struct ALT_SPIM_IMR_s  ALT_SPIM_IMR_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_SPIM_ISR_RXFIS
  *
  * spi_rxf_intr interrupt is not active after masking
  */
-#define ALT_SPIM_ISR_RXFIS_E_INACT  0x0
+    #define ALT_SPIM_ISR_RXFIS_E_INACT    0x0
+
 /*
  * Enumerated value for register field ALT_SPIM_ISR_RXFIS
  *
  * spi_rxf_intr interrupt is full after masking
  */
-#define ALT_SPIM_ISR_RXFIS_E_ACT    0x1
+    #define ALT_SPIM_ISR_RXFIS_E_ACT      0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_SPIM_ISR_RXFIS register field. */
-#define ALT_SPIM_ISR_RXFIS_LSB        4
+    #define ALT_SPIM_ISR_RXFIS_LSB        4
 /* The Most Significant Bit (MSB) position of the ALT_SPIM_ISR_RXFIS register field. */
-#define ALT_SPIM_ISR_RXFIS_MSB        4
+    #define ALT_SPIM_ISR_RXFIS_MSB        4
 /* The width in bits of the ALT_SPIM_ISR_RXFIS register field. */
-#define ALT_SPIM_ISR_RXFIS_WIDTH      1
+    #define ALT_SPIM_ISR_RXFIS_WIDTH      1
 /* The mask used to set the ALT_SPIM_ISR_RXFIS register field value. */
-#define ALT_SPIM_ISR_RXFIS_SET_MSK    0x00000010
+    #define ALT_SPIM_ISR_RXFIS_SET_MSK    0x00000010
 /* The mask used to clear the ALT_SPIM_ISR_RXFIS register field value. */
-#define ALT_SPIM_ISR_RXFIS_CLR_MSK    0xffffffef
+    #define ALT_SPIM_ISR_RXFIS_CLR_MSK    0xffffffef
 /* The reset value of the ALT_SPIM_ISR_RXFIS register field. */
-#define ALT_SPIM_ISR_RXFIS_RESET      0x0
+    #define ALT_SPIM_ISR_RXFIS_RESET      0x0
 /* Extracts the ALT_SPIM_ISR_RXFIS field value from a register. */
-#define ALT_SPIM_ISR_RXFIS_GET(value) (((value) & 0x00000010) >> 4)
+    #define ALT_SPIM_ISR_RXFIS_GET( value )    ( ( ( value ) & 0x00000010 ) >> 4 )
 /* Produces a ALT_SPIM_ISR_RXFIS register field value suitable for setting the register. */
-#define ALT_SPIM_ISR_RXFIS_SET(value) (((value) << 4) & 0x00000010)
+    #define ALT_SPIM_ISR_RXFIS_SET( value )    ( ( ( value ) << 4 ) & 0x00000010 )
 
 /*
  * Field : Multi-Master Contention Interrupt Status - mstis
@@ -2067,37 +2153,40 @@ typedef volatile struct ALT_SPIM_IMR_s  ALT_SPIM_IMR_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_SPIM_ISR_MSTIS
  *
  * 0 = ssi_mst_intr interrupt not active after masking
  */
-#define ALT_SPIM_ISR_MSTIS_E_INACT  0x0
+    #define ALT_SPIM_ISR_MSTIS_E_INACT    0x0
+
 /*
  * Enumerated value for register field ALT_SPIM_ISR_MSTIS
  *
  * 1 = ssi_mst_intr interrupt is active after masking
  */
-#define ALT_SPIM_ISR_MSTIS_E_ACT    0x1
+    #define ALT_SPIM_ISR_MSTIS_E_ACT      0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_SPIM_ISR_MSTIS register field. */
-#define ALT_SPIM_ISR_MSTIS_LSB        5
+    #define ALT_SPIM_ISR_MSTIS_LSB        5
 /* The Most Significant Bit (MSB) position of the ALT_SPIM_ISR_MSTIS register field. */
-#define ALT_SPIM_ISR_MSTIS_MSB        5
+    #define ALT_SPIM_ISR_MSTIS_MSB        5
 /* The width in bits of the ALT_SPIM_ISR_MSTIS register field. */
-#define ALT_SPIM_ISR_MSTIS_WIDTH      1
+    #define ALT_SPIM_ISR_MSTIS_WIDTH      1
 /* The mask used to set the ALT_SPIM_ISR_MSTIS register field value. */
-#define ALT_SPIM_ISR_MSTIS_SET_MSK    0x00000020
+    #define ALT_SPIM_ISR_MSTIS_SET_MSK    0x00000020
 /* The mask used to clear the ALT_SPIM_ISR_MSTIS register field value. */
-#define ALT_SPIM_ISR_MSTIS_CLR_MSK    0xffffffdf
+    #define ALT_SPIM_ISR_MSTIS_CLR_MSK    0xffffffdf
 /* The reset value of the ALT_SPIM_ISR_MSTIS register field. */
-#define ALT_SPIM_ISR_MSTIS_RESET      0x0
+    #define ALT_SPIM_ISR_MSTIS_RESET      0x0
 /* Extracts the ALT_SPIM_ISR_MSTIS field value from a register. */
-#define ALT_SPIM_ISR_MSTIS_GET(value) (((value) & 0x00000020) >> 5)
+    #define ALT_SPIM_ISR_MSTIS_GET( value )    ( ( ( value ) & 0x00000020 ) >> 5 )
 /* Produces a ALT_SPIM_ISR_MSTIS register field value suitable for setting the register. */
-#define ALT_SPIM_ISR_MSTIS_SET(value) (((value) << 5) & 0x00000020)
+    #define ALT_SPIM_ISR_MSTIS_SET( value )    ( ( ( value ) << 5 ) & 0x00000020 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -2108,25 +2197,25 @@ typedef volatile struct ALT_SPIM_IMR_s  ALT_SPIM_IMR_t;
  *
  * The struct declaration for register ALT_SPIM_ISR.
  */
-struct ALT_SPIM_ISR_s
-{
-    const uint32_t  txeis :  1;  /* Transmit FIFO Empty Interrupt Status */
-    const uint32_t  txois :  1;  /* Transmit FIFO Overflow Interrupt Status */
-    const uint32_t  rxuis :  1;  /* Receive FIFO Underflow Interrupt Status */
-    const uint32_t  rxois :  1;  /* Receive FIFO Overflow Interrupt Status */
-    const uint32_t  rxfis :  1;  /* Receive FIFO Full Interrupt Status */
-    const uint32_t  mstis :  1;  /* Multi-Master Contention Interrupt Status */
-    uint32_t              : 26;  /* *UNDEFINED* */
-};
+        struct ALT_SPIM_ISR_s
+        {
+            const uint32_t txeis :  1;  /* Transmit FIFO Empty Interrupt Status */
+            const uint32_t txois :  1;  /* Transmit FIFO Overflow Interrupt Status */
+            const uint32_t rxuis :  1;  /* Receive FIFO Underflow Interrupt Status */
+            const uint32_t rxois :  1;  /* Receive FIFO Overflow Interrupt Status */
+            const uint32_t rxfis :  1;  /* Receive FIFO Full Interrupt Status */
+            const uint32_t mstis :  1;  /* Multi-Master Contention Interrupt Status */
+            uint32_t              : 26; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_SPIM_ISR. */
-typedef volatile struct ALT_SPIM_ISR_s  ALT_SPIM_ISR_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_SPIM_ISR_s ALT_SPIM_ISR_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_SPIM_ISR register from the beginning of the component. */
-#define ALT_SPIM_ISR_OFST        0x30
+    #define ALT_SPIM_ISR_OFST    0x30
 /* The address of the ALT_SPIM_ISR register. */
-#define ALT_SPIM_ISR_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_SPIM_ISR_OFST))
+    #define ALT_SPIM_ISR_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_SPIM_ISR_OFST ) )
 
 /*
  * Register : Raw Interrupt Status Register - risr
@@ -2145,6 +2234,7 @@ typedef volatile struct ALT_SPIM_ISR_s  ALT_SPIM_ISR_t;
  *  [31:5] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Transmit FIFO Empty Raw Interrupt Status - txeir
  *
@@ -2161,35 +2251,37 @@ typedef volatile struct ALT_SPIM_ISR_s  ALT_SPIM_ISR_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_SPIM_RISR_TXEIR
  *
  * spi_txe_intr interrupt is not active prior to masking
  */
-#define ALT_SPIM_RISR_TXEIR_E_INACT 0x0
+    #define ALT_SPIM_RISR_TXEIR_E_INACT    0x0
+
 /*
  * Enumerated value for register field ALT_SPIM_RISR_TXEIR
  *
  * spi_txe_intr interrupt is active prior masking
  */
-#define ALT_SPIM_RISR_TXEIR_E_ACT   0x1
+    #define ALT_SPIM_RISR_TXEIR_E_ACT      0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_SPIM_RISR_TXEIR register field. */
-#define ALT_SPIM_RISR_TXEIR_LSB        0
+    #define ALT_SPIM_RISR_TXEIR_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_SPIM_RISR_TXEIR register field. */
-#define ALT_SPIM_RISR_TXEIR_MSB        0
+    #define ALT_SPIM_RISR_TXEIR_MSB        0
 /* The width in bits of the ALT_SPIM_RISR_TXEIR register field. */
-#define ALT_SPIM_RISR_TXEIR_WIDTH      1
+    #define ALT_SPIM_RISR_TXEIR_WIDTH      1
 /* The mask used to set the ALT_SPIM_RISR_TXEIR register field value. */
-#define ALT_SPIM_RISR_TXEIR_SET_MSK    0x00000001
+    #define ALT_SPIM_RISR_TXEIR_SET_MSK    0x00000001
 /* The mask used to clear the ALT_SPIM_RISR_TXEIR register field value. */
-#define ALT_SPIM_RISR_TXEIR_CLR_MSK    0xfffffffe
+    #define ALT_SPIM_RISR_TXEIR_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_SPIM_RISR_TXEIR register field. */
-#define ALT_SPIM_RISR_TXEIR_RESET      0x0
+    #define ALT_SPIM_RISR_TXEIR_RESET      0x0
 /* Extracts the ALT_SPIM_RISR_TXEIR field value from a register. */
-#define ALT_SPIM_RISR_TXEIR_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_SPIM_RISR_TXEIR_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_SPIM_RISR_TXEIR register field value suitable for setting the register. */
-#define ALT_SPIM_RISR_TXEIR_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_SPIM_RISR_TXEIR_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
 /*
  * Field : Transmit FIFO Overflow Raw Interrupt Status - txoir
@@ -2207,35 +2299,37 @@ typedef volatile struct ALT_SPIM_ISR_s  ALT_SPIM_ISR_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_SPIM_RISR_TXOIR
  *
  * spi_txo_intr interrupt is not active prior to masking
  */
-#define ALT_SPIM_RISR_TXOIR_E_INACT 0x0
+    #define ALT_SPIM_RISR_TXOIR_E_INACT    0x0
+
 /*
  * Enumerated value for register field ALT_SPIM_RISR_TXOIR
  *
  * spi_txo_intr interrupt is active prior masking
  */
-#define ALT_SPIM_RISR_TXOIR_E_ACT   0x1
+    #define ALT_SPIM_RISR_TXOIR_E_ACT      0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_SPIM_RISR_TXOIR register field. */
-#define ALT_SPIM_RISR_TXOIR_LSB        1
+    #define ALT_SPIM_RISR_TXOIR_LSB        1
 /* The Most Significant Bit (MSB) position of the ALT_SPIM_RISR_TXOIR register field. */
-#define ALT_SPIM_RISR_TXOIR_MSB        1
+    #define ALT_SPIM_RISR_TXOIR_MSB        1
 /* The width in bits of the ALT_SPIM_RISR_TXOIR register field. */
-#define ALT_SPIM_RISR_TXOIR_WIDTH      1
+    #define ALT_SPIM_RISR_TXOIR_WIDTH      1
 /* The mask used to set the ALT_SPIM_RISR_TXOIR register field value. */
-#define ALT_SPIM_RISR_TXOIR_SET_MSK    0x00000002
+    #define ALT_SPIM_RISR_TXOIR_SET_MSK    0x00000002
 /* The mask used to clear the ALT_SPIM_RISR_TXOIR register field value. */
-#define ALT_SPIM_RISR_TXOIR_CLR_MSK    0xfffffffd
+    #define ALT_SPIM_RISR_TXOIR_CLR_MSK    0xfffffffd
 /* The reset value of the ALT_SPIM_RISR_TXOIR register field. */
-#define ALT_SPIM_RISR_TXOIR_RESET      0x0
+    #define ALT_SPIM_RISR_TXOIR_RESET      0x0
 /* Extracts the ALT_SPIM_RISR_TXOIR field value from a register. */
-#define ALT_SPIM_RISR_TXOIR_GET(value) (((value) & 0x00000002) >> 1)
+    #define ALT_SPIM_RISR_TXOIR_GET( value )    ( ( ( value ) & 0x00000002 ) >> 1 )
 /* Produces a ALT_SPIM_RISR_TXOIR register field value suitable for setting the register. */
-#define ALT_SPIM_RISR_TXOIR_SET(value) (((value) << 1) & 0x00000002)
+    #define ALT_SPIM_RISR_TXOIR_SET( value )    ( ( ( value ) << 1 ) & 0x00000002 )
 
 /*
  * Field : Receive FIFO Underflow Raw Interrupt Status - rxuir
@@ -2254,35 +2348,37 @@ typedef volatile struct ALT_SPIM_ISR_s  ALT_SPIM_ISR_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_SPIM_RISR_RXUIR
  *
  * spi_rxu_intr interrupt is not active prior to masking
  */
-#define ALT_SPIM_RISR_RXUIR_E_INACT 0x0
+    #define ALT_SPIM_RISR_RXUIR_E_INACT    0x0
+
 /*
  * Enumerated value for register field ALT_SPIM_RISR_RXUIR
  *
  * spi_rxu_intr interrupt is active prior to masking
  */
-#define ALT_SPIM_RISR_RXUIR_E_ACT   0x1
+    #define ALT_SPIM_RISR_RXUIR_E_ACT      0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_SPIM_RISR_RXUIR register field. */
-#define ALT_SPIM_RISR_RXUIR_LSB        2
+    #define ALT_SPIM_RISR_RXUIR_LSB        2
 /* The Most Significant Bit (MSB) position of the ALT_SPIM_RISR_RXUIR register field. */
-#define ALT_SPIM_RISR_RXUIR_MSB        2
+    #define ALT_SPIM_RISR_RXUIR_MSB        2
 /* The width in bits of the ALT_SPIM_RISR_RXUIR register field. */
-#define ALT_SPIM_RISR_RXUIR_WIDTH      1
+    #define ALT_SPIM_RISR_RXUIR_WIDTH      1
 /* The mask used to set the ALT_SPIM_RISR_RXUIR register field value. */
-#define ALT_SPIM_RISR_RXUIR_SET_MSK    0x00000004
+    #define ALT_SPIM_RISR_RXUIR_SET_MSK    0x00000004
 /* The mask used to clear the ALT_SPIM_RISR_RXUIR register field value. */
-#define ALT_SPIM_RISR_RXUIR_CLR_MSK    0xfffffffb
+    #define ALT_SPIM_RISR_RXUIR_CLR_MSK    0xfffffffb
 /* The reset value of the ALT_SPIM_RISR_RXUIR register field. */
-#define ALT_SPIM_RISR_RXUIR_RESET      0x0
+    #define ALT_SPIM_RISR_RXUIR_RESET      0x0
 /* Extracts the ALT_SPIM_RISR_RXUIR field value from a register. */
-#define ALT_SPIM_RISR_RXUIR_GET(value) (((value) & 0x00000004) >> 2)
+    #define ALT_SPIM_RISR_RXUIR_GET( value )    ( ( ( value ) & 0x00000004 ) >> 2 )
 /* Produces a ALT_SPIM_RISR_RXUIR register field value suitable for setting the register. */
-#define ALT_SPIM_RISR_RXUIR_SET(value) (((value) << 2) & 0x00000004)
+    #define ALT_SPIM_RISR_RXUIR_SET( value )    ( ( ( value ) << 2 ) & 0x00000004 )
 
 /*
  * Field : Receive FIFO Overflow Raw Interrupt Status - rxoir
@@ -2300,35 +2396,37 @@ typedef volatile struct ALT_SPIM_ISR_s  ALT_SPIM_ISR_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_SPIM_RISR_RXOIR
  *
  * spi_rxo_intr interrupt is not active prior to masking
  */
-#define ALT_SPIM_RISR_RXOIR_E_INACTOVE  0x0
+    #define ALT_SPIM_RISR_RXOIR_E_INACTOVE    0x0
+
 /*
  * Enumerated value for register field ALT_SPIM_RISR_RXOIR
  *
  * spi_rxo_intr interrupt is active prior masking
  */
-#define ALT_SPIM_RISR_RXOIR_E_ACT       0x1
+    #define ALT_SPIM_RISR_RXOIR_E_ACT         0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_SPIM_RISR_RXOIR register field. */
-#define ALT_SPIM_RISR_RXOIR_LSB        3
+    #define ALT_SPIM_RISR_RXOIR_LSB           3
 /* The Most Significant Bit (MSB) position of the ALT_SPIM_RISR_RXOIR register field. */
-#define ALT_SPIM_RISR_RXOIR_MSB        3
+    #define ALT_SPIM_RISR_RXOIR_MSB           3
 /* The width in bits of the ALT_SPIM_RISR_RXOIR register field. */
-#define ALT_SPIM_RISR_RXOIR_WIDTH      1
+    #define ALT_SPIM_RISR_RXOIR_WIDTH         1
 /* The mask used to set the ALT_SPIM_RISR_RXOIR register field value. */
-#define ALT_SPIM_RISR_RXOIR_SET_MSK    0x00000008
+    #define ALT_SPIM_RISR_RXOIR_SET_MSK       0x00000008
 /* The mask used to clear the ALT_SPIM_RISR_RXOIR register field value. */
-#define ALT_SPIM_RISR_RXOIR_CLR_MSK    0xfffffff7
+    #define ALT_SPIM_RISR_RXOIR_CLR_MSK       0xfffffff7
 /* The reset value of the ALT_SPIM_RISR_RXOIR register field. */
-#define ALT_SPIM_RISR_RXOIR_RESET      0x0
+    #define ALT_SPIM_RISR_RXOIR_RESET         0x0
 /* Extracts the ALT_SPIM_RISR_RXOIR field value from a register. */
-#define ALT_SPIM_RISR_RXOIR_GET(value) (((value) & 0x00000008) >> 3)
+    #define ALT_SPIM_RISR_RXOIR_GET( value )    ( ( ( value ) & 0x00000008 ) >> 3 )
 /* Produces a ALT_SPIM_RISR_RXOIR register field value suitable for setting the register. */
-#define ALT_SPIM_RISR_RXOIR_SET(value) (((value) << 3) & 0x00000008)
+    #define ALT_SPIM_RISR_RXOIR_SET( value )    ( ( ( value ) << 3 ) & 0x00000008 )
 
 /*
  * Field : Receive FIFO Full Raw Interrupt Status - rxfir
@@ -2347,37 +2445,40 @@ typedef volatile struct ALT_SPIM_ISR_s  ALT_SPIM_ISR_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_SPIM_RISR_RXFIR
  *
  * spi_rxf_intr interrupt is not active prior to masking
  */
-#define ALT_SPIM_RISR_RXFIR_E_INACT 0x0
+    #define ALT_SPIM_RISR_RXFIR_E_INACT    0x0
+
 /*
  * Enumerated value for register field ALT_SPIM_RISR_RXFIR
  *
  * spi_rxf_intr interrupt is active prior to masking
  */
-#define ALT_SPIM_RISR_RXFIR_E_ACT   0x1
+    #define ALT_SPIM_RISR_RXFIR_E_ACT      0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_SPIM_RISR_RXFIR register field. */
-#define ALT_SPIM_RISR_RXFIR_LSB        4
+    #define ALT_SPIM_RISR_RXFIR_LSB        4
 /* The Most Significant Bit (MSB) position of the ALT_SPIM_RISR_RXFIR register field. */
-#define ALT_SPIM_RISR_RXFIR_MSB        4
+    #define ALT_SPIM_RISR_RXFIR_MSB        4
 /* The width in bits of the ALT_SPIM_RISR_RXFIR register field. */
-#define ALT_SPIM_RISR_RXFIR_WIDTH      1
+    #define ALT_SPIM_RISR_RXFIR_WIDTH      1
 /* The mask used to set the ALT_SPIM_RISR_RXFIR register field value. */
-#define ALT_SPIM_RISR_RXFIR_SET_MSK    0x00000010
+    #define ALT_SPIM_RISR_RXFIR_SET_MSK    0x00000010
 /* The mask used to clear the ALT_SPIM_RISR_RXFIR register field value. */
-#define ALT_SPIM_RISR_RXFIR_CLR_MSK    0xffffffef
+    #define ALT_SPIM_RISR_RXFIR_CLR_MSK    0xffffffef
 /* The reset value of the ALT_SPIM_RISR_RXFIR register field. */
-#define ALT_SPIM_RISR_RXFIR_RESET      0x0
+    #define ALT_SPIM_RISR_RXFIR_RESET      0x0
 /* Extracts the ALT_SPIM_RISR_RXFIR field value from a register. */
-#define ALT_SPIM_RISR_RXFIR_GET(value) (((value) & 0x00000010) >> 4)
+    #define ALT_SPIM_RISR_RXFIR_GET( value )    ( ( ( value ) & 0x00000010 ) >> 4 )
 /* Produces a ALT_SPIM_RISR_RXFIR register field value suitable for setting the register. */
-#define ALT_SPIM_RISR_RXFIR_SET(value) (((value) << 4) & 0x00000010)
+    #define ALT_SPIM_RISR_RXFIR_SET( value )    ( ( ( value ) << 4 ) & 0x00000010 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -2388,24 +2489,24 @@ typedef volatile struct ALT_SPIM_ISR_s  ALT_SPIM_ISR_t;
  *
  * The struct declaration for register ALT_SPIM_RISR.
  */
-struct ALT_SPIM_RISR_s
-{
-    const uint32_t  txeir :  1;  /* Transmit FIFO Empty Raw Interrupt Status */
-    const uint32_t  txoir :  1;  /* Transmit FIFO Overflow Raw Interrupt Status */
-    const uint32_t  rxuir :  1;  /* Receive FIFO Underflow Raw Interrupt Status */
-    const uint32_t  rxoir :  1;  /* Receive FIFO Overflow Raw Interrupt Status */
-    const uint32_t  rxfir :  1;  /* Receive FIFO Full Raw Interrupt Status */
-    uint32_t              : 27;  /* *UNDEFINED* */
-};
+        struct ALT_SPIM_RISR_s
+        {
+            const uint32_t txeir :  1;  /* Transmit FIFO Empty Raw Interrupt Status */
+            const uint32_t txoir :  1;  /* Transmit FIFO Overflow Raw Interrupt Status */
+            const uint32_t rxuir :  1;  /* Receive FIFO Underflow Raw Interrupt Status */
+            const uint32_t rxoir :  1;  /* Receive FIFO Overflow Raw Interrupt Status */
+            const uint32_t rxfir :  1;  /* Receive FIFO Full Raw Interrupt Status */
+            uint32_t              : 27; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_SPIM_RISR. */
-typedef volatile struct ALT_SPIM_RISR_s  ALT_SPIM_RISR_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_SPIM_RISR_s ALT_SPIM_RISR_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_SPIM_RISR register from the beginning of the component. */
-#define ALT_SPIM_RISR_OFST        0x34
+    #define ALT_SPIM_RISR_OFST    0x34
 /* The address of the ALT_SPIM_RISR register. */
-#define ALT_SPIM_RISR_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_SPIM_RISR_OFST))
+    #define ALT_SPIM_RISR_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_SPIM_RISR_OFST ) )
 
 /*
  * Register : Transmit FIFO Overflow Interrupt Clear Register - txoicr
@@ -2420,6 +2521,7 @@ typedef volatile struct ALT_SPIM_RISR_s  ALT_SPIM_RISR_t;
  *  [31:1] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Clear Transmit FIFO Overflow Interrupt - txoicr
  *
@@ -2430,23 +2532,24 @@ typedef volatile struct ALT_SPIM_RISR_s  ALT_SPIM_RISR_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_SPIM_TXOICR_TXOICR register field. */
-#define ALT_SPIM_TXOICR_TXOICR_LSB        0
+    #define ALT_SPIM_TXOICR_TXOICR_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_SPIM_TXOICR_TXOICR register field. */
-#define ALT_SPIM_TXOICR_TXOICR_MSB        0
+    #define ALT_SPIM_TXOICR_TXOICR_MSB        0
 /* The width in bits of the ALT_SPIM_TXOICR_TXOICR register field. */
-#define ALT_SPIM_TXOICR_TXOICR_WIDTH      1
+    #define ALT_SPIM_TXOICR_TXOICR_WIDTH      1
 /* The mask used to set the ALT_SPIM_TXOICR_TXOICR register field value. */
-#define ALT_SPIM_TXOICR_TXOICR_SET_MSK    0x00000001
+    #define ALT_SPIM_TXOICR_TXOICR_SET_MSK    0x00000001
 /* The mask used to clear the ALT_SPIM_TXOICR_TXOICR register field value. */
-#define ALT_SPIM_TXOICR_TXOICR_CLR_MSK    0xfffffffe
+    #define ALT_SPIM_TXOICR_TXOICR_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_SPIM_TXOICR_TXOICR register field. */
-#define ALT_SPIM_TXOICR_TXOICR_RESET      0x0
+    #define ALT_SPIM_TXOICR_TXOICR_RESET      0x0
 /* Extracts the ALT_SPIM_TXOICR_TXOICR field value from a register. */
-#define ALT_SPIM_TXOICR_TXOICR_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_SPIM_TXOICR_TXOICR_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_SPIM_TXOICR_TXOICR register field value suitable for setting the register. */
-#define ALT_SPIM_TXOICR_TXOICR_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_SPIM_TXOICR_TXOICR_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -2457,20 +2560,20 @@ typedef volatile struct ALT_SPIM_RISR_s  ALT_SPIM_RISR_t;
  *
  * The struct declaration for register ALT_SPIM_TXOICR.
  */
-struct ALT_SPIM_TXOICR_s
-{
-    const uint32_t  txoicr :  1;  /* Clear Transmit FIFO Overflow Interrupt */
-    uint32_t               : 31;  /* *UNDEFINED* */
-};
+        struct ALT_SPIM_TXOICR_s
+        {
+            const uint32_t txoicr :  1;  /* Clear Transmit FIFO Overflow Interrupt */
+            uint32_t               : 31; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_SPIM_TXOICR. */
-typedef volatile struct ALT_SPIM_TXOICR_s  ALT_SPIM_TXOICR_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_SPIM_TXOICR_s ALT_SPIM_TXOICR_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_SPIM_TXOICR register from the beginning of the component. */
-#define ALT_SPIM_TXOICR_OFST        0x38
+    #define ALT_SPIM_TXOICR_OFST    0x38
 /* The address of the ALT_SPIM_TXOICR register. */
-#define ALT_SPIM_TXOICR_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_SPIM_TXOICR_OFST))
+    #define ALT_SPIM_TXOICR_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_SPIM_TXOICR_OFST ) )
 
 /*
  * Register : Receive FIFO Overflow Interrupt Clear Register - rxoicr
@@ -2485,6 +2588,7 @@ typedef volatile struct ALT_SPIM_TXOICR_s  ALT_SPIM_TXOICR_t;
  *  [31:1] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Clear Receive FIFO Overflow Interrupt - rxoicr
  *
@@ -2495,23 +2599,24 @@ typedef volatile struct ALT_SPIM_TXOICR_s  ALT_SPIM_TXOICR_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_SPIM_RXOICR_RXOICR register field. */
-#define ALT_SPIM_RXOICR_RXOICR_LSB        0
+    #define ALT_SPIM_RXOICR_RXOICR_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_SPIM_RXOICR_RXOICR register field. */
-#define ALT_SPIM_RXOICR_RXOICR_MSB        0
+    #define ALT_SPIM_RXOICR_RXOICR_MSB        0
 /* The width in bits of the ALT_SPIM_RXOICR_RXOICR register field. */
-#define ALT_SPIM_RXOICR_RXOICR_WIDTH      1
+    #define ALT_SPIM_RXOICR_RXOICR_WIDTH      1
 /* The mask used to set the ALT_SPIM_RXOICR_RXOICR register field value. */
-#define ALT_SPIM_RXOICR_RXOICR_SET_MSK    0x00000001
+    #define ALT_SPIM_RXOICR_RXOICR_SET_MSK    0x00000001
 /* The mask used to clear the ALT_SPIM_RXOICR_RXOICR register field value. */
-#define ALT_SPIM_RXOICR_RXOICR_CLR_MSK    0xfffffffe
+    #define ALT_SPIM_RXOICR_RXOICR_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_SPIM_RXOICR_RXOICR register field. */
-#define ALT_SPIM_RXOICR_RXOICR_RESET      0x0
+    #define ALT_SPIM_RXOICR_RXOICR_RESET      0x0
 /* Extracts the ALT_SPIM_RXOICR_RXOICR field value from a register. */
-#define ALT_SPIM_RXOICR_RXOICR_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_SPIM_RXOICR_RXOICR_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_SPIM_RXOICR_RXOICR register field value suitable for setting the register. */
-#define ALT_SPIM_RXOICR_RXOICR_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_SPIM_RXOICR_RXOICR_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -2522,20 +2627,20 @@ typedef volatile struct ALT_SPIM_TXOICR_s  ALT_SPIM_TXOICR_t;
  *
  * The struct declaration for register ALT_SPIM_RXOICR.
  */
-struct ALT_SPIM_RXOICR_s
-{
-    const uint32_t  rxoicr :  1;  /* Clear Receive FIFO Overflow Interrupt */
-    uint32_t               : 31;  /* *UNDEFINED* */
-};
+        struct ALT_SPIM_RXOICR_s
+        {
+            const uint32_t rxoicr :  1;  /* Clear Receive FIFO Overflow Interrupt */
+            uint32_t               : 31; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_SPIM_RXOICR. */
-typedef volatile struct ALT_SPIM_RXOICR_s  ALT_SPIM_RXOICR_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_SPIM_RXOICR_s ALT_SPIM_RXOICR_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_SPIM_RXOICR register from the beginning of the component. */
-#define ALT_SPIM_RXOICR_OFST        0x3c
+    #define ALT_SPIM_RXOICR_OFST    0x3c
 /* The address of the ALT_SPIM_RXOICR register. */
-#define ALT_SPIM_RXOICR_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_SPIM_RXOICR_OFST))
+    #define ALT_SPIM_RXOICR_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_SPIM_RXOICR_OFST ) )
 
 /*
  * Register : Receive FIFO Underflow Interrupt Clear Register - rxuicr
@@ -2550,6 +2655,7 @@ typedef volatile struct ALT_SPIM_RXOICR_s  ALT_SPIM_RXOICR_t;
  *  [31:1] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Clear Receive FIFO Underflow Interrupt - rxuicr
  *
@@ -2560,23 +2666,24 @@ typedef volatile struct ALT_SPIM_RXOICR_s  ALT_SPIM_RXOICR_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_SPIM_RXUICR_RXUICR register field. */
-#define ALT_SPIM_RXUICR_RXUICR_LSB        0
+    #define ALT_SPIM_RXUICR_RXUICR_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_SPIM_RXUICR_RXUICR register field. */
-#define ALT_SPIM_RXUICR_RXUICR_MSB        0
+    #define ALT_SPIM_RXUICR_RXUICR_MSB        0
 /* The width in bits of the ALT_SPIM_RXUICR_RXUICR register field. */
-#define ALT_SPIM_RXUICR_RXUICR_WIDTH      1
+    #define ALT_SPIM_RXUICR_RXUICR_WIDTH      1
 /* The mask used to set the ALT_SPIM_RXUICR_RXUICR register field value. */
-#define ALT_SPIM_RXUICR_RXUICR_SET_MSK    0x00000001
+    #define ALT_SPIM_RXUICR_RXUICR_SET_MSK    0x00000001
 /* The mask used to clear the ALT_SPIM_RXUICR_RXUICR register field value. */
-#define ALT_SPIM_RXUICR_RXUICR_CLR_MSK    0xfffffffe
+    #define ALT_SPIM_RXUICR_RXUICR_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_SPIM_RXUICR_RXUICR register field. */
-#define ALT_SPIM_RXUICR_RXUICR_RESET      0x0
+    #define ALT_SPIM_RXUICR_RXUICR_RESET      0x0
 /* Extracts the ALT_SPIM_RXUICR_RXUICR field value from a register. */
-#define ALT_SPIM_RXUICR_RXUICR_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_SPIM_RXUICR_RXUICR_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_SPIM_RXUICR_RXUICR register field value suitable for setting the register. */
-#define ALT_SPIM_RXUICR_RXUICR_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_SPIM_RXUICR_RXUICR_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -2587,20 +2694,20 @@ typedef volatile struct ALT_SPIM_RXOICR_s  ALT_SPIM_RXOICR_t;
  *
  * The struct declaration for register ALT_SPIM_RXUICR.
  */
-struct ALT_SPIM_RXUICR_s
-{
-    const uint32_t  rxuicr :  1;  /* Clear Receive FIFO Underflow Interrupt */
-    uint32_t               : 31;  /* *UNDEFINED* */
-};
+        struct ALT_SPIM_RXUICR_s
+        {
+            const uint32_t rxuicr :  1;  /* Clear Receive FIFO Underflow Interrupt */
+            uint32_t               : 31; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_SPIM_RXUICR. */
-typedef volatile struct ALT_SPIM_RXUICR_s  ALT_SPIM_RXUICR_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_SPIM_RXUICR_s ALT_SPIM_RXUICR_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_SPIM_RXUICR register from the beginning of the component. */
-#define ALT_SPIM_RXUICR_OFST        0x40
+    #define ALT_SPIM_RXUICR_OFST    0x40
 /* The address of the ALT_SPIM_RXUICR register. */
-#define ALT_SPIM_RXUICR_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_SPIM_RXUICR_OFST))
+    #define ALT_SPIM_RXUICR_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_SPIM_RXUICR_OFST ) )
 
 /*
  * Register : Interrupt Clear Register - icr
@@ -2615,6 +2722,7 @@ typedef volatile struct ALT_SPIM_RXUICR_s  ALT_SPIM_RXUICR_t;
  *  [31:1] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Clear Interrupt - icr
  *
@@ -2626,23 +2734,24 @@ typedef volatile struct ALT_SPIM_RXUICR_s  ALT_SPIM_RXUICR_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_SPIM_ICR_ICR register field. */
-#define ALT_SPIM_ICR_ICR_LSB        0
+    #define ALT_SPIM_ICR_ICR_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_SPIM_ICR_ICR register field. */
-#define ALT_SPIM_ICR_ICR_MSB        0
+    #define ALT_SPIM_ICR_ICR_MSB        0
 /* The width in bits of the ALT_SPIM_ICR_ICR register field. */
-#define ALT_SPIM_ICR_ICR_WIDTH      1
+    #define ALT_SPIM_ICR_ICR_WIDTH      1
 /* The mask used to set the ALT_SPIM_ICR_ICR register field value. */
-#define ALT_SPIM_ICR_ICR_SET_MSK    0x00000001
+    #define ALT_SPIM_ICR_ICR_SET_MSK    0x00000001
 /* The mask used to clear the ALT_SPIM_ICR_ICR register field value. */
-#define ALT_SPIM_ICR_ICR_CLR_MSK    0xfffffffe
+    #define ALT_SPIM_ICR_ICR_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_SPIM_ICR_ICR register field. */
-#define ALT_SPIM_ICR_ICR_RESET      0x0
+    #define ALT_SPIM_ICR_ICR_RESET      0x0
 /* Extracts the ALT_SPIM_ICR_ICR field value from a register. */
-#define ALT_SPIM_ICR_ICR_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_SPIM_ICR_ICR_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_SPIM_ICR_ICR register field value suitable for setting the register. */
-#define ALT_SPIM_ICR_ICR_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_SPIM_ICR_ICR_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -2653,20 +2762,20 @@ typedef volatile struct ALT_SPIM_RXUICR_s  ALT_SPIM_RXUICR_t;
  *
  * The struct declaration for register ALT_SPIM_ICR.
  */
-struct ALT_SPIM_ICR_s
-{
-    const uint32_t  icr :  1;  /* Clear Interrupt */
-    uint32_t            : 31;  /* *UNDEFINED* */
-};
+        struct ALT_SPIM_ICR_s
+        {
+            const uint32_t icr :  1;  /* Clear Interrupt */
+            uint32_t            : 31; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_SPIM_ICR. */
-typedef volatile struct ALT_SPIM_ICR_s  ALT_SPIM_ICR_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_SPIM_ICR_s ALT_SPIM_ICR_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_SPIM_ICR register from the beginning of the component. */
-#define ALT_SPIM_ICR_OFST        0x48
+    #define ALT_SPIM_ICR_OFST    0x48
 /* The address of the ALT_SPIM_ICR register. */
-#define ALT_SPIM_ICR_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_SPIM_ICR_OFST))
+    #define ALT_SPIM_ICR_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_SPIM_ICR_OFST ) )
 
 /*
  * Register : DMA Control Register - dmacr
@@ -2682,6 +2791,7 @@ typedef volatile struct ALT_SPIM_ICR_s  ALT_SPIM_ICR_t;
  *  [31:2] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Receive DMA Enable - rdmae
  *
@@ -2697,35 +2807,37 @@ typedef volatile struct ALT_SPIM_ICR_s  ALT_SPIM_ICR_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_SPIM_DMACR_RDMAE
  *
  * Receive DMA disabled
  */
-#define ALT_SPIM_DMACR_RDMAE_E_DISD 0x0
+    #define ALT_SPIM_DMACR_RDMAE_E_DISD     0x0
+
 /*
  * Enumerated value for register field ALT_SPIM_DMACR_RDMAE
  *
  * Receive DMA enabled
  */
-#define ALT_SPIM_DMACR_RDMAE_E_END  0x1
+    #define ALT_SPIM_DMACR_RDMAE_E_END      0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_SPIM_DMACR_RDMAE register field. */
-#define ALT_SPIM_DMACR_RDMAE_LSB        0
+    #define ALT_SPIM_DMACR_RDMAE_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_SPIM_DMACR_RDMAE register field. */
-#define ALT_SPIM_DMACR_RDMAE_MSB        0
+    #define ALT_SPIM_DMACR_RDMAE_MSB        0
 /* The width in bits of the ALT_SPIM_DMACR_RDMAE register field. */
-#define ALT_SPIM_DMACR_RDMAE_WIDTH      1
+    #define ALT_SPIM_DMACR_RDMAE_WIDTH      1
 /* The mask used to set the ALT_SPIM_DMACR_RDMAE register field value. */
-#define ALT_SPIM_DMACR_RDMAE_SET_MSK    0x00000001
+    #define ALT_SPIM_DMACR_RDMAE_SET_MSK    0x00000001
 /* The mask used to clear the ALT_SPIM_DMACR_RDMAE register field value. */
-#define ALT_SPIM_DMACR_RDMAE_CLR_MSK    0xfffffffe
+    #define ALT_SPIM_DMACR_RDMAE_CLR_MSK    0xfffffffe
 /* The reset value of the ALT_SPIM_DMACR_RDMAE register field. */
-#define ALT_SPIM_DMACR_RDMAE_RESET      0x0
+    #define ALT_SPIM_DMACR_RDMAE_RESET      0x0
 /* Extracts the ALT_SPIM_DMACR_RDMAE field value from a register. */
-#define ALT_SPIM_DMACR_RDMAE_GET(value) (((value) & 0x00000001) >> 0)
+    #define ALT_SPIM_DMACR_RDMAE_GET( value )    ( ( ( value ) & 0x00000001 ) >> 0 )
 /* Produces a ALT_SPIM_DMACR_RDMAE register field value suitable for setting the register. */
-#define ALT_SPIM_DMACR_RDMAE_SET(value) (((value) << 0) & 0x00000001)
+    #define ALT_SPIM_DMACR_RDMAE_SET( value )    ( ( ( value ) << 0 ) & 0x00000001 )
 
 /*
  * Field : Transmit DMA Enable - tdmae
@@ -2742,37 +2854,40 @@ typedef volatile struct ALT_SPIM_ICR_s  ALT_SPIM_ICR_t;
  * Field Access Macros:
  *
  */
+
 /*
  * Enumerated value for register field ALT_SPIM_DMACR_TDMAE
  *
  * Transmit DMA disabled
  */
-#define ALT_SPIM_DMACR_TDMAE_E_DISD 0x0
+    #define ALT_SPIM_DMACR_TDMAE_E_DISD     0x0
+
 /*
  * Enumerated value for register field ALT_SPIM_DMACR_TDMAE
  *
  * Transmit DMA enabled
  */
-#define ALT_SPIM_DMACR_TDMAE_E_END  0x1
+    #define ALT_SPIM_DMACR_TDMAE_E_END      0x1
 
 /* The Least Significant Bit (LSB) position of the ALT_SPIM_DMACR_TDMAE register field. */
-#define ALT_SPIM_DMACR_TDMAE_LSB        1
+    #define ALT_SPIM_DMACR_TDMAE_LSB        1
 /* The Most Significant Bit (MSB) position of the ALT_SPIM_DMACR_TDMAE register field. */
-#define ALT_SPIM_DMACR_TDMAE_MSB        1
+    #define ALT_SPIM_DMACR_TDMAE_MSB        1
 /* The width in bits of the ALT_SPIM_DMACR_TDMAE register field. */
-#define ALT_SPIM_DMACR_TDMAE_WIDTH      1
+    #define ALT_SPIM_DMACR_TDMAE_WIDTH      1
 /* The mask used to set the ALT_SPIM_DMACR_TDMAE register field value. */
-#define ALT_SPIM_DMACR_TDMAE_SET_MSK    0x00000002
+    #define ALT_SPIM_DMACR_TDMAE_SET_MSK    0x00000002
 /* The mask used to clear the ALT_SPIM_DMACR_TDMAE register field value. */
-#define ALT_SPIM_DMACR_TDMAE_CLR_MSK    0xfffffffd
+    #define ALT_SPIM_DMACR_TDMAE_CLR_MSK    0xfffffffd
 /* The reset value of the ALT_SPIM_DMACR_TDMAE register field. */
-#define ALT_SPIM_DMACR_TDMAE_RESET      0x0
+    #define ALT_SPIM_DMACR_TDMAE_RESET      0x0
 /* Extracts the ALT_SPIM_DMACR_TDMAE field value from a register. */
-#define ALT_SPIM_DMACR_TDMAE_GET(value) (((value) & 0x00000002) >> 1)
+    #define ALT_SPIM_DMACR_TDMAE_GET( value )    ( ( ( value ) & 0x00000002 ) >> 1 )
 /* Produces a ALT_SPIM_DMACR_TDMAE register field value suitable for setting the register. */
-#define ALT_SPIM_DMACR_TDMAE_SET(value) (((value) << 1) & 0x00000002)
+    #define ALT_SPIM_DMACR_TDMAE_SET( value )    ( ( ( value ) << 1 ) & 0x00000002 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -2783,21 +2898,21 @@ typedef volatile struct ALT_SPIM_ICR_s  ALT_SPIM_ICR_t;
  *
  * The struct declaration for register ALT_SPIM_DMACR.
  */
-struct ALT_SPIM_DMACR_s
-{
-    uint32_t  rdmae :  1;  /* Receive DMA Enable */
-    uint32_t  tdmae :  1;  /* Transmit DMA Enable */
-    uint32_t        : 30;  /* *UNDEFINED* */
-};
+        struct ALT_SPIM_DMACR_s
+        {
+            uint32_t rdmae :  1;  /* Receive DMA Enable */
+            uint32_t tdmae :  1;  /* Transmit DMA Enable */
+            uint32_t        : 30; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_SPIM_DMACR. */
-typedef volatile struct ALT_SPIM_DMACR_s  ALT_SPIM_DMACR_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_SPIM_DMACR_s ALT_SPIM_DMACR_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_SPIM_DMACR register from the beginning of the component. */
-#define ALT_SPIM_DMACR_OFST        0x4c
+    #define ALT_SPIM_DMACR_OFST    0x4c
 /* The address of the ALT_SPIM_DMACR register. */
-#define ALT_SPIM_DMACR_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_SPIM_DMACR_OFST))
+    #define ALT_SPIM_DMACR_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_SPIM_DMACR_OFST ) )
 
 /*
  * Register : DMA Transmit Data Level Register - dmatdlr
@@ -2812,6 +2927,7 @@ typedef volatile struct ALT_SPIM_DMACR_s  ALT_SPIM_DMACR_t;
  *  [31:8] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Transmit Data Level - dmatdl
  *
@@ -2824,23 +2940,24 @@ typedef volatile struct ALT_SPIM_DMACR_s  ALT_SPIM_DMACR_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_SPIM_DMATDLR_DMATDL register field. */
-#define ALT_SPIM_DMATDLR_DMATDL_LSB        0
+    #define ALT_SPIM_DMATDLR_DMATDL_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_SPIM_DMATDLR_DMATDL register field. */
-#define ALT_SPIM_DMATDLR_DMATDL_MSB        7
+    #define ALT_SPIM_DMATDLR_DMATDL_MSB        7
 /* The width in bits of the ALT_SPIM_DMATDLR_DMATDL register field. */
-#define ALT_SPIM_DMATDLR_DMATDL_WIDTH      8
+    #define ALT_SPIM_DMATDLR_DMATDL_WIDTH      8
 /* The mask used to set the ALT_SPIM_DMATDLR_DMATDL register field value. */
-#define ALT_SPIM_DMATDLR_DMATDL_SET_MSK    0x000000ff
+    #define ALT_SPIM_DMATDLR_DMATDL_SET_MSK    0x000000ff
 /* The mask used to clear the ALT_SPIM_DMATDLR_DMATDL register field value. */
-#define ALT_SPIM_DMATDLR_DMATDL_CLR_MSK    0xffffff00
+    #define ALT_SPIM_DMATDLR_DMATDL_CLR_MSK    0xffffff00
 /* The reset value of the ALT_SPIM_DMATDLR_DMATDL register field. */
-#define ALT_SPIM_DMATDLR_DMATDL_RESET      0x0
+    #define ALT_SPIM_DMATDLR_DMATDL_RESET      0x0
 /* Extracts the ALT_SPIM_DMATDLR_DMATDL field value from a register. */
-#define ALT_SPIM_DMATDLR_DMATDL_GET(value) (((value) & 0x000000ff) >> 0)
+    #define ALT_SPIM_DMATDLR_DMATDL_GET( value )    ( ( ( value ) & 0x000000ff ) >> 0 )
 /* Produces a ALT_SPIM_DMATDLR_DMATDL register field value suitable for setting the register. */
-#define ALT_SPIM_DMATDLR_DMATDL_SET(value) (((value) << 0) & 0x000000ff)
+    #define ALT_SPIM_DMATDLR_DMATDL_SET( value )    ( ( ( value ) << 0 ) & 0x000000ff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -2851,20 +2968,20 @@ typedef volatile struct ALT_SPIM_DMACR_s  ALT_SPIM_DMACR_t;
  *
  * The struct declaration for register ALT_SPIM_DMATDLR.
  */
-struct ALT_SPIM_DMATDLR_s
-{
-    uint32_t  dmatdl :  8;  /* Transmit Data Level */
-    uint32_t         : 24;  /* *UNDEFINED* */
-};
+        struct ALT_SPIM_DMATDLR_s
+        {
+            uint32_t dmatdl :  8;  /* Transmit Data Level */
+            uint32_t         : 24; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_SPIM_DMATDLR. */
-typedef volatile struct ALT_SPIM_DMATDLR_s  ALT_SPIM_DMATDLR_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_SPIM_DMATDLR_s ALT_SPIM_DMATDLR_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_SPIM_DMATDLR register from the beginning of the component. */
-#define ALT_SPIM_DMATDLR_OFST        0x50
+    #define ALT_SPIM_DMATDLR_OFST    0x50
 /* The address of the ALT_SPIM_DMATDLR register. */
-#define ALT_SPIM_DMATDLR_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_SPIM_DMATDLR_OFST))
+    #define ALT_SPIM_DMATDLR_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_SPIM_DMATDLR_OFST ) )
 
 /*
  * Register : DMA Receive Data Level Register - dmardlr
@@ -2879,6 +2996,7 @@ typedef volatile struct ALT_SPIM_DMATDLR_s  ALT_SPIM_DMATDLR_t;
  *  [31:8] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Receive Data Level - dmardl
  *
@@ -2891,23 +3009,24 @@ typedef volatile struct ALT_SPIM_DMATDLR_s  ALT_SPIM_DMATDLR_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_SPIM_DMARDLR_DMARDL register field. */
-#define ALT_SPIM_DMARDLR_DMARDL_LSB        0
+    #define ALT_SPIM_DMARDLR_DMARDL_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_SPIM_DMARDLR_DMARDL register field. */
-#define ALT_SPIM_DMARDLR_DMARDL_MSB        7
+    #define ALT_SPIM_DMARDLR_DMARDL_MSB        7
 /* The width in bits of the ALT_SPIM_DMARDLR_DMARDL register field. */
-#define ALT_SPIM_DMARDLR_DMARDL_WIDTH      8
+    #define ALT_SPIM_DMARDLR_DMARDL_WIDTH      8
 /* The mask used to set the ALT_SPIM_DMARDLR_DMARDL register field value. */
-#define ALT_SPIM_DMARDLR_DMARDL_SET_MSK    0x000000ff
+    #define ALT_SPIM_DMARDLR_DMARDL_SET_MSK    0x000000ff
 /* The mask used to clear the ALT_SPIM_DMARDLR_DMARDL register field value. */
-#define ALT_SPIM_DMARDLR_DMARDL_CLR_MSK    0xffffff00
+    #define ALT_SPIM_DMARDLR_DMARDL_CLR_MSK    0xffffff00
 /* The reset value of the ALT_SPIM_DMARDLR_DMARDL register field. */
-#define ALT_SPIM_DMARDLR_DMARDL_RESET      0x0
+    #define ALT_SPIM_DMARDLR_DMARDL_RESET      0x0
 /* Extracts the ALT_SPIM_DMARDLR_DMARDL field value from a register. */
-#define ALT_SPIM_DMARDLR_DMARDL_GET(value) (((value) & 0x000000ff) >> 0)
+    #define ALT_SPIM_DMARDLR_DMARDL_GET( value )    ( ( ( value ) & 0x000000ff ) >> 0 )
 /* Produces a ALT_SPIM_DMARDLR_DMARDL register field value suitable for setting the register. */
-#define ALT_SPIM_DMARDLR_DMARDL_SET(value) (((value) << 0) & 0x000000ff)
+    #define ALT_SPIM_DMARDLR_DMARDL_SET( value )    ( ( ( value ) << 0 ) & 0x000000ff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -2918,20 +3037,20 @@ typedef volatile struct ALT_SPIM_DMATDLR_s  ALT_SPIM_DMATDLR_t;
  *
  * The struct declaration for register ALT_SPIM_DMARDLR.
  */
-struct ALT_SPIM_DMARDLR_s
-{
-    uint32_t  dmardl :  8;  /* Receive Data Level */
-    uint32_t         : 24;  /* *UNDEFINED* */
-};
+        struct ALT_SPIM_DMARDLR_s
+        {
+            uint32_t dmardl :  8;  /* Receive Data Level */
+            uint32_t         : 24; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_SPIM_DMARDLR. */
-typedef volatile struct ALT_SPIM_DMARDLR_s  ALT_SPIM_DMARDLR_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_SPIM_DMARDLR_s ALT_SPIM_DMARDLR_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_SPIM_DMARDLR register from the beginning of the component. */
-#define ALT_SPIM_DMARDLR_OFST        0x54
+    #define ALT_SPIM_DMARDLR_OFST    0x54
 /* The address of the ALT_SPIM_DMARDLR register. */
-#define ALT_SPIM_DMARDLR_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_SPIM_DMARDLR_OFST))
+    #define ALT_SPIM_DMARDLR_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_SPIM_DMARDLR_OFST ) )
 
 /*
  * Register : Identification Register - idr
@@ -2945,6 +3064,7 @@ typedef volatile struct ALT_SPIM_DMARDLR_s  ALT_SPIM_DMARDLR_t;
  *  [31:0] | R      | 0x5510000 | Identification Register
  *
  */
+
 /*
  * Field : Identification Register - idr
  *
@@ -2954,23 +3074,24 @@ typedef volatile struct ALT_SPIM_DMARDLR_s  ALT_SPIM_DMARDLR_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_SPIM_IDR_IDR register field. */
-#define ALT_SPIM_IDR_IDR_LSB        0
+    #define ALT_SPIM_IDR_IDR_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_SPIM_IDR_IDR register field. */
-#define ALT_SPIM_IDR_IDR_MSB        31
+    #define ALT_SPIM_IDR_IDR_MSB        31
 /* The width in bits of the ALT_SPIM_IDR_IDR register field. */
-#define ALT_SPIM_IDR_IDR_WIDTH      32
+    #define ALT_SPIM_IDR_IDR_WIDTH      32
 /* The mask used to set the ALT_SPIM_IDR_IDR register field value. */
-#define ALT_SPIM_IDR_IDR_SET_MSK    0xffffffff
+    #define ALT_SPIM_IDR_IDR_SET_MSK    0xffffffff
 /* The mask used to clear the ALT_SPIM_IDR_IDR register field value. */
-#define ALT_SPIM_IDR_IDR_CLR_MSK    0x00000000
+    #define ALT_SPIM_IDR_IDR_CLR_MSK    0x00000000
 /* The reset value of the ALT_SPIM_IDR_IDR register field. */
-#define ALT_SPIM_IDR_IDR_RESET      0x5510000
+    #define ALT_SPIM_IDR_IDR_RESET      0x5510000
 /* Extracts the ALT_SPIM_IDR_IDR field value from a register. */
-#define ALT_SPIM_IDR_IDR_GET(value) (((value) & 0xffffffff) >> 0)
+    #define ALT_SPIM_IDR_IDR_GET( value )    ( ( ( value ) & 0xffffffff ) >> 0 )
 /* Produces a ALT_SPIM_IDR_IDR register field value suitable for setting the register. */
-#define ALT_SPIM_IDR_IDR_SET(value) (((value) << 0) & 0xffffffff)
+    #define ALT_SPIM_IDR_IDR_SET( value )    ( ( ( value ) << 0 ) & 0xffffffff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -2981,19 +3102,19 @@ typedef volatile struct ALT_SPIM_DMARDLR_s  ALT_SPIM_DMARDLR_t;
  *
  * The struct declaration for register ALT_SPIM_IDR.
  */
-struct ALT_SPIM_IDR_s
-{
-    const uint32_t  idr : 32;  /* Identification Register */
-};
+        struct ALT_SPIM_IDR_s
+        {
+            const uint32_t idr : 32; /* Identification Register */
+        };
 
 /* The typedef declaration for register ALT_SPIM_IDR. */
-typedef volatile struct ALT_SPIM_IDR_s  ALT_SPIM_IDR_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_SPIM_IDR_s ALT_SPIM_IDR_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_SPIM_IDR register from the beginning of the component. */
-#define ALT_SPIM_IDR_OFST        0x58
+    #define ALT_SPIM_IDR_OFST    0x58
 /* The address of the ALT_SPIM_IDR register. */
-#define ALT_SPIM_IDR_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_SPIM_IDR_OFST))
+    #define ALT_SPIM_IDR_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_SPIM_IDR_OFST ) )
 
 /*
  * Register : Component Version Register - spi_version_id
@@ -3007,6 +3128,7 @@ typedef volatile struct ALT_SPIM_IDR_s  ALT_SPIM_IDR_t;
  *  [31:0] | RW     | 0x3332302a | Version ID Code
  *
  */
+
 /*
  * Field : Version ID Code - spi_version_id
  *
@@ -3017,23 +3139,24 @@ typedef volatile struct ALT_SPIM_IDR_s  ALT_SPIM_IDR_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_SPIM_SPI_VER_ID_SPI_VER_ID register field. */
-#define ALT_SPIM_SPI_VER_ID_SPI_VER_ID_LSB        0
+    #define ALT_SPIM_SPI_VER_ID_SPI_VER_ID_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_SPIM_SPI_VER_ID_SPI_VER_ID register field. */
-#define ALT_SPIM_SPI_VER_ID_SPI_VER_ID_MSB        31
+    #define ALT_SPIM_SPI_VER_ID_SPI_VER_ID_MSB        31
 /* The width in bits of the ALT_SPIM_SPI_VER_ID_SPI_VER_ID register field. */
-#define ALT_SPIM_SPI_VER_ID_SPI_VER_ID_WIDTH      32
+    #define ALT_SPIM_SPI_VER_ID_SPI_VER_ID_WIDTH      32
 /* The mask used to set the ALT_SPIM_SPI_VER_ID_SPI_VER_ID register field value. */
-#define ALT_SPIM_SPI_VER_ID_SPI_VER_ID_SET_MSK    0xffffffff
+    #define ALT_SPIM_SPI_VER_ID_SPI_VER_ID_SET_MSK    0xffffffff
 /* The mask used to clear the ALT_SPIM_SPI_VER_ID_SPI_VER_ID register field value. */
-#define ALT_SPIM_SPI_VER_ID_SPI_VER_ID_CLR_MSK    0x00000000
+    #define ALT_SPIM_SPI_VER_ID_SPI_VER_ID_CLR_MSK    0x00000000
 /* The reset value of the ALT_SPIM_SPI_VER_ID_SPI_VER_ID register field. */
-#define ALT_SPIM_SPI_VER_ID_SPI_VER_ID_RESET      0x3332302a
+    #define ALT_SPIM_SPI_VER_ID_SPI_VER_ID_RESET      0x3332302a
 /* Extracts the ALT_SPIM_SPI_VER_ID_SPI_VER_ID field value from a register. */
-#define ALT_SPIM_SPI_VER_ID_SPI_VER_ID_GET(value) (((value) & 0xffffffff) >> 0)
+    #define ALT_SPIM_SPI_VER_ID_SPI_VER_ID_GET( value )    ( ( ( value ) & 0xffffffff ) >> 0 )
 /* Produces a ALT_SPIM_SPI_VER_ID_SPI_VER_ID register field value suitable for setting the register. */
-#define ALT_SPIM_SPI_VER_ID_SPI_VER_ID_SET(value) (((value) << 0) & 0xffffffff)
+    #define ALT_SPIM_SPI_VER_ID_SPI_VER_ID_SET( value )    ( ( ( value ) << 0 ) & 0xffffffff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -3044,19 +3167,19 @@ typedef volatile struct ALT_SPIM_IDR_s  ALT_SPIM_IDR_t;
  *
  * The struct declaration for register ALT_SPIM_SPI_VER_ID.
  */
-struct ALT_SPIM_SPI_VER_ID_s
-{
-    uint32_t  spi_version_id : 32;  /* Version ID Code */
-};
+        struct ALT_SPIM_SPI_VER_ID_s
+        {
+            uint32_t spi_version_id : 32; /* Version ID Code */
+        };
 
 /* The typedef declaration for register ALT_SPIM_SPI_VER_ID. */
-typedef volatile struct ALT_SPIM_SPI_VER_ID_s  ALT_SPIM_SPI_VER_ID_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_SPIM_SPI_VER_ID_s ALT_SPIM_SPI_VER_ID_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_SPIM_SPI_VER_ID register from the beginning of the component. */
-#define ALT_SPIM_SPI_VER_ID_OFST        0x5c
+    #define ALT_SPIM_SPI_VER_ID_OFST    0x5c
 /* The address of the ALT_SPIM_SPI_VER_ID register. */
-#define ALT_SPIM_SPI_VER_ID_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_SPIM_SPI_VER_ID_OFST))
+    #define ALT_SPIM_SPI_VER_ID_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_SPIM_SPI_VER_ID_OFST ) )
 
 /*
  * Register : Data Register - dr
@@ -3078,6 +3201,7 @@ typedef volatile struct ALT_SPIM_SPI_VER_ID_s  ALT_SPIM_SPI_VER_ID_t;
  *  [31:16] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Data - dr
  *
@@ -3092,23 +3216,24 @@ typedef volatile struct ALT_SPIM_SPI_VER_ID_s  ALT_SPIM_SPI_VER_ID_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_SPIM_DR_DR register field. */
-#define ALT_SPIM_DR_DR_LSB        0
+    #define ALT_SPIM_DR_DR_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_SPIM_DR_DR register field. */
-#define ALT_SPIM_DR_DR_MSB        15
+    #define ALT_SPIM_DR_DR_MSB        15
 /* The width in bits of the ALT_SPIM_DR_DR register field. */
-#define ALT_SPIM_DR_DR_WIDTH      16
+    #define ALT_SPIM_DR_DR_WIDTH      16
 /* The mask used to set the ALT_SPIM_DR_DR register field value. */
-#define ALT_SPIM_DR_DR_SET_MSK    0x0000ffff
+    #define ALT_SPIM_DR_DR_SET_MSK    0x0000ffff
 /* The mask used to clear the ALT_SPIM_DR_DR register field value. */
-#define ALT_SPIM_DR_DR_CLR_MSK    0xffff0000
+    #define ALT_SPIM_DR_DR_CLR_MSK    0xffff0000
 /* The reset value of the ALT_SPIM_DR_DR register field. */
-#define ALT_SPIM_DR_DR_RESET      0x0
+    #define ALT_SPIM_DR_DR_RESET      0x0
 /* Extracts the ALT_SPIM_DR_DR field value from a register. */
-#define ALT_SPIM_DR_DR_GET(value) (((value) & 0x0000ffff) >> 0)
+    #define ALT_SPIM_DR_DR_GET( value )    ( ( ( value ) & 0x0000ffff ) >> 0 )
 /* Produces a ALT_SPIM_DR_DR register field value suitable for setting the register. */
-#define ALT_SPIM_DR_DR_SET(value) (((value) << 0) & 0x0000ffff)
+    #define ALT_SPIM_DR_DR_SET( value )    ( ( ( value ) << 0 ) & 0x0000ffff )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -3119,20 +3244,20 @@ typedef volatile struct ALT_SPIM_SPI_VER_ID_s  ALT_SPIM_SPI_VER_ID_t;
  *
  * The struct declaration for register ALT_SPIM_DR.
  */
-struct ALT_SPIM_DR_s
-{
-    uint32_t  dr : 16;  /* Data */
-    uint32_t     : 16;  /* *UNDEFINED* */
-};
+        struct ALT_SPIM_DR_s
+        {
+            uint32_t dr : 16;  /* Data */
+            uint32_t     : 16; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_SPIM_DR. */
-typedef volatile struct ALT_SPIM_DR_s  ALT_SPIM_DR_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_SPIM_DR_s ALT_SPIM_DR_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_SPIM_DR register from the beginning of the component. */
-#define ALT_SPIM_DR_OFST        0x60
+    #define ALT_SPIM_DR_OFST    0x60
 /* The address of the ALT_SPIM_DR register. */
-#define ALT_SPIM_DR_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_SPIM_DR_OFST))
+    #define ALT_SPIM_DR_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_SPIM_DR_OFST ) )
 
 /*
  * Register : RX Sample Delay Register - rx_sample_dly
@@ -3150,6 +3275,7 @@ typedef volatile struct ALT_SPIM_DR_s  ALT_SPIM_DR_t;
  *  [31:7] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : Receive Data Sample Delay - rsd
  *
@@ -3163,23 +3289,24 @@ typedef volatile struct ALT_SPIM_DR_s  ALT_SPIM_DR_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_SPIM_RX_SMPL_DLY_RSD register field. */
-#define ALT_SPIM_RX_SMPL_DLY_RSD_LSB        0
+    #define ALT_SPIM_RX_SMPL_DLY_RSD_LSB        0
 /* The Most Significant Bit (MSB) position of the ALT_SPIM_RX_SMPL_DLY_RSD register field. */
-#define ALT_SPIM_RX_SMPL_DLY_RSD_MSB        6
+    #define ALT_SPIM_RX_SMPL_DLY_RSD_MSB        6
 /* The width in bits of the ALT_SPIM_RX_SMPL_DLY_RSD register field. */
-#define ALT_SPIM_RX_SMPL_DLY_RSD_WIDTH      7
+    #define ALT_SPIM_RX_SMPL_DLY_RSD_WIDTH      7
 /* The mask used to set the ALT_SPIM_RX_SMPL_DLY_RSD register field value. */
-#define ALT_SPIM_RX_SMPL_DLY_RSD_SET_MSK    0x0000007f
+    #define ALT_SPIM_RX_SMPL_DLY_RSD_SET_MSK    0x0000007f
 /* The mask used to clear the ALT_SPIM_RX_SMPL_DLY_RSD register field value. */
-#define ALT_SPIM_RX_SMPL_DLY_RSD_CLR_MSK    0xffffff80
+    #define ALT_SPIM_RX_SMPL_DLY_RSD_CLR_MSK    0xffffff80
 /* The reset value of the ALT_SPIM_RX_SMPL_DLY_RSD register field. */
-#define ALT_SPIM_RX_SMPL_DLY_RSD_RESET      0x0
+    #define ALT_SPIM_RX_SMPL_DLY_RSD_RESET      0x0
 /* Extracts the ALT_SPIM_RX_SMPL_DLY_RSD field value from a register. */
-#define ALT_SPIM_RX_SMPL_DLY_RSD_GET(value) (((value) & 0x0000007f) >> 0)
+    #define ALT_SPIM_RX_SMPL_DLY_RSD_GET( value )    ( ( ( value ) & 0x0000007f ) >> 0 )
 /* Produces a ALT_SPIM_RX_SMPL_DLY_RSD register field value suitable for setting the register. */
-#define ALT_SPIM_RX_SMPL_DLY_RSD_SET(value) (((value) << 0) & 0x0000007f)
+    #define ALT_SPIM_RX_SMPL_DLY_RSD_SET( value )    ( ( ( value ) << 0 ) & 0x0000007f )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -3190,22 +3317,23 @@ typedef volatile struct ALT_SPIM_DR_s  ALT_SPIM_DR_t;
  *
  * The struct declaration for register ALT_SPIM_RX_SMPL_DLY.
  */
-struct ALT_SPIM_RX_SMPL_DLY_s
-{
-    uint32_t  rsd :  7;  /* Receive Data Sample Delay */
-    uint32_t      : 25;  /* *UNDEFINED* */
-};
+        struct ALT_SPIM_RX_SMPL_DLY_s
+        {
+            uint32_t rsd :  7;  /* Receive Data Sample Delay */
+            uint32_t      : 25; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_SPIM_RX_SMPL_DLY. */
-typedef volatile struct ALT_SPIM_RX_SMPL_DLY_s  ALT_SPIM_RX_SMPL_DLY_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_SPIM_RX_SMPL_DLY_s ALT_SPIM_RX_SMPL_DLY_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_SPIM_RX_SMPL_DLY register from the beginning of the component. */
-#define ALT_SPIM_RX_SMPL_DLY_OFST        0xfc
+    #define ALT_SPIM_RX_SMPL_DLY_OFST    0xfc
 /* The address of the ALT_SPIM_RX_SMPL_DLY register. */
-#define ALT_SPIM_RX_SMPL_DLY_ADDR(base)  ALT_CAST(void *, (ALT_CAST(char *, (base)) + ALT_SPIM_RX_SMPL_DLY_OFST))
+    #define ALT_SPIM_RX_SMPL_DLY_ADDR( base )    ALT_CAST( void *, ( ALT_CAST( char *, ( base ) ) + ALT_SPIM_RX_SMPL_DLY_OFST ) )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -3216,78 +3344,77 @@ typedef volatile struct ALT_SPIM_RX_SMPL_DLY_s  ALT_SPIM_RX_SMPL_DLY_t;
  *
  * The struct declaration for register group ALT_SPIM.
  */
-struct ALT_SPIM_s
-{
-    volatile ALT_SPIM_CTLR0_t        ctrlr0;              /* ALT_SPIM_CTLR0 */
-    volatile ALT_SPIM_CTLR1_t        ctrlr1;              /* ALT_SPIM_CTLR1 */
-    volatile ALT_SPIM_SPIENR_t       spienr;              /* ALT_SPIM_SPIENR */
-    volatile ALT_SPIM_MWCR_t         mwcr;                /* ALT_SPIM_MWCR */
-    volatile ALT_SPIM_SER_t          ser;                 /* ALT_SPIM_SER */
-    volatile ALT_SPIM_BAUDR_t        baudr;               /* ALT_SPIM_BAUDR */
-    volatile ALT_SPIM_TXFTLR_t       txftlr;              /* ALT_SPIM_TXFTLR */
-    volatile ALT_SPIM_RXFTLR_t       rxftlr;              /* ALT_SPIM_RXFTLR */
-    volatile ALT_SPIM_TXFLR_t        txflr;               /* ALT_SPIM_TXFLR */
-    volatile ALT_SPIM_RXFLR_t        rxflr;               /* ALT_SPIM_RXFLR */
-    volatile ALT_SPIM_SR_t           sr;                  /* ALT_SPIM_SR */
-    volatile ALT_SPIM_IMR_t          imr;                 /* ALT_SPIM_IMR */
-    volatile ALT_SPIM_ISR_t          isr;                 /* ALT_SPIM_ISR */
-    volatile ALT_SPIM_RISR_t         risr;                /* ALT_SPIM_RISR */
-    volatile ALT_SPIM_TXOICR_t       txoicr;              /* ALT_SPIM_TXOICR */
-    volatile ALT_SPIM_RXOICR_t       rxoicr;              /* ALT_SPIM_RXOICR */
-    volatile ALT_SPIM_RXUICR_t       rxuicr;              /* ALT_SPIM_RXUICR */
-    volatile uint32_t                _pad_0x44_0x47;      /* *UNDEFINED* */
-    volatile ALT_SPIM_ICR_t          icr;                 /* ALT_SPIM_ICR */
-    volatile ALT_SPIM_DMACR_t        dmacr;               /* ALT_SPIM_DMACR */
-    volatile ALT_SPIM_DMATDLR_t      dmatdlr;             /* ALT_SPIM_DMATDLR */
-    volatile ALT_SPIM_DMARDLR_t      dmardlr;             /* ALT_SPIM_DMARDLR */
-    volatile ALT_SPIM_IDR_t          idr;                 /* ALT_SPIM_IDR */
-    volatile ALT_SPIM_SPI_VER_ID_t   spi_version_id;      /* ALT_SPIM_SPI_VER_ID */
-    volatile ALT_SPIM_DR_t           dr;                  /* ALT_SPIM_DR */
-    volatile uint32_t                _pad_0x64_0xfb[38];  /* *UNDEFINED* */
-    volatile ALT_SPIM_RX_SMPL_DLY_t  rx_sample_dly;       /* ALT_SPIM_RX_SMPL_DLY */
-};
+        struct ALT_SPIM_s
+        {
+            volatile ALT_SPIM_CTLR0_t ctrlr0;              /* ALT_SPIM_CTLR0 */
+            volatile ALT_SPIM_CTLR1_t ctrlr1;              /* ALT_SPIM_CTLR1 */
+            volatile ALT_SPIM_SPIENR_t spienr;             /* ALT_SPIM_SPIENR */
+            volatile ALT_SPIM_MWCR_t mwcr;                 /* ALT_SPIM_MWCR */
+            volatile ALT_SPIM_SER_t ser;                   /* ALT_SPIM_SER */
+            volatile ALT_SPIM_BAUDR_t baudr;               /* ALT_SPIM_BAUDR */
+            volatile ALT_SPIM_TXFTLR_t txftlr;             /* ALT_SPIM_TXFTLR */
+            volatile ALT_SPIM_RXFTLR_t rxftlr;             /* ALT_SPIM_RXFTLR */
+            volatile ALT_SPIM_TXFLR_t txflr;               /* ALT_SPIM_TXFLR */
+            volatile ALT_SPIM_RXFLR_t rxflr;               /* ALT_SPIM_RXFLR */
+            volatile ALT_SPIM_SR_t sr;                     /* ALT_SPIM_SR */
+            volatile ALT_SPIM_IMR_t imr;                   /* ALT_SPIM_IMR */
+            volatile ALT_SPIM_ISR_t isr;                   /* ALT_SPIM_ISR */
+            volatile ALT_SPIM_RISR_t risr;                 /* ALT_SPIM_RISR */
+            volatile ALT_SPIM_TXOICR_t txoicr;             /* ALT_SPIM_TXOICR */
+            volatile ALT_SPIM_RXOICR_t rxoicr;             /* ALT_SPIM_RXOICR */
+            volatile ALT_SPIM_RXUICR_t rxuicr;             /* ALT_SPIM_RXUICR */
+            volatile uint32_t _pad_0x44_0x47;              /* *UNDEFINED* */
+            volatile ALT_SPIM_ICR_t icr;                   /* ALT_SPIM_ICR */
+            volatile ALT_SPIM_DMACR_t dmacr;               /* ALT_SPIM_DMACR */
+            volatile ALT_SPIM_DMATDLR_t dmatdlr;           /* ALT_SPIM_DMATDLR */
+            volatile ALT_SPIM_DMARDLR_t dmardlr;           /* ALT_SPIM_DMARDLR */
+            volatile ALT_SPIM_IDR_t idr;                   /* ALT_SPIM_IDR */
+            volatile ALT_SPIM_SPI_VER_ID_t spi_version_id; /* ALT_SPIM_SPI_VER_ID */
+            volatile ALT_SPIM_DR_t dr;                     /* ALT_SPIM_DR */
+            volatile uint32_t _pad_0x64_0xfb[ 38 ];        /* *UNDEFINED* */
+            volatile ALT_SPIM_RX_SMPL_DLY_t rx_sample_dly; /* ALT_SPIM_RX_SMPL_DLY */
+        };
 
 /* The typedef declaration for register group ALT_SPIM. */
-typedef volatile struct ALT_SPIM_s  ALT_SPIM_t;
+        typedef volatile struct ALT_SPIM_s ALT_SPIM_t;
 /* The struct declaration for the raw register contents of register group ALT_SPIM. */
-struct ALT_SPIM_raw_s
-{
-    volatile uint32_t  ctrlr0;              /* ALT_SPIM_CTLR0 */
-    volatile uint32_t  ctrlr1;              /* ALT_SPIM_CTLR1 */
-    volatile uint32_t  spienr;              /* ALT_SPIM_SPIENR */
-    volatile uint32_t  mwcr;                /* ALT_SPIM_MWCR */
-    volatile uint32_t  ser;                 /* ALT_SPIM_SER */
-    volatile uint32_t  baudr;               /* ALT_SPIM_BAUDR */
-    volatile uint32_t  txftlr;              /* ALT_SPIM_TXFTLR */
-    volatile uint32_t  rxftlr;              /* ALT_SPIM_RXFTLR */
-    volatile uint32_t  txflr;               /* ALT_SPIM_TXFLR */
-    volatile uint32_t  rxflr;               /* ALT_SPIM_RXFLR */
-    volatile uint32_t  sr;                  /* ALT_SPIM_SR */
-    volatile uint32_t  imr;                 /* ALT_SPIM_IMR */
-    volatile uint32_t  isr;                 /* ALT_SPIM_ISR */
-    volatile uint32_t  risr;                /* ALT_SPIM_RISR */
-    volatile uint32_t  txoicr;              /* ALT_SPIM_TXOICR */
-    volatile uint32_t  rxoicr;              /* ALT_SPIM_RXOICR */
-    volatile uint32_t  rxuicr;              /* ALT_SPIM_RXUICR */
-    volatile uint32_t  _pad_0x44_0x47;      /* *UNDEFINED* */
-    volatile uint32_t  icr;                 /* ALT_SPIM_ICR */
-    volatile uint32_t  dmacr;               /* ALT_SPIM_DMACR */
-    volatile uint32_t  dmatdlr;             /* ALT_SPIM_DMATDLR */
-    volatile uint32_t  dmardlr;             /* ALT_SPIM_DMARDLR */
-    volatile uint32_t  idr;                 /* ALT_SPIM_IDR */
-    volatile uint32_t  spi_version_id;      /* ALT_SPIM_SPI_VER_ID */
-    volatile uint32_t  dr;                  /* ALT_SPIM_DR */
-    volatile uint32_t  _pad_0x64_0xfb[38];  /* *UNDEFINED* */
-    volatile uint32_t  rx_sample_dly;       /* ALT_SPIM_RX_SMPL_DLY */
-};
+        struct ALT_SPIM_raw_s
+        {
+            volatile uint32_t ctrlr0;               /* ALT_SPIM_CTLR0 */
+            volatile uint32_t ctrlr1;               /* ALT_SPIM_CTLR1 */
+            volatile uint32_t spienr;               /* ALT_SPIM_SPIENR */
+            volatile uint32_t mwcr;                 /* ALT_SPIM_MWCR */
+            volatile uint32_t ser;                  /* ALT_SPIM_SER */
+            volatile uint32_t baudr;                /* ALT_SPIM_BAUDR */
+            volatile uint32_t txftlr;               /* ALT_SPIM_TXFTLR */
+            volatile uint32_t rxftlr;               /* ALT_SPIM_RXFTLR */
+            volatile uint32_t txflr;                /* ALT_SPIM_TXFLR */
+            volatile uint32_t rxflr;                /* ALT_SPIM_RXFLR */
+            volatile uint32_t sr;                   /* ALT_SPIM_SR */
+            volatile uint32_t imr;                  /* ALT_SPIM_IMR */
+            volatile uint32_t isr;                  /* ALT_SPIM_ISR */
+            volatile uint32_t risr;                 /* ALT_SPIM_RISR */
+            volatile uint32_t txoicr;               /* ALT_SPIM_TXOICR */
+            volatile uint32_t rxoicr;               /* ALT_SPIM_RXOICR */
+            volatile uint32_t rxuicr;               /* ALT_SPIM_RXUICR */
+            volatile uint32_t _pad_0x44_0x47;       /* *UNDEFINED* */
+            volatile uint32_t icr;                  /* ALT_SPIM_ICR */
+            volatile uint32_t dmacr;                /* ALT_SPIM_DMACR */
+            volatile uint32_t dmatdlr;              /* ALT_SPIM_DMATDLR */
+            volatile uint32_t dmardlr;              /* ALT_SPIM_DMARDLR */
+            volatile uint32_t idr;                  /* ALT_SPIM_IDR */
+            volatile uint32_t spi_version_id;       /* ALT_SPIM_SPI_VER_ID */
+            volatile uint32_t dr;                   /* ALT_SPIM_DR */
+            volatile uint32_t _pad_0x64_0xfb[ 38 ]; /* *UNDEFINED* */
+            volatile uint32_t rx_sample_dly;        /* ALT_SPIM_RX_SMPL_DLY */
+        };
 
 /* The typedef declaration for the raw register contents of register group ALT_SPIM. */
-typedef volatile struct ALT_SPIM_raw_s  ALT_SPIM_raw_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_SPIM_raw_s ALT_SPIM_raw_t;
+    #endif /* __ASSEMBLY__ */
 
 
-#ifdef __cplusplus
+    #ifdef __cplusplus
 }
-#endif  /* __cplusplus */
-#endif  /* __ALTERA_ALT_SPIM_H__ */
-
+    #endif /* __cplusplus */
+#endif /* __ALTERA_ALT_SPIM_H__ */

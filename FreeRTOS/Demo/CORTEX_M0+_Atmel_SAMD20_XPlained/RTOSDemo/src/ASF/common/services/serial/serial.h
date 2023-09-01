@@ -55,18 +55,18 @@
  */
 
 #if XMEGA
-# include "xmega_usart/usart_serial.h"
+    #include "xmega_usart/usart_serial.h"
 #elif MEGA_RF
-# include "megarf_usart/usart_serial.h"
+    #include "megarf_usart/usart_serial.h"
 #elif UC3
-# include "uc3_usart/usart_serial.h"
+    #include "uc3_usart/usart_serial.h"
 #elif SAMD20
-#include "sam0_usart/usart_serial.h"
+    #include "sam0_usart/usart_serial.h"
 #elif SAM
-# include "sam_uart/uart_serial.h"
+    #include "sam_uart/uart_serial.h"
 #else
-# error Unsupported chip type
-#endif
+    #error Unsupported chip type
+#endif /* if XMEGA */
 
 /**
  *
@@ -99,7 +99,7 @@
  * @{
  */
 
-//! @}
+/*! @} */
 
 /**
  * \page serial_quickstart Quick start guide for Serial Interface service

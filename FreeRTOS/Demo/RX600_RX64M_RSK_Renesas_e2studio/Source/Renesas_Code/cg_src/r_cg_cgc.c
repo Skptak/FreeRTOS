@@ -32,13 +32,13 @@
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-Pragma directive
+*  Pragma directive
 ***********************************************************************************************************************/
 /* Start user code for pragma. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
 
 /***********************************************************************************************************************
-Includes
+*  Includes
 ***********************************************************************************************************************/
 #include "r_cg_macrodriver.h"
 #include "r_cg_cgc.h"
@@ -47,7 +47,7 @@ Includes
 #include "r_cg_userdefine.h"
 
 /***********************************************************************************************************************
-Global variables and functions
+*  Global variables and functions
 ***********************************************************************************************************************/
 /* Start user code for global. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
@@ -58,7 +58,7 @@ Global variables and functions
 * Arguments    : None
 * Return Value : None
 ***********************************************************************************************************************/
-void R_CGC_Create(void)
+void R_CGC_Create( void )
 {
     /* Set main clock control registers */
     SYSTEM.MOFCR.BYTE = _00_CGC_MAINOSC_RESONATOR | _00_CGC_MAINOSC_UNDER24M;
@@ -68,7 +68,9 @@ void R_CGC_Create(void)
     SYSTEM.MOSCCR.BIT.MOSTP = 0U;
 
     /* Wait for main clock oscillator wait counter overflow */
-    while (1U != SYSTEM.OSCOVFSR.BIT.MOOVF);
+    while( 1U != SYSTEM.OSCOVFSR.BIT.MOOVF )
+    {
+    }
 
     /* Set system clock */
     SYSTEM.SCKCR.LONG = _00000001_CGC_PCLKD_DIV_2 | _00000010_CGC_PCLKC_DIV_2 | _00000100_CGC_PCLKB_DIV_2 |
@@ -81,14 +83,17 @@ void R_CGC_Create(void)
     SYSTEM.PLLCR.WORD = _0001_CGC_PLL_FREQ_DIV_2 | _1300_CGC_PLL_FREQ_MUL_10_0;
 
     /* Wait for PLL wait counter overflow */
-    while (1U != SYSTEM.OSCOVFSR.BIT.PLOVF);
-
+    while( 1U != SYSTEM.OSCOVFSR.BIT.PLOVF )
+    {
+    }
 
     /* Disable sub-clock */
     SYSTEM.SOSCCR.BIT.SOSTP = 1U;
 
     /* Wait for the register modification to complete */
-    while (1U != SYSTEM.SOSCCR.BIT.SOSTP);
+    while( 1U != SYSTEM.SOSCCR.BIT.SOSTP )
+    {
+    }
 
     /* Set LOCO */
     SYSTEM.LOCOCR.BIT.LCSTP = 0U;

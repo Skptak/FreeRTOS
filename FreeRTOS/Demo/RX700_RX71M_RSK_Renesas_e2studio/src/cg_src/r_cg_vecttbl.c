@@ -27,25 +27,26 @@
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-Pragma directive
+*  Pragma directive
 ***********************************************************************************************************************/
 /* Start user code for pragma. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
 
 /***********************************************************************************************************************
-Includes
+*  Includes
 ***********************************************************************************************************************/
 #include "r_cg_macrodriver.h"
 #include "r_cg_vect.h"
 #include "r_cg_userdefine.h"
 
 /***********************************************************************************************************************
-Global variables and functions
+*  Global variables and functions
 ***********************************************************************************************************************/
 
 #pragma section C EXCEPTVECT
 
-void (*const Excpt_Vectors[])(void) = {
+void( *const Excpt_Vectors[] )( void ) =
+{
 /*;0xffffff80  Reserved */
     r_reserved_exception,
 /*;0xffffff84  Reserved */
@@ -111,10 +112,12 @@ void (*const Excpt_Vectors[])(void) = {
 };
 
 #pragma section C RESETVECT
-void (*const Reset_Vectors[])(void) = {
+void( *const Reset_Vectors[] )( void ) =
+{
 /*;<<VECTOR DATA START (POWER ON RESET)>> */
 /*;Power On Reset PC */
-    /*(void*)*/ PowerON_Reset_PC
+    /*(void*)*/
+    PowerON_Reset_PC
 /*;<<VECTOR DATA END (POWER ON RESET)>> */
 };
 
@@ -148,7 +151,8 @@ const unsigned long __TMEFreg = 0xffffffff;
 
 /* OSIC register (ID codes) */
 #pragma address __OSISreg=0x00120050
-const unsigned long __OSISreg[4] = {
+const unsigned long __OSISreg[ 4 ] =
+{
     0xFFFFFFFF,
     0xFFFFFFFF,
     0xFFFFFFFF,
@@ -159,4 +163,3 @@ const unsigned long __OSISreg[4] = {
 #pragma address __TMINFreg=0x00120060
 const unsigned long __TMINFreg = 0xffffffff;
 /* End user code. Do not edit comment generated here */
-

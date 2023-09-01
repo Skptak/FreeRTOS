@@ -194,7 +194,7 @@
         #define TRC_HWTC_FREQ_HZ          TRACE_CPU_CLOCK_HZ
         #define TRC_IRQ_PRIORITY_ORDER    0
 
-    #else  /* if ( ( __CORTEX_M >= 0x03 ) && ( !defined TRC_CFG_ARM_CM_USE_SYSTICK ) ) */
+    #else /* if ( ( __CORTEX_M >= 0x03 ) && ( !defined TRC_CFG_ARM_CM_USE_SYSTICK ) ) */
 
         #define TRC_HWTC_TYPE             TRC_OS_TIMER_DECR
         #define TRC_HWTC_COUNT            ( *( ( volatile uint32_t * ) 0xE000E018 ) )
@@ -393,7 +393,7 @@
 
     #define NOT_SET              1
 
-/* The base address for the sustem timer set.
+/* The base address for the system timer set.
  * The name user for the system timer can be found in the BSP editor.
  * If the name of the timer is sys_tmr SYSTEM_TIMER_BASE should be set to SYS_TMR_BASE.
  */
@@ -564,7 +564,7 @@
         #define TRC_HWTC_PERIOD           0
         #define TRC_HWTC_DIVISOR          4
         #define TRC_IRQ_PRIORITY_ORDER    0
-    #else  /* if CONFIG_FREERTOS_UNICORE == 1 */
+    #else /* if CONFIG_FREERTOS_UNICORE == 1 */
 
 /**
  * @brief   Fetch core agnostic timestamp using the external 40MHz timer. This is used by tracerecorder

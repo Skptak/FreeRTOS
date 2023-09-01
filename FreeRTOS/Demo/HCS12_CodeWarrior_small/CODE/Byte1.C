@@ -61,9 +61,9 @@
 #include "Cpu.h"
 
 /* Definition of DATA and CODE segments for this bean. User can specify where
-   these segments will be located on "Build options" tab of the selected CPU bean. */
-#pragma DATA_SEG Byte1_DATA            /* Data section for this module. */
-#pragma CODE_SEG Byte1_CODE            /* Code section for this module. */
+ * these segments will be located on "Build options" tab of the selected CPU bean. */
+#pragma DATA_SEG Byte1_DATA /* Data section for this module. */
+#pragma CODE_SEG Byte1_CODE /* Code section for this module. */
 
 /*
 ** ===================================================================
@@ -74,11 +74,11 @@
 **         only.
 ** ===================================================================
 */
-byte Byte1_Table[8]={ 1, 2, 4, 8, 16, 32, 64, 128 }; /* Table of mask constants */
+byte Byte1_Table[ 8 ] = { 1, 2, 4, 8, 16, 32, 64, 128 }; /* Table of mask constants */
 
-byte Byte1_GetMsk(byte Value)
+byte Byte1_GetMsk( byte Value )
 {
-  return((Value<8)?Byte1_Table[Value]:0); /* Return appropriate bit mask */
+    return( ( Value < 8 ) ? Byte1_Table[ Value ] : 0 ); /* Return appropriate bit mask */
 }
 
 /*
@@ -96,16 +96,21 @@ byte Byte1_GetMsk(byte Value)
 **     Returns     : Nothing
 ** ===================================================================
 */
-void Byte1_PutBit(byte BitNum, byte Value)
+void Byte1_PutBit( byte BitNum,
+                   byte Value )
 {
-  byte Mask=Byte1_GetMsk(BitNum);      /* Temporary variable - bit mask */
+    byte Mask = Byte1_GetMsk( BitNum ); /* Temporary variable - bit mask */
 
-  if (Mask)                            /* Is bit mask correct? */
-    if (Value) {                       /* Is it one to be written? */
-      PORTB |= Mask;                   /* Set appropriate bit on port */
-    }
-    else {                             /* Is it zero to be written? */
-      PORTB &= ~Mask;                  /* Clear appropriate bit on port */
+    if( Mask )                          /* Is bit mask correct? */
+    {
+        if( Value )                     /* Is it one to be written? */
+        {
+            PORTB |= Mask;              /* Set appropriate bit on port */
+        }
+        else /* Is it zero to be written? */
+        {
+            PORTB &= ~Mask; /* Clear appropriate bit on port */
+        }
     }
 }
 
@@ -122,13 +127,14 @@ void Byte1_PutBit(byte BitNum, byte Value)
 **     Returns     : Nothing
 ** ===================================================================
 */
-void Byte1_NegBit(byte BitNum)
+void Byte1_NegBit( byte BitNum )
 {
-  byte Mask=Byte1_GetMsk(BitNum);      /* Temporary variable - bit mask */
+    byte Mask = Byte1_GetMsk( BitNum ); /* Temporary variable - bit mask */
 
-  if (Mask) {                          /* Is bit mask correct? */
-    PORTB ^= Mask;                     /* Negate appropriate bit on port */
-  }
+    if( Mask )                          /* Is bit mask correct? */
+    {
+        PORTB ^= Mask;                  /* Negate appropriate bit on port */
+    }
 }
 
 

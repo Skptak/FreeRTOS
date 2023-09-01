@@ -37,10 +37,11 @@
 /***********************
 *** PUBLIC FUNCTIONS ***
 ***********************/
+
 /*
  * Initialize the random number generator.
  */
-void avRandomInit(void);
+void avRandomInit( void );
 
 /*
  * Churn the randomness pool on a random event.  Call this early and often
@@ -50,16 +51,17 @@ void avRandomInit(void);
  *	If new random data is available, pass a pointer to that and it will be
  *	included.
  */
-void avChurnRand(char *randData, u32_t randLen);
+void avChurnRand( char * randData,
+                  u32_t randLen );
 
 /*
  * Randomize our random seed value.  To be called for truely random events
  * such as user operations and network traffic.
  */
 #if MD5_SUPPORT
-#define avRandomize()	avChurnRand(NULL, 0)
+    #define avRandomize()    avChurnRand( NULL, 0 )
 #else
-void avRandomize(void);
+    void avRandomize( void );
 #endif
 
 /*
@@ -70,12 +72,13 @@ void avRandomize(void);
  *	least some degree.  Also, it's important to get a good seed before
  *	the first use.
  */
-void avGenRand(char *buf, u32_t bufLen);
+void avGenRand( char * buf,
+                u32_t bufLen );
 
 /*
  * Return a new random number.
  */
-u32_t avRandom(void);
+u32_t avRandom( void );
 
 
 #endif /* RANDM_H */

@@ -16,6 +16,7 @@
 *
 * Copyright (C) 2015 Renesas Electronics Corporation. All rights reserved.
 ***********************************************************************************************************************/
+
 /***********************************************************************************************************************
 * File Name    : rskrx231def.h
 * Device(s)    : R5F52318AxFP
@@ -23,49 +24,49 @@
 * H/W Platform : RSKRX231
 * Description  : Defines macros relating to the RSKRX231 user LEDs and switches
 ***********************************************************************************************************************/
+
 /**********************************************************************************************************************
-* History : DD.MM.YYYY Version  Description
-*         : 01.06.2015 1.00     First Release
-***********************************************************************************************************************/
+ * History : DD.MM.YYYY Version  Description
+ *         : 01.06.2015 1.00     First Release
+ ***********************************************************************************************************************/
 
 
 /***********************************************************************************************************************
-Macro definitions
+*  Macro definitions
 ***********************************************************************************************************************/
 #ifndef RSKRX231_H
 #define RSKRX231_H
 
 
 /* General Values */
-#define LED_ON          (0)
-#define LED_OFF         (1)
-#define SET_BIT_HIGH    (1)
-#define SET_BIT_LOW     (0)
-#define SET_BYTE_HIGH   (0xFF)
-#define SET_BYTE_LOW    (0x00)
+#define LED_ON           ( 0 )
+#define LED_OFF          ( 1 )
+#define SET_BIT_HIGH     ( 1 )
+#define SET_BIT_LOW      ( 0 )
+#define SET_BYTE_HIGH    ( 0xFF )
+#define SET_BYTE_LOW     ( 0x00 )
 
 /* Switches */
-#define SW1             (PORT3.PIDR.BIT.B1)
-#define SW2             (PORT3.PIDR.BIT.B4)
-#define SW3             (PORT0.PIDR.BIT.B7)
+#define SW1              ( PORT3.PIDR.BIT.B1 )
+#define SW2              ( PORT3.PIDR.BIT.B4 )
+#define SW3              ( PORT0.PIDR.BIT.B7 )
 
 /* LED port settings */
-#define LED0            (PORT1.PODR.BIT.B7)
-#define LED1            (PORT5.PODR.BIT.B0)
-#define LED2            (PORT5.PODR.BIT.B1)
-#define LED3            (PORT5.PODR.BIT.B2)
+#define LED0             ( PORT1.PODR.BIT.B7 )
+#define LED1             ( PORT5.PODR.BIT.B0 )
+#define LED2             ( PORT5.PODR.BIT.B1 )
+#define LED3             ( PORT5.PODR.BIT.B2 )
 
 /***********************************************************************************************************************
-Typedef definitions
+*  Typedef definitions
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-Exported global variables
+*  Exported global variables
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-Exported global functions (to be accessed by other files)
+*  Exported global functions (to be accessed by other files)
 ***********************************************************************************************************************/
 
-#endif
-
+#endif /* ifndef RSKRX231_H */

@@ -33,16 +33,17 @@
  */
 
 #ifndef __ALT_NAND_FLASH_H__
-#define __ALT_NAND_FLASH_H__
+    #define __ALT_NAND_FLASH_H__
 
-#include "hwlib.h"
+    #include "hwlib.h"
 
-#ifdef __cplusplus
-extern "C"
-{
-#endif  /* __cplusplus */
+    #ifdef __cplusplus
+        extern "C"
+        {
+    #endif /* __cplusplus */
 
 /******************************************************************************/
+
 /*! \addtogroup ALT_NAND_FLASH NAND Flash Controller
  *
  * This module defines an API for configuration and management of access to NAND
@@ -61,7 +62,7 @@ extern "C"
  * optional hardware assisted ECC protection. This module does not provide higher
  * level flash I/O features such as a flash file system or capabilities for bad
  * block life cycle management or wear leveling.
-
+ *
  * Support of certain operational features may be device dependent and therefore
  * it is important to consult the data sheet for the specific NAND flash device
  * that the NAND flash controller will interface to.
@@ -131,7 +132,8 @@ extern "C"
  *              parameter is user defined and is passed when the asynchronous
  *              operation is initiated.
  */
-typedef void (*alt_nand_callback_t)(ALT_STATUS_CODE status, void *callback_arg);
+    typedef void (* alt_nand_callback_t)( ALT_STATUS_CODE status,
+                                          void * callback_arg );
 
 /*!
  * Type definition for a user defined custom flash device initialization
@@ -154,7 +156,7 @@ typedef void (*alt_nand_callback_t)(ALT_STATUS_CODE status, void *callback_arg);
  * \retval      ALT_E_SUCCESS   Custom flash device initialization was successful.
  * \retval      ALT_E_ERROR     Custom flash device initialization failed.
  */
-typedef ALT_STATUS_CODE (*alt_nand_flash_custom_init_t)(void *user_arg);
+    typedef ALT_STATUS_CODE (* alt_nand_flash_custom_init_t)( void * user_arg );
 
 /*!
  * This function initializes the NAND flash controller and attached flash device by:
@@ -238,10 +240,10 @@ typedef ALT_STATUS_CODE (*alt_nand_flash_custom_init_t)(void *user_arg);
  *
  * \endinternal
  */
-ALT_STATUS_CODE alt_nand_flash_init(const bool load_block0_page0,
-                                    const bool page_size_512,
-                                    alt_nand_flash_custom_init_t custom_init,
-                                    void *user_arg);
+    ALT_STATUS_CODE alt_nand_flash_init( const bool load_block0_page0,
+                                         const bool page_size_512,
+                                         alt_nand_flash_custom_init_t custom_init,
+                                         void * user_arg );
 
 /*!
  * Uninitialize the NAND flash controller.
@@ -255,12 +257,12 @@ ALT_STATUS_CODE alt_nand_flash_init(const bool load_block0_page0,
  * \internal
  * \endinternal
  */
-ALT_STATUS_CODE alt_nand_flash_uninit(void);
+    ALT_STATUS_CODE alt_nand_flash_uninit( void );
 
 /*!
  * Defines an value to represent an invalid or bad flash device address.
  */
-#define ALT_NAND_INVALID_FLASH_ADDR     0xffffffff
+    #define ALT_NAND_INVALID_FLASH_ADDR    0xffffffff
 
 /*!
  * Returns the block number of the specified block or page address. The returned
@@ -274,7 +276,7 @@ ALT_STATUS_CODE alt_nand_flash_uninit(void);
  * \returns     The bit 0 right aligned block address portion of the \e addr
  *              argument.
  */
-uint32_t alt_nand_block_address_get(const uint32_t addr);
+    uint32_t alt_nand_block_address_get( const uint32_t addr );
 
 /*!
  * Returns the page number of the specified block or page address. The returned
@@ -288,7 +290,7 @@ uint32_t alt_nand_block_address_get(const uint32_t addr);
  * \returns     The bit 0 right aligned page address portion of the \e addr
  *              argument.
  */
-uint32_t alt_nand_page_address_get(const uint32_t addr);
+    uint32_t alt_nand_page_address_get( const uint32_t addr );
 
 /*!
  * Returns a valid block or page address for a flash device with the given block
@@ -308,8 +310,8 @@ uint32_t alt_nand_page_address_get(const uint32_t addr);
  *              device. ALT_NAND_INVALID_FLASH_ADDR is returned if either of the \e
  *              block_num or \e page_num arguments is invalid for the device.
  */
-uint32_t alt_nand_flash_addr_compose(const uint32_t block_num,
-                                     const uint32_t page_num);
+    uint32_t alt_nand_flash_addr_compose( const uint32_t block_num,
+                                          const uint32_t page_num );
 
 /*!
  * Erases the designated flash device block.
@@ -347,9 +349,9 @@ uint32_t alt_nand_flash_addr_compose(const uint32_t block_num,
  * Command to erase a single block (section 5.2.3.1 of Cadence DB).
  * \endinternal
  */
-ALT_STATUS_CODE alt_nand_flash_block_erase(const uint32_t block_addr,
-                                           alt_nand_callback_t completion_callback,
-                                           void *completion_arg);
+    ALT_STATUS_CODE alt_nand_flash_block_erase( const uint32_t block_addr,
+                                                alt_nand_callback_t completion_callback,
+                                                void * completion_arg );
 
 /*!
  * Read one or more pages from the flash device.
@@ -391,7 +393,7 @@ ALT_STATUS_CODE alt_nand_flash_block_erase(const uint32_t block_addr,
  * * Pipeline Read-Ahead and Write-Ahead Operations
  *
  * Map01 Commands (section 5.2.2 of Cadence DB).
-
+ *
  * Pipeline read-ahead operations (sections 5.2.3.6 and 5.2.3.6.1 of Cadence DB).
  *
  * Do not use Map00 in this implementation. ECC correction is not performed while
@@ -404,10 +406,10 @@ ALT_STATUS_CODE alt_nand_flash_block_erase(const uint32_t block_addr,
  * Use pipeline read-ahead technique to optimize multi-page reads.
  * \endinternal
  */
-ALT_STATUS_CODE alt_nand_flash_page_read(const uint32_t page_addr,
-                                         const uint32_t num_pages,
-                                         void *dest,
-                                         const uint32_t dest_size);
+    ALT_STATUS_CODE alt_nand_flash_page_read( const uint32_t page_addr,
+                                              const uint32_t num_pages,
+                                              void * dest,
+                                              const uint32_t dest_size );
 
 /*!
  * Write one or more pages to the flash device.
@@ -439,10 +441,10 @@ ALT_STATUS_CODE alt_nand_flash_page_read(const uint32_t page_addr,
  * \internal
  * \endinternal
  */
-ALT_STATUS_CODE alt_nand_flash_page_write(const uint32_t page_addr,
-                                          const uint32_t num_pages,
-                                          const void *src,
-                                          const uint32_t src_size);
+    ALT_STATUS_CODE alt_nand_flash_page_write( const uint32_t page_addr,
+                                               const uint32_t num_pages,
+                                               const void * src,
+                                               const uint32_t src_size );
 
 /*!
  * Read one or more pages from the flash device using the NAND flash controller's
@@ -492,12 +494,13 @@ ALT_STATUS_CODE alt_nand_flash_page_write(const uint32_t page_addr,
  * * Pipeline Read-Ahead and Write-Ahead Operations
  * \endinternal
  */
-ALT_STATUS_CODE alt_nand_flash_page_dma_read(const uint32_t page_addr,
-                                             const uint32_t num_pages,
-                                             void *dest,
-                                             const uint32_t dest_size,
-                                             alt_nand_callback_t completion_callback,
-                                             void *completion_arg);
+    ALT_STATUS_CODE alt_nand_flash_page_dma_read( const uint32_t page_addr,
+                                                  const uint32_t num_pages,
+                                                  void * dest,
+                                                  const uint32_t dest_size,
+                                                  alt_nand_callback_t completion_callback,
+                                                  void * completion_arg );
+
 /*!
  * Write one or more pages to the flash device using the NAND flash controller's
  * internal DMA. The write operation proceeds asynchronously with a user callback
@@ -544,24 +547,24 @@ ALT_STATUS_CODE alt_nand_flash_page_dma_read(const uint32_t page_addr,
  * * Pipeline Read-Ahead and Write-Ahead Operations
  * \endinternal
  */
-ALT_STATUS_CODE alt_nand_flash_page_dma_write(const uint32_t page_addr,
-                                              const uint32_t num_pages,
-                                              const void *src,
-                                              const uint32_t src_size,
-                                              alt_nand_callback_t completion_callback,
-                                              void *completion_arg);
+    ALT_STATUS_CODE alt_nand_flash_page_dma_write( const uint32_t page_addr,
+                                                   const uint32_t num_pages,
+                                                   const void * src,
+                                                   const uint32_t src_size,
+                                                   alt_nand_callback_t completion_callback,
+                                                   void * completion_arg );
 
 /*!
  * This type definition enumerates the possible ECC correction code bit encodings
  * and their applicability to sector size.
  */
-typedef enum ALT_NAND_ECC_CORRECTION_e
-{
-    ALT_NAND_ECC_4_BIT_CORRECTION      = 4,    /*!< Performs 4 bit correction over a 512 byte sector */
-    ALT_NAND_ECC_8_BIT_CORRECTION      = 8,    /*!< Performs 8 bit correction over a 512 byte sector */
-    ALT_NAND_ECC_16_BIT_CORRECTION     = 16,   /*!< Performs 16 bit correction over a 512 byte sector */
-    ALT_NAND_ECC_24_BIT_CORRECTION     = 24    /*!< Performs 24 bit correction over a 1024 byte sector */
-} ALT_NAND_ECC_CORRECTION_t;
+    typedef enum ALT_NAND_ECC_CORRECTION_e
+    {
+        ALT_NAND_ECC_4_BIT_CORRECTION = 4,   /*!< Performs 4 bit correction over a 512 byte sector */
+        ALT_NAND_ECC_8_BIT_CORRECTION = 8,   /*!< Performs 8 bit correction over a 512 byte sector */
+        ALT_NAND_ECC_16_BIT_CORRECTION = 16, /*!< Performs 16 bit correction over a 512 byte sector */
+        ALT_NAND_ECC_24_BIT_CORRECTION = 24  /*!< Performs 24 bit correction over a 1024 byte sector */
+    } ALT_NAND_ECC_CORRECTION_t;
 
 /*!
  * Enable hardware ECC protection for the flash device.
@@ -579,7 +582,7 @@ typedef enum ALT_NAND_ECC_CORRECTION_e
  * See: Cadence DB - Section 11.4 ECC Enabling
  * \endinternal
  */
-ALT_STATUS_CODE alt_nand_flash_ecc_enable(const ALT_NAND_ECC_CORRECTION_t ecc_correction);
+    ALT_STATUS_CODE alt_nand_flash_ecc_enable( const ALT_NAND_ECC_CORRECTION_t ecc_correction );
 
 /*!
  * Disable hardware ECC protection for the flash device.
@@ -591,16 +594,16 @@ ALT_STATUS_CODE alt_nand_flash_ecc_enable(const ALT_NAND_ECC_CORRECTION_t ecc_co
  * See: Cadence DB - Section 11.4 ECC Enabling
  * \endinternal
  */
-ALT_STATUS_CODE alt_nand_flash_ecc_disable(void);
+    ALT_STATUS_CODE alt_nand_flash_ecc_disable( void );
 
 
 /*!
  * This type defines a structure for accessing the ECC error correction
  * information for the last transaction completed by the NAND flash controller.
  */
-typedef struct ALT_NAND_FLASH_ECC_STATUS_s
-{
-    uint32_t    corrected_errors[4];    /*!< Maximum of number of errors corrected
+    typedef struct ALT_NAND_FLASH_ECC_STATUS_s
+    {
+        uint32_t corrected_errors[ 4 ]; /*!< Maximum of number of errors corrected
                                          *   per sector in a bank. This field is
                                          *   not valid for uncorrectable errors. A
                                          *   value of zero indicates that no ECC
@@ -608,7 +611,7 @@ typedef struct ALT_NAND_FLASH_ECC_STATUS_s
                                          *   transaction. Index \e n corressponds
                                          *   to bank \e n.
                                          */
-    bool        uncorrected_error[4];   /*!< \b true if an uncorrectable error
+        bool uncorrected_error[ 4 ];    /*!< \b true if an uncorrectable error
                                          *   occurred while reading pages for last
                                          *   transaction in a bank.  Uncorrectable
                                          *   errors also generate
@@ -616,7 +619,7 @@ typedef struct ALT_NAND_FLASH_ECC_STATUS_s
                                          *   interrupt status conditions.  Index
                                          *   \e n corressponds to bank \e n.
                                          */
-} ALT_NAND_FLASH_ECC_STATUS_t;
+    } ALT_NAND_FLASH_ECC_STATUS_t;
 
 /*!
  * Gets the ECC error correction information for the last transaction completed by
@@ -634,7 +637,7 @@ typedef struct ALT_NAND_FLASH_ECC_STATUS_s
  * nandregs.ecc.ECCCorInfo_b23
  * \endinternal
  */
-ALT_STATUS_CODE alt_nand_flash_ecc_status_get(ALT_NAND_FLASH_ECC_STATUS_t *ecc_status);
+    ALT_STATUS_CODE alt_nand_flash_ecc_status_get( ALT_NAND_FLASH_ECC_STATUS_t * ecc_status );
 
 /*!
  * This type definition enumerates the interrupt status conditions for the NAND
@@ -673,104 +676,119 @@ ALT_STATUS_CODE alt_nand_flash_ecc_status_get(ALT_NAND_FLASH_ECC_STATUS_t *ecc_s
  * - DMA command complete
  * - Uncorrectable ECC error
  */
-typedef enum ALT_NAND_INT_STATUS_e
-{
-    ALT_NAND_INT_STATUS_PAGE_XFER_INC           = (1 << 15),
-                                                /*!< For every page of data
-                                                 *   transfer to or from the
-                                                 *   device, this status will be
-                                                 *   set.
-                                                 */
-    ALT_NAND_INT_STATUS_PIPE_CMD_ERR            = (1 << 14),
-                                                /*!< A pipeline command sequence
-                                                 *   has been violated. This
-                                                 *   occurs when MAP01 page
-                                                 *   read/write address does not
-                                                 *   match the corresponding
-                                                 *   expected address from the
-                                                 *   pipeline commands issued
-                                                 *   earlier.
-                                                 */
-    ALT_NAND_INT_STATUS_RST_COMP                = (1 << 13),
-                                                /*!< The NAND flash controller
-                                                 *   has finished reset and
-                                                 *   initialization process.
-                                                 */
-    ALT_NAND_INT_STATUS_INT_ACT                 = (1 << 12),
-                                                /*!< R/B pin of device
-                                                 *   transitioned from low to
-                                                 *   high.
-                                                 */
-    ALT_NAND_INT_STATUS_UNSUP_CMD               = (1 << 11),
-                                                /*!< An unsupported command was
-                                                 *   received. This interrupt is
-                                                 *   set when an invalid command
-                                                 *   is received, or when a
-                                                 *   command sequence is broken.
-                                                 */
-    ALT_NAND_INT_STATUS_LOCKED_BLK              = (1 << 10),
-                                                /*!< The address to program or
-                                                 *   erase operation is to a
-                                                 *   locked block and the
-                                                 *   operation failed due to this
-                                                 *   reason.
-                                                 */
-    ALT_NAND_INT_STATUS_PIPE_CPYBCK_CMD_COMP    = (1 << 9),
-                                                /*!< A pipeline command or a
-                                                 *   copyback bank command has
-                                                 *   completed on this particular
-                                                 *   bank.
-                                                 */
-    ALT_NAND_INT_STATUS_ERASE_COMP              = (1 << 8),
-                                                /*!< Device erase operation
-                                                 *   complete.
-                                                 */
-    ALT_NAND_INT_STATUS_PROGRAM_COMP            = (1 << 7),
-                                                /*!< Device finished the last
-                                                 *   issued program command.
-                                                 */
-    ALT_NAND_INT_STATUS_LOAD_COMP               = (1 << 6),
-                                                /*!< Device finished the last
-                                                 *   issued load command.
-                                                 */
-    ALT_NAND_INT_STATUS_ERASE_FAIL              = (1 << 5),
-                                                /*!< Erase failure occurred in the
-                                                 *   device on issuance of a erase
-                                                 *   command. err_block_addr and
-                                                 *   err_page_addr contain the
-                                                 *   block address and page
-                                                 *   address that failed erase
-                                                 *   operation.
-                                                 */
-    ALT_NAND_INT_STATUS_PROGRAM_FAIL            = (1 << 4),
-                                                /*!< Program failure occurred in
-                                                 *   the device on issuance of a
-                                                 *   program
-                                                 *   command. err_block_addr and
-                                                 *   err_page_addr contain the
-                                                 *   block address and page
-                                                 *   address that failed program
-                                                 *   operation.
-                                                 */
-    ALT_NAND_INT_STATUS_TIME_OUT                = (1 << 3),
-                                                /*!< Watchdog timer has triggered
-                                                 *   in the controller due to one
-                                                 *   of the reasons like device
-                                                 *   not responding or controller
-                                                 *   state machine did not get
-                                                 *   back to idle.
-                                                 */
-    ALT_NAND_INT_STATUS_DMA_CMD_COMP            = (1 << 2),
-                                                /*!< A data DMA command has
-                                                 *   completed on this bank.
-                                                 */
-    ALT_NAND_INT_STATUS_ECC_UNCOR_ERR           = (1 << 0)
-                                                /*!< ECC logic detected
-                                                 *   uncorrectable error while
-                                                 *   reading data from flash
-                                                 *   device.
-                                                 */
-} ALT_NAND_INT_STATUS_t;
+    typedef enum ALT_NAND_INT_STATUS_e
+    {
+        ALT_NAND_INT_STATUS_PAGE_XFER_INC = ( 1 << 15 ),
+
+        /*!< For every page of data
+         *   transfer to or from the
+         *   device, this status will be
+         *   set.
+         */
+        ALT_NAND_INT_STATUS_PIPE_CMD_ERR = ( 1 << 14 ),
+
+        /*!< A pipeline command sequence
+         *   has been violated. This
+         *   occurs when MAP01 page
+         *   read/write address does not
+         *   match the corresponding
+         *   expected address from the
+         *   pipeline commands issued
+         *   earlier.
+         */
+        ALT_NAND_INT_STATUS_RST_COMP = ( 1 << 13 ),
+
+        /*!< The NAND flash controller
+         *   has finished reset and
+         *   initialization process.
+         */
+        ALT_NAND_INT_STATUS_INT_ACT = ( 1 << 12 ),
+
+        /*!< R/B pin of device
+         *   transitioned from low to
+         *   high.
+         */
+        ALT_NAND_INT_STATUS_UNSUP_CMD = ( 1 << 11 ),
+
+        /*!< An unsupported command was
+         *   received. This interrupt is
+         *   set when an invalid command
+         *   is received, or when a
+         *   command sequence is broken.
+         */
+        ALT_NAND_INT_STATUS_LOCKED_BLK = ( 1 << 10 ),
+
+        /*!< The address to program or
+         *   erase operation is to a
+         *   locked block and the
+         *   operation failed due to this
+         *   reason.
+         */
+        ALT_NAND_INT_STATUS_PIPE_CPYBCK_CMD_COMP = ( 1 << 9 ),
+
+        /*!< A pipeline command or a
+         *   copyback bank command has
+         *   completed on this particular
+         *   bank.
+         */
+        ALT_NAND_INT_STATUS_ERASE_COMP = ( 1 << 8 ),
+
+        /*!< Device erase operation
+         *   complete.
+         */
+        ALT_NAND_INT_STATUS_PROGRAM_COMP = ( 1 << 7 ),
+
+        /*!< Device finished the last
+         *   issued program command.
+         */
+        ALT_NAND_INT_STATUS_LOAD_COMP = ( 1 << 6 ),
+
+        /*!< Device finished the last
+         *   issued load command.
+         */
+        ALT_NAND_INT_STATUS_ERASE_FAIL = ( 1 << 5 ),
+
+        /*!< Erase failure occurred in the
+         *   device on issuance of a erase
+         *   command. err_block_addr and
+         *   err_page_addr contain the
+         *   block address and page
+         *   address that failed erase
+         *   operation.
+         */
+        ALT_NAND_INT_STATUS_PROGRAM_FAIL = ( 1 << 4 ),
+
+        /*!< Program failure occurred in
+         *   the device on issuance of a
+         *   program
+         *   command. err_block_addr and
+         *   err_page_addr contain the
+         *   block address and page
+         *   address that failed program
+         *   operation.
+         */
+        ALT_NAND_INT_STATUS_TIME_OUT = ( 1 << 3 ),
+
+        /*!< Watchdog timer has triggered
+         *   in the controller due to one
+         *   of the reasons like device
+         *   not responding or controller
+         *   state machine did not get
+         *   back to idle.
+         */
+        ALT_NAND_INT_STATUS_DMA_CMD_COMP = ( 1 << 2 ),
+
+        /*!< A data DMA command has
+         *   completed on this bank.
+         */
+        ALT_NAND_INT_STATUS_ECC_UNCOR_ERR = ( 1 << 0 )
+
+                                            /*!< ECC logic detected
+                                             *   uncorrectable error while
+                                             *   reading data from flash
+                                             *   device.
+                                             */
+    } ALT_NAND_INT_STATUS_t;
 
 /*!
  * Returns the NAND flash controller interrupt status register value.
@@ -785,7 +803,7 @@ typedef enum ALT_NAND_INT_STATUS_e
  *              mask.  If the corresponding bit is set then the condition is
  *              asserted.
  */
-uint32_t alt_nand_int_status_get(void);
+    uint32_t alt_nand_int_status_get( void );
 
 /*!
  * Clears the specified NAND flash controller interrupt status conditions
@@ -802,7 +820,7 @@ uint32_t alt_nand_int_status_get(void);
  * \retval      ALT_E_SUCCESS   Indicates successful completion.
  * \retval      ALT_E_ERROR     Indicates an error occurred.
  */
-ALT_STATUS_CODE alt_nand_int_clear(const uint32_t mask);
+    ALT_STATUS_CODE alt_nand_int_clear( const uint32_t mask );
 
 /*!
  * Disable the specified NAND flash controller interrupt status conditions
@@ -825,7 +843,7 @@ ALT_STATUS_CODE alt_nand_int_clear(const uint32_t mask);
  * \retval      ALT_E_SUCCESS   Indicates successful completion.
  * \retval      ALT_E_ERROR     Indicates an error occurred.
  */
-ALT_STATUS_CODE alt_nand_int_disable(const uint32_t mask);
+    ALT_STATUS_CODE alt_nand_int_disable( const uint32_t mask );
 
 /*!
  * Enable the specified NAND flash controller interrupt status conditions
@@ -848,7 +866,7 @@ ALT_STATUS_CODE alt_nand_int_disable(const uint32_t mask);
  * \retval      ALT_E_SUCCESS   Indicates successful completion.
  * \retval      ALT_E_ERROR     Indicates an error occurred.
  */
-ALT_STATUS_CODE alt_nand_int_enable(const uint32_t mask);
+    ALT_STATUS_CODE alt_nand_int_enable( const uint32_t mask );
 
 /*!
  * Returns the number of planes in the flash memory device.
@@ -863,7 +881,7 @@ ALT_STATUS_CODE alt_nand_int_enable(const uint32_t mask);
  * nandregs.config.number_of_planes
  * \endinternal
  */
-uint32_t alt_nand_num_planes_get(void);
+    uint32_t alt_nand_num_planes_get( void );
 
 /*!
  * Returns the number of blocks in the flash memory device.
@@ -878,7 +896,7 @@ uint32_t alt_nand_num_planes_get(void);
  * ???
  * \endinternal
  */
-uint32_t alt_nand_num_blocks_get(void);
+    uint32_t alt_nand_num_blocks_get( void );
 
 /*!
  * Returnes the number of pages per device block.
@@ -893,7 +911,7 @@ uint32_t alt_nand_num_blocks_get(void);
  * nandregs.config.pages_per_block
  * \endinternal
  */
-uint32_t alt_nand_num_pages_per_block_get(void);
+    uint32_t alt_nand_num_pages_per_block_get( void );
 
 /*!
  * Returns the size of a page sector in bytes.
@@ -908,7 +926,7 @@ uint32_t alt_nand_num_pages_per_block_get(void);
  * nandregs.config.device_main_area_size
  * \endinternal
  */
-uint32_t alt_nand_sector_size_get(void);
+    uint32_t alt_nand_sector_size_get( void );
 
 /*!
  * Returns the size of a page spare area in bytes.
@@ -923,7 +941,7 @@ uint32_t alt_nand_sector_size_get(void);
  * nandregs.config.device_spare_area_size
  * \endinternal
  */
-uint32_t alt_nand_spare_size_get(void);
+    uint32_t alt_nand_spare_size_get( void );
 
 /*!
  * Returns \b true if the specified device block is bad otherwise returns \b
@@ -943,7 +961,7 @@ uint32_t alt_nand_spare_size_get(void);
  * Uses the bad block table constructed by alt_nand_flash_init().
  * \endinternal
  */
-bool alt_nand_block_is_bad(const uint32_t block_addr);
+    bool alt_nand_block_is_bad( const uint32_t block_addr );
 
 /*!
  * The ONFI Factory Defect Mapping defined value used by manufacturers to mark a
@@ -951,7 +969,7 @@ bool alt_nand_block_is_bad(const uint32_t block_addr);
  * one byte in the spare area of the first or last page of the defective block to
  * a value of 0.
  */
-#define ALT_NAND_BAD_BLOCK_MARKER               0
+    #define ALT_NAND_BAD_BLOCK_MARKER    0
 
 /*!
  * This type defines the data structure used to hold the bad block table.
@@ -981,7 +999,7 @@ bool alt_nand_block_is_bad(const uint32_t block_addr);
  *     block_is_bad = true;
  * \endcode
  */
-typedef uint32_t * alt_nand_bad_block_table_t;
+    typedef uint32_t * alt_nand_bad_block_table_t;
 
 /*!
  * Get a copy of the bad block table for the device.
@@ -1005,15 +1023,14 @@ typedef uint32_t * alt_nand_bad_block_table_t;
  *                              the bad block table for the device.
  *
  */
-ALT_STATUS_CODE alt_nand_bad_block_table_get(alt_nand_bad_block_table_t bad_block_table,
-                                             const uint32_t bad_block_table_len);
-
+    ALT_STATUS_CODE alt_nand_bad_block_table_get( alt_nand_bad_block_table_t bad_block_table,
+                                                  const uint32_t bad_block_table_len );
 
 
 
 /*! @} */
 
-#ifdef __cplusplus
+    #ifdef __cplusplus
 }
-#endif  /* __cplusplus */
-#endif  /* __ALT_NAND_FLASH_H__ */
+    #endif /* __cplusplus */
+#endif /* __ALT_NAND_FLASH_H__ */

@@ -95,12 +95,12 @@ typedef enum
 #if FSSTRESS_SUPPORTED
     typedef struct
     {
-        bool fNoCleanup;    /**< --no-cleanup */
-        uint32_t ulLoops;   /**< --loops */
-        uint32_t ulNops;    /**< --nops */
-        bool fNamePad;      /**< --namepad */
-        uint32_t ulSeed;    /**< --seed */
-        bool fVerbose;      /**< --verbose */
+        bool fNoCleanup;  /**< --no-cleanup */
+        uint32_t ulLoops; /**< --loops */
+        uint32_t ulNops;  /**< --nops */
+        bool fNamePad;    /**< --namepad */
+        uint32_t ulSeed;  /**< --seed */
+        bool fVerbose;    /**< --verbose */
     } FSSTRESSPARAM;
 
     PARAMSTATUS FsstressParseParams( int argc,
@@ -220,27 +220,27 @@ typedef enum
 
     typedef struct
     {
-        TESTFS testfs;                  /**< --fs */
-        const char * pszVolume;         /**< Volume path prefix. */
-        bool fSeqRead;                  /**< --seq=r */
-        bool fSeqWrite;                 /**< --seq=w */
-        bool fSeqRewrite;               /**< --seq=e */
-        bool fRandomRead;               /**< --rand=r */
-        bool fRandomWrite;              /**< --rand=w */
-        bool fMixedWrite;               /**< --mixed */
-        bool fScanTest;                 /**< --scan */
-        uint32_t ulFSBlockSize;         /**< --block-size */
-        uint32_t ulMaxFileSize;         /**< --max */
-        uint32_t ulRandomReadPasses;    /**< --rand-pass=r:w (r part) */
-        uint32_t ulRandomWritePasses;   /**< --rand-pass=r:w (w part) */
-        uint32_t ulMixedWritePasses;    /**< --mixed-pass */
-        int32_t iFlushOnWriteRatio;     /**< --rand-fow */
-        uint32_t ulBufferMin;           /**< --start */
-        uint32_t ulBufferSize;          /**< --buffer-size */
-        bool fWriteVerify;              /**< --verify */
-        uint32_t ulSampleRate;          /**< --sample-rate */
-        uint32_t ulScanCount;           /**< --scan-files */
-        uint64_t ullSeed;               /**< --seed */
+        TESTFS testfs;                /**< --fs */
+        const char * pszVolume;       /**< Volume path prefix. */
+        bool fSeqRead;                /**< --seq=r */
+        bool fSeqWrite;               /**< --seq=w */
+        bool fSeqRewrite;             /**< --seq=e */
+        bool fRandomRead;             /**< --rand=r */
+        bool fRandomWrite;            /**< --rand=w */
+        bool fMixedWrite;             /**< --mixed */
+        bool fScanTest;               /**< --scan */
+        uint32_t ulFSBlockSize;       /**< --block-size */
+        uint32_t ulMaxFileSize;       /**< --max */
+        uint32_t ulRandomReadPasses;  /**< --rand-pass=r:w (r part) */
+        uint32_t ulRandomWritePasses; /**< --rand-pass=r:w (w part) */
+        uint32_t ulMixedWritePasses;  /**< --mixed-pass */
+        int32_t iFlushOnWriteRatio;   /**< --rand-fow */
+        uint32_t ulBufferMin;         /**< --start */
+        uint32_t ulBufferSize;        /**< --buffer-size */
+        bool fWriteVerify;            /**< --verify */
+        uint32_t ulSampleRate;        /**< --sample-rate */
+        uint32_t ulScanCount;         /**< --scan-files */
+        uint64_t ullSeed;             /**< --seed */
     } FSIOTESTPARAM;
 
     PARAMSTATUS FSIOTestParseParams( int argc,

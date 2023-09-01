@@ -27,13 +27,13 @@
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-Pragma directive
+*  Pragma directive
 ***********************************************************************************************************************/
 /* Start user code for pragma. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
 
 /***********************************************************************************************************************
-Includes
+*  Includes
 ***********************************************************************************************************************/
 #include "r_cg_macrodriver.h"
 #include "r_cg_icu.h"
@@ -42,7 +42,7 @@ Includes
 #include "r_cg_userdefine.h"
 
 /***********************************************************************************************************************
-Global variables and functions
+*  Global variables and functions
 ***********************************************************************************************************************/
 /* Start user code for global. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
@@ -54,15 +54,16 @@ Global variables and functions
 * Return Value : None
 ***********************************************************************************************************************/
 #if FAST_INTERRUPT_VECTOR == VECT_ICU_IRQ2
-#pragma interrupt r_icu_irq2_interrupt(vect=VECT(ICU,IRQ2),fint)
+    #pragma interrupt r_icu_irq2_interrupt(vect=VECT(ICU,IRQ2),fint)
 #else
-#pragma interrupt r_icu_irq2_interrupt(vect=VECT(ICU,IRQ2))
+    #pragma interrupt r_icu_irq2_interrupt(vect=VECT(ICU,IRQ2))
 #endif
-static void r_icu_irq2_interrupt(void)
+static void r_icu_irq2_interrupt( void )
 {
     /* Start user code. Do not edit comment generated here */
     /* End user code. Do not edit comment generated here */
 }
+
 /***********************************************************************************************************************
 * Function Name: r_icu_irq5_interrupt
 * Description  : This function is IRQ5 interrupt service routine.
@@ -70,11 +71,11 @@ static void r_icu_irq2_interrupt(void)
 * Return Value : None
 ***********************************************************************************************************************/
 #if FAST_INTERRUPT_VECTOR == VECT_ICU_IRQ5
-#pragma interrupt r_icu_irq5_interrupt(vect=VECT(ICU,IRQ5),fint)
+    #pragma interrupt r_icu_irq5_interrupt(vect=VECT(ICU,IRQ5),fint)
 #else
-#pragma interrupt r_icu_irq5_interrupt(vect=VECT(ICU,IRQ5))
+    #pragma interrupt r_icu_irq5_interrupt(vect=VECT(ICU,IRQ5))
 #endif
-static void r_icu_irq5_interrupt(void)
+static void r_icu_irq5_interrupt( void )
 {
     /* Start user code. Do not edit comment generated here */
     /* End user code. Do not edit comment generated here */

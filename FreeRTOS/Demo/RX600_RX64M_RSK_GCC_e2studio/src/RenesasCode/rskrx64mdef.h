@@ -19,8 +19,10 @@
 * following link:
 * http://www.renesas.com/disclaimer
 *******************************************************************************/
+
 /*******************************************************************************
 * Copyright (C) 2012 Renesas Electronics Corporation. All rights reserved.    */
+
 /*******************************************************************************
 * File Name     : rskrx64mdef.h
 * Version       : 1.00
@@ -29,6 +31,7 @@
 * H/W Platform  : RSK+RX64M
 * Description   : Defines macros relating to the RX64M user LEDs and switches
 *******************************************************************************/
+
 /*******************************************************************************
 * History       : 20 Mar. 2014 Ver. 0.00 Alpha Release
 *******************************************************************************/
@@ -45,36 +48,36 @@
 *******************************************************************************/
 
 /* General Values */
-#define LED_ON          (0)
-#define LED_OFF         (1)
-#define SET_BIT_HIGH    (1)
-#define SET_BIT_LOW     (0)
-#define SET_BYTE_HIGH   (0xFF)
-#define SET_BYTE_LOW    (0x00)
-#define OUTPUT_PIN      (1)
-#define INPUT_PIN       (0)
+#define LED_ON           ( 0 )
+#define LED_OFF          ( 1 )
+#define SET_BIT_HIGH     ( 1 )
+#define SET_BIT_LOW      ( 0 )
+#define SET_BYTE_HIGH    ( 0xFF )
+#define SET_BYTE_LOW     ( 0x00 )
+#define OUTPUT_PIN       ( 1 )
+#define INPUT_PIN        ( 0 )
 
 /* Switch port pins data direction */
-#define SW1_PIN_DIR     (PORT1.PDR.BIT.B5)
-#define SW2_PIN_DIR     (PORT1.PDR.BIT.B2)
-#define SW3_PIN_DIR     (PORT0.PDR.BIT.B7)
+#define SW1_PIN_DIR      ( PORT1.PDR.BIT.B5 )
+#define SW2_PIN_DIR      ( PORT1.PDR.BIT.B2 )
+#define SW3_PIN_DIR      ( PORT0.PDR.BIT.B7 )
 
 /* Switches */
-#define SW1             (PORT1.PIDR.BIT.B5)
-#define SW2             (PORT1.PIDR.BIT.B2)
-#define SW3             (PORT0.PIDR.BIT.B7)
+#define SW1              ( PORT1.PIDR.BIT.B5 )
+#define SW2              ( PORT1.PIDR.BIT.B2 )
+#define SW3              ( PORT0.PIDR.BIT.B7 )
 
 /* LED data direction */
-#define LED0_PIN_DIR    (PORT0.PDR.BIT.B3)
-#define LED1_PIN_DIR    (PORT0.PDR.BIT.B5)
-#define LED2_PIN_DIR    (PORT2.PDR.BIT.B6)
-#define LED3_PIN_DIR    (PORT2.PDR.BIT.B7)
+#define LED0_PIN_DIR     ( PORT0.PDR.BIT.B3 )
+#define LED1_PIN_DIR     ( PORT0.PDR.BIT.B5 )
+#define LED2_PIN_DIR     ( PORT2.PDR.BIT.B6 )
+#define LED3_PIN_DIR     ( PORT2.PDR.BIT.B7 )
 
 /* LED ouptut pin settings */
-#define LED0			(PORT0.PODR.BIT.B3)
-#define LED1            (PORT0.PODR.BIT.B5)
-#define LED2            (PORT2.PODR.BIT.B6)
-#define LED3            (PORT2.PODR.BIT.B7)
+#define LED0             ( PORT0.PODR.BIT.B3 )
+#define LED1             ( PORT0.PODR.BIT.B5 )
+#define LED2             ( PORT2.PODR.BIT.B6 )
+#define LED3             ( PORT2.PODR.BIT.B7 )
 
 /* End of multiple inclusion prevention macro */
-#endif
+#endif /* ifndef RSKRX64MDEF_H */

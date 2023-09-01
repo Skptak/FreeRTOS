@@ -309,7 +309,7 @@
                 return ( uint32_t ) ucQueueGetQueueNumber( handle );
             }
 
-        #else  /* if ( TRC_CFG_FREERTOS_VERSION < TRC_FREERTOS_VERSION_8_X_X ) */
+        #else /* if ( TRC_CFG_FREERTOS_VERSION < TRC_FREERTOS_VERSION_8_X_X ) */
 
             uint32_t prvTraceGetQueueNumber( void * handle )
             {

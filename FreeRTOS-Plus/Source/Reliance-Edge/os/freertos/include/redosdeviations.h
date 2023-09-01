@@ -113,7 +113,7 @@
  *  explicitly freed.  The RAM disk is allocated and never freed, deviating from
  *  that rule.  This is done because the data in the RAM disk is emulating a
  *  non-volatile storage medium, and thus needs to persist even after the block
- *  device is closed, to allow the file system to be ormatted and then mounted,
+ *  device is closed, to allow the file system to be formatted and then mounted,
  *  or unmounted and remounted in the course of a test.  Thus the memory will
  *  remain allocated until the target device is rebooted.  This is assumed to be
  *  acceptable for the primary purpose of the RAM disk, which is preliminary
@@ -147,7 +147,7 @@
 
 /** Cast a TaskHandle_t (a pointer type) to uintptr_t.
  *
- *  Usage of this macro deivate from MISRA-C:2012 Rule 11.4 (advisory).  This
+ *  Usage of this macro deviate from MISRA-C:2012 Rule 11.4 (advisory).  This
  *  macro is used for the FreeRTOS version of RedOsTaskId().  Some RTOSes
  *  natively use an integer for task IDs; others use pointers.  RedOsTaskId()
  *  uses integers, FreeRTOS uses pointers; to reconcile this difference, the
@@ -179,14 +179,14 @@
  *  IRQ interrupt handler.  This is the most reasonable action to take for two
  *  reasons: (a) it would be dangerous to spend processor time responding to the
  *  error inside the IRQ handler; (b) it has been verified that the same error
- *  is propegated to the DiskRead/Write method, which does return the error to
+ *  is propagated to the DiskRead/Write method, which does return the error to
  *  the core.
  *
  *  In the Atmel SD/MMC block device implementation, error information from
  *  sd_mmc_read_capacity() is ignored.  This is a reasonable action because all
  *  of the possible error conditions were eliminated by a previous check.
  *  sd_mmc_read_capacity() fails under the same conditions as
- *  sd_mmc_test_unit_ready(), which was checked ealier in the same function.
+ *  sd_mmc_test_unit_ready(), which was checked earlier in the same function.
  *
  *  In the mutex module, error information returned from the mutex release
  *  function is ignored when asserts are disabled.  This is a reasonable action

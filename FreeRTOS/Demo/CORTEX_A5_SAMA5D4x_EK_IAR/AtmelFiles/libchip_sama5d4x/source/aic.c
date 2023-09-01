@@ -51,7 +51,7 @@
 /*@{*/
 /*@}*/
 
- /**
+/**
  * \file
  *
  * Implementation of Advanced Interrupt Controller (AIC) controller.
@@ -77,9 +77,10 @@
  * \param aic  AIC instance.
  * \param source  Interrupt source to enable.
  */
-static void _aic_EnableIT(Aic *aic, uint32_t source)
+static void _aic_EnableIT( Aic * aic,
+                           uint32_t source )
 {
-    aic->AIC_SSR  = AIC_SSR_INTSEL(source);
+    aic->AIC_SSR = AIC_SSR_INTSEL( source );
     aic->AIC_IECR = AIC_IECR_INTEN;
 }
 
@@ -89,10 +90,11 @@ static void _aic_EnableIT(Aic *aic, uint32_t source)
  * \param aic  AIC instance.
  * \param source  Interrupt source to disable.
  */
-static void _aic_DisableIT(Aic *aic, uint32_t source)
+static void _aic_DisableIT( Aic * aic,
+                            uint32_t source )
 {
-    aic->AIC_SSR  =  AIC_SSR_INTSEL(source);
-    aic->AIC_IDCR = AIC_IDCR_INTD ;
+    aic->AIC_SSR = AIC_SSR_INTSEL( source );
+    aic->AIC_IDCR = AIC_IDCR_INTD;
 }
 
 /**
@@ -100,20 +102,23 @@ static void _aic_DisableIT(Aic *aic, uint32_t source)
  *
  * \param pid  peripheral ID
  */
-static uint8_t _isH64Matrix(uint32_t pid){
-    if ((pid == ID_ARM) ||
-        (pid == ID_XDMAC0) ||
-        //(pid == ID_PKCC) ||
-        (pid == ID_AESB) ||
-        (pid == ID_MPDDRC) ||
-        (pid == ID_VDEC) ||
-        (pid == ID_XDMAC1) ||
-        (pid == ID_LCDC) ||
-        (pid == ID_ISI) ||
-        (pid == ID_L2CC))
+static uint8_t _isH64Matrix( uint32_t pid )
+{
+    if( ( pid == ID_ARM ) ||
+        ( pid == ID_XDMAC0 ) ||
+        /*(pid == ID_PKCC) || */
+        ( pid == ID_AESB ) ||
+        ( pid == ID_MPDDRC ) ||
+        ( pid == ID_VDEC ) ||
+        ( pid == ID_XDMAC1 ) ||
+        ( pid == ID_LCDC ) ||
+        ( pid == ID_ISI ) ||
+        ( pid == ID_L2CC ) )
     {
         return 1;
-    } else {
+    }
+    else
+    {
         return 0;
     }
 }
@@ -123,27 +128,38 @@ static uint8_t _isH64Matrix(uint32_t pid){
  *
  * \param source  Interrupt source to enable.
  */
-void AIC_EnableIT( uint32_t source)
+void AIC_EnableIT( uint32_t source )
 {
-    volatile unsigned int * pAicFuse = (volatile unsigned int *) REG_SFR_AICREDIR;
+    volatile unsigned int * pAicFuse = ( volatile unsigned int * ) REG_SFR_AICREDIR;
 
-    if(*pAicFuse)
+    if( *pAicFuse )
     {
-      _aic_EnableIT(AIC, source);
+        _aic_EnableIT( AIC, source );
     }
     else
     {
-      if (_isH64Matrix(source)) {
-          if ( MATRIX0->MATRIX_SPSELR[source / 32] & (1 << (source % 32)))
-              _aic_EnableIT(AIC, source);
-          else
-              _aic_EnableIT(SAIC, source);
-      } else {
-          if ( MATRIX1->MATRIX_SPSELR[source / 32] & (1 << (source % 32)))
-              _aic_EnableIT(AIC, source);
-          else
-              _aic_EnableIT(SAIC, source);
-      }
+        if( _isH64Matrix( source ) )
+        {
+            if( MATRIX0->MATRIX_SPSELR[ source / 32 ] & ( 1 << ( source % 32 ) ) )
+            {
+                _aic_EnableIT( AIC, source );
+            }
+            else
+            {
+                _aic_EnableIT( SAIC, source );
+            }
+        }
+        else
+        {
+            if( MATRIX1->MATRIX_SPSELR[ source / 32 ] & ( 1 << ( source % 32 ) ) )
+            {
+                _aic_EnableIT( AIC, source );
+            }
+            else
+            {
+                _aic_EnableIT( SAIC, source );
+            }
+        }
     }
 }
 
@@ -152,17 +168,28 @@ void AIC_EnableIT( uint32_t source)
  *
  * \param source  Interrupt source to disable.
  */
-void AIC_DisableIT(uint32_t source)
+void AIC_DisableIT( uint32_t source )
 {
-    if (_isH64Matrix(source)) {
-        if ( MATRIX0->MATRIX_SPSELR[source / 32] & (1 << (source % 32)))
-            _aic_DisableIT(AIC, source);
+    if( _isH64Matrix( source ) )
+    {
+        if( MATRIX0->MATRIX_SPSELR[ source / 32 ] & ( 1 << ( source % 32 ) ) )
+        {
+            _aic_DisableIT( AIC, source );
+        }
         else
-            _aic_DisableIT(SAIC, source);
-    } else {
-        if ( MATRIX1->MATRIX_SPSELR[source / 32] & (1 << (source % 32)))
-            _aic_DisableIT(AIC, source);
+        {
+            _aic_DisableIT( SAIC, source );
+        }
+    }
+    else
+    {
+        if( MATRIX1->MATRIX_SPSELR[ source / 32 ] & ( 1 << ( source % 32 ) ) )
+        {
+            _aic_DisableIT( AIC, source );
+        }
         else
-            _aic_DisableIT(SAIC, source);
+        {
+            _aic_DisableIT( SAIC, source );
+        }
     }
 }

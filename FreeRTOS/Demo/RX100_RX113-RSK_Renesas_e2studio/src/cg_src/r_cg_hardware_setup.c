@@ -27,13 +27,13 @@
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-Pragma directive
+*  Pragma directive
 ***********************************************************************************************************************/
 /* Start user code for pragma. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
 
 /***********************************************************************************************************************
-Includes
+*  Includes
 ***********************************************************************************************************************/
 #include "r_cg_macrodriver.h"
 #include "r_cg_cgc.h"
@@ -44,7 +44,7 @@ Includes
 #include "r_cg_userdefine.h"
 
 /***********************************************************************************************************************
-Global variables and functions
+*  Global variables and functions
 ***********************************************************************************************************************/
 /* Start user code for global. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
@@ -55,7 +55,7 @@ Global variables and functions
 * Arguments    : None
 * Return Value : None
 ***********************************************************************************************************************/
-void R_Systeminit(void)
+void R_Systeminit( void )
 {
     /* Enable writing to registers related to operating modes, LPC, CGC and software reset */
     SYSTEM.PRCR.WORD = 0xA50FU;
@@ -86,13 +86,14 @@ void R_Systeminit(void)
     /* Enable protection */
     SYSTEM.PRCR.WORD = 0xA500U;
 }
+
 /***********************************************************************************************************************
 * Function Name: HardwareSetup
 * Description  : This function initializes hardware setting.
 * Arguments    : None
 * Return Value : None
 ***********************************************************************************************************************/
-void HardwareSetup(void)
+void HardwareSetup( void )
 {
     R_Systeminit();
 }

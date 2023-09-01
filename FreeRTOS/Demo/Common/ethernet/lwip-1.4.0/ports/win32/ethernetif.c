@@ -526,11 +526,11 @@ static void prvOpenSelectedNetworkInterface( pcap_if_t * pxAllNetworkInterfaces 
     /* Open the selected interface. */
     pxOpenedInterfaceHandle = pcap_open( xInterface->name,          /* The name of the selected interface. */
                                          netifMAX_MTU,              /* The size of the packet to capture. */
-                                         PCAP_OPENFLAG_PROMISCUOUS, /* Open in promiscious mode as the MAC and
+                                         PCAP_OPENFLAG_PROMISCUOUS, /* Open in promiscuous mode as the MAC and
                                                                      * IP address is going to be "simulated", and
                                                                      * not be the real MAC and IP address.  This allows
-                                                                     * trafic to the simulated IP address to be routed
-                                                                     * to uIP, and trafic to the real IP address to be
+                                                                     * traffic to the simulated IP address to be routed
+                                                                     * to uIP, and traffic to the real IP address to be
                                                                      * routed to the Windows TCP/IP stack. */
                                          0L,                        /* The read time out.  This is going to block
                                                                      *  until data is available. */

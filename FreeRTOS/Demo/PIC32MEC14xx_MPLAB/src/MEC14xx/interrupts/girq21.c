@@ -19,8 +19,9 @@
 *****************************************************************************/
 
 /** @file girq21.c
- *Interrupt service routines for MIPS using vanilla GCC and MCHP XC32
+ * Interrupt service routines for MIPS using vanilla GCC and MCHP XC32
  */
+
 /** @defgroup MEC14xx ISR
  *  @{
  */
@@ -42,23 +43,21 @@
  * This handler is superfluous.
  */
 
-void __attribute__((weak, interrupt, nomips16, section(".girqs")))
-girq21_isr(void)
-{
-    JTVIC_GROUP_EN_CLR->w = (1ul<<13);
-}
+    void __attribute__( ( weak, interrupt, nomips16, section( ".girqs" ) ) ) girq21_isr( void )
+    {
+        JTVIC_GROUP_EN_CLR->w = ( 1ul << 13 );
+    }
 
 #else
 
-void __attribute__((weak, interrupt, nomips16))
-girq21_b0(void)
-{
-    JTVIC_GROUP_EN_CLR->w = (1ul<<13);
-}
+    void __attribute__( ( weak, interrupt, nomips16 ) ) girq21_b0( void )
+    {
+        JTVIC_GROUP_EN_CLR->w = ( 1ul << 13 );
+    }
 
-#endif
+#endif /* if GIRQ21_DISAGG == 0 */
 
 /* end girq21.c */
+
 /**   @}
  */
-

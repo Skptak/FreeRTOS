@@ -31,12 +31,12 @@
 /* Altera - ALT_ROM */
 
 #ifndef __ALTERA_ALT_ROM_H__
-#define __ALTERA_ALT_ROM_H__
+    #define __ALTERA_ALT_ROM_H__
 
-#ifdef __cplusplus
-extern "C"
-{
-#endif  /* __cplusplus */
+    #ifdef __cplusplus
+        extern "C"
+        {
+    #endif /* __cplusplus */
 
 /*
  * Component : Boot ROM Module - ALT_ROM
@@ -45,8 +45,7 @@ extern "C"
  *
  */
 
-#ifdef __cplusplus
+    #ifdef __cplusplus
 }
-#endif  /* __cplusplus */
-#endif  /* __ALTERA_ALT_ROM_H__ */
-
+    #endif /* __cplusplus */
+#endif /* __ALTERA_ALT_ROM_H__ */

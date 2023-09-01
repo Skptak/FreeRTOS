@@ -36,26 +36,27 @@
 #include "lwip/arch.h"
 
 #if MEM_SIZE > 64000l
-typedef u32_t mem_size_t;
+    typedef u32_t   mem_size_t;
 #else
-typedef u16_t mem_size_t;
+    typedef u16_t   mem_size_t;
 #endif /* MEM_SIZE > 64000 */
 
 
-void mem_init(void);
+void mem_init( void );
 
-void *mem_malloc(mem_size_t size);
-void mem_free(void *mem);
-void *mem_realloc(void *mem, mem_size_t size);
-void *mem_reallocm(void *mem, mem_size_t size);
+void * mem_malloc( mem_size_t size );
+void mem_free( void * mem );
+void * mem_realloc( void * mem,
+                    mem_size_t size );
+void * mem_reallocm( void * mem,
+                     mem_size_t size );
 
 #ifndef MEM_ALIGN_SIZE
-#define MEM_ALIGN_SIZE(size) (((size) + MEM_ALIGNMENT - 1) & ~(MEM_ALIGNMENT-1))
+    #define MEM_ALIGN_SIZE( size )    ( ( ( size ) + MEM_ALIGNMENT - 1 ) & ~( MEM_ALIGNMENT - 1 ) )
 #endif
 
 #ifndef MEM_ALIGN
-#define MEM_ALIGN(addr) ((void *)(((mem_ptr_t)(addr) + MEM_ALIGNMENT - 1) & ~(mem_ptr_t)(MEM_ALIGNMENT-1)))
+    #define MEM_ALIGN( addr )    ( ( void * ) ( ( ( mem_ptr_t ) ( addr ) + MEM_ALIGNMENT - 1 ) & ~( mem_ptr_t ) ( MEM_ALIGNMENT - 1 ) ) )
 #endif
 
 #endif /* __LWIP_MEM_H__ */
-

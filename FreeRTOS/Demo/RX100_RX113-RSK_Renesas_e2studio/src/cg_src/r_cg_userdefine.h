@@ -29,12 +29,12 @@
 #define _USER_DEF_H
 
 /***********************************************************************************************************************
-User definitions
+*  User definitions
 ***********************************************************************************************************************/
-#define FAST_INTERRUPT_VECTOR 0
+#define FAST_INTERRUPT_VECTOR    0
 
 /* Start user code for function. Do not edit comment generated here */
-#define TRUE            (1)
-#define FALSE           (0)
+#define TRUE                     ( 1 )
+#define FALSE                    ( 0 )
 /* End user code. Do not edit comment generated here */
 #endif

@@ -762,7 +762,7 @@ aborted:
 
                     tcp_seg_free( rseg );
 
-                    /* Call the user specified function to call when sucessfully
+                    /* Call the user specified function to call when successfully
                      * connected. */
                     TCP_EVENT_CONNECTED( pcb, ERR_OK, err );
 
@@ -1668,7 +1668,7 @@ aborted:
                                     }
                                     else
                                     {
-                                        /* Either the lenghts are the same or the incoming
+                                        /* Either the lengths are the same or the incoming
                                          * segment was smaller than the old one; in either
                                          * case, we ditch the incoming segment. */
                                         break;

@@ -31,12 +31,12 @@
 /* Altera - ALT_ACPIDMAP */
 
 #ifndef __ALTERA_ALT_ACPIDMAP_H__
-#define __ALTERA_ALT_ACPIDMAP_H__
+    #define __ALTERA_ALT_ACPIDMAP_H__
 
-#ifdef __cplusplus
-extern "C"
-{
-#endif  /* __cplusplus */
+    #ifdef __cplusplus
+        extern "C"
+        {
+    #endif /* __cplusplus */
 
 /*
  * Component : ACP ID Mapper Registers - ALT_ACPIDMAP
@@ -45,6 +45,7 @@ extern "C"
  * Registers in the ACP ID Mapper module
  *
  */
+
 /*
  * Register : Read AXI Master Mapping Register for Fixed Virtual ID 2 - vid2rd
  *
@@ -66,6 +67,7 @@ extern "C"
  *  [31]    | RW     | 0x1   | Force Mapping for ID=2
  *
  */
+
 /*
  * Field : ARUSER value to SCU for ID=2 - user
  *
@@ -75,21 +77,21 @@ extern "C"
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID2RD_USER register field. */
-#define ALT_ACPIDMAP_VID2RD_USER_LSB        4
+    #define ALT_ACPIDMAP_VID2RD_USER_LSB        4
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID2RD_USER register field. */
-#define ALT_ACPIDMAP_VID2RD_USER_MSB        8
+    #define ALT_ACPIDMAP_VID2RD_USER_MSB        8
 /* The width in bits of the ALT_ACPIDMAP_VID2RD_USER register field. */
-#define ALT_ACPIDMAP_VID2RD_USER_WIDTH      5
+    #define ALT_ACPIDMAP_VID2RD_USER_WIDTH      5
 /* The mask used to set the ALT_ACPIDMAP_VID2RD_USER register field value. */
-#define ALT_ACPIDMAP_VID2RD_USER_SET_MSK    0x000001f0
+    #define ALT_ACPIDMAP_VID2RD_USER_SET_MSK    0x000001f0
 /* The mask used to clear the ALT_ACPIDMAP_VID2RD_USER register field value. */
-#define ALT_ACPIDMAP_VID2RD_USER_CLR_MSK    0xfffffe0f
+    #define ALT_ACPIDMAP_VID2RD_USER_CLR_MSK    0xfffffe0f
 /* The reset value of the ALT_ACPIDMAP_VID2RD_USER register field. */
-#define ALT_ACPIDMAP_VID2RD_USER_RESET      0x1
+    #define ALT_ACPIDMAP_VID2RD_USER_RESET      0x1
 /* Extracts the ALT_ACPIDMAP_VID2RD_USER field value from a register. */
-#define ALT_ACPIDMAP_VID2RD_USER_GET(value) (((value) & 0x000001f0) >> 4)
+    #define ALT_ACPIDMAP_VID2RD_USER_GET( value )    ( ( ( value ) & 0x000001f0 ) >> 4 )
 /* Produces a ALT_ACPIDMAP_VID2RD_USER register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID2RD_USER_SET(value) (((value) << 4) & 0x000001f0)
+    #define ALT_ACPIDMAP_VID2RD_USER_SET( value )    ( ( ( value ) << 4 ) & 0x000001f0 )
 
 /*
  * Field : ARADDR 1GB Page Decoder - page
@@ -100,21 +102,21 @@ extern "C"
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID2RD_PAGE register field. */
-#define ALT_ACPIDMAP_VID2RD_PAGE_LSB        12
+    #define ALT_ACPIDMAP_VID2RD_PAGE_LSB        12
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID2RD_PAGE register field. */
-#define ALT_ACPIDMAP_VID2RD_PAGE_MSB        13
+    #define ALT_ACPIDMAP_VID2RD_PAGE_MSB        13
 /* The width in bits of the ALT_ACPIDMAP_VID2RD_PAGE register field. */
-#define ALT_ACPIDMAP_VID2RD_PAGE_WIDTH      2
+    #define ALT_ACPIDMAP_VID2RD_PAGE_WIDTH      2
 /* The mask used to set the ALT_ACPIDMAP_VID2RD_PAGE register field value. */
-#define ALT_ACPIDMAP_VID2RD_PAGE_SET_MSK    0x00003000
+    #define ALT_ACPIDMAP_VID2RD_PAGE_SET_MSK    0x00003000
 /* The mask used to clear the ALT_ACPIDMAP_VID2RD_PAGE register field value. */
-#define ALT_ACPIDMAP_VID2RD_PAGE_CLR_MSK    0xffffcfff
+    #define ALT_ACPIDMAP_VID2RD_PAGE_CLR_MSK    0xffffcfff
 /* The reset value of the ALT_ACPIDMAP_VID2RD_PAGE register field. */
-#define ALT_ACPIDMAP_VID2RD_PAGE_RESET      0x0
+    #define ALT_ACPIDMAP_VID2RD_PAGE_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID2RD_PAGE field value from a register. */
-#define ALT_ACPIDMAP_VID2RD_PAGE_GET(value) (((value) & 0x00003000) >> 12)
+    #define ALT_ACPIDMAP_VID2RD_PAGE_GET( value )    ( ( ( value ) & 0x00003000 ) >> 12 )
 /* Produces a ALT_ACPIDMAP_VID2RD_PAGE register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID2RD_PAGE_SET(value) (((value) << 12) & 0x00003000)
+    #define ALT_ACPIDMAP_VID2RD_PAGE_SET( value )    ( ( ( value ) << 12 ) & 0x00003000 )
 
 /*
  * Field : Remap Master ID = DAP ID - mid
@@ -126,21 +128,21 @@ extern "C"
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID2RD_MID register field. */
-#define ALT_ACPIDMAP_VID2RD_MID_LSB        16
+    #define ALT_ACPIDMAP_VID2RD_MID_LSB        16
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID2RD_MID register field. */
-#define ALT_ACPIDMAP_VID2RD_MID_MSB        27
+    #define ALT_ACPIDMAP_VID2RD_MID_MSB        27
 /* The width in bits of the ALT_ACPIDMAP_VID2RD_MID register field. */
-#define ALT_ACPIDMAP_VID2RD_MID_WIDTH      12
+    #define ALT_ACPIDMAP_VID2RD_MID_WIDTH      12
 /* The mask used to set the ALT_ACPIDMAP_VID2RD_MID register field value. */
-#define ALT_ACPIDMAP_VID2RD_MID_SET_MSK    0x0fff0000
+    #define ALT_ACPIDMAP_VID2RD_MID_SET_MSK    0x0fff0000
 /* The mask used to clear the ALT_ACPIDMAP_VID2RD_MID register field value. */
-#define ALT_ACPIDMAP_VID2RD_MID_CLR_MSK    0xf000ffff
+    #define ALT_ACPIDMAP_VID2RD_MID_CLR_MSK    0xf000ffff
 /* The reset value of the ALT_ACPIDMAP_VID2RD_MID register field. */
-#define ALT_ACPIDMAP_VID2RD_MID_RESET      0x4
+    #define ALT_ACPIDMAP_VID2RD_MID_RESET      0x4
 /* Extracts the ALT_ACPIDMAP_VID2RD_MID field value from a register. */
-#define ALT_ACPIDMAP_VID2RD_MID_GET(value) (((value) & 0x0fff0000) >> 16)
+    #define ALT_ACPIDMAP_VID2RD_MID_GET( value )    ( ( ( value ) & 0x0fff0000 ) >> 16 )
 /* Produces a ALT_ACPIDMAP_VID2RD_MID register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID2RD_MID_SET(value) (((value) << 16) & 0x0fff0000)
+    #define ALT_ACPIDMAP_VID2RD_MID_SET( value )    ( ( ( value ) << 16 ) & 0x0fff0000 )
 
 /*
  * Field : Force Mapping for ID=2 - force
@@ -152,23 +154,24 @@ extern "C"
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID2RD_FORCE register field. */
-#define ALT_ACPIDMAP_VID2RD_FORCE_LSB        31
+    #define ALT_ACPIDMAP_VID2RD_FORCE_LSB        31
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID2RD_FORCE register field. */
-#define ALT_ACPIDMAP_VID2RD_FORCE_MSB        31
+    #define ALT_ACPIDMAP_VID2RD_FORCE_MSB        31
 /* The width in bits of the ALT_ACPIDMAP_VID2RD_FORCE register field. */
-#define ALT_ACPIDMAP_VID2RD_FORCE_WIDTH      1
+    #define ALT_ACPIDMAP_VID2RD_FORCE_WIDTH      1
 /* The mask used to set the ALT_ACPIDMAP_VID2RD_FORCE register field value. */
-#define ALT_ACPIDMAP_VID2RD_FORCE_SET_MSK    0x80000000
+    #define ALT_ACPIDMAP_VID2RD_FORCE_SET_MSK    0x80000000
 /* The mask used to clear the ALT_ACPIDMAP_VID2RD_FORCE register field value. */
-#define ALT_ACPIDMAP_VID2RD_FORCE_CLR_MSK    0x7fffffff
+    #define ALT_ACPIDMAP_VID2RD_FORCE_CLR_MSK    0x7fffffff
 /* The reset value of the ALT_ACPIDMAP_VID2RD_FORCE register field. */
-#define ALT_ACPIDMAP_VID2RD_FORCE_RESET      0x1
+    #define ALT_ACPIDMAP_VID2RD_FORCE_RESET      0x1
 /* Extracts the ALT_ACPIDMAP_VID2RD_FORCE field value from a register. */
-#define ALT_ACPIDMAP_VID2RD_FORCE_GET(value) (((value) & 0x80000000) >> 31)
+    #define ALT_ACPIDMAP_VID2RD_FORCE_GET( value )    ( ( ( value ) & 0x80000000 ) >> 31 )
 /* Produces a ALT_ACPIDMAP_VID2RD_FORCE register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID2RD_FORCE_SET(value) (((value) << 31) & 0x80000000)
+    #define ALT_ACPIDMAP_VID2RD_FORCE_SET( value )    ( ( ( value ) << 31 ) & 0x80000000 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -179,24 +182,24 @@ extern "C"
  *
  * The struct declaration for register ALT_ACPIDMAP_VID2RD.
  */
-struct ALT_ACPIDMAP_VID2RD_s
-{
-    uint32_t        :  4;  /* *UNDEFINED* */
-    uint32_t  user  :  5;  /* ARUSER value to SCU for ID=2 */
-    uint32_t        :  3;  /* *UNDEFINED* */
-    uint32_t  page  :  2;  /* ARADDR 1GB Page Decoder */
-    uint32_t        :  2;  /* *UNDEFINED* */
-    uint32_t  mid   : 12;  /* Remap Master ID = DAP ID */
-    uint32_t        :  3;  /* *UNDEFINED* */
-    uint32_t  force :  1;  /* Force Mapping for ID=2 */
-};
+        struct ALT_ACPIDMAP_VID2RD_s
+        {
+            uint32_t        :  4; /* *UNDEFINED* */
+            uint32_t user  :  5;  /* ARUSER value to SCU for ID=2 */
+            uint32_t        :  3; /* *UNDEFINED* */
+            uint32_t page  :  2;  /* ARADDR 1GB Page Decoder */
+            uint32_t        :  2; /* *UNDEFINED* */
+            uint32_t mid   : 12;  /* Remap Master ID = DAP ID */
+            uint32_t        :  3; /* *UNDEFINED* */
+            uint32_t force :  1;  /* Force Mapping for ID=2 */
+        };
 
 /* The typedef declaration for register ALT_ACPIDMAP_VID2RD. */
-typedef volatile struct ALT_ACPIDMAP_VID2RD_s  ALT_ACPIDMAP_VID2RD_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_ACPIDMAP_VID2RD_s ALT_ACPIDMAP_VID2RD_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_ACPIDMAP_VID2RD register from the beginning of the component. */
-#define ALT_ACPIDMAP_VID2RD_OFST        0x0
+    #define ALT_ACPIDMAP_VID2RD_OFST    0x0
 
 /*
  * Register : Write AXI Master Mapping Register for Fixed Virtual ID 2 - vid2wr
@@ -219,6 +222,7 @@ typedef volatile struct ALT_ACPIDMAP_VID2RD_s  ALT_ACPIDMAP_VID2RD_t;
  *  [31]    | RW     | 0x1   | Force Mapping for ID=2
  *
  */
+
 /*
  * Field : AWUSER value to SCU for ID=2 - user
  *
@@ -228,21 +232,21 @@ typedef volatile struct ALT_ACPIDMAP_VID2RD_s  ALT_ACPIDMAP_VID2RD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID2WR_USER register field. */
-#define ALT_ACPIDMAP_VID2WR_USER_LSB        4
+    #define ALT_ACPIDMAP_VID2WR_USER_LSB        4
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID2WR_USER register field. */
-#define ALT_ACPIDMAP_VID2WR_USER_MSB        8
+    #define ALT_ACPIDMAP_VID2WR_USER_MSB        8
 /* The width in bits of the ALT_ACPIDMAP_VID2WR_USER register field. */
-#define ALT_ACPIDMAP_VID2WR_USER_WIDTH      5
+    #define ALT_ACPIDMAP_VID2WR_USER_WIDTH      5
 /* The mask used to set the ALT_ACPIDMAP_VID2WR_USER register field value. */
-#define ALT_ACPIDMAP_VID2WR_USER_SET_MSK    0x000001f0
+    #define ALT_ACPIDMAP_VID2WR_USER_SET_MSK    0x000001f0
 /* The mask used to clear the ALT_ACPIDMAP_VID2WR_USER register field value. */
-#define ALT_ACPIDMAP_VID2WR_USER_CLR_MSK    0xfffffe0f
+    #define ALT_ACPIDMAP_VID2WR_USER_CLR_MSK    0xfffffe0f
 /* The reset value of the ALT_ACPIDMAP_VID2WR_USER register field. */
-#define ALT_ACPIDMAP_VID2WR_USER_RESET      0x1
+    #define ALT_ACPIDMAP_VID2WR_USER_RESET      0x1
 /* Extracts the ALT_ACPIDMAP_VID2WR_USER field value from a register. */
-#define ALT_ACPIDMAP_VID2WR_USER_GET(value) (((value) & 0x000001f0) >> 4)
+    #define ALT_ACPIDMAP_VID2WR_USER_GET( value )    ( ( ( value ) & 0x000001f0 ) >> 4 )
 /* Produces a ALT_ACPIDMAP_VID2WR_USER register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID2WR_USER_SET(value) (((value) << 4) & 0x000001f0)
+    #define ALT_ACPIDMAP_VID2WR_USER_SET( value )    ( ( ( value ) << 4 ) & 0x000001f0 )
 
 /*
  * Field : AWADDR 1GB Page Decoder - page
@@ -253,21 +257,21 @@ typedef volatile struct ALT_ACPIDMAP_VID2RD_s  ALT_ACPIDMAP_VID2RD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID2WR_PAGE register field. */
-#define ALT_ACPIDMAP_VID2WR_PAGE_LSB        12
+    #define ALT_ACPIDMAP_VID2WR_PAGE_LSB        12
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID2WR_PAGE register field. */
-#define ALT_ACPIDMAP_VID2WR_PAGE_MSB        13
+    #define ALT_ACPIDMAP_VID2WR_PAGE_MSB        13
 /* The width in bits of the ALT_ACPIDMAP_VID2WR_PAGE register field. */
-#define ALT_ACPIDMAP_VID2WR_PAGE_WIDTH      2
+    #define ALT_ACPIDMAP_VID2WR_PAGE_WIDTH      2
 /* The mask used to set the ALT_ACPIDMAP_VID2WR_PAGE register field value. */
-#define ALT_ACPIDMAP_VID2WR_PAGE_SET_MSK    0x00003000
+    #define ALT_ACPIDMAP_VID2WR_PAGE_SET_MSK    0x00003000
 /* The mask used to clear the ALT_ACPIDMAP_VID2WR_PAGE register field value. */
-#define ALT_ACPIDMAP_VID2WR_PAGE_CLR_MSK    0xffffcfff
+    #define ALT_ACPIDMAP_VID2WR_PAGE_CLR_MSK    0xffffcfff
 /* The reset value of the ALT_ACPIDMAP_VID2WR_PAGE register field. */
-#define ALT_ACPIDMAP_VID2WR_PAGE_RESET      0x0
+    #define ALT_ACPIDMAP_VID2WR_PAGE_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID2WR_PAGE field value from a register. */
-#define ALT_ACPIDMAP_VID2WR_PAGE_GET(value) (((value) & 0x00003000) >> 12)
+    #define ALT_ACPIDMAP_VID2WR_PAGE_GET( value )    ( ( ( value ) & 0x00003000 ) >> 12 )
 /* Produces a ALT_ACPIDMAP_VID2WR_PAGE register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID2WR_PAGE_SET(value) (((value) << 12) & 0x00003000)
+    #define ALT_ACPIDMAP_VID2WR_PAGE_SET( value )    ( ( ( value ) << 12 ) & 0x00003000 )
 
 /*
  * Field : Remap Master ID = DAP ID - mid
@@ -279,21 +283,21 @@ typedef volatile struct ALT_ACPIDMAP_VID2RD_s  ALT_ACPIDMAP_VID2RD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID2WR_MID register field. */
-#define ALT_ACPIDMAP_VID2WR_MID_LSB        16
+    #define ALT_ACPIDMAP_VID2WR_MID_LSB        16
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID2WR_MID register field. */
-#define ALT_ACPIDMAP_VID2WR_MID_MSB        27
+    #define ALT_ACPIDMAP_VID2WR_MID_MSB        27
 /* The width in bits of the ALT_ACPIDMAP_VID2WR_MID register field. */
-#define ALT_ACPIDMAP_VID2WR_MID_WIDTH      12
+    #define ALT_ACPIDMAP_VID2WR_MID_WIDTH      12
 /* The mask used to set the ALT_ACPIDMAP_VID2WR_MID register field value. */
-#define ALT_ACPIDMAP_VID2WR_MID_SET_MSK    0x0fff0000
+    #define ALT_ACPIDMAP_VID2WR_MID_SET_MSK    0x0fff0000
 /* The mask used to clear the ALT_ACPIDMAP_VID2WR_MID register field value. */
-#define ALT_ACPIDMAP_VID2WR_MID_CLR_MSK    0xf000ffff
+    #define ALT_ACPIDMAP_VID2WR_MID_CLR_MSK    0xf000ffff
 /* The reset value of the ALT_ACPIDMAP_VID2WR_MID register field. */
-#define ALT_ACPIDMAP_VID2WR_MID_RESET      0x4
+    #define ALT_ACPIDMAP_VID2WR_MID_RESET      0x4
 /* Extracts the ALT_ACPIDMAP_VID2WR_MID field value from a register. */
-#define ALT_ACPIDMAP_VID2WR_MID_GET(value) (((value) & 0x0fff0000) >> 16)
+    #define ALT_ACPIDMAP_VID2WR_MID_GET( value )    ( ( ( value ) & 0x0fff0000 ) >> 16 )
 /* Produces a ALT_ACPIDMAP_VID2WR_MID register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID2WR_MID_SET(value) (((value) << 16) & 0x0fff0000)
+    #define ALT_ACPIDMAP_VID2WR_MID_SET( value )    ( ( ( value ) << 16 ) & 0x0fff0000 )
 
 /*
  * Field : Force Mapping for ID=2 - force
@@ -305,23 +309,24 @@ typedef volatile struct ALT_ACPIDMAP_VID2RD_s  ALT_ACPIDMAP_VID2RD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID2WR_FORCE register field. */
-#define ALT_ACPIDMAP_VID2WR_FORCE_LSB        31
+    #define ALT_ACPIDMAP_VID2WR_FORCE_LSB        31
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID2WR_FORCE register field. */
-#define ALT_ACPIDMAP_VID2WR_FORCE_MSB        31
+    #define ALT_ACPIDMAP_VID2WR_FORCE_MSB        31
 /* The width in bits of the ALT_ACPIDMAP_VID2WR_FORCE register field. */
-#define ALT_ACPIDMAP_VID2WR_FORCE_WIDTH      1
+    #define ALT_ACPIDMAP_VID2WR_FORCE_WIDTH      1
 /* The mask used to set the ALT_ACPIDMAP_VID2WR_FORCE register field value. */
-#define ALT_ACPIDMAP_VID2WR_FORCE_SET_MSK    0x80000000
+    #define ALT_ACPIDMAP_VID2WR_FORCE_SET_MSK    0x80000000
 /* The mask used to clear the ALT_ACPIDMAP_VID2WR_FORCE register field value. */
-#define ALT_ACPIDMAP_VID2WR_FORCE_CLR_MSK    0x7fffffff
+    #define ALT_ACPIDMAP_VID2WR_FORCE_CLR_MSK    0x7fffffff
 /* The reset value of the ALT_ACPIDMAP_VID2WR_FORCE register field. */
-#define ALT_ACPIDMAP_VID2WR_FORCE_RESET      0x1
+    #define ALT_ACPIDMAP_VID2WR_FORCE_RESET      0x1
 /* Extracts the ALT_ACPIDMAP_VID2WR_FORCE field value from a register. */
-#define ALT_ACPIDMAP_VID2WR_FORCE_GET(value) (((value) & 0x80000000) >> 31)
+    #define ALT_ACPIDMAP_VID2WR_FORCE_GET( value )    ( ( ( value ) & 0x80000000 ) >> 31 )
 /* Produces a ALT_ACPIDMAP_VID2WR_FORCE register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID2WR_FORCE_SET(value) (((value) << 31) & 0x80000000)
+    #define ALT_ACPIDMAP_VID2WR_FORCE_SET( value )    ( ( ( value ) << 31 ) & 0x80000000 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -332,24 +337,24 @@ typedef volatile struct ALT_ACPIDMAP_VID2RD_s  ALT_ACPIDMAP_VID2RD_t;
  *
  * The struct declaration for register ALT_ACPIDMAP_VID2WR.
  */
-struct ALT_ACPIDMAP_VID2WR_s
-{
-    uint32_t        :  4;  /* *UNDEFINED* */
-    uint32_t  user  :  5;  /* AWUSER value to SCU for ID=2 */
-    uint32_t        :  3;  /* *UNDEFINED* */
-    uint32_t  page  :  2;  /* AWADDR 1GB Page Decoder */
-    uint32_t        :  2;  /* *UNDEFINED* */
-    uint32_t  mid   : 12;  /* Remap Master ID = DAP ID */
-    uint32_t        :  3;  /* *UNDEFINED* */
-    uint32_t  force :  1;  /* Force Mapping for ID=2 */
-};
+        struct ALT_ACPIDMAP_VID2WR_s
+        {
+            uint32_t        :  4; /* *UNDEFINED* */
+            uint32_t user  :  5;  /* AWUSER value to SCU for ID=2 */
+            uint32_t        :  3; /* *UNDEFINED* */
+            uint32_t page  :  2;  /* AWADDR 1GB Page Decoder */
+            uint32_t        :  2; /* *UNDEFINED* */
+            uint32_t mid   : 12;  /* Remap Master ID = DAP ID */
+            uint32_t        :  3; /* *UNDEFINED* */
+            uint32_t force :  1;  /* Force Mapping for ID=2 */
+        };
 
 /* The typedef declaration for register ALT_ACPIDMAP_VID2WR. */
-typedef volatile struct ALT_ACPIDMAP_VID2WR_s  ALT_ACPIDMAP_VID2WR_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_ACPIDMAP_VID2WR_s ALT_ACPIDMAP_VID2WR_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_ACPIDMAP_VID2WR register from the beginning of the component. */
-#define ALT_ACPIDMAP_VID2WR_OFST        0x4
+    #define ALT_ACPIDMAP_VID2WR_OFST    0x4
 
 /*
  * Register : Read AXI Master Mapping Register for Fixed Virtual ID 3 - vid3rd
@@ -372,6 +377,7 @@ typedef volatile struct ALT_ACPIDMAP_VID2WR_s  ALT_ACPIDMAP_VID2WR_t;
  *  [31]    | RW     | 0x0   | Force Mapping
  *
  */
+
 /*
  * Field : ARUSER value to SCU - user
  *
@@ -381,21 +387,21 @@ typedef volatile struct ALT_ACPIDMAP_VID2WR_s  ALT_ACPIDMAP_VID2WR_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID3RD_USER register field. */
-#define ALT_ACPIDMAP_VID3RD_USER_LSB        4
+    #define ALT_ACPIDMAP_VID3RD_USER_LSB        4
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID3RD_USER register field. */
-#define ALT_ACPIDMAP_VID3RD_USER_MSB        8
+    #define ALT_ACPIDMAP_VID3RD_USER_MSB        8
 /* The width in bits of the ALT_ACPIDMAP_VID3RD_USER register field. */
-#define ALT_ACPIDMAP_VID3RD_USER_WIDTH      5
+    #define ALT_ACPIDMAP_VID3RD_USER_WIDTH      5
 /* The mask used to set the ALT_ACPIDMAP_VID3RD_USER register field value. */
-#define ALT_ACPIDMAP_VID3RD_USER_SET_MSK    0x000001f0
+    #define ALT_ACPIDMAP_VID3RD_USER_SET_MSK    0x000001f0
 /* The mask used to clear the ALT_ACPIDMAP_VID3RD_USER register field value. */
-#define ALT_ACPIDMAP_VID3RD_USER_CLR_MSK    0xfffffe0f
+    #define ALT_ACPIDMAP_VID3RD_USER_CLR_MSK    0xfffffe0f
 /* The reset value of the ALT_ACPIDMAP_VID3RD_USER register field. */
-#define ALT_ACPIDMAP_VID3RD_USER_RESET      0x0
+    #define ALT_ACPIDMAP_VID3RD_USER_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID3RD_USER field value from a register. */
-#define ALT_ACPIDMAP_VID3RD_USER_GET(value) (((value) & 0x000001f0) >> 4)
+    #define ALT_ACPIDMAP_VID3RD_USER_GET( value )    ( ( ( value ) & 0x000001f0 ) >> 4 )
 /* Produces a ALT_ACPIDMAP_VID3RD_USER register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID3RD_USER_SET(value) (((value) << 4) & 0x000001f0)
+    #define ALT_ACPIDMAP_VID3RD_USER_SET( value )    ( ( ( value ) << 4 ) & 0x000001f0 )
 
 /*
  * Field : ARADDR 1GB Page Decoder - page
@@ -406,21 +412,21 @@ typedef volatile struct ALT_ACPIDMAP_VID2WR_s  ALT_ACPIDMAP_VID2WR_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID3RD_PAGE register field. */
-#define ALT_ACPIDMAP_VID3RD_PAGE_LSB        12
+    #define ALT_ACPIDMAP_VID3RD_PAGE_LSB        12
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID3RD_PAGE register field. */
-#define ALT_ACPIDMAP_VID3RD_PAGE_MSB        13
+    #define ALT_ACPIDMAP_VID3RD_PAGE_MSB        13
 /* The width in bits of the ALT_ACPIDMAP_VID3RD_PAGE register field. */
-#define ALT_ACPIDMAP_VID3RD_PAGE_WIDTH      2
+    #define ALT_ACPIDMAP_VID3RD_PAGE_WIDTH      2
 /* The mask used to set the ALT_ACPIDMAP_VID3RD_PAGE register field value. */
-#define ALT_ACPIDMAP_VID3RD_PAGE_SET_MSK    0x00003000
+    #define ALT_ACPIDMAP_VID3RD_PAGE_SET_MSK    0x00003000
 /* The mask used to clear the ALT_ACPIDMAP_VID3RD_PAGE register field value. */
-#define ALT_ACPIDMAP_VID3RD_PAGE_CLR_MSK    0xffffcfff
+    #define ALT_ACPIDMAP_VID3RD_PAGE_CLR_MSK    0xffffcfff
 /* The reset value of the ALT_ACPIDMAP_VID3RD_PAGE register field. */
-#define ALT_ACPIDMAP_VID3RD_PAGE_RESET      0x0
+    #define ALT_ACPIDMAP_VID3RD_PAGE_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID3RD_PAGE field value from a register. */
-#define ALT_ACPIDMAP_VID3RD_PAGE_GET(value) (((value) & 0x00003000) >> 12)
+    #define ALT_ACPIDMAP_VID3RD_PAGE_GET( value )    ( ( ( value ) & 0x00003000 ) >> 12 )
 /* Produces a ALT_ACPIDMAP_VID3RD_PAGE register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID3RD_PAGE_SET(value) (((value) << 12) & 0x00003000)
+    #define ALT_ACPIDMAP_VID3RD_PAGE_SET( value )    ( ( ( value ) << 12 ) & 0x00003000 )
 
 /*
  * Field : Remap Master ID - mid
@@ -432,21 +438,21 @@ typedef volatile struct ALT_ACPIDMAP_VID2WR_s  ALT_ACPIDMAP_VID2WR_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID3RD_MID register field. */
-#define ALT_ACPIDMAP_VID3RD_MID_LSB        16
+    #define ALT_ACPIDMAP_VID3RD_MID_LSB        16
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID3RD_MID register field. */
-#define ALT_ACPIDMAP_VID3RD_MID_MSB        27
+    #define ALT_ACPIDMAP_VID3RD_MID_MSB        27
 /* The width in bits of the ALT_ACPIDMAP_VID3RD_MID register field. */
-#define ALT_ACPIDMAP_VID3RD_MID_WIDTH      12
+    #define ALT_ACPIDMAP_VID3RD_MID_WIDTH      12
 /* The mask used to set the ALT_ACPIDMAP_VID3RD_MID register field value. */
-#define ALT_ACPIDMAP_VID3RD_MID_SET_MSK    0x0fff0000
+    #define ALT_ACPIDMAP_VID3RD_MID_SET_MSK    0x0fff0000
 /* The mask used to clear the ALT_ACPIDMAP_VID3RD_MID register field value. */
-#define ALT_ACPIDMAP_VID3RD_MID_CLR_MSK    0xf000ffff
+    #define ALT_ACPIDMAP_VID3RD_MID_CLR_MSK    0xf000ffff
 /* The reset value of the ALT_ACPIDMAP_VID3RD_MID register field. */
-#define ALT_ACPIDMAP_VID3RD_MID_RESET      0x0
+    #define ALT_ACPIDMAP_VID3RD_MID_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID3RD_MID field value from a register. */
-#define ALT_ACPIDMAP_VID3RD_MID_GET(value) (((value) & 0x0fff0000) >> 16)
+    #define ALT_ACPIDMAP_VID3RD_MID_GET( value )    ( ( ( value ) & 0x0fff0000 ) >> 16 )
 /* Produces a ALT_ACPIDMAP_VID3RD_MID register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID3RD_MID_SET(value) (((value) << 16) & 0x0fff0000)
+    #define ALT_ACPIDMAP_VID3RD_MID_SET( value )    ( ( ( value ) << 16 ) & 0x0fff0000 )
 
 /*
  * Field : Force Mapping - force
@@ -458,23 +464,24 @@ typedef volatile struct ALT_ACPIDMAP_VID2WR_s  ALT_ACPIDMAP_VID2WR_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID3RD_FORCE register field. */
-#define ALT_ACPIDMAP_VID3RD_FORCE_LSB        31
+    #define ALT_ACPIDMAP_VID3RD_FORCE_LSB        31
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID3RD_FORCE register field. */
-#define ALT_ACPIDMAP_VID3RD_FORCE_MSB        31
+    #define ALT_ACPIDMAP_VID3RD_FORCE_MSB        31
 /* The width in bits of the ALT_ACPIDMAP_VID3RD_FORCE register field. */
-#define ALT_ACPIDMAP_VID3RD_FORCE_WIDTH      1
+    #define ALT_ACPIDMAP_VID3RD_FORCE_WIDTH      1
 /* The mask used to set the ALT_ACPIDMAP_VID3RD_FORCE register field value. */
-#define ALT_ACPIDMAP_VID3RD_FORCE_SET_MSK    0x80000000
+    #define ALT_ACPIDMAP_VID3RD_FORCE_SET_MSK    0x80000000
 /* The mask used to clear the ALT_ACPIDMAP_VID3RD_FORCE register field value. */
-#define ALT_ACPIDMAP_VID3RD_FORCE_CLR_MSK    0x7fffffff
+    #define ALT_ACPIDMAP_VID3RD_FORCE_CLR_MSK    0x7fffffff
 /* The reset value of the ALT_ACPIDMAP_VID3RD_FORCE register field. */
-#define ALT_ACPIDMAP_VID3RD_FORCE_RESET      0x0
+    #define ALT_ACPIDMAP_VID3RD_FORCE_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID3RD_FORCE field value from a register. */
-#define ALT_ACPIDMAP_VID3RD_FORCE_GET(value) (((value) & 0x80000000) >> 31)
+    #define ALT_ACPIDMAP_VID3RD_FORCE_GET( value )    ( ( ( value ) & 0x80000000 ) >> 31 )
 /* Produces a ALT_ACPIDMAP_VID3RD_FORCE register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID3RD_FORCE_SET(value) (((value) << 31) & 0x80000000)
+    #define ALT_ACPIDMAP_VID3RD_FORCE_SET( value )    ( ( ( value ) << 31 ) & 0x80000000 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -485,24 +492,24 @@ typedef volatile struct ALT_ACPIDMAP_VID2WR_s  ALT_ACPIDMAP_VID2WR_t;
  *
  * The struct declaration for register ALT_ACPIDMAP_VID3RD.
  */
-struct ALT_ACPIDMAP_VID3RD_s
-{
-    uint32_t        :  4;  /* *UNDEFINED* */
-    uint32_t  user  :  5;  /* ARUSER value to SCU */
-    uint32_t        :  3;  /* *UNDEFINED* */
-    uint32_t  page  :  2;  /* ARADDR 1GB Page Decoder */
-    uint32_t        :  2;  /* *UNDEFINED* */
-    uint32_t  mid   : 12;  /* Remap Master ID */
-    uint32_t        :  3;  /* *UNDEFINED* */
-    uint32_t  force :  1;  /* Force Mapping */
-};
+        struct ALT_ACPIDMAP_VID3RD_s
+        {
+            uint32_t        :  4; /* *UNDEFINED* */
+            uint32_t user  :  5;  /* ARUSER value to SCU */
+            uint32_t        :  3; /* *UNDEFINED* */
+            uint32_t page  :  2;  /* ARADDR 1GB Page Decoder */
+            uint32_t        :  2; /* *UNDEFINED* */
+            uint32_t mid   : 12;  /* Remap Master ID */
+            uint32_t        :  3; /* *UNDEFINED* */
+            uint32_t force :  1;  /* Force Mapping */
+        };
 
 /* The typedef declaration for register ALT_ACPIDMAP_VID3RD. */
-typedef volatile struct ALT_ACPIDMAP_VID3RD_s  ALT_ACPIDMAP_VID3RD_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_ACPIDMAP_VID3RD_s ALT_ACPIDMAP_VID3RD_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_ACPIDMAP_VID3RD register from the beginning of the component. */
-#define ALT_ACPIDMAP_VID3RD_OFST        0x8
+    #define ALT_ACPIDMAP_VID3RD_OFST    0x8
 
 /*
  * Register : Write AXI Master Mapping Register for Fixed Virtual ID 3 - vid3wr
@@ -525,6 +532,7 @@ typedef volatile struct ALT_ACPIDMAP_VID3RD_s  ALT_ACPIDMAP_VID3RD_t;
  *  [31]    | RW     | 0x0   | Force Mapping
  *
  */
+
 /*
  * Field : AWUSER value to SCU - user
  *
@@ -534,21 +542,21 @@ typedef volatile struct ALT_ACPIDMAP_VID3RD_s  ALT_ACPIDMAP_VID3RD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID3WR_USER register field. */
-#define ALT_ACPIDMAP_VID3WR_USER_LSB        4
+    #define ALT_ACPIDMAP_VID3WR_USER_LSB        4
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID3WR_USER register field. */
-#define ALT_ACPIDMAP_VID3WR_USER_MSB        8
+    #define ALT_ACPIDMAP_VID3WR_USER_MSB        8
 /* The width in bits of the ALT_ACPIDMAP_VID3WR_USER register field. */
-#define ALT_ACPIDMAP_VID3WR_USER_WIDTH      5
+    #define ALT_ACPIDMAP_VID3WR_USER_WIDTH      5
 /* The mask used to set the ALT_ACPIDMAP_VID3WR_USER register field value. */
-#define ALT_ACPIDMAP_VID3WR_USER_SET_MSK    0x000001f0
+    #define ALT_ACPIDMAP_VID3WR_USER_SET_MSK    0x000001f0
 /* The mask used to clear the ALT_ACPIDMAP_VID3WR_USER register field value. */
-#define ALT_ACPIDMAP_VID3WR_USER_CLR_MSK    0xfffffe0f
+    #define ALT_ACPIDMAP_VID3WR_USER_CLR_MSK    0xfffffe0f
 /* The reset value of the ALT_ACPIDMAP_VID3WR_USER register field. */
-#define ALT_ACPIDMAP_VID3WR_USER_RESET      0x0
+    #define ALT_ACPIDMAP_VID3WR_USER_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID3WR_USER field value from a register. */
-#define ALT_ACPIDMAP_VID3WR_USER_GET(value) (((value) & 0x000001f0) >> 4)
+    #define ALT_ACPIDMAP_VID3WR_USER_GET( value )    ( ( ( value ) & 0x000001f0 ) >> 4 )
 /* Produces a ALT_ACPIDMAP_VID3WR_USER register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID3WR_USER_SET(value) (((value) << 4) & 0x000001f0)
+    #define ALT_ACPIDMAP_VID3WR_USER_SET( value )    ( ( ( value ) << 4 ) & 0x000001f0 )
 
 /*
  * Field : AWADDR 1GB Page Decoder - page
@@ -559,21 +567,21 @@ typedef volatile struct ALT_ACPIDMAP_VID3RD_s  ALT_ACPIDMAP_VID3RD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID3WR_PAGE register field. */
-#define ALT_ACPIDMAP_VID3WR_PAGE_LSB        12
+    #define ALT_ACPIDMAP_VID3WR_PAGE_LSB        12
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID3WR_PAGE register field. */
-#define ALT_ACPIDMAP_VID3WR_PAGE_MSB        13
+    #define ALT_ACPIDMAP_VID3WR_PAGE_MSB        13
 /* The width in bits of the ALT_ACPIDMAP_VID3WR_PAGE register field. */
-#define ALT_ACPIDMAP_VID3WR_PAGE_WIDTH      2
+    #define ALT_ACPIDMAP_VID3WR_PAGE_WIDTH      2
 /* The mask used to set the ALT_ACPIDMAP_VID3WR_PAGE register field value. */
-#define ALT_ACPIDMAP_VID3WR_PAGE_SET_MSK    0x00003000
+    #define ALT_ACPIDMAP_VID3WR_PAGE_SET_MSK    0x00003000
 /* The mask used to clear the ALT_ACPIDMAP_VID3WR_PAGE register field value. */
-#define ALT_ACPIDMAP_VID3WR_PAGE_CLR_MSK    0xffffcfff
+    #define ALT_ACPIDMAP_VID3WR_PAGE_CLR_MSK    0xffffcfff
 /* The reset value of the ALT_ACPIDMAP_VID3WR_PAGE register field. */
-#define ALT_ACPIDMAP_VID3WR_PAGE_RESET      0x0
+    #define ALT_ACPIDMAP_VID3WR_PAGE_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID3WR_PAGE field value from a register. */
-#define ALT_ACPIDMAP_VID3WR_PAGE_GET(value) (((value) & 0x00003000) >> 12)
+    #define ALT_ACPIDMAP_VID3WR_PAGE_GET( value )    ( ( ( value ) & 0x00003000 ) >> 12 )
 /* Produces a ALT_ACPIDMAP_VID3WR_PAGE register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID3WR_PAGE_SET(value) (((value) << 12) & 0x00003000)
+    #define ALT_ACPIDMAP_VID3WR_PAGE_SET( value )    ( ( ( value ) << 12 ) & 0x00003000 )
 
 /*
  * Field : Remap Master ID - mid
@@ -585,21 +593,21 @@ typedef volatile struct ALT_ACPIDMAP_VID3RD_s  ALT_ACPIDMAP_VID3RD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID3WR_MID register field. */
-#define ALT_ACPIDMAP_VID3WR_MID_LSB        16
+    #define ALT_ACPIDMAP_VID3WR_MID_LSB        16
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID3WR_MID register field. */
-#define ALT_ACPIDMAP_VID3WR_MID_MSB        27
+    #define ALT_ACPIDMAP_VID3WR_MID_MSB        27
 /* The width in bits of the ALT_ACPIDMAP_VID3WR_MID register field. */
-#define ALT_ACPIDMAP_VID3WR_MID_WIDTH      12
+    #define ALT_ACPIDMAP_VID3WR_MID_WIDTH      12
 /* The mask used to set the ALT_ACPIDMAP_VID3WR_MID register field value. */
-#define ALT_ACPIDMAP_VID3WR_MID_SET_MSK    0x0fff0000
+    #define ALT_ACPIDMAP_VID3WR_MID_SET_MSK    0x0fff0000
 /* The mask used to clear the ALT_ACPIDMAP_VID3WR_MID register field value. */
-#define ALT_ACPIDMAP_VID3WR_MID_CLR_MSK    0xf000ffff
+    #define ALT_ACPIDMAP_VID3WR_MID_CLR_MSK    0xf000ffff
 /* The reset value of the ALT_ACPIDMAP_VID3WR_MID register field. */
-#define ALT_ACPIDMAP_VID3WR_MID_RESET      0x0
+    #define ALT_ACPIDMAP_VID3WR_MID_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID3WR_MID field value from a register. */
-#define ALT_ACPIDMAP_VID3WR_MID_GET(value) (((value) & 0x0fff0000) >> 16)
+    #define ALT_ACPIDMAP_VID3WR_MID_GET( value )    ( ( ( value ) & 0x0fff0000 ) >> 16 )
 /* Produces a ALT_ACPIDMAP_VID3WR_MID register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID3WR_MID_SET(value) (((value) << 16) & 0x0fff0000)
+    #define ALT_ACPIDMAP_VID3WR_MID_SET( value )    ( ( ( value ) << 16 ) & 0x0fff0000 )
 
 /*
  * Field : Force Mapping - force
@@ -611,23 +619,24 @@ typedef volatile struct ALT_ACPIDMAP_VID3RD_s  ALT_ACPIDMAP_VID3RD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID3WR_FORCE register field. */
-#define ALT_ACPIDMAP_VID3WR_FORCE_LSB        31
+    #define ALT_ACPIDMAP_VID3WR_FORCE_LSB        31
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID3WR_FORCE register field. */
-#define ALT_ACPIDMAP_VID3WR_FORCE_MSB        31
+    #define ALT_ACPIDMAP_VID3WR_FORCE_MSB        31
 /* The width in bits of the ALT_ACPIDMAP_VID3WR_FORCE register field. */
-#define ALT_ACPIDMAP_VID3WR_FORCE_WIDTH      1
+    #define ALT_ACPIDMAP_VID3WR_FORCE_WIDTH      1
 /* The mask used to set the ALT_ACPIDMAP_VID3WR_FORCE register field value. */
-#define ALT_ACPIDMAP_VID3WR_FORCE_SET_MSK    0x80000000
+    #define ALT_ACPIDMAP_VID3WR_FORCE_SET_MSK    0x80000000
 /* The mask used to clear the ALT_ACPIDMAP_VID3WR_FORCE register field value. */
-#define ALT_ACPIDMAP_VID3WR_FORCE_CLR_MSK    0x7fffffff
+    #define ALT_ACPIDMAP_VID3WR_FORCE_CLR_MSK    0x7fffffff
 /* The reset value of the ALT_ACPIDMAP_VID3WR_FORCE register field. */
-#define ALT_ACPIDMAP_VID3WR_FORCE_RESET      0x0
+    #define ALT_ACPIDMAP_VID3WR_FORCE_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID3WR_FORCE field value from a register. */
-#define ALT_ACPIDMAP_VID3WR_FORCE_GET(value) (((value) & 0x80000000) >> 31)
+    #define ALT_ACPIDMAP_VID3WR_FORCE_GET( value )    ( ( ( value ) & 0x80000000 ) >> 31 )
 /* Produces a ALT_ACPIDMAP_VID3WR_FORCE register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID3WR_FORCE_SET(value) (((value) << 31) & 0x80000000)
+    #define ALT_ACPIDMAP_VID3WR_FORCE_SET( value )    ( ( ( value ) << 31 ) & 0x80000000 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -638,24 +647,24 @@ typedef volatile struct ALT_ACPIDMAP_VID3RD_s  ALT_ACPIDMAP_VID3RD_t;
  *
  * The struct declaration for register ALT_ACPIDMAP_VID3WR.
  */
-struct ALT_ACPIDMAP_VID3WR_s
-{
-    uint32_t        :  4;  /* *UNDEFINED* */
-    uint32_t  user  :  5;  /* AWUSER value to SCU */
-    uint32_t        :  3;  /* *UNDEFINED* */
-    uint32_t  page  :  2;  /* AWADDR 1GB Page Decoder */
-    uint32_t        :  2;  /* *UNDEFINED* */
-    uint32_t  mid   : 12;  /* Remap Master ID */
-    uint32_t        :  3;  /* *UNDEFINED* */
-    uint32_t  force :  1;  /* Force Mapping */
-};
+        struct ALT_ACPIDMAP_VID3WR_s
+        {
+            uint32_t        :  4; /* *UNDEFINED* */
+            uint32_t user  :  5;  /* AWUSER value to SCU */
+            uint32_t        :  3; /* *UNDEFINED* */
+            uint32_t page  :  2;  /* AWADDR 1GB Page Decoder */
+            uint32_t        :  2; /* *UNDEFINED* */
+            uint32_t mid   : 12;  /* Remap Master ID */
+            uint32_t        :  3; /* *UNDEFINED* */
+            uint32_t force :  1;  /* Force Mapping */
+        };
 
 /* The typedef declaration for register ALT_ACPIDMAP_VID3WR. */
-typedef volatile struct ALT_ACPIDMAP_VID3WR_s  ALT_ACPIDMAP_VID3WR_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_ACPIDMAP_VID3WR_s ALT_ACPIDMAP_VID3WR_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_ACPIDMAP_VID3WR register from the beginning of the component. */
-#define ALT_ACPIDMAP_VID3WR_OFST        0xc
+    #define ALT_ACPIDMAP_VID3WR_OFST    0xc
 
 /*
  * Register : Read AXI Master Mapping Register for Fixed Virtual ID 4 - vid4rd
@@ -678,6 +687,7 @@ typedef volatile struct ALT_ACPIDMAP_VID3WR_s  ALT_ACPIDMAP_VID3WR_t;
  *  [31]    | RW     | 0x0   | Force Mapping
  *
  */
+
 /*
  * Field : ARUSER value to SCU - user
  *
@@ -687,21 +697,21 @@ typedef volatile struct ALT_ACPIDMAP_VID3WR_s  ALT_ACPIDMAP_VID3WR_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID4RD_USER register field. */
-#define ALT_ACPIDMAP_VID4RD_USER_LSB        4
+    #define ALT_ACPIDMAP_VID4RD_USER_LSB        4
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID4RD_USER register field. */
-#define ALT_ACPIDMAP_VID4RD_USER_MSB        8
+    #define ALT_ACPIDMAP_VID4RD_USER_MSB        8
 /* The width in bits of the ALT_ACPIDMAP_VID4RD_USER register field. */
-#define ALT_ACPIDMAP_VID4RD_USER_WIDTH      5
+    #define ALT_ACPIDMAP_VID4RD_USER_WIDTH      5
 /* The mask used to set the ALT_ACPIDMAP_VID4RD_USER register field value. */
-#define ALT_ACPIDMAP_VID4RD_USER_SET_MSK    0x000001f0
+    #define ALT_ACPIDMAP_VID4RD_USER_SET_MSK    0x000001f0
 /* The mask used to clear the ALT_ACPIDMAP_VID4RD_USER register field value. */
-#define ALT_ACPIDMAP_VID4RD_USER_CLR_MSK    0xfffffe0f
+    #define ALT_ACPIDMAP_VID4RD_USER_CLR_MSK    0xfffffe0f
 /* The reset value of the ALT_ACPIDMAP_VID4RD_USER register field. */
-#define ALT_ACPIDMAP_VID4RD_USER_RESET      0x0
+    #define ALT_ACPIDMAP_VID4RD_USER_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID4RD_USER field value from a register. */
-#define ALT_ACPIDMAP_VID4RD_USER_GET(value) (((value) & 0x000001f0) >> 4)
+    #define ALT_ACPIDMAP_VID4RD_USER_GET( value )    ( ( ( value ) & 0x000001f0 ) >> 4 )
 /* Produces a ALT_ACPIDMAP_VID4RD_USER register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID4RD_USER_SET(value) (((value) << 4) & 0x000001f0)
+    #define ALT_ACPIDMAP_VID4RD_USER_SET( value )    ( ( ( value ) << 4 ) & 0x000001f0 )
 
 /*
  * Field : ARADDR 1GB Page Decoder - page
@@ -712,21 +722,21 @@ typedef volatile struct ALT_ACPIDMAP_VID3WR_s  ALT_ACPIDMAP_VID3WR_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID4RD_PAGE register field. */
-#define ALT_ACPIDMAP_VID4RD_PAGE_LSB        12
+    #define ALT_ACPIDMAP_VID4RD_PAGE_LSB        12
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID4RD_PAGE register field. */
-#define ALT_ACPIDMAP_VID4RD_PAGE_MSB        13
+    #define ALT_ACPIDMAP_VID4RD_PAGE_MSB        13
 /* The width in bits of the ALT_ACPIDMAP_VID4RD_PAGE register field. */
-#define ALT_ACPIDMAP_VID4RD_PAGE_WIDTH      2
+    #define ALT_ACPIDMAP_VID4RD_PAGE_WIDTH      2
 /* The mask used to set the ALT_ACPIDMAP_VID4RD_PAGE register field value. */
-#define ALT_ACPIDMAP_VID4RD_PAGE_SET_MSK    0x00003000
+    #define ALT_ACPIDMAP_VID4RD_PAGE_SET_MSK    0x00003000
 /* The mask used to clear the ALT_ACPIDMAP_VID4RD_PAGE register field value. */
-#define ALT_ACPIDMAP_VID4RD_PAGE_CLR_MSK    0xffffcfff
+    #define ALT_ACPIDMAP_VID4RD_PAGE_CLR_MSK    0xffffcfff
 /* The reset value of the ALT_ACPIDMAP_VID4RD_PAGE register field. */
-#define ALT_ACPIDMAP_VID4RD_PAGE_RESET      0x0
+    #define ALT_ACPIDMAP_VID4RD_PAGE_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID4RD_PAGE field value from a register. */
-#define ALT_ACPIDMAP_VID4RD_PAGE_GET(value) (((value) & 0x00003000) >> 12)
+    #define ALT_ACPIDMAP_VID4RD_PAGE_GET( value )    ( ( ( value ) & 0x00003000 ) >> 12 )
 /* Produces a ALT_ACPIDMAP_VID4RD_PAGE register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID4RD_PAGE_SET(value) (((value) << 12) & 0x00003000)
+    #define ALT_ACPIDMAP_VID4RD_PAGE_SET( value )    ( ( ( value ) << 12 ) & 0x00003000 )
 
 /*
  * Field : Remap Master ID - mid
@@ -738,21 +748,21 @@ typedef volatile struct ALT_ACPIDMAP_VID3WR_s  ALT_ACPIDMAP_VID3WR_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID4RD_MID register field. */
-#define ALT_ACPIDMAP_VID4RD_MID_LSB        16
+    #define ALT_ACPIDMAP_VID4RD_MID_LSB        16
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID4RD_MID register field. */
-#define ALT_ACPIDMAP_VID4RD_MID_MSB        27
+    #define ALT_ACPIDMAP_VID4RD_MID_MSB        27
 /* The width in bits of the ALT_ACPIDMAP_VID4RD_MID register field. */
-#define ALT_ACPIDMAP_VID4RD_MID_WIDTH      12
+    #define ALT_ACPIDMAP_VID4RD_MID_WIDTH      12
 /* The mask used to set the ALT_ACPIDMAP_VID4RD_MID register field value. */
-#define ALT_ACPIDMAP_VID4RD_MID_SET_MSK    0x0fff0000
+    #define ALT_ACPIDMAP_VID4RD_MID_SET_MSK    0x0fff0000
 /* The mask used to clear the ALT_ACPIDMAP_VID4RD_MID register field value. */
-#define ALT_ACPIDMAP_VID4RD_MID_CLR_MSK    0xf000ffff
+    #define ALT_ACPIDMAP_VID4RD_MID_CLR_MSK    0xf000ffff
 /* The reset value of the ALT_ACPIDMAP_VID4RD_MID register field. */
-#define ALT_ACPIDMAP_VID4RD_MID_RESET      0x0
+    #define ALT_ACPIDMAP_VID4RD_MID_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID4RD_MID field value from a register. */
-#define ALT_ACPIDMAP_VID4RD_MID_GET(value) (((value) & 0x0fff0000) >> 16)
+    #define ALT_ACPIDMAP_VID4RD_MID_GET( value )    ( ( ( value ) & 0x0fff0000 ) >> 16 )
 /* Produces a ALT_ACPIDMAP_VID4RD_MID register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID4RD_MID_SET(value) (((value) << 16) & 0x0fff0000)
+    #define ALT_ACPIDMAP_VID4RD_MID_SET( value )    ( ( ( value ) << 16 ) & 0x0fff0000 )
 
 /*
  * Field : Force Mapping - force
@@ -764,23 +774,24 @@ typedef volatile struct ALT_ACPIDMAP_VID3WR_s  ALT_ACPIDMAP_VID3WR_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID4RD_FORCE register field. */
-#define ALT_ACPIDMAP_VID4RD_FORCE_LSB        31
+    #define ALT_ACPIDMAP_VID4RD_FORCE_LSB        31
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID4RD_FORCE register field. */
-#define ALT_ACPIDMAP_VID4RD_FORCE_MSB        31
+    #define ALT_ACPIDMAP_VID4RD_FORCE_MSB        31
 /* The width in bits of the ALT_ACPIDMAP_VID4RD_FORCE register field. */
-#define ALT_ACPIDMAP_VID4RD_FORCE_WIDTH      1
+    #define ALT_ACPIDMAP_VID4RD_FORCE_WIDTH      1
 /* The mask used to set the ALT_ACPIDMAP_VID4RD_FORCE register field value. */
-#define ALT_ACPIDMAP_VID4RD_FORCE_SET_MSK    0x80000000
+    #define ALT_ACPIDMAP_VID4RD_FORCE_SET_MSK    0x80000000
 /* The mask used to clear the ALT_ACPIDMAP_VID4RD_FORCE register field value. */
-#define ALT_ACPIDMAP_VID4RD_FORCE_CLR_MSK    0x7fffffff
+    #define ALT_ACPIDMAP_VID4RD_FORCE_CLR_MSK    0x7fffffff
 /* The reset value of the ALT_ACPIDMAP_VID4RD_FORCE register field. */
-#define ALT_ACPIDMAP_VID4RD_FORCE_RESET      0x0
+    #define ALT_ACPIDMAP_VID4RD_FORCE_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID4RD_FORCE field value from a register. */
-#define ALT_ACPIDMAP_VID4RD_FORCE_GET(value) (((value) & 0x80000000) >> 31)
+    #define ALT_ACPIDMAP_VID4RD_FORCE_GET( value )    ( ( ( value ) & 0x80000000 ) >> 31 )
 /* Produces a ALT_ACPIDMAP_VID4RD_FORCE register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID4RD_FORCE_SET(value) (((value) << 31) & 0x80000000)
+    #define ALT_ACPIDMAP_VID4RD_FORCE_SET( value )    ( ( ( value ) << 31 ) & 0x80000000 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -791,24 +802,24 @@ typedef volatile struct ALT_ACPIDMAP_VID3WR_s  ALT_ACPIDMAP_VID3WR_t;
  *
  * The struct declaration for register ALT_ACPIDMAP_VID4RD.
  */
-struct ALT_ACPIDMAP_VID4RD_s
-{
-    uint32_t        :  4;  /* *UNDEFINED* */
-    uint32_t  user  :  5;  /* ARUSER value to SCU */
-    uint32_t        :  3;  /* *UNDEFINED* */
-    uint32_t  page  :  2;  /* ARADDR 1GB Page Decoder */
-    uint32_t        :  2;  /* *UNDEFINED* */
-    uint32_t  mid   : 12;  /* Remap Master ID */
-    uint32_t        :  3;  /* *UNDEFINED* */
-    uint32_t  force :  1;  /* Force Mapping */
-};
+        struct ALT_ACPIDMAP_VID4RD_s
+        {
+            uint32_t        :  4; /* *UNDEFINED* */
+            uint32_t user  :  5;  /* ARUSER value to SCU */
+            uint32_t        :  3; /* *UNDEFINED* */
+            uint32_t page  :  2;  /* ARADDR 1GB Page Decoder */
+            uint32_t        :  2; /* *UNDEFINED* */
+            uint32_t mid   : 12;  /* Remap Master ID */
+            uint32_t        :  3; /* *UNDEFINED* */
+            uint32_t force :  1;  /* Force Mapping */
+        };
 
 /* The typedef declaration for register ALT_ACPIDMAP_VID4RD. */
-typedef volatile struct ALT_ACPIDMAP_VID4RD_s  ALT_ACPIDMAP_VID4RD_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_ACPIDMAP_VID4RD_s ALT_ACPIDMAP_VID4RD_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_ACPIDMAP_VID4RD register from the beginning of the component. */
-#define ALT_ACPIDMAP_VID4RD_OFST        0x10
+    #define ALT_ACPIDMAP_VID4RD_OFST    0x10
 
 /*
  * Register : Write AXI Master Mapping Register for Fixed Virtual ID 4 - vid4wr
@@ -831,6 +842,7 @@ typedef volatile struct ALT_ACPIDMAP_VID4RD_s  ALT_ACPIDMAP_VID4RD_t;
  *  [31]    | RW     | 0x0   | Force Mapping
  *
  */
+
 /*
  * Field : AWUSER value to SCU - user
  *
@@ -840,21 +852,21 @@ typedef volatile struct ALT_ACPIDMAP_VID4RD_s  ALT_ACPIDMAP_VID4RD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID4WR_USER register field. */
-#define ALT_ACPIDMAP_VID4WR_USER_LSB        4
+    #define ALT_ACPIDMAP_VID4WR_USER_LSB        4
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID4WR_USER register field. */
-#define ALT_ACPIDMAP_VID4WR_USER_MSB        8
+    #define ALT_ACPIDMAP_VID4WR_USER_MSB        8
 /* The width in bits of the ALT_ACPIDMAP_VID4WR_USER register field. */
-#define ALT_ACPIDMAP_VID4WR_USER_WIDTH      5
+    #define ALT_ACPIDMAP_VID4WR_USER_WIDTH      5
 /* The mask used to set the ALT_ACPIDMAP_VID4WR_USER register field value. */
-#define ALT_ACPIDMAP_VID4WR_USER_SET_MSK    0x000001f0
+    #define ALT_ACPIDMAP_VID4WR_USER_SET_MSK    0x000001f0
 /* The mask used to clear the ALT_ACPIDMAP_VID4WR_USER register field value. */
-#define ALT_ACPIDMAP_VID4WR_USER_CLR_MSK    0xfffffe0f
+    #define ALT_ACPIDMAP_VID4WR_USER_CLR_MSK    0xfffffe0f
 /* The reset value of the ALT_ACPIDMAP_VID4WR_USER register field. */
-#define ALT_ACPIDMAP_VID4WR_USER_RESET      0x0
+    #define ALT_ACPIDMAP_VID4WR_USER_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID4WR_USER field value from a register. */
-#define ALT_ACPIDMAP_VID4WR_USER_GET(value) (((value) & 0x000001f0) >> 4)
+    #define ALT_ACPIDMAP_VID4WR_USER_GET( value )    ( ( ( value ) & 0x000001f0 ) >> 4 )
 /* Produces a ALT_ACPIDMAP_VID4WR_USER register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID4WR_USER_SET(value) (((value) << 4) & 0x000001f0)
+    #define ALT_ACPIDMAP_VID4WR_USER_SET( value )    ( ( ( value ) << 4 ) & 0x000001f0 )
 
 /*
  * Field : AWADDR 1GB Page Decoder - page
@@ -865,21 +877,21 @@ typedef volatile struct ALT_ACPIDMAP_VID4RD_s  ALT_ACPIDMAP_VID4RD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID4WR_PAGE register field. */
-#define ALT_ACPIDMAP_VID4WR_PAGE_LSB        12
+    #define ALT_ACPIDMAP_VID4WR_PAGE_LSB        12
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID4WR_PAGE register field. */
-#define ALT_ACPIDMAP_VID4WR_PAGE_MSB        13
+    #define ALT_ACPIDMAP_VID4WR_PAGE_MSB        13
 /* The width in bits of the ALT_ACPIDMAP_VID4WR_PAGE register field. */
-#define ALT_ACPIDMAP_VID4WR_PAGE_WIDTH      2
+    #define ALT_ACPIDMAP_VID4WR_PAGE_WIDTH      2
 /* The mask used to set the ALT_ACPIDMAP_VID4WR_PAGE register field value. */
-#define ALT_ACPIDMAP_VID4WR_PAGE_SET_MSK    0x00003000
+    #define ALT_ACPIDMAP_VID4WR_PAGE_SET_MSK    0x00003000
 /* The mask used to clear the ALT_ACPIDMAP_VID4WR_PAGE register field value. */
-#define ALT_ACPIDMAP_VID4WR_PAGE_CLR_MSK    0xffffcfff
+    #define ALT_ACPIDMAP_VID4WR_PAGE_CLR_MSK    0xffffcfff
 /* The reset value of the ALT_ACPIDMAP_VID4WR_PAGE register field. */
-#define ALT_ACPIDMAP_VID4WR_PAGE_RESET      0x0
+    #define ALT_ACPIDMAP_VID4WR_PAGE_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID4WR_PAGE field value from a register. */
-#define ALT_ACPIDMAP_VID4WR_PAGE_GET(value) (((value) & 0x00003000) >> 12)
+    #define ALT_ACPIDMAP_VID4WR_PAGE_GET( value )    ( ( ( value ) & 0x00003000 ) >> 12 )
 /* Produces a ALT_ACPIDMAP_VID4WR_PAGE register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID4WR_PAGE_SET(value) (((value) << 12) & 0x00003000)
+    #define ALT_ACPIDMAP_VID4WR_PAGE_SET( value )    ( ( ( value ) << 12 ) & 0x00003000 )
 
 /*
  * Field : Remap Master ID - mid
@@ -891,21 +903,21 @@ typedef volatile struct ALT_ACPIDMAP_VID4RD_s  ALT_ACPIDMAP_VID4RD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID4WR_MID register field. */
-#define ALT_ACPIDMAP_VID4WR_MID_LSB        16
+    #define ALT_ACPIDMAP_VID4WR_MID_LSB        16
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID4WR_MID register field. */
-#define ALT_ACPIDMAP_VID4WR_MID_MSB        27
+    #define ALT_ACPIDMAP_VID4WR_MID_MSB        27
 /* The width in bits of the ALT_ACPIDMAP_VID4WR_MID register field. */
-#define ALT_ACPIDMAP_VID4WR_MID_WIDTH      12
+    #define ALT_ACPIDMAP_VID4WR_MID_WIDTH      12
 /* The mask used to set the ALT_ACPIDMAP_VID4WR_MID register field value. */
-#define ALT_ACPIDMAP_VID4WR_MID_SET_MSK    0x0fff0000
+    #define ALT_ACPIDMAP_VID4WR_MID_SET_MSK    0x0fff0000
 /* The mask used to clear the ALT_ACPIDMAP_VID4WR_MID register field value. */
-#define ALT_ACPIDMAP_VID4WR_MID_CLR_MSK    0xf000ffff
+    #define ALT_ACPIDMAP_VID4WR_MID_CLR_MSK    0xf000ffff
 /* The reset value of the ALT_ACPIDMAP_VID4WR_MID register field. */
-#define ALT_ACPIDMAP_VID4WR_MID_RESET      0x0
+    #define ALT_ACPIDMAP_VID4WR_MID_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID4WR_MID field value from a register. */
-#define ALT_ACPIDMAP_VID4WR_MID_GET(value) (((value) & 0x0fff0000) >> 16)
+    #define ALT_ACPIDMAP_VID4WR_MID_GET( value )    ( ( ( value ) & 0x0fff0000 ) >> 16 )
 /* Produces a ALT_ACPIDMAP_VID4WR_MID register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID4WR_MID_SET(value) (((value) << 16) & 0x0fff0000)
+    #define ALT_ACPIDMAP_VID4WR_MID_SET( value )    ( ( ( value ) << 16 ) & 0x0fff0000 )
 
 /*
  * Field : Force Mapping - force
@@ -917,23 +929,24 @@ typedef volatile struct ALT_ACPIDMAP_VID4RD_s  ALT_ACPIDMAP_VID4RD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID4WR_FORCE register field. */
-#define ALT_ACPIDMAP_VID4WR_FORCE_LSB        31
+    #define ALT_ACPIDMAP_VID4WR_FORCE_LSB        31
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID4WR_FORCE register field. */
-#define ALT_ACPIDMAP_VID4WR_FORCE_MSB        31
+    #define ALT_ACPIDMAP_VID4WR_FORCE_MSB        31
 /* The width in bits of the ALT_ACPIDMAP_VID4WR_FORCE register field. */
-#define ALT_ACPIDMAP_VID4WR_FORCE_WIDTH      1
+    #define ALT_ACPIDMAP_VID4WR_FORCE_WIDTH      1
 /* The mask used to set the ALT_ACPIDMAP_VID4WR_FORCE register field value. */
-#define ALT_ACPIDMAP_VID4WR_FORCE_SET_MSK    0x80000000
+    #define ALT_ACPIDMAP_VID4WR_FORCE_SET_MSK    0x80000000
 /* The mask used to clear the ALT_ACPIDMAP_VID4WR_FORCE register field value. */
-#define ALT_ACPIDMAP_VID4WR_FORCE_CLR_MSK    0x7fffffff
+    #define ALT_ACPIDMAP_VID4WR_FORCE_CLR_MSK    0x7fffffff
 /* The reset value of the ALT_ACPIDMAP_VID4WR_FORCE register field. */
-#define ALT_ACPIDMAP_VID4WR_FORCE_RESET      0x0
+    #define ALT_ACPIDMAP_VID4WR_FORCE_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID4WR_FORCE field value from a register. */
-#define ALT_ACPIDMAP_VID4WR_FORCE_GET(value) (((value) & 0x80000000) >> 31)
+    #define ALT_ACPIDMAP_VID4WR_FORCE_GET( value )    ( ( ( value ) & 0x80000000 ) >> 31 )
 /* Produces a ALT_ACPIDMAP_VID4WR_FORCE register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID4WR_FORCE_SET(value) (((value) << 31) & 0x80000000)
+    #define ALT_ACPIDMAP_VID4WR_FORCE_SET( value )    ( ( ( value ) << 31 ) & 0x80000000 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -944,24 +957,24 @@ typedef volatile struct ALT_ACPIDMAP_VID4RD_s  ALT_ACPIDMAP_VID4RD_t;
  *
  * The struct declaration for register ALT_ACPIDMAP_VID4WR.
  */
-struct ALT_ACPIDMAP_VID4WR_s
-{
-    uint32_t        :  4;  /* *UNDEFINED* */
-    uint32_t  user  :  5;  /* AWUSER value to SCU */
-    uint32_t        :  3;  /* *UNDEFINED* */
-    uint32_t  page  :  2;  /* AWADDR 1GB Page Decoder */
-    uint32_t        :  2;  /* *UNDEFINED* */
-    uint32_t  mid   : 12;  /* Remap Master ID */
-    uint32_t        :  3;  /* *UNDEFINED* */
-    uint32_t  force :  1;  /* Force Mapping */
-};
+        struct ALT_ACPIDMAP_VID4WR_s
+        {
+            uint32_t        :  4; /* *UNDEFINED* */
+            uint32_t user  :  5;  /* AWUSER value to SCU */
+            uint32_t        :  3; /* *UNDEFINED* */
+            uint32_t page  :  2;  /* AWADDR 1GB Page Decoder */
+            uint32_t        :  2; /* *UNDEFINED* */
+            uint32_t mid   : 12;  /* Remap Master ID */
+            uint32_t        :  3; /* *UNDEFINED* */
+            uint32_t force :  1;  /* Force Mapping */
+        };
 
 /* The typedef declaration for register ALT_ACPIDMAP_VID4WR. */
-typedef volatile struct ALT_ACPIDMAP_VID4WR_s  ALT_ACPIDMAP_VID4WR_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_ACPIDMAP_VID4WR_s ALT_ACPIDMAP_VID4WR_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_ACPIDMAP_VID4WR register from the beginning of the component. */
-#define ALT_ACPIDMAP_VID4WR_OFST        0x14
+    #define ALT_ACPIDMAP_VID4WR_OFST    0x14
 
 /*
  * Register : Read AXI Master Mapping Register for Fixed Virtual ID 5 - vid5rd
@@ -984,6 +997,7 @@ typedef volatile struct ALT_ACPIDMAP_VID4WR_s  ALT_ACPIDMAP_VID4WR_t;
  *  [31]    | RW     | 0x0   | Force Mapping
  *
  */
+
 /*
  * Field : ARUSER value to SCU - user
  *
@@ -993,21 +1007,21 @@ typedef volatile struct ALT_ACPIDMAP_VID4WR_s  ALT_ACPIDMAP_VID4WR_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID5RD_USER register field. */
-#define ALT_ACPIDMAP_VID5RD_USER_LSB        4
+    #define ALT_ACPIDMAP_VID5RD_USER_LSB        4
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID5RD_USER register field. */
-#define ALT_ACPIDMAP_VID5RD_USER_MSB        8
+    #define ALT_ACPIDMAP_VID5RD_USER_MSB        8
 /* The width in bits of the ALT_ACPIDMAP_VID5RD_USER register field. */
-#define ALT_ACPIDMAP_VID5RD_USER_WIDTH      5
+    #define ALT_ACPIDMAP_VID5RD_USER_WIDTH      5
 /* The mask used to set the ALT_ACPIDMAP_VID5RD_USER register field value. */
-#define ALT_ACPIDMAP_VID5RD_USER_SET_MSK    0x000001f0
+    #define ALT_ACPIDMAP_VID5RD_USER_SET_MSK    0x000001f0
 /* The mask used to clear the ALT_ACPIDMAP_VID5RD_USER register field value. */
-#define ALT_ACPIDMAP_VID5RD_USER_CLR_MSK    0xfffffe0f
+    #define ALT_ACPIDMAP_VID5RD_USER_CLR_MSK    0xfffffe0f
 /* The reset value of the ALT_ACPIDMAP_VID5RD_USER register field. */
-#define ALT_ACPIDMAP_VID5RD_USER_RESET      0x0
+    #define ALT_ACPIDMAP_VID5RD_USER_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID5RD_USER field value from a register. */
-#define ALT_ACPIDMAP_VID5RD_USER_GET(value) (((value) & 0x000001f0) >> 4)
+    #define ALT_ACPIDMAP_VID5RD_USER_GET( value )    ( ( ( value ) & 0x000001f0 ) >> 4 )
 /* Produces a ALT_ACPIDMAP_VID5RD_USER register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID5RD_USER_SET(value) (((value) << 4) & 0x000001f0)
+    #define ALT_ACPIDMAP_VID5RD_USER_SET( value )    ( ( ( value ) << 4 ) & 0x000001f0 )
 
 /*
  * Field : ARADDR 1GB Page Decoder - page
@@ -1018,21 +1032,21 @@ typedef volatile struct ALT_ACPIDMAP_VID4WR_s  ALT_ACPIDMAP_VID4WR_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID5RD_PAGE register field. */
-#define ALT_ACPIDMAP_VID5RD_PAGE_LSB        12
+    #define ALT_ACPIDMAP_VID5RD_PAGE_LSB        12
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID5RD_PAGE register field. */
-#define ALT_ACPIDMAP_VID5RD_PAGE_MSB        13
+    #define ALT_ACPIDMAP_VID5RD_PAGE_MSB        13
 /* The width in bits of the ALT_ACPIDMAP_VID5RD_PAGE register field. */
-#define ALT_ACPIDMAP_VID5RD_PAGE_WIDTH      2
+    #define ALT_ACPIDMAP_VID5RD_PAGE_WIDTH      2
 /* The mask used to set the ALT_ACPIDMAP_VID5RD_PAGE register field value. */
-#define ALT_ACPIDMAP_VID5RD_PAGE_SET_MSK    0x00003000
+    #define ALT_ACPIDMAP_VID5RD_PAGE_SET_MSK    0x00003000
 /* The mask used to clear the ALT_ACPIDMAP_VID5RD_PAGE register field value. */
-#define ALT_ACPIDMAP_VID5RD_PAGE_CLR_MSK    0xffffcfff
+    #define ALT_ACPIDMAP_VID5RD_PAGE_CLR_MSK    0xffffcfff
 /* The reset value of the ALT_ACPIDMAP_VID5RD_PAGE register field. */
-#define ALT_ACPIDMAP_VID5RD_PAGE_RESET      0x0
+    #define ALT_ACPIDMAP_VID5RD_PAGE_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID5RD_PAGE field value from a register. */
-#define ALT_ACPIDMAP_VID5RD_PAGE_GET(value) (((value) & 0x00003000) >> 12)
+    #define ALT_ACPIDMAP_VID5RD_PAGE_GET( value )    ( ( ( value ) & 0x00003000 ) >> 12 )
 /* Produces a ALT_ACPIDMAP_VID5RD_PAGE register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID5RD_PAGE_SET(value) (((value) << 12) & 0x00003000)
+    #define ALT_ACPIDMAP_VID5RD_PAGE_SET( value )    ( ( ( value ) << 12 ) & 0x00003000 )
 
 /*
  * Field : Remap Master ID - mid
@@ -1044,21 +1058,21 @@ typedef volatile struct ALT_ACPIDMAP_VID4WR_s  ALT_ACPIDMAP_VID4WR_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID5RD_MID register field. */
-#define ALT_ACPIDMAP_VID5RD_MID_LSB        16
+    #define ALT_ACPIDMAP_VID5RD_MID_LSB        16
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID5RD_MID register field. */
-#define ALT_ACPIDMAP_VID5RD_MID_MSB        27
+    #define ALT_ACPIDMAP_VID5RD_MID_MSB        27
 /* The width in bits of the ALT_ACPIDMAP_VID5RD_MID register field. */
-#define ALT_ACPIDMAP_VID5RD_MID_WIDTH      12
+    #define ALT_ACPIDMAP_VID5RD_MID_WIDTH      12
 /* The mask used to set the ALT_ACPIDMAP_VID5RD_MID register field value. */
-#define ALT_ACPIDMAP_VID5RD_MID_SET_MSK    0x0fff0000
+    #define ALT_ACPIDMAP_VID5RD_MID_SET_MSK    0x0fff0000
 /* The mask used to clear the ALT_ACPIDMAP_VID5RD_MID register field value. */
-#define ALT_ACPIDMAP_VID5RD_MID_CLR_MSK    0xf000ffff
+    #define ALT_ACPIDMAP_VID5RD_MID_CLR_MSK    0xf000ffff
 /* The reset value of the ALT_ACPIDMAP_VID5RD_MID register field. */
-#define ALT_ACPIDMAP_VID5RD_MID_RESET      0x0
+    #define ALT_ACPIDMAP_VID5RD_MID_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID5RD_MID field value from a register. */
-#define ALT_ACPIDMAP_VID5RD_MID_GET(value) (((value) & 0x0fff0000) >> 16)
+    #define ALT_ACPIDMAP_VID5RD_MID_GET( value )    ( ( ( value ) & 0x0fff0000 ) >> 16 )
 /* Produces a ALT_ACPIDMAP_VID5RD_MID register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID5RD_MID_SET(value) (((value) << 16) & 0x0fff0000)
+    #define ALT_ACPIDMAP_VID5RD_MID_SET( value )    ( ( ( value ) << 16 ) & 0x0fff0000 )
 
 /*
  * Field : Force Mapping - force
@@ -1070,23 +1084,24 @@ typedef volatile struct ALT_ACPIDMAP_VID4WR_s  ALT_ACPIDMAP_VID4WR_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID5RD_FORCE register field. */
-#define ALT_ACPIDMAP_VID5RD_FORCE_LSB        31
+    #define ALT_ACPIDMAP_VID5RD_FORCE_LSB        31
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID5RD_FORCE register field. */
-#define ALT_ACPIDMAP_VID5RD_FORCE_MSB        31
+    #define ALT_ACPIDMAP_VID5RD_FORCE_MSB        31
 /* The width in bits of the ALT_ACPIDMAP_VID5RD_FORCE register field. */
-#define ALT_ACPIDMAP_VID5RD_FORCE_WIDTH      1
+    #define ALT_ACPIDMAP_VID5RD_FORCE_WIDTH      1
 /* The mask used to set the ALT_ACPIDMAP_VID5RD_FORCE register field value. */
-#define ALT_ACPIDMAP_VID5RD_FORCE_SET_MSK    0x80000000
+    #define ALT_ACPIDMAP_VID5RD_FORCE_SET_MSK    0x80000000
 /* The mask used to clear the ALT_ACPIDMAP_VID5RD_FORCE register field value. */
-#define ALT_ACPIDMAP_VID5RD_FORCE_CLR_MSK    0x7fffffff
+    #define ALT_ACPIDMAP_VID5RD_FORCE_CLR_MSK    0x7fffffff
 /* The reset value of the ALT_ACPIDMAP_VID5RD_FORCE register field. */
-#define ALT_ACPIDMAP_VID5RD_FORCE_RESET      0x0
+    #define ALT_ACPIDMAP_VID5RD_FORCE_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID5RD_FORCE field value from a register. */
-#define ALT_ACPIDMAP_VID5RD_FORCE_GET(value) (((value) & 0x80000000) >> 31)
+    #define ALT_ACPIDMAP_VID5RD_FORCE_GET( value )    ( ( ( value ) & 0x80000000 ) >> 31 )
 /* Produces a ALT_ACPIDMAP_VID5RD_FORCE register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID5RD_FORCE_SET(value) (((value) << 31) & 0x80000000)
+    #define ALT_ACPIDMAP_VID5RD_FORCE_SET( value )    ( ( ( value ) << 31 ) & 0x80000000 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -1097,24 +1112,24 @@ typedef volatile struct ALT_ACPIDMAP_VID4WR_s  ALT_ACPIDMAP_VID4WR_t;
  *
  * The struct declaration for register ALT_ACPIDMAP_VID5RD.
  */
-struct ALT_ACPIDMAP_VID5RD_s
-{
-    uint32_t        :  4;  /* *UNDEFINED* */
-    uint32_t  user  :  5;  /* ARUSER value to SCU */
-    uint32_t        :  3;  /* *UNDEFINED* */
-    uint32_t  page  :  2;  /* ARADDR 1GB Page Decoder */
-    uint32_t        :  2;  /* *UNDEFINED* */
-    uint32_t  mid   : 12;  /* Remap Master ID */
-    uint32_t        :  3;  /* *UNDEFINED* */
-    uint32_t  force :  1;  /* Force Mapping */
-};
+        struct ALT_ACPIDMAP_VID5RD_s
+        {
+            uint32_t        :  4; /* *UNDEFINED* */
+            uint32_t user  :  5;  /* ARUSER value to SCU */
+            uint32_t        :  3; /* *UNDEFINED* */
+            uint32_t page  :  2;  /* ARADDR 1GB Page Decoder */
+            uint32_t        :  2; /* *UNDEFINED* */
+            uint32_t mid   : 12;  /* Remap Master ID */
+            uint32_t        :  3; /* *UNDEFINED* */
+            uint32_t force :  1;  /* Force Mapping */
+        };
 
 /* The typedef declaration for register ALT_ACPIDMAP_VID5RD. */
-typedef volatile struct ALT_ACPIDMAP_VID5RD_s  ALT_ACPIDMAP_VID5RD_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_ACPIDMAP_VID5RD_s ALT_ACPIDMAP_VID5RD_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_ACPIDMAP_VID5RD register from the beginning of the component. */
-#define ALT_ACPIDMAP_VID5RD_OFST        0x18
+    #define ALT_ACPIDMAP_VID5RD_OFST    0x18
 
 /*
  * Register : Write AXI Master Mapping Register for Fixed Virtual ID 5 - vid5wr
@@ -1137,6 +1152,7 @@ typedef volatile struct ALT_ACPIDMAP_VID5RD_s  ALT_ACPIDMAP_VID5RD_t;
  *  [31]    | RW     | 0x0   | Force Mapping
  *
  */
+
 /*
  * Field : AWUSER value to SCU - user
  *
@@ -1146,21 +1162,21 @@ typedef volatile struct ALT_ACPIDMAP_VID5RD_s  ALT_ACPIDMAP_VID5RD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID5WR_USER register field. */
-#define ALT_ACPIDMAP_VID5WR_USER_LSB        4
+    #define ALT_ACPIDMAP_VID5WR_USER_LSB        4
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID5WR_USER register field. */
-#define ALT_ACPIDMAP_VID5WR_USER_MSB        8
+    #define ALT_ACPIDMAP_VID5WR_USER_MSB        8
 /* The width in bits of the ALT_ACPIDMAP_VID5WR_USER register field. */
-#define ALT_ACPIDMAP_VID5WR_USER_WIDTH      5
+    #define ALT_ACPIDMAP_VID5WR_USER_WIDTH      5
 /* The mask used to set the ALT_ACPIDMAP_VID5WR_USER register field value. */
-#define ALT_ACPIDMAP_VID5WR_USER_SET_MSK    0x000001f0
+    #define ALT_ACPIDMAP_VID5WR_USER_SET_MSK    0x000001f0
 /* The mask used to clear the ALT_ACPIDMAP_VID5WR_USER register field value. */
-#define ALT_ACPIDMAP_VID5WR_USER_CLR_MSK    0xfffffe0f
+    #define ALT_ACPIDMAP_VID5WR_USER_CLR_MSK    0xfffffe0f
 /* The reset value of the ALT_ACPIDMAP_VID5WR_USER register field. */
-#define ALT_ACPIDMAP_VID5WR_USER_RESET      0x0
+    #define ALT_ACPIDMAP_VID5WR_USER_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID5WR_USER field value from a register. */
-#define ALT_ACPIDMAP_VID5WR_USER_GET(value) (((value) & 0x000001f0) >> 4)
+    #define ALT_ACPIDMAP_VID5WR_USER_GET( value )    ( ( ( value ) & 0x000001f0 ) >> 4 )
 /* Produces a ALT_ACPIDMAP_VID5WR_USER register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID5WR_USER_SET(value) (((value) << 4) & 0x000001f0)
+    #define ALT_ACPIDMAP_VID5WR_USER_SET( value )    ( ( ( value ) << 4 ) & 0x000001f0 )
 
 /*
  * Field : AWADDR 1GB Page Decoder - page
@@ -1171,21 +1187,21 @@ typedef volatile struct ALT_ACPIDMAP_VID5RD_s  ALT_ACPIDMAP_VID5RD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID5WR_PAGE register field. */
-#define ALT_ACPIDMAP_VID5WR_PAGE_LSB        12
+    #define ALT_ACPIDMAP_VID5WR_PAGE_LSB        12
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID5WR_PAGE register field. */
-#define ALT_ACPIDMAP_VID5WR_PAGE_MSB        13
+    #define ALT_ACPIDMAP_VID5WR_PAGE_MSB        13
 /* The width in bits of the ALT_ACPIDMAP_VID5WR_PAGE register field. */
-#define ALT_ACPIDMAP_VID5WR_PAGE_WIDTH      2
+    #define ALT_ACPIDMAP_VID5WR_PAGE_WIDTH      2
 /* The mask used to set the ALT_ACPIDMAP_VID5WR_PAGE register field value. */
-#define ALT_ACPIDMAP_VID5WR_PAGE_SET_MSK    0x00003000
+    #define ALT_ACPIDMAP_VID5WR_PAGE_SET_MSK    0x00003000
 /* The mask used to clear the ALT_ACPIDMAP_VID5WR_PAGE register field value. */
-#define ALT_ACPIDMAP_VID5WR_PAGE_CLR_MSK    0xffffcfff
+    #define ALT_ACPIDMAP_VID5WR_PAGE_CLR_MSK    0xffffcfff
 /* The reset value of the ALT_ACPIDMAP_VID5WR_PAGE register field. */
-#define ALT_ACPIDMAP_VID5WR_PAGE_RESET      0x0
+    #define ALT_ACPIDMAP_VID5WR_PAGE_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID5WR_PAGE field value from a register. */
-#define ALT_ACPIDMAP_VID5WR_PAGE_GET(value) (((value) & 0x00003000) >> 12)
+    #define ALT_ACPIDMAP_VID5WR_PAGE_GET( value )    ( ( ( value ) & 0x00003000 ) >> 12 )
 /* Produces a ALT_ACPIDMAP_VID5WR_PAGE register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID5WR_PAGE_SET(value) (((value) << 12) & 0x00003000)
+    #define ALT_ACPIDMAP_VID5WR_PAGE_SET( value )    ( ( ( value ) << 12 ) & 0x00003000 )
 
 /*
  * Field : Remap Master ID - mid
@@ -1197,21 +1213,21 @@ typedef volatile struct ALT_ACPIDMAP_VID5RD_s  ALT_ACPIDMAP_VID5RD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID5WR_MID register field. */
-#define ALT_ACPIDMAP_VID5WR_MID_LSB        16
+    #define ALT_ACPIDMAP_VID5WR_MID_LSB        16
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID5WR_MID register field. */
-#define ALT_ACPIDMAP_VID5WR_MID_MSB        27
+    #define ALT_ACPIDMAP_VID5WR_MID_MSB        27
 /* The width in bits of the ALT_ACPIDMAP_VID5WR_MID register field. */
-#define ALT_ACPIDMAP_VID5WR_MID_WIDTH      12
+    #define ALT_ACPIDMAP_VID5WR_MID_WIDTH      12
 /* The mask used to set the ALT_ACPIDMAP_VID5WR_MID register field value. */
-#define ALT_ACPIDMAP_VID5WR_MID_SET_MSK    0x0fff0000
+    #define ALT_ACPIDMAP_VID5WR_MID_SET_MSK    0x0fff0000
 /* The mask used to clear the ALT_ACPIDMAP_VID5WR_MID register field value. */
-#define ALT_ACPIDMAP_VID5WR_MID_CLR_MSK    0xf000ffff
+    #define ALT_ACPIDMAP_VID5WR_MID_CLR_MSK    0xf000ffff
 /* The reset value of the ALT_ACPIDMAP_VID5WR_MID register field. */
-#define ALT_ACPIDMAP_VID5WR_MID_RESET      0x0
+    #define ALT_ACPIDMAP_VID5WR_MID_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID5WR_MID field value from a register. */
-#define ALT_ACPIDMAP_VID5WR_MID_GET(value) (((value) & 0x0fff0000) >> 16)
+    #define ALT_ACPIDMAP_VID5WR_MID_GET( value )    ( ( ( value ) & 0x0fff0000 ) >> 16 )
 /* Produces a ALT_ACPIDMAP_VID5WR_MID register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID5WR_MID_SET(value) (((value) << 16) & 0x0fff0000)
+    #define ALT_ACPIDMAP_VID5WR_MID_SET( value )    ( ( ( value ) << 16 ) & 0x0fff0000 )
 
 /*
  * Field : Force Mapping - force
@@ -1223,23 +1239,24 @@ typedef volatile struct ALT_ACPIDMAP_VID5RD_s  ALT_ACPIDMAP_VID5RD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID5WR_FORCE register field. */
-#define ALT_ACPIDMAP_VID5WR_FORCE_LSB        31
+    #define ALT_ACPIDMAP_VID5WR_FORCE_LSB        31
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID5WR_FORCE register field. */
-#define ALT_ACPIDMAP_VID5WR_FORCE_MSB        31
+    #define ALT_ACPIDMAP_VID5WR_FORCE_MSB        31
 /* The width in bits of the ALT_ACPIDMAP_VID5WR_FORCE register field. */
-#define ALT_ACPIDMAP_VID5WR_FORCE_WIDTH      1
+    #define ALT_ACPIDMAP_VID5WR_FORCE_WIDTH      1
 /* The mask used to set the ALT_ACPIDMAP_VID5WR_FORCE register field value. */
-#define ALT_ACPIDMAP_VID5WR_FORCE_SET_MSK    0x80000000
+    #define ALT_ACPIDMAP_VID5WR_FORCE_SET_MSK    0x80000000
 /* The mask used to clear the ALT_ACPIDMAP_VID5WR_FORCE register field value. */
-#define ALT_ACPIDMAP_VID5WR_FORCE_CLR_MSK    0x7fffffff
+    #define ALT_ACPIDMAP_VID5WR_FORCE_CLR_MSK    0x7fffffff
 /* The reset value of the ALT_ACPIDMAP_VID5WR_FORCE register field. */
-#define ALT_ACPIDMAP_VID5WR_FORCE_RESET      0x0
+    #define ALT_ACPIDMAP_VID5WR_FORCE_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID5WR_FORCE field value from a register. */
-#define ALT_ACPIDMAP_VID5WR_FORCE_GET(value) (((value) & 0x80000000) >> 31)
+    #define ALT_ACPIDMAP_VID5WR_FORCE_GET( value )    ( ( ( value ) & 0x80000000 ) >> 31 )
 /* Produces a ALT_ACPIDMAP_VID5WR_FORCE register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID5WR_FORCE_SET(value) (((value) << 31) & 0x80000000)
+    #define ALT_ACPIDMAP_VID5WR_FORCE_SET( value )    ( ( ( value ) << 31 ) & 0x80000000 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -1250,24 +1267,24 @@ typedef volatile struct ALT_ACPIDMAP_VID5RD_s  ALT_ACPIDMAP_VID5RD_t;
  *
  * The struct declaration for register ALT_ACPIDMAP_VID5WR.
  */
-struct ALT_ACPIDMAP_VID5WR_s
-{
-    uint32_t        :  4;  /* *UNDEFINED* */
-    uint32_t  user  :  5;  /* AWUSER value to SCU */
-    uint32_t        :  3;  /* *UNDEFINED* */
-    uint32_t  page  :  2;  /* AWADDR 1GB Page Decoder */
-    uint32_t        :  2;  /* *UNDEFINED* */
-    uint32_t  mid   : 12;  /* Remap Master ID */
-    uint32_t        :  3;  /* *UNDEFINED* */
-    uint32_t  force :  1;  /* Force Mapping */
-};
+        struct ALT_ACPIDMAP_VID5WR_s
+        {
+            uint32_t        :  4; /* *UNDEFINED* */
+            uint32_t user  :  5;  /* AWUSER value to SCU */
+            uint32_t        :  3; /* *UNDEFINED* */
+            uint32_t page  :  2;  /* AWADDR 1GB Page Decoder */
+            uint32_t        :  2; /* *UNDEFINED* */
+            uint32_t mid   : 12;  /* Remap Master ID */
+            uint32_t        :  3; /* *UNDEFINED* */
+            uint32_t force :  1;  /* Force Mapping */
+        };
 
 /* The typedef declaration for register ALT_ACPIDMAP_VID5WR. */
-typedef volatile struct ALT_ACPIDMAP_VID5WR_s  ALT_ACPIDMAP_VID5WR_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_ACPIDMAP_VID5WR_s ALT_ACPIDMAP_VID5WR_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_ACPIDMAP_VID5WR register from the beginning of the component. */
-#define ALT_ACPIDMAP_VID5WR_OFST        0x1c
+    #define ALT_ACPIDMAP_VID5WR_OFST    0x1c
 
 /*
  * Register : Read AXI Master Mapping Register for Fixed Virtual ID 6 - vid6rd
@@ -1290,6 +1307,7 @@ typedef volatile struct ALT_ACPIDMAP_VID5WR_s  ALT_ACPIDMAP_VID5WR_t;
  *  [31]    | RW     | 0x0   | Force Mapping
  *
  */
+
 /*
  * Field : ARUSER value to SCU - user
  *
@@ -1299,21 +1317,21 @@ typedef volatile struct ALT_ACPIDMAP_VID5WR_s  ALT_ACPIDMAP_VID5WR_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID6RD_USER register field. */
-#define ALT_ACPIDMAP_VID6RD_USER_LSB        4
+    #define ALT_ACPIDMAP_VID6RD_USER_LSB        4
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID6RD_USER register field. */
-#define ALT_ACPIDMAP_VID6RD_USER_MSB        8
+    #define ALT_ACPIDMAP_VID6RD_USER_MSB        8
 /* The width in bits of the ALT_ACPIDMAP_VID6RD_USER register field. */
-#define ALT_ACPIDMAP_VID6RD_USER_WIDTH      5
+    #define ALT_ACPIDMAP_VID6RD_USER_WIDTH      5
 /* The mask used to set the ALT_ACPIDMAP_VID6RD_USER register field value. */
-#define ALT_ACPIDMAP_VID6RD_USER_SET_MSK    0x000001f0
+    #define ALT_ACPIDMAP_VID6RD_USER_SET_MSK    0x000001f0
 /* The mask used to clear the ALT_ACPIDMAP_VID6RD_USER register field value. */
-#define ALT_ACPIDMAP_VID6RD_USER_CLR_MSK    0xfffffe0f
+    #define ALT_ACPIDMAP_VID6RD_USER_CLR_MSK    0xfffffe0f
 /* The reset value of the ALT_ACPIDMAP_VID6RD_USER register field. */
-#define ALT_ACPIDMAP_VID6RD_USER_RESET      0x0
+    #define ALT_ACPIDMAP_VID6RD_USER_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID6RD_USER field value from a register. */
-#define ALT_ACPIDMAP_VID6RD_USER_GET(value) (((value) & 0x000001f0) >> 4)
+    #define ALT_ACPIDMAP_VID6RD_USER_GET( value )    ( ( ( value ) & 0x000001f0 ) >> 4 )
 /* Produces a ALT_ACPIDMAP_VID6RD_USER register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID6RD_USER_SET(value) (((value) << 4) & 0x000001f0)
+    #define ALT_ACPIDMAP_VID6RD_USER_SET( value )    ( ( ( value ) << 4 ) & 0x000001f0 )
 
 /*
  * Field : ARADDR 1GB Page Decoder - page
@@ -1324,21 +1342,21 @@ typedef volatile struct ALT_ACPIDMAP_VID5WR_s  ALT_ACPIDMAP_VID5WR_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID6RD_PAGE register field. */
-#define ALT_ACPIDMAP_VID6RD_PAGE_LSB        12
+    #define ALT_ACPIDMAP_VID6RD_PAGE_LSB        12
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID6RD_PAGE register field. */
-#define ALT_ACPIDMAP_VID6RD_PAGE_MSB        13
+    #define ALT_ACPIDMAP_VID6RD_PAGE_MSB        13
 /* The width in bits of the ALT_ACPIDMAP_VID6RD_PAGE register field. */
-#define ALT_ACPIDMAP_VID6RD_PAGE_WIDTH      2
+    #define ALT_ACPIDMAP_VID6RD_PAGE_WIDTH      2
 /* The mask used to set the ALT_ACPIDMAP_VID6RD_PAGE register field value. */
-#define ALT_ACPIDMAP_VID6RD_PAGE_SET_MSK    0x00003000
+    #define ALT_ACPIDMAP_VID6RD_PAGE_SET_MSK    0x00003000
 /* The mask used to clear the ALT_ACPIDMAP_VID6RD_PAGE register field value. */
-#define ALT_ACPIDMAP_VID6RD_PAGE_CLR_MSK    0xffffcfff
+    #define ALT_ACPIDMAP_VID6RD_PAGE_CLR_MSK    0xffffcfff
 /* The reset value of the ALT_ACPIDMAP_VID6RD_PAGE register field. */
-#define ALT_ACPIDMAP_VID6RD_PAGE_RESET      0x0
+    #define ALT_ACPIDMAP_VID6RD_PAGE_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID6RD_PAGE field value from a register. */
-#define ALT_ACPIDMAP_VID6RD_PAGE_GET(value) (((value) & 0x00003000) >> 12)
+    #define ALT_ACPIDMAP_VID6RD_PAGE_GET( value )    ( ( ( value ) & 0x00003000 ) >> 12 )
 /* Produces a ALT_ACPIDMAP_VID6RD_PAGE register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID6RD_PAGE_SET(value) (((value) << 12) & 0x00003000)
+    #define ALT_ACPIDMAP_VID6RD_PAGE_SET( value )    ( ( ( value ) << 12 ) & 0x00003000 )
 
 /*
  * Field : Remap Master ID - mid
@@ -1350,21 +1368,21 @@ typedef volatile struct ALT_ACPIDMAP_VID5WR_s  ALT_ACPIDMAP_VID5WR_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID6RD_MID register field. */
-#define ALT_ACPIDMAP_VID6RD_MID_LSB        16
+    #define ALT_ACPIDMAP_VID6RD_MID_LSB        16
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID6RD_MID register field. */
-#define ALT_ACPIDMAP_VID6RD_MID_MSB        27
+    #define ALT_ACPIDMAP_VID6RD_MID_MSB        27
 /* The width in bits of the ALT_ACPIDMAP_VID6RD_MID register field. */
-#define ALT_ACPIDMAP_VID6RD_MID_WIDTH      12
+    #define ALT_ACPIDMAP_VID6RD_MID_WIDTH      12
 /* The mask used to set the ALT_ACPIDMAP_VID6RD_MID register field value. */
-#define ALT_ACPIDMAP_VID6RD_MID_SET_MSK    0x0fff0000
+    #define ALT_ACPIDMAP_VID6RD_MID_SET_MSK    0x0fff0000
 /* The mask used to clear the ALT_ACPIDMAP_VID6RD_MID register field value. */
-#define ALT_ACPIDMAP_VID6RD_MID_CLR_MSK    0xf000ffff
+    #define ALT_ACPIDMAP_VID6RD_MID_CLR_MSK    0xf000ffff
 /* The reset value of the ALT_ACPIDMAP_VID6RD_MID register field. */
-#define ALT_ACPIDMAP_VID6RD_MID_RESET      0x0
+    #define ALT_ACPIDMAP_VID6RD_MID_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID6RD_MID field value from a register. */
-#define ALT_ACPIDMAP_VID6RD_MID_GET(value) (((value) & 0x0fff0000) >> 16)
+    #define ALT_ACPIDMAP_VID6RD_MID_GET( value )    ( ( ( value ) & 0x0fff0000 ) >> 16 )
 /* Produces a ALT_ACPIDMAP_VID6RD_MID register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID6RD_MID_SET(value) (((value) << 16) & 0x0fff0000)
+    #define ALT_ACPIDMAP_VID6RD_MID_SET( value )    ( ( ( value ) << 16 ) & 0x0fff0000 )
 
 /*
  * Field : Force Mapping - force
@@ -1376,23 +1394,24 @@ typedef volatile struct ALT_ACPIDMAP_VID5WR_s  ALT_ACPIDMAP_VID5WR_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID6RD_FORCE register field. */
-#define ALT_ACPIDMAP_VID6RD_FORCE_LSB        31
+    #define ALT_ACPIDMAP_VID6RD_FORCE_LSB        31
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID6RD_FORCE register field. */
-#define ALT_ACPIDMAP_VID6RD_FORCE_MSB        31
+    #define ALT_ACPIDMAP_VID6RD_FORCE_MSB        31
 /* The width in bits of the ALT_ACPIDMAP_VID6RD_FORCE register field. */
-#define ALT_ACPIDMAP_VID6RD_FORCE_WIDTH      1
+    #define ALT_ACPIDMAP_VID6RD_FORCE_WIDTH      1
 /* The mask used to set the ALT_ACPIDMAP_VID6RD_FORCE register field value. */
-#define ALT_ACPIDMAP_VID6RD_FORCE_SET_MSK    0x80000000
+    #define ALT_ACPIDMAP_VID6RD_FORCE_SET_MSK    0x80000000
 /* The mask used to clear the ALT_ACPIDMAP_VID6RD_FORCE register field value. */
-#define ALT_ACPIDMAP_VID6RD_FORCE_CLR_MSK    0x7fffffff
+    #define ALT_ACPIDMAP_VID6RD_FORCE_CLR_MSK    0x7fffffff
 /* The reset value of the ALT_ACPIDMAP_VID6RD_FORCE register field. */
-#define ALT_ACPIDMAP_VID6RD_FORCE_RESET      0x0
+    #define ALT_ACPIDMAP_VID6RD_FORCE_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID6RD_FORCE field value from a register. */
-#define ALT_ACPIDMAP_VID6RD_FORCE_GET(value) (((value) & 0x80000000) >> 31)
+    #define ALT_ACPIDMAP_VID6RD_FORCE_GET( value )    ( ( ( value ) & 0x80000000 ) >> 31 )
 /* Produces a ALT_ACPIDMAP_VID6RD_FORCE register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID6RD_FORCE_SET(value) (((value) << 31) & 0x80000000)
+    #define ALT_ACPIDMAP_VID6RD_FORCE_SET( value )    ( ( ( value ) << 31 ) & 0x80000000 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -1403,24 +1422,24 @@ typedef volatile struct ALT_ACPIDMAP_VID5WR_s  ALT_ACPIDMAP_VID5WR_t;
  *
  * The struct declaration for register ALT_ACPIDMAP_VID6RD.
  */
-struct ALT_ACPIDMAP_VID6RD_s
-{
-    uint32_t        :  4;  /* *UNDEFINED* */
-    uint32_t  user  :  5;  /* ARUSER value to SCU */
-    uint32_t        :  3;  /* *UNDEFINED* */
-    uint32_t  page  :  2;  /* ARADDR 1GB Page Decoder */
-    uint32_t        :  2;  /* *UNDEFINED* */
-    uint32_t  mid   : 12;  /* Remap Master ID */
-    uint32_t        :  3;  /* *UNDEFINED* */
-    uint32_t  force :  1;  /* Force Mapping */
-};
+        struct ALT_ACPIDMAP_VID6RD_s
+        {
+            uint32_t        :  4; /* *UNDEFINED* */
+            uint32_t user  :  5;  /* ARUSER value to SCU */
+            uint32_t        :  3; /* *UNDEFINED* */
+            uint32_t page  :  2;  /* ARADDR 1GB Page Decoder */
+            uint32_t        :  2; /* *UNDEFINED* */
+            uint32_t mid   : 12;  /* Remap Master ID */
+            uint32_t        :  3; /* *UNDEFINED* */
+            uint32_t force :  1;  /* Force Mapping */
+        };
 
 /* The typedef declaration for register ALT_ACPIDMAP_VID6RD. */
-typedef volatile struct ALT_ACPIDMAP_VID6RD_s  ALT_ACPIDMAP_VID6RD_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_ACPIDMAP_VID6RD_s ALT_ACPIDMAP_VID6RD_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_ACPIDMAP_VID6RD register from the beginning of the component. */
-#define ALT_ACPIDMAP_VID6RD_OFST        0x20
+    #define ALT_ACPIDMAP_VID6RD_OFST    0x20
 
 /*
  * Register : Write AXI Master Mapping Register for Fixed Virtual ID 6 - vid6wr
@@ -1443,6 +1462,7 @@ typedef volatile struct ALT_ACPIDMAP_VID6RD_s  ALT_ACPIDMAP_VID6RD_t;
  *  [31]    | RW     | 0x0   | Force Mapping
  *
  */
+
 /*
  * Field : AWUSER value to SCU - user
  *
@@ -1452,21 +1472,21 @@ typedef volatile struct ALT_ACPIDMAP_VID6RD_s  ALT_ACPIDMAP_VID6RD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID6WR_USER register field. */
-#define ALT_ACPIDMAP_VID6WR_USER_LSB        4
+    #define ALT_ACPIDMAP_VID6WR_USER_LSB        4
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID6WR_USER register field. */
-#define ALT_ACPIDMAP_VID6WR_USER_MSB        8
+    #define ALT_ACPIDMAP_VID6WR_USER_MSB        8
 /* The width in bits of the ALT_ACPIDMAP_VID6WR_USER register field. */
-#define ALT_ACPIDMAP_VID6WR_USER_WIDTH      5
+    #define ALT_ACPIDMAP_VID6WR_USER_WIDTH      5
 /* The mask used to set the ALT_ACPIDMAP_VID6WR_USER register field value. */
-#define ALT_ACPIDMAP_VID6WR_USER_SET_MSK    0x000001f0
+    #define ALT_ACPIDMAP_VID6WR_USER_SET_MSK    0x000001f0
 /* The mask used to clear the ALT_ACPIDMAP_VID6WR_USER register field value. */
-#define ALT_ACPIDMAP_VID6WR_USER_CLR_MSK    0xfffffe0f
+    #define ALT_ACPIDMAP_VID6WR_USER_CLR_MSK    0xfffffe0f
 /* The reset value of the ALT_ACPIDMAP_VID6WR_USER register field. */
-#define ALT_ACPIDMAP_VID6WR_USER_RESET      0x0
+    #define ALT_ACPIDMAP_VID6WR_USER_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID6WR_USER field value from a register. */
-#define ALT_ACPIDMAP_VID6WR_USER_GET(value) (((value) & 0x000001f0) >> 4)
+    #define ALT_ACPIDMAP_VID6WR_USER_GET( value )    ( ( ( value ) & 0x000001f0 ) >> 4 )
 /* Produces a ALT_ACPIDMAP_VID6WR_USER register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID6WR_USER_SET(value) (((value) << 4) & 0x000001f0)
+    #define ALT_ACPIDMAP_VID6WR_USER_SET( value )    ( ( ( value ) << 4 ) & 0x000001f0 )
 
 /*
  * Field : AWADDR 1GB Page Decoder - page
@@ -1477,21 +1497,21 @@ typedef volatile struct ALT_ACPIDMAP_VID6RD_s  ALT_ACPIDMAP_VID6RD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID6WR_PAGE register field. */
-#define ALT_ACPIDMAP_VID6WR_PAGE_LSB        12
+    #define ALT_ACPIDMAP_VID6WR_PAGE_LSB        12
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID6WR_PAGE register field. */
-#define ALT_ACPIDMAP_VID6WR_PAGE_MSB        13
+    #define ALT_ACPIDMAP_VID6WR_PAGE_MSB        13
 /* The width in bits of the ALT_ACPIDMAP_VID6WR_PAGE register field. */
-#define ALT_ACPIDMAP_VID6WR_PAGE_WIDTH      2
+    #define ALT_ACPIDMAP_VID6WR_PAGE_WIDTH      2
 /* The mask used to set the ALT_ACPIDMAP_VID6WR_PAGE register field value. */
-#define ALT_ACPIDMAP_VID6WR_PAGE_SET_MSK    0x00003000
+    #define ALT_ACPIDMAP_VID6WR_PAGE_SET_MSK    0x00003000
 /* The mask used to clear the ALT_ACPIDMAP_VID6WR_PAGE register field value. */
-#define ALT_ACPIDMAP_VID6WR_PAGE_CLR_MSK    0xffffcfff
+    #define ALT_ACPIDMAP_VID6WR_PAGE_CLR_MSK    0xffffcfff
 /* The reset value of the ALT_ACPIDMAP_VID6WR_PAGE register field. */
-#define ALT_ACPIDMAP_VID6WR_PAGE_RESET      0x0
+    #define ALT_ACPIDMAP_VID6WR_PAGE_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID6WR_PAGE field value from a register. */
-#define ALT_ACPIDMAP_VID6WR_PAGE_GET(value) (((value) & 0x00003000) >> 12)
+    #define ALT_ACPIDMAP_VID6WR_PAGE_GET( value )    ( ( ( value ) & 0x00003000 ) >> 12 )
 /* Produces a ALT_ACPIDMAP_VID6WR_PAGE register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID6WR_PAGE_SET(value) (((value) << 12) & 0x00003000)
+    #define ALT_ACPIDMAP_VID6WR_PAGE_SET( value )    ( ( ( value ) << 12 ) & 0x00003000 )
 
 /*
  * Field : Remap Master ID - mid
@@ -1503,21 +1523,21 @@ typedef volatile struct ALT_ACPIDMAP_VID6RD_s  ALT_ACPIDMAP_VID6RD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID6WR_MID register field. */
-#define ALT_ACPIDMAP_VID6WR_MID_LSB        16
+    #define ALT_ACPIDMAP_VID6WR_MID_LSB        16
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID6WR_MID register field. */
-#define ALT_ACPIDMAP_VID6WR_MID_MSB        27
+    #define ALT_ACPIDMAP_VID6WR_MID_MSB        27
 /* The width in bits of the ALT_ACPIDMAP_VID6WR_MID register field. */
-#define ALT_ACPIDMAP_VID6WR_MID_WIDTH      12
+    #define ALT_ACPIDMAP_VID6WR_MID_WIDTH      12
 /* The mask used to set the ALT_ACPIDMAP_VID6WR_MID register field value. */
-#define ALT_ACPIDMAP_VID6WR_MID_SET_MSK    0x0fff0000
+    #define ALT_ACPIDMAP_VID6WR_MID_SET_MSK    0x0fff0000
 /* The mask used to clear the ALT_ACPIDMAP_VID6WR_MID register field value. */
-#define ALT_ACPIDMAP_VID6WR_MID_CLR_MSK    0xf000ffff
+    #define ALT_ACPIDMAP_VID6WR_MID_CLR_MSK    0xf000ffff
 /* The reset value of the ALT_ACPIDMAP_VID6WR_MID register field. */
-#define ALT_ACPIDMAP_VID6WR_MID_RESET      0x0
+    #define ALT_ACPIDMAP_VID6WR_MID_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID6WR_MID field value from a register. */
-#define ALT_ACPIDMAP_VID6WR_MID_GET(value) (((value) & 0x0fff0000) >> 16)
+    #define ALT_ACPIDMAP_VID6WR_MID_GET( value )    ( ( ( value ) & 0x0fff0000 ) >> 16 )
 /* Produces a ALT_ACPIDMAP_VID6WR_MID register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID6WR_MID_SET(value) (((value) << 16) & 0x0fff0000)
+    #define ALT_ACPIDMAP_VID6WR_MID_SET( value )    ( ( ( value ) << 16 ) & 0x0fff0000 )
 
 /*
  * Field : Force Mapping - force
@@ -1529,23 +1549,24 @@ typedef volatile struct ALT_ACPIDMAP_VID6RD_s  ALT_ACPIDMAP_VID6RD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID6WR_FORCE register field. */
-#define ALT_ACPIDMAP_VID6WR_FORCE_LSB        31
+    #define ALT_ACPIDMAP_VID6WR_FORCE_LSB        31
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID6WR_FORCE register field. */
-#define ALT_ACPIDMAP_VID6WR_FORCE_MSB        31
+    #define ALT_ACPIDMAP_VID6WR_FORCE_MSB        31
 /* The width in bits of the ALT_ACPIDMAP_VID6WR_FORCE register field. */
-#define ALT_ACPIDMAP_VID6WR_FORCE_WIDTH      1
+    #define ALT_ACPIDMAP_VID6WR_FORCE_WIDTH      1
 /* The mask used to set the ALT_ACPIDMAP_VID6WR_FORCE register field value. */
-#define ALT_ACPIDMAP_VID6WR_FORCE_SET_MSK    0x80000000
+    #define ALT_ACPIDMAP_VID6WR_FORCE_SET_MSK    0x80000000
 /* The mask used to clear the ALT_ACPIDMAP_VID6WR_FORCE register field value. */
-#define ALT_ACPIDMAP_VID6WR_FORCE_CLR_MSK    0x7fffffff
+    #define ALT_ACPIDMAP_VID6WR_FORCE_CLR_MSK    0x7fffffff
 /* The reset value of the ALT_ACPIDMAP_VID6WR_FORCE register field. */
-#define ALT_ACPIDMAP_VID6WR_FORCE_RESET      0x0
+    #define ALT_ACPIDMAP_VID6WR_FORCE_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID6WR_FORCE field value from a register. */
-#define ALT_ACPIDMAP_VID6WR_FORCE_GET(value) (((value) & 0x80000000) >> 31)
+    #define ALT_ACPIDMAP_VID6WR_FORCE_GET( value )    ( ( ( value ) & 0x80000000 ) >> 31 )
 /* Produces a ALT_ACPIDMAP_VID6WR_FORCE register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID6WR_FORCE_SET(value) (((value) << 31) & 0x80000000)
+    #define ALT_ACPIDMAP_VID6WR_FORCE_SET( value )    ( ( ( value ) << 31 ) & 0x80000000 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -1556,24 +1577,24 @@ typedef volatile struct ALT_ACPIDMAP_VID6RD_s  ALT_ACPIDMAP_VID6RD_t;
  *
  * The struct declaration for register ALT_ACPIDMAP_VID6WR.
  */
-struct ALT_ACPIDMAP_VID6WR_s
-{
-    uint32_t        :  4;  /* *UNDEFINED* */
-    uint32_t  user  :  5;  /* AWUSER value to SCU */
-    uint32_t        :  3;  /* *UNDEFINED* */
-    uint32_t  page  :  2;  /* AWADDR 1GB Page Decoder */
-    uint32_t        :  2;  /* *UNDEFINED* */
-    uint32_t  mid   : 12;  /* Remap Master ID */
-    uint32_t        :  3;  /* *UNDEFINED* */
-    uint32_t  force :  1;  /* Force Mapping */
-};
+        struct ALT_ACPIDMAP_VID6WR_s
+        {
+            uint32_t        :  4; /* *UNDEFINED* */
+            uint32_t user  :  5;  /* AWUSER value to SCU */
+            uint32_t        :  3; /* *UNDEFINED* */
+            uint32_t page  :  2;  /* AWADDR 1GB Page Decoder */
+            uint32_t        :  2; /* *UNDEFINED* */
+            uint32_t mid   : 12;  /* Remap Master ID */
+            uint32_t        :  3; /* *UNDEFINED* */
+            uint32_t force :  1;  /* Force Mapping */
+        };
 
 /* The typedef declaration for register ALT_ACPIDMAP_VID6WR. */
-typedef volatile struct ALT_ACPIDMAP_VID6WR_s  ALT_ACPIDMAP_VID6WR_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_ACPIDMAP_VID6WR_s ALT_ACPIDMAP_VID6WR_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_ACPIDMAP_VID6WR register from the beginning of the component. */
-#define ALT_ACPIDMAP_VID6WR_OFST        0x24
+    #define ALT_ACPIDMAP_VID6WR_OFST    0x24
 
 /*
  * Register : Read AXI Master Mapping Register for Dynamic Virtual ID Remap - dynrd
@@ -1593,6 +1614,7 @@ typedef volatile struct ALT_ACPIDMAP_VID6WR_s  ALT_ACPIDMAP_VID6WR_t;
  *  [31:14] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : ARUSER value to SCU - user
  *
@@ -1602,21 +1624,21 @@ typedef volatile struct ALT_ACPIDMAP_VID6WR_s  ALT_ACPIDMAP_VID6WR_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_DYNRD_USER register field. */
-#define ALT_ACPIDMAP_DYNRD_USER_LSB        4
+    #define ALT_ACPIDMAP_DYNRD_USER_LSB        4
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_DYNRD_USER register field. */
-#define ALT_ACPIDMAP_DYNRD_USER_MSB        8
+    #define ALT_ACPIDMAP_DYNRD_USER_MSB        8
 /* The width in bits of the ALT_ACPIDMAP_DYNRD_USER register field. */
-#define ALT_ACPIDMAP_DYNRD_USER_WIDTH      5
+    #define ALT_ACPIDMAP_DYNRD_USER_WIDTH      5
 /* The mask used to set the ALT_ACPIDMAP_DYNRD_USER register field value. */
-#define ALT_ACPIDMAP_DYNRD_USER_SET_MSK    0x000001f0
+    #define ALT_ACPIDMAP_DYNRD_USER_SET_MSK    0x000001f0
 /* The mask used to clear the ALT_ACPIDMAP_DYNRD_USER register field value. */
-#define ALT_ACPIDMAP_DYNRD_USER_CLR_MSK    0xfffffe0f
+    #define ALT_ACPIDMAP_DYNRD_USER_CLR_MSK    0xfffffe0f
 /* The reset value of the ALT_ACPIDMAP_DYNRD_USER register field. */
-#define ALT_ACPIDMAP_DYNRD_USER_RESET      0x0
+    #define ALT_ACPIDMAP_DYNRD_USER_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_DYNRD_USER field value from a register. */
-#define ALT_ACPIDMAP_DYNRD_USER_GET(value) (((value) & 0x000001f0) >> 4)
+    #define ALT_ACPIDMAP_DYNRD_USER_GET( value )    ( ( ( value ) & 0x000001f0 ) >> 4 )
 /* Produces a ALT_ACPIDMAP_DYNRD_USER register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_DYNRD_USER_SET(value) (((value) << 4) & 0x000001f0)
+    #define ALT_ACPIDMAP_DYNRD_USER_SET( value )    ( ( ( value ) << 4 ) & 0x000001f0 )
 
 /*
  * Field : ARADDR 1GB Page Decoder - page
@@ -1627,23 +1649,24 @@ typedef volatile struct ALT_ACPIDMAP_VID6WR_s  ALT_ACPIDMAP_VID6WR_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_DYNRD_PAGE register field. */
-#define ALT_ACPIDMAP_DYNRD_PAGE_LSB        12
+    #define ALT_ACPIDMAP_DYNRD_PAGE_LSB        12
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_DYNRD_PAGE register field. */
-#define ALT_ACPIDMAP_DYNRD_PAGE_MSB        13
+    #define ALT_ACPIDMAP_DYNRD_PAGE_MSB        13
 /* The width in bits of the ALT_ACPIDMAP_DYNRD_PAGE register field. */
-#define ALT_ACPIDMAP_DYNRD_PAGE_WIDTH      2
+    #define ALT_ACPIDMAP_DYNRD_PAGE_WIDTH      2
 /* The mask used to set the ALT_ACPIDMAP_DYNRD_PAGE register field value. */
-#define ALT_ACPIDMAP_DYNRD_PAGE_SET_MSK    0x00003000
+    #define ALT_ACPIDMAP_DYNRD_PAGE_SET_MSK    0x00003000
 /* The mask used to clear the ALT_ACPIDMAP_DYNRD_PAGE register field value. */
-#define ALT_ACPIDMAP_DYNRD_PAGE_CLR_MSK    0xffffcfff
+    #define ALT_ACPIDMAP_DYNRD_PAGE_CLR_MSK    0xffffcfff
 /* The reset value of the ALT_ACPIDMAP_DYNRD_PAGE register field. */
-#define ALT_ACPIDMAP_DYNRD_PAGE_RESET      0x0
+    #define ALT_ACPIDMAP_DYNRD_PAGE_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_DYNRD_PAGE field value from a register. */
-#define ALT_ACPIDMAP_DYNRD_PAGE_GET(value) (((value) & 0x00003000) >> 12)
+    #define ALT_ACPIDMAP_DYNRD_PAGE_GET( value )    ( ( ( value ) & 0x00003000 ) >> 12 )
 /* Produces a ALT_ACPIDMAP_DYNRD_PAGE register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_DYNRD_PAGE_SET(value) (((value) << 12) & 0x00003000)
+    #define ALT_ACPIDMAP_DYNRD_PAGE_SET( value )    ( ( ( value ) << 12 ) & 0x00003000 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -1654,21 +1677,21 @@ typedef volatile struct ALT_ACPIDMAP_VID6WR_s  ALT_ACPIDMAP_VID6WR_t;
  *
  * The struct declaration for register ALT_ACPIDMAP_DYNRD.
  */
-struct ALT_ACPIDMAP_DYNRD_s
-{
-    uint32_t       :  4;  /* *UNDEFINED* */
-    uint32_t  user :  5;  /* ARUSER value to SCU */
-    uint32_t       :  3;  /* *UNDEFINED* */
-    uint32_t  page :  2;  /* ARADDR 1GB Page Decoder */
-    uint32_t       : 18;  /* *UNDEFINED* */
-};
+        struct ALT_ACPIDMAP_DYNRD_s
+        {
+            uint32_t       :  4; /* *UNDEFINED* */
+            uint32_t user :  5;  /* ARUSER value to SCU */
+            uint32_t       :  3; /* *UNDEFINED* */
+            uint32_t page :  2;  /* ARADDR 1GB Page Decoder */
+            uint32_t       : 18; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_ACPIDMAP_DYNRD. */
-typedef volatile struct ALT_ACPIDMAP_DYNRD_s  ALT_ACPIDMAP_DYNRD_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_ACPIDMAP_DYNRD_s ALT_ACPIDMAP_DYNRD_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_ACPIDMAP_DYNRD register from the beginning of the component. */
-#define ALT_ACPIDMAP_DYNRD_OFST        0x28
+    #define ALT_ACPIDMAP_DYNRD_OFST    0x28
 
 /*
  * Register : Write AXI Master Mapping Register for Dynamic Virtual ID Remap - dynwr
@@ -1688,6 +1711,7 @@ typedef volatile struct ALT_ACPIDMAP_DYNRD_s  ALT_ACPIDMAP_DYNRD_t;
  *  [31:14] | ???    | 0x0   | *UNDEFINED*
  *
  */
+
 /*
  * Field : AWUSER value to SCU - user
  *
@@ -1697,21 +1721,21 @@ typedef volatile struct ALT_ACPIDMAP_DYNRD_s  ALT_ACPIDMAP_DYNRD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_DYNWR_USER register field. */
-#define ALT_ACPIDMAP_DYNWR_USER_LSB        4
+    #define ALT_ACPIDMAP_DYNWR_USER_LSB        4
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_DYNWR_USER register field. */
-#define ALT_ACPIDMAP_DYNWR_USER_MSB        8
+    #define ALT_ACPIDMAP_DYNWR_USER_MSB        8
 /* The width in bits of the ALT_ACPIDMAP_DYNWR_USER register field. */
-#define ALT_ACPIDMAP_DYNWR_USER_WIDTH      5
+    #define ALT_ACPIDMAP_DYNWR_USER_WIDTH      5
 /* The mask used to set the ALT_ACPIDMAP_DYNWR_USER register field value. */
-#define ALT_ACPIDMAP_DYNWR_USER_SET_MSK    0x000001f0
+    #define ALT_ACPIDMAP_DYNWR_USER_SET_MSK    0x000001f0
 /* The mask used to clear the ALT_ACPIDMAP_DYNWR_USER register field value. */
-#define ALT_ACPIDMAP_DYNWR_USER_CLR_MSK    0xfffffe0f
+    #define ALT_ACPIDMAP_DYNWR_USER_CLR_MSK    0xfffffe0f
 /* The reset value of the ALT_ACPIDMAP_DYNWR_USER register field. */
-#define ALT_ACPIDMAP_DYNWR_USER_RESET      0x0
+    #define ALT_ACPIDMAP_DYNWR_USER_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_DYNWR_USER field value from a register. */
-#define ALT_ACPIDMAP_DYNWR_USER_GET(value) (((value) & 0x000001f0) >> 4)
+    #define ALT_ACPIDMAP_DYNWR_USER_GET( value )    ( ( ( value ) & 0x000001f0 ) >> 4 )
 /* Produces a ALT_ACPIDMAP_DYNWR_USER register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_DYNWR_USER_SET(value) (((value) << 4) & 0x000001f0)
+    #define ALT_ACPIDMAP_DYNWR_USER_SET( value )    ( ( ( value ) << 4 ) & 0x000001f0 )
 
 /*
  * Field : AWADDR 1GB Page Decoder - page
@@ -1722,23 +1746,24 @@ typedef volatile struct ALT_ACPIDMAP_DYNRD_s  ALT_ACPIDMAP_DYNRD_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_DYNWR_PAGE register field. */
-#define ALT_ACPIDMAP_DYNWR_PAGE_LSB        12
+    #define ALT_ACPIDMAP_DYNWR_PAGE_LSB        12
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_DYNWR_PAGE register field. */
-#define ALT_ACPIDMAP_DYNWR_PAGE_MSB        13
+    #define ALT_ACPIDMAP_DYNWR_PAGE_MSB        13
 /* The width in bits of the ALT_ACPIDMAP_DYNWR_PAGE register field. */
-#define ALT_ACPIDMAP_DYNWR_PAGE_WIDTH      2
+    #define ALT_ACPIDMAP_DYNWR_PAGE_WIDTH      2
 /* The mask used to set the ALT_ACPIDMAP_DYNWR_PAGE register field value. */
-#define ALT_ACPIDMAP_DYNWR_PAGE_SET_MSK    0x00003000
+    #define ALT_ACPIDMAP_DYNWR_PAGE_SET_MSK    0x00003000
 /* The mask used to clear the ALT_ACPIDMAP_DYNWR_PAGE register field value. */
-#define ALT_ACPIDMAP_DYNWR_PAGE_CLR_MSK    0xffffcfff
+    #define ALT_ACPIDMAP_DYNWR_PAGE_CLR_MSK    0xffffcfff
 /* The reset value of the ALT_ACPIDMAP_DYNWR_PAGE register field. */
-#define ALT_ACPIDMAP_DYNWR_PAGE_RESET      0x0
+    #define ALT_ACPIDMAP_DYNWR_PAGE_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_DYNWR_PAGE field value from a register. */
-#define ALT_ACPIDMAP_DYNWR_PAGE_GET(value) (((value) & 0x00003000) >> 12)
+    #define ALT_ACPIDMAP_DYNWR_PAGE_GET( value )    ( ( ( value ) & 0x00003000 ) >> 12 )
 /* Produces a ALT_ACPIDMAP_DYNWR_PAGE register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_DYNWR_PAGE_SET(value) (((value) << 12) & 0x00003000)
+    #define ALT_ACPIDMAP_DYNWR_PAGE_SET( value )    ( ( ( value ) << 12 ) & 0x00003000 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -1749,21 +1774,21 @@ typedef volatile struct ALT_ACPIDMAP_DYNRD_s  ALT_ACPIDMAP_DYNRD_t;
  *
  * The struct declaration for register ALT_ACPIDMAP_DYNWR.
  */
-struct ALT_ACPIDMAP_DYNWR_s
-{
-    uint32_t       :  4;  /* *UNDEFINED* */
-    uint32_t  user :  5;  /* AWUSER value to SCU */
-    uint32_t       :  3;  /* *UNDEFINED* */
-    uint32_t  page :  2;  /* AWADDR 1GB Page Decoder */
-    uint32_t       : 18;  /* *UNDEFINED* */
-};
+        struct ALT_ACPIDMAP_DYNWR_s
+        {
+            uint32_t       :  4; /* *UNDEFINED* */
+            uint32_t user :  5;  /* AWUSER value to SCU */
+            uint32_t       :  3; /* *UNDEFINED* */
+            uint32_t page :  2;  /* AWADDR 1GB Page Decoder */
+            uint32_t       : 18; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_ACPIDMAP_DYNWR. */
-typedef volatile struct ALT_ACPIDMAP_DYNWR_s  ALT_ACPIDMAP_DYNWR_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_ACPIDMAP_DYNWR_s ALT_ACPIDMAP_DYNWR_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_ACPIDMAP_DYNWR register from the beginning of the component. */
-#define ALT_ACPIDMAP_DYNWR_OFST        0x2c
+    #define ALT_ACPIDMAP_DYNWR_OFST    0x2c
 
 /*
  * Register : Read AXI Master Mapping Status Register for Fixed Virtual ID 2 - vid2rd_s
@@ -1786,6 +1811,7 @@ typedef volatile struct ALT_ACPIDMAP_DYNWR_s  ALT_ACPIDMAP_DYNWR_t;
  *  [31]    | R      | 0x1     | Force Mapping for ID=2 (Status)
  *
  */
+
 /*
  * Field : ARUSER value to SCU for ID=2 (Status) - user
  *
@@ -1795,21 +1821,21 @@ typedef volatile struct ALT_ACPIDMAP_DYNWR_s  ALT_ACPIDMAP_DYNWR_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID2RD_S_USER register field. */
-#define ALT_ACPIDMAP_VID2RD_S_USER_LSB        4
+    #define ALT_ACPIDMAP_VID2RD_S_USER_LSB        4
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID2RD_S_USER register field. */
-#define ALT_ACPIDMAP_VID2RD_S_USER_MSB        8
+    #define ALT_ACPIDMAP_VID2RD_S_USER_MSB        8
 /* The width in bits of the ALT_ACPIDMAP_VID2RD_S_USER register field. */
-#define ALT_ACPIDMAP_VID2RD_S_USER_WIDTH      5
+    #define ALT_ACPIDMAP_VID2RD_S_USER_WIDTH      5
 /* The mask used to set the ALT_ACPIDMAP_VID2RD_S_USER register field value. */
-#define ALT_ACPIDMAP_VID2RD_S_USER_SET_MSK    0x000001f0
+    #define ALT_ACPIDMAP_VID2RD_S_USER_SET_MSK    0x000001f0
 /* The mask used to clear the ALT_ACPIDMAP_VID2RD_S_USER register field value. */
-#define ALT_ACPIDMAP_VID2RD_S_USER_CLR_MSK    0xfffffe0f
+    #define ALT_ACPIDMAP_VID2RD_S_USER_CLR_MSK    0xfffffe0f
 /* The reset value of the ALT_ACPIDMAP_VID2RD_S_USER register field. */
-#define ALT_ACPIDMAP_VID2RD_S_USER_RESET      0x1
+    #define ALT_ACPIDMAP_VID2RD_S_USER_RESET      0x1
 /* Extracts the ALT_ACPIDMAP_VID2RD_S_USER field value from a register. */
-#define ALT_ACPIDMAP_VID2RD_S_USER_GET(value) (((value) & 0x000001f0) >> 4)
+    #define ALT_ACPIDMAP_VID2RD_S_USER_GET( value )    ( ( ( value ) & 0x000001f0 ) >> 4 )
 /* Produces a ALT_ACPIDMAP_VID2RD_S_USER register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID2RD_S_USER_SET(value) (((value) << 4) & 0x000001f0)
+    #define ALT_ACPIDMAP_VID2RD_S_USER_SET( value )    ( ( ( value ) << 4 ) & 0x000001f0 )
 
 /*
  * Field : ARADDR 1GB Page Decoder (Status) - page
@@ -1820,21 +1846,21 @@ typedef volatile struct ALT_ACPIDMAP_DYNWR_s  ALT_ACPIDMAP_DYNWR_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID2RD_S_PAGE register field. */
-#define ALT_ACPIDMAP_VID2RD_S_PAGE_LSB        12
+    #define ALT_ACPIDMAP_VID2RD_S_PAGE_LSB        12
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID2RD_S_PAGE register field. */
-#define ALT_ACPIDMAP_VID2RD_S_PAGE_MSB        13
+    #define ALT_ACPIDMAP_VID2RD_S_PAGE_MSB        13
 /* The width in bits of the ALT_ACPIDMAP_VID2RD_S_PAGE register field. */
-#define ALT_ACPIDMAP_VID2RD_S_PAGE_WIDTH      2
+    #define ALT_ACPIDMAP_VID2RD_S_PAGE_WIDTH      2
 /* The mask used to set the ALT_ACPIDMAP_VID2RD_S_PAGE register field value. */
-#define ALT_ACPIDMAP_VID2RD_S_PAGE_SET_MSK    0x00003000
+    #define ALT_ACPIDMAP_VID2RD_S_PAGE_SET_MSK    0x00003000
 /* The mask used to clear the ALT_ACPIDMAP_VID2RD_S_PAGE register field value. */
-#define ALT_ACPIDMAP_VID2RD_S_PAGE_CLR_MSK    0xffffcfff
+    #define ALT_ACPIDMAP_VID2RD_S_PAGE_CLR_MSK    0xffffcfff
 /* The reset value of the ALT_ACPIDMAP_VID2RD_S_PAGE register field is UNKNOWN. */
-#define ALT_ACPIDMAP_VID2RD_S_PAGE_RESET      0x0
+    #define ALT_ACPIDMAP_VID2RD_S_PAGE_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID2RD_S_PAGE field value from a register. */
-#define ALT_ACPIDMAP_VID2RD_S_PAGE_GET(value) (((value) & 0x00003000) >> 12)
+    #define ALT_ACPIDMAP_VID2RD_S_PAGE_GET( value )    ( ( ( value ) & 0x00003000 ) >> 12 )
 /* Produces a ALT_ACPIDMAP_VID2RD_S_PAGE register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID2RD_S_PAGE_SET(value) (((value) << 12) & 0x00003000)
+    #define ALT_ACPIDMAP_VID2RD_S_PAGE_SET( value )    ( ( ( value ) << 12 ) & 0x00003000 )
 
 /*
  * Field : Remap Master ID = DAP ID (Status) - mid
@@ -1846,21 +1872,21 @@ typedef volatile struct ALT_ACPIDMAP_DYNWR_s  ALT_ACPIDMAP_DYNWR_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID2RD_S_MID register field. */
-#define ALT_ACPIDMAP_VID2RD_S_MID_LSB        16
+    #define ALT_ACPIDMAP_VID2RD_S_MID_LSB        16
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID2RD_S_MID register field. */
-#define ALT_ACPIDMAP_VID2RD_S_MID_MSB        27
+    #define ALT_ACPIDMAP_VID2RD_S_MID_MSB        27
 /* The width in bits of the ALT_ACPIDMAP_VID2RD_S_MID register field. */
-#define ALT_ACPIDMAP_VID2RD_S_MID_WIDTH      12
+    #define ALT_ACPIDMAP_VID2RD_S_MID_WIDTH      12
 /* The mask used to set the ALT_ACPIDMAP_VID2RD_S_MID register field value. */
-#define ALT_ACPIDMAP_VID2RD_S_MID_SET_MSK    0x0fff0000
+    #define ALT_ACPIDMAP_VID2RD_S_MID_SET_MSK    0x0fff0000
 /* The mask used to clear the ALT_ACPIDMAP_VID2RD_S_MID register field value. */
-#define ALT_ACPIDMAP_VID2RD_S_MID_CLR_MSK    0xf000ffff
+    #define ALT_ACPIDMAP_VID2RD_S_MID_CLR_MSK    0xf000ffff
 /* The reset value of the ALT_ACPIDMAP_VID2RD_S_MID register field. */
-#define ALT_ACPIDMAP_VID2RD_S_MID_RESET      0x4
+    #define ALT_ACPIDMAP_VID2RD_S_MID_RESET      0x4
 /* Extracts the ALT_ACPIDMAP_VID2RD_S_MID field value from a register. */
-#define ALT_ACPIDMAP_VID2RD_S_MID_GET(value) (((value) & 0x0fff0000) >> 16)
+    #define ALT_ACPIDMAP_VID2RD_S_MID_GET( value )    ( ( ( value ) & 0x0fff0000 ) >> 16 )
 /* Produces a ALT_ACPIDMAP_VID2RD_S_MID register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID2RD_S_MID_SET(value) (((value) << 16) & 0x0fff0000)
+    #define ALT_ACPIDMAP_VID2RD_S_MID_SET( value )    ( ( ( value ) << 16 ) & 0x0fff0000 )
 
 /*
  * Field : Force Mapping for ID=2 (Status) - force
@@ -1872,23 +1898,24 @@ typedef volatile struct ALT_ACPIDMAP_DYNWR_s  ALT_ACPIDMAP_DYNWR_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID2RD_S_FORCE register field. */
-#define ALT_ACPIDMAP_VID2RD_S_FORCE_LSB        31
+    #define ALT_ACPIDMAP_VID2RD_S_FORCE_LSB        31
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID2RD_S_FORCE register field. */
-#define ALT_ACPIDMAP_VID2RD_S_FORCE_MSB        31
+    #define ALT_ACPIDMAP_VID2RD_S_FORCE_MSB        31
 /* The width in bits of the ALT_ACPIDMAP_VID2RD_S_FORCE register field. */
-#define ALT_ACPIDMAP_VID2RD_S_FORCE_WIDTH      1
+    #define ALT_ACPIDMAP_VID2RD_S_FORCE_WIDTH      1
 /* The mask used to set the ALT_ACPIDMAP_VID2RD_S_FORCE register field value. */
-#define ALT_ACPIDMAP_VID2RD_S_FORCE_SET_MSK    0x80000000
+    #define ALT_ACPIDMAP_VID2RD_S_FORCE_SET_MSK    0x80000000
 /* The mask used to clear the ALT_ACPIDMAP_VID2RD_S_FORCE register field value. */
-#define ALT_ACPIDMAP_VID2RD_S_FORCE_CLR_MSK    0x7fffffff
+    #define ALT_ACPIDMAP_VID2RD_S_FORCE_CLR_MSK    0x7fffffff
 /* The reset value of the ALT_ACPIDMAP_VID2RD_S_FORCE register field. */
-#define ALT_ACPIDMAP_VID2RD_S_FORCE_RESET      0x1
+    #define ALT_ACPIDMAP_VID2RD_S_FORCE_RESET      0x1
 /* Extracts the ALT_ACPIDMAP_VID2RD_S_FORCE field value from a register. */
-#define ALT_ACPIDMAP_VID2RD_S_FORCE_GET(value) (((value) & 0x80000000) >> 31)
+    #define ALT_ACPIDMAP_VID2RD_S_FORCE_GET( value )    ( ( ( value ) & 0x80000000 ) >> 31 )
 /* Produces a ALT_ACPIDMAP_VID2RD_S_FORCE register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID2RD_S_FORCE_SET(value) (((value) << 31) & 0x80000000)
+    #define ALT_ACPIDMAP_VID2RD_S_FORCE_SET( value )    ( ( ( value ) << 31 ) & 0x80000000 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -1899,24 +1926,24 @@ typedef volatile struct ALT_ACPIDMAP_DYNWR_s  ALT_ACPIDMAP_DYNWR_t;
  *
  * The struct declaration for register ALT_ACPIDMAP_VID2RD_S.
  */
-struct ALT_ACPIDMAP_VID2RD_S_s
-{
-    uint32_t              :  4;  /* *UNDEFINED* */
-    const uint32_t  user  :  5;  /* ARUSER value to SCU for ID=2 (Status) */
-    uint32_t              :  3;  /* *UNDEFINED* */
-    const uint32_t  page  :  2;  /* ARADDR 1GB Page Decoder (Status) */
-    uint32_t              :  2;  /* *UNDEFINED* */
-    const uint32_t  mid   : 12;  /* Remap Master ID = DAP ID (Status) */
-    uint32_t              :  3;  /* *UNDEFINED* */
-    const uint32_t  force :  1;  /* Force Mapping for ID=2 (Status) */
-};
+        struct ALT_ACPIDMAP_VID2RD_S_s
+        {
+            uint32_t              :  4; /* *UNDEFINED* */
+            const uint32_t user  :  5;  /* ARUSER value to SCU for ID=2 (Status) */
+            uint32_t              :  3; /* *UNDEFINED* */
+            const uint32_t page  :  2;  /* ARADDR 1GB Page Decoder (Status) */
+            uint32_t              :  2; /* *UNDEFINED* */
+            const uint32_t mid   : 12;  /* Remap Master ID = DAP ID (Status) */
+            uint32_t              :  3; /* *UNDEFINED* */
+            const uint32_t force :  1;  /* Force Mapping for ID=2 (Status) */
+        };
 
 /* The typedef declaration for register ALT_ACPIDMAP_VID2RD_S. */
-typedef volatile struct ALT_ACPIDMAP_VID2RD_S_s  ALT_ACPIDMAP_VID2RD_S_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_ACPIDMAP_VID2RD_S_s ALT_ACPIDMAP_VID2RD_S_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_ACPIDMAP_VID2RD_S register from the beginning of the component. */
-#define ALT_ACPIDMAP_VID2RD_S_OFST        0x30
+    #define ALT_ACPIDMAP_VID2RD_S_OFST    0x30
 
 /*
  * Register : Write AXI Master Mapping Status Register for Fixed Virtual ID 2 - vid2wr_s
@@ -1939,6 +1966,7 @@ typedef volatile struct ALT_ACPIDMAP_VID2RD_S_s  ALT_ACPIDMAP_VID2RD_S_t;
  *  [31]    | R      | 0x1     | Force Mapping for ID=2 (Status)
  *
  */
+
 /*
  * Field : AWUSER value to SCU for ID=2 (Status) - user
  *
@@ -1948,21 +1976,21 @@ typedef volatile struct ALT_ACPIDMAP_VID2RD_S_s  ALT_ACPIDMAP_VID2RD_S_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID2WR_S_USER register field. */
-#define ALT_ACPIDMAP_VID2WR_S_USER_LSB        4
+    #define ALT_ACPIDMAP_VID2WR_S_USER_LSB        4
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID2WR_S_USER register field. */
-#define ALT_ACPIDMAP_VID2WR_S_USER_MSB        8
+    #define ALT_ACPIDMAP_VID2WR_S_USER_MSB        8
 /* The width in bits of the ALT_ACPIDMAP_VID2WR_S_USER register field. */
-#define ALT_ACPIDMAP_VID2WR_S_USER_WIDTH      5
+    #define ALT_ACPIDMAP_VID2WR_S_USER_WIDTH      5
 /* The mask used to set the ALT_ACPIDMAP_VID2WR_S_USER register field value. */
-#define ALT_ACPIDMAP_VID2WR_S_USER_SET_MSK    0x000001f0
+    #define ALT_ACPIDMAP_VID2WR_S_USER_SET_MSK    0x000001f0
 /* The mask used to clear the ALT_ACPIDMAP_VID2WR_S_USER register field value. */
-#define ALT_ACPIDMAP_VID2WR_S_USER_CLR_MSK    0xfffffe0f
+    #define ALT_ACPIDMAP_VID2WR_S_USER_CLR_MSK    0xfffffe0f
 /* The reset value of the ALT_ACPIDMAP_VID2WR_S_USER register field. */
-#define ALT_ACPIDMAP_VID2WR_S_USER_RESET      0x1
+    #define ALT_ACPIDMAP_VID2WR_S_USER_RESET      0x1
 /* Extracts the ALT_ACPIDMAP_VID2WR_S_USER field value from a register. */
-#define ALT_ACPIDMAP_VID2WR_S_USER_GET(value) (((value) & 0x000001f0) >> 4)
+    #define ALT_ACPIDMAP_VID2WR_S_USER_GET( value )    ( ( ( value ) & 0x000001f0 ) >> 4 )
 /* Produces a ALT_ACPIDMAP_VID2WR_S_USER register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID2WR_S_USER_SET(value) (((value) << 4) & 0x000001f0)
+    #define ALT_ACPIDMAP_VID2WR_S_USER_SET( value )    ( ( ( value ) << 4 ) & 0x000001f0 )
 
 /*
  * Field : AWADDR 1GB Page Decoder (Status) - page
@@ -1973,21 +2001,21 @@ typedef volatile struct ALT_ACPIDMAP_VID2RD_S_s  ALT_ACPIDMAP_VID2RD_S_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID2WR_S_PAGE register field. */
-#define ALT_ACPIDMAP_VID2WR_S_PAGE_LSB        12
+    #define ALT_ACPIDMAP_VID2WR_S_PAGE_LSB        12
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID2WR_S_PAGE register field. */
-#define ALT_ACPIDMAP_VID2WR_S_PAGE_MSB        13
+    #define ALT_ACPIDMAP_VID2WR_S_PAGE_MSB        13
 /* The width in bits of the ALT_ACPIDMAP_VID2WR_S_PAGE register field. */
-#define ALT_ACPIDMAP_VID2WR_S_PAGE_WIDTH      2
+    #define ALT_ACPIDMAP_VID2WR_S_PAGE_WIDTH      2
 /* The mask used to set the ALT_ACPIDMAP_VID2WR_S_PAGE register field value. */
-#define ALT_ACPIDMAP_VID2WR_S_PAGE_SET_MSK    0x00003000
+    #define ALT_ACPIDMAP_VID2WR_S_PAGE_SET_MSK    0x00003000
 /* The mask used to clear the ALT_ACPIDMAP_VID2WR_S_PAGE register field value. */
-#define ALT_ACPIDMAP_VID2WR_S_PAGE_CLR_MSK    0xffffcfff
+    #define ALT_ACPIDMAP_VID2WR_S_PAGE_CLR_MSK    0xffffcfff
 /* The reset value of the ALT_ACPIDMAP_VID2WR_S_PAGE register field is UNKNOWN. */
-#define ALT_ACPIDMAP_VID2WR_S_PAGE_RESET      0x0
+    #define ALT_ACPIDMAP_VID2WR_S_PAGE_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID2WR_S_PAGE field value from a register. */
-#define ALT_ACPIDMAP_VID2WR_S_PAGE_GET(value) (((value) & 0x00003000) >> 12)
+    #define ALT_ACPIDMAP_VID2WR_S_PAGE_GET( value )    ( ( ( value ) & 0x00003000 ) >> 12 )
 /* Produces a ALT_ACPIDMAP_VID2WR_S_PAGE register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID2WR_S_PAGE_SET(value) (((value) << 12) & 0x00003000)
+    #define ALT_ACPIDMAP_VID2WR_S_PAGE_SET( value )    ( ( ( value ) << 12 ) & 0x00003000 )
 
 /*
  * Field : Remap Master ID = DAP ID (Status) - mid
@@ -1999,21 +2027,21 @@ typedef volatile struct ALT_ACPIDMAP_VID2RD_S_s  ALT_ACPIDMAP_VID2RD_S_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID2WR_S_MID register field. */
-#define ALT_ACPIDMAP_VID2WR_S_MID_LSB        16
+    #define ALT_ACPIDMAP_VID2WR_S_MID_LSB        16
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID2WR_S_MID register field. */
-#define ALT_ACPIDMAP_VID2WR_S_MID_MSB        27
+    #define ALT_ACPIDMAP_VID2WR_S_MID_MSB        27
 /* The width in bits of the ALT_ACPIDMAP_VID2WR_S_MID register field. */
-#define ALT_ACPIDMAP_VID2WR_S_MID_WIDTH      12
+    #define ALT_ACPIDMAP_VID2WR_S_MID_WIDTH      12
 /* The mask used to set the ALT_ACPIDMAP_VID2WR_S_MID register field value. */
-#define ALT_ACPIDMAP_VID2WR_S_MID_SET_MSK    0x0fff0000
+    #define ALT_ACPIDMAP_VID2WR_S_MID_SET_MSK    0x0fff0000
 /* The mask used to clear the ALT_ACPIDMAP_VID2WR_S_MID register field value. */
-#define ALT_ACPIDMAP_VID2WR_S_MID_CLR_MSK    0xf000ffff
+    #define ALT_ACPIDMAP_VID2WR_S_MID_CLR_MSK    0xf000ffff
 /* The reset value of the ALT_ACPIDMAP_VID2WR_S_MID register field. */
-#define ALT_ACPIDMAP_VID2WR_S_MID_RESET      0x4
+    #define ALT_ACPIDMAP_VID2WR_S_MID_RESET      0x4
 /* Extracts the ALT_ACPIDMAP_VID2WR_S_MID field value from a register. */
-#define ALT_ACPIDMAP_VID2WR_S_MID_GET(value) (((value) & 0x0fff0000) >> 16)
+    #define ALT_ACPIDMAP_VID2WR_S_MID_GET( value )    ( ( ( value ) & 0x0fff0000 ) >> 16 )
 /* Produces a ALT_ACPIDMAP_VID2WR_S_MID register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID2WR_S_MID_SET(value) (((value) << 16) & 0x0fff0000)
+    #define ALT_ACPIDMAP_VID2WR_S_MID_SET( value )    ( ( ( value ) << 16 ) & 0x0fff0000 )
 
 /*
  * Field : Force Mapping for ID=2 (Status) - force
@@ -2025,23 +2053,24 @@ typedef volatile struct ALT_ACPIDMAP_VID2RD_S_s  ALT_ACPIDMAP_VID2RD_S_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID2WR_S_FORCE register field. */
-#define ALT_ACPIDMAP_VID2WR_S_FORCE_LSB        31
+    #define ALT_ACPIDMAP_VID2WR_S_FORCE_LSB        31
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID2WR_S_FORCE register field. */
-#define ALT_ACPIDMAP_VID2WR_S_FORCE_MSB        31
+    #define ALT_ACPIDMAP_VID2WR_S_FORCE_MSB        31
 /* The width in bits of the ALT_ACPIDMAP_VID2WR_S_FORCE register field. */
-#define ALT_ACPIDMAP_VID2WR_S_FORCE_WIDTH      1
+    #define ALT_ACPIDMAP_VID2WR_S_FORCE_WIDTH      1
 /* The mask used to set the ALT_ACPIDMAP_VID2WR_S_FORCE register field value. */
-#define ALT_ACPIDMAP_VID2WR_S_FORCE_SET_MSK    0x80000000
+    #define ALT_ACPIDMAP_VID2WR_S_FORCE_SET_MSK    0x80000000
 /* The mask used to clear the ALT_ACPIDMAP_VID2WR_S_FORCE register field value. */
-#define ALT_ACPIDMAP_VID2WR_S_FORCE_CLR_MSK    0x7fffffff
+    #define ALT_ACPIDMAP_VID2WR_S_FORCE_CLR_MSK    0x7fffffff
 /* The reset value of the ALT_ACPIDMAP_VID2WR_S_FORCE register field. */
-#define ALT_ACPIDMAP_VID2WR_S_FORCE_RESET      0x1
+    #define ALT_ACPIDMAP_VID2WR_S_FORCE_RESET      0x1
 /* Extracts the ALT_ACPIDMAP_VID2WR_S_FORCE field value from a register. */
-#define ALT_ACPIDMAP_VID2WR_S_FORCE_GET(value) (((value) & 0x80000000) >> 31)
+    #define ALT_ACPIDMAP_VID2WR_S_FORCE_GET( value )    ( ( ( value ) & 0x80000000 ) >> 31 )
 /* Produces a ALT_ACPIDMAP_VID2WR_S_FORCE register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID2WR_S_FORCE_SET(value) (((value) << 31) & 0x80000000)
+    #define ALT_ACPIDMAP_VID2WR_S_FORCE_SET( value )    ( ( ( value ) << 31 ) & 0x80000000 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -2052,24 +2081,24 @@ typedef volatile struct ALT_ACPIDMAP_VID2RD_S_s  ALT_ACPIDMAP_VID2RD_S_t;
  *
  * The struct declaration for register ALT_ACPIDMAP_VID2WR_S.
  */
-struct ALT_ACPIDMAP_VID2WR_S_s
-{
-    uint32_t              :  4;  /* *UNDEFINED* */
-    const uint32_t  user  :  5;  /* AWUSER value to SCU for ID=2 (Status) */
-    uint32_t              :  3;  /* *UNDEFINED* */
-    const uint32_t  page  :  2;  /* AWADDR 1GB Page Decoder (Status) */
-    uint32_t              :  2;  /* *UNDEFINED* */
-    const uint32_t  mid   : 12;  /* Remap Master ID = DAP ID (Status) */
-    uint32_t              :  3;  /* *UNDEFINED* */
-    const uint32_t  force :  1;  /* Force Mapping for ID=2 (Status) */
-};
+        struct ALT_ACPIDMAP_VID2WR_S_s
+        {
+            uint32_t              :  4; /* *UNDEFINED* */
+            const uint32_t user  :  5;  /* AWUSER value to SCU for ID=2 (Status) */
+            uint32_t              :  3; /* *UNDEFINED* */
+            const uint32_t page  :  2;  /* AWADDR 1GB Page Decoder (Status) */
+            uint32_t              :  2; /* *UNDEFINED* */
+            const uint32_t mid   : 12;  /* Remap Master ID = DAP ID (Status) */
+            uint32_t              :  3; /* *UNDEFINED* */
+            const uint32_t force :  1;  /* Force Mapping for ID=2 (Status) */
+        };
 
 /* The typedef declaration for register ALT_ACPIDMAP_VID2WR_S. */
-typedef volatile struct ALT_ACPIDMAP_VID2WR_S_s  ALT_ACPIDMAP_VID2WR_S_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_ACPIDMAP_VID2WR_S_s ALT_ACPIDMAP_VID2WR_S_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_ACPIDMAP_VID2WR_S register from the beginning of the component. */
-#define ALT_ACPIDMAP_VID2WR_S_OFST        0x34
+    #define ALT_ACPIDMAP_VID2WR_S_OFST    0x34
 
 /*
  * Register : Read AXI Master Mapping Status Register for Fixed Virtual ID 3 - vid3rd_s
@@ -2092,6 +2121,7 @@ typedef volatile struct ALT_ACPIDMAP_VID2WR_S_s  ALT_ACPIDMAP_VID2WR_S_t;
  *  [31]    | R      | Unknown | Force Mapping (Status)
  *
  */
+
 /*
  * Field : ARUSER value to SCU (Status) - user
  *
@@ -2101,21 +2131,21 @@ typedef volatile struct ALT_ACPIDMAP_VID2WR_S_s  ALT_ACPIDMAP_VID2WR_S_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID3RD_S_USER register field. */
-#define ALT_ACPIDMAP_VID3RD_S_USER_LSB        4
+    #define ALT_ACPIDMAP_VID3RD_S_USER_LSB        4
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID3RD_S_USER register field. */
-#define ALT_ACPIDMAP_VID3RD_S_USER_MSB        8
+    #define ALT_ACPIDMAP_VID3RD_S_USER_MSB        8
 /* The width in bits of the ALT_ACPIDMAP_VID3RD_S_USER register field. */
-#define ALT_ACPIDMAP_VID3RD_S_USER_WIDTH      5
+    #define ALT_ACPIDMAP_VID3RD_S_USER_WIDTH      5
 /* The mask used to set the ALT_ACPIDMAP_VID3RD_S_USER register field value. */
-#define ALT_ACPIDMAP_VID3RD_S_USER_SET_MSK    0x000001f0
+    #define ALT_ACPIDMAP_VID3RD_S_USER_SET_MSK    0x000001f0
 /* The mask used to clear the ALT_ACPIDMAP_VID3RD_S_USER register field value. */
-#define ALT_ACPIDMAP_VID3RD_S_USER_CLR_MSK    0xfffffe0f
+    #define ALT_ACPIDMAP_VID3RD_S_USER_CLR_MSK    0xfffffe0f
 /* The reset value of the ALT_ACPIDMAP_VID3RD_S_USER register field is UNKNOWN. */
-#define ALT_ACPIDMAP_VID3RD_S_USER_RESET      0x0
+    #define ALT_ACPIDMAP_VID3RD_S_USER_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID3RD_S_USER field value from a register. */
-#define ALT_ACPIDMAP_VID3RD_S_USER_GET(value) (((value) & 0x000001f0) >> 4)
+    #define ALT_ACPIDMAP_VID3RD_S_USER_GET( value )    ( ( ( value ) & 0x000001f0 ) >> 4 )
 /* Produces a ALT_ACPIDMAP_VID3RD_S_USER register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID3RD_S_USER_SET(value) (((value) << 4) & 0x000001f0)
+    #define ALT_ACPIDMAP_VID3RD_S_USER_SET( value )    ( ( ( value ) << 4 ) & 0x000001f0 )
 
 /*
  * Field : ARADDR 1GB Page Decoder (Status) - page
@@ -2126,21 +2156,21 @@ typedef volatile struct ALT_ACPIDMAP_VID2WR_S_s  ALT_ACPIDMAP_VID2WR_S_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID3RD_S_PAGE register field. */
-#define ALT_ACPIDMAP_VID3RD_S_PAGE_LSB        12
+    #define ALT_ACPIDMAP_VID3RD_S_PAGE_LSB        12
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID3RD_S_PAGE register field. */
-#define ALT_ACPIDMAP_VID3RD_S_PAGE_MSB        13
+    #define ALT_ACPIDMAP_VID3RD_S_PAGE_MSB        13
 /* The width in bits of the ALT_ACPIDMAP_VID3RD_S_PAGE register field. */
-#define ALT_ACPIDMAP_VID3RD_S_PAGE_WIDTH      2
+    #define ALT_ACPIDMAP_VID3RD_S_PAGE_WIDTH      2
 /* The mask used to set the ALT_ACPIDMAP_VID3RD_S_PAGE register field value. */
-#define ALT_ACPIDMAP_VID3RD_S_PAGE_SET_MSK    0x00003000
+    #define ALT_ACPIDMAP_VID3RD_S_PAGE_SET_MSK    0x00003000
 /* The mask used to clear the ALT_ACPIDMAP_VID3RD_S_PAGE register field value. */
-#define ALT_ACPIDMAP_VID3RD_S_PAGE_CLR_MSK    0xffffcfff
+    #define ALT_ACPIDMAP_VID3RD_S_PAGE_CLR_MSK    0xffffcfff
 /* The reset value of the ALT_ACPIDMAP_VID3RD_S_PAGE register field is UNKNOWN. */
-#define ALT_ACPIDMAP_VID3RD_S_PAGE_RESET      0x0
+    #define ALT_ACPIDMAP_VID3RD_S_PAGE_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID3RD_S_PAGE field value from a register. */
-#define ALT_ACPIDMAP_VID3RD_S_PAGE_GET(value) (((value) & 0x00003000) >> 12)
+    #define ALT_ACPIDMAP_VID3RD_S_PAGE_GET( value )    ( ( ( value ) & 0x00003000 ) >> 12 )
 /* Produces a ALT_ACPIDMAP_VID3RD_S_PAGE register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID3RD_S_PAGE_SET(value) (((value) << 12) & 0x00003000)
+    #define ALT_ACPIDMAP_VID3RD_S_PAGE_SET( value )    ( ( ( value ) << 12 ) & 0x00003000 )
 
 /*
  * Field : Remap Master ID (Status) - mid
@@ -2152,21 +2182,21 @@ typedef volatile struct ALT_ACPIDMAP_VID2WR_S_s  ALT_ACPIDMAP_VID2WR_S_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID3RD_S_MID register field. */
-#define ALT_ACPIDMAP_VID3RD_S_MID_LSB        16
+    #define ALT_ACPIDMAP_VID3RD_S_MID_LSB        16
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID3RD_S_MID register field. */
-#define ALT_ACPIDMAP_VID3RD_S_MID_MSB        27
+    #define ALT_ACPIDMAP_VID3RD_S_MID_MSB        27
 /* The width in bits of the ALT_ACPIDMAP_VID3RD_S_MID register field. */
-#define ALT_ACPIDMAP_VID3RD_S_MID_WIDTH      12
+    #define ALT_ACPIDMAP_VID3RD_S_MID_WIDTH      12
 /* The mask used to set the ALT_ACPIDMAP_VID3RD_S_MID register field value. */
-#define ALT_ACPIDMAP_VID3RD_S_MID_SET_MSK    0x0fff0000
+    #define ALT_ACPIDMAP_VID3RD_S_MID_SET_MSK    0x0fff0000
 /* The mask used to clear the ALT_ACPIDMAP_VID3RD_S_MID register field value. */
-#define ALT_ACPIDMAP_VID3RD_S_MID_CLR_MSK    0xf000ffff
+    #define ALT_ACPIDMAP_VID3RD_S_MID_CLR_MSK    0xf000ffff
 /* The reset value of the ALT_ACPIDMAP_VID3RD_S_MID register field is UNKNOWN. */
-#define ALT_ACPIDMAP_VID3RD_S_MID_RESET      0x0
+    #define ALT_ACPIDMAP_VID3RD_S_MID_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID3RD_S_MID field value from a register. */
-#define ALT_ACPIDMAP_VID3RD_S_MID_GET(value) (((value) & 0x0fff0000) >> 16)
+    #define ALT_ACPIDMAP_VID3RD_S_MID_GET( value )    ( ( ( value ) & 0x0fff0000 ) >> 16 )
 /* Produces a ALT_ACPIDMAP_VID3RD_S_MID register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID3RD_S_MID_SET(value) (((value) << 16) & 0x0fff0000)
+    #define ALT_ACPIDMAP_VID3RD_S_MID_SET( value )    ( ( ( value ) << 16 ) & 0x0fff0000 )
 
 /*
  * Field : Force Mapping (Status) - force
@@ -2178,23 +2208,24 @@ typedef volatile struct ALT_ACPIDMAP_VID2WR_S_s  ALT_ACPIDMAP_VID2WR_S_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID3RD_S_FORCE register field. */
-#define ALT_ACPIDMAP_VID3RD_S_FORCE_LSB        31
+    #define ALT_ACPIDMAP_VID3RD_S_FORCE_LSB        31
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID3RD_S_FORCE register field. */
-#define ALT_ACPIDMAP_VID3RD_S_FORCE_MSB        31
+    #define ALT_ACPIDMAP_VID3RD_S_FORCE_MSB        31
 /* The width in bits of the ALT_ACPIDMAP_VID3RD_S_FORCE register field. */
-#define ALT_ACPIDMAP_VID3RD_S_FORCE_WIDTH      1
+    #define ALT_ACPIDMAP_VID3RD_S_FORCE_WIDTH      1
 /* The mask used to set the ALT_ACPIDMAP_VID3RD_S_FORCE register field value. */
-#define ALT_ACPIDMAP_VID3RD_S_FORCE_SET_MSK    0x80000000
+    #define ALT_ACPIDMAP_VID3RD_S_FORCE_SET_MSK    0x80000000
 /* The mask used to clear the ALT_ACPIDMAP_VID3RD_S_FORCE register field value. */
-#define ALT_ACPIDMAP_VID3RD_S_FORCE_CLR_MSK    0x7fffffff
+    #define ALT_ACPIDMAP_VID3RD_S_FORCE_CLR_MSK    0x7fffffff
 /* The reset value of the ALT_ACPIDMAP_VID3RD_S_FORCE register field is UNKNOWN. */
-#define ALT_ACPIDMAP_VID3RD_S_FORCE_RESET      0x0
+    #define ALT_ACPIDMAP_VID3RD_S_FORCE_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID3RD_S_FORCE field value from a register. */
-#define ALT_ACPIDMAP_VID3RD_S_FORCE_GET(value) (((value) & 0x80000000) >> 31)
+    #define ALT_ACPIDMAP_VID3RD_S_FORCE_GET( value )    ( ( ( value ) & 0x80000000 ) >> 31 )
 /* Produces a ALT_ACPIDMAP_VID3RD_S_FORCE register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID3RD_S_FORCE_SET(value) (((value) << 31) & 0x80000000)
+    #define ALT_ACPIDMAP_VID3RD_S_FORCE_SET( value )    ( ( ( value ) << 31 ) & 0x80000000 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -2205,24 +2236,24 @@ typedef volatile struct ALT_ACPIDMAP_VID2WR_S_s  ALT_ACPIDMAP_VID2WR_S_t;
  *
  * The struct declaration for register ALT_ACPIDMAP_VID3RD_S.
  */
-struct ALT_ACPIDMAP_VID3RD_S_s
-{
-    uint32_t              :  4;  /* *UNDEFINED* */
-    const uint32_t  user  :  5;  /* ARUSER value to SCU (Status) */
-    uint32_t              :  3;  /* *UNDEFINED* */
-    const uint32_t  page  :  2;  /* ARADDR 1GB Page Decoder (Status) */
-    uint32_t              :  2;  /* *UNDEFINED* */
-    const uint32_t  mid   : 12;  /* Remap Master ID (Status) */
-    uint32_t              :  3;  /* *UNDEFINED* */
-    const uint32_t  force :  1;  /* Force Mapping (Status) */
-};
+        struct ALT_ACPIDMAP_VID3RD_S_s
+        {
+            uint32_t              :  4; /* *UNDEFINED* */
+            const uint32_t user  :  5;  /* ARUSER value to SCU (Status) */
+            uint32_t              :  3; /* *UNDEFINED* */
+            const uint32_t page  :  2;  /* ARADDR 1GB Page Decoder (Status) */
+            uint32_t              :  2; /* *UNDEFINED* */
+            const uint32_t mid   : 12;  /* Remap Master ID (Status) */
+            uint32_t              :  3; /* *UNDEFINED* */
+            const uint32_t force :  1;  /* Force Mapping (Status) */
+        };
 
 /* The typedef declaration for register ALT_ACPIDMAP_VID3RD_S. */
-typedef volatile struct ALT_ACPIDMAP_VID3RD_S_s  ALT_ACPIDMAP_VID3RD_S_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_ACPIDMAP_VID3RD_S_s ALT_ACPIDMAP_VID3RD_S_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_ACPIDMAP_VID3RD_S register from the beginning of the component. */
-#define ALT_ACPIDMAP_VID3RD_S_OFST        0x38
+    #define ALT_ACPIDMAP_VID3RD_S_OFST    0x38
 
 /*
  * Register : Write AXI Master Mapping Status Register for Fixed Virtual ID 3 - vid3wr_s
@@ -2245,6 +2276,7 @@ typedef volatile struct ALT_ACPIDMAP_VID3RD_S_s  ALT_ACPIDMAP_VID3RD_S_t;
  *  [31]    | R      | Unknown | Force Mapping (Status)
  *
  */
+
 /*
  * Field : AWUSER value to SCU (Status) - user
  *
@@ -2254,21 +2286,21 @@ typedef volatile struct ALT_ACPIDMAP_VID3RD_S_s  ALT_ACPIDMAP_VID3RD_S_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID3WR_S_USER register field. */
-#define ALT_ACPIDMAP_VID3WR_S_USER_LSB        4
+    #define ALT_ACPIDMAP_VID3WR_S_USER_LSB        4
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID3WR_S_USER register field. */
-#define ALT_ACPIDMAP_VID3WR_S_USER_MSB        8
+    #define ALT_ACPIDMAP_VID3WR_S_USER_MSB        8
 /* The width in bits of the ALT_ACPIDMAP_VID3WR_S_USER register field. */
-#define ALT_ACPIDMAP_VID3WR_S_USER_WIDTH      5
+    #define ALT_ACPIDMAP_VID3WR_S_USER_WIDTH      5
 /* The mask used to set the ALT_ACPIDMAP_VID3WR_S_USER register field value. */
-#define ALT_ACPIDMAP_VID3WR_S_USER_SET_MSK    0x000001f0
+    #define ALT_ACPIDMAP_VID3WR_S_USER_SET_MSK    0x000001f0
 /* The mask used to clear the ALT_ACPIDMAP_VID3WR_S_USER register field value. */
-#define ALT_ACPIDMAP_VID3WR_S_USER_CLR_MSK    0xfffffe0f
+    #define ALT_ACPIDMAP_VID3WR_S_USER_CLR_MSK    0xfffffe0f
 /* The reset value of the ALT_ACPIDMAP_VID3WR_S_USER register field is UNKNOWN. */
-#define ALT_ACPIDMAP_VID3WR_S_USER_RESET      0x0
+    #define ALT_ACPIDMAP_VID3WR_S_USER_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID3WR_S_USER field value from a register. */
-#define ALT_ACPIDMAP_VID3WR_S_USER_GET(value) (((value) & 0x000001f0) >> 4)
+    #define ALT_ACPIDMAP_VID3WR_S_USER_GET( value )    ( ( ( value ) & 0x000001f0 ) >> 4 )
 /* Produces a ALT_ACPIDMAP_VID3WR_S_USER register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID3WR_S_USER_SET(value) (((value) << 4) & 0x000001f0)
+    #define ALT_ACPIDMAP_VID3WR_S_USER_SET( value )    ( ( ( value ) << 4 ) & 0x000001f0 )
 
 /*
  * Field : AWADDR 1GB Page Decoder (Status) - page
@@ -2279,21 +2311,21 @@ typedef volatile struct ALT_ACPIDMAP_VID3RD_S_s  ALT_ACPIDMAP_VID3RD_S_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID3WR_S_PAGE register field. */
-#define ALT_ACPIDMAP_VID3WR_S_PAGE_LSB        12
+    #define ALT_ACPIDMAP_VID3WR_S_PAGE_LSB        12
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID3WR_S_PAGE register field. */
-#define ALT_ACPIDMAP_VID3WR_S_PAGE_MSB        13
+    #define ALT_ACPIDMAP_VID3WR_S_PAGE_MSB        13
 /* The width in bits of the ALT_ACPIDMAP_VID3WR_S_PAGE register field. */
-#define ALT_ACPIDMAP_VID3WR_S_PAGE_WIDTH      2
+    #define ALT_ACPIDMAP_VID3WR_S_PAGE_WIDTH      2
 /* The mask used to set the ALT_ACPIDMAP_VID3WR_S_PAGE register field value. */
-#define ALT_ACPIDMAP_VID3WR_S_PAGE_SET_MSK    0x00003000
+    #define ALT_ACPIDMAP_VID3WR_S_PAGE_SET_MSK    0x00003000
 /* The mask used to clear the ALT_ACPIDMAP_VID3WR_S_PAGE register field value. */
-#define ALT_ACPIDMAP_VID3WR_S_PAGE_CLR_MSK    0xffffcfff
+    #define ALT_ACPIDMAP_VID3WR_S_PAGE_CLR_MSK    0xffffcfff
 /* The reset value of the ALT_ACPIDMAP_VID3WR_S_PAGE register field is UNKNOWN. */
-#define ALT_ACPIDMAP_VID3WR_S_PAGE_RESET      0x0
+    #define ALT_ACPIDMAP_VID3WR_S_PAGE_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID3WR_S_PAGE field value from a register. */
-#define ALT_ACPIDMAP_VID3WR_S_PAGE_GET(value) (((value) & 0x00003000) >> 12)
+    #define ALT_ACPIDMAP_VID3WR_S_PAGE_GET( value )    ( ( ( value ) & 0x00003000 ) >> 12 )
 /* Produces a ALT_ACPIDMAP_VID3WR_S_PAGE register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID3WR_S_PAGE_SET(value) (((value) << 12) & 0x00003000)
+    #define ALT_ACPIDMAP_VID3WR_S_PAGE_SET( value )    ( ( ( value ) << 12 ) & 0x00003000 )
 
 /*
  * Field : Remap Master ID (Status) - mid
@@ -2305,21 +2337,21 @@ typedef volatile struct ALT_ACPIDMAP_VID3RD_S_s  ALT_ACPIDMAP_VID3RD_S_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID3WR_S_MID register field. */
-#define ALT_ACPIDMAP_VID3WR_S_MID_LSB        16
+    #define ALT_ACPIDMAP_VID3WR_S_MID_LSB        16
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID3WR_S_MID register field. */
-#define ALT_ACPIDMAP_VID3WR_S_MID_MSB        27
+    #define ALT_ACPIDMAP_VID3WR_S_MID_MSB        27
 /* The width in bits of the ALT_ACPIDMAP_VID3WR_S_MID register field. */
-#define ALT_ACPIDMAP_VID3WR_S_MID_WIDTH      12
+    #define ALT_ACPIDMAP_VID3WR_S_MID_WIDTH      12
 /* The mask used to set the ALT_ACPIDMAP_VID3WR_S_MID register field value. */
-#define ALT_ACPIDMAP_VID3WR_S_MID_SET_MSK    0x0fff0000
+    #define ALT_ACPIDMAP_VID3WR_S_MID_SET_MSK    0x0fff0000
 /* The mask used to clear the ALT_ACPIDMAP_VID3WR_S_MID register field value. */
-#define ALT_ACPIDMAP_VID3WR_S_MID_CLR_MSK    0xf000ffff
+    #define ALT_ACPIDMAP_VID3WR_S_MID_CLR_MSK    0xf000ffff
 /* The reset value of the ALT_ACPIDMAP_VID3WR_S_MID register field is UNKNOWN. */
-#define ALT_ACPIDMAP_VID3WR_S_MID_RESET      0x0
+    #define ALT_ACPIDMAP_VID3WR_S_MID_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID3WR_S_MID field value from a register. */
-#define ALT_ACPIDMAP_VID3WR_S_MID_GET(value) (((value) & 0x0fff0000) >> 16)
+    #define ALT_ACPIDMAP_VID3WR_S_MID_GET( value )    ( ( ( value ) & 0x0fff0000 ) >> 16 )
 /* Produces a ALT_ACPIDMAP_VID3WR_S_MID register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID3WR_S_MID_SET(value) (((value) << 16) & 0x0fff0000)
+    #define ALT_ACPIDMAP_VID3WR_S_MID_SET( value )    ( ( ( value ) << 16 ) & 0x0fff0000 )
 
 /*
  * Field : Force Mapping (Status) - force
@@ -2331,23 +2363,24 @@ typedef volatile struct ALT_ACPIDMAP_VID3RD_S_s  ALT_ACPIDMAP_VID3RD_S_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID3WR_S_FORCE register field. */
-#define ALT_ACPIDMAP_VID3WR_S_FORCE_LSB        31
+    #define ALT_ACPIDMAP_VID3WR_S_FORCE_LSB        31
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID3WR_S_FORCE register field. */
-#define ALT_ACPIDMAP_VID3WR_S_FORCE_MSB        31
+    #define ALT_ACPIDMAP_VID3WR_S_FORCE_MSB        31
 /* The width in bits of the ALT_ACPIDMAP_VID3WR_S_FORCE register field. */
-#define ALT_ACPIDMAP_VID3WR_S_FORCE_WIDTH      1
+    #define ALT_ACPIDMAP_VID3WR_S_FORCE_WIDTH      1
 /* The mask used to set the ALT_ACPIDMAP_VID3WR_S_FORCE register field value. */
-#define ALT_ACPIDMAP_VID3WR_S_FORCE_SET_MSK    0x80000000
+    #define ALT_ACPIDMAP_VID3WR_S_FORCE_SET_MSK    0x80000000
 /* The mask used to clear the ALT_ACPIDMAP_VID3WR_S_FORCE register field value. */
-#define ALT_ACPIDMAP_VID3WR_S_FORCE_CLR_MSK    0x7fffffff
+    #define ALT_ACPIDMAP_VID3WR_S_FORCE_CLR_MSK    0x7fffffff
 /* The reset value of the ALT_ACPIDMAP_VID3WR_S_FORCE register field is UNKNOWN. */
-#define ALT_ACPIDMAP_VID3WR_S_FORCE_RESET      0x0
+    #define ALT_ACPIDMAP_VID3WR_S_FORCE_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID3WR_S_FORCE field value from a register. */
-#define ALT_ACPIDMAP_VID3WR_S_FORCE_GET(value) (((value) & 0x80000000) >> 31)
+    #define ALT_ACPIDMAP_VID3WR_S_FORCE_GET( value )    ( ( ( value ) & 0x80000000 ) >> 31 )
 /* Produces a ALT_ACPIDMAP_VID3WR_S_FORCE register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID3WR_S_FORCE_SET(value) (((value) << 31) & 0x80000000)
+    #define ALT_ACPIDMAP_VID3WR_S_FORCE_SET( value )    ( ( ( value ) << 31 ) & 0x80000000 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -2358,24 +2391,24 @@ typedef volatile struct ALT_ACPIDMAP_VID3RD_S_s  ALT_ACPIDMAP_VID3RD_S_t;
  *
  * The struct declaration for register ALT_ACPIDMAP_VID3WR_S.
  */
-struct ALT_ACPIDMAP_VID3WR_S_s
-{
-    uint32_t              :  4;  /* *UNDEFINED* */
-    const uint32_t  user  :  5;  /* AWUSER value to SCU (Status) */
-    uint32_t              :  3;  /* *UNDEFINED* */
-    const uint32_t  page  :  2;  /* AWADDR 1GB Page Decoder (Status) */
-    uint32_t              :  2;  /* *UNDEFINED* */
-    const uint32_t  mid   : 12;  /* Remap Master ID (Status) */
-    uint32_t              :  3;  /* *UNDEFINED* */
-    const uint32_t  force :  1;  /* Force Mapping (Status) */
-};
+        struct ALT_ACPIDMAP_VID3WR_S_s
+        {
+            uint32_t              :  4; /* *UNDEFINED* */
+            const uint32_t user  :  5;  /* AWUSER value to SCU (Status) */
+            uint32_t              :  3; /* *UNDEFINED* */
+            const uint32_t page  :  2;  /* AWADDR 1GB Page Decoder (Status) */
+            uint32_t              :  2; /* *UNDEFINED* */
+            const uint32_t mid   : 12;  /* Remap Master ID (Status) */
+            uint32_t              :  3; /* *UNDEFINED* */
+            const uint32_t force :  1;  /* Force Mapping (Status) */
+        };
 
 /* The typedef declaration for register ALT_ACPIDMAP_VID3WR_S. */
-typedef volatile struct ALT_ACPIDMAP_VID3WR_S_s  ALT_ACPIDMAP_VID3WR_S_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_ACPIDMAP_VID3WR_S_s ALT_ACPIDMAP_VID3WR_S_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_ACPIDMAP_VID3WR_S register from the beginning of the component. */
-#define ALT_ACPIDMAP_VID3WR_S_OFST        0x3c
+    #define ALT_ACPIDMAP_VID3WR_S_OFST    0x3c
 
 /*
  * Register : Read AXI Master Mapping Status Register for Fixed Virtual ID 4 - vid4rd_s
@@ -2398,6 +2431,7 @@ typedef volatile struct ALT_ACPIDMAP_VID3WR_S_s  ALT_ACPIDMAP_VID3WR_S_t;
  *  [31]    | R      | Unknown | Force Mapping (Status)
  *
  */
+
 /*
  * Field : ARUSER value to SCU (Status) - user
  *
@@ -2407,21 +2441,21 @@ typedef volatile struct ALT_ACPIDMAP_VID3WR_S_s  ALT_ACPIDMAP_VID3WR_S_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID4RD_S_USER register field. */
-#define ALT_ACPIDMAP_VID4RD_S_USER_LSB        4
+    #define ALT_ACPIDMAP_VID4RD_S_USER_LSB        4
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID4RD_S_USER register field. */
-#define ALT_ACPIDMAP_VID4RD_S_USER_MSB        8
+    #define ALT_ACPIDMAP_VID4RD_S_USER_MSB        8
 /* The width in bits of the ALT_ACPIDMAP_VID4RD_S_USER register field. */
-#define ALT_ACPIDMAP_VID4RD_S_USER_WIDTH      5
+    #define ALT_ACPIDMAP_VID4RD_S_USER_WIDTH      5
 /* The mask used to set the ALT_ACPIDMAP_VID4RD_S_USER register field value. */
-#define ALT_ACPIDMAP_VID4RD_S_USER_SET_MSK    0x000001f0
+    #define ALT_ACPIDMAP_VID4RD_S_USER_SET_MSK    0x000001f0
 /* The mask used to clear the ALT_ACPIDMAP_VID4RD_S_USER register field value. */
-#define ALT_ACPIDMAP_VID4RD_S_USER_CLR_MSK    0xfffffe0f
+    #define ALT_ACPIDMAP_VID4RD_S_USER_CLR_MSK    0xfffffe0f
 /* The reset value of the ALT_ACPIDMAP_VID4RD_S_USER register field is UNKNOWN. */
-#define ALT_ACPIDMAP_VID4RD_S_USER_RESET      0x0
+    #define ALT_ACPIDMAP_VID4RD_S_USER_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID4RD_S_USER field value from a register. */
-#define ALT_ACPIDMAP_VID4RD_S_USER_GET(value) (((value) & 0x000001f0) >> 4)
+    #define ALT_ACPIDMAP_VID4RD_S_USER_GET( value )    ( ( ( value ) & 0x000001f0 ) >> 4 )
 /* Produces a ALT_ACPIDMAP_VID4RD_S_USER register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID4RD_S_USER_SET(value) (((value) << 4) & 0x000001f0)
+    #define ALT_ACPIDMAP_VID4RD_S_USER_SET( value )    ( ( ( value ) << 4 ) & 0x000001f0 )
 
 /*
  * Field : ARADDR 1GB Page Decoder (Status) - page
@@ -2432,21 +2466,21 @@ typedef volatile struct ALT_ACPIDMAP_VID3WR_S_s  ALT_ACPIDMAP_VID3WR_S_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID4RD_S_PAGE register field. */
-#define ALT_ACPIDMAP_VID4RD_S_PAGE_LSB        12
+    #define ALT_ACPIDMAP_VID4RD_S_PAGE_LSB        12
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID4RD_S_PAGE register field. */
-#define ALT_ACPIDMAP_VID4RD_S_PAGE_MSB        13
+    #define ALT_ACPIDMAP_VID4RD_S_PAGE_MSB        13
 /* The width in bits of the ALT_ACPIDMAP_VID4RD_S_PAGE register field. */
-#define ALT_ACPIDMAP_VID4RD_S_PAGE_WIDTH      2
+    #define ALT_ACPIDMAP_VID4RD_S_PAGE_WIDTH      2
 /* The mask used to set the ALT_ACPIDMAP_VID4RD_S_PAGE register field value. */
-#define ALT_ACPIDMAP_VID4RD_S_PAGE_SET_MSK    0x00003000
+    #define ALT_ACPIDMAP_VID4RD_S_PAGE_SET_MSK    0x00003000
 /* The mask used to clear the ALT_ACPIDMAP_VID4RD_S_PAGE register field value. */
-#define ALT_ACPIDMAP_VID4RD_S_PAGE_CLR_MSK    0xffffcfff
+    #define ALT_ACPIDMAP_VID4RD_S_PAGE_CLR_MSK    0xffffcfff
 /* The reset value of the ALT_ACPIDMAP_VID4RD_S_PAGE register field is UNKNOWN. */
-#define ALT_ACPIDMAP_VID4RD_S_PAGE_RESET      0x0
+    #define ALT_ACPIDMAP_VID4RD_S_PAGE_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID4RD_S_PAGE field value from a register. */
-#define ALT_ACPIDMAP_VID4RD_S_PAGE_GET(value) (((value) & 0x00003000) >> 12)
+    #define ALT_ACPIDMAP_VID4RD_S_PAGE_GET( value )    ( ( ( value ) & 0x00003000 ) >> 12 )
 /* Produces a ALT_ACPIDMAP_VID4RD_S_PAGE register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID4RD_S_PAGE_SET(value) (((value) << 12) & 0x00003000)
+    #define ALT_ACPIDMAP_VID4RD_S_PAGE_SET( value )    ( ( ( value ) << 12 ) & 0x00003000 )
 
 /*
  * Field : Remap Master ID (Status) - mid
@@ -2458,21 +2492,21 @@ typedef volatile struct ALT_ACPIDMAP_VID3WR_S_s  ALT_ACPIDMAP_VID3WR_S_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID4RD_S_MID register field. */
-#define ALT_ACPIDMAP_VID4RD_S_MID_LSB        16
+    #define ALT_ACPIDMAP_VID4RD_S_MID_LSB        16
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID4RD_S_MID register field. */
-#define ALT_ACPIDMAP_VID4RD_S_MID_MSB        27
+    #define ALT_ACPIDMAP_VID4RD_S_MID_MSB        27
 /* The width in bits of the ALT_ACPIDMAP_VID4RD_S_MID register field. */
-#define ALT_ACPIDMAP_VID4RD_S_MID_WIDTH      12
+    #define ALT_ACPIDMAP_VID4RD_S_MID_WIDTH      12
 /* The mask used to set the ALT_ACPIDMAP_VID4RD_S_MID register field value. */
-#define ALT_ACPIDMAP_VID4RD_S_MID_SET_MSK    0x0fff0000
+    #define ALT_ACPIDMAP_VID4RD_S_MID_SET_MSK    0x0fff0000
 /* The mask used to clear the ALT_ACPIDMAP_VID4RD_S_MID register field value. */
-#define ALT_ACPIDMAP_VID4RD_S_MID_CLR_MSK    0xf000ffff
+    #define ALT_ACPIDMAP_VID4RD_S_MID_CLR_MSK    0xf000ffff
 /* The reset value of the ALT_ACPIDMAP_VID4RD_S_MID register field is UNKNOWN. */
-#define ALT_ACPIDMAP_VID4RD_S_MID_RESET      0x0
+    #define ALT_ACPIDMAP_VID4RD_S_MID_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID4RD_S_MID field value from a register. */
-#define ALT_ACPIDMAP_VID4RD_S_MID_GET(value) (((value) & 0x0fff0000) >> 16)
+    #define ALT_ACPIDMAP_VID4RD_S_MID_GET( value )    ( ( ( value ) & 0x0fff0000 ) >> 16 )
 /* Produces a ALT_ACPIDMAP_VID4RD_S_MID register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID4RD_S_MID_SET(value) (((value) << 16) & 0x0fff0000)
+    #define ALT_ACPIDMAP_VID4RD_S_MID_SET( value )    ( ( ( value ) << 16 ) & 0x0fff0000 )
 
 /*
  * Field : Force Mapping (Status) - force
@@ -2484,23 +2518,24 @@ typedef volatile struct ALT_ACPIDMAP_VID3WR_S_s  ALT_ACPIDMAP_VID3WR_S_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID4RD_S_FORCE register field. */
-#define ALT_ACPIDMAP_VID4RD_S_FORCE_LSB        31
+    #define ALT_ACPIDMAP_VID4RD_S_FORCE_LSB        31
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID4RD_S_FORCE register field. */
-#define ALT_ACPIDMAP_VID4RD_S_FORCE_MSB        31
+    #define ALT_ACPIDMAP_VID4RD_S_FORCE_MSB        31
 /* The width in bits of the ALT_ACPIDMAP_VID4RD_S_FORCE register field. */
-#define ALT_ACPIDMAP_VID4RD_S_FORCE_WIDTH      1
+    #define ALT_ACPIDMAP_VID4RD_S_FORCE_WIDTH      1
 /* The mask used to set the ALT_ACPIDMAP_VID4RD_S_FORCE register field value. */
-#define ALT_ACPIDMAP_VID4RD_S_FORCE_SET_MSK    0x80000000
+    #define ALT_ACPIDMAP_VID4RD_S_FORCE_SET_MSK    0x80000000
 /* The mask used to clear the ALT_ACPIDMAP_VID4RD_S_FORCE register field value. */
-#define ALT_ACPIDMAP_VID4RD_S_FORCE_CLR_MSK    0x7fffffff
+    #define ALT_ACPIDMAP_VID4RD_S_FORCE_CLR_MSK    0x7fffffff
 /* The reset value of the ALT_ACPIDMAP_VID4RD_S_FORCE register field is UNKNOWN. */
-#define ALT_ACPIDMAP_VID4RD_S_FORCE_RESET      0x0
+    #define ALT_ACPIDMAP_VID4RD_S_FORCE_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID4RD_S_FORCE field value from a register. */
-#define ALT_ACPIDMAP_VID4RD_S_FORCE_GET(value) (((value) & 0x80000000) >> 31)
+    #define ALT_ACPIDMAP_VID4RD_S_FORCE_GET( value )    ( ( ( value ) & 0x80000000 ) >> 31 )
 /* Produces a ALT_ACPIDMAP_VID4RD_S_FORCE register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID4RD_S_FORCE_SET(value) (((value) << 31) & 0x80000000)
+    #define ALT_ACPIDMAP_VID4RD_S_FORCE_SET( value )    ( ( ( value ) << 31 ) & 0x80000000 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -2511,24 +2546,24 @@ typedef volatile struct ALT_ACPIDMAP_VID3WR_S_s  ALT_ACPIDMAP_VID3WR_S_t;
  *
  * The struct declaration for register ALT_ACPIDMAP_VID4RD_S.
  */
-struct ALT_ACPIDMAP_VID4RD_S_s
-{
-    uint32_t              :  4;  /* *UNDEFINED* */
-    const uint32_t  user  :  5;  /* ARUSER value to SCU (Status) */
-    uint32_t              :  3;  /* *UNDEFINED* */
-    const uint32_t  page  :  2;  /* ARADDR 1GB Page Decoder (Status) */
-    uint32_t              :  2;  /* *UNDEFINED* */
-    const uint32_t  mid   : 12;  /* Remap Master ID (Status) */
-    uint32_t              :  3;  /* *UNDEFINED* */
-    const uint32_t  force :  1;  /* Force Mapping (Status) */
-};
+        struct ALT_ACPIDMAP_VID4RD_S_s
+        {
+            uint32_t              :  4; /* *UNDEFINED* */
+            const uint32_t user  :  5;  /* ARUSER value to SCU (Status) */
+            uint32_t              :  3; /* *UNDEFINED* */
+            const uint32_t page  :  2;  /* ARADDR 1GB Page Decoder (Status) */
+            uint32_t              :  2; /* *UNDEFINED* */
+            const uint32_t mid   : 12;  /* Remap Master ID (Status) */
+            uint32_t              :  3; /* *UNDEFINED* */
+            const uint32_t force :  1;  /* Force Mapping (Status) */
+        };
 
 /* The typedef declaration for register ALT_ACPIDMAP_VID4RD_S. */
-typedef volatile struct ALT_ACPIDMAP_VID4RD_S_s  ALT_ACPIDMAP_VID4RD_S_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_ACPIDMAP_VID4RD_S_s ALT_ACPIDMAP_VID4RD_S_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_ACPIDMAP_VID4RD_S register from the beginning of the component. */
-#define ALT_ACPIDMAP_VID4RD_S_OFST        0x40
+    #define ALT_ACPIDMAP_VID4RD_S_OFST    0x40
 
 /*
  * Register : Write AXI Master Mapping Status Register for Fixed Virtual ID 4 - vid4wr_s
@@ -2551,6 +2586,7 @@ typedef volatile struct ALT_ACPIDMAP_VID4RD_S_s  ALT_ACPIDMAP_VID4RD_S_t;
  *  [31]    | R      | Unknown | Force Mapping (Status)
  *
  */
+
 /*
  * Field : AWUSER value to SCU (Status) - user
  *
@@ -2560,21 +2596,21 @@ typedef volatile struct ALT_ACPIDMAP_VID4RD_S_s  ALT_ACPIDMAP_VID4RD_S_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID4WR_S_USER register field. */
-#define ALT_ACPIDMAP_VID4WR_S_USER_LSB        4
+    #define ALT_ACPIDMAP_VID4WR_S_USER_LSB        4
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID4WR_S_USER register field. */
-#define ALT_ACPIDMAP_VID4WR_S_USER_MSB        8
+    #define ALT_ACPIDMAP_VID4WR_S_USER_MSB        8
 /* The width in bits of the ALT_ACPIDMAP_VID4WR_S_USER register field. */
-#define ALT_ACPIDMAP_VID4WR_S_USER_WIDTH      5
+    #define ALT_ACPIDMAP_VID4WR_S_USER_WIDTH      5
 /* The mask used to set the ALT_ACPIDMAP_VID4WR_S_USER register field value. */
-#define ALT_ACPIDMAP_VID4WR_S_USER_SET_MSK    0x000001f0
+    #define ALT_ACPIDMAP_VID4WR_S_USER_SET_MSK    0x000001f0
 /* The mask used to clear the ALT_ACPIDMAP_VID4WR_S_USER register field value. */
-#define ALT_ACPIDMAP_VID4WR_S_USER_CLR_MSK    0xfffffe0f
+    #define ALT_ACPIDMAP_VID4WR_S_USER_CLR_MSK    0xfffffe0f
 /* The reset value of the ALT_ACPIDMAP_VID4WR_S_USER register field is UNKNOWN. */
-#define ALT_ACPIDMAP_VID4WR_S_USER_RESET      0x0
+    #define ALT_ACPIDMAP_VID4WR_S_USER_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID4WR_S_USER field value from a register. */
-#define ALT_ACPIDMAP_VID4WR_S_USER_GET(value) (((value) & 0x000001f0) >> 4)
+    #define ALT_ACPIDMAP_VID4WR_S_USER_GET( value )    ( ( ( value ) & 0x000001f0 ) >> 4 )
 /* Produces a ALT_ACPIDMAP_VID4WR_S_USER register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID4WR_S_USER_SET(value) (((value) << 4) & 0x000001f0)
+    #define ALT_ACPIDMAP_VID4WR_S_USER_SET( value )    ( ( ( value ) << 4 ) & 0x000001f0 )
 
 /*
  * Field : AWADDR 1GB Page Decoder (Status) - page
@@ -2585,21 +2621,21 @@ typedef volatile struct ALT_ACPIDMAP_VID4RD_S_s  ALT_ACPIDMAP_VID4RD_S_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID4WR_S_PAGE register field. */
-#define ALT_ACPIDMAP_VID4WR_S_PAGE_LSB        12
+    #define ALT_ACPIDMAP_VID4WR_S_PAGE_LSB        12
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID4WR_S_PAGE register field. */
-#define ALT_ACPIDMAP_VID4WR_S_PAGE_MSB        13
+    #define ALT_ACPIDMAP_VID4WR_S_PAGE_MSB        13
 /* The width in bits of the ALT_ACPIDMAP_VID4WR_S_PAGE register field. */
-#define ALT_ACPIDMAP_VID4WR_S_PAGE_WIDTH      2
+    #define ALT_ACPIDMAP_VID4WR_S_PAGE_WIDTH      2
 /* The mask used to set the ALT_ACPIDMAP_VID4WR_S_PAGE register field value. */
-#define ALT_ACPIDMAP_VID4WR_S_PAGE_SET_MSK    0x00003000
+    #define ALT_ACPIDMAP_VID4WR_S_PAGE_SET_MSK    0x00003000
 /* The mask used to clear the ALT_ACPIDMAP_VID4WR_S_PAGE register field value. */
-#define ALT_ACPIDMAP_VID4WR_S_PAGE_CLR_MSK    0xffffcfff
+    #define ALT_ACPIDMAP_VID4WR_S_PAGE_CLR_MSK    0xffffcfff
 /* The reset value of the ALT_ACPIDMAP_VID4WR_S_PAGE register field is UNKNOWN. */
-#define ALT_ACPIDMAP_VID4WR_S_PAGE_RESET      0x0
+    #define ALT_ACPIDMAP_VID4WR_S_PAGE_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID4WR_S_PAGE field value from a register. */
-#define ALT_ACPIDMAP_VID4WR_S_PAGE_GET(value) (((value) & 0x00003000) >> 12)
+    #define ALT_ACPIDMAP_VID4WR_S_PAGE_GET( value )    ( ( ( value ) & 0x00003000 ) >> 12 )
 /* Produces a ALT_ACPIDMAP_VID4WR_S_PAGE register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID4WR_S_PAGE_SET(value) (((value) << 12) & 0x00003000)
+    #define ALT_ACPIDMAP_VID4WR_S_PAGE_SET( value )    ( ( ( value ) << 12 ) & 0x00003000 )
 
 /*
  * Field : Remap Master ID (Status) - mid
@@ -2611,21 +2647,21 @@ typedef volatile struct ALT_ACPIDMAP_VID4RD_S_s  ALT_ACPIDMAP_VID4RD_S_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID4WR_S_MID register field. */
-#define ALT_ACPIDMAP_VID4WR_S_MID_LSB        16
+    #define ALT_ACPIDMAP_VID4WR_S_MID_LSB        16
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID4WR_S_MID register field. */
-#define ALT_ACPIDMAP_VID4WR_S_MID_MSB        27
+    #define ALT_ACPIDMAP_VID4WR_S_MID_MSB        27
 /* The width in bits of the ALT_ACPIDMAP_VID4WR_S_MID register field. */
-#define ALT_ACPIDMAP_VID4WR_S_MID_WIDTH      12
+    #define ALT_ACPIDMAP_VID4WR_S_MID_WIDTH      12
 /* The mask used to set the ALT_ACPIDMAP_VID4WR_S_MID register field value. */
-#define ALT_ACPIDMAP_VID4WR_S_MID_SET_MSK    0x0fff0000
+    #define ALT_ACPIDMAP_VID4WR_S_MID_SET_MSK    0x0fff0000
 /* The mask used to clear the ALT_ACPIDMAP_VID4WR_S_MID register field value. */
-#define ALT_ACPIDMAP_VID4WR_S_MID_CLR_MSK    0xf000ffff
+    #define ALT_ACPIDMAP_VID4WR_S_MID_CLR_MSK    0xf000ffff
 /* The reset value of the ALT_ACPIDMAP_VID4WR_S_MID register field is UNKNOWN. */
-#define ALT_ACPIDMAP_VID4WR_S_MID_RESET      0x0
+    #define ALT_ACPIDMAP_VID4WR_S_MID_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID4WR_S_MID field value from a register. */
-#define ALT_ACPIDMAP_VID4WR_S_MID_GET(value) (((value) & 0x0fff0000) >> 16)
+    #define ALT_ACPIDMAP_VID4WR_S_MID_GET( value )    ( ( ( value ) & 0x0fff0000 ) >> 16 )
 /* Produces a ALT_ACPIDMAP_VID4WR_S_MID register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID4WR_S_MID_SET(value) (((value) << 16) & 0x0fff0000)
+    #define ALT_ACPIDMAP_VID4WR_S_MID_SET( value )    ( ( ( value ) << 16 ) & 0x0fff0000 )
 
 /*
  * Field : Force Mapping (Status) - force
@@ -2637,23 +2673,24 @@ typedef volatile struct ALT_ACPIDMAP_VID4RD_S_s  ALT_ACPIDMAP_VID4RD_S_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID4WR_S_FORCE register field. */
-#define ALT_ACPIDMAP_VID4WR_S_FORCE_LSB        31
+    #define ALT_ACPIDMAP_VID4WR_S_FORCE_LSB        31
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID4WR_S_FORCE register field. */
-#define ALT_ACPIDMAP_VID4WR_S_FORCE_MSB        31
+    #define ALT_ACPIDMAP_VID4WR_S_FORCE_MSB        31
 /* The width in bits of the ALT_ACPIDMAP_VID4WR_S_FORCE register field. */
-#define ALT_ACPIDMAP_VID4WR_S_FORCE_WIDTH      1
+    #define ALT_ACPIDMAP_VID4WR_S_FORCE_WIDTH      1
 /* The mask used to set the ALT_ACPIDMAP_VID4WR_S_FORCE register field value. */
-#define ALT_ACPIDMAP_VID4WR_S_FORCE_SET_MSK    0x80000000
+    #define ALT_ACPIDMAP_VID4WR_S_FORCE_SET_MSK    0x80000000
 /* The mask used to clear the ALT_ACPIDMAP_VID4WR_S_FORCE register field value. */
-#define ALT_ACPIDMAP_VID4WR_S_FORCE_CLR_MSK    0x7fffffff
+    #define ALT_ACPIDMAP_VID4WR_S_FORCE_CLR_MSK    0x7fffffff
 /* The reset value of the ALT_ACPIDMAP_VID4WR_S_FORCE register field is UNKNOWN. */
-#define ALT_ACPIDMAP_VID4WR_S_FORCE_RESET      0x0
+    #define ALT_ACPIDMAP_VID4WR_S_FORCE_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID4WR_S_FORCE field value from a register. */
-#define ALT_ACPIDMAP_VID4WR_S_FORCE_GET(value) (((value) & 0x80000000) >> 31)
+    #define ALT_ACPIDMAP_VID4WR_S_FORCE_GET( value )    ( ( ( value ) & 0x80000000 ) >> 31 )
 /* Produces a ALT_ACPIDMAP_VID4WR_S_FORCE register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID4WR_S_FORCE_SET(value) (((value) << 31) & 0x80000000)
+    #define ALT_ACPIDMAP_VID4WR_S_FORCE_SET( value )    ( ( ( value ) << 31 ) & 0x80000000 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -2664,24 +2701,24 @@ typedef volatile struct ALT_ACPIDMAP_VID4RD_S_s  ALT_ACPIDMAP_VID4RD_S_t;
  *
  * The struct declaration for register ALT_ACPIDMAP_VID4WR_S.
  */
-struct ALT_ACPIDMAP_VID4WR_S_s
-{
-    uint32_t              :  4;  /* *UNDEFINED* */
-    const uint32_t  user  :  5;  /* AWUSER value to SCU (Status) */
-    uint32_t              :  3;  /* *UNDEFINED* */
-    const uint32_t  page  :  2;  /* AWADDR 1GB Page Decoder (Status) */
-    uint32_t              :  2;  /* *UNDEFINED* */
-    const uint32_t  mid   : 12;  /* Remap Master ID (Status) */
-    uint32_t              :  3;  /* *UNDEFINED* */
-    const uint32_t  force :  1;  /* Force Mapping (Status) */
-};
+        struct ALT_ACPIDMAP_VID4WR_S_s
+        {
+            uint32_t              :  4; /* *UNDEFINED* */
+            const uint32_t user  :  5;  /* AWUSER value to SCU (Status) */
+            uint32_t              :  3; /* *UNDEFINED* */
+            const uint32_t page  :  2;  /* AWADDR 1GB Page Decoder (Status) */
+            uint32_t              :  2; /* *UNDEFINED* */
+            const uint32_t mid   : 12;  /* Remap Master ID (Status) */
+            uint32_t              :  3; /* *UNDEFINED* */
+            const uint32_t force :  1;  /* Force Mapping (Status) */
+        };
 
 /* The typedef declaration for register ALT_ACPIDMAP_VID4WR_S. */
-typedef volatile struct ALT_ACPIDMAP_VID4WR_S_s  ALT_ACPIDMAP_VID4WR_S_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_ACPIDMAP_VID4WR_S_s ALT_ACPIDMAP_VID4WR_S_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_ACPIDMAP_VID4WR_S register from the beginning of the component. */
-#define ALT_ACPIDMAP_VID4WR_S_OFST        0x44
+    #define ALT_ACPIDMAP_VID4WR_S_OFST    0x44
 
 /*
  * Register : Read AXI Master Mapping Status Register for Fixed Virtual ID 5 - vid5rd_s
@@ -2704,6 +2741,7 @@ typedef volatile struct ALT_ACPIDMAP_VID4WR_S_s  ALT_ACPIDMAP_VID4WR_S_t;
  *  [31]    | R      | Unknown | Force Mapping (Status)
  *
  */
+
 /*
  * Field : ARUSER value to SCU (Status) - user
  *
@@ -2713,21 +2751,21 @@ typedef volatile struct ALT_ACPIDMAP_VID4WR_S_s  ALT_ACPIDMAP_VID4WR_S_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID5RD_S_USER register field. */
-#define ALT_ACPIDMAP_VID5RD_S_USER_LSB        4
+    #define ALT_ACPIDMAP_VID5RD_S_USER_LSB        4
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID5RD_S_USER register field. */
-#define ALT_ACPIDMAP_VID5RD_S_USER_MSB        8
+    #define ALT_ACPIDMAP_VID5RD_S_USER_MSB        8
 /* The width in bits of the ALT_ACPIDMAP_VID5RD_S_USER register field. */
-#define ALT_ACPIDMAP_VID5RD_S_USER_WIDTH      5
+    #define ALT_ACPIDMAP_VID5RD_S_USER_WIDTH      5
 /* The mask used to set the ALT_ACPIDMAP_VID5RD_S_USER register field value. */
-#define ALT_ACPIDMAP_VID5RD_S_USER_SET_MSK    0x000001f0
+    #define ALT_ACPIDMAP_VID5RD_S_USER_SET_MSK    0x000001f0
 /* The mask used to clear the ALT_ACPIDMAP_VID5RD_S_USER register field value. */
-#define ALT_ACPIDMAP_VID5RD_S_USER_CLR_MSK    0xfffffe0f
+    #define ALT_ACPIDMAP_VID5RD_S_USER_CLR_MSK    0xfffffe0f
 /* The reset value of the ALT_ACPIDMAP_VID5RD_S_USER register field is UNKNOWN. */
-#define ALT_ACPIDMAP_VID5RD_S_USER_RESET      0x0
+    #define ALT_ACPIDMAP_VID5RD_S_USER_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID5RD_S_USER field value from a register. */
-#define ALT_ACPIDMAP_VID5RD_S_USER_GET(value) (((value) & 0x000001f0) >> 4)
+    #define ALT_ACPIDMAP_VID5RD_S_USER_GET( value )    ( ( ( value ) & 0x000001f0 ) >> 4 )
 /* Produces a ALT_ACPIDMAP_VID5RD_S_USER register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID5RD_S_USER_SET(value) (((value) << 4) & 0x000001f0)
+    #define ALT_ACPIDMAP_VID5RD_S_USER_SET( value )    ( ( ( value ) << 4 ) & 0x000001f0 )
 
 /*
  * Field : ARADDR 1GB Page Decoder (Status) - page
@@ -2738,21 +2776,21 @@ typedef volatile struct ALT_ACPIDMAP_VID4WR_S_s  ALT_ACPIDMAP_VID4WR_S_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID5RD_S_PAGE register field. */
-#define ALT_ACPIDMAP_VID5RD_S_PAGE_LSB        12
+    #define ALT_ACPIDMAP_VID5RD_S_PAGE_LSB        12
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID5RD_S_PAGE register field. */
-#define ALT_ACPIDMAP_VID5RD_S_PAGE_MSB        13
+    #define ALT_ACPIDMAP_VID5RD_S_PAGE_MSB        13
 /* The width in bits of the ALT_ACPIDMAP_VID5RD_S_PAGE register field. */
-#define ALT_ACPIDMAP_VID5RD_S_PAGE_WIDTH      2
+    #define ALT_ACPIDMAP_VID5RD_S_PAGE_WIDTH      2
 /* The mask used to set the ALT_ACPIDMAP_VID5RD_S_PAGE register field value. */
-#define ALT_ACPIDMAP_VID5RD_S_PAGE_SET_MSK    0x00003000
+    #define ALT_ACPIDMAP_VID5RD_S_PAGE_SET_MSK    0x00003000
 /* The mask used to clear the ALT_ACPIDMAP_VID5RD_S_PAGE register field value. */
-#define ALT_ACPIDMAP_VID5RD_S_PAGE_CLR_MSK    0xffffcfff
+    #define ALT_ACPIDMAP_VID5RD_S_PAGE_CLR_MSK    0xffffcfff
 /* The reset value of the ALT_ACPIDMAP_VID5RD_S_PAGE register field is UNKNOWN. */
-#define ALT_ACPIDMAP_VID5RD_S_PAGE_RESET      0x0
+    #define ALT_ACPIDMAP_VID5RD_S_PAGE_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID5RD_S_PAGE field value from a register. */
-#define ALT_ACPIDMAP_VID5RD_S_PAGE_GET(value) (((value) & 0x00003000) >> 12)
+    #define ALT_ACPIDMAP_VID5RD_S_PAGE_GET( value )    ( ( ( value ) & 0x00003000 ) >> 12 )
 /* Produces a ALT_ACPIDMAP_VID5RD_S_PAGE register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID5RD_S_PAGE_SET(value) (((value) << 12) & 0x00003000)
+    #define ALT_ACPIDMAP_VID5RD_S_PAGE_SET( value )    ( ( ( value ) << 12 ) & 0x00003000 )
 
 /*
  * Field : Remap Master ID (Status) - mid
@@ -2764,21 +2802,21 @@ typedef volatile struct ALT_ACPIDMAP_VID4WR_S_s  ALT_ACPIDMAP_VID4WR_S_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID5RD_S_MID register field. */
-#define ALT_ACPIDMAP_VID5RD_S_MID_LSB        16
+    #define ALT_ACPIDMAP_VID5RD_S_MID_LSB        16
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID5RD_S_MID register field. */
-#define ALT_ACPIDMAP_VID5RD_S_MID_MSB        27
+    #define ALT_ACPIDMAP_VID5RD_S_MID_MSB        27
 /* The width in bits of the ALT_ACPIDMAP_VID5RD_S_MID register field. */
-#define ALT_ACPIDMAP_VID5RD_S_MID_WIDTH      12
+    #define ALT_ACPIDMAP_VID5RD_S_MID_WIDTH      12
 /* The mask used to set the ALT_ACPIDMAP_VID5RD_S_MID register field value. */
-#define ALT_ACPIDMAP_VID5RD_S_MID_SET_MSK    0x0fff0000
+    #define ALT_ACPIDMAP_VID5RD_S_MID_SET_MSK    0x0fff0000
 /* The mask used to clear the ALT_ACPIDMAP_VID5RD_S_MID register field value. */
-#define ALT_ACPIDMAP_VID5RD_S_MID_CLR_MSK    0xf000ffff
+    #define ALT_ACPIDMAP_VID5RD_S_MID_CLR_MSK    0xf000ffff
 /* The reset value of the ALT_ACPIDMAP_VID5RD_S_MID register field is UNKNOWN. */
-#define ALT_ACPIDMAP_VID5RD_S_MID_RESET      0x0
+    #define ALT_ACPIDMAP_VID5RD_S_MID_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID5RD_S_MID field value from a register. */
-#define ALT_ACPIDMAP_VID5RD_S_MID_GET(value) (((value) & 0x0fff0000) >> 16)
+    #define ALT_ACPIDMAP_VID5RD_S_MID_GET( value )    ( ( ( value ) & 0x0fff0000 ) >> 16 )
 /* Produces a ALT_ACPIDMAP_VID5RD_S_MID register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID5RD_S_MID_SET(value) (((value) << 16) & 0x0fff0000)
+    #define ALT_ACPIDMAP_VID5RD_S_MID_SET( value )    ( ( ( value ) << 16 ) & 0x0fff0000 )
 
 /*
  * Field : Force Mapping (Status) - force
@@ -2790,23 +2828,24 @@ typedef volatile struct ALT_ACPIDMAP_VID4WR_S_s  ALT_ACPIDMAP_VID4WR_S_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID5RD_S_FORCE register field. */
-#define ALT_ACPIDMAP_VID5RD_S_FORCE_LSB        31
+    #define ALT_ACPIDMAP_VID5RD_S_FORCE_LSB        31
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID5RD_S_FORCE register field. */
-#define ALT_ACPIDMAP_VID5RD_S_FORCE_MSB        31
+    #define ALT_ACPIDMAP_VID5RD_S_FORCE_MSB        31
 /* The width in bits of the ALT_ACPIDMAP_VID5RD_S_FORCE register field. */
-#define ALT_ACPIDMAP_VID5RD_S_FORCE_WIDTH      1
+    #define ALT_ACPIDMAP_VID5RD_S_FORCE_WIDTH      1
 /* The mask used to set the ALT_ACPIDMAP_VID5RD_S_FORCE register field value. */
-#define ALT_ACPIDMAP_VID5RD_S_FORCE_SET_MSK    0x80000000
+    #define ALT_ACPIDMAP_VID5RD_S_FORCE_SET_MSK    0x80000000
 /* The mask used to clear the ALT_ACPIDMAP_VID5RD_S_FORCE register field value. */
-#define ALT_ACPIDMAP_VID5RD_S_FORCE_CLR_MSK    0x7fffffff
+    #define ALT_ACPIDMAP_VID5RD_S_FORCE_CLR_MSK    0x7fffffff
 /* The reset value of the ALT_ACPIDMAP_VID5RD_S_FORCE register field is UNKNOWN. */
-#define ALT_ACPIDMAP_VID5RD_S_FORCE_RESET      0x0
+    #define ALT_ACPIDMAP_VID5RD_S_FORCE_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID5RD_S_FORCE field value from a register. */
-#define ALT_ACPIDMAP_VID5RD_S_FORCE_GET(value) (((value) & 0x80000000) >> 31)
+    #define ALT_ACPIDMAP_VID5RD_S_FORCE_GET( value )    ( ( ( value ) & 0x80000000 ) >> 31 )
 /* Produces a ALT_ACPIDMAP_VID5RD_S_FORCE register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID5RD_S_FORCE_SET(value) (((value) << 31) & 0x80000000)
+    #define ALT_ACPIDMAP_VID5RD_S_FORCE_SET( value )    ( ( ( value ) << 31 ) & 0x80000000 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -2817,24 +2856,24 @@ typedef volatile struct ALT_ACPIDMAP_VID4WR_S_s  ALT_ACPIDMAP_VID4WR_S_t;
  *
  * The struct declaration for register ALT_ACPIDMAP_VID5RD_S.
  */
-struct ALT_ACPIDMAP_VID5RD_S_s
-{
-    uint32_t              :  4;  /* *UNDEFINED* */
-    const uint32_t  user  :  5;  /* ARUSER value to SCU (Status) */
-    uint32_t              :  3;  /* *UNDEFINED* */
-    const uint32_t  page  :  2;  /* ARADDR 1GB Page Decoder (Status) */
-    uint32_t              :  2;  /* *UNDEFINED* */
-    const uint32_t  mid   : 12;  /* Remap Master ID (Status) */
-    uint32_t              :  3;  /* *UNDEFINED* */
-    const uint32_t  force :  1;  /* Force Mapping (Status) */
-};
+        struct ALT_ACPIDMAP_VID5RD_S_s
+        {
+            uint32_t              :  4; /* *UNDEFINED* */
+            const uint32_t user  :  5;  /* ARUSER value to SCU (Status) */
+            uint32_t              :  3; /* *UNDEFINED* */
+            const uint32_t page  :  2;  /* ARADDR 1GB Page Decoder (Status) */
+            uint32_t              :  2; /* *UNDEFINED* */
+            const uint32_t mid   : 12;  /* Remap Master ID (Status) */
+            uint32_t              :  3; /* *UNDEFINED* */
+            const uint32_t force :  1;  /* Force Mapping (Status) */
+        };
 
 /* The typedef declaration for register ALT_ACPIDMAP_VID5RD_S. */
-typedef volatile struct ALT_ACPIDMAP_VID5RD_S_s  ALT_ACPIDMAP_VID5RD_S_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_ACPIDMAP_VID5RD_S_s ALT_ACPIDMAP_VID5RD_S_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_ACPIDMAP_VID5RD_S register from the beginning of the component. */
-#define ALT_ACPIDMAP_VID5RD_S_OFST        0x48
+    #define ALT_ACPIDMAP_VID5RD_S_OFST    0x48
 
 /*
  * Register : Write AXI Master Mapping Status Register for Fixed Virtual ID 5 - vid5wr_s
@@ -2857,6 +2896,7 @@ typedef volatile struct ALT_ACPIDMAP_VID5RD_S_s  ALT_ACPIDMAP_VID5RD_S_t;
  *  [31]    | R      | Unknown | Force Mapping (Status)
  *
  */
+
 /*
  * Field : AWUSER value to SCU (Status) - user
  *
@@ -2866,21 +2906,21 @@ typedef volatile struct ALT_ACPIDMAP_VID5RD_S_s  ALT_ACPIDMAP_VID5RD_S_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID5WR_S_USER register field. */
-#define ALT_ACPIDMAP_VID5WR_S_USER_LSB        4
+    #define ALT_ACPIDMAP_VID5WR_S_USER_LSB        4
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID5WR_S_USER register field. */
-#define ALT_ACPIDMAP_VID5WR_S_USER_MSB        8
+    #define ALT_ACPIDMAP_VID5WR_S_USER_MSB        8
 /* The width in bits of the ALT_ACPIDMAP_VID5WR_S_USER register field. */
-#define ALT_ACPIDMAP_VID5WR_S_USER_WIDTH      5
+    #define ALT_ACPIDMAP_VID5WR_S_USER_WIDTH      5
 /* The mask used to set the ALT_ACPIDMAP_VID5WR_S_USER register field value. */
-#define ALT_ACPIDMAP_VID5WR_S_USER_SET_MSK    0x000001f0
+    #define ALT_ACPIDMAP_VID5WR_S_USER_SET_MSK    0x000001f0
 /* The mask used to clear the ALT_ACPIDMAP_VID5WR_S_USER register field value. */
-#define ALT_ACPIDMAP_VID5WR_S_USER_CLR_MSK    0xfffffe0f
+    #define ALT_ACPIDMAP_VID5WR_S_USER_CLR_MSK    0xfffffe0f
 /* The reset value of the ALT_ACPIDMAP_VID5WR_S_USER register field is UNKNOWN. */
-#define ALT_ACPIDMAP_VID5WR_S_USER_RESET      0x0
+    #define ALT_ACPIDMAP_VID5WR_S_USER_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID5WR_S_USER field value from a register. */
-#define ALT_ACPIDMAP_VID5WR_S_USER_GET(value) (((value) & 0x000001f0) >> 4)
+    #define ALT_ACPIDMAP_VID5WR_S_USER_GET( value )    ( ( ( value ) & 0x000001f0 ) >> 4 )
 /* Produces a ALT_ACPIDMAP_VID5WR_S_USER register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID5WR_S_USER_SET(value) (((value) << 4) & 0x000001f0)
+    #define ALT_ACPIDMAP_VID5WR_S_USER_SET( value )    ( ( ( value ) << 4 ) & 0x000001f0 )
 
 /*
  * Field : AWADDR 1GB Page Decoder (Status) - page
@@ -2891,21 +2931,21 @@ typedef volatile struct ALT_ACPIDMAP_VID5RD_S_s  ALT_ACPIDMAP_VID5RD_S_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID5WR_S_PAGE register field. */
-#define ALT_ACPIDMAP_VID5WR_S_PAGE_LSB        12
+    #define ALT_ACPIDMAP_VID5WR_S_PAGE_LSB        12
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID5WR_S_PAGE register field. */
-#define ALT_ACPIDMAP_VID5WR_S_PAGE_MSB        13
+    #define ALT_ACPIDMAP_VID5WR_S_PAGE_MSB        13
 /* The width in bits of the ALT_ACPIDMAP_VID5WR_S_PAGE register field. */
-#define ALT_ACPIDMAP_VID5WR_S_PAGE_WIDTH      2
+    #define ALT_ACPIDMAP_VID5WR_S_PAGE_WIDTH      2
 /* The mask used to set the ALT_ACPIDMAP_VID5WR_S_PAGE register field value. */
-#define ALT_ACPIDMAP_VID5WR_S_PAGE_SET_MSK    0x00003000
+    #define ALT_ACPIDMAP_VID5WR_S_PAGE_SET_MSK    0x00003000
 /* The mask used to clear the ALT_ACPIDMAP_VID5WR_S_PAGE register field value. */
-#define ALT_ACPIDMAP_VID5WR_S_PAGE_CLR_MSK    0xffffcfff
+    #define ALT_ACPIDMAP_VID5WR_S_PAGE_CLR_MSK    0xffffcfff
 /* The reset value of the ALT_ACPIDMAP_VID5WR_S_PAGE register field is UNKNOWN. */
-#define ALT_ACPIDMAP_VID5WR_S_PAGE_RESET      0x0
+    #define ALT_ACPIDMAP_VID5WR_S_PAGE_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID5WR_S_PAGE field value from a register. */
-#define ALT_ACPIDMAP_VID5WR_S_PAGE_GET(value) (((value) & 0x00003000) >> 12)
+    #define ALT_ACPIDMAP_VID5WR_S_PAGE_GET( value )    ( ( ( value ) & 0x00003000 ) >> 12 )
 /* Produces a ALT_ACPIDMAP_VID5WR_S_PAGE register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID5WR_S_PAGE_SET(value) (((value) << 12) & 0x00003000)
+    #define ALT_ACPIDMAP_VID5WR_S_PAGE_SET( value )    ( ( ( value ) << 12 ) & 0x00003000 )
 
 /*
  * Field : Remap Master ID (Status) - mid
@@ -2917,21 +2957,21 @@ typedef volatile struct ALT_ACPIDMAP_VID5RD_S_s  ALT_ACPIDMAP_VID5RD_S_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID5WR_S_MID register field. */
-#define ALT_ACPIDMAP_VID5WR_S_MID_LSB        16
+    #define ALT_ACPIDMAP_VID5WR_S_MID_LSB        16
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID5WR_S_MID register field. */
-#define ALT_ACPIDMAP_VID5WR_S_MID_MSB        27
+    #define ALT_ACPIDMAP_VID5WR_S_MID_MSB        27
 /* The width in bits of the ALT_ACPIDMAP_VID5WR_S_MID register field. */
-#define ALT_ACPIDMAP_VID5WR_S_MID_WIDTH      12
+    #define ALT_ACPIDMAP_VID5WR_S_MID_WIDTH      12
 /* The mask used to set the ALT_ACPIDMAP_VID5WR_S_MID register field value. */
-#define ALT_ACPIDMAP_VID5WR_S_MID_SET_MSK    0x0fff0000
+    #define ALT_ACPIDMAP_VID5WR_S_MID_SET_MSK    0x0fff0000
 /* The mask used to clear the ALT_ACPIDMAP_VID5WR_S_MID register field value. */
-#define ALT_ACPIDMAP_VID5WR_S_MID_CLR_MSK    0xf000ffff
+    #define ALT_ACPIDMAP_VID5WR_S_MID_CLR_MSK    0xf000ffff
 /* The reset value of the ALT_ACPIDMAP_VID5WR_S_MID register field is UNKNOWN. */
-#define ALT_ACPIDMAP_VID5WR_S_MID_RESET      0x0
+    #define ALT_ACPIDMAP_VID5WR_S_MID_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID5WR_S_MID field value from a register. */
-#define ALT_ACPIDMAP_VID5WR_S_MID_GET(value) (((value) & 0x0fff0000) >> 16)
+    #define ALT_ACPIDMAP_VID5WR_S_MID_GET( value )    ( ( ( value ) & 0x0fff0000 ) >> 16 )
 /* Produces a ALT_ACPIDMAP_VID5WR_S_MID register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID5WR_S_MID_SET(value) (((value) << 16) & 0x0fff0000)
+    #define ALT_ACPIDMAP_VID5WR_S_MID_SET( value )    ( ( ( value ) << 16 ) & 0x0fff0000 )
 
 /*
  * Field : Force Mapping (Status) - force
@@ -2943,23 +2983,24 @@ typedef volatile struct ALT_ACPIDMAP_VID5RD_S_s  ALT_ACPIDMAP_VID5RD_S_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID5WR_S_FORCE register field. */
-#define ALT_ACPIDMAP_VID5WR_S_FORCE_LSB        31
+    #define ALT_ACPIDMAP_VID5WR_S_FORCE_LSB        31
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID5WR_S_FORCE register field. */
-#define ALT_ACPIDMAP_VID5WR_S_FORCE_MSB        31
+    #define ALT_ACPIDMAP_VID5WR_S_FORCE_MSB        31
 /* The width in bits of the ALT_ACPIDMAP_VID5WR_S_FORCE register field. */
-#define ALT_ACPIDMAP_VID5WR_S_FORCE_WIDTH      1
+    #define ALT_ACPIDMAP_VID5WR_S_FORCE_WIDTH      1
 /* The mask used to set the ALT_ACPIDMAP_VID5WR_S_FORCE register field value. */
-#define ALT_ACPIDMAP_VID5WR_S_FORCE_SET_MSK    0x80000000
+    #define ALT_ACPIDMAP_VID5WR_S_FORCE_SET_MSK    0x80000000
 /* The mask used to clear the ALT_ACPIDMAP_VID5WR_S_FORCE register field value. */
-#define ALT_ACPIDMAP_VID5WR_S_FORCE_CLR_MSK    0x7fffffff
+    #define ALT_ACPIDMAP_VID5WR_S_FORCE_CLR_MSK    0x7fffffff
 /* The reset value of the ALT_ACPIDMAP_VID5WR_S_FORCE register field is UNKNOWN. */
-#define ALT_ACPIDMAP_VID5WR_S_FORCE_RESET      0x0
+    #define ALT_ACPIDMAP_VID5WR_S_FORCE_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID5WR_S_FORCE field value from a register. */
-#define ALT_ACPIDMAP_VID5WR_S_FORCE_GET(value) (((value) & 0x80000000) >> 31)
+    #define ALT_ACPIDMAP_VID5WR_S_FORCE_GET( value )    ( ( ( value ) & 0x80000000 ) >> 31 )
 /* Produces a ALT_ACPIDMAP_VID5WR_S_FORCE register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID5WR_S_FORCE_SET(value) (((value) << 31) & 0x80000000)
+    #define ALT_ACPIDMAP_VID5WR_S_FORCE_SET( value )    ( ( ( value ) << 31 ) & 0x80000000 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -2970,24 +3011,24 @@ typedef volatile struct ALT_ACPIDMAP_VID5RD_S_s  ALT_ACPIDMAP_VID5RD_S_t;
  *
  * The struct declaration for register ALT_ACPIDMAP_VID5WR_S.
  */
-struct ALT_ACPIDMAP_VID5WR_S_s
-{
-    uint32_t              :  4;  /* *UNDEFINED* */
-    const uint32_t  user  :  5;  /* AWUSER value to SCU (Status) */
-    uint32_t              :  3;  /* *UNDEFINED* */
-    const uint32_t  page  :  2;  /* AWADDR 1GB Page Decoder (Status) */
-    uint32_t              :  2;  /* *UNDEFINED* */
-    const uint32_t  mid   : 12;  /* Remap Master ID (Status) */
-    uint32_t              :  3;  /* *UNDEFINED* */
-    const uint32_t  force :  1;  /* Force Mapping (Status) */
-};
+        struct ALT_ACPIDMAP_VID5WR_S_s
+        {
+            uint32_t              :  4; /* *UNDEFINED* */
+            const uint32_t user  :  5;  /* AWUSER value to SCU (Status) */
+            uint32_t              :  3; /* *UNDEFINED* */
+            const uint32_t page  :  2;  /* AWADDR 1GB Page Decoder (Status) */
+            uint32_t              :  2; /* *UNDEFINED* */
+            const uint32_t mid   : 12;  /* Remap Master ID (Status) */
+            uint32_t              :  3; /* *UNDEFINED* */
+            const uint32_t force :  1;  /* Force Mapping (Status) */
+        };
 
 /* The typedef declaration for register ALT_ACPIDMAP_VID5WR_S. */
-typedef volatile struct ALT_ACPIDMAP_VID5WR_S_s  ALT_ACPIDMAP_VID5WR_S_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_ACPIDMAP_VID5WR_S_s ALT_ACPIDMAP_VID5WR_S_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_ACPIDMAP_VID5WR_S register from the beginning of the component. */
-#define ALT_ACPIDMAP_VID5WR_S_OFST        0x4c
+    #define ALT_ACPIDMAP_VID5WR_S_OFST    0x4c
 
 /*
  * Register : Read AXI Master Mapping Status Register for Fixed Virtual ID 6 - vid6rd_s
@@ -3010,6 +3051,7 @@ typedef volatile struct ALT_ACPIDMAP_VID5WR_S_s  ALT_ACPIDMAP_VID5WR_S_t;
  *  [31]    | R      | Unknown | Force Mapping (Status)
  *
  */
+
 /*
  * Field : ARUSER value to SCU (Status) - user
  *
@@ -3019,21 +3061,21 @@ typedef volatile struct ALT_ACPIDMAP_VID5WR_S_s  ALT_ACPIDMAP_VID5WR_S_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID6RD_S_USER register field. */
-#define ALT_ACPIDMAP_VID6RD_S_USER_LSB        4
+    #define ALT_ACPIDMAP_VID6RD_S_USER_LSB        4
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID6RD_S_USER register field. */
-#define ALT_ACPIDMAP_VID6RD_S_USER_MSB        8
+    #define ALT_ACPIDMAP_VID6RD_S_USER_MSB        8
 /* The width in bits of the ALT_ACPIDMAP_VID6RD_S_USER register field. */
-#define ALT_ACPIDMAP_VID6RD_S_USER_WIDTH      5
+    #define ALT_ACPIDMAP_VID6RD_S_USER_WIDTH      5
 /* The mask used to set the ALT_ACPIDMAP_VID6RD_S_USER register field value. */
-#define ALT_ACPIDMAP_VID6RD_S_USER_SET_MSK    0x000001f0
+    #define ALT_ACPIDMAP_VID6RD_S_USER_SET_MSK    0x000001f0
 /* The mask used to clear the ALT_ACPIDMAP_VID6RD_S_USER register field value. */
-#define ALT_ACPIDMAP_VID6RD_S_USER_CLR_MSK    0xfffffe0f
+    #define ALT_ACPIDMAP_VID6RD_S_USER_CLR_MSK    0xfffffe0f
 /* The reset value of the ALT_ACPIDMAP_VID6RD_S_USER register field is UNKNOWN. */
-#define ALT_ACPIDMAP_VID6RD_S_USER_RESET      0x0
+    #define ALT_ACPIDMAP_VID6RD_S_USER_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID6RD_S_USER field value from a register. */
-#define ALT_ACPIDMAP_VID6RD_S_USER_GET(value) (((value) & 0x000001f0) >> 4)
+    #define ALT_ACPIDMAP_VID6RD_S_USER_GET( value )    ( ( ( value ) & 0x000001f0 ) >> 4 )
 /* Produces a ALT_ACPIDMAP_VID6RD_S_USER register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID6RD_S_USER_SET(value) (((value) << 4) & 0x000001f0)
+    #define ALT_ACPIDMAP_VID6RD_S_USER_SET( value )    ( ( ( value ) << 4 ) & 0x000001f0 )
 
 /*
  * Field : ARADDR 1GB Page Decoder (Status) - page
@@ -3044,21 +3086,21 @@ typedef volatile struct ALT_ACPIDMAP_VID5WR_S_s  ALT_ACPIDMAP_VID5WR_S_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID6RD_S_PAGE register field. */
-#define ALT_ACPIDMAP_VID6RD_S_PAGE_LSB        12
+    #define ALT_ACPIDMAP_VID6RD_S_PAGE_LSB        12
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID6RD_S_PAGE register field. */
-#define ALT_ACPIDMAP_VID6RD_S_PAGE_MSB        13
+    #define ALT_ACPIDMAP_VID6RD_S_PAGE_MSB        13
 /* The width in bits of the ALT_ACPIDMAP_VID6RD_S_PAGE register field. */
-#define ALT_ACPIDMAP_VID6RD_S_PAGE_WIDTH      2
+    #define ALT_ACPIDMAP_VID6RD_S_PAGE_WIDTH      2
 /* The mask used to set the ALT_ACPIDMAP_VID6RD_S_PAGE register field value. */
-#define ALT_ACPIDMAP_VID6RD_S_PAGE_SET_MSK    0x00003000
+    #define ALT_ACPIDMAP_VID6RD_S_PAGE_SET_MSK    0x00003000
 /* The mask used to clear the ALT_ACPIDMAP_VID6RD_S_PAGE register field value. */
-#define ALT_ACPIDMAP_VID6RD_S_PAGE_CLR_MSK    0xffffcfff
+    #define ALT_ACPIDMAP_VID6RD_S_PAGE_CLR_MSK    0xffffcfff
 /* The reset value of the ALT_ACPIDMAP_VID6RD_S_PAGE register field is UNKNOWN. */
-#define ALT_ACPIDMAP_VID6RD_S_PAGE_RESET      0x0
+    #define ALT_ACPIDMAP_VID6RD_S_PAGE_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID6RD_S_PAGE field value from a register. */
-#define ALT_ACPIDMAP_VID6RD_S_PAGE_GET(value) (((value) & 0x00003000) >> 12)
+    #define ALT_ACPIDMAP_VID6RD_S_PAGE_GET( value )    ( ( ( value ) & 0x00003000 ) >> 12 )
 /* Produces a ALT_ACPIDMAP_VID6RD_S_PAGE register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID6RD_S_PAGE_SET(value) (((value) << 12) & 0x00003000)
+    #define ALT_ACPIDMAP_VID6RD_S_PAGE_SET( value )    ( ( ( value ) << 12 ) & 0x00003000 )
 
 /*
  * Field : Remap Master ID (Status) - mid
@@ -3070,21 +3112,21 @@ typedef volatile struct ALT_ACPIDMAP_VID5WR_S_s  ALT_ACPIDMAP_VID5WR_S_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID6RD_S_MID register field. */
-#define ALT_ACPIDMAP_VID6RD_S_MID_LSB        16
+    #define ALT_ACPIDMAP_VID6RD_S_MID_LSB        16
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID6RD_S_MID register field. */
-#define ALT_ACPIDMAP_VID6RD_S_MID_MSB        27
+    #define ALT_ACPIDMAP_VID6RD_S_MID_MSB        27
 /* The width in bits of the ALT_ACPIDMAP_VID6RD_S_MID register field. */
-#define ALT_ACPIDMAP_VID6RD_S_MID_WIDTH      12
+    #define ALT_ACPIDMAP_VID6RD_S_MID_WIDTH      12
 /* The mask used to set the ALT_ACPIDMAP_VID6RD_S_MID register field value. */
-#define ALT_ACPIDMAP_VID6RD_S_MID_SET_MSK    0x0fff0000
+    #define ALT_ACPIDMAP_VID6RD_S_MID_SET_MSK    0x0fff0000
 /* The mask used to clear the ALT_ACPIDMAP_VID6RD_S_MID register field value. */
-#define ALT_ACPIDMAP_VID6RD_S_MID_CLR_MSK    0xf000ffff
+    #define ALT_ACPIDMAP_VID6RD_S_MID_CLR_MSK    0xf000ffff
 /* The reset value of the ALT_ACPIDMAP_VID6RD_S_MID register field is UNKNOWN. */
-#define ALT_ACPIDMAP_VID6RD_S_MID_RESET      0x0
+    #define ALT_ACPIDMAP_VID6RD_S_MID_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID6RD_S_MID field value from a register. */
-#define ALT_ACPIDMAP_VID6RD_S_MID_GET(value) (((value) & 0x0fff0000) >> 16)
+    #define ALT_ACPIDMAP_VID6RD_S_MID_GET( value )    ( ( ( value ) & 0x0fff0000 ) >> 16 )
 /* Produces a ALT_ACPIDMAP_VID6RD_S_MID register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID6RD_S_MID_SET(value) (((value) << 16) & 0x0fff0000)
+    #define ALT_ACPIDMAP_VID6RD_S_MID_SET( value )    ( ( ( value ) << 16 ) & 0x0fff0000 )
 
 /*
  * Field : Force Mapping (Status) - force
@@ -3096,23 +3138,24 @@ typedef volatile struct ALT_ACPIDMAP_VID5WR_S_s  ALT_ACPIDMAP_VID5WR_S_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID6RD_S_FORCE register field. */
-#define ALT_ACPIDMAP_VID6RD_S_FORCE_LSB        31
+    #define ALT_ACPIDMAP_VID6RD_S_FORCE_LSB        31
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID6RD_S_FORCE register field. */
-#define ALT_ACPIDMAP_VID6RD_S_FORCE_MSB        31
+    #define ALT_ACPIDMAP_VID6RD_S_FORCE_MSB        31
 /* The width in bits of the ALT_ACPIDMAP_VID6RD_S_FORCE register field. */
-#define ALT_ACPIDMAP_VID6RD_S_FORCE_WIDTH      1
+    #define ALT_ACPIDMAP_VID6RD_S_FORCE_WIDTH      1
 /* The mask used to set the ALT_ACPIDMAP_VID6RD_S_FORCE register field value. */
-#define ALT_ACPIDMAP_VID6RD_S_FORCE_SET_MSK    0x80000000
+    #define ALT_ACPIDMAP_VID6RD_S_FORCE_SET_MSK    0x80000000
 /* The mask used to clear the ALT_ACPIDMAP_VID6RD_S_FORCE register field value. */
-#define ALT_ACPIDMAP_VID6RD_S_FORCE_CLR_MSK    0x7fffffff
+    #define ALT_ACPIDMAP_VID6RD_S_FORCE_CLR_MSK    0x7fffffff
 /* The reset value of the ALT_ACPIDMAP_VID6RD_S_FORCE register field is UNKNOWN. */
-#define ALT_ACPIDMAP_VID6RD_S_FORCE_RESET      0x0
+    #define ALT_ACPIDMAP_VID6RD_S_FORCE_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID6RD_S_FORCE field value from a register. */
-#define ALT_ACPIDMAP_VID6RD_S_FORCE_GET(value) (((value) & 0x80000000) >> 31)
+    #define ALT_ACPIDMAP_VID6RD_S_FORCE_GET( value )    ( ( ( value ) & 0x80000000 ) >> 31 )
 /* Produces a ALT_ACPIDMAP_VID6RD_S_FORCE register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID6RD_S_FORCE_SET(value) (((value) << 31) & 0x80000000)
+    #define ALT_ACPIDMAP_VID6RD_S_FORCE_SET( value )    ( ( ( value ) << 31 ) & 0x80000000 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -3123,24 +3166,24 @@ typedef volatile struct ALT_ACPIDMAP_VID5WR_S_s  ALT_ACPIDMAP_VID5WR_S_t;
  *
  * The struct declaration for register ALT_ACPIDMAP_VID6RD_S.
  */
-struct ALT_ACPIDMAP_VID6RD_S_s
-{
-    uint32_t              :  4;  /* *UNDEFINED* */
-    const uint32_t  user  :  5;  /* ARUSER value to SCU (Status) */
-    uint32_t              :  3;  /* *UNDEFINED* */
-    const uint32_t  page  :  2;  /* ARADDR 1GB Page Decoder (Status) */
-    uint32_t              :  2;  /* *UNDEFINED* */
-    const uint32_t  mid   : 12;  /* Remap Master ID (Status) */
-    uint32_t              :  3;  /* *UNDEFINED* */
-    const uint32_t  force :  1;  /* Force Mapping (Status) */
-};
+        struct ALT_ACPIDMAP_VID6RD_S_s
+        {
+            uint32_t              :  4; /* *UNDEFINED* */
+            const uint32_t user  :  5;  /* ARUSER value to SCU (Status) */
+            uint32_t              :  3; /* *UNDEFINED* */
+            const uint32_t page  :  2;  /* ARADDR 1GB Page Decoder (Status) */
+            uint32_t              :  2; /* *UNDEFINED* */
+            const uint32_t mid   : 12;  /* Remap Master ID (Status) */
+            uint32_t              :  3; /* *UNDEFINED* */
+            const uint32_t force :  1;  /* Force Mapping (Status) */
+        };
 
 /* The typedef declaration for register ALT_ACPIDMAP_VID6RD_S. */
-typedef volatile struct ALT_ACPIDMAP_VID6RD_S_s  ALT_ACPIDMAP_VID6RD_S_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_ACPIDMAP_VID6RD_S_s ALT_ACPIDMAP_VID6RD_S_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_ACPIDMAP_VID6RD_S register from the beginning of the component. */
-#define ALT_ACPIDMAP_VID6RD_S_OFST        0x50
+    #define ALT_ACPIDMAP_VID6RD_S_OFST    0x50
 
 /*
  * Register : Write AXI Master Mapping Status Register for Fixed Virtual ID 6 - vid6wr_s
@@ -3163,6 +3206,7 @@ typedef volatile struct ALT_ACPIDMAP_VID6RD_S_s  ALT_ACPIDMAP_VID6RD_S_t;
  *  [31]    | R      | Unknown | Force Mapping (Status)
  *
  */
+
 /*
  * Field : AWUSER value to SCU (Status) - user
  *
@@ -3172,21 +3216,21 @@ typedef volatile struct ALT_ACPIDMAP_VID6RD_S_s  ALT_ACPIDMAP_VID6RD_S_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID6WR_S_USER register field. */
-#define ALT_ACPIDMAP_VID6WR_S_USER_LSB        4
+    #define ALT_ACPIDMAP_VID6WR_S_USER_LSB        4
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID6WR_S_USER register field. */
-#define ALT_ACPIDMAP_VID6WR_S_USER_MSB        8
+    #define ALT_ACPIDMAP_VID6WR_S_USER_MSB        8
 /* The width in bits of the ALT_ACPIDMAP_VID6WR_S_USER register field. */
-#define ALT_ACPIDMAP_VID6WR_S_USER_WIDTH      5
+    #define ALT_ACPIDMAP_VID6WR_S_USER_WIDTH      5
 /* The mask used to set the ALT_ACPIDMAP_VID6WR_S_USER register field value. */
-#define ALT_ACPIDMAP_VID6WR_S_USER_SET_MSK    0x000001f0
+    #define ALT_ACPIDMAP_VID6WR_S_USER_SET_MSK    0x000001f0
 /* The mask used to clear the ALT_ACPIDMAP_VID6WR_S_USER register field value. */
-#define ALT_ACPIDMAP_VID6WR_S_USER_CLR_MSK    0xfffffe0f
+    #define ALT_ACPIDMAP_VID6WR_S_USER_CLR_MSK    0xfffffe0f
 /* The reset value of the ALT_ACPIDMAP_VID6WR_S_USER register field is UNKNOWN. */
-#define ALT_ACPIDMAP_VID6WR_S_USER_RESET      0x0
+    #define ALT_ACPIDMAP_VID6WR_S_USER_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID6WR_S_USER field value from a register. */
-#define ALT_ACPIDMAP_VID6WR_S_USER_GET(value) (((value) & 0x000001f0) >> 4)
+    #define ALT_ACPIDMAP_VID6WR_S_USER_GET( value )    ( ( ( value ) & 0x000001f0 ) >> 4 )
 /* Produces a ALT_ACPIDMAP_VID6WR_S_USER register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID6WR_S_USER_SET(value) (((value) << 4) & 0x000001f0)
+    #define ALT_ACPIDMAP_VID6WR_S_USER_SET( value )    ( ( ( value ) << 4 ) & 0x000001f0 )
 
 /*
  * Field : AWADDR 1GB Page Decoder (Status) - page
@@ -3197,21 +3241,21 @@ typedef volatile struct ALT_ACPIDMAP_VID6RD_S_s  ALT_ACPIDMAP_VID6RD_S_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID6WR_S_PAGE register field. */
-#define ALT_ACPIDMAP_VID6WR_S_PAGE_LSB        12
+    #define ALT_ACPIDMAP_VID6WR_S_PAGE_LSB        12
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID6WR_S_PAGE register field. */
-#define ALT_ACPIDMAP_VID6WR_S_PAGE_MSB        13
+    #define ALT_ACPIDMAP_VID6WR_S_PAGE_MSB        13
 /* The width in bits of the ALT_ACPIDMAP_VID6WR_S_PAGE register field. */
-#define ALT_ACPIDMAP_VID6WR_S_PAGE_WIDTH      2
+    #define ALT_ACPIDMAP_VID6WR_S_PAGE_WIDTH      2
 /* The mask used to set the ALT_ACPIDMAP_VID6WR_S_PAGE register field value. */
-#define ALT_ACPIDMAP_VID6WR_S_PAGE_SET_MSK    0x00003000
+    #define ALT_ACPIDMAP_VID6WR_S_PAGE_SET_MSK    0x00003000
 /* The mask used to clear the ALT_ACPIDMAP_VID6WR_S_PAGE register field value. */
-#define ALT_ACPIDMAP_VID6WR_S_PAGE_CLR_MSK    0xffffcfff
+    #define ALT_ACPIDMAP_VID6WR_S_PAGE_CLR_MSK    0xffffcfff
 /* The reset value of the ALT_ACPIDMAP_VID6WR_S_PAGE register field is UNKNOWN. */
-#define ALT_ACPIDMAP_VID6WR_S_PAGE_RESET      0x0
+    #define ALT_ACPIDMAP_VID6WR_S_PAGE_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID6WR_S_PAGE field value from a register. */
-#define ALT_ACPIDMAP_VID6WR_S_PAGE_GET(value) (((value) & 0x00003000) >> 12)
+    #define ALT_ACPIDMAP_VID6WR_S_PAGE_GET( value )    ( ( ( value ) & 0x00003000 ) >> 12 )
 /* Produces a ALT_ACPIDMAP_VID6WR_S_PAGE register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID6WR_S_PAGE_SET(value) (((value) << 12) & 0x00003000)
+    #define ALT_ACPIDMAP_VID6WR_S_PAGE_SET( value )    ( ( ( value ) << 12 ) & 0x00003000 )
 
 /*
  * Field : Remap Master ID (Status) - mid
@@ -3223,21 +3267,21 @@ typedef volatile struct ALT_ACPIDMAP_VID6RD_S_s  ALT_ACPIDMAP_VID6RD_S_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID6WR_S_MID register field. */
-#define ALT_ACPIDMAP_VID6WR_S_MID_LSB        16
+    #define ALT_ACPIDMAP_VID6WR_S_MID_LSB        16
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID6WR_S_MID register field. */
-#define ALT_ACPIDMAP_VID6WR_S_MID_MSB        27
+    #define ALT_ACPIDMAP_VID6WR_S_MID_MSB        27
 /* The width in bits of the ALT_ACPIDMAP_VID6WR_S_MID register field. */
-#define ALT_ACPIDMAP_VID6WR_S_MID_WIDTH      12
+    #define ALT_ACPIDMAP_VID6WR_S_MID_WIDTH      12
 /* The mask used to set the ALT_ACPIDMAP_VID6WR_S_MID register field value. */
-#define ALT_ACPIDMAP_VID6WR_S_MID_SET_MSK    0x0fff0000
+    #define ALT_ACPIDMAP_VID6WR_S_MID_SET_MSK    0x0fff0000
 /* The mask used to clear the ALT_ACPIDMAP_VID6WR_S_MID register field value. */
-#define ALT_ACPIDMAP_VID6WR_S_MID_CLR_MSK    0xf000ffff
+    #define ALT_ACPIDMAP_VID6WR_S_MID_CLR_MSK    0xf000ffff
 /* The reset value of the ALT_ACPIDMAP_VID6WR_S_MID register field is UNKNOWN. */
-#define ALT_ACPIDMAP_VID6WR_S_MID_RESET      0x0
+    #define ALT_ACPIDMAP_VID6WR_S_MID_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID6WR_S_MID field value from a register. */
-#define ALT_ACPIDMAP_VID6WR_S_MID_GET(value) (((value) & 0x0fff0000) >> 16)
+    #define ALT_ACPIDMAP_VID6WR_S_MID_GET( value )    ( ( ( value ) & 0x0fff0000 ) >> 16 )
 /* Produces a ALT_ACPIDMAP_VID6WR_S_MID register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID6WR_S_MID_SET(value) (((value) << 16) & 0x0fff0000)
+    #define ALT_ACPIDMAP_VID6WR_S_MID_SET( value )    ( ( ( value ) << 16 ) & 0x0fff0000 )
 
 /*
  * Field : Force Mapping (Status) - force
@@ -3249,23 +3293,24 @@ typedef volatile struct ALT_ACPIDMAP_VID6RD_S_s  ALT_ACPIDMAP_VID6RD_S_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_VID6WR_S_FORCE register field. */
-#define ALT_ACPIDMAP_VID6WR_S_FORCE_LSB        31
+    #define ALT_ACPIDMAP_VID6WR_S_FORCE_LSB        31
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_VID6WR_S_FORCE register field. */
-#define ALT_ACPIDMAP_VID6WR_S_FORCE_MSB        31
+    #define ALT_ACPIDMAP_VID6WR_S_FORCE_MSB        31
 /* The width in bits of the ALT_ACPIDMAP_VID6WR_S_FORCE register field. */
-#define ALT_ACPIDMAP_VID6WR_S_FORCE_WIDTH      1
+    #define ALT_ACPIDMAP_VID6WR_S_FORCE_WIDTH      1
 /* The mask used to set the ALT_ACPIDMAP_VID6WR_S_FORCE register field value. */
-#define ALT_ACPIDMAP_VID6WR_S_FORCE_SET_MSK    0x80000000
+    #define ALT_ACPIDMAP_VID6WR_S_FORCE_SET_MSK    0x80000000
 /* The mask used to clear the ALT_ACPIDMAP_VID6WR_S_FORCE register field value. */
-#define ALT_ACPIDMAP_VID6WR_S_FORCE_CLR_MSK    0x7fffffff
+    #define ALT_ACPIDMAP_VID6WR_S_FORCE_CLR_MSK    0x7fffffff
 /* The reset value of the ALT_ACPIDMAP_VID6WR_S_FORCE register field is UNKNOWN. */
-#define ALT_ACPIDMAP_VID6WR_S_FORCE_RESET      0x0
+    #define ALT_ACPIDMAP_VID6WR_S_FORCE_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_VID6WR_S_FORCE field value from a register. */
-#define ALT_ACPIDMAP_VID6WR_S_FORCE_GET(value) (((value) & 0x80000000) >> 31)
+    #define ALT_ACPIDMAP_VID6WR_S_FORCE_GET( value )    ( ( ( value ) & 0x80000000 ) >> 31 )
 /* Produces a ALT_ACPIDMAP_VID6WR_S_FORCE register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_VID6WR_S_FORCE_SET(value) (((value) << 31) & 0x80000000)
+    #define ALT_ACPIDMAP_VID6WR_S_FORCE_SET( value )    ( ( ( value ) << 31 ) & 0x80000000 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -3276,24 +3321,24 @@ typedef volatile struct ALT_ACPIDMAP_VID6RD_S_s  ALT_ACPIDMAP_VID6RD_S_t;
  *
  * The struct declaration for register ALT_ACPIDMAP_VID6WR_S.
  */
-struct ALT_ACPIDMAP_VID6WR_S_s
-{
-    uint32_t              :  4;  /* *UNDEFINED* */
-    const uint32_t  user  :  5;  /* AWUSER value to SCU (Status) */
-    uint32_t              :  3;  /* *UNDEFINED* */
-    const uint32_t  page  :  2;  /* AWADDR 1GB Page Decoder (Status) */
-    uint32_t              :  2;  /* *UNDEFINED* */
-    const uint32_t  mid   : 12;  /* Remap Master ID (Status) */
-    uint32_t              :  3;  /* *UNDEFINED* */
-    const uint32_t  force :  1;  /* Force Mapping (Status) */
-};
+        struct ALT_ACPIDMAP_VID6WR_S_s
+        {
+            uint32_t              :  4; /* *UNDEFINED* */
+            const uint32_t user  :  5;  /* AWUSER value to SCU (Status) */
+            uint32_t              :  3; /* *UNDEFINED* */
+            const uint32_t page  :  2;  /* AWADDR 1GB Page Decoder (Status) */
+            uint32_t              :  2; /* *UNDEFINED* */
+            const uint32_t mid   : 12;  /* Remap Master ID (Status) */
+            uint32_t              :  3; /* *UNDEFINED* */
+            const uint32_t force :  1;  /* Force Mapping (Status) */
+        };
 
 /* The typedef declaration for register ALT_ACPIDMAP_VID6WR_S. */
-typedef volatile struct ALT_ACPIDMAP_VID6WR_S_s  ALT_ACPIDMAP_VID6WR_S_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_ACPIDMAP_VID6WR_S_s ALT_ACPIDMAP_VID6WR_S_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_ACPIDMAP_VID6WR_S register from the beginning of the component. */
-#define ALT_ACPIDMAP_VID6WR_S_OFST        0x54
+    #define ALT_ACPIDMAP_VID6WR_S_OFST    0x54
 
 /*
  * Register : Read AXI Master Mapping Status Register for Dynamic Virtual ID Remap - dynrd_s
@@ -3313,6 +3358,7 @@ typedef volatile struct ALT_ACPIDMAP_VID6WR_S_s  ALT_ACPIDMAP_VID6WR_S_t;
  *  [31:14] | ???    | 0x0     | *UNDEFINED*
  *
  */
+
 /*
  * Field : ARUSER value to SCU (Status) - user
  *
@@ -3322,21 +3368,21 @@ typedef volatile struct ALT_ACPIDMAP_VID6WR_S_s  ALT_ACPIDMAP_VID6WR_S_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_DYNRD_S_USER register field. */
-#define ALT_ACPIDMAP_DYNRD_S_USER_LSB        4
+    #define ALT_ACPIDMAP_DYNRD_S_USER_LSB        4
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_DYNRD_S_USER register field. */
-#define ALT_ACPIDMAP_DYNRD_S_USER_MSB        8
+    #define ALT_ACPIDMAP_DYNRD_S_USER_MSB        8
 /* The width in bits of the ALT_ACPIDMAP_DYNRD_S_USER register field. */
-#define ALT_ACPIDMAP_DYNRD_S_USER_WIDTH      5
+    #define ALT_ACPIDMAP_DYNRD_S_USER_WIDTH      5
 /* The mask used to set the ALT_ACPIDMAP_DYNRD_S_USER register field value. */
-#define ALT_ACPIDMAP_DYNRD_S_USER_SET_MSK    0x000001f0
+    #define ALT_ACPIDMAP_DYNRD_S_USER_SET_MSK    0x000001f0
 /* The mask used to clear the ALT_ACPIDMAP_DYNRD_S_USER register field value. */
-#define ALT_ACPIDMAP_DYNRD_S_USER_CLR_MSK    0xfffffe0f
+    #define ALT_ACPIDMAP_DYNRD_S_USER_CLR_MSK    0xfffffe0f
 /* The reset value of the ALT_ACPIDMAP_DYNRD_S_USER register field is UNKNOWN. */
-#define ALT_ACPIDMAP_DYNRD_S_USER_RESET      0x0
+    #define ALT_ACPIDMAP_DYNRD_S_USER_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_DYNRD_S_USER field value from a register. */
-#define ALT_ACPIDMAP_DYNRD_S_USER_GET(value) (((value) & 0x000001f0) >> 4)
+    #define ALT_ACPIDMAP_DYNRD_S_USER_GET( value )    ( ( ( value ) & 0x000001f0 ) >> 4 )
 /* Produces a ALT_ACPIDMAP_DYNRD_S_USER register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_DYNRD_S_USER_SET(value) (((value) << 4) & 0x000001f0)
+    #define ALT_ACPIDMAP_DYNRD_S_USER_SET( value )    ( ( ( value ) << 4 ) & 0x000001f0 )
 
 /*
  * Field : ARADDR 1GB Page Decoder (Status) - page
@@ -3347,23 +3393,24 @@ typedef volatile struct ALT_ACPIDMAP_VID6WR_S_s  ALT_ACPIDMAP_VID6WR_S_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_DYNRD_S_PAGE register field. */
-#define ALT_ACPIDMAP_DYNRD_S_PAGE_LSB        12
+    #define ALT_ACPIDMAP_DYNRD_S_PAGE_LSB        12
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_DYNRD_S_PAGE register field. */
-#define ALT_ACPIDMAP_DYNRD_S_PAGE_MSB        13
+    #define ALT_ACPIDMAP_DYNRD_S_PAGE_MSB        13
 /* The width in bits of the ALT_ACPIDMAP_DYNRD_S_PAGE register field. */
-#define ALT_ACPIDMAP_DYNRD_S_PAGE_WIDTH      2
+    #define ALT_ACPIDMAP_DYNRD_S_PAGE_WIDTH      2
 /* The mask used to set the ALT_ACPIDMAP_DYNRD_S_PAGE register field value. */
-#define ALT_ACPIDMAP_DYNRD_S_PAGE_SET_MSK    0x00003000
+    #define ALT_ACPIDMAP_DYNRD_S_PAGE_SET_MSK    0x00003000
 /* The mask used to clear the ALT_ACPIDMAP_DYNRD_S_PAGE register field value. */
-#define ALT_ACPIDMAP_DYNRD_S_PAGE_CLR_MSK    0xffffcfff
+    #define ALT_ACPIDMAP_DYNRD_S_PAGE_CLR_MSK    0xffffcfff
 /* The reset value of the ALT_ACPIDMAP_DYNRD_S_PAGE register field is UNKNOWN. */
-#define ALT_ACPIDMAP_DYNRD_S_PAGE_RESET      0x0
+    #define ALT_ACPIDMAP_DYNRD_S_PAGE_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_DYNRD_S_PAGE field value from a register. */
-#define ALT_ACPIDMAP_DYNRD_S_PAGE_GET(value) (((value) & 0x00003000) >> 12)
+    #define ALT_ACPIDMAP_DYNRD_S_PAGE_GET( value )    ( ( ( value ) & 0x00003000 ) >> 12 )
 /* Produces a ALT_ACPIDMAP_DYNRD_S_PAGE register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_DYNRD_S_PAGE_SET(value) (((value) << 12) & 0x00003000)
+    #define ALT_ACPIDMAP_DYNRD_S_PAGE_SET( value )    ( ( ( value ) << 12 ) & 0x00003000 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -3374,21 +3421,21 @@ typedef volatile struct ALT_ACPIDMAP_VID6WR_S_s  ALT_ACPIDMAP_VID6WR_S_t;
  *
  * The struct declaration for register ALT_ACPIDMAP_DYNRD_S.
  */
-struct ALT_ACPIDMAP_DYNRD_S_s
-{
-    uint32_t             :  4;  /* *UNDEFINED* */
-    const uint32_t  user :  5;  /* ARUSER value to SCU (Status) */
-    uint32_t             :  3;  /* *UNDEFINED* */
-    const uint32_t  page :  2;  /* ARADDR 1GB Page Decoder (Status) */
-    uint32_t             : 18;  /* *UNDEFINED* */
-};
+        struct ALT_ACPIDMAP_DYNRD_S_s
+        {
+            uint32_t             :  4; /* *UNDEFINED* */
+            const uint32_t user :  5;  /* ARUSER value to SCU (Status) */
+            uint32_t             :  3; /* *UNDEFINED* */
+            const uint32_t page :  2;  /* ARADDR 1GB Page Decoder (Status) */
+            uint32_t             : 18; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_ACPIDMAP_DYNRD_S. */
-typedef volatile struct ALT_ACPIDMAP_DYNRD_S_s  ALT_ACPIDMAP_DYNRD_S_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_ACPIDMAP_DYNRD_S_s ALT_ACPIDMAP_DYNRD_S_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_ACPIDMAP_DYNRD_S register from the beginning of the component. */
-#define ALT_ACPIDMAP_DYNRD_S_OFST        0x58
+    #define ALT_ACPIDMAP_DYNRD_S_OFST    0x58
 
 /*
  * Register : Write AXI Master Mapping Status Register for Dynamic Virtual ID Remap - dynwr_s
@@ -3408,6 +3455,7 @@ typedef volatile struct ALT_ACPIDMAP_DYNRD_S_s  ALT_ACPIDMAP_DYNRD_S_t;
  *  [31:14] | ???    | 0x0     | *UNDEFINED*
  *
  */
+
 /*
  * Field : AWUSER value to SCU (Status) - user
  *
@@ -3417,21 +3465,21 @@ typedef volatile struct ALT_ACPIDMAP_DYNRD_S_s  ALT_ACPIDMAP_DYNRD_S_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_DYNWR_S_USER register field. */
-#define ALT_ACPIDMAP_DYNWR_S_USER_LSB        4
+    #define ALT_ACPIDMAP_DYNWR_S_USER_LSB        4
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_DYNWR_S_USER register field. */
-#define ALT_ACPIDMAP_DYNWR_S_USER_MSB        8
+    #define ALT_ACPIDMAP_DYNWR_S_USER_MSB        8
 /* The width in bits of the ALT_ACPIDMAP_DYNWR_S_USER register field. */
-#define ALT_ACPIDMAP_DYNWR_S_USER_WIDTH      5
+    #define ALT_ACPIDMAP_DYNWR_S_USER_WIDTH      5
 /* The mask used to set the ALT_ACPIDMAP_DYNWR_S_USER register field value. */
-#define ALT_ACPIDMAP_DYNWR_S_USER_SET_MSK    0x000001f0
+    #define ALT_ACPIDMAP_DYNWR_S_USER_SET_MSK    0x000001f0
 /* The mask used to clear the ALT_ACPIDMAP_DYNWR_S_USER register field value. */
-#define ALT_ACPIDMAP_DYNWR_S_USER_CLR_MSK    0xfffffe0f
+    #define ALT_ACPIDMAP_DYNWR_S_USER_CLR_MSK    0xfffffe0f
 /* The reset value of the ALT_ACPIDMAP_DYNWR_S_USER register field is UNKNOWN. */
-#define ALT_ACPIDMAP_DYNWR_S_USER_RESET      0x0
+    #define ALT_ACPIDMAP_DYNWR_S_USER_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_DYNWR_S_USER field value from a register. */
-#define ALT_ACPIDMAP_DYNWR_S_USER_GET(value) (((value) & 0x000001f0) >> 4)
+    #define ALT_ACPIDMAP_DYNWR_S_USER_GET( value )    ( ( ( value ) & 0x000001f0 ) >> 4 )
 /* Produces a ALT_ACPIDMAP_DYNWR_S_USER register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_DYNWR_S_USER_SET(value) (((value) << 4) & 0x000001f0)
+    #define ALT_ACPIDMAP_DYNWR_S_USER_SET( value )    ( ( ( value ) << 4 ) & 0x000001f0 )
 
 /*
  * Field : AWADDR 1GB Page Decoder (Status) - page
@@ -3442,23 +3490,24 @@ typedef volatile struct ALT_ACPIDMAP_DYNRD_S_s  ALT_ACPIDMAP_DYNRD_S_t;
  *
  */
 /* The Least Significant Bit (LSB) position of the ALT_ACPIDMAP_DYNWR_S_PAGE register field. */
-#define ALT_ACPIDMAP_DYNWR_S_PAGE_LSB        12
+    #define ALT_ACPIDMAP_DYNWR_S_PAGE_LSB        12
 /* The Most Significant Bit (MSB) position of the ALT_ACPIDMAP_DYNWR_S_PAGE register field. */
-#define ALT_ACPIDMAP_DYNWR_S_PAGE_MSB        13
+    #define ALT_ACPIDMAP_DYNWR_S_PAGE_MSB        13
 /* The width in bits of the ALT_ACPIDMAP_DYNWR_S_PAGE register field. */
-#define ALT_ACPIDMAP_DYNWR_S_PAGE_WIDTH      2
+    #define ALT_ACPIDMAP_DYNWR_S_PAGE_WIDTH      2
 /* The mask used to set the ALT_ACPIDMAP_DYNWR_S_PAGE register field value. */
-#define ALT_ACPIDMAP_DYNWR_S_PAGE_SET_MSK    0x00003000
+    #define ALT_ACPIDMAP_DYNWR_S_PAGE_SET_MSK    0x00003000
 /* The mask used to clear the ALT_ACPIDMAP_DYNWR_S_PAGE register field value. */
-#define ALT_ACPIDMAP_DYNWR_S_PAGE_CLR_MSK    0xffffcfff
+    #define ALT_ACPIDMAP_DYNWR_S_PAGE_CLR_MSK    0xffffcfff
 /* The reset value of the ALT_ACPIDMAP_DYNWR_S_PAGE register field is UNKNOWN. */
-#define ALT_ACPIDMAP_DYNWR_S_PAGE_RESET      0x0
+    #define ALT_ACPIDMAP_DYNWR_S_PAGE_RESET      0x0
 /* Extracts the ALT_ACPIDMAP_DYNWR_S_PAGE field value from a register. */
-#define ALT_ACPIDMAP_DYNWR_S_PAGE_GET(value) (((value) & 0x00003000) >> 12)
+    #define ALT_ACPIDMAP_DYNWR_S_PAGE_GET( value )    ( ( ( value ) & 0x00003000 ) >> 12 )
 /* Produces a ALT_ACPIDMAP_DYNWR_S_PAGE register field value suitable for setting the register. */
-#define ALT_ACPIDMAP_DYNWR_S_PAGE_SET(value) (((value) << 12) & 0x00003000)
+    #define ALT_ACPIDMAP_DYNWR_S_PAGE_SET( value )    ( ( ( value ) << 12 ) & 0x00003000 )
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -3469,23 +3518,24 @@ typedef volatile struct ALT_ACPIDMAP_DYNRD_S_s  ALT_ACPIDMAP_DYNRD_S_t;
  *
  * The struct declaration for register ALT_ACPIDMAP_DYNWR_S.
  */
-struct ALT_ACPIDMAP_DYNWR_S_s
-{
-    uint32_t             :  4;  /* *UNDEFINED* */
-    const uint32_t  user :  5;  /* AWUSER value to SCU (Status) */
-    uint32_t             :  3;  /* *UNDEFINED* */
-    const uint32_t  page :  2;  /* AWADDR 1GB Page Decoder (Status) */
-    uint32_t             : 18;  /* *UNDEFINED* */
-};
+        struct ALT_ACPIDMAP_DYNWR_S_s
+        {
+            uint32_t             :  4; /* *UNDEFINED* */
+            const uint32_t user :  5;  /* AWUSER value to SCU (Status) */
+            uint32_t             :  3; /* *UNDEFINED* */
+            const uint32_t page :  2;  /* AWADDR 1GB Page Decoder (Status) */
+            uint32_t             : 18; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register ALT_ACPIDMAP_DYNWR_S. */
-typedef volatile struct ALT_ACPIDMAP_DYNWR_S_s  ALT_ACPIDMAP_DYNWR_S_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_ACPIDMAP_DYNWR_S_s ALT_ACPIDMAP_DYNWR_S_t;
+    #endif /* __ASSEMBLY__ */
 
 /* The byte offset of the ALT_ACPIDMAP_DYNWR_S register from the beginning of the component. */
-#define ALT_ACPIDMAP_DYNWR_S_OFST        0x5c
+    #define ALT_ACPIDMAP_DYNWR_S_OFST    0x5c
 
-#ifndef __ASSEMBLY__
+    #ifndef __ASSEMBLY__
+
 /*
  * WARNING: The C register and register group struct declarations are provided for
  * convenience and illustrative purposes. They should, however, be used with
@@ -3496,74 +3546,73 @@ typedef volatile struct ALT_ACPIDMAP_DYNWR_S_s  ALT_ACPIDMAP_DYNWR_S_t;
  *
  * The struct declaration for register group ALT_ACPIDMAP.
  */
-struct ALT_ACPIDMAP_s
-{
-    volatile ALT_ACPIDMAP_VID2RD_t    vid2rd;                  /* ALT_ACPIDMAP_VID2RD */
-    volatile ALT_ACPIDMAP_VID2WR_t    vid2wr;                  /* ALT_ACPIDMAP_VID2WR */
-    volatile ALT_ACPIDMAP_VID3RD_t    vid3rd;                  /* ALT_ACPIDMAP_VID3RD */
-    volatile ALT_ACPIDMAP_VID3WR_t    vid3wr;                  /* ALT_ACPIDMAP_VID3WR */
-    volatile ALT_ACPIDMAP_VID4RD_t    vid4rd;                  /* ALT_ACPIDMAP_VID4RD */
-    volatile ALT_ACPIDMAP_VID4WR_t    vid4wr;                  /* ALT_ACPIDMAP_VID4WR */
-    volatile ALT_ACPIDMAP_VID5RD_t    vid5rd;                  /* ALT_ACPIDMAP_VID5RD */
-    volatile ALT_ACPIDMAP_VID5WR_t    vid5wr;                  /* ALT_ACPIDMAP_VID5WR */
-    volatile ALT_ACPIDMAP_VID6RD_t    vid6rd;                  /* ALT_ACPIDMAP_VID6RD */
-    volatile ALT_ACPIDMAP_VID6WR_t    vid6wr;                  /* ALT_ACPIDMAP_VID6WR */
-    volatile ALT_ACPIDMAP_DYNRD_t     dynrd;                   /* ALT_ACPIDMAP_DYNRD */
-    volatile ALT_ACPIDMAP_DYNWR_t     dynwr;                   /* ALT_ACPIDMAP_DYNWR */
-    volatile ALT_ACPIDMAP_VID2RD_S_t  vid2rd_s;                /* ALT_ACPIDMAP_VID2RD_S */
-    volatile ALT_ACPIDMAP_VID2WR_S_t  vid2wr_s;                /* ALT_ACPIDMAP_VID2WR_S */
-    volatile ALT_ACPIDMAP_VID3RD_S_t  vid3rd_s;                /* ALT_ACPIDMAP_VID3RD_S */
-    volatile ALT_ACPIDMAP_VID3WR_S_t  vid3wr_s;                /* ALT_ACPIDMAP_VID3WR_S */
-    volatile ALT_ACPIDMAP_VID4RD_S_t  vid4rd_s;                /* ALT_ACPIDMAP_VID4RD_S */
-    volatile ALT_ACPIDMAP_VID4WR_S_t  vid4wr_s;                /* ALT_ACPIDMAP_VID4WR_S */
-    volatile ALT_ACPIDMAP_VID5RD_S_t  vid5rd_s;                /* ALT_ACPIDMAP_VID5RD_S */
-    volatile ALT_ACPIDMAP_VID5WR_S_t  vid5wr_s;                /* ALT_ACPIDMAP_VID5WR_S */
-    volatile ALT_ACPIDMAP_VID6RD_S_t  vid6rd_s;                /* ALT_ACPIDMAP_VID6RD_S */
-    volatile ALT_ACPIDMAP_VID6WR_S_t  vid6wr_s;                /* ALT_ACPIDMAP_VID6WR_S */
-    volatile ALT_ACPIDMAP_DYNRD_S_t   dynrd_s;                 /* ALT_ACPIDMAP_DYNRD_S */
-    volatile ALT_ACPIDMAP_DYNWR_S_t   dynwr_s;                 /* ALT_ACPIDMAP_DYNWR_S */
-    volatile uint32_t                 _pad_0x60_0x1000[1000];  /* *UNDEFINED* */
-};
+        struct ALT_ACPIDMAP_s
+        {
+            volatile ALT_ACPIDMAP_VID2RD_t vid2rd;      /* ALT_ACPIDMAP_VID2RD */
+            volatile ALT_ACPIDMAP_VID2WR_t vid2wr;      /* ALT_ACPIDMAP_VID2WR */
+            volatile ALT_ACPIDMAP_VID3RD_t vid3rd;      /* ALT_ACPIDMAP_VID3RD */
+            volatile ALT_ACPIDMAP_VID3WR_t vid3wr;      /* ALT_ACPIDMAP_VID3WR */
+            volatile ALT_ACPIDMAP_VID4RD_t vid4rd;      /* ALT_ACPIDMAP_VID4RD */
+            volatile ALT_ACPIDMAP_VID4WR_t vid4wr;      /* ALT_ACPIDMAP_VID4WR */
+            volatile ALT_ACPIDMAP_VID5RD_t vid5rd;      /* ALT_ACPIDMAP_VID5RD */
+            volatile ALT_ACPIDMAP_VID5WR_t vid5wr;      /* ALT_ACPIDMAP_VID5WR */
+            volatile ALT_ACPIDMAP_VID6RD_t vid6rd;      /* ALT_ACPIDMAP_VID6RD */
+            volatile ALT_ACPIDMAP_VID6WR_t vid6wr;      /* ALT_ACPIDMAP_VID6WR */
+            volatile ALT_ACPIDMAP_DYNRD_t dynrd;        /* ALT_ACPIDMAP_DYNRD */
+            volatile ALT_ACPIDMAP_DYNWR_t dynwr;        /* ALT_ACPIDMAP_DYNWR */
+            volatile ALT_ACPIDMAP_VID2RD_S_t vid2rd_s;  /* ALT_ACPIDMAP_VID2RD_S */
+            volatile ALT_ACPIDMAP_VID2WR_S_t vid2wr_s;  /* ALT_ACPIDMAP_VID2WR_S */
+            volatile ALT_ACPIDMAP_VID3RD_S_t vid3rd_s;  /* ALT_ACPIDMAP_VID3RD_S */
+            volatile ALT_ACPIDMAP_VID3WR_S_t vid3wr_s;  /* ALT_ACPIDMAP_VID3WR_S */
+            volatile ALT_ACPIDMAP_VID4RD_S_t vid4rd_s;  /* ALT_ACPIDMAP_VID4RD_S */
+            volatile ALT_ACPIDMAP_VID4WR_S_t vid4wr_s;  /* ALT_ACPIDMAP_VID4WR_S */
+            volatile ALT_ACPIDMAP_VID5RD_S_t vid5rd_s;  /* ALT_ACPIDMAP_VID5RD_S */
+            volatile ALT_ACPIDMAP_VID5WR_S_t vid5wr_s;  /* ALT_ACPIDMAP_VID5WR_S */
+            volatile ALT_ACPIDMAP_VID6RD_S_t vid6rd_s;  /* ALT_ACPIDMAP_VID6RD_S */
+            volatile ALT_ACPIDMAP_VID6WR_S_t vid6wr_s;  /* ALT_ACPIDMAP_VID6WR_S */
+            volatile ALT_ACPIDMAP_DYNRD_S_t dynrd_s;    /* ALT_ACPIDMAP_DYNRD_S */
+            volatile ALT_ACPIDMAP_DYNWR_S_t dynwr_s;    /* ALT_ACPIDMAP_DYNWR_S */
+            volatile uint32_t _pad_0x60_0x1000[ 1000 ]; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for register group ALT_ACPIDMAP. */
-typedef volatile struct ALT_ACPIDMAP_s  ALT_ACPIDMAP_t;
+        typedef volatile struct ALT_ACPIDMAP_s ALT_ACPIDMAP_t;
 /* The struct declaration for the raw register contents of register group ALT_ACPIDMAP. */
-struct ALT_ACPIDMAP_raw_s
-{
-    volatile uint32_t  vid2rd;                  /* ALT_ACPIDMAP_VID2RD */
-    volatile uint32_t  vid2wr;                  /* ALT_ACPIDMAP_VID2WR */
-    volatile uint32_t  vid3rd;                  /* ALT_ACPIDMAP_VID3RD */
-    volatile uint32_t  vid3wr;                  /* ALT_ACPIDMAP_VID3WR */
-    volatile uint32_t  vid4rd;                  /* ALT_ACPIDMAP_VID4RD */
-    volatile uint32_t  vid4wr;                  /* ALT_ACPIDMAP_VID4WR */
-    volatile uint32_t  vid5rd;                  /* ALT_ACPIDMAP_VID5RD */
-    volatile uint32_t  vid5wr;                  /* ALT_ACPIDMAP_VID5WR */
-    volatile uint32_t  vid6rd;                  /* ALT_ACPIDMAP_VID6RD */
-    volatile uint32_t  vid6wr;                  /* ALT_ACPIDMAP_VID6WR */
-    volatile uint32_t  dynrd;                   /* ALT_ACPIDMAP_DYNRD */
-    volatile uint32_t  dynwr;                   /* ALT_ACPIDMAP_DYNWR */
-    volatile uint32_t  vid2rd_s;                /* ALT_ACPIDMAP_VID2RD_S */
-    volatile uint32_t  vid2wr_s;                /* ALT_ACPIDMAP_VID2WR_S */
-    volatile uint32_t  vid3rd_s;                /* ALT_ACPIDMAP_VID3RD_S */
-    volatile uint32_t  vid3wr_s;                /* ALT_ACPIDMAP_VID3WR_S */
-    volatile uint32_t  vid4rd_s;                /* ALT_ACPIDMAP_VID4RD_S */
-    volatile uint32_t  vid4wr_s;                /* ALT_ACPIDMAP_VID4WR_S */
-    volatile uint32_t  vid5rd_s;                /* ALT_ACPIDMAP_VID5RD_S */
-    volatile uint32_t  vid5wr_s;                /* ALT_ACPIDMAP_VID5WR_S */
-    volatile uint32_t  vid6rd_s;                /* ALT_ACPIDMAP_VID6RD_S */
-    volatile uint32_t  vid6wr_s;                /* ALT_ACPIDMAP_VID6WR_S */
-    volatile uint32_t  dynrd_s;                 /* ALT_ACPIDMAP_DYNRD_S */
-    volatile uint32_t  dynwr_s;                 /* ALT_ACPIDMAP_DYNWR_S */
-    volatile uint32_t  _pad_0x60_0x1000[1000];  /* *UNDEFINED* */
-};
+        struct ALT_ACPIDMAP_raw_s
+        {
+            volatile uint32_t vid2rd;                   /* ALT_ACPIDMAP_VID2RD */
+            volatile uint32_t vid2wr;                   /* ALT_ACPIDMAP_VID2WR */
+            volatile uint32_t vid3rd;                   /* ALT_ACPIDMAP_VID3RD */
+            volatile uint32_t vid3wr;                   /* ALT_ACPIDMAP_VID3WR */
+            volatile uint32_t vid4rd;                   /* ALT_ACPIDMAP_VID4RD */
+            volatile uint32_t vid4wr;                   /* ALT_ACPIDMAP_VID4WR */
+            volatile uint32_t vid5rd;                   /* ALT_ACPIDMAP_VID5RD */
+            volatile uint32_t vid5wr;                   /* ALT_ACPIDMAP_VID5WR */
+            volatile uint32_t vid6rd;                   /* ALT_ACPIDMAP_VID6RD */
+            volatile uint32_t vid6wr;                   /* ALT_ACPIDMAP_VID6WR */
+            volatile uint32_t dynrd;                    /* ALT_ACPIDMAP_DYNRD */
+            volatile uint32_t dynwr;                    /* ALT_ACPIDMAP_DYNWR */
+            volatile uint32_t vid2rd_s;                 /* ALT_ACPIDMAP_VID2RD_S */
+            volatile uint32_t vid2wr_s;                 /* ALT_ACPIDMAP_VID2WR_S */
+            volatile uint32_t vid3rd_s;                 /* ALT_ACPIDMAP_VID3RD_S */
+            volatile uint32_t vid3wr_s;                 /* ALT_ACPIDMAP_VID3WR_S */
+            volatile uint32_t vid4rd_s;                 /* ALT_ACPIDMAP_VID4RD_S */
+            volatile uint32_t vid4wr_s;                 /* ALT_ACPIDMAP_VID4WR_S */
+            volatile uint32_t vid5rd_s;                 /* ALT_ACPIDMAP_VID5RD_S */
+            volatile uint32_t vid5wr_s;                 /* ALT_ACPIDMAP_VID5WR_S */
+            volatile uint32_t vid6rd_s;                 /* ALT_ACPIDMAP_VID6RD_S */
+            volatile uint32_t vid6wr_s;                 /* ALT_ACPIDMAP_VID6WR_S */
+            volatile uint32_t dynrd_s;                  /* ALT_ACPIDMAP_DYNRD_S */
+            volatile uint32_t dynwr_s;                  /* ALT_ACPIDMAP_DYNWR_S */
+            volatile uint32_t _pad_0x60_0x1000[ 1000 ]; /* *UNDEFINED* */
+        };
 
 /* The typedef declaration for the raw register contents of register group ALT_ACPIDMAP. */
-typedef volatile struct ALT_ACPIDMAP_raw_s  ALT_ACPIDMAP_raw_t;
-#endif  /* __ASSEMBLY__ */
+        typedef volatile struct ALT_ACPIDMAP_raw_s ALT_ACPIDMAP_raw_t;
+    #endif /* __ASSEMBLY__ */
 
 
-#ifdef __cplusplus
+    #ifdef __cplusplus
 }
-#endif  /* __cplusplus */
-#endif  /* __ALTERA_ALT_ACPIDMAP_H__ */
-
+    #endif /* __cplusplus */
+#endif /* __ALTERA_ALT_ACPIDMAP_H__ */

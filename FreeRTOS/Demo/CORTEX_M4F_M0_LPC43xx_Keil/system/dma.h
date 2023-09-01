@@ -23,24 +23,26 @@
 #ifndef __DMA_H
 #define __DMA_H
 
-#define DMA_SIZE		0x1000
+#define DMA_SIZE    0x1000
 
-#define M2M				0x00
-#define M2P				0x01
-#define P2M				0x02
-#define P2P				0x03
+#define M2M         0x00
+#define M2P         0x01
+#define P2M         0x02
+#define P2P         0x03
 
-extern void DMA_IRQHandler (void);
+extern void DMA_IRQHandler( void );
 extern uint32_t DMA_Init_Matrix( uint32_t u32SrcAddr );
 
-typedef struct _LinkedList {
-    DWORD   SRC;
-    DWORD   DST;
-    DWORD   LLI;
-    DWORD   CTRL;
-}LinkedList;
+typedef struct _LinkedList
+{
+    DWORD SRC;
+    DWORD DST;
+    DWORD LLI;
+    DWORD CTRL;
+} LinkedList;
 
 #endif /* end __DMA_H */
+
 /****************************************************************************
 **                            End Of File
 ****************************************************************************/

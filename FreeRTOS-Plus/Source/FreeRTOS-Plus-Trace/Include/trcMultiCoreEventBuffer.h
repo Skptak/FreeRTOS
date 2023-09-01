@@ -42,14 +42,14 @@
 /**
  * @internal Initialize multi-core event buffer.
  *
- * This routine initializes a multi-core trace event buffer and assignts it
+ * This routine initializes a multi-core trace event buffer and assigns it
  * a memory area based on the supplied buffer.
  *
  * Trace event buffer options specifies the buffer behavior regarding
  * old data, the alternatives are TRC_EVENT_BUFFER_OPTION_SKIP and
- * TRC_EVENT_BUFFER_OPTION_OVERWRITE (mutal exclusive).
+ * TRC_EVENT_BUFFER_OPTION_OVERWRITE (mutual exclusive).
  *
- * @param[out] pxTraceMultiCoreEventBuffer Pointer to unitialized multi-core trace event buffer.
+ * @param[out] pxTraceMultiCoreEventBuffer Pointer to uninitialized multi-core trace event buffer.
  * @param[in] uiOptions Trace event buffer options.
  * @param[in] puiBuffer Pointer to buffer that will be used by the multi-core trace event buffer.
  * @param[in] uiSize Size of buffer.
@@ -114,7 +114,7 @@
  *
  * This routine will attempt to transfer all existing data in the multi-core trace event
  * buffer through the streamport. New data pushed to the trace event buffer
- * during the execution of this routine will not be transfered to
+ * during the execution of this routine will not be transferred to
  *
  * @param[in] pxTraceMultiCoreEventBuffer Pointer to initialized multi-core event buffer.
  * @param[out] piBytesWritten Pointer to variable which the routine will write the number

@@ -194,7 +194,7 @@ dependencies:
       path: "FreeRTOS/Test/CMock/CMock"
 
   - name: "CMock"
-    version: "afa2949"
+    version: "150573c"
     repository:
       type: "git"
       url: " https://github.com/ThrowTheSwitch/CMock.git"

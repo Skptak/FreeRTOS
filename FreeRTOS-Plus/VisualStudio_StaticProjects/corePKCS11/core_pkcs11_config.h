@@ -26,7 +26,7 @@
 
 /**
  * @file core_pkcs11_config.h
- * @brief PCKS#11 config options.
+ * @brief PKCS#11 config options.
  */
 
 

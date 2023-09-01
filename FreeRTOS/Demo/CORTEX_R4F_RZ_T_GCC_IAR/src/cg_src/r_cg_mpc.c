@@ -27,21 +27,21 @@
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-Pragma directive
+*  Pragma directive
 ***********************************************************************************************************************/
 /* Start user code for pragma. Do not edit comment generated here */
 #include "r_typedefs.h"
 /* End user code. Do not edit comment generated here */
 
 /***********************************************************************************************************************
-Includes
+*  Includes
 ***********************************************************************************************************************/
 #include "r_cg_macrodriver.h"
 #include "r_cg_mpc.h"
 #include "r_cg_userdefine.h"
 
 /***********************************************************************************************************************
-Global variables and functions
+*  Global variables and functions
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
@@ -50,7 +50,7 @@ Global variables and functions
 * Arguments    : None
 * Return Value : None
 ***********************************************************************************************************************/
-void R_MPC_Create(void)
+void R_MPC_Create( void )
 {
     /* Set RSPCK1 pin */
     MPC.PN3PFS.BYTE |= 0x0EU;
@@ -90,13 +90,14 @@ void R_MPC_Create(void)
 
     R_MPC_Create_UserInit();
 }
+
 /***********************************************************************************************************************
 * Function Name: R_MPC_Create_UserInit
 * Description  : This function adds user code after initializing modules pin setting.
 * Arguments    : None
 * Return Value : None
 ***********************************************************************************************************************/
-void R_MPC_Create_UserInit(void)
+void R_MPC_Create_UserInit( void )
 {
     /* Start user code. Do not edit comment generated here */
     /* End user code. Do not edit comment generated here */
@@ -107,49 +108,47 @@ void R_MPC_Create_UserInit(void)
 /***********************************************************************************************************************
 * Function Name : R_MPC_WriteEnable
 * Description   : Enables writing to the PmnPFS register (m = 0-9, A-U, n = 0-7).
-                  And dummy read the register in order to fix the register value.
+*                 And dummy read the register in order to fix the register value.
 * Arguments    : none
 * Return Value : none
 ***********************************************************************************************************************/
-void R_MPC_WriteEnable(void)
+void R_MPC_WriteEnable( void )
 {
-    volatile uint8_t dummy=0;
+    volatile uint8_t dummy = 0;
 
-    UNUSED_VARIABLE(dummy);
+    UNUSED_VARIABLE( dummy );
 
     /* Enables writing to the PmnPFS register */
     MPC.PWPR.BYTE = MPC_PFSWE_WRITE_ENABLE;
     dummy = MPC.PWPR.BYTE;
     MPC.PWPR.BYTE = MPC_PFS_WRITE_ENABLE;
     dummy = MPC.PWPR.BYTE;
-
 }
 
 /***********************************************************************************************************************
- End of function R_MPC_WriteEnable
+*  End of function R_MPC_WriteEnable
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
 * Function Name : R_MPC_WriteDisable
 * Description   : Disables writing to the PmnPFS register (m = 0-9, A-U, n = 0-7).
-                  And dummy read the register in order to fix the register value.
+*                 And dummy read the register in order to fix the register value.
 * Arguments    : none
 * Return Value : none
 ***********************************************************************************************************************/
-void R_MPC_WriteDisable(void)
+void R_MPC_WriteDisable( void )
 {
-    volatile uint8_t dummy=0;
+    volatile uint8_t dummy = 0;
 
-    UNUSED_PARAM(dummy);
+    UNUSED_PARAM( dummy );
 
     /* Disables writing to the PmnPFS register */
     MPC.PWPR.BYTE = MPC_PFS_WRITE_DISABLE;
     dummy = MPC.PWPR.BYTE;
-
 }
 
 /***********************************************************************************************************************
- End of function R_MPC_WriteDisable
+*  End of function R_MPC_WriteDisable
 ***********************************************************************************************************************/
 
 /* End user code. Do not edit comment generated here */

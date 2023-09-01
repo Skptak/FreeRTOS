@@ -67,9 +67,10 @@
 #include "Events.h"
 #include "Cpu.h"
 
-#pragma CODE_SEG ButtonInterrupt_CODE  /* Code section for this module. */
+#pragma CODE_SEG ButtonInterrupt_CODE /* Code section for this module. */
 
-void ButtonInterrupt_Enable(void);
+void ButtonInterrupt_Enable( void );
+
 /*
 ** ===================================================================
 **     Method      :  ButtonInterrupt_Enable (bean ExtInt)
@@ -82,8 +83,9 @@ void ButtonInterrupt_Enable(void);
 */
 
 #pragma CODE_SEG __NEAR_SEG NON_BANKED /* Interrupt section for this module. Placement will be in NON_BANKED area. */
-__interrupt void ButtonInterrupt_Interrupt(void);
+__interrupt void ButtonInterrupt_Interrupt( void );
 #pragma CODE_SEG ButtonInterrupt_CODE  /* Code section for this module. */
+
 /*
 ** ===================================================================
 **     Method      :  ButtonInterrupt_Interrupt (bean ExtInt)
@@ -94,11 +96,12 @@ __interrupt void ButtonInterrupt_Interrupt(void);
 ** ===================================================================
 */
 
-#pragma CODE_SEG DEFAULT               /* Change code section to DEFAULT. */
+#pragma CODE_SEG DEFAULT /* Change code section to DEFAULT. */
 
 /* END ButtonInterrupt. */
 
 #endif /* __ButtonInterrupt_H*/
+
 /*
 ** ###################################################################
 **

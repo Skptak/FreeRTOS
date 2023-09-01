@@ -27,50 +27,50 @@
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-Pragma directive
+*  Pragma directive
 ***********************************************************************************************************************/
 /* Start user code for pragma. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
 
 /***********************************************************************************************************************
-Includes
+*  Includes
 ***********************************************************************************************************************/
 #include "r_cg_macrodriver.h"
 #include <machine.h>
 #include <_h_c_lib.h>
-//#include <stddef.h> // Remove the comment when you use errno
-//#include <stdlib.h> // Remove the comment when you use rand()
+/*#include <stddef.h> // Remove the comment when you use errno */
+/*#include <stdlib.h> // Remove the comment when you use rand() */
 #include "r_cg_stacksct.h"
 #include "r_cg_userdefine.h"
 
 /***********************************************************************************************************************
-Global variables and functions
+*  Global variables and functions
 ***********************************************************************************************************************/
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-void PowerON_Reset(void);
-void main(void);
+void PowerON_Reset( void );
+void main( void );
 #ifdef __cplusplus
 }
 #endif
 
-#define PSW_init  0x00010000        /* PSW bit pattern */
-#define FPSW_init 0x00000000        /* FPSW bit base pattern */
+#define PSW_init     0x00010000 /* PSW bit pattern */
+#define FPSW_init    0x00000000 /* FPSW bit base pattern */
 
-#pragma section ResetPRG            /* output PowerON_Reset to PResetPRG section */
+#pragma section ResetPRG        /* output PowerON_Reset to PResetPRG section */
 
 #pragma entry PowerON_Reset
 
-void PowerON_Reset(void)
+void PowerON_Reset( void )
 {
-    set_intb(__sectop("C$VECT"));
+    set_intb( __sectop( "C$VECT" ) );
 
-    _INITSCT();                     /* Initialize Sections */
-    HardwareSetup();                /* Use Hardware Setup */
+    _INITSCT();          /* Initialize Sections */
+    HardwareSetup();     /* Use Hardware Setup */
     nop();
-    set_psw(PSW_init);              /* Set Ubit & Ibit for PSW */
+    set_psw( PSW_init ); /* Set Ubit & Ibit for PSW */
     main();
     brk();
 }

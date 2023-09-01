@@ -27,13 +27,13 @@
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-Pragma directive
+*  Pragma directive
 ***********************************************************************************************************************/
 /* Start user code for pragma. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
 
 /***********************************************************************************************************************
-Includes
+*  Includes
 ***********************************************************************************************************************/
 #include "r_cg_macrodriver.h"
 #include "r_cg_port.h"
@@ -43,11 +43,11 @@ Includes
 #include "r_cg_userdefine.h"
 
 /***********************************************************************************************************************
-Global variables and functions
+*  Global variables and functions
 ***********************************************************************************************************************/
 /* Start user code for global. Do not edit comment generated here */
 
-#if defined(RSK_RX231)
+#if defined( RSK_RX231 )
 
 /* End user code. Do not edit comment generated here */
 
@@ -57,28 +57,28 @@ Global variables and functions
 * Arguments    : None
 * Return Value : None
 ***********************************************************************************************************************/
-void R_PORT_Create(void)
-{
-    PORT1.PODR.BYTE = _80_Pm7_OUTPUT_1;
-    PORT3.PODR.BYTE = _08_Pm3_OUTPUT_1;
-    PORT5.PODR.BYTE = _01_Pm0_OUTPUT_1 | _02_Pm1_OUTPUT_1 | _04_Pm2_OUTPUT_1;
-    PORTE.PODR.BYTE = _08_Pm3_OUTPUT_1 | _80_Pm7_OUTPUT_1;
-    PORT1.PDR.BYTE = _80_Pm7_MODE_OUTPUT;
-    PORT3.PDR.BYTE = _08_Pm3_MODE_OUTPUT;
-    PORT5.PDR.BYTE = _01_Pm0_MODE_OUTPUT | _02_Pm1_MODE_OUTPUT | _04_Pm2_MODE_OUTPUT;
-    PORTE.PDR.BYTE = _08_Pm3_MODE_OUTPUT | _10_Pm4_MODE_OUTPUT | _80_Pm7_MODE_OUTPUT;
-}
+    void R_PORT_Create( void )
+    {
+        PORT1.PODR.BYTE = _80_Pm7_OUTPUT_1;
+        PORT3.PODR.BYTE = _08_Pm3_OUTPUT_1;
+        PORT5.PODR.BYTE = _01_Pm0_OUTPUT_1 | _02_Pm1_OUTPUT_1 | _04_Pm2_OUTPUT_1;
+        PORTE.PODR.BYTE = _08_Pm3_OUTPUT_1 | _80_Pm7_OUTPUT_1;
+        PORT1.PDR.BYTE = _80_Pm7_MODE_OUTPUT;
+        PORT3.PDR.BYTE = _08_Pm3_MODE_OUTPUT;
+        PORT5.PDR.BYTE = _01_Pm0_MODE_OUTPUT | _02_Pm1_MODE_OUTPUT | _04_Pm2_MODE_OUTPUT;
+        PORTE.PDR.BYTE = _08_Pm3_MODE_OUTPUT | _10_Pm4_MODE_OUTPUT | _80_Pm7_MODE_OUTPUT;
+    }
 
 /* Start user code for adding. Do not edit comment generated here */
 
-#elif defined(TB_RX231)
+#elif defined( TB_RX231 )
 
-void R_PORT_Create(void)
-{
-    PORTD.PODR.BYTE = _40_Pm6_OUTPUT_1 | _80_Pm7_OUTPUT_1;
-    PORTD.PDR.BYTE = _40_Pm6_MODE_OUTPUT | _80_Pm7_MODE_OUTPUT;
-}
+    void R_PORT_Create( void )
+    {
+        PORTD.PODR.BYTE = _40_Pm6_OUTPUT_1 | _80_Pm7_OUTPUT_1;
+        PORTD.PDR.BYTE = _40_Pm6_MODE_OUTPUT | _80_Pm7_MODE_OUTPUT;
+    }
 
-#endif
+#endif /* if defined( RSK_RX231 ) */
 
 /* End user code. Do not edit comment generated here */

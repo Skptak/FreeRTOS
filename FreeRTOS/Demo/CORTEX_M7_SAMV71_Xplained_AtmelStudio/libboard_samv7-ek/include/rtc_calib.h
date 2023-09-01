@@ -37,13 +37,15 @@
 /** RTC crystal **/
 
 
-typedef struct{
-				int8_t Tempr;
-				int16_t PPM;
-				uint8_t NEGPPM;
-				uint8_t HIGHPPM;
-				uint16_t CORRECTION;
-		}RTC_PPMLookup;
+typedef struct
+{
+    int8_t Tempr;
+    int16_t PPM;
+    uint8_t NEGPPM;
+    uint8_t HIGHPPM;
+    uint16_t CORRECTION;
+} RTC_PPMLookup;
 
 
-extern void RTC_ClockCalibration( Rtc* pRtc, int32_t CurrentTempr);
+extern void RTC_ClockCalibration( Rtc * pRtc,
+                                  int32_t CurrentTempr );

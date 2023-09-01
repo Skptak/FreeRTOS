@@ -65,4 +65,3 @@ extern const struct ov_reg ov9740_yuv_sxga[];
 extern const struct ov_reg ov9740_yuv_vga[];
 
 #endif // #ifndef _YUV_H_
-

@@ -120,8 +120,8 @@
 
 
 /*-------------------------------------------------------------------
-*   Simulated current working directory support
-*  -------------------------------------------------------------------*/
+ *   Simulated current working directory support
+ *  -------------------------------------------------------------------*/
 
 
 /*  Forward declaration for red_chdir().
@@ -370,8 +370,8 @@
 
 
 /*-------------------------------------------------------------------
-*   POSIX functions not implemented by the RED POSIX-like API
-*  -------------------------------------------------------------------*/
+ *   POSIX functions not implemented by the RED POSIX-like API
+ *  -------------------------------------------------------------------*/
 
     #define stat( p, s )          red_stat( p, s )
     #define stat64( p, s )        stat( p, s )
@@ -426,12 +426,12 @@
 
 
 /*-------------------------------------------------------------------
-*   Begin ported fsstress code
-*  -------------------------------------------------------------------*/
+ *   Begin ported fsstress code
+ *  -------------------------------------------------------------------*/
 
 /* Stuff from xfscompat.h */
 
-    #define MAXNAMELEN    ( REDCONF_NAME_MAX + 1U )/* Assumed to include NUL */
+    #define MAXNAMELEN    ( REDCONF_NAME_MAX + 1U ) /* Assumed to include NUL */
 
     struct dioattr
     {

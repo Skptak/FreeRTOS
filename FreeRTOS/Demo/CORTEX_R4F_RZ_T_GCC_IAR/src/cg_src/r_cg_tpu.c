@@ -27,13 +27,13 @@
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-Pragma directive
+*  Pragma directive
 ***********************************************************************************************************************/
 /* Start user code for pragma. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
 
 /***********************************************************************************************************************
-Includes
+*  Includes
 ***********************************************************************************************************************/
 #include "r_cg_macrodriver.h"
 #include "r_cg_tpu.h"
@@ -42,7 +42,7 @@ Includes
 #include "r_cg_userdefine.h"
 
 /***********************************************************************************************************************
-Global variables and functions
+*  Global variables and functions
 ***********************************************************************************************************************/
 /* Start user code for global. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
@@ -53,10 +53,10 @@ Global variables and functions
 * Arguments    : None
 * Return Value : None
 ***********************************************************************************************************************/
-void R_TPU_Create(void)
+void R_TPU_Create( void )
 {
     /* Cancel TPU stop state in LPC */
-    MSTP(TPU1) = 0U;
+    MSTP( TPU1 ) = 0U;
 
     /* Stop all channels */
     TPUA.TSTRB.BYTE = 0x00U;
@@ -73,23 +73,25 @@ void R_TPU_Create(void)
     /* Internal PWM feedback function status */
     TPUSL.PWMFBSLR.LONG = _TPU_TPU0EN_DISABLE | _TPU_TPU1EN_DISABLE;
 }
+
 /***********************************************************************************************************************
 * Function Name: R_TPU9_Start
 * Description  : This function starts TPU channel 9 counter.
 * Arguments    : None
 * Return Value : None
 ***********************************************************************************************************************/
-void R_TPU9_Start(void)
+void R_TPU9_Start( void )
 {
     TPUA.TSTRB.BIT.CST3 = 1U;
 }
+
 /***********************************************************************************************************************
 * Function Name: R_TPU9_Stop
 * Description  : This function stops TPU channel 9 counter.
 * Arguments    : None
 * Return Value : None
 ***********************************************************************************************************************/
-void R_TPU9_Stop(void)
+void R_TPU9_Stop( void )
 {
     TPUA.TSTRB.BIT.CST3 = 0U;
 }

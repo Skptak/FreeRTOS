@@ -255,7 +255,7 @@ void test_macro_xSemaphoreGive_multiple_Mutex_fail( void )
  * @brief Test xSemaphoreTake multiple times on a Mutex.
  * @details Create a Mutex using xSemaphoreCreateMutex,
  * verify that an immediate call to xSemaphoreTake succeeds, a subsequent
- * call to xSemaphoreGive succeds, but a second call to xSemaphoreGive fails.
+ * call to xSemaphoreGive succeeds, but a second call to xSemaphoreGive fails.
  * @coverage xQueueSemaphoreTake
  */
 void test_macro_xSemaphoreTake_multiple_Mutex_fail( void )

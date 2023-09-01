@@ -39,58 +39,64 @@
 
 #include "lwip/err.h"
 
-#define IP_HLEN 40
+#define IP_HLEN             40
 
-#define IP_PROTO_ICMP 58
-#define IP_PROTO_UDP 17
-#define IP_PROTO_UDPLITE 170
-#define IP_PROTO_TCP 6
+#define IP_PROTO_ICMP       58
+#define IP_PROTO_UDP        17
+#define IP_PROTO_UDPLITE    170
+#define IP_PROTO_TCP        6
 
 /* This is passed as the destination address to ip_output_if (not
-   to ip_output), meaning that an IP header already is constructed
-   in the pbuf. This is used when TCP retransmits. */
+ * to ip_output), meaning that an IP header already is constructed
+ * in the pbuf. This is used when TCP retransmits. */
 #ifdef IP_HDRINCL
-#undef IP_HDRINCL
+    #undef IP_HDRINCL
 #endif /* IP_HDRINCL */
-#define IP_HDRINCL  NULL
+#define IP_HDRINCL    NULL
 
 
 /* The IPv6 header. */
-struct ip_hdr {
-#if BYTE_ORDER == LITTLE_ENDIAN
-  u8_t tclass1:4, v:4;
-  u8_t flow1:4, tclass2:4;
-#else
-  u8_t v:4, tclass1:4;
-  u8_t tclass2:8, flow1:4;
-#endif
-  u16_t flow2;
-  u16_t len;                /* payload length */
-  u8_t nexthdr;             /* next header */
-  u8_t hoplim;              /* hop limit (TTL) */
-  struct ip_addr src, dest;          /* source and destination IP addresses */
+struct ip_hdr
+{
+    #if BYTE_ORDER == LITTLE_ENDIAN
+        u8_t tclass1 : 4, v : 4;
+        u8_t flow1 : 4, tclass2 : 4;
+    #else
+        u8_t v : 4, tclass1 : 4;
+        u8_t tclass2 : 8, flow1 : 4;
+    #endif
+    u16_t flow2;
+    u16_t len;                /* payload length */
+    u8_t nexthdr;             /* next header */
+    u8_t hoplim;              /* hop limit (TTL) */
+    struct ip_addr src, dest; /* source and destination IP addresses */
 };
 
-void ip_init(void);
+void ip_init( void );
 
 #include "lwip/netif.h"
 
-struct netif *ip_route(struct ip_addr *dest);
+struct netif * ip_route( struct ip_addr * dest );
 
-void ip_input(struct pbuf *p, struct netif *inp);
+void ip_input( struct pbuf * p,
+               struct netif * inp );
 
 /* source and destination addresses in network byte order, please */
-err_t ip_output(struct pbuf *p, struct ip_addr *src, struct ip_addr *dest,
-         unsigned char ttl, unsigned char proto);
+err_t ip_output( struct pbuf * p,
+                 struct ip_addr * src,
+                 struct ip_addr * dest,
+                 unsigned char ttl,
+                 unsigned char proto );
 
-err_t ip_output_if(struct pbuf *p, struct ip_addr *src, struct ip_addr *dest,
-      unsigned char ttl, unsigned char proto,
-      struct netif *netif);
+err_t ip_output_if( struct pbuf * p,
+                    struct ip_addr * src,
+                    struct ip_addr * dest,
+                    unsigned char ttl,
+                    unsigned char proto,
+                    struct netif * netif );
 
 #if IP_DEBUG
-void ip_debug_print(struct pbuf *p);
+    void ip_debug_print( struct pbuf * p );
 #endif /* IP_DEBUG */
 
 #endif /* __LWIP_IP_H__ */
-
-

@@ -30,6 +30,7 @@
 * 97-12-04 Guy Lancaster <lancasterg@acm.org>, Global Election Systems Inc.
 *	Original based on BSD magic.c.
 *****************************************************************************/
+
 /*
  * magic.c - PPP Magic Number routines.
  *
@@ -57,6 +58,7 @@
 /***********************************/
 /*** PUBLIC FUNCTION DEFINITIONS ***/
 /***********************************/
+
 /*
  * magicInit - Initialize the magic number generator.
  *
@@ -65,7 +67,6 @@
  */
 void magicInit()
 {
-	return;
 }
 
 /*
@@ -75,5 +76,3 @@ u32_t magic()
 {
     return avRandom();
 }
-
-

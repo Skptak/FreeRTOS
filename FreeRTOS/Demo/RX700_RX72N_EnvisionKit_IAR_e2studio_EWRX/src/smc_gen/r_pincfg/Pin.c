@@ -25,13 +25,13 @@
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-Pragma directive
+*  Pragma directive
 ***********************************************************************************************************************/
 /* Start user code for pragma. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
 
 /***********************************************************************************************************************
-Includes
+*  Includes
 ***********************************************************************************************************************/
 #include "r_cg_macrodriver.h"
 /* Start user code for include. Do not edit comment generated here */
@@ -39,7 +39,7 @@ Includes
 #include "r_cg_userdefine.h"
 
 /***********************************************************************************************************************
-Global variables and functions
+*  Global variables and functions
 ***********************************************************************************************************************/
 /* Start user code for global. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
@@ -51,9 +51,9 @@ Global variables and functions
 * Return Value : None
 ***********************************************************************************************************************/
 
-void R_Pins_Create(void)
+void R_Pins_Create( void )
 {
-    R_BSP_RegisterProtectDisable(BSP_REG_PROTECT_MPC);
+    R_BSP_RegisterProtectDisable( BSP_REG_PROTECT_MPC );
 
     /* Set CLKOUT25M pin */
     MPC.P56PFS.BYTE = 0x2AU;
@@ -71,14 +71,13 @@ void R_Pins_Create(void)
     PORT1.PODR.BYTE |= 0x08U;
     MPC.P13PFS.BYTE = 0x0AU;
     PORT1.PDR.BYTE |= 0x08U;
-    // PORT1.PMR.BIT.B3 = 1U; // Please set the PMR bit after TE bit is set to 1.
+    /* PORT1.PMR.BIT.B3 = 1U; // Please set the PMR bit after TE bit is set to 1. */
 
     /* Set TXD9 pin */
     PORTB.PODR.BYTE |= 0x80U;
     MPC.PB7PFS.BYTE = 0x0AU;
     PORTB.PDR.BYTE |= 0x80U;
-    // PORTB.PMR.BIT.B7 = 1U; // Please set the PMR bit after TE bit is set to 1.
+    /* PORTB.PMR.BIT.B7 = 1U; // Please set the PMR bit after TE bit is set to 1. */
 
-    R_BSP_RegisterProtectEnable(BSP_REG_PROTECT_MPC);
+    R_BSP_RegisterProtectEnable( BSP_REG_PROTECT_MPC );
 }
-

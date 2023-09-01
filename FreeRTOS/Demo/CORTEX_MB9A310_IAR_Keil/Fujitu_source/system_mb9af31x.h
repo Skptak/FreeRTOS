@@ -30,55 +30,56 @@
 /*                                                                      */
 /* (V1.5)                                                               */
 /************************************************************************/
+
 /** \file system_mb9af31x.h
- **
- ** Headerfile for FM3 system parameters
- **
- ** User clock definitions can be done for the following clock settings:
- ** - CLOCK_SETUP : Execute the clock settings form the settings below in
- **                 SystemInit()
- ** - __CLKMO : External clock frequency for main oscillion
- ** - __CLKSO : External clock frequency for sub oscillion
- ** - SCM_CTL : System Clock Mode Control Register
- ** - BSC_PSR : Base Clock Prescaler Register
- ** - APBC0_PSR : APB0 Prescaler Register
- ** - APBC1_PSR : APB1 Prescaler Register
- ** - APBC2_PSR : APB2 Prescaler Register
- ** - SWC_PSR : Software Watchdog Clock Prescaler Register
- ** - TTC_PSR : Trace Clock Prescaler Register
- ** - CSW_TMR : Clock Stabilization Wait Time Register
- ** - PSW_TMR : PLL Clock Stabilization Wait Time Setup Register
- ** - PLL_CTL1 : PLL Control Register 1
- ** - PLL_CTL2 : PLL Control Register 2
- **
- ** The register settings are check for correct values of reserved bits.
- ** Otherwise a preprocessor error is output and stops the build process.
- ** Furthermore the 'master clock' is retrieved from the register settings
- ** and the system clock (HCLK) is calculated from the Base Clock Prescaler
- ** Register (BSC_PSR). This value is used for the global CMSIS variable
- ** #SystemCoreClock. Also the absolute external, PLL and HCL freqeuncy is
- ** is checked. Note that not all possible wrong setting are checked! The
- ** user has to take care to fulfill the settings stated in the according
- ** device's data sheet!
- **
- ** User definition for Hardware Watchdog:
- ** - HWWD_DISABLE : Disables Hardware Watchdog in SystemInit()
- **
- ** User definition for CR Trimming:
- ** - CR_TRIM_SETUP : Enables CR trimming in SystemInit()
- **
- ** History:
- ** 2011-05-16 V1.0 MWi original version
- *****************************************************************************/
+**
+** Headerfile for FM3 system parameters
+**
+** User clock definitions can be done for the following clock settings:
+** - CLOCK_SETUP : Execute the clock settings form the settings below in
+**                 SystemInit()
+** - __CLKMO : External clock frequency for main oscillion
+** - __CLKSO : External clock frequency for sub oscillion
+** - SCM_CTL : System Clock Mode Control Register
+** - BSC_PSR : Base Clock Prescaler Register
+** - APBC0_PSR : APB0 Prescaler Register
+** - APBC1_PSR : APB1 Prescaler Register
+** - APBC2_PSR : APB2 Prescaler Register
+** - SWC_PSR : Software Watchdog Clock Prescaler Register
+** - TTC_PSR : Trace Clock Prescaler Register
+** - CSW_TMR : Clock Stabilization Wait Time Register
+** - PSW_TMR : PLL Clock Stabilization Wait Time Setup Register
+** - PLL_CTL1 : PLL Control Register 1
+** - PLL_CTL2 : PLL Control Register 2
+**
+** The register settings are check for correct values of reserved bits.
+** Otherwise a preprocessor error is output and stops the build process.
+** Furthermore the 'master clock' is retrieved from the register settings
+** and the system clock (HCLK) is calculated from the Base Clock Prescaler
+** Register (BSC_PSR). This value is used for the global CMSIS variable
+** #SystemCoreClock. Also the absolute external, PLL and HCL freqeuncy is
+** is checked. Note that not all possible wrong setting are checked! The
+** user has to take care to fulfill the settings stated in the according
+** device's data sheet!
+**
+** User definition for Hardware Watchdog:
+** - HWWD_DISABLE : Disables Hardware Watchdog in SystemInit()
+**
+** User definition for CR Trimming:
+** - CR_TRIM_SETUP : Enables CR trimming in SystemInit()
+**
+** History:
+** 2011-05-16 V1.0 MWi original version
+*****************************************************************************/
 
 #ifndef _SYSTEM_MB9AF31X_H_
-#define _SYSTEM_MB9AF31X_H_
+    #define _SYSTEM_MB9AF31X_H_
 
 /******************************************************************************/
 /* Include files                                                              */
 /******************************************************************************/
 
-#include <stdint.h>
+    #include <stdint.h>
 
 /******************************************************************************/
 /* Global pre-processor symbols/macros ('define')                             */
@@ -101,21 +102,21 @@
  ** - 0 = No clock setup done by system_mb9xfxxx.c
  ** - 1 = Clock setup done by system_mb9xfxxx.c
  ******************************************************************************/
-#define CLOCK_SETUP               1   // <<< Define clock setup here
+    #define CLOCK_SETUP      1        /* <<< Define clock setup here */
 
 /**
  ******************************************************************************
  ** \brief External Main Clock Frequency (in Hz, [value]UL)
  **        <i>(USER SETTING)</i>
  ******************************************************************************/
-#define __CLKMO        ( 4000000UL)   // <<< External   4MHz Crystal
+    #define __CLKMO          ( 4000000UL ) /* <<< External   4MHz Crystal */
 
 /**
  ******************************************************************************
  ** \brief External Sub Clock Frequency (in Hz, [value]UL)
  **        <i>(USER SETTING)</i>
  ******************************************************************************/
-#define __CLKSO        (   32768UL)   // <<<  External  32KHz Crystal
+    #define __CLKSO          ( 32768UL ) /* <<<  External  32KHz Crystal */
 
 /**
  ******************************************************************************
@@ -150,7 +151,7 @@
  **
  ** Bit#0 : (reserved)
  ******************************************************************************/
-#define SCM_CTL_Val           0x00000052    // <<< Define SCM_CTL here
+    #define SCM_CTL_Val      0x00000052     /* <<< Define SCM_CTL here */
 
 /**
  ******************************************************************************
@@ -171,7 +172,7 @@
  ** - 6 = HCLK = Master Clock / 16
  ** - 7 = (reserved)
  ******************************************************************************/
-#define BSC_PSR_Val           0x00000000    // <<< Define BSC_PSR here
+    #define BSC_PSR_Val      0x00000000     /* <<< Define BSC_PSR here */
 
 /**
  ******************************************************************************
@@ -188,7 +189,7 @@
  ** - 2 = PCLK0 = HCLK / 4
  ** - 3 = PCLK0 = HCLK / 8
  ******************************************************************************/
-#define APBC0_PSR_Val         0x00000001     // <<< Define APBC0_PSR here
+    #define APBC0_PSR_Val    0x00000001      /* <<< Define APBC0_PSR here */
 
 /**
  ******************************************************************************
@@ -215,7 +216,7 @@
  ** - 2 = PCLK1 = HCLK / 4
  ** - 3 = PCLK1 = HCLK / 8
  ******************************************************************************/
-#define APBC1_PSR_Val         0x00000081    // <<< Define APBC1_PSR here
+    #define APBC1_PSR_Val    0x00000081     /* <<< Define APBC1_PSR here */
 
 /**
  ******************************************************************************
@@ -242,7 +243,7 @@
  ** - 2 = PCLK2 = HCLK / 4
  ** - 3 = PCLK2 = HCLK / 8
  ******************************************************************************/
-#define APBC2_PSR_Val         0x00000081    // <<< Define APBC2_PSR here
+    #define APBC2_PSR_Val    0x00000081     /* <<< Define APBC2_PSR here */
 
 /**
  ******************************************************************************
@@ -263,7 +264,7 @@
  ** - 2 = SWDGOGCLK = PCLK0 / 4
  ** - 3 = SWDGOGCLK = PCLK0 / 8
  ******************************************************************************/
-#define SWC_PSR_Val           0x00000003    // <<< Define SWC_PSR here
+    #define SWC_PSR_Val      0x00000003     /* <<< Define SWC_PSR here */
 
 /**
  ******************************************************************************
@@ -278,7 +279,7 @@
  ** - 0 = TPIUCLK = HCLK
  ** - 1 = TPIUCLK = HCLK / 2
  ******************************************************************************/
-#define TTC_PSR_Val           0x00000000    // <<< Define TTC_PSR here
+    #define TTC_PSR_Val      0x00000000     /* <<< Define TTC_PSR here */
 
 /**
  ******************************************************************************
@@ -317,7 +318,7 @@
  ** - 14 = ~524 ms
  ** - 15 = ~2.0 s
  ******************************************************************************/
-#define CSW_TMR_Val           0x0000005C    // <<< Define CSW_TMR here
+    #define CSW_TMR_Val      0x0000005C     /* <<< Define CSW_TMR here */
 
 /**
  ******************************************************************************
@@ -344,7 +345,7 @@
  ** - 6 = ~8.20 ms
  ** - 7 = ~16.40 ms
  ******************************************************************************/
-#define PSW_TMR_Val           0x00000000    // <<< Define PSW_TMR here
+    #define PSW_TMR_Val      0x00000000     /* <<< Define PSW_TMR here */
 
 /**
  ******************************************************************************
@@ -367,7 +368,7 @@
  ** - . . .
  ** - 15 = Division(PLLM) = 1/16
  ******************************************************************************/
-#define PLL_CTL1_Val          0x00000004    // <<< Define PLL_CTL1 here
+    #define PLL_CTL1_Val     0x00000004     /* <<< Define PLL_CTL1 here */
 
 /**
  ******************************************************************************
@@ -385,7 +386,7 @@
  ** - . . .
  ** - 63 = Division(PLLN) = 1/64
  ******************************************************************************/
-#define PLL_CTL2_Val          0x00000009    // <<< Define PLL_CTL2 here
+    #define PLL_CTL2_Val     0x00000009     /* <<< Define PLL_CTL2 here */
 
 /**
  ******************************************************************************
@@ -395,7 +396,7 @@
  ** - 0 = Hardware Watchdog enable
  ** - 1 = Hardware Watchdog disable
  ******************************************************************************/
-#define HWWD_DISABLE          1   // <<< Define HW Watach dog enable here
+    #define HWWD_DISABLE     1    /* <<< Define HW Watach dog enable here */
 
 /**
  ******************************************************************************
@@ -405,7 +406,7 @@
  ** - 0 = CR is not trimmed at startup
  ** - 1 = CR is trimmed at startup
  ******************************************************************************/
-#define CR_TRIM_SETUP         1   // <<< Define CR trimming at startup enable here
+    #define CR_TRIM_SETUP    1    /* <<< Define CR trimming at startup enable here */
 
 
 /******************************************************************************/
@@ -424,143 +425,143 @@
  ** \brief Internal High-Speed CR Oscillator Frequency (in Hz, [value]UL)
  **        <i>(USER SETTING)</i>
  ******************************************************************************/
-#define __CLKHC        ( 4000000UL)         /* Internal   4MHz CR Oscillator  */
+    #define __CLKHC          ( 4000000UL )  /* Internal   4MHz CR Oscillator  */
 
 /**
  ******************************************************************************
  ** \brief Internal Low-Speed CR Oscillator Frequency (in Hz, [value]UL)
  **        <i>(USER SETTING)</i>
  ******************************************************************************/
-#define __CLKLC        (  100000UL)         /* Internal 100KHz CR Oscillator  */
+    #define __CLKLC          ( 100000UL )   /* Internal 100KHz CR Oscillator  */
 
 /**
  ******************************************************************************
  ** \brief Any case minimum Main Clock frequency (in Hz, [value]UL)
  **        <i>(DEVICE DEPENDENT SETTING)</i>
  ******************************************************************************/
-#define __CLKMOMIN    (  4000000UL)
+    #define __CLKMOMIN       ( 4000000UL )
 
 /**
  ******************************************************************************
  ** \brief Maximum Main Clock frequency using external clock
  **        <i>(DEVICE DEPENDENT SETTING)</i>
  ******************************************************************************/
-#define __CLKMOMAX    ( 48000000UL)
+    #define __CLKMOMAX       ( 48000000UL )
 
 /**
  ******************************************************************************
  ** \brief Any case minimum Sub Clock frequency
  **        <i>(DEVICE DEPENDENT SETTING)</i>
  ******************************************************************************/
-#define __CLKSOMIN    (    32000UL)
+    #define __CLKSOMIN       ( 32000UL )
 
 /**
  ******************************************************************************
  ** \brief Maximum Sub Clock frequency using external clock
  **        <i>(DEVICE DEPENDENT SETTING)</i>
  ******************************************************************************/
-#define __CLKSOMAX    (   100000UL)
+    #define __CLKSOMAX       ( 100000UL )
 
 /**
  ******************************************************************************
  ** \brief Absolute minimum PLL input frequency
  **        <i>(DEVICE DEPENDENT SETTING)</i>
  ******************************************************************************/
-#define __PLLCLKINMIN (  4000000UL)
+    #define __PLLCLKINMIN    ( 4000000UL )
 
 /**
  ******************************************************************************
  ** \brief Absolute maximum PLL input frequency
  **        <i>(DEVICE DEPENDENT SETTING)</i>
  ******************************************************************************/
-#define __PLLCLKINMAX ( 16000000UL)
+    #define __PLLCLKINMAX    ( 16000000UL )
 
 /**
  ******************************************************************************
  ** \brief Absolute minimum PLL oscillation frequency
  **        <i>(DEVICE DEPENDENT SETTING)</i>
  ******************************************************************************/
-#define __PLLCLKMIN   (200000000UL)
+    #define __PLLCLKMIN      ( 200000000UL )
 
 /**
  ******************************************************************************
  ** \brief Absolute maximum PLL oscillation  frequency
  **        <i>(DEVICE DEPENDENT SETTING)</i>
  ******************************************************************************/
-#define __PLLCLKMAX   (300000000UL)
+    #define __PLLCLKMAX      ( 300000000UL )
 
 /**
  ******************************************************************************
  ** \brief Absolute maximum System Clock frequency (HCLK)
  **        <i>(DEVICE DEPENDENT SETTING)</i>
  ******************************************************************************/
-#define __HCLKMAX     ( 40000000UL)
+    #define __HCLKMAX        ( 40000000UL )
 
 /**
  ******************************************************************************
  ** \brief Preprocessor macro for checking range (clock settings)
  ******************************************************************************/
-#define CHECK_RANGE(val, min, max)                ((val < min) || (val > max))
+    #define CHECK_RANGE( val, min, max )    ( ( val < min ) || ( val > max ) )
 
 /**
  ******************************************************************************
  ** \brief Preprocessor macro for checking bits with mask (clock settings)
  ******************************************************************************/
-#define CHECK_RSVD(val, mask)                     (val & mask)
+    #define CHECK_RSVD( val, mask )         ( val & mask )
 
 
 /******************************************************************************/
 /* Check register settings                                                    */
 /******************************************************************************/
-#if (CHECK_RSVD((SCM_CTL_Val),    ~0x000000FA))
-   #error "SCM_CTL: Invalid values of reserved bits!"
-#endif
+    #if ( CHECK_RSVD( ( SCM_CTL_Val ), ~0x000000FA ) )
+        #error "SCM_CTL: Invalid values of reserved bits!"
+    #endif
 
-#if ((SCM_CTL_Val & 0xE0) == 0x40) && ((SCM_CTL_Val & 0x10) != 0x10)
-   #error "SCM_CTL: CLKPLL is selected but PLL is not enabled!"
-#endif
+    #if ( ( SCM_CTL_Val & 0xE0 ) == 0x40 ) && ( ( SCM_CTL_Val & 0x10 ) != 0x10 )
+        #error "SCM_CTL: CLKPLL is selected but PLL is not enabled!"
+    #endif
 
-#if (CHECK_RSVD((CSW_TMR_Val),    ~0x0000007F))
-   #error "CSW_TMR: Invalid values of reserved bits!"
-#endif
+    #if ( CHECK_RSVD( ( CSW_TMR_Val ), ~0x0000007F ) )
+        #error "CSW_TMR: Invalid values of reserved bits!"
+    #endif
 
-#if ((SCM_CTL_Val & 0x10))       /* if PLL is used */
-  #if (CHECK_RSVD((PSW_TMR_val),  ~0x00000007))
-     #error "PSW_TMR: Invalid values of reserved bits!"
-  #endif
+    #if ( ( SCM_CTL_Val & 0x10 ) ) /* if PLL is used */
+        #if ( CHECK_RSVD( ( PSW_TMR_val ), ~0x00000007 ) )
+            #error "PSW_TMR: Invalid values of reserved bits!"
+        #endif
 
-  #if (CHECK_RSVD((PLL_CTL1_Val), ~0x000000FF))
-     #error "PLL_CTL1: Invalid values of reserved bits!"
-  #endif
+        #if ( CHECK_RSVD( ( PLL_CTL1_Val ), ~0x000000FF ) )
+            #error "PLL_CTL1: Invalid values of reserved bits!"
+        #endif
 
-  #if (CHECK_RSVD((PLL_CTL2_Val), ~0x0000003F))
-    #error "PLL_CTL2: Invalid values of reserved bits!"
-  #endif
-#endif
+        #if ( CHECK_RSVD( ( PLL_CTL2_Val ), ~0x0000003F ) )
+            #error "PLL_CTL2: Invalid values of reserved bits!"
+        #endif
+    #endif /* if ( ( SCM_CTL_Val & 0x10 ) ) */
 
-#if (CHECK_RSVD((BSC_PSR_Val),    ~0x00000007))
-  #error "BSC_PSR: Invalid values of reserved bits!"
-#endif
+    #if ( CHECK_RSVD( ( BSC_PSR_Val ), ~0x00000007 ) )
+        #error "BSC_PSR: Invalid values of reserved bits!"
+    #endif
 
-#if (CHECK_RSVD((APBC0_PSR_Val),  ~0x00000003))
-  #error "APBC0_PSR: Invalid values of reserved bits!"
-#endif
+    #if ( CHECK_RSVD( ( APBC0_PSR_Val ), ~0x00000003 ) )
+        #error "APBC0_PSR: Invalid values of reserved bits!"
+    #endif
 
-#if (CHECK_RSVD((APBC1_PSR_Val),  ~0x00000083))
-  #error "APBC1_PSR: Invalid values of reserved bits!"
-#endif
+    #if ( CHECK_RSVD( ( APBC1_PSR_Val ), ~0x00000083 ) )
+        #error "APBC1_PSR: Invalid values of reserved bits!"
+    #endif
 
-#if (CHECK_RSVD((APBC2_PSR_Val),  ~0x00000083))
-  #error "APBC2_PSR: Invalid values of reserved bits!"
-#endif
+    #if ( CHECK_RSVD( ( APBC2_PSR_Val ), ~0x00000083 ) )
+        #error "APBC2_PSR: Invalid values of reserved bits!"
+    #endif
 
-#if (CHECK_RSVD((SWC_PSR_Val),    ~0x00000003))
-  #error "SWC_PSR: Invalid values of reserved bits!"
-#endif
+    #if ( CHECK_RSVD( ( SWC_PSR_Val ), ~0x00000003 ) )
+        #error "SWC_PSR: Invalid values of reserved bits!"
+    #endif
 
-#if (CHECK_RSVD((TTC_PSR_Val),    ~0x00000001))
-  #error "TTC_PSR: Invalid values of reserved bits!"
-#endif
+    #if ( CHECK_RSVD( ( TTC_PSR_Val ), ~0x00000001 ) )
+        #error "TTC_PSR: Invalid values of reserved bits!"
+    #endif
 
 /******************************************************************************/
 /* Define clocks with checking settings                                       */
@@ -570,25 +571,25 @@
  ******************************************************************************
  ** \brief Calculate PLL K factor from settings
  ******************************************************************************/
-#define __PLLK         (((PLL_CTL1_Val >> 4) & 0x0F) + 1)
+    #define __PLLK      ( ( ( PLL_CTL1_Val >> 4 ) & 0x0F ) + 1 )
 
 /**
  ******************************************************************************
  ** \brief Calculate PLL N factor from settings
  ******************************************************************************/
-#define __PLLN         (((PLL_CTL2_Val     ) & 0x1F) + 1)
+    #define __PLLN      ( ( ( PLL_CTL2_Val ) & 0x1F ) + 1 )
 
 /**
  ******************************************************************************
  ** \brief Calculate PLL M factor from settings
  ******************************************************************************/
-#define __PLLM         (((PLL_CTL1_Val     ) & 0x0F) + 1)
+    #define __PLLM      ( ( ( PLL_CTL1_Val ) & 0x0F ) + 1 )
 
 /**
  ******************************************************************************
  ** \brief Calculate PLL output frequency from settings
  ******************************************************************************/
-#define __PLLCLK       ((__CLKMO  * __PLLN) / __PLLK)
+    #define __PLLCLK    ( ( __CLKMO * __PLLN ) / __PLLK )
 
 /******************************************************************************/
 /* Determine core clock frequency according to settings                       */
@@ -598,77 +599,77 @@
  ******************************************************************************
  ** \brief Define Master Clock from settings
  ******************************************************************************/
-#if   (((SCM_CTL_Val >> 5) & 0x07) == 0)
-  #define __MASTERCLK     (__CLKHC)
-#elif (((SCM_CTL_Val >> 5) & 0x07) == 1)
-  #define __MASTERCLK     (__CLKMO)
-#elif (((SCM_CTL_Val >> 5) & 0x07) == 2)
-  #define __MASTERCLK     (__PLLCLK)
-#elif (((SCM_CTL_Val >> 5) & 0x07) == 4)
-  #define __MASTERCLK     (__CLKLC)
-#elif (((SCM_CTL_Val >> 5) & 0x07) == 5)
-  #define __MASTERCLK     (__CLKSO)
-#else
-  #define __MASTERCLK     (0UL)
-#endif
+    #if   ( ( ( SCM_CTL_Val >> 5 ) & 0x07 ) == 0 )
+        #define __MASTERCLK    ( __CLKHC )
+    #elif ( ( ( SCM_CTL_Val >> 5 ) & 0x07 ) == 1 )
+        #define __MASTERCLK    ( __CLKMO )
+    #elif ( ( ( SCM_CTL_Val >> 5 ) & 0x07 ) == 2 )
+        #define __MASTERCLK    ( __PLLCLK )
+    #elif ( ( ( SCM_CTL_Val >> 5 ) & 0x07 ) == 4 )
+        #define __MASTERCLK    ( __CLKLC )
+    #elif ( ( ( SCM_CTL_Val >> 5 ) & 0x07 ) == 5 )
+        #define __MASTERCLK    ( __CLKSO )
+    #else
+        #define __MASTERCLK    ( 0UL )
+    #endif /* if   ( ( ( SCM_CTL_Val >> 5 ) & 0x07 ) == 0 ) */
 
 /**
  ******************************************************************************
  ** \brief Define System Clock Frequency (Core Clock) from settings
  ******************************************************************************/
-#if   ((BSC_PSR_Val & 0x07) == 0)
-  #define __HCLK         (__MASTERCLK / 1)
-#elif ((BSC_PSR_Val & 0x07) == 1)
-  #define __HCLK         (__MASTERCLK / 2)
-#elif ((BSC_PSR_Val & 0x07) == 2)
-  #define __HCLK         (__MASTERCLK / 3)
-#elif ((BSC_PSR_Val & 0x07) == 3)
-  #define __HCLK         (__MASTERCLK / 4)
-#elif ((BSC_PSR_Val & 0x07) == 4)
-  #define __HCLK         (__MASTERCLK / 6)
-#elif ((BSC_PSR_Val & 0x07) == 5)
-  #define __HCLK         (__MASTERCLK / 8)
-#elif ((BSC_PSR_Val & 0x07) == 6)
-  #define __HCLK         (__MASTERCLK /16)
-#else
-  #define __HCLK         (0UL)
-#endif
+    #if   ( ( BSC_PSR_Val & 0x07 ) == 0 )
+        #define __HCLK    ( __MASTERCLK / 1 )
+    #elif ( ( BSC_PSR_Val & 0x07 ) == 1 )
+        #define __HCLK    ( __MASTERCLK / 2 )
+    #elif ( ( BSC_PSR_Val & 0x07 ) == 2 )
+        #define __HCLK    ( __MASTERCLK / 3 )
+    #elif ( ( BSC_PSR_Val & 0x07 ) == 3 )
+        #define __HCLK    ( __MASTERCLK / 4 )
+    #elif ( ( BSC_PSR_Val & 0x07 ) == 4 )
+        #define __HCLK    ( __MASTERCLK / 6 )
+    #elif ( ( BSC_PSR_Val & 0x07 ) == 5 )
+        #define __HCLK    ( __MASTERCLK / 8 )
+    #elif ( ( BSC_PSR_Val & 0x07 ) == 6 )
+        #define __HCLK    ( __MASTERCLK / 16 )
+    #else /* if   ( ( BSC_PSR_Val & 0x07 ) == 0 ) */
+        #define __HCLK    ( 0UL )
+    #endif /* if   ( ( BSC_PSR_Val & 0x07 ) == 0 ) */
 
 /******************************************************************************/
 /* HCLK range check                                                           */
 /******************************************************************************/
-#if (CHECK_RANGE(__CLKMO, __CLKMOMIN, __CLKMOMAX) != 0)
-  #error "Main Oscillator Clock (CLKMO) out of range!"
-#endif
+    #if ( CHECK_RANGE( __CLKMO, __CLKMOMIN, __CLKMOMAX ) != 0 )
+        #error "Main Oscillator Clock (CLKMO) out of range!"
+    #endif
 
-#if (CHECK_RANGE(__CLKSO, __CLKSOMIN, __CLKSOMAX) != 0)
-  #error "Sub Oscillator Clock (CLKMO) out of range!"
-#endif
+    #if ( CHECK_RANGE( __CLKSO, __CLKSOMIN, __CLKSOMAX ) != 0 )
+        #error "Sub Oscillator Clock (CLKMO) out of range!"
+    #endif
 
-#if (CHECK_RANGE((__CLKMO / __PLLK), __PLLCLKINMIN, __PLLCLKINMAX) != 0)
-  #error "PLL input frequency out of range!"
-#endif
+    #if ( CHECK_RANGE( ( __CLKMO / __PLLK ), __PLLCLKINMIN, __PLLCLKINMAX ) != 0 )
+        #error "PLL input frequency out of range!"
+    #endif
 
-#if (CHECK_RANGE(((__CLKMO * __PLLN * __PLLM) / __PLLK), __PLLCLKMIN, __PLLCLKMAX) != 0)
-  #error "PLL oscillation frequency out of range!"
-#endif
+    #if ( CHECK_RANGE( ( ( __CLKMO * __PLLN * __PLLM ) / __PLLK ), __PLLCLKMIN, __PLLCLKMAX ) != 0 )
+        #error "PLL oscillation frequency out of range!"
+    #endif
 
-#if (CHECK_RANGE(__HCLK, 0, __HCLKMAX) != 0)
-  #error "System Clock (HCLK) out of range!"
-#endif
+    #if ( CHECK_RANGE( __HCLK, 0, __HCLKMAX ) != 0 )
+        #error "System Clock (HCLK) out of range!"
+    #endif
 
 /******************************************************************************/
 /* Global function prototypes ('extern', definition in C source)              */
 /******************************************************************************/
 
-extern uint32_t SystemCoreClock;          // System Clock Frequency (Core Clock)
+    extern uint32_t SystemCoreClock;           /* System Clock Frequency (Core Clock) */
 
-extern void SystemInit (void);            // Initialize the system
+    extern void SystemInit( void );            /* Initialize the system */
 
-extern void SystemCoreClockUpdate (void); // Update SystemCoreClock variable
+    extern void SystemCoreClockUpdate( void ); /* Update SystemCoreClock variable */
 
-#ifdef __cplusplus
+    #ifdef __cplusplus
 }
-#endif
+    #endif
 
 #endif /* __SYSTEM_MB9AF31X_H */

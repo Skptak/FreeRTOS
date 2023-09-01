@@ -33,61 +33,62 @@
 ******************************************************************************/
 
 #ifndef __ALT_ADDRESS_SPACE_H__
-#define __ALT_ADDRESS_SPACE_H__
+    #define __ALT_ADDRESS_SPACE_H__
 
-#include <stdbool.h>
-#include "hwlib.h"
-#include "socal/hps.h"
+    #include <stdbool.h>
+    #include "hwlib.h"
+    #include "socal/hps.h"
 
-#ifdef __cplusplus
-extern "C"
-{
-#endif  /* __cplusplus */
-
-/******************************************************************************/
-// ARM Level 2 Cache Controller L2C-310 Register Interface
-
-// Address Filtering Start Register
-// The Address Filtering Start Register is a read and write register.
-// Bits     Field                       Description
-// :-------|:--------------------------|:-----------------------------------------
-// [31:20] | address_filtering_start   | Address filtering start address for
-//         |                           | bits [31:20] of the filtering address.
-// [19:1]  | Reserved                  | SBZ/RAZ
-// [0]     | address_filtering_enable  | 0 - address filtering disabled
-//         |                           | 1 - address filtering enabled.
-
-// Address Filtering Start Register Address
-#define L2_CACHE_ADDR_FILTERING_START_OFST      0xC00
-#define L2_CACHE_ADDR_FILTERING_START_ADDR      (ALT_MPUL2_OFST + L2_CACHE_ADDR_FILTERING_START_OFST)
-// Address Filtering Start Register - Start Value Mask
-#define L2_CACHE_ADDR_FILTERING_START_ADDR_MASK 0xFFF00000
-// Address Filtering Start Register - Reset Start Address Value (1 MB)
-#define L2_CACHE_ADDR_FILTERING_START_RESET     0x100000
-// Address Filtering Start Register - Enable Flag Mask
-#define L2_CACHE_ADDR_FILTERING_ENABLE_MASK     0x00000001
-// Address Filtering Start Register - Reset Enable Flag Value (Enabled)
-#define L2_CACHE_ADDR_FILTERING_ENABLE_RESET    0x1
-
-// Address Filtering End Register
-// The Address Filtering End Register is a read and write register.
-// Bits     Field                       Description
-// :-------|:--------------------------|:-----------------------------------------
-// [31:20] | address_filtering_end     | Address filtering end address for bits
-//         |                           | [31:20] of the filtering address.
-// [19:0]  | Reserved                  | SBZ/RAZ
-
-// Address Filtering End Register Address
-#define L2_CACHE_ADDR_FILTERING_END_OFST        0xC04
-#define L2_CACHE_ADDR_FILTERING_END_ADDR        (ALT_MPUL2_OFST + L2_CACHE_ADDR_FILTERING_END_OFST)
-// Address Filtering End Register - End Value Mask
-#define L2_CACHE_ADDR_FILTERING_END_ADDR_MASK   0xFFF00000
-// Address Filtering End Register - Reset End Address Value (3 GiB)
-#define L2_CACHE_ADDR_FILTERING_END_RESET       0xC0000000
-
-#ifndef __ASSEMBLY__
+    #ifdef __cplusplus
+        extern "C"
+        {
+    #endif /* __cplusplus */
 
 /******************************************************************************/
+/* ARM Level 2 Cache Controller L2C-310 Register Interface */
+
+/* Address Filtering Start Register */
+/* The Address Filtering Start Register is a read and write register. */
+/* Bits     Field                       Description */
+/* :-------|:--------------------------|:----------------------------------------- */
+/* [31:20] | address_filtering_start   | Address filtering start address for */
+/*         |                           | bits [31:20] of the filtering address. */
+/* [19:1]  | Reserved                  | SBZ/RAZ */
+/* [0]     | address_filtering_enable  | 0 - address filtering disabled */
+/*         |                           | 1 - address filtering enabled. */
+
+/* Address Filtering Start Register Address */
+    #define L2_CACHE_ADDR_FILTERING_START_OFST         0xC00
+    #define L2_CACHE_ADDR_FILTERING_START_ADDR         ( ALT_MPUL2_OFST + L2_CACHE_ADDR_FILTERING_START_OFST )
+/* Address Filtering Start Register - Start Value Mask */
+    #define L2_CACHE_ADDR_FILTERING_START_ADDR_MASK    0xFFF00000
+/* Address Filtering Start Register - Reset Start Address Value (1 MB) */
+    #define L2_CACHE_ADDR_FILTERING_START_RESET        0x100000
+/* Address Filtering Start Register - Enable Flag Mask */
+    #define L2_CACHE_ADDR_FILTERING_ENABLE_MASK        0x00000001
+/* Address Filtering Start Register - Reset Enable Flag Value (Enabled) */
+    #define L2_CACHE_ADDR_FILTERING_ENABLE_RESET       0x1
+
+/* Address Filtering End Register */
+/* The Address Filtering End Register is a read and write register. */
+/* Bits     Field                       Description */
+/* :-------|:--------------------------|:----------------------------------------- */
+/* [31:20] | address_filtering_end     | Address filtering end address for bits */
+/*         |                           | [31:20] of the filtering address. */
+/* [19:0]  | Reserved                  | SBZ/RAZ */
+
+/* Address Filtering End Register Address */
+    #define L2_CACHE_ADDR_FILTERING_END_OFST         0xC04
+    #define L2_CACHE_ADDR_FILTERING_END_ADDR         ( ALT_MPUL2_OFST + L2_CACHE_ADDR_FILTERING_END_OFST )
+/* Address Filtering End Register - End Value Mask */
+    #define L2_CACHE_ADDR_FILTERING_END_ADDR_MASK    0xFFF00000
+/* Address Filtering End Register - Reset End Address Value (3 GiB) */
+    #define L2_CACHE_ADDR_FILTERING_END_RESET        0xC0000000
+
+    #ifndef __ASSEMBLY__
+
+/******************************************************************************/
+
 /*! \addtogroup ADDR_SPACE_MGR The Address Space Manager
  *
  * This module contains group APIs for managing the HPS address space. This
@@ -101,6 +102,7 @@ extern "C"
  */
 
 /******************************************************************************/
+
 /*! \addtogroup ADDR_SPACE_MGR_REMAP Address Space Mapping Control
  *
  * This group API provides functions to map and remap selected address ranges
@@ -133,56 +135,58 @@ extern "C"
  * to the new desired MPU address 0 mapping and then the L2 cache address
  * filtering registers have their address ranges adjusted accordingly must be
  * followed. An example follows:
-\verbatim
-// 1 MB reset default value for address filtering start
-#define L2_CACHE_ADDR_FILTERING_START_RESET     0x100000
-uint32_t addr_filt_start;
-uint32_t addr_filt_end;
-
-// Perform L3 remap register programming first by setting the desired new MPU
-// address space 0 mapping. Assume OCRAM for the example.
-alt_addr_space_remap(ALT_ADDR_SPACE_MPU_ZERO_AT_OCRAM, ...);
-
-// Next, adjust the L2 cache address filtering range. Set the start address to
-// the default reset value and retain the existing end address configuration.
-alt_l2_addr_filter_cfg_get(&addr_filt_start, &addr_filt_end);
-if (addr_filt_start != L2_CACHE_ADDR_FILTERING_START_RESET)
-{
-    alt_l2_addr_filter_cfg_set(L2_CACHE_ADDR_FILTERING_START_RESET, addr_filt_end);
-}
-\endverbatim
+ * \verbatim
+ * // 1 MB reset default value for address filtering start
+ #define L2_CACHE_ADDR_FILTERING_START_RESET     0x100000
+ * uint32_t addr_filt_start;
+ * uint32_t addr_filt_end;
+ *
+ * // Perform L3 remap register programming first by setting the desired new MPU
+ * // address space 0 mapping. Assume OCRAM for the example.
+ * alt_addr_space_remap(ALT_ADDR_SPACE_MPU_ZERO_AT_OCRAM, ...);
+ *
+ * // Next, adjust the L2 cache address filtering range. Set the start address to
+ * // the default reset value and retain the existing end address configuration.
+ * alt_l2_addr_filter_cfg_get(&addr_filt_start, &addr_filt_end);
+ * if (addr_filt_start != L2_CACHE_ADDR_FILTERING_START_RESET)
+ * {
+ *  alt_l2_addr_filter_cfg_set(L2_CACHE_ADDR_FILTERING_START_RESET, addr_filt_end);
+ * }
+ * \endverbatim
  * @{
  */
 
 /******************************************************************************/
+
 /*!
  * This type definition enumerates the MPU address space attributes.
  *
  * The MPU address space consists of the ARM Cortex A9 processors and associated
  * processor peripherals (cache, MMU).
  */
-typedef enum ALT_ADDR_SPACE_MPU_ATTR_e
-{
-    ALT_ADDR_SPACE_MPU_ZERO_AT_BOOTROM,     /*!< Maps the Boot ROM to address
-                                             *   0x0 for the MPU L3 master. Note
-                                             *   that the Boot ROM is also
-                                             *   always mapped to address
-                                             *   0xfffd_0000 for the MPU L3
-                                             *   master independent of
-                                             *   attribute.
-                                             */
+        typedef enum ALT_ADDR_SPACE_MPU_ATTR_e
+        {
+            ALT_ADDR_SPACE_MPU_ZERO_AT_BOOTROM, /*!< Maps the Boot ROM to address
+                                                 *   0x0 for the MPU L3 master. Note
+                                                 *   that the Boot ROM is also
+                                                 *   always mapped to address
+                                                 *   0xfffd_0000 for the MPU L3
+                                                 *   master independent of
+                                                 *   attribute.
+                                                 */
 
-    ALT_ADDR_SPACE_MPU_ZERO_AT_OCRAM        /*!< Maps the On-chip RAM to address
-                                             *   0x0 for the MPU L3 master. Note
-                                             *   that the On-chip RAM is also
-                                             *   always mapped to address
-                                             *   0xffff_0000 for the MPU L3
-                                             *   master independent of this
-                                             *   attribute.
-                                             */
-} ALT_ADDR_SPACE_MPU_ATTR_t;
+            ALT_ADDR_SPACE_MPU_ZERO_AT_OCRAM    /*!< Maps the On-chip RAM to address
+                                                 *   0x0 for the MPU L3 master. Note
+                                                 *   that the On-chip RAM is also
+                                                 *   always mapped to address
+                                                 *   0xffff_0000 for the MPU L3
+                                                 *   master independent of this
+                                                 *   attribute.
+                                                 */
+        } ALT_ADDR_SPACE_MPU_ATTR_t;
 
 /******************************************************************************/
+
 /*!
  * This type definition enumerates the non-MPU address space attributes.
  *
@@ -190,58 +194,61 @@ typedef enum ALT_ADDR_SPACE_MPU_ATTR_e
  * DMA controllers (standalone and those built into peripherals), the F2H AXI
  * Bridge, and the DAP.
  */
-typedef enum ALT_ADDR_SPACE_NONMPU_ATTR_e
-{
-    ALT_ADDR_SPACE_NONMPU_ZERO_AT_SDRAM,    /*!< Maps the SDRAM to address 0x0
-                                             *   for the non-MPU L3 masters.
-                                             */
-    ALT_ADDR_SPACE_NONMPU_ZERO_AT_OCRAM     /*!< Maps the On-chip RAM to address
-                                             *   0x0 for the non-MPU L3
-                                             *   masters. Note that the On-chip
-                                             *   RAM is also always mapped to
-                                             *   address 0xffff_0000 for the
-                                             *   non-MPU L3 masters independent
-                                             *   of this attribute.
-                                             */
-} ALT_ADDR_SPACE_NONMPU_ATTR_t;
+        typedef enum ALT_ADDR_SPACE_NONMPU_ATTR_e
+        {
+            ALT_ADDR_SPACE_NONMPU_ZERO_AT_SDRAM, /*!< Maps the SDRAM to address 0x0
+                                                  *   for the non-MPU L3 masters.
+                                                  */
+            ALT_ADDR_SPACE_NONMPU_ZERO_AT_OCRAM  /*!< Maps the On-chip RAM to address
+                                                  *   0x0 for the non-MPU L3
+                                                  *   masters. Note that the On-chip
+                                                  *   RAM is also always mapped to
+                                                  *   address 0xffff_0000 for the
+                                                  *   non-MPU L3 masters independent
+                                                  *   of this attribute.
+                                                  */
+        } ALT_ADDR_SPACE_NONMPU_ATTR_t;
 
 /******************************************************************************/
+
 /*!
  * This type definition enumerates the HPS to FPGA bridge accessiblity
  * attributes.
  */
-typedef enum ALT_ADDR_SPACE_H2F_BRIDGE_ATTR_e
-{
-    ALT_ADDR_SPACE_H2F_INACCESSIBLE,        /*!< The H2F AXI Bridge is not
-                                             *   visible to L3 masters. Accesses
-                                             *   to the associated address range
-                                             *   return an AXI decode error to
-                                             *   the master.
-                                             */
-    ALT_ADDR_SPACE_H2F_ACCESSIBLE           /*!< The H2F AXI Bridge is visible
-                                             *   to L3 masters.
-                                             */
-} ALT_ADDR_SPACE_H2F_BRIDGE_ATTR_t;
+        typedef enum ALT_ADDR_SPACE_H2F_BRIDGE_ATTR_e
+        {
+            ALT_ADDR_SPACE_H2F_INACCESSIBLE, /*!< The H2F AXI Bridge is not
+                                              *   visible to L3 masters. Accesses
+                                              *   to the associated address range
+                                              *   return an AXI decode error to
+                                              *   the master.
+                                              */
+            ALT_ADDR_SPACE_H2F_ACCESSIBLE    /*!< The H2F AXI Bridge is visible
+                                              *   to L3 masters.
+                                              */
+        } ALT_ADDR_SPACE_H2F_BRIDGE_ATTR_t;
 
 /******************************************************************************/
+
 /*!
  * This type definition enumerates the Lightweight HPS to FPGA bridge
  * accessiblity attributes.
  */
-typedef enum ALT_ADDR_SPACE_LWH2F_BRIDGE_ATTR_e
-{
-    ALT_ADDR_SPACE_LWH2F_INACCESSIBLE,      /*!< The LWH2F AXI Bridge is not
-                                             *   visible to L3 masters. Accesses
-                                             *   to the associated address range
-                                             *   return an AXI decode error to
-                                             *   the master.
-                                             */
-    ALT_ADDR_SPACE_LWH2F_ACCESSIBLE         /*!< The LWH2F AXI Bridge is visible
-                                             *   to L3 masters.
-                                             */
-} ALT_ADDR_SPACE_LWH2F_BRIDGE_ATTR_t;
+        typedef enum ALT_ADDR_SPACE_LWH2F_BRIDGE_ATTR_e
+        {
+            ALT_ADDR_SPACE_LWH2F_INACCESSIBLE, /*!< The LWH2F AXI Bridge is not
+                                                *   visible to L3 masters. Accesses
+                                                *   to the associated address range
+                                                *   return an AXI decode error to
+                                                *   the master.
+                                                */
+            ALT_ADDR_SPACE_LWH2F_ACCESSIBLE    /*!< The LWH2F AXI Bridge is visible
+                                                *   to L3 masters.
+                                                */
+        } ALT_ADDR_SPACE_LWH2F_BRIDGE_ATTR_t;
 
 /******************************************************************************/
+
 /*!
  * Configures the mapped and accessible (visible) address ranges for the HPS
  * MPU, non-MPU, and Bridge address spaces.
@@ -260,17 +267,18 @@ typedef enum ALT_ADDR_SPACE_LWH2F_BRIDGE_ATTR_e
  *              attributes.
  *
  *
- * \retval      ALT_E_SUCCESS       The operation was succesful.
+ * \retval      ALT_E_SUCCESS       The operation was successful.
  * \retval      ALT_E_ERROR         The operation failed.
  * \retval      ALT_E_INV_OPTION    One or more invalid attribute options were
  *                                  specified.
  */
-ALT_STATUS_CODE alt_addr_space_remap(ALT_ADDR_SPACE_MPU_ATTR_t mpu_attr,
-                                     ALT_ADDR_SPACE_NONMPU_ATTR_t nonmpu_attr,
-                                     ALT_ADDR_SPACE_H2F_BRIDGE_ATTR_t h2f_attr,
-                                     ALT_ADDR_SPACE_LWH2F_BRIDGE_ATTR_t lwh2f_attr);
+        ALT_STATUS_CODE alt_addr_space_remap( ALT_ADDR_SPACE_MPU_ATTR_t mpu_attr,
+                                              ALT_ADDR_SPACE_NONMPU_ATTR_t nonmpu_attr,
+                                              ALT_ADDR_SPACE_H2F_BRIDGE_ATTR_t h2f_attr,
+                                              ALT_ADDR_SPACE_LWH2F_BRIDGE_ATTR_t lwh2f_attr );
 
 /******************************************************************************/
+
 /*!
  * Maps SDRAM to address 0x0 for the MPU address space view.
  *
@@ -295,14 +303,15 @@ ALT_STATUS_CODE alt_addr_space_remap(ALT_ADDR_SPACE_MPU_ATTR_t mpu_attr,
  * Reference Manual, Section 3.3.12 Address Filtering </em>.
  * \endinternal
  *
- * \retval      ALT_E_SUCCESS   The operation was succesful.
+ * \retval      ALT_E_SUCCESS   The operation was successful.
  * \retval      ALT_E_ERROR     The operation failed.
  */
-ALT_STATUS_CODE alt_mpu_addr_space_remap_0_to_sdram(void);
+        ALT_STATUS_CODE alt_mpu_addr_space_remap_0_to_sdram( void );
 
 /*! @} */
 
 /******************************************************************************/
+
 /*! \addtogroup L2_ADDR_FLTR L2 Cache Address Filter
  *
  * The L2 cache address filter controls where physical addresses within certain
@@ -326,6 +335,7 @@ ALT_STATUS_CODE alt_mpu_addr_space_remap_0_to_sdram(void);
  */
 
 /******************************************************************************/
+
 /*!
  * Get the L2 cache address filtering configuration settings.
  *
@@ -346,10 +356,11 @@ ALT_STATUS_CODE alt_mpu_addr_space_remap_0_to_sdram(void);
  * \retval      ALT_E_BAD_ARG   An bad argument was passed. Either \e addr_filt_start
  *                              or \e addr_filt_end or both are invalid addresses.
  */
-ALT_STATUS_CODE alt_l2_addr_filter_cfg_get(uint32_t* addr_filt_start,
-                                           uint32_t* addr_filt_end);
+        ALT_STATUS_CODE alt_l2_addr_filter_cfg_get( uint32_t * addr_filt_start,
+                                                    uint32_t * addr_filt_end );
 
 /******************************************************************************/
+
 /*!
  * Set the L2 cache address filtering configuration settings.
  *
@@ -369,18 +380,19 @@ ALT_STATUS_CODE alt_l2_addr_filter_cfg_get(uint32_t* addr_filt_start,
  *              [31:20] are invalid and will cause an error status to be
  *              returned.
  *
- * \retval      ALT_E_SUCCESS   The operation was succesful.
+ * \retval      ALT_E_SUCCESS   The operation was successful.
  * \retval      ALT_E_ERROR     The operation failed.
  * \retval      ALT_E_ARG_RANGE An argument violates a range constraint. One or
  *                              more address arguments do not satisfy the argument
  *                              constraints.
  */
-ALT_STATUS_CODE alt_l2_addr_filter_cfg_set(uint32_t addr_filt_start,
-                                           uint32_t addr_filt_end);
+        ALT_STATUS_CODE alt_l2_addr_filter_cfg_set( uint32_t addr_filt_start,
+                                                    uint32_t addr_filt_end );
 
 /*! @} */
 
 /******************************************************************************/
+
 /*! \addtogroup ADDR_SPACE_MGR_MEM_COHERENCE ACP Memory Coherence and ID Mapping
  *
  * This API provides management of the ACP ID Mapper that enables data coherent
@@ -469,6 +481,7 @@ ALT_STATUS_CODE alt_l2_addr_filter_cfg_set(uint32_t addr_filt_start,
  */
 
 /******************************************************************************/
+
 /*!
  * \name External Master ID Macros
  *
@@ -480,62 +493,64 @@ ALT_STATUS_CODE alt_l2_addr_filter_cfg_set(uint32_t addr_filt_start,
  */
 
 /*! Bit mask for the relevant 12 bits of an external master ID */
-#define ALT_ACP_ID_MAP_MASTER_ID_MASK           0xfff
+        #define ALT_ACP_ID_MAP_MASTER_ID_MASK    0xfff
 
 /*! Master ID for L2M0 */
-#define ALT_ACP_ID_MAP_MASTER_ID_L2M0(var)      (0x00000002 | (0x000007f8 & (var)))
+        #define ALT_ACP_ID_MAP_MASTER_ID_L2M0( var )     ( 0x00000002 | ( 0x000007f8 & ( var ) ) )
 /*! Master ID for DMA */
-#define ALT_ACP_ID_MAP_MASTER_ID_DMA(var)       (0x00000001 | (0x00000078 & (var)))
+        #define ALT_ACP_ID_MAP_MASTER_ID_DMA( var )      ( 0x00000001 | ( 0x00000078 & ( var ) ) )
 /*! Master ID for EMAC0 */
-#define ALT_ACP_ID_MAP_MASTER_ID_EMAC0(var)     (0x00000801 | (0x00000878 & (var)))
+        #define ALT_ACP_ID_MAP_MASTER_ID_EMAC0( var )    ( 0x00000801 | ( 0x00000878 & ( var ) ) )
 /*! Master ID for EMAC1 */
-#define ALT_ACP_ID_MAP_MASTER_ID_EMAC1(var)     (0x00000802 | (0x00000878 & (var)))
+        #define ALT_ACP_ID_MAP_MASTER_ID_EMAC1( var )    ( 0x00000802 | ( 0x00000878 & ( var ) ) )
 /*! Master ID for USB0 */
-#define ALT_ACP_ID_MAP_MASTER_ID_USB0           0x00000803
+        #define ALT_ACP_ID_MAP_MASTER_ID_USB0    0x00000803
 /*! Master ID for USB1 */
-#define ALT_ACP_ID_MAP_MASTER_ID_USB1           0x00000806
+        #define ALT_ACP_ID_MAP_MASTER_ID_USB1    0x00000806
 /*! Master ID for NAND controller */
-#define ALT_ACP_ID_MAP_MASTER_ID_NAND(var)      (0x00000804 | (0x00000ff8 & (var)))
+        #define ALT_ACP_ID_MAP_MASTER_ID_NAND( var )    ( 0x00000804 | ( 0x00000ff8 & ( var ) ) )
 /*! Master ID for Embedded Trace Router (ETR) */
-#define ALT_ACP_ID_MAP_MASTER_ID_TMC            0x00000800
+        #define ALT_ACP_ID_MAP_MASTER_ID_TMC      0x00000800
 /*! Master ID for  Debug Access Port (DAP) */
-#define ALT_ACP_ID_MAP_MASTER_ID_DAP            0x00000004
+        #define ALT_ACP_ID_MAP_MASTER_ID_DAP      0x00000004
 /*! Master ID for  SD/MMC controller */
-#define ALT_ACP_ID_MAP_MASTER_ID_SDMMC          0x00000805
+        #define ALT_ACP_ID_MAP_MASTER_ID_SDMMC    0x00000805
 /*! Master ID for FPGA to HPS (F2H) bridge - conduit for soft IP masters in FPGA fabric */
-#define ALT_ACP_ID_MAP_MASTER_ID_F2H(var)       (0x00000000 | (0x000007f8 & (var)))
+        #define ALT_ACP_ID_MAP_MASTER_ID_F2H( var )    ( 0x00000000 | ( 0x000007f8 & ( var ) ) )
 /*! @} */
 
 /******************************************************************************/
+
 /*!
-  * This type defines the enumerations 3-bit output ids to ACP ID mapper.
+ * This type defines the enumerations 3-bit output ids to ACP ID mapper.
  */
-typedef enum ALT_ACP_ID_OUTPUT_ID_e
-{
-    ALT_ACP_ID_OUT_FIXED_ID_2 = 2,  /*!< Assigned to the input ID of the DAP at reset.
-                                     *   After reset, can be either fixed or dynamic,
-                                     *   programmed by software.
-                                     */
-    ALT_ACP_ID_OUT_DYNAM_ID_3 = 3,  /*!< Fixed or dynamic, programmed by software output id */
-    ALT_ACP_ID_OUT_DYNAM_ID_4 = 4,  /*!< Fixed or dynamic, programmed by software output id */
-    ALT_ACP_ID_OUT_DYNAM_ID_5 = 5,  /*!< Fixed or dynamic, programmed by software output id */
-    ALT_ACP_ID_OUT_DYNAM_ID_6 = 6,  /*!< Fixed or dynamic, programmed by software output id */
-    ALT_ACP_ID_OUT_DYNAM_ID_7 = 7   /*!< Dynamic mapping only */
-} ALT_ACP_ID_OUTPUT_ID_t;
+        typedef enum ALT_ACP_ID_OUTPUT_ID_e
+        {
+            ALT_ACP_ID_OUT_FIXED_ID_2 = 2, /*!< Assigned to the input ID of the DAP at reset.
+                                            *   After reset, can be either fixed or dynamic,
+                                            *   programmed by software.
+                                            */
+            ALT_ACP_ID_OUT_DYNAM_ID_3 = 3, /*!< Fixed or dynamic, programmed by software output id */
+            ALT_ACP_ID_OUT_DYNAM_ID_4 = 4, /*!< Fixed or dynamic, programmed by software output id */
+            ALT_ACP_ID_OUT_DYNAM_ID_5 = 5, /*!< Fixed or dynamic, programmed by software output id */
+            ALT_ACP_ID_OUT_DYNAM_ID_6 = 6, /*!< Fixed or dynamic, programmed by software output id */
+            ALT_ACP_ID_OUT_DYNAM_ID_7 = 7  /*!< Dynamic mapping only */
+        } ALT_ACP_ID_OUTPUT_ID_t;
 
 /*!
  * This type defines the enumerations used to specify the 1 GiB page view of the
  * MPU address space used by an ACP ID mapping configuration.
  */
-typedef enum ALT_ACP_ID_MAP_PAGE_e
-{
-    ALT_ACP_ID_MAP_PAGE_0 = 0,  /*!< Page 0 - MPU address range 0x00000000 - 0x3FFFFFFF */
-    ALT_ACP_ID_MAP_PAGE_1 = 1,  /*!< Page 1 - MPU address range 0x40000000 - 0x7FFFFFFF */
-    ALT_ACP_ID_MAP_PAGE_2 = 2,  /*!< Page 2 - MPU address range 0x80000000 - 0xBFFFFFFF */
-    ALT_ACP_ID_MAP_PAGE_3 = 3   /*!< Page 3 - MPU address range 0xC0000000 - 0xFFFFFFFF */
-} ALT_ACP_ID_MAP_PAGE_t;
+        typedef enum ALT_ACP_ID_MAP_PAGE_e
+        {
+            ALT_ACP_ID_MAP_PAGE_0 = 0, /*!< Page 0 - MPU address range 0x00000000 - 0x3FFFFFFF */
+            ALT_ACP_ID_MAP_PAGE_1 = 1, /*!< Page 1 - MPU address range 0x40000000 - 0x7FFFFFFF */
+            ALT_ACP_ID_MAP_PAGE_2 = 2, /*!< Page 2 - MPU address range 0x80000000 - 0xBFFFFFFF */
+            ALT_ACP_ID_MAP_PAGE_3 = 3  /*!< Page 3 - MPU address range 0xC0000000 - 0xFFFFFFFF */
+        } ALT_ACP_ID_MAP_PAGE_t;
 
 /******************************************************************************/
+
 /*!
  * Configure a fixed ACP ID mapping for read transactions originating from
  * external masters identified by \e input_id. The \e input_id value is
@@ -562,7 +577,7 @@ typedef enum ALT_ACP_ID_MAP_PAGE_e
  *              masters unable to drive the AXI user sideband signals.  Valid
  *              argument range is 0 <= \e aruser <= 31.
  *
- * \retval      ALT_E_SUCCESS   The operation was succesful.
+ * \retval      ALT_E_SUCCESS   The operation was successful.
  * \retval      ALT_E_ERROR     The operation failed.
  * \retval      ALT_E_RESERVED  The argument value is reserved or unavailable.
  * \retval      ALT_E_ARG_RANGE An argument violates a range constraint. One or
@@ -570,12 +585,13 @@ typedef enum ALT_ACP_ID_MAP_PAGE_e
  *                              arguments violates its range constraint.
  * \retval      ALT_E_BAD_ARG   The \e page argument is invalid.
  */
-ALT_STATUS_CODE alt_acp_id_map_fixed_read_set(const uint32_t input_id,
-                                              const uint32_t output_id,
-                                              const ALT_ACP_ID_MAP_PAGE_t page,
-                                              const uint32_t aruser);
+        ALT_STATUS_CODE alt_acp_id_map_fixed_read_set( const uint32_t input_id,
+                                                       const uint32_t output_id,
+                                                       const ALT_ACP_ID_MAP_PAGE_t page,
+                                                       const uint32_t aruser );
 
 /******************************************************************************/
+
 /*!
  * Configure a fixed ACP ID mapping for write transactions originating from
  * external masters identified by \e input_id. The \e input_id value is
@@ -602,7 +618,7 @@ ALT_STATUS_CODE alt_acp_id_map_fixed_read_set(const uint32_t input_id,
  *              masters unable to drive the AXI user sideband signals.  Valid
  *              argument range is 0 <= \e awuser <= 31.
  *
- * \retval      ALT_E_SUCCESS   The operation was succesful.
+ * \retval      ALT_E_SUCCESS   The operation was successful.
  * \retval      ALT_E_ERROR     The operation failed.
  * \retval      ALT_E_RESERVED  The argument value is reserved or unavailable.
  * \retval      ALT_E_ARG_RANGE An argument violates a range constraint. One or
@@ -610,12 +626,13 @@ ALT_STATUS_CODE alt_acp_id_map_fixed_read_set(const uint32_t input_id,
  *                              arguments violates its range constraint.
  * \retval      ALT_E_BAD_ARG   The \e page argument is invalid.
  */
-ALT_STATUS_CODE alt_acp_id_map_fixed_write_set(const uint32_t input_id,
-                                               const uint32_t output_id,
-                                               const ALT_ACP_ID_MAP_PAGE_t page,
-                                               const uint32_t awuser);
+        ALT_STATUS_CODE alt_acp_id_map_fixed_write_set( const uint32_t input_id,
+                                                        const uint32_t output_id,
+                                                        const ALT_ACP_ID_MAP_PAGE_t page,
+                                                        const uint32_t awuser );
 
 /******************************************************************************/
+
 /*!
  * Configure the designated 3-bit output ID as an available identifier resource
  * for use by the dynamic ID mapping function of the ACP ID Mapper for read
@@ -631,14 +648,15 @@ ALT_STATUS_CODE alt_acp_id_map_fixed_write_set(const uint32_t input_id,
  *              alt_acp_id_map_fixed_read_set().  Valid argument values must be
  *              0 <= \e output_id <= 7.
  *
- * \retval      ALT_E_SUCCESS   The operation was succesful.
+ * \retval      ALT_E_SUCCESS   The operation was successful.
  * \retval      ALT_E_ERROR     The operation failed.
  * \retval      ALT_E_RESERVED  The argument value is reserved or unavailable.
  * \retval      ALT_E_ARG_RANGE An argument violates a range constraint.
  */
-ALT_STATUS_CODE alt_acp_id_map_dynamic_read_set(const uint32_t output_id);
+        ALT_STATUS_CODE alt_acp_id_map_dynamic_read_set( const uint32_t output_id );
 
 /******************************************************************************/
+
 /*!
  * Configure the designated 3-bit output ID as an available identifier resource
  * for use by the dynamic ID mapping function of the ACP ID Mapper for write
@@ -654,14 +672,15 @@ ALT_STATUS_CODE alt_acp_id_map_dynamic_read_set(const uint32_t output_id);
  *              alt_acp_id_map_fixed_write_set().  Valid argument values must be
  *              0 <= \e output_id <= 7.
  *
- * \retval      ALT_E_SUCCESS   The operation was succesful.
+ * \retval      ALT_E_SUCCESS   The operation was successful.
  * \retval      ALT_E_ERROR     The operation failed.
  * \retval      ALT_E_RESERVED  The argument value is reserved or unavailable.
  * \retval      ALT_E_ARG_RANGE An argument violates a range constraint.
  */
-ALT_STATUS_CODE alt_acp_id_map_dynamic_write_set(const uint32_t output_id);
+        ALT_STATUS_CODE alt_acp_id_map_dynamic_write_set( const uint32_t output_id );
 
 /******************************************************************************/
+
 /*!
  * Configure the page and user read sideband signal options that are applied to
  * all read transactions that have their input IDs dynamically mapped.
@@ -675,7 +694,7 @@ ALT_STATUS_CODE alt_acp_id_map_dynamic_write_set(const uint32_t output_id);
  *              masters unable to drive the AXI user sideband signals.  Valid
  *              argument range is 0 <= \e aruser <= 31.
  *
- * \retval      ALT_E_SUCCESS   The operation was succesful.
+ * \retval      ALT_E_SUCCESS   The operation was successful.
  * \retval      ALT_E_ERROR     The operation failed.
  * \retval      ALT_E_RESERVED  The argument value is reserved or unavailable.
  * \retval      ALT_E_ARG_RANGE An argument violates a range constraint. One or
@@ -684,10 +703,11 @@ ALT_STATUS_CODE alt_acp_id_map_dynamic_write_set(const uint32_t output_id);
  * \retval      ALT_E_BAD_ARG   The \e mid argument is not a valid master
  *                              identifier.
  */
-ALT_STATUS_CODE alt_acp_id_map_dynamic_read_options_set(const ALT_ACP_ID_MAP_PAGE_t page,
-                                                        const uint32_t aruser);
+        ALT_STATUS_CODE alt_acp_id_map_dynamic_read_options_set( const ALT_ACP_ID_MAP_PAGE_t page,
+                                                                 const uint32_t aruser );
 
 /******************************************************************************/
+
 /*!
  * Configure the page and user write sideband signal options that are applied to
  * all write transactions that have their input IDs dynamically mapped.
@@ -701,7 +721,7 @@ ALT_STATUS_CODE alt_acp_id_map_dynamic_read_options_set(const ALT_ACP_ID_MAP_PAG
  *              masters unable to drive the AXI user sideband signals.  Valid
  *              argument range is 0 <= \e aruser <= 31.
  *
- * \retval      ALT_E_SUCCESS   The operation was succesful.
+ * \retval      ALT_E_SUCCESS   The operation was successful.
  * \retval      ALT_E_ERROR     The operation failed.
  * \retval      ALT_E_RESERVED  The argument value is reserved or unavailable.
  * \retval      ALT_E_ARG_RANGE An argument violates a range constraint. One or
@@ -710,10 +730,11 @@ ALT_STATUS_CODE alt_acp_id_map_dynamic_read_options_set(const ALT_ACP_ID_MAP_PAG
  * \retval      ALT_E_BAD_ARG   The \e mid argument is not a valid master
  *                              identifier.
  */
-ALT_STATUS_CODE alt_acp_id_map_dynamic_write_options_set(const ALT_ACP_ID_MAP_PAGE_t page,
-                                                         const uint32_t awuser);
+        ALT_STATUS_CODE alt_acp_id_map_dynamic_write_options_set( const ALT_ACP_ID_MAP_PAGE_t page,
+                                                                  const uint32_t awuser );
 
 /******************************************************************************/
+
 /*!
  * Return the current read transaction mapping configuration used by the ACP ID
  * Mapper for the specified output ID.
@@ -751,19 +772,20 @@ ALT_STATUS_CODE alt_acp_id_map_dynamic_write_options_set(const ALT_ACP_ID_MAP_PA
  *              by the mapping configuration when masters are unable to drive
  *              the AXI user sideband signals.
  *
- * \retval      ALT_E_SUCCESS   The operation was succesful.
+ * \retval      ALT_E_SUCCESS   The operation was successful.
  * \retval      ALT_E_ERROR     The operation failed.
  * \retval      ALT_E_RESERVED  The argument value is reserved or unavailable.
  * \retval      ALT_E_ARG_RANGE An argument violates a range constraint. The \e
  *                              output_id argument violates its range constraint.
  */
-ALT_STATUS_CODE alt_acp_id_map_read_options_get(const uint32_t output_id,
-                                                bool* fixed,
-                                                uint32_t* input_id,
-                                                ALT_ACP_ID_MAP_PAGE_t* page,
-                                                uint32_t* aruser);
+        ALT_STATUS_CODE alt_acp_id_map_read_options_get( const uint32_t output_id,
+                                                         bool * fixed,
+                                                         uint32_t * input_id,
+                                                         ALT_ACP_ID_MAP_PAGE_t * page,
+                                                         uint32_t * aruser );
 
 /******************************************************************************/
+
 /*!
  * Return the current write transaction mapping configuration used by the ACP ID
  * Mapper for the specified output ID.
@@ -801,25 +823,25 @@ ALT_STATUS_CODE alt_acp_id_map_read_options_get(const uint32_t output_id,
  *              by the mapping configuration when masters are unable to drive
  *              the AXI user sideband signals.
  *
- * \retval      ALT_E_SUCCESS   The operation was succesful.
+ * \retval      ALT_E_SUCCESS   The operation was successful.
  * \retval      ALT_E_ERROR     The operation failed.
  * \retval      ALT_E_RESERVED  The argument value is reserved or unavailable.
  * \retval      ALT_E_ARG_RANGE An argument violates a range constraint. The \e
  *                              output_id argument violates its range constraint.
  */
-ALT_STATUS_CODE alt_acp_id_map_write_options_get(const uint32_t output_id,
-                                                 bool* fixed,
-                                                 uint32_t* input_id,
-                                                 ALT_ACP_ID_MAP_PAGE_t* page,
-                                                 uint32_t* awuser);
+        ALT_STATUS_CODE alt_acp_id_map_write_options_get( const uint32_t output_id,
+                                                          bool * fixed,
+                                                          uint32_t * input_id,
+                                                          ALT_ACP_ID_MAP_PAGE_t * page,
+                                                          uint32_t * awuser );
 
 /*! @} */
 
 /*! @} */
 
-#endif  /* __ASSEMBLY__ */
+    #endif /* __ASSEMBLY__ */
 
-#ifdef __cplusplus
+    #ifdef __cplusplus
 }
-#endif  /* __cplusplus */
-#endif  /* __ALT_ADDRESS_SPACE_H__ */
+    #endif /* __cplusplus */
+#endif /* __ALT_ADDRESS_SPACE_H__ */

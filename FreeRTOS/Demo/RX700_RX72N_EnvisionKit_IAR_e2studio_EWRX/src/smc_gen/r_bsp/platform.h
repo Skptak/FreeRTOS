@@ -16,11 +16,13 @@
 *
 * Copyright (C) 2011 Renesas Electronics Corporation. All rights reserved.
 ***********************************************************************************************************************/
+
 /***********************************************************************************************************************
 * File Name    : platform.h
 * Description  : The user chooses which MCU and board they are developing for in this file. If the board you are using
 *                is not listed below, please add your own or use the default 'User Board'.
 ***********************************************************************************************************************/
+
 /***********************************************************************************************************************
 * History : DD.MM.YYYY Version  Description
 *         : 30.11.2011 1.00     First Release
@@ -148,77 +150,76 @@
 #define PLATFORM_H
 
 /***********************************************************************************************************************
-DEFINE YOUR SYSTEM - UNCOMMENT THE INCLUDE PATH FOR THE PLATFORM YOU ARE USING.
+*  DEFINE YOUR SYSTEM - UNCOMMENT THE INCLUDE PATH FOR THE PLATFORM YOU ARE USING.
 ***********************************************************************************************************************/
 /* GENERIC_RX64M */
-//#include "./board/generic_rx64m/r_bsp.h"
+/*#include "./board/generic_rx64m/r_bsp.h" */
 
 /* GENERIC_RX65N */
-//#include "./board/generic_rx65n/r_bsp.h"
+/*#include "./board/generic_rx65n/r_bsp.h" */
 
 /* GENERIC_RX66N */
-//#include "./board/generic_rx66n/r_bsp.h"
+/*#include "./board/generic_rx66n/r_bsp.h" */
 
 /* GENERIC_RX66T */
-//#include "./board/generic_rx66t/r_bsp.h"
+/*#include "./board/generic_rx66t/r_bsp.h" */
 
 /* GENERIC_RX71M */
-//#include "./board/generic_rx71m/r_bsp.h"
+/*#include "./board/generic_rx71m/r_bsp.h" */
 
 /* GENERIC_RX72M */
-//#include "./board/generic_rx72m/r_bsp.h"
+/*#include "./board/generic_rx72m/r_bsp.h" */
 
 /* GENERIC_RX72N */
 #include "./board/generic_rx72n/r_bsp.h"
 
 /* GENERIC_RX72T */
-//#include "./board/generic_rx72t/r_bsp.h"
+/*#include "./board/generic_rx72t/r_bsp.h" */
 
 /* GENERIC_RX230 */
-//#include "./board/generic_rx230/r_bsp.h"
+/*#include "./board/generic_rx230/r_bsp.h" */
 
 /* GENERIC_RX231 */
-//#include "./board/generic_rx231/r_bsp.h"
+/*#include "./board/generic_rx231/r_bsp.h" */
 
 /* GENERIC_RX23E-A */
-//#include "./board/generic_rx23e-a/r_bsp.h"
+/*#include "./board/generic_rx23e-a/r_bsp.h" */
 
 /* GENERIC_RX23T */
-//#include "./board/generic_rx23t/r_bsp.h"
+/*#include "./board/generic_rx23t/r_bsp.h" */
 
 /* GENERIC_RX23W */
-//#include "./board/generic_rx23w/r_bsp.h"
+/*#include "./board/generic_rx23w/r_bsp.h" */
 
 /* GENERIC_RX24T */
-//#include "./board/generic_rx24t/r_bsp.h"
+/*#include "./board/generic_rx24t/r_bsp.h" */
 
 /* GENERIC_RX24U */
-//#include "./board/generic_rx24u/r_bsp.h"
+/*#include "./board/generic_rx24u/r_bsp.h" */
 
 /* GENERIC_RX111 */
-//#include "./board/generic_rx111/r_bsp.h"
+/*#include "./board/generic_rx111/r_bsp.h" */
 
 /* GENERIC_RX110 */
-//#include "./board/generic_rx110/r_bsp.h"
+/*#include "./board/generic_rx110/r_bsp.h" */
 
 /* GENERIC_RX113 */
-//#include "./board/generic_rx113/r_bsp.h"
+/*#include "./board/generic_rx113/r_bsp.h" */
 
 /* GENERIC_RX130 */
-//#include "./board/generic_rx130/r_bsp.h"
+/*#include "./board/generic_rx130/r_bsp.h" */
 
 /* GENERIC_RX13T */
-//#include "./board/generic_rx13t/r_bsp.h"
+/*#include "./board/generic_rx13t/r_bsp.h" */
 
 /* User Board - Define your own board here. */
-//#include "./board/user/r_bsp.h"
+/*#include "./board/user/r_bsp.h" */
 
 /***********************************************************************************************************************
-MAKE SURE AT LEAST ONE PLATFORM WAS DEFINED - DO NOT EDIT BELOW THIS POINT
+*  MAKE SURE AT LEAST ONE PLATFORM WAS DEFINED - DO NOT EDIT BELOW THIS POINT
 ***********************************************************************************************************************/
 #ifndef PLATFORM_DEFINED
-#error  "Error - No platform defined in platform.h!"
+    #error  "Error - No platform defined in platform.h!"
 #endif
 
 #endif /* PLATFORM_H */
-

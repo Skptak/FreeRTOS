@@ -373,7 +373,7 @@ static int parse_long_options( char * const * nargv,
             return( BADARG );
         }
     }
-    else                /* unknown option */
+    else /* unknown option */
     {
         if( short_too )
         {
@@ -625,8 +625,8 @@ start:
     if( ( long_options != NULL ) && ( optchar == 'W' ) && ( oli[ 1 ] == ';' ) )
     {
         /* -W long-option */
-        if( *place ) /* no space */
-        {   /* NOTHING */
+        if( *place )                     /* no space */
+        {                                /* NOTHING */
         }
         else if( ++red_optind >= nargc ) /* no arg */
         {
@@ -640,7 +640,7 @@ start:
             red_optopt = optchar;
             return( BADARG );
         }
-        else                /* white space */
+        else /* white space */
         {
             place = nargv[ red_optind ];
         }
@@ -659,7 +659,7 @@ start:
             ++red_optind;
         }
     }
-    else                    /* takes (optional) argument */
+    else /* takes (optional) argument */
     {
         red_optarg = NULL;
 

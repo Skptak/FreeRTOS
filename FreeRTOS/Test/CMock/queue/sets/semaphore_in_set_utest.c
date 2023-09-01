@@ -140,7 +140,7 @@ void test_macro_xSemaphoreGiveFromISR_in_set_high_priority_pending( void )
 
 /**
  * @brief Test xSemaphoreGiveFromISR with a lower priority task waiting on a queue in a Queue Set
- * @details Test xSemaphoreGiveFromISR on a Queeu in a Queue Set with a lower priority task waiting and
+ * @details Test xSemaphoreGiveFromISR on a Queue in a Queue Set with a lower priority task waiting and
  *  verify that xHigherPriorityTaskWoken is not modified.
  * @coverage xQueueGiveFromISR
  */

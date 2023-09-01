@@ -98,7 +98,7 @@ typedef struct _MciCmd
     unsigned char * pData;
     /*/ Size of data buffer in bytes. */
     unsigned short blockSize;
-    /*/ Number of blocks to be transfered */
+    /*/ Number of blocks to be transferred */
     unsigned short nbBlock;
     /*/ Indicate if continue to transfer data */
     unsigned char conTrans;

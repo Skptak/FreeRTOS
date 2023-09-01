@@ -27,13 +27,13 @@
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-Pragma directive
+*  Pragma directive
 ***********************************************************************************************************************/
 /* Start user code for pragma. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
 
 /***********************************************************************************************************************
-Includes
+*  Includes
 ***********************************************************************************************************************/
 #include "r_cg_macrodriver.h"
 #include "r_cg_cgc.h"
@@ -42,7 +42,7 @@ Includes
 #include "r_cg_userdefine.h"
 
 /***********************************************************************************************************************
-Global variables and functions
+*  Global variables and functions
 ***********************************************************************************************************************/
 /* Start user code for global. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
@@ -53,7 +53,7 @@ Global variables and functions
 * Arguments    : None
 * Return Value : None
 ***********************************************************************************************************************/
-void R_CGC_Create(void)
+void R_CGC_Create( void )
 {
     volatile uint32_t memorywaitcycle;
 
@@ -65,7 +65,9 @@ void R_CGC_Create(void)
     SYSTEM.MOSCCR.BIT.MOSTP = 0U;
 
     /* Wait for main clock oscillator wait counter overflow */
-    while (1U != SYSTEM.OSCOVFSR.BIT.MOOVF);
+    while( 1U != SYSTEM.OSCOVFSR.BIT.MOOVF )
+    {
+    }
 
     /* Set system clock */
     SYSTEM.SCKCR.LONG = _00000002_CGC_PCLKD_DIV_4 | _00000020_CGC_PCLKC_DIV_4 | _00000200_CGC_PCLKB_DIV_4 |
@@ -77,22 +79,30 @@ void R_CGC_Create(void)
     SYSTEM.PLLCR2.BIT.PLLEN = 0U;
 
     /* Wait for PLL wait counter overflow */
-    while (1U != SYSTEM.OSCOVFSR.BIT.PLOVF);
+    while( 1U != SYSTEM.OSCOVFSR.BIT.PLOVF )
+    {
+    }
 
     /* Stop sub-clock */
     RTC.RCR3.BIT.RTCEN = 0U;
 
     /* Wait for the register modification to complete */
-    while (0U != RTC.RCR3.BIT.RTCEN);
+    while( 0U != RTC.RCR3.BIT.RTCEN )
+    {
+    }
 
     /* Stop sub-clock */
     SYSTEM.SOSCCR.BIT.SOSTP = 1U;
 
     /* Wait for the register modification to complete */
-    while (1U != SYSTEM.SOSCCR.BIT.SOSTP);
+    while( 1U != SYSTEM.SOSCCR.BIT.SOSTP )
+    {
+    }
 
     /* Wait for sub-clock oscillation stopping */
-    while (0U != SYSTEM.OSCOVFSR.BIT.SOOVF);
+    while( 0U != SYSTEM.OSCOVFSR.BIT.SOOVF )
+    {
+    }
 
     /* Set UCLK */
     SYSTEM.SCKCR2.WORD = _0040_CGC_UCLK_DIV_5 | _0001_SCKCR2_BIT0;

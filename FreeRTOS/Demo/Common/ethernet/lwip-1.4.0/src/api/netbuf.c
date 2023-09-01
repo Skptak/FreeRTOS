@@ -216,7 +216,7 @@
  * @param buf netbuf to get the data from
  * @param dataptr pointer to a void pointer where to store the data pointer
  * @param len pointer to an u16_t where the length of the data is stored
- * @return ERR_OK if the information was retreived,
+ * @return ERR_OK if the information was retrieved,
  *         ERR_BUF on error.
  */
     err_t netbuf_data( struct netbuf * buf,
