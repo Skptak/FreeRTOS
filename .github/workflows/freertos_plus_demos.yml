@@ -1484,23 +1484,6 @@ jobs:
                     exit 1
                   }
 
-            - env:
-                stepName: Build FreeRTOS+WolfSSL FIPS Demo
-              name: ${{ env.stepName }}
-              working-directory: FreeRTOS-Plus/Demo/FreeRTOS_Plus_WolfSSL_FIPS_Ready_Windows_Simulator
-              run: |
-                  # Build FreeRTOS+WolfSSL FIPS Demo
-                  echo "::group::Build FreeRTOS+WolfSSL FIPS Demo"
-                  msbuild FreeRTOS_Plus_WolfSSL.sln -t:rebuild -property:Configuration=Debug -m
-                  if($? -eq 1) {
-                    echo "::endgroup::"
-                    Write-Host -ForegroundColor green "Build FreeRTOS+WolfSSL FIPS Demo Passed"
-                  }else {
-                    echo "::endgroup::"
-                    Write-Host -ForegroundColor red "Build FreeRTOS+WolfSSL FIPS Demo Failed..."
-                    exit 1
-                  }
-
     winsim_plus_demos:
         name: FreeRTOS+CLI Windows Simulator Demos
         runs-on: windows-2019
