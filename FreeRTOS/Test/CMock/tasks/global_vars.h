@@ -1,6 +1,6 @@
 /*
  * FreeRTOS V202212.00
- * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
+ * Copyright (C) 2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal in
@@ -283,14 +283,14 @@ typedef void (* port_yield_operation)( void );
         TEST_ASSERT_FALSE( vApplicationStackOverflowHook_called ); \
     } while( 0 )
 
-#define ASSERT_GET_IDLE_TASK_MEMORY_CALLED()           \
-    do {                                               \
+#define ASSERT_GET_IDLE_TASK_MEMORY_CALLED()          \
+    do {                                              \
         TEST_ASSERT_TRUE( getIdleTaskMemory_called ); \
         getIdleTaskMemory_called = false;             \
     } while( 0 )
 
-#define ASSERT_GET_IDLE_TASK_MEMORY_NOT_CALLED()        \
-    do {                                                \
+#define ASSERT_GET_IDLE_TASK_MEMORY_NOT_CALLED()       \
+    do {                                               \
         TEST_ASSERT_FALSE( getIdleTaskMemory_called ); \
     } while( 0 )
 
@@ -298,7 +298,7 @@ typedef void (* port_yield_operation)( void );
     do {                                              \
         vApplicationTickHook_called = false;          \
         vTaskDeletePre_called = false;                \
-        getIdleTaskMemory_called = false;            \
+        getIdleTaskMemory_called = false;             \
         port_yield_called = false;                    \
         port_enable_interrupts_called = false;        \
         port_disable_interrupts_called = false;       \
