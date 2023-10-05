@@ -35,7 +35,7 @@
 #include "task.h"
 
 /* FreeRTOS+TCP includes. */
-                #include "FreeRTOS_IP.h"
+#include "FreeRTOS_IP.h"
 #include "FreeRTOS_Sockets.h"
 #include "FreeRTOS_TCP_server.h"
 #include "FreeRTOS_server_private.h"
@@ -109,12 +109,12 @@
                             xAddress.sin_port = FreeRTOS_htons( xPortNumber );
                             xAddress.sin_family = FREERTOS_AF_INET;
 
-                                                    FreeRTOS_bind(
-                                                             xSocket,
-                                                              &xAddress,
-                                                               sizeof(
-                                                                 xAddress ) )
-;
+                            FreeRTOS_bind(
+                                xSocket,
+                                &xAddress,
+                                sizeof(
+                                    xAddress ) )
+                            ;
                             FreeRTOS_listen( xSocket, pxConfigs[ xIndex ].xBackLog );
 
                             FreeRTOS_setsockopt( xSocket, 0, FREERTOS_SO_RCVTIMEO, ( void * ) &xNoTimeout, sizeof( BaseType_t ) );
