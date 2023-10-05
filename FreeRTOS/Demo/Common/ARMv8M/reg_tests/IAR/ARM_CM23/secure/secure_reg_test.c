@@ -43,14 +43,14 @@ typedef __cmse_nonsecure_call void ( * NonSecureRegTestCallback_t ) ( void );
 
 secureportNON_SECURE_CALLABLE void vRegTestAsm_Secure( void )
 {
-    /* Call the function implemented in assembly. */
-    vRegTestAsm_SecureImpl();
+/* Call the function implemented in assembly. */
+                vRegTestAsm_SecureImpl();
 }
 /*-----------------------------------------------------------*/
 
 secureportNON_SECURE_CALLABLE void vRegTest_NonSecureCallback( RegTestCallback_t pxRegTestCallback )
 {
-    NonSecureRegTestCallback_t pxNonSecureRegTestCallback;
+    NonSecureRegTestCallback_t          pxNonSecureRegTestCallback;
 
     /* Return function pointer with cleared LSB. */
     pxNonSecureRegTestCallback = ( NonSecureRegTestCallback_t ) cmse_nsfptr_create( pxRegTestCallback );
