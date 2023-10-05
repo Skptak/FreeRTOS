@@ -32,7 +32,7 @@
 //------------------------------------------------------------------------------
 
 #include "rtt.h"
-#include <utility/assert.h>
+            #include <utility/assert.h>
 
 //------------------------------------------------------------------------------
 //         Exported functions
@@ -46,7 +46,7 @@
 //------------------------------------------------------------------------------
 void RTT_SetPrescaler(AT91S_RTTC *rtt, unsigned short prescaler)
 {
-    rtt->RTTC_RTMR = (prescaler | AT91C_RTTC_RTTRST);
+    rtt->RTTC_RTMR = (prescaler |       AT91C_RTTC_RTTRST);
 }
 
 //------------------------------------------------------------------------------

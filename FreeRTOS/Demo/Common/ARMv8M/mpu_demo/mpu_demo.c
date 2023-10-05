@@ -38,13 +38,13 @@
  */
 static uint8_t ucSharedMemory[ SHARED_MEMORY_SIZE ] __attribute__( ( aligned( 32 ) ) );
 #if ( configTOTAL_MPU_REGIONS == 16 )
-    static uint8_t ucSharedMemory1[ SHARED_MEMORY_SIZE ] __attribute__( ( aligned( 32 ) ) );
-    static uint8_t ucSharedMemory2[ SHARED_MEMORY_SIZE ] __attribute__( ( aligned( 32 ) ) );
+    static uint8_t ucSharedMemory1[SHARED_MEMORY_SIZE] __attribute__( ( aligned( 32 ) ) );
+    static uint8_t          ucSharedMemory2[SHARED_MEMORY_SIZE] __attribute__( ( aligned( 32 ) ) );
     static uint8_t ucSharedMemory3[ SHARED_MEMORY_SIZE ] __attribute__( ( aligned( 32 ) ) );
     static uint8_t ucSharedMemory4[ SHARED_MEMORY_SIZE ] __attribute__( ( aligned( 32 ) ) );
     static uint8_t ucSharedMemory5[ SHARED_MEMORY_SIZE ] __attribute__( ( aligned( 32 ) ) );
     static uint8_t ucSharedMemory6[ SHARED_MEMORY_SIZE ] __attribute__( ( aligned( 32 ) ) );
-    static uint8_t ucSharedMemory7[ SHARED_MEMORY_SIZE ] __attribute__( ( aligned( 32 ) ) );
+                    static uint8_t ucSharedMemory7[ SHARED_MEMORY_SIZE ] __attribute__( ( aligned( 32 ) ) );
     static uint8_t ucSharedMemory8[ SHARED_MEMORY_SIZE ] __attribute__( ( aligned( 32 ) ) );
 #endif /* configTOTAL_MPU_REGIONS == 16 */
 
@@ -60,7 +60,14 @@ static uint8_t ucSharedMemory[ SHARED_MEMORY_SIZE ] __attribute__( ( aligned( 32
  * @note We are declaring a region of 32 bytes even though we need only one. The
  * reason is that the size of an MPU region must be a multiple of 32 bytes.
  */
-static volatile uint8_t ucROTaskFaultTracker[ SHARED_MEMORY_SIZE ] __attribute__( ( aligned( 32 ) ) ) = { 0 };
+            static volatile
+                     uint8_t
+ucROTaskFaultTracker[ SHARED_MEMORY_SIZE ] 
+
+__attribute__( ( aligned( 32 ) ) ) = {0}
+
+
+;
 /*-----------------------------------------------------------*/
 
 /**
@@ -81,7 +88,7 @@ static void prvRWAccessTask( void * pvParameters );
 
 /*-----------------------------------------------------------*/
 
-static void prvROAccessTask( void * pvParameters )
+static void prvROAccessTask(void * pvParameters)
 {
     uint8_t ucVal;
 
@@ -103,7 +110,7 @@ static void prvROAccessTask( void * pvParameters )
          *    Handler that this is an expected fault. The handler recovers from
          *    the expected fault gracefully by jumping to the next instruction.
          *
-         * 3. Perfrom a write to the shared memory resulting in a memory fault.
+         * 3.           Perform a write to the shared memory resulting in a memory fault.
          *
          * 4. Ensure that the write access did generate MemFault and the fault
          *    handler did clear the ucROTaskFaultTracker[ 0 ].
