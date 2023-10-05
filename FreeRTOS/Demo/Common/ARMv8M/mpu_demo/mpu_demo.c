@@ -38,13 +38,13 @@
  */
 static uint8_t ucSharedMemory[ SHARED_MEMORY_SIZE ] __attribute__( ( aligned( 32 ) ) );
 #if ( configTOTAL_MPU_REGIONS == 16 )
-    static uint8_t ucSharedMemory1[SHARED_MEMORY_SIZE] __attribute__( ( aligned( 32 ) ) );
-    static uint8_t          ucSharedMemory2[SHARED_MEMORY_SIZE] __attribute__( ( aligned( 32 ) ) );
+    static uint8_t ucSharedMemory1[ SHARED_MEMORY_SIZE ] __attribute__( ( aligned( 32 ) ) );
+    static uint8_t ucSharedMemory2[ SHARED_MEMORY_SIZE ] __attribute__( ( aligned( 32 ) ) );
     static uint8_t ucSharedMemory3[ SHARED_MEMORY_SIZE ] __attribute__( ( aligned( 32 ) ) );
     static uint8_t ucSharedMemory4[ SHARED_MEMORY_SIZE ] __attribute__( ( aligned( 32 ) ) );
     static uint8_t ucSharedMemory5[ SHARED_MEMORY_SIZE ] __attribute__( ( aligned( 32 ) ) );
     static uint8_t ucSharedMemory6[ SHARED_MEMORY_SIZE ] __attribute__( ( aligned( 32 ) ) );
-                    static uint8_t ucSharedMemory7[ SHARED_MEMORY_SIZE ] __attribute__( ( aligned( 32 ) ) );
+    static uint8_t ucSharedMemory7[ SHARED_MEMORY_SIZE ] __attribute__( ( aligned( 32 ) ) );
     static uint8_t ucSharedMemory8[ SHARED_MEMORY_SIZE ] __attribute__( ( aligned( 32 ) ) );
 #endif /* configTOTAL_MPU_REGIONS == 16 */
 
@@ -60,11 +60,11 @@ static uint8_t ucSharedMemory[ SHARED_MEMORY_SIZE ] __attribute__( ( aligned( 32
  * @note We are declaring a region of 32 bytes even though we need only one. The
  * reason is that the size of an MPU region must be a multiple of 32 bytes.
  */
-            static volatile
-                     uint8_t
-ucROTaskFaultTracker[ SHARED_MEMORY_SIZE ] 
+static volatile
+uint8_t
+    ucROTaskFaultTracker[ SHARED_MEMORY_SIZE ]
 
-__attribute__( ( aligned( 32 ) ) ) = {0}
+__attribute__( ( aligned( 32 ) ) ) = { 0 }
 
 
 ;
@@ -88,7 +88,7 @@ static void prvRWAccessTask( void * pvParameters );
 
 /*-----------------------------------------------------------*/
 
-static void prvROAccessTask(void * pvParameters)
+static void prvROAccessTask( void * pvParameters )
 {
     uint8_t ucVal;
 
