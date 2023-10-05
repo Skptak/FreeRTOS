@@ -32,4 +32,3 @@ jobs:
       continue-on-error: true
       with:
         exclude-dirs: ethernet, drivers, FreeRTOS/Demo
-      
