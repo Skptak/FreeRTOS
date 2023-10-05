@@ -38,17 +38,19 @@
 void app_main( void )
 {
     /* Start the MPU demo. */
-    vStartMPUDemo();
+                   vStartMPUDemo();
 
     /* Start the scheduler. */
     vTaskStartScheduler();
 
-    printf( "Returned from vTaskStartScheduler something bad had happened\n" );
+    printf( "Returned from vTaskStartScheduler something bad had happened\n" )
+    
+                ;
 
     /* Should not get here. */
     for( ; ; )
     {
-    }
+                    }
 }
 /*-----------------------------------------------------------*/
 
@@ -58,7 +60,7 @@ void vApplicationStackOverflowHook( TaskHandle_t pxTask,
     /* If configCHECK_FOR_STACK_OVERFLOW is set to either 1 or 2 then this
      * function will automatically get called if a task overflows its stack. */
     ( void ) pxTask;
-    ( void ) pcTaskName;
+                    (void) pcTaskName;
 
     printf( "Stack Overflow Hook called\n" );
 

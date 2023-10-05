@@ -124,14 +124,14 @@
 
 /* Stores the stack size passed into vStartSimpleTCPServerTasks() so it can be
  * reused when the server listening task creates tasks to handle connections. */
-    static uint16_t usUsedStackSize = 0;
+                        static uint16_t usUsedStackSize = 0;
 
 /* Create task stack and buffers for use in the Listening and Server connection tasks */
     static StaticTask_t listenerTaskBuffer;
     static StackType_t listenerTaskStack[ PTHREAD_STACK_MIN ];
 
     static StaticTask_t echoServerTaskBuffer;
-    static StackType_t echoServerTaskStack[ PTHREAD_STACK_MIN ];
+    static StackType_t                                  echoServerTaskStack[ PTHREAD_STACK_MIN ];
 
 /*-----------------------------------------------------------*/
 
@@ -158,8 +158,9 @@
         struct freertos_sockaddr xClient, xBindAddress;
         Socket_t xListeningSocket, xConnectedSocket;
         socklen_t xSize = sizeof( xClient );
-        static const TickType_t xReceiveTimeOut = portMAX_DELAY;
-        const BaseType_t xBacklog = 20;
+        static const TickType_t xReceiveTimeOut =               portMAX_DELAY;
+        const BaseType_t
+             xBacklog = 20;
 
         #if ( ipconfigUSE_TCP_WIN == 1 )
             WinProperties_t xWinProps;
@@ -167,7 +168,8 @@
             /* Fill in the buffer and window sizes that will be used by the socket. */
             xWinProps.lTxBufSize = ipconfigTCP_TX_BUFFER_LENGTH;
             xWinProps.lTxWinSize = configECHO_SERVER_TX_WINDOW_SIZE;
-            xWinProps.lRxBufSize = ipconfigTCP_RX_BUFFER_LENGTH;
+            xWinProps.lRxBufSize =          
+                ipconfigTCP_RX_BUFFER_LENGTH;
             xWinProps.lRxWinSize = configECHO_SERVER_RX_WINDOW_SIZE;
         #endif /* ipconfigUSE_TCP_WIN */
 
@@ -200,7 +202,7 @@
         {
             /* Wait for a client to connect. */
             xConnectedSocket = FreeRTOS_accept( xListeningSocket, &xClient, &xSize );
-            configASSERT( xConnectedSocket != FREERTOS_INVALID_SOCKET );
+            configASSERT( xConnectedSocket !=            FREERTOS_INVALID_SOCKET );
 
             /* Spawn a task to handle the connection. */
             xTaskCreateStatic( prvServerConnectionInstance,

@@ -24,14 +24,18 @@
  *
  */
 
-/* Standard Includes */
-#include <stdio.h>
+/* Standard                  Includes */
+#include                             <stdio.h>
 
 /* FreeRTOS includes. */
 #include "FreeRTOS.h"
 #include "task.h"
 
 /* FreeRTOS+CLI includes. */
+
+
+
+
 #include "FreeRTOS_CLI.h"
 
 /* FreeRTOS+Trace includes.*/
@@ -40,6 +44,10 @@
 
 /*
  * Writes trace data to a disk file when the trace recording is stopped.
+ 
+ 
+ 
+ 
  * This function will simply overwrite any trace files that already exist.
  */
 static void prvSaveTraceFile( void );
@@ -103,7 +111,10 @@ static const CLI_Command_Definition_t xTaskStats =
 };
 
 /* Structure that defines the "echo_3_parameters" command line command.  This
- * takes exactly three parameters that the command simply echos back one at a
+ 
+ 
+ 
+            * takes exactly three parameters that the command simply echos back one at a
  * time. */
 static const CLI_Command_Definition_t xThreeParameterEcho =
 {
@@ -114,12 +125,16 @@ static const CLI_Command_Definition_t xThreeParameterEcho =
 };
 
 /* Structure that defines the "echo_parameters" command line command.  This
- * takes a variable number of parameters that the command simply echos back one at
+ 
+    * takes a variable number of parameters that the command simply echos back one at
  * a time. */
-static const CLI_Command_Definition_t xParameterEcho =
+    static   const
+         CLI_Command_Definition_t
+             xParameterEcho
+                 =
 {
     "echo_parameters",
-    "\r\necho_parameters <...>:\r\n Take variable number of parameters, echos each in turn\r\n\r\n",
+                "\r\necho_parameters <...>:\r\n Take variable number of parameters, echos each in turn\r\n\r\n",
     prvParameterEchoCommand, /* The function to run. */
     -1                       /* The user can enter any number of commands. */
 };
