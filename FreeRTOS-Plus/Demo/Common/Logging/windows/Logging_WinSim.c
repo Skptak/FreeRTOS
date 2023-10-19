@@ -542,3 +542,11 @@ void vPlatformInitLogging(void)
     vLoggingInit(pdTRUE, pdFALSE, pdFALSE, 0U, 0U);
 }
 /*-----------------------------------------------------------*/
+
+void mbedtls_string_printf(void* ssl, int level, const char* file, int line, const char* str)
+{
+    char * fileNameIndex;
+    fileNameIndex = strrchr(file, '\\');
+    fileNameIndex++;
+    printf("%s:%d\nLEVEL[%d]: %s\n", fileNameIndex, line, level, str);
+}

@@ -158,7 +158,7 @@ extern void vLoggingPrintf( const char * pcFormatString,
 /**
  * @brief The port to use for the demo.
  */
-    #define democonfigMQTT_BROKER_PORT    ( 8883 )
+    #define democonfigMQTT_BROKER_PORT    ( 443U )
 #endif
 
 /*-----------------------------------------------------------*/
@@ -191,7 +191,7 @@ extern void vLoggingPrintf( const char * pcFormatString,
  * The topic name starts with the client identifier to ensure that each demo
  * interacts with a unique topic name.
  */
-#define mqttexampleTOPIC                                  democonfigCLIENT_IDENTIFIER "/example/topic"
+#define mqttexampleTOPIC                                  "$aws/things/TLS1_3_Test_Thing" democonfigCLIENT_IDENTIFIER
 
 /**
  * @brief The number of topic filters to subscribe.

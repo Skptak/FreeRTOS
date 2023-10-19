@@ -1,0 +1,14 @@
+diff --git a/library/ssl_tls13_client.c b/library/ssl_tls13_client.c
+index 2b68306f0..8ac84180d 100644
+--- a/library/ssl_tls13_client.c
++++ b/library/ssl_tls13_client.c
+@@ -1416,6 +1416,9 @@ static int ssl_tls13_parse_encrypted_extensions( mbedtls_ssl_context *ssl,
+          */
+         switch( extension_type )
+         {
++            case MBEDTLS_TLS_EXT_SERVERNAME_HOSTNAME:
++                MBEDTLS_SSL_DEBUG_MSG(3, ("found extensions server name"));
++                break;
+ 
+             case MBEDTLS_TLS_EXT_SUPPORTED_GROUPS:
+                 MBEDTLS_SSL_DEBUG_MSG( 3, ( "found extensions supported groups" ) );

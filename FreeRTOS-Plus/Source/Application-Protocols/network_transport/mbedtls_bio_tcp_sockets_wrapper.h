@@ -58,5 +58,10 @@ int xMbedTLSBioTCPSocketsWrapperRecv( void * ctx,
                                       unsigned char * buf,
                                       size_t len );
 
+void mbedtls_string_printf(void* ssl,
+                            int level,
+                            const char* file,
+                            int line,
+                            const char* str );
 
 #endif /* MBEDTLS_BIO_TCP_SOCKETS_WRAPPER */

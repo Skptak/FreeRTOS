@@ -2232,7 +2232,7 @@ void mbedtls_platform_free( void * ptr );
  *
  * This module provides debugging functions.
  */
-//#define MBEDTLS_DEBUG_C
+#define MBEDTLS_DEBUG_C
 
 /**
  * \def MBEDTLS_DES_C
@@ -2697,7 +2697,7 @@ void mbedtls_platform_free( void * ptr );
  *           or MBEDTLS_PSA_CRYPTO_EXTERNAL_RNG.
  *
  */
-//#define MBEDTLS_PSA_CRYPTO_C
+#define MBEDTLS_PSA_CRYPTO_C
 
 /**
  * \def MBEDTLS_PSA_CRYPTO_SE_C
@@ -3587,3 +3587,6 @@ void mbedtls_platform_free( void * ptr );
 //#define MBEDTLS_ECDH_VARIANT_EVEREST_ENABLED
 
 /** \} name SECTION: Module configuration options */
+
+#include "mbedtls/tls13-only.h"
+#include "mbedtls/check_config.h"
