@@ -45,10 +45,10 @@
 
 #include "mbedtls_freertos_port.h"
 
+/* Soren - Basic check to ensure that TLS1.2 is not being used */
 #ifdef MBEDTLS_SSL_PROTO_TLS1_2
     #error Not using TLS 1.2
 #endif
-
 
 #ifndef MBEDTLS_SSL_PROTO_TLS1_3
     #error Not using TLS 1.3

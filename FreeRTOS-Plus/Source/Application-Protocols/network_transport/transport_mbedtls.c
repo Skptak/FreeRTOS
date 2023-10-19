@@ -37,10 +37,6 @@
 
 #include "logging_stack.h"
 
-#define MBEDTLS_ALLOW_PRIVATE_ACCESS
-
-#include "mbedtls/private_access.h"
-
 /* Standard includes. */
 #include <string.h>
 
@@ -52,7 +48,10 @@
 
 /* TLS transport header. */
 #include "transport_mbedtls.h"
-//#include "psa/crypto_values.h"
+
+/* MbedTLS Includes */
+#define MBEDTLS_ALLOW_PRIVATE_ACCESS
+#include "mbedtls/private_access.h"
 #include "mbedtls/debug.h"
 #include "psa/crypto.h"
 #include "psa/crypto_values.h"
@@ -240,7 +239,7 @@ static void sslContextInit( SSLContext_t * pSslContext )
     // Set the threshold based off of how much debug you want
     // 0 Is the least, 5 is the most
     mbedtls_debug_set_threshold( 0U );
-    mbedtls_ssl_conf_dbg( &( pSslContext->config ), 
+    mbedtls_ssl_conf_dbg( &( pSslContext->config ),
         &mbedtls_string_printf,
         &( pSslContext->context ) );
 
@@ -509,6 +508,7 @@ static TlsTransportStatus_t tlsSetup( NetworkContext_t * pNetworkContext,
         if( mbedtlsError != 0 )
         {
             returnStatus = TLS_TRANSPORT_INVALID_CREDENTIALS;
+            // Soren - Put this here for use in debugging the TLS Conenction failing
             configASSERT( 0 );
         }
         else
@@ -579,16 +579,21 @@ static TlsTransportStatus_t tlsHandshake( NetworkContext_t * pNetworkContext,
 
         if( mbedtlsError != 0 )
         {
-/*
+
             LogError( ( "Failed to perform TLS handshake: mbedTLSError= %s : %s.",
                         mbedtlsHighLevelCodeOrDefault( mbedtlsError ),
                         mbedtlsLowLevelCodeOrDefault( mbedtlsError ) ) );
-*/
-            printf("Failed to perform TLS handshake: mbedTLSError= %s : %s.\n",
-                        mbedtlsHighLevelCodeOrDefault(mbedtlsError),
-                        mbedtlsLowLevelCodeOrDefault(mbedtlsError) );
+            /** Soren - The use of the configASSERT() can cause the logging task
+             * to not be run, as such I put in a printf() version of the error here.
+             * printf("Failed to perform TLS handshake: mbedTLSError= %s : %s.\n",
+             *             mbedtlsHighLevelCodeOrDefault(mbedtlsError),
+             *             mbedtlsLowLevelCodeOrDefault(mbedtlsError) );
+             */
+
             returnStatus = TLS_TRANSPORT_HANDSHAKE_FAILED;
-            configASSERT( mbedtlsError == 0);
+            /** Soren - Put this here for debugging the connection failing
+             * configASSERT( mbedtlsError == 0);
+             */
         }
         else
         {

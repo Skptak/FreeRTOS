@@ -20,7 +20,7 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  * https://www.FreeRTOS.org
- * https://aws.amazon.com/freertos
+ * https://github.com/FreeRTOS
  *
  */
 
@@ -49,8 +49,22 @@
 #endif
 
 #ifndef LIBRARY_LOG_LEVEL
-    #define LIBRARY_LOG_LEVEL    LOG_DEBUG
+    #define LIBRARY_LOG_LEVEL    LOG_INFO
 #endif
+
+/* Prototype for the function used to print to console on Windows simulator
+ * of FreeRTOS.
+ * The function prints to the console before the network is connected;
+ * then a UDP port after the network has connected. */
+extern void vLoggingPrintf( const char * pcFormatString,
+                            ... );
+
+/* Map the SdkLog macro to the logging function to enable logging
+ * on Windows simulator. */
+#ifndef SdkLog
+    #define SdkLog( message )    vLoggingPrintf message
+#endif
+
 #include "logging_stack.h"
 
 
@@ -64,7 +78,12 @@
  * must be unique; so edit as required to ensure that no two clients connecting to
  * the same broker use the same client identifier.
  *
- * #define democonfigCLIENT_IDENTIFIER    "insert here."
+ *!!! Please note a #defined constant is used for convenience of demonstration
+ *!!! only.  Production devices can use something unique to the device that can
+ *!!! be read by software, such as a production serial number, instead of a
+ *!!! hard coded constant.
+ *
+ * #define democonfigCLIENT_IDENTIFIER				"insert here."
  */
 #define democonfigCLIENT_IDENTIFIER    sorenClient_Identifier
 
@@ -203,7 +222,21 @@
 
 
 /**
- * @brief PEM-encoded client private key.
+ * @brief Client's private key.
+ *
+ *!!! Please note pasting a key into the header file in this manner is for
+ *!!! convenience of demonstration only and should not be done in production.
+ *!!! Never paste a production private key here!.  Production devices should
+ *!!! store keys securely, such as within a secure element.  Additionally,
+ *!!! we provide the corePKCS library that further enhances security by
+ *!!! enabling securely stored keys to be used without exposing them to
+ *!!! software.
+ *
+ * For AWS IoT MQTT broker, refer to the AWS documentation below for details
+ * regarding clientauthentication.
+ * https://docs.aws.amazon.com/iot/latest/developerguide/client-authentication.html
+ *
+ * @note This private key should be PEM-encoded.
  *
  * Must include the PEM header and footer:
  * "-----BEGIN RSA PRIVATE KEY-----\n"\
@@ -286,7 +319,8 @@
  * @brief The name of the MQTT library used and its version, following an "@"
  * symbol.
  */
-#define democonfigMQTT_LIB                  "core-mqtt@1.0.0"
+#include "core_mqtt.h" /* Include coreMQTT header for MQTT_LIBRARY_VERSION macro. */
+#define democonfigMQTT_LIB               "core-mqtt@"MQTT_LIBRARY_VERSION
 
 /**
  * @brief Set the stack size of the main demo task.
@@ -294,11 +328,11 @@
  * In the Windows port, this stack only holds a structure. The actual
  * stack is created by an operating system thread.
  */
-#define democonfigDEMO_STACKSIZE            configMINIMAL_STACK_SIZE
+#define democonfigDEMO_STACKSIZE         configMINIMAL_STACK_SIZE
 
 /**
  * @brief Size of the network buffer for MQTT packets.
  */
-#define democonfigNETWORK_BUFFER_SIZE       ( 1024U )
+#define democonfigNETWORK_BUFFER_SIZE    ( 1024U )
 
 #endif /* DEMO_CONFIG_H */

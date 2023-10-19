@@ -3586,7 +3586,11 @@ void mbedtls_platform_free( void * ptr );
  */
 //#define MBEDTLS_ECDH_VARIANT_EVEREST_ENABLED
 
-/** \} name SECTION: Module configuration options */
-
+/** Soren - Include the tls13-only.h file from
+ * https://github.com/Mbed-TLS/mbedtls/blob/development/tests/configs/tls13-only.h
+ * to ensure that only TLS 1.3 options are being used
+*/
 #include "mbedtls/tls13-only.h"
 #include "mbedtls/check_config.h"
+
+/** \} name SECTION: Module configuration options */
