@@ -1,0 +1,40 @@
+// Workspace settings
+{
+    // The following will hide the js and map files in the editor
+    "files.exclude": {
+        "*/docs/*": true,
+        "*/test/*": true,
+        "*/tools/*": true,
+        "*/.github/*": true,
+    },
+
+    "C_Cpp.default.includePath": [
+        // Demo Includes
+        ".",
+        "../Common",
+        "DemoTasks/include",
+        "../../../Source/Application-Protocols/network_transport/tcp_sockets_wrapper/include",
+        "../../../Source/Application-Protocols/network_transport",
+        "../../../Source/Utilities/backoff_algorithm/source/include",
+        // corePKCS11 Includes
+        "../../Source/corePKCS11/source/include",
+        "../../Source/corePKCS11/source/portable/os",
+        "../../Source/corePKCS11/source/portable/os/freertos_winsim",
+        "../../Source/corePKCS11/source/dependency/3rdparty/mbedtls_utils",
+        "../../Source/corePKCS11/source/dependency/3rdparty/pkcs11",
+        // FreeRTOS-Plus-TCP Includes
+        "../../Source/FreeRTOS-Plus-TCP/source/include",
+        "../../Source/FreeRTOS-Plus-TCP/source/portable/Compiler/MSVC",
+        "../../Source/FreeRTOS-Plus-TCP/tools/tcp_utilities/include",
+        "../../ThirdParty/winpcap/include",
+        "../../ThirdParty/winpcap/include/pcap",
+        // FreeRTOS-Kernel Includes
+        "../../../FreeRTOS/Source/portable/MSVC-MingW",
+        "../../../FreeRTOS/Source/include",
+        // Logging Includes
+        "../../Source/Utilities/logging",
+        // MbedTLS Includes
+        "../../ThirdParty/mbedtls/library",
+        "../../ThirdParty/mbedtls/include",
+    ]
+}
