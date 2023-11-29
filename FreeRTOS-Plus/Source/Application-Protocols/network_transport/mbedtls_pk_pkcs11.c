@@ -345,7 +345,17 @@ CK_RV xPKCS11_initMbedtlsPkContext( mbedtls_pk_context * pxMbedtlsPkCtx,
 
     if( xResult == CKR_OK )
     {
-        xResult = CKR_FUNCTION_FAILED;
+        #ifdef MBEDTLS_USE_PSA_CRYPTO
+            xResult =  psa_crypto_init();
+            if( xResult != PSA_SUCCESS )
+            {
+                LogError( ( "Failed to initialize PSA Crypto implementation: %s", ( int ) mbedtlsError ) );
+                xResult = CKR_FUNCTION_FAILED;
+                xKeyType = CKK_VENDOR_DEFINED;
+            }
+        #endif /* MBEDTLS_USE_PSA_CRYPTO */
+
+        xResult= CKR_FUNCTION_FAILED;
 
         switch( xKeyType )
         {
@@ -1066,11 +1076,6 @@ static CK_RV p11_rsa_ctx_init( void * pvCtx,
     {
         xResult = CKR_FUNCTION_FAILED;
     }
-
-    #ifdef MBEDTLS_USE_PSA_CRYPTO
-        psa_crypto_init();
-        LogError( ( "Failed to initialize PSA Crypto implementation" ) );
-    #endif /* MBEDTLS_USE_PSA_CRYPTO */
 
     /*
      * TODO: corePKCS11 does not allow exporting RSA public attributes.
