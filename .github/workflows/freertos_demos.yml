@@ -62,7 +62,7 @@ jobs:
           $content = Get-Content -Path 'main.c' -Raw
           $newContent = $content -replace 'int\s+main(.*?)void(.*?)\r?\n\s*{', 'int main( void ){setvbuf( stdout, NULL, _IONBF, 0 );'
           $newContent | Set-Content -Path 'main.c'
-          msbuild WIN32.sln -t:rebuild
+          msbuild WIN32.sln -t:rebuild -m
           $exitStatus = $?
           echo "::endgroup::"
           if($exitStatus -eq 1) {
@@ -93,7 +93,7 @@ jobs:
           $content = Get-Content -Path 'main.c' -Raw
           $newContent = $content -replace '#define\s+mainCREATE_SIMPLE_BLINKY_DEMO_ONLY\s+0', '#define mainCREATE_SIMPLE_BLINKY_DEMO_ONLY    1'
           $newContent | Set-Content -Path 'main.c'
-          msbuild WIN32.sln -t:rebuild
+          msbuild WIN32.sln -t:rebuild -m
           echo "::endgroup::"
           $exitStatus = $?
           if($exitStatus -eq 1) {
@@ -124,7 +124,7 @@ jobs:
           $content = Get-Content -Path 'main.c' -Raw
           $newContent = $content -replace 'int\s+main(.*?)void(.*?)\r?\n\s*{', 'int main( void ){setvbuf( stdout, NULL, _IONBF, 0 );'
           $newContent | Set-Content -Path 'main.c'
-          msbuild WIN32.sln -t:rebuild
+          msbuild WIN32.sln -t:rebuild -m
           $exitStatus = $?
           echo "::endgroup::"
           if($exitStatus -eq 1) {
