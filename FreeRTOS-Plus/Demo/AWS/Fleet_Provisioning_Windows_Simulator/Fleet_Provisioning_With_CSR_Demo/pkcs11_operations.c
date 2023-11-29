@@ -47,6 +47,19 @@
 #include "mbedtls_pkcs11.h"
 
 /* MbedTLS include. */
+#ifndef MBEDTLS_CONFIG_FILE
+    #include "mbedtls/mbedtls_config.h"
+#else
+    #include MBEDTLS_CONFIG_FILE
+#endif
+
+#ifdef MBEDTLS_PSA_CRYPTO_C
+    /* MbedTLS PSA Includes */
+    #include "psa/crypto.h"
+    #include "psa/crypto_types.h"
+    #include "psa/crypto_values.h"
+#endif /* MBEDTLS_PSA_CRYPTO_C */
+
 #include "mbedtls/error.h"
 #include "mbedtls/oid.h"
 #include "mbedtls/pk.h"
@@ -232,6 +245,16 @@ bool xGenerateKeyAndCsr( CK_SESSION_HANDLE xP11Session,
 
     if( xPkcs11Ret == CKR_OK )
     {
+        #ifdef MBEDTLS_PSA_CRYPTO_C
+            ulMbedtlsRet = psa_crypto_init();
+
+            if( ulMbedtlsRet != PSA_SUCCESS )
+            {
+                LogError( ( "Failed to initialize PSA Crypto implementation: %s", ( int ) ulMbedtlsRet ) );
+                return 0;
+            }
+        #endif /* MBEDTLS_PSA_CRYPTO_C */
+
         xPkcs11Ret = xPKCS11_initMbedtlsPkContext( &xPrivKey, xP11Session, xPrivKeyHandle );
     }
 

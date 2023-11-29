@@ -51,11 +51,12 @@
     #include MBEDTLS_CONFIG_FILE
 #endif
 
-#ifdef MBEDTLS_SSL_PROTO_TLS1_3
+#ifdef MBEDTLS_PSA_CRYPTO_C
     /* MbedTLS PSA Includes */
     #include "psa/crypto.h"
+    #include "psa/crypto_types.h"
     #include "psa/crypto_values.h"
-#endif /* MBEDTLS_SSL_PROTO_TLS1_3 */
+#endif /* MBEDTLS_PSA_CRYPTO_C */
 
 #include "mbedtls/pk.h"
 #include "mbedtls/asn1.h"
@@ -345,15 +346,15 @@ CK_RV xPKCS11_initMbedtlsPkContext( mbedtls_pk_context * pxMbedtlsPkCtx,
 
     if( xResult == CKR_OK )
     {
-        #ifdef MBEDTLS_USE_PSA_CRYPTO
+        #ifdef MBEDTLS_PSA_CRYPTO_C
             xResult =  psa_crypto_init();
             if( xResult != PSA_SUCCESS )
             {
-                LogError( ( "Failed to initialize PSA Crypto implementation: %s", ( int ) mbedtlsError ) );
+                LogError( ( "Failed to initialize PSA Crypto implementation: %s", ( int ) xResult ) );
                 xResult = CKR_FUNCTION_FAILED;
                 xKeyType = CKK_VENDOR_DEFINED;
             }
-        #endif /* MBEDTLS_USE_PSA_CRYPTO */
+        #endif /* MBEDTLS_PSA_CRYPTO_C */
 
         xResult= CKR_FUNCTION_FAILED;
 

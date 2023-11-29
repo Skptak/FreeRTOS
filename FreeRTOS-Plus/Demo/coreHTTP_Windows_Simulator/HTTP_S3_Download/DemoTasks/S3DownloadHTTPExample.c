@@ -82,7 +82,20 @@
 /* SIGV4 API header. */
 #include "sigv4.h"
 
-/* MBEDTLS API header. */
+/* MBedTLS Includes */
+#if !defined( MBEDTLS_CONFIG_FILE )
+    #include "mbedtls/mbedtls_config.h"
+#else
+    #include MBEDTLS_CONFIG_FILE
+#endif
+
+#ifdef MBEDTLS_PSA_CRYPTO_C
+    /* MbedTLS PSA Includes */
+    #include "psa/crypto.h"
+    #include "psa/crypto_types.h"
+    #include "psa/crypto_values.h"
+#endif /* MBEDTLS_PSA_CRYPTO_C */
+
 #include "mbedtls/sha256.h"
 
 /*------------- Demo configurations -------------------------*/
@@ -569,6 +582,17 @@ static SigV4Parameters_t xSigv4Params =
  */
 void vStartSimpleHTTPDemo( void )
 {
+     #ifdef MBEDTLS_PSA_CRYPTO_C
+        psa_status_t returnStatus;
+        returnStatus = psa_crypto_init();
+
+        if( returnStatus != PSA_SUCCESS )
+        {
+            LogError( ( "Failed to initialize PSA Crypto implementation: %s", ( int ) returnStatus ) );
+            return;
+        }
+    #endif /* MBEDTLS_PSA_CRYPTO_C */
+
     /* This example uses a single application task, which in turn is used to
      * connect, send requests, receive responses, and disconnect from the HTTP
      * server */
