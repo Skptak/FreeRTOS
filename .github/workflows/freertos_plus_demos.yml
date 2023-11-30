@@ -82,7 +82,7 @@ jobs:
         run: |
           # ${{ env.stepName }}
           echo "::group::${{ env.stepName }}"
-          msbuild mqtt_mutual_auth_demo_with_bg96.sln -t:build -m -property:Configuration=Debug
+          msbuild mqtt_mutual_auth_demo_with_bg96.sln -t:rebuild -property:Configuration=Debug
           if($? -eq 1) {
             echo "::endgroup::"
             echo "${{ env.pwshPass }} ${{ env.stepName }} ${{ env.pwshEnd }}"
@@ -99,7 +99,7 @@ jobs:
         run: |
           # ${{ env.stepName }}
           echo "::group::${{ env.stepName }}"
-          msbuild mqtt_mutual_auth_demo_with_hl7802.sln -t:build -m -property:Configuration=Debug
+          msbuild mqtt_mutual_auth_demo_with_hl7802.sln -t:rebuild -property:Configuration=Debug
           if($? -eq 1) {
             echo "::endgroup::"
             echo "${{ env.pwshPass }} ${{ env.stepName }} ${{ env.pwshEnd }}"
@@ -116,7 +116,7 @@ jobs:
         run: |
           # ${{ env.stepName }}
           echo "::group::${{ env.stepName }}"
-          msbuild mqtt_mutual_auth_demo_with_sara_r4.sln -t:build -m -property:Configuration=Debug
+          msbuild mqtt_mutual_auth_demo_with_sara_r4.sln -t:rebuild -property:Configuration=Debug
           if($? -eq 1) {
             echo "::endgroup::"
             echo "${{ env.pwshPass }} ${{ env.stepName }} ${{ env.pwshEnd }}"
@@ -197,7 +197,7 @@ jobs:
         run: |
           # ${{ env.stepName }}
           echo "::group::${{ env.stepName }}"
-          msbuild http_plain_text_demo.sln -t:build -m -property:Configuration=Debug
+          msbuild http_plain_text_demo.sln -t:rebuild -property:Configuration=Debug -m
           if($? -eq 1) {
             echo "::endgroup::"
             echo "${{ env.pwshPass }} ${{ env.stepName }} ${{ env.pwshEnd }}"
@@ -215,7 +215,7 @@ jobs:
         run: |
           # ${{ env.stepName }}
           echo "::group::${{ env.stepName }}"
-          msbuild http_mutual_auth_demo.sln -t:build -m -property:Configuration=Debug
+          msbuild http_mutual_auth_demo.sln -t:rebuild -property:Configuration=Debug -m
           if($? -eq 1) {
             echo "::endgroup::"
             echo "${{ env.pwshPass }} ${{ env.stepName }} ${{ env.pwshEnd }}"
@@ -233,7 +233,7 @@ jobs:
         run: |
           # ${{ env.stepName }}
           echo "::group::${{ env.stepName }}"
-          msbuild http_s3_upload_demo.sln -t:build -m -property:Configuration=Debug
+          msbuild http_s3_upload_demo.sln -t:rebuild -property:Configuration=Debug -m
           if($? -eq 1) {
             echo "::endgroup::"
             echo "${{ env.pwshPass }} ${{ env.stepName }} ${{ env.pwshEnd }}"
@@ -251,7 +251,7 @@ jobs:
         run: |
           # ${{ env.stepName }}
           echo "::group::${{ env.stepName }}"
-          msbuild http_s3_download_multithreaded_demo.sln -t:build -m -property:Configuration=Debug
+          msbuild http_s3_download_multithreaded_demo.sln -t:rebuild -property:Configuration=Debug -m
           if($? -eq 1) {
             echo "::endgroup::"
             echo "${{ env.pwshPass }} ${{ env.stepName }} ${{ env.pwshEnd }}"
@@ -269,7 +269,7 @@ jobs:
         run: |
           # ${{ env.stepName }}
           echo "::group::${{ env.stepName }}"
-          msbuild http_s3_download_demo.sln -t:build -m -property:Configuration=Debug
+          msbuild http_s3_download_demo.sln -t:rebuild -property:Configuration=Debug -m
           if($? -eq 1) {
             echo "::endgroup::"
             echo "${{ env.pwshPass }} ${{ env.stepName }} ${{ env.pwshEnd }}"
@@ -346,7 +346,7 @@ jobs:
         run: |
           # ${{ env.stepName }}
           echo "::group::${{ env.stepName }}"
-          msbuild CorePKCS11_Demos.sln -t:build -m -property:Configuration=Debug_with_Libslirp -property:Platform=Win32
+          msbuild CorePKCS11_Demos.sln -t:rebuild -property:Configuration=Debug_with_Libslirp -property:Platform=Win32 -m
           if($? -eq 1) {
             echo "::endgroup::"
             echo "${{ env.pwshPass }} ${{ env.stepName }} ${{ env.pwshEnd }}"
@@ -488,7 +488,7 @@ jobs:
         run: |
           # ${{ env.stepName }}
           echo "::group::${{ env.stepName }}"
-          msbuild mqtt_plain_text_demo.sln -t:build -m -property:Configuration=Debug_with_Libslirp -property:Platform=Win32
+          msbuild mqtt_plain_text_demo.sln -t:rebuild -property:Configuration=Debug_with_Libslirp -property:Platform=Win32 -m
           if($? -eq 1) {
             echo "::endgroup::"
             echo "${{ env.pwshPass }} ${{ env.stepName }} ${{ env.pwshEnd }}"
@@ -536,7 +536,7 @@ jobs:
         run: |
           # ${{ env.stepName }}
           echo "::group::${{ env.stepName }}"
-          msbuild mqtt_basic_tls_demo.sln -t:build -m -property:Configuration=Debug_with_Libslirp -property:Platform=Win32
+          msbuild mqtt_basic_tls_demo.sln -t:rebuild -property:Configuration=Debug_with_Libslirp -property:Platform=Win32 -m
           if($? -eq 1) {
             echo "::endgroup::"
             echo "${{ env.pwshPass }} ${{ env.stepName }} ${{ env.pwshEnd }}"
@@ -589,7 +589,7 @@ jobs:
         run: |
           # ${{ env.stepName }}
           echo "::group::${{ env.stepName }}"
-          msbuild mqtt_mutual_auth_demo.sln -t:build -m -property:Configuration=Debug_with_Libslirp -property:Platform=Win32
+          msbuild mqtt_mutual_auth_demo.sln -t:rebuild -property:Configuration=Debug_with_Libslirp -property:Platform=Win32 -m
           if($? -eq 1) {
             echo "::endgroup::"
             echo "${{ env.pwshPass }} ${{ env.stepName }} ${{ env.pwshEnd }}"
@@ -635,7 +635,7 @@ jobs:
         run: |
           # ${{ env.stepName }}
           echo "::group::${{ env.stepName }}"
-          msbuild mqtt_keep_alive_demo.sln -t:build -m -property:Configuration=Debug_with_Libslirp -property:Platform=Win32
+          msbuild mqtt_keep_alive_demo.sln -t:rebuild -property:Configuration=Debug_with_Libslirp -property:Platform=Win32 -m
           if($? -eq 1) {
             echo "::endgroup::"
             echo "${{ env.pwshPass }} ${{ env.stepName }} ${{ env.pwshEnd }}"
@@ -676,9 +676,9 @@ jobs:
         id: build-mqtt-serializer-demo
         working-directory: FreeRTOS-Plus/Demo/coreMQTT_Windows_Simulator/MQTT_Serializer
         run:
-          msbuild mqtt_serializer_demo.sln -t:build
+          msbuild mqtt_serializer_demo.sln -t:rebuild
           -property:Configuration=Debug_with_Libslirp
-          -property:Platform=Win32
+          -property:Platform=Win32 -m
 
       - env:
           stepName: Run and monitor MQTT Serializer Demo
@@ -723,7 +723,7 @@ jobs:
         run: |
           # ${{ env.stepName }}
           echo "::group::${{ env.stepName }}"
-          msbuild mqtt_mutual_auth_demo_wolfSSL.sln -t:build -m -property:Configuration=Debug_with_Libslirp -property:Platform=Win32
+          msbuild mqtt_mutual_auth_demo_wolfSSL.sln -t:rebuild -property:Configuration=Debug_with_Libslirp -property:Platform=Win32 -m
           if($? -eq 1) {
             echo "::endgroup::"
             echo "${{ env.pwshPass }} ${{ env.stepName }} ${{ env.pwshEnd }}"
@@ -772,7 +772,7 @@ jobs:
         run: |
           # ${{ env.stepName }}
           echo "::group::${{ env.stepName }}"
-          msbuild mqtt_multitask_demo.sln -t:build -m -property:Configuration=Debug
+          msbuild mqtt_multitask_demo.sln -t:rebuild -property:Configuration=Debug -m
           if($? -eq 1) {
             echo "::endgroup::"
             echo "${{ env.pwshPass }} ${{ env.stepName }} ${{ env.pwshEnd }}"
@@ -812,7 +812,7 @@ jobs:
         run: |
           # ${{ env.stepName }}
           echo "::group::${{ env.stepName }}"
-          msbuild corePKCS11_MQTT_Mutual_Auth.sln -t:build -m -property:Configuration=Debug -property:Platform=Win32
+          msbuild corePKCS11_MQTT_Mutual_Auth.sln -t:rebuild -property:Configuration=Debug -property:Platform=Win32 -m
 
       - env:
           stepName: Configure coreSNTP_Windows_Simulator
@@ -839,7 +839,7 @@ jobs:
         run: |
           # ${{ env.stepName }}
           echo "::group::${{ env.stepName }}"
-          msbuild core_sntp_demo.sln -t:build -m -property:Configuration=Debug -property:Platform=Win32
+          msbuild core_sntp_demo.sln -t:rebuild -property:Configuration=Debug -property:Platform=Win32 -m
           if($? -eq 1) {
             echo "::endgroup::"
             echo "${{ env.pwshPass }} ${{ env.stepName }} ${{ env.pwshEnd }}"
@@ -926,7 +926,7 @@ jobs:
         run: |
           # ${{ env.stepName }}
           echo "::group::${{ env.stepName }}"
-          msbuild defender_demo.sln -t:build -m -property:Configuration=Debug
+          msbuild defender_demo.sln -t:rebuild -property:Configuration=Debug -m
           if($? -eq 1) {
             echo "::endgroup::"
             echo "${{ env.pwshPass }} ${{ env.stepName }} ${{ env.pwshEnd }}"
@@ -943,7 +943,7 @@ jobs:
         run: |
           # ${{ env.stepName }}
           echo "::group::${{ env.stepName }}"
-          msbuild shadow_main_demo.sln -t:build -m -property:Configuration=Debug
+          msbuild shadow_main_demo.sln -t:rebuild -property:Configuration=Debug -m
           if($? -eq 1) {
             echo "::endgroup::"
             echo "${{ env.pwshPass }} ${{ env.stepName }} ${{ env.pwshEnd }}"
@@ -960,7 +960,7 @@ jobs:
         run: |
           # ${{ env.stepName }}
           echo "::group::${{ env.stepName }}"
-          msbuild fleet_provisioning_demo.sln -t:build -m -property:Configuration=Debug
+          msbuild fleet_provisioning_demo.sln -t:rebuild -property:Configuration=Debug -m
           if($? -eq 1) {
             echo "::endgroup::"
             echo "${{ env.pwshPass }} ${{ env.stepName }} ${{ env.pwshEnd }}"
@@ -977,7 +977,7 @@ jobs:
         run: |
           # ${{ env.stepName }}
           echo "::group::${{ env.stepName }}"
-          msbuild jobs_demo.sln -t:build -m -property:Configuration=Debug
+          msbuild jobs_demo.sln -t:rebuild -property:Configuration=Debug -m
           if($? -eq 1) {
             echo "::endgroup::"
             echo "${{ env.pwshPass }} ${{ env.stepName }} ${{ env.pwshEnd }}"
@@ -994,7 +994,7 @@ jobs:
         run: |
           # ${{ env.stepName }}
           echo "::group::${{ env.stepName }}"
-          msbuild ota_over_mqtt_demo.sln -t:build -m -property:Configuration=Debug
+          msbuild ota_over_mqtt_demo.sln -t:rebuild -property:Configuration=Debug -m
           if($? -eq 1) {
             echo "::endgroup::"
             echo "${{ env.pwshPass }} ${{ env.stepName }} ${{ env.pwshEnd }}"
@@ -1011,7 +1011,7 @@ jobs:
         run: |
           # ${{ env.stepName }}
           echo "::group::${{ env.stepName }}"
-          msbuild ota_over_http_demo.sln -t:build -m -property:Configuration=Debug
+          msbuild ota_over_http_demo.sln -t:rebuild -property:Configuration=Debug -m
           if($? -eq 1) {
             echo "::endgroup::"
             echo "${{ env.pwshPass }} ${{ env.stepName }} ${{ env.pwshEnd }}"
@@ -1200,7 +1200,7 @@ jobs:
           $content = Get-Content -Path 'main.c' -Raw
           $newContent = $content -replace 'int\s+main(.*?)void(.*?)\r?\n\s*{', 'int main( void ){setvbuf( stdout, NULL, _IONBF, 0 );'
           $newContent | Set-Content -Path 'main.c'
-          msbuild FreeRTOS_Plus_TCP_Minimal.sln -t:build -m -property:Configuration=Debug_with_Libslirp -property:Platform=Win32
+          msbuild FreeRTOS_Plus_TCP_Minimal.sln -t:rebuild -property:Configuration=Debug_with_Libslirp -property:Platform=Win32 -m
           echo "${{ env.pwshPass }} ${{ env.stepName }} ${{ env.pwshEnd }}"
 
       - env:
@@ -1245,7 +1245,7 @@ jobs:
         run: |
           # ${{ env.stepName }}
           echo "::group::${{ env.stepName }}"
-          msbuild FreeRTOS_Plus_WolfSSL.sln -t:build -m -property:Configuration=Debug_with_Libslirp -property:Platform=Win32
+          msbuild FreeRTOS_Plus_WolfSSL.sln -t:rebuild -property:Configuration=Debug_with_Libslirp -property:Platform=Win32 -m
           echo "${{ env.pwshPass }} ${{ env.stepName }} ${{ env.pwshEnd }}"
 
       - env:
@@ -1267,7 +1267,7 @@ jobs:
         run: |
           # ${{ env.stepName }}
           echo "::group::${{ env.stepName }}"
-          msbuild FreeRTOS_Plus_UDP_with_CLI.sln -t:build -m -property:Configuration=Debug
+          msbuild FreeRTOS_Plus_UDP_with_CLI.sln -t:rebuild -property:Configuration=Debug -m
           echo "${{ env.pwshPass }} ${{ env.stepName }} ${{ env.pwshEnd }}"
 
   winsim_plus_demos:
@@ -1325,7 +1325,7 @@ jobs:
         run: |
           # ${{ env.stepName }}
           echo "::group::Build FreeRTOS+CLI+Trace Demo"
-          msbuild FreeRTOS_Plus_CLI_with_Trace.sln -t:build -m -property:Configuration=Debug
+          msbuild FreeRTOS_Plus_CLI_with_Trace.sln -t:rebuild -property:Configuration=Debug -m
           echo "::endgroup::"
           echo "${{ env.pwshPass }} ${{ env.stepName }} ${{ env.pwshEnd }}"
 
@@ -1336,5 +1336,5 @@ jobs:
         run: |
           # ${{ env.stepName }}
           echo "::group::${{ env.stepName }}"
-          msbuild FreeRTOS_Plus_Reliance_Edge_with_CLI.sln -t:build -m -property:Configuration=Debug
+          msbuild FreeRTOS_Plus_Reliance_Edge_with_CLI.sln -t:rebuild -property:Configuration=Debug -m
           echo "${{ env.pwshPass }} ${{ env.stepName }} ${{ env.pwshEnd }}"
