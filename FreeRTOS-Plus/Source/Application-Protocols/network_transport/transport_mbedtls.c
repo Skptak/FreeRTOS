@@ -625,16 +625,13 @@ static TlsTransportStatus_t initMbedtls( mbedtls_entropy_context * pEntropyConte
         mbedtls_platform_threading_init();
     #endif
 
-        #ifdef MBEDTLS_PSA_CRYPTO_C
-        if( returnStatus == TLS_TRANSPORT_SUCCESS )
-        {
-            mbedtlsError = psa_crypto_init();
+    #ifdef MBEDTLS_PSA_CRYPTO_C
+        mbedtlsError = psa_crypto_init();
 
-            if( mbedtlsError != PSA_SUCCESS )
-            {
-                LogError( ( "Failed to initialize PSA Crypto implementation: %s", ( int ) mbedtlsError ) );
-                returnStatus = TLS_TRANSPORT_INTERNAL_ERROR;
-            }
+        if( mbedtlsError != PSA_SUCCESS )
+        {
+            LogError( ( "Failed to initialize PSA Crypto implementation: %s", ( int ) mbedtlsError ) );
+            returnStatus = TLS_TRANSPORT_INTERNAL_ERROR;
         }
     #endif /* MBEDTLS_PSA_CRYPTO_C */
 
