@@ -27,22 +27,28 @@
 #include <stdlib.h>
 #include <string.h>
 
-/* mbed TLS includes. */
-#if defined( MBEDTLS_CONFIG_FILE )
+#include "FreeRTOSConfig.h"
+
+/* Mbed TLS includes. */
+#ifdef MBEDTLS_CONFIG_FILE
     #include MBEDTLS_CONFIG_FILE
 #else
     #include "mbedtls/mbedtls_config.h"
-#endif
+#endif /* MBEDTLS_CONFIG_FILE */
+
+#ifdef MBEDTLS_PSA_CRYPTO_C
+    /* MbedTLS PSA Includes */
+    #include "psa/crypto.h"
+    #include "psa/crypto_types.h"
+    #include "psa/crypto_values.h"
+#endif /* MBEDTLS_PSA_CRYPTO_C */
+
 #include "mbedtls/entropy.h"
 
 #include "entropy_poll.h"
 
-#include "mbedtls_freertos_port.h"
-
-
-#include "FreeRTOSConfig.h"
-
 /* FreeRTOS includes. */
+#include "mbedtls_freertos_port.h"
 #include "FreeRTOS.h"
 #include "semphr.h"
 
