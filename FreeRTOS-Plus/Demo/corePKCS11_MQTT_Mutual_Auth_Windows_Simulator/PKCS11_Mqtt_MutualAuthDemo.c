@@ -188,20 +188,6 @@
 /*-----------------------------------------------------------*/
 
 /**
- * @brief Each compilation unit that consumes the NetworkContext must define it.
- * It should contain a single pointer to the type of your desired transport.
- * When using multiple transports in the same compilation unit, define this pointer as void *.
- *
- * @note Transport stacks are defined in FreeRTOS-Plus/Source/Application-Protocols/network_transport.
- */
-struct NetworkContext
-{
-    TlsTransportParams_t * pParams;
-};
-
-/*-----------------------------------------------------------*/
-
-/**
  * @brief The task used to demonstrate the MQTT API.
  *
  * @param[in] pvParameters Parameters as passed at the time of task creation. Not
