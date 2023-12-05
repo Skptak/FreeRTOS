@@ -195,20 +195,6 @@ typedef struct PublishPackets
 /*-----------------------------------------------------------*/
 
 /**
- * @brief Each compilation unit that consumes the NetworkContext must define it.
- * It should contain a single pointer to the type of your desired transport.
- * When using multiple transports in the same compilation unit, define this pointer as void *.
- *
- * @note Transport stacks are defined in FreeRTOS-Plus/Source/Application-Protocols/network_transport.
- */
-struct NetworkContext
-{
-    TlsTransportParams_t * pParams;
-};
-
-/*-----------------------------------------------------------*/
-
-/**
  * @brief Global entry time into the application to use as a reference timestamp
  * in the #prvGetTimeMs function. #prvGetTimeMs will always return the difference
  * between the current time and the global entry time. This will reduce the chances

@@ -47,7 +47,7 @@
 
 #ifndef LIBRARY_LOG_LEVEL
     #define LIBRARY_LOG_LEVEL    LOG_INFO
-#endif /* LIBRARY_LOG_LEVEL */
+#endif
 
 /* Prototype for the function used to print to console on Windows simulator
  * of FreeRTOS.

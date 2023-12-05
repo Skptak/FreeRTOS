@@ -63,7 +63,27 @@
 /* Demo Config */
 #include "demo_config.h"
 
-/* mbedTLS include for configuring threading functions */
+
+/* MBedTLS Includes */
+#if !defined( MBEDTLS_CONFIG_FILE )
+    #include "mbedtls/mbedtls_config.h"
+#else
+    #include MBEDTLS_CONFIG_FILE
+#endif
+
+#ifdef MBEDTLS_PSA_CRYPTO_C
+    /* MbedTLS PSA Includes */
+    #include "psa/crypto.h"
+    #include "psa/crypto_types.h"
+    #include "psa/crypto_values.h"
+#endif /* MBEDTLS_PSA_CRYPTO_C */
+
+#include "mbedtls/pk.h"
+#include "mbedtls/asn1.h"
+#include "mbedtls/x509_crt.h"
+#include "mbedtls/platform.h"
+#include "mbedtls/asn1write.h"
+#include "mbedtls/ecdsa.h"
 #include "mbedtls/threading.h"
 #include "threading_alt.h"
 
@@ -167,19 +187,6 @@ typedef enum
     ResponseAccepted,
     ResponseRejected
 } ResponseStatus_t;
-
-
-/**
- * @brief Each compilation unit that consumes the NetworkContext must define it.
- * It should contain a single pointer to the type of your desired transport.
- * When using multiple transports in the same compilation unit, define this pointer as void *.
- *
- * @note Transport stacks are defined in FreeRTOS-Plus/Source/Application-Protocols/network_transport.
- */
-struct NetworkContext
-{
-    TlsTransportParams_t * pxParams;
-};
 
 /*-----------------------------------------------------------*/
 
@@ -558,7 +565,7 @@ int prvFleetProvisioningTask( void * pvParameters )
     ( void ) pvParameters;
 
     /* Set the pParams member of the network context with desired transport. */
-    xNetworkContext.pxParams = &xTlsTransportParams;
+    xNetworkContext.pParams = &xTlsTransportParams;
 
     do
     {

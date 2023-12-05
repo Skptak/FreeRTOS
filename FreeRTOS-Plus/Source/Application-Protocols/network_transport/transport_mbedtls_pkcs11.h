@@ -35,7 +35,11 @@
 #ifndef TRANSPORT_MBEDTLS_PKCS11
 #define TRANSPORT_MBEDTLS_PKCS11
 
-#define MBEDTLS_ALLOW_PRIVATE_ACCESS
+/* MBedTLS Includes */
+#ifndef MBEDTLS_ALLOW_PRIVATE_ACCESS
+    #include "mbedtls/private_access.h"
+    #define MBEDTLS_ALLOW_PRIVATE_ACCESS
+#endif /* MBEDTLS_ALLOW_PRIVATE_ACCESS */
 
 #if !defined( MBEDTLS_CONFIG_FILE )
     #include "mbedtls/mbedtls_config.h"
@@ -43,7 +47,27 @@
     #include MBEDTLS_CONFIG_FILE
 #endif
 
-#include "mbedtls/private_access.h"
+#ifdef MBEDTLS_PSA_CRYPTO_C
+    /* MbedTLS PSA Includes */
+    #include "psa/crypto.h"
+    #include "psa/crypto_types.h"
+    #include "psa/crypto_values.h"
+#endif /* MBEDTLS_PSA_CRYPTO_C */
+
+#include "mbedtls/error.h"
+#include "mbedtls/oid.h"
+#include "mbedtls/pk.h"
+#include "mbedtls/sha256.h"
+#include "mbedtls/x509_crt.h"
+#include "mbedtls/x509_csr.h"
+#include "mbedtls/pk.h"
+#include "mbedtls/asn1.h"
+#include "mbedtls/x509_crt.h"
+#include "mbedtls/platform.h"
+#include "mbedtls/asn1write.h"
+#include "mbedtls/ecdsa.h"
+#include "pk_wrap.h"
+
 
 /* TCP Sockets Wrapper include.*/
 #include "tcp_sockets_wrapper.h"
@@ -51,20 +75,34 @@
 /* Transport interface include. */
 #include "transport_interface.h"
 
-/* mbed TLS includes. */
-#include "mbedtls/build_info.h"
-#include "mbedtls/ctr_drbg.h"
-#include "mbedtls/entropy.h"
-#include "mbedtls/ssl.h"
-#include "mbedtls/threading.h"
-#include "mbedtls/x509.h"
-#include "mbedtls/pk.h"
-#include "mbedtls/error.h"
-
-#include "pk_wrap.h"
-
 /* PKCS #11 includes. */
 #include "core_pkcs11.h"
+#include "pkcs11t.h"
+
+/*-----------------------------------------------------------*/
+
+typedef struct P11PkCtx
+{
+    CK_FUNCTION_LIST_PTR pxFunctionList;
+    CK_SESSION_HANDLE xSessionHandle;
+    CK_OBJECT_HANDLE xPkHandle;
+} P11PkCtx_t;
+
+typedef struct P11EcDsaCtx
+{
+    mbedtls_ecdsa_context xMbedEcDsaCtx;
+    char* buf[0x100];
+    P11PkCtx_t xP11PkCtx;
+} P11EcDsaCtx_t;
+
+typedef struct P11RsaCtx
+{
+    mbedtls_rsa_context xMbedRsaCtx;
+    P11PkCtx_t xP11PkCtx;
+} P11RsaCtx_t;
+
+/*-----------------------------------------------------------*/
+
 
 /**
  * @brief Secured connection context.
@@ -94,6 +132,21 @@ typedef struct TlsTransportParams
     Socket_t tcpSocket;
     SSLContext_t sslContext;
 } TlsTransportParams_t;
+
+/**
+ * @brief Each compilation unit that consumes the NetworkContext must define it.
+ * It should contain a single pointer as seen below whenever the header file
+ * of this transport implementation is included to your project.
+ *
+ * @note When using multiple transports in the same compilation unit,
+ *       define this pointer as void *.
+ */
+struct NetworkContext
+{
+    TlsTransportParams_t* pParams;
+};
+
+/*-----------------------------------------------------------*/
 
 /**
  * @brief Contains the credentials necessary for tls connection setup.

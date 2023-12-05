@@ -40,9 +40,6 @@
 
 #include "logging_stack.h"
 
-#define MBEDTLS_ALLOW_PRIVATE_ACCESS
-
-#include "mbedtls/private_access.h"
 
 /* Standard includes. */
 #include <string.h>
@@ -51,17 +48,34 @@
 #include "FreeRTOS.h"
 
 /* MBedTLS Includes */
+#ifndef MBEDTLS_ALLOW_PRIVATE_ACCESS
+    #define MBEDTLS_ALLOW_PRIVATE_ACCESS
+#endif /* MBEDTLS_ALLOW_PRIVATE_ACCESS */
+
 #if !defined( MBEDTLS_CONFIG_FILE )
     #include "mbedtls/mbedtls_config.h"
 #else
     #include MBEDTLS_CONFIG_FILE
 #endif
 
-#ifdef MBEDTLS_SSL_PROTO_TLS1_3
+#ifdef MBEDTLS_PSA_CRYPTO_C
     /* MbedTLS PSA Includes */
     #include "psa/crypto.h"
+    #include "psa/crypto_types.h"
     #include "psa/crypto_values.h"
-#endif /* MBEDTLS_SSL_PROTO_TLS1_3 */
+#endif /* MBEDTLS_PSA_CRYPTO_C */
+
+#ifdef MBEDTLS_DEBUG_C
+    #include "mbedtls/debug.h"
+#endif /* MBEDTLS_DEBUG_C */
+
+#include "mbedtls/pk.h"
+#include "mbedtls/asn1.h"
+#include "mbedtls/x509_crt.h"
+#include "mbedtls/platform.h"
+#include "mbedtls/asn1write.h"
+#include "mbedtls/ecdsa.h"
+#include "pk_wrap.h"
 
 /* MbedTLS Bio TCP sockets wrapper include. */
 #include "mbedtls_bio_tcp_sockets_wrapper.h"
@@ -75,21 +89,6 @@
 #include "core_pkcs11.h"
 #include "pkcs11.h"
 #include "core_pki_utils.h"
-
-/*-----------------------------------------------------------*/
-
-/**
- * @brief Each compilation unit that consumes the NetworkContext must define it.
- * It should contain a single pointer as seen below whenever the header file
- * of this transport implementation is included to your project.
- *
- * @note When using multiple transports in the same compilation unit,
- *       define this pointer as void *.
- */
-struct NetworkContext
-{
-    TlsTransportParams_t * pParams;
-};
 
 /*-----------------------------------------------------------*/
 
@@ -209,7 +208,7 @@ static CK_RV initializeClientKeys( SSLContext_t * pxCtx,
  *
  * @return Zero on success.
  */
-static int32_t privateKeySigningCallback( void * pvContext,
+static int32_t privateKeySigningCallback( mbedtls_pk_context * pk,
                                           mbedtls_md_type_t xMdAlg,
                                           const unsigned char * pucHash,
                                           size_t xHashLen,
@@ -230,7 +229,8 @@ static int32_t privateKeySigningCallback( void * pvContext,
                                 int line,
                                 const char * str )
     {
-        LogDebug( ( "%s:%d: [%d] %s", file, line, level, str ) );
+        /* LogDebug(("%s:%d: [%d] %s", file, line, level, str)); */
+        printf(("%s:%d: [%d] %s\n", file, line, level, str));
     }
 #endif /* MBEDTLS_DEBUG_C */
 

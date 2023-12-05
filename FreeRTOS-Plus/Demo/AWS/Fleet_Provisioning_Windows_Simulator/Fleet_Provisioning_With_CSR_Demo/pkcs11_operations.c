@@ -34,20 +34,13 @@
 #include <errno.h>
 #include <assert.h>
 
-/* Config include. */
-#include "demo_config.h"
+/* MBedTLS Includes */
+#ifndef MBEDTLS_ALLOW_PRIVATE_ACCESS
+    #include "mbedtls/private_access.h"
+    #define MBEDTLS_ALLOW_PRIVATE_ACCESS
+#endif /* MBEDTLS_ALLOW_PRIVATE_ACCESS */
 
-/* Interface include. */
-#include "pkcs11_operations.h"
-
-/* PKCS #11 include. */
-#include "core_pkcs11_config.h"
-#include "core_pki_utils.h"
-#include "mbedtls_utils.h"
-#include "mbedtls_pkcs11.h"
-
-/* MbedTLS include. */
-#ifndef MBEDTLS_CONFIG_FILE
+#if !defined( MBEDTLS_CONFIG_FILE )
     #include "mbedtls/mbedtls_config.h"
 #else
     #include MBEDTLS_CONFIG_FILE
@@ -66,6 +59,26 @@
 #include "mbedtls/sha256.h"
 #include "mbedtls/x509_crt.h"
 #include "mbedtls/x509_csr.h"
+#include "mbedtls/pk.h"
+#include "mbedtls/asn1.h"
+#include "mbedtls/x509_crt.h"
+#include "mbedtls/platform.h"
+#include "mbedtls/asn1write.h"
+#include "mbedtls/ecdsa.h"
+#include "pk_wrap.h"
+
+/* Config include. */
+#include "demo_config.h"
+
+/* Interface include. */
+#include "pkcs11_operations.h"
+#include "transport_mbedtls_pkcs11.h"
+
+/* PKCS #11 include. */
+#include "core_pkcs11_config.h"
+#include "core_pki_utils.h"
+#include "mbedtls_utils.h"
+#include "mbedtls_pkcs11.h"
 
 /*-----------------------------------------------------------*/
 
@@ -230,6 +243,10 @@ bool xGenerateKeyAndCsr( CK_SESSION_HANDLE xP11Session,
     mbedtls_ecdsa_context xEcdsaContext;
     mbedtls_x509write_csr xReq;
     int32_t ulMbedtlsRet = -1;
+    P11EcDsaCtx_t* pxP11EcDsa = NULL;
+    const P11PkCtx_t* pxP11Ctx = NULL;
+
+    CK_FUNCTION_LIST_PTR xFunctionList;
     const mbedtls_pk_info_t * pxHeader = mbedtls_pk_info_from_type( MBEDTLS_PK_ECKEY );
 
     configASSERT( pcPrivKeyLabel != NULL );
@@ -245,16 +262,6 @@ bool xGenerateKeyAndCsr( CK_SESSION_HANDLE xP11Session,
 
     if( xPkcs11Ret == CKR_OK )
     {
-        #ifdef MBEDTLS_PSA_CRYPTO_C
-            ulMbedtlsRet = psa_crypto_init();
-
-            if( ulMbedtlsRet != PSA_SUCCESS )
-            {
-                LogError( ( "Failed to initialize PSA Crypto implementation: %s", ( int ) ulMbedtlsRet ) );
-                return 0;
-            }
-        #endif /* MBEDTLS_PSA_CRYPTO_C */
-
         xPkcs11Ret = xPKCS11_initMbedtlsPkContext( &xPrivKey, xP11Session, xPrivKeyHandle );
     }
 
@@ -277,12 +284,28 @@ bool xGenerateKeyAndCsr( CK_SESSION_HANDLE xP11Session,
 
         if( ulMbedtlsRet == 0 )
         {
-            mbedtls_x509write_csr_set_key( &xReq, &xPrivKey );
+            pxP11EcDsa = (P11EcDsaCtx_t*)xPrivKey.private_pk_ctx;
+            pxP11Ctx = &(pxP11EcDsa->xP11PkCtx);
 
-            ulMbedtlsRet = mbedtls_x509write_csr_pem( &xReq,
-                                                     ( unsigned char * ) pcCsrBuffer,
-                                                      xCsrBufferLength,
-                                                      &lMbedCryptoRngCallbackPKCS11,
+            mbedtls_x509write_csr_set_key( &xReq, &xPrivKey );
+            ulMbedtlsRet = memcmp(xReq.private_key->private_pk_ctx, pxP11EcDsa, sizeof(struct P11EcDsaCtx));
+
+            pxP11EcDsa = (P11EcDsaCtx_t*) xReq.private_key->private_pk_ctx;
+            pxP11Ctx = &(pxP11EcDsa->xP11PkCtx);
+            
+            printf("%s:%d Before call to mbedtls_x509write_csr_pem\n", __func__, __LINE__);
+            printf("\t&xReq =0x%p\n", &(xReq));
+            printf("\t&xReq.key =0x%p\n", &(xReq.private_key));
+            printf("\t&xReq.key->private_pk_ctx =0x%p\n", &(xReq.private_key->private_pk_ctx));
+            printf("\t(P11EcDsaCtx_t*) xReq.private_key->private_pk_ctx; =0x%p\n",
+                    (P11EcDsaCtx_t*)xReq.private_key->private_pk_ctx);
+            printf("\tpxP11EcDsa->pxP11Ctx =0x%p\n", &(pxP11EcDsa->xP11PkCtx));
+            printf("\tpxP11EcDsa->pxP11Ctx.pxFunctionList =0x%p\n", pxP11EcDsa->xP11PkCtx.pxFunctionList);
+            C_GetFunctionList(&xFunctionList);
+            printf("\txFunctionList = 0x%p\n", xFunctionList);
+
+            ulMbedtlsRet = mbedtls_x509write_csr_pem( &xReq, ( unsigned char * ) pcCsrBuffer,
+                                                      xCsrBufferLength, &lMbedCryptoRngCallbackPKCS11,
                                                       &xP11Session );
         }
 
