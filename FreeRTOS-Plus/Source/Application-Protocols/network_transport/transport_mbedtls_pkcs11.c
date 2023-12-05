@@ -556,7 +556,7 @@ static int32_t generateRandomBytes( void * pvCtx,
 /*-----------------------------------------------------------*/
 
 static CK_RV readCertificateIntoContext( SSLContext_t * pSslContext,
-                                         const char * pcLabelName,
+                                         char * pcLabelName,
                                          CK_OBJECT_CLASS xClass,
                                          mbedtls_x509_crt * pxCertificateContext )
 {
@@ -635,12 +635,11 @@ static CK_RV readCertificateIntoContext( SSLContext_t * pSslContext,
  * @return Zero on success.
  */
 static CK_RV initializeClientKeys( SSLContext_t * pxCtx,
-                                   const char * pcLabelName )
+                                   char * pcLabelName )
 {
     CK_RV xResult = CKR_OK;
     CK_SLOT_ID * pxSlotIds = NULL;
     CK_ULONG xCount = 0;
-    CK_ATTRIBUTE xTemplate[ 2 ];
     mbedtls_pk_type_t xKeyAlgo = ( mbedtls_pk_type_t ) ~0;
 
     /* Get the PKCS #11 module/token slot count. */
