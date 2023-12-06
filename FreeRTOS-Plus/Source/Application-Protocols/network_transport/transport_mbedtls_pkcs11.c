@@ -50,6 +50,7 @@
 /* MBedTLS Includes */
 #ifndef MBEDTLS_ALLOW_PRIVATE_ACCESS
     #define MBEDTLS_ALLOW_PRIVATE_ACCESS
+    #include "mbedtls/private_access.h"
 #endif /* MBEDTLS_ALLOW_PRIVATE_ACCESS */
 
 #if !defined( MBEDTLS_CONFIG_FILE )
