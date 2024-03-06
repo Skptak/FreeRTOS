@@ -82,12 +82,12 @@ static volatile uint8_t ucSharedMemory2[ SHARED_MEMORY_SIZE ]
     static volatile uint8_t ucSharedMemory5[ SHARED_MEMORY_SIZE ]
         __attribute__( ( aligned( SHARED_MEMORY_SIZE ) ) );
 
-    static volatile uint8_t ucSharedMemory6[ SHARED_MEMORY_SIZE ]
-        __attribute__( ( aligned( SHARED_MEMORY_SIZE ) ) );
-
 #endif /* ( configTOTAL_MPU_REGIONS >= 12 ) */
 
 #if( configTOTAL_MPU_REGIONS == 16 )
+
+    static volatile uint8_t ucSharedMemory6[ SHARED_MEMORY_SIZE ]
+        __attribute__( ( aligned( SHARED_MEMORY_SIZE ) ) );
 
     static volatile uint8_t ucSharedMemory7[ SHARED_MEMORY_SIZE ]
         __attribute__( ( aligned( SHARED_MEMORY_SIZE ) ) );
@@ -98,8 +98,6 @@ static volatile uint8_t ucSharedMemory2[ SHARED_MEMORY_SIZE ]
     static volatile uint8_t ucSharedMemory9[ SHARED_MEMORY_SIZE ]
         __attribute__( ( aligned( SHARED_MEMORY_SIZE ) ) );
 
-    static volatile uint8_t ucSharedMemory10[ SHARED_MEMORY_SIZE ]
-        __attribute__( ( aligned( SHARED_MEMORY_SIZE ) ) );
 #endif /* configTOTAL_MPU_REGIONS == 16 */
 
 /* These tasks will use over 288 bytes as of time of writing.
@@ -241,12 +239,6 @@ static void prvROAccessTask( void * pvParameters )
             ucVal = ucROTaskFaultTracker[ 0 ];
             configASSERT( ucVal == 0U );
 
-            /* Perform the above mentioned sequence on ucSharedMemory10. */
-            ucVal = ucSharedMemory10[ 0 ];
-            ucROTaskFaultTracker[ 0 ] = 1U;
-            ucSharedMemory10[ 0 ] = 0U;
-            ucVal = ucROTaskFaultTracker[ 0 ];
-            configASSERT( ucVal == 0U );
         }
         #endif /* configTOTAL_MPU_REGIONS == 16 */
 
@@ -285,7 +277,6 @@ static void prvRWAccessTask( void * pvParameters )
             ucSharedMemory7[ 0 ]++;
             ucSharedMemory8[ 0 ]++;
             ucSharedMemory9[ 0 ]++;
-            ucSharedMemory10[ 0 ]++;
         }
         #endif /* configTOTAL_MPU_REGIONS == 16 */
 
@@ -368,12 +359,12 @@ BaseType_t xCreateMPUTasks( void )
                                         { ( void * ) ucSharedMemory5,
                                           SHARED_MEMORY_SIZE,
                                           ulReadMemoryPermissions },
+    #endif /* ( configTOTAL_MPU_REGIONS >= 12 ) */
+    #if( configTOTAL_MPU_REGIONS == 16 )
                                         /* Region 6 */
                                         { ( void * ) ucSharedMemory6,
                                           SHARED_MEMORY_SIZE,
                                           ulReadMemoryPermissions },
-    #endif /* ( configTOTAL_MPU_REGIONS >= 12 ) */
-    #if( configTOTAL_MPU_REGIONS == 16 )
                                         /* Region 7 */
                                         { ( void * ) ucSharedMemory7,
                                           SHARED_MEMORY_SIZE,
@@ -384,10 +375,6 @@ BaseType_t xCreateMPUTasks( void )
                                           ulReadMemoryPermissions },
                                         /* Region 9 */
                                         { ( void * ) ucSharedMemory9,
-                                          SHARED_MEMORY_SIZE,
-                                          ulReadMemoryPermissions },
-                                        /* Region 10 */
-                                        { ( void * ) ucSharedMemory10,
                                           SHARED_MEMORY_SIZE,
                                           ulReadMemoryPermissions },
     #endif /* configTOTAL_MPU_REGIONS == 16 */
@@ -435,12 +422,12 @@ BaseType_t xCreateMPUTasks( void )
                                         { ( void * ) ucSharedMemory5,
                                           SHARED_MEMORY_SIZE,
                                           ulWriteMemoryPermissions },
+    #endif /* configTOTAL_MPU_REGIONS >= 12 */
+    #if( configTOTAL_MPU_REGIONS == 16 )
                                         /* MPU Region 6 */
                                         { ( void * ) ucSharedMemory6,
                                           SHARED_MEMORY_SIZE,
                                           ulWriteMemoryPermissions },
-    #endif /* configTOTAL_MPU_REGIONS >= 12 */
-    #if( configTOTAL_MPU_REGIONS == 16 )
                                         /* MPU Region 7 */
                                         { ( void * ) ucSharedMemory7,
                                           SHARED_MEMORY_SIZE,
@@ -451,10 +438,6 @@ BaseType_t xCreateMPUTasks( void )
                                           ulWriteMemoryPermissions },
                                         /* MPU Region 9 */
                                         { ( void * ) ucSharedMemory9,
-                                          SHARED_MEMORY_SIZE,
-                                          ulWriteMemoryPermissions },
-                                        /* MPU Region 10 */
-                                        { ( void * ) ucSharedMemory10,
                                           SHARED_MEMORY_SIZE,
                                           ulWriteMemoryPermissions },
     #endif /* configTOTAL_MPU_REGIONS == 16 */
