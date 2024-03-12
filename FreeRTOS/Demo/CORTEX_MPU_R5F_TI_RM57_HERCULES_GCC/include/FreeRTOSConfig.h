@@ -29,15 +29,6 @@
     #include <stdint.h>
     #ifndef configASSERT
 
-/* debug ASSERT The first option calls a function that prints to UART
- * The second one loops for when using a debugger. */
-extern void vAssertCalled( const char * pcFileName, uint32_t ulLine );
-        #define configASSERT( x )                    \
-            if( ( x ) == pdFALSE )                   \
-            {                                        \
-                vAssertCalled( __func__, __LINE__ ); \
-            }
-
 extern void vMainSetupTimerInterrupt( void );
         #define configCLEAR_TICK_INTERRUPT()
         #define configSETUP_TICK_INTERRUPT() vMainSetupTimerInterrupt()

@@ -68,6 +68,7 @@ PRIVILEGED_FUNCTION static void prvSetupHardware( void );
 FREERTOS_SYSTEM_CALL void vAssertCalled( const char * pcFileName, uint32_t ulLine );
 
 PRIVILEGED_FUNCTION void vApplicationIRQHandler( void );
+
 /* --------------------- Static Task Memory Allocation --------------------- */
 
 /** @brief Statically declared TCB Used by the Idle Task */
@@ -317,6 +318,94 @@ void vAssertCalled( const char * pcFuncName, uint32_t ulLine ) /* FREERTOS_SYSTE
         }
     }
     taskEXIT_CRITICAL();
+}
+
+/*---------------------------------------------------------------------------*/
+/* PRIVILEGED_FUNCTION */
+void vApplicationSafeAssertCallback ( xFrKSafeAssertFaultInfo * pxKernelAssertInfo,
+                                      xFrPFaultExceptionInfo * pxPortAssertInfo )
+{
+    sci_print("Running vApplicationSafeAssertCallback()");
+    volatile uint32_t ulSetToNonZeroInDebuggerToContinue = 0UL;
+    char strBuf[0x200];
+
+    if( pxKernelAssertInfo != NULL)
+    {
+
+        int overFlowCheck = snprintf(strBuf, 0x200, "%s:%s:%d Cause fault with error 0x%lx",
+            pxKernelAssertInfo->faultFile,
+            pxKernelAssertInfo->faultFunction,
+            pxKernelAssertInfo->faultLine,
+            pxKernelAssertInfo->errCode );
+        sci_print(strBuf);
+    }
+
+    if( pxPortAssertInfo != NULL )
+    {
+        int overFlowCheck = snprintf(strBuf, 0x200,
+            "Current Program Status Register = 0x%lx\r\n"
+            "Data Fault Status Register = 0x%lx\r\n"
+            "Instruction Fault Status Register = 0x%lx\r\n"
+            "Auxiliary Data Fault Status Register = 0x%lx\r\n",
+            pxPortAssertInfo->ulCPSR,
+            pxPortAssertInfo->ulDFSR,
+            pxPortAssertInfo->ulIFSR,
+            pxPortAssertInfo->ulADFSR
+        );
+        sci_print(strBuf);
+
+        overFlowCheck = snprintf(strBuf, 0x200,
+            "Auxiliary Instruction Fault Status Register = 0x%lx\r\n"
+            "Data Fault Address Register = 0x%lx\r\n"
+            "Instruction Fault Address Register = 0x%lx\r\n",
+            pxPortAssertInfo->ulAIFSR,
+            pxPortAssertInfo->ulDFAR,
+            pxPortAssertInfo->ulIFAR );
+        sci_print(strBuf);
+
+        overFlowCheck = snprintf(strBuf, 0x200,
+            "General Purpose Register 0 = 0x%lx\r\n"
+            "General Purpose Register 1 = 0x%lx\r\n"
+            "General Purpose Register 2 = 0x%lx\r\n"
+            "General Purpose Register 3 = 0x%lx\r\n",
+            pxPortAssertInfo->ulGPRZero,
+            pxPortAssertInfo->ulGPROne,
+            pxPortAssertInfo->ulGPRTwo,
+            pxPortAssertInfo->ulGPRThree );
+        sci_print(strBuf);
+
+        overFlowCheck = snprintf(strBuf, 0x200,
+            "General Purpose Register 12 = 0x%lx\r\n"
+            "Link Register when Fault Happened. = 0x%lx\r\n"
+            "Program Counter when Fault Happened.  = 0x%lx\r\n"
+            "Current Program Status Register when fault happened = 0x%lx\r\n",
+            pxPortAssertInfo->ulGPRTwelve,
+            pxPortAssertInfo->ulLinkRegister,
+            pxPortAssertInfo->ulProgramCounter,
+            pxPortAssertInfo->ulProgramStatusRegister );
+        sci_print(strBuf);
+    }
+
+    /* These variables can be inspected in a debugger. */
+    while( ulSetToNonZeroInDebuggerToContinue == 0UL)
+    {
+        __asm volatile( "NOP" );
+    }
+}
+
+/*---------------------------------------------------------------------------*/
+
+
+/* PRIVILEGED_FUNCTION */ void * xApplicationPrivilegedCallback( void * pxParamters )
+{
+    sci_print("Running xApplicationPrivilegedCallback");
+    volatile uint32_t ulSetToNonZeroInDebuggerToContinue = 0UL;
+    /* These variables can be inspected in a debugger. */
+    while( ulSetToNonZeroInDebuggerToContinue == 0UL)
+    {
+        __asm volatile( "NOP" );
+    }
+    return ( void * ) ulSetToNonZeroInDebuggerToContinue;
 }
 
 /*---------------------------------------------------------------------------*/

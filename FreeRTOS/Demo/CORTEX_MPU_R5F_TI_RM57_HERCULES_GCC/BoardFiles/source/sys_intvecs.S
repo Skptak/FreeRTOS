@@ -47,6 +47,7 @@
 
     .extern     _c_int00
     .extern     FreeRTOS_SVC_Handler
+    .extern     FreeRTOS_Exception_Handler
     .extern     _dabort
     .extern     phantomInterrupt
     .weak       resetEntry
@@ -57,13 +58,13 @@
 resetEntry:
     b   _c_int00
 undefEntry:
-    b   undefEntry
+    b   FreeRTOS_Exception_Handler
 svcEntry:
     b   FreeRTOS_SVC_Handler
 prefetchEntry:
-    b   prefetchEntry
+    b   FreeRTOS_Exception_Handler
 dataAbortEntry:
-    b   _dabort
+    b   FreeRTOS_Exception_Handler
     b   phantomInterrupt
     /** This LDR loads the memory at ‘PC - 0x1B0’, which is the address of
      * IRQVECREG: 0x18 - 0x1B0 = 0xFFFFFE70. */
