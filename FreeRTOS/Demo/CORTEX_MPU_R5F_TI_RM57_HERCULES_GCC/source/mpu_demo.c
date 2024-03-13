@@ -154,6 +154,13 @@ static void prvROAccessTask( void * pvParameters )
          *    handler did clear the ucROTaskFaultTracker[ 0 ].
          */
         /* Perform the above mentioned sequence on ucSharedMemory. */
+
+        /* Uncomment following line to see a pre-fetch abort. */
+        /* vApplicationSafeAssertCallback ( NULL, NULL); */
+
+        /* Uncomment following line to see the SVC safeASSERT() output. */
+        /* safeASSERT( ucVal != 0x12345678); */
+
         ucVal = ucSharedMemory[ 0 ];
         ucVal = 1U;
         ucROTaskFaultTracker[ 0 ] = ucVal;

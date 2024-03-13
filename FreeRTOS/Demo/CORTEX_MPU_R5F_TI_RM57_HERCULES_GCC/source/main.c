@@ -325,14 +325,15 @@ void vAssertCalled( const char * pcFuncName, uint32_t ulLine ) /* FREERTOS_SYSTE
 void vApplicationSafeAssertCallback ( xFrKSafeAssertFaultInfo * pxKernelAssertInfo,
                                       xFrPFaultExceptionInfo * pxPortAssertInfo )
 {
-    sci_print("Running vApplicationSafeAssertCallback()");
+    sci_print("Running vApplicationSafeAssertCallback()\r\n");
     volatile uint32_t ulSetToNonZeroInDebuggerToContinue = 0UL;
     char strBuf[0x200];
 
     if( pxKernelAssertInfo != NULL)
     {
 
-        int overFlowCheck = snprintf(strBuf, 0x200, "%s:%s:%d Cause fault with error 0x%lx",
+        int overFlowCheck = snprintf(strBuf, 0x200,
+            "%s:%s:%d Caused fault with error 0x%lx\r\n",
             pxKernelAssertInfo->faultFile,
             pxKernelAssertInfo->faultFunction,
             pxKernelAssertInfo->faultLine,
