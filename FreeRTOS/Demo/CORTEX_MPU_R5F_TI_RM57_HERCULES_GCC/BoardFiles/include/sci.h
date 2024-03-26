@@ -253,6 +253,15 @@ void sciDisplayText( sciBASE_t * sci, char * text, uint32 length );
  *
  */
 void sci_print( char * str );
+
+/** @fn void vPrintString(char * str)
+ *   @brief Simple print function that takes in a str and prints to SCI/UART
+ *
+ *   @param[in] str     - Pointer to the string that is going to be displayed on console
+ *  This function will write string in the str pointer out to be read over UART
+ *
+ */
+void vPrintString( char * str );
 /* USER CODE END */
 
 /**@}*/

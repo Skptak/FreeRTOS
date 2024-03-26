@@ -52,6 +52,8 @@
 
 /* Demo Tasks include */
 #include "demo_tasks.h"
+#include "test_utils.h"
+
 
 /* ----------------------- Microcontroller Registers ----------------------- */
 
@@ -101,6 +103,7 @@ int main( void )
     sci_print( "\r\n---------------------------- Create FreeRTOS Tasks"
                "----------------------------\r\n\r\n" );
 
+    xTestInit();
 #if( mainDEMO_TYPE & REGISTER_DEMO )
     {
         if( pdPASS == xReturn )
@@ -396,7 +399,7 @@ void vApplicationSafeAssertCallback ( xFrKSafeAssertFaultInfo * pxKernelAssertIn
 
 /*---------------------------------------------------------------------------*/
 
-
+#if mainDEMO_TYPE != 0x0UL
 /* PRIVILEGED_FUNCTION */ void * xApplicationPrivilegedCallback( void * pxParamters )
 {
     sci_print("Running xApplicationPrivilegedCallback");
@@ -408,7 +411,7 @@ void vApplicationSafeAssertCallback ( xFrKSafeAssertFaultInfo * pxKernelAssertIn
     }
     return ( void * ) ulSetToNonZeroInDebuggerToContinue;
 }
-
+#endif
 /*---------------------------------------------------------------------------*/
 
 /** @brief Default IRQ Handler used in the ARM_Cortex_RX ports.

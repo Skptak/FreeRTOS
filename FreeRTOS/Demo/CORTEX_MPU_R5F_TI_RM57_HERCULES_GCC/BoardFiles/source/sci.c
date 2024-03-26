@@ -907,6 +907,11 @@ void sci4GetConfigValue( sci_config_reg_t * config_reg, config_value_type_t type
     }
 }
 
+void vPrintString( char * str )
+{
+    sciDisplayText( scilinREG, str, strlen( str ) );
+}
+
 void sci_print( char * str )
 {
     sciDisplayText( scilinREG, str, strlen( str ) );

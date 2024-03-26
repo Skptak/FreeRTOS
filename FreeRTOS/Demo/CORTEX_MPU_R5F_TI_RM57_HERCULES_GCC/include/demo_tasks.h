@@ -27,6 +27,8 @@
 #ifndef DEMO_TASKS_H
 #define DEMO_TASKS_H
 
+#include <stdint.h>
+
 /* ----------------------------------- Demo Option ----------------------------------- */
 
 /** @brief Create Tasks that are written in assembly to test context swaps */
@@ -45,8 +47,8 @@
 #define NOTIFICATION_DEMO 0x10
 
 /** @brief Build Register, Queue, MPU, IRQ, and Notification demos */
-#define FULL_DEMO         ( REGISTER_DEMO | QUEUE_DEMO | MPU_DEMO | IRQ_DEMO | NOTIFICATION_DEMO )
-
+//#define FULL_DEMO         ( REGISTER_DEMO | QUEUE_DEMO | MPU_DEMO | IRQ_DEMO | NOTIFICATION_DEMO )
+#define FULL_DEMO         0x0
 /** @brief Bitfield used to select the Demo Tasks to build and run
  *
  * @note This project contains multiple demo and test tasks. A bitfield is used

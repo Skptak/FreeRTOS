@@ -440,7 +440,7 @@ BaseType_t xCreateMPUTasks( void )
     return xReturn;
 }
 /*-----------------------------------------------------------*/
-#endif /* ( mainDEMO_TYPE & MPU_DEMO ) */
+
 
 PRIVILEGED_FUNCTION portDONT_DISCARD void vHandleMemoryFault(
     uint32_t * pulFaultStackAddress )
@@ -510,6 +510,7 @@ PRIVILEGED_FUNCTION portDONT_DISCARD void vHandleMemoryFault(
         /* This is an unexpected fault - loop forever. */
         configASSERT( 0 );
     }
-}
 
+}
+#endif /* ( mainDEMO_TYPE & MPU_DEMO ) */
 /*-----------------------------------------------------------*/

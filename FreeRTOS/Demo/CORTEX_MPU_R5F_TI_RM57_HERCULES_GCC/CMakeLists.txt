@@ -45,24 +45,25 @@ TARGET_INCLUDE_DIRECTORIES(freertos_config SYSTEM
 )
 
 # Clone the tag of the FreeRTOS-Kernel last tested with this project.
-INCLUDE(FetchContent)
-
-FetchContent_Declare(
-    FreeRTOS-Kernel
-    GIT_REPOSITORY https://github.com/FreeRTOS/FreeRTOS-Kernel.git
-    GIT_TAG main
-    SOURCE_DIR "${DEMO_DIR}/../../Source"
-    USES_TERMINAL_DOWNLOAD YES
-    USES_TERMINAL_UPDATE   YES
-    BUILD_COMMAND "")
-
-FetchContent_GetProperties(FreeRTOS-Kernel)
-if(NOT FreeRTOS-Kernel_POPULATED)
-    FetchContent_Populate(FreeRTOS-Kernel)
-endif()
+# INCLUDE(FetchContent)
+# 
+# FetchContent_Declare(
+#     FreeRTOS-Kernel
+#     GIT_REPOSITORY https://github.com/FreeRTOS/FreeRTOS-Kernel.git
+#     GIT_TAG main
+#     SOURCE_DIR "${DEMO_DIR}/../../Source"
+#     USES_TERMINAL_DOWNLOAD YES
+#     USES_TERMINAL_UPDATE   YES
+#     BUILD_COMMAND "")
+# 
+# FetchContent_GetProperties(FreeRTOS-Kernel)
+# if(NOT FreeRTOS-Kernel_POPULATED)
+#     FetchContent_Populate(FreeRTOS-Kernel)
+# endif()
 
 # Get the absolute path to the FreeRTOS-Kernel Directory
-SET(FREERTOS_KERNEL_DIR_REL "${freertos-kernel_SOURCE_DIR}")
+# SET(FREERTOS_KERNEL_DIR_REL "${freertos-kernel_SOURCE_DIR}")
+SET(FREERTOS_KERNEL_DIR_REL "${DEMO_DIR}/../../Source")
 GET_FILENAME_COMPONENT(FREERTOS_KERNEL_DIR ${FREERTOS_KERNEL_DIR_REL} ABSOLUTE)
 
 # Get the absolute path to the Port Directory
@@ -194,6 +195,14 @@ ADD_EXECUTABLE(RM57_FreeRTOS_Notification_Demo.out
     ${FREERTOS_DEMO_SOURCES}
 )
 
+# Create Port Test executable
+ADD_EXECUTABLE(CORTEX_Rx_Port_Test.out
+    ${DEMO_DIR}/source/main.c
+    ${DEMO_DIR}/source/context_restore_test.S
+    ${DEMO_DIR}/source/context_restore_test.c
+    ${DEMO_DIR}/source/test_utils.c
+)
+
 # These options are explained in the demo_tasks.h file
 SET_TARGET_PROPERTIES(RM57_FreeRTOS_Full.out PROPERTIES                 COMPILE_DEFINITIONS "mainDEMO_TYPE=0x1F")
 SET_TARGET_PROPERTIES(RM57_FreeRTOS_Register_Demo.out PROPERTIES        COMPILE_DEFINITIONS "mainDEMO_TYPE=0x1")
@@ -201,6 +210,7 @@ SET_TARGET_PROPERTIES(RM57_FreeRTOS_Queue_Demo.out PROPERTIES           COMPILE_
 SET_TARGET_PROPERTIES(RM57_FreeRTOS_MPU_Demo.out PROPERTIES             COMPILE_DEFINITIONS "mainDEMO_TYPE=0x4")
 SET_TARGET_PROPERTIES(RM57_FreeRTOS_IRQ_Demo.out PROPERTIES             COMPILE_DEFINITIONS "mainDEMO_TYPE=0x8")
 SET_TARGET_PROPERTIES(RM57_FreeRTOS_Notification_Demo.out PROPERTIES    COMPILE_DEFINITIONS "mainDEMO_TYPE=0x10")
+SET_TARGET_PROPERTIES(CORTEX_Rx_Port_Test.out PROPERTIES                COMPILE_DEFINITIONS "mainDEMO_TYPE=0x0")
 
 TARGET_LINK_LIBRARIES(RM57_FreeRTOS_Full.out                FREERTOS_PORT FREERTOS_KERNEL TI_BOARD_SUPPORT_PACKAGE )
 TARGET_LINK_LIBRARIES(RM57_FreeRTOS_Register_Demo.out       FREERTOS_PORT FREERTOS_KERNEL TI_BOARD_SUPPORT_PACKAGE )
@@ -208,3 +218,6 @@ TARGET_LINK_LIBRARIES(RM57_FreeRTOS_Queue_Demo.out          FREERTOS_PORT FREERT
 TARGET_LINK_LIBRARIES(RM57_FreeRTOS_MPU_Demo.out            FREERTOS_PORT FREERTOS_KERNEL TI_BOARD_SUPPORT_PACKAGE )
 TARGET_LINK_LIBRARIES(RM57_FreeRTOS_IRQ_Demo.out            FREERTOS_PORT FREERTOS_KERNEL TI_BOARD_SUPPORT_PACKAGE )
 TARGET_LINK_LIBRARIES(RM57_FreeRTOS_Notification_Demo.out   FREERTOS_PORT FREERTOS_KERNEL TI_BOARD_SUPPORT_PACKAGE )
+
+
+TARGET_LINK_LIBRARIES(CORTEX_Rx_Port_Test.out  FREERTOS_PORT FREERTOS_KERNEL TI_BOARD_SUPPORT_PACKAGE )

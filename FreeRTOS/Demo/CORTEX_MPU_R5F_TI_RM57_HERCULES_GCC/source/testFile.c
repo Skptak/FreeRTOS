@@ -28,28 +28,23 @@
 #include <stdint.h>
 
 /* FreeRTOS includes. */
-#include "FreeRTOSConfig.h"
 #include "FreeRTOS.h"
-#include "task.h"
-#include "portmacro.h"
 
 /* Demo include */
-#include "demo_tasks.h"
+#include "test_utils.h"
 #include "context_restore_test.h"
+
+extern portDONT_DISCARD PRIVILEGED_DATA TCB_t * volatile pxCurrentTCB;
+
 /* ----------------------------------------------------------------------------------- */
 
 BaseType_t xTestInit( void )
 {
     /* Explained in test_utils.c skeleton file.
      * Generate and return a default Task TCB that populates default values for use in
-     * common tests that don't need a whole task created and registered through the 
+     * common tests that don't need a whole task created and registered through the
      * FreeRTOS-Kernel. */
     TCB_t * xTestTCB =  xCreateTaskTCB( NULL );
-
-    /* Set the program counter for the CPU to the comparison function.
-     * Now calling context restore will load the default test values into the 
-     * registers handled by the port_RESTORE_CONTEXT() function. */
-    xTestTCB->xMPUSettings.ulContext[portPROGRAM_COUNTER_LOC] = &xTestCompareRegisters;
 
     /* Set current TCB to xTestTCB for context restore test. */
     pxCurrentTCB = xTestTCB;
@@ -60,7 +55,11 @@ BaseType_t xTestInit( void )
     vStepTracker( /* Start of test. */ );
 
     /* Restore context from xTestTCB. */
-    vPortRestoreContext();
+    vPortStartFirstTask();
 
-    return xReturn;
+    /* Should not be possible to return to this function. */
+    vTestFailed();
+
+    return -1;
 }
+
