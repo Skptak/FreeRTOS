@@ -27,6 +27,7 @@
     .syntax unified
     .text
 
+    .extern vTestPassed
 #include "test_utils_asm.h"
 
 /*-----------------------------------------------------------*/
@@ -44,11 +45,13 @@ vSetUniqueRegisters:
     MOVS     R5,  #0x00
     MOVS     R6,  #0x00
     MOVS     R7,  #0x00
-    MOVS     R8,  #0x00
-    MOVS     R9,  #0x00
-    MOVS     R10, #0x00
-    MOVS     R11, #0x00
-    MOVS     R12, #0x00
+    /* Use Cortex M0+ Compliant code to make the file more portable.
+     * i.e. don't directly use Registers R8+ for most operations. */
+    MOVS     R8, R0
+    MOVS     R9,  R0
+    MOVS     R10, R0
+    MOVS     R11, R0
+    MOVS     R12, R0
 
     #if( portENABLE_FPU == 1 )
         /* Zero out all Floating Point Registers (FPRs). */
@@ -106,162 +109,170 @@ xTestFunction:
     CMP     R7, #test_REGISTER_07_VALUE
     BNE     testFailure
 
+    /* Use Cortex M0+ Compliant code to make the file more portable.
+     * i.e. don't directly use Registers R8+ for most operations. */
     MOVS    R0, #test_REGISTER_08_VALUE
-    CMP     R8, R0
+    MOVS    R1, R8
+    CMP     R0, R1
     BNE     testFailure
 
     MOVS    R0, #test_REGISTER_09_VALUE
-    CMP     R9, R0
+    MOVS    R1, R9
+    CMP     R0, R1
     BNE     testFailure
 
     MOVS    R0, #test_REGISTER_10_VALUE
-    CMP     R10, R0
+    MOVS    R1, R10
+    CMP     R0, R1
     BNE     testFailure
 
     MOVS    R0, #test_REGISTER_11_VALUE
-    CMP     R11, R0
+    MOVS    R1, R11
+    CMP     R0, R1
     BNE     testFailure
 
     MOVS    R0, #test_REGISTER_12_VALUE
-    CMP     R12, R0
+    MOVS    R1, R12
+    CMP     R0, R1
     BNE     testFailure
 
-    MOVS    R0, #test_LINK_REGISTER_VALUE
-    CMP     R14, R0
+    LDR     R0, =vTestPassed
+    MOVS    R1, R14
+    CMP     R0, R1
     BNE     testFailure
 
     #if( portENABLE_FPU == 1 )
         VMRS    R0, FPSCR               /* R0 = FPSCR. */
         CMP     R0, #test_FPSR_VALUE
-        BLNE    testFailure
+        BNE     testFailure
 
         VMOV    R0, R1, D0
         MOVS    R2, #test_FLOATING_REGISTER_00_VALUE
         MOVS    R3, #test_FLOATING_REGISTER_01_VALUE
         CMP     R0, R2
-        BLNE    testFailure
+        BNE     testFailure
         CMP     R1, R3
-        BLNE    testFailure
+        BNE     testFailure
 
         VMOV    R0, R1, D1
         MOVS    R2, #test_FLOATING_REGISTER_02_VALUE
         MOVS    R3, #test_FLOATING_REGISTER_03_VALUE
         CMP     R0, R2
-        BLNE    testFailure
+        BNE     testFailure
         CMP     R1, R3
-        BLNE    testFailure
+        BNE     testFailure
 
         VMOV    R0, R1, D2
         MOVS    R2, #test_FLOATING_REGISTER_04_VALUE
         MOVS    R3, #test_FLOATING_REGISTER_05_VALUE
         CMP     R0, R2
-        BLNE    testFailure
+        BNE     testFailure
         CMP     R1, R3
-        BLNE    testFailure
+        BNE     testFailure
 
         VMOV    R0, R1, D3
         MOVS    R2, #test_FLOATING_REGISTER_06_VALUE
         MOVS    R3, #test_FLOATING_REGISTER_07_VALUE
         CMP     R0, R2
-        BLNE    testFailure
+        BNE     testFailure
         CMP     R1, R3
-        BLNE    testFailure
+        BNE     testFailure
 
         VMOV    R0, R1, D4
         MOVS    R2, #test_FLOATING_REGISTER_08_VALUE
         MOVS    R3, #test_FLOATING_REGISTER_09_VALUE
         CMP     R0, R2
-        BLNE    testFailure
+        BNE     testFailure
         CMP     R1, R3
-        BLNE    testFailure
+        BNE     testFailure
 
         VMOV    R0, R1, D5
         MOVS    R2, #test_FLOATING_REGISTER_10_VALUE
         MOVS    R3, #test_FLOATING_REGISTER_11_VALUE
         CMP     R0, R2
-        BLNE    testFailure
+        BNE     testFailure
         CMP     R1, R3
-        BLNE    testFailure
+        BNE     testFailure
 
         VMOV    R0, R1, D6
         MOVS    R2, #test_FLOATING_REGISTER_12_VALUE
         MOVS    R3, #test_FLOATING_REGISTER_13_VALUE
         CMP     R0, R2
-        BLNE    testFailure
+        BNE     testFailure
         CMP     R1, R3
-        BLNE    testFailure
+        BNE     testFailure
 
         VMOV    R0, R1, D7
         MOVS    R2, #test_FLOATING_REGISTER_14_VALUE
         MOVS    R3, #test_FLOATING_REGISTER_15_VALUE
         CMP     R0, R2
-        BLNE    testFailure
+        BNE     testFailure
         CMP     R1, R3
-        BLNE    testFailure
+        BNE     testFailure
 
         VMOV    R0, R1, D8
         MOVS    R2, #test_FLOATING_REGISTER_16_VALUE
         MOVS    R3, #test_FLOATING_REGISTER_17_VALUE
         CMP     R0, R2
-        BLNE    testFailure
+        BNE     testFailure
         CMP     R1, R3
-        BLNE    testFailure
+        BNE     testFailure
 
         VMOV    R0, R1, D9
         MOVS    R2, #test_FLOATING_REGISTER_18_VALUE
         MOVS    R3, #test_FLOATING_REGISTER_19_VALUE
         CMP     R0, R2
-        BLNE    testFailure
+        BNE     testFailure
         CMP     R1, R3
-        BLNE    testFailure
+        BNE     testFailure
 
         VMOV    R0, R1, D10
         MOVS    R2, #test_FLOATING_REGISTER_20_VALUE
         MOVS    R3, #test_FLOATING_REGISTER_21_VALUE
         CMP     R0, R2
-        BLNE    testFailure
+        BNE     testFailure
         CMP     R1, R3
-        BLNE    testFailure
+        BNE     testFailure
 
         VMOV    R0, R1, D11
         MOVS    R2, #test_FLOATING_REGISTER_22_VALUE
         MOVS    R3, #test_FLOATING_REGISTER_23_VALUE
         CMP     R0, R2
-        BLNE    testFailure
+        BNE     testFailure
         CMP     R1, R3
-        BLNE    testFailure
+        BNE     testFailure
 
         VMOV    R0, R1, D12
         MOVS    R2, #test_FLOATING_REGISTER_24_VALUE
         MOVS    R3, #test_FLOATING_REGISTER_25_VALUE
         CMP     R0, R2
-        BLNE    testFailure
+        BNE     testFailure
         CMP     R1, R3
-        BLNE    testFailure
+        BNE     testFailure
 
         VMOV    R0, R1, D13
         MOVS    R2, #test_FLOATING_REGISTER_26_VALUE
         MOVS    R3, #test_FLOATING_REGISTER_27_VALUE
         CMP     R0, R2
-        BLNE    testFailure
+        BNE     testFailure
         CMP     R1, R3
-        BLNE    testFailure
+        BNE     testFailure
 
         VMOV    R0, R1, D14
         MOVS    R2, #test_FLOATING_REGISTER_28_VALUE
         MOVS    R3, #test_FLOATING_REGISTER_29_VALUE
         CMP     R0, R2
-        BLNE    testFailure
+        BNE     testFailure
         CMP     R1, R3
-        BLNE    testFailure
+        BNE     testFailure
 
         VMOV    R0, R1, D15
         MOVS    R2, #test_FLOATING_REGISTER_30_VALUE
         MOVS    R3, #test_FLOATING_REGISTER_31_VALUE
         CMP     R0, R2
-        BLNE    testFailure
+        BNE     testFailure
         CMP     R1, R3
-        BLNE    testFailure
+        BNE     testFailure
 
     #endif /* portENABLE_FPU */
 

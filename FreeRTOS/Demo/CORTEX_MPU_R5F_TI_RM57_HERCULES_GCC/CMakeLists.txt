@@ -198,8 +198,8 @@ ADD_EXECUTABLE(RM57_FreeRTOS_Notification_Demo.out
 # Create Port Test executable
 ADD_EXECUTABLE(CORTEX_Rx_Port_Test.out
     ${DEMO_DIR}/source/main.c
-    ${DEMO_DIR}/source/context_restore_test.S
-    ${DEMO_DIR}/source/context_restore_test.c
+    ${DEMO_DIR}/source/testFile_ASM.S
+    ${DEMO_DIR}/source/testFile.c
     ${DEMO_DIR}/source/test_utils.c
 )
 
